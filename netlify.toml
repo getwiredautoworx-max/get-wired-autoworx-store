@@ -1,8 +1,8 @@
 [build]
   publish = "dist"
-  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist && cp index-new.html dist/index.html && mkdir -p dist/assets/products && cp -R assets/products/. dist/assets/products/"
+  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist && cp index-new.html dist/index.html && mkdir -p dist/assets/products && cp -R assets/products/. dist/assets/products/ && mkdir -p dist/assets && cp assets/store-enhancements.js dist/assets/store-enhancements.js && sed -i 's#</body>#<script src=\"assets/store-enhancements.js\"></script></body>#' dist/index.html"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Publish the current storefront and overlay cleaned catalogue images from the repository.
+# Publish the current storefront, cleaned catalogue images, and checkout enhancement.
