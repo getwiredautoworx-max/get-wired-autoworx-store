@@ -1,0 +1,125 @@
+name: Clean Product Images
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  clean-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract source catalogue
+        run: |
+          rm -rf /tmp/store-src
+          mkdir -p /tmp/store-src
+          unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d /tmp/store-src
+          mkdir -p assets/products
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tesseract-ocr
+          python -m pip install --quiet pillow opencv-python-headless pytesseract
+
+      - name: Clean all product images
+        run: |
+          python <<'PY'
+          import os, shutil, subprocess
+          from pathlib import Path
+          import cv2
+          import numpy as np
+          from PIL import Image, ImageChops, ImageOps
+          import pytesseract
+
+          root = Path('/tmp/store-src')
+          out = Path('assets/products')
+          out.mkdir(parents=True, exist_ok=True)
+          exts = {'.jpg','.jpeg','.png','.webp','.bmp'}
+
+          files = [p for p in root.rglob('*') if p.is_file() and p.suffix.lower() in exts]
+          # Prefer product assets; exclude unrelated logos/icons/backgrounds.
+          product_files = [p for p in files if 'product' in str(p).lower()]
+          if not product_files:
+              product_files = files
+
+          def trim_border(im):
+              # Remove obvious solid/near-solid outer borders only.
+              rgb = im.convert('RGB')
+              bg = Image.new('RGB', rgb.size, rgb.getpixel((0,0)))
+              diff = ImageChops.difference(rgb, bg)
+              diff = ImageOps.grayscale(diff)
+              bbox = diff.point(lambda x: 255 if x > 12 else 0).getbbox()
+              if not bbox:
+                  return rgb
+              w,h = rgb.size
+              x0,y0,x1,y1 = bbox
+              # Only accept trimming when it removes a meaningful outer frame.
+              pad = max(3, int(min(w,h)*0.008))
+              x0=max(0,x0-pad); y0=max(0,y0-pad); x1=min(w,x1+pad); y1=min(h,y1+pad)
+              if x0>0 or y0>0 or x1<w or y1<h:
+                  return rgb.crop((x0,y0,x1,y1))
+              return rgb
+
+          def remove_margin_text(img):
+              # Remove catalogue text only when OCR places it in the outer margin.
+              arr = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+              h,w = arr.shape[:2]
+              if min(h,w) < 160:
+                  return img
+              data = pytesseract.image_to_data(arr, output_type=pytesseract.Output.DICT, config='--psm 11')
+              mask = np.zeros((h,w), np.uint8)
+              for i, txt in enumerate(data['text']):
+                  txt = (txt or '').strip()
+                  try: conf=float(data['conf'][i])
+                  except: conf=-1
+                  if not txt or conf < 45:
+                      continue
+                  x,y,ww,hh = [int(data[k][i]) for k in ('left','top','width','height')]
+                  if ww<=0 or hh<=0: continue
+                  # Only mask text clearly in the outer 18% margins, avoiding product-centre labels.
+                  margin = (x < .18*w or x+ww > .82*w or y < .16*h or y+hh > .84*h)
+                  if margin and (ww*hh < .10*w*h):
+                      cv2.rectangle(mask, (max(0,x-3),max(0,y-3)), (min(w-1,x+ww+3),min(h-1,y+hh+3)), 255, -1)
+              if mask.max()==0:
+                  return img
+              # Dilate slightly, then inpaint. Keep product centre intact.
+              mask=cv2.dilate(mask, np.ones((3,3),np.uint8), iterations=1)
+              cleaned=cv2.inpaint(arr, mask, 3, cv2.INPAINT_TELEA)
+              return Image.fromarray(cv2.cvtColor(cleaned, cv2.COLOR_BGR2RGB))
+
+          count=0
+          for src in product_files:
+              name = src.stem + '.jpg'
+              # Preserve SKU-like filenames and avoid duplicate basename collisions.
+              dst = out / name
+              try:
+                  im=Image.open(src).convert('RGB')
+                  im=trim_border(im)
+                  im=remove_margin_text(im)
+                  # Standardize to high-quality JPEG without changing product geometry.
+                  im.thumbnail((1600,1600), Image.Resampling.LANCZOS)
+                  im.save(dst, 'JPEG', quality=94, optimize=True)
+                  count += 1
+              except Exception as e:
+                  print('SKIP', src, e)
+
+          print('CLEANED_IMAGES=', count)
+          if count < 700:
+              raise SystemExit(f'Only cleaned {count} images; refusing to publish an incomplete catalogue.')
+          PY
+
+      - name: Commit cleaned catalogue images
+        run: |
+          git config user.name "Get Wired AutoWorx Image Cleaner"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/products
+          git commit -m "Clean catalogue product images" || echo "No image changes to commit"
+          git push
