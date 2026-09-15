@@ -1,6 +1,9 @@
 [build]
-  publish = "."
-  command = ""
+  publish = "dist"
+  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist && cp index-new.html dist/index.html"
 
-# Static storefront is published directly from the repository root.
-# This bypasses the legacy ZIP build step.
+[build.environment]
+  NODE_VERSION = "20"
+
+# Restore the packaged product-image assets from the verified storefront ZIP,
+# then publish the current product-detail storefront as the site entry point.
