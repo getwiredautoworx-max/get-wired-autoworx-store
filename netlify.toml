@@ -1,8 +1,8 @@
 [build]
   publish = "dist"
-  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist && cp index-new.html dist/index.html && mkdir -p dist/assets/products && cp -R assets/products/. dist/assets/products/ && mkdir -p dist/assets && cp assets/store-enhancements.js dist/assets/store-enhancements.js && cp assets/ui-fixes.js dist/assets/ui-fixes.js && sed -i 's#</body>#<script src=\"assets/store-enhancements.js\"></script><script src=\"assets/ui-fixes.js\"></script></body>#' dist/index.html"
+  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist && cp index-new.html dist/index.html && mkdir -p dist/assets/products && cp -R assets/products/. dist/assets/products/ && mkdir -p dist/assets && cp assets/store-enhancements.js dist/assets/store-enhancements.js && cp assets/ui-fixes.js dist/assets/ui-fixes.js && cp admin.html dist/admin.html && cp assets/admin.js dist/assets/admin.js && sed -i 's#</body>#<script src=\"assets/store-enhancements.js\"></script><script src=\"assets/ui-fixes.js\"></script></body>#' dist/index.html"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Publish the current storefront, catalogue images, checkout enhancement, and mobile UI fixes.
+# Publish the current storefront, catalogue images, checkout enhancement, mobile UI fixes, and secure admin portal.
