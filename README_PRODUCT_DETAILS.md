@@ -1,0 +1,1 @@
+Storefront update: product cards open a detailed product window with image, price, SKU, vehicle/application information, product information, specifications, order/delivery information, Add to Cart, and WhatsApp ordering. Existing Supabase catalogue remains the data source.
