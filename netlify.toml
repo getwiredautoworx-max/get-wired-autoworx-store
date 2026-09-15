@@ -1,9 +1,6 @@
 [build]
-  publish = "dist"
-  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist"
+  publish = "."
+  command = ""
 
-[build.environment]
-  NODE_VERSION = "20"
-
-# The production site is built from the single store ZIP committed to GitHub.
-# Upload the ZIP to the repository root; Netlify will automatically deploy it.
+# Static storefront is published directly from the repository root.
+# This bypasses the legacy ZIP build step.
