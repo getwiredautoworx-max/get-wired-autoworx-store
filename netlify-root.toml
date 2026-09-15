@@ -1,0 +1,6 @@
+[build]
+  publish = "."
+  command = ""
+
+# Static storefront is published directly from the repository root.
+# This avoids the old ZIP build pipeline and its unnecessary build step.
