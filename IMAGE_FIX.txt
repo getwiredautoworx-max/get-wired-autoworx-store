@@ -1,0 +1,1 @@
+Exact SKU image fallback added to storefront image handling. Existing image_url remains preferred; exact SKU-named assets/products JPGs are used as fallback.
