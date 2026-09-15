@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Wired AutoWorx Admin</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#02060d;color:#f5f8fc;font-family:Arial,sans-serif}main{max-width:1180px;margin:auto;padding:18px}.panel{background:#07111e;border:1px solid #12456c;border-radius:12px;padding:18px;margin-bottom:16px}h1,h2,h3{margin-top:0}.muted{color:#9fb0c1}input,select,textarea{width:100%;background:#050d18;color:#fff;border:1px solid #28658c;border-radius:7px;padding:11px;margin:6px 0 12px}button{background:#087fe0;color:#fff;border:0;border-radius:7px;padding:10px 14px;font-weight:800;cursor:pointer}button.secondary{background:#12344c}button.danger{background:#8d1e2b}.hidden{display:none}.toolbar{display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:end}.orders{display:grid;gap:10px}.order{border:1px solid #164665;border-radius:10px;padding:15px;background:#050d18}.order-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:#12344c;font-size:12px;font-weight:800}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#050d18;border:1px solid #164665;border-radius:9px;padding:12px}.stat b{font-size:20px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}@media(max-width:700px){main{padding:10px}.toolbar,.grid{grid-template-columns:1fr}.panel{padding:14px}}
+</style>
+</head>
+<body>
+<main>
+<section id="loginPanel" class="panel">
+<h1>GET WIRED AUTOWORX — ADMIN</h1>
+<p class="muted">Authorised staff only. Sign in with a Supabase Auth account that is enabled in the admin allowlist.</p>
+<input id="email" type="email" autocomplete="email" placeholder="Staff email">
+<button id="loginBtn">SEND SECURE SIGN-IN LINK</button>
+<p id="msg" class="muted"></p>
+</section>
+
+<section id="app" class="hidden">
+<div class="panel">
+<div class="order-head"><div><h1>Order Management</h1><p id="sessionUser" class="muted"></p></div><div class="actions"><button id="refresh">REFRESH</button><button id="logout" class="danger">LOG OUT</button></div></div>
+<div class="grid"><div class="stat"><span class="muted">Orders shown</span><br><b id="count">0</b></div><div class="stat"><span class="muted">Pending payment</span><br><b id="pendingPayment">0</b></div><div class="stat"><span class="muted">Pending orders</span><br><b id="pendingOrders">0</b></div></div>
+</div>
+<div class="panel">
+<div class="toolbar">
+<label>Status<select id="status"><option value="">All statuses</option><option>pending</option><option>confirmed</option><option>processing</option><option>ready_for_pickup</option><option>shipped</option><option>completed</option><option>cancelled</option></select></label>
+<label>Payment<select id="payment"><option value="">All payments</option><option>pending</option><option>paid</option><option>failed</option><option>refunded</option><option>cancelled</option></select></label>
+<button id="apply">APPLY</button><button id="clear" class="secondary">CLEAR</button>
+</div>
+</div>
+<div class="panel"><div id="orders" class="orders">Loading orders…</div></div>
+</section>
+</main>
+<script src="assets/admin.js"></script>
+</body>
+</html>
