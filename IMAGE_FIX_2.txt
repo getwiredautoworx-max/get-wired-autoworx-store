@@ -1,0 +1,1 @@
+Exact SKU image fallback is included in storefront image handling.
