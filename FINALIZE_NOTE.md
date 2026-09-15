@@ -1,0 +1,1 @@
+Finalizing the protected product-detail storefront into index.html.

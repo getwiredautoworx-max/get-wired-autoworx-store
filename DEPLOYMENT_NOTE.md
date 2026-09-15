@@ -1,0 +1,1 @@
+The product-detail storefront is ready on this branch. The production Netlify configuration still needs to point to the root static site instead of the legacy ZIP build before publishing.
