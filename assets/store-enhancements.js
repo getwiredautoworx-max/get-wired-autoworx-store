@@ -30,5 +30,40 @@ async function submitOrder(e){
   cart=[];localStorage.setItem('gw_cart','[]');cartRender();e.target.style.display='none';
  }catch(err){alert(err.message);btn.disabled=false;btn.textContent='SUBMIT ORDER'}
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addCheckout);else addCheckout();
+
+// Product-image repair: prefer the catalogue image_url; when it is missing or broken,
+// resolve an exact SKU-named image from the repository image library. Name matching is
+// deliberately secondary so one product cannot accidentally inherit another product's image.
+function normaliseSku(v){return String(v||'').trim().replace(/\.(jpg|jpeg|png|webp)$/i,'').replace(/[^a-zA-Z0-9_-]/g,'').toUpperCase()}
+function imageCandidates(sku){
+ const n=normaliseSku(sku); if(!n)return [];
+ const raw=String(sku||'').trim();
+ const names=[raw,n,raw.toLowerCase(),n.toLowerCase()];
+ const out=[]; for(const x of names){if(x)out.push('assets/products/'+encodeURIComponent(x)+'.jpg')}
+ return [...new Set(out)];
+}
+function repairProductImages(){
+ document.querySelectorAll('.product').forEach(card=>{
+  const img=card.querySelector('.prodImg img'); if(!img)return;
+  let sku=card.dataset.sku||card.getAttribute('data-part-number')||'';
+  if(!sku){
+   const text=card.textContent||'';
+   const m=text.match(/(?:SKU|PART(?:\s|-)NUMBER|REFERENCE(?:\s|-)NUMBER)\s*[:#-]?\s*([A-Za-z0-9_-]+)/i);
+   if(m)sku=m[1];
+  }
+  if(!sku)return;
+  const candidates=imageCandidates(sku); if(!candidates.length)return;
+  let i=0;
+  const tryNext=()=>{if(i>=candidates.length)return;const next=candidates[i++];if(img.dataset.gwTried===next)return tryNext();img.dataset.gwTried=next;img.onerror=tryNext;img.src=next};
+  if(!img.getAttribute('src')||/^data:|^about:/.test(img.getAttribute('src')))tryNext();
+  else img.addEventListener('error',()=>tryNext(),{once:true});
+ });
+}
+function startImageRepair(){
+ repairProductImages();
+ const observer=new MutationObserver(()=>repairProductImages());
+ observer.observe(document.body,{childList:true,subtree:true});
+ setTimeout(repairProductImages,500);setTimeout(repairProductImages,1500);setTimeout(repairProductImages,3000);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{addCheckout();startImageRepair()});else{addCheckout();startImageRepair()}
 })();
