@@ -1,0 +1,1 @@
+Product-detail storefront is activated through index.html -> index-new.html. Main branch remains unchanged until review/merge.
