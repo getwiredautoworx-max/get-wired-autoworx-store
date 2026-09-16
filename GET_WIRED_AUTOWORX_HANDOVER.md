@@ -62,14 +62,17 @@ Current deployment platform: **Cloudflare**. Cloudflare credits are reserved and
 - The repository contains two GitHub Actions workflows: storefront smoke testing and product-image cleaning. No Cloudflare deployment workflow/configuration was found in the repository search.
 - The legacy `DEPLOYMENT_NOTE.md` was corrected to remove obsolete Netlify instructions and now documents the Cloudflare final-live checklist.
 
-### 6. Missing-image fallback verified
-- Product cards already use a deliberate fallback when `image_url` is blank: a non-breaking lightning placeholder is rendered instead of leaving an empty image area.
-- Product detail view also has a fallback when `image_url` is blank.
-- This protects the storefront while the catalogue image-loading project continues.
-- Do not replace this fallback with guessed product images. Product imagery must remain accurate to the actual SKU.
+### 6. Missing-image fallback and catalogue image readiness
+- Product cards already use a deliberate lightning placeholder when `image_url` is blank; product detail also has a fallback.
+- The authoritative catalogue contains blank image fields for many products and imagery must not be guessed.
+- The existing `clean-product-images.yml` workflow remains preserved for the supplied watermarked image package; it creates consistent ecommerce images under `assets/products` and refuses to publish if fewer than 700 images are produced.
+- Added `assets/product-image-fallback.js` to use a verified SKU-named local asset (`/assets/products/<SKU>.jpg`) when a product has no image URL or an existing image URL fails. It fails closed if the SKU asset is absent, so it cannot invent a product image.
+- Updated `store.html` to load and install that fallback inside the same-origin storefront iframe. This preserves the existing design and routes while allowing verified local catalogue images to appear as soon as matching SKU assets exist.
+- These image changes do not use Cloudflare or Netlify credits and do not alter Supabase product data.
+- The image project is still not declared complete: actual image coverage for all 791 fixed-price products must still be verified against the validated catalogue.
 
 ### 7. Checkout/order flow advanced
-- Active checkout now loads and verifies cart products from Supabase.
+- Active checkout loads and verifies cart products from Supabase.
 - It calculates subtotal plus one fixed R15 delivery charge.
 - It collects customer name, phone, email, delivery address, city, province and postal code.
 - It submits the order through the existing `create_store_order` RPC.
@@ -79,21 +82,24 @@ Current deployment platform: **Cloudflare**. Cloudflare credits are reserved and
 - Code inspection confirms the customer-facing checkout explicitly states R15.00 per delivery address/order, not per item, and states that Phoenix Plaza is internal dispatch reference only.
 
 ### 8. Automated and deployment-readiness QA
-- GitHub Actions smoke-test run `35157945337` completed successfully.
+- GitHub Actions smoke-test run `35157945337` completed successfully before the latest image-fallback commits.
 - Smoke test verified mobile storefront loading, category/product loading, product detail modal, add-to-cart, active checkout routing, customer fields, **R15.00 delivery**, and the explicit **not charged per item** delivery notice.
-- Repository-level inspection also confirmed the root `index.html` -> `store.html` -> `index-new.html` chain and active `checkout-v2.html` route.
+- Repository-level inspection confirmed the root `index.html` -> `store.html` -> `index-new.html` chain and active `checkout-v2.html` route.
 - Cloudflare-specific repository configuration was searched for (`cloudflare`, `wrangler`, `pages.dev`) and no matching deployment configuration was found.
 - No Cloudflare deployment/build was triggered and no Cloudflare credits were used.
-- A live Cloudflare URL was not available to the GitHub-connected QA environment, so the actual published site could not be independently verified from here. The final live checklist is preserved below and in `DEPLOYMENT_NOTE.md`.
+- A live Cloudflare URL was not available to the GitHub-connected QA environment, so the actual published site could not be independently verified from here.
+- The latest image-fallback commits are `be4383ddbf6ecc7d8a31fd0f4273135c463ae592` and `494728e71d0dd140b27aba750cc0fcc6d75d6fe`.
 
 ### 9. Master handover updated
 - This file is the current repository handover.
 - Latest relevant commits:
+  - `494728e71d0dd140b27aba750cc0fcc6d75d6fe` — connected SKU-based image fallback to the storefront wrapper.
+  - `be4383ddbf6ecc7d8a31fd0f4273135c463ae592` — added the safe SKU-based product image fallback helper.
   - `acc82e3bf6d629b2e705e4157a7f860d35a3d0fc` — corrected the obsolete deployment note to Cloudflare and added the final live QA checklist.
   - `9d1d877104ba25f5dafa40e348779b0a7dcec74e` — corrected the automated storefront smoke test to use the active `checkout-v2.html` route and verify the fixed R15 delivery requirement.
   - `659556b2fed929d9f5d8ff4f2b5f3ca377ddf805` — added fixed-R15 checkout.
   - `a43623798727cd1af78863ccc13c4aa42ac75bdb` — routed the active checkout button to the fixed-R15 checkout.
-- Previous known project commit before this continuation: `0fde2ad4ec15c4bb9816019ad76c2a9962481785`.
+- Previous known project checkpoint: `0fde2ad4ec15c4bb9816019ad76c2a9962481785`.
 
 ## FINAL LIVE CLOUDFLARE CHECKLIST — CREDIT-DEPENDENT
 
@@ -108,9 +114,9 @@ Current deployment platform: **Cloudflare**. Cloudflare credits are reserved and
 
 ## CURRENT NEXT WORK
 
-1. Perform the final live Cloudflare checklist above when the existing Cloudflare project/live URL is accessible and final deployment testing is authorized.
-2. Continue the catalogue image project toward accurate images for all validated products.
-3. Verify supplier stock before products are treated as orderable stock.
+1. Continue accurate catalogue image coverage and verify actual matching SKU assets against the validated 791 fixed-price products.
+2. Verify supplier stock before products are treated as orderable stock. No live supplier-stock source/credential is currently available in the repository, so supplier availability must not be invented or marked verified without an authoritative supplier source.
+3. Perform the final live Cloudflare checklist when the existing Cloudflare project/live URL is accessible and final deployment testing is authorized.
 4. Complete PayFast verification only after the storefront is approved by the owner.
 5. Complete supplier-order and courier/PAXI automation after payment flow is approved.
 
