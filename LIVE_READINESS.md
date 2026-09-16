@@ -1,31 +1,28 @@
 # Get Wired AutoWorx — Live Readiness
 
-Updated: 2026-09-16 21:47 SAST
+Updated: 2026-09-16 22:15 SAST
 
 ## Current verification
-- GitHub `main` current HEAD after the latest handover update is `ea10e2f49a1e335a45efa91c18dfeaf7df65dbcf`.
+- GitHub `main` current HEAD after the latest handover update is `becbfc0974f7cad2a5858dba545ed1c1e88ef8d6`.
 - The approved source storefront remains `index-new.html`; `index.html` routes through `store.html` so checkout remains reachable after adding a cart item.
-- Latest storefront smoke run `35140654305` completed successfully on the current source and workflow; earlier job `104941519746` reported `STOREFRONT_SMOKE_PASS`.
-- Smoke coverage includes mobile entry, live category/specials rendering, product-detail open/close, add-to-cart, checkout navigation/form fields, and desktop viewport switching.
-- The smoke test is source/automated verification, not public-site verification.
-- 4,198 active products verified in Supabase.
-- 4,188 unique priced SKUs verified.
-- 0 uncategorized active products.
-- 4,162 products have stock_quantity = 5; 0 products have zero stock; total units = 27,847.
+- Latest storefront smoke run `35140654305` completed successfully. Smoke coverage includes mobile entry, live category/specials rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
+- The smoke test is source/automated verification, **not public-site verification**.
+- Current Supabase state: 4,187 active products; 4,187 unique active priced SKUs; 0 uncategorized; 4,187 active products with stock > 0; 27,745 total active units; 0 zero-stock active products.
+- 3,396 active products now use the explicit branded placeholder `/assets/product-placeholder.svg` because no verified product-specific image was available. This prevents blank/broken image states without inventing product imagery.
+- Product-specific image enrichment remains a non-blocking follow-up and must use only verified matching images.
 - Product catalogue, categories, search, product detail modal, cart, mobile layout and checkout are implemented.
 - Checkout uses the server-side `create_store_order` RPC and revalidates active product prices in the database.
 - Admin order management supports authenticated filtering, order-status updates, payment-status updates, payment references and notes.
-- Image cleanup workflows completed successfully; no new image changes were required.
+- Image cleanup workflow completed successfully; 800 images were processed in the existing pipeline.
 - No Cloudflare credits used.
 - No Netlify credits used.
 
 ## Security hardening completed during this verification
-- Confirmed that older overloaded admin RPC signatures still had `anon` execution through the inherited `PUBLIC` grant.
-- Removed public/anonymous execution from the legacy admin RPC overloads and from internal pricing/import SECURITY DEFINER RPCs.
+- Removed public/anonymous execution from legacy admin RPC overloads and internal pricing/import SECURITY DEFINER RPCs.
 - Re-granted authenticated execution to those functions so the authenticated admin/import workflow remains available.
 - Re-checked function privileges: affected functions now show `anon_execute = false` and `authenticated_execute = true`.
-- Supabase security advisor still reports four public import/staging tables with RLS disabled and several RLS-enabled internal tables with no policies. These appear to be import/staging/internal infrastructure and have not been changed automatically because doing so without confirmed access requirements could break legitimate workflows.
-- Leaked-password protection remains a Supabase Auth configuration warning and has not been changed as part of this source/storefront continuation.
+- Supabase security advisor still reports four public import/staging tables with RLS disabled and several RLS-enabled internal tables with no policies. These have not been changed automatically because access requirements are not confirmed.
+- Leaked-password protection remains a Supabase Auth configuration warning.
 
 ## Source/database smoke-test checklist
 1. Homepage/store entry routes to approved storefront wrapper. **PASS**
@@ -42,15 +39,15 @@ Updated: 2026-09-16 21:47 SAST
 12. Payment workflow supports EFT/manual payment/cash-on-pickup with pending/paid/failed/refunded/cancelled admin statuses. **PASS**
 13. Delivery workflow records delivery/pickup and customer address details, with Courier Guy / PEP PAXI stated and delivery fee confirmed by the store. **PASS**
 
-## Public deployment verification
-- Netlify read-only inspection confirms production deploy `6aa98a8a679a4a0008e10b58` is ready but stale relative to current GitHub source. It was created 2026-09-15 from commit `37654d7c2e8e38dad80f9edf33413aa1be62d1a4`.
-- Current source is newer than that deployment, so the existing Netlify site cannot be treated as the current source release.
-- Public fetch of the known Netlify URL is not currently available through the accessible web/runtime path. Therefore the store is **not marked live-verified**.
+## Public deployment verification — DEFERRED
+- Task 9 is deliberately **not being tested yet**, per user instruction.
+- When the user is ready to browse/test, verify the actual public Cloudflare storefront end-to-end and record the public URL and results here.
+- Do not claim live verification before that test occurs.
+- Known Netlify production deploy `6aa98a8a679a4a0008e10b58` remains stale relative to current GitHub source and must not be refreshed because Netlify credits are prohibited.
 - The temporary Cloudflare public hostname is not documented in repository/configuration search results available here.
-- No Netlify or Cloudflare deployment was triggered because doing so would violate the standing no-credit constraint.
 
 ## Deployment constraint
 - Repository/source readiness is verified.
 - Netlify deployment is intentionally not triggered because Netlify credits must not be used.
 - Cloudflare credits must not be used.
-- Public deployment/browser verification remains pending a genuinely accessible credit-free publishing path.
+- Public deployment/browser verification is deferred until the user is ready to browse/test.
