@@ -5,6 +5,7 @@ Updated: 2026-09-16
 ## Customer checkout
 - `store.html` wraps the approved `index-new.html` storefront and exposes a checkout button whenever the browser cart contains items.
 - `checkout.html` verifies the current active products and prices from Supabase before order submission.
+- The injected storefront checkout enhancement in `assets/store-enhancements.js` now uses the validated `manual_payment` RPC value; this matches `public.create_store_order` and removes the previously detected `manual_confirmation` mismatch.
 - Customer details: name, phone, email, fulfilment, address, province, postal code and notes.
 - Fulfilment: nationwide delivery or pickup.
 - Delivery provider wording: Courier Guy or PEP PAXI.
@@ -22,6 +23,7 @@ Updated: 2026-09-16
 - `admin.html` / `assets/admin.js` provide authenticated owner/admin access.
 - Admin can filter orders, view customer/order/payment information, update order status, update payment status, record payment references and internal notes, and contact the customer through WhatsApp.
 - Admin RPC access is restricted to authenticated admin users; anonymous execution of admin listing/update RPCs is revoked.
+- Legacy overloaded admin RPC definitions were removed after confirming the storefront uses the current validated signatures. Only the current admin-list and admin-update signatures remain.
 
 ## Payment integration boundary
 - No third-party payment gateway credentials are stored in the repository or exposed to customers.
@@ -37,13 +39,14 @@ Updated: 2026-09-16
 - Automated delivery pricing, provider integration, tracking/reference handling and order-to-delivery linkage remain final-phase work.
 
 ## Non-credit QA — 16 Sep 2026
-- Reviewed `index.html`, `store.html`, `index-new.html` and `checkout.html` through the GitHub repository without deploying or consuming Netlify/Cloudflare credits.
+- Reviewed `index.html`, `store.html`, `index-new.html`, `checkout.html`, `admin.html`, `assets/admin.js`, `assets/store-enhancements.js` and `netlify.toml` through the GitHub repository without deploying or consuming Netlify/Cloudflare credits.
 - `index.html` redirects into the existing `store.html` wrapper; no new Netlify site or replacement storefront was introduced.
 - `store.html` embeds `index-new.html` and exposes the cart checkout action.
 - `checkout.html` re-reads active product records before order creation and calls `create_store_order`; browser-submitted product prices are not used as the authoritative price.
+- The enhanced storefront checkout had a payment enum mismatch (`manual_confirmation` versus the database's accepted `manual_payment`); this was corrected and committed as `e1609510e217ab4b7c20dd152d30e43be2374429`.
 - Current live checkout does not contain PayFast integration; this remains intentionally deferred to final testing.
 - Current delivery fee is deliberately not calculated by the storefront and is documented as a pre-integration state.
-- No source-code change was made to the locked storefront design during this QA pass.
+- No source-code redesign was performed.
 
 ## Final testing dependencies
 1. PayFast account verification and secure server-side integration.
