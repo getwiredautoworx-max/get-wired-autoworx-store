@@ -18,6 +18,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Synchronize with latest main before generating images
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Extract source catalogue
         run: |
           rm -rf /tmp/store-src
@@ -123,7 +128,6 @@ jobs:
           git config user.name "Get Wired AutoWorx Image Cleaner"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git reset --mixed origin/main
           git add assets/products
           if git diff --cached --quiet; then
             echo "No image changes to commit"
@@ -132,4 +136,4 @@ jobs:
           git commit -m "Improve ecommerce product image presentation"
           git push origin HEAD:main
 
-# Produces clean, consistent 1200x1200 ecommerce images without adding a watermark. No Netlify or Cloudflare credits are used.
+# Produces clean, consistent 1200x1200 ecommerce images. No Netlify or Cloudflare credits are used.
