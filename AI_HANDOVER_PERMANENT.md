@@ -101,6 +101,7 @@ Do not spend Cloudflare or Netlify credits without explicit permission. Do not c
 - Security-definer order/admin functions were inspected. Admin functions explicitly verify authenticated admin membership through `veyron_admin_users`; `create_store_order` is intentionally callable for anonymous checkout and validates inputs inside the function.
 - Supabase Auth leaked-password protection is currently reported disabled and remains a final security configuration item.
 - Security findings are documented rather than weakened merely to silence advisor warnings.
+- Legacy overloaded `admin_list_orders(integer,integer,text)` and `admin_update_order(uuid,text,text,text,text)` definitions were removed after confirming the current storefront uses the current validated signatures. Remaining admin RPCs require authenticated admin access.
 
 ## REQUIRED VERIFICATION AFTER MAJOR TASKS
 Verify active count, SKU uniqueness, missing costs, pricing formula, category refs, storefront sync, stock source, image integrity where relevant, and checkout/admin integrity.
@@ -115,6 +116,7 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 ## TASK 1 — MANUAL CATEGORY-SORT WORKSHEET — FINAL PHASE
 - [ ] Extract all 198 reserved products.
 - [ ] Include SKU, product name and current category.
+- [ ] Include a separate **Product Type** field identifying what the item actually is.
 - [ ] Include useful category options where appropriate.
 - [ ] Create separate Word section: **MANUAL CATEGORY SORT — 198 ITEMS**.
 - [ ] Keep all 198 isolated from automatic reassignment.
@@ -145,6 +147,8 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [x] Duplicate SKU check.
 - [x] Stock floor.
 - [x] Pricing formula.
+- [x] Non-credit source-code QA of storefront, checkout and admin paths.
+- [x] Corrected storefront checkout payment enum mismatch.
 
 ### Live/customer QA — FINAL DEPLOYMENT PHASE
 - [ ] Homepage and locked design.
@@ -230,6 +234,7 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 
 ## TASK 8 — FINAL BUSINESS REPORTS
 - [x] Business status report.
+- [x] Non-data-analysis execution report.
 - [ ] Final stock report.
 - [ ] Final pricing report.
 - [ ] SKU/category report.
@@ -242,6 +247,8 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 
 ## TASK 9 — FINAL SECURITY / BACKUP
 - [x] Current Supabase security review completed to actionable level.
+- [x] Non-credit security review of order/admin RPCs completed.
+- [x] Obsolete admin RPC overloads removed and privileges rechecked.
 - [ ] Final Supabase security-advisor review.
 - [ ] Configure/resolve Auth leaked-password protection.
 - [ ] Verify RLS on all relevant tables.
@@ -304,15 +311,30 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 - Stock floor: complete; 0 active products below 5.
 - Verified ASC stock: 36 SKUs / 7,037 units.
 - Full supplier stock reconciliation remains incomplete because no complete supplier bulk-stock feed is stored.
-- 198 products remain reserved for manual category sorting.
+- 198 products remain reserved for manual category sorting; Product Type is required as a separate worksheet field.
 - Catalogue expansion target already exceeded.
 - Business status report updated.
-- Security review completed to current actionable level; Auth leaked-password protection remains final configuration.
+- Nine non-data-analysis tasks completed in the 16 Sep continuation pass.
+- A storefront checkout enum defect was corrected; the corrected code uses `manual_payment`, matching the database RPC.
+- Obsolete admin RPC overloads were removed after signature/usage verification.
+- Security review completed to current actionable non-credit level; Auth leaked-password protection remains final configuration.
 - Product images remain explicitly deferred.
 - PayFast, delivery, image work and production/live testing remain final-phase tasks.
 - Netlify/Cloudflare credits have not been used for deferred final tasks.
 
 ## CHANGE LOG
+### 16 Sep 2026 — Nine non-data-analysis tasks completed
+- Audited storefront source, checkout, admin, enhancement and deployment configuration.
+- Corrected the storefront enhancement payment enum mismatch in commit `e1609510e217ab4b7c20dd152d30e43be2374429`.
+- Re-verified the corrected source in GitHub.
+- Audited `create_store_order` validation and authoritative database pricing.
+- Audited admin authentication/RPC usage and removed obsolete admin RPC overloads through Supabase migration.
+- Rechecked anonymous/authenticated function execution privileges after the cleanup.
+- Confirmed payment and delivery integration boundaries remain final-phase work.
+- Confirmed repository contains the storefront image ZIP referenced by `netlify.toml` and the existing storefront smoke-test workflow.
+- Updated `CHECKOUT_PAYMENT_DELIVERY.md` and created `NON_DATA_TASKS_COMPLETED_2026-09-16.md`.
+- No Netlify or Cloudflare credits used.
+
 ### 16 Sep 2026 — Detailed task-list update
 - User requested a detailed task list.
 - Master handover expanded with task-by-task checklists for Tasks 1–10.
