@@ -110,64 +110,228 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - Current active catalogue of 4,187 already exceeds the earlier 3,000-item target; further expansion is now **validation-led**, not quantity-led.
 - Final master stock/pricing Excel workbook remains pending until a complete verified supplier-stock feed is available.
 
-## FINAL-PHASE TASK QUEUE — USER REQUESTED 16 SEP 2026
-The following tasks are explicitly moved to the end and must remain in the handover until completed:
+# DETAILED REMAINING TASK LIST
 
-### TASK 1 — Manual category-sort list / Word worksheet
-- Prepare the separate Word worksheet section **MANUAL CATEGORY SORT — 198 ITEMS**.
-- Keep all 198 items isolated from automatically resolved categories.
-- Do not auto-assign or delete these items unless explicitly requested.
+## TASK 1 — MANUAL CATEGORY-SORT WORKSHEET — FINAL PHASE
+- [ ] Extract all 198 reserved products.
+- [ ] Include SKU, product name and current category.
+- [ ] Include useful category options where appropriate.
+- [ ] Create separate Word section: **MANUAL CATEGORY SORT — 198 ITEMS**.
+- [ ] Keep all 198 isolated from automatic reassignment.
+- [ ] Do not delete any of these products without explicit instruction.
+- [ ] After user decisions, update Supabase categories.
+- [ ] Synchronize storefront category IDs.
+- [ ] Verify 0 category mismatches.
 
-### TASK 4 — Payments
-- Complete PayFast integration.
-- Verify PayFast account/documents as required by PayFast.
-- Implement payment confirmation → order flow.
-- Handle failed/cancelled payments safely.
-- Perform payment testing only in final testing phase.
+## TASK 2 — SUPPLIER-STOCK RECONCILIATION
+- [x] Search available stored supplier/source material.
+- [x] Confirm `supplier_stock` contains 0 rows.
+- [x] Confirm 36 ASC SKUs / 7,037 units are explicit verified stock evidence.
+- [x] Preserve default stock floor 5 where no verified quantity exists.
+- [x] Do not invent supplier quantities.
+- [ ] Obtain/use a complete current supplier stock feed if one becomes available.
+- [ ] Reconcile duplicate/conflicting SKU sources.
+- [ ] Prefer the latest explicitly verified source.
+- [ ] Update quantities only from verified evidence.
+- [ ] Produce final supplier-stock reconciliation report.
+- [ ] Produce final stock/pricing workbook after full reconciliation.
 
-### TASK 5 — Delivery
-- Complete Your Courier / PEP PAXI delivery integration.
-- Configure delivery options and pricing.
-- Link customer delivery details to orders.
-- Verify order → delivery workflow in final testing.
+## TASK 3 — STOREFRONT / DATABASE QA
+### Database QA — COMPLETE
+- [x] Active products and unique SKUs.
+- [x] Storefront row integrity.
+- [x] Price/category/stock synchronization.
+- [x] Category references.
+- [x] Duplicate SKU check.
+- [x] Stock floor.
+- [x] Pricing formula.
 
-### TASK 7 — Product images
-- Match catalogue images to SKUs.
-- Identify unresolved/missing images.
-- Apply the user's watermarking requirement.
-- Verify final image coverage.
-- User has explicitly deferred this work until later/final phase.
+### Live/customer QA — FINAL DEPLOYMENT PHASE
+- [ ] Homepage and locked design.
+- [ ] Search.
+- [ ] Categories/subcategories.
+- [ ] Product filtering.
+- [ ] Product details.
+- [ ] Pricing and stock display.
+- [ ] Specials/Featured.
+- [ ] Cart and quantity changes.
+- [ ] Checkout.
+- [ ] Customer details.
+- [ ] Delivery details.
+- [ ] WhatsApp/contact.
+- [ ] Mobile navigation/responsiveness.
+- [ ] Order creation.
+- [ ] Customer records.
+- [ ] Order items.
+- [ ] Admin order visibility/status.
+- [ ] Payment status.
+- [ ] Delivery information.
+- [ ] Failed/cancelled transaction handling.
 
-### TASK 10 — Production deployment / live testing
-- Verify Netlify production deployment.
-- Verify getwiredautoworx.co.za, DNS/Cloudflare if required, HTTPS and redirects.
-- Run the complete live customer journey: browse → search → category → product → cart → checkout → payment → order → delivery/admin.
-- This is the only phase where Netlify/Cloudflare credit-dependent work may be performed, and only under the locked workflow rules.
+## TASK 4 — PAYFAST — FINAL PHASE
+- [ ] Confirm PayFast account readiness.
+- [ ] Complete outstanding PayFast verification/documents.
+- [ ] Configure credentials securely.
+- [ ] Configure return/callback handling.
+- [ ] Connect checkout to PayFast.
+- [ ] Payment success → confirmed order.
+- [ ] Payment failure handling.
+- [ ] Payment cancellation handling.
+- [ ] Prevent duplicate order creation.
+- [ ] Verify transaction/reference and amount.
+- [ ] Test payment flow only during final testing.
 
-## CONTINUATION ORDER
-A. Catalogue import — COMPLETE/VERIFIED.
-B. Supplier-stock reconciliation — COMPLETE to the available evidence; `supplier_stock` is empty, so only explicitly evidenced ASC quantities are verified. Full reconciliation remains pending receipt of a complete supplier feed.
-C. Stock quantity increase to 5 — COMPLETE/VERIFIED.
-D. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
-E. Storefront/database QA — database consistency verified: 4,187 active products, 4,187 storefront rows, 0 price/category/stock field mismatches. Live UI testing remains final-phase.
-F. Catalogue expansion — current catalogue already 4,187 active products, exceeding the earlier 3,000 target. Continue only with validated non-duplicates if a quality source becomes available.
-G. Business reports — status report updated; final stock/pricing workbook remains pending until a complete verified supplier-stock feed is available.
-H. Security/backup — security review completed to current actionable level; final Auth/security configuration and backup verification remain final review items.
-I. **FINAL PHASE:** Tasks 1, 4, 5, 7 and 10 above.
-J. Update this handover after every milestone.
+## TASK 5 — DELIVERY — FINAL PHASE
+### Your Courier
+- [ ] Confirm integration method.
+- [ ] Configure service.
+- [ ] Configure customer/delivery details.
+- [ ] Configure pricing.
+- [ ] Link order to delivery.
+- [ ] Handle tracking/reference information.
+
+### PEP PAXI
+- [ ] Confirm business requirements.
+- [ ] Configure PAXI option.
+- [ ] Configure collection/destination details.
+- [ ] Configure pricing.
+- [ ] Store delivery information with order.
+- [ ] Verify order → delivery workflow.
+
+### Checkout delivery logic
+- [ ] Customer chooses delivery option.
+- [ ] Delivery charge is added to total.
+- [ ] Final total recalculates correctly.
+- [ ] Delivery details are stored with order.
+- [ ] Admin can view delivery information.
+
+## TASK 6 — CATALOGUE EXPANSION
+- [x] Earlier 3,000-product target exceeded; current active catalogue is 4,187.
+- [x] Duplicate protection verified.
+- [ ] Add further products only from validated, non-duplicate quality sources.
+- [ ] Validate SKU/product identity.
+- [ ] Validate pricing.
+- [ ] Validate category.
+- [ ] Validate stock evidence.
+- [ ] Import only after validation.
+
+## TASK 7 — PRODUCT IMAGES / WATERMARKING — FINAL PHASE / USER DEFERRED
+- [ ] Match correct image to SKU.
+- [ ] Identify missing/uncertain images.
+- [ ] Obtain/use appropriate imagery.
+- [ ] Apply user's watermarking requirement.
+- [ ] Optimize images for storefront use.
+- [ ] Verify image URLs.
+- [ ] Verify images load.
+- [ ] Verify no incorrect product/image pairings.
+- [ ] Verify mobile display.
+- [ ] Produce final image coverage report.
+- [ ] Do not claim image work complete until GitHub workflow/result is verified.
+
+## TASK 8 — FINAL BUSINESS REPORTS
+- [x] Business status report.
+- [ ] Final stock report.
+- [ ] Final pricing report.
+- [ ] SKU/category report.
+- [ ] Manual category worksheet.
+- [ ] Missing-data report.
+- [ ] Supplier-stock verification report.
+- [ ] Image coverage report.
+- [ ] Final catalogue export.
+- [ ] Final operational handover.
+
+## TASK 9 — FINAL SECURITY / BACKUP
+- [x] Current Supabase security review completed to actionable level.
+- [ ] Final Supabase security-advisor review.
+- [ ] Configure/resolve Auth leaked-password protection.
+- [ ] Verify RLS on all relevant tables.
+- [ ] Verify storefront access remains functional.
+- [ ] Verify admin-only protections.
+- [ ] Verify checkout function security.
+- [ ] Verify order/customer data protection.
+- [ ] Create final database backup.
+- [ ] Verify backup integrity.
+- [ ] Verify GitHub/storefront backup.
+- [ ] Update permanent handover after final verification.
+
+## TASK 10 — PRODUCTION DEPLOYMENT / COMPLETE LIVE TESTING — LAST
+### Netlify
+- [ ] Verify existing Netlify project.
+- [ ] Verify GitHub → Netlify deployment.
+- [ ] Deploy final approved build.
+- [ ] Verify production deployment.
+- [ ] Confirm no unintended storefront redesign.
+
+### Domain
+- [ ] Configure `getwiredautoworx.co.za`.
+- [ ] Verify DNS.
+- [ ] Verify HTTPS.
+- [ ] Verify redirects/www handling if used.
+
+### Complete customer journey
+- [ ] Browse.
+- [ ] Search.
+- [ ] Category.
+- [ ] Product.
+- [ ] Cart.
+- [ ] Checkout.
+- [ ] Delivery selection.
+- [ ] Payment.
+- [ ] Order confirmation.
+- [ ] Admin order visibility.
+- [ ] Delivery workflow.
+- [ ] Success path.
+- [ ] Payment failure path.
+- [ ] Payment cancellation path.
+- [ ] Mobile journey.
+- [ ] WhatsApp/contact.
+- [ ] Verify database records/statuses.
+- [ ] Resolve failures and re-test.
+- [ ] Final backup.
+- [ ] Final handover/sign-off.
+
+## CREDIT / DEPLOYMENT LOCK
+Do not spend Cloudflare or Netlify credits before final testing. No new Netlify site or GitHub repository may be created. All credit-dependent work remains at the final deployment/testing stage.
+
+## CURRENT EXECUTION ORDER
+**Non-credit work:** Tasks 2, 3, 6, 8 and 9.
+
+**Final-phase work:** Task 1, then 4, 5, 7 and 10, with live deployment/testing last.
+
+## LATEST PROJECT SUMMARY — 16 SEP 2026
+- Database/catalogue QA completed at database level.
+- Catalogue: 4,187 active products.
+- Stock floor: complete; 0 active products below 5.
+- Verified ASC stock: 36 SKUs / 7,037 units.
+- Full supplier stock reconciliation remains incomplete because no complete supplier bulk-stock feed is stored.
+- 198 products remain reserved for manual category sorting.
+- Catalogue expansion target already exceeded.
+- Business status report updated.
+- Security review completed to current actionable level; Auth leaked-password protection remains final configuration.
+- Product images remain explicitly deferred.
+- PayFast, delivery, image work and production/live testing remain final-phase tasks.
+- Netlify/Cloudflare credits have not been used for deferred final tasks.
 
 ## CHANGE LOG
+### 16 Sep 2026 — Detailed task-list update
+- User requested a detailed task list.
+- Master handover expanded with task-by-task checklists for Tasks 1–10.
+- Completed database/catalogue/security items marked verified.
+- Remaining supplier, live QA, payment, delivery, reports, security/backup, image and production work explicitly recorded.
+- Locked 8 workflow rules preserved unchanged.
+- Netlify/Cloudflare credit lock preserved.
+
 ### 16 Sep 2026 — Continuation summary and remaining-task pass
 - User instructed: prepare summary, then continue with all remaining tasks.
 - Current verified state was rechecked without using Netlify/Cloudflare credits.
 - Supplier-stock evidence was searched again; `supplier_stock` remains empty and no unverified stock was invented.
-- Business status report was updated with the verified catalogue, stock, pricing, category, security and final-phase status.
-- Final-phase tasks remain deliberately deferred as instructed.
+- Business status report was updated with verified catalogue, stock, pricing, category, security and final-phase status.
+- Final-phase tasks remain deliberately deferred.
 
 ### 16 Sep 2026 — User-directed task reprioritization
 - User instructed continuation of Tasks **2, 3, 6, 8, 9** now.
 - User instructed Tasks **1, 4, 5, 7, 10** to be added to this handover and completed last.
-- This ordering is authoritative for continuation.
+- This ordering remains authoritative.
 
 ### 16 Sep 2026 — Supplier stock reconciliation pass
 - Inspected database supplier-stock structures and stored supplier/source files.
@@ -182,7 +346,7 @@ J. Update this handover after every milestone.
 - Verified 0 storefront price/category/stock mismatches.
 - Verified 0 duplicate active SKU groups and 0 missing category references.
 - Verified order/customer/order-item tables are currently empty, so no historical order data was altered.
-- Inspected current storefront code: index redirects to store.html; store.html loads index-new.html; customer-facing UI contains the locked dark blue/red design, search, cart, category grid, specials, product details, WhatsApp and mobile navigation. Live interaction testing remains deferred to final deployment testing.
+- Inspected current storefront code; live interaction testing remains deferred to final deployment testing.
 
 ### 16 Sep 2026 — Catalogue expansion review
 - Current active catalogue: 4,187 products.
