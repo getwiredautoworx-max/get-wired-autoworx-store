@@ -72,53 +72,35 @@ The catalogue import routine successfully reported 4,187 products upserted. The 
 ## STOCK WORK — CURRENT LIMIT
 The catalogue is complete; full supplier stock verification/reconciliation is not. The available stored stock evidence identifies 36 ASC website-verified quantities. Do not convert default 5 quantities into verified stock. Do not invent quantities. Reconcile duplicate SKU sources and prefer the latest explicitly verified source.
 
-### STOCK QUANTITY INCREASE TO 5
-- **Status: SUCCESSFULLY COMPLETED AND INDEPENDENTLY VERIFIED — 16 SEP 2026.**
-- Verified all active products: 4,187 active products; 0 active products remain below stock quantity 5.
-- 4,153 active products are exactly at quantity 5; 34 active products retain quantities above 5 because they have explicitly verified ASC stock.
-- Storefront stock is synchronized with products with 0 stock mismatches.
-- The ASC verification table contains 36 verified SKUs / 7,037 verified units; 2 of those verified SKUs are not active products and were preserved unchanged.
-- No verified ASC quantity was overwritten by the stock-floor task.
-
 ## PRICING — LOCKED
 Supplier cost is ex VAT. Advertised price = cost × 1.15 VAT × 1.35 markup. Final advertised price is VAT-inclusive.
 
-## CATALOGUE / SOURCE FILES
-Relevant stored files include Get_Wired_AutoWorx_STORE_STOCK_Feb-Sep_2026_VERIFIED.xlsx/docx, Get_Wired_AutoWorx_ASC_Verified_Audit_2026-09-16.xlsx, Get_Wired_AutoWorx_Buyers_Guides_Audit_June_August_2026.xlsx, Get_Wired_AutoWorx_FULL_STORE_INVENTORY_Feb-Sep_2026.docx, Get_Wired_AutoWorx_4186_CATALOG_IMPORT.sql, store_catalogue_step1_final.csv, Get_Wired_AutoWorx_CORRECTED_PRICE_AUDIT_Feb-Aug_2026.xlsx and the Feb/March/July/August/September buyer guides. Search available files before requesting re-upload.
-
-## CATEGORY STRUCTURE
-Preserve logical category → subcategory → product navigation. Major groups include Auto Electrical Spares, Vehicle Security, Car Audio, Accessories, Marine Spares & Accessories, Tools/Hardware/Consumables, Camping/Leisure/Outdoors and Trailer & Canopy, with the requested Auto Electrical 12V/24V hierarchy.
-
 ## IMAGES
-Catalogue image matching/watermarking is **deferred to the final phase** at the user's direction. Do not spend time on image cleanup now. Do not claim image cleanup complete until the GitHub workflow/result is verified.
+Catalogue image matching/watermarking is deferred to the final phase at the user's direction. Do not spend time on image cleanup now. Do not claim image cleanup complete until the GitHub workflow/result is verified.
 
 ## NETLIFY / CLOUDFLARE
 Do not spend Cloudflare or Netlify credits without explicit permission. Do not create another Netlify site or GitHub repo. All credit-dependent work remains deferred to final testing.
 
 ## SECURITY — CURRENT VERIFIED STATE
-- RLS is enabled on the internal import/verification tables previously remediated.
-- Current Supabase security advisor reports informational RLS-enabled/no-policy findings on protected internal/admin tables. These are intentionally not exposed through ordinary client-role policies and require final security review rather than blind policy creation.
-- Security-definer order/admin functions were inspected. Admin functions explicitly verify authenticated admin membership through `veyron_admin_users`; `create_store_order` is intentionally callable for anonymous checkout and validates inputs inside the function.
-- Supabase Auth leaked-password protection is currently reported disabled and remains a final security configuration item.
-- Security findings are documented rather than weakened merely to silence advisor warnings.
-- Legacy overloaded `admin_list_orders(integer,integer,text)` and `admin_update_order(uuid,text,text,text,text)` definitions were removed after confirming the current storefront uses the current validated signatures. Remaining admin RPCs require authenticated admin access.
+- RLS remains enabled on protected tables.
+- Redundant public catalogue SELECT policies were removed; canonical public catalogue read policies remain.
+- Import/pricing SECURITY DEFINER RPCs are no longer executable by `authenticated`.
+- Admin order RPCs remain authenticated-only at the execution layer and retain internal admin authorization checks.
+- Anonymous `create_store_order` remains intentionally executable for public checkout and validates inputs internally.
+- Supabase Auth leaked-password protection remains disabled and is a production release blocker.
+- Current security-advisor review still reports intentional protected-table RLS/no-policy INFO findings, the public checkout SECURITY DEFINER WARN, four authenticated SECURITY DEFINER WARNs for admin/utility functions, and the Auth leaked-password WARN. The four authenticated WARNs now exclude import/pricing RPCs that were explicitly revoked.
 
 ## REQUIRED VERIFICATION AFTER MAJOR TASKS
 Verify active count, SKU uniqueness, missing costs, pricing formula, category refs, storefront sync, stock source, image integrity where relevant, and checkout/admin integrity.
-
-## BUSINESS REPORTS
-- Updated `BUSINESS_STATUS_REPORT_2026-09-16.md` with the current verified catalogue, stock, category, order/customer, security and QA status.
-- Current active catalogue of 4,187 already exceeds the earlier 3,000-item target; further expansion is now **validation-led**, not quantity-led.
-- Final master stock/pricing Excel workbook remains pending until a complete verified supplier-stock feed is available.
 
 # DETAILED REMAINING TASK LIST
 
 ## TASK 1 — MANUAL CATEGORY-SORT WORKSHEET — FINAL PHASE
 - [ ] Extract all 198 reserved products.
 - [ ] Include SKU, product name and current category.
-- [ ] Include a separate **Product Type** field identifying what the item actually is.
+- [ ] Include a separate Product Type field identifying what the item actually is.
 - [ ] Include useful category options where appropriate.
-- [ ] Create separate Word section: **MANUAL CATEGORY SORT — 198 ITEMS**.
+- [ ] Create separate Word section: MANUAL CATEGORY SORT — 198 ITEMS.
 - [ ] Keep all 198 isolated from automatic reassignment.
 - [ ] Do not delete any of these products without explicit instruction.
 - [ ] After user decisions, update Supabase categories.
@@ -127,10 +109,8 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 
 ## TASK 2 — SUPPLIER-STOCK RECONCILIATION
 - [x] Search available stored supplier/source material.
-- [x] Confirm `supplier_stock` contains 0 rows.
+- [x] Confirm supplier_stock contains 0 rows.
 - [x] Confirm 36 ASC SKUs / 7,037 units are explicit verified stock evidence.
-- [x] Preserve default stock floor 5 where no verified quantity exists.
-- [x] Do not invent supplier quantities.
 - [ ] Obtain/use a complete current supplier stock feed if one becomes available.
 - [ ] Reconcile duplicate/conflicting SKU sources.
 - [ ] Prefer the latest explicitly verified source.
@@ -139,7 +119,7 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [ ] Produce final stock/pricing workbook after full reconciliation.
 
 ## TASK 3 — STOREFRONT / DATABASE QA
-### Database QA — COMPLETE
+### Database/source QA
 - [x] Active products and unique SKUs.
 - [x] Storefront row integrity.
 - [x] Price/category/stock synchronization.
@@ -149,94 +129,60 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [x] Pricing formula.
 - [x] Non-credit source-code QA of storefront, checkout and admin paths.
 - [x] Corrected storefront checkout payment enum mismatch.
+- [x] Added tightened production security/customer test matrix.
 
 ### Live/customer QA — FINAL DEPLOYMENT PHASE
 - [ ] Homepage and locked design.
 - [ ] Search.
 - [ ] Categories/subcategories.
-- [ ] Product filtering.
-- [ ] Product details.
+- [ ] Product filtering/details.
 - [ ] Pricing and stock display.
 - [ ] Specials/Featured.
-- [ ] Cart and quantity changes.
-- [ ] Checkout.
-- [ ] Customer details.
-- [ ] Delivery details.
+- [ ] Cart/checkout.
+- [ ] Customer/delivery details.
 - [ ] WhatsApp/contact.
-- [ ] Mobile navigation/responsiveness.
-- [ ] Order creation.
-- [ ] Customer records.
-- [ ] Order items.
+- [ ] Mobile responsiveness.
+- [ ] Order/customer/order-item creation.
 - [ ] Admin order visibility/status.
 - [ ] Payment status.
 - [ ] Delivery information.
 - [ ] Failed/cancelled transaction handling.
 
 ## TASK 4 — PAYFAST — FINAL PHASE
-- [ ] Confirm PayFast account readiness.
-- [ ] Complete outstanding PayFast verification/documents.
-- [ ] Configure credentials securely.
+- [ ] Confirm account readiness and verification.
+- [ ] Configure credentials securely/server-side.
 - [ ] Configure return/callback handling.
-- [ ] Connect checkout to PayFast.
-- [ ] Payment success → confirmed order.
-- [ ] Payment failure handling.
-- [ ] Payment cancellation handling.
-- [ ] Prevent duplicate order creation.
-- [ ] Verify transaction/reference and amount.
-- [ ] Test payment flow only during final testing.
+- [ ] Connect checkout.
+- [ ] Validate amount/reference.
+- [ ] Success/failure/cancellation handling.
+- [ ] Duplicate transaction protection.
+- [ ] End-to-end test only in final phase.
 
 ## TASK 5 — DELIVERY — FINAL PHASE
-### Your Courier
-- [ ] Confirm integration method.
-- [ ] Configure service.
-- [ ] Configure customer/delivery details.
-- [ ] Configure pricing.
-- [ ] Link order to delivery.
-- [ ] Handle tracking/reference information.
-
-### PEP PAXI
-- [ ] Confirm business requirements.
-- [ ] Configure PAXI option.
-- [ ] Configure collection/destination details.
-- [ ] Configure pricing.
-- [ ] Store delivery information with order.
-- [ ] Verify order → delivery workflow.
-
-### Checkout delivery logic
-- [ ] Customer chooses delivery option.
-- [ ] Delivery charge is added to total.
-- [ ] Final total recalculates correctly.
-- [ ] Delivery details are stored with order.
-- [ ] Admin can view delivery information.
+- [ ] Your Courier integration method/configuration/pricing/tracking.
+- [ ] PEP PAXI requirements/configuration/pricing/tracking.
+- [ ] Customer provider choice.
+- [ ] Delivery fee added exactly once.
+- [ ] Delivery information stored and visible to admin.
 
 ## TASK 6 — CATALOGUE EXPANSION
 - [x] Earlier 3,000-product target exceeded; current active catalogue is 4,187.
 - [x] Duplicate protection verified.
-- [ ] Add further products only from validated, non-duplicate quality sources.
-- [ ] Validate SKU/product identity.
-- [ ] Validate pricing.
-- [ ] Validate category.
-- [ ] Validate stock evidence.
-- [ ] Import only after validation.
+- [ ] Further additions only from validated non-duplicate sources.
 
 ## TASK 7 — PRODUCT IMAGES / WATERMARKING — FINAL PHASE / USER DEFERRED
-- [ ] Match correct image to SKU.
+- [ ] Match image to SKU.
 - [ ] Identify missing/uncertain images.
-- [ ] Obtain/use appropriate imagery.
-- [ ] Apply user's watermarking requirement.
-- [ ] Optimize images for storefront use.
-- [ ] Verify image URLs.
-- [ ] Verify images load.
+- [ ] Apply watermarking.
+- [ ] Optimize and verify image URLs/loading/mobile display.
 - [ ] Verify no incorrect product/image pairings.
-- [ ] Verify mobile display.
 - [ ] Produce final image coverage report.
-- [ ] Do not claim image work complete until GitHub workflow/result is verified.
 
 ## TASK 8 — FINAL BUSINESS REPORTS
 - [x] Business status report.
 - [x] Non-data-analysis execution report.
-- [ ] Final stock report.
-- [ ] Final pricing report.
+- [x] Production security/customer test matrix.
+- [ ] Final stock/pricing report after complete verified supplier feed.
 - [ ] SKU/category report.
 - [ ] Manual category worksheet.
 - [ ] Missing-data report.
@@ -246,160 +192,47 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [ ] Final operational handover.
 
 ## TASK 9 — FINAL SECURITY / BACKUP
-- [x] Current Supabase security review completed to actionable level.
-- [x] Non-credit security review of order/admin RPCs completed.
+- [x] Current security review completed to actionable level.
+- [x] Non-credit order/admin RPC review completed.
 - [x] Obsolete admin RPC overloads removed and privileges rechecked.
-- [ ] Final Supabase security-advisor review.
-- [ ] Configure/resolve Auth leaked-password protection.
-- [ ] Verify RLS on all relevant tables.
-- [ ] Verify storefront access remains functional.
-- [ ] Verify admin-only protections.
-- [ ] Verify checkout function security.
-- [ ] Verify order/customer data protection.
-- [ ] Create final database backup.
-- [ ] Verify backup integrity.
+- [x] Redundant public catalogue policies removed and canonical policies retained.
+- [x] Import/pricing authenticated execution revoked.
+- [x] Production security/customer test matrix added.
+- [ ] Enable Auth leaked-password protection.
+- [ ] Final security-advisor review.
+- [ ] Verify RLS and client access for all relevant tables.
+- [ ] Final unauthorized-access tests.
+- [ ] Final database backup and integrity verification.
 - [ ] Verify GitHub/storefront backup.
-- [ ] Update permanent handover after final verification.
+- [ ] Final handover update.
 
 ## TASK 10 — PRODUCTION DEPLOYMENT / COMPLETE LIVE TESTING — LAST
-### Netlify
-- [ ] Verify existing Netlify project.
-- [ ] Verify GitHub → Netlify deployment.
-- [ ] Deploy final approved build.
-- [ ] Verify production deployment.
-- [ ] Confirm no unintended storefront redesign.
-
-### Domain
-- [ ] Configure `getwiredautoworx.co.za`.
-- [ ] Verify DNS.
-- [ ] Verify HTTPS.
-- [ ] Verify redirects/www handling if used.
-
-### Complete customer journey
-- [ ] Browse.
-- [ ] Search.
-- [ ] Category.
-- [ ] Product.
-- [ ] Cart.
-- [ ] Checkout.
-- [ ] Delivery selection.
-- [ ] Payment.
-- [ ] Order confirmation.
-- [ ] Admin order visibility.
-- [ ] Delivery workflow.
-- [ ] Success path.
-- [ ] Payment failure path.
-- [ ] Payment cancellation path.
+- [ ] Existing Netlify project/deployment source verified.
+- [ ] Final approved build deployed.
+- [ ] Production HTTPS verified.
+- [ ] Domain/DNS/HTTPS verified.
+- [ ] No unintended storefront redesign.
+- [ ] Complete customer journey: browse → search → category → product → cart → checkout → payment → order → admin → delivery.
+- [ ] Failure/cancellation paths.
 - [ ] Mobile journey.
-- [ ] WhatsApp/contact.
-- [ ] Verify database records/statuses.
-- [ ] Resolve failures and re-test.
+- [ ] Database integrity after tests.
 - [ ] Final backup.
 - [ ] Final handover/sign-off.
 
 ## CREDIT / DEPLOYMENT LOCK
 Do not spend Cloudflare or Netlify credits before final testing. No new Netlify site or GitHub repository may be created. All credit-dependent work remains at the final deployment/testing stage.
 
-## CURRENT EXECUTION ORDER
-**Non-credit work:** Tasks 2, 3, 6, 8 and 9.
-
-**Final-phase work:** Task 1, then 4, 5, 7 and 10, with live deployment/testing last.
-
 ## LATEST PROJECT SUMMARY — 16 SEP 2026
-- Database/catalogue QA completed at database level.
 - Catalogue: 4,187 active products.
-- Stock floor: complete; 0 active products below 5.
+- Stock floor: 0 active products below 5.
 - Verified ASC stock: 36 SKUs / 7,037 units.
-- Full supplier stock reconciliation remains incomplete because no complete supplier bulk-stock feed is stored.
-- 198 products remain reserved for manual category sorting; Product Type is required as a separate worksheet field.
-- Catalogue expansion target already exceeded.
-- Business status report updated.
-- Nine non-data-analysis tasks completed in the 16 Sep continuation pass.
-- A storefront checkout enum defect was corrected; the corrected code uses `manual_payment`, matching the database RPC.
-- Obsolete admin RPC overloads were removed after signature/usage verification.
-- Security review completed to current actionable non-credit level; Auth leaked-password protection remains final configuration.
-- Product images remain explicitly deferred.
-- PayFast, delivery, image work and production/live testing remain final-phase tasks.
-- Netlify/Cloudflare credits have not been used for deferred final tasks.
-
-## CHANGE LOG
-### 16 Sep 2026 — Nine non-data-analysis tasks completed
-- Audited storefront source, checkout, admin, enhancement and deployment configuration.
-- Corrected the storefront enhancement payment enum mismatch in commit `e1609510e217ab4b7c20dd152d30e43be2374429`.
-- Re-verified the corrected source in GitHub.
-- Audited `create_store_order` validation and authoritative database pricing.
-- Audited admin authentication/RPC usage and removed obsolete admin RPC overloads through Supabase migration.
-- Rechecked anonymous/authenticated function execution privileges after the cleanup.
-- Confirmed payment and delivery integration boundaries remain final-phase work.
-- Confirmed repository contains the storefront image ZIP referenced by `netlify.toml` and the existing storefront smoke-test workflow.
-- Updated `CHECKOUT_PAYMENT_DELIVERY.md` and created `NON_DATA_TASKS_COMPLETED_2026-09-16.md`.
-- No Netlify or Cloudflare credits used.
-
-### 16 Sep 2026 — Detailed task-list update
-- User requested a detailed task list.
-- Master handover expanded with task-by-task checklists for Tasks 1–10.
-- Completed database/catalogue/security items marked verified.
-- Remaining supplier, live QA, payment, delivery, reports, security/backup, image and production work explicitly recorded.
-- Locked 8 workflow rules preserved unchanged.
-- Netlify/Cloudflare credit lock preserved.
-
-### 16 Sep 2026 — Continuation summary and remaining-task pass
-- User instructed: prepare summary, then continue with all remaining tasks.
-- Current verified state was rechecked without using Netlify/Cloudflare credits.
-- Supplier-stock evidence was searched again; `supplier_stock` remains empty and no unverified stock was invented.
-- Business status report was updated with verified catalogue, stock, pricing, category, security and final-phase status.
-- Final-phase tasks remain deliberately deferred.
-
-### 16 Sep 2026 — User-directed task reprioritization
-- User instructed continuation of Tasks **2, 3, 6, 8, 9** now.
-- User instructed Tasks **1, 4, 5, 7, 10** to be added to this handover and completed last.
-- This ordering remains authoritative.
-
-### 16 Sep 2026 — Supplier stock reconciliation pass
-- Inspected database supplier-stock structures and stored supplier/source files.
-- Confirmed `supplier_stock` contains 0 rows; therefore no complete stored supplier bulk stock feed exists.
-- Confirmed 36 explicit ASC website-verified SKUs / 7,037 units remain the only verified bulk stock evidence currently stored.
-- Reconciled active matching ASC quantities into `products` and synchronized `storefront_products`; final storefront stock mismatch count: 0.
-- Preserved stock floor 5 for products without explicit verified quantities; no invented supplier stock was added.
-
-### 16 Sep 2026 — Storefront/database QA pass
-- Verified 4,187 active products and 4,187 storefront rows.
-- Verified 0 missing active cost prices and 0 missing active selling prices.
-- Verified 0 storefront price/category/stock mismatches.
-- Verified 0 duplicate active SKU groups and 0 missing category references.
-- Verified order/customer/order-item tables are currently empty, so no historical order data was altered.
-- Inspected current storefront code; live interaction testing remains deferred to final deployment testing.
-
-### 16 Sep 2026 — Catalogue expansion review
-- Current active catalogue: 4,187 products.
-- Earlier 3,000-item target is already exceeded.
-- No additional bulk import was performed because further quantity without validated non-duplicate source quality would add unnecessary risk.
-
-### 16 Sep 2026 — Business reports
-- Created/updated `BUSINESS_STATUS_REPORT_2026-09-16.md` in GitHub.
-- Report records verified catalogue, stock, category, order/customer, security and QA metrics.
-- Final master stock/pricing workbook remains pending until a complete verified supplier-stock feed is available.
-
-### 16 Sep 2026 — Security review
-- Ran current Supabase security advisor.
-- Confirmed internal RLS/no-policy findings are present on protected internal/admin tables.
-- Inspected SECURITY DEFINER order/admin functions; admin functions perform explicit admin authorization checks, while anonymous order creation is intentionally exposed for checkout and validates inputs internally.
-- Recorded Auth leaked-password protection as a final security configuration item rather than making an unsafe blind change.
-
-### 16 Sep 2026 — Category cleanup and manual-sort queue
-- Safely resolved 194 category-review items using deterministic semantic mappings.
-- `category_review_queue` now contains 198 items reserved for manual user sorting.
-- No valid products were deleted.
-- Synced storefront category IDs and verified 0 category mismatches.
-
-### 16 Sep 2026 — Stock quantity floor and zero-stock sweep
-- Completed and independently verified active stock floor of 5.
-- 4,153 active products are exactly 5; 34 are above 5 based on explicit verified ASC stock.
-- 0 active products remain below 5.
-
-### 16 Sep 2026 — Permanent handover rules locked
-- The user's 8 rules are authoritative and must be carried unchanged into every new handover/session.
-- Any requested edit/removal of a rule requires reproducing all 8 rules first.
+- Full supplier stock reconciliation remains incomplete.
+- 198 products remain reserved for manual category sorting with Product Type required.
+- Nine non-data-analysis tasks were completed in the continuation pass.
+- Checkout enum defect corrected to `manual_payment`.
+- Production security/test matrix added.
+- Redundant catalogue read policies and authenticated import/pricing execution were tightened.
+- Netlify/Cloudflare credits have not been used.
 
 ## AUTHORITY
 If the user edits this file, preserve their edits and treat the latest user-edited content as authoritative. ChatGPT may append verified progress but must not silently remove user instructions.
