@@ -196,5 +196,25 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 - Product images are intentionally deferred.
 - Netlify/Cloudflare credits have not been used.
 
+## 16 SEP 2026 — CONTINUATION UPDATE
+- Verified repository: `getwiredautoworx-max/get-wired-autoworx-store`, default branch `main`.
+- Verified the previously supplied commit `0fde2ad4ec15c4bb9816019ad76c2a9962481785` exists in the repository history. That commit records the no-Cloudflare-credit/no-Netlify-credit constraint.
+- Verified the current repository has advanced beyond that commit; latest continuation work includes checkout QA hardening, security/integrity updates, manual category-sort documentation and Your Courier architecture/investigation.
+- Inspected the image-cleanup workflow and identified the earlier failure cause: the workflow run cleaned 800 images successfully but attempted to push from an outdated checkout.
+- Verified the workflow source now contains the synchronization fix (`fetch origin main` + `reset --hard origin/main`) before image generation and again before commit/push.
+- Triggered the corrected workflow from the current `main` branch with commit `836a3586938a9c5649d4a27fe50a60b98e9d811a`.
+- **Image cleanup is NOT marked complete yet.** A successful workflow result and resulting repository image commit still require verification.
+- No Cloudflare credits or Netlify credits were used for this continuation.
+
+## CURRENT BLOCKERS REQUIRING USER/PROVIDER INPUT
+These are the only classes of remaining work that cannot be truthfully completed without external/user-controlled inputs:
+1. 198 manual category/Product Type decisions.
+2. Complete supplier stock feed/account data.
+3. PayFast merchant verification/credentials and final callback configuration.
+4. Your Courier API access, credentials and business tariff/parcel rules.
+5. PEP PAXI account/pricing/tracking requirements.
+6. User enabling Supabase Auth leaked-password protection before final release.
+7. Final credit-dependent hosting/live deployment and customer testing at the end of the workflow.
+
 ## AUTHORITY
 If the user edits this file, preserve their edits and treat the latest user-edited content as authoritative. ChatGPT may append verified progress but must not silently remove user instructions.
