@@ -39,12 +39,16 @@ jobs:
             await frame.locator('#productModal.open').waitFor({timeout:10000});
             await frame.locator('#modalClose').click();
             await frame.locator('#featuredGrid .product button').first().click();
-            await page.waitForSelector('#checkout-fab', {state:'attached', timeout:1000}).catch(()=>{});
             await page.locator('#checkout').waitFor({timeout:10000});
             await page.locator('#checkout').click();
-            await page.waitForURL('**/checkout.html');
+            await page.waitForURL('**/checkout-v2.html');
             await page.locator('#name').waitFor({timeout:10000});
             await page.locator('#phone').waitFor({timeout:10000});
+            await page.locator('#deliverySummary').waitFor({timeout:10000});
+            const delivery = await page.locator('#deliverySummary').textContent();
+            if (!delivery || !delivery.includes('R15.00')) throw new Error('Expected fixed R15.00 delivery charge');
+            const notice = await page.locator('.notice').first().textContent();
+            if (!notice.includes('not charged per item')) throw new Error('Per-order delivery notice missing');
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
