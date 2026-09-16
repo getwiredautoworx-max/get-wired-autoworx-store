@@ -100,6 +100,8 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 - [x] Storefront price/category/stock synchronization verified.
 - [x] Checkout payment enum corrected to `manual_payment`.
 - [x] Production security/customer test matrix added.
+- [x] Checkout cart verification tightened to accept only currently active products.
+- [x] Delivery checkout now requires address, city and postal code when delivery is selected.
 - [ ] Final live/customer QA remains for deployment phase: locked design, browse/search/category/product, pricing/stock, Specials/Featured, cart/checkout, customer/delivery details, WhatsApp/contact, mobile, order creation, admin visibility/status, payment and delivery, failure/cancellation paths.
 
 ## TASK 4 — PAYFAST — FINAL PHASE
@@ -175,6 +177,8 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 - Word worksheet completed and contains all 198 reserved products plus the required decision fields.
 - Full supplier-stock reconciliation is still incomplete.
 - Checkout uses `manual_payment`.
+- Checkout now filters cart verification to active products and requires core delivery address details for delivery orders.
+- PayFast integration remains final-phase because merchant credentials/verification and secure server-side callback handling are required.
 - Auth leaked-password protection is intentionally deferred to user action before final hosting/release.
 - Product images are intentionally deferred.
 - Netlify/Cloudflare credits have not been used.
