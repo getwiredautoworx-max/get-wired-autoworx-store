@@ -85,7 +85,7 @@ Relevant stored files include Get_Wired_AutoWorx_STORE_STOCK_Feb-Sep_2026_VERIFI
 Preserve logical category → subcategory → product navigation. Major groups include Auto Electrical Spares, Vehicle Security, Car Audio, Accessories, Marine Spares & Accessories, Tools/Hardware/Consumables, Camping/Leisure/Outdoors and Trailer & Canopy, with the requested Auto Electrical 12V/24V hierarchy.
 
 ## IMAGES
-Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow #19 / ID 35020123380 cleaned 800 images successfully but failed only at push because the runner had checked out an older commit and remote main had advanced. The workflow was then corrected to synchronize with current main before generation/push. New run #45 / ID 35137232280 was triggered from commit 21f32a3670f2b53a8b245dbe18d4d6817061437f; verify its final conclusion before claiming image cleanup complete. User has explicitly deferred catalogue image work to a later session.
+Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow #19 / ID 35020123380 cleaned 800 images successfully but failed only at push because the runner had checked out an older commit and remote main had advanced. The workflow was then corrected to synchronize with current main before generation/push. New run #45 / ID 35137232280 was triggered from commit `21f32a3670f2b53a8b245dbe18d4d6817061437f`; verify its final conclusion before claiming image cleanup complete. User has explicitly deferred catalogue image work to a later session.
 
 ## NETLIFY / CLOUDFLARE
 Do not spend Cloudflare or Netlify credits without explicit permission. Do not create another Netlify site or GitHub repo. All credit-dependent work remains deferred to final testing.
@@ -104,14 +104,25 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 When stock verification/reconciliation is complete, produce an Excel workbook with category, subcategory, SKU, product, verified quantity, cost ex VAT, VAT 15%, cost+VAT, 35% markup, final advertised selling price and source reference; master sheet plus category sheets where practical. Do not label the workbook final while stock remains unverified.
 
 ## CATEGORY AUDIT NOTE — 16 SEP 2026
-Database integrity is clean at the FK/SKU/storefront level, but the active products are still distributed across many source-derived categories and noisy numbered source subcategories. Live staging review confirms the source data contains many repeated/numbered variants such as `4X4 AND OUTDOOR 5`, `ELECTRICAL SPARES & ACCESSORIES 15`, `SPARE PARTS 23`, `HAND TOOLS 29`, `WIPERS 11`, etc. These require deterministic normalization rather than broad string replacement. The requested customer-facing hierarchy must be mapped SKU-by-SKU/source-subcategory-aware and independently verified before destructive category changes. The existing `category_review_queue` contains 435 review rows for products needing manual/controlled review. No broad destructive remap has been applied.
+Database integrity is clean at the FK/SKU/storefront level, but the active products are still distributed across many source-derived categories and noisy numbered source subcategories. Live staging review confirms the source data contains many repeated/numbered variants such as `4X4 AND OUTDOOR 5`, `ELECTRICAL SPARES & ACCESSORIES 15`, `SPARE PARTS 23`, `HAND TOOLS 29`, `WIPERS 11`, etc. These require deterministic normalization rather than broad string replacement. The requested customer-facing hierarchy must be mapped SKU-by-SKU/source-subcategory-aware and independently verified before destructive category changes.
+
+## MANUAL CATEGORY SORT QUEUE — 198 ITEMS
+**Status: RESERVED FOR USER MANUAL SORTING — DO NOT AUTO-ASSIGN OR DELETE.**
+
+- **198 category-review items** remain after the latest safe semantic category cleanup.
+- These 198 items are intentionally set aside as a separate manual-sorting label for the user.
+- They are to be transferred into the Word worksheet under a separate label: **MANUAL CATEGORY SORT — 198 ITEMS**.
+- User will sort these items manually later.
+- Do not automatically reassign, delete, or otherwise alter these 198 items unless the user explicitly requests it.
+- When the Word worksheet is prepared, keep these 198 items in their own clearly separated section/label so they cannot be confused with completed category assignments.
+- This manual queue is separate from image work and must not delay other available store tasks.
 
 ## CONTINUATION ORDER
 A. Catalogue import — COMPLETE/VERIFIED.
 B. Reconcile verified stock from all available guides/pricelists/verified supplier sources — INCOMPLETE; currently limited by absence of a complete verified ASC bulk stock source. Continue searching stored sources and reconcile any newly evidenced quantities.
 C. Stock quantity increase to 5 — COMPLETE/VERIFIED, including explicit zero-stock sweep.
 D. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
-E. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; storefront UI still requires live verification when deployment is available.
+E. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; **198 items are reserved for manual user sorting in the Word worksheet**; storefront UI still requires live verification when deployment is available.
 F. Image cleanup/mapping — workflow result still requires final verification; user has deferred catalogue image work to a later session.
 G. Homepage Specials-only/full navigation — pending live storefront verification.
 H. Checkout/admin integrity — pending live storefront verification.
@@ -148,8 +159,16 @@ K. Update this handover after each milestone.
 ### 16 Sep 2026 — Category source audit refresh
 - Queried all buyer-guide source category/subcategory combinations across the 4,187-row staging catalogue.
 - Confirmed numerous numbered/legacy source-subcategory variants that cannot be safely normalized by simple name replacement.
-- Confirmed `category_review_queue` currently contains 435 controlled review rows.
+- Confirmed `category_review_queue` currently contains 435 review rows.
 - No destructive category reassignment was made without a deterministic mapping.
+
+### 16 Sep 2026 — Category cleanup and manual-sort queue created
+- Safely resolved 194 category-review items using deterministic semantic mappings to relevant existing customer-facing categories.
+- `category_review_queue` reduced from 392 to **198** remaining items.
+- No valid products were deleted.
+- Synced `storefront_products` category IDs from `products` by SKU; verified 4,187 storefront rows with 0 category mismatches.
+- The remaining **198 items are now explicitly reserved for manual user sorting** and must be placed in the Word worksheet under the separate label **MANUAL CATEGORY SORT — 198 ITEMS**.
+- These 198 items must not be auto-assigned or deleted unless explicitly requested by the user.
 
 ### 16 Sep 2026 — Image workflow repair
 - Inspected failed workflow #19 / ID 35020123380.
