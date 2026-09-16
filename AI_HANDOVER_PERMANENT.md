@@ -206,15 +206,26 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 - **Image cleanup is NOT marked complete yet.** A successful workflow result and resulting repository image commit still require verification.
 - No Cloudflare credits or Netlify credits were used for this continuation.
 
+## 17 SEP 2026 — BOB GO DELIVERY ARCHITECTURE / SHIPPING DATA
+- Current courier architecture has been expanded from a single-provider Your Courier model to a courier-agnostic live-rate model with **Bob Go as the primary integration target**, while retaining Your Courier/PAXI as possible alternatives or fulfilment options.
+- Current Bob Go documentation confirms that its Courier rates can request real-time pricing based on order weight, customer delivery address and collection address. Bob Go also documents pickup-point service levels and an open API for live rates, order/shipment automation and tracking. A sandbox is available for integration testing.
+- Created `BOB_GO_DELIVERY_INTEGRATION_SPEC.md` in the repository with the server-side architecture, security rules, checkout presentation and provider-input requirements.
+- Added and verified four nullable shipping-dimension fields to `public.products`: `weight_kg`, `length_cm`, `width_cm`, `height_cm`.
+- No existing product pricing, stock, catalogue design or checkout payment flow was changed by the shipping-dimension migration.
+- No Bob Go credentials have been added, exposed or invented. The live quote adapter remains blocked only by provider/account credentials and exact account/API configuration.
+- The store will not advertise a fabricated nationwide delivery price. Live delivery options will be based on the actual customer address and parcel data once Bob Go is connected.
+- Netlify/Cloudflare credits remain unused for this work.
+
 ## CURRENT BLOCKERS REQUIRING USER/PROVIDER INPUT
 These are the only classes of remaining work that cannot be truthfully completed without external/user-controlled inputs:
 1. 198 manual category/Product Type decisions.
 2. Complete supplier stock feed/account data.
 3. PayFast merchant verification/credentials and final callback configuration.
-4. Your Courier API access, credentials and business tariff/parcel rules.
-5. PEP PAXI account/pricing/tracking requirements.
-6. User enabling Supabase Auth leaked-password protection before final release.
-7. Final credit-dependent hosting/live deployment and customer testing at the end of the workflow.
+4. Bob Go API access/credentials and account-specific courier/tariff/parcel configuration for the primary live-rate integration.
+5. Your Courier API access/credentials and business tariff/parcel rules if retained as a direct fallback/provider option.
+6. PEP PAXI account/pricing/tracking requirements.
+7. User enabling Supabase Auth leaked-password protection before final release.
+8. Final credit-dependent hosting/live deployment and customer testing at the end of the workflow.
 
 ## AUTHORITY
 If the user edits this file, preserve their edits and treat the latest user-edited content as authoritative. ChatGPT may append verified progress but must not silently remove user instructions.
