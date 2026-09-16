@@ -99,7 +99,7 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 When stock verification/reconciliation is complete, produce an Excel workbook with category, subcategory, SKU, product, verified quantity, cost ex VAT, VAT 15%, cost+VAT, 35% markup, final advertised selling price and source reference; master sheet plus category sheets where practical. Do not label the workbook final while stock remains unverified.
 
 ## CATEGORY AUDIT NOTE — 16 SEP 2026
-Database integrity is clean at the FK/SKU/storefront level, but the active products are still distributed across many source-derived categories (for example Automotive Accessories, Parts, Electrical, Lighting and Tools & Workshop), while several requested customer-facing hierarchy categories currently contain zero products. This is a mapping/normalization task, not a database-integrity failure. Do not perform a broad destructive remap without first deriving a deterministic SKU/source-subcategory mapping and independently verifying the result.
+Database integrity is clean at the FK/SKU/storefront level, but the active products are still distributed across many source-derived categories and noisy numbered source subcategories. Live staging review confirms the source data contains many repeated/numbered variants such as `4X4 AND OUTDOOR 5`, `ELECTRICAL SPARES & ACCESSORIES 15`, `SPARE PARTS 23`, `HAND TOOLS 29`, `WIPERS 11`, etc. These require deterministic normalization rather than broad string replacement. The requested customer-facing hierarchy must be mapped SKU-by-SKU/source-subcategory-aware and independently verified before destructive category changes. The existing `category_review_queue` contains 435 review rows for products needing manual/controlled review. No broad destructive remap has been applied.
 
 ## CONTINUATION ORDER
 A. Catalogue import — COMPLETE/VERIFIED.
@@ -133,6 +133,12 @@ K. Update this handover after each milestone.
 - Verified all 34 active ASC-linked quantities match their recorded verified quantities with 0 mismatches.
 - Preserved all explicitly verified ASC quantities.
 - Task marked **SUCCESSFULLY COMPLETED** after independent verification.
+
+### 16 Sep 2026 — Category source audit refresh
+- Queried all buyer-guide source category/subcategory combinations across the 4,187-row staging catalogue.
+- Confirmed numerous numbered/legacy source-subcategory variants that cannot be safely normalized by simple name replacement.
+- Confirmed `category_review_queue` currently contains 435 controlled review rows.
+- No destructive category reassignment was made without a deterministic mapping.
 
 ### 16 Sep 2026 — Image workflow repair
 - Inspected failed workflow #19 / ID 35020123380.
