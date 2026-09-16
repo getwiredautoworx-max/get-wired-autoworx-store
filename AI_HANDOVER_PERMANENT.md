@@ -125,6 +125,7 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 - [x] Added PAXI published fixed-price options for parcels with verified product weight within PAXI bag limits; these are explicitly marked `PUBLISHED`, not live address-dependent quotes.
 - [x] Added official PUDO/Courier Guy locker finder, official Bob Box locker finder and official PAXI point locator links in checkout.
 - [x] Phoenix-area locker/point research found **Bob Box — Phoenix Plaza, Starwood** in the live Bob Box directory. PAXI's official site provides its live point locator; a current directory listing also reports a Phoenix Plaza PAXI point code `P4742`, but this code must be verified in PAXI's official locator before being treated as authoritative.
+- [x] **Customer-facing delivery charge rule:** Phoenix Plaza is an internal dispatch/posting reference only and must never be shown as a customer pickup point or fee. Customer checkout shows only **Delivery — R15**, charged once per delivery address/order regardless of item quantity. One item = R15; five items = R15; twenty items = R15. Do not multiply R15 per item and do not display a separate Phoenix Plaza charge.
 - [ ] Add real Bob Go API URL/token to Netlify environment variables and confirm account-specific courier/rate configuration.
 - [ ] Confirm exact Bob Go production request/response schema against the account API documentation and sandbox, then adjust adapter mapping if required.
 - [ ] Add The Courier Guy direct credentials if direct TCG fallback is retained.
@@ -186,15 +187,16 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 ## CREDIT / DEPLOYMENT LOCK
 Do not spend Cloudflare or Netlify credits before final testing. No new Netlify site or GitHub repository may be created. All credit-dependent work remains at the final deployment/testing stage.
 
-## 17 SEP 2026 — MULTI-COURIER + PHOENIX LOCKER UPDATE
+## 17 SEP 2026 — MULTI-COURIER + DELIVERY CHARGE UPDATE
 - Implemented the non-credit-dependent delivery layer in GitHub without deploying.
-- `checkout.html` now supports door delivery, locker/pickup-point fulfilment and store pickup while preserving the approved dark storefront styling.
+- `checkout.html` supports door delivery, locker/pickup-point fulfilment and store pickup while preserving the approved dark storefront styling.
 - Checkout requests delivery quotes from the server-side `/api/shipping/quote` endpoint and no courier credentials are placed in browser code.
 - Bob Go, The Courier Guy and PUDO are represented as live server-side adapters that remain inactive until their account-specific endpoint/token environment variables are supplied and verified. This avoids fabricated rates or invented API schemas.
 - PAXI is integrated at the checkout-option level using its currently published bag prices, with a clear `PUBLISHED` label and weight limits. PAXI API access remains provider-gated by its stated minimum monthly parcel requirement.
 - Official locator links were added for PUDO/Courier Guy, Bob Box and PAXI.
 - Current Phoenix-area locker research confirms a Bob Box at **Phoenix Plaza, Starwood**. PAXI's official locator remains the authoritative source for current PAXI points; a third-party directory currently lists a Phoenix Plaza PAXI point code `P4742`, which must be rechecked against PAXI before production use.
 - The Courier Guy's official locker documentation confirms locker delivery and an official locker-location map; PUDO is powered by The Courier Guy and has sandbox API documentation for rates and locker data.
+- **Final customer-facing delivery rule:** Phoenix Plaza is for Get Wired AutoWorx's internal dispatch/posting reference only. It must never appear to customers as a pickup location, destination, fee, or surcharge. Customers see a single **Delivery — R15** charge, applied once per delivery address/order regardless of the number of products in the order.
 - No Netlify deployment was performed and no Netlify/Cloudflare credits were consumed.
 
 ## CURRENT BLOCKERS REQUIRING USER/PROVIDER INPUT
