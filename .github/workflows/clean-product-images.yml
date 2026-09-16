@@ -139,3 +139,4 @@ jobs:
 # Produces clean, consistent 1200x1200 ecommerce images. No Netlify or Cloudflare credits are used.
 # Continuation fix verified 16 Sep 2026: synchronize with current main before image generation/push.
 # Relaunch trigger: 16 Sep 2026 continuation after prior image-cleanup run failed at push.
+# 16 Sep 2026: manual continuation trigger issued from verified current main.
