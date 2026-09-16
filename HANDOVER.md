@@ -1,11 +1,11 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-16 22:45 SAST
+Updated: 2026-09-16 22:47 SAST
 
 ## SOURCE OF TRUTH
 - GitHub: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Current main HEAD: `1c47176766dbb3cafb02b2458658c9003b00e098`
+- Current main HEAD: `a4eae6a3af94887998bc6cc79cce9874cf683772`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is temporarily being run through Cloudflare.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
@@ -56,7 +56,7 @@ Current Supabase query is authoritative over older handover counts:
 Existing stocked quantities were preserved during image/category remediation.
 
 ## LATEST VERIFIED PROGRESS
-- Current main HEAD is `1c47176766dbb3cafb02b2458658c9003b00e098`.
+- Current main HEAD is `a4eae6a3af94887998bc6cc79cce9874cf683772`.
 - Latest storefront smoke run known to have succeeded: `35140654305`. It covered mobile entry, category rendering, specials/featured rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
 - The automated smoke test is source/automated verification, **not public-site verification**.
 - Existing Netlify production deploy was inspected read-only: `6aa98a8a679a4a0008e10b58`, ready but stale, built 2026-09-15 from an older commit.
