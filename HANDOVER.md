@@ -5,19 +5,28 @@ Updated: 2026-09-16
 ## SOURCE OF TRUTH
 - GitHub repository: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Supabase project: `d3235bdf-a8c0-457e-bbe7-a02c262ed99a`
 - Netlify site: `get-wired-autoworx-store.netlify.app`
+- Store is currently being run through Cloudflare temporarily.
 - Do not redesign the approved storefront unless explicitly requested.
-- Avoid using Netlify credits for current work.
+- **Do not use Cloudflare credits.**
+- **Do not use Netlify credits.**
 
 ## CURRENT STOREFRONT STATE
+- Customer-facing storefront is in `index-new.html`; `index.html` redirects to it.
 - Storefront reads live Supabase catalogue data.
-- Categories, product catalogue, search/cart/rating functionality are in place.
-- `index.html` redirects to `index-new.html`.
-- Product image handling was improved so local product images under `assets/products/<SKU>.jpg` are prioritised, with remote-image and branded placeholder fallbacks.
-- Latest known image UI fix commit: `0d5697d864d9f853c0c362fc62cbf2f4b864a05c`.
-- Earlier storefront image/localisation commit: `ecdc99a2ce289f2185b4593b931db1188f404661`.
-- A previous workflow/image-cleaning run succeeded against commit `0fde2ad4ec15c4bb9816019ad76c2a9962481785`; it scanned 800 product images and found no new image changes.
+- Categories, product catalogue, search, cart, rating display and product-detail modal are already implemented.
+- Local product images under `assets/products/<SKU>.jpg` are prioritised, with remote-image and branded placeholder fallbacks.
+- Latest known storefront image/UI fix commit: `0d5697d864d9f853c0c362fc62cbf2f4b864a05c`.
+- Current `main` head before this handover update: `a6b08a7d35997f00be00ec5b6c0149acaaf4614a`.
+
+## IMAGE CLEANUP — VERIFIED
+- GitHub Actions image-cleanup run: `35137846265`.
+- Job: `104934601924` (`clean-images`).
+- Result: **SUCCESS**.
+- The workflow successfully processed **800 images**.
+- The final commit step reported `No image changes to commit`, meaning the cleaned image set already matched the committed `assets/products` state; no duplicate image commit was created.
+- No Cloudflare or Netlify credits were used.
+- Continue storefront work from current `main`; do not rerun image cleanup unless there is a specific image issue.
 
 ## SUPABASE PRODUCT/STOCK STATUS
 Live `public.products` count was verified before this handover:
@@ -30,7 +39,7 @@ Live `public.products` count was verified before this handover:
 User explicitly requested:
 > Set the 4,154 zero-stock products to stock_quantity = 5.
 
-The direct Supabase UPDATE and a 500-row batch UPDATE were both blocked by the execution safety layer. **No stock quantities were changed by those attempts.**
+The direct Supabase UPDATE and a 500-row batch UPDATE were previously blocked by the execution safety layer. **No stock quantities were changed by those attempts.**
 
 Required SQL:
 ```sql
@@ -54,7 +63,7 @@ Expected result if the requested update is completed and the 44 existing stocked
 - stock_0 = 0
 - total_units = 27,847
 
-Do not claim completion until the verification query confirms it.
+**Do not claim completion until the verification query confirms it.**
 
 ## CATALOGUE
 - Source: September Buyer's Guide PDF.
@@ -93,11 +102,15 @@ Get Wired AutoWorx services ONLY:
 Contact:
 - CALL/WHATSAPP 074 4884 234
 - 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban
+- Pick up available
+- Nationwide delivery via Courier Guy or PEP PAXI
+- Best prices, best products, guaranteed.
 
-## NEXT SCREEN INSTRUCTIONS
-1. Read this file first.
-2. Preserve the existing storefront/UI work; do not undo working changes.
-3. Resolve the pending stock update through an allowed Supabase route, then verify the final counts.
-4. Continue storefront/product-image work from the current `main` branch rather than rebuilding from scratch.
-5. Do not use the obsolete 1,109-row CSV.
+## CURRENT NEXT TASKS
+1. Preserve the existing approved storefront/UI.
+2. Resolve the pending stock update through an allowed Supabase route, then verify final counts.
+3. Continue customer-facing storefront QA from current `main`.
+4. Verify product-detail behaviour, image fallback behaviour, category filtering, search, cart and mobile layout.
+5. Improve only confirmed issues; do not rebuild working sections.
 6. Keep payment/delivery integration secondary until the storefront is to the user's liking.
+7. Keep this handover updated after material changes.
