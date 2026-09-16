@@ -50,6 +50,7 @@ Do not redesign/remove working elements. Preserve dark blue/red theme, GW logo, 
 - active products: 4,187
 - active unique SKUs: 4,187
 - active products with cost: 4,187
+- missing active prices: 0
 - pricing mismatches: 0
 - storefront_products: 4,187 active rows
 - storefront/product ID matches: 4,187
@@ -66,6 +67,7 @@ Do not redesign/remove working elements. Preserve dark blue/red theme, GW logo, 
 - customers: 0
 - order_items: 0
 - manual category review queue: 198
+- latest integrity recheck: 0 active products missing categories, 0 orphan storefront rows, 0 storefront price/category/stock mismatches, 0 orphan order items; duplicate active SKU groups: 0.
 
 The catalogue import routine successfully reported 4,187 products upserted. The old 791-product state is superseded and must not be reported as current.
 
@@ -88,7 +90,8 @@ Do not spend Cloudflare or Netlify credits without explicit permission. Do not c
 - Admin order RPCs remain authenticated-only at the execution layer and retain internal admin authorization checks.
 - Anonymous `create_store_order` remains intentionally executable for public checkout and validates inputs internally.
 - Supabase Auth leaked-password protection remains disabled and is a production release blocker.
-- Current security-advisor review still reports intentional protected-table RLS/no-policy INFO findings, the public checkout SECURITY DEFINER WARN, four authenticated SECURITY DEFINER WARNs for admin/utility functions, and the Auth leaked-password WARN. The four authenticated WARNs now exclude import/pricing RPCs that were explicitly revoked.
+- **User instruction:** enable leaked-password protection when the store is up, before final hosting/release.
+- Current advisor WARNs remain documented and intentional until final Auth/deployment testing.
 
 ## REQUIRED VERIFICATION AFTER MAJOR TASKS
 Verify active count, SKU uniqueness, missing costs, pricing formula, category refs, storefront sync, stock source, image integrity where relevant, and checkout/admin integrity.
@@ -103,8 +106,7 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [ ] Create separate Word section: MANUAL CATEGORY SORT — 198 ITEMS.
 - [ ] Keep all 198 isolated from automatic reassignment.
 - [ ] Do not delete any of these products without explicit instruction.
-- [ ] After user decisions, update Supabase categories.
-- [ ] Synchronize storefront category IDs.
+- [ ] After user decisions, update Supabase categories and synchronize storefront category IDs.
 - [ ] Verify 0 category mismatches.
 
 ## TASK 2 — SUPPLIER-STOCK RECONCILIATION
@@ -115,8 +117,7 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [ ] Reconcile duplicate/conflicting SKU sources.
 - [ ] Prefer the latest explicitly verified source.
 - [ ] Update quantities only from verified evidence.
-- [ ] Produce final supplier-stock reconciliation report.
-- [ ] Produce final stock/pricing workbook after full reconciliation.
+- [ ] Produce final supplier-stock reconciliation report and final stock/pricing workbook after full reconciliation.
 
 ## TASK 3 — STOREFRONT / DATABASE QA
 ### Database/source QA
@@ -128,25 +129,12 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [x] Stock floor.
 - [x] Pricing formula.
 - [x] Non-credit source-code QA of storefront, checkout and admin paths.
-- [x] Corrected storefront checkout payment enum mismatch.
-- [x] Added tightened production security/customer test matrix.
+- [x] Corrected storefront checkout payment enum mismatch to `manual_payment`.
+- [x] Added production security/customer test matrix.
+- [x] Final non-live database integrity recheck passed: zero active missing categories, zero orphan storefront rows, zero storefront price/category/stock mismatches, zero orphan order items.
 
 ### Live/customer QA — FINAL DEPLOYMENT PHASE
-- [ ] Homepage and locked design.
-- [ ] Search.
-- [ ] Categories/subcategories.
-- [ ] Product filtering/details.
-- [ ] Pricing and stock display.
-- [ ] Specials/Featured.
-- [ ] Cart/checkout.
-- [ ] Customer/delivery details.
-- [ ] WhatsApp/contact.
-- [ ] Mobile responsiveness.
-- [ ] Order/customer/order-item creation.
-- [ ] Admin order visibility/status.
-- [ ] Payment status.
-- [ ] Delivery information.
-- [ ] Failed/cancelled transaction handling.
+- [ ] Homepage/locked design, search, categories/subcategories, filtering/details, pricing/stock, Specials/Featured, cart/checkout, customer/delivery details, WhatsApp/contact, mobile, order/customer/order-item creation, admin visibility/status, payment status, delivery information, failure/cancellation paths.
 
 ## TASK 4 — PAYFAST — FINAL PHASE
 - [ ] Confirm account readiness and verification.
@@ -198,11 +186,12 @@ Verify active count, SKU uniqueness, missing costs, pricing formula, category re
 - [x] Redundant public catalogue policies removed and canonical policies retained.
 - [x] Import/pricing authenticated execution revoked.
 - [x] Production security/customer test matrix added.
-- [ ] Enable Auth leaked-password protection.
-- [ ] Final security-advisor review.
-- [ ] Verify RLS and client access for all relevant tables.
+- [ ] Enable Auth leaked-password protection — user will do this when the store is up, before final hosting/release.
+- [ ] Final security-advisor review after Auth setting is enabled.
+- [ ] Verify RLS/client access for all relevant tables.
 - [ ] Final unauthorized-access tests.
 - [ ] Final database backup and integrity verification.
+- [x] Current non-live database integrity recheck completed successfully.
 - [ ] Verify GitHub/storefront backup.
 - [ ] Final handover update.
 
@@ -232,6 +221,8 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 - Checkout enum defect corrected to `manual_payment`.
 - Production security/test matrix added.
 - Redundant catalogue read policies and authenticated import/pricing execution were tightened.
+- Latest non-live DB integrity recheck passed.
+- Auth leaked-password protection remains intentionally deferred to user action before final hosting/release.
 - Netlify/Cloudflare credits have not been used.
 
 ## AUTHORITY
