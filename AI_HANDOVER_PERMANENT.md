@@ -73,6 +73,7 @@ The catalogue is complete; full supplier stock verification/reconciliation is no
 - All 34 active ASC-verified SKUs match their verified quantities with 0 mismatches.
 - The ASC verification table contains 36 verified SKUs / 7,037 verified units; 2 of those verified SKUs are not active products and were preserved unchanged.
 - No verified ASC quantity was overwritten by the stock-floor task.
+- A subsequent explicit zero-stock sweep was executed and independently verified: 0 active products remain at quantity 0, and 0 active products remain below quantity 5. No inactive zero-stock products remain either.
 
 ## PRICING — LOCKED
 Supplier cost is ex VAT. Advertised price = cost × 1.15 VAT × 1.35 markup. Final advertised price is VAT-inclusive.
@@ -108,7 +109,7 @@ Database integrity is clean at the FK/SKU/storefront level, but the active produ
 ## CONTINUATION ORDER
 A. Catalogue import — COMPLETE/VERIFIED.
 B. Reconcile verified stock from all available guides/pricelists/verified supplier sources — INCOMPLETE; currently limited by absence of a complete verified ASC bulk stock source. Continue searching stored sources and reconcile any newly evidenced quantities.
-C. Stock quantity increase to 5 — COMPLETE/VERIFIED.
+C. Stock quantity increase to 5 — COMPLETE/VERIFIED, including explicit zero-stock sweep.
 D. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
 E. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; storefront UI still requires live verification when deployment is available.
 F. Image cleanup/mapping — workflow result still requires final verification; user has deferred catalogue image work to a later session.
@@ -137,6 +138,12 @@ K. Update this handover after each milestone.
 - Verified all 34 active ASC-linked quantities match their recorded verified quantities with 0 mismatches.
 - Preserved all explicitly verified ASC quantities.
 - Task marked **SUCCESSFULLY COMPLETED** after independent verification.
+
+### 16 Sep 2026 — Explicit zero-stock sweep
+- User requested a final sweep to change all stock quantities equal to 0 to 5.
+- Executed against active products; no rows required changing because the prior stock-floor task had already eliminated all active zero quantities.
+- Independently verified: 0 active zero-stock products, 0 active products below 5, 4,153 exactly at 5 and 34 above 5.
+- Confirmed no inactive zero-stock products remain.
 
 ### 16 Sep 2026 — Category source audit refresh
 - Queried all buyer-guide source category/subcategory combinations across the 4,187-row staging catalogue.
