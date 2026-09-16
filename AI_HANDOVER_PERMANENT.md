@@ -113,22 +113,25 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 - [ ] Success/failure/cancellation and duplicate-transaction protection.
 - [ ] End-to-end test only in final phase.
 
-## TASK 5 — DELIVERY — YOUR COURIER / PAXI
-- [x] Investigated Your Courier public booking model: customer-facing flow is WhatsApp-based for local and national South African deliveries.
-- [x] Identified `portal.yourcourier.co.za` as the Your Courier white-label customer portal.
-- [x] Identified public ParcelOps REST API documentation supporting courier quote, booking, tracking and documents; public webhook example uses `tenantSlug: your-courier`.
-- [x] Created `YOUR_COURIER_DELIVERY_INTEGRATION_SPEC.md` with the intended checkout architecture and security requirements.
-- [x] Selected preferred architecture: server-side real-time courier quote before payment; no hard-coded delivery price and no browser/API-key exposure.
-- [ ] Confirm with Your Courier that Get Wired AutoWorx can obtain API access/key and exact quote endpoint/schema.
-- [ ] Obtain Your Courier business tariff/account pricing and parcel limits.
-- [ ] Confirm required weight/dimensions, insurance and booking/payment sequencing.
-- [ ] Implement secure server-side quote adapter once provider access is confirmed.
-- [ ] Store quote/reference/provider/final delivery charge against order; prevent duplicate delivery fees.
-- [ ] Implement booking/tracking/webhook handling and idempotency after payment flow is ready.
-- [ ] PEP PAXI requirements/config/pricing/tracking.
-- [ ] Customer provider choice.
-- [ ] Delivery fee exactly once.
-- [ ] Delivery information stored/admin-visible.
+## TASK 5 — DELIVERY — MULTI-PROVIDER
+- [x] Investigated Your Courier public booking model and created `YOUR_COURIER_DELIVERY_INTEGRATION_SPEC.md`.
+- [x] Selected server-side real-time courier quote architecture; no hard-coded nationwide delivery price and no browser/API-key exposure.
+- [x] Current Bob Go documentation confirms real-time courier rates based on weight/address/collection address, pickup-point service levels, open API automation and sandbox testing.
+- [x] Added nullable `products.weight_kg`, `length_cm`, `width_cm`, `height_cm` fields and verified their existence.
+- [x] Created `BOB_GO_DELIVERY_INTEGRATION_SPEC.md`.
+- [x] Created `netlify/functions/shipping-quote.ts` as a provider-neutral server-side quote adapter for Bob Go, The Courier Guy and PUDO. Live provider adapters activate only when server-side `*_RATES_URL` and `*_API_TOKEN` environment variables exist.
+- [x] Enabled Netlify Functions directory in `netlify.toml` without deploying or spending Netlify credits.
+- [x] Updated checkout to collect parcel dimensions/weight, request delivery quotes from `/api/shipping/quote`, show provider/service/timeframe/price, retain the selected delivery provider in order notes and pass the selected fee exactly once to `create_store_order`.
+- [x] Added PAXI published fixed-price options for parcels with verified product weight within PAXI bag limits; these are explicitly marked `PUBLISHED`, not live address-dependent quotes.
+- [x] Added official PUDO/Courier Guy locker finder, official Bob Box locker finder and official PAXI point locator links in checkout.
+- [x] Phoenix-area locker/point research found **Bob Box — Phoenix Plaza, Starwood** in the live Bob Box directory. PAXI's official site provides its live point locator; a current directory listing also reports a Phoenix Plaza PAXI point code `P4742`, but this code must be verified in PAXI's official locator before being treated as authoritative.
+- [ ] Add real Bob Go API URL/token to Netlify environment variables and confirm account-specific courier/rate configuration.
+- [ ] Confirm exact Bob Go production request/response schema against the account API documentation and sandbox, then adjust adapter mapping if required.
+- [ ] Add The Courier Guy direct credentials if direct TCG fallback is retained.
+- [ ] Add PUDO live API credentials for live locker rates/booking; sandbox API currently documents D2D, D2L and L2L rates and a locker-data endpoint.
+- [ ] Qualify Get Wired AutoWorx for PAXI API access if automatic PAXI point/order integration is required; PAXI states a minimum monthly parcel volume applies to API access.
+- [ ] Store final quote/reference/provider/locker against order in dedicated order fields or validated metadata; prevent duplicate delivery fees.
+- [ ] Implement post-payment booking, tracking/webhooks and idempotency once payment is ready.
 
 ## TASK 6 — CATALOGUE EXPANSION
 - [x] Current active catalogue of 4,187 exceeds earlier 3,000 target.
@@ -148,6 +151,7 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 - [x] Production security/customer test matrix.
 - [x] Manual category-sort Word worksheet.
 - [x] Your Courier delivery integration architecture/investigation specification.
+- [x] Bob Go delivery architecture/integration specification.
 - [ ] Final stock/pricing report after complete supplier feed.
 - [ ] SKU/category report.
 - [ ] Missing-data report.
@@ -182,50 +186,27 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 ## CREDIT / DEPLOYMENT LOCK
 Do not spend Cloudflare or Netlify credits before final testing. No new Netlify site or GitHub repository may be created. All credit-dependent work remains at the final deployment/testing stage.
 
-## LATEST PROJECT SUMMARY — 16 SEP 2026
-- 4,187 active products; 0 below stock floor; 36 ASC-verified SKUs / 7,037 units.
-- 198 products remain reserved for manual category decisions; Product Type is mandatory for those decisions.
-- Word worksheet completed and contains all 198 reserved products plus the required decision fields.
-- Full supplier-stock reconciliation is still incomplete.
-- Checkout uses `manual_payment`.
-- Checkout now filters cart verification to active products and requires core delivery address details for delivery orders.
-- Your Courier investigation found a viable server-side quote/booking architecture via its white-label ParcelOps portal/API, subject to Your Courier enabling API access and supplying credentials/tariffs.
-- Your Courier integration architecture is documented; no live courier credentials have been added and no production delivery pricing has been assumed.
-- PayFast integration remains final-phase because merchant credentials/verification and secure server-side callback handling are required.
-- Auth leaked-password protection is intentionally deferred to user action before final hosting/release.
-- Product images are intentionally deferred.
-- Netlify/Cloudflare credits have not been used.
-
-## 16 SEP 2026 — CONTINUATION UPDATE
-- Verified repository: `getwiredautoworx-max/get-wired-autoworx-store`, default branch `main`.
-- Verified the previously supplied commit `0fde2ad4ec15c4bb9816019ad76c2a9962481785` exists in the repository history. That commit records the no-Cloudflare-credit/no-Netlify-credit constraint.
-- Verified the current repository has advanced beyond that commit; latest continuation work includes checkout QA hardening, security/integrity updates, manual category-sort documentation and Your Courier architecture/investigation.
-- Inspected the image-cleanup workflow and identified the earlier failure cause: the workflow run cleaned 800 images successfully but attempted to push from an outdated checkout.
-- Verified the workflow source now contains the synchronization fix (`fetch origin main` + `reset --hard origin/main`) before image generation and again before commit/push.
-- Triggered the corrected workflow from the current `main` branch with commit `836a3586938a9c5649d4a27fe50a60b98e9d811a`.
-- **Image cleanup is NOT marked complete yet.** A successful workflow result and resulting repository image commit still require verification.
-- No Cloudflare credits or Netlify credits were used for this continuation.
-
-## 17 SEP 2026 — BOB GO DELIVERY ARCHITECTURE / SHIPPING DATA
-- Current courier architecture has been expanded from a single-provider Your Courier model to a courier-agnostic live-rate model with **Bob Go as the primary integration target**, while retaining Your Courier/PAXI as possible alternatives or fulfilment options.
-- Current Bob Go documentation confirms that its Courier rates can request real-time pricing based on order weight, customer delivery address and collection address. Bob Go also documents pickup-point service levels and an open API for live rates, order/shipment automation and tracking. A sandbox is available for integration testing.
-- Created `BOB_GO_DELIVERY_INTEGRATION_SPEC.md` in the repository with the server-side architecture, security rules, checkout presentation and provider-input requirements.
-- Added and verified four nullable shipping-dimension fields to `public.products`: `weight_kg`, `length_cm`, `width_cm`, `height_cm`.
-- No existing product pricing, stock, catalogue design or checkout payment flow was changed by the shipping-dimension migration.
-- No Bob Go credentials have been added, exposed or invented. The live quote adapter remains blocked only by provider/account credentials and exact account/API configuration.
-- The store will not advertise a fabricated nationwide delivery price. Live delivery options will be based on the actual customer address and parcel data once Bob Go is connected.
-- Netlify/Cloudflare credits remain unused for this work.
+## 17 SEP 2026 — MULTI-COURIER + PHOENIX LOCKER UPDATE
+- Implemented the non-credit-dependent delivery layer in GitHub without deploying.
+- `checkout.html` now supports door delivery, locker/pickup-point fulfilment and store pickup while preserving the approved dark storefront styling.
+- Checkout requests delivery quotes from the server-side `/api/shipping/quote` endpoint and no courier credentials are placed in browser code.
+- Bob Go, The Courier Guy and PUDO are represented as live server-side adapters that remain inactive until their account-specific endpoint/token environment variables are supplied and verified. This avoids fabricated rates or invented API schemas.
+- PAXI is integrated at the checkout-option level using its currently published bag prices, with a clear `PUBLISHED` label and weight limits. PAXI API access remains provider-gated by its stated minimum monthly parcel requirement.
+- Official locator links were added for PUDO/Courier Guy, Bob Box and PAXI.
+- Current Phoenix-area locker research confirms a Bob Box at **Phoenix Plaza, Starwood**. PAXI's official locator remains the authoritative source for current PAXI points; a third-party directory currently lists a Phoenix Plaza PAXI point code `P4742`, which must be rechecked against PAXI before production use.
+- The Courier Guy's official locker documentation confirms locker delivery and an official locker-location map; PUDO is powered by The Courier Guy and has sandbox API documentation for rates and locker data.
+- No Netlify deployment was performed and no Netlify/Cloudflare credits were consumed.
 
 ## CURRENT BLOCKERS REQUIRING USER/PROVIDER INPUT
-These are the only classes of remaining work that cannot be truthfully completed without external/user-controlled inputs:
 1. 198 manual category/Product Type decisions.
 2. Complete supplier stock feed/account data.
 3. PayFast merchant verification/credentials and final callback configuration.
 4. Bob Go API access/credentials and account-specific courier/tariff/parcel configuration for the primary live-rate integration.
-5. Your Courier API access/credentials and business tariff/parcel rules if retained as a direct fallback/provider option.
-6. PEP PAXI account/pricing/tracking requirements.
-7. User enabling Supabase Auth leaked-password protection before final release.
-8. Final credit-dependent hosting/live deployment and customer testing at the end of the workflow.
+5. The Courier Guy direct API credentials if retained as a separate provider/fallback.
+6. PUDO production API credentials if live locker quoting/booking is required directly.
+7. PAXI API qualification/account access if automated PAXI point/order integration is required.
+8. User enabling Supabase Auth leaked-password protection before final release.
+9. Final credit-dependent hosting/live deployment and customer testing at the end of the workflow.
 
 ## AUTHORITY
 If the user edits this file, preserve their edits and treat the latest user-edited content as authoritative. ChatGPT may append verified progress but must not silently remove user instructions.
