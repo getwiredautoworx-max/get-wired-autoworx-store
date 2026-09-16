@@ -70,13 +70,13 @@ Do not redesign/remove working elements. Preserve dark blue/red theme, GW logo, 
 The catalogue import routine successfully reported 4,187 products upserted. The old 791-product state is superseded and must not be reported as current.
 
 ## STOCK WORK — CURRENT LIMIT
-The catalogue is complete; full supplier stock verification/reconciliation is not. The available stored stock workbook/report identifies 36 ASC website-verified quantities. Do not convert default 5 quantities into verified stock. Do not invent quantities. Reconcile duplicate SKU sources and prefer the latest explicitly verified source.
+The catalogue is complete; full supplier stock verification/reconciliation is not. The available stored stock evidence identifies 36 ASC website-verified quantities. Do not convert default 5 quantities into verified stock. Do not invent quantities. Reconcile duplicate SKU sources and prefer the latest explicitly verified source.
 
 ### STOCK QUANTITY INCREASE TO 5
 - **Status: SUCCESSFULLY COMPLETED AND INDEPENDENTLY VERIFIED — 16 SEP 2026.**
 - Verified all active products: 4,187 active products; 0 active products remain below stock quantity 5.
 - 4,153 active products are exactly at quantity 5; 34 active products retain quantities above 5 because they have explicitly verified ASC stock.
-- All active ASC-linked quantities were reconciled against the recorded verified source; storefront stock is synchronized with products with 0 stock mismatches.
+- Storefront stock is synchronized with products with 0 stock mismatches.
 - The ASC verification table contains 36 verified SKUs / 7,037 verified units; 2 of those verified SKUs are not active products and were preserved unchanged.
 - No verified ASC quantity was overwritten by the stock-floor task.
 
@@ -97,17 +97,18 @@ Do not spend Cloudflare or Netlify credits without explicit permission. Do not c
 
 ## SECURITY — CURRENT VERIFIED STATE
 - RLS is enabled on the internal import/verification tables previously remediated.
-- Current Supabase security advisor still reports informational `RLS enabled no policy` findings on protected internal/admin tables. These are intentionally not exposed through ordinary client-role policies and require final security review rather than blind policy creation.
-- Security advisor also reports SECURITY DEFINER functions. The inspected admin order functions explicitly verify authenticated admin membership through `veyron_admin_users`; `create_store_order` is intentionally callable for anonymous checkout and validates its inputs inside the function. These findings remain documented for final security review; do not weaken protections or expose admin functions merely to silence the advisor.
+- Current Supabase security advisor reports informational RLS-enabled/no-policy findings on protected internal/admin tables. These are intentionally not exposed through ordinary client-role policies and require final security review rather than blind policy creation.
+- Security-definer order/admin functions were inspected. Admin functions explicitly verify authenticated admin membership through `veyron_admin_users`; `create_store_order` is intentionally callable for anonymous checkout and validates inputs inside the function.
 - Supabase Auth leaked-password protection is currently reported disabled and remains a final security configuration item.
+- Security findings are documented rather than weakened merely to silence advisor warnings.
 
 ## REQUIRED VERIFICATION AFTER MAJOR TASKS
 Verify active count, SKU uniqueness, missing costs, pricing formula, category refs, storefront sync, stock source, image integrity where relevant, and checkout/admin integrity.
 
 ## BUSINESS REPORTS
-- Created `BUSINESS_STATUS_REPORT_2026-09-16.md` in the GitHub repository with the verified catalogue, stock, category, orders/customers and QA status.
+- Updated `BUSINESS_STATUS_REPORT_2026-09-16.md` with the current verified catalogue, stock, category, order/customer, security and QA status.
 - Current active catalogue of 4,187 already exceeds the earlier 3,000-item target; further expansion is now **validation-led**, not quantity-led.
-- Final master stock/pricing Excel workbook remains pending until supplier-stock reconciliation is complete.
+- Final master stock/pricing Excel workbook remains pending until a complete verified supplier-stock feed is available.
 
 ## FINAL-PHASE TASK QUEUE — USER REQUESTED 16 SEP 2026
 The following tasks are explicitly moved to the end and must remain in the handover until completed:
@@ -145,21 +146,28 @@ The following tasks are explicitly moved to the end and must remain in the hando
 
 ## CONTINUATION ORDER
 A. Catalogue import — COMPLETE/VERIFIED.
-B. Supplier-stock reconciliation — current non-credit task; stored supplier_stock is empty, so reconcile all explicitly evidenced sources without inventing stock.
+B. Supplier-stock reconciliation — COMPLETE to the available evidence; `supplier_stock` is empty, so only explicitly evidenced ASC quantities are verified. Full reconciliation remains pending receipt of a complete supplier feed.
 C. Stock quantity increase to 5 — COMPLETE/VERIFIED.
 D. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
 E. Storefront/database QA — database consistency verified: 4,187 active products, 4,187 storefront rows, 0 price/category/stock field mismatches. Live UI testing remains final-phase.
 F. Catalogue expansion — current catalogue already 4,187 active products, exceeding the earlier 3,000 target. Continue only with validated non-duplicates if a quality source becomes available.
-G. Business reports — status report created; final stock/pricing workbook remains pending until stock reconciliation is complete.
+G. Business reports — status report updated; final stock/pricing workbook remains pending until a complete verified supplier-stock feed is available.
 H. Security/backup — security review completed to current actionable level; final Auth/security configuration and backup verification remain final review items.
 I. **FINAL PHASE:** Tasks 1, 4, 5, 7 and 10 above.
 J. Update this handover after every milestone.
 
 ## CHANGE LOG
+### 16 Sep 2026 — Continuation summary and remaining-task pass
+- User instructed: prepare summary, then continue with all remaining tasks.
+- Current verified state was rechecked without using Netlify/Cloudflare credits.
+- Supplier-stock evidence was searched again; `supplier_stock` remains empty and no unverified stock was invented.
+- Business status report was updated with the verified catalogue, stock, pricing, category, security and final-phase status.
+- Final-phase tasks remain deliberately deferred as instructed.
+
 ### 16 Sep 2026 — User-directed task reprioritization
 - User instructed continuation of Tasks **2, 3, 6, 8, 9** now.
 - User instructed Tasks **1, 4, 5, 7, 10** to be added to this handover and completed last.
-- This ordering is now authoritative for continuation.
+- This ordering is authoritative for continuation.
 
 ### 16 Sep 2026 — Supplier stock reconciliation pass
 - Inspected database supplier-stock structures and stored supplier/source files.
@@ -182,9 +190,9 @@ J. Update this handover after every milestone.
 - No additional bulk import was performed because further quantity without validated non-duplicate source quality would add unnecessary risk.
 
 ### 16 Sep 2026 — Business reports
-- Created `BUSINESS_STATUS_REPORT_2026-09-16.md` in GitHub.
-- Report records verified catalogue, stock, category, order/customer and QA metrics.
-- Final master stock/pricing workbook remains blocked only by incomplete full supplier-stock reconciliation.
+- Created/updated `BUSINESS_STATUS_REPORT_2026-09-16.md` in GitHub.
+- Report records verified catalogue, stock, category, order/customer, security and QA metrics.
+- Final master stock/pricing workbook remains pending until a complete verified supplier-stock feed is available.
 
 ### 16 Sep 2026 — Security review
 - Ran current Supabase security advisor.
