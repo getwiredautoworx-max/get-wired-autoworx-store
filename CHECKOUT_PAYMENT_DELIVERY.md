@@ -8,7 +8,7 @@ Updated: 2026-09-16
 - Customer details: name, phone, email, fulfilment, address, province, postal code and notes.
 - Fulfilment: nationwide delivery or pickup.
 - Delivery provider wording: Courier Guy or PEP PAXI.
-- Payment methods supported by the live order workflow: EFT / bank payment, manual payment arrangement, and cash on pickup.
+- Payment methods supported by the current order workflow: EFT / bank payment, manual payment arrangement, and cash on pickup.
 - Card details are never collected by the storefront.
 
 ## Order creation
@@ -26,9 +26,27 @@ Updated: 2026-09-16
 ## Payment integration boundary
 - No third-party payment gateway credentials are stored in the repository or exposed to customers.
 - The current production-safe payment workflow is EFT/manual payment/cash-on-pickup with admin payment-status confirmation.
+- PayFast is not yet connected; PayFast verification, secure credential configuration, callbacks/return handling, duplicate-order protection and end-to-end payment testing remain final-phase work.
 - A future gateway can be added server-side without exposing merchant secrets in the storefront.
 
 ## Delivery integration boundary
 - Customer checkout records delivery versus pickup and delivery address information.
 - Delivery fee is currently confirmed by the store rather than invented by the storefront.
+- The current checkout submits a delivery fee of R0.00 to the order function; this is intentional only as a pre-integration state and must not be treated as the final customer delivery charge.
 - Courier Guy / PEP PAXI are the stated delivery channels.
+- Automated delivery pricing, provider integration, tracking/reference handling and order-to-delivery linkage remain final-phase work.
+
+## Non-credit QA — 16 Sep 2026
+- Reviewed `index.html`, `store.html`, `index-new.html` and `checkout.html` through the GitHub repository without deploying or consuming Netlify/Cloudflare credits.
+- `index.html` redirects into the existing `store.html` wrapper; no new Netlify site or replacement storefront was introduced.
+- `store.html` embeds `index-new.html` and exposes the cart checkout action.
+- `checkout.html` re-reads active product records before order creation and calls `create_store_order`; browser-submitted product prices are not used as the authoritative price.
+- Current live checkout does not contain PayFast integration; this remains intentionally deferred to final testing.
+- Current delivery fee is deliberately not calculated by the storefront and is documented as a pre-integration state.
+- No source-code change was made to the locked storefront design during this QA pass.
+
+## Final testing dependencies
+1. PayFast account verification and secure server-side integration.
+2. Delivery-provider configuration and verified delivery pricing.
+3. Complete live checkout/payment/delivery testing.
+4. Final deployment only after the above are approved.
