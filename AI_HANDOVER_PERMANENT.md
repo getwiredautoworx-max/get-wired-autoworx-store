@@ -6,21 +6,27 @@
 **Repository:** getwiredautoworx-max/get-wired-autoworx-store
 **Branch:** main
 
-## PERMANENT USER INSTRUCTIONS
-1. Do not delete this file or let it interfere with the store.
-2. Continue required project tasks rather than stopping merely to update/notify.
-3. After each successful task, update this handover with the verified result.
-4. Notify the user only when user input/permission is genuinely required or an important result needs attention.
-5. Do not use Cloudflare credits or Netlify credits without explicit user permission.
-6. Keep workflow efficient: direct execution, batching, verification and automation.
-7. Find and resolve workable solutions instead of stopping at describing issues.
-8. Preserve valid user suggestions/requirements here.
-9. ChatGPT may add useful continuation rules, safeguards and verified state.
-10. Complete incomplete tasks before moving to the next; do not restart verified work.
-11. User edits to this file are authoritative.
+## PERMANENT USER INSTRUCTIONS — 8 LOCKED RULES
+These eight rules are user-authoritative and must be copied into every new handover file without omission, alteration, or reinterpretation. They may not be edited, removed, or weakened unless the user explicitly gives permission.
+
+1. **Maintain workflow — efficiency — speed.**
+2. **Complete all available tasks in a single flow.**
+3. **Only notify the user when user input or permissions are required.**
+4. **AI will update the master handover file after every successful task is completed.**
+5. **Do not use Cloudflare or Netlify credits until final testing.**
+6. **All tasks requiring Cloudflare or Netlify credits will be added to the handover file to be completed at the very end, during the testing phase.**
+7. **AI will copy these rules into every new handover file and will not leave any rule out or edit any rule without user permission.**
+8. **AI will reply with these 8 rules when required by the user to be edited or removed.**
+
+### RULE-PRESERVATION REQUIREMENT
+- The eight rules above are locked user instructions.
+- Do not delete, merge, reorder, weaken, reinterpret, or silently edit them.
+- If the user requests that any of the eight rules be edited or removed, first reproduce all eight rules exactly as currently recorded, then handle the user's explicit authorized change.
+- Any new handover file must contain all eight rules exactly and prominently.
+- Verified project progress may be appended around these rules, but must not override them.
 
 ## CORE EXECUTION RULE
-Continue from the current verified state. Do not rebuild the store unless explicitly requested. Inspect first, execute the smallest safe path, batch large work, independently verify, record success, then continue.
+Continue from the current verified state. Do not rebuild the store unless explicitly requested. Inspect first, execute the smallest safe path, batch large work, independently verify, record success in this handover, then continue immediately to the next available task. Do not stop merely to provide progress narration.
 
 ## STORE / LOCKED PROJECT
 - Business: Get Wired AutoWorx
@@ -80,10 +86,13 @@ Relevant stored files include Get_Wired_AutoWorx_STORE_STOCK_Feb-Sep_2026_VERIFI
 Preserve logical category → subcategory → product navigation. Major groups include Auto Electrical Spares, Vehicle Security, Car Audio, Accessories, Marine Spares & Accessories, Tools/Hardware/Consumables, Camping/Leisure/Outdoors and Trailer & Canopy, with the requested Auto Electrical 12V/24V hierarchy.
 
 ## IMAGES
-Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow #19 / ID 35020123380 cleaned 800 images successfully but failed only at push because the runner had an outdated main ref. The workflow was then corrected to synchronize with current main before generation/push. New run #45 / ID 35137232280 was triggered from commit 21f32a3670f2b53a8b245dbe18d4d6817061437f and was observed in progress; verify its final conclusion before claiming image cleanup complete.
+Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow #19 / ID 35020123380 cleaned 800 images successfully but failed only at push because the runner had an outdated main ref. The workflow was then corrected to synchronize with current main before generation/push. New run #45 / ID 35137232280 was triggered from commit 21f32a3670f2b53a8b245dbe18d4d6817061437f and was observed in progress; verify its final conclusion before claiming image cleanup complete. User has explicitly deferred catalogue image work to a later session; prioritize non-image tasks unless this changes.
 
-## NETLIFY / CLOUDFLARE
-Do not spend Cloudflare or Netlify credits without explicit permission. Do not create another Netlify site or GitHub repo. Existing Netlify deployment was previously blocked by exhausted credits.
+## NETLIFY / CLOUDFLARE — FINAL TESTING ONLY
+- Do not spend Cloudflare or Netlify credits before final testing.
+- Do not create another Netlify site or GitHub repo.
+- Any task requiring Cloudflare or Netlify credits must be recorded in the handover as a final-testing task and deferred until the testing phase.
+- Existing Netlify deployment was previously blocked by exhausted credits.
 
 ## REQUIRED VERIFICATION AFTER MAJOR TASKS
 Verify active count, SKU uniqueness, missing costs, pricing formula, category refs, storefront sync, stock source, image integrity where relevant, and checkout/admin integrity.
@@ -100,14 +109,21 @@ B. Reconcile verified stock from all available guides/pricelists/verified suppli
 C. **Next-session stock quantity increase to 5 — PENDING; remain in this handover until successfully executed and independently verified.**
 D. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
 E. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; storefront UI still requires live verification when deployment is available.
-F. Image cleanup/mapping — workflow rerun in progress; verify final result.
+F. Image cleanup/mapping — workflow rerun in progress; verify final result. User has deferred image work to a later session.
 G. Homepage Specials-only/full navigation — pending live storefront verification.
 H. Checkout/admin integrity — pending live storefront verification.
 I. Final master stock/pricing workbook — after stock reconciliation.
-J. Deployment verification — only when credits/capability are available and permitted.
-K. Update this handover after each milestone.
+J. Deployment verification — FINAL TESTING ONLY; requires Netlify/Cloudflare credits/capability and explicit permission if credits are to be used.
+K. Update this handover after each successful milestone.
 
 ## CHANGE LOG
+### 16 Sep 2026 — Permanent workflow rules updated by user
+- Added the user's eight locked workflow/permission/handover rules exactly as authoritative instructions.
+- Added a rule-preservation requirement: all eight rules must be copied into every new handover file and may not be edited or removed without explicit user permission.
+- Added the required response behavior: when the user asks for any of these rules to be edited or removed, reproduce all eight rules first.
+- Updated execution guidance to complete all available non-blocked tasks in a single continuous flow and notify the user only when input/permissions are genuinely required or an important result requires attention.
+- Locked Cloudflare/Netlify credit usage to final testing and required all such tasks to be recorded in the handover until then.
+
 ### 16 Sep 2026 — Database verification refresh
 - Rechecked Supabase directly.
 - Confirmed 4,187 active unique products, all priced.
