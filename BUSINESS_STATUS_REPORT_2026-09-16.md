@@ -3,7 +3,7 @@
 **Date:** 16 September 2026
 
 ## Executive summary
-The current database/catalogue foundation is verified and stable. The active catalogue is 4,187 products, already above the earlier 3,000-item target. No destructive catalogue changes were made during QA. The remaining work is deliberately separated into non-credit verification/reporting and final-phase customer-facing integrations/testing.
+The current database/catalogue foundation is verified and stable. The active catalogue is 4,187 products, already above the earlier 3,000-item target. No destructive catalogue changes were made during QA. The remaining work is deliberately separated into non-credit verification/reporting and final-phase customer-facing integrations/testing. The permanent handover now contains the detailed Tasks 1–10 execution checklist and locked workflow requirements.
 
 ## Catalogue
 - Active products: 4,187
@@ -57,13 +57,32 @@ The stored September Buyer’s Guide explicitly states that prices are valid whi
 ## QA status
 Database-to-storefront consistency is verified at the database level. Customer-facing live interaction testing remains pending until final deployment testing is permitted.
 
-## Final-phase work — deliberately deferred
-1. Manual category-sort worksheet (198 items)
+## Remaining task structure
+### Non-credit / verification work
+- Supplier-stock reconciliation using only available verified evidence; complete feed remains pending.
+- Database/storefront QA maintenance and re-verification.
+- Catalogue expansion only when validated non-duplicate stock becomes available.
+- Final business reports and exports.
+- Final security/backup review.
+
+### Final-phase work
+1. Manual category-sort worksheet — 198 items
 2. PayFast integration and verification
-3. Delivery integration (Your Courier / PEP PAXI)
+3. Delivery integration — Your Courier / PEP PAXI
 4. Catalogue image matching/watermarking
-5. Netlify/Cloudflare production deployment and complete live customer journey testing
+5. Production deployment and complete live customer journey testing
 6. Final stock-reconciled Excel workbook after a complete verified supplier-stock feed is available
 
+## Final-phase controls
+- Product images remain explicitly deferred until the final phase/user-directed image session.
+- PayFast credentials/verification are not assumed complete.
+- Delivery integrations are not assumed complete.
+- Live payment, delivery, order or production-test results are not claimed until actually tested.
+- Netlify/Cloudflare credits remain protected and must not be used before final testing.
+- No new Netlify site or GitHub repository is required.
+
 ## Continuation instruction
-Continue from this verified state. Do not rebuild the store. Do not use Netlify or Cloudflare credits before final testing. Do not invent supplier stock, product images, payment status, delivery status, or live-test results.
+Continue from this verified state. Do not rebuild the store. Do not use Netlify or Cloudflare credits before final testing. Do not invent supplier stock, product images, payment status, delivery status, or live-test results. After every successful task, update the permanent handover and this business status report as appropriate.
+
+## Latest documentation update
+**16 September 2026:** Business status report synchronized with the permanent handover's detailed task structure. The eight locked workflow rules remain preserved in the master handover and the current final-phase ordering remains authoritative.
