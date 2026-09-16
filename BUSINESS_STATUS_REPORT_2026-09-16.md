@@ -3,7 +3,7 @@
 **Date:** 16 September 2026
 
 ## Executive summary
-The current database/catalogue foundation is verified and stable. The active catalogue is 4,187 products, already above the earlier 3,000-item target. No destructive catalogue changes were made during QA. The remaining work is deliberately separated into non-credit verification/reporting and final-phase customer-facing integrations/testing. The permanent handover now contains the detailed Tasks 1–10 execution checklist and locked workflow requirements.
+The current database/catalogue foundation is verified and stable. The active catalogue is 4,187 products, already above the earlier 3,000-item target. No destructive catalogue changes were made during QA. The remaining work is deliberately separated into non-credit verification/reporting and final-phase customer-facing integrations/testing. The permanent handover contains the detailed Tasks 1–10 execution checklist and locked workflow requirements.
 
 ## Catalogue
 - Active products: 4,187
@@ -34,6 +34,7 @@ The current database/catalogue foundation is verified and stable. The active cat
 ## Categories
 - Remaining manual category-sort queue: 198 items
 - These items are intentionally reserved for manual user sorting and must not be auto-assigned or deleted.
+- Manual worksheet requirement now includes a distinct **Product Type** field, separate from current category and buyer-guide subcategory.
 - Previously resolved category mappings were synchronized to the storefront with 0 category mismatches.
 
 ## Orders / Customers
@@ -43,10 +44,20 @@ The current database/catalogue foundation is verified and stable. The active cat
 - No historical order data was altered during QA.
 
 ## Security / database QA
-- Internal import/verification RLS remains enabled.
+- RLS is enabled on the inspected public tables, including catalogue, customer/order, admin, import/verification and automation tables.
+- Public catalogue read access is provided by active-product and active-category SELECT policies.
+- Duplicate-looking public SELECT policies exist on `products` and `categories`; they were deliberately left unchanged pending a full policy-expression review so security behavior is not altered blindly.
 - Security-definer order/admin functions were inspected; admin functions perform explicit admin authorization checks, while anonymous checkout order creation is intentionally exposed and validates its inputs internally.
 - Supabase Auth leaked-password protection remains a final security configuration item.
 - Security findings were documented rather than weakened through blind policy changes.
+
+## Storefront / checkout QA
+- Existing `index.html` routes into `store.html`; `store.html` wraps the approved `index-new.html` storefront.
+- `checkout.html` re-reads active product records before order creation and does not treat browser-submitted prices as authoritative.
+- Current checkout supports EFT/bank payment, manual payment arrangement and cash on pickup.
+- PayFast is not yet connected and remains final-phase work.
+- Delivery selection and address capture are present; delivery fee is currently confirmed by the store and the checkout submits R0.00 as a pre-integration state. This is not the final customer delivery charge.
+- No storefront redesign or live deployment was performed during this QA pass.
 
 ## Catalogue target
 The current active catalogue of 4,187 products already exceeds the earlier 3,000-item target. Further expansion should therefore be based on validated, non-duplicate additions rather than quantity alone.
@@ -55,7 +66,7 @@ The current active catalogue of 4,187 products already exceeds the earlier 3,000
 The stored September Buyer’s Guide explicitly states that prices are valid while stocks last and that asterisk-priced items are system-dependent and may vary. It therefore cannot be treated as a complete live stock feed. The current verified stock position is based only on explicitly stored verification evidence.
 
 ## QA status
-Database-to-storefront consistency is verified at the database level. Customer-facing live interaction testing remains pending until final deployment testing is permitted.
+Database-to-storefront consistency is verified at the database level. Non-credit source-code and security QA has been performed without deployment. Customer-facing live interaction testing remains pending until final deployment testing is permitted.
 
 ## Remaining task structure
 ### Non-credit / verification work
@@ -66,7 +77,7 @@ Database-to-storefront consistency is verified at the database level. Customer-f
 - Final security/backup review.
 
 ### Final-phase work
-1. Manual category-sort worksheet — 198 items
+1. Manual category-sort worksheet — 198 items with Product Type field
 2. PayFast integration and verification
 3. Delivery integration — Your Courier / PEP PAXI
 4. Catalogue image matching/watermarking
@@ -85,4 +96,4 @@ Database-to-storefront consistency is verified at the database level. Customer-f
 Continue from this verified state. Do not rebuild the store. Do not use Netlify or Cloudflare credits before final testing. Do not invent supplier stock, product images, payment status, delivery status, or live-test results. After every successful task, update the permanent handover and this business status report as appropriate.
 
 ## Latest documentation update
-**16 September 2026:** Business status report synchronized with the permanent handover's detailed task structure. The eight locked workflow rules remain preserved in the master handover and the current final-phase ordering remains authoritative.
+**16 September 2026:** Non-data-analysis storefront, checkout and Supabase security QA recorded. Product Type requirement recorded for the 198-item manual worksheet. No Netlify/Cloudflare credits used.
