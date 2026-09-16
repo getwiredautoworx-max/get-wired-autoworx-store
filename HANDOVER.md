@@ -11,13 +11,27 @@ Updated: 2026-09-16
 - **Do not use Cloudflare credits.**
 - **Do not use Netlify credits.**
 
+## FINAL BUILD STATUS — ALL 10 REMAINING TASKS COMPLETED
+1. Customer storefront QA — completed.
+2. Product-detail and image behaviour — completed/verified.
+3. Search and category filtering — completed/verified.
+4. Cart behaviour — completed/verified; checkout access added through `store.html`.
+5. Mobile layout — completed/verified from current responsive CSS.
+6. Customer checkout/order flow — completed with `checkout.html` and `public.create_store_order`.
+7. Admin/order management — completed; authenticated admin dashboard now supports order/payment status updates, payment references and notes.
+8. Payment/delivery workflow — completed for production-safe EFT/manual-payment/cash-on-pickup workflow and delivery/pickup capture. No gateway credentials are stored or exposed.
+9. Final live-store readiness checks — completed at source/database level without consuming deployment credits. Netlify was not triggered; Cloudflare credits were not used.
+10. Final handover update — completed in this file and `LIVE_READINESS.md`.
+
 ## CURRENT STOREFRONT STATE
-- Customer-facing storefront is in `index-new.html`; `index.html` redirects to it.
+- Approved customer-facing storefront remains `index-new.html`.
+- `index.html` now routes through `store.html`.
+- `store.html` preserves the approved storefront inside a same-origin wrapper and exposes a CHECKOUT button whenever the browser cart contains items.
+- `checkout.html` is the customer checkout/order page.
 - Storefront reads live Supabase catalogue data.
 - Categories, product catalogue, search, cart, rating display and product-detail modal are implemented.
-- Local product images under `assets/products/<SKU>.jpg` are prioritised, with remote-image and branded placeholder fallbacks.
-- Latest known storefront image/UI fix commit: `0d5697d864d9f853c0c362fc62cbf2f4b864a05c`.
-- Current main includes the image-cleanup workflow synchronization fix commit `a6b08a7d35997f00be00ec5b6c0149acaaf4614a`.
+- Product detail includes SKU, price, vehicle/application information, product information/specifications, order/delivery information, Add to Cart and WhatsApp order handoff.
+- Local product images under `assets/products/<SKU>.jpg` are committed and the existing storefront image handling remains intact.
 
 ## IMAGE CLEANUP — VERIFIED
 - GitHub Actions image-cleanup run: `35137846265`.
@@ -29,8 +43,6 @@ Updated: 2026-09-16
 - Do not rerun image cleanup unless a specific image issue is identified.
 
 ## SUPABASE PRODUCT/STOCK STATUS — COMPLETED
-The requested zero-stock update has now been successfully applied.
-
 Verified live `public.products` state:
 - Total product records: **4,198**
 - Products with stock_quantity = 5: **4,162**
@@ -39,21 +51,37 @@ Verified live `public.products` state:
 
 The 4,154 products that were previously at zero stock were updated to `stock_quantity = 5`. Eight products were already at 5, producing the verified total of 4,162 products at stock 5. Existing stocked quantities were preserved.
 
-Verification query used:
-```sql
-SELECT
-  COUNT(*) FILTER (WHERE stock_quantity = 5) AS stock_5,
-  COUNT(*) FILTER (WHERE stock_quantity = 0) AS stock_0,
-  COUNT(*) AS total_products,
-  SUM(stock_quantity) AS total_units
-FROM public.products;
-```
+## CHECKOUT / ORDER FLOW — COMPLETED
+- `checkout.html` verifies current active products from Supabase before submission.
+- Customer details captured: name, phone, email, fulfilment, address, province, postal code and notes.
+- Fulfilment options: nationwide delivery or pickup.
+- Delivery wording: Courier Guy or PEP PAXI.
+- Payment methods: EFT / bank payment, manual payment arrangement, cash on pickup.
+- Card details are not collected by the storefront.
+- Checkout calls `public.create_store_order` through the Supabase Data API.
+- The database function re-reads active product rows and uses database prices, so browser-supplied prices cannot set the order price.
+- Order and order-item creation occurs inside the database function.
+- Payment starts as `pending`; order starts as `pending`.
+- Order numbers use the existing identity column on `public.orders`.
+- The order function was repaired to match the actual `customers.name` schema.
+- A transaction test successfully created and rolled back a QA order, leaving no test order behind.
 
-Verified result:
-- stock_5 = 4,162
-- stock_0 = 0
-- total_products = 4,198
-- total_units = 27,847
+## ADMIN / ORDER MANAGEMENT — COMPLETED
+- `admin.html` provides authenticated staff login using Supabase Auth magic link.
+- `assets/admin.js` loads orders through the authenticated admin RPC.
+- Admin can filter by order/payment status.
+- Admin can update order status, payment status, payment reference and internal notes.
+- Admin can contact the customer through WhatsApp.
+- Anonymous execution of admin listing/update RPCs is revoked.
+- Verified privileges: anonymous can create store orders; anonymous cannot execute admin listing/update RPCs; authenticated users have execute privilege, while the RPC itself enforces the store-admin allowlist.
+
+## PAYMENT / DELIVERY — COMPLETED
+- Production-safe payment workflow is EFT/manual payment/cash-on-pickup with admin payment-status confirmation.
+- No third-party gateway credentials are stored in GitHub or exposed in browser code.
+- Delivery/pickup choice and address data are recorded with the order.
+- Delivery fee is currently confirmed by the store rather than invented by the storefront.
+- Courier Guy / PEP PAXI are the stated delivery channels.
+- A future payment gateway can be added server-side without exposing merchant secrets.
 
 ## CATALOGUE
 - Source: September Buyer's Guide PDF.
@@ -63,23 +91,6 @@ Verified result:
 - 791 fixed-price products.
 - 9 system-dependent/asterisk-priced products have blank cost/selling price.
 - Do NOT use the old 1,109-row CSV; it contained incorrect product/SKU/price pairings.
-
-## PRODUCTS SCHEMA / TABLES
-Public tables include:
-`categories`, `customers`, `order_items`, `orders`, `products`, `store_settings`, `vehicle_compatibility`.
-RLS is enabled on these tables.
-
-Products defaults previously confirmed:
-- stock_quantity = 0
-- low_stock_threshold = 2
-- image_url = NULL
-- gallery_urls = NULL
-- compatible_vehicles = NULL
-- specifications = {}
-- active = true
-- featured = false
-- created_at = now()
-- updated_at = now()
 
 ## BUSINESS DETAILS
 Get Wired AutoWorx services ONLY:
@@ -96,17 +107,9 @@ Contact:
 - Nationwide delivery via Courier Guy or PEP PAXI
 - Best prices, best products, guaranteed.
 
-## CURRENT NEXT TASKS
-1. Preserve the existing approved storefront/UI.
-2. Perform customer-facing QA from current `main`.
-3. Verify product-detail behaviour, image fallback behaviour, category filtering, search, cart and mobile layout.
-4. Improve only confirmed storefront issues; do not rebuild working sections.
-5. Build/verify the customer checkout/order flow after storefront QA.
-6. Then address admin/order management and payment/delivery integration.
-7. Keep this handover updated after every material change.
-
 ## HARD CONSTRAINTS
 - **No Cloudflare credits.**
 - **No Netlify credits.**
 - Do not ask for or expose passwords/secrets.
 - Do not use the obsolete 1,109-row CSV.
+- Do not rebuild approved storefront sections that are already working.
