@@ -6,8 +6,7 @@ let currentOrders=[];
 
 async function boot(){
   const html=await fetch('/index.html').then(r=>r.text());
-  const key=(html.match(/SUPABASE_KEY=['\"]([^'\"]+)['\"]/ )||[])[1];
-  if(!key) throw Error('Store configuration unavailable');
+  const key=(html.match(/SUPABASE_KEY=['\"]([^'\"]+)['\"]/)||[])[1] || 'sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';
   const s=document.createElement('script');
   s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
   s.onload=async()=>{
@@ -47,8 +46,18 @@ async function loadOrders(){
   renderOrders();
 }
 
+async function updateOrder(id){
+  const orderStatus=document.querySelector(`[data-order-status="${id}"]`)?.value||null;
+  const paymentStatus=document.querySelector(`[data-payment-status="${id}"]`)?.value||null;
+  const paymentReference=document.querySelector(`[data-payment-ref="${id}"]`)?.value||null;
+  const notes=document.querySelector(`[data-notes="${id}"]`)?.value||null;
+  const{error}=await client.rpc('admin_update_order',{p_order_id:id,p_order_status:orderStatus,p_payment_status:paymentStatus,p_payment_reference:paymentReference,p_customer_reference:null,p_notes:notes});
+  if(error){alert(error.message);return;}
+  await loadOrders();
+}
+
 function renderOrders(){
-  $('orders').innerHTML=currentOrders.length?currentOrders.map(o=>`<article class="order"><div class="order-head"><h3>Order #${esc(o.order_number)}</h3><span class="badge">${esc(o.order_status)}</span></div><b>${esc(o.customer_name)}</b><br>${esc(o.customer_phone||'')}<br>${esc(o.customer_email||'')}<p>Total: <b>R${Number(o.total||0).toFixed(2)}</b><br>Payment: <b>${esc(o.payment_status)}</b>${o.payment_method?` · ${esc(o.payment_method)}`:''}${o.payment_reference?`<br>Payment reference: ${esc(o.payment_reference)}`:''}</p><div class="actions"><a href="https://wa.me/27744884234?text=${encodeURIComponent(`Get Wired AutoWorx order #${o.order_number}`)}" target="_blank" rel="noopener"><button type="button">WHATSAPP CUSTOMER</button></a></div></article>`).join(''):'No orders match the selected filters.';
+  $('orders').innerHTML=currentOrders.length?currentOrders.map(o=>`<article class="order"><div class="order-head"><h3>Order #${esc(o.order_number)}</h3><span class="badge">${esc(o.order_status)}</span></div><b>${esc(o.customer_name)}</b><br>${esc(o.customer_phone||'')}<br>${esc(o.customer_email||'')}<p>Total: <b>R${Number(o.total||0).toFixed(2)}</b><br>Payment: <b>${esc(o.payment_status)}</b>${o.payment_method?` · ${esc(o.payment_method)}`:''}</p><div class="actions"><label style="flex:1;min-width:170px">Order status<select data-order-status="${o.id}"><option ${o.order_status==='pending'?'selected':''}>pending</option><option ${o.order_status==='confirmed'?'selected':''}>confirmed</option><option ${o.order_status==='processing'?'selected':''}>processing</option><option ${o.order_status==='ready_for_pickup'?'selected':''}>ready_for_pickup</option><option ${o.order_status==='shipped'?'selected':''}>shipped</option><option ${o.order_status==='completed'?'selected':''}>completed</option><option ${o.order_status==='cancelled'?'selected':''}>cancelled</option></select></label><label style="flex:1;min-width:170px">Payment status<select data-payment-status="${o.id}"><option ${o.payment_status==='pending'?'selected':''}>pending</option><option ${o.payment_status==='paid'?'selected':''}>paid</option><option ${o.payment_status==='failed'?'selected':''}>failed</option><option ${o.payment_status==='refunded'?'selected':''}>refunded</option><option ${o.payment_status==='cancelled'?'selected':''}>cancelled</option></select></label></div><label>Payment reference<input data-payment-ref="${o.id}" value="${esc(o.payment_reference||'')}" placeholder="EFT/payment reference"></label><label>Notes<textarea data-notes="${o.id}" placeholder="Internal order notes">${esc(o.notes||'')}</textarea></label><div class="actions"><button type="button" onclick="updateOrder('${o.id}')">SAVE ORDER</button><a href="https://wa.me/27744884234?text=${encodeURIComponent(`Get Wired AutoWorx order #${o.order_number}`)}" target="_blank" rel="noopener"><button type="button">WHATSAPP CUSTOMER</button></a></div></article>`).join(''):'No orders match the selected filters.';
 }
 
 function clearFilters(){
