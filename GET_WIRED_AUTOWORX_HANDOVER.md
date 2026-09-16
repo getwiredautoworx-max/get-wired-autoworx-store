@@ -7,6 +7,8 @@ Default branch: `main`
 
 The existing storefront remains the foundation. No rebuild of the preferred storefront design was performed.
 
+Current deployment platform: **Cloudflare**. Cloudflare credits are reserved and have not been used during this QA continuation. GitHub `main` remains the source of truth. Netlify is legacy/reference only for this project.
+
 ## THE 8 PERMANENT RULES
 
 1. Preserve existing store as foundation; do not rebuild unnecessarily or overwrite working components.
@@ -24,6 +26,7 @@ The existing storefront remains the foundation. No rebuild of the preferred stor
 - Preferred existing storefront is preserved.
 - Existing Supabase connection remains in use.
 - Existing GitHub repository remains in use.
+- Current deployment platform is Cloudflare.
 - No new Netlify site was created.
 - No unnecessary redesign/rebuild was performed.
 
@@ -75,13 +78,17 @@ The existing storefront remains the foundation. No rebuild of the preferred stor
 ### 8. Master handover updated
 - This file is the current repository handover.
 - Latest relevant commits:
+  - `9d1d877104ba25f5dafa40e348779b0a7dcec74e` — corrected the automated storefront smoke test to use the active `checkout-v2.html` route and verify the fixed R15 delivery requirement.
   - `659556b2fed929d9f5d8ff4f2b5f3ca377ddf805` — added fixed-R15 checkout.
   - `a43623798727cd1af78863ccc13c4aa42ac75bdb` — routed the active checkout button to the fixed-R15 checkout.
+- GitHub Actions smoke-test run `35157945337` completed successfully.
+- Smoke test verified mobile storefront loading, category/product loading, product detail modal, add-to-cart, active checkout routing, customer fields, **R15.00 delivery**, and the explicit **not charged per item** delivery notice.
+- No Cloudflare deployment or Cloudflare credits were used for this QA run.
 - Previous known project commit before this continuation: `0fde2ad4ec15c4bb9816019ad76c2a9962481785`.
 
-## CURRENT NEXT WORK — AFTER FINAL TESTING
+## CURRENT NEXT WORK — AFTER AUTOMATED QA
 
-1. Test the live published storefront on phone and desktop without changing the approved design.
+1. Test the live published Cloudflare storefront on phone and desktop without changing the approved design.
 2. Confirm a one-item cart shows R15 delivery.
 3. Confirm a multi-item cart still shows only R15 delivery for the same address.
 4. Confirm Phoenix Plaza is not exposed as a customer pickup location.
