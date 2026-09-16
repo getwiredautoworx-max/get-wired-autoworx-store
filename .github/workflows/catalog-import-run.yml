@@ -1,0 +1,13 @@
+name: Catalogue import runner
+on:
+  push:
+    paths:
+      - 'IMPORT_CATALOG_NOW.txt'
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import verified catalogue
+        run: |
+          curl --fail-with-body --retry 3 --max-time 300 -X POST -H 'Content-Type: text/plain' -H 'x-import-token: GW' --data-binary @Get_Wired_AutoWorx_4186_CATALOG_IMPORT.sql 'https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/execute_catalog_import'
