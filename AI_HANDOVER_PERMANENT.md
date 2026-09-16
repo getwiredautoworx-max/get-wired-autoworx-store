@@ -113,8 +113,18 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 - [ ] Success/failure/cancellation and duplicate-transaction protection.
 - [ ] End-to-end test only in final phase.
 
-## TASK 5 — DELIVERY — FINAL PHASE
-- [ ] Your Courier integration/config/pricing/tracking.
+## TASK 5 — DELIVERY — YOUR COURIER / PAXI
+- [x] Investigated Your Courier public booking model: customer-facing flow is WhatsApp-based for local and national South African deliveries.
+- [x] Identified `portal.yourcourier.co.za` as the Your Courier white-label customer portal.
+- [x] Identified public ParcelOps REST API documentation supporting courier quote, booking, tracking and documents; public webhook example uses `tenantSlug: your-courier`.
+- [x] Created `YOUR_COURIER_DELIVERY_INTEGRATION_SPEC.md` with the intended checkout architecture and security requirements.
+- [x] Selected preferred architecture: server-side real-time courier quote before payment; no hard-coded delivery price and no browser/API-key exposure.
+- [ ] Confirm with Your Courier that Get Wired AutoWorx can obtain API access/key and exact quote endpoint/schema.
+- [ ] Obtain Your Courier business tariff/account pricing and parcel limits.
+- [ ] Confirm required weight/dimensions, insurance and booking/payment sequencing.
+- [ ] Implement secure server-side quote adapter once provider access is confirmed.
+- [ ] Store quote/reference/provider/final delivery charge against order; prevent duplicate delivery fees.
+- [ ] Implement booking/tracking/webhook handling and idempotency after payment flow is ready.
 - [ ] PEP PAXI requirements/config/pricing/tracking.
 - [ ] Customer provider choice.
 - [ ] Delivery fee exactly once.
@@ -137,6 +147,7 @@ Product image matching, watermarking and image cleanup are intentionally deferre
 - [x] Non-data-analysis execution report.
 - [x] Production security/customer test matrix.
 - [x] Manual category-sort Word worksheet.
+- [x] Your Courier delivery integration architecture/investigation specification.
 - [ ] Final stock/pricing report after complete supplier feed.
 - [ ] SKU/category report.
 - [ ] Missing-data report.
@@ -178,6 +189,8 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 - Full supplier-stock reconciliation is still incomplete.
 - Checkout uses `manual_payment`.
 - Checkout now filters cart verification to active products and requires core delivery address details for delivery orders.
+- Your Courier investigation found a viable server-side quote/booking architecture via its white-label ParcelOps portal/API, subject to Your Courier enabling API access and supplying credentials/tariffs.
+- Your Courier integration architecture is documented; no live courier credentials have been added and no production delivery pricing has been assumed.
 - PayFast integration remains final-phase because merchant credentials/verification and secure server-side callback handling are required.
 - Auth leaked-password protection is intentionally deferred to user action before final hosting/release.
 - Product images are intentionally deferred.
