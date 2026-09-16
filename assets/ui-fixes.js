@@ -20,8 +20,9 @@ function imagePipeline(){
  const wire=img=>{
    if(!img||img.dataset.gwImagePipeline)return;
    const card=img.closest('.product');
-   if(!card)return;
-   const skuEl=card.querySelector('.sku,[data-sku]');
+   const detail=img.closest('.detail');
+   if(!card&&!detail)return;
+   const skuEl=card?.querySelector('.sku,[data-sku]')||detail?.querySelector('.sku,[data-sku]');
    const sku=cleanSku(skuEl?.dataset?.sku||skuEl?.textContent||'');
    if(!sku)return;
    img.dataset.gwImagePipeline='1';
@@ -35,7 +36,7 @@ function imagePipeline(){
    };
    if(!original.endsWith('/'+sku+'.jpg')&&!original.endsWith(sku+'.jpg'))img.src=local;
  };
- const scan=()=>document.querySelectorAll('.product .prodImg img,.product img').forEach(wire);
+ const scan=()=>document.querySelectorAll('.product .prodImg img,.product img,.detailImg img').forEach(wire);
  scan();
  const observer=new MutationObserver(scan);observer.observe(document.body,{childList:true,subtree:true});
 }
