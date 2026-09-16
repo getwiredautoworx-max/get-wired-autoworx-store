@@ -46,10 +46,11 @@ The current database/catalogue foundation is verified and stable. The active cat
 ## Security / database QA
 - RLS is enabled on the inspected public tables, including catalogue, customer/order, admin, import/verification and automation tables.
 - Public catalogue read access is provided by active-product and active-category SELECT policies.
-- Duplicate-looking public SELECT policies exist on `products` and `categories`; they were deliberately left unchanged pending a full policy-expression review so security behavior is not altered blindly.
+- Duplicate-looking public SELECT policies on `products` and `categories` were consolidated by removing the redundant lowercase-named policies; canonical public read policies remain.
 - Security-definer order/admin functions were inspected; admin functions perform explicit admin authorization checks, while anonymous checkout order creation is intentionally exposed and validates its inputs internally.
+- Import/pricing SECURITY DEFINER RPCs were removed from the `authenticated` execution surface.
 - Supabase Auth leaked-password protection remains a final security configuration item.
-- Security findings were documented rather than weakened through blind policy changes.
+- Remaining advisor WARN items are intentional/known until final Auth and deployment testing; they are not being hidden by unsafe policy changes.
 
 ## Storefront / checkout QA
 - Existing `index.html` routes into `store.html`; `store.html` wraps the approved `index-new.html` storefront.
@@ -57,7 +58,11 @@ The current database/catalogue foundation is verified and stable. The active cat
 - Current checkout supports EFT/bank payment, manual payment arrangement and cash on pickup.
 - PayFast is not yet connected and remains final-phase work.
 - Delivery selection and address capture are present; delivery fee is currently confirmed by the store and the checkout submits R0.00 as a pre-integration state. This is not the final customer delivery charge.
+- Storefront checkout payment enum was corrected to `manual_payment` to match the database order workflow.
 - No storefront redesign or live deployment was performed during this QA pass.
+
+## Production test readiness
+A dedicated `PRODUCTION_SECURITY_TEST_MATRIX_2026-09-16.md` was added to GitHub. It defines security gates, customer-data tests, browse/search/category/product/cart/checkout tests, order/database checks, admin authorization tests, PayFast and delivery final-phase tests, mobile/responsive checks, deployment gates and explicit release blockers.
 
 ## Catalogue target
 The current active catalogue of 4,187 products already exceeds the earlier 3,000-item target. Further expansion should therefore be based on validated, non-duplicate additions rather than quantity alone.
@@ -96,4 +101,4 @@ Database-to-storefront consistency is verified at the database level. Non-credit
 Continue from this verified state. Do not rebuild the store. Do not use Netlify or Cloudflare credits before final testing. Do not invent supplier stock, product images, payment status, delivery status, or live-test results. After every successful task, update the permanent handover and this business status report as appropriate.
 
 ## Latest documentation update
-**16 September 2026:** Non-data-analysis storefront, checkout and Supabase security QA recorded. Product Type requirement recorded for the 198-item manual worksheet. No Netlify/Cloudflare credits used.
+**16 September 2026:** Production security/customer test matrix added. Redundant catalogue read policies removed, import/pricing authenticated execution revoked, and storefront checkout payment enum aligned with the database workflow. No Netlify/Cloudflare credits used.
