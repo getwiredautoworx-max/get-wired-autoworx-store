@@ -84,13 +84,17 @@ Relevant stored files include Get_Wired_AutoWorx_STORE_STOCK_Feb-Sep_2026_VERIFI
 Preserve logical category → subcategory → product navigation. Major groups include Auto Electrical Spares, Vehicle Security, Car Audio, Accessories, Marine Spares & Accessories, Tools/Hardware/Consumables, Camping/Leisure/Outdoors and Trailer & Canopy, with the requested Auto Electrical 12V/24V hierarchy.
 
 ## IMAGES
-Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow #19 / ID 35020123380 cleaned 800 images successfully but failed only at push because the runner had an outdated main ref. The workflow was then corrected to synchronize with current main before generation/push. New run #45 / ID 35137232280 was triggered from commit 21f32a3670f2b53a8b245dbe18d4d6817061437f; verify its final conclusion before claiming image cleanup complete. User has explicitly deferred catalogue image work to a later session.
+Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow #19 / ID 35020123380 cleaned 800 images successfully but failed only at push because the runner had checked out an older commit and remote main had advanced. The workflow was then corrected to synchronize with current main before generation/push. New run #45 / ID 35137232280 was triggered from commit 21f32a3670f2b53a8b245dbe18d4d6817061437f; verify its final conclusion before claiming image cleanup complete. User has explicitly deferred catalogue image work to a later session.
 
 ## NETLIFY / CLOUDFLARE
 Do not spend Cloudflare or Netlify credits without explicit permission. Do not create another Netlify site or GitHub repo. All credit-dependent work remains deferred to final testing.
 
-## SECURITY NOTICE — USER DECISION REQUIRED
-A current Supabase advisor check reports RLS disabled on four internal tables: `public.asc_stock_verification`, `public.buyers_guides_import_staging`, `public.catalog_import_runs`, and `public.catalog_full_import_payload`. Supabase advises enabling RLS, but enabling it without policies would block access. No automatic remediation was applied. This requires an explicit security decision before changing policies/access.
+## SECURITY — RLS REMEDIATION COMPLETED
+- User explicitly authorized execution in the Supabase SQL Editor on 16 Sep 2026.
+- RLS is now enabled on all four internal tables: `public.asc_stock_verification`, `public.buyers_guides_import_staging`, `public.catalog_import_runs`, and `public.catalog_full_import_payload`.
+- Verified directly in PostgreSQL that `rowsecurity=true` for all four tables.
+- Verified there are no public/authenticated policies on these internal tables; they therefore remain protected from ordinary client-role access rather than being exposed by permissive policies.
+- Supabase advisor security remediation is recorded as completed for this specific RLS issue.
 
 ## REQUIRED VERIFICATION AFTER MAJOR TASKS
 Verify active count, SKU uniqueness, missing costs, pricing formula, category refs, storefront sync, stock source, image integrity where relevant, and checkout/admin integrity.
@@ -104,7 +108,7 @@ Database integrity is clean at the FK/SKU/storefront level, but the active produ
 ## CONTINUATION ORDER
 A. Catalogue import — COMPLETE/VERIFIED.
 B. Reconcile verified stock from all available guides/pricelists/verified supplier sources — INCOMPLETE; currently limited by absence of a complete verified ASC bulk stock source. Continue searching stored sources and reconcile any newly evidenced quantities.
-C. **Stock quantity increase to 5 — COMPLETE/VERIFIED.**
+C. Stock quantity increase to 5 — COMPLETE/VERIFIED.
 D. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
 E. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; storefront UI still requires live verification when deployment is available.
 F. Image cleanup/mapping — workflow result still requires final verification; user has deferred catalogue image work to a later session.
@@ -151,10 +155,12 @@ K. Update this handover after each milestone.
 - Direct Supabase category/count audit shows no FK failures or duplicate active SKUs, but source-derived category distribution is not yet normalized into the requested customer-facing hierarchy.
 - Several requested hierarchy nodes have zero active products while source categories hold the catalogue. Safe deterministic mapping is required before changing category assignments.
 
-### 16 Sep 2026 — Security advisor review
-- Supabase advisor reports RLS disabled on four internal tables: `asc_stock_verification`, `buyers_guides_import_staging`, `catalog_import_runs`, and `catalog_full_import_payload`.
-- No automatic RLS remediation was applied because policies must be defined deliberately to avoid blocking required access.
-- User input/permission is required before changing those security policies.
+### 16 Sep 2026 — Security advisor review and RLS remediation
+- Supabase advisor reported RLS disabled on four internal tables.
+- User explicitly authorized the SQL Editor change.
+- RLS was enabled on all four internal tables.
+- Independently verified `rowsecurity=true` on all four and confirmed no ordinary public/authenticated policies exist on them.
+- Security remediation recorded as complete.
 
 ### 16 Sep 2026 — Permanent handover rules locked
 - The user's 8 rules are authoritative and must be carried unchanged into every new handover/session.
