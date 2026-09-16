@@ -1,50 +1,86 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-16 21:50 SAST
+Updated: 2026-09-16 22:15 SAST
 
 ## SOURCE OF TRUTH
 - GitHub: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Current main HEAD: `ad05565a4ce7309489698899ffe07428d98dde7c`
+- Current main HEAD after image/catalogue remediation: `6ec64c9a48824745e326980152ab499823f2f61e`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is temporarily being run through Cloudflare.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
 - Never expose passwords, private keys or secrets.
 
 ## CURRENT STATUS
-Database/catalogue setup is complete and must not be rebuilt. Approved customer storefront, catalogue/search/category flow, product detail, cart, checkout/order creation, authenticated admin order management, payment/delivery workflow, image cleanup and automated QA are substantially complete.
+The database/storefront foundation is complete. Do not restart Supabase setup, catalogue import, RLS work or the approved storefront.
 
-The remaining production item is genuine public deployment/browser verification. Source readiness must not be called live verification.
+The customer-facing source, catalogue/search/category flow, product detail, cart, checkout/order creation, authenticated admin order management, payment/delivery workflow, image-cleanup pipeline and automated source QA are substantially complete.
+
+**Task 9 — final public deployment/browser verification — is intentionally deferred until the user is ready to browse and test the store. Do not perform or claim live-site testing before then.**
+
+## COMPLETED REMEDIATION — CATALOGUE IMAGES
+The previous audit found 3,396 active products with no `image_url` or gallery URL. This has now been resolved at the storefront/data-safety level without inventing or incorrectly mapping product photographs:
+
+- Added `assets/product-placeholder.svg` as a permanent branded fallback image.
+- Updated all 3,396 affected active products to use `/assets/product-placeholder.svg`.
+- Verified: **0 active products now have a blank/missing image URL or gallery**.
+- The placeholder clearly states that the product image is being verified/sourced; it does **not** falsely represent a product photograph.
+- Existing verified product-specific images were left untouched.
+- Product-specific image enrichment remains a non-blocking follow-up and may replace placeholders only with verified matching imagery.
+- Existing image-cleanup workflow remains complete; do not rerun it blindly.
+
+## COMPLETED REMEDIATION — CATEGORIES
+The catalogue audit also found 33 active uncategorized products. All were reviewed by product name and assigned to an existing appropriate category; the remaining concrete item (`176464`, concrete nails) was assigned to Hardware.
+
+Verified now:
+- **0 active products uncategorized.**
+
+## LATEST VERIFIED DATABASE STATE
+Current Supabase query is authoritative over older handover counts:
+- **4,187 active products**
+- **4,187 unique active priced SKUs**
+- **4,187 active products with stock > 0**
+- **27,745 total active units**
+- **0 active products at zero stock**
+- **0 active products uncategorized**
+- **3,396 active products use the new branded image placeholder pending verified product-specific imagery**
+- 4,153 active products currently have stock quantity 5; 34 have other positive quantities.
+
+Existing stocked quantities were preserved during this remediation.
 
 ## LATEST VERIFIED PROGRESS
-- Current source HEAD verified: `ad05565a4ce7309489698899ffe07428d98dde7c`.
-- Latest storefront smoke run `35140654305` succeeded on the current source/workflow.
-- Smoke coverage: mobile entry, category rendering, specials/featured rendering, product detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
+- Added the safe product-image fallback in commit `6ec64c9a48824745e326980152ab499823f2f61e`.
+- Latest known storefront smoke run: `35140654305` succeeded. It covered mobile entry, category rendering, specials/featured rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
+- The automated smoke test is source/automated verification, **not public-site verification**.
 - Existing Netlify production deploy was inspected read-only: `6aa98a8a679a4a0008e10b58`, ready but stale, built 2026-09-15 from commit `37654d7c2e8e38dad80f9edf33413aa1be62d1a4`.
 - No deployment was triggered because Netlify/Cloudflare credits are prohibited.
-- Public fetch of the known Netlify URL is not available through the current web/runtime path; therefore **NOT LIVE-VERIFIED**.
-- Repository/configuration search does not document the temporary Cloudflare public hostname.
+- Public fetch of the known Netlify URL is not currently available through the accessible runtime path.
+- Repository/configuration search has not documented the temporary Cloudflare public hostname.
 
-## NEXT WORK
-1. Continue credit-free source audit and automated QA.
-2. Fix only confirmed defects.
-3. Read-only inspect public deployment whenever an accessible path exists.
-4. Compare public deployment with current GitHub source where possible.
-5. Keep `LIVE_READINESS.md` and this file updated with actual verification.
-6. Never deploy to refresh a stale site if it consumes Netlify or Cloudflare credits.
-7. Only mark the store live-verified after genuine public deployment/browser verification.
+## REMAINING TASKS
+### Task 9 — FINAL PUBLIC DEPLOYMENT / BROWSER VERIFICATION — DEFERRED
+Do this **only when the user is ready to browse/test**.
 
-## DATABASE / CATALOGUE — DO NOT REBUILD
+Required checks when that time comes:
+1. Open the actual public Cloudflare storefront.
+2. Verify the public site is reachable and is the intended Get Wired AutoWorx store.
+3. Test homepage, categories, search, product detail, image display, cart and checkout.
+4. Test WhatsApp ordering/contact handoff.
+5. Test delivery/pickup and payment workflow presentation.
+6. Verify mobile and desktop behaviour.
+7. Compare public behaviour with the current GitHub/Supabase source.
+8. Record the actual public URL and result in `LIVE_READINESS.md` and this handover.
+
+**Do not deploy or refresh Netlify/Cloudflare merely to perform this test. No credits are to be spent.**
+
+### Product-specific image enrichment — NON-BLOCKING FOLLOW-UP
+- The 3,396 placeholders prevent broken/blank product cards but are deliberately not represented as real product photographs.
+- Replace placeholders progressively only when a verified matching product image is available.
+- Authoritative sources may include verified supplier/ASC product imagery or correctly matched customer-supplied images.
+- Never map an image to a SKU solely because it looks similar or because a filename happens to resemble another SKU.
+
+## SECURITY / DATABASE
 Seven public tables already exist: `categories`, `customers`, `order_items`, `orders`, `products`, `store_settings`, `vehicle_compatibility`. RLS is enabled on all seven.
-
-Verified catalogue/stock state:
-- 4,198 active products
-- 4,188 unique priced SKUs
-- 0 uncategorized products
-- 4,162 products at stock quantity 5
-- 0 products at zero stock
-- 27,847 total units
-- Existing stocked quantities preserved; previously zero-stock products were initialized to 5 as documented.
 
 Security hardening already completed: anonymous execution was removed from legacy admin RPC overloads and internal pricing/import SECURITY DEFINER functions; authenticated execution retained. `create_store_order` remains anonymously executable by design for public checkout and revalidates DB product prices.
 
@@ -63,7 +99,7 @@ Supabase advisor still reports four public import/staging tables with RLS disabl
 
 ## IMAGE CLEANUP
 - `.github/workflows/clean-product-images.yml` completed successfully.
-- 800 images processed; final commit reported no image changes were required.
+- 800 images were processed in the existing cleanup pipeline.
 - Do not rerun unless a specific image problem is identified.
 
 ## CATALOGUE SOURCE WARNING
@@ -90,4 +126,4 @@ Get Wired AutoWorx
 - No Twitter/X or TikTok.
 
 ## FINAL RULE
-**Continue from this handover. Do not restart completed database work, do not use the obsolete 1,109-row CSV, do not spend Cloudflare or Netlify credits, and do not claim live verification unless it has actually been performed.**
+**Continue from this handover. Do not restart completed database work, do not use the obsolete 1,109-row CSV, do not spend Cloudflare or Netlify credits, do not replace verified product imagery with guesses, and do not claim live verification unless it has actually been performed.**
