@@ -59,6 +59,8 @@ Current deployment platform: **Cloudflare**. Cloudflare credits are reserved and
 - Browser cart remains based on `gw_cart` localStorage.
 - Product search, category filtering, product detail modal and add-to-cart flow remain present.
 - No payment credentials are exposed; the current order flow keeps payment pending until store confirmation.
+- The repository contains two GitHub Actions workflows: storefront smoke testing and product-image cleaning. No Cloudflare deployment workflow/configuration was found in the repository search.
+- The legacy `DEPLOYMENT_NOTE.md` was corrected to remove obsolete Netlify instructions and now documents the Cloudflare final-live checklist.
 
 ### 6. Missing-image fallback verified
 - Product cards already use a deliberate fallback when `image_url` is blank: a non-breaking lightning placeholder is rendered instead of leaving an empty image area.
@@ -74,28 +76,43 @@ Current deployment platform: **Cloudflare**. Cloudflare credits are reserved and
 - Order payment status remains pending until Get Wired AutoWorx confirms payment.
 - WhatsApp order confirmation remains available.
 - No PayFast activation or payment processing was introduced prematurely.
+- Code inspection confirms the customer-facing checkout explicitly states R15.00 per delivery address/order, not per item, and states that Phoenix Plaza is internal dispatch reference only.
 
-### 8. Master handover updated
+### 8. Automated and deployment-readiness QA
+- GitHub Actions smoke-test run `35157945337` completed successfully.
+- Smoke test verified mobile storefront loading, category/product loading, product detail modal, add-to-cart, active checkout routing, customer fields, **R15.00 delivery**, and the explicit **not charged per item** delivery notice.
+- Repository-level inspection also confirmed the root `index.html` -> `store.html` -> `index-new.html` chain and active `checkout-v2.html` route.
+- Cloudflare-specific repository configuration was searched for (`cloudflare`, `wrangler`, `pages.dev`) and no matching deployment configuration was found.
+- No Cloudflare deployment/build was triggered and no Cloudflare credits were used.
+- A live Cloudflare URL was not available to the GitHub-connected QA environment, so the actual published site could not be independently verified from here. The final live checklist is preserved below and in `DEPLOYMENT_NOTE.md`.
+
+### 9. Master handover updated
 - This file is the current repository handover.
 - Latest relevant commits:
+  - `acc82e3bf6d629b2e705e4157a7f860d35a3d0fc` — corrected the obsolete deployment note to Cloudflare and added the final live QA checklist.
   - `9d1d877104ba25f5dafa40e348779b0a7dcec74e` — corrected the automated storefront smoke test to use the active `checkout-v2.html` route and verify the fixed R15 delivery requirement.
   - `659556b2fed929d9f5d8ff4f2b5f3ca377ddf805` — added fixed-R15 checkout.
   - `a43623798727cd1af78863ccc13c4aa42ac75bdb` — routed the active checkout button to the fixed-R15 checkout.
-- GitHub Actions smoke-test run `35157945337` completed successfully.
-- Smoke test verified mobile storefront loading, category/product loading, product detail modal, add-to-cart, active checkout routing, customer fields, **R15.00 delivery**, and the explicit **not charged per item** delivery notice.
-- No Cloudflare deployment or Cloudflare credits were used for this QA run.
 - Previous known project commit before this continuation: `0fde2ad4ec15c4bb9816019ad76c2a9962481785`.
 
-## CURRENT NEXT WORK — AFTER AUTOMATED QA
+## FINAL LIVE CLOUDFLARE CHECKLIST — CREDIT-DEPENDENT
 
-1. Test the live published Cloudflare storefront on phone and desktop without changing the approved design.
-2. Confirm a one-item cart shows R15 delivery.
-3. Confirm a multi-item cart still shows only R15 delivery for the same address.
-4. Confirm Phoenix Plaza is not exposed as a customer pickup location.
-5. Continue the catalogue image project toward accurate images for all validated products.
-6. Verify supplier stock before products are treated as orderable stock.
-7. Complete PayFast verification only after the storefront is approved by the owner.
-8. Complete supplier-order and courier/PAXI automation after payment flow is approved.
+1. Publish the current approved `main` build through the existing Cloudflare project.
+2. Verify the published storefront on Android/mobile.
+3. Verify the published storefront on desktop.
+4. Verify one cart item = R15.00 delivery.
+5. Verify multiple cart items for the same delivery address = R15.00 delivery total, not R15 per item.
+6. Verify Phoenix Plaza is not displayed as a customer pickup/collection location.
+7. Verify the checkout route reaches `checkout-v2.html`.
+8. Verify the published storefront matches the approved dark blue/red design before final approval.
+
+## CURRENT NEXT WORK
+
+1. Perform the final live Cloudflare checklist above when the existing Cloudflare project/live URL is accessible and final deployment testing is authorized.
+2. Continue the catalogue image project toward accurate images for all validated products.
+3. Verify supplier stock before products are treated as orderable stock.
+4. Complete PayFast verification only after the storefront is approved by the owner.
+5. Complete supplier-order and courier/PAXI automation after payment flow is approved.
 
 ## IMPORTANT PRESERVATION NOTES
 
