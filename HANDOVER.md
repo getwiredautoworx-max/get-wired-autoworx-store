@@ -1,11 +1,11 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-16 22:15 SAST
+Updated: 2026-09-16 22:45 SAST
 
 ## SOURCE OF TRUTH
 - GitHub: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Current main HEAD after image/catalogue remediation: `6ec64c9a48824745e326980152ab499823f2f61e`
+- Current main HEAD: `1c47176766dbb3cafb02b2458658c9003b00e098`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is temporarily being run through Cloudflare.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
@@ -18,22 +18,29 @@ The customer-facing source, catalogue/search/category flow, product detail, cart
 
 **Task 9 — final public deployment/browser verification — is intentionally deferred until the user is ready to browse and test the store. Do not perform or claim live-site testing before then.**
 
-## COMPLETED REMEDIATION — CATALOGUE IMAGES
-The previous audit found 3,396 active products with no `image_url` or gallery URL. This has now been resolved at the storefront/data-safety level without inventing or incorrectly mapping product photographs:
+## IMAGE REMEDIATION — VERIFIED SOURCE AUDIT
+The earlier database audit found **3,396 active products** using the explicit branded fallback image because they had no verified product-specific image available.
 
-- Added `assets/product-placeholder.svg` as a permanent branded fallback image.
-- Updated all 3,396 affected active products to use `/assets/product-placeholder.svg`.
-- Verified: **0 active products now have a blank/missing image URL or gallery**.
-- The placeholder clearly states that the product image is being verified/sourced; it does **not** falsely represent a product photograph.
-- Existing verified product-specific images were left untouched.
-- Product-specific image enrichment remains a non-blocking follow-up and may replace placeholders only with verified matching imagery.
-- Existing image-cleanup workflow remains complete; do not rerun it blindly.
+The user specifically required the uploaded Buyers Guide photographs to be used for missing store product images. That source was audited directly before changing any image mappings.
 
-## COMPLETED REMEDIATION — CATEGORIES
-The catalogue audit also found 33 active uncategorized products. All were reviewed by product name and assigned to an existing appropriate category; the remaining concrete item (`176464`, concrete nails) was assigned to Hardware.
+### Uploaded September 2026 Buyers Guide audit
+- The uploaded guide contains **762 distinct product SKUs** with identifiable product-image blocks.
+- All **762 guide SKUs exist in the store catalogue**.
+- **753 are active** in the store; 9 are inactive.
+- **0 of the 762 guide SKUs currently use the placeholder.**
+- **753 active guide SKUs already have product-specific images.**
+- Therefore, there are **0 safe guide-photo substitutions available for the 3,396 placeholder products** from the uploaded September guide.
+- The guide does not contain the 3,396 placeholder SKUs, so assigning its photographs to those products would create incorrect SKU/image matches.
+- No product photograph was falsely mapped merely because it looked similar.
 
-Verified now:
-- **0 active products uncategorized.**
+The guide itself was visually inspected at page level and the product image/SKU relationship was programmatically audited from the PDF layout. This is the correct evidence-based result: **the uploaded September guide cannot supply images for the current 3,396 placeholder SKUs.**
+
+### Current safe state
+- Existing verified product-specific images remain untouched.
+- The 3,396 unmatched products retain the branded placeholder rather than receiving an incorrect photograph.
+- The placeholder is a temporary safe state, not a claim that the product has been photographed.
+- Further image enrichment requires another verified source containing those exact SKUs/products (additional uploaded guides, supplier images, or individually verified ASC/product imagery).
+- Do not substitute photographs solely on visual similarity, generic product type, or filename resemblance.
 
 ## LATEST VERIFIED DATABASE STATE
 Current Supabase query is authoritative over older handover counts:
@@ -43,16 +50,16 @@ Current Supabase query is authoritative over older handover counts:
 - **27,745 total active units**
 - **0 active products at zero stock**
 - **0 active products uncategorized**
-- **3,396 active products use the new branded image placeholder pending verified product-specific imagery**
-- 4,153 active products currently have stock quantity 5; 34 have other positive quantities.
+- **791 active products with product-specific image URLs**
+- **3,396 active products using the branded placeholder**
 
-Existing stocked quantities were preserved during this remediation.
+Existing stocked quantities were preserved during image/category remediation.
 
 ## LATEST VERIFIED PROGRESS
-- Added the safe product-image fallback in commit `6ec64c9a48824745e326980152ab499823f2f61e`.
-- Latest known storefront smoke run: `35140654305` succeeded. It covered mobile entry, category rendering, specials/featured rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
+- Current main HEAD is `1c47176766dbb3cafb02b2458658c9003b00e098`.
+- Latest storefront smoke run known to have succeeded: `35140654305`. It covered mobile entry, category rendering, specials/featured rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
 - The automated smoke test is source/automated verification, **not public-site verification**.
-- Existing Netlify production deploy was inspected read-only: `6aa98a8a679a4a0008e10b58`, ready but stale, built 2026-09-15 from commit `37654d7c2e8e38dad80f9edf33413aa1be62d1a4`.
+- Existing Netlify production deploy was inspected read-only: `6aa98a8a679a4a0008e10b58`, ready but stale, built 2026-09-15 from an older commit.
 - No deployment was triggered because Netlify/Cloudflare credits are prohibited.
 - Public fetch of the known Netlify URL is not currently available through the accessible runtime path.
 - Repository/configuration search has not documented the temporary Cloudflare public hostname.
@@ -73,11 +80,12 @@ Required checks when that time comes:
 
 **Do not deploy or refresh Netlify/Cloudflare merely to perform this test. No credits are to be spent.**
 
-### Product-specific image enrichment — NON-BLOCKING FOLLOW-UP
-- The 3,396 placeholders prevent broken/blank product cards but are deliberately not represented as real product photographs.
-- Replace placeholders progressively only when a verified matching product image is available.
-- Authoritative sources may include verified supplier/ASC product imagery or correctly matched customer-supplied images.
-- Never map an image to a SKU solely because it looks similar or because a filename happens to resemble another SKU.
+### Product-specific image enrichment — VERIFIED FOLLOW-UP
+- The uploaded September Buyers Guide was fully audited for exact SKU/photo matches.
+- It cannot safely replace any of the 3,396 placeholders because none of those placeholder SKUs occur in the uploaded guide.
+- Keep the placeholders until a verified source for those exact products is available.
+- If the user supplies additional Buyers Guides, repeat the same exact-SKU/page-image matching workflow and replace only confirmed matches.
+- If supplier/ASC imagery is used instead, verify SKU/product identity before changing the database.
 
 ## SECURITY / DATABASE
 Seven public tables already exist: `categories`, `customers`, `order_items`, `orders`, `products`, `store_settings`, `vehicle_compatibility`. RLS is enabled on all seven.
