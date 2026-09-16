@@ -1,0 +1,52 @@
+name: Storefront Smoke Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run local storefront smoke test
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/store-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser = await chromium.launch({headless:true});
+            const page = await browser.newPage({viewport:{width:390,height:844}});
+            await page.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
+            await page.waitForSelector('#store');
+            const frame = page.frameLocator('#store');
+            await frame.locator('#categoryGrid .catWrap').first().waitFor({timeout:20000});
+            await frame.locator('#featuredGrid .product').first().waitFor({timeout:20000});
+            await frame.locator('#searchInput').fill('');
+            await frame.locator('#featuredGrid .product').first().click();
+            await frame.locator('#productModal.open').waitFor({timeout:10000});
+            await frame.locator('#modalClose').click();
+            await frame.locator('#featuredGrid .product button').first().click();
+            await page.waitForSelector('#checkout-fab', {state:'attached', timeout:1000}).catch(()=>{});
+            await page.locator('#checkout').waitFor({timeout:10000});
+            await page.locator('#checkout').click();
+            await page.waitForURL('**/checkout.html');
+            await page.locator('#name').waitFor({timeout:10000});
+            await page.locator('#phone').waitFor({timeout:10000});
+            await page.setViewportSize({width:1280,height:900});
+            console.log('STOREFRONT_SMOKE_PASS');
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
