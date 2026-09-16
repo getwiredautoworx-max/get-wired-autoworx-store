@@ -60,6 +60,14 @@ The catalogue import routine successfully reported 4,187 products upserted. The 
 ## STOCK WORK — CURRENT LIMIT
 The catalogue is complete; stock verification/reconciliation is not. The available stored stock workbook/report explicitly identifies 36 ASC website-verified quantities and uses quantity 5 as a temporary default for unverified items. The separate ASC audit states it is an interim audit and that remaining live-stock records require a bulk ASC stock/pricelist export. Do not convert default 5 quantities into verified stock. Do not invent quantities. Reconcile duplicate SKU sources and prefer the latest explicitly verified source.
 
+### NEXT SESSION HANDOVER TASK — STOCK QUANTITY INCREASE TO 5
+- **Status: PENDING — MUST REMAIN IN THIS HANDOVER UNTIL SUCCESSFULLY COMPLETED AND VERIFIED.**
+- Increase/update the applicable store stock quantities to **5** as the next-session stock task, using the agreed stock-update scope and preserving all explicitly verified supplier/ASC quantities where those are already known.
+- Execute the update in safe batches if required.
+- Independently verify the resulting quantities in Supabase after the update.
+- Only after successful execution and verification, change this task status to **SUCCESSFULLY COMPLETED** in this handover and record the verified result in the change log.
+- If the task is not successfully completed, leave it marked **PENDING** and do not remove it from this file.
+
 Current 36 verified ASC SKUs are recorded in `asc_stock_verification` and include examples such as 339-10=1002, 516IFF=788, H170W24V=1005, S14-130BL=285, S14-530R=208, S14-830BL=74 and SCL014=77.
 
 ## PRICING — LOCKED
@@ -89,14 +97,15 @@ Database integrity is clean at the FK/SKU/storefront level, but the active produ
 ## CONTINUATION ORDER
 A. Catalogue import — COMPLETE/VERIFIED.
 B. Reconcile verified stock from all available guides/pricelists/verified supplier sources — INCOMPLETE; currently blocked by absence of a complete verified ASC bulk stock source. Continue searching stored sources and reconcile any newly evidenced quantities.
-C. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
-D. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; storefront UI still requires live verification when deployment is available.
-E. Image cleanup/mapping — workflow rerun in progress; verify final result.
-F. Homepage Specials-only/full navigation — pending live storefront verification.
-G. Checkout/admin integrity — pending live storefront verification.
-H. Final master stock/pricing workbook — after stock reconciliation.
-I. Deployment verification — only when credits/capability are available and permitted.
-J. Update this handover after each milestone.
+C. **Next-session stock quantity increase to 5 — PENDING; remain in this handover until successfully executed and independently verified.**
+D. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
+E. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; storefront UI still requires live verification when deployment is available.
+F. Image cleanup/mapping — workflow rerun in progress; verify final result.
+G. Homepage Specials-only/full navigation — pending live storefront verification.
+H. Checkout/admin integrity — pending live storefront verification.
+I. Final master stock/pricing workbook — after stock reconciliation.
+J. Deployment verification — only when credits/capability are available and permitted.
+K. Update this handover after each milestone.
 
 ## CHANGE LOG
 ### 16 Sep 2026 — Database verification refresh
@@ -109,6 +118,11 @@ J. Update this handover after each milestone.
 - Confirmed 36 ASC verified SKUs / 7,037 units.
 - Confirmed supplier_stock remains empty.
 - Confirmed stock reconciliation remains the main unfinished database task.
+
+### 16 Sep 2026 — Next-session stock task recorded
+- Added a persistent handover task to increase applicable store stock quantities to **5**.
+- Task must remain in this handover until the update is successfully executed and independently verified.
+- Once verified successful, the task status must be changed to **SUCCESSFULLY COMPLETED** and the verified result added to the change log.
 
 ### 16 Sep 2026 — Image workflow repair
 - Inspected failed workflow #19 / ID 35020123380.
