@@ -1,21 +1,24 @@
 # Get Wired AutoWorx — Live Readiness
 
-Updated: 2026-09-16 22:15 SAST
+Updated: 2026-09-16 22:45 SAST
 
 ## Current verification
-- GitHub `main` current HEAD after the latest handover update is `becbfc0974f7cad2a5858dba545ed1c1e88ef8d6`.
+- GitHub `main` current HEAD after the latest handover/image-source audit update is `45e0641f5ab05049f925857cb5e4ace8e5968249`.
 - The approved source storefront remains `index-new.html`; `index.html` routes through `store.html` so checkout remains reachable after adding a cart item.
-- Latest storefront smoke run `35140654305` completed successfully. Smoke coverage includes mobile entry, live category/specials rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
+- Latest storefront smoke run known to have succeeded: `35140654305`. Smoke coverage includes mobile entry, live category/specials rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
 - The smoke test is source/automated verification, **not public-site verification**.
 - Current Supabase state: 4,187 active products; 4,187 unique active priced SKUs; 0 uncategorized; 4,187 active products with stock > 0; 27,745 total active units; 0 zero-stock active products.
-- 3,396 active products now use the explicit branded placeholder `/assets/product-placeholder.svg` because no verified product-specific image was available. This prevents blank/broken image states without inventing product imagery.
-- Product-specific image enrichment remains a non-blocking follow-up and must use only verified matching images.
-- Product catalogue, categories, search, product detail modal, cart, mobile layout and checkout are implemented.
-- Checkout uses the server-side `create_store_order` RPC and revalidates active product prices in the database.
-- Admin order management supports authenticated filtering, order-status updates, payment-status updates, payment references and notes.
-- Image cleanup workflow completed successfully; 800 images were processed in the existing pipeline.
-- No Cloudflare credits used.
-- No Netlify credits used.
+- 791 active products have product-specific image URLs.
+- 3,396 active products use the explicit branded placeholder `/assets/product-placeholder.svg` because no verified product-specific image was available.
+
+## Buyers Guide image-source audit
+- The uploaded September 2026 Buyers Guide was directly audited at page/image level.
+- It contains 762 distinct product SKUs with identifiable product-image blocks.
+- All 762 guide SKUs exist in the store; 753 are active and 9 inactive.
+- None of the 762 guide SKUs currently uses the placeholder; the 753 active guide SKUs already have product-specific images.
+- Therefore the uploaded September guide provides **0 safe image substitutions for the 3,396 placeholder products**.
+- No photograph was mapped to a different SKU merely because it looked similar.
+- The 3,396 unmatched products remain on the branded placeholder until another verified source containing those exact products/SKUs is available.
 
 ## Security hardening completed during this verification
 - Removed public/anonymous execution from legacy admin RPC overloads and internal pricing/import SECURITY DEFINER RPCs.
