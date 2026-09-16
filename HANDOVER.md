@@ -5,6 +5,7 @@ Updated: 2026-09-16
 ## SOURCE OF TRUTH
 - GitHub repository: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
+- Current main HEAD at this handover update: `02a96c26631d28e9b11b35b03a8cff743f230a1a`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is currently being run through Cloudflare temporarily.
 - Do not redesign the approved storefront unless explicitly requested.
@@ -15,7 +16,17 @@ Updated: 2026-09-16
 ## CURRENT BUILD STATUS
 The database, catalogue, approved customer storefront, product-detail experience, image workflow, cart, checkout/order creation and authenticated admin order-management source are substantially complete.
 
-The next explicit verification target is **actual live public deployment/browser verification**. Source-level readiness must not be described as live-site verification.
+Source-level and automated browser verification are now confirmed. The next explicit verification target remains **actual live public deployment/browser verification**. Source-level readiness must not be described as live-site verification.
+
+## LATEST VERIFIED PROGRESS
+- Current `main` was fetched and verified before this update.
+- Latest storefront smoke run: `35139606426`.
+- Smoke job: `104941519746`.
+- Smoke result: **SUCCESS** with `STOREFRONT_SMOKE_PASS`.
+- Smoke covered mobile storefront entry, category rendering, specials/featured rendering, product-detail modal open/close, add-to-cart, checkout navigation, checkout name/phone fields, and a desktop viewport switch.
+- Repository search found no documented Cloudflare hostname/configuration.
+- Known Netlify production deploy remains stale relative to current source and was not refreshed because no Netlify credits may be used.
+- Direct public Netlify fetching was not available through the current web/runtime fetch paths, so the store is **not live-verified**.
 
 ## COMPLETED BUILD WORK
 1. Customer storefront QA — completed at source/automated QA level.
@@ -26,8 +37,9 @@ The next explicit verification target is **actual live public deployment/browser
 6. Customer checkout/order flow — completed with `checkout.html` and `public.create_store_order`.
 7. Admin/order management — completed with authenticated admin RPCs.
 8. Payment/delivery workflow — completed for EFT/manual-payment/cash-on-pickup and delivery/pickup capture.
-9. Image cleanup — GitHub Actions run `35137846265` succeeded; 800 images processed and no duplicate image commit was needed.
+9. Image cleanup — GitHub Actions runs succeeded; 800 images processed and no duplicate image commit was needed.
 10. Stock initialization — completed and verified.
+11. Security hardening — legacy anonymous execution grants were removed from old admin RPC overloads and internal pricing/import SECURITY DEFINER RPCs; authenticated execution was retained.
 
 ## NEXT SESSION — DO THIS FIRST
 1. Fetch and verify the current `main` HEAD and file state.
@@ -115,6 +127,13 @@ RLS is enabled on all seven tables.
 - Total stock: 27,847 units.
 - 4,154 previously zero-stock products were set to 5; eight were already at 5. Existing stocked quantities were preserved.
 
+### Security advisor status
+- Supabase security advisor currently reports four public import/staging tables with RLS disabled: `asc_stock_verification`, `buyers_guides_import_staging`, `catalog_import_runs`, `catalog_full_import_payload`.
+- It also reports internal tables with RLS enabled but no policies, including the seven store tables and import/runtime tables. These have not been changed automatically because they may be internal/service-role workflows and policy changes without confirmed requirements could break legitimate operations.
+- Anonymous execution was explicitly removed from legacy admin RPC overloads and internal pricing/import SECURITY DEFINER functions. Re-check confirmed `anon_execute = false` and `authenticated_execute = true` for those functions.
+- `create_store_order` remains executable anonymously by design because the customer checkout is public; it validates inputs and re-reads DB product prices before creating an order.
+- Supabase Auth leaked-password protection remains a configuration warning and has not been changed in this continuation.
+
 ## CHECKOUT / ORDER FLOW
 `checkout.html`:
 - Verifies active product data/prices from Supabase before submission.
@@ -138,7 +157,7 @@ RLS is enabled on all seven tables.
 - Admin can filter order/payment status.
 - Admin can update order status, payment status, payment reference and internal notes.
 - Admin can contact customers through WhatsApp.
-- Anonymous execution of admin listing/update RPCs is revoked.
+- Anonymous execution of admin listing/update RPCs is now revoked for all current and legacy overloads.
 - Authenticated execution is allowed, with the RPC enforcing the store-admin allowlist.
 - Do not expose admin credentials or secrets.
 
@@ -164,10 +183,9 @@ Storefront includes:
 
 ## IMAGE CLEANUP — VERIFIED
 - Workflow: `.github/workflows/clean-product-images.yml`.
-- Successful run: `35137846265`, job `104934601924`.
+- Successful runs include `35137846265` / job `104934601924` and later `35138859298`.
 - Processed 800 images.
 - Final commit step reported `No image changes to commit`; committed image set already matched the cleaned output.
-- Later run `35138859298` also completed successfully.
 - Do not rerun image cleanup unless a specific image problem is identified.
 - No Cloudflare or Netlify credits were used.
 
