@@ -72,7 +72,7 @@ Relevant stored files include Get_Wired_AutoWorx_STORE_STOCK_Feb-Sep_2026_VERIFI
 Preserve logical category → subcategory → product navigation. Major groups include Auto Electrical Spares, Vehicle Security, Car Audio, Accessories, Marine Spares & Accessories, Tools/Hardware/Consumables, Camping/Leisure/Outdoors and Trailer & Canopy, with the requested Auto Electrical 12V/24V hierarchy.
 
 ## IMAGES
-Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow: run #19 / ID 35020123380 / commit 5a65a955447319931b918e0074d11cfe3b56ebf4.
+Do not claim image cleanup complete until the GitHub workflow/result is verified. Previous workflow #19 / ID 35020123380 cleaned 800 images successfully but failed only at push because the runner had an outdated main ref. The workflow was then corrected to synchronize with current main before generation/push. New run #45 / ID 35137232280 was triggered from commit 21f32a3670f2b53a8b245dbe18d4d6817061437f and was observed in progress; verify its final conclusion before claiming image cleanup complete.
 
 ## NETLIFY / CLOUDFLARE
 Do not spend Cloudflare or Netlify credits without explicit permission. Do not create another Netlify site or GitHub repo. Existing Netlify deployment was previously blocked by exhausted credits.
@@ -81,14 +81,17 @@ Do not spend Cloudflare or Netlify credits without explicit permission. Do not c
 Verify active count, SKU uniqueness, missing costs, pricing formula, category refs, storefront sync, stock source, image integrity where relevant, and checkout/admin integrity.
 
 ## MASTER STOCK WORKBOOK
-When stock verification/reconciliation is complete, produce an Excel workbook with category, subcategory, SKU, product, verified quantity, cost ex VAT, VAT 15%, cost+VAT, 35% markup, final advertised selling price and source reference; master sheet plus category sheets where practical.
+When stock verification/reconciliation is complete, produce an Excel workbook with category, subcategory, SKU, product, verified quantity, cost ex VAT, VAT 15%, cost+VAT, 35% markup, final advertised selling price and source reference; master sheet plus category sheets where practical. Do not label the workbook final while stock remains unverified.
+
+## CATEGORY AUDIT NOTE — 16 SEP 2026
+Database integrity is clean at the FK/SKU/storefront level, but the active products are still distributed across many source-derived categories (for example Automotive Accessories, Parts, Electrical, Lighting and Tools & Workshop), while several requested customer-facing hierarchy categories currently contain zero products. This is a mapping/normalization task, not a database-integrity failure. Do not perform a broad destructive remap without first deriving a deterministic SKU/source-subcategory mapping and independently verifying the result.
 
 ## CONTINUATION ORDER
 A. Catalogue import — COMPLETE/VERIFIED.
-B. Reconcile verified stock from all available guides/pricelists/verified supplier sources — INCOMPLETE.
+B. Reconcile verified stock from all available guides/pricelists/verified supplier sources — INCOMPLETE; currently blocked by absence of a complete verified ASC bulk stock source. Continue searching stored sources and reconcile any newly evidenced quantities.
 C. Verify pricing — COMPLETE/VERIFIED (0 mismatches).
-D. Verify category/subcategory and storefront sync — database-level checks COMPLETE; storefront UI still requires live verification when deployment is available.
-E. Image cleanup/mapping — pending workflow/result verification.
+D. Verify category/subcategory and storefront sync — database-level integrity COMPLETE; customer-facing category normalization remains to be completed safely; storefront UI still requires live verification when deployment is available.
+E. Image cleanup/mapping — workflow rerun in progress; verify final result.
 F. Homepage Specials-only/full navigation — pending live storefront verification.
 G. Checkout/admin integrity — pending live storefront verification.
 H. Final master stock/pricing workbook — after stock reconciliation.
@@ -106,6 +109,17 @@ J. Update this handover after each milestone.
 - Confirmed 36 ASC verified SKUs / 7,037 units.
 - Confirmed supplier_stock remains empty.
 - Confirmed stock reconciliation remains the main unfinished database task.
+
+### 16 Sep 2026 — Image workflow repair
+- Inspected failed workflow #19 / ID 35020123380.
+- Confirmed image processing itself completed **800 images**; failure occurred at Git push because the runner had checked out an older commit and remote main had advanced.
+- Updated `.github/workflows/clean-product-images.yml` to fetch/reset to current `origin/main` before image generation and before push.
+- Triggered new workflow run #45 / ID 35137232280 from commit `21f32a3670f2b53a8b245dbe18d4d6817061437f`.
+- Run was observed in progress; final result must be checked before declaring image cleanup complete.
+
+### 16 Sep 2026 — Category audit
+- Direct Supabase category/count audit shows no FK failures or duplicate active SKUs, but source-derived category distribution is not yet normalized into the requested customer-facing hierarchy.
+- Several requested hierarchy nodes have zero active products while source categories hold the catalogue. Safe deterministic mapping is required before changing category assignments.
 
 ### 16 Sep 2026 — Permanent handover created/continued
 - Persistent continuation rules and project state recorded.
