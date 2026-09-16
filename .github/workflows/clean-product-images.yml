@@ -11,10 +11,12 @@ permissions:
 jobs:
   clean-images:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Extract source catalogue
         run: |
@@ -29,97 +31,98 @@ jobs:
           sudo apt-get install -y -qq tesseract-ocr
           python -m pip install --quiet pillow opencv-python-headless pytesseract
 
-      - name: Clean catalogue images and add restrained watermark
+      - name: Create clean ecommerce product images
         run: |
           python <<'PY'
           from pathlib import Path
           import cv2, numpy as np, pytesseract
-          from PIL import Image, ImageChops, ImageOps, ImageDraw, ImageFont
+          from PIL import Image, ImageChops, ImageOps, ImageEnhance, ImageFilter
 
-          root=Path('/tmp/store-src'); out=Path('assets/products'); out.mkdir(parents=True,exist_ok=True)
-          exts={'.jpg','.jpeg','.png','.webp','.bmp'}
-          files=[p for p in root.rglob('*') if p.is_file() and p.suffix.lower() in exts]
-          files=[p for p in files if 'product' in str(p).lower()] or files
+          root = Path('/tmp/store-src')
+          out = Path('assets/products')
+          out.mkdir(parents=True, exist_ok=True)
+          exts = {'.jpg','.jpeg','.png','.webp','.bmp'}
+          files = [p for p in root.rglob('*') if p.is_file() and p.suffix.lower() in exts]
+          product_files = [p for p in files if 'product' in str(p).lower()]
+          files = product_files or files
 
           def trim_border(im):
-              rgb=im.convert('RGB'); w,h=rgb.size
-              bg=Image.new('RGB',rgb.size,rgb.getpixel((0,0)))
-              diff=ImageOps.grayscale(ImageChops.difference(rgb,bg))
-              bbox=diff.point(lambda x:255 if x>12 else 0).getbbox()
-              if not bbox:return rgb
-              x0,y0,x1,y1=bbox; pad=max(3,int(min(w,h)*.008))
+              im = im.convert('RGB')
+              w, h = im.size
+              # Remove only obvious uniform catalogue margins.
+              arr = np.array(im)
+              edge = np.concatenate([arr[:max(1,h//40)], arr[-max(1,h//40):], arr[:,:max(1,w//40)], arr[:,-max(1,w//40):]], axis=None)
+              bg = tuple(np.median(edge.reshape(-1,3), axis=0).astype(np.uint8))
+              bgim = Image.new('RGB', im.size, bg)
+              diff = ImageOps.grayscale(ImageChops.difference(im, bgim))
+              mask = diff.point(lambda x: 255 if x > 18 else 0)
+              bbox = mask.getbbox()
+              if not bbox: return im
+              x0,y0,x1,y1 = bbox
+              pad = max(8, int(min(w,h)*0.02))
               x0=max(0,x0-pad); y0=max(0,y0-pad); x1=min(w,x1+pad); y1=min(h,y1+pad)
-              return rgb.crop((x0,y0,x1,y1)) if (x0>0 or y0>0 or x1<w or y1<h) else rgb
+              # Don't over-crop if the detected content fills nearly the whole image.
+              if x0 <= 3 and y0 <= 3 and x1 >= w-3 and y1 >= h-3: return im
+              return im.crop((x0,y0,x1,y1))
 
-          def ocr_boxes(arr,angle):
-              h,w=arr.shape[:2]
-              if angle:
-                  c=(w/2,h/2); M=cv2.getRotationMatrix2D(c,angle,1.0)
-                  rot=cv2.warpAffine(arr,M,(w,h),borderMode=cv2.BORDER_REPLICATE)
-              else: rot=arr; M=None
-              data=pytesseract.image_to_data(rot,output_type=pytesseract.Output.DICT,config='--psm 11')
-              boxes=[]
+          def remove_outer_text(im):
+              arr = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2BGR)
+              h,w = arr.shape[:2]
+              if min(h,w) < 220: return im
+              mask = np.zeros((h,w), np.uint8)
+              data = pytesseract.image_to_data(arr, output_type=pytesseract.Output.DICT, config='--psm 11')
               for i,t in enumerate(data['text']):
                   t=(t or '').strip()
                   try: conf=float(data['conf'][i])
                   except: conf=-1
-                  if not t or conf<42: continue
+                  if not t or conf < 55: continue
                   x,y,ww,hh=[int(data[k][i]) for k in ('left','top','width','height')]
-                  if ww<3 or hh<3 or ww*hh>.08*w*h: continue
-                  pts=np.float32([[x,y],[x+ww,y],[x+ww,y+hh],[x,y+hh]]).reshape(-1,1,2)
-                  if M is not None:
-                      Mi=cv2.invertAffineTransform(M); pts=cv2.transform(pts,Mi)
-                  pts=np.int32(pts.reshape(-1,2)); boxes.append(pts)
-              return boxes
-
-          def clean_text(im):
-              arr=cv2.cvtColor(np.array(im),cv2.COLOR_RGB2BGR); h,w=arr.shape[:2]
-              if min(h,w)<160:return im
-              mask=np.zeros((h,w),np.uint8)
-              # Horizontal supplier text near the outside edges.
-              for pts in ocr_boxes(arr,0):
-                  x0,y0=pts.min(axis=0); x1,y1=pts.max(axis=0)
-                  if x0<.20*w or x1>.80*w or y0<.18*h or y1>.82*h:
-                      cv2.fillPoly(mask,[pts],255)
-              # Diagonal/rotated watermarks: only remove text detected away from the central product area.
-              for ang in (-45,-30,-20,20,30,45):
-                  for pts in ocr_boxes(arr,ang):
-                      x0,y0=pts.min(axis=0); x1,y1=pts.max(axis=0)
-                      cx=(x0+x1)/2; cy=(y0+y1)/2
-                      if cx<.90*w and cy<.90*h and not (.25*w<cx<.75*w and .25*h<cy<.75*h):
-                          cv2.fillPoly(mask,[pts],255)
-              if mask.max()==0:return im
-              mask=cv2.dilate(mask,np.ones((5,5),np.uint8),iterations=1)
-              cleaned=cv2.inpaint(arr,mask,5,cv2.INPAINT_TELEA)
+                  area=ww*hh
+                  if ww<6 or hh<5 or area > .025*w*h: continue
+                  # Only erase clear supplier/catalogue text in the outside bands.
+                  outside = x < .16*w or x+ww > .84*w or y < .12*h or y+hh > .88*h
+                  if outside:
+                      cv2.rectangle(mask,(max(0,x-4),max(0,y-4)),(min(w,x+ww+4),min(h,y+hh+4)),255,-1)
+              if mask.max()==0: return im
+              mask=cv2.dilate(mask,np.ones((3,3),np.uint8),iterations=1)
+              cleaned=cv2.inpaint(arr,mask,3,cv2.INPAINT_TELEA)
               return Image.fromarray(cv2.cvtColor(cleaned,cv2.COLOR_BGR2RGB))
 
-          def watermark(im):
-              im=im.convert('RGBA'); w,h=im.size
-              layer=Image.new('RGBA',im.size,(0,0,0,0)); d=ImageDraw.Draw(layer)
-              text='GET WIRED AUTOWORX'
-              size=max(12,int(min(w,h)*.025))
-              try: font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',size)
-              except: font=ImageFont.load_default()
-              box=d.textbbox((0,0),text,font=font); tw=box[2]-box[0]; th=box[3]-box[1]
-              x=max(8,w-tw-16); y=max(8,h-th-12)
-              d.text((x+1,y+1),text,font=font,fill=(0,0,0,75))
-              d.text((x,y),text,font=font,fill=(255,255,255,115))
-              return Image.alpha_composite(im,layer).convert('RGB')
+          def prepare(im):
+              im = trim_border(im)
+              im = remove_outer_text(im)
+              im = ImageOps.exif_transpose(im).convert('RGB')
+              im = ImageOps.autocontrast(im, cutoff=0.5)
+              im = ImageEnhance.Color(im).enhance(1.04)
+              im = ImageEnhance.Contrast(im).enhance(1.03)
+              # High-quality ecommerce sharpening after resizing.
+              target = 1000
+              scale = target / max(1, min(im.size))
+              if scale > 1.0:
+                  im = im.resize((int(im.width*scale), int(im.height*scale)), Image.Resampling.LANCZOS)
+              im.thumbnail((1100,1100), Image.Resampling.LANCZOS)
+              im = im.filter(ImageFilter.UnsharpMask(radius=1.2, percent=115, threshold=3))
+              # Consistent 1200x1200 neutral ecommerce canvas.
+              canvas = Image.new('RGB',(1200,1200),(248,248,248))
+              maxw,maxh=1080,1080
+              im.thumbnail((maxw,maxh), Image.Resampling.LANCZOS)
+              x=(1200-im.width)//2; y=(1200-im.height)//2
+              canvas.paste(im,(x,y))
+              return canvas
 
           count=0
           for src in files:
               dst=out/(src.stem+'.jpg')
               try:
-                  im=Image.open(src).convert('RGB')
-                  im=trim_border(im)
-                  im=clean_text(im)
-                  im.thumbnail((1600,1600),Image.Resampling.LANCZOS)
-                  im=watermark(im)
-                  im.save(dst,'JPEG',quality=94,optimize=True)
+                  im=Image.open(src)
+                  result=prepare(im)
+                  result.save(dst,'JPEG',quality=95,optimize=True,progressive=True)
                   count+=1
-              except Exception as e: print('SKIP',src,e)
+              except Exception as e:
+                  print('SKIP',src,e)
           print('CLEANED_IMAGES=',count)
-          if count<700: raise SystemExit(f'Only cleaned {count} images; refusing to publish an incomplete catalogue.')
+          if count < 700:
+              raise SystemExit(f'Only cleaned {count} images; refusing to publish an incomplete catalogue.')
           PY
 
       - name: Commit cleaned catalogue images
@@ -127,7 +130,8 @@ jobs:
           git config user.name "Get Wired AutoWorx Image Cleaner"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/products
-          git commit -m "Improve catalogue image cleanup and watermark" || echo "No image changes to commit"
-          git push
+          git commit -m "Improve ecommerce product image presentation" || echo "No image changes to commit"
+          git pull --rebase origin main
+          git push origin main
 
-# Full-catalogue cleanup: removes detected supplier overlays/borders, preserves product content, and adds a restrained Get Wired watermark.
+# Produces clean, consistent 1200x1200 ecommerce images: no added watermark, restrained text removal at image edges, neutral background, contrast/sharpening and high-quality JPEG output.
