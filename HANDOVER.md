@@ -1,11 +1,11 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-16
+Updated: 2026-09-16 21:47 SAST
 
 ## SOURCE OF TRUTH
 - GitHub repository: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Current main HEAD at this handover update: `02a96c26631d28e9b11b35b03a8cff743f230a1a`
+- Current main HEAD: `0b461bf4ab8ff52bb3a35dbf3d914992eb7ae591`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is currently being run through Cloudflare temporarily.
 - Do not redesign the approved storefront unless explicitly requested.
@@ -16,40 +16,27 @@ Updated: 2026-09-16
 ## CURRENT BUILD STATUS
 The database, catalogue, approved customer storefront, product-detail experience, image workflow, cart, checkout/order creation and authenticated admin order-management source are substantially complete.
 
-Source-level and automated browser verification are now confirmed. The next explicit verification target remains **actual live public deployment/browser verification**. Source-level readiness must not be described as live-site verification.
+Source-level and automated browser verification are confirmed. The remaining production verification item is genuine public deployment/browser verification. Source readiness must not be described as live-site verification.
 
 ## LATEST VERIFIED PROGRESS
-- Current `main` was fetched and verified before this update.
-- Latest storefront smoke run: `35139606426`.
-- Smoke job: `104941519746`.
-- Smoke result: **SUCCESS** with `STOREFRONT_SMOKE_PASS`.
-- Smoke covered mobile storefront entry, category rendering, specials/featured rendering, product-detail modal open/close, add-to-cart, checkout navigation, checkout name/phone fields, and a desktop viewport switch.
-- Repository search found no documented Cloudflare hostname/configuration.
-- Known Netlify production deploy remains stale relative to current source and was not refreshed because no Netlify credits may be used.
-- Direct public Netlify fetching was not available through the current web/runtime fetch paths, so the store is **not live-verified**.
-
-## COMPLETED BUILD WORK
-1. Customer storefront QA — completed at source/automated QA level.
-2. Product-detail and image behaviour — completed/verified.
-3. Search and category filtering — completed/verified.
-4. Cart behaviour — completed/verified; checkout access added through `store.html`.
-5. Mobile layout — completed/verified from responsive CSS and smoke-test design.
-6. Customer checkout/order flow — completed with `checkout.html` and `public.create_store_order`.
-7. Admin/order management — completed with authenticated admin RPCs.
-8. Payment/delivery workflow — completed for EFT/manual-payment/cash-on-pickup and delivery/pickup capture.
-9. Image cleanup — GitHub Actions runs succeeded; 800 images processed and no duplicate image commit was needed.
-10. Stock initialization — completed and verified.
-11. Security hardening — legacy anonymous execution grants were removed from old admin RPC overloads and internal pricing/import SECURITY DEFINER RPCs; authenticated execution was retained.
+- Current `main` HEAD verified: `0b461bf4ab8ff52bb3a35dbf3d914992eb7ae591`.
+- Latest storefront smoke run: `35140654305`, completed successfully on the current HEAD.
+- The smoke workflow is `.github/workflows/storefront-smoke.yml`; latest result is SUCCESS.
+- Previous smoke job `104941519746` also reported `STOREFRONT_SMOKE_PASS`.
+- Smoke coverage includes mobile storefront entry, category rendering, specials/featured rendering, product-detail modal open/close, add-to-cart, checkout navigation, checkout name/phone fields, and desktop viewport switching.
+- Netlify read-only inspection confirms the existing production deploy is ready but stale: deploy `6aa98a8a679a4a0008e10b58`, built from commit `37654d7c2e8e38dad80f9edf33413aa1be62d1a4` on 2026-09-15. It was not refreshed because no Netlify credits may be used.
+- Repository/configuration search does not document a Cloudflare public hostname.
+- Public fetching of the known Netlify URL is not currently available through the accessible web/runtime path. Therefore the store remains **not live-verified**.
 
 ## NEXT SESSION — DO THIS FIRST
 1. Fetch and verify the current `main` HEAD and file state.
 2. Check the latest GitHub Actions runs, especially storefront smoke testing and image cleanup.
-3. If storefront smoke testing failed, inspect logs, fix only the confirmed defect, and rerun the smoke test.
-4. Read-only inspect the public storefront URL. Known Netlify URL: `https://get-wired-autoworx-store.netlify.app`.
-5. Determine whether a Cloudflare public hostname is documented in the repository/configuration. Do not spend Cloudflare credits.
+3. If storefront smoke testing fails, inspect logs, fix only the confirmed defect, and rerun the smoke test.
+4. Perform read-only inspection of the known public deployment where the runtime permits it.
+5. Search repository/configuration for any documented Cloudflare hostname. Do not spend Cloudflare credits.
 6. Where accessible, verify homepage, live catalogue loading, category filtering, search, product detail, cart, checkout route, mobile layout and WhatsApp/contact links.
-7. Compare public deployment behaviour with the current GitHub source where possible.
-8. If the live deployment is stale and refreshing it would consume Netlify/Cloudflare credits, **do not deploy**. Record that the source is ready and deployment remains pending an authorized credit-free path.
+7. Compare public deployment behaviour with current GitHub source where possible.
+8. If deployment is stale and refreshing it would consume Netlify/Cloudflare credits, **do not deploy**. Record source readiness and keep deployment pending an authorized credit-free path.
 9. Update `LIVE_READINESS.md` and this handover with actual verified results.
 10. Only call the store **live-verified** after genuine public deployment verification.
 
@@ -74,7 +61,7 @@ Source-level and automated browser verification are now confirmed. The next expl
 - Vehicle compatibility/application validation.
 - Image coverage/problem-image audit.
 - Product merchandising and category improvements.
-- Pricing review using the established pricing rules and current South African retail-market evidence when requested.
+- Pricing review using established pricing rules and current South African retail-market evidence when requested.
 
 ### Checkout / admin / database integration
 - End-to-end order-flow testing.
@@ -131,7 +118,7 @@ RLS is enabled on all seven tables.
 - Supabase security advisor currently reports four public import/staging tables with RLS disabled: `asc_stock_verification`, `buyers_guides_import_staging`, `catalog_import_runs`, `catalog_full_import_payload`.
 - It also reports internal tables with RLS enabled but no policies, including the seven store tables and import/runtime tables. These have not been changed automatically because they may be internal/service-role workflows and policy changes without confirmed requirements could break legitimate operations.
 - Anonymous execution was explicitly removed from legacy admin RPC overloads and internal pricing/import SECURITY DEFINER functions. Re-check confirmed `anon_execute = false` and `authenticated_execute = true` for those functions.
-- `create_store_order` remains executable anonymously by design because the customer checkout is public; it validates inputs and re-reads DB product prices before creating an order.
+- `create_store_order` remains executable anonymously by design because customer checkout is public; it validates inputs and re-reads DB product prices before creating an order.
 - Supabase Auth leaked-password protection remains a configuration warning and has not been changed in this continuation.
 
 ## CHECKOUT / ORDER FLOW
