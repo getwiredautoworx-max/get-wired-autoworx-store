@@ -16,4 +16,12 @@ The repository has been validated at code level and the automated storefront smo
 7. Verify the checkout route reaches `checkout-v2.html`.
 8. Verify the published storefront matches the approved dark blue/red design before final approval.
 
+## QA continuation checkpoint — 17 September 2026
+- `checkout-v2.html` rechecked on `main`.
+- Customer-facing delivery wording explicitly states **R15.00 per delivery address/order**, not per item.
+- Checkout notes explicitly keep Phoenix Plaza as an **internal dispatch reference only** and not a customer collection point.
+- Checkout adds the R15.00 delivery fee exactly once to the order total.
+- Cart products are revalidated against active Supabase products before order creation.
+- No Cloudflare or Netlify deployment/build was triggered during this checkpoint.
+
 Do not revert to the legacy Netlify deployment instructions in this file.
