@@ -36,7 +36,7 @@ Continue from the current verified state. Do not rebuild the store unless explic
 - Desired domain: getwiredautoworx.co.za
 - Interim Netlify: https://get-wired-autoworx-store.netlify.app
 - Netlify project: get-wired-autoworx-store
-- Netlify site ID: c6dbf7bb-ecf4-44d4-b50b-4167e0eedd60
+- Netlify site ID: c6dbf7bb-ecf4-44d4-b50b-4160e7eedd60
 - GitHub: getwiredautoworx-max/get-wired-autoworx-store, main
 - Supabase ref: ojytykqpvonxvepprgbh
 - Supabase URL: https://ojytykqpvonxvepprgbh.supabase.co
@@ -209,6 +209,14 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 7. PAXI API qualification/account access if automated PAXI point/order integration is required.
 8. User enabling Supabase Auth leaked-password protection before final release.
 9. Final credit-dependent hosting/live deployment and customer testing at the end of the workflow.
+
+## 17 SEP 2026 — STOREFRONT POLISH CHECKPOINT
+- [x] Preserved the approved dark blue/red storefront and iframe architecture.
+- [x] Refined the customer-facing cart presentation so the R15 delivery charge is explicitly visible as a single per-delivery-address/order charge in the cart wrapper.
+- [x] Refined footer wording from ambiguous `Pick up available` to `Pickup and delivery available` while keeping the approved layout and styling unchanged.
+- [x] Re-verified `store.html` after commit.
+- [x] Commit: `d4ba2f43a1da85e3578e71db72402ee0e8bed9ec`.
+- [x] No Netlify or Cloudflare deployment/build was triggered; credit lock remains intact.
 
 ## AUTHORITY
 If the user edits this file, preserve their edits and treat the latest user-edited content as authoritative. ChatGPT may append verified progress but must not silently remove user instructions.
