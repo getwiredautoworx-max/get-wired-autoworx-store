@@ -1,8 +1,9 @@
 /*
- * Get Wired AutoWorx product-image fallback.
+ * Get Wired AutoWorx exact-SKU product-image fallback.
  *
- * Uses only the exact SKU-named local product asset. It never searches for
- * visually similar products or substitutes an unrelated image.
+ * Priority: exact SKU WebP image sourced from ASC website cross-reference,
+ * then the existing exact SKU JPG asset. Never substitutes a visually similar
+ * product.
  */
 (function () {
   'use strict';
@@ -13,8 +14,10 @@
     return (node.textContent || '').trim().replace(/^SKU:\s*/i, '').trim();
   }
 
-  function localImageUrl(sku) {
-    return sku ? '/assets/products/' + encodeURIComponent(sku) + '.jpg' : '';
+  function localUrls(sku) {
+    if (!sku) return [];
+    var e = encodeURIComponent(sku);
+    return ['/assets/products_webp/' + e + '.webp', '/assets/products/' + e + '.jpg'];
   }
 
   function isPlaceholder(src) {
@@ -31,20 +34,24 @@
 
       function tryLocal(scope, existing) {
         var sku = skuFrom(scope);
-        if (!sku) return;
-        var url = localImageUrl(sku);
-        if (!url) return;
+        var urls = localUrls(sku);
+        if (!urls.length) return;
+
+        function tryUrl(img, index, original) {
+          if (index >= urls.length) {
+            if (img && !original) img.remove();
+            return;
+          }
+          img.onerror = function () { tryUrl(img, index + 1, original); };
+          img.src = urls[index];
+        }
 
         if (existing) {
           if (existing.dataset.gwFallbackBound) return;
           existing.dataset.gwFallbackBound = '1';
           var original = existing.src;
-          if (isPlaceholder(original)) existing.src = url;
-          existing.addEventListener('error', function () {
-            if (existing.dataset.gwFallbackTried) return;
-            existing.dataset.gwFallbackTried = '1';
-            if (!isPlaceholder(original)) existing.src = original;
-          });
+          if (isPlaceholder(original)) tryUrl(existing, 0, original);
+          else existing.addEventListener('error', function () { tryUrl(existing, 0, original); }, { once: true });
           return;
         }
 
@@ -54,9 +61,8 @@
         img.alt = ((scope.querySelector('h3,h2') || {}).textContent || ('Product ' + sku)).trim();
         img.loading = 'lazy';
         img.dataset.gwFallbackImage = '1';
-        img.src = url;
-        img.addEventListener('error', function () { img.remove(); }, { once: true });
         box.appendChild(img);
+        tryUrl(img, 0, '');
       }
 
       function patchScope(scope) {
@@ -66,18 +72,12 @@
         tryLocal(scope, box.querySelector('img'));
       }
 
-      function scan() {
-        doc.querySelectorAll('.product, .detail').forEach(patchScope);
-      }
-
+      function scan() { doc.querySelectorAll('.product, .detail').forEach(patchScope); }
       scan();
       new MutationObserver(scan).observe(doc.body, { childList: true, subtree: true });
     }
 
-    function ready() {
-      try { patch(frame.contentDocument || frame.contentWindow.document); } catch (e) {}
-    }
-
+    function ready() { try { patch(frame.contentDocument || frame.contentWindow.document); } catch (e) {} }
     frame.addEventListener('load', ready);
     if (frame.contentDocument && frame.contentDocument.readyState === 'complete') ready();
   }
