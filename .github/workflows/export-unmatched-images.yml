@@ -1,0 +1,76 @@
+name: Export Unmatched Product Images
+on:
+  push:
+    paths:
+      - .github/workflows/export-unmatched-images.yml
+  workflow_dispatch:
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests openpyxl
+      - name: Export unmatched products
+        env:
+          SUPABASE_URL: https://ojytykqpvonxvepprgbh.supabase.co
+          SUPABASE_KEY: sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w
+        run: |
+          python - <<'PY'
+          import os, requests
+          from openpyxl import Workbook
+          from openpyxl.styles import Font, PatternFill, Alignment
+          from openpyxl.worksheet.table import Table, TableStyleInfo
+          url=os.environ['SUPABASE_URL']+'/rest/v1/products'
+          params={
+            'select':'sku,name,description,price,stock_quantity,image_url',
+            'active':'eq.true',
+            'or':'(image_url.is.null,image_url.eq.,image_url.ilike.*placeholder*)',
+            'order':'sku',
+            'limit':'5000'
+          }
+          headers={'apikey':os.environ['SUPABASE_KEY'],'Authorization':'Bearer '+os.environ['SUPABASE_KEY']}
+          r=requests.get(url,params=params,headers=headers,timeout=60)
+          r.raise_for_status()
+          rows=r.json()
+          wb=Workbook()
+          ws=wb.active
+          ws.title='Unmatched Images'
+          headers_row=['ASC SKU','Product Name','Description','Final Selling Price','Current Store Qty','Current Image','Verification Status','Verified Image Source','Verified Image URL / File','Notes']
+          ws.append(headers_row)
+          for x in rows:
+            ws.append([x.get('sku'),x.get('name'),x.get('description'),x.get('price'),x.get('stock_quantity'),x.get('image_url'),'PENDING VERIFICATION','','',''])
+          for cell in ws[1]:
+            cell.font=Font(bold=True)
+            cell.fill=PatternFill('solid',fgColor='17365D')
+            cell.font=Font(bold=True,color='FFFFFF')
+            cell.alignment=Alignment(horizontal='center',vertical='center')
+          ws.freeze_panes='A2'
+          ws.auto_filter.ref=ws.dimensions
+          widths=[18,42,60,20,18,32,24,26,42,40]
+          for i,w in enumerate(widths,1): ws.column_dimensions[chr(64+i) if i<=26 else 'A'].width=w
+          for row in ws.iter_rows(min_row=2):
+            for c in row: c.alignment=Alignment(vertical='top',wrap_text=True)
+          tab=Table(displayName='UnmatchedImages',ref=ws.dimensions)
+          tab.tableStyleInfo=TableStyleInfo(name='TableStyleMedium2',showRowStripes=True,showColumnStripes=False)
+          ws.add_table(tab)
+          ws2=wb.create_sheet('Instructions')
+          ws2.append(['Purpose','Verify every unmatched product image using the exact ASC SKU.'])
+          ws2.append(['Rule 1','Use the ASC SKU as the primary match key.'])
+          ws2.append(['Rule 2','Check uploaded buyer guides/catalogues and the ASC website.'])
+          ws2.append(['Rule 3','Do not approve visually similar products without an exact SKU match.'])
+          ws2.append(['Rule 4','Leave Status as PENDING VERIFICATION until personally verified.'])
+          ws2.append(['Total unmatched products',len(rows)])
+          for c in ws2[1]: c.font=Font(bold=True)
+          wb.save('Get_Wired_AutoWorx_UNMATCHED_IMAGE_VERIFICATION.xlsx')
+          print('Exported',len(rows),'unmatched products')
+          PY
+      - name: Upload Excel worksheet
+        uses: actions/upload-artifact@v4
+        with:
+          name: Get_Wired_AutoWorx_UNMATCHED_IMAGE_VERIFICATION
+          path: Get_Wired_AutoWorx_UNMATCHED_IMAGE_VERIFICATION.xlsx
+          retention-days: 90
