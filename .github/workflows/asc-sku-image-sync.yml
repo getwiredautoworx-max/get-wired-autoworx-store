@@ -1,0 +1,111 @@
+name: ASC SKU Image Sync
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: ${{ !contains(github.event.head_commit.message, '[asc-image-sync]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install image sync dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4 pillow
+
+      - name: Fetch exact ASC SKU images
+        env:
+          SUPABASE_URL: https://ojytykqpvonxvepprgbh.supabase.co
+          ASC_BASE: https://accessoriesspares.co.za
+        run: |
+          python - <<'PY'
+          import os, re, io, json, urllib.parse
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          import requests
+          from bs4 import BeautifulSoup
+          from PIL import Image, ImageChops
+
+          SUPA=os.environ['SUPABASE_URL']; BASE=os.environ['ASC_BASE']
+          html=open('index-new.html',encoding='utf-8').read()
+          m=re.search(r"SUPABASE_KEY\s*=\s*['\"]([^'\"]+)",html)
+          if not m: raise RuntimeError('Could not read the existing public Supabase key from the storefront')
+          KEY=m.group(1)
+          OUT='assets/products_webp'; os.makedirs(OUT,exist_ok=True)
+          s=requests.Session(); s.headers.update({'User-Agent':'Get-Wired-AutoWorx-Exact-SKU-Image-Sync/1.0'})
+          H={'apikey':KEY,'Authorization':'Bearer '+KEY,'Accept':'application/json'}
+
+          rows=[]; offset=0
+          while True:
+              u=f'{SUPA}/rest/v1/products?select=sku,name,description&active=eq.true&or=(image_url.is.null,image_url.eq.,image_url.ilike.*placeholder*)&limit=1000&offset={offset}'
+              r=s.get(u,headers=H,timeout=30); r.raise_for_status(); batch=r.json(); rows += batch
+              if len(batch)<1000: break
+              offset += 1000
+          rows={str(x['sku']).strip():x for x in rows if x.get('sku')}
+          print('Exact-SKU image targets:',len(rows))
+
+          def clean_webp(raw,path):
+              im=Image.open(io.BytesIO(raw)).convert('RGB')
+              if im.width<80 or im.height<80: return False
+              bg=Image.new('RGB',im.size,'white')
+              diff=ImageChops.difference(im,bg).convert('L')
+              bbox=diff.point(lambda p:255 if p>10 else 0).getbbox()
+              if bbox:
+                  pad=12; bbox=(max(0,bbox[0]-pad),max(0,bbox[1]-pad),min(im.width,bbox[2]+pad),min(im.height,bbox[3]+pad))
+                  if bbox[2]-bbox[0]>=80 and bbox[3]-bbox[1]>=80: im=im.crop(bbox)
+              im.thumbnail((1000,1000),Image.Resampling.LANCZOS)
+              im.save(path,'WEBP',quality=82,method=6); return True
+
+          def one(item):
+              sku=str(item['sku']).strip(); q=urllib.parse.quote_plus(sku)
+              for search_url in (f'{BASE}/?s={q}&post_type=product',f'{BASE}/?s={q}'):
+                  try:
+                      rr=s.get(search_url,timeout=25); rr.raise_for_status(); soup=BeautifulSoup(rr.text,'html.parser')
+                      cards=soup.select('li.product, .product.type-product, article.product')
+                      for card in cards:
+                          txt=card.get_text(' ',strip=True)
+                          if not re.search(r'\bSKU\s*:\s*'+re.escape(sku)+r'\b',txt,re.I): continue
+                          img=card.select_one('img')
+                          if not img: continue
+                          src=img.get('data-src') or img.get('data-lazy-src') or img.get('src')
+                          if not src: continue
+                          if src.startswith('//'): src='https:'+src
+                          elif src.startswith('/'): src=BASE+src
+                          ir=s.get(src,timeout=25); ir.raise_for_status()
+                          out=os.path.join(OUT,urllib.parse.quote(sku,safe='')+'.webp')
+                          if clean_webp(ir.content,out): return {'sku':sku,'status':'matched','source':search_url,'image':src}
+                  except Exception as e: last=str(e)
+              return {'sku':sku,'status':'unresolved','error':locals().get('last','exact SKU image not found')}
+
+          results=[]
+          with ThreadPoolExecutor(max_workers=6) as ex:
+              futs=[ex.submit(one,x) for x in rows.values()]
+              for i,f in enumerate(as_completed(futs),1):
+                  try: results.append(f.result())
+                  except Exception as e: results.append({'status':'error','error':str(e)})
+                  if i%100==0: print('Processed',i,'of',len(futs))
+          os.makedirs('image-sync',exist_ok=True)
+          json.dump(results,open('image-sync/asc_image_sync_report.json','w'),indent=2)
+          print('Exact ASC matches:',sum(x.get('status')=='matched' for x in results))
+          print('Unresolved:',sum(x.get('status')!='matched' for x in results))
+          PY
+
+      - name: Commit exact-SKU images
+        run: |
+          git config user.name 'Get Wired AutoWorx Image Sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add assets/products_webp image-sync/asc_image_sync_report.json
+          git diff --cached --quiet && echo 'No new images to commit' && exit 0
+          git commit -m '[asc-image-sync] Add exact ASC SKU product images'
+          git push
