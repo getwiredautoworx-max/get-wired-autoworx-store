@@ -1,0 +1,39 @@
+name: Install verified catalogue product images
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    if: ${{ !contains(github.event.head_commit.message, '[catalogue-image-upgrade]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install only exact SKU-matched catalogue images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/products
+          echo 'BASE64_3285_BP' | base64 -d > 'assets/products/3285-BP.jpg'
+          echo 'BASE64_C3_021' | base64 -d > 'assets/products/C3-021.jpg'
+          echo 'BASE64_C3_203' | base64 -d > 'assets/products/C3-203.jpg'
+          echo 'BASE64_C3_502B' | base64 -d > 'assets/products/C3-502B.jpg'
+          echo 'BASE64_C3_503' | base64 -d > 'assets/products/C3-503.jpg'
+          echo 'BASE64_C3_505' | base64 -d > 'assets/products/C3-505.jpg'
+          echo 'BASE64_C3_507' | base64 -d > 'assets/products/C3-507.jpg'
+          echo 'BASE64_C3_508' | base64 -d > 'assets/products/C3-508.jpg'
+          echo 'BASE64_C3_509' | base64 -d > 'assets/products/C3-509.jpg'
+          echo 'BASE64_C3_514' | base64 -d > 'assets/products/C3-514.jpg'
+      - name: Commit verified image replacements
+        run: |
+          set -euo pipefail
+          git config user.name 'Get Wired AutoWorx Catalogue Image Installer'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/products/3285-BP.jpg assets/products/C3-021.jpg assets/products/C3-203.jpg assets/products/C3-502B.jpg assets/products/C3-503.jpg assets/products/C3-505.jpg assets/products/C3-507.jpg assets/products/C3-508.jpg assets/products/C3-509.jpg assets/products/C3-514.jpg
+          git commit -m 'Install verified catalogue images [catalogue-image-upgrade]'
+          git push origin HEAD:main
