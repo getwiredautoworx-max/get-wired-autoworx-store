@@ -49,6 +49,35 @@ Updated: 2026-09-16 22:45 SAST
 - Known Netlify production deploy `6aa98a8a679a4a0008e10b58` remains stale relative to current GitHub source and must not be refreshed because Netlify credits are prohibited.
 - The temporary Cloudflare public hostname is not documented in repository/configuration search results available here.
 
+
+## CONTINUATION AUDIT — 2026-09-22 19:02 SAST
+
+### Buyers Guide re-check
+- The two uploaded September guide PDFs are duplicates of the same 32-page guide; no additional distinct Buyers Guide was found in the available file library.
+- The validated staging CSV contains 779 product rows.
+- Current active catalogue matching confirms 545 of those 779 SKUs are present as active products.
+- Only one guide CSV SKU currently has the branded placeholder: SKU **25482**. However, it is **not a safe image match**: the guide shows SKU 25482 as the M7-005B universal black rubber car mat, while the current store SKU 25482 is a Fiat 500/Doblo/Panda/Punto thermostat. The guide photograph must therefore NOT be assigned to the store product.
+- The guide photograph was not assigned and no image mapping was changed in this audit.
+- The remaining 3,396 placeholder products are not safely covered by the uploaded September guide; do not fill them by visual similarity or generic product type.
+
+### Important stock-state discrepancy found
+A fresh Supabase audit on 2026-09-22 19:02 SAST reports:
+- **4,187 active products**
+- **4,187 active products with stock_quantity > 0**
+- **0 active products with stock_quantity = 0**
+- **27,745 total active units**
+- **4,153 active products have stock_quantity exactly 5**
+- All 4,187 active products have updated_at on 2026-09-16.
+
+This does **not** match the user's previously verified 2026-09-16 stock state of 44 stocked products / 7,077 units. The database column default is 0, so the mass value of 5 was written by an import/update operation rather than being the column default.
+
+**Do not silently overwrite or guess stock quantities.** Existing verified stock must be preserved. The exact 44-SKU / 7,077-unit source must be recovered or re-verified before correcting the current stock state.
+
+### Deployment/testing constraint remains unchanged
+- Task 9 public Cloudflare browser testing remains deferred until the user is ready to browse/test.
+- **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
+- No live-site testing or deployment was performed during this continuation audit.
+
 ## Deployment constraint
 - Repository/source readiness is verified.
 - Netlify deployment is intentionally not triggered because Netlify credits must not be used.
