@@ -226,3 +226,18 @@ Remaining gate: final source regression followed by the authorised public Cloudf
 
 ## FINAL RULE
 **Continue from this handover. Do not restart completed database work, do not use the obsolete 1,109-row CSV, do not spend Cloudflare or Netlify credits, do not replace verified product imagery with guesses, and do not claim live verification unless it has actually been performed.**
+
+
+## CHECKOUT PAYMENT GUARD CORRECTION — 22 Sep 2026
+
+A final source review found one consistency edge case in the corrected fulfilment flow: the customer could manually re-select Cash on pickup after switching back to Nationwide delivery. The server function already accepted only R0/R15, but it did not explicitly reject cash-on-pickup with the R15 delivery fee.
+
+- checkout-v2.html now disables Cash on pickup for Nationwide delivery and restores it for pickup.
+- Delivery submission also has a client-side guard against Cash on pickup.
+- public.create_store_order now explicitly rejects cash_on_pickup when the delivery fee is R15.
+- The server still rejects any fee other than R0 or R15.
+- A database guard test using a real active product ID was run; the invalid R15 + cash_on_pickup request was rejected and **0 QA orders were created**.
+- No real customer order was created.
+- No Cloudflare or Netlify credits were used.
+
+The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e54175918**. The remaining external gate is still public Cloudflare verification because the exact temporary Cloudflare public hostname is not available in the repository or prior project context.
