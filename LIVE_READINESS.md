@@ -104,3 +104,15 @@ This does **not** match the user's previously verified 2026-09-16 stock state of
 - Task 9 public Cloudflare browser testing remains deferred until the user is ready to browse/test.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
 - No live-site testing or deployment was performed during this continuation audit.
+
+
+## FINAL SOURCE REGRESSION — 22 Sep 2026
+
+- Latest GitHub main HEAD: **b72e240e2655ed8feebaab6f16fcfb9e54175918**.
+- Checkout payment/fulfilment edge case corrected: Cash on pickup is now pickup-only in both UI and server validation.
+- Supabase verification: invalid R15 delivery + cash_on_pickup request rejected; **0 QA orders created**.
+- No real customer order was created.
+- No Cloudflare or Netlify credits used.
+
+## PUBLIC VERIFICATION STATUS
+The final public verification cannot yet be truthfully marked complete because the exact temporary Cloudflare public hostname is not documented in GitHub or the available prior project context. The known Netlify URL is a stale deployment and is not the current Cloudflare production target, so it must not be used as a substitute for live Cloudflare verification.
