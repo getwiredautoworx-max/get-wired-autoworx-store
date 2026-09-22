@@ -144,18 +144,21 @@ Get Wired AutoWorx
 - The guide photograph was not assigned and no image mapping was changed in this audit.
 - The remaining 3,396 placeholder products are not safely covered by the uploaded September guide; do not fill them by visual similarity or generic product type.
 
-### Important stock-state discrepancy found
-A fresh Supabase audit on 2026-09-22 19:02 SAST reports:
+### Current stock-floor state
+- The current stock state is intentional and follows the 16 Sep 2026 stock-floor task recorded in the project history.
 - **4,187 active products**
-- **4,187 active products with stock_quantity > 0**
-- **0 active products with stock_quantity = 0**
-- **27,745 total active units**
-- **4,153 active products have stock_quantity exactly 5**
-- All 4,187 active products have updated_at on 2026-09-16.
+- **4,153 active products at quantity 5**
+- **34 active products above 5**, retaining explicitly verified ASC quantities
+- **36 ASC-verified SKUs / 7,037 verified units** remain recorded in the verification ledger; 2 verified SKUs are inactive
+- **27,745 total active units** after the stock-floor task
+- Do not treat the quantity-5 floor as independently verified supplier stock; it is the store's requested stock-floor value for unverified active products.
 
-This does **not** match the user's previously verified 2026-09-16 stock state of 44 stocked products / 7,077 units. The database column default is 0, so the mass value of 5 was written by an import/update operation rather than being the column default.
-
-**Do not silently overwrite or guess stock quantities.** Existing verified stock must be preserved. The exact 44-SKU / 7,077-unit source must be recovered or re-verified before correcting the current stock state.
+### Current catalogue QA re-check — 22 Sep 2026
+- Pricing mismatches: **0** against the agreed cost × 1.15 × 1.35 formula
+- Uncategorized active products: **0**
+- Active products with specific product images: **791**
+- Active products using branded placeholder: **3,396**
+- The image-cleanup workflow was previously verified successful: run **35137846265**, job **104934601924**, processed **800 images**, with no new image changes to commit.
 
 ### Deployment/testing constraint remains unchanged
 - Task 9 public Cloudflare browser testing remains deferred until the user is ready to browse/test.
