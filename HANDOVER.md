@@ -193,5 +193,21 @@ Based on the current source, database, checkout/order flow, admin flow and succe
 
 **Constraint:** No Cloudflare credits and no Netlify credits are to be used for this work.
 
+
+## PRE-LAUNCH CODE AUDIT — 22 Sep 2026
+
+A deeper source/database audit found one item that must be resolved before the store is called fully trade-ready:
+
+### Checkout / order-fee consistency blocker
+- The live checkout entry point is checkout-v2.html.
+- The UI currently presents a flat R15 delivery fee and does not provide a direct customer pickup fulfilment option.
+- The Supabase create_store_order function currently hard-codes R15.00 as the order fee and ignores the supplied p_delivery_fee value.
+- The function supports eft, manual_payment, and cash_on_pickup as payment methods, but the current checkout-v2 UI only exposes EFT and manual payment.
+- Therefore, before launch, checkout should be aligned with the intended store policy: delivery or pickup, with the correct fee (R15 for delivery, R0 for pickup), while the database function must remain server-authoritative and must not trust a client-supplied fee.
+- No production database change was made during this audit, and no real customer order was created for testing.
+
+### Revised ETA
+This is a contained pre-launch correction rather than a rebuild. Allow approximately 1–3 additional focused hours for implementing the fulfilment/fee alignment, source regression, and then the previously planned public verification. Public verification is still the final gate.
+
 ## FINAL RULE
 **Continue from this handover. Do not restart completed database work, do not use the obsolete 1,109-row CSV, do not spend Cloudflare or Netlify credits, do not replace verified product imagery with guesses, and do not claim live verification unless it has actually been performed.**
