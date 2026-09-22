@@ -83,3 +83,24 @@ This does **not** match the user's previously verified 2026-09-16 stock state of
 - Netlify deployment is intentionally not triggered because Netlify credits must not be used.
 - Cloudflare credits must not be used.
 - Public deployment/browser verification is deferred until the user is ready to browse/test.
+
+### Current stock-floor state
+- The current stock state is intentional and follows the 16 Sep 2026 stock-floor task recorded in the project history.
+- **4,187 active products**
+- **4,153 active products at quantity 5**
+- **34 active products above 5**, retaining explicitly verified ASC quantities
+- **36 ASC-verified SKUs / 7,037 verified units** remain recorded in the verification ledger; 2 verified SKUs are inactive
+- **27,745 total active units** after the stock-floor task
+- Do not treat the quantity-5 floor as independently verified supplier stock; it is the store's requested stock-floor value for unverified active products.
+
+### Current catalogue QA re-check — 22 Sep 2026
+- Pricing mismatches: **0** against the agreed cost × 1.15 × 1.35 formula
+- Uncategorized active products: **0**
+- Active products with specific product images: **791**
+- Active products using branded placeholder: **3,396**
+- The image-cleanup workflow was previously verified successful: run **35137846265**, job **104934601924**, processed **800 images**, with no new image changes to commit.
+
+### Deployment/testing constraint remains unchanged
+- Task 9 public Cloudflare browser testing remains deferred until the user is ready to browse/test.
+- **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
+- No live-site testing or deployment was performed during this continuation audit.
