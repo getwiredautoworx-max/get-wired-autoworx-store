@@ -209,5 +209,20 @@ A deeper source/database audit found one item that must be resolved before the s
 ### Revised ETA
 This is a contained pre-launch correction rather than a rebuild. Allow approximately 1–3 additional focused hours for implementing the fulfilment/fee alignment, source regression, and then the previously planned public verification. Public verification is still the final gate.
 
+
+## CHECKOUT FULFILMENT CORRECTION COMPLETED — 22 Sep 2026
+
+The pre-launch checkout blocker identified in the code audit has been corrected.
+
+- checkout-v2.html now supports **Nationwide delivery (R15.00)** and **Get Wired AutoWorx pickup (R0.00)**.
+- Pickup defaults toward cash-on-pickup handling; delivery address fields are required only for delivery.
+- The checkout sends the selected fulfilment fee to the server.
+- Supabase create_store_order was updated server-side so only **R0 or R15** are accepted, with the server remaining authoritative.
+- R0 orders require cash-on-pickup; R15 orders require delivery address/city/postal information.
+- Existing product price/stock revalidation remains server-side.
+- No real customer order was created during this correction.
+
+Remaining gate: final source regression followed by the authorised public Cloudflare storefront/browser verification. No Cloudflare or Netlify credits were used.
+
 ## FINAL RULE
 **Continue from this handover. Do not restart completed database work, do not use the obsolete 1,109-row CSV, do not spend Cloudflare or Netlify credits, do not replace verified product imagery with guesses, and do not claim live verification unless it has actually been performed.**
