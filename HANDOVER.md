@@ -165,5 +165,33 @@ Get Wired AutoWorx
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
 - No live-site testing or deployment was performed during this continuation audit.
 
+
+## STORE-READINESS ETA — 22 Sep 2026
+
+Based on the current source, database, checkout/order flow, admin flow and successful automated smoke test, the store is in the **final verification stage**, not the build-from-scratch stage.
+
+### Estimated remaining effort once public testing is authorised
+- **Public storefront verification:** ~30–60 minutes
+- **Fix any issues found:** ~30–120 minutes, depending on findings
+- **Order/checkout + WhatsApp/payment/delivery handoff verification:** ~30–60 minutes
+- **Final mobile/desktop regression and readiness record:** ~30–60 minutes
+
+**Planning ETA:** approximately **2–5 focused hours of work after public testing can begin**, assuming no blocking deployment/payment issue is discovered. This is an effort estimate, not a guaranteed clock-time delivery promise.
+
+### What is NOT a blocker to opening
+- The 3,396 branded image placeholders are not being treated as a launch blocker because incorrect product photography would be worse than a verified placeholder. They remain a post-launch enrichment task unless the user requires every product to have a photograph before trading.
+- The catalogue currently has 0 uncategorized active products and 0 pricing mismatches.
+- Automated storefront smoke testing has already covered mobile entry, category rendering, specials/featured rendering, product detail, add-to-cart, checkout navigation/form fields and desktop viewport switching.
+
+### What IS required before calling the store ready to trade
+1. Actual public storefront reachable and confirmed as the intended Get Wired AutoWorx site.
+2. Live homepage/category/search/product/cart/checkout verification.
+3. Confirm order creation reaches the intended admin/order workflow.
+4. Verify WhatsApp contact handoff, delivery/pickup presentation and payment instructions.
+5. Verify mobile and desktop public behaviour.
+6. Record the actual public URL and final result in the handover/readiness files.
+
+**Constraint:** No Cloudflare credits and no Netlify credits are to be used for this work.
+
 ## FINAL RULE
 **Continue from this handover. Do not restart completed database work, do not use the obsolete 1,109-row CSV, do not spend Cloudflare or Netlify credits, do not replace verified product imagery with guesses, and do not claim live verification unless it has actually been performed.**
