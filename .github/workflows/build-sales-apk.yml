@@ -1,11 +1,13 @@
-name: Build Sales Intelligence APK
+name: Build and Emulator-Test Sales Intelligence APK
+
 on:
   push:
     branches: [apk-sales-intelligence-v03]
   pull_request:
     branches: [main]
+
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,8 +18,27 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11'
-      - run: gradle -p apk-sales-intelligence :app:assembleDebug
-      - uses: actions/upload-artifact@v4
+      - name: Build debug APK
+        run: gradle -p apk-sales-intelligence :app:assembleDebug
+      - name: Verify APK archive
+        run: |
+          test -s apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
+          unzip -t apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
+      - name: Run APK on Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          name: get-wired-sales-intelligence-v0.3.0
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          emulator-options: -no-window -no-audio -no-boot-anim
+          disable-animations: true
+          script: |
+            adb install -r apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
+            adb shell am start -n za.co.getwiredautoworx.sales/.MainActivity
+            sleep 5
+            adb shell dumpsys activity activities | grep -q 'za.co.getwiredautoworx.sales/.MainActivity'
+      - name: Publish emulator-tested APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: get-wired-sales-intelligence-v0.3.1-emulator-tested
           path: apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
