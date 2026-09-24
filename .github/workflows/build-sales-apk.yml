@@ -2,6 +2,8 @@ name: Build Sales Intelligence APK
 on:
   push:
     branches: [apk-sales-intelligence-v03]
+  pull_request:
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
