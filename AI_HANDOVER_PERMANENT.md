@@ -220,3 +220,11 @@ Do not spend Cloudflare or Netlify credits before final testing. No new Netlify 
 
 ## AUTHORITY
 If the user edits this file, preserve their edits and treat the latest user-edited content as authoritative. ChatGPT may append verified progress but must not silently remove user instructions.
+
+## 24 SEP 2026 — WHATSAPP + FITMENT-ADVICE STOREFRONT STRATEGY
+- [x] Approved direction: retain the full ecommerce catalogue and use WhatsApp as an assisted-sales/fitment channel rather than replacing the store with a query-only site.
+- [x] Product-detail experience updated in `index-new.html` with a prominent **NOT SURE IT FITS? GET FITMENT ADVICE** WhatsApp action alongside Add to Cart and WhatsApp to Order.
+- [x] Fitment-advice action uses the existing Get Wired AutoWorx WhatsApp number and product-specific enquiry context.
+- [ ] Deploy the latest GitHub main build to production Netlify and perform final live/mobile testing.
+- [ ] Continue strengthening vehicle/fitment search, assisted quote flow, payment and delivery before launch.
+- No Cloudflare credits used; no Netlify deployment triggered by this change.
