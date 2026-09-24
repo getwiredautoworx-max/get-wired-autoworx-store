@@ -1,11 +1,11 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-16 22:47 SAST
+Updated: 2026-09-24 17:35 SAST
 
 ## SOURCE OF TRUTH
 - GitHub: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Current main HEAD: `a4eae6a3af94887998bc6cc79cce9874cf683772`
+- Current main HEAD: `93cade43a1dd415ed86230503f6e2207870801a6`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is temporarily being run through Cloudflare.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
@@ -56,7 +56,7 @@ Current Supabase query is authoritative over older handover counts:
 Existing stocked quantities were preserved during image/category remediation.
 
 ## LATEST VERIFIED PROGRESS
-- Current main HEAD is `a4eae6a3af94887998bc6cc79cce9874cf683772`.
+- Current main HEAD is `93cade43a1dd415ed86230503f6e2207870801a6`.
 - Latest storefront smoke run known to have succeeded: `35140654305`. It covered mobile entry, category rendering, specials/featured rendering, product-detail open/close, add-to-cart, checkout navigation/form fields and desktop viewport switching.
 - The automated smoke test is source/automated verification, **not public-site verification**.
 - Existing Netlify production deploy was inspected read-only: `6aa98a8a679a4a0008e10b58`, ready but stale, built 2026-09-15 from an older commit.
@@ -241,3 +241,13 @@ A final source review found one consistency edge case in the corrected fulfilmen
 - No Cloudflare or Netlify credits were used.
 
 The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e54175918**. The remaining external gate is still public Cloudflare verification because the exact temporary Cloudflare public hostname is not available in the repository or prior project context.
+
+
+## CONTINUATION CHECK — 24 Sep 2026
+
+- Repository access and write permissions are confirmed.
+- GitHub `main` is at `93cade43a1dd415ed86230503f6e2207870801a6`.
+- The two commits after the checkout/payment correction are documentation-only updates to `HANDOVER.md` and `LIVE_READINESS.md`; no storefront/database regression was introduced by those commits.
+- Netlify production deploy `6aa98a8a679a4a0008e10b58` remains stale and is deliberately not being refreshed.
+- No Cloudflare credits or Netlify credits were used.
+- Public Cloudflare browser verification remains deferred until the user explicitly moves to the browse/test stage.
