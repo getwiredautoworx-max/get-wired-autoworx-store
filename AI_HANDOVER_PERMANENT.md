@@ -241,3 +241,24 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] Final customer journey, mobile, order/admin, payment, delivery and failure/cancellation tests remain intentionally deferred until the latest build is hosted.
 - [ ] Final production deployment to existing Netlify site remains deferred per user instruction.
 - No Cloudflare credits used. No Netlify upload/deployment performed in this pass.
+
+
+## 24 SEP 2026 — ANDROID STORE-CONTROL APP / CATALOGUE VERIFICATION PLAN
+- [x] User requested a dedicated Android APK to control Get Wired AutoWorx from their phone.
+- [x] App direction agreed: private owner/admin login, separate from the customer storefront, connected to the existing Supabase backend and catalogue.
+- [x] Proposed owner/admin functions: dashboard; product add/edit; SKU; product name; description; category/subcategory; supplier; supplier SKU/reference; cost price; VAT; 35% markup; automatic VAT-inclusive selling price; stock; images; vehicle compatibility; activate/deactivate.
+- [x] Proposed catalogue workflow: supplier catalogue/pricelist import → staging → comparison/verification → user approval/rejection → publish to live catalogue. Imported data must never automatically overwrite the live catalogue without explicit verification.
+- [x] Proposed supplier verification fields/workflow: supplier/source URL, supplier SKU, description, price, category, image, last checked, verification status and user approval. The user remains the final authority; automated matching must not be treated as final verification.
+- [x] Proposed supplier-source support: PDF/CSV/Excel/pricelist/catalogue imports and supplier website links. Website checking must respect supplier access restrictions; if automated access is unavailable, the app should provide the source link for manual verification rather than fabricate or infer data.
+- [x] Proposed manual verification queue for the current 4,000+ catalogue: SKU + picture + description + category can be reviewed from the phone one product at a time, with Verify/Edit/Reject actions.
+- [x] Existing pricing formula remains locked: supplier cost ex VAT × 1.15 VAT × 1.35 markup; advertised price is VAT-inclusive.
+- [x] App should eventually include store control for products, categories, stock, orders, customers, payments, delivery and verification status.
+- [ ] Build the Android app project against the existing Supabase/GitHub store without replacing the existing storefront.
+- [ ] Design secure owner/admin authentication and authorization; never expose Supabase service-role/secret credentials in the APK.
+- [ ] Build catalogue import staging and verification queue.
+- [ ] Build supplier-source/link verification workflow.
+- [ ] Build mobile product editor and publish/rollback safeguards.
+- [ ] Compile an actual APK and install/test it on the user's Android phone; do not claim APK completion until compiled and tested.
+- [ ] Keep the current manual verification of all ~4,000 products as a final catalogue QA task; do not block store emulation on it.
+- [ ] Store app development must not consume Cloudflare or Netlify credits and must not trigger production deployment unless the user explicitly changes the locked instruction.
+- [ ] The Android app is an administrative control layer, not a replacement for the customer storefront.
