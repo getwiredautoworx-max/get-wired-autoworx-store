@@ -228,3 +228,16 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] Deploy the latest GitHub main build to production Netlify and perform final live/mobile testing.
 - [ ] Continue strengthening vehicle/fitment search, assisted quote flow, payment and delivery before launch.
 - No Cloudflare credits used; no Netlify deployment triggered by this change.
+
+
+## 24 SEP 2026 — PRE-HOSTING REMAINING-WORK PASS
+- [x] Rechecked current catalogue state directly: 4,187 active products; 0 active products missing image_url; 4,187 active SKUs currently have positive stock quantity; 27,745 total active stock units.
+- [x] Ran current Supabase security/performance advisor review before hosting. Main remaining security notices are: leaked-password protection disabled; intentional SECURITY DEFINER order/admin functions exposed to their calling roles; 15 RLS-enabled/no-policy findings include staging/internal tables and customer/order/admin-related tables and require final access-model review before release.
+- [x] Confirmed the SECURITY DEFINER functions already have search_path=public, pg_temp where applicable; hardened the three non-definer search functions (search_marine_products, vehicle_products, search_vehicle_products) with an explicit search_path setting.
+- [x] Added product-level NOT SURE IT FITS? GET FITMENT ADVICE WhatsApp action, with a vehicle-details prompt, alongside Add to Cart and WhatsApp to Order.
+- [ ] Enable Supabase Auth leaked-password protection before final production release (management setting not exposed through current connector).
+- [ ] Complete final RLS/access-model review and remove/resolve only genuinely unnecessary advisor findings; do not weaken required customer/order/admin protection merely to silence the advisor.
+- [ ] Final payment-provider credentials/callback configuration and live payment verification remain provider-dependent.
+- [ ] Final customer journey, mobile, order/admin, payment, delivery and failure/cancellation tests remain intentionally deferred until the latest build is hosted.
+- [ ] Final production deployment to existing Netlify site remains deferred per user instruction.
+- No Cloudflare credits used. No Netlify upload/deployment performed in this pass.
