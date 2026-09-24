@@ -20,23 +20,25 @@ jobs:
           gradle-version: '8.11'
       - name: Build debug APK
         run: gradle -p apk-sales-intelligence :app:assembleDebug
-      - name: Verify APK archive
+      - name: Verify APK
         run: |
           test -s apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
           unzip -t apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
       - name: Run APK on Android emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 35
+          api-level: 33
           arch: x86_64
           profile: pixel_6
           emulator-options: -no-window -no-audio -no-boot-anim
           disable-animations: true
           script: |
             adb install -r apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
-            adb shell am start -n za.co.getwiredautoworx.sales/.MainActivity
+            adb shell pm list packages | grep -q 'za.co.getwiredautoworx.sales'
+            adb shell monkey -p za.co.getwiredautoworx.sales -c android.intent.category.LAUNCHER 1
             sleep 5
-            adb shell dumpsys activity activities | grep -q 'za.co.getwiredautoworx.sales/.MainActivity'
+            adb shell pidof za.co.getwiredautoworx.sales
+            adb shell dumpsys activity activities | grep -q 'za.co.getwiredautoworx.sales'
       - name: Publish emulator-tested APK
         uses: actions/upload-artifact@v4
         with:
