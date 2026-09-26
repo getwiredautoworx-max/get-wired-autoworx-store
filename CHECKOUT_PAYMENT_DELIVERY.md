@@ -7,7 +7,8 @@ Updated: 2026-09-16
 - `checkout.html` verifies the current active products and prices from Supabase before order submission.
 - The injected storefront checkout enhancement in `assets/store-enhancements.js` now uses the validated `manual_payment` RPC value; this matches `public.create_store_order` and removes the previously detected `manual_confirmation` mismatch.
 - Customer details: name, phone, email, fulfilment, address, province, postal code and notes.
-- Fulfilment: nationwide delivery or pickup.
+- Fulfilment: door delivery/courier, locker/pickup point, or pickup from Get Wired AutoWorx in the current `checkout-v2.html` flow.
+- Customer-facing delivery policy in `checkout-v2.html`: delivery is R15.00 once per delivery address/order; pickup is R0.00.
 - Delivery provider wording: Courier Guy or PEP PAXI.
 - Payment methods supported by the current order workflow: EFT / bank payment, manual payment arrangement, and cash on pickup.
 - Card details are never collected by the storefront.
@@ -34,7 +35,8 @@ Updated: 2026-09-16
 ## Delivery integration boundary
 - Customer checkout records delivery versus pickup and delivery address information.
 - Delivery fee is currently confirmed by the store rather than invented by the storefront.
-- The current checkout submits a delivery fee of R0.00 to the order function; this is intentional only as a pre-integration state and must not be treated as the final customer delivery charge.
+- Current `checkout-v2.html` submits the selected delivery/pickup fee; delivery is R15.00 and pickup is R0.00.
+- The authoritative `public.create_store_order` function accepts only delivery fees of 0 or 15 and enforces pickup/cash-on-pickup versus delivery rules server-side.
 - Courier Guy / PEP PAXI are the stated delivery channels.
 - Automated delivery pricing, provider integration, tracking/reference handling and order-to-delivery linkage remain final-phase work.
 
