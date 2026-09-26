@@ -289,3 +289,17 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [x] Latest **Storefront Smoke Test passed**: run **36271621544**.
 - [x] Smoke coverage confirmed storefront entry, categories, featured product interaction, cart-to-checkout navigation, R15 delivery presentation, per-order delivery wording, pickup R0 presentation, and desktop viewport switch.
 - [x] No Netlify or Cloudflare deployment/credits were used.
+
+
+## ANDROID OWNER APP — ADDED 2026-09-27
+- Android project added under `android-owner-app/`.
+- Package: `za.co.getwiredautoworx.owner`.
+- Uses the same Supabase Auth owner/staff sign-in model as the existing admin.
+- Catalogue/pricelist import currently supports CSV/XLS/XLSX into a **local staging queue**; rows are not written to live products automatically.
+- Supplier URL + SKU source records can be added and manually marked verified.
+- Staging rows have explicit PENDING / APPROVED / REJECTED states.
+- Existing store admin remains separate for live order management.
+- GitHub Actions build workflow: `.github/workflows/build-owner-apk.yml`.
+- Build target is a debug APK artifact for installation/testing; production signing is not yet configured.
+- No Cloudflare credits and no Netlify credits are used by the APK build.
+- IMPORTANT NEXT APK WORK: connect approved staging rows to a controlled authenticated publish workflow after exact SKU/source verification rules are defined; do not bulk-publish unverified catalogue data.
