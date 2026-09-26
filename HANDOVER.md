@@ -251,3 +251,15 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - Netlify production deploy `6aa98a8a679a4a0008e10b58` remains stale and is deliberately not being refreshed.
 - No Cloudflare credits or Netlify credits were used.
 - Public Cloudflare browser verification remains deferred until the user explicitly moves to the browse/test stage.
+
+
+## APK CONTINUATION — 26 SEP 2026
+- [x] Existing Sales Intelligence APK source preserved under `apk-sales-intelligence/`.
+- [x] Android Gradle project scaffolding added without changing the customer storefront.
+- [x] APK build workflow added at `.github/workflows/build-store-apk.yml`.
+- [x] **v0.3.1 debug APK built successfully** by GitHub Actions run **36270086197**.
+- [x] APK artifact uploaded as `get-wired-autoworx-sales-v0.3.1`.
+- [x] Protected `orders` / `order_items` data is no longer queried using the public catalogue key. The APK currently reads only public active products/categories and explicitly marks sales/order analytics as requiring authenticated admin access.
+- [x] APK artifact was downloaded and integrity-tested locally; APK is a valid Android package.
+- [ ] Emulator install/launch validation is still running on the first API 35 run; workflow was then hardened to API 34 with a 12-minute timeout for the next validation run.
+- [ ] After emulator validation succeeds, add the verified APK artifact/result to the final APK handover and proceed to the next available store task.
