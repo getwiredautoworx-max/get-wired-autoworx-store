@@ -33,14 +33,14 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: get-wired-autoworx-sales-v0.3.1
+          name: get-wired-autoworx-sales-v0.3.2
           path: apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
 
       - name: Emulator install and launch validation
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: 33
           arch: x86_64
           profile: pixel_2
           emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
@@ -49,5 +49,5 @@ jobs:
             adb install -r apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
             adb shell am start -n za.co.getwiredautoworx.sales/.MainActivity
             sleep 8
-            adb shell dumpsys package za.co.getwiredautoworx.sales | grep -q 'versionName=0.3.1'
+            adb shell dumpsys package za.co.getwiredautoworx.sales | grep -q 'versionName=0.3.2'
             adb shell dumpsys activity activities | grep -q 'za.co.getwiredautoworx.sales/.MainActivity'
