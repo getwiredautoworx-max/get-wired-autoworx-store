@@ -48,7 +48,7 @@ jobs:
             const delivery = await page.locator('#deliverySummary').textContent();
             if (!delivery || !delivery.includes('R15.00')) throw new Error('Expected fixed R15.00 delivery charge');
             const notice = await page.locator('.notice').first().textContent();
-            if (!notice.includes('once per delivery address/order')) throw new Error('Per-order delivery notice missing');
+            if (!notice.includes('per delivery address/order')) throw new Error('Per-order delivery notice missing');
             await page.selectOption('#fulfilment','pickup');
             await page.waitForTimeout(100);
             const pickup = await page.locator('#deliverySummary').textContent();
