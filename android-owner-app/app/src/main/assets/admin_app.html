@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Wired AutoWorx Owner</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#02060d;color:#f5f8fc;font:15px Arial,sans-serif}header{padding:18px;background:#07111e;border-bottom:1px solid #164665;position:sticky;top:0;z-index:2}h1,h2{margin:0 0 8px}main{padding:12px;max-width:760px;margin:auto}.card{background:#07111e;border:1px solid #164665;border-radius:12px;padding:15px;margin:12px 0}.muted{color:#9fb0c1}.hidden{display:none}input,select,textarea{width:100%;background:#050d18;color:#fff;border:1px solid #28658c;border-radius:8px;padding:11px;margin:5px 0 10px}button{border:0;border-radius:8px;padding:11px 14px;background:#087fe0;color:#fff;font-weight:800;margin:4px 3px 4px 0}.secondary{background:#12344c}.danger{background:#8d1e2b}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{padding:12px;border:1px solid #164665;border-radius:9px;background:#050d18}.row{border-top:1px solid #164665;padding:12px 0}.ok{color:#55d68b}.warn{color:#ffd166}@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>GET WIRED AUTOWORX</h1><div class="muted">Owner Control • Catalogue • Verification • Orders</div></header><main>
+<section id="login" class="card"><h2>Owner Login</h2><p class="muted">Use the authorised Supabase owner/staff account.</p><input id="email" type="email" placeholder="Owner email" autocomplete="email"><button onclick="login()">SEND SECURE SIGN-IN LINK</button><p id="msg" class="muted"></p></section>
+<section id="app" class="hidden">
+<div class="card"><div class="grid"><div class="stat">Session<br><b id="user"></b></div><div class="stat">Staged rows<br><b id="stagedCount">0</b></div></div><button class="secondary" onclick="logout()">LOG OUT</button></div>
+<div class="card"><h2>Catalogue / Pricelist Import</h2><p class="muted">Import CSV or Excel into a local staging queue. Nothing is published automatically.</p><input id="file" type="file" accept=".csv,.xlsx,.xls" multiple><button onclick="importFiles()">IMPORT TO STAGING</button><button class="secondary" onclick="clearStage()">CLEAR STAGING</button><div id="importMsg" class="muted"></div></div>
+<div class="card"><h2>Supplier Source Verification</h2><p class="muted">Add supplier product URLs, open them, then record the verification decision. SKU identity must be confirmed before publishing.</p><input id="supplierUrl" type="url" placeholder="https://supplier-site/product/SKU"><input id="supplierSku" placeholder="Supplier SKU"><button onclick="addSource()">ADD SOURCE</button><div id="sources"></div></div>
+<div class="card"><h2>Staging Review</h2><div id="queue"></div></div>
+<div class="card"><h2>Orders</h2><p class="muted">The existing authenticated order-management page remains available through the store admin. This app's catalogue workflow is deliberately separated from live publishing.</p><button onclick="openAdmin()">OPEN STORE ADMIN</button></div>
+</section></main>
+<script>
+const SUPABASE_URL='https://ojytykqpvonxvepprgbh.supabase.co';
+const SUPABASE_KEY='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY); let stage=JSON.parse(localStorage.gwStage||'[]'); let sources=JSON.parse(localStorage.gwSources||'[]');
+const $=id=>document.getElementById(id);
+function render(){ $('stagedCount').textContent=stage.length; $('queue').innerHTML=stage.length?stage.slice(0,200).map((r,i)=>'<div class="row"><b>'+esc(r.SKU||r.sku||r.PartNumber||'No SKU')+'</b><br>'+esc(r.Description||r.description||r.Product||'')+'<br>Cost: '+esc(r.Cost||r.cost||r.CostPrice||'')+' <span class="warn">STATUS: '+esc(r._status||'PENDING')+'</span><br><button onclick="setStatus('+i+',\'APPROVED\')">APPROVE</button><button class="danger" onclick="setStatus('+i+',\'REJECTED\')">REJECT</button></div>').join(''):'No staged catalogue rows.'; $('sources').innerHTML=sources.map((s,i)=>'<div class="row"><b>'+esc(s.sku)+'</b><br><a href="'+esc(s.url)+'" target="_blank">'+esc(s.url)+'</a><br><span class="'+(s.verified?'ok':'warn')+'">'+(s.verified?'VERIFIED':'NOT VERIFIED')+'</span> <button onclick="verifySource('+i+')">MARK VERIFIED</button></div>').join('')||'No supplier sources added.'; localStorage.gwStage=JSON.stringify(stage);localStorage.gwSources=JSON.stringify(sources)}
+function esc(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+async function login(){const e=$('email').value.trim();if(!e)return;const {error}=await sb.auth.signInWithOtp({email:e,options:{emailRedirectTo:location.href}});$('msg').textContent=error?error.message:'Check your email for the secure sign-in link.'}
+async function boot(){const {data}=await sb.auth.getSession();if(data.session)show(data.session);sb.auth.onAuthStateChange((_,s)=>s&&show(s));render()}
+function show(s){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('user').textContent=s.user?.email||'Owner';render()}
+async function logout(){await sb.auth.signOut();location.reload()}
+async function importFiles(){const fs=[...$('file').files];if(!fs.length){$('importMsg').textContent='Choose a CSV or Excel file.';return}let added=0;for(const f of fs){try{const buf=await f.arrayBuffer();const wb=XLSX.read(buf,{type:'array'});for(const name of wb.SheetNames){const rows=XLSX.utils.sheet_to_json(wb.Sheets[name],{defval:''});for(const r of rows){stage.push({...r,_source:f.name,_sheet:name,_status:'PENDING'});added++}}}catch(e){$('importMsg').textContent='Import error: '+e.message;return}}$('importMsg').textContent=added+' rows staged for review. No live product was changed.';render()}
+function setStatus(i,s){stage[i]._status=s;render()} function clearStage(){stage=[];render()} function addSource(){const u=$('supplierUrl').value.trim(),s=$('supplierSku').value.trim();if(!u||!s)return;try{new URL(u)}catch(e){return}sources.push({url:u,sku:s,verified:false,added:new Date().toISOString()});$('supplierUrl').value='';$('supplierSku').value='';render()} function verifySource(i){sources[i].verified=true;sources[i].verifiedAt=new Date().toISOString();render()}
+function openAdmin(){location.href='https://get-wired-autoworx-store.netlify.app/admin.html'}
+boot();
+</script></body></html>
