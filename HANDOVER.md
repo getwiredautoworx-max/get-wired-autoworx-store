@@ -282,3 +282,10 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [x] Verified `public.create_store_order` is server-authoritative and accepts only fee **0 or 15**, requiring cash-on-pickup for R0 and rejecting cash-on-pickup for R15.
 - [x] The previously recorded checkout-fee blocker is resolved in the current source/database state; no database migration was required.
 - [x] Checkout/payment documentation updated to match the verified current flow.
+
+
+## STOREFRONT AUTOMATED QA RECHECK — 26 SEP 2026
+- [x] Corrected the automated smoke assertion to match the verified checkout-v2 delivery wording.
+- [x] Latest **Storefront Smoke Test passed**: run **36271621544**.
+- [x] Smoke coverage confirmed storefront entry, categories, featured product interaction, cart-to-checkout navigation, R15 delivery presentation, per-order delivery wording, pickup R0 presentation, and desktop viewport switch.
+- [x] No Netlify or Cloudflare deployment/credits were used.
