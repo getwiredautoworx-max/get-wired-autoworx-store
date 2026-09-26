@@ -263,3 +263,13 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [x] APK artifact was downloaded and integrity-tested locally; APK is a valid Android package.
 - [ ] Emulator install/launch validation is still running on the first API 35 run; workflow was then hardened to API 34 with a 12-minute timeout for the next validation run.
 - [ ] After emulator validation succeeds, add the verified APK artifact/result to the final APK handover and proceed to the next available store task.
+
+
+### APK VALIDATION COMPLETED — 26 SEP 2026
+- [x] **Store APK v0.3.1 successfully built.**
+- [x] **GitHub Actions emulator validation passed**: run **36270739551**.
+- [x] Emulator validation included APK installation and launch of `za.co.getwiredautoworx.sales/.MainActivity`.
+- [x] Build artifact: `get-wired-autoworx-sales-v0.3.1`.
+- [x] Emulator-validated APK artifact downloaded and locally verified as a valid Android package.
+- [x] The APK does not bypass RLS or expose protected order/customer data through the public catalogue key.
+- [ ] Future APK enhancement: authenticated admin sales-history access can be added using the existing Supabase Auth/admin RPC model; this is not required for the validated v0.3.1 installation build.
