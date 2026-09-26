@@ -39,9 +39,7 @@ public class MainActivity extends Activity {
       try{
         JSONArray products=get("products?select=id,name,sku,price,cost_price,stock_quantity,active,category_id&active=eq.true&limit=5000");
         JSONArray cats=get("categories?select=id,name,active&active=eq.true&limit=500");
-        JSONArray orders=get("orders?select=id,total,payment_status,order_status,created_at&limit=5000");
-        JSONArray items=get("order_items?select=product_id,product_name,sku,quantity,line_total&limit=10000");
-        runOnUiThread(()->render(products,cats,orders,items));
+        runOnUiThread(()->render(products,cats));
       }catch(Exception e){runOnUiThread(()->status.setText("Store data connection failed: "+e.getMessage()));}
     }).start();
   }
@@ -52,23 +50,19 @@ public class MainActivity extends Activity {
     BufferedReader r=new BufferedReader(new InputStreamReader(in)); StringBuilder s=new StringBuilder(); String line; while((line=r.readLine())!=null)s.append(line);
     if(code<200||code>=300)throw new IOException(code+" "+s); return new JSONArray(s.toString());
   }
-  void render(JSONArray p,JSONArray c,JSONArray o,JSONArray items){
+  void render(JSONArray p,JSONArray c){
     cards.removeAllViews();
     int low=0,out=0; double stockValue=0;
     for(int i=0;i<p.length();i++)try{JSONObject x=p.getJSONObject(i); int q=x.optInt("stock_quantity",0); if(q<=0)out++; else if(q<=2)low++; stockValue+=q*x.optDouble("cost_price",0);}catch(Exception e){}
-    double sales=0; int paid=0;
-    for(int i=0;i<o.length();i++)try{JSONObject x=o.getJSONObject(i); if("paid".equalsIgnoreCase(x.optString("payment_status"))){sales+=x.optDouble("total",0);paid++;}}catch(Exception e){}
-    HashMap<String,Integer> sold=new HashMap<>(); HashMap<String,String> names=new HashMap<>();
-    for(int i=0;i<items.length();i++)try{JSONObject x=items.getJSONObject(i); String k=x.optString("product_id"); sold.put(k,sold.getOrDefault(k,0)+x.optInt("quantity",0)); names.put(k,x.optString("product_name","Unnamed"));}catch(Exception e){}
     card("PRODUCTS",String.valueOf(p.length()),"Active catalogue records visible to the app");
     card("CATEGORIES",String.valueOf(c.length()),"Active sales categories");
-    card("SALES","R "+String.format(Locale.US,"%.2f",sales),paid+" paid order(s) currently recorded");
+    card("SALES DATA","Admin sign-in required","Order totals and customer/order records are protected and are not queried with the public catalogue key");
     card("LOW / OUT OF STOCK",low+" / "+out,"Low stock ≤ 2 units; out of stock = 0");
-    card("BEST SELLERS",sold.size()==0?"Awaiting sales data":topSold(sold,names),"Calculated from order_items");
+    card("BEST SELLERS","Admin sign-in required","Calculated only from authenticated order history; no sales are guessed");
     card("MOST QUERIED","Awaiting query telemetry","No query-event table/data is currently available; not guessed");
-    card("SLOW MOVERS",sold.size()==0?"Awaiting sales history":slowMover(p,sold),"Requires sales history for a defensible result");
+    card("SLOW MOVERS","Admin sign-in required","Requires authenticated sales history for a defensible result");
     card("DAILY SPECIALS","Supplier specials workflow ready for next data connection","Special period, SKU matching and expiry will be kept separate from normal catalogue pricing");
-    status.setText("Connected • "+new Date());
+    status.setText("Connected to public catalogue • "+new Date());
   }
   String topSold(HashMap<String,Integer> s,HashMap<String,String> n){String k=null;int v=-1;for(String x:s.keySet())if(s.get(x)>v){v=s.get(x);k=x;}return n.get(k)+" ("+v+" units)";}
   String slowMover(JSONArray p,HashMap<String,Integer>s){String best="No zero-sales product can be classified safely yet";for(int i=0;i<p.length();i++)try{String id=p.getJSONObject(i).optString("id");if(!s.containsKey(id)){best=p.getJSONObject(i).optString("name");break;}}catch(Exception e){}return best;}
