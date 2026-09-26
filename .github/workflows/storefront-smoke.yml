@@ -48,7 +48,12 @@ jobs:
             const delivery = await page.locator('#deliverySummary').textContent();
             if (!delivery || !delivery.includes('R15.00')) throw new Error('Expected fixed R15.00 delivery charge');
             const notice = await page.locator('.notice').first().textContent();
-            if (!notice.includes('not charged per item')) throw new Error('Per-order delivery notice missing');
+            if (!notice.includes('once per delivery address/order')) throw new Error('Per-order delivery notice missing');
+            await page.selectOption('#fulfilment','pickup');
+            await page.waitForTimeout(100);
+            const pickup = await page.locator('#deliverySummary').textContent();
+            if (!pickup || !pickup.includes('Pickup')) throw new Error('Pickup fulfilment not reflected');
+            if (!pickup.includes('R0.00')) throw new Error('Pickup must be R0.00');
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
