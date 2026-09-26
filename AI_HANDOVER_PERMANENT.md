@@ -262,3 +262,18 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] Keep the current manual verification of all ~4,000 products as a final catalogue QA task; do not block store emulation on it.
 - [ ] Store app development must not consume Cloudflare or Netlify credits and must not trigger production deployment unless the user explicitly changes the locked instruction.
 - [ ] The Android app is an administrative control layer, not a replacement for the customer storefront.
+
+
+## 27 SEP 2026 — GW AI OS PROJECT STARTED
+- [x] User approved continuing the concept of a custom AI-first mobile OS rather than treating the existing Android Owner APK as the final destination.
+- [x] Added `GW_AI_OS/ARCHITECTURE.md` to the repository.
+- [x] Architecture uses AOSP as the Android foundation rather than replacing Android with a new kernel/runtime.
+- [x] Target is a custom GW System Layer + provider-neutral GW AI Core + Secure Action Broker while retaining Android APK/app compatibility.
+- [x] AI provider independence is a core requirement: the OS must not be hard-wired to ChatGPT and should support replaceable cloud/local AI providers.
+- [x] Existing Owner APK remains the first administrative client and is not being discarded.
+- [x] No phone ROM has been replaced or flashed.
+- [x] No customer storefront deployment has been triggered.
+- [x] No Cloudflare or Netlify credits are to be used.
+- [ ] Next build target: GW Launcher prototype as an ordinary Android app, requiring no root or ROM replacement.
+- [ ] After launcher/control architecture is proven: GW AI Core/action broker, then AOSP integration, then device-specific ROM work.
+- [ ] Do not claim a custom OS is complete until an AOSP-based image actually builds and boots on a supported device.
