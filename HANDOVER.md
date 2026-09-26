@@ -273,3 +273,12 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [x] Emulator-validated APK artifact downloaded and locally verified as a valid Android package.
 - [x] The APK does not bypass RLS or expose protected order/customer data through the public catalogue key.
 - [ ] Future APK enhancement: authenticated admin sales-history access can be added using the existing Supabase Auth/admin RPC model; this is not required for the validated v0.3.1 installation build.
+
+
+## CHECKOUT FEE / FULFILMENT RECHECK — 26 SEP 2026
+- [x] Rechecked the current live source entry: `store.html` routes checkout to `checkout-v2.html`.
+- [x] Verified `checkout-v2.html` now supports **delivery/courier, locker/pickup point, and Get Wired AutoWorx pickup**.
+- [x] Verified customer-facing delivery policy: **R15.00 once per delivery address/order**; pickup is **R0.00**.
+- [x] Verified `public.create_store_order` is server-authoritative and accepts only fee **0 or 15**, requiring cash-on-pickup for R0 and rejecting cash-on-pickup for R15.
+- [x] The previously recorded checkout-fee blocker is resolved in the current source/database state; no database migration was required.
+- [x] Checkout/payment documentation updated to match the verified current flow.
