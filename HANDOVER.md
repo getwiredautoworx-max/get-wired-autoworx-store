@@ -337,9 +337,33 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [ ] Do not replace unresolved products with guessed images; only exact-SKU supplier/PDF evidence may be promoted to production.
 - [x] Live product stock discrepancy reconciled: 4,187 active positive-stock SKUs / 27,745 units is the intentional stock-floor state. 4,153 active products are at quantity 5 and 34 retain explicitly verified ASC quantities above 5. The earlier 44-SKU snapshot is historical; the 36-SKU / 7,037-unit ASC verification ledger remains distinct from the store stock-floor values. No stock values were changed during image QA.
 
-## EXECUTION STATUS — 2026-09-28 17:05 SAST
+## EXECUTION STATUS — 2026-09-28 17:20 SAST
 
 - Owner APK workflow run **36440489387** completed the **Build debug APK** step successfully and uploaded artifact **get-wired-autoworx-owner-debug-apk** (artifact ID **10978630616**, SHA-256 `c83cd2ec564bc177538da9f6f7888b6e2a820cff4ec2d96121303fb03ececf17`).
 - APK workflow package/version remains `za.co.getwiredautoworx.owner` / `1.0.1`.
-- ASC exact-SKU image sync workflow run **36440485985** is actively executing its exact-SKU fetch step. It has completed checkout, Python setup, dependencies and run-status recording; image results are not yet final and must not be treated as complete until the workflow finishes.
+- ASC exact-SKU image sync workflow run **36440485985** remains actively executing its exact-SKU fetch step. Image results are not yet final and must not be treated as complete until the workflow finishes.
 - No Cloudflare or Netlify credits used.
+
+
+## REMAINING TASKS — 2026-09-28 17:20 SAST
+
+### Automated execution
+- [x] Owner APK workflow run **36440489387** completed successfully through the debug APK build and artifact upload.
+- [x] Owner APK artifact **get-wired-autoworx-owner-debug-apk** is available; artifact SHA-256: `c83cd2ec564bc177538da9f6f7888b6e2a820cff4ec2d96121303fb03ececf17`.
+- [ ] Install/launch validation of the new **v1.0.1 Owner APK** on an Android device/emulator is still required; the successful GitHub build alone does not prove installation/launch.
+- [ ] Production signing/release APK remains outstanding; debug APK is the current test build.
+- [ ] ASC exact-SKU image enrichment run **36440485985** is still running; wait for completion and verify its report/artifact before changing the 3,396 placeholder products.
+- [ ] Latest Storefront Smoke Test run **36440855847** failed at the local storefront data-load wait: category cards did not appear within 20 seconds. This is an automated/local QA failure, not a public-site test. The failed job was re-run; verify the rerun result before treating storefront QA as passed.
+
+### Store launch / owner verification
+- [ ] Verify Owner APK payment/order/admin functions on-device after installation validation.
+- [ ] Owner must verify the final EFT/bank payment details before real payment instructions are considered final.
+- [ ] Product-by-product SKU + image + description + category verification remains outstanding for the catalogue and should use exact evidence only.
+- [ ] Public Cloudflare storefront/browser verification remains the final external launch gate and is intentionally deferred until the owner says browsing/testing is ready.
+- [ ] Do not deploy/refresh Cloudflare or Netlify solely for testing and do not spend credits.
+- [ ] After public verification is authorized and successful, record the actual public URL/results in `LIVE_READINESS.md` and this handover.
+
+### Not launch blockers unless owner requires them
+- [ ] 3,396 placeholder-image products: continue exact-SKU enrichment; do not guess mappings.
+- [ ] Production Android signing can be completed after functional APK validation and owner decision on release-key management.
+- [ ] Supplier catalogue bulk verification/import remains a controlled post-foundation workflow through the Owner APK.
