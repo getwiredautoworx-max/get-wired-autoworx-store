@@ -319,3 +319,8 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [ ] Public Cloudflare storefront verification remains the final external launch gate and is still deferred until the user is ready to browse/test.
 - [ ] Payment/bank details still require owner verification before real payment instructions are treated as final.
 - [ ] Product-by-product image/description/SKU QA and verified image enrichment remain post-foundation catalogue work; do not guess images.
+
+
+### OWNER PUBLISH RPC SECURITY RECHECK — 28 SEP 2026
+- [x] Explicit privilege audit completed: `anon_execute = false`, `authenticated_execute = true` for `owner_publish_product`.
+- [x] Anonymous/public execution was explicitly revoked after verification.
