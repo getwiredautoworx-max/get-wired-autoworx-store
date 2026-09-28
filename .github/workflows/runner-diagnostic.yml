@@ -1,0 +1,13 @@
+name: Runner Diagnostic
+on:
+  push:
+    paths:
+      - '.github/workflows/runner-diagnostic.yml'
+jobs:
+  test:
+    runs-on: ubuntu-slim
+    steps:
+      - name: Confirm runner
+        run: |
+          echo "RUNNER_DIAGNOSTIC_OK"
+          uname -a
