@@ -35,7 +35,6 @@ jobs:
             await page.waitForSelector('#store');
             const iframe = page.locator('#store');
             await iframe.waitFor({timeout:10000});
-            await iframe.contentFrame().waitForLoadState('domcontentloaded', {timeout:15000});
             const frame = page.frameLocator('#store');
             try {
               await frame.locator('#categoryGrid .catWrap').first().waitFor({timeout:60000});
