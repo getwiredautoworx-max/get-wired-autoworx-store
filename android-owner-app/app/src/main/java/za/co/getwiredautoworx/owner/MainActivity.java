@@ -39,7 +39,8 @@ public class MainActivity extends Activity {
         });
         setContentView(web);
         String screen = getIntent().getStringExtra("screen");
-        web.loadUrl("store".equals(screen) ? "file:///android_asset/store/store.html" : "file:///android_asset/admin_app.html");
+        String target = "store".equals(screen) ? "file:///android_asset/store/store.html" : ("checkout".equals(screen) ? "file:///android_asset/store/checkout-v2.html" : "file:///android_asset/admin_app.html");
+        web.loadUrl(target);
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
