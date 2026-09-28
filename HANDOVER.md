@@ -394,3 +394,93 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - Supabase Auth still reports leaked-password protection disabled. This is a dashboard configuration item and should be enabled before production credentials are finalized.
 - Performance advisors report duplicate/unused indexes. No index was dropped because several duplicates correspond to unique constraints or active query paths and removing them without schema-level verification could create regression.
 - No production data was changed during this audit; no real order was created; no Cloudflare or Netlify credits were used.
+
+
+## MASTER CONTINUATION / EFFICIENCY / ETA / GOALS — 2026-09-28
+
+### Operating objective
+Continue from this handover as the single source of truth. **Maximise efficiency and minimise user interruption.** Execute independent tasks in parallel where technically safe, avoid repeating completed work, and only stop when a genuine owner-controlled action is required.
+
+### Efficiency rules
+1. **Do not restart completed work.** Treat verified Supabase, catalogue, checkout, security and source-audit results as established unless new evidence contradicts them.
+2. **Work the critical path first.** Prioritise the current Owner APK build/validation blocker, then final store functional readiness, payment-owner verification, and finally the 4,000+ product manual QA.
+3. **Run independent work in parallel** where the tools allow it, without changing production data unnecessarily.
+4. **Use the existing source and workflows.** Do not create replacement/demo stores, simplified APKs, duplicate databases or parallel catalogue imports.
+5. **Prefer read-only verification before mutation.** Make changes only when the evidence identifies a real defect and the change is safe.
+6. **Do not spend paid credits.** No Cloudflare credits and no Netlify credits. Avoid unnecessary Replit Agent calls while its execution allowance is unavailable.
+7. **Never create real customer orders during testing** unless the owner explicitly authorises one.
+8. **Do not claim completion from a source inspection alone.** Build/install/emulator/public tests must have actually executed before being marked passed.
+9. **Do not block the APK on the 4,000+ product manual QA.** Manual catalogue verification is a final controlled task.
+10. **Keep the handover current after meaningful milestones**, including exact commit/run/build/artifact references where available.
+
+### Current ETA — 28 September 2026
+**Target: store + current Owner APK ready for final owner-controlled acceptance by 30 September 2026**, subject to the external execution/owner gates below.
+
+Current remaining effort is not a rebuild:
+- **Owner APK build/install/emulator validation:** critical-path blocker; execution environment must successfully run the current v1.0.1 source.
+- **Owner APK functional validation:** Owner Login → Store → Checkout → core WebView/file chooser/admin workflow.
+- **Store final functional regression:** approximately 1–3 focused hours once the test environment/public URL is authorised and accessible, depending on findings.
+- **Payment configuration:** owner verification of final EFT/bank/payment details is required before publishing those details.
+- **Public Cloudflare browser verification:** approximately 30–60 minutes once the owner explicitly authorises browsing/testing and the actual public hostname is available.
+- **Manual 4,000+ catalogue QA:** final task and potentially the longest human/data-review task; it should not delay technical readiness work.
+
+**ETA caveat:** 30 September is the project target, not a guaranteed clock-time promise. The main uncertainty is the external Android execution environment for the current Owner APK and any defects discovered during actual final testing.
+
+### Current priority order
+**P0 — Critical**
+1. Obtain a functioning execution environment for the existing android-owner-app.
+2. Build current Owner APK **v1.0.1 / versionCode 2**.
+3. Install and validate on emulator/device: Owner Login, Store, Checkout, WebView, navigation and file chooser.
+4. Fix only verified defects and repeat build/validation until passed.
+5. Preserve the exact APK artifact and record the result.
+
+**P1 — Final technical readiness**
+6. Complete remaining non-public store regression checks that can be performed without spending hosting credits or creating real orders.
+7. Verify admin/order/payment/delivery flows remain consistent.
+8. Keep security state unchanged unless a safe, evidence-backed fix is identified.
+9. Owner enables Supabase leaked-password protection in the dashboard before final production credential setup.
+
+**P2 — Owner-controlled launch gate**
+10. Owner verifies final payment/bank details.
+11. Owner explicitly authorises public Cloudflare browser testing.
+12. Verify actual public storefront, mobile/desktop behaviour and customer journey.
+13. Record the actual public hostname and final readiness result.
+
+**P3 — Final catalogue QA**
+14. Manually verify the 4,000+ active products for SKU, product identity, description, category and image.
+15. Correct only verified mismatches; never guess product/image mappings.
+16. Re-run final catalogue integrity checks after corrections.
+
+### Goals and targets
+- **Store goal:** professional, fast, mobile-first Get Wired AutoWorx storefront that is easy to browse, search and purchase from.
+- **Data target:** maintain 4,187 active products, unique SKUs, valid pricing, valid stock and zero uncategorized active products unless verified changes are intentionally made.
+- **Pricing target:** maintain cost × 1.15 VAT × 1.35 markup with zero unexplained pricing mismatches.
+- **Checkout target:** delivery R15 / pickup R0, server-authoritative fulfilment fee and price/stock validation, no card details stored, and no invalid payment/fulfilment combinations accepted.
+- **Security target:** preserve authenticated admin/owner controls, RLS protections and server-side privileged checks; do not weaken security merely to silence advisory warnings.
+- **APK target:** current v1.0.1 must actually build, install and pass Owner Login → Store → Checkout validation before being labelled ready.
+- **Image target:** never replace the 3,396 verified placeholders with unverified or visually guessed images. Enrich only from exact verified product/SKU sources.
+- **Launch target:** no stale Netlify URL, no unnecessary hosting deployment, no paid Cloudflare/Netlify credits, and no real order during testing.
+- **Catalogue QA target:** ultimately achieve verified SKU + image + description + category accuracy across the full active catalogue.
+- **Documentation target:** every major milestone leaves an exact, reproducible record in GitHub/handover.
+
+### Known external gates — do not misclassify as source failures
+- GitHub Actions current APK jobs have failed before workflow steps start; this is an execution/runner issue, not proof that the APK source is defective.
+- Replit Agent has previously timed out when attempting the current v1.0.1 build/validation route; do not spam retries while its execution allowance is unavailable.
+- Public Cloudflare verification is intentionally deferred until the owner says they are ready to browse/test and the actual public hostname is available.
+- Final bank/payment details require owner verification.
+- Supabase leaked-password protection requires owner/dashboard action.
+
+### Definition of success
+The project is considered technically ready for owner acceptance when:
+- current Owner APK v1.0.1 has a real successful build artifact and successful emulator/device validation;
+- store/customer flows have passed final regression;
+- checkout fulfilment/payment rules are confirmed;
+- admin controls remain authenticated and functional;
+- no test/demo orders exist;
+- no secrets are exposed;
+- no stale production target is being used;
+- no Cloudflare/Netlify credits have been spent;
+- the owner has verified final payment details;
+- and, when authorised, the actual public Cloudflare storefront has passed browser verification.
+
+**Continue automatically toward these targets. Report only completed milestones or genuine owner-controlled blockers.**
