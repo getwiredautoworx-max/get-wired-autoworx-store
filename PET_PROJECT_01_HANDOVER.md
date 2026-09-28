@@ -4,13 +4,13 @@ Updated: 2026-09-28 SAST
 
 ## Identity
 Independent project. NOT part of Get Wired AutoWorx.
-Target: our own Android-based OS for an approximately 8-inch tablet, designed for speed, security, Android app compatibility, Google Play/GMS where appropriately licensed/supported, and our own custom apps.
+Target: our own Android-based OS for an approximately 8-inch tablet or suitable phone/tablet development device, designed for speed, security, Android app compatibility, Google Play/GMS where appropriately licensed/supported, and our own custom apps.
 
 ## Big-picture goal
 Build a lightweight, highly customised Android OS that:
 - runs normal Android applications
 - supports Google account, Play Store, Chrome, WhatsApp, Facebook and other required apps where device/GMS compatibility permits
-- runs our own custom applications
+- runs our own custom applications, including the Get Wired AutoWorx app where compatible
 - removes unnecessary OEM/bloat components
 - prioritises speed, responsiveness, security and privacy
 - supports reliable OTA/security updates
@@ -24,6 +24,7 @@ Build a lightweight, highly customised Android OS that:
 4. Reliable updates
 5. Customisation/control
 6. Battery efficiency
+7. Lowest practical hardware cost for development/testing
 
 ## Technical direction
 Use AOSP as the foundation, not a new kernel/platform from scratch.
@@ -72,9 +73,40 @@ Target:
 
 Measure performance; do not assume it.
 
+## Hardware strategy — LOW-COST SECOND-HAND FIRST
+User has clarified that the immediate objective is the CHEAPEST practical Android phone/tablet that can be purchased second-hand, wiped and used for development/testing of the custom OS.
+
+Do NOT optimise for premium hardware unless the price difference is justified by substantially better development support.
+
+Preferred initial purchase target:
+- roughly R500–R1,500 used where possible
+- absolute upper target around R2,000 unless a clearly superior development device is available
+- 4GB+ RAM preferred
+- 64GB+ storage preferred
+- ARM64 mandatory
+- exact model/variant must be identified before purchase
+- established AOSP/custom-ROM/community support strongly preferred
+- unlockable bootloader is a major requirement
+- working USB/charging/display/touch required
+- avoid devices that cannot provide a realistic custom-ROM/AOSP route
+
+A very cheap older device such as a Galaxy Tab E may be acceptable ONLY as a disposable experimentation device at a very low price. It is not the preferred everyday/custom-OS target because of very old hardware, low RAM and weak modern-app/security prospects.
+
+Current low-cost candidates identified for further screening:
+- Samsung Galaxy Tab A7 2020, exact model variants such as SM-T505/T505N
+- Samsung Galaxy Tab S6 Lite 2020, exact supported variants only
+- Samsung Galaxy Tab S7
+- Samsung Galaxy S20 FE Exynos
+- older Google Pixel devices
+- selected older Samsung/Motorola/Sony/Xiaomi phones with strong custom-ROM support
+
+The Samsung Galaxy Tab A7 2020 is currently of interest as a low-cost tablet candidate, but its 3GB RAM and older Snapdragon 662 mean it must be treated as a budget development/test target rather than automatically selected.
+The Samsung Galaxy Tab E is only a potential ultra-cheap experimental device, not the main target.
+
 ## Hardware gate — BEFORE PURCHASE
 Screen candidates for:
 - ARM64
+- exact model number and regional variant
 - exact SoC/chipset
 - bootloader unlockability
 - vendor/BSP availability
@@ -93,8 +125,9 @@ Screen candidates for:
 - Android 17 feasibility
 - GMS/Play Store feasibility
 - developer/community support
+- current second-hand price
 
-Do not buy arbitrary tablet hardware before this screening.
+Do not buy arbitrary tablet or phone hardware before this screening.
 
 ## Development phases
 ### P0 — Architecture + hardware feasibility
@@ -107,7 +140,7 @@ Establish AOSP build environment, select Android 17 baseline, build clean develo
 Branding, launcher/UI, settings, component reduction, performance tuning, security configuration, update and recovery strategy.
 
 ### P3 — App compatibility
-Test Play Store/GMS path, Google account, Chrome, WhatsApp, Facebook, common apps, custom apps, notifications, permissions, media, Wi-Fi, Bluetooth, location and camera where applicable.
+Test Play Store/GMS path, Google account, Chrome, WhatsApp, Facebook, Gmail, common apps, Get Wired AutoWorx app, notifications, permissions, media, Wi-Fi, Bluetooth, location and camera where applicable.
 
 ### P4 — Security hardening
 Verified Boot, SELinux, encryption, secure keys, signed updates, rollback protection, attack-surface reduction and release audit.
@@ -122,7 +155,7 @@ Flash, hardware, suspend/resume, charging, wireless, audio, touchscreen, camera,
 Release signing, locked bootloader, final security/compatibility audit, update infrastructure, recovery and documented recovery procedure.
 
 ## Definition of success
-A selected tablet runs the OS as its primary system and:
+A selected phone/tablet runs the OS as its primary system and:
 1. boots reliably
 2. is fast and lightweight
 3. runs required Android apps
@@ -139,23 +172,32 @@ A selected tablet runs the OS as its primary system and:
 P0 — Architecture and hardware feasibility.
 No production OS built yet.
 
-Current finding: Android 17 is a viable baseline for investigation; Android 17 GSI builds are available, including ARM64+GMS variants, but device-specific support and GMS licensing/compliance remain separate requirements.
+Current findings:
+- Android 17 is a viable baseline for investigation.
+- Android 17 GSI builds are available, including ARM64+GMS variants, but device-specific support and GMS licensing/compliance remain separate requirements.
+- User prioritises the cheapest viable second-hand hardware.
+- Hardware selection is now explicitly open to BOTH tablets and phones.
+- Samsung Galaxy Tab E is considered only as an ultra-cheap experimental device; not preferred for the main OS target.
+- Samsung Galaxy Tab A7 2020 is a current budget candidate requiring exact-model/custom-ROM verification before purchase.
 
 ## Current task
-Create a hardware-selection matrix and screen suitable approximately 8-inch tablets before any purchase.
+Build the LOW-COST SECOND-HAND HARDWARE MATRIX and identify the cheapest technically viable phone/tablet.
 
 ## Next actions
-1. Establish exact hardware requirements.
-2. Research current suitable 8-inch ARM64 tablet platforms.
-3. Check bootloader/BSP/kernel/device-tree/GPU support.
-4. Check Android 17 feasibility.
-5. Check GMS/Play Store feasibility.
-6. Compare performance/security/update prospects.
-7. Select development hardware only after evidence-based screening.
-8. Establish AOSP build environment.
+1. Search current South African second-hand listings.
+2. Identify exact model numbers and prices.
+3. Verify bootloader unlockability.
+4. Verify AOSP/LineageOS/custom-ROM support.
+5. Check kernel/device-tree/vendor/GPU support.
+6. Check Android 17 feasibility.
+7. Check GMS/Play Store feasibility.
+8. Compare RAM/storage/performance against price.
+9. Reject technically unsuitable bargains.
+10. Present the cheapest viable candidates before any purchase.
+11. After hardware approval, establish AOSP build environment.
 
 ## ETA
-Initial architecture/hardware feasibility: 1–3 work sessions.
+Initial low-cost hardware screening: 1–3 work sessions.
 Prototype and production timelines depend on hardware/BSP/GMS path.
 
 ## Blockers
@@ -172,6 +214,8 @@ None immediately. Later: approve/purchase the technically screened development h
 - Do not assume AOSP includes Play Store.
 - Do not weaken Verified Boot/SELinux/encryption for convenience.
 - Do not buy hardware before technical screening.
+- Do not reject a cheap device solely because it is not approximately 8-inch; phones are now valid development candidates.
+- Do not select a device solely by price; exact model and development support must pass the hardware gate.
 - Do not merge this project into Get Wired.
 - Do not alter Get Wired production systems from this project.
 
@@ -182,6 +226,6 @@ Keep costs separate from Get Wired. No unnecessary paid services. No Get Wired C
 Record build ID, source revision, device/emulator, test, expected result, actual result, pass/fail and known issues for each milestone.
 
 ## Continuation
-Future chat: load this file, continue at P0, produce the hardware matrix, screen candidates, then establish the AOSP build environment. Do not require the user to reteach the project.
+Future chat: load this file, continue at P0, complete the low-cost second-hand hardware matrix, screen candidates, identify the cheapest viable development device, then establish the AOSP build environment. Do not require the user to reteach the project.
 
 Execution loop: Plan → Build → Test → Fix → Verify → Record → Continue
