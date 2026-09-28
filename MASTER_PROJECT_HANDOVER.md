@@ -61,11 +61,13 @@ Supporting work inside this project:
 
 Do not treat these supporting workstreams as separate top-level projects.
 
-### 2. PET PROJECT 01
-Status: NOT CREATED
-
-When the user creates it, create:
-`PET_PROJECT_01_HANDOVER.md`
+### 2. PET PROJECT 01 — CUSTOM ANDROID OS
+Status: ACTIVE — P0 Architecture & Hardware Feasibility
+Detailed handover: `PET_PROJECT_01_HANDOVER.md`
+Goal: our own fast, secure, highly customised Android OS for an approximately 8-inch tablet, with Android app compatibility, supported/licensed Play Store/GMS capability where feasible, and our own custom apps.
+Current task: build the hardware-selection matrix and technically screen candidate tablets before purchase.
+Priorities: Security → Speed → Android compatibility → Updates → Customisation.
+Next milestone: select a technically viable development hardware platform.
 
 ### 3. PET PROJECT 02
 Status: NOT CREATED
