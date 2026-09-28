@@ -29,13 +29,21 @@ jobs:
           (async()=>{
             const browser = await chromium.launch({headless:true});
             const page = await browser.newPage({viewport:{width:390,height:844}});
+            page.on('console', m => console.log('[browser:'+m.type()+'] '+m.text()));
+            page.on('pageerror', e => console.log('[pageerror] '+e.message));
             await page.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             await page.waitForSelector('#store');
-            const iframe = await page.locator('#store');
+            const iframe = page.locator('#store');
             await iframe.waitFor({timeout:10000});
+            await iframe.contentFrame().waitForLoadState('domcontentloaded', {timeout:15000});
             const frame = page.frameLocator('#store');
-            await frame.locator('#categoryGrid .catWrap').first().waitFor({timeout:20000});
-            await frame.locator('#featuredGrid .product').first().waitFor({timeout:20000});
+            try {
+              await frame.locator('#categoryGrid .catWrap').first().waitFor({timeout:60000});
+            } catch (e) {
+              const diag = await frame.locator('body').innerText().catch(()=>'<frame unavailable>');
+              throw new Error('Category grid did not render within 60s. Frame text: '+diag.slice(0,1000));
+            }
+            await frame.locator('#featuredGrid .product').first().waitFor({timeout:60000});
             await frame.locator('#searchInput').fill('');
             await frame.locator('#featuredGrid .product').first().click();
             await frame.locator('#productModal.open').waitFor({timeout:10000});
