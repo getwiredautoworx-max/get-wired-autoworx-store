@@ -630,3 +630,18 @@ The Owner APK is being adapted into the owner's mobile control/test application 
 - [x] No Netlify credits used.
 - User notification rule: provide no routine progress notifications. Notify the owner only when the system is genuinely ready for owner testing, or if an unavoidable human action/blocker prevents completion.
 - Deadline: 30 September 2026 remains the target completion date.
+
+
+## OWNER APK EMULATOR RUNNER BLOCKER — 2026-09-28 20:55 SAST
+
+- [x] Continued execution without owner interruption.
+- [x] Owner APK workflow run 36467821697 was retried (attempt 2) and failed before any workflow steps executed.
+- [x] Changed the Owner APK job runner from `ubuntu-latest` to explicit `ubuntu-24.04` because the failures were occurring at runner/job startup, before checkout/build/emulator steps.
+- [x] Runner change committed to main: c589d9024e53d381ff98e861cfc0ee46d39c168f.
+- [x] Fresh run 36468499864 also failed immediately with no steps assigned/executed; job 109084507988 has `steps=null`. This confirms the current blocker is GitHub Actions runner/job startup infrastructure, not an observed APK compile failure or emulator test failure.
+- [ ] Owner APK emulator validation still not passed. Do not tell owner to download/test until a successful validation run produces the APK artifact.
+- [ ] Continue retry/diagnosis; after successful run, verify artifact + SHA-256, then proceed to Store Test → customer browse → product → cart → checkout QA.
+- [x] No Cloudflare credits used.
+- [x] No Netlify credits used.
+- [x] User instruction remains: no routine progress notifications; only notify when genuinely ready for owner download/testing or when an unavoidable human action is required.
+- [x] Target deadline remains 30 September 2026.
