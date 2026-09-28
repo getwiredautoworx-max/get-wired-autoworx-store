@@ -40,17 +40,18 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: pixel_3a
-          emulator-options: -no-window -no-audio -no-boot-anim
+          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -wipe-data
           disable-animations: true
           script: |
             set -e
             adb wait-for-device
-            for i in $(seq 1 6); do
+            for i in $(seq 1 12); do
               if adb shell getprop sys.boot_completed | tr -d '\r' | grep -q '^1$'; then
                 break
               fi
               sleep 5
             done
+            test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1"
             adb shell settings put global package_verifier_enable 0 || true
             sleep 15
 
