@@ -6,7 +6,7 @@ Updated: 2026-09-28 17:45 SAST
 - GitHub: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
 - Current main HEAD: `bf7d1edf3b3bb20d74d0e1e1c0e529447d91668e`
-- Known Netlify site: `get-wired-autoworx-store.netlify.app`
+- Historical Netlify deployment exists but is stale and is NOT a production URL. Do not use or refresh it.
 - Store is temporarily being run through Cloudflare.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
 - Never expose passwords, private keys or secrets.
@@ -223,6 +223,60 @@ The pre-launch checkout blocker identified in the code audit has been corrected.
 - No real customer order was created during this correction.
 
 Remaining gate: final source regression followed by the authorised public Cloudflare storefront/browser verification. No Cloudflare or Netlify credits were used.
+
+
+## FINAL PRODUCTION / SECURITY CHECK — 2026-09-28
+
+### Authentication / admin access
+- Supabase authentication/admin access was rechecked against the live database authorization model.
+- Privileged admin RPCs remain authenticated-only and retain their internal admin/owner checks.
+- `admin_list_orders` and `admin_update_order` require a signed-in user and `veyron_admin_users` authorization.
+- `owner_publish_product` retains its owner/admin authorization check.
+- `is_store_admin` remains an authenticated privileged check.
+- No authorization bypass was identified.
+
+### RLS / privileged RPC review
+- Fresh live advisor check completed on 2026-09-28.
+- RLS remains enabled across the public tables; public product/category reads remain intentionally available for the storefront.
+- The advisor reports 15 RLS-enabled tables without policies. These include internal/import/staging tables and protected operational tables such as customers, orders, order_items, store_settings, vehicle_compatibility and veyron_admin_users.
+- These tables were deliberately left unchanged: no policy was added merely to silence the advisor because their intended access paths are already controlled by privileged server functions or authenticated workflows, and blind policy changes could expose data or break imports/admin operations.
+- `create_store_order` remains SECURITY DEFINER and executable by anon/authenticated because guest checkout requires public order creation. Its server-side validation remains authoritative for product, price, stock, fulfilment fee and payment method.
+- No unsafe privilege revocation or SECURITY DEFINER change was made.
+
+### Production/test data verification
+- Active products: 4,187.
+- Missing SKU: 0.
+- Missing name: 0.
+- Null/non-positive price: 0.
+- Null/negative stock: 0.
+- Invalid category references: 0.
+- Pricing mismatches: 0.
+- Orders: 0.
+- Order items: 0.
+- No test/demo customer order was created during this security pass.
+
+### Hosting / stale URL check
+- Repository searches for `netlify.app`, `localhost` and `demo` returned no matches in the indexed repository source.
+- The old Netlify site is not an active production target and must not be refreshed or used. No Netlify credits are to be spent.
+- The exact temporary Cloudflare public hostname remains intentionally undocumented/unverified until the owner authorizes public browser testing.
+- Do not treat the old Netlify URL in historical handover text as a live store URL.
+
+### Secret exposure check
+- Repository searches found no `service_role`, `SUPABASE_SERVICE_ROLE_KEY`, or live Stripe secret-key pattern (`sk_live_`) in indexed source.
+- No server-side secret was added to the frontend during this audit.
+- Never place Supabase service-role/private keys, payment private keys or passwords in frontend assets.
+
+### Remaining security configuration item
+- Supabase Auth still reports leaked-password protection disabled. This remains an owner/dashboard configuration item and was not changed blindly through SQL.
+- Performance advisor duplicate/unused-index findings were also left unchanged because safe removal requires schema/query-path confirmation.
+
+### Security-pass conclusion
+- No production-breaking security change was made.
+- No production data was altered.
+- No real order was created.
+- No Cloudflare or Netlify credits were used.
+- Current store/database security state is preserved and verified as far as the connected project controls allow.
+
 
 ## FINAL RULE
 **Continue from this handover. Do not restart completed database work, do not use the obsolete 1,109-row CSV, do not spend Cloudflare or Netlify credits, do not replace verified product imagery with guesses, and do not claim live verification unless it has actually been performed.**
