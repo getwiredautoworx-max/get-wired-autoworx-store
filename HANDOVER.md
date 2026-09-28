@@ -434,3 +434,13 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - Temporary live-testing principle: keep the existing Cloudflare deployment available as a fallback; do not consume Cloudflare or Netlify paid credits; do not move production traffic until the Fridge environment has been tested and rollback/recovery has been demonstrated.
 - Hosting selection remains open. Fridge is being considered for the R19 temporary stage because of affordability; xneelo and Domains.co.za remain candidates for later permanent hosting/security evaluation.
 - Security priority remains: independent backups, SSL, least-privilege credentials, protected Supabase backend, payment-provider hosted checkout/callback verification, no secrets in GitHub/frontend, and a tested restore path.
+
+
+## FRIDGE TEMPORARY HOSTING PREPARATION — 2026-09-28
+- [x] Verified current Fridge Core Starter listing at **R19/month**, including 1GB hosting, free SSL, DirectAdmin, unlimited websites/databases/traffic/mailboxes, NVMe storage, South African servers and 99.9% uptime target.
+- [x] Verified Fridge terms: provider backups are not guaranteed; independent backups remain the owner's responsibility.
+- [x] Created `FRIDGE_TEMP_HOSTING_DEPLOYMENT.md` with the controlled migration/test sequence and security rules. Commit: `64de1317a19466053cefbd1f0c984c5ebffbf603`.
+- [x] Repository footprint checked: approximately **98.8MB total**, with approximately **89.1MB under assets/**, so the 1GB Starter allocation is sufficient for the current source footprint; only required storefront files should be deployed.
+- [x] Cloudflare remains the fallback during the temporary Fridge test; no paid Cloudflare or Netlify credits are to be used.
+- [x] Google Drive backup was investigated as the proposed temporary independent backup destination, but the Google Drive connector is currently unavailable in this environment. It is therefore **not marked active** and no backup is claimed until an actual backup/restore test exists.
+- [ ] Owner still needs to create/activate the Fridge account before an actual Fridge upload can occur. No hosting account credentials are available to this session, so no deployment is falsely claimed.
