@@ -303,3 +303,19 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - Build target is a debug APK artifact for installation/testing; production signing is not yet configured.
 - No Cloudflare credits and no Netlify credits are used by the APK build.
 - IMPORTANT NEXT APK WORK: connect approved staging rows to a controlled authenticated publish workflow after exact SKU/source verification rules are defined; do not bulk-publish unverified catalogue data.
+
+
+## CONTINUATION — 28 SEP 2026
+- [x] Supabase owner-controlled publish RPC added: `public.owner_publish_product`.
+- [x] RPC requires authenticated owner/admin authorization via `is_veyron_admin()`.
+- [x] RPC resolves active category by slug, validates SKU/name/cost/stock, preserves server-side pricing formula `cost × 1.15 × 1.35`, upserts the product, and records an audit-log entry with the source URL.
+- [x] Public/anonymous execution of the publish RPC is revoked; execution is granted only to `authenticated`.
+- [x] Owner Android app staging UI now exposes **PUBLISH TO LIVE** only for APPROVED rows.
+- [x] Publishing requires a matching supplier source for the SKU that has been manually marked VERIFIED in the owner app.
+- [x] Owner app sends approved catalogue data through the authenticated RPC; it does not write directly to `products`.
+- [x] Owner app publish change committed as `d5c4a2775ef7400877da3fde29d7b383d00017ac`.
+- [ ] Rebuild/installation validation of the updated owner APK remains to be confirmed by GitHub Actions.
+- [ ] Production signing remains intentionally outstanding; current owner APK workflow builds a debug APK for installation/testing.
+- [ ] Public Cloudflare storefront verification remains the final external launch gate and is still deferred until the user is ready to browse/test.
+- [ ] Payment/bank details still require owner verification before real payment instructions are treated as final.
+- [ ] Product-by-product image/description/SKU QA and verified image enrichment remain post-foundation catalogue work; do not guess images.
