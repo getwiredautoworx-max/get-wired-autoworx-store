@@ -31,6 +31,8 @@ jobs:
             const page = await browser.newPage({viewport:{width:390,height:844}});
             await page.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             await page.waitForSelector('#store');
+            const iframe = await page.locator('#store');
+            await iframe.waitFor({timeout:10000});
             const frame = page.frameLocator('#store');
             await frame.locator('#categoryGrid .catWrap').first().waitFor({timeout:20000});
             await frame.locator('#featuredGrid .product').first().waitFor({timeout:20000});
