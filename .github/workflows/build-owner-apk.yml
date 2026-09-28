@@ -43,7 +43,31 @@ jobs:
           emulator-options: -no-window -no-audio -no-boot-anim
           disable-animations: true
           script: |
-            adb install -r android-owner-app/app/build/outputs/apk/debug/app-debug.apk
+            set -e
+            adb wait-for-device
+            for i in $(seq 1 6); do
+              if adb shell getprop sys.boot_completed | tr -d '\r' | grep -q '^1$'; then
+                break
+              fi
+              sleep 5
+            done
+            adb shell settings put global package_verifier_enable 0 || true
+            sleep 15
+
+            APK="android-owner-app/app/build/outputs/apk/debug/app-debug.apk"
+            installed=0
+            for attempt in 1 2 3 4; do
+              echo "Installing APK, attempt $attempt"
+              if adb install -r --no-streaming "$APK"; then
+                installed=1
+                break
+              fi
+              echo "APK install failed; waiting for Android package service..."
+              adb shell cmd package list packages >/dev/null 2>&1 || true
+              sleep 10
+            done
+            test "$installed" = "1"
+
             adb shell am start -n za.co.getwiredautoworx.owner/.MainActivity
             sleep 8
             adb shell dumpsys activity activities | grep -q 'za.co.getwiredautoworx.owner/.MainActivity'
@@ -51,12 +75,14 @@ jobs:
             adb pull /sdcard/window.xml /tmp/owner-window.xml >/dev/null
             grep -q 'GET WIRED AUTOWORX' /tmp/owner-window.xml
             grep -q 'Owner Login' /tmp/owner-window.xml
+
             adb shell am force-stop za.co.getwiredautoworx.owner
             adb shell am start -n za.co.getwiredautoworx.owner/.MainActivity --es screen store
             sleep 10
             adb shell uiautomator dump /sdcard/store-window.xml >/dev/null
             adb pull /sdcard/store-window.xml /tmp/store-window.xml >/dev/null
             grep -q 'CHECKOUT' /tmp/store-window.xml
+
             adb shell am force-stop za.co.getwiredautoworx.owner
             adb shell am start -n za.co.getwiredautoworx.owner/.MainActivity --es screen checkout
             sleep 5
