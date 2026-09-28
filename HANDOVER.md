@@ -377,3 +377,21 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - Owner APK build remains verified successful (run **36440489387**).
 - Remaining owner-input-only items are now: (1) owner/device installation and acceptance test of Owner APK; (2) owner verification of final EFT/bank payment details; (3) owner approval/availability for final public Cloudflare browser verification; (4) owner-led manual product verification where exact SKU/image/description/category cannot be established automatically; and (5) production signing-key/release decision for the APK.
 - No Cloudflare or Netlify credits used.
+
+
+## AUTONOMOUS COMPLETION PASS — 2026-09-28 17:55 SAST
+
+- [x] Fixed a real storefront JavaScript defect: escaped template-literal backticks in `index-new.html` were causing a browser `Invalid or unexpected token` error. Corrected in commit `ed386867857131b17d108a485662eedc35cdddbe`.
+- [x] Fixed a real storefront catalogue-data defect: `stock_quantity` was not included in the products REST select, causing stocked products to appear as unavailable to the storefront. Corrected in commit `181a27b2c7925165abd810f9422e33da209934ac`.
+- [x] Hardened the local Playwright smoke workflow diagnostics and removed an invalid iframe API call.
+- [x] Latest **Storefront Smoke Test run 36441990682 passed successfully** after the fixes. This is source/local automated QA, not public-site verification.
+- [x] Clean Product Images run `36441602303` completed successfully; additional clean-image runs triggered by subsequent commits remain in progress and must be allowed to finish before final image counts are re-audited.
+- [ ] ASC exact-SKU image enrichment run **36440485985** remains in its exact-SKU fetch step; results are not final until completion.
+- [x] No Cloudflare or Netlify credits used.
+
+### Remaining owner-input-only gates
+1. Install/launch and acceptance-test Owner APK v1.0.1 on an Android device/emulator.
+2. Verify final EFT/bank payment details.
+3. Authorize final public Cloudflare browser verification when ready to browse/test.
+4. Perform manual product-by-product verification where exact SKU/image/description/category evidence cannot be established automatically.
+5. Decide/approve production Android signing-key/release configuration.
