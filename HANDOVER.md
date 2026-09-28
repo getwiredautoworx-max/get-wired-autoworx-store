@@ -1,11 +1,11 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-28 16:00 SAST
+Updated: 2026-09-28 17:05 SAST
 
 ## SOURCE OF TRUTH
 - GitHub: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Current main HEAD: `9e02cc87ae51577396a08c78adde2c51ffe67646`
+- Current main HEAD: `bf7d1edf3b3bb20d74d0e1e1c0e529447d91668e`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is temporarily being run through Cloudflare.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
@@ -336,3 +336,10 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [ ] GitHub Actions result for the newly triggered ASC image-sync run still needs to be read from the Actions run/artifact interface; the available connector can inspect known run IDs but does not expose a general push-triggered workflow-run listing.
 - [ ] Do not replace unresolved products with guessed images; only exact-SKU supplier/PDF evidence may be promoted to production.
 - [x] Live product stock discrepancy reconciled: 4,187 active positive-stock SKUs / 27,745 units is the intentional stock-floor state. 4,153 active products are at quantity 5 and 34 retain explicitly verified ASC quantities above 5. The earlier 44-SKU snapshot is historical; the 36-SKU / 7,037-unit ASC verification ledger remains distinct from the store stock-floor values. No stock values were changed during image QA.
+
+## EXECUTION STATUS — 2026-09-28 17:05 SAST
+
+- Owner APK workflow run **36440489387** completed the **Build debug APK** step successfully and uploaded artifact **get-wired-autoworx-owner-debug-apk** (artifact ID **10978630616**, SHA-256 `c83cd2ec564bc177538da9f6f7888b6e2a820cff4ec2d96121303fb03ececf17`).
+- APK workflow package/version remains `za.co.getwiredautoworx.owner` / `1.0.1`.
+- ASC exact-SKU image sync workflow run **36440485985** is actively executing its exact-SKU fetch step. It has completed checkout, Python setup, dependencies and run-status recording; image results are not yet final and must not be treated as complete until the workflow finishes.
+- No Cloudflare or Netlify credits used.
