@@ -1,4 +1,5 @@
 name: Build Get Wired AutoWorx Owner APK
+# Execution marker: 2026-09-28
 on:
   workflow_dispatch:
   push:
