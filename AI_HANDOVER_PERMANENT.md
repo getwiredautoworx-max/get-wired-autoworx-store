@@ -289,3 +289,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] Continue mobile product verification workflow for SKU, picture, description and category; this remains the final large catalogue QA task and must not block store emulation.
 - [ ] Keep GW AI OS work separate from the current owner APK milestone; the APK remains the first administrative client.
 - No Cloudflare credits used. No Netlify deployment triggered.
+
+## 28 SEP 2026 — STOREFRONT UX / VEHICLE NAVIGATION PASS
+- [x] Audited the existing storefront architecture before changing it; retained the current Supabase catalogue, product-detail modal, browser cart, category hierarchy and mobile navigation.
+- [x] Confirmed the production catalogue has 4,198 product rows and 191 categories; no database reset or destructive catalogue changes made.
+- [x] Confirmed `vehicle_search_index` contains 537 make/model/product mappings and used it to add a customer-facing **Find Parts for Your Vehicle** selector to the storefront homepage.
+- [x] Vehicle finder now loads available makes/models from the existing index and filters the existing product catalogue to mapped products; it does not invent fitment.
+- [x] Product cards now show actual stored stock status where available and prevent normal cart addition when stored quantity is zero.
+- [x] Existing SKU/image fallback remains exact-SKU based; no visually similar product images are substituted.
+- [ ] Next UX pass: refine mobile category navigation, product filters/sorting, checkout handoff and order-status messaging; then run storefront smoke tests before any production deployment.
+- No Cloudflare credits used. No Netlify deployment triggered.
