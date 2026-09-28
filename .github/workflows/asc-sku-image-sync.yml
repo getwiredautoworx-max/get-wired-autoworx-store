@@ -2,6 +2,9 @@ name: ASC SKU Image Sync
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/asc-sku-image-sync.yml'
 
 permissions:
   contents: write
