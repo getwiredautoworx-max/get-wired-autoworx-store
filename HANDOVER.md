@@ -413,3 +413,15 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [ ] ASC exact-SKU Image Sync **36440485985** is still in progress in the exact-SKU fetch stage. It has not been marked complete and its image results are not being counted as verified until the workflow produces its completion/report.
 - [x] No Cloudflare credits used.
 - [x] No Netlify credits used.
+
+
+## PAYMENT INTEGRATION PLANNING — 2026-09-28
+- Owner wants **PayJustNow, Payflex and RCS** payment options considered for the Get Wired AutoWorx checkout.
+- Current checkout/payment implementation remains unchanged until merchant approval and integration credentials are available.
+- Planned payment architecture: provider-hosted/redirect checkout where appropriate, server-side payment-status confirmation, and order payment-method/reference recording.
+- PayJustNow merchant integration to be added after merchant approval/credentials are supplied.
+- Payflex merchant integration to be evaluated/added after merchant approval/credentials are supplied; Payfast + Payflex route may also be considered.
+- RCS integration must use an approved RCS merchant/payment-partner route; do not invent or hard-code an integration path before merchant approval is confirmed.
+- Existing EFT/manual payment and cash-on-pickup flows remain available while new payment methods are being established.
+- **Never store or request customer card credentials in the store.** Payment-provider credentials/secrets must not be committed to GitHub or exposed in the storefront.
+- Owner still needs to verify the final payment/bank details before the payment configuration is considered production-ready.
