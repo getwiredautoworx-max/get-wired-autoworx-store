@@ -480,3 +480,27 @@ The storefront is now being treated as a production ecommerce platform rather th
 - Manual product-by-product verification where exact evidence cannot be automated.
 - Production Android signing-key/release decision.
 - Fridge account activation before any Fridge deployment.
+
+## ZERO-COST STAGING HOSTING — 2026-09-28
+
+- [x] Hosting investigation was refocused on the actual staging requirement: temporary hosting for the existing storefront, no production domain purchase, no annual hosting commitment, no paid provider backup requirement, HTTPS, and Supabase connectivity.
+- [x] GitHub Pages staging workflow added at `.github/workflows/deploy-store-staging-pages.yml`.
+- [x] Workflow commit: **b8802c8c471368406b09cf7c8b277b86c6a2ab6a**.
+- [x] Workflow deploys the repository storefront directly from `main` using GitHub Pages Actions, providing a zero-cost staging route without Cloudflare or Netlify credits.
+- [x] Store architecture is compatible with static hosting: HTML/CSS/JavaScript and product assets are served by the host; Supabase remains the backend.
+- [x] Existing Cloudflare deployment remains untouched as fallback.
+- [x] No production `.co.za` domain is required for this staging route.
+- [x] No paid hosting-provider backup feature is required for staging. Owner's intended independent backup chain is phone + Google Drive + designated USB/PC, with GitHub as source control. Actual automated Google Drive backup remains unconfigured and must not be claimed active until tested.
+- [ ] GitHub Pages repository setting must be enabled/confirmed with **GitHub Actions** as the Pages source before the staging URL can be treated as live.
+- [ ] After Pages is enabled, verify the generated GitHub Pages URL and run normal staging QA.
+- [ ] Do not purchase `gwautostore.co.za` merely for staging.
+- [x] No new hosting payment was made as part of this decision.
+- [x] No Cloudflare credits and no Netlify credits used.
+
+### Staging deployment sequence
+1. Enable GitHub Pages using **GitHub Actions** as the source.
+2. Allow `deploy-store-staging-pages.yml` to publish `main`.
+3. Record the generated `github.io` staging URL in `LIVE_READINESS.md` and this handover.
+4. Perform controlled staging verification when authorized.
+5. Fix findings in `main`; let Pages redeploy.
+6. Keep Cloudflare untouched until staging is stable and rollback/recovery is demonstrated.
