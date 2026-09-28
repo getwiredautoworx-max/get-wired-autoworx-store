@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# The storefront is public, but private/admin surfaces should not be indexed.
+Disallow: /admin.html
+Disallow: /admin/
+Disallow: /android-owner-app/
+Disallow: /apk-sales-intelligence/
+Disallow: /supabase/
+Disallow: /sql/
