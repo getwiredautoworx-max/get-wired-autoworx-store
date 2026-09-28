@@ -277,3 +277,15 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] Next build target: GW Launcher prototype as an ordinary Android app, requiring no root or ROM replacement.
 - [ ] After launcher/control architecture is proven: GW AI Core/action broker, then AOSP integration, then device-specific ROM work.
 - [ ] Do not claim a custom OS is complete until an AOSP-based image actually builds and boots on a supported device.
+
+## 28 SEP 2026 — STORE + OWNER APK CONTINUATION
+- [x] Re-entered project from the permanent handover; existing storefront/database state preserved and no rebuild/reinitialization performed.
+- [x] Confirmed repository: `getwiredautoworx-max/get-wired-autoworx-store`, main branch.
+- [x] Confirmed existing Android Owner app at `android-owner-app/` with private Supabase OTP login, CSV/XLS/XLSX staging import, supplier URL/SKU verification queue, approval/rejection workflow and store-admin handoff.
+- [x] Confirmed GitHub Actions owner APK workflow at `.github/workflows/build-owner-apk.yml`; it builds `app:assembleDebug` and uploads `get-wired-autoworx-owner-debug-apk` as a workflow artifact.
+- [x] Bumped Owner APK version from 1.0.0 to **1.0.1** and committed it as `e735b97abf4693f1a5cf12410de521d3ed130ac7`, triggering the configured push build workflow.
+- [ ] Verify the resulting GitHub Actions build is successful and retrieve the generated APK artifact before claiming the APK is compiled/tested.
+- [ ] Expand the owner app from local staging to authenticated Supabase-backed staging/approval records, with explicit publish/rollback safeguards and no service-role secret in the APK.
+- [ ] Continue mobile product verification workflow for SKU, picture, description and category; this remains the final large catalogue QA task and must not block store emulation.
+- [ ] Keep GW AI OS work separate from the current owner APK milestone; the APK remains the first administrative client.
+- No Cloudflare credits used. No Netlify deployment triggered.
