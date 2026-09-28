@@ -584,3 +584,36 @@ The storefront is now being treated as a production ecommerce platform rather th
 
 ### Continuation rule after chat reset
 **Resume from this section and current GitHub main HEAD. Do not restart Supabase setup, catalogue import, RLS work, checkout architecture or storefront construction. First recheck Owner APK workflow 36460813036, then complete emulator validation and artifact availability, then proceed with the Store → product → cart → checkout test path. Keep the no-Cloudflare-credit and no-Netlify-credit constraints. Do not claim any test as passed unless the workflow/device/browser actually reports success.**
+
+
+## OWNER APK ADAPTATION CONTINUATION — 2026-09-28 20:XX SAST
+
+### Emulator validation failure resolved at source level
+- [x] Inspected failed Owner APK validation workflow **36460813036**, job **109058580863**.
+- [x] Confirmed the APK **Gradle build succeeded**; failure occurred during emulator APK installation.
+- [x] Actual failure: Android emulator/package service returned **`cmd: Failure calling service package: Broken pipe (32)`** during `adb install -r`.
+- [x] This was an emulator/package-service installation failure, not evidence of an application crash or failed APK compilation.
+- [x] Hardened `.github/workflows/build-owner-apk.yml` to use a clean API 35 Pixel 3a emulator with `-no-snapshot -wipe-data`, explicit boot-completion checks, package-service warm-up, `--no-streaming` installation, and up to four installation attempts.
+- [x] The workflow continues to validate Owner Login, bundled Store, and bundled Checkout after installation.
+- [x] APK artifact upload remains gated behind successful emulator validation.
+- [x] Fix commit: **14a0029593c83937dbcc51a3610fedc7626d7ee5**.
+- [ ] The new validation run must complete before the Owner APK is called emulator-validated or ready for owner testing.
+- [ ] Once validation passes, retrieve and verify the uploaded `get-wired-autoworx-owner-debug-apk` artifact and record its SHA-256.
+- [ ] Then continue APK adaptation: Owner Login → Store Test → product → cart → checkout, followed by controlled owner acceptance testing.
+- [ ] Do not create a real customer order during APK QA unless explicitly authorised.
+- [ ] Production signing/release configuration remains separate from the debug/test APK.
+- [x] No Cloudflare credits used.
+- [x] No Netlify credits used.
+
+### APK adaptation objective
+The Owner APK is being adapted into the owner's mobile control/test application while preserving the existing customer storefront. The next adaptation layer should prioritise:
+1. reliable owner authentication;
+2. direct Store Test access;
+3. bundled customer storefront and checkout testing;
+4. catalogue/pricelist import and supplier-source verification;
+5. approval/rejection workflow;
+6. authenticated server-side publishing;
+7. order/payment administration;
+8. later production signing and release packaging.
+
+**Continuation rule:** resume from this APK adaptation section after chat reset. Do not restart completed storefront, Supabase, catalogue or checkout work. First verify the latest Owner APK GitHub Actions run and artifact; only then advance to the next APK adaptation stage.
