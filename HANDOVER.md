@@ -504,3 +504,83 @@ The storefront is now being treated as a production ecommerce platform rather th
 4. Perform controlled staging verification when authorized.
 5. Fix findings in `main`; let Pages redeploy.
 6. Keep Cloudflare untouched until staging is stable and rollback/recovery is demonstrated.
+
+
+## MASTER CONTINUATION UPDATE — 2026-09-28 19:57 SAST
+
+### Current repository/source state
+- Current main HEAD: `8ff8340e8447eb6a9b2c8a60dd923e3725326650`.
+- This commit validates the bundled customer storefront through checkout inside the Owner APK.
+- Repository remains `getwiredautoworx-max/get-wired-autoworx-store`, branch `main`.
+- **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.** These constraints remain absolute.
+
+### Owner APK — current build and test state
+- Owner APK package: `za.co.getwiredautoworx.owner`.
+- Version: `1.0.1`, versionCode 2.
+- Debug APK build has completed successfully in the latest validation workflow.
+- Latest Owner APK workflow: **36460813036**.
+- Build step: **SUCCESS**.
+- Android emulator validation step: **IN PROGRESS** at the time of this handover update.
+- Emulator job: **109058580863**.
+- The workflow has already successfully completed storefront bundling into the APK and the Gradle debug build.
+- The emulator validation is configured to launch the Owner APK and validate the owner screen, then launch the bundled customer Store screen, then launch the bundled checkout screen.
+- The APK is **not to be called fully ready for download/testing until emulator validation finishes successfully and the workflow artifact is uploaded**.
+- Do not claim physical-device installation unless it is actually performed.
+- Production signing is still outstanding; current build is a debug/test APK.
+
+### Store + APK linkage — completed source work
+- `android-owner-app/app/src/main/assets/admin_app.html` now contains a Store Testing card and **OPEN STORE TEST** action.
+- Owner admin can route to the bundled customer storefront at `file:///android_asset/store/store.html`.
+- `MainActivity.java` supports intent routing:
+  - default = Owner admin
+  - `--es screen store` = bundled customer storefront
+  - `--es screen checkout` = bundled checkout
+- Owner APK workflow copies the actual current storefront source/assets into `android-owner-app/app/src/main/assets/store/` before building.
+- Bundled files include `store.html`, `index-new.html`, `checkout-v2.html`, `index.html`, `admin.html`, `category-navigation.js`, and the `assets/` directory.
+- Storefront is therefore testable inside the APK without requiring Cloudflare/Netlify hosting.
+
+### Automated storefront verification
+- Latest Storefront Smoke Test: **36460813150** — **SUCCESS**.
+- Coverage includes storefront entry, categories, featured product interaction, cart-to-checkout navigation, R15 delivery presentation, per-order delivery notice, pickup R0 presentation and desktop viewport switching.
+- This is source/local automated verification, not public internet verification.
+- Public Cloudflare browser verification remains a separate launch gate.
+
+### GitHub Pages staging
+- Latest Pages deployment run **36460813052** failed at the GitHub Pages deployment/configuration stage.
+- Therefore the GitHub Pages staging URL must **not** be treated as live.
+- Do not spend Cloudflare or Netlify credits to compensate.
+- If zero-cost staging is needed, first correct/enable the repository GitHub Pages setting using GitHub Actions, then verify the generated URL before calling it live.
+
+### Image workflows
+- Latest Clean Product Images run **36460812812** completed successfully.
+- ASC exact-SKU image enrichment must still be treated as incomplete until its workflow produces a final completion/report; never count unfinished mappings as verified.
+- Existing unresolved placeholder images must not be filled by visual guessing.
+
+### Customer test sequence to continue after emulator validation
+1. Confirm Owner APK emulator validation succeeds.
+2. Confirm APK artifact is uploaded and downloadable.
+3. Test Owner APK default launch/login screen.
+4. Open **Store Test** from the Owner APK.
+5. Browse customer storefront.
+6. Open a real catalogue product.
+7. Add the product to cart.
+8. Open cart and proceed to checkout.
+9. Verify delivery/pickup choices and fee presentation.
+10. Stop before creating a real customer order unless the owner explicitly authorizes a controlled test order.
+11. Verify payment presentation without entering or storing real payment credentials.
+12. Record only verified results in this handover.
+
+### Important distinction
+- The store source and automated storefront tests are already substantially complete.
+- The bundled Store/Checkout APK test path is built and currently undergoing emulator validation.
+- **“Ready to browse as a customer” means the APK/emulator path is validated and/or an actually reachable staging/public storefront has been verified. Do not substitute a successful source build for a real browser/emulator test.**
+- The final public Cloudflare storefront still requires the actual temporary public hostname and live browser verification. Do not invent or infer that hostname.
+
+### Owner-only gates still requiring human action
+- Final EFT/bank payment details must be verified by the owner before being treated as final customer payment instructions.
+- Physical-device acceptance testing remains owner-controlled after the APK artifact is available.
+- Production Android signing-key/release configuration requires owner decision.
+- Manual product-by-product SKU/image/description/category verification remains outstanding where exact evidence cannot be automated.
+
+### Continuation rule after chat reset
+**Resume from this section and current GitHub main HEAD. Do not restart Supabase setup, catalogue import, RLS work, checkout architecture or storefront construction. First recheck Owner APK workflow 36460813036, then complete emulator validation and artifact availability, then proceed with the Store → product → cart → checkout test path. Keep the no-Cloudflare-credit and no-Netlify-credit constraints. Do not claim any test as passed unless the workflow/device/browser actually reports success.**
