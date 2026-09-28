@@ -425,3 +425,12 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - Existing EFT/manual payment and cash-on-pickup flows remain available while new payment methods are being established.
 - **Never store or request customer card credentials in the store.** Payment-provider credentials/secrets must not be committed to GitHub or exposed in the storefront.
 - Owner still needs to verify the final payment/bank details before the payment configuration is considered production-ready.
+
+
+## TEMPORARY HOSTING / LIVE-TEST STRATEGY — 2026-09-28
+- Owner is open to using **Fridge Hosting Core Starter at R19/month** as a temporary live-testing host while Get Wired AutoWorx is being validated and brought toward self-sustaining operation. Current Fridge listing shows R19/month, 1GB hosting, free SSL, DirectAdmin, South African servers, unlimited traffic/databases/websites, instant setup, and a 99.9% uptime target. This is a temporary-test option, not yet designated the permanent production host.
+- Fridge Hosting's terms explicitly state that its own backups are **not guaranteed** and customers must maintain independent backups. Therefore any temporary Fridge deployment must have an independent recovery copy before it is treated as safe for live testing.
+- Proposed temporary backup architecture: retain the authoritative source in GitHub; retain Supabase/database export backups independently; additionally use the owner's Google Drive as an off-host backup destination **if/when a supported Google Drive connection or controlled upload workflow is available**. Do not claim Google Drive backups are active until an actual backup has been created and verified.
+- Temporary live-testing principle: keep the existing Cloudflare deployment available as a fallback; do not consume Cloudflare or Netlify paid credits; do not move production traffic until the Fridge environment has been tested and rollback/recovery has been demonstrated.
+- Hosting selection remains open. Fridge is being considered for the R19 temporary stage because of affordability; xneelo and Domains.co.za remain candidates for later permanent hosting/security evaluation.
+- Security priority remains: independent backups, SSL, least-privilege credentials, protected Supabase backend, payment-provider hosted checkout/callback verification, no secrets in GitHub/frontend, and a tested restore path.
