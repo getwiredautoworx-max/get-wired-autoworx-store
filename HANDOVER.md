@@ -324,3 +324,15 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 ### OWNER PUBLISH RPC SECURITY RECHECK — 28 SEP 2026
 - [x] Explicit privilege audit completed: `anon_execute = false`, `authenticated_execute = true` for `owner_publish_product`.
 - [x] Anonymous/public execution was explicitly revoked after verification.
+
+
+### CONTINUATION — 28 SEP 2026 (IMAGE QA / BUILD PIPELINE)
+- [x] Re-queried live Supabase catalogue: 4,187 active priced products; 0 uncategorized; 0 pricing mismatches.
+- [x] Confirmed the apparent "0 missing image_url" result was misleading because 3,396 active products currently use placeholder-like image URLs. This is now explicitly identified as the remaining image-quality issue.
+- [x] Confirmed the September Buyer's Guide PDF is available in the Library and contains the product/SKU catalogue and product visuals.
+- [x] Existing exact-SKU ASC image-sync workflow reviewed. It targets products whose image is null/blank/placeholder, verifies exact SKU matches on the ASC website, downloads and cleans the image, and commits only verified matches.
+- [x] Updated ASC image-sync workflow to run automatically when the workflow file itself is updated, so the current verified image-enrichment run is triggered by the new commit.
+- [x] Image workflow commit: `9e02cc87ae51577396a08c78adde2c51ffe67646`.
+- [ ] GitHub Actions result for the newly triggered ASC image-sync run still needs to be read from the Actions run/artifact interface; the current GitHub connector does not expose a general workflow-dispatch/run-list operation.
+- [ ] Do not replace unresolved products with guessed images; only exact-SKU supplier/PDF evidence may be promoted to production.
+- [ ] Live product stock currently reads 4,187 positive-stock SKUs / 27,745 units in Supabase. This differs from the earlier 44-SKU stock snapshot and therefore requires reconciliation before launch; no stock values were changed during this continuation.
