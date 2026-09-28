@@ -617,3 +617,16 @@ The Owner APK is being adapted into the owner's mobile control/test application 
 8. later production signing and release packaging.
 
 **Continuation rule:** resume from this APK adaptation section after chat reset. Do not restart completed storefront, Supabase, catalogue or checkout work. First verify the latest Owner APK GitHub Actions run and artifact; only then advance to the next APK adaptation stage.
+
+
+## OWNER APK CI CONTINUATION — 2026-09-28
+
+- [x] Owner APK workflow was retried after the previous pre-step/runner failure.
+- [x] Added a 30-minute job timeout to .github/workflows/build-owner-apk.yml to harden the validation run.
+- [x] Change committed to main: 3ab8975258bbd7e7556f2e1c99c8f20b05edfea8.
+- [ ] Owner APK emulator validation is not yet confirmed successful; do not mark ready for testing until the workflow reports success and the APK artifact is verified.
+- [ ] After successful validation, verify the uploaded APK artifact, record its SHA-256, then continue Store Test → product → cart → checkout QA.
+- [x] No Cloudflare credits used.
+- [x] No Netlify credits used.
+- User notification rule: provide no routine progress notifications. Notify the owner only when the system is genuinely ready for owner testing, or if an unavoidable human action/blocker prevents completion.
+- Deadline: 30 September 2026 remains the target completion date.
