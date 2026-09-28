@@ -12,7 +12,7 @@
 <div class="card"><h2>Catalogue / Pricelist Import</h2><p class="muted">Import CSV or Excel into a local staging queue. Nothing is published automatically.</p><input id="file" type="file" accept=".csv,.xlsx,.xls" multiple><button onclick="importFiles()">IMPORT TO STAGING</button><button class="secondary" onclick="clearStage()">CLEAR STAGING</button><div id="importMsg" class="muted"></div></div>
 <div class="card"><h2>Supplier Source Verification</h2><p class="muted">Add supplier product URLs, open them, then record the verification decision. SKU identity must be confirmed before publishing.</p><input id="supplierUrl" type="url" placeholder="https://supplier-site/product/SKU"><input id="supplierSku" placeholder="Supplier SKU"><button onclick="addSource()">ADD SOURCE</button><div id="sources"></div></div>
 <div class="card"><h2>Staging Review</h2><div id="queue"></div></div>
-<div class="card"><h2>Orders</h2><p class="muted">The existing authenticated order-management page remains available through the store admin. This app's catalogue workflow is deliberately separated from live publishing.</p><button onclick="openAdmin()">OPEN STORE ADMIN</button></div>
+<div class="card"><h2>Store Testing</h2><p class="muted">Open the bundled customer storefront inside this APK. Test browsing, product selection and the cart without touching live orders.</p><button onclick="openStoreTest()">OPEN STORE TEST</button></div><div class="card"><h2>Orders</h2><p class="muted">The existing authenticated order-management page remains available through the store admin. This app's catalogue workflow is deliberately separated from live publishing.</p><button onclick="openAdmin()">OPEN STORE ADMIN</button></div>
 </section></main>
 <script>
 const SUPABASE_URL='https://ojytykqpvonxvepprgbh.supabase.co';
@@ -49,6 +49,7 @@ async function publishRow(i){
   alert('Published successfully. VAT-inclusive price was calculated server-side.');
 }
 function clearStage(){stage=[];render()} function addSource(){const u=$('supplierUrl').value.trim(),s=$('supplierSku').value.trim();if(!u||!s)return;try{new URL(u)}catch(e){return}sources.push({url:u,sku:s,verified:false,added:new Date().toISOString()});$('supplierUrl').value='';$('supplierSku').value='';render()} function verifySource(i){sources[i].verified=true;sources[i].verifiedAt=new Date().toISOString();render()}
-function openAdmin(){location.href='https://get-wired-autoworx-store.netlify.app/admin.html'}
+function openStoreTest(){location.href='file:///android_asset/store/store.html'}
+function openAdmin(){location.href='file:///android_asset/store/admin.html'}
 boot();
 </script></body></html>
