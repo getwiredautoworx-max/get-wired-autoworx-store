@@ -667,3 +667,17 @@ The Owner APK is being adapted into the owner's mobile control/test application 
 - Never claim a deployment, browser test, emulator validation, artifact verification or payment configuration as complete without actual evidence.
 - NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.
 - Target deadline remains 30 September 2026.
+
+
+## EXECUTION DIAGNOSTIC — 2026-09-28 21:XX SAST
+
+- [x] Retried the four outstanding workflow jobs again, including individual job reruns.
+- [x] Storefront Smoke Test, Clean Product Images, GitHub Pages deployment and Owner APK validation all again terminated with **steps=null**, before checkout or any workflow step executed.
+- [x] Previously successful runs still have normal executed step histories: Storefront Smoke Test **36460813150**, Clean Product Images **36460812812**, and Owner APK/Sales APK emulator validation **36270739551**.
+- [x] Confirmed the current repository is private, writable by the connected GitHub integration, not archived or disabled, and currently reports `has_pages=false` through the repository API.
+- [x] Checked GitHub's public status endpoint: it currently reports **All Systems Operational**, so the evidence does not support treating this as a general GitHub outage.
+- [ ] Current blocker is therefore narrowed to the repository/account Actions execution environment or entitlement/configuration, rather than an observed storefront, image-cleaner, Pages workflow, APK build, or emulator application failure.
+- [ ] Do not rewrite stable application code merely to disguise this pre-step infrastructure failure. Continue retries/diagnosis and use the last known successful workflow evidence for source readiness while keeping actual launch gates clearly marked.
+- [x] No Cloudflare credits used.
+- [x] No Netlify credits used.
+- [x] No production customer order created.
