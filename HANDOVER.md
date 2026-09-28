@@ -330,3 +330,13 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - This reproduces the previously observed runner/execution-environment failure and does not provide evidence of a defect in the Owner APK source.
 - No source changes were made as part of this retry. No Cloudflare/Netlify credits and no real customer orders were used.
 - Do not mark APK 1.0.1 built/validated from this retry.
+
+
+## SUPABASE SECURITY / PERFORMANCE AUDIT — 2026-09-28
+- Live Supabase project `ojytykqpvonxvepprgbh` is ACTIVE_HEALTHY on PostgreSQL 17.6.1.
+- Fresh security advisors were checked. The main remaining WARN is the intentional public checkout RPC `create_store_order`, which is SECURITY DEFINER and callable anonymously; its current definition revalidates customer/cart input, active products, stock, database prices, delivery fee and payment method server-side. This public execution is required for guest checkout and was not changed.
+- Authenticated SECURITY DEFINER admin/owner RPCs were inspected. `admin_list_orders` and `admin_update_order` require a signed-in user and membership in `veyron_admin_users`; `owner_publish_product` calls the owner/admin authorization check before publishing. No authorization bypass was identified in this audit.
+- Supabase reports 15 RLS-enabled tables without policies. These include internal/import/staging tables plus customers/orders/order_items/store_settings/vehicle_compatibility. They were not modified because access requirements are not sufficiently established and changing them blindly could break existing workflows.
+- Supabase Auth still reports leaked-password protection disabled. This is a dashboard configuration item and should be enabled before production credentials are finalized.
+- Performance advisors report duplicate/unused indexes. No index was dropped because several duplicates correspond to unique constraints or active query paths and removing them without schema-level verification could create regression.
+- No production data was changed during this audit; no real order was created; no Cloudflare or Netlify credits were used.
