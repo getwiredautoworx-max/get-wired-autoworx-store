@@ -19,14 +19,36 @@ const SUPABASE_URL='https://ojytykqpvonxvepprgbh.supabase.co';
 const SUPABASE_KEY='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY); let stage=JSON.parse(localStorage.gwStage||'[]'); let sources=JSON.parse(localStorage.gwSources||'[]');
 const $=id=>document.getElementById(id);
-function render(){ $('stagedCount').textContent=stage.length; $('queue').innerHTML=stage.length?stage.slice(0,200).map((r,i)=>'<div class="row"><b>'+esc(r.SKU||r.sku||r.PartNumber||'No SKU')+'</b><br>'+esc(r.Description||r.description||r.Product||'')+'<br>Cost: '+esc(r.Cost||r.cost||r.CostPrice||'')+' <span class="warn">STATUS: '+esc(r._status||'PENDING')+'</span><br><button onclick="setStatus('+i+',\'APPROVED\')">APPROVE</button><button class="danger" onclick="setStatus('+i+',\'REJECTED\')">REJECT</button></div>').join(''):'No staged catalogue rows.'; $('sources').innerHTML=sources.map((s,i)=>'<div class="row"><b>'+esc(s.sku)+'</b><br><a href="'+esc(s.url)+'" target="_blank">'+esc(s.url)+'</a><br><span class="'+(s.verified?'ok':'warn')+'">'+(s.verified?'VERIFIED':'NOT VERIFIED')+'</span> <button onclick="verifySource('+i+')">MARK VERIFIED</button></div>').join('')||'No supplier sources added.'; localStorage.gwStage=JSON.stringify(stage);localStorage.gwSources=JSON.stringify(sources)}
+function render(){ $('stagedCount').textContent=stage.length; $('queue').innerHTML=stage.length?stage.slice(0,200).map((r,i)=>'<div class="row"><b>'+esc(r.SKU||r.sku||r.PartNumber||'No SKU')+'</b><br>'+esc(r.Description||r.description||r.Product||'')+'<br>Cost: '+esc(r.Cost||r.cost||r.CostPrice||'')+' <span class="warn">STATUS: '+esc(r._status||'PENDING')+'</span><br><button onclick="setStatus('+i+',\'APPROVED\')">APPROVE</button><button class="danger" onclick="setStatus('+i+',\'REJECTED\')">REJECT</button>'+(r._status==='APPROVED'?'<button onclick="publishRow('+i+')">PUBLISH TO LIVE</button>':'')+'</div>').join(''):'No staged catalogue rows.'; $('sources').innerHTML=sources.map((s,i)=>'<div class="row"><b>'+esc(s.sku)+'</b><br><a href="'+esc(s.url)+'" target="_blank">'+esc(s.url)+'</a><br><span class="'+(s.verified?'ok':'warn')+'">'+(s.verified?'VERIFIED':'NOT VERIFIED')+'</span> <button onclick="verifySource('+i+')">MARK VERIFIED</button></div>').join('')||'No supplier sources added.'; localStorage.gwStage=JSON.stringify(stage);localStorage.gwSources=JSON.stringify(sources)}
 function esc(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 async function login(){const e=$('email').value.trim();if(!e)return;const {error}=await sb.auth.signInWithOtp({email:e,options:{emailRedirectTo:location.href}});$('msg').textContent=error?error.message:'Check your email for the secure sign-in link.'}
 async function boot(){const {data}=await sb.auth.getSession();if(data.session)show(data.session);sb.auth.onAuthStateChange((_,s)=>s&&show(s));render()}
 function show(s){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('user').textContent=s.user?.email||'Owner';render()}
 async function logout(){await sb.auth.signOut();location.reload()}
 async function importFiles(){const fs=[...$('file').files];if(!fs.length){$('importMsg').textContent='Choose a CSV or Excel file.';return}let added=0;for(const f of fs){try{const buf=await f.arrayBuffer();const wb=XLSX.read(buf,{type:'array'});for(const name of wb.SheetNames){const rows=XLSX.utils.sheet_to_json(wb.Sheets[name],{defval:''});for(const r of rows){stage.push({...r,_source:f.name,_sheet:name,_status:'PENDING'});added++}}}catch(e){$('importMsg').textContent='Import error: '+e.message;return}}$('importMsg').textContent=added+' rows staged for review. No live product was changed.';render()}
-function setStatus(i,s){stage[i]._status=s;render()} function clearStage(){stage=[];render()} function addSource(){const u=$('supplierUrl').value.trim(),s=$('supplierSku').value.trim();if(!u||!s)return;try{new URL(u)}catch(e){return}sources.push({url:u,sku:s,verified:false,added:new Date().toISOString()});$('supplierUrl').value='';$('supplierSku').value='';render()} function verifySource(i){sources[i].verified=true;sources[i].verifiedAt=new Date().toISOString();render()}
+function setStatus(i,s){stage[i]._status=s;render()}
+async function publishRow(i){
+  const r=stage[i];
+  if(r._status!=='APPROVED'){alert('Approve the row first.');return}
+  const sku=String(r.SKU||r.sku||r.PartNumber||'').trim();
+  const name=String(r.Name||r.name||r.Description||r.description||r.Product||'').trim();
+  const category=String(r.category_slug||r.CategorySlug||r.category||r.Category||'').trim().toLowerCase().replace(/\\s+/g,'-');
+  const cost=Number(r.Cost||r.cost||r.CostPrice||r.cost_price);
+  const stock=Math.max(0,Number(r.Stock||r.stock||r.StockQuantity||r.stock_quantity||0)||0);
+  const source=sources.find(x=>x.sku===sku && x.verified);
+  if(!sku||!name||!category||!Number.isFinite(cost)){alert('SKU, name, active category and valid cost are required.');return}
+  if(!source){alert('A supplier source for this SKU must be added and marked VERIFIED before publishing.');return}
+  const {data,error}=await sb.rpc('owner_publish_product',{
+    p_sku:sku,p_name:name,p_category_slug:category,p_cost:cost,
+    p_description:String(r.Description||r.description||''),
+    p_specifications:{source_file:r._source||'',source_sheet:r._sheet||''},
+    p_stock:Math.floor(stock),p_featured:false,p_source_url:source.url
+  });
+  if(error){alert('Publish blocked: '+error.message);return}
+  stage[i]._published=true; stage[i]._publishedId=data; render();
+  alert('Published successfully. VAT-inclusive price was calculated server-side.');
+}
+function clearStage(){stage=[];render()} function addSource(){const u=$('supplierUrl').value.trim(),s=$('supplierSku').value.trim();if(!u||!s)return;try{new URL(u)}catch(e){return}sources.push({url:u,sku:s,verified:false,added:new Date().toISOString()});$('supplierUrl').value='';$('supplierSku').value='';render()} function verifySource(i){sources[i].verified=true;sources[i].verifiedAt=new Date().toISOString();render()}
 function openAdmin(){location.href='https://get-wired-autoworx-store.netlify.app/admin.html'}
 boot();
 </script></body></html>
