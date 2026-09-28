@@ -1,11 +1,11 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-24 17:35 SAST
+Updated: 2026-09-28 16:00 SAST
 
 ## SOURCE OF TRUTH
 - GitHub: `getwiredautoworx-max/get-wired-autoworx-store`
 - Branch: `main`
-- Current main HEAD: `93cade43a1dd415ed86230503f6e2207870801a6`
+- Current main HEAD: `9e02cc87ae51577396a08c78adde2c51ffe67646`
 - Known Netlify site: `get-wired-autoworx-store.netlify.app`
 - Store is temporarily being run through Cloudflare.
 - **NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
@@ -314,7 +314,7 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [x] Publishing requires a matching supplier source for the SKU that has been manually marked VERIFIED in the owner app.
 - [x] Owner app sends approved catalogue data through the authenticated RPC; it does not write directly to `products`.
 - [x] Owner app publish change committed as `d5c4a2775ef7400877da3fde29d7b383d00017ac`.
-- [ ] Rebuild/installation validation of the updated owner APK remains to be confirmed by GitHub Actions.
+- [ ] Rebuild/installation validation of the updated owner APK remains to be confirmed by GitHub Actions. The repository workflow is configured to build a debug APK on owner-app/workflow changes, but the available GitHub connector does not expose a general push-triggered workflow-run listing.
 - [ ] Production signing remains intentionally outstanding; current owner APK workflow builds a debug APK for installation/testing.
 - [ ] Public Cloudflare storefront verification remains the final external launch gate and is still deferred until the user is ready to browse/test.
 - [ ] Payment/bank details still require owner verification before real payment instructions are treated as final.
@@ -333,6 +333,6 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [x] Existing exact-SKU ASC image-sync workflow reviewed. It targets products whose image is null/blank/placeholder, verifies exact SKU matches on the ASC website, downloads and cleans the image, and commits only verified matches.
 - [x] Updated ASC image-sync workflow to run automatically when the workflow file itself is updated, so the current verified image-enrichment run is triggered by the new commit.
 - [x] Image workflow commit: `9e02cc87ae51577396a08c78adde2c51ffe67646`.
-- [ ] GitHub Actions result for the newly triggered ASC image-sync run still needs to be read from the Actions run/artifact interface; the current GitHub connector does not expose a general workflow-dispatch/run-list operation.
+- [ ] GitHub Actions result for the newly triggered ASC image-sync run still needs to be read from the Actions run/artifact interface; the available connector can inspect known run IDs but does not expose a general push-triggered workflow-run listing.
 - [ ] Do not replace unresolved products with guessed images; only exact-SKU supplier/PDF evidence may be promoted to production.
-- [ ] Live product stock currently reads 4,187 positive-stock SKUs / 27,745 units in Supabase. This differs from the earlier 44-SKU stock snapshot and therefore requires reconciliation before launch; no stock values were changed during this continuation.
+- [x] Live product stock discrepancy reconciled: 4,187 active positive-stock SKUs / 27,745 units is the intentional stock-floor state. 4,153 active products are at quantity 5 and 34 retain explicitly verified ASC quantities above 5. The earlier 44-SKU snapshot is historical; the 36-SKU / 7,037-unit ASC verification ledger remains distinct from the store stock-floor values. No stock values were changed during image QA.
