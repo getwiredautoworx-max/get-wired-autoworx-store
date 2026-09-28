@@ -444,3 +444,39 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - [x] Cloudflare remains the fallback during the temporary Fridge test; no paid Cloudflare or Netlify credits are to be used.
 - [x] Google Drive backup was investigated as the proposed temporary independent backup destination, but the Google Drive connector is currently unavailable in this environment. It is therefore **not marked active** and no backup is claimed until an actual backup/restore test exists.
 - [ ] Owner still needs to create/activate the Fridge account before an actual Fridge upload can occur. No hosting account credentials are available to this session, so no deployment is falsely claimed.
+
+
+## ENTERPRISE-GRADE HARDENING PASS — 2026-09-28
+
+The storefront is now being treated as a production ecommerce platform rather than a simple catalogue site. The next layer of work is focused on defence-in-depth, predictable search/crawler behaviour, repeatable automated QA, controlled deployments and auditable owner operations.
+
+### Completed in this pass
+- [x] Added repository-level _headers policy for supported static hosts.
+- [x] Added baseline security headers: X-Content-Type-Options, Referrer-Policy, X-Frame-Options, restrictive Permissions-Policy, and a Content Security Policy scoped to the storefront's Supabase API and same-origin application resources.
+- [x] Added robots.txt with public crawling allowed while excluding administrative/internal paths.
+- [x] Security headers were added without changing Supabase data, pricing, stock or payment configuration.
+- [x] No Cloudflare or Netlify credits used.
+
+### Enterprise engineering principles now enforced
+1. Evidence before publication — SKU, image, description, category, price and supplier-source changes require exact evidence; no visual guessing.
+2. Server authority — customer order totals, stock/price validation and owner publishing remain server-controlled.
+3. Least privilege — public catalogue access is separated from authenticated owner/admin operations.
+4. Change traceability — material source/database changes must be represented by commits, workflow results or audit records.
+5. Rollback first — Cloudflare remains untouched as fallback; Fridge migration will not replace the fallback until recovery is demonstrated.
+6. No secret leakage — payment credentials, service-role keys, signing keys and account passwords must never enter source control or storefront code.
+7. Automate before scaling — repeated smoke, image and catalogue QA should be automated before manual verification is expanded across thousands of products.
+8. Public launch is a separate gate — successful source/CI testing does not equal public-site verification.
+
+### Current automated verification status
+- [x] Storefront smoke run 36442360510 passed.
+- [x] Clean Product Images run 36442360396 passed.
+- [ ] ASC exact-SKU Image Sync 36440485985 remains in progress and must be independently rechecked before its output is counted.
+- [ ] New smoke/clean workflow runs triggered by the enterprise hardening commits must complete successfully before this hardening pass is considered fully regression-closed.
+
+### Owner-input gates remain unchanged
+- Owner/device installation and acceptance test of Owner APK v1.0.1.
+- Owner verification of final EFT/bank payment details.
+- Owner approval for final public Cloudflare browser verification.
+- Manual product-by-product verification where exact evidence cannot be automated.
+- Production Android signing-key/release decision.
+- Fridge account activation before any Fridge deployment.
