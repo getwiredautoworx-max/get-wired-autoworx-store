@@ -304,3 +304,21 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 5. Install on an emulator/device and run Owner Login, Store route, Checkout route and core WebView checks.
 6. Preserve the resulting APK artifact and record the exact build/validation result here.
 7. Only then proceed to live/customer-facing testing when the user explicitly says they are ready.
+
+
+## OWNER APK SOURCE AUDIT — 2026-09-28
+- Current GitHub Owner APK source was re-read after the Replit Agent allowance window had passed.
+- `android-owner-app/app/build.gradle`: package `za.co.getwiredautoworx.owner`, version 1.0.1 / versionCode 2, compileSdk/targetSdk 35, minSdk 23.
+- `android-owner-app/build.gradle`: Android Gradle Plugin 8.7.3.
+- `android-owner-app/app/src/main/AndroidManifest.xml`: launcher activity is `.MainActivity`, INTERNET permission is present, cleartext HTTP is disabled, and backup is disabled.
+- `MainActivity.java` was verified as the current Java activity. It supports the Owner Login asset, Store route, Checkout route, WebView JavaScript/DOM storage, and file chooser handling.
+- `android-owner-app/app/src/main/assets/admin_app.html` was verified to exist, so the Owner Login asset required by MainActivity is present in the APK source tree.
+- The current build workflow bundles the real storefront into `app/src/main/assets/store` and then builds/installs the current debug APK for emulator validation.
+- A fresh Replit Agent execution attempt was made after the stated reset window; the Replit tool timed out before returning a build result. This is not evidence of an APK build failure and no APK-ready claim is made.
+- No replacement app, demo app, Cloudflare credit, Netlify credit, or real customer order was used.
+
+### Current execution state after audit
+- Source integrity: verified.
+- Current APK build: **not yet independently completed in this continuation**.
+- Emulator validation: **not yet completed for current version 1.0.1**.
+- Next action remains to obtain an actual build-capable execution environment and run the current source through build → install → Owner Login → Store → Checkout validation. Existing source must be preserved.
