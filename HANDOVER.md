@@ -322,3 +322,11 @@ The latest storefront source commit is **b72e240e2655ed8feebaab6f16fcfb9e5417591
 - Current APK build: **not yet independently completed in this continuation**.
 - Emulator validation: **not yet completed for current version 1.0.1**.
 - Next action remains to obtain an actual build-capable execution environment and run the current source through build → install → Owner Login → Store → Checkout validation. Existing source must be preserved.
+
+
+## OWNER APK EXECUTION RETRY — 2026-09-28
+- Re-ran the current Owner APK GitHub Actions job `109093479114` as an additional execution test; GitHub accepted the retry and created job `109113307960`.
+- The retried job again completed as **failure before any workflow steps started** (`steps=null`, no logs URL).
+- This reproduces the previously observed runner/execution-environment failure and does not provide evidence of a defect in the Owner APK source.
+- No source changes were made as part of this retry. No Cloudflare/Netlify credits and no real customer orders were used.
+- Do not mark APK 1.0.1 built/validated from this retry.
