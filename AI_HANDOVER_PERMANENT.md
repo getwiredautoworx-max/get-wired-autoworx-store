@@ -299,3 +299,38 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Existing SKU/image fallback remains exact-SKU based; no visually similar product images are substituted.
 - [ ] Next UX pass: refine mobile category navigation, product filters/sorting, checkout handoff and order-status messaging; then run storefront smoke tests before any production deployment.
 - No Cloudflare credits used. No Netlify deployment triggered.
+
+
+## 29 SEP 2026 — OWNER APK / GITHUB ACTIONS / DEPLOYMENT VALIDATION CHECKPOINT
+
+- [x] Confirmed repository identity: `getwiredautoworx-max/get-wired-autoworx-store`, default branch `main`.
+- [x] Confirmed Owner APK target remains `za.co.getwiredautoworx.owner`, version **1.0.1**.
+- [x] Confirmed **Owner APK Run #31 build passed**.
+- [ ] Emulator smoke validation is still outstanding; do not mark APK validation complete until install/launch/core smoke checks produce an actual pass.
+- [x] Confirmed current GitHub connector repository state on 29 Sep: repository is accessible, but **code-search indexing currently reports false**. Earlier GitHub UI reported that the repository was still being indexed and requested retry later.
+- [ ] Repository indexing/Actions validation point therefore remains open. Do not claim indexing has completed until a subsequent direct check reports indexed/usable.
+- [x] Confirmed no need to restart Supabase/database setup; this is not the current blocker.
+- [x] Confirmed latest Cloudflare Pages configuration discussed: Git deployment from `main`, framework preset none, build command blank, root directory `/`.
+- [x] Recent Cloudflare build reached environment initialization successfully.
+- [ ] Cloudflare live deployment URL/customer storefront smoke test still requires final verification against the current repository contents.
+- [ ] Store customer/admin QA remains: homepage/mobile rendering, catalogue/category/search, product detail/fitment, cart, checkout/order creation, customer order reference, admin order visibility/status, payment/EFT and delivery.
+- [ ] Production signing remains a release gate.
+- [ ] Supabase Auth leaked-password protection remains a final production security gate.
+- [ ] Image enrichment / exact-SKU image verification remains outstanding and must not be claimed complete without evidence.
+- [x] This handover was updated after the validation-state check; the current unresolved items are recorded above.
+
+### CURRENT EXECUTION ORDER
+1. Resolve/recheck GitHub repository indexing and Actions accessibility.
+2. Complete Owner APK emulator install/launch/core smoke validation.
+3. In parallel, verify the current Cloudflare deployment where accessible without consuming credits.
+4. Run storefront/customer/admin QA and fix any failures.
+5. Complete payment/EFT and delivery verification.
+6. Complete security/release gates, production signing and final live-readiness documentation.
+
+### HARD EXECUTION CONSTRAINTS — STILL ACTIVE
+- No Cloudflare credits.
+- No Netlify credits.
+- Do not restart completed database work without evidence of a fault.
+- Do not import the old incorrect 1,109-row CSV.
+- Do not claim validation, indexing, deployment, payment or production readiness until directly verified.
+- Continue independent tasks in parallel whenever technically possible.
