@@ -334,3 +334,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Do not import the old incorrect 1,109-row CSV.
 - Do not claim validation, indexing, deployment, payment or production readiness until directly verified.
 - Continue independent tasks in parallel whenever technically possible.
+
+
+## 29 SEP 2026 — RUN #31 ARTIFACT HANDOFF CHECKPOINT
+
+- [x] Confirmed Run #31 is the successful Owner APK build.
+- [x] Confirmed the expected workflow artifact name is `getwiredautoworx-owner-debug-apk`.
+- [ ] Emulator validation cannot begin from the connector alone because the current GitHub connector does not expose a direct artifact-download URL without the workflow artifact ID.
+- [ ] User action required: open GitHub Actions → Run #31 → Artifacts → `getwiredautoworx-owner-debug-apk`, download the ZIP and upload it to this chat.
+- [ ] After the ZIP is supplied, inspect the APK, install it in the available emulator/test environment, launch it and execute the core Owner APK smoke-test checklist.
+- [x] No Cloudflare, Netlify or Replit credits used for this artifact handoff.
