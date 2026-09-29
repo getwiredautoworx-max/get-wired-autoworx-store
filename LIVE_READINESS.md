@@ -116,3 +116,31 @@ This does **not** match the user's previously verified 2026-09-16 stock state of
 
 ## PUBLIC VERIFICATION STATUS
 The final public verification cannot yet be truthfully marked complete because the exact temporary Cloudflare public hostname is not documented in GitHub or the available prior project context. The known Netlify URL is a stale deployment and is not the current Cloudflare production target, so it must not be used as a substitute for live Cloudflare verification.
+
+
+## PARALLEL QA CONTINUATION — 2026-09-29 12:52 SAST
+
+### Storefront
+- Current source routing, cart handoff, image fallback/category enhancements and approved storefront wrapper re-checked.
+- Latest successful automated smoke run remains **35140654305**.
+- Public browser verification remains deferred and is not claimed complete.
+
+### Checkout
+- Active-product revalidation, fulfilment selection, delivery quote flow, payment choices and `create_store_order` integration re-checked from current source.
+- Previously verified pickup/cash-on-pickup edge-case regression remains passing with 0 QA orders created.
+
+### Admin
+- Supabase privilege audit confirms `admin_list_orders` and `admin_update_order`: anon **false**, authenticated **true**.
+- `create_store_order`: anon **true**, authenticated **true**, as required for public checkout.
+
+### Current catalogue/security verification
+- 4,187 active / priced products; 0 uncategorized; 4,187 with stock > 0; 27,745 total active units; 791 specific product images.
+- Pricing mismatches: **0**.
+- RLS enabled on all seven approved public tables.
+- No Cloudflare or Netlify credits used.
+
+### Remaining gates
+- Owner APK/Actions validation.
+- Owner verification of EFT/bank details.
+- Public Cloudflare browser test only when authorised and with the actual public hostname.
+- Final production signing-key approval if still outstanding.
