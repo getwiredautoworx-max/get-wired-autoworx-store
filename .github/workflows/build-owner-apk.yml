@@ -1,4 +1,5 @@
 name: Build and Validate Get Wired AutoWorx Owner APK
+# Triggered by repository push for APK validation recovery.
 on:
   workflow_dispatch:
   push:
