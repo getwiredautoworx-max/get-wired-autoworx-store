@@ -590,3 +590,22 @@ Five non-public tasks were continued while Owner APK/Actions validation remains 
 - This section records the completed parallel QA pass and the remaining public/Owner validation gates.
 - **Remaining:** Owner APK/Actions validation; payment/bank-detail verification by owner; final public Cloudflare browser verification when authorised; final production signing-key approval if still required.
 - Do not mark the store LIVE until the actual public storefront has been browser-tested.
+
+
+## OWNER APK ACTIONS VALIDATION UPDATE — 2026-09-29 12:XX SAST
+
+- GitHub Actions repository indexing/Actions availability blocker is resolved: the isolated public validation repository is executing the Owner APK workflow successfully.
+- Current validation run: **36558844914**, workflow **Build Owner APK**, triggered from main commit **8c3ecbd9b7f90a7c49b39a35449949427b46260c**.
+- Build job **109374518041**: **SUCCESS**. Checkout, Java, Gradle setup, debug APK compilation, SHA-256 checksum recording and APK artifact upload all completed successfully.
+- Emulator job **109374948898**: **IN PROGRESS**. APK compilation for the emulator completed successfully; the **Run Android emulator smoke test** step is currently executing. GitHub reports the remaining post steps as pending until the smoke test completes.
+- This is the first current run in this validation route to reach actual emulator execution; previous pre-job failures are no longer the active blocker.
+- **Owner APK validation is NOT yet marked complete.** It will only be marked passed after the emulator smoke test and final workflow run complete successfully, followed by artifact/checksum confirmation.
+- No Replit, Cloudflare or Netlify credits were used. No real customer orders were created.
+
+### Immediate continuation
+1. Let run **36558844914** complete the emulator smoke test.
+2. If successful, retrieve the uploaded APK artifact and checksum and record the exact artifact/run references.
+3. If the emulator fails, inspect the failing step/log, fix only the verified runtime issue, and rerun.
+4. After successful emulator validation, continue Owner APK functional validation and then the remaining owner-controlled live-store gates.
+
+**Current critical-path status: APK build PASSED; emulator runtime validation ACTIVE; final APK validation still pending.**
