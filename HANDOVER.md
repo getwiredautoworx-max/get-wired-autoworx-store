@@ -506,7 +506,7 @@ The project is considered technically ready for owner acceptance when:
   - Installation now uses `adb push` followed by `adb shell pm install -r` instead of relying on the failing streamed install path.
   - Package service is warmed before installation and adb is restarted between retries.
   - Four installation attempts remain.
-- [x] Confirmed current GitHub Actions run **36539511646** failed before job steps because the account's Actions execution capacity/credits are currently unavailable; this is separate from the APK source/build itself.
+- [x] Confirmed current GitHub Actions run **36539511646** failed before any job step executed; unlike the historical run, no build or emulator work started. The repository therefore has no new runtime result to assess from this attempt.
 - [x] Confirmed the existing Netlify project is also currently skipping builds because its account credit usage is exceeded. No Netlify credits were consumed by the attempted fallback.
 - [x] Reverted the temporary Netlify APK-build experiment and restored the normal storefront build configuration.
 - [x] No Replit credits used. No Cloudflare credits used. No Netlify credits used.
