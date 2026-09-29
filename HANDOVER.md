@@ -484,3 +484,13 @@ The project is considered technically ready for owner acceptance when:
 - and, when authorised, the actual public Cloudflare storefront has passed browser verification.
 
 **Continue automatically toward these targets. Report only completed milestones or genuine owner-controlled blockers.**
+
+
+## OWNER APK ZERO-CREDIT EXECUTION ATTEMPT — 2026-09-29
+- Replit is explicitly prohibited by the owner; no Replit credits were used.
+- A zero-credit local/container build was tested, but the execution image has Java 21 only and no Android SDK, Gradle, adb, or cached Android build tooling; therefore it cannot build the APK locally.
+- The existing GitHub Owner APK workflow was triggered from main. Run `36539233394` failed before workflow steps started (`steps=null`, no job logs). The workflow runner was then changed from `ubuntu-24.04` to `ubuntu-latest` and retriggered as run `36539261777`; it again failed before any workflow steps started. This confirms the current private-repository GitHub-hosted execution environment is the blocker, not an identified APK compilation error.
+- An older successful Owner APK run `36460079264` produced artifact `10988080088`, SHA-256 `83b8b2f706663d9f579675165f3f4503b604257f95ce15a602d8c34c2c1f6fa1`. Inspection showed a 15 KB APK containing only the earlier `admin_app.html` asset; its source predates the current Store/Checkout routing in MainActivity, so it is **not accepted as the current v1.0.1 validated APK**.
+- The current MainActivity differs from that older source specifically by adding Store and Checkout asset routing; current source remains preserved.
+- Temporary build-trigger file was removed after testing. No Cloudflare/Netlify/Replit credits were used and no customer orders were created.
+- **Current genuine blocker:** a build-capable execution environment that can access the private repository without paid/owner-controlled execution being unavailable. The next valid route must build the current source, not reuse the stale older APK.
