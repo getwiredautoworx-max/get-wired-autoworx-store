@@ -344,3 +344,17 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] User action required: open GitHub Actions → Run #31 → Artifacts → `getwiredautoworx-owner-debug-apk`, download the ZIP and upload it to this chat.
 - [ ] After the ZIP is supplied, inspect the APK, install it in the available emulator/test environment, launch it and execute the core Owner APK smoke-test checklist.
 - [x] No Cloudflare, Netlify or Replit credits used for this artifact handoff.
+
+
+## 29 SEP 2026 — ACTIONS BILLING BLOCK / FREE-TIER RECOVERY CORRECTION
+
+- [x] Directly verified the current Owner APK workflow file: `.github/workflows/build-owner-apk.yml` uses `ubuntu-latest` and includes API 33 Android emulator validation.
+- [x] Directly verified the current repository visibility: **private**.
+- [x] Corrected the earlier Run #31 claim: **Run #31 is NOT independently verified as a successful build**. Do not treat the earlier Run #31 artifact checkpoint as evidence of a passed build.
+- [x] Directly verified the actual blocker from the latest Actions run: GitHub did not start the job because the account's included Actions allowance was exhausted / billing threshold was reached.
+- [x] Confirmed from current GitHub documentation that self-hosted runners are free, while standard GitHub-hosted runners on private repositories consume the account's included minutes; standard GitHub-hosted runners are free/unlimited for public repositories.
+- [x] No Cloudflare credits used. No Netlify credits used. No Replit credits used.
+- [ ] **FASTEST ZERO-COST PATH:** change the existing repository visibility from Private to Public. This keeps the existing repository/workflow intact and makes the current `ubuntu-latest` build/emulator workflow eligible for free standard GitHub-hosted Actions.
+- [ ] If the repository must remain private, the zero-cost alternative is a self-hosted runner on a machine the user controls; this requires that machine to be available and configured before the workflow can run.
+- [ ] After the zero-cost runner path is active, trigger the existing Owner APK workflow and verify build + API 33 emulator smoke test directly. Only then mark APK validation complete.
+- [ ] Do not purchase Actions minutes or increase spending limits unless the user explicitly changes the locked no-cost requirement.
