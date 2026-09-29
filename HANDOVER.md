@@ -517,3 +517,34 @@ The project is considered technically ready for owner acceptance when:
 
 ### Current execution rule
 Resume from this section after chat reset. The APK **build path is already proven**; the remaining blocker is execution capacity plus final emulator runtime validation. Do not restart Supabase, catalogue, RLS, storefront, or checkout work.
+
+
+## OWNER APK EXECUTION ROUTE DECISION — 2026-09-29
+
+### Latest execution evidence
+- Hardened Owner APK workflow commit: `68011d8f1727276e1be65e7eef49af35a13854d9`.
+- Latest push-triggered GitHub Actions run: **36540176256** (workflow `.github/workflows/storefront-smoke.yml`), failed at **2026-09-29 08:01:54Z**.
+- Its job **109313443560** was created but contains `steps=null`; no workflow step executed and no usable job log was produced. This is consistent with the existing private-repository Actions execution-capacity/account gate and is **not evidence of an APK source/build failure**.
+- The hardened Owner APK workflow itself remains source-valid; the historical run already proved that this project can compile on a functioning GitHub-hosted Android runner.
+
+### Zero-credit resolution path
+- Replit is prohibited by owner instruction. Cloudflare and Netlify credits are also prohibited.
+- The existing production repository remains **private** and must not be made public merely to bypass the runner restriction.
+- The fastest zero-credit isolated validation route is a **separate public GitHub validation repository containing only the non-secret Owner APK build source/workflow**, with no Supabase service-role keys, payment credentials, private keys, customer data or production secrets. Standard GitHub-hosted runners for a public repository can execute the Android build/emulator workflow without using the production repository's private Actions quota.
+- Publishing APK source is an owner-controlled IP/privacy decision. **Do not expose the production repository or copy sensitive/private material.** The production repository remains unchanged/private.
+- If public source exposure is not acceptable, the alternative is a self-hosted Android-capable runner on a machine controlled by the owner. That route requires an available machine/runner host and cannot be completed purely from the connected GitHub controls.
+- Current connected GitHub tooling does not expose a repository-creation endpoint, so creation of the isolated public validation repository requires an owner-side GitHub action unless that connector capability becomes available.
+
+### Next exact action
+1. Create/authorize the isolated public validation repository only if the owner accepts public exposure of the copied APK source.
+2. Copy only the current `android-owner-app` source and hardened build workflow; exclude the rest of the private store repository and all secrets.
+3. Trigger the public workflow on a standard runner.
+4. Require actual debug APK compilation, artifact preservation, SHA-256 capture, emulator install, Owner Login, Store, product/cart and Checkout checks.
+5. Bring only validated APK/source changes back to the private production repository.
+6. Do not mark the Owner APK validated until those runtime checks have actually passed.
+
+### Current owner constraints remain absolute
+- **NO REPLIT CREDITS. NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.**
+- No real customer orders during validation.
+- Do not change the private production repository to public.
+- Do not claim APK validation from a non-starting Actions run.
