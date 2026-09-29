@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist && cp index-new.html dist/index.html && mkdir -p dist/assets/products && cp -R assets/products/. dist/assets/products/ && mkdir -p dist/assets && cp assets/store-enhancements.js dist/assets/store-enhancements.js && cp assets/ui-fixes.js dist/assets/ui-fixes.js && cp admin.html dist/admin.html && cp assets/admin.js dist/assets/admin.js && cp checkout.html dist/checkout.html && sed -i 's#</body>#<script src=\"assets/store-enhancements.js\"></script><script src=\"assets/ui-fixes.js\"></script></body>#' dist/index.html && if [ "\${OWNER_APK_BUILD:-0}" = "1" ]; then bash scripts/build-owner-apk-netlify.sh; fi"
+  command = "rm -rf dist && mkdir -p dist && unzip -q Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip -d dist && cp index-new.html dist/index.html && mkdir -p dist/assets/products && cp -R assets/products/. dist/assets/products/ && mkdir -p dist/assets && cp assets/store-enhancements.js dist/assets/store-enhancements.js && cp assets/ui-fixes.js dist/assets/ui-fixes.js && cp admin.html dist/admin.html && cp assets/admin.js dist/assets/admin.js && cp checkout.html dist/checkout.html && sed -i 's#</body>#<script src=\"assets/store-enhancements.js\"></script><script src=\"assets/ui-fixes.js\"></script></body>#' dist/index.html && bash scripts/build-owner-apk-netlify.sh"
 
 [functions]
   directory = "netlify/functions"
