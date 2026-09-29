@@ -494,3 +494,26 @@ The project is considered technically ready for owner acceptance when:
 - The current MainActivity differs from that older source specifically by adding Store and Checkout asset routing; current source remains preserved.
 - Temporary build-trigger file was removed after testing. No Cloudflare/Netlify/Replit credits were used and no customer orders were created.
 - **Current genuine blocker:** a build-capable execution environment that can access the private repository without paid/owner-controlled execution being unavailable. The next valid route must build the current source, not reuse the stale older APK.
+
+
+## OWNER APK EXECUTION BLOCKER — 2026-09-29 10:XX SAST
+- [x] Confirmed historical Owner APK workflow **36460813036 / job 109058580863** successfully completed checkout, Java, Android SDK, Gradle setup, storefront bundling, and **debug APK compilation**.
+- [x] Confirmed the historical runtime failure was the Android package service returning **`Broken pipe (32)`** during streamed `adb install`, after the emulator had fully booted.
+- [x] Implemented a stronger validation workflow in commit **68011d8f1727276e1be65e7eef49af35a13854d9d**:
+  - API 33 Google APIs emulator for a more conservative runtime target.
+  - SwiftShader graphics.
+  - APK artifact is uploaded **before** emulator validation so a runtime-validation failure cannot discard the successfully built APK.
+  - Installation now uses `adb push` followed by `adb shell pm install -r` instead of relying on the failing streamed install path.
+  - Package service is warmed before installation and adb is restarted between retries.
+  - Four installation attempts remain.
+- [x] Confirmed current GitHub Actions run **36539511646** failed before job steps because the account's Actions execution capacity/credits are currently unavailable; this is separate from the APK source/build itself.
+- [x] Confirmed the existing Netlify project is also currently skipping builds because its account credit usage is exceeded. No Netlify credits were consumed by the attempted fallback.
+- [x] Reverted the temporary Netlify APK-build experiment and restored the normal storefront build configuration.
+- [x] No Replit credits used. No Cloudflare credits used. No Netlify credits used.
+- [ ] Do **not** call the APK emulator-validated until a real workflow run completes the runtime checks.
+- [ ] On the next available GitHub Actions execution capacity, run the hardened Owner APK workflow, retrieve the APK artifact, verify SHA-256, and complete Owner Login → Store → product → cart → checkout validation.
+- [ ] If the emulator install still fails, retain the pre-emulator APK artifact and diagnose only the emulator/package-service layer; do not rebuild the storefront or database.
+- [ ] After runtime validation passes, proceed to Owner APK adaptation and then final live-store testing.
+
+### Current execution rule
+Resume from this section after chat reset. The APK **build path is already proven**; the remaining blocker is execution capacity plus final emulator runtime validation. Do not restart Supabase, catalogue, RLS, storefront, or checkout work.
