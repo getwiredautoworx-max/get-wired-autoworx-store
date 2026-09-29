@@ -609,3 +609,24 @@ Five non-public tasks were continued while Owner APK/Actions validation remains 
 4. After successful emulator validation, continue Owner APK functional validation and then the remaining owner-controlled live-store gates.
 
 **Current critical-path status: APK build PASSED; emulator runtime validation ACTIVE; final APK validation still pending.**
+
+
+## INDEPENDENT TECHNICAL QA CONTINUATION — 2026-09-29 13:XX SAST
+
+- Owner APK source audit completed against the isolated public validation repository.
+- Current MainActivity is the current WebView owner app entry point: JavaScript and DOM storage are enabled, file/content access is enabled, a WebChromeClient file chooser is implemented, Android back navigation returns through WebView history, and the APK loads the configured owner storefront URL.
+- AndroidManifest declares INTERNET permission, HTTPS-only cleartext policy, portrait orientation, and the expected exported launcher activity.
+- Current validation run **36558844914** remains active: build job **109374518041 = SUCCESS**; emulator job **109374948898 = IN PROGRESS** at the Android emulator smoke-test step.
+- The build artifact is already preserved before emulator completion as GitHub artifact **11028297177**, name **get-wired-owner-debug**, SHA-256 digest **036a274adbb292fe8179bfdb7b89efe49297cdbbc314e3ce1c8727e0e92c2b46**. Artifact expiry is 2026-12-28.
+- This artifact is not yet labelled runtime-validated; emulator validation must still complete successfully.
+- Store source audit reconfirmed the customer wrapper routes through `store.html` to `index-new.html`, keeps the cart/checkout handoff, and loads the image/category enhancement scripts. Checkout source remains server-order based and retains delivery/pickup/payment validation. Admin source remains behind authenticated Supabase Auth and the previously verified admin RPC controls.
+- No production data was changed, no real order was created, and no Replit/Cloudflare/Netlify credits were used.
+- No public browser test was performed; the actual public Cloudflare hostname remains an owner-controlled launch gate.
+
+### Remaining after this independent QA pass
+1. Complete run **36558844914** emulator smoke test and final workflow conclusion.
+2. If successful, download/inspect artifact **11028297177** and preserve its checksum in the handover.
+3. Perform Owner APK functional validation beyond launcher/emulator smoke where tooling permits; do not claim UI acceptance from source inspection alone.
+4. Owner verifies final payment/bank details.
+5. Owner authorises final public Cloudflare browser test and provides/uses the actual public hostname.
+6. Final catalogue manual QA remains a separate long-running task and does not block the current APK execution path.
