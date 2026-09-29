@@ -358,3 +358,20 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] If the repository must remain private, the zero-cost alternative is a self-hosted runner on a machine the user controls; this requires that machine to be available and configured before the workflow can run.
 - [ ] After the zero-cost runner path is active, trigger the existing Owner APK workflow and verify build + API 33 emulator smoke test directly. Only then mark APK validation complete.
 - [ ] Do not purchase Actions minutes or increase spending limits unless the user explicitly changes the locked no-cost requirement.
+
+
+## 29 SEP 2026 — OWNER APK ACTIONS RECOVERY / LIVE VALIDATION CHECKPOINT
+
+- [x] Verified repository visibility changed successfully from **private to public**.
+- [x] Verified GitHub documentation: standard GitHub-hosted runners are free/unlimited for public repositories. citeturn0search10turn0search11
+- [x] Re-ran the existing Owner APK workflow **Run #24** using the now-public repository; GitHub accepted the rerun.
+- [x] Owner APK job started successfully on GitHub-hosted infrastructure after the visibility change; the previous immediate billing/allowance block is therefore resolved for this workflow.
+- [x] Owner APK build pipeline completed successfully through: checkout, Java setup, Android SDK setup, Gradle setup, storefront asset bundling, debug APK compilation and APK artifact preservation.
+- [x] Generated Owner APK artifact was preserved before emulator validation.
+- [ ] API 33 Android emulator smoke validation is still running; do not mark the APK fully validated until the emulator step itself completes successfully.
+- [ ] After emulator validation passes, inspect/retrieve the workflow artifact and continue with APK integration/live-store checks.
+- [x] No Cloudflare credits used.
+- [x] No Netlify credits used.
+- [x] No Replit credits used.
+- [x] No paid GitHub Actions usage was purchased or enabled.
+- [ ] Final live testing remains gated by the remaining security/payment/deployment checks listed elsewhere in this handover.
