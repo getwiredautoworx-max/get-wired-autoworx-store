@@ -548,3 +548,45 @@ Resume from this section after chat reset. The APK **build path is already prove
 - No real customer orders during validation.
 - Do not change the private production repository to public.
 - Do not claim APK validation from a non-starting Actions run.
+
+
+## PARALLEL QA CONTINUATION — 2026-09-29 12:52 SAST
+
+Five non-public tasks were continued while Owner APK/Actions validation remains the critical path.
+
+### 1. Customer storefront QA — source/runtime readiness
+- Re-checked the current storefront wrapper and approved storefront routing.
+- `index.html` routes to `store.html`; `store.html` embeds the approved `index-new.html` storefront.
+- Cart count/checkout handoff is present and reads `gw_cart` from localStorage.
+- Product-image fallback, category cleanup and category navigation enhancements are loaded by the wrapper.
+- Automated source smoke run **35140654305** remains the latest known successful automated storefront run.
+- Public browser testing remains deliberately deferred; no live-site result is claimed.
+
+### 2. Checkout readiness — source/database verification
+- Checkout verifies active cart products against Supabase before order creation.
+- Delivery, locker/pickup-point and store-pickup paths are implemented.
+- EFT/manual payment/cash-on-pickup choices are implemented; payment remains pending until store confirmation.
+- Checkout submits through `public.create_store_order`.
+- Cash-on-pickup/pickup-only validation was previously regression-tested and invalid R15 delivery + cash-on-pickup was rejected with 0 QA orders created.
+
+### 3. Owner/admin system QA — database verification
+- Admin login uses Supabase Auth and authenticated admin RPCs.
+- `admin_list_orders` and `admin_update_order` are not executable by anon and are executable by authenticated users.
+- `create_store_order` remains executable anonymously for public checkout as designed.
+
+### 4. Launch-readiness audit — current authoritative database check
+- Active products: **4,187**.
+- Active priced products: **4,187**.
+- Uncategorized active products: **0**.
+- Active products with stock > 0: **4,187**.
+- Total active units: **27,745**.
+- Active products with product-specific images: **791**.
+- Pricing mismatches against cost × 1.15 × 1.35: **0**.
+- RLS is enabled on all seven approved public tables.
+- No Cloudflare or Netlify credits were used.
+- The 3,396 branded placeholders remain intentionally unchanged because the uploaded September guide has no safe exact-SKU replacements for them.
+
+### 5. Handover documentation
+- This section records the completed parallel QA pass and the remaining public/Owner validation gates.
+- **Remaining:** Owner APK/Actions validation; payment/bank-detail verification by owner; final public Cloudflare browser verification when authorised; final production signing-key approval if still required.
+- Do not mark the store LIVE until the actual public storefront has been browser-tested.
