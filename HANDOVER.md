@@ -630,3 +630,41 @@ Five non-public tasks were continued while Owner APK/Actions validation remains 
 4. Owner verifies final payment/bank details.
 5. Owner authorises final public Cloudflare browser test and provides/uses the actual public hostname.
 6. Final catalogue manual QA remains a separate long-running task and does not block the current APK execution path.
+
+## PARALLEL FIVE-TASK EXECUTION — 2026-09-29 13:XX SAST
+
+Five independent readiness tasks were executed without changing production data or consuming prohibited credits.
+
+### Task 1 — Owner APK validation status
+- Fresh check of workflow run 36558844914 confirms build job 109374518041 = SUCCESS.
+- Emulator job 109374948898 remains IN PROGRESS at Run Android emulator smoke test; setup, Java, Gradle and emulator APK compilation have all passed.
+- No second emulator run was started; the current runtime test remains the single active critical-path validation.
+
+### Task 2 — APK release artifact preservation and integrity preparation
+- Artifact 11028297177, get-wired-owner-debug, was successfully downloaded for inspection while emulator validation remains active.
+- Artifact ZIP contains exactly the debug APK and apk-sha256.txt; no unrelated files were present.
+- APK SHA-256 recorded inside the artifact: a15cac3c4126c8bd7c9d2abffd94b121c5e2aac1b26275bf19246760b1f7185b.
+- GitHub artifact digest remains sha256:036a274adbb292fe8179bfdb7b89efe49297cdbbc314e3ce1c8727e0e92c2b46; these are intentionally different hashes because one is the APK file and the other is the uploaded artifact archive.
+- Artifact remains unexpired and is retained until 2026-12-28.
+
+### Task 3 — Owner APK functional-path/source audit
+- MainActivity.java was re-audited: WebView JavaScript and DOM storage enabled; file/content access enabled; WebChromeClient file chooser implemented; WebView history back navigation implemented; HTTPS production storefront URL configured.
+- AndroidManifest.xml was re-audited: INTERNET permission, cleartext HTTP disabled, portrait orientation, exported launcher activity, correct Owner package/activity.
+- Workflow source was re-audited: emulator uses Android API 35 Google APIs x86_64, installs the freshly built APK, launches the expected activity and verifies the package is active through dumpsys.
+- No source defect requiring a speculative change was found. No code change was made.
+
+### Task 4 — Storefront / checkout / admin source regression audit
+- index.html redirects to store.html; store.html embeds index-new.html and preserves cart/checkout handoff plus image/category enhancement scripts.
+- checkout-v2.html re-verifies active cart products from Supabase before order creation, calculates delivery/pickup totals, enforces pickup-only cash-on-pickup, and sends orders through create_store_order with payment remaining pending until store confirmation.
+- admin.html remains staff-only at the UI layer and loads assets/admin.js; admin.js uses Supabase Auth, then calls admin_list_orders and admin_update_order only after an authenticated session is present.
+- No production order was created and no production data was changed during this audit.
+
+### Task 5 — Launch-readiness documentation / remaining gates
+- Technical source QA is complete for the current pass; no additional speculative code changes are justified.
+- Remaining hard gates are explicit: (1) current emulator smoke test must finish successfully; (2) Owner APK functional acceptance beyond launcher smoke where tooling permits; (3) owner verification of final EFT/bank/payment details; (4) owner-authorised public Cloudflare browser test using the actual production hostname; (5) final production signing/release-key approval if required.
+- Catalogue manual QA remains a separate non-blocking long-running task.
+- NO REPLIT CREDITS. NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS. No real customer orders were created.
+
+### Current critical path
+APK build: PASSED -> emulator runtime smoke: ACTIVE -> final APK acceptance: PENDING.
+Do not mark the APK or public store LIVE until the actual runtime and public-browser gates pass.
