@@ -238,3 +238,13 @@ The store must NOT be called LIVE merely because GitHub Actions, the APK build, 
 - Do not create real customer orders during QA without explicit authorization.
 - Do not claim public/live verification without actual public browser evidence.
 - Continue from this handover; do not restart completed tasks.
+
+
+### 2026-09-30 — Uploaded ASC catalogue image/category update
+- Source catalogues processed: ASC- Seat and steering wheel covers.pdf and ASC- Viscous Units and Fan Blades.pdf.
+- Catalogue pages are image-based; product image/SKU relationships were extracted from the catalogue layout and matched by exact SKU, not visual similarity.
+- Supabase category corrections applied for the matched catalogue SKUs: Seat Covers, STEERING WHEEL COVERS, Fan Blades, Fan Clutches, and Complete Fans.
+- Exact-SKU image pack prepared for 99 matched existing store products.
+- The generated JPEGs are packaged as Get_Wired_AutoWorx_Catalogue_SKU_Images.zip for the repository asset commit.
+- IMPORTANT: product image_url values have NOT been pointed at new paths yet; this prevents broken image URLs until the JPEG binaries are committed to the production repository.
+- Do not claim this image update is fully deployed until the JPEG assets are committed and storefront image URLs are verified.
