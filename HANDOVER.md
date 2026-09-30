@@ -668,3 +668,21 @@ Five independent readiness tasks were executed without changing production data 
 ### Current critical path
 APK build: PASSED -> emulator runtime smoke: ACTIVE -> final APK acceptance: PENDING.
 Do not mark the APK or public store LIVE until the actual runtime and public-browser gates pass.
+
+## CONTINUATION UPDATE — 2026-09-30 18:35 SAST
+
+- Production repository remains accessible with write permissions; no Supabase/database/storefront rebuild was performed.
+- Owner APK production workflow `.github/workflows/build-owner-apk.yml` was re-triggered by a harmless workflow-file update in commit **5a2f68ba9aba1668cb313d96310dfd34ffddcc4b**. The workflow contains both `workflow_dispatch` and push triggers and preserves the hardened pre-emulator APK artifact step.
+- The connected GitHub Actions reader available in this environment only exposes pull-request-associated workflow-run lookup, so a push-triggered run cannot be independently marked successful from that reader. **No APK validation claim is made from this trigger alone.**
+- The isolated public APK validation repository is active and has continued emulator-route fixes on 2026-09-30, including lightweight Google APIs/emulator boot/install-shell corrections. Latest recorded validation-repo commit is **73ea726ed3ea77aa2a009fadf165797255022259**. Its current APK source is version **1.0.2 / versionCode 3**; this is a validation build and is not automatically accepted as the production v1.0.1 APK.
+- The production Owner APK source remains the authoritative target: package `za.co.getwiredautoworx.owner`, current WebView routing for Owner admin/store/checkout assets, with no speculative source changes required from this audit.
+- Existing Netlify project was read-only verified as `ready`, but its current deploy is stale (2026-09-24 / older commit). **No Netlify deployment was triggered** because the standing constraint is no Netlify credits.
+- Public Cloudflare browser verification remains deferred until the owner is ready to browse/test and the actual production hostname is available. No Cloudflare deployment/credits were used.
+- No Replit credits, Cloudflare credits or Netlify credits were used. No production customer order was created.
+
+### Current critical path
+1. Obtain a verifiable completed current Owner APK emulator run against the authoritative production APK source.
+2. Verify APK artifact/checksum and functional Owner Login -> Store -> product/cart -> Checkout path.
+3. Owner verifies final EFT/bank/payment details.
+4. Owner authorises actual public Cloudflare browser verification using the production hostname.
+5. Only after those gates pass may the store/APK be called live-ready.
