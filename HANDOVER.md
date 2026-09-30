@@ -686,3 +686,20 @@ Do not mark the APK or public store LIVE until the actual runtime and public-bro
 3. Owner verifies final EFT/bank/payment details.
 4. Owner authorises actual public Cloudflare browser verification using the production hostname.
 5. Only after those gates pass may the store/APK be called live-ready.
+
+
+## CONTINUATION UPDATE — 2026-09-30 18:45 SAST — APK RUNTIME VALIDATION RESOLVED
+
+- The previously pending isolated Owner APK validation run **36558844914** has now been independently checked through GitHub job records.
+- Build job **109374518041: SUCCESS** — checkout, Java 17, Gradle setup, debug APK compilation, SHA-256 recording and artifact upload all completed.
+- Emulator job **109374948898: SUCCESS** — Android emulator smoke test completed successfully. The workflow's runtime path performed device readiness, APK transfer, package installation, launcher start and activity/package verification without failure.
+- Preserved artifact: **11028297177**, `get-wired-owner-debug`; GitHub artifact digest **sha256:036a274adbb292fe8179bfdb7b89efe49297cdbbc314e3ce1c8727e0e92c2b46**. Recorded APK SHA-256 from the artifact: **a15cac3c4126c8bd7c9d2abffd94b121c5e2aac1b26275bf19246760b1f7185b**. Artifact expiry: 2026-12-28.
+- This resolves the **emulator execution/package-install blocker**. It does not by itself certify the production v1.0.1 APK, because the isolated validation repository used a later validation source/version. Production v1.0.1 remains the authoritative release target.
+- Production Owner APK source was rechecked: version **1.0.1 / versionCode 2**, package `za.co.getwiredautoworx.owner`, current Store/Checkout/Admin WebView routing preserved.
+- No Replit, Cloudflare or Netlify credits were used. No production customer order was created.
+
+### Remaining technical gates
+1. Build/runtime-validate the **exact production v1.0.1 source** using the now-proven isolated emulator route, if a final release artifact is required before owner acceptance.
+2. Owner APK functional acceptance beyond launcher smoke: Owner Login -> Store -> product/cart -> Checkout.
+3. Resolve/verify Cloudflare production deployment and obtain the actual public hostname without consuming prohibited credits.
+4. Final public browser regression and payment/bank-detail verification.
