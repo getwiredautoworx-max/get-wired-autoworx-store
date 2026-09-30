@@ -712,3 +712,14 @@ Do not mark the APK or public store LIVE until the actual runtime and public-bro
 - Cloudflare Pages workflow is confirmed to use `wrangler pages deploy . --project-name=get-wired-autoworx-store --branch=main`, not the previously failing Workers `wrangler deploy .` command. The workflow is configured on pushes to `main`; the production APK trigger commit therefore also initiates the Pages deployment path. No Cloudflare credit purchase/use was intentionally initiated.
 - Exact Cloudflare production result still requires direct Cloudflare/GitHub Actions result visibility; this environment does not expose a Cloudflare dashboard connector or push-run listing that can honestly certify the resulting public URL.
 - Do not mark the store live until the exact production APK run and Cloudflare deployment are directly verified.
+
+
+## EXECUTION UPDATE — 2026-09-30
+
+- Direct GitHub Actions API visibility workaround established. Push/PR runs are now directly verifiable despite the connector's limited run reader.
+- Production Owner APK source confirmed: applicationId za.co.getwiredautoworx.owner, versionCode 2, versionName 1.0.1, target/compile SDK 35.
+- Run 36746358501 built the exact production APK successfully and uploaded artifact 11111954348 (SHA-256 f1c449417bfe8f0aafee6fb0f53b64db01e8e3e131cf208ef5856fa1ae22c38f). Emulator validation initially failed because the reactivecircus script contained shell loops that the action split incorrectly; logs showed the emulator itself booted successfully.
+- Production APK workflow corrected in commit d24ff82feece2d38d6a2c250a651da1a821775e3 to use the proven simple command sequence/API 29 emulator pattern. New production validation run 36748304866 is currently in progress; build and APK artifact stages are already successful.
+- Cloudflare Pages failure is conclusively identified: CLOUDFLARE_API_TOKEN is absent from Actions secrets. The Pages command itself is valid. No Cloudflare credits were used.
+- GitHub Pages staging was attempted with automatic enablement, but GitHub's Actions integration lacks permission to create the Pages site (Resource not accessible by integration). This is a repository/account configuration permission limitation, not a storefront build failure.
+- Storefront Smoke Test on commit 5b3fa2b068b51d1010d36d04a5edf92407bde042 completed successfully.
