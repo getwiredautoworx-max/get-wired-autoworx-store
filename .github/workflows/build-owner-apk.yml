@@ -45,60 +45,38 @@ jobs:
       - name: Start Android emulator and validate APK
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
+          api-level: 29
           target: google_apis
           arch: x86_64
           profile: pixel_3a
-          emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -no-snapshot -wipe-data
+          force-avd-creation: true
+          startup-timeout: 240
+          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
           disable-animations: true
           script: |
-            set -e
             adb wait-for-device
-            for i in $(seq 1 12); do
-              if adb shell getprop sys.boot_completed | tr -d '\r' | grep -q '^1$'; then
-                break
-              fi
-              sleep 5
-            done
-            test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1"
-            adb shell settings put global package_verifier_enable 0 || true
-            sleep 15
-
-            APK="android-owner-app/app/build/outputs/apk/debug/app-debug.apk"
-            installed=0
-            for attempt in 1 2 3 4; do
-              echo "Installing APK, attempt $attempt"
-              adb shell cmd package list packages >/dev/null 2>&1 || true
-              adb shell cmd package bg-dexopt-job >/dev/null 2>&1 || true
-              rm -f /tmp/app-debug.apk
-              if adb push "$APK" /data/local/tmp/app-debug.apk && adb shell pm install -r /data/local/tmp/app-debug.apk; then
-                installed=1
-                break
-              fi
-              echo "APK install failed; restarting adb/package service and retrying..."
-              adb kill-server || true
-              sleep 3
-              adb start-server || true
-              adb wait-for-device
-              sleep 10
-            done
-            test "$installed" = "1"
-
-            adb shell am start -n za.co.getwiredautoworx.owner/.MainActivity
+            adb start-server
+            adb devices
+            adb wait-for-device
+            adb shell getprop sys.boot_completed
+            adb shell settings put global window_animation_scale 0
+            adb shell settings put global transition_animation_scale 0
+            adb shell settings put global animator_duration_scale 0
+            adb push android-owner-app/app/build/outputs/apk/debug/app-debug.apk /data/local/tmp/get-wired-owner.apk
+            adb shell pm install -r /data/local/tmp/get-wired-owner.apk
+            adb shell monkey -p za.co.getwiredautoworx.owner 1
             sleep 8
-            adb shell dumpsys activity activities | grep -q 'za.co.getwiredautoworx.owner/.MainActivity'
+            adb shell dumpsys activity activities | grep -q za.co.getwiredautoworx.owner
             adb shell uiautomator dump /sdcard/window.xml >/dev/null
             adb pull /sdcard/window.xml /tmp/owner-window.xml >/dev/null
             grep -q 'GET WIRED AUTOWORX' /tmp/owner-window.xml
             grep -q 'Owner Login' /tmp/owner-window.xml
-
             adb shell am force-stop za.co.getwiredautoworx.owner
             adb shell am start -n za.co.getwiredautoworx.owner/.MainActivity --es screen store
-            sleep 10
+            sleep 8
             adb shell uiautomator dump /sdcard/store-window.xml >/dev/null
             adb pull /sdcard/store-window.xml /tmp/store-window.xml >/dev/null
             grep -q 'CHECKOUT' /tmp/store-window.xml
-
             adb shell am force-stop za.co.getwiredautoworx.owner
             adb shell am start -n za.co.getwiredautoworx.owner/.MainActivity --es screen checkout
             sleep 5
