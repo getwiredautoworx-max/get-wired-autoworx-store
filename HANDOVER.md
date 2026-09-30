@@ -248,3 +248,12 @@ The store must NOT be called LIVE merely because GitHub Actions, the APK build, 
 - The generated JPEGs are packaged as Get_Wired_AutoWorx_Catalogue_SKU_Images.zip for the repository asset commit.
 - IMPORTANT: product image_url values have NOT been pointed at new paths yet; this prevents broken image URLs until the JPEG binaries are committed to the production repository.
 - Do not claim this image update is fully deployed until the JPEG assets are committed and storefront image URLs are verified.
+
+
+## 2026-09-30 CATALOGUE IMAGE / CATEGORY UPDATE
+- Exact-SKU catalogue image extraction completed for 99 matched products from the uploaded catalogues.
+- Image pack prepared as Get_Wired_AutoWorx_Catalogue_SKU_Images.zip (99 JPEG assets; 277,297 bytes extracted; SHA-256 values recorded in the working manifest).
+- Supabase category assignments updated for the matched catalogue products using the catalogue-derived product grouping. No visual-similarity image substitutions were made.
+- Verified examples include Fan Blades, Fan Clutches, Complete Fans, Seat Covers and STEERING WHEEL COVERS.
+- Binary repository commit remains pending because the connected GitHub write interface available to this session accepts text/blob payloads but does not provide a local-file/binary-upload handoff. The prepared ZIP must not be treated as production assets until the 99 JPEGs are actually committed to the repository and the product image URLs are updated to those committed paths.
+- Do not point live products at nonexistent asset paths. Preserve the existing safe placeholder until the binary commit is verified.
