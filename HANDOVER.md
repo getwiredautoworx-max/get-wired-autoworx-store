@@ -419,3 +419,54 @@ PENDING:
 
 NEXT ACTION:
 Complete the GitHub Pages Settings -> Pages configuration (or provide the Cloudflare Actions secret through GitHub, never chat). Once a public URL exists, proceed directly to live browser testing and record the results here.
+
+
+---
+
+# 9. EXCEL CATEGORY MANAGEMENT WORKBOOK — 30 SEPTEMBER 2026
+
+A full editable Excel category-management workbook has been created and persisted for continuation in future chats.
+
+## Workbook
+- Filename: `Get_Wired_AutoWorx_Full_Category_Management_Workbook.xlsx`
+- Persistent Library path: `/Get Wired AutoWorx/Get_Wired_AutoWorx_Full_Category_Management_Workbook.xlsx`
+- Library file ID: `libfile_7d909cd6bf9c8191ba0b29a5e45c2934`
+- Format: Microsoft Excel `.xlsx`
+- Workbook verified successfully after creation.
+- Total worksheets/tabs: 61.
+- Sheets are intentionally UNPROTECTED and editable.
+
+## Workbook structure
+- `00 INDEX` — navigation and workbook summary.
+- Main catalogue categories are represented as PAGE sheets.
+- Because Excel does not support true nested tabs, each subcategory is represented by its own worksheet tab and is linked from its parent PAGE sheet.
+- 5 main catalogue categories/pages:
+  - Accessories
+  - Auto Spares
+  - Auto Tools
+  - Hardware
+  - Portable Compressors
+- 51 subcategory tabs.
+- `ALL PRODUCTS` — complete editable source catalogue listing.
+- `CATEGORY MAP` — editable category/subcategory reference and item counts.
+- `UNCATEGORIZED` — dedicated editable holding sheet for products with no category/subcategory.
+- `LIVE DB CATEGORY AUDIT` — reserved audit sheet distinguishing the validated source workbook structure from the larger live Supabase category tree.
+
+## Product scope / source
+- Workbook is based on the validated `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv`.
+- 800 catalogue rows.
+- 800 unique SKUs.
+- 791 fixed-price rows.
+- 9 rows with blank/system-dependent pricing; no prices were invented.
+- 0 uncategorized rows in the validated source at workbook creation time.
+- Source category/subcategory values were read from the validated catalogue specifications; they were not guessed or silently replaced.
+- All product/category cells remain editable.
+- The workbook does NOT silently overwrite the live Supabase category structure.
+- It is a management/editing workbook and source-control aid; database changes must still be deliberately applied and verified.
+
+## Important continuation rule
+When the owner asks for the workbook in a future chat, search the Library for:
+`Get_Wired_AutoWorx_Full_Category_Management_Workbook.xlsx`
+
+Do not recreate it from an older CSV unless explicitly instructed. Preserve this workbook as the current category-management workbook until a newer verified version replaces it.
+
