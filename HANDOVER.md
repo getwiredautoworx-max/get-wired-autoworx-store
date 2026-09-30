@@ -703,3 +703,12 @@ Do not mark the APK or public store LIVE until the actual runtime and public-bro
 2. Owner APK functional acceptance beyond launcher smoke: Owner Login -> Store -> product/cart -> Checkout.
 3. Resolve/verify Cloudflare production deployment and obtain the actual public hostname without consuming prohibited credits.
 4. Final public browser regression and payment/bank-detail verification.
+
+
+## CONTINUATION UPDATE — 2026-09-30 18:55 SAST
+
+- Exact production Owner APK validation has now been triggered from the authoritative store repository by commit **f39c12a782991333dbbe1e111cb84d05c15ec4de**. The workflow builds the repository's actual `android-owner-app` v1.0.1 source and bundles the current storefront assets before emulator validation; this is no longer the isolated validation source.
+- The proven emulator route is unchanged: Android API 33 Google APIs, x86_64 Pixel 3a, APK installation retry logic, launcher/activity check, Owner Login UI check, Store CHECKOUT UI check, and Checkout delivery/pickup/checkout UI check.
+- Cloudflare Pages workflow is confirmed to use `wrangler pages deploy . --project-name=get-wired-autoworx-store --branch=main`, not the previously failing Workers `wrangler deploy .` command. The workflow is configured on pushes to `main`; the production APK trigger commit therefore also initiates the Pages deployment path. No Cloudflare credit purchase/use was intentionally initiated.
+- Exact Cloudflare production result still requires direct Cloudflare/GitHub Actions result visibility; this environment does not expose a Cloudflare dashboard connector or push-run listing that can honestly certify the resulting public URL.
+- Do not mark the store live until the exact production APK run and Cloudflare deployment are directly verified.
