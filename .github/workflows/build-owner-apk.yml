@@ -106,4 +106,5 @@ jobs:
             adb pull /sdcard/checkout-window.xml /tmp/checkout-window.xml >/dev/null
             grep -qi 'delivery\|pickup\|checkout' /tmp/checkout-window.xml
 
-# Validation recovery trigger: 2026-09-29
+# Validation recovery trigger: 2026-09-30
+# Automated trigger refresh: 2026-09-30
