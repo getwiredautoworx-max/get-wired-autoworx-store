@@ -7,33 +7,37 @@ Updated: 2026-09-30 SAST
 - Branch: main
 - Production Owner APK source: android-owner-app/
 - Package: za.co.getwiredautoworx.owner
-- Production APK: v1.0.1 / versionCode 2
+- Production APK source/version currently documented: v1.0.1 / versionCode 2
 - compileSdk/targetSdk: 35
 - NO REPLIT CREDITS. NO CLOUDFLARE CREDITS. NO NETLIFY CREDITS.
 - Do not expose secrets, passwords, private keys or tokens.
+- Existing store is the foundation. Do not rebuild unnecessarily.
 
-## COMPLETED / VERIFIED
+---
 
-### Storefront
+# 1. SUCCESSFULLY COMPLETED / VERIFIED
+
+## 1.1 Storefront
 - Customer storefront source/routing complete.
 - Automated Storefront Smoke Test 36750308661 = SUCCESS.
 - Mobile entry, catalogue/category rendering, product detail, add-to-cart, checkout navigation/form behaviour and desktop viewport checks passed.
 - Automated smoke testing is not a substitute for public browser testing.
+- No storefront/database rebuild is currently justified.
 
-### Database / catalogue
+## 1.2 Database / catalogue
 - 4,187 active products.
 - 4,187 active priced/unique active SKUs.
 - 4,187 active products with stock > 0.
 - 27,745 total active units.
 - 0 uncategorized active products.
 - 0 pricing mismatches.
-- 791 active products with product-specific images.
+- 791 active products with product-specific verified images.
 - 3,396 active products use the safe branded placeholder.
 - RLS enabled on the seven approved public tables.
-- Pricing formula: cost × 1.15 VAT × 1.35 markup.
+- Pricing formula: supplier cost × 1.15 VAT × 1.35 markup.
 - Obsolete 1,109-row CSV must never be used.
 
-### Checkout / orders
+## 1.3 Checkout / orders
 - Server-authoritative product, price, stock, fulfilment and payment validation complete.
 - Nationwide delivery = R15.
 - Store pickup = R0.
@@ -42,84 +46,139 @@ Updated: 2026-09-30 SAST
 - No real customer order created during QA.
 - No card details collected.
 
-### Admin / security
+## 1.4 Admin / security
 - Supabase Auth/admin RPC authorization reviewed and passed.
 - No authorization bypass identified.
 - No service-role/private payment secrets found in indexed frontend source.
-- No production data changed during latest QA.
+- No production data changed during latest automated QA.
 - Leaked-password protection remains an owner dashboard configuration item.
 
-### Images
-- September Buyers Guide exact SKU/photo audit completed.
+## 1.5 Catalogue image and category work — 30 September 2026
+- Uploaded ASC catalogue sources processed:
+  - ASC- Seat and steering wheel covers.pdf
+  - ASC- Viscous Units and Fan Blades.pdf
+- Catalogue image/SKU relationships were matched by exact SKU/product identity.
+- No unsafe visual-similarity substitutions were made.
+- 99 exact-SKU catalogue images were extracted and prepared as JPEG assets.
+- Prepared image pack:
+  - Get_Wired_AutoWorx_Catalogue_SKU_Images.zip
+  - 99 JPEG assets
+  - 277,297 bytes extracted
+  - Exact-SKU filenames
+  - SHA-256 manifest recorded in the working output
+- Supabase category corrections were successfully applied for the matched catalogue products, including:
+  - Fan Blades
+  - Fan Clutches
+  - Complete Fans
+  - Seat Covers
+  - STEERING WHEEL COVERS
+- The 99 matched products were verified as existing in Supabase.
+- The matched products were verified as categorised.
+- Existing verified images remain preserved.
+- New image_url values were intentionally NOT changed before the binary assets were committed. This prevents broken production image URLs.
+
+### IMPORTANT IMAGE STATUS
+The catalogue-image extraction and category assignment are complete, but the 99 JPEG binaries are NOT yet confirmed as committed to the production GitHub repository. Therefore:
+- Do NOT claim all 99 new images are live.
+- Do NOT point products at nonexistent asset paths.
+- Keep the safe placeholder until repository assets and final image URLs are verified.
+- The prepared ZIP is the ready-to-commit asset package.
+
+## 1.6 Image audit / enrichment
+- September Buyers Guide exact-SKU/photo audit completed.
 - No unsafe visual-similarity substitutions made.
 - 3,396 placeholders intentionally remain where no verified exact-SKU image exists.
 - Image cleanup workflow processed 800 images successfully.
+- Remaining placeholder enrichment is not currently a technical launch blocker.
 
-### Owner APK
+## 1.7 Owner APK
 - Exact production-source workflow 36750308741 = SUCCESS.
 - Job 110006925647 = SUCCESS.
 - Production APK build, storefront bundling, artifact preservation and emulator validation all passed.
-- Artifact 11114172502, get-wired-autoworx-owner-debug-apk.
+- Artifact 11114172502: get-wired-autoworx-owner-debug-apk.
 - Artifact size: 88,454,478 bytes.
 - Artifact digest: sha256:137bf0a7ea3a02c7e0b9c77019a081d641bafa599ce4a1ec15e5a43718337fd9.
 - Artifact expiry: 2026-12-29.
 - Earlier isolated validation run 36558844914 also passed, but used validation v1.0.2/versionCode 3 and is supporting evidence only.
 - Emulator smoke-test workflow was corrected in commit d24ff82feece2d38d6a2c250a651da1a821775e3.
+- Automated emulator validation proves build/install/launch/activity execution.
+- Remaining Owner APK work is functional acceptance and, only if required, a signed release build.
 
-## HOSTING / DEPLOYMENT STATUS
+---
 
-### Cloudflare Pages
-Correct deployment command: npx wrangler pages deploy . --project-name=get-wired-autoworx-store --branch=main
+# 2. HOSTING / DEPLOYMENT STATUS
+
+## 2.1 Cloudflare Pages
+Correct deployment command:
+npx wrangler pages deploy . --project-name=get-wired-autoworx-store --branch=main
+
 - Run 36750308973 / Job 110006926556.
-- Correct Pages command reached.
-- Failure is exclusively due to missing CLOUDFLARE_API_TOKEN in GitHub Actions.
+- Correct Pages command was reached.
+- Failure is due to missing CLOUDFLARE_API_TOKEN in GitHub Actions.
 - No Cloudflare credits were used.
+- No token should ever be pasted into chat/source.
 
-### GitHub Pages
+## 2.2 GitHub Pages
 - Run 36750308896 / Job 110006927074.
 - Get Pages site: Not Found.
 - Create Pages site: Resource not accessible by integration.
-- This proves the connected Actions integration cannot create the Pages site.
+- Connected Actions integration cannot create the Pages site.
 - This is not a storefront-code failure.
+- Repository-side recovery completed:
+  - Root CNAME committed for getwiredautoworx.co.za.
+  - Recovery instructions committed in GITHUB_PAGES_RECOVERY.md.
+  - Prepared route: GitHub Pages -> Deploy from a branch -> main -> /(root).
 
-Repository-side recovery completed:
-- Root CNAME committed for getwiredautoworx.co.za.
-- Recovery instructions committed in GITHUB_PAGES_RECOVERY.md.
-- Prepared route: GitHub Pages -> Deploy from a branch -> main -> /(root).
-
-Settings:
+Settings page:
 https://github.com/getwiredautoworx-max/get-wired-autoworx-store/settings/pages
 
-### Netlify
-- Historical deployment is stale and not a production target.
+## 2.3 Netlify
+- Historical deployment is stale and is NOT a production target.
 - Do not deploy or refresh Netlify.
+- Do not spend Netlify credits.
 
-## ALL REMAINING TASKS
+---
 
-### P0 — Public hosting unblock
-Owner input required: complete ONE route.
+# 3. REMAINING TASKS WITH ETA
 
-Route A — GitHub Pages, no credit use:
+ETAs below are working estimates, not guarantees. They assume no new defects are discovered and required owner-controlled credentials/settings are supplied when needed.
+
+## P0 — PUBLIC HOSTING
+### Owner action required
+Choose ONE hosting route.
+
+### Route A — GitHub Pages
 1. Open repository Settings -> Pages.
 2. Set Source = Deploy from a branch.
 3. Branch = main.
 4. Folder = /(root).
 5. Save.
-6. Wait for Pages to publish.
-7. Tell me when saved so the resulting public URL can be verified.
+6. Wait for Pages publication.
+7. Notify Veyron that it has been saved so the public URL can be verified.
 
-Route B — Cloudflare Pages:
+Estimated owner setup time: 5–10 minutes.
+Estimated publication/propagation: 5–30 minutes.
+Estimated time from successful setting change to first public live test: approximately 15–45 minutes.
+
+### Route B — Cloudflare Pages
 1. Create/use an appropriate Cloudflare API token.
 2. Add it to GitHub repository Actions secrets as CLOUDFLARE_API_TOKEN.
 3. Never paste the token into chat/source.
 4. Rerun the Cloudflare Pages workflow.
 5. Verify the resulting public hostname.
-- No Cloudflare credits need to be purchased for this configuration route.
 
-### P1 — Public storefront verification
-Once a public URL exists:
-1. Verify HTTPS/reachability.
-2. Confirm it is the intended Get Wired AutoWorx storefront.
+Estimated owner setup time: 10–20 minutes.
+Estimated deployment verification after secret is available: 10–20 minutes.
+
+RECOMMENDED WORKFLOW FOR THIS HANDOVER:
+Use GitHub Pages first if the objective is to avoid Cloudflare/Netlify credit use.
+
+## P1 — PUBLIC LIVE STOREFRONT TEST
+Dependency: public URL must exist.
+
+Test:
+1. HTTPS/reachability.
+2. Correct Get Wired AutoWorx storefront.
 3. Homepage.
 4. Categories/subcategories.
 5. Search.
@@ -134,10 +193,29 @@ Once a public URL exists:
 14. Desktop viewport.
 15. Browser console/network errors where observable.
 16. Compare deployed behaviour with GitHub/Supabase.
-17. Record URL/results in LIVE_READINESS.md and this handover.
+17. Confirm no critical production error.
 
-### P1 — Owner APK functional acceptance
-Automated production emulator validation proves build/install/launch/activity execution. Remaining functional acceptance:
+Estimated execution: 45–90 minutes.
+Target: begin immediately after public URL is available.
+
+## P1 — CATALOGUE IMAGE ASSET DEPLOYMENT
+Dependency: repository binary-upload route or approved storage route.
+
+Remaining:
+1. Commit the 99 prepared exact-SKU JPEG binaries.
+2. Verify every committed filename/path.
+3. Update only the corresponding product image_url values.
+4. Verify image loading in the deployed storefront.
+5. Confirm placeholders remain only where no verified exact-SKU image exists.
+
+Estimated execution after a supported binary/storage upload path is available: 30–60 minutes.
+Current status: prepared and ready; production binary commit is still pending.
+This is not a reason to break the currently working placeholder image system.
+
+## P1 — OWNER APK FUNCTIONAL ACCEPTANCE
+Dependency: authenticated owner access may be required.
+
+Remaining:
 1. Owner Login.
 2. Owner/admin dashboard loads.
 3. Product/catalogue navigation.
@@ -146,29 +224,41 @@ Automated production emulator validation proves build/install/launch/activity ex
 6. Back navigation.
 7. WebView file chooser if required by admin.
 8. Confirm no runtime crash or blocking WebView error.
-- Do not invent credentials or bypass authentication.
-- Owner credentials/input may be required for authenticated screens.
 
-### P1 — Payment/bank-detail verification
-Owner must verify final customer-facing EFT/bank/payment details:
+Estimated execution: 30–60 minutes.
+Do not invent credentials or bypass authentication.
+
+## P1 — PAYMENT / BANK-DETAIL VERIFICATION
+Owner-controlled.
+
+Verify final customer-facing:
 - Bank name.
 - Account/beneficiary details.
 - Payment reference instructions.
 - Payment confirmation workflow.
 - No obsolete/test banking details remain.
-- Do not place private payment information in chat.
 
-### P1 — APK release decision
-- Decide whether verified debug APK is sufficient for internal Owner use.
-- If distributable production APK is required, create/verify production signing configuration.
-- Verify application ID/version/versionCode.
-- Build signed release APK.
-- Verify SHA-256.
-- Install/test signed release.
-- Never put signing keys/passwords in source.
-- Do not call debug artifact a Play Store/release-signed APK.
+Estimated owner verification: 15–30 minutes.
+Do not place private banking information in chat.
 
-### P2 — Production deployment regression
+## P1 — APK RELEASE DECISION
+Two possible states:
+
+### Internal Owner use
+- Current verified debug APK may be used for internal acceptance testing.
+
+### Distributable production APK required
+1. Production signing configuration.
+2. Application ID/version/versionCode verification.
+3. Signed release APK.
+4. SHA-256 verification.
+5. Signed APK installation test.
+6. Confirm it is genuinely release-signed.
+
+Estimated: 30–60 minutes after signing configuration is available.
+Do not call the current debug artifact a Play Store/release-signed APK.
+
+## P2 — PRODUCTION DEPLOYMENT REGRESSION
 After hosting is live:
 - Verify future push/deployment workflow behaviour.
 - Confirm no test/validation source is deployed.
@@ -176,15 +266,9 @@ After hosting is live:
 - Confirm obsolete Netlify/Workers deployment is not triggered.
 - Record final production commit/run references.
 
-### P2 — Catalogue/image enrichment
-Not currently a technical launch blocker:
-- Obtain verified supplier/ASC/product-image sources for remaining placeholders.
-- Match by exact SKU/product identity only.
-- Never substitute by visual similarity.
-- Re-run image QA after verified enrichment.
-- Preserve the existing 791 verified images.
+Estimated: 20–40 minutes.
 
-### P2 — Final operational QA
+## P2 — FINAL OPERATIONAL QA
 Before declaring trading-ready:
 - Test one complete non-production checkout/order path without creating a real customer order.
 - Verify order reference generation.
@@ -196,8 +280,10 @@ Before declaring trading-ready:
 - Verify mobile layout on owner's Android device if available.
 - Record findings.
 
-### P3 — Post-launch improvements
-Not launch gates unless made mandatory:
+Estimated: 30–60 minutes.
+
+## P3 — POST-LAUNCH ENRICHMENT
+Not a launch gate unless specifically made mandatory:
 - Replace remaining verified placeholders with exact-SKU imagery.
 - Expand product imagery/vehicle compatibility.
 - Add further payment automation if desired.
@@ -206,16 +292,67 @@ Not launch gates unless made mandatory:
 - Improve admin operational tooling.
 - Continue catalogue QA.
 
-## CURRENT BLOCKERS — EXACTLY DEFINED
-1. Public hosting creation/configuration — owner action required because GitHub Actions cannot create Pages and Cloudflare Actions lacks CLOUDFLARE_API_TOKEN.
-2. Public browser verification — requires a reachable public production URL.
-3. Final payment/bank-detail confirmation — owner-controlled.
-4. Authenticated Owner APK functional acceptance — owner credentials/input may be required.
-5. Signed release APK — only required if production-signed distribution is desired.
+ETA: ongoing after live testing.
+
+---
+
+# 4. LIVE-TEST ETA
+
+## Fastest realistic path
+If GitHub Pages is selected and the owner completes the Pages setting now:
+
+- Owner hosting action: 5–10 min
+- Publication/propagation: 5–30 min
+- First public browser verification: 15–45 min after save
+- Initial live storefront QA: 45–90 min
+
+### Expected first live testing window
+Approximately 15–45 minutes after successful GitHub Pages configuration.
+
+### Expected full live-readiness window
+Approximately 2–4 hours after public hosting is available, assuming:
+- no new critical defects,
+- payment details are confirmed,
+- authenticated Owner APK acceptance can be completed,
+- and no additional hosting problem occurs.
+
+If a signed production APK is required, allow an additional approximately 30–60 minutes.
+
+---
+
+# 5. CURRENT BLOCKERS — EXACTLY DEFINED
+
+1. PUBLIC HOSTING
+   - Owner action required.
+   - GitHub Actions cannot create the Pages site.
+   - Cloudflare Actions lacks CLOUDFLARE_API_TOKEN.
+   - This is the immediate gate to public browser testing.
+
+2. PUBLIC BROWSER VERIFICATION
+   - Cannot be completed until a reachable public production URL exists.
+
+3. CATALOGUE BINARY IMAGE COMMIT
+   - 99 exact-SKU images are prepared.
+   - Binary repository/storage commit and final image_url verification remain pending.
+   - Existing safe placeholders are intentionally retained until deployment is verified.
+
+4. PAYMENT/BANK DETAIL CONFIRMATION
+   - Owner-controlled final verification.
+
+5. OWNER APK FUNCTIONAL ACCEPTANCE
+   - Automated build/install/launch validation passed.
+   - Authenticated functional acceptance remains.
+
+6. SIGNED RELEASE APK
+   - Only a blocker if a production-signed/distributable APK is required now.
+   - Not required to perform initial web storefront live testing.
 
 No storefront/database rebuild is currently justified.
 
-## FINAL RELEASE GATE
+---
+
+# 6. FINAL RELEASE GATE
+
 The store may be called LIVE-READY only after:
 - Public URL is reachable.
 - Public storefront regression passes.
@@ -225,35 +362,60 @@ The store may be called LIVE-READY only after:
 - Any required signed release APK is built and verified.
 - No critical production errors remain.
 
-The store must NOT be called LIVE merely because GitHub Actions, the APK build, or automated smoke tests passed.
+The store must NOT be called LIVE merely because:
+- GitHub Actions passed,
+- the APK build passed,
+- emulator validation passed,
+- automated smoke tests passed,
+- or catalogue/database QA passed.
 
-## ABSOLUTE PROJECT RULES
+Public browser evidence is required.
+
+---
+
+# 7. ABSOLUTE PROJECT RULES
+
 - NO REPLIT CREDITS.
 - NO CLOUDFLARE CREDITS.
 - NO NETLIFY CREDITS.
 - Do not restart completed Supabase/catalogue/storefront work.
 - Do not use the obsolete 1,109-row CSV.
 - Do not guess product-image mappings.
+- Match catalogue images by exact SKU/product identity.
 - Do not expose secrets.
 - Do not create real customer orders during QA without explicit authorization.
 - Do not claim public/live verification without actual public browser evidence.
+- Preserve the existing safe image fallback.
+- Do not point products at nonexistent image paths.
 - Continue from this handover; do not restart completed tasks.
 
+---
 
-### 2026-09-30 — Uploaded ASC catalogue image/category update
-- Source catalogues processed: ASC- Seat and steering wheel covers.pdf and ASC- Viscous Units and Fan Blades.pdf.
-- Catalogue pages are image-based; product image/SKU relationships were extracted from the catalogue layout and matched by exact SKU, not visual similarity.
-- Supabase category corrections applied for the matched catalogue SKUs: Seat Covers, STEERING WHEEL COVERS, Fan Blades, Fan Clutches, and Complete Fans.
-- Exact-SKU image pack prepared for 99 matched existing store products.
-- The generated JPEGs are packaged as Get_Wired_AutoWorx_Catalogue_SKU_Images.zip for the repository asset commit.
-- IMPORTANT: product image_url values have NOT been pointed at new paths yet; this prevents broken image URLs until the JPEG binaries are committed to the production repository.
-- Do not claim this image update is fully deployed until the JPEG assets are committed and storefront image URLs are verified.
+# 8. HANDOVER CHECKPOINT
 
+At 2026-09-30 SAST:
 
-## 2026-09-30 CATALOGUE IMAGE / CATEGORY UPDATE
-- Exact-SKU catalogue image extraction completed for 99 matched products from the uploaded catalogues.
-- Image pack prepared as Get_Wired_AutoWorx_Catalogue_SKU_Images.zip (99 JPEG assets; 277,297 bytes extracted; SHA-256 values recorded in the working manifest).
-- Supabase category assignments updated for the matched catalogue products using the catalogue-derived product grouping. No visual-similarity image substitutions were made.
-- Verified examples include Fan Blades, Fan Clutches, Complete Fans, Seat Covers and STEERING WHEEL COVERS.
-- Binary repository commit remains pending because the connected GitHub write interface available to this session accepts text/blob payloads but does not provide a local-file/binary-upload handoff. The prepared ZIP must not be treated as production assets until the 99 JPEGs are actually committed to the repository and the product image URLs are updated to those committed paths.
-- Do not point live products at nonexistent asset paths. Preserve the existing safe placeholder until the binary commit is verified.
+COMPLETED:
+- Storefront build and automated smoke validation.
+- Supabase/catalogue state and pricing QA.
+- Category completeness.
+- Checkout/order validation.
+- Admin/security review.
+- 791 verified product-specific images retained.
+- 99 additional exact-SKU catalogue images extracted and prepared.
+- Catalogue-derived category corrections for the matched products.
+- Owner APK production-source build and emulator validation.
+- GitHub Pages recovery files/CNAME preparation.
+
+PENDING:
+- Owner selects/configures public hosting route.
+- Public URL publication.
+- Public browser/live storefront testing.
+- Commit/deploy the 99 prepared catalogue image binaries and verify image URLs.
+- Owner APK functional acceptance.
+- Final payment/bank-detail confirmation.
+- Signed release APK only if required.
+- Final operational QA and live-readiness sign-off.
+
+NEXT ACTION:
+Complete the GitHub Pages Settings -> Pages configuration (or provide the Cloudflare Actions secret through GitHub, never chat). Once a public URL exists, proceed directly to live browser testing and record the results here.
