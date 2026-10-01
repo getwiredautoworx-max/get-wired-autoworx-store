@@ -12,16 +12,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.webkit.WebChromeClient.FileChooserParams;
 import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 
 public class MainActivity extends Activity {
     private WebView web;
     private ValueCallback<Uri[]> uploadCallback;
+    private SharedPreferences prefs;
     private static final int FILE_PICKER = 4101;
     private static final String CAELEX_HOME = "https://caelexinfolog.co.za/Caelex/";
     private static final String CAELEX_ITEM = "https://caelexinfolog.co.za/Caelex/item/J3RXQiEbID7SyEzYw3P63g%253D%253D%3FlistId%3D0&tabIndex%3D1?tabIndex=1";
 
     @Override public void onCreate(Bundle b) {
         super.onCreate(b);
+        prefs = getSharedPreferences("caelex_capture", MODE_PRIVATE);
         web = new WebView(this);
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
@@ -69,6 +72,29 @@ public class MainActivity extends Activity {
             String url = "home".equals(target) ? CAELEX_HOME : CAELEX_ITEM;
             if (!url.startsWith(CAELEX_HOME)) url = CAELEX_HOME;
             web.loadUrl(url);
+        }
+
+        @JavascriptInterface public void captureCaelexPage() {
+            String current = web.getUrl();
+            if (current == null || !current.startsWith(CAELEX_HOME)) return;
+            web.evaluateJavascript("(function(){var q=function(s){return Array.from(document.querySelectorAll(s)).map(function(e){return {tag:e.tagName,text:(e.innerText||e.value||e.getAttribute('aria-label')||'').trim(),href:e.href||'',name:e.name||'',id:e.id||'',type:e.type||''};});}; return JSON.stringify({url:location.href,title:document.title,heading:(document.querySelector('h1,h2')||{}).innerText||'',text:(document.body.innerText||'').slice(0,50000),links:q('a'),inputs:q('input,select,textarea,button'),tables:q('table')});})()", new ValueCallback<String>() { @Override public void onReceiveValue(String value) { saveCaelexSnapshot(value); }});
+        }
+
+        @JavascriptInterface public String getCaelexSnapshot() {
+            return prefs.getString("snapshot", "");
+        }
+
+        @JavascriptInterface public void clearCaelexSnapshot() {
+            prefs.edit().remove("snapshot").apply();
+        }
+
+        @JavascriptInterface public void returnToOwner() {
+            web.loadUrl("file:///android_asset/admin_app.html");
+        }
+
+        private void saveCaelexSnapshot(String value) {
+            if (value == null) return;
+            prefs.edit().putString("snapshot", value).putLong("captured_at", System.currentTimeMillis()).apply();
         }
     }
 
