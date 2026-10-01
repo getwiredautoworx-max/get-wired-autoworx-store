@@ -838,3 +838,61 @@ The store is being designed so that a competitor can identify the Get Wired Auto
 
 ## Continuation instruction
 Treat this SKU-protection architecture as a permanent project rule. All future store, APK, catalogue, image, stock, import, reporting and customer-facing work must follow it.
+
+
+---
+
+# 15. PROPRIETARY PUBLIC SKU ROLLOUT + SUPPLIER PROTECTION — 1 OCTOBER 2026
+
+## 15.1 Database layer — EXECUTED / VERIFIED
+- 4,187 active products.
+- 4,187 active products have a proprietary public_sku.
+- 4,187 distinct public_sku values; 0 duplicate active public SKUs.
+- 0 active public SKUs have an invalid GW-XXXXXXXX format.
+- Proprietary format: GW-XXXXXXXX.
+- Original supplier SKU remains mapped internally in gw_private.product_supplier_codes.
+- gw_private.product_supplier_codes has RLS enabled.
+- anon and authenticated have no SELECT privilege on the private supplier-code table.
+- Public supplier mapping is not exposed through the customer storefront.
+
+## 15.2 Customer-facing SKU migration — EXECUTED
+The primary customer-facing paths now use public_sku:
+- index-new.html storefront cards/search/product detail/WhatsApp messages.
+- products.html category product cards/search/cart.
+- product-details.js product detail and WhatsApp.
+- checkout-v2.html cart/order summary.
+- Customer-facing SKU text must show only the GW-XXXXXXXX proprietary SKU.
+
+Existing products.sku was deliberately retained for internal compatibility. Do NOT delete/overwrite it until every internal catalogue/image/admin/reporting workflow has been migrated and regression-tested.
+
+## 15.3 Supplier-code protection audit — EXECUTED
+- Added scripts/public-sku-audit.py.
+- Added .github/workflows/public-sku-exposure-audit.yml.
+- The audit scans customer-facing HTML/JS/CSS/JSON for legacy runtime SKU references, supplier_sku identifiers and supplier website references.
+- Internal ASC image-sync workflow is explicitly excluded from the customer-facing scan because it is an internal matching workflow.
+- Any future public source containing supplier identifiers must fail the audit before release.
+
+## 15.4 Catalogue/image matching framework — PREPARED
+Added catalogue-image-matching/README.md defining the permanent controlled workflow:
+- Catalogue item/image → internal supplier-code resolution → proprietary public_sku.
+- Exact internal match required.
+- Candidate image must be verified and materially better before replacement.
+- REVIEW/EXCLUDE states prevent uncertain images from reaching production.
+- Existing verified images and safe fallbacks remain protected.
+- Supplier identifiers must never enter customer-facing PDFs, browser code, checkout, WhatsApp, SEO text or order confirmations.
+- image_url must not be changed until the corresponding binary asset exists at its final production path and has passed validation.
+
+## 15.5 Important implementation boundary
+The existing ASC image-sync workflow still reads the legacy supplier SKU from public.products for internal automation. This is intentionally NOT exposed to customers, but it must be migrated to the private supplier-code mapping before the legacy products.sku column is removed. Do not publish the private mapping or put supplier identifiers into frontend code.
+
+## 15.6 Current next execution
+1. Run/verify the new public SKU exposure audit.
+2. Regression-test storefront, product detail, cart and checkout against public_sku.
+3. Migrate internal ASC image matching to use the private mapping with privileged/internal access.
+4. Resume catalogue/image binary processing when file/image access is available.
+5. Keep hosting/public browser verification and APK acceptance gates unchanged.
+
+## 15.7 Commits
+- Public SKU storefront migration completed across primary customer-facing paths.
+- Public SKU audit + catalogue matching framework committed immediately afterward.
+- Database protection verified directly against Supabase.
