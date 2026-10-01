@@ -143,7 +143,32 @@ Deno.serve(async req=>{
     }
 
     if(req.method==="POST"&&action==="authorize_procurement"){
-      const id=String(b.quote_id||"");\n      const {data:q,error:qe}=await db.from("quote_requests").select("id,status").eq("id",id).single();\n      if(qe||!q) return json({ok:false,error:"Quote not found."},404);\n      if(q.status!=="PAID") return json({ok:false,error:"Procurement authorization requires confirmed payment."},409);\n      const {data:up,error}=await db.from("quote_requests").update({status:"SUPPLIER_ORDERED",procurement_authorized_by:a.user.id,procurement_authorized_at:new Date().toISOString(),supplier_order_ref:b.supplier_order_ref||null,updated_at:new Date().toISOString()}).eq("id",id).select("*").single();\n      if(error) throw error; await event(id,"PROCUREMENT_AUTHORIZED",{supplier_order_ref:b.supplier_order_ref||null},a.user.id); return json({ok:true,quote:up});\n    }\n\n    if(req.method==="POST"&&action==="record_payment"){\n      const id=String(b.quote_id||""); const status=String(b.payment_status||"PAID");\n      if(!["PAID","FAILED","EXPIRED","CANCELLED"].includes(status)) return json({ok:false,error:"Invalid payment status."},400);\n      const {data:q,error:qe}=await db.from("quote_requests").select("id").eq("id",id).single(); if(qe||!q) return json({ok:false,error:"Quote not found."},404);\n      const {data:o,error:oe}=await db.from("quote_customer_offers").select("id").eq("quote_request_id",id).order("created_at",{ascending:false}).limit(1).maybeSingle(); if(oe) throw oe; if(!o) return json({ok:false,error:"Offer not found."},404);\n      const {data:up,error}=await db.from("quote_customer_offers").update({payment_status:status,payment_reference:b.payment_reference||null,paid_at:status==="PAID"?new Date().toISOString():null}).eq("id",o.id).select("*").single(); if(error) throw error;\n      if(status==="PAID") await db.from("quote_requests").update({status:"PAID",updated_at:new Date().toISOString()}).eq("id",id);\n      await event(id,"PAYMENT_"+status,{offer_id:o.id,payment_reference:b.payment_reference||null},a.user.id); return json({ok:true,offer:up});\n    }\n\n    if(req.method==="POST"&&action==="delivery_update"){\n      const id=String(b.quote_id||""); const method=String(b.delivery_method||"");\n      const allowed=["COURIER","PAXI","LOCKER","COLLECTION","OTHER"]; if(!allowed.includes(method)) return json({ok:false,error:"Invalid delivery method."},400);\n      const {data:q,error}=await db.from("quote_requests").update({delivery_method:method,delivery_tracking_ref:b.tracking_ref||null,delivery_details:b.delivery_details||{},updated_at:new Date().toISOString()}).eq("id",id).select("*").single(); if(error) throw error;\n      await event(id,"DELIVERY_UPDATED",{delivery_method:method,tracking_ref:b.tracking_ref||null},a.user.id); return json({ok:true,quote:q});\n    }\n\n    if(req.method==="POST"&&action==="status"){
+      const id=String(b.quote_id||"");
+      const {data:q,error:qe}=await db.from("quote_requests").select("id,status").eq("id",id).single();
+      if(qe||!q) return json({ok:false,error:"Quote not found."},404);
+      if(q.status!=="PAID") return json({ok:false,error:"Procurement authorization requires confirmed payment."},409);
+      const {data:up,error}=await db.from("quote_requests").update({status:"SUPPLIER_ORDERED",procurement_authorized_by:a.user.id,procurement_authorized_at:new Date().toISOString(),supplier_order_ref:b.supplier_order_ref||null,updated_at:new Date().toISOString()}).eq("id",id).select("*").single();
+      if(error) throw error; await event(id,"PROCUREMENT_AUTHORIZED",{supplier_order_ref:b.supplier_order_ref||null},a.user.id); return json({ok:true,quote:up});
+    }
+
+    if(req.method==="POST"&&action==="record_payment"){
+      const id=String(b.quote_id||""); const status=String(b.payment_status||"PAID");
+      if(!["PAID","FAILED","EXPIRED","CANCELLED"].includes(status)) return json({ok:false,error:"Invalid payment status."},400);
+      const {data:q,error:qe}=await db.from("quote_requests").select("id").eq("id",id).single(); if(qe||!q) return json({ok:false,error:"Quote not found."},404);
+      const {data:o,error:oe}=await db.from("quote_customer_offers").select("id").eq("quote_request_id",id).order("created_at",{ascending:false}).limit(1).maybeSingle(); if(oe) throw oe; if(!o) return json({ok:false,error:"Offer not found."},404);
+      const {data:up,error}=await db.from("quote_customer_offers").update({payment_status:status,payment_reference:b.payment_reference||null,paid_at:status==="PAID"?new Date().toISOString():null}).eq("id",o.id).select("*").single(); if(error) throw error;
+      if(status==="PAID") await db.from("quote_requests").update({status:"PAID",updated_at:new Date().toISOString()}).eq("id",id);
+      await event(id,"PAYMENT_"+status,{offer_id:o.id,payment_reference:b.payment_reference||null},a.user.id); return json({ok:true,offer:up});
+    }
+
+    if(req.method==="POST"&&action==="delivery_update"){
+      const id=String(b.quote_id||""); const method=String(b.delivery_method||"");
+      const allowed=["COURIER","PAXI","LOCKER","COLLECTION","OTHER"]; if(!allowed.includes(method)) return json({ok:false,error:"Invalid delivery method."},400);
+      const {data:q,error}=await db.from("quote_requests").update({delivery_method:method,delivery_tracking_ref:b.tracking_ref||null,delivery_details:b.delivery_details||{},updated_at:new Date().toISOString()}).eq("id",id).select("*").single(); if(error) throw error;
+      await event(id,"DELIVERY_UPDATED",{delivery_method:method,tracking_ref:b.tracking_ref||null},a.user.id); return json({ok:true,quote:q});
+    }
+
+    if(req.method==="POST"&&action==="status"){
       const id=String(b.quote_id||""), status=String(b.status||"");
       const allowed=["SENT_TO_SUPPLIER","OWNER_REVIEW","QUOTED_TO_CUSTOMER","ACCEPTED_PAYMENT_PENDING","PAID","SUPPLIER_ORDERED","DISPATCHED","DELIVERED","EXPIRED","DECLINED","CANCELLED"];
       if(!allowed.includes(status)) return json({ok:false,error:"Invalid quote status."},400);
