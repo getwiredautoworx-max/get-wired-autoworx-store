@@ -550,3 +550,63 @@ PENDING:
 
 NEXT EXECUTION POINT:
 Do not rebuild the storefront or database. Once public hosting is configured, immediately perform public browser testing and record results. Continue image enrichment separately without replacing the safe fallback.
+
+
+---
+
+# 11. WORKBOOK + STORE/APK ACTION REGISTER — 1 OCTOBER 2026
+
+## 11.1 Editable Excel workbook delivered
+- User-facing download filename: `Get_Wired_AutoWorx_Editable_Category_Workbook.xlsx`.
+- Built from the current full category-management workbook and validated by reopening the generated XLSX.
+- 62 worksheets total.
+- Includes a `START HERE` guide, 5 main-category PAGE sheets, 51 subcategory worksheets/tabs, plus index, all-products, category map, uncategorized and live database category audit sheets.
+- Workbook is editable; worksheet protection is disabled.
+- The `UNCATEGORIZED` sheet is retained for reviewing products without a category.
+- Workbook edits do not automatically update Supabase; any approved changes must be reviewed/imported separately.
+- Note: Excel represents worksheets as tabs. The workbook uses dedicated `PAGE - [main category]` overview sheets and separate `[main category] - [subcategory]` worksheets for the subcategories.
+
+## 11.2 APK status — verified
+- Owner APK workflow run #? latest successful validation run: `36750308741` on 30 September 2026.
+- Build debug APK: SUCCESS.
+- APK artifact preserved: `get-wired-autoworx-owner-debug-apk`.
+- Android emulator validation: SUCCESS.
+- Artifact size: 88,454,478 bytes.
+- Artifact SHA-256: `137bf0a7ea3a02c7e0b9c77019a081d641bafa599ce4a1ec15e5a43718337fd9`.
+- Artifact expires 29 December 2026.
+- Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/36750308741
+- User previously reported “App not installed” on the Android phone. Therefore emulator validation is not the same as successful installation on the user's device. Phone install/launch acceptance remains OPEN.
+- APK PR #4 (`ci: expose production Owner APK validation`) remains open; PR #3 (`Isolated Sales Intelligence APK v0.3.0`) remains open as draft and must stay isolated until QA is accepted.
+- Do not claim production-signed/release APK is complete; the verified artifact is a debug APK.
+
+## 11.3 Latest automated checks
+- Storefront Smoke Test for latest main handover commit `f7bfc164a6b48de09cabc84e8d81c1d86fa2399f`: SUCCESS.
+- Clean Product Images workflow for that commit: running at last check; verify final result later.
+- Deploy Store to Cloudflare Pages workflow for that commit: FAILURE. Inspect logs/configuration before retrying. Do not assume hosting is live.
+- Netlify was not used for this work. Cloudflare deploy workflow was triggered automatically by the repository push; do not initiate paid services or spend credits without explicit approval.
+
+## 11.4 Remaining tasks — in priority order
+1. **Owner: configure/publish the approved hosting endpoint.** GitHub Pages recovery instructions are in `GITHUB_PAGES_RECOVERY.md`; the Pages source must be configured by an account owner/admin if the connector cannot do it. Confirm custom-domain/DNS requirements for `getwiredautoworx.co.za`.
+2. **Build/Dev: diagnose the failing Cloudflare Pages workflow** and decide whether it is obsolete or should be repaired. Do not spend paid credits or alter the selected hosting plan without owner approval.
+3. **QA: public live-store regression** after hosting is published: homepage, category navigation, search, product detail, product images/fallback, cart, checkout, R15 delivery charge per delivery address/order, mobile layout and desktop layout.
+4. **Owner + QA: test APK on the actual Android phone.** Download the artifact, attempt installation, capture the exact Android error if it fails, and verify launch/navigation if it installs.
+5. **Build: APK release readiness.** Decide whether a signed release APK is required; if yes, configure signing securely and produce/verify a release artifact. Keep signing secrets out of repository and chat.
+6. **Owner: payment readiness.** Confirm PayFast verification/KYC and final payment account/business details before enabling live payments. Do not enable payment collection until owner confirms.
+7. **Owner + Ops: supplier stock/price and fulfilment acceptance.** Confirm supplier stock-check process, dispatch workflow, and delivery wording before accepting paid orders.
+8. **Catalogue: continue exact-SKU image enrichment.** Keep branded fallback for products without verified exact images; do not substitute visually similar parts.
+9. **Final QA/sign-off:** run an end-to-end test order/payment simulation, confirm order notifications and stock handling, and record owner approval before announcing the store live.
+
+## 11.5 Tasks requiring owner input/action
+- Configure GitHub Pages at https://github.com/getwiredautoworx-max/get-wired-autoworx-store/settings/pages if choosing the documented GitHub Pages route: Source = Deploy from a branch; branch = `main`; folder = `/(root)`; Save.
+- Confirm whether `getwiredautoworx.co.za` is the intended live domain and whether DNS access is available.
+- Confirm preferred hosting route and whether any Cloudflare plan/credits may be used. Until confirmed, avoid paid hosting changes.
+- Install/test the APK on the actual phone and send the exact error text/screenshot if it still says “App not installed”.
+- Confirm whether a signed production APK is required, or whether the current debug APK is only for internal testing.
+- Complete PayFast verification and confirm when live payment setup may proceed.
+- Approve final supplier/dispatch and delivery operating process before live paid orders.
+- Review/approve final live-store appearance and end-to-end test before public launch.
+
+## 11.6 ETA / launch gate
+- No reliable calendar ETA can be promised until hosting is published and the owner-dependent items above are resolved.
+- Once the public endpoint is available and APK/payment decisions are confirmed, estimate remaining QA in hours based on the actual test results.
+- Current status: **NOT LIVE / NOT SIGNED OFF**. Do not advertise the store as live until public testing and owner approval are complete.
