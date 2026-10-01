@@ -769,3 +769,72 @@ Target state: public browser storefront + validated checkout + verified catalogu
 - Then update this handover with the result before moving to public-hosting/browser regression.
 - Do not rebuild the storefront, catalogue, database or image library.
 
+
+
+# 14. OWN GET WIRED AUTOWORX SKU SYSTEM — 1 OCTOBER 2026
+
+## Objective
+Protect Get Wired AutoWorx's supplier sourcing information by using a proprietary customer-facing SKU system. Competitors and public customers must not be able to identify supplier stock codes simply by inspecting the storefront.
+
+## SKU architecture — EXECUTED
+- A new proprietary customer-facing field has been added to `public.products`: `public_sku`.
+- Every active product now has a unique Get Wired AutoWorx SKU in the format `GW-XXXXXXXX`.
+- The public SKU is derived from the product's internal UUID hash, not from the supplier SKU, product name, category, or supplier numbering system.
+- Current verification: 4,187 active products; 4,187 have a populated proprietary `public_sku`; 0 active products are missing one.
+- A unique database index protects `public_sku` uniqueness.
+- A private Supabase schema `gw_private` has been created.
+- Private supplier mapping table: `gw_private.product_supplier_codes`.
+- The private mapping stores the original supplier SKU against the product ID so exact catalogue/image/stock matching can continue internally.
+- Existing supplier-code data was copied into the private mapping without changing product pricing, stock, categories, descriptions or images.
+- Migration applied successfully: `add_get_wired_public_sku_and_private_supplier_map`.
+
+## Customer-facing rule
+- Customers should see only the Get Wired AutoWorx proprietary SKU, e.g. `GW-XXXXXXXX`.
+- Supplier SKUs must never be displayed on product cards, product details, WhatsApp messages, checkout, order confirmations, public catalogue pages, SEO-visible text, or customer-facing PDFs.
+- Public search should work with the proprietary Get Wired SKU, product name, vehicle/application and other approved public information.
+- Supplier names/codes must not be exposed merely because the same supplier catalogue is used internally.
+
+## Internal matching rule
+- Supplier SKU remains an INTERNAL matching key only.
+- New catalogues may continue to be cross-referenced by exact supplier SKU internally.
+- Catalogue image replacement remains exact-SKU only: exact internal supplier SKU match + better verified image.
+- No visual-similarity substitution is permitted.
+- No supplier code is to be converted into a public Get Wired SKU by copying, abbreviating, prefixing or otherwise revealing the supplier numbering pattern.
+- The proprietary Get Wired SKU remains stable for the life of the product record.
+
+## Migration / compatibility rule
+- The existing `products.sku` field has NOT been blindly overwritten yet, because current image-sync/import workflows still use the legacy supplier SKU and changing it without updating those workflows could break exact image matching.
+- The database now has the proprietary `public_sku` plus a private supplier-code map.
+- Next implementation step is to migrate all public storefront, product-detail, cart, checkout, WhatsApp and order-display code to use `public_sku` while keeping supplier-code matching available only to trusted internal workflows.
+- Before removing or changing legacy `products.sku`, all catalogue import, image-sync, admin and reporting workflows must be updated and regression-tested.
+- Do not expose the private supplier mapping through the public storefront/API.
+
+## Security requirement
+- The private supplier-code map is intentionally separated from the public product presentation.
+- Never put supplier mappings, supplier price lists, supplier URLs or supplier-code crosswalks into customer-visible assets.
+- Never commit supplier secrets or credentials to GitHub.
+- Any future supplier-code lookup used by automation must use a protected server-side/internal path rather than exposing the mapping to anonymous storefront users.
+
+## Future catalogue uploads
+When the owner uploads additional catalogues:
+1. Identify the supplier SKU internally.
+2. Match it against the private supplier mapping.
+3. Confirm the corresponding Get Wired AutoWorx `public_sku`.
+4. Compare the catalogue image with the current store image.
+5. Replace the store image only when the exact internal SKU matches and the new image is demonstrably better/verified.
+6. Keep unmatched or personally unverified images excluded.
+7. Never publish the supplier SKU.
+8. Preserve stock, price, category and product identity unless separately approved.
+
+## Business protection objective
+The store is being designed so that a competitor can identify the Get Wired AutoWorx product, proprietary SKU and advertised selling price, but cannot use the public SKU alone to infer the supplier's catalogue code/numbering system.
+
+## Status
+- Proprietary SKU database layer: EXECUTED AND VERIFIED.
+- Public storefront migration to proprietary SKU: PENDING.
+- Supplier-code public exposure audit: PENDING before final live launch.
+- Exact-SKU catalogue/image matching capability: PRESERVED.
+- No catalogue/database rebuild was performed.
+
+## Continuation instruction
+Treat this SKU-protection architecture as a permanent project rule. All future store, APK, catalogue, image, stock, import, reporting and customer-facing work must follow it.
