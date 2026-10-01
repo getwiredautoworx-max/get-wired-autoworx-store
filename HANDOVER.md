@@ -738,3 +738,11 @@ Target state: public browser storefront + validated checkout + verified catalogu
 - Public testing: approximately 15–45 minutes after hosting activation.
 - Full regression: approximately 45–90 minutes after public endpoint availability.
 - Full live-readiness: approximately 2–4 hours after public hosting and owner-controlled gates are available, assuming no new critical defect.
+
+
+## 13.1 Execution update
+- Storefront Smoke Test run 36895104683 completed SUCCESS.
+- Clean Product Images run 36895104626 completed SUCCESS.
+- Owner APK run 36895104669: Gradle APK compilation and artifact upload completed SUCCESS; emulator validation failed because the GitHub runner could not download the Android Emulator archive (ZIP preparation error), not because the APK failed to build/install.
+- Emulator workflow was corrected to use API 35 and an explicit emulator build, then the failed APK job was re-run automatically.
+- Public hosting remains the only major external gate after automated validation.
