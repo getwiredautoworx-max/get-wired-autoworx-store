@@ -883,7 +883,7 @@ Added catalogue-image-matching/README.md defining the permanent controlled workf
 - image_url must not be changed until the corresponding binary asset exists at its final production path and has passed validation.
 
 ## 15.5 Important implementation boundary
-The existing ASC image-sync workflow still reads the legacy supplier SKU from public.products for internal automation. This is intentionally NOT exposed to customers, but it must be migrated to the private supplier-code mapping before the legacy products.sku column is removed. Do not publish the private mapping or put supplier identifiers into frontend code.
+The former supplier-specific public GitHub image-sync workflow has been removed because the repository is public and the workflow itself exposed supplier identity/logic. Future image matching must run through an internal/privileged workflow using the private supplier-code mapping. Do not publish the private mapping, supplier URL or supplier identifiers in repository source.
 
 ## 15.6 Current next execution
 1. Run/verify the new public SKU exposure audit.
