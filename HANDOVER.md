@@ -470,3 +470,83 @@ When the owner asks for the workbook in a future chat, search the Library for:
 
 Do not recreate it from an older CSV unless explicitly instructed. Preserve this workbook as the current category-management workbook until a newer verified version replaces it.
 
+
+
+---
+
+# 10. LIVE VERIFICATION UPDATE — 1 OCTOBER 2026 SAST
+
+The following state was independently re-verified against the current GitHub repository and live Supabase database before continuation.
+
+## 10.1 GitHub source
+- Repository: getwiredautoworx-max/get-wired-autoworx-store
+- Branch: main
+- Latest main commit at verification: `ddc615aed9cc4679af2889a187376cf64e2c0ddd`
+- Latest commit message: Add editable Excel category management workbook to handover.
+- Root `index.html` redirects to `store.html`.
+- `store.html` loads the current storefront and the existing fallback/category/progressive enhancement scripts.
+- Root `CNAME` is present with `getwiredautoworx.co.za`.
+- Repository visibility currently reports PUBLIC. This differs from older handover wording that described the repository as private; do not assume private visibility.
+
+## 10.2 Live Supabase catalogue verification
+Verified directly against `public.products`:
+- Total product rows: 4,198.
+- Active products: 4,187.
+- Active products in stock: 4,187.
+- Active products with price: 4,187.
+- Active products with an image URL: 4,187.
+- Active products without an image URL: 0.
+- Active products without a category: 0.
+- Total active stock units: 27,745.
+- Pricing mismatches against supplier cost × 1.15 × 1.35: 0.
+- Active products missing cost: 0.
+- Active products missing price: 0.
+- Active category IDs represented: 86.
+
+## 10.3 Current image state
+- 791 active products reference `assets/products/` repository image paths.
+- 3,396 active products use the safe branded placeholder.
+- 791 repository-backed image URLs are currently populated; the placeholder system remains intentionally active for products without verified exact-SKU imagery.
+- This means the storefront currently has image coverage for all 4,187 active products, but it must NOT be described as 4,187 verified product-specific photographs.
+- Exact-SKU matching remains mandatory; no visual-similarity substitutions are permitted.
+
+## 10.4 Category workbook
+- Current editable workbook remains `Get_Wired_AutoWorx_Full_Category_Management_Workbook.xlsx`.
+- Verified workbook contains 61 worksheets.
+- 5 main category PAGE sheets.
+- 51 subcategory tabs.
+- ALL PRODUCTS, CATEGORY MAP, UNCATEGORIZED and LIVE DB CATEGORY AUDIT worksheets included.
+- Workbook remains unprotected/editable.
+- Validated source scope remains 800 catalogue rows / 800 unique SKUs / 791 fixed-price / 9 system-dependent-price rows.
+- The workbook is a management/source-control aid and does not silently overwrite Supabase.
+
+## 10.5 Hosting gate
+- No Netlify deployment has been triggered.
+- No Cloudflare credit/token has been used.
+- Public browser testing remains blocked until the GitHub Pages site is actually created/published or another approved public host is configured.
+- The repository already contains the root CNAME and recovery instructions.
+- Owner action remains: GitHub Settings -> Pages -> Deploy from a branch -> main -> /(root) -> Save.
+- After publication, perform the full public browser regression before calling the store LIVE.
+
+## 10.6 Current build position
+COMPLETED / VERIFIED:
+- Storefront build and automated smoke validation.
+- Live catalogue/database count, stock and price QA.
+- Category completeness.
+- Checkout/order validation.
+- Admin/security review.
+- Existing image fallback.
+- Owner APK build/install/emulator validation.
+- Editable category-management workbook.
+- GitHub Pages recovery/CNAME preparation.
+
+PENDING:
+- Create/publish public hosting endpoint.
+- Public browser/live storefront regression.
+- Owner APK functional acceptance.
+- Final owner-controlled payment/bank-detail confirmation.
+- Signed release APK only if a distributable production APK is required.
+- Final operational QA and live-readiness sign-off.
+
+NEXT EXECUTION POINT:
+Do not rebuild the storefront or database. Once public hosting is configured, immediately perform public browser testing and record results. Continue image enrichment separately without replacing the safe fallback.
