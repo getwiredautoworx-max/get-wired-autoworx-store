@@ -673,3 +673,68 @@ NOT LAUNCH BLOCKERS:
 - Public testing: approximately 15–45 minutes after a public hosting endpoint is successfully enabled, followed by approximately 45–90 minutes of live regression.
 - Full live-readiness: approximately 2–4 hours after public hosting is available, assuming no new critical defect and owner-controlled payment/APK/operational gates are resolved.
 - The store is NOT to be called LIVE until public browser evidence and owner sign-off exist.
+
+
+---
+
+# 13. EXECUTION HANDOVER — 1 OCTOBER 2026
+
+## Objective
+Continue the existing Get Wired AutoWorx store from its current state. Do not rebuild or restart. Execute all available remaining work and leave only genuine owner-controlled gates.
+
+## Verified current state
+- Repository: getwiredautoworx-max/get-wired-autoworx-store, main branch.
+- Storefront source is preserved as the authoritative build.
+- Supabase project: ojytykqpvonxvepprgbh.
+- Current database verification: 4,187 active products; 4,187 priced active products; 4,187 unique active SKUs; 4,187 active products with stock; 4,187 active products with image URLs; 0 pricing-formula errors.
+- Pricing formula verified as cost x 1.15 VAT x 1.35 markup, with displayed final price only.
+- 3,396 products currently use safe branded fallback imagery; these are not treated as verified product-specific images.
+- Exact-SKU matching remains mandatory for catalogue/store image replacement. Unverified images remain excluded from product-specific use.
+- Existing storefront regression coverage includes category rendering, featured product modal, cart/checkout, R15 delivery, R0 pickup and desktop viewport checks.
+
+## APK execution
+- Owner APK project exists in android-owner-app.
+- Production application ID remains za.co.getwiredautoworx.owner.
+- Debug/test application ID now uses za.co.getwiredautoworx.owner.test.
+- Debug/test version is 1.0.2-test, versionCode 3.
+- This specifically addresses the previous physical-phone 'App not installed' conflict by allowing the test package to coexist with an existing production package.
+- Validation workflow bundles the current storefront into the APK, builds the debug APK, uploads the artifact, installs it into an Android emulator and launches it.
+- Validation run 36895104669 was triggered and must be checked to completion before declaring APK validation passed.
+
+## Current automation runs
+- Owner APK validation: run 36895104669.
+- Storefront smoke test: run 36895104683.
+- Clean product-image workflow: run 36895104626.
+- These runs must be allowed to finish and their conclusions recorded before final release status is claimed.
+
+## Hosting execution
+- Cloudflare deployment workflow was investigated. The deployment reaches Wrangler but fails because CLOUDFLARE_API_TOKEN is not available to GitHub Actions.
+- GitHub Pages recovery was investigated. The connected GitHub integration cannot create/administrate the repository Pages site.
+- No false claim of a public deployment is permitted.
+- The immediate public-testing gate is therefore repository Pages activation by the repository owner, or provision of Cloudflare deployment credentials through GitHub Secrets.
+- Credentials must never be placed in chat or committed to the repository.
+
+## Remaining owner-controlled gates
+1. Enable GitHub Pages for the repository (Settings -> Pages -> Deploy from a branch -> main -> /(root)), OR add a Cloudflare API token to GitHub Actions Secrets.
+2. Confirm control of getwiredautoworx.co.za for final DNS/custom-domain cutover.
+3. Install and test the new Owner install-test APK on the physical Android phone.
+4. Complete PayFast/payment-account verification before enabling live payments.
+5. Confirm final fulfilment/dispatch procedure before accepting paid orders.
+6. Decide whether a signed production APK is required immediately or after web-store acceptance.
+
+## Execution rules
+- Do not rebuild the store from scratch.
+- Do not replace verified catalogue data with guesses.
+- Do not assign catalogue images to products without exact SKU verification.
+- Do not enable live payments until payment verification and end-to-end testing are complete.
+- Do not call the store LIVE until public browser testing has passed and owner acceptance exists.
+- Continue automatically through all tasks that are technically executable with current access.
+
+## Release target
+Target state: public browser storefront + validated checkout + verified catalogue/pricing + validated Owner APK + controlled payment activation + final owner acceptance.
+
+## Current ETA
+- Code/database readiness: ready for public testing.
+- Public testing: approximately 15–45 minutes after hosting activation.
+- Full regression: approximately 45–90 minutes after public endpoint availability.
+- Full live-readiness: approximately 2–4 hours after public hosting and owner-controlled gates are available, assuming no new critical defect.
