@@ -52,4 +52,41 @@ function clearStage(){stage=[];render()} function addSource(){const u=$('supplie
 function openStoreTest(){location.href='file:///android_asset/store/store.html'}
 function openAdmin(){location.href='file:///android_asset/store/admin.html'}
 boot();
-</script></body></html>
+</script>
+<script>
+(function(){
+ const END='https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/supplier-quote';
+ function quoteCard(){
+  if(document.getElementById('quotePanel'))return;
+  const s=document.createElement('section');s.className='card';s.id='quotePanel';
+  s.innerHTML='<h2>Supplier Price & Availability Queries</h2><p class="muted">Customer requests from designated supplier-quote products appear here. Supplier cost stays owner-only.</p><button onclick="GWQ.load()">REFRESH QUERIES</button><div id="gwQuotes">Loading…</div>';
+  document.getElementById('app').appendChild(s);
+ }
+ async function call(action,opts){
+  const {data}=await sb.auth.getSession();if(!data.session)throw Error('Owner session expired.');
+  const method=opts?.method||'GET', q=opts?.query||'', body=opts?.body;
+  const r=await fetch(END+(q?('?'+q):''),{method,headers:{Authorization:'Bearer '+data.session.access_token,'content-type':'application/json'},body:body?JSON.stringify(body):undefined});
+  const x=await r.json();if(!r.ok||!x.ok)throw Error(x.error||'Quote service error');return x;
+ }
+ function esc(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+ async function load(){
+  quoteCard();const box=document.getElementById('gwQuotes');box.textContent='Loading…';
+  try{const x=await call('list');box.innerHTML=x.quotes.length?x.quotes.map(q=>'<div class="row"><b>'+esc(q.quote_number)+'</b> • '+esc(q.status)+'<br>'+esc(q.product_name)+' • SKU '+esc(q.public_sku)+' • Qty '+esc(q.quantity)+'<br>'+esc(q.customer_name)+' • '+esc(q.customer_email||q.customer_phone||'')+'<br><button onclick="GWQ.detail(\''+q.id+'\')">OPEN</button></div>').join(''):'No supplier quote requests yet.'}catch(e){box.textContent=e.message}
+ }
+ async function detail(id){
+  try{const x=await call('detail',{query:'action=detail&id='+encodeURIComponent(id)});let r=x.responses?.[0];let q=x.quote;
+   const html='<div class="card"><h3>'+esc(q.quote_number)+' — '+esc(q.product_name)+'</h3><p>Customer: '+esc(q.customer_name)+' • '+esc(q.customer_email||q.customer_phone||'')+'<br>SKU: '+esc(q.public_sku)+' • Qty: '+esc(q.quantity)+'</p><h3>Supplier Response</h3><input id="qrRef" placeholder="Supplier reference" value="'+esc(r?.supplier_reference||'')+'"><input id="qrCost" type="number" step="0.01" placeholder="Supplier cost (private)" value="'+esc(r?.supplier_cost??'')+'"><input id="qrStock" type="number" placeholder="Stock available" value="'+esc(r?.stock_available??'')+'"><input id="qrAvail" placeholder="Availability / stock notes" value="'+esc(r?.availability_text||'')+'"><input id="qrLead" placeholder="Lead time" value="'+esc(r?.lead_time_text||'')+'"><input id="qrPack" type="number" step="0.01" placeholder="Packaging cost" value="'+esc(r?.packaging_cost??0)+'"><input id="qrFreight" type="number" step="0.01" placeholder="Freight / delivery cost" value="'+esc(r?.freight_cost??0)+'"><input id="qrVat" type="number" step="0.01" placeholder="VAT amount" value="'+esc(r?.vat_amount??0)+'"><input id="qrWarranty" placeholder="Warranty / returns" value="'+esc(r?.warranty_text||'')+'"><button onclick="GWQ.response(\''+id+'\')">SAVE SUPPLIER RESPONSE</button><h3>Customer Offer</h3><input id="qoPrice" type="number" step="0.01" placeholder="Customer unit selling price"><input id="qoPack" type="number" step="0.01" value="0" placeholder="Customer packaging total"><input id="qoFreight" type="number" step="0.01" value="0" placeholder="Customer delivery total"><input id="qoVat" type="number" step="0.01" value="0" placeholder="Customer VAT total"><input id="qoExpiry" type="datetime-local"><button onclick="GWQ.offer(\''+id+'\',\''+(r?.id||'')+'\')">APPROVE & CREATE CUSTOMER OFFER</button><h3>Lifecycle</h3><select id="qoStatus"><option>OWNER_REVIEW</option><option>QUOTED_TO_CUSTOMER</option><option>ACCEPTED_PAYMENT_PENDING</option><option>PAID</option><option>SUPPLIER_ORDERED</option><option>DISPATCHED</option><option>DELIVERED</option><option>EXPIRED</option><option>DECLINED</option><option>CANCELLED</option></select><button onclick="GWQ.status(\''+id+'\')">UPDATE STATUS</button><p id="qmsg" class="muted"></p></div>';
+   document.getElementById('quotePanel').insertAdjacentHTML('beforeend',html);
+  }catch(e){alert(e.message)}
+ }
+ async function response(id){
+  try{await call('record_supplier_response',{method:'POST',body:{action:'record_supplier_response',quote_id:id,supplier_reference:document.getElementById('qrRef').value,supplier_cost:Number(document.getElementById('qrCost').value),stock_available:Number(document.getElementById('qrStock').value),availability_text:document.getElementById('qrAvail').value,lead_time_text:document.getElementById('qrLead').value,packaging_cost:Number(document.getElementById('qrPack').value||0),freight_cost:Number(document.getElementById('qrFreight').value||0),vat_amount:Number(document.getElementById('qrVat').value||0),warranty_text:document.getElementById('qrWarranty').value}});document.getElementById('qmsg').textContent='Supplier response saved.';load()}catch(e){alert(e.message)}
+ }
+ async function offer(id,sr){try{const price=Number(document.getElementById('qoPrice').value);if(!Number.isFinite(price)||price<0){alert('Enter a valid customer selling price.');return}const ex=document.getElementById('qoExpiry').value;await call('create_offer',{method:'POST',body:{action:'create_offer',quote_id:id,supplier_response_id:sr,unit_selling_price:price,quantity:1,packaging_total:Number(document.getElementById('qoPack').value||0),delivery_total:Number(document.getElementById('qoFreight').value||0),vat_total:Number(document.getElementById('qoVat').value||0),expires_at:ex?new Date(ex).toISOString():null}});alert('Customer offer created and approved.');load()}catch(e){alert(e.message)}}
+ async function status(id){try{await call('status',{method:'POST',body:{action:'status',quote_id:id,status:document.getElementById('qoStatus').value}});load()}catch(e){alert(e.message)}}
+ window.GWQ={load,detail,response,offer,status};
+ const oldShow=window.show; if(typeof oldShow==='function'){const o=oldShow;window.show=function(s){o(s);setTimeout(quoteCard,200)}}
+ setTimeout(quoteCard,800);
+})();
+</script>
+</body></html>
