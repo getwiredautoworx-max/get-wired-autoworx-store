@@ -103,13 +103,16 @@ boot();
     </select>
     <button onclick="GWQ.status('${id}')">UPDATE STATUS</button>
     <h3>Payment / Procurement</h3>
-    <input id="qPayRef" placeholder="Payment reference">
-    <button class="secondary" onclick="GWQ.payment('${id}')">RECORD PAYMENT AS PAID</button>
-    <button class="secondary" onclick="GWQ.authorize('${id}')">AUTHORIZE SUPPLIER ORDER</button>
+    <input id="qPayRef" placeholder="Payment/provider reference">
+    <input id="qPayUrl" type="url" placeholder="Secure payment URL (provider)">
+    <input id="qPayAmount" type="number" step="0.01" placeholder="Customer amount">
+    <button class="secondary" onclick="GWQ.payment('\${id}')">CREATE PAYMENT RECORD</button>
+    <button class="secondary" onclick="GWQ.paid('\${id}')">CONFIRM PAYMENT</button>
+    <button class="secondary" onclick="GWQ.authorize('\${id}')">FINAL AUTHORIZE SUPPLIER ORDER</button>
     <h3>Delivery</h3>
     <select id="qDelivery"><option value="COURIER">COURIER</option><option value="PAXI">PAXI</option><option value="LOCKER">LOCKER</option><option value="COLLECTION">COLLECTION</option><option value="OTHER">OTHER</option></select>
     <input id="qTracking" placeholder="Tracking / collection reference">
-    <button class="secondary" onclick="GWQ.delivery('${id}')">SAVE DELIVERY</button>
+    <button class="secondary" onclick="GWQ.delivery('\${id}')">CREATE DELIVERY WORKFLOW</button>
     <p id="qmsg" class="muted"></p>
    </div>`;
    document.getElementById('quotePanel').insertAdjacentHTML('beforeend',html);
@@ -120,9 +123,10 @@ boot();
  }
  async function offer(id,sr){try{const price=Number(document.getElementById('qoPrice').value);if(!Number.isFinite(price)||price<0){alert('Enter a valid customer selling price.');return}const ex=document.getElementById('qoExpiry').value;await call('create_offer',{method:'POST',body:{action:'create_offer',quote_id:id,supplier_response_id:sr,unit_selling_price:price,quantity:1,packaging_total:Number(document.getElementById('qoPack').value||0),delivery_total:Number(document.getElementById('qoFreight').value||0),vat_total:Number(document.getElementById('qoVat').value||0),expires_at:ex?new Date(ex).toISOString():null}});alert('Customer offer created and approved.');load()}catch(e){alert(e.message)}}
  async function status(id){try{await call('status',{method:'POST',body:{action:'status',quote_id:id,status:document.getElementById('qoStatus').value}});load()}catch(e){alert(e.message)}}
- async function payment(id){try{await call('record_payment',{method:'POST',body:{action:'record_payment',quote_id:id,payment_status:'PAID',payment_reference:document.getElementById('qPayRef').value.trim()||null}});alert('Payment recorded as PAID. Procurement is still locked until owner authorization.');load()}catch(e){alert(e.message)}}
- async function authorize(id){try{const ref=prompt('Supplier order reference (optional):','');await call('authorize_procurement',{method:'POST',body:{action:'authorize_procurement',quote_id:id,supplier_order_ref:ref||null}});alert('Supplier order authorized.');load()}catch(e){alert(e.message)}}
- async function delivery(id){try{await call('delivery_update',{method:'POST',body:{action:'delivery_update',quote_id:id,delivery_method:document.getElementById('qDelivery').value,tracking_ref:document.getElementById('qTracking').value.trim()||null}});alert('Delivery details saved.');load()}catch(e){alert(e.message)}}
+ async function payment(id){try{const amount=Number(document.getElementById('qPayAmount').value);if(!Number.isFinite(amount)||amount<=0){alert('Enter the customer amount.');return}const x=await call('create_payment_record',{method:'POST',body:{action:'create_payment_record',quote_id:id,provider:'PENDING_PROVIDER',payment_url:document.getElementById('qPayUrl').value.trim()||null,external_payment_id:document.getElementById('qPayRef').value.trim()||null,amount,currency:'ZAR',status:'PENDING'}});alert('Payment record created: '+x.payment.id)}catch(e){alert(e.message)}}
+ async function paid(id){try{await call('record_payment',{method:'POST',body:{action:'record_payment',quote_id:id,status:'PAID',provider_event_id:document.getElementById('qPayRef').value.trim()||null}});alert('Payment confirmed. Final supplier authorization is still required.');load()}catch(e){alert(e.message)}}
+ async function authorize(id){try{const x=await call('authorize_procurement',{method:'POST',body:{action:'authorize_procurement',quote_id:id}});alert('Supplier procurement authorized: '+x.procurement.id);load()}catch(e){alert(e.message)}}
+ async function delivery(id){try{const x=await call('create_fulfilment',{method:'POST',body:{action:'create_fulfilment',quote_id:id,method:document.getElementById('qDelivery').value,tracking_reference:document.getElementById('qTracking').value.trim()||null}});alert('Delivery workflow created: '+x.fulfilment.id)}catch(e){alert(e.message)}}
  window.GWQ={load,detail,response,offer,status,payment,authorize,delivery};
  const oldShow=window.show; if(typeof oldShow==='function'){const o=oldShow;window.show=function(s){o(s);setTimeout(quoteCard,200)}}
  setTimeout(quoteCard,800);
