@@ -6,15 +6,18 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
+import android.webkit.ValueCallback;
 import android.content.Intent;
 import android.net.Uri;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient.FileChooserParams;
+import android.graphics.Bitmap;
 
 public class MainActivity extends Activity {
     private WebView web;
     private ValueCallback<Uri[]> uploadCallback;
     private static final int FILE_PICKER = 4101;
+    private static final String CAELEX_HOME = "https://caelexinfolog.co.za/Caelex/";
+    private static final String CAELEX_ITEM = "https://caelexinfolog.co.za/Caelex/item/J3RXQiEbID7SyEzYw3P63g%253D%253D%3FlistId%3D0&tabIndex%3D1?tabIndex=1";
 
     @Override public void onCreate(Bundle b) {
         super.onCreate(b);
@@ -25,7 +28,13 @@ public class MainActivity extends Activity {
         s.setAllowFileAccess(true);
         s.setAllowContentAccess(true);
         s.setSupportZoom(false);
-        web.setWebViewClient(new WebViewClient());
+        s.setBuiltInZoomControls(false);
+        s.setDisplayZoomControls(false);
+        web.setWebViewClient(new WebViewClient() {
+            @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+        });
         web.setWebChromeClient(new WebChromeClient() {
             @Override public boolean onShowFileChooser(WebView v, ValueCallback<Uri[]> cb, FileChooserParams p) {
                 if (uploadCallback != null) uploadCallback.onReceiveValue(null);
@@ -38,9 +47,18 @@ public class MainActivity extends Activity {
             }
         });
         setContentView(web);
+
         String screen = getIntent().getStringExtra("screen");
-        String target = "store".equals(screen) ? "file:///android_asset/store/store.html" : ("checkout".equals(screen) ? "file:///android_asset/store/checkout-v2.html" : "file:///android_asset/admin_app.html");
-        web.loadUrl(target);
+        if ("caelex".equals(screen)) {
+            String target = getIntent().getStringExtra("url");
+            if (target == null || !target.startsWith("https://caelexinfolog.co.za/Caelex/")) target = CAELEX_HOME;
+            web.loadUrl(target);
+        } else {
+            String target = "store".equals(screen) ? "file:///android_asset/store/store.html"
+                    : ("checkout".equals(screen) ? "file:///android_asset/store/checkout-v2.html"
+                    : "file:///android_asset/admin_app.html");
+            web.loadUrl(target);
+        }
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
