@@ -610,3 +610,66 @@ Do not rebuild the storefront or database. Once public hosting is configured, im
 - No reliable calendar ETA can be promised until hosting is published and the owner-dependent items above are resolved.
 - Once the public endpoint is available and APK/payment decisions are confirmed, estimate remaining QA in hours based on the actual test results.
 - Current status: **NOT LIVE / NOT SIGNED OFF**. Do not advertise the store as live until public testing and owner approval are complete.
+
+
+---
+
+# 12. LIVE CONTINUATION UPDATE — 1 OCTOBER 2026 18:52 SAST
+
+## 12.1 Access / execution capability restored
+- GitHub repository access is currently working with admin/maintain/push permissions.
+- Repository source remains the authoritative storefront source; no rebuild/restart was performed.
+- Latest source commits include the launch/action register and the APK install-test correction.
+
+## 12.2 Storefront automated verification
+- Supabase direct verification: 4,187 active products; 4,187 priced; 4,187 unique active SKUs; 4,187 in stock; 4,187 with image_url; 3,396 safe branded placeholders; 0 pricing errors.
+- Latest pre-change Storefront Smoke Test passed.
+- New Storefront Smoke Test is running against the current source and includes category rendering, featured product modal, cart -> checkout, R15 delivery, pickup R0 and desktop viewport checks.
+
+## 12.3 Owner APK install-conflict fix executed
+- Root cause mitigation for the previously reported phone message 'App not installed' has been implemented without changing the production application ID.
+- Debug/test builds now use applicationId suffix .test, versionCode 3 and versionName 1.0.2-test so the install-test APK can coexist with an existing Owner APK instead of failing on package/signature replacement.
+- Emulator validation workflow now installs/launches za.co.getwiredautoworx.owner.test.
+- New validation run 36895104669 is executing; final success/failure is still pending.
+- Production package remains za.co.getwiredautoworx.owner; no production-signed APK is being claimed.
+
+## 12.4 Hosting diagnosis completed
+- Cloudflare Pages workflow failure was inspected directly.
+- Exact failure: GitHub Actions has no CLOUDFLARE_API_TOKEN; Wrangler reaches the deployment command and then stops because the token is absent.
+- No Cloudflare credit was consumed.
+- GitHub Pages recovery workflow was also tested; actions/configure-pages cannot create the Pages site because the connected integration lacks the repository Pages administration permission.
+- Therefore public hosting remains the only immediate owner-controlled gate to public browser testing.
+
+## 12.5 Remaining tasks — execution state
+COMPLETED / VERIFIED:
+- Storefront source and database foundation preserved.
+- Current Supabase catalogue/pricing verification.
+- Automated storefront regression suite present and passing on the prior main handover.
+- Owner APK build/emulator validation already proven on the production source.
+- APK phone-install conflict mitigation implemented and validation triggered.
+- Cloudflare failure root cause identified.
+- GitHub Pages failure root cause identified.
+- Exact-SKU image safety rules preserved.
+
+RUNNING:
+- Current Owner APK install-test build/validation run 36895104669.
+- Current Storefront Smoke Test run 36895104683.
+- Current clean product image workflow run 36895104626.
+
+OWNER INPUT STILL REQUIRED:
+1. Create/enable the GitHub Pages site in repository Settings -> Pages, Source = Deploy from a branch, branch = main, folder = /(root), OR provide Cloudflare Actions credentials through GitHub Secrets (never chat).
+2. Confirm DNS/custom-domain control for getwiredautoworx.co.za before final domain cutover.
+3. Test the newly generated install-test APK on the physical Android phone.
+4. Confirm whether a signed production APK is required now or only after web-store acceptance.
+5. Complete final PayFast/payment-account verification before enabling live payment collection.
+6. Approve supplier dispatch/fulfilment operating procedure before accepting live paid orders.
+
+NOT LAUNCH BLOCKERS:
+- Remaining 3,396 placeholder images. They are intentionally safe fallbacks and can be enriched after launch using exact-SKU verification.
+- Signed APK, if only required for later production distribution rather than internal testing.
+
+## 12.6 Current ETA
+- Code/test readiness: immediate; automated QA is running against the current source.
+- Public testing: approximately 15–45 minutes after a public hosting endpoint is successfully enabled, followed by approximately 45–90 minutes of live regression.
+- Full live-readiness: approximately 2–4 hours after public hosting is available, assuming no new critical defect and owner-controlled payment/APK/operational gates are resolved.
+- The store is NOT to be called LIVE until public browser evidence and owner sign-off exist.
