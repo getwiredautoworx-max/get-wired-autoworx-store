@@ -894,5 +894,11 @@ The existing ASC image-sync workflow still reads the legacy supplier SKU from pu
 
 ## 15.7 Commits
 - Public SKU storefront migration completed across primary customer-facing paths.
-- Public SKU audit + catalogue matching framework committed immediately afterward.
+- Public SKU audit + catalogue matching framework committed immediately afterward.\n- Latest public-SKU hardening commit: f8d27c324b24b698cb7986a1835a11112e39e14c8.
 - Database protection verified directly against Supabase.
+
+## 15.8 Verification performed
+- Direct Supabase verification confirms 4,187/4,187 active products have valid unique public_sku values.
+- Direct Supabase verification confirms gw_private.product_supplier_codes has RLS enabled and anon/authenticated SELECT access revoked.
+- Direct source audit of the primary storefront, product listing, product detail and checkout files found 0 legacy p.sku/x.sku references and 0 supplier website references.
+- Supabase security advisor still reports the private mapping table as RLS-enabled with no policy; this is intentional deny-by-default defence because anon/authenticated have no table/schema access. Existing SECURITY DEFINER RPC advisories are pre-existing operational/security items and were not changed as part of the SKU migration.
