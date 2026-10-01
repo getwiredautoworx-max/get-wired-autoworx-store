@@ -746,3 +746,26 @@ Target state: public browser storefront + validated checkout + verified catalogu
 - Owner APK run 36895104669: Gradle APK compilation and artifact upload completed SUCCESS; emulator validation failed because the GitHub runner could not download the Android Emulator archive (ZIP preparation error), not because the APK failed to build/install.
 - Emulator workflow was corrected to use API 35 and an explicit emulator build, then the failed APK job was re-run automatically.
 - Public hosting remains the only major external gate after automated validation.
+
+## 13.2 Execution update — 1 October 2026 (APK validation recovery)
+- Verified automation results after the previous handover update:
+  - Storefront Smoke Test run 36895710215: SUCCESS.
+  - Clean Product Images run 36895710183: SUCCESS.
+  - Cloudflare Pages production deploy run 36895711094: FAILED because GitHub Actions does not have the required CLOUDFLARE_API_TOKEN; no public Cloudflare deployment is claimed.
+  - Owner APK validation run 36895610556: APK compilation and artifact upload succeeded; emulator validation failed before boot because the emulator action rejected the explicitly supplied emulator-build value 35.4.10. The APK itself was built successfully and artifact ID 11178962942 was created.
+- Corrective action executed in commit e7412f2e143024b4eb3dbcece6f3d776a1c8a2c8:
+  - Removed the unsupported explicit emulator-build input.
+  - Removed the unsupported startup-timeout input; the action's supported emulator-boot-timeout remains configured at 600 seconds.
+  - Kept API level 35, Google APIs, x86_64 and forced AVD creation.
+  - The workflow will automatically run again from this corrective commit.
+- Next automated gate: confirm the new Owner APK workflow reaches successful build + emulator install + launch validation.
+- If emulator infrastructure fails again while APK build/artifact remains successful, treat it as CI/emulator infrastructure rather than an APK compilation defect and continue with physical-device APK testing.
+- Public hosting remains blocked only by owner-controlled GitHub Pages activation or Cloudflare credentials in GitHub Secrets.
+- No credentials are to be placed in chat or committed to the repository.
+
+## 13.3 New-chat continuation point
+- Resume from commit e7412f2e143024b4eb3dbcece6f3d776a1c8a2c8.
+- First action in the next chat: check the Owner APK workflow triggered by this commit and inspect its final job conclusion.
+- Then update this handover with the result before moving to public-hosting/browser regression.
+- Do not rebuild the storefront, catalogue, database or image library.
+
