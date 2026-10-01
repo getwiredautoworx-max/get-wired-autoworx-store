@@ -46,3 +46,21 @@
   }
   const old=window.openProduct; if(old)window.openProduct=function(p){old(p);setTimeout(()=>installQuote(p),50)};
 })();
+
+(function(){
+ function hook(){
+  if(!Array.isArray(window.products))return setTimeout(hook,500);
+  document.querySelectorAll('.product').forEach(card=>{
+   if(card.dataset.gwQuoteHook)return;
+   const id=(card.querySelector('button')?.getAttribute('onclick')||'').match(/'([^']+)'/)?.[1];
+   const p=window.products.find(x=>x.id===id);
+   if(!p||!p.specifications||p.specifications.quote_on_request!==true)return;
+   card.dataset.gwQuoteHook='1';
+   const b=document.createElement('button');b.textContent='QUERY PRICE & AVAILABILITY';b.style.cssText='margin-top:8px;padding:10px;border:0;border-radius:8px;background:#ff1c2d;color:#fff;font-weight:900;cursor:pointer;width:100%';
+   b.onclick=e=>{e.stopPropagation();document.getElementById('gwSupplierQuoteBtn')?.click()};
+   card.appendChild(b);
+  });
+  setTimeout(hook,1000);
+ }
+ hook();
+})();
