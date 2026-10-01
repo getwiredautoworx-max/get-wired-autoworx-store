@@ -32,16 +32,15 @@ jobs:
           mkdir -p android-owner-app/app/src/main/assets/store
           cp store.html index-new.html checkout-v2.html index.html admin.html category-navigation.js android-owner-app/app/src/main/assets/store/
           cp -R assets android-owner-app/app/src/main/assets/store/assets
-      - name: Build debug APK
+      - name: Build debug install-test APK
         working-directory: android-owner-app
         run: gradle :app:assembleDebug
       - name: Preserve built Owner APK artifact before emulator validation
         uses: actions/upload-artifact@v4
         with:
-          name: get-wired-autoworx-owner-debug-apk
+          name: get-wired-autoworx-owner-install-test-apk
           path: android-owner-app/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
-
       - name: Start Android emulator and validate APK
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -61,13 +60,9 @@ jobs:
             adb shell settings put global window_animation_scale 0
             adb shell settings put global transition_animation_scale 0
             adb shell settings put global animator_duration_scale 0
-            adb push android-owner-app/app/build/outputs/apk/debug/app-debug.apk /data/local/tmp/get-wired-owner.apk
-            adb shell pm install -r /data/local/tmp/get-wired-owner.apk
-            adb shell monkey -p za.co.getwiredautoworx.owner 1
+            adb push android-owner-app/app/build/outputs/apk/debug/app-debug.apk /data/local/tmp/get-wired-owner-test.apk
+            adb shell pm install -r /data/local/tmp/get-wired-owner-test.apk
+            adb shell monkey -p za.co.getwiredautoworx.owner.test 1
             sleep 8
-            adb shell dumpsys activity activities | grep -q za.co.getwiredautoworx.owner
-            echo "APK launch/activity check passed"
-
-# Validation recovery trigger: 2026-09-30
-# Automated trigger refresh: 2026-09-30
-# Production v1.0.1 validation rerun: 2026-09-30
+            adb shell dumpsys activity activities | grep -q za.co.getwiredautoworx.owner.test
+            echo "APK install and launch check passed"
