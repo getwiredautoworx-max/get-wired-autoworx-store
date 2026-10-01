@@ -38,6 +38,13 @@ public class MainActivity extends Activity {
             @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
             }
+
+            @Override public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if (url != null && url.startsWith(CAELEX_HOME)) {
+                    view.evaluateJavascript("(function(){if(document.getElementById('gwOwnerBridge'))return;var b=document.createElement('div');b.id='gwOwnerBridge';b.style='position:fixed;right:10px;bottom:10px;z-index:2147483647;background:#07111e;border:2px solid #087fe0;border-radius:10px;padding:8px;box-shadow:0 4px 20px rgba(0,0,0,.5);font:14px Arial';b.innerHTML='<button id="gwCap" style="background:#087fe0;color:#fff;border:0;border-radius:7px;padding:10px;font-weight:800;margin-right:6px">CAPTURE PAGE</button><button id="gwBack" style="background:#12344c;color:#fff;border:0;border-radius:7px;padding:10px;font-weight:800">OWNER APK</button>';document.body.appendChild(b);document.getElementById('gwCap').onclick=function(){if(window.AndroidBridge){AndroidBridge.captureCaelexPage();this.textContent='CAPTURED';}};document.getElementById('gwBack').onclick=function(){if(window.AndroidBridge)AndroidBridge.returnToOwner();};})()");
+                }
+            }
         });
         web.setWebChromeClient(new WebChromeClient() {
             @Override public boolean onShowFileChooser(WebView v, ValueCallback<Uri[]> cb, FileChooserParams p) {
