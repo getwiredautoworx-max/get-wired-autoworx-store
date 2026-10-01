@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
 import android.webkit.ValueCallback;
+import android.webkit.JavascriptInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.webkit.WebChromeClient.FileChooserParams;
@@ -46,6 +47,7 @@ public class MainActivity extends Activity {
                 } catch (Exception e) { uploadCallback = null; return false; }
             }
         });
+        web.addJavascriptInterface(new SupplierBridge(), "AndroidBridge");
         setContentView(web);
 
         String screen = getIntent().getStringExtra("screen");
@@ -58,6 +60,15 @@ public class MainActivity extends Activity {
                     : ("checkout".equals(screen) ? "file:///android_asset/store/checkout-v2.html"
                     : "file:///android_asset/admin_app.html");
             web.loadUrl(target);
+        }
+    }
+
+
+    private class SupplierBridge {
+        @JavascriptInterface public void openCaelex(String target) {
+            String url = "home".equals(target) ? CAELEX_HOME : CAELEX_ITEM;
+            if (!url.startsWith(CAELEX_HOME)) url = CAELEX_HOME;
+            web.loadUrl(url);
         }
     }
 
