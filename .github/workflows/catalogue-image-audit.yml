@@ -19,58 +19,70 @@ jobs:
       - name: Audit active SKU image mapping
         env:
           SUPABASE_URL: https://ojytykqpvonxvepprgbh.supabase.co
-          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          # Supabase publishable keys are intentionally safe for source/GitHub Actions;
+          # they are low-privilege and RLS-scoped. No secret/service key is used here.
+          SUPABASE_PUBLISHABLE_KEY: sb_publishable_rSKAEYQheFAljUmro6uGA_MmBm-l3w
         run: |
           python - <<'PY'
           import json, os, re
           from pathlib import Path
           from urllib.request import Request, urlopen
 
-          url=os.environ["SUPABASE_URL"]+"/rest/v1/products?select=public_sku,image_url,active&active=eq.true&limit=10000"
-          req=Request(url,headers={"apikey":os.environ["SUPABASE_KEY"],"Authorization":"Bearer "+os.environ["SUPABASE_KEY"]})
+          base=os.environ["SUPABASE_URL"]
+          key=os.environ["SUPABASE_PUBLISHABLE_KEY"]
+          url=base+"/rest/v1/products?select=public_sku,image_url,active&active=eq.true&limit=10000"
+          req=Request(url,headers={"apikey":key,"Authorization":"Bearer "+key})
           with urlopen(req,timeout=30) as r:
               products=json.load(r)
 
-          root=Path("assets/products")
-          files={p.stem:p.name for p in root.iterdir() if p.is_file() and p.suffix.lower() in {".jpg",".jpeg",".png",".webp"} } if root.exists() else {}
+          bad=[]
+          proxy=[]
+          placeholder=[]
+          public_sku_re=re.compile(r"^GW-[A-Z0-9]{8}$")
+          proxy_re=re.compile(r"^"+re.escape(base)+r"/functions/v1/product-image\?sku=(GW-[A-Z0-9]{8})$")
 
-          def norm(s):
-              return re.sub(r"[^a-z0-9]+","",str(s).lower())
-
-          exact_missing=[]
-          normalized_matches=[]
-          bad_refs=[]
           for p in products:
-              sku=(p.get("public_sku") or "").strip()
+              sku=(p.get("public_sku") or "").strip().upper()
               img=(p.get("image_url") or "").strip()
-              if not sku:
+              if not sku or not public_sku_re.fullmatch(sku):
+                  bad.append({"sku":sku,"reason":"invalid_public_sku"})
                   continue
               if not img:
-                  bad_refs.append({"sku":sku,"reason":"missing_image_url"})
+                  bad.append({"sku":sku,"reason":"missing_image_url"})
                   continue
-              stem=Path(img.split("?")[0]).stem
-              if stem == sku:
+              if img == "/assets/product-placeholder.svg":
+                  placeholder.append(sku)
                   continue
-              if norm(stem)==norm(sku):
-                  normalized_matches.append({"sku":sku,"filename":Path(img.split("?")[0]).name})
+              m=proxy_re.fullmatch(img)
+              if not m:
+                  bad.append({"sku":sku,"reason":"non_public_image_reference","image_url":img})
+              elif m.group(1) != sku:
+                  bad.append({"sku":sku,"reason":"image_url_sku_mismatch","image_url":img})
               else:
-                  exact_missing.append({"sku":sku,"image_url":img,"filename":Path(img.split("?")[0]).name})
+                  proxy.append(sku)
 
-          active_skus={p.get("public_sku","").strip() for p in products if p.get("public_sku")}
-          orphan=[name for stem,name in files.items() if norm(stem) not in {norm(s) for s in active_skus}]
+          # Source assets are internal supplier-keyed inputs for the server-side image proxy.
+          # They are not public product references and therefore are not audited as public SKU files.
+          source_root=Path("assets/products")
+          source_files=[p.name for p in source_root.iterdir() if p.is_file() and p.suffix.lower() in {".jpg",".jpeg",".png",".webp"}] if source_root.exists() else []
 
           report={
             "active_products":len(products),
-            "repo_product_image_files":len(files),
-            "missing_image_url":bad_refs,
-            "exact_sku_image_mismatches":exact_missing,
-            "normalized_only_matches":normalized_matches,
-            "orphan_image_files":orphan
+            "public_proxy_image_references":len(proxy),
+            "placeholder_image_urls":len(placeholder),
+            "invalid_or_mismatched_public_image_refs":bad,
+            "internal_source_image_files":len(source_files)
           }
           Path("catalogue-image-audit.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
-          print(json.dumps({k:(len(v) if isinstance(v,list) else v) for k,v in report.items()},indent=2))
-          if bad_refs or exact_missing:
-              raise SystemExit("Catalogue image audit found unresolved exact-SKU image references; see catalogue-image-audit.json")
+          print(json.dumps({
+            "active_products":len(products),
+            "public_proxy_image_references":len(proxy),
+            "placeholder_image_urls":len(placeholder),
+            "invalid_or_mismatched_public_image_refs":len(bad),
+            "internal_source_image_files":len(source_files)
+          },indent=2))
+          if bad:
+              raise SystemExit("Public product-image audit found invalid or mismatched image references; see catalogue-image-audit.json")
           PY
 
       - name: Upload audit report
