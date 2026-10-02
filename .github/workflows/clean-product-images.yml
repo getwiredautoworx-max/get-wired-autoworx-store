@@ -146,7 +146,8 @@ jobs:
                   count+=1
               except Exception as e:
                   print('SKIP',src,e)
-          print('CLEANED_IMAGES=',count)\n          print('OUTPUT_SIZE=1600x1600 JPEG quality=98 4:4:4 progressive 300dpi')
+          print('CLEANED_IMAGES=',count)
+          print('OUTPUT_SIZE=1600x1600 JPEG quality=98 4:4:4 progressive 300dpi')
           if count < 700:
               raise SystemExit(f'Only cleaned {count} images; refusing to publish an incomplete catalogue.')
           PY
