@@ -31,7 +31,7 @@ jobs:
           base=os.environ["SUPABASE_URL"]
           key=os.environ["SUPABASE_PUBLISHABLE_KEY"]
           url=base+"/rest/v1/products?select=public_sku,image_url,active&active=eq.true&limit=10000"
-          req=Request(url,headers={"apikey":key,"Authorization":"Bearer "+key})
+          req=Request(url,headers={"apikey":key})
           with urlopen(req,timeout=30) as r:
               products=json.load(r)
 
