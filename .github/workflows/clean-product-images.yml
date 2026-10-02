@@ -3,6 +3,9 @@ name: Clean Product Images
 on:
   push:
     branches: [main]
+    paths:
+      - 'Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip'
+      - '.github/workflows/clean-product-images.yml'
   workflow_dispatch:
 
 concurrency:
