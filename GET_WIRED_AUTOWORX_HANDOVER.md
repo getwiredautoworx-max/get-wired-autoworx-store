@@ -114,3 +114,14 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - [ ] PAXI authenticated portal/API credentials cannot be read or extracted through the public web session. The supplied portal URL is reachable, but the authenticated dashboard contents are not exposed to this environment. Do not invent or request credentials in source code.
 - [ ] Next PAXI integration step when account/API access is available: obtain the official API integration specification/credentials from PAXI, then implement server-side point selection/order registration/tracking and persist the PAXI point/reference against the order. Keep secrets server-side only.
 - [x] No Cloudflare or Netlify deployment/credits used during this pass.
+
+
+## 2026-10-02 — PAXI API ACCESS BLOCK BYPASSED WITH ZERO-CREDIT PORTAL WORKFLOW
+- [x] Re-verified PAXI's official business tools: PAXI confirms that API integration exists but requires qualification/contact with PAXI; the public site does not expose the authenticated API specification or credentials. citeturn2view1
+- [x] Implemented an immediate zero-credit operational fallback in the owner/admin order screen: **PAXI REGISTRATION** now loads the complete order/customer/address/PAXI-point/order-item registration pack, copies it to the administrator clipboard, and opens the authenticated PAXI Portal.
+- [x] This avoids retyping customer/order data into the PAXI Portal while keeping PAXI credentials outside the storefront and repository.
+- [x] Verified the new admin code exists on GitHub main.
+- [x] Commit: `bc1ad0f8b5c9d56537b7fc5a83e2512c81bc7f16`.
+- [ ] Final fully automatic API booking remains provider-gated. PAXI's official site explicitly directs businesses to contact PAXI for API integration and states a minimum monthly parcel qualification applies. citeturn2view1
+- [ ] Once PAXI supplies API access/specification, replace the portal handoff with server-side booking/tracking while retaining the same order data and no browser-side secrets.
+- [x] No Cloudflare or Netlify credits used.
