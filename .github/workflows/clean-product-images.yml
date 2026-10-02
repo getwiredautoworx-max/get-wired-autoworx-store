@@ -167,6 +167,9 @@ jobs:
             exit 0
           fi
           git commit -m "Improve ecommerce product image presentation"
+          # Rebase the generated-image commit onto any handover/code commits
+          # that landed while the image job was running, then push safely.
+          git rebase origin/main
           git push origin HEAD:main
 
 # Produces clean, consistent 1600x1600 ecommerce images with Get Wired AutoWorx watermark. No Netlify or Cloudflare credits are used.
@@ -174,4 +177,5 @@ jobs:
 # Relaunch trigger: 16 Sep 2026 continuation after prior image-cleanup run failed at push.
 # 16 Sep 2026: manual continuation trigger issued from verified current main.
 
-# 2 Oct 2026: upgraded output to 1600x1600 JPEG quality 98, 4:4:4, progressive, 300dpi, with Get Wired AutoWorx watermark on every generated image.\n
+# 2 Oct 2026: upgraded output to 1600x1600 JPEG quality 98, 4:4:4, progressive, 300dpi, with Get Wired AutoWorx watermark on every generated image.
+# 2 Oct 2026: push-race fix — rebase generated image commit onto latest origin/main before push.
