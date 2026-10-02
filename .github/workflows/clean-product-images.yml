@@ -169,4 +169,5 @@ jobs:
 # Continuation fix verified 16 Sep 2026: synchronize with current main before image generation/push.
 # Relaunch trigger: 16 Sep 2026 continuation after prior image-cleanup run failed at push.
 # 16 Sep 2026: manual continuation trigger issued from verified current main.
-\n# 2 Oct 2026: upgraded output to 1600x1600 JPEG quality 98, 4:4:4, progressive, 300dpi, with Get Wired AutoWorx watermark on every generated image.\n
+
+# 2 Oct 2026: upgraded output to 1600x1600 JPEG quality 98, 4:4:4, progressive, 300dpi, with Get Wired AutoWorx watermark on every generated image.\n
