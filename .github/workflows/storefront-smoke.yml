@@ -3,6 +3,12 @@ name: Storefront Smoke Test
 on:
   push:
     branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.js'
+      - '**/*.css'
+      - 'assets/**'
+      - '.github/workflows/storefront-smoke.yml'
   workflow_dispatch:
 
 jobs:
