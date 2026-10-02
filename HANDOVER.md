@@ -902,3 +902,18 @@ The former supplier-specific public GitHub image-sync workflow has been removed 
 - Direct Supabase verification confirms gw_private.product_supplier_codes has RLS enabled and anon/authenticated SELECT access revoked.
 - Direct source audit of the primary storefront, product listing, product detail and checkout files found 0 legacy p.sku/x.sku references and 0 supplier website references.
 - Supabase security advisor still reports the private mapping table as RLS-enabled with no policy; this is intentional deny-by-default defence because anon/authenticated have no table/schema access. Existing SECURITY DEFINER RPC advisories are pre-existing operational/security items and were not changed as part of the SKU migration.
+
+
+### SUPPLIER NETWORK / SOURCE-ON-DEMAND INTEGRATION — 2 OCTOBER 2026
+- [x] Expanded the supplier architecture without rebuilding the existing store.
+- [x] Added supplier-specific mapping support to the private `gw_private.product_supplier_codes` table via nullable `supplier_id`, preserving the existing exact supplier-SKU matching workflow.
+- [x] Added private `gw_private.supplier_catalog_items` for authorised supplier catalogue products. Supplier SKU/source data remains server-side and is never exposed to customers.
+- [x] Added private `gw_private.quote_supplier_attempts` so one customer sourcing request can be queued against multiple active suppliers.
+- [x] Upgraded `supplier-quote` from v9 to **v10**. Product quote requests now prefer an explicitly mapped supplier, then the product's configured supplier, then the normal priority fallback.
+- [x] Added `sourcing_request` to `supplier-quote` for products/parts not currently in the Get Wired catalogue. It creates one customer-facing quote reference and queues the request against the active supplier network without exposing supplier codes.
+- [x] Added a customer-facing **SOURCE A PART / CAN'T FIND THE PART?** workflow to the storefront. Customers can submit a product/vehicle requirement, quantity and contact/delivery information for supplier sourcing.
+- [x] Added the same sourcing prompt to the product-listing page.
+- [x] Current active supplier network includes Caelex Infolog, Accessories Spares Centre and Electro City.
+- [ ] Actual third-party supplier product advertising/catalogue publication remains controlled: supplier product data/images may only be published where the supplier authorises their use or supplies an approved feed/catalogue. Public supplier catalogues are used for discovery/cross-reference only until that permission/feed exists.
+- [ ] Live supplier price/availability remains dependent on each supplier's authorised query channel. No supplier price is invented or shown as confirmed before supplier response.
+- [ ] Live payment link generation remains blocked until PayFast/Payflex/PayJustNow merchant onboarding/credentials are completed.
