@@ -103,3 +103,14 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - Do not charge R15 per item.
 - Do not use Netlify/Cloudflare credit-dependent work before final testing.
 - Do not introduce third-party data sharing without explicit owner approval.
+
+
+## 2026-10-02 — PAXI PORTAL / CHECKOUT INTEGRATION CONTINUATION
+- [x] Verified from PAXI's current official business documentation that PAXI provides an official Point Locator widget and API integration path for online stores. The published locator iframe is suitable for the current storefront without requiring PAXI API credentials.
+- [x] Added the official PAXI Point Locator iframe to `checkout-v2.html`, using PAXI's published locator endpoint and retaining the existing storefront design and R15 customer delivery-charge rule.
+- [x] Added checkout guidance instructing customers who choose PAXI to select a destination point and enter the PAXI Point name/code in Order notes for order capture. No unverified Phoenix Plaza/PAXI point code was hard-coded.
+- [x] Commit: `d04d5af948dfed02bcb6eea9f51936b3f6cca18b`.
+- [x] PAXI's official documentation confirms published bag limits/pricing: Standard up to 5kg; Large up to 10kg; 3–5 business days and 7–9 business days options. API access is provider-gated and PAXI states a minimum monthly parcel volume applies.
+- [ ] PAXI authenticated portal/API credentials cannot be read or extracted through the public web session. The supplied portal URL is reachable, but the authenticated dashboard contents are not exposed to this environment. Do not invent or request credentials in source code.
+- [ ] Next PAXI integration step when account/API access is available: obtain the official API integration specification/credentials from PAXI, then implement server-side point selection/order registration/tracking and persist the PAXI point/reference against the order. Keep secrets server-side only.
+- [x] No Cloudflare or Netlify deployment/credits used during this pass.
