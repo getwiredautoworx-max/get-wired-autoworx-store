@@ -3,6 +3,13 @@ name: Catalogue Image Audit
 on:
   push:
     branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.js'
+      - '**/*.css'
+      - '**/*.json'
+      - 'scripts/public-sku-audit.py'
+      - '.github/workflows/catalogue-image-audit.yml'
   workflow_dispatch:
 
 permissions:
