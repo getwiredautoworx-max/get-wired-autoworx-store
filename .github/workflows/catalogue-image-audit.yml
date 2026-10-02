@@ -21,7 +21,7 @@ jobs:
           SUPABASE_URL: https://ojytykqpvonxvepprgbh.supabase.co
           # Supabase publishable keys are intentionally safe for source/GitHub Actions;
           # they are low-privilege and RLS-scoped. No secret/service key is used here.
-          SUPABASE_PUBLISHABLE_KEY: sb_publishable_rSKAEYQheFAljUmro6uGA_MmBm-l3w
+          SUPABASE_PUBLISHABLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeXR5a3Fwdm9ueHZlcHByZ2JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4NjEyMTgsImV4cCI6MjEwNDQzNzIxOH0.pMzzTn99JlPHMP0SAtYEdoE6-a6s5bxTkKlKbviral0
         run: |
           python - <<'PY'
           import json, os, re
