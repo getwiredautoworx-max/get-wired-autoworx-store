@@ -926,3 +926,11 @@ The former supplier-specific public GitHub image-sync workflow has been removed 
 - Handover supplier-network sections committed after implementation.
 - Database verification: 3 active suppliers; 4,198 private supplier-code mappings; 0 authorised supplier catalogue items published; 0 quote supplier attempts currently queued.
 - Security advisor after this DDL reports only the pre-existing leaked-password protection warning plus expected RLS-without-policy INFO findings for the two new private tables. The private tables deliberately deny anon/authenticated access.
+
+
+### PRODUCT IMAGE QUALITY + WATERMARK UPDATE — 2 OCTOBER 2026
+- [x] Updated the automated Clean Product Images workflow in commit dd073610dff803573ecd61662162400a80d41ebe.
+- [x] All generated ecommerce product images now receive a permanent **GET WIRED AUTOWORX** watermark, including a restrained central ownership mark and a small corner brand mark.
+- [x] Image output upgraded from 1200x1200 to **1600x1600**, JPEG quality **98**, 4:4:4 chroma (subsampling=0), progressive encoding and 300 DPI metadata.
+- [x] Existing exact-SKU / verified-image protection remains unchanged: no visual-similarity substitution is authorised and uncertain/unverified catalogue images remain excluded.
+- [ ] The updated workflow must complete successfully and the resulting image set must be verified before this image pass is marked fully complete.
