@@ -41,7 +41,7 @@ jobs:
           python <<'PY'
           from pathlib import Path
           import cv2, numpy as np, pytesseract
-          from PIL import Image, ImageChops, ImageOps, ImageEnhance, ImageFilter
+          from PIL import Image, ImageChops, ImageOps, ImageEnhance, ImageFilter, ImageDraw, ImageFont
 
           root = Path('/tmp/store-src')
           out = Path('assets/products')
@@ -103,22 +103,50 @@ jobs:
                   im = im.resize((int(im.width*scale), int(im.height*scale)), Image.Resampling.LANCZOS)
               im.thumbnail((1100,1100), Image.Resampling.LANCZOS)
               im = im.filter(ImageFilter.UnsharpMask(radius=1.2, percent=115, threshold=3))
-              canvas = Image.new('RGB',(1200,1200),(248,248,248))
-              im.thumbnail((1080,1080), Image.Resampling.LANCZOS)
-              x=(1200-im.width)//2; y=(1200-im.height)//2
+              canvas = Image.new('RGB',(1600,1600),(248,248,248))
+              im.thumbnail((1480,1480), Image.Resampling.LANCZOS)
+              x=(1600-im.width)//2; y=(1600-im.height)//2
               canvas.paste(im,(x,y))
-              return canvas
+
+              # Permanent Get Wired AutoWorx ownership watermark.
+              overlay = Image.new('RGBA', canvas.size, (0,0,0,0))
+              draw = ImageDraw.Draw(overlay)
+              try:
+                  font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 42)
+              except Exception:
+                  font = ImageFont.load_default()
+              text = 'GET WIRED AUTOWORX'
+              bbox = draw.textbbox((0,0), text, font=font)
+              tw, th = bbox[2]-bbox[0], bbox[3]-bbox[1]
+              tile = Image.new('RGBA',(tw+90,th+60),(0,0,0,0))
+              td = ImageDraw.Draw(tile)
+              td.rounded_rectangle((2,2,tile.width-3,tile.height-3), radius=18,
+                                   fill=(255,255,255,42), outline=(20,35,70,105), width=2)
+              td.text(((tile.width-tw)//2,(tile.height-th)//2-2), text, font=font,
+                      fill=(20,35,70,105), stroke_width=1, stroke_fill=(255,255,255,75))
+              tile = tile.rotate(18, expand=True, resample=Image.Resampling.BICUBIC)
+              tx=(1600-tile.width)//2; ty=(1600-tile.height)//2
+              overlay.alpha_composite(tile,(tx,ty))
+              corner_font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 24)
+              corner='GET WIRED AUTOWORX'
+              cb=draw.textbbox((0,0),corner,font=corner_font)
+              cw,ch=cb[2]-cb[0],cb[3]-cb[1]
+              draw.rounded_rectangle((1600-cw-44,1600-ch-34,1598,1598),radius=10,
+                                     fill=(255,255,255,155),outline=(20,35,70,190),width=2)
+              draw.text((1600-cw-22,1600-ch-22),corner,font=corner_font,
+                        fill=(20,35,70,220),anchor='mm')
+              return Image.alpha_composite(canvas.convert('RGBA'), overlay).convert('RGB')
 
           count=0
           for src in files:
               dst=out/(src.stem+'.jpg')
               try:
                   result=prepare(Image.open(src))
-                  result.save(dst,'JPEG',quality=95,optimize=True,progressive=True)
+                  result.save(dst,'JPEG',quality=98,subsampling=0,optimize=True,progressive=True,dpi=(300,300))
                   count+=1
               except Exception as e:
                   print('SKIP',src,e)
-          print('CLEANED_IMAGES=',count)
+          print('CLEANED_IMAGES=',count)\n          print('OUTPUT_SIZE=1600x1600 JPEG quality=98 4:4:4 progressive 300dpi')
           if count < 700:
               raise SystemExit(f'Only cleaned {count} images; refusing to publish an incomplete catalogue.')
           PY
@@ -136,7 +164,8 @@ jobs:
           git commit -m "Improve ecommerce product image presentation"
           git push origin HEAD:main
 
-# Produces clean, consistent 1200x1200 ecommerce images. No Netlify or Cloudflare credits are used.
+# Produces clean, consistent 1600x1600 ecommerce images with Get Wired AutoWorx watermark. No Netlify or Cloudflare credits are used.
 # Continuation fix verified 16 Sep 2026: synchronize with current main before image generation/push.
 # Relaunch trigger: 16 Sep 2026 continuation after prior image-cleanup run failed at push.
 # 16 Sep 2026: manual continuation trigger issued from verified current main.
+\n# 2 Oct 2026: upgraded output to 1600x1600 JPEG quality 98, 4:4:4, progressive, 300dpi, with Get Wired AutoWorx watermark on every generated image.\n
