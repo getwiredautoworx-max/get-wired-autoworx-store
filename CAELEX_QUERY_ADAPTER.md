@@ -21,7 +21,7 @@ Supabase function:
 - vehicle
 
 ## Runtime behavior
-1. An owner/admin creates a Caelex query against an existing quote request.
+1. A new quote request assigned to Caelex is automatically queued by the database trigger `trg_queue_caelex_query`. An owner/admin can also use the adapter directly for a selected quote/query mode.
 2. The adapter creates a private query record and links it to the quote.
 3. If `CAELEX_API_URL` is configured as an authorised supplier API/feed, the adapter posts the query and converts the response into `supplier_quote_responses`.
 4. If no authorised API/feed is configured, the adapter returns a `PENDING_AUTHORIZED_SESSION` portal-bridge response containing the query payload.
