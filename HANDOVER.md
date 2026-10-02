@@ -917,3 +917,12 @@ The former supplier-specific public GitHub image-sync workflow has been removed 
 - [ ] Actual third-party supplier product advertising/catalogue publication remains controlled: supplier product data/images may only be published where the supplier authorises their use or supplies an approved feed/catalogue. Public supplier catalogues are used for discovery/cross-reference only until that permission/feed exists.
 - [ ] Live supplier price/availability remains dependent on each supplier's authorised query channel. No supplier price is invented or shown as confirmed before supplier response.
 - [ ] Live payment link generation remains blocked until PayFast/Payflex/PayJustNow merchant onboarding/credentials are completed.
+
+
+### SUPPLIER NETWORK IMPLEMENTATION CHECKPOINT — 2 OCTOBER 2026
+- `supplier-quote` is now v10.
+- Storefront sourcing UI commit: `bf8c4654df6b9c7b0a586fda9f07d68b549e4f98`.
+- Product-listing sourcing prompt commit: `f4a46571d859d432bd8eab8ae467cef618f1cd2e`.
+- Handover supplier-network sections committed after implementation.
+- Database verification: 3 active suppliers; 4,198 private supplier-code mappings; 0 authorised supplier catalogue items published; 0 quote supplier attempts currently queued.
+- Security advisor after this DDL reports only the pre-existing leaked-password protection warning plus expected RLS-without-policy INFO findings for the two new private tables. The private tables deliberately deny anon/authenticated access.
