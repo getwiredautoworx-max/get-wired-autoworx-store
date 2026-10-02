@@ -19,7 +19,7 @@ jobs:
       - name: Audit active SKU image mapping
         env:
           SUPABASE_URL: https://ojytykqpvonxvepprgbh.supabase.co
-          SUPABASE_KEY: sb_publishable_rSKAEYQqheFAljUmro6uGA_MmBm-l3w
+          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
         run: |
           python - <<'PY'
           import json, os, re
