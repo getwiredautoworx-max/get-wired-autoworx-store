@@ -8,7 +8,7 @@ Updated: 2026-09-16
 - The injected storefront checkout enhancement in `assets/store-enhancements.js` now uses the validated `manual_payment` RPC value; this matches `public.create_store_order` and removes the previously detected `manual_confirmation` mismatch.
 - Customer details: name, phone, email, fulfilment, address, province, postal code and notes.
 - Fulfilment: door delivery/courier, locker/pickup point, or pickup from Get Wired AutoWorx in the current `checkout-v2.html` flow.
-- Customer-facing checkout policy: packaging is R35.00 per item. There is no standard nationwide R15 delivery charge. Delivery is quoted separately where applicable; pickup has R0.00 delivery charge.
+- Customer-facing checkout policy: packaging is R35.00 per item. There is no standard nationwide former fixed delivery rule delivery charge. Delivery is quoted separately where applicable; pickup has R0.00 delivery charge.
 - Delivery provider wording: Courier Guy or PEP PAXI.
 - Payment methods supported by the current order workflow: EFT / bank payment, manual payment arrangement, and cash on pickup.
 - Card details are never collected by the storefront.
@@ -36,7 +36,7 @@ Updated: 2026-09-16
 - Customer checkout records delivery versus pickup and delivery address information.
 - Delivery fee is currently confirmed by the store rather than invented by the storefront.
 - Current checkout submits the selected courier delivery quote separately. Packaging is calculated server-side at R35.00 per item/quantity. Pickup has R0.00 delivery charge.
-- The authoritative `public.create_store_order` function no longer enforces the old R15 rule. It accepts a verified non-negative courier delivery fee (or R0 for pickup) and calculates packaging server-side at R35.00 per item.
+- The authoritative `public.create_store_order` function no longer enforces the old former fixed delivery rule rule. It accepts a verified non-negative courier delivery fee (or R0 for pickup) and calculates packaging server-side at R35.00 per item.
 - Courier Guy / PEP PAXI are the stated delivery channels.
 - Automated delivery pricing, provider integration, tracking/reference handling and order-to-delivery linkage remain final-phase work.
 
@@ -58,9 +58,9 @@ Updated: 2026-09-16
 
 
 ## COMMERCIAL FEE UPDATE — 4 OCTOBER 2026
-- [x] Removed the old nationwide R15 delivery-charge enforcement from `public.create_store_order`.
+- [x] Removed the old nationwide former fixed delivery rule delivery-charge enforcement from `public.create_store_order`.
 - [x] Added `orders.packaging_fee`.
 - [x] Server calculates packaging at **R35.00 × total item quantity**; browser-supplied packaging is not trusted.
 - [x] Checkout displays packaging separately from courier delivery.
 - [x] Delivery remains a separate courier quote where applicable; pickup has no delivery charge.
-- [x] `checkout.html` and `checkout-v2.html` updated to remove R15 wording and show R35-per-item packaging.
+- [x] `checkout.html` and `checkout-v2.html` updated to remove former fixed delivery rule wording and show R35-per-item packaging.
