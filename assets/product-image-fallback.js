@@ -17,7 +17,11 @@
   function localUrls(sku) {
     if (!sku) return [];
     var e = encodeURIComponent(sku);
-    return ['/assets/products_webp/' + e + '.webp', '/assets/products/' + e + '.jpg'];
+    return [
+      'https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=' + e,
+      '/assets/products_webp/' + e + '.webp',
+      '/assets/products/' + e + '.jpg'
+    ];
   }
 
   function isPlaceholder(src) {
