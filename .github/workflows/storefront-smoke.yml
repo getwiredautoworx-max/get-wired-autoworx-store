@@ -61,7 +61,7 @@ jobs:
             await page.locator('#phone').waitFor({timeout:10000});
             await page.locator('#deliverySummary').waitFor({timeout:10000});
             const delivery = await page.locator('#deliverySummary').textContent();
-            if (!delivery || !delivery.includes('Select an option')) throw new Error('Delivery must remain unquoted until a live quote is selected');
+            if (!delivery || !delivery.includes('To be quoted')) throw new Error('Delivery must remain quoted separately until a delivery quote is selected');
             const notice = await page.locator('.notice').first().textContent();
             if (!notice.includes('R35.00 per item')) throw new Error('R35-per-item packaging notice missing');
             await page.selectOption('#fulfilment','pickup');
