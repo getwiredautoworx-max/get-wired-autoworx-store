@@ -320,3 +320,21 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - Remaining launch gates: Axxess upload, SSL/HTTPS, public Android/desktop storefront QA, live APK/backend test, and controlled order/payment reconciliation.
 ### TASK ATTEMPT / RECOVERY NOTE
 - [x] Image-audit workflow creation was attempted once and GitHub returned HTTP 422 because the target workflow file already existed; no duplicate file was created. Recovery: existing workflow was fetched, re-hardened, and committed successfully as `e33fa505cb298d1a1c50be03c0158f1114cb7466`.
+
+## 2026-10-07 — HANDOVER UPDATE / LATEST CONTINUATION STATUS
+
+- [x] Master handover refreshed after the latest task execution.
+- [x] Tasks 2, 3, 4, 7 and 8 have been executed independently without waiting for Axxess confirmation.
+- [x] Task 2 automated production/source QA workflow added and committed.
+- [x] Task 3 live checkout/shipping Edge Functions re-read and verified; no live customer order was created.
+- [x] Task 4 Owner APK signed-release CI automation added without committing any permanent signing secret or keystore.
+- [x] Task 7 catalogue/image audit automation hardened and scheduled; current database image state remains 792 product-image function references, 3,395 branded placeholders, and 0 null image URLs.
+- [x] Task 8 security automation hardened; Security Advisor remains WARN-only for leaked password protection, requiring Supabase Auth dashboard configuration.
+- [x] One attempted duplicate image-audit workflow creation returned GitHub HTTP 422 because the workflow already existed. Recovery was completed by updating the existing workflow; recovery commit: `e33fa505cb298d1a1c50be03c0158f1114cb7466`.
+- [x] Handover was updated after that failed attempt and again after the completed task sequence, preserving the failure/recovery record.
+
+### LIVE ETA
+- Store is **not live yet**.
+- Axxess remains the final hosting gate: upload approved storefront to `public_html`, preserve `cgi-bin`, configure Let's Encrypt SSL/HTTPS, then perform public Android/desktop QA.
+- Once Axxess upload + SSL are completed, current estimated time to live verification is **approximately 1–2 hours**, assuming normal DNS/SSL propagation and no blocking live defect.
+- Owner APK physical-device acceptance and live APK/backend testing can proceed in parallel after the public site is reachable.
