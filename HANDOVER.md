@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-07 17:20 SAST
+Updated: 2026-10-07 18:00 SAST
 
 ## CURRENT CHECKPOINT
 - This handover is the authoritative restart point for the next session.
@@ -177,6 +177,30 @@ Updated: 2026-10-07 17:20 SAST
 6. Do not use Cloudflare or Netlify credits until final testing; reserve credit-dependent work for end-stage testing/deployment.
 7. Update master handover after every successfully completed task so next session continues from exact current state.
 8. Maintain project continuity and authority; existing work, decisions, data, structure and approved requirements remain in force unless user explicitly authorizes change; do not assume changes that could interfere with online store.
+
+
+## CATEGORY STANDARDISATION CHECKPOINT — 2026-10-07
+- [x] Current production category hierarchy re-queried before any mutation.
+- [x] Confirmed duplicate top-level rows and duplicate child rows exist, including duplicate `Alarms & Security`, `Automotive Accessories`, `Car Audio`, `Electrical`, `Tools & Workshop`, `Amplifiers`, `Head Units`, `Speakers`, `Subwoofers`, `Central Locking`, `Marine Accessories` and `Consumables`.
+- [x] Confirmed several broad legacy categories are **mixed-product buckets**, not safe one-to-one mappings. Examples: top-level `Electrical` contains electrical, ignition, fuel, braking, lighting and other products; `ACCESSORIES` and `AUTOMOTIVE ACCESSORIES` also contain mixed automotive, camping, lighting and other products.
+- [x] Therefore **no production category/product rows were changed or deleted** during this cleanup pass.
+- [x] Approved master storefront navigation/taxonomy prepared:
+  1. Auto Electrical
+  2. Car Audio
+  3. Alarms & Security
+  4. Automotive Lighting
+  5. Automotive Parts
+  6. Automotive Accessories
+  7. Camping, Leisure & Outdoors
+  8. Marine
+  9. Trailer & Canopy
+  10. Tools & Workshop
+- [x] Canonical naming standard: customer-facing Title Case; duplicate capitalization variants are consolidated.
+- [x] `KNIVES` is excluded from the customer-facing automotive taxonomy.
+- [ ] Next safe phase: create a **product-level old-category → canonical-category mapping** for every active product in the mixed buckets, with SKU/product-name evidence, then validate that active-product count is unchanged and no product becomes uncategorized.
+- [ ] Only after that validation may duplicate category records be retired. No category deletion should occur before product assignments and foreign-key dependencies are verified.
+- [ ] The master taxonomy is a navigation target; it does not authorize semantic guessing of ambiguous product assignments.
+
 
 ## RESTART INSTRUCTION
 When continuing, first verify the current GitHub main state and Axxess account/hosting status, then execute the next unresolved migration task. Do not redo the completed GitHub Pages permission fix or other verified work unless a new defect is demonstrated.
