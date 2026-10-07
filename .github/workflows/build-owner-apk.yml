@@ -1,6 +1,7 @@
 name: Build and Validate Get Wired AutoWorx Owner APK
 # Triggered by repository push for APK validation recovery.
 # Validation refresh: 7 Oct 2026
+# Emulator recovery rerun: 7 Oct 2026
 on:
   workflow_dispatch:
   push:
