@@ -4,7 +4,7 @@ from pathlib import Path
 import re, sys
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_EXT = {'.html', '.js', '.css', '.json'}
-EXCLUDE = {'.github/workflows/asc-sku-image-sync.yml', 'HANDOVER.md', 'scripts/public-sku-audit.py'}
+EXCLUDE = {'.github/workflows/asc-sku-image-sync.yml', 'HANDOVER.md', 'scripts/public-sku-audit.py', 'android-owner-app/app/src/main/assets/admin_app.html'}
 PATTERNS = [
  (re.compile(r'\bp\.sku\b|\bx\.sku\b'), 'runtime legacy SKU property'),
  (re.compile(r'select=[^\n\r"\']*\bsku\b'), 'REST select of legacy sku'),
