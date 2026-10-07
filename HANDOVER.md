@@ -266,3 +266,9 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Verification status at checkpoint: latest Storefront Smoke run 37676473818 completed SUCCESS. GitHub Pages run 37676474225 was CANCELLED/SUPERSEDED before final deployment; this is not treated as a product failure. Cloudflare, Production QA, Catalogue Image Audit and Public SKU audit for the prior optimisation were SUCCESS.
 - Background monitoring: repository workflows remain configured to run automatically on qualifying pushes and can be rechecked when continuation work runs. ChatGPT cannot keep an interactive tool process alive indefinitely between messages; no claim of unattended execution is made.
 - Owner-input blockers: PayFast verification/final payment activation and any Axxess-dependent work remain excluded from automated changes.
+
+
+- Task attempt: Enable CHECK STOCK action on out-of-stock product cards.
+- Status: FAILED before repository modification. Patch construction hit a JavaScript template-literal syntax error ("Unexpected token 'class'"). No storefront file was changed by this attempt.
+- Solutions attempted: direct source-pattern replacement through repository file update; failed during patch construction before update_file execution.
+- Recovery: retry using escaped/static source fragments or a safer targeted replacement method. Axxess excluded.
