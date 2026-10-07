@@ -47,7 +47,7 @@ jobs:
         run: |
           set -euo pipefail
           hdr=(-H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY")
-          curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true" -H "Range: 0-0" -H "Prefer: count=exact" -D /tmp/headers -o /tmp/row
+          curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true" "${hdr[@]}" -H "Range: 0-0" -H "Prefer: count=exact" -D /tmp/headers -o /tmp/row
           count="$(awk 'BEGIN{IGNORECASE=1} /^content-range:/{print $2}' /tmp/headers | sed 's#^.*/##' | tr -d '\r')"
           test -n "$count"
           test "$count" -ge 1
