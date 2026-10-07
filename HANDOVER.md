@@ -272,3 +272,8 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Status: FAILED before repository modification. Patch construction hit a JavaScript template-literal syntax error ("Unexpected token 'class'"). No storefront file was changed by this attempt.
 - Solutions attempted: direct source-pattern replacement through repository file update; failed during patch construction before update_file execution.
 - Recovery: retry using escaped/static source fragments or a safer targeted replacement method. Axxess excluded.
+
+
+- Task: Enable CHECK STOCK action on out-of-stock product cards.
+- Status: SUCCESS. Removed the disabled state and routed zero-stock card clicks to a prefilled WhatsApp stock/availability enquiry; in-stock cards retain Add to Cart. No catalogue/Supabase data changed. Axxess excluded.
+- Commit: b4176224afed0b0b54106f5d161c714f9c137c7d.
