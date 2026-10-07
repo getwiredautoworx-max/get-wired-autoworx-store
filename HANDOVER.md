@@ -199,3 +199,11 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Public catalogue invariants: PASS.
 - Public source security boundaries: PASS. The private android-owner-app/ supplier-cost fields no longer trigger the public-source scan.
 - This resolves the security-scan blocker. No Supabase/catalogue/storefront application data was changed.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 SAST
+- Task: Add WhatsApp message link to customer storefront.
+- Result: SUCCESS. Added a direct WhatsApp button to store.html using the Get Wired AutoWorx business number in international format, with a prefilled customer-help message.
+- Commit: a08980d62fc9a21416cc84af0c837c5e09242b21.
+- No Supabase/catalogue data changed. No Axxess work performed.
+- Automated QA and Pages deployment are triggered by this storefront-only change and must be checked to terminal before this task is considered fully deployed.
