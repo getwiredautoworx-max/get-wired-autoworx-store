@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-07 10:55 SAST
+Updated: 2026-10-07 16:15 SAST
 
 ## CURRENT CHECKPOINT
 - This handover is the authoritative restart point for the next session.
@@ -65,6 +65,16 @@ Updated: 2026-10-07 10:55 SAST
 - Public customer-facing SKU system uses proprietary GW-XXXXXXXX-style public SKUs; supplier codes remain private.
 - Supplier sourcing architecture remains private/internal.
 
+## SECURITY AUDIT — COMPLETED FIX
+- [x] Supabase security advisor identified public.export_store_catalog_data() as a publicly executable SECURITY DEFINER RPC.
+- [x] Verified the function was owned by postgres, was SECURITY DEFINER, and was executable by public, anon, and authenticated.
+- [x] Verified the function exported supplier cost_price and therefore must not be publicly callable.
+- [x] Revoked EXECUTE from public, anon and authenticated for public.export_store_catalog_data().
+- [x] Post-fix verification: anon_execute=false, authenticated_execute=false, public_execute=false.
+- [x] Security advisor re-run: the two SECURITY DEFINER executable warnings are cleared.
+- [ ] Remaining Supabase security advisory: Leaked Password Protection is disabled. This is an Auth dashboard/configuration item and has not been changed automatically because no connected Auth-settings mutation tool is available.
+- Performance advisor reports unused-index informational notices; these are not production blockers and should not be removed blindly.
+
 ## IMAGE STATUS
 - 99 exact-SKU JPEG assets prepared and matched to existing/categorised products.
 - 99 binary image deployment remains pending; URLs were intentionally not changed until binaries are actually committed.
@@ -100,9 +110,10 @@ Updated: 2026-10-07 10:55 SAST
 6. Public production regression.
 7. 99 exact-SKU image binaries deployment/verification.
 8. Owner APK functional acceptance.
-9. Final payment/bank-detail verification.
-10. Final operational QA.
-11. Final handover update after every completed task.
+9. Enable Supabase leaked-password protection in Auth settings.
+10. Final payment/bank-detail verification.
+11. Final operational QA.
+12. Final handover update after every completed task.
 
 ## PROJECT RULES
 - NO REPLIT CREDITS.
