@@ -466,3 +466,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] APK artifact ID 11467371243 downloaded and preserved for testing.
 - [x] Android API 35 emulator install/launch smoke validation passed.
 - [x] Owner APK is now technically build/installation/emulator validated; production signing and real-device/customer acceptance remain separate release gates.
+
+## 7 OCT 2026 — ORDER RPC SECURITY RECHECK
+- [x] Re-verified `public.create_store_order` is SECURITY DEFINER with `search_path TO ''`.
+- [x] Re-verified anon and authenticated roles do NOT have direct EXECUTE privilege on the privileged order RPC.
+- [x] Re-verified server-side packaging calculation is R25.00 per item/quantity.
+- [x] Re-verified pickup with cash-on-pickup requires R0 delivery fee and delivery orders require complete address fields when a nonzero fee is used.
+- [ ] Payment-provider production credentials/callback validation remains provider-dependent.
+- [ ] Supabase Auth leaked-password protection remains a dashboard/provider setting.
