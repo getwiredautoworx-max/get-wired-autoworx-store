@@ -163,3 +163,11 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - This resolves the automated APK verification blocker. The remaining real-device step is owner-side installation on the physical Android phone if desired; automated emulator validation is now clean.
 - Store Production QA Run 37673396548 remains in progress during checkout/source validation.
 - Latest Pages deployment associated with the QA/handover sequence is queued; the previously completed Pages run 37673236943 succeeded.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 21:34 SAST
+- Store Production QA Run 37673396548 FAILED at public catalogue invariants, before security-boundary checks. Source validation passed.
+- Failure root cause identified from job logs: the first Supabase catalogue count request omitted the publishable API-key headers, causing HTTP 401. This was a QA workflow defect, not a Supabase/catalogue defect.
+- Corrected .github/workflows/store-production-qa.yml so the count request uses the same authenticated headers as the remaining catalogue checks. Commit: bb98fa058636e36a0a6aea3fc05b5f9b18482af9.
+- No production catalogue rows or database schema were modified.
+- A new QA run is expected from the workflow push; continue monitoring it. Pages deployment from the preceding commit was cancelled by the newer commit, so a fresh deployment will be allowed to run after QA-triggering changes settle.
