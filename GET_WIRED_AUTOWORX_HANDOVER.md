@@ -146,3 +146,12 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - [ ] The current owner-approved physical-order wording for the storefront must remain: **pickup from the owner's premises has no pickup charge; delivery is quoted according to the selected courier/PAXI option and is subject to quotation; packaging is R25 per item**. Do not reintroduce R15 delivery as the current business rule.
 - [ ] Preferred future brand/domain concept `gwautostore.co.za` remains separate from the currently active Axxess service `getwiredauto.co.za`; do not change domains without explicit owner approval.
 
+## 2026-10-07 — FINAL AXXESS DEPLOYMENT CHECKPOINT
+
+- [x] Master handover Axxess section committed at **abff3f24b5b076bd76aaf4c7e82a8766589af42d**.
+- [x] `DEPLOYMENT_NOTE.md` updated to make Axxess the current hosting route and to replace obsolete fixed-R15 deployment wording with the owner-approved current checkout rules; commit **194e715d7e746aae52dc83a7ea6ea76c3ee84904**.
+- [x] `checkout-v2.html` source rechecked on GitHub main and confirmed: pickup has no delivery charge, packaging is R25 per item, delivery is separately quoted by courier/PAXI, and delivery orders require quotation confirmation.
+- [x] No storefront database migration or product-data mutation was performed during the Axxess hosting setup.
+- [x] No Cloudflare deployment was triggered by these documentation-only commits because the Cloudflare workflow path filters do not include Markdown-only changes.
+- [x] No Netlify deployment was triggered.
+- [ ] Remaining physical action is the Axxess DirectAdmin upload/SSL setup and public-browser QA. This requires access through the user's authenticated Axxess control panel; credentials must not be shared in chat.
