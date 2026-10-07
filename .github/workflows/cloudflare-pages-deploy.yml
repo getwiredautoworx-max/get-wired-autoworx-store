@@ -9,6 +9,7 @@ on:
       - '**/*.js'
       - '**/*.css'
       - 'assets/**'
+      - 'functions/**'
       - '.github/workflows/cloudflare-pages-deploy.yml'
   workflow_dispatch:
 
