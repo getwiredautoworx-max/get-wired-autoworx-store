@@ -212,3 +212,11 @@ Previous detailed handover evidence remains preserved in Git history.
 - [x] No customer/order test data was created during these checks.
 - [ ] Live DNS/Axxess browser QA remains blocked until getwiredauto.co.za resolves.
 - [ ] Owner APK Run #43 remains in progress; no unverified APK artifact is being declared ready.
+
+## CONTINUATION CHECKPOINT — 2026-10-07
+- [x] Rechecked production storefront references after checkout hardening: canonical Supabase project URL is used; no service-role key or private credential was found in the inspected storefront/admin files.
+- [x] Checkout still contains owner-approved PAXI Point Locator and WhatsApp manual-delivery quotation paths.
+- [x] Automated Storefront Smoke Test run 37644253627 completed SUCCESS on commit be2529b3fa0350bbe1c93f599f89c1b05232d51d.
+- [x] Previous Catalogue Image Audit and Public SKU Exposure Audit remain SUCCESS on the same current commit.
+- [ ] Owner APK Run #43 (37643684869) is still IN PROGRESS; artifact verification remains pending.
+- [ ] Axxess DNS/live browser QA remains pending; no claim of public live storefront has been made.
