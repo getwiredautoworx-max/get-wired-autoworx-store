@@ -295,3 +295,6 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Commit: 55a61edc1dee81bd0acf1f896f6cd2177cf26c94.
 - No Supabase/catalogue data changed. Axxess excluded.
 - Automated verification: newly committed change now requires terminal workflow verification; do not claim QA/deployment success until actual runs are observed.
+
+
+- Workflow checkpoint after 55a61edc1dee81bd0acf1f896f6cd2177cf26c94: Cloudflare Pages run 37677529129 completed SUCCESS. GitHub Pages run 37677529200 is IN PROGRESS. Storefront Smoke Test run 37677529072 is QUEUED. These are the actual current statuses; no success is claimed prematurely.
