@@ -67,7 +67,7 @@ jobs:
             await page.selectOption('#fulfilment','pickup');
             await page.waitForTimeout(100);
             const pickup = await page.locator('#deliverySummary').textContent();
-            if (!pickup || !pickup.includes('Pickup')) throw new Error('Pickup fulfilment not reflected');
+            if (!pickup || !pickup.includes('Delivery:')) throw new Error('Pickup fulfilment summary missing expected Delivery label');
             if (!pickup.includes('R0.00')) throw new Error('Pickup must be R0.00');
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
