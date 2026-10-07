@@ -318,3 +318,5 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - After Axxess upload + SSL, estimated final live QA is **1–2 hours** if DNS/SSL propagate normally and no live defect is found.
 - Owner APK physical-device acceptance can run in parallel and does not need to delay the storefront once Axxess is live.
 - Remaining launch gates: Axxess upload, SSL/HTTPS, public Android/desktop storefront QA, live APK/backend test, and controlled order/payment reconciliation.
+### TASK ATTEMPT / RECOVERY NOTE
+- [x] Image-audit workflow creation was attempted once and GitHub returned HTTP 422 because the target workflow file already existed; no duplicate file was created. Recovery: existing workflow was fetched, re-hardened, and committed successfully as `e33fa505cb298d1a1c50be03c0158f1114cb7466`.
