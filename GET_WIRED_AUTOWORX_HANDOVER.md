@@ -223,3 +223,57 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - [ ] Axxess XS `public_html` upload + SSL/public-browser verification remains the only hosting gate that requires authenticated control-panel access not exposed to this session.
 - [ ] Live Owner login, controlled order/payment reconciliation and physical Android-device acceptance remain owner-input gates; no credentials or payment data are fabricated or bypassed.
 - [x] No Replit, Cloudflare or Netlify credit-dependent deployment was initiated during this checkpoint.
+
+
+## 2026-10-07 — NEW-CHAT HANDOVER CHECKPOINT / CONTINUATION BASELINE
+
+This section is the authoritative continuation point for the next chat. Historical sections above are retained for audit history; where older entries conflict with later owner-approved rules, the latest checkpoint below controls.
+
+### CURRENT VERIFIED STATE
+- [x] Owner APK Run #44: terminal SUCCESS — build + Android API 35 emulator install/launch smoke test.
+- [x] Owner APK artifact: `get-wired-owner-debug`, GitHub artifact ID `11493167703`, SHA-256 `2d151aa2a4d713f33f7512e0d6fe7c06eab4522c69d42acb17fa8b80f569b534`.
+- [x] Validated APK ZIP was downloaded from GitHub Actions into the working environment as `/mnt/data/get-wired-owner-debug.zip` for extraction/testing.
+- [ ] Physical Android-device installation and acceptance testing remain outstanding.
+- [x] Owner APK canonical WebView/admin route is `https://www.getwiredauto.co.za/admin.html`; the obsolete `getwiredautoworx.co.za` route was corrected before Run #44.
+- [x] Supabase store project `ojytykqpvonxvepprgbh` is ACTIVE_HEALTHY; inspected public tables have RLS enabled.
+- [ ] Supabase Auth leaked-password protection remains the one current security-advisor WARN and requires dashboard/provider configuration; do not make unrelated database changes to address it.
+- [x] Expected store Edge Functions remain present, including `shipping-quote`, `store-checkout`, `payment-gateway`, and `get-wired-store`.
+- [x] No Replit, Cloudflare, or Netlify credit-dependent deployment was used for the current checkpoint.
+
+### AXXESS — CURRENT PRODUCTION PATH
+- [x] Axxess XS Linux hosting for `getwiredauto.co.za` is provisioned and DirectAdmin access is confirmed.
+- [x] Domain `public_html` was inspected and currently contains only the default `cgi-bin` directory and placeholder `index.html`.
+- [ ] Upload the complete approved storefront from GitHub main into `public_html`; preserve `cgi-bin` and do not upload `.git`, GitHub workflow files, documentation, or unrelated development files.
+- [ ] Enable/verify free Let's Encrypt SSL for the domain and `www`, then force HTTPS.
+- [ ] Public browser verification after DNS/SSL: homepage, navigation/categories, vehicle finder/fitment, product detail, cart, checkout-v2, Supabase catalogue loading, WhatsApp links, and mobile/desktop layout.
+- [ ] Do not claim the Axxess site is live until the public URL is directly verified.
+
+### CURRENT CUSTOMER ORDER RULES — AUTHORITATIVE
+- Pickup from the owner's premises: **FREE / no pickup charge**.
+- Delivery: **charged according to the selected courier/PAXI quotation and subject to quotation**; no fixed R15/R35 delivery fee is current.
+- Packaging: **R25 per item**.
+- Full payment confirms the order.
+- Do not reintroduce historical fixed-delivery values from older handover sections.
+
+### CURRENT RELEASE ORDER
+1. Axxess storefront upload.
+2. Axxess SSL/HTTPS.
+3. Public Android + desktop storefront QA.
+4. Install/test validated Owner APK on physical Android device.
+5. Test Owner APK against the live storefront/Supabase backend.
+6. Controlled checkout/order/payment reconciliation using approved owner test details.
+7. PayFast automation after storefront approval.
+8. Supplier/courier automation after payment-flow approval.
+9. Continue exact SKU image/category verification; never guess product images or fitment.
+
+### TRUE OWNER/AUTHENTICATED GATES
+Only these items currently require owner-side access or physical resources:
+- Axxess authenticated File Manager upload + SSL configuration.
+- Physical Android device for APK acceptance.
+- Authorised Owner/admin credentials for live login testing.
+- Approved controlled payment/test-order details for payment reconciliation.
+
+Do not ask the owner to repeat already completed technical work. Continue all independent GitHub/Supabase/source QA first, then request only the specific owner action required for the next gate.
+
+### NEXT-CHAT INSTRUCTION
+Start from this checkpoint. Do not restart the project, rebuild the storefront unnecessarily, redo completed catalogue/database work, use the old 1,109-row CSV, consume Replit/Cloudflare/Netlify credits, or claim Axxess deployment/live testing until directly verified. The immediate priority is to get the complete storefront package into Axxess `public_html`, preserving `cgi-bin`, then verify SSL and the public site.
