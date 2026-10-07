@@ -190,3 +190,14 @@ Previous detailed handover evidence remains preserved in Git history.
 - [ ] Owner APK Run #43 is still in progress; artifact cannot yet be claimed/downloaded until the run completes.
 - [ ] Physical Android-device test remains pending.
 - [ ] Live admin authentication remains pending until authorized staff login is available.
+
+## CONTINUATION CHECKPOINT — 2026-10-07 17:45 SAST
+- [x] Checkout security audit found that the browser-supplied delivery fee was not independently constrained by the server.
+- [x] Hardened public.create_store_order() so delivery orders cannot submit arbitrary fees or bypass quotation gating.
+- [x] Server now accepts only verified published PAXI fee values (R59.95/R109.95/R119.95/R139.95) and validates the fee against known product-weight bands when weight data exists.
+- [x] Pickup remains R0 delivery charge and delivery with zero fee is rejected.
+- [x] Packaging remains server-calculated at R25 per item; subtotal/product prices are server-calculated from current active products.
+- [x] Shipping-quote Edge Function upgraded to ACTIVE v2. Product catalogue currently has no populated positive product weights, so the automatic PAXI quote uses a clearly labelled provisional 1kg estimate; final quotation remains subject to confirmation.
+- [x] Checkout updated so live courier rates are reference-only until Get Wired AutoWorx confirms them; only published PAXI options are selectable for online submission.
+- [ ] Live browser/DNS checkout test remains pending until Axxess DNS is active.
+- [ ] No real order was created during this hardening work.
