@@ -58,6 +58,53 @@ function install(frame){
   const obs=new MutationObserver(enrich);obs.observe(d.body,{childList:true,subtree:true});enrich();
   if(!d.querySelector('.gwTrust')){const footer=d.getElementById('contact');if(footer){const t=d.createElement('div');t.className='gwTrust';t.textContent='Get Wired AutoWorx • Established 2012 • 074 4884 234 • 4.7/5 Google Rating • Nationwide delivery available';footer.parentNode.insertBefore(t,footer)}}
 }
+  // Major-retailer search: search the full in-memory 4,187-product catalogue,
+  // not merely the 60 cards currently rendered on screen.
+  function installFullCatalogueSearch(){
+    if(!d.getElementById('searchInput') || d.getElementById('gwFullSearchInstalled'))return;
+    const search=d.getElementById('searchInput');
+    const box=d.getElementById('gwSearchResults');
+    if(!box)return;
+    const mark=d.createElement('span'); mark.id='gwFullSearchInstalled'; mark.style.display='none'; d.body.appendChild(mark);
+    const renderFull=()=>{
+      const q=search.value.trim().toLowerCase();
+      if(!q){box.classList.remove('open');return}
+      const all=Array.isArray(d.defaultView.products)?d.defaultView.products:[];
+      const hits=all.filter(p=>[p.name,p.public_sku,p.slug,p.description,p.compatible_vehicles].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,15);
+      box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+escFull(p.name)+'</b><small>SKU: '+escFull(p.public_sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
+      box._gwFullHits=hits; box.classList.add('open');
+    };
+    const escFull=v=>String(v??'').replace(/[&<>"]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[x]));
+    search.addEventListener('input',renderFull);
+    box.addEventListener('click',e=>{
+      const row=e.target.closest('[data-full-product]'); if(!row)return;
+      const p=box._gwFullHits?.[Number(row.dataset.fullProduct)];
+      if(p && typeof d.defaultView.openProduct==='function'){d.defaultView.openProduct(p);box.classList.remove('open')}
+    });
+  }
+  installFullCatalogueSearch();
+
+  // Recently viewed products + wishlist button on the product detail modal.
+  function installProductTools(){
+    const modal=d.getElementById('productModal'); if(!modal||modal.dataset.gwTools)return;
+    modal.dataset.gwTools='1';
+    const obs=new MutationObserver(()=>{
+      const detail=modal.querySelector('.detail'); if(!detail)return;
+      const title=detail.querySelector('h2')?.textContent?.trim(); if(!title)return;
+      const all=Array.isArray(d.defaultView.products)?d.defaultView.products:[];
+      const p=all.find(x=>x.name===title); if(!p)return;
+      const actions=detail.querySelector('.detailActions'); if(!actions||actions.querySelector('.gwWishlist'))return;
+      const b=d.createElement('button'); b.className='gwWishlist'; b.textContent='♡ SAVE PRODUCT';
+      b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
+      b.onclick=()=>{let w=[];try{w=JSON.parse(localStorage.getItem('gw_wishlist')||'[]')}catch(e){};if(!w.includes(p.id))w.push(p.id);localStorage.setItem('gw_wishlist',JSON.stringify(w));b.textContent='♥ SAVED';};
+      actions.appendChild(b);
+      let rv=[];try{rv=JSON.parse(localStorage.getItem('gw_recent')||'[]')}catch(e){}
+      rv=[p.id,...rv.filter(x=>x!==p.id)].slice(0,10);localStorage.setItem('gw_recent',JSON.stringify(rv));
+    });
+    obs.observe(modal,{childList:true,subtree:true});
+  }
+  installProductTools();
+
 function boot(){const f=document.getElementById('store');if(!f)return;const go=()=>setTimeout(()=>{try{install(f)}catch(e){}},100);f.addEventListener('load',go);go();setInterval(()=>{try{install(f)}catch(e){}},2500)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
