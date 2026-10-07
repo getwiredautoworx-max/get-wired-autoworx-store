@@ -487,3 +487,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] No GitHub Actions minutes, Cloudflare credits, Netlify credits, or Replit credits were purchased/consumed to work around this Pages limitation.
 - [ ] Optional future GitHub Pages staging can be restored only after a repository administrator manually enables/creates the Pages site in **Settings → Pages** or grants the required Pages/Administration permissions to an authorized token/integration. This is not required for store completion.
 - [ ] Do not rerun the obsolete GitHub Pages staging workflow as a store-validation gate. If it remains in repository history, its failure is an infrastructure limitation and not a production blocker.
+
+
+## 7 OCT 2026 — OWNER APK SIGNED-RELEASE FOLLOW-UP
+- [x] Owner APK Run #48 build job completed successfully.
+- [x] Owner APK Run #48 signed-release job completed successfully after the JKS signing-format correction and explicit Android SDK apksigner path correction.
+- [x] Signed-release artifact created: `get-wired-owner-signed-release`; artifact ID `11500252099`; artifact digest `sha256:5fa63ffd7fc04326453759ee1b6641209d85191b75b57908d0d4ac4ef7976e88`.
+- [ ] Run #48 Android API 35 emulator job remains in progress; APK validation is not marked complete until install/launch smoke validation reaches a terminal success.
+- [x] Attempted to retrieve the in-progress emulator job log; GitHub returned BlobNotFound/404 because the live job log was not yet available. Recovery: poll job status and fetch logs again after the job reaches/approaches completion.
+- [x] No Axxess work performed during the exclusion window.
