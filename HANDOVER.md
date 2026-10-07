@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-07 09:45 SAST
+Updated: 2026-10-07 10:00 SAST
 
 ## SOURCE OF TRUTH
 - Repository: getwiredautoworx-max/get-wired-autoworx-store
@@ -1062,3 +1062,45 @@ This section supersedes the older wording that GitHub Pages was still blocked by
 **Production store domain: www.getwiredauto.co.za**
 
 The GitHub Pages project URL may remain a technical deployment/verification URL, but it is not the customer-facing store domain.
+
+# 20. DNS CONTINUATION CHECKPOINT — 7 OCTOBER 2026
+
+## Current verified position
+- [x] Canonical customer-facing store domain is **www.getwiredauto.co.za**.
+- [x] Root `CNAME` currently contains exactly `www.getwiredauto.co.za`.
+- [x] The GitHub Pages deployment path is working: the latest repository changes have successfully completed the Pages workflow.
+- [x] The previous GitHub Pages site-creation/integration permission blocker is resolved.
+- [x] No Cloudflare, Netlify or Replit credits are to be used.
+- [ ] Custom-domain DNS is not yet verified/configured from the available connected tooling.
+- [ ] Public HTTPS/browser reachability of **www.getwiredauto.co.za** is therefore not yet independently verified.
+- [ ] Do not mark the store LIVE until public browser evidence is obtained.
+
+## Exact DNS record required
+At the DNS/registrar provider controlling `getwiredauto.co.za`, create/confirm:
+
+- **Type:** CNAME
+- **Host/Name:** `www`
+- **Target/Value:** `getwiredautoworx-max.github.io`
+- **Do NOT add:** `/get-wired-autoworx-store/` to the CNAME target.
+
+The repository root CNAME must remain:
+`www.getwiredauto.co.za`
+
+## Tooling limitation — explicitly recorded
+- The currently connected tools provide GitHub repository/actions access but no DNS/registrar management action.
+- Searches performed for the domain/registrar did not identify a usable DNS-management endpoint.
+- Therefore the DNS record cannot honestly be claimed as changed by the assistant.
+- No DNS credentials, passwords or tokens should be pasted into chat.
+
+## Immediate next execution
+1. Owner provides the DNS provider/registrar name or a screenshot of the DNS-record page.
+2. Use the provider's exact DNS interface to confirm/add the CNAME above.
+3. Wait for DNS propagation as required by the provider.
+4. Verify **https://www.getwiredauto.co.za** externally.
+5. Run the complete public storefront regression and non-production checkout test.
+6. Continue with the 99 exact-SKU image deployment, Owner APK functional acceptance, payment-detail verification and final operational QA.
+
+## Canonical-domain rule
+**Only customer-facing production domain: https://www.getwiredauto.co.za**
+
+Do not restore `getwiredautoworx.co.za` and do not introduce another customer-facing domain.
