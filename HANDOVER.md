@@ -294,3 +294,15 @@ Previous detailed handover evidence remains preserved in Git history.
 - [ ] After the complete product-level reconciliation is validated, retire duplicate/obsolete category records only where no active products or foreign-key dependencies remain.
 - [ ] Re-verify active count = 4,187, uncategorized = 0, and category assignment coverage before any category retirement.
 - Important correction to the earlier category checkpoint: the statement that **no production category/product rows were changed** is superseded by this migration checkpoint. The migration has now started and was performed without deleting categories or changing product pricing, stock or order data.
+
+
+## AUTOMATED WORK CHECKPOINT — 2026-10-07
+- [x] Rechecked Supabase production security advisor: remaining WARN is Leaked Password Protection Disabled; no automated Auth-setting mutation is available through the connected interface.
+- [x] Rechecked Supabase performance advisor: INFO-level unused-index notices only; no indexes removed.
+- [x] Rechecked Supabase catalogue invariant: 4,187 active products and 0 uncategorized.
+- [x] Rechecked active category distribution before further category changes; duplicate/legacy active buckets remain and require SKU/evidence-based reconciliation.
+- [x] Rechecked Owner APK repository. Run #46 is building the corrected release workflow; debug build succeeded, emulator job is in progress, and signed-release job exposed a CI keystore-format failure.
+- [x] Diagnosed signed-release failure: generated Java/PKCS12 keystore was incompatible with the separately supplied key password, producing 'Given final block not properly padded'.
+- [x] Corrected signing workflow to generate an explicit JKS keystore so store/key passwords can differ safely.
+- [ ] New APK workflow run must reach terminal SUCCESS and produce a verified signed-release artifact.
+- [ ] No Axxess work performed during the 24-hour exclusion.
