@@ -207,3 +207,11 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Commit: a08980d62fc9a21416cc84af0c837c5e09242b21.
 - No Supabase/catalogue data changed. No Axxess work performed.
 - Automated QA and Pages deployment are triggered by this storefront-only change and must be checked to terminal before this task is considered fully deployed.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 SAST
+- Task: Begin storefront optimisation for faster navigation and buying.
+- Result: SUCCESS. Existing design preserved; added a direct Proceed to Checkout button inside the cart, added Cart access to the mobile bottom navigation, and improved search with short debounce plus relevance ranking for exact SKU/name/part-number matches.
+- Commit: a04ed63b2d298fd5ddb54aabd48cea95b24db5eb.
+- No Supabase/catalogue data changed. No Axxess work performed.
+- Reason optimisation was not complete previously: the store had functional search, vehicle filtering, cart and checkout routing, but these usability layers had not yet been consolidated into a dedicated conversion/mobile optimisation pass. Current work starts that pass without rebuilding the foundation.
