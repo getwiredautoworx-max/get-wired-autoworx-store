@@ -211,3 +211,15 @@ This prevents a modified client from bypassing or changing the required R15 deli
 7. [ ] Complete payment automation (PayFast) after storefront approval.
 8. [ ] Complete supplier/courier automation after payment-flow approval.
 9. [ ] Continue exact SKU image/category QA; never guess product images or fitment.
+
+## 2026-10-07 18:20 SAST — FINAL AUTOMATED CHECKPOINT
+- [x] Owner APK Run #44 independently verified terminal SUCCESS: build + Android API 35 emulator install/launch smoke test.
+- [x] Validated APK artifact remains active in GitHub Actions: `get-wired-owner-debug`, artifact ID `11493167703`, SHA-256 `2d151aa2a4d713f33f7512e0d6fe7c06eab4522c69d42acb17fa8b80f569b534`.
+- [x] Supabase project `Store` independently rechecked as ACTIVE_HEALTHY; all inspected public tables have RLS enabled.
+- [x] Supabase security advisor currently has one WARN only: leaked password protection disabled. No unsafe database mutation was made; enabling this is a Supabase Auth dashboard/provider setting.
+- [x] Performance advisor findings are INFO-level unused-index notices; no indexes were removed because they span current/future quote/payment infrastructure.
+- [x] Expected store Edge Functions are present, including shipping-quote, store-checkout, payment-gateway and get-wired-store.
+- [x] GitHub Pages staging remains excluded from the production path; its historical failure is repository Pages-site provisioning/permission related, not storefront code.
+- [ ] Axxess XS `public_html` upload + SSL/public-browser verification remains the only hosting gate that requires authenticated control-panel access not exposed to this session.
+- [ ] Live Owner login, controlled order/payment reconciliation and physical Android-device acceptance remain owner-input gates; no credentials or payment data are fabricated or bypassed.
+- [x] No Replit, Cloudflare or Netlify credit-dependent deployment was initiated during this checkpoint.
