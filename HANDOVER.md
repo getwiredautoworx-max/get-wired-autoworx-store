@@ -142,3 +142,11 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Job 112969537339 has completed checkout and Java setup; it is currently at Android SDK configuration. Emulator validation has not started yet.
 - Storefront inspection: current index-new.html remains the active customer-facing design target; enhancement scripts for search, stock visibility, checkout, mobile fixes and approved services are present. No cosmetic rewrite was applied because the current design is the preserved foundation and the user previously preferred an earlier storefront appearance.
 - No storefront source, Supabase data, APK signing identity, or deployment configuration was modified during this inspection.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 21:23 SAST
+- Automated Store Production QA diagnosis: FOUND and FIXED a false-positive routing assertion. The QA workflow incorrectly required index-new.html itself to contain a checkout-v2.html reference, while checkout is routed through the checkout page/application flow.
+- Fix committed to .github/workflows/store-production-qa.yml: validation now checks checkout.html for the checkout-v2.html route instead of incorrectly checking index-new.html.
+- New GitHub Pages deployment triggered by the handover updates; current latest Pages run is in progress.
+- Owner APK Run #50 (37673087846) remains in progress at the debug APK build step.
+- No catalogue/database data changed.
