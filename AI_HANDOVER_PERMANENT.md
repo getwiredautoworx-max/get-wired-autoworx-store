@@ -425,3 +425,15 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Pickup remains R0.00 delivery and does not require a quote.
 - [x] Cloudflare deployment workflow now includes `functions/**` so the quote endpoint is deployed with the storefront.
 - [ ] Validate the new delivery quote flow after the latest deployment.
+
+## 7 OCT 2026 — LATEST VALIDATION / DELIVERY IMPLEMENTATION
+- [x] Public SKU Exposure Audit passed on latest corrected code.
+- [x] Catalogue Image Audit passed on latest corrected code.
+- [x] Cloudflare deployment has succeeded on the delivery-quote implementation line; the newest deployment is still being checked after the subsequent documentation commit.
+- [x] Storefront smoke-test failures caused by obsolete R35 expectations were corrected to R25.
+- [x] Active checkout-v2 now requires a delivery quote for delivery orders; it can no longer silently submit a delivery order with R0 delivery.
+- [x] Added Cloudflare Pages `/api/shipping/quote` function with optional live provider credentials and PAXI published-rate fallback.
+- [x] Checkout-v2 now requests/selects an available delivery quote and records the selected provider/amount in order notes.
+- [x] Pickup remains R0.00 delivery.
+- [x] Checkout/payment/delivery documentation synchronized to the R25 packaging rule and quote-required delivery rule.
+- [ ] Final latest smoke test and latest Cloudflare deployment must report success before this milestone is marked fully green.
