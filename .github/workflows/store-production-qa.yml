@@ -30,7 +30,7 @@ jobs:
           test -s admin.html
           test -s assets/admin.js
           grep -q "index-new.html" store.html
-          grep -q "checkout-v2.html" index-new.html
+          grep -q "checkout-v2.html" checkout.html
           if grep -RIl "getwiredautoworx\.co\.za" --include='*.html' --include='*.js' --exclude-dir='.git' .; then
             echo "ERROR: obsolete domain reference found"
             exit 1
