@@ -243,3 +243,7 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Task attempt: Add one-tap BUY NOW from product modal.
 - Status: FAILED before repository modification. Patch construction incorrectly treated the HTML template variable `wa` as a runtime tool variable; no file change occurred and no store data changed.
 - Recovery: retry using literal source text/template replacement, then run automated QA. Axxess remains excluded.
+
+- Task attempt/retry: Add one-tap BUY NOW from product modal.
+- Status: SUCCESS. Added BUY NOW beside ADD TO CART; it adds the selected product and opens the cart panel for immediate checkout. No Supabase/catalogue data changed; Axxess excluded.
+- Commit: 2bbfcbf84abc8b34e2cbf21a53d8c359d08c0c4c.
