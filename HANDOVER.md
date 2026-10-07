@@ -233,3 +233,9 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - No Supabase/catalogue data changed. No Axxess work performed.
 - Validation state at attempt: prior optimisation commit had Store Production QA SUCCESS (37675401140), Cloudflare deployment SUCCESS (37675401134), Public SKU Exposure Audit SUCCESS (37675401042), Catalogue Image Audit SUCCESS (37675401004); Storefront Smoke Test 37675401029 was still in post-test cleanup/in-progress and Pages deployment 37675427973 was in progress.
 - Next: allow the current optimisation commit's automated QA/deployment chain to complete, then continue only with remaining independent conversion/performance improvements and update this handover after each attempt.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 SAST
+- Task attempt: Correct storefront WhatsApp contact URL.
+- Status: SUCCESS. Corrected store.html WhatsApp link to the approved business number (+27 74 488 4234). No catalogue/Supabase data changed; Axxess excluded.
+- Commit: f5f15f603511e178a0922815eb29abe2f8be0610.
