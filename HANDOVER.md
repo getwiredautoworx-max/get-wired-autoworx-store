@@ -201,3 +201,14 @@ Previous detailed handover evidence remains preserved in Git history.
 - [x] Checkout updated so live courier rates are reference-only until Get Wired AutoWorx confirms them; only published PAXI options are selectable for online submission.
 - [ ] Live browser/DNS checkout test remains pending until Axxess DNS is active.
 - [ ] No real order was created during this hardening work.
+
+## CONTINUATION CHECKPOINT — 2026-10-07
+- [x] Production/security audit: all seven production tables remain RLS-enabled with one policy each.
+- [x] SECURITY DEFINER audit: all public SECURITY DEFINER functions currently have EXECUTE denied to anon, authenticated and PUBLIC; admin functions enforce authenticated admin membership internally.
+- [x] Checkout SECURITY DEFINER function uses an empty search_path and now server-validates delivery fees, pickup R0, packaging R25/item and live product price/stock.
+- [x] Automated Storefront Smoke Test passed on commit be2529b3fa0350bbe1c93f599f89c1b05232d51d.
+- [x] Catalogue Image Audit passed on the same commit.
+- [x] Public SKU Exposure Audit passed on the same commit.
+- [x] No customer/order test data was created during these checks.
+- [ ] Live DNS/Axxess browser QA remains blocked until getwiredauto.co.za resolves.
+- [ ] Owner APK Run #43 remains in progress; no unverified APK artifact is being declared ready.
