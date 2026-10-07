@@ -396,3 +396,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Delivery: **charged separately according to the actual courier quotation/rate for the destination and parcel**.
 - Do not charge delivery per item.
 - Do not add a Phoenix Plaza pickup/dispatch fee to the customer order.
+
+## 7 OCT 2026 — CI FOLLOW-UP
+- [x] Investigated post-correction CI failures from the R25 packaging change.
+- [x] Confirmed catalogue image audit is passing on the corrected commit.
+- [x] Confirmed Cloudflare Pages deployment workflow is succeeding on the corrected code line.
+- [x] Fixed remaining customer-facing legacy SKU audit references in checkout.html.
+- [x] Updated storefront smoke test expectation from obsolete R35 packaging to authoritative R25 packaging.
+- [ ] Re-run/verify the resulting SKU audit and storefront smoke test after the latest fixes.
