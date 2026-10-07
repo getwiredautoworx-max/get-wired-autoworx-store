@@ -135,3 +135,10 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - The prior Run #48 emulator job is no longer the only path being relied upon; a fresh validation run is now active.
 - No APK source or signing secrets were changed during this attempt.
 - Next recovery step: poll the fresh run until terminal, then inspect build/signing/emulator results and artifact availability.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 21:20 SAST
+- APK validation poll: fresh Run 37673087846 remains IN PROGRESS.
+- Job 112969537339 has completed checkout and Java setup; it is currently at Android SDK configuration. Emulator validation has not started yet.
+- Storefront inspection: current index-new.html remains the active customer-facing design target; enhancement scripts for search, stock visibility, checkout, mobile fixes and approved services are present. No cosmetic rewrite was applied because the current design is the preserved foundation and the user previously preferred an earlier storefront appearance.
+- No storefront source, Supabase data, APK signing identity, or deployment configuration was modified during this inspection.
