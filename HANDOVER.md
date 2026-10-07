@@ -220,3 +220,9 @@ Previous detailed handover evidence remains preserved in Git history.
 - [x] Previous Catalogue Image Audit and Public SKU Exposure Audit remain SUCCESS on the same current commit.
 - [ ] Owner APK Run #43 (37643684869) is still IN PROGRESS; artifact verification remains pending.
 - [ ] Axxess DNS/live browser QA remains pending; no claim of public live storefront has been made.
+
+## APK CONTINUATION — 2026-10-07
+- Owner APK Run #43 build itself passed; emulator smoke test failure was traced to CI test order, not APK compilation.
+- Corrected APK workflow commit: `cbbbce20eb92e4adae0776c1a77823eb46b97d09` — install APK before package-path verification.
+- APK repo handover updated at `3da506357763eddc07bbcf6ab3fcd6db753e945d`.
+- Corrected emulator run is now required before declaring the APK validation complete.
