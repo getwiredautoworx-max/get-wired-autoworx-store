@@ -239,3 +239,7 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Task attempt: Correct storefront WhatsApp contact URL.
 - Status: SUCCESS. Corrected store.html WhatsApp link to the approved business number (+27 74 488 4234). No catalogue/Supabase data changed; Axxess excluded.
 - Commit: f5f15f603511e178a0922815eb29abe2f8be0610.
+
+- Task attempt: Add one-tap BUY NOW from product modal.
+- Status: FAILED before repository modification. Patch construction incorrectly treated the HTML template variable `wa` as a runtime tool variable; no file change occurred and no store data changed.
+- Recovery: retry using literal source text/template replacement, then run automated QA. Axxess remains excluded.
