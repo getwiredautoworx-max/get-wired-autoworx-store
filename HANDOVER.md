@@ -247,3 +247,6 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Task attempt/retry: Add one-tap BUY NOW from product modal.
 - Status: SUCCESS. Added BUY NOW beside ADD TO CART; it adds the selected product and opens the cart panel for immediate checkout. No Supabase/catalogue data changed; Axxess excluded.
 - Commit: 2bbfcbf84abc8b34e2cbf21a53d8c359d08c0c4c.
+
+- Verification task: Validate latest storefront optimisation deployment (BUY NOW + corrected WhatsApp link).
+- Status: SUCCESS. Cloudflare deployment, GitHub Pages deployment, Store Production QA, Storefront Smoke Test, Public SKU Exposure Audit, and Catalogue Image Audit all passed on the latest relevant commits. No catalogue/Supabase data changed. Axxess excluded.
