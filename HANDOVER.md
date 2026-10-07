@@ -188,3 +188,14 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Exact change: public security scan now excludes only android-owner-app/ from the public HTML/JS file set, while continuing to scan public storefront files for supplier-cost fields and server secrets. Owner APK source was not modified.
 - QA rerun: awaiting/triggered by the workflow commit; no workflow run was visible yet when checked immediately after the commit.
 - No Supabase/catalogue/storefront application data was changed.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 21:xx SAST
+- Task: Resolve missing corrected QA run visibility.
+- Result: SUCCESS — GitHub Actions was queried directly by repository run listing; the corrected QA run was found and completed successfully.
+- Store Production QA run: 37674166958, run #6, head SHA 7070afe744e19362e058e1b3c2ea0e4137838a5f.
+- Job 112973240356 completed SUCCESS.
+- Storefront source validation: PASS.
+- Public catalogue invariants: PASS.
+- Public source security boundaries: PASS. The private android-owner-app/ supplier-cost fields no longer trigger the public-source scan.
+- This resolves the security-scan blocker. No Supabase/catalogue/storefront application data was changed.
