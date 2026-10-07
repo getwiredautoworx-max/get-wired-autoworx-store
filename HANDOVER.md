@@ -1027,3 +1027,21 @@ This section supersedes older conflicting blocker descriptions.
 - [ ] 99 exact-SKU image binaries remain pending deployment/verification.
 - [ ] Owner APK functional acceptance remains pending.
 - [ ] Final payment/bank-detail verification and final operational QA remain pending.
+
+
+# 18. GITHUB PAGES NATIVE HOSTNAME FIX — 7 OCTOBER 2026
+
+- [x] Removed the root `CNAME` file so the site is no longer forced onto `getwiredautoworx.co.za` before custom-domain DNS is configured.
+- [x] Fix committed as `23be2ea8e9fce58abe53465d6eeda75d7b9592c` with message: `Use GitHub Pages project hostname until custom-domain DNS is configured`.
+- [x] GitHub Pages dynamic deployment run `37588724785` completed successfully against that commit.
+- [x] Native project hostname target: `https://getwiredautoworx-max.github.io/get-wired-autoworx-store/`.
+- [ ] External/public browser verification is still not independently confirmed by the available web-fetch environment; therefore the site is NOT yet marked LIVE solely from the successful Pages deployment.
+- [ ] Custom domain `getwiredautoworx.co.za` remains deferred until DNS is actually configured and verified; do not restore CNAME prematurely.
+- [x] No Cloudflare or Netlify credits were used for this recovery.
+
+## Immediate continuation after this fix
+1. Verify the native GitHub Pages URL from an external browser/device.
+2. If reachable, run the full public storefront regression and end-to-end non-production checkout test.
+3. Then complete the 99 exact-SKU image binary deployment/verification, Owner APK functional acceptance, final payment-detail verification and final operational QA.
+
+This section supersedes the older wording that GitHub Pages was still blocked by inability to create the Pages site. The Pages site creation/integration blocker is resolved; the remaining gate is public reachability evidence.
