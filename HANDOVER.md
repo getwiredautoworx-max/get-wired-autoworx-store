@@ -109,3 +109,12 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - No APK code, storefront code, Supabase data, or deployment configuration was changed during this attempt.
 - Store hosting checkpoint: GitHub Pages has since produced successful dynamic deployment runs (latest observed run 37659344798, commit f0ebe4b4c60dec7685d6c07faf4ed08a336219e1). Public domain/browser verification remains unavailable from the current tool path.
 - Recovery path: retry job-status retrieval when GitHub Actions endpoint access is available; if Run #48 is terminal, inspect artifact/signature and continue automated QA. Do not disable Play Protect and do not change the storefront because of this polling failure.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 21:16 SAST
+- Task: Direct Supabase catalogue invariant verification.
+- Result: SUCCESS.
+- Verified: 4,187 active products; 4,187 active unique SKUs; 0 active uncategorized; 0 active null image URLs; 0 active null prices; 0 active null costs.
+- Verified: 0 pricing mismatches against cost × 1.15 VAT × 1.35 markup; 27,745 active stock units.
+- No catalogue rows were modified.
+- This confirms the current database invariants remain intact after the latest continuation work.
