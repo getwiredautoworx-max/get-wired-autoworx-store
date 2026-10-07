@@ -288,3 +288,10 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 
 - Verification checkpoint 2026-10-07: direct GitHub Actions API confirms latest handover commit 316442f512e9122fbe5935e6316fda4352b57ee8 has GitHub Pages run 37677189761 completed SUCCESS. The stock-enquiry commit b4176224 itself has no PR-triggered workflow runs under the connector's commit-run wrapper; repository-level Actions history shows the later handover push produced the Pages deployment successfully. No claim made for unverified b417 workflow-specific QA.
 - Latest verified deployment: GitHub Pages SUCCESS on 316442f. Continue with remaining storefront optimisation/QA rather than repeating completed stock-enquiry work. Axxess remains excluded.
+
+
+- Task: Improve vehicle-first shopping flow.
+- Status: SUCCESS — added a CLEAR control to the vehicle finder and reset behaviour that restores the full catalogue, clears make/model selection, disables FIND PARTS until a new model is selected, and clears stale vehicle status. Existing vehicle mapping/product data and storefront foundation were preserved.
+- Commit: 55a61edc1dee81bd0acf1f896f6cd2177cf26c94.
+- No Supabase/catalogue data changed. Axxess excluded.
+- Automated verification: newly committed change now requires terminal workflow verification; do not claim QA/deployment success until actual runs are observed.
