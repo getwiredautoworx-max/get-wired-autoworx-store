@@ -254,3 +254,7 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Task: Improve cart usability with quantity +/- and REMOVE controls.
 - Status: SUCCESS. Added thumb-friendly quantity controls and removal without changing catalogue/Supabase data. Axxess excluded.
 - Commit: 2bf17a1f3fe23204b16a2f2b10c5ce7536498b11.
+
+- Task: Improve large-catalogue rendering performance.
+- Status: SUCCESS. Added progressive 60-item product rendering with LOAD MORE, reducing initial DOM work while preserving full search/category result counts. No Supabase/catalogue data changed; Axxess excluded.
+- Commit: ddef9ec8b68b14818ce708b88e9cd3b57e504652.
