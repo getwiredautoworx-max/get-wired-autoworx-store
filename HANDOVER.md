@@ -75,7 +75,15 @@ Updated: 2026-10-07 16:15 SAST
 - [ ] Remaining Supabase security advisory: Leaked Password Protection is disabled. This is an Auth dashboard/configuration item and has not been changed automatically because no connected Auth-settings mutation tool is available.
 - Performance advisor reports unused-index informational notices; these are not production blockers and should not be removed blindly.
 
-## IMAGE STATUS
+## IMAGE STATUS — VERIFIED INVENTORY
+- [x] Current GitHub main inventory contains **800 JPEG product images** under assets/products/.
+- [x] Measured binary footprint: **205,424,314 bytes (~195.91 MiB)** for those 800 JPEGs.
+- [x] Exact filename-to-database SKU check: **795** files match a database SKU; **787** of those matches are active products.
+- [x] Supabase active catalogue image state currently reports **792** product-image function URLs, **3,395** branded placeholders, and **0** null image URLs.
+- [ ] Image-quality/watermark verification of all 800 binaries remains outstanding.
+- [ ] Do not blindly upload/rewrite all image URLs; preserve exact-SKU matching and branded fallback controls.
+- The previous 99-image deployment checkpoint is superseded by this current measured 800-file repository inventory; the 99-item set should be treated as a targeted verified subset, not the total local image count.
+
 - 99 exact-SKU JPEG assets prepared and matched to existing/categorised products.
 - 99 binary image deployment remains pending; URLs were intentionally not changed until binaries are actually committed.
 - Safe branded placeholders remain for products without verified exact-SKU imagery.
