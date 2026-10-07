@@ -69,7 +69,7 @@ function install(frame){
     const renderFull=()=>{
       const q=search.value.trim().toLowerCase();
       if(!q){box.classList.remove('open');return}
-      const all=Array.isArray(d.defaultView.products)?d.defaultView.products:[];
+      const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.products:[];
       const hits=all.filter(p=>[p.name,p.public_sku,p.slug,p.description,p.compatible_vehicles].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,15);
       box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+escFull(p.name)+'</b><small>SKU: '+escFull(p.public_sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
       box._gwFullHits=hits; box.classList.add('open');
@@ -79,7 +79,7 @@ function install(frame){
     box.addEventListener('click',e=>{
       const row=e.target.closest('[data-full-product]'); if(!row)return;
       const p=box._gwFullHits?.[Number(row.dataset.fullProduct)];
-      if(p && typeof d.defaultView.openProduct==='function'){d.defaultView.openProduct(p);box.classList.remove('open')}
+      if(p && typeof d.defaultView.gwOpenProduct==='function'){d.defaultView.gwOpenProduct(p);box.classList.remove('open')}
     });
   }
   installFullCatalogueSearch();
