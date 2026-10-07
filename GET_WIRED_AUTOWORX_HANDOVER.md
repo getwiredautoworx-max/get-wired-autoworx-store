@@ -125,3 +125,24 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - [ ] Final fully automatic API booking remains provider-gated. PAXI's official site explicitly directs businesses to contact PAXI for API integration and states a minimum monthly parcel qualification applies. citeturn2view1
 - [ ] Once PAXI supplies API access/specification, replace the portal handoff with server-side booking/tracking while retaining the same order data and no browser-side secrets.
 - [x] No Cloudflare or Netlify credits used.
+
+## 2026-10-07 — AXXESS XS LINUX HOSTING ACTIVATED / NEW PRIMARY STATIC HOSTING ROUTE
+
+- [x] Axxess **XS Linux Hosting DirectAdmin** service is active for **getwiredauto.co.za**.
+- [x] Axxess account panel shows service created **2026-10-07**, next renewal **2026-11-01**.
+- [x] Hosting allocation currently shown by Axxess: **2.00 GB hosting space**, 5 MySQL databases, 75 email accounts, 75 mail lists, 10 auto-responders, 2 FTP accounts, 1 subdomain.
+- [x] Axxess hosting hostname: **dahost11.vpslocal.co.za**; server IP: **156.155.252.98**.
+- [x] Axxess nameservers supplied for this hosting: **ns1.clusterdns.co.za (41.76.111.83)** and **ns2.clusterdns.co.za**.
+- [x] Repository `CNAME` already contains **www.getwiredauto.co.za**, so the repository's intended custom-domain hostname matches the Axxess-hosted domain.
+- [x] Current storefront remains a static HTML/JS site using the live Supabase project `ojytykqpvonxvepprgbh`; Axxess does not replace or migrate Supabase.
+- [x] Axxess is now the preferred **zero-Cloudflare-credit hosting path** for the storefront. Cloudflare remains available as a fallback/staging path and is not to be used for this Axxess deployment.
+- [x] Axxess official help confirms DirectAdmin supports File Manager/FTP and that website files normally live under the domain's `public_html` directory.
+- [x] Axxess official SSL guidance confirms free automatic Let's Encrypt SSL is available in DirectAdmin and supports forcing HTTPS.
+- [ ] User-side Axxess action still required: open **Hosting Control Service Panel / DirectAdmin**, confirm the domain's document root and open File Manager. Do **not** send passwords or credentials into chat.
+- [ ] Upload the approved storefront files from GitHub `main` into the Axxess domain's `public_html` document root, preserving the existing `assets/`, `functions/`, JavaScript, HTML and support files required by the current storefront.
+- [ ] After upload, enable/verify the Axxess free Let's Encrypt certificate for both the apex domain and `www`, then force HTTPS.
+- [ ] Browser QA after DNS/SSL is live: homepage, categories, vehicle finder, product details, cart, checkout-v2, Supabase product loading, supplier-source request, WhatsApp links, and mobile layout.
+- [ ] Confirm customer delivery wording is the approved current business rule before final launch. The historical handover entries before this update contain older delivery values and must not override the latest owner-approved delivery/packaging terms.
+- [ ] The current owner-approved physical-order wording for the storefront must remain: **pickup from the owner's premises has no pickup charge; delivery is quoted according to the selected courier/PAXI option and is subject to quotation; packaging is R25 per item**. Do not reintroduce R15 delivery as the current business rule.
+- [ ] Preferred future brand/domain concept `gwautostore.co.za` remains separate from the currently active Axxess service `getwiredauto.co.za`; do not change domains without explicit owner approval.
+
