@@ -118,3 +118,11 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Verified: 0 pricing mismatches against cost × 1.15 VAT × 1.35 markup; 27,745 active stock units.
 - No catalogue rows were modified.
 - This confirms the current database invariants remain intact after the latest continuation work.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 21:15 SAST
+- Task: Resolve Owner APK emulator-verification blocker.
+- Recovery action: triggered a fresh Owner APK validation workflow by a non-functional workflow-comment commit (000e81f4cee175ea2b4d90cde2da26fc3dcf3500); no application/store logic was changed.
+- New workflow run: 37673087846 — currently queued.
+- Next automated step: poll this run until terminal, then inspect build/emulator result and artifact/signature as applicable.
+- No Axxess work performed. No Supabase data modified.
