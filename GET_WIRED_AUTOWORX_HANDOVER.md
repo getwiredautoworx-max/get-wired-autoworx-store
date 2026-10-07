@@ -165,3 +165,18 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - [ ] Next physical action: use the control panel **Menu** to locate **File Manager** and open the domain's `public_html` document root.
 - [ ] Do not create an FTP user or database for the storefront upload unless a later step specifically requires it.
 - [ ] Do not send Axxess passwords, FTP credentials, or other secrets into chat.
+
+
+## 2026-10-07 — AXXESS PUBLIC_HTML INSPECTED / READY FOR STOREFRONT UPLOAD
+
+- [x] User opened DirectAdmin System Info & Files → File Manager.
+- [x] User located the domain folder Get Wired Auto.co.za and opened it.
+- [x] User opened the domain's public_html document root.
+- [x] Current fresh document root contains only the default cgi-bin folder and default index.html placeholder.
+- [x] cgi-bin must be preserved; it is not part of the storefront replacement.
+- [x] GitHub main source was independently re-read before upload planning. Current verified entry flow remains index.html → store.html → index-new.html; checkout-v2.html is present; CNAME contains www.getwiredauto.co.za.
+- [x] Current store.html explicitly references required local assets/scripts including assets/product-image-fallback.js, assets/category-cleanup.js, assets/progressive-store-enhancements.js, and category-navigation.js; therefore the storefront must be uploaded with its supporting asset/script files, not only index.html.
+- [ ] Do not delete cgi-bin.
+- [ ] Next physical deployment action: obtain the current GitHub main storefront package and upload the required website files/folders into this public_html, replacing the default placeholder index.html only as part of the complete storefront upload.
+- [ ] Do not upload repository-only documentation, .git data, GitHub workflow files, or unrelated development files into public_html.
+- [ ] After upload, verify file paths and public site response before SSL/HTTPS configuration.
