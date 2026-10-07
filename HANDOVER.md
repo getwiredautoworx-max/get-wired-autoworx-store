@@ -1010,3 +1010,20 @@ Continue exact-SKU imagery, catalogue/compatibility QA, admin improvements, auth
 9. Record final live-readiness evidence.
 
 This section supersedes older conflicting blocker descriptions.
+
+# 17. VERIFIED GITHUB PAGES RECOVERY — 7 OCTOBER 2026
+
+- [x] GitHub Pages manual setup completed by owner: Settings → Pages → Deploy from a branch → main → /(root).
+- [x] GitHub's generated pages build and deployment run 37588242362 completed successfully.
+- [x] Build job 112683299304 = success.
+- [x] Report-build-status job 112683483345 = success.
+- [x] Deploy job 112683483350 = success.
+- [x] Previous Pages site-creation/integration blocker is resolved.
+- [ ] Public browser verification remains required before declaring the storefront publicly reachable.
+- [x] Active storefront wrapper links to checkout-v2.html.
+- [x] checkout-v2 uses pickup R0 delivery, R25/item packaging, and separate Courier Guy/PAXI quotation for delivery.
+- [x] Delivery orders require a quotation; cash-on-pickup is restricted to pickup.
+- [ ] End-to-end browser checkout test remains pending until public access is reachable.
+- [ ] 99 exact-SKU image binaries remain pending deployment/verification.
+- [ ] Owner APK functional acceptance remains pending.
+- [ ] Final payment/bank-detail verification and final operational QA remain pending.
