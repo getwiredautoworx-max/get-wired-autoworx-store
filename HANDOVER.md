@@ -202,6 +202,23 @@ Updated: 2026-10-07 18:00 SAST
 - [ ] The master taxonomy is a navigation target; it does not authorize semantic guessing of ambiguous product assignments.
 
 
+
+## 24-HOUR AXXESS EXCLUSION — 2026-10-07
+- User instruction: **Exclude Axxess from all remaining tasks for the next 24 hours.**
+- For the next 24 hours, do **not** perform, schedule, or count as active work: Axxess account/payment verification, DirectAdmin access, storefront upload to Axxess, Axxess SSL/HTTPS, Axxess DNS changes/cutover, or Axxess-dependent public browser QA.
+- All independent work that does not require Axxess should continue during this 24-hour window.
+- Axxess-dependent launch gates remain recorded as deferred, not cancelled, and may resume after the 24-hour exclusion expires.
+- No Axxess credentials, DNS changes, or hosting mutations are to be requested/used during this exclusion window.
+- **Next-24-hour work queue:**
+  1. Owner APK signed-release/emulator validation and physical-device acceptance where technically possible.
+  2. Owner APK ↔ Supabase/admin workflow validation using available non-production/test paths; no invented credentials and no real customer order.
+  3. Supabase Auth leaked-password protection configuration if an available authorized path exists; otherwise record as pending.
+  4. Finish exact SKU-level catalogue/category reconciliation and verify 4,187 active products, 0 uncategorized, and unchanged pricing/stock/order data.
+  5. Continue exact-SKU image verification/watermark audit and safely process verified image assets only.
+  6. Continue automated storefront/security/checkout QA that does not require public Axxess/DNS access.
+  7. Update this handover after every task attempt, including failures and recovery paths.
+- **Deferred until the 24-hour exclusion ends:** Axxess upload, Axxess SSL, DNS cutover, Axxess-dependent public QA, and any other task requiring Axxess access.
+
 ## RESTART INSTRUCTION
 When continuing, first verify the current GitHub main state and Axxess account/hosting status, then execute the next unresolved migration task. Do not redo the completed GitHub Pages permission fix or other verified work unless a new defect is demonstrated.
 
