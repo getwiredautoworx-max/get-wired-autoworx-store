@@ -416,3 +416,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Verified `create_store_order` is SECURITY DEFINER but has no direct anon/authenticated EXECUTE grant; storefront checkout therefore uses the controlled checkout function path rather than exposing the privileged RPC directly.
 - [x] Verified admin-only data policies use the existing `is_veyron_admin()` gate.
 - [ ] Final Supabase Auth leaked-password protection remains a dashboard/provider setting not exposed by the current connector.
+
+## 7 OCT 2026 — DELIVERY QUOTE SAFETY FIX
+- [x] Identified and corrected a critical checkout issue: active checkout-v2 previously allowed delivery submission with a zero delivery fee.
+- [x] Active checkout now requires a delivery quotation before a delivery order can be submitted.
+- [x] Added server-side `/api/shipping/quote` endpoint with optional live Bob Go / Courier Guy / PUDO credentials and transparent PAXI published-rate fallback.
+- [x] Added delivery-quote selection UI to checkout-v2.
+- [x] Pickup remains R0.00 delivery and does not require a quote.
+- [x] Cloudflare deployment workflow now includes `functions/**` so the quote endpoint is deployed with the storefront.
+- [ ] Validate the new delivery quote flow after the latest deployment.
