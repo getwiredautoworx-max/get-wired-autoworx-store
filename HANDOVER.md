@@ -150,3 +150,9 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - New GitHub Pages deployment triggered by the handover updates; current latest Pages run is in progress.
 - Owner APK Run #50 (37673087846) remains in progress at the debug APK build step.
 - No catalogue/database data changed.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 21:27 SAST
+- Owner APK Run #50: BUILD SUCCESSFUL. APK artifact preservation SUCCESSFUL. KVM setup SUCCESSFUL. Emulator validation is now IN PROGRESS.
+- Store Production QA: previous failure was traced to the second incorrect checkout assertion. Inspection confirmed the actual routing: store.html embeds index-new.html and links directly to checkout-v2.html. The QA assertion was corrected to test that real routing. New QA run 37673396548 is IN PROGRESS.
+- No storefront functionality or catalogue data was changed; only the automated QA assertion was corrected.
