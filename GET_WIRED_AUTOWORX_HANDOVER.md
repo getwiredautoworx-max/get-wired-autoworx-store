@@ -277,3 +277,44 @@ Do not ask the owner to repeat already completed technical work. Continue all in
 
 ### NEXT-CHAT INSTRUCTION
 Start from this checkpoint. Do not restart the project, rebuild the storefront unnecessarily, redo completed catalogue/database work, use the old 1,109-row CSV, consume Replit/Cloudflare/Netlify credits, or claim Axxess deployment/live testing until directly verified. The immediate priority is to get the complete storefront package into Axxess `public_html`, preserving `cgi-bin`, then verify SSL and the public site.
+
+## 2026-10-07 — AUTOMATED TASKS 2/3/4/7/8 CONTINUATION CHECKPOINT
+
+### Task 2 — Automated production/source QA
+- [x] Added `.github/workflows/store-production-qa.yml`.
+- [x] Automated checks cover required storefront files/routes, obsolete-domain references, current pickup/delivery/packaging wording, active catalogue accessibility, zero uncategorized active products, zero null image URLs, zero null prices, and public-source security boundaries.
+- [x] Workflow is source-controlled on main; live public-browser verification remains a separate Axxess gate.
+
+### Task 3 — Checkout automation verification
+- [x] Re-read live Supabase `store-checkout` Edge Function: ACTIVE, version 1.
+- [x] Confirmed checkout function accepts only the intended order fields, validates customer name/cart size, and delegates authoritative order creation to `public.create_store_order`.
+- [x] Re-read live `shipping-quote` Edge Function: ACTIVE, version 2.
+- [x] Confirmed delivery quotation flow supports live configured courier rates plus published PAXI options, with provisional-weight labelling when product weights are unavailable.
+- [x] Confirmed current checkout source enforces quotation-before-submit for delivery and server-side pricing/order validation remains authoritative.
+- [ ] No real customer order was created during this verification.
+
+### Task 4 — Owner APK release automation
+- [x] Owner APK source now has a release signing configuration driven only by runtime CI environment variables; no signing password/key was committed.
+- [x] Owner APK workflow now contains a `signed-release` job that generates a temporary CI signing keystore, builds `assembleRelease`, verifies the APK with `apksigner`, records SHA-256, and uploads `get-wired-owner-signed-release`.
+- [x] Existing Run #44 debug/emulator-success artifact remains authoritative for the previous validation.
+- [ ] Physical Android installation/acceptance of the new signed release remains owner-device testing.
+
+### Task 7 — Catalogue/image automation
+- [x] Existing exact-SKU catalogue image audit workflow was re-hardened.
+- [x] Image audit now runs on product-image changes and on a daily schedule, uses the modern Supabase publishable key, has read-only GitHub permissions, validates public SKU/image-reference integrity, and uploads an audit report.
+- [x] Current Supabase image audit: 4,187 active products; 792 product-image function references; 3,395 branded placeholders; 0 null image URLs.
+- [ ] Remaining image work is exact-SKU image coverage/verification; placeholders must not be replaced by guessed images.
+
+### Task 8 — Security automation
+- [x] Supabase Security Advisor rechecked: one WARN only — leaked password protection disabled. No unsafe DB mutation was made.
+- [x] Performance Advisor rechecked: INFO-only unused-index findings; no indexes removed.
+- [x] Automated public-source security QA now rejects obsolete domain references and exposed supplier-cost/service-role/secret-key references.
+- [ ] Leaked-password protection still requires Supabase Auth dashboard/provider configuration and is not an automated database task.
+- [x] No Replit, Cloudflare, or Netlify credits used.
+
+### ETA / LIVE STATUS
+- Independent automated work for tasks 2/3/4/7/8 is now substantially complete.
+- The store is **not yet live on Axxess** because `public_html` still requires the approved storefront upload and SSL/HTTPS setup.
+- After Axxess upload + SSL, estimated final live QA is **1–2 hours** if DNS/SSL propagate normally and no live defect is found.
+- Owner APK physical-device acceptance can run in parallel and does not need to delay the storefront once Axxess is live.
+- Remaining launch gates: Axxess upload, SSL/HTTPS, public Android/desktop storefront QA, live APK/backend test, and controlled order/payment reconciliation.
