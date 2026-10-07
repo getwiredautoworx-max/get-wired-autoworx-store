@@ -442,3 +442,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Confirmed the Owner APK workflow builds a debug APK, uploads the APK artifact before emulator validation, then installs/launches it on an Android API 35 emulator.
 - [x] Refreshed the workflow to trigger a new validation run without requiring the obsolete prior artifact.
 - [ ] Fresh APK build/emulator run must complete successfully before APK validation is marked complete.
+
+## 7 OCT 2026 — VERIFIED GREEN STORE TESTS
+- [x] Storefront Smoke Test run #417 completed successfully.
+- [x] Public SKU Exposure Audit run #38 completed successfully.
+- [x] Catalogue Image Audit run #65 completed successfully.
+- [x] Cloudflare Pages deploy run #185 completed successfully for the delivery-quote implementation.
+- [x] Confirmed the active smoke test covers mobile rendering, category rendering, featured product interaction, product modal, cart-to-checkout navigation, R25 packaging notice, delivery quotation state and R0 pickup.
+- [ ] Owner APK run #49 is currently building; APK/emulator validation is not yet complete.
