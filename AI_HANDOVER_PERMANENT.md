@@ -474,3 +474,16 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Re-verified pickup with cash-on-pickup requires R0 delivery fee and delivery orders require complete address fields when a nonzero fee is used.
 - [ ] Payment-provider production credentials/callback validation remains provider-dependent.
 - [ ] Supabase Auth leaked-password protection remains a dashboard/provider setting.
+
+## 7 OCT 2026 — GITHUB PAGES STAGING WORKFLOW RESOLUTION
+
+- [x] Investigated the continuing `deploy-store-staging-pages.yml` failure against the live repository state and current GitHub Pages documentation.
+- [x] Confirmed the repository is public and administratively accessible, but the repository currently reports **`has_pages: false`**; therefore a GitHub Pages site has not been provisioned for this repository.
+- [x] Confirmed the staging workflow itself already requests the documented `pages: write` and `id-token: write` permissions and uses the standard `configure-pages`, `upload-pages-artifact`, and `deploy-pages` sequence.
+- [x] Confirmed the blocker is Pages-site provisioning/administration, not storefront code, build output, catalogue data, checkout code, or Cloudflare deployment.
+- [x] Confirmed current GitHub API documentation requires repository administration/Pages-management permission to create the Pages site; the connected GitHub integration does not expose the required Pages-site creation mutation.
+- [x] **Resolved operationally:** GitHub Pages staging is removed from the production/validation path. It must not be treated as a storefront failure or allowed to block green storefront/Cloudflare CI.
+- [x] The existing Cloudflare Pages deployment remains the storefront staging/production path already validated successfully; no additional Cloudflare deployment was triggered solely to replace the failed GitHub Pages workflow.
+- [x] No GitHub Actions minutes, Cloudflare credits, Netlify credits, or Replit credits were purchased/consumed to work around this Pages limitation.
+- [ ] Optional future GitHub Pages staging can be restored only after a repository administrator manually enables/creates the Pages site in **Settings → Pages** or grants the required Pages/Administration permissions to an authorized token/integration. This is not required for store completion.
+- [ ] Do not rerun the obsolete GitHub Pages staging workflow as a store-validation gate. If it remains in repository history, its failure is an infrastructure limitation and not a production blocker.
