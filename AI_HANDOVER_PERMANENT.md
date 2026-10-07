@@ -404,3 +404,15 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Fixed remaining customer-facing legacy SKU audit references in checkout.html.
 - [x] Updated storefront smoke test expectation from obsolete R35 packaging to authoritative R25 packaging.
 - [ ] Re-run/verify the resulting SKU audit and storefront smoke test after the latest fixes.
+
+## 7 OCT 2026 — DATABASE/SECURITY VERIFICATION
+- [x] Verified active catalogue: 4,187 active products, 191 categories.
+- [x] Verified 0 active products are uncategorized.
+- [x] Verified 0 active products have missing price.
+- [x] Verified 0 active products have missing public SKU.
+- [x] Verified 0 active products have NULL stock quantity.
+- [x] Verified customer/order tables remain deny-by-default to anon/authenticated client roles.
+- [x] Verified active products/categories have intended public read policies.
+- [x] Verified `create_store_order` is SECURITY DEFINER but has no direct anon/authenticated EXECUTE grant; storefront checkout therefore uses the controlled checkout function path rather than exposing the privileged RPC directly.
+- [x] Verified admin-only data policies use the existing `is_veyron_admin()` gate.
+- [ ] Final Supabase Auth leaked-password protection remains a dashboard/provider setting not exposed by the current connector.
