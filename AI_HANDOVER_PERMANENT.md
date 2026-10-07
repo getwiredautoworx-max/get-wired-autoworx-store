@@ -437,3 +437,8 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Pickup remains R0.00 delivery.
 - [x] Checkout/payment/delivery documentation synchronized to the R25 packaging rule and quote-required delivery rule.
 - [ ] Final latest smoke test and latest Cloudflare deployment must report success before this milestone is marked fully green.
+
+## 7 OCT 2026 — OWNER APK VALIDATION REFRESH
+- [x] Confirmed the Owner APK workflow builds a debug APK, uploads the APK artifact before emulator validation, then installs/launches it on an Android API 35 emulator.
+- [x] Refreshed the workflow to trigger a new validation run without requiring the obsolete prior artifact.
+- [ ] Fresh APK build/emulator run must complete successfully before APK validation is marked complete.
