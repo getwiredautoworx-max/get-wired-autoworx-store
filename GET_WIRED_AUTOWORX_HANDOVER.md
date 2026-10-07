@@ -155,3 +155,13 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - [x] No Cloudflare deployment was triggered by these documentation-only commits because the Cloudflare workflow path filters do not include Markdown-only changes.
 - [x] No Netlify deployment was triggered.
 - [ ] Remaining physical action is the Axxess DirectAdmin upload/SSL setup and public-browser QA. This requires access through the user's authenticated Axxess control panel; credentials must not be shared in chat.
+
+
+## 2026-10-07 — AXXESS CONTROL PANEL ACCESS CONFIRMED
+
+- [x] User has successfully entered the Axxess **XS Linux Hosting DirectAdmin control panel** for `getwiredauto.co.za`.
+- [x] Control panel account overview confirms: Disk Space **0 B / 2 GB**, Bandwidth **0 B / Unlimited**, Inodes **0 / Unlimited**, E-mails **0 / 75**, FTP Accounts **0 / 2**, Databases **0 / 5**.
+- [x] This confirms the hosting account is provisioned and the control panel is accessible.
+- [ ] Next physical action: use the control panel **Menu** to locate **File Manager** and open the domain's `public_html` document root.
+- [ ] Do not create an FTP user or database for the storefront upload unless a later step specifically requires it.
+- [ ] Do not send Axxess passwords, FTP credentials, or other secrets into chat.
