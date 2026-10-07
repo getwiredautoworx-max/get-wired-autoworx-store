@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-07 09:29 SAST
+Updated: 2026-10-07 09:45 SAST
 
 ## SOURCE OF TRUTH
 - Repository: getwiredautoworx-max/get-wired-autoworx-store
@@ -126,7 +126,7 @@ npx wrangler pages deploy . --project-name=get-wired-autoworx-store --branch=mai
 - Connected Actions integration cannot create the Pages site.
 - This is not a storefront-code failure.
 - Repository-side recovery completed:
-  - Root CNAME committed for getwiredautoworx.co.za.
+  - Root CNAME committed for www.getwiredauto.co.za.
   - Recovery instructions committed in GITHUB_PAGES_RECOVERY.md.
   - Prepared route: GitHub Pages -> Deploy from a branch -> main -> /(root).
 
@@ -486,7 +486,7 @@ The following state was independently re-verified against the current GitHub rep
 - Latest commit message: Add editable Excel category management workbook to handover.
 - Root `index.html` redirects to `store.html`.
 - `store.html` loads the current storefront and the existing fallback/category/progressive enhancement scripts.
-- Root `CNAME` is present with `getwiredautoworx.co.za`.
+- Root `CNAME` is present with `www.getwiredauto.co.za`.
 - Repository visibility currently reports PUBLIC. This differs from older handover wording that described the repository as private; do not assume private visibility.
 
 ## 10.2 Live Supabase catalogue verification
@@ -587,7 +587,7 @@ Do not rebuild the storefront or database. Once public hosting is configured, im
 - Netlify was not used for this work. Cloudflare deploy workflow was triggered automatically by the repository push; do not initiate paid services or spend credits without explicit approval.
 
 ## 11.4 Remaining tasks — in priority order
-1. **Owner: configure/publish the approved hosting endpoint.** GitHub Pages recovery instructions are in `GITHUB_PAGES_RECOVERY.md`; the Pages source must be configured by an account owner/admin if the connector cannot do it. Confirm custom-domain/DNS requirements for `getwiredautoworx.co.za`.
+1. **Owner: configure/publish the approved hosting endpoint.** GitHub Pages recovery instructions are in `GITHUB_PAGES_RECOVERY.md`; the Pages source must be configured by an account owner/admin if the connector cannot do it. Confirm custom-domain/DNS requirements for `www.getwiredauto.co.za`.
 2. **Build/Dev: diagnose the failing Cloudflare Pages workflow** and decide whether it is obsolete or should be repaired. Do not spend paid credits or alter the selected hosting plan without owner approval.
 3. **QA: public live-store regression** after hosting is published: homepage, category navigation, search, product detail, product images/fallback, cart, checkout, R15 delivery charge per delivery address/order, mobile layout and desktop layout.
 4. **Owner + QA: test APK on the actual Android phone.** Download the artifact, attempt installation, capture the exact Android error if it fails, and verify launch/navigation if it installs.
@@ -599,7 +599,7 @@ Do not rebuild the storefront or database. Once public hosting is configured, im
 
 ## 11.5 Tasks requiring owner input/action
 - Configure GitHub Pages at https://github.com/getwiredautoworx-max/get-wired-autoworx-store/settings/pages if choosing the documented GitHub Pages route: Source = Deploy from a branch; branch = `main`; folder = `/(root)`; Save.
-- Confirm whether `getwiredautoworx.co.za` is the intended live domain and whether DNS access is available.
+- Confirm whether `www.getwiredauto.co.za` is the intended live domain and whether DNS access is available.
 - Confirm preferred hosting route and whether any Cloudflare plan/credits may be used. Until confirmed, avoid paid hosting changes.
 - Install/test the APK on the actual phone and send the exact error text/screenshot if it still says “App not installed”.
 - Confirm whether a signed production APK is required, or whether the current debug APK is only for internal testing.
@@ -659,7 +659,7 @@ RUNNING:
 
 OWNER INPUT STILL REQUIRED:
 1. Create/enable the GitHub Pages site in repository Settings -> Pages, Source = Deploy from a branch, branch = main, folder = /(root), OR provide Cloudflare Actions credentials through GitHub Secrets (never chat).
-2. Confirm DNS/custom-domain control for getwiredautoworx.co.za before final domain cutover.
+2. Confirm DNS/custom-domain control for www.getwiredauto.co.za before final domain cutover.
 3. Test the newly generated install-test APK on the physical Android phone.
 4. Confirm whether a signed production APK is required now or only after web-store acceptance.
 5. Complete final PayFast/payment-account verification before enabling live payment collection.
@@ -717,7 +717,7 @@ Continue the existing Get Wired AutoWorx store from its current state. Do not re
 
 ## Remaining owner-controlled gates
 1. Enable GitHub Pages for the repository (Settings -> Pages -> Deploy from a branch -> main -> /(root)), OR add a Cloudflare API token to GitHub Actions Secrets.
-2. Confirm control of getwiredautoworx.co.za for final DNS/custom-domain cutover.
+2. Confirm control of www.getwiredauto.co.za for final DNS/custom-domain cutover.
 3. Install and test the new Owner install-test APK on the physical Android phone.
 4. Complete PayFast/payment-account verification before enabling live payments.
 5. Confirm final fulfilment/dispatch procedure before accepting paid orders.
@@ -1031,12 +1031,12 @@ This section supersedes older conflicting blocker descriptions.
 
 # 18. GITHUB PAGES NATIVE HOSTNAME FIX — 7 OCTOBER 2026
 
-- [x] Removed the root `CNAME` file so the site is no longer forced onto `getwiredautoworx.co.za` before custom-domain DNS is configured.
+- [x] Removed the root `CNAME` file so the site is no longer forced onto `www.getwiredauto.co.za` before custom-domain DNS is configured.
 - [x] Fix committed as `23be2ea8e9fce58abe53465d6eeda75d7b9592c` with message: `Use GitHub Pages project hostname until custom-domain DNS is configured`.
 - [x] GitHub Pages dynamic deployment run `37588724785` completed successfully against that commit.
 - [x] Native project hostname target: `https://getwiredautoworx-max.github.io/get-wired-autoworx-store/`.
 - [ ] External/public browser verification is still not independently confirmed by the available web-fetch environment; therefore the site is NOT yet marked LIVE solely from the successful Pages deployment.
-- [ ] Custom domain `getwiredautoworx.co.za` remains deferred until DNS is actually configured and verified; do not restore CNAME prematurely.
+- [ ] Custom domain `www.getwiredauto.co.za` remains deferred until DNS is actually configured and verified; do not restore CNAME prematurely.
 - [x] No Cloudflare or Netlify credits were used for this recovery.
 
 ## Immediate continuation after this fix
@@ -1045,3 +1045,20 @@ This section supersedes older conflicting blocker descriptions.
 3. Then complete the 99 exact-SKU image binary deployment/verification, Owner APK functional acceptance, final payment-detail verification and final operational QA.
 
 This section supersedes the older wording that GitHub Pages was still blocked by inability to create the Pages site. The Pages site creation/integration blocker is resolved; the remaining gate is public reachability evidence.
+
+# 19. CANONICAL STORE DOMAIN CHANGE — 7 OCTOBER 2026
+
+- [x] The store's canonical custom domain is now **www.getwiredauto.co.za**.
+- [x] Removed the previous custom-domain value from the active repository configuration.
+- [x] Added root `CNAME` containing exactly: `www.getwiredauto.co.za`.
+- [x] Domain commit: `272a1cc5381cf574e191533a6a008661911cafc7`.
+- [x] The old `getwiredautoworx.co.za` domain is no longer an approved/current store domain.
+- [x] Customer-facing store links, future deployment configuration and documentation must use **www.getwiredauto.co.za** only.
+- [ ] DNS for `www.getwiredauto.co.za` must point to the GitHub Pages site before custom-domain browser verification can be completed.
+- [ ] After DNS is configured, verify HTTPS and the complete storefront at **www.getwiredauto.co.za**.
+- [ ] Do not restore the previous domain or create a second customer-facing store domain.
+
+## Canonical-domain rule
+**Production store domain: www.getwiredauto.co.za**
+
+The GitHub Pages project URL may remain a technical deployment/verification URL, but it is not the customer-facing store domain.
