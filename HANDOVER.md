@@ -153,6 +153,8 @@ Updated: 2026-10-07 17:20 SAST
 - [x] Verified repository checkout no longer contains the obsolete `/api/shipping/quote` call and does contain the Supabase shipping endpoint.
 - [x] Rechecked official PAXI pricing. Current published store-to-store rates used by the quote function: Standard 7–9 days R59.95; Standard 3–5 days R109.95; Large 7–9 days R119.95; Large 3–5 days R139.95. PAXI API remains provider-gated.
 - [ ] Live HTTP invocation test of the new quote function remains pending because the current runtime cannot make outbound DNS requests; this must be tested during browser/live QA after DNS is active.
+- [x] Supabase catalogue verification re-run: 4,187 active products, 4,187 active priced/unique active SKUs, 0 uncategorized, 0 pricing mismatches; RLS enabled on all seven production tables.
+- [x] Supabase Security Advisor re-run after shipping-function deployment: only remaining warning is Leaked Password Protection Disabled; no new security warning introduced.
 - [ ] No real order was created.
 - GitHub checkout commit: `35fa2fca8113bd380c805e2f66f2fa2270e42630`.
 - Supabase shipping function deployment ID: `ba634408-9d56-4db0-b79a-8e3d6a10f1fa`.
