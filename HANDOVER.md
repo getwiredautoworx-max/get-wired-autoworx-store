@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-07 16:15 SAST
+Updated: 2026-10-07 16:xx SAST
 
 ## CURRENT CHECKPOINT
 - This handover is the authoritative restart point for the next session.
@@ -145,6 +145,24 @@ Updated: 2026-10-07 16:15 SAST
 - These are now the authoritative Axxess hosting/DNS values supplied by the user; do not substitute guessed records.
 - Account activation/payment confirmation remains outstanding.
 - No DirectAdmin password, payment data, tokens or other credentials are stored in this handover.
+
+## CONTINUATION CHECKPOINT — 2026-10-07
+- Completed while DNS is pending: Axxess storefront upload, extraction, root placement and preservation of the original Axxess index backup.
+- Current blocker: domain DNS/activation at Axxess; do not modify MX records or guess DNS records.
+- Independent work completed: Supabase Security Advisor rechecked. Only remaining warning is **Leaked Password Protection Disabled**; this requires Auth dashboard/configuration and no connected Auth-settings mutation tool is available.
+- Current Supabase policy inventory confirms public read policies for customer-facing catalogue/settings/fitment and deny-client-access policies for customers/orders/order_items.
+- Owner APK latest repository activity remains the emulator-validation work from 2026-09-30; functional acceptance still requires device/user testing.
+- Do not consume Cloudflare, Netlify or Replit credits.
+
+## PERMANENT 8 RULES — COPY UNCHANGED
+1. Preserve existing store as foundation; do not rebuild unnecessarily or overwrite working components.
+2. Execute efficiently in one flow; complete all available tasks instead of stopping after every individual step.
+3. Only interrupt when genuinely necessary; notify user when input/approval/credentials/permissions are actually required.
+4. The 8 rules are permanent; read at start of every continuation session and carry into every new handover.
+5. All 8 rules must be copied unchanged into every new handover; may not be omitted/edited/removed without permission. If rules themselves edited/removed, reproduce all 8 first.
+6. Do not use Cloudflare or Netlify credits until final testing; reserve credit-dependent work for end-stage testing/deployment.
+7. Update master handover after every successfully completed task so next session continues from exact current state.
+8. Maintain project continuity and authority; existing work, decisions, data, structure and approved requirements remain in force unless user explicitly authorizes change; do not assume changes that could interfere with online store.
 
 ## RESTART INSTRUCTION
 When continuing, first verify the current GitHub main state and Axxess account/hosting status, then execute the next unresolved migration task. Do not redo the completed GitHub Pages permission fix or other verified work unless a new defect is demonstrated.
