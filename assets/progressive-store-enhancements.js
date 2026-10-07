@@ -69,7 +69,7 @@ function install(frame){
     const renderFull=()=>{
       const q=search.value.trim().toLowerCase();
       if(!q){box.classList.remove('open');return}
-      const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.products:[];
+      const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
       const hits=all.filter(p=>[p.name,p.public_sku,p.slug,p.description,p.compatible_vehicles].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,15);
       box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+escFull(p.name)+'</b><small>SKU: '+escFull(p.public_sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
       box._gwFullHits=hits; box.classList.add('open');
@@ -91,7 +91,7 @@ function install(frame){
     const obs=new MutationObserver(()=>{
       const detail=modal.querySelector('.detail'); if(!detail)return;
       const title=detail.querySelector('h2')?.textContent?.trim(); if(!title)return;
-      const all=Array.isArray(d.defaultView.products)?d.defaultView.products:[];
+      const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
       const p=all.find(x=>x.name===title); if(!p)return;
       const actions=detail.querySelector('.detailActions'); if(!actions||actions.querySelector('.gwWishlist'))return;
       const b=d.createElement('button'); b.className='gwWishlist'; b.textContent='♡ SAVE PRODUCT';
