@@ -180,3 +180,34 @@ This prevents a modified client from bypassing or changing the required R15 deli
 - [ ] Next physical deployment action: obtain the current GitHub main storefront package and upload the required website files/folders into this public_html, replacing the default placeholder index.html only as part of the complete storefront upload.
 - [ ] Do not upload repository-only documentation, .git data, GitHub workflow files, or unrelated development files into public_html.
 - [ ] After upload, verify file paths and public site response before SSL/HTTPS configuration.
+
+
+## 2026-10-07 — OWNER APK BUILD + EMULATOR VALIDATION VERIFIED SUCCESSFULLY
+
+- [x] Re-located the dedicated APK repository: `getwiredautoworx-max/get-wired-autoworx-owner-apk-validation`. It is public, active, and has the Owner APK workflow.
+- [x] Latest Owner APK workflow run **#44** completed successfully on 2026-10-07.
+- [x] Latest commit: `cbbbce20eb92e4adae0776c1a77823eb46b97d09` — **Fix emulator smoke test install order**.
+- [x] Build job completed successfully: debug APK built and checksum recorded.
+- [x] Emulator job completed successfully. The Android emulator smoke test itself completed successfully after the install-order fix.
+- [x] This is the first current-turn verification that BOTH the APK build and emulator smoke test have passed in the same workflow run.
+- [x] GitHub Actions artifact `get-wired-owner-debug` exists and is not expired. Artifact ID: `11493167703`.
+- [x] Artifact SHA-256 digest recorded by GitHub: `2d151aa2a4d713f33f7512e0d6fe7c06eab4522c69d42acb17fa8b80f569b534`.
+- [x] Artifact was downloaded successfully into the working environment as `get-wired-owner-debug.zip` for APK extraction/owner testing.
+- [x] The artifact is currently scheduled to expire **2027-01-05** unless retained/replaced by GitHub according to its artifact policy.
+- [x] Previous failed run #43 is superseded by successful run #44; no further fix is required for the specific emulator install-order failure.
+- [ ] Extract the APK from the validated artifact and perform final user-device installation/testing. This is the next owner-facing APK step.
+- [ ] Final owner-device validation should cover login/authentication, owner dashboard, product/catalogue management, order/customer views, supplier/reference workflow, and connection to the canonical storefront/Supabase environment as implemented.
+- [ ] Do not claim the APK is fully production-ready until the APK has been installed and exercised on the owner's Android device.
+- [x] No Replit credits used for this successful build/validation path.
+
+## 2026-10-07 — CURRENT PRIORITY ORDER AFTER APK VALIDATION
+
+1. [x] APK build + emulator smoke validation — completed successfully.
+2. [ ] Deliver/extract validated APK for owner Android-device testing.
+3. [ ] Complete Axxess `public_html` storefront upload while preserving `cgi-bin`.
+4. [ ] Configure/verify Axxess Let's Encrypt SSL and HTTPS.
+5. [ ] Perform public storefront browser QA on Android and desktop.
+6. [ ] Test APK against the live storefront/backend after Axxess DNS/SSL is confirmed.
+7. [ ] Complete payment automation (PayFast) after storefront approval.
+8. [ ] Complete supplier/courier automation after payment-flow approval.
+9. [ ] Continue exact SKU image/category QA; never guess product images or fitment.
