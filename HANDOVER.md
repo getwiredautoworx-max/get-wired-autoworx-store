@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-07 16:xx SAST
+Updated: 2026-10-07 17:20 SAST
 
 ## CURRENT CHECKPOINT
 - This handover is the authoritative restart point for the next session.
@@ -145,6 +145,18 @@ Updated: 2026-10-07 16:xx SAST
 - These are now the authoritative Axxess hosting/DNS values supplied by the user; do not substitute guessed records.
 - Account activation/payment confirmation remains outstanding.
 - No DirectAdmin password, payment data, tokens or other credentials are stored in this handover.
+
+## CONTINUATION CHECKPOINT — 2026-10-07 17:20 SAST
+- [x] Independent production-code audit found a static-hosting incompatibility: checkout was calling Axxess-incompatible `/api/shipping/quote`.
+- [x] Deployed Supabase Edge Function `shipping-quote` (ACTIVE v1) for public delivery-quote calculation.
+- [x] Updated `checkout-v2.html` to call `https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/shipping-quote` instead of `/api/shipping/quote`.
+- [x] Verified repository checkout no longer contains the obsolete `/api/shipping/quote` call and does contain the Supabase shipping endpoint.
+- [x] Rechecked official PAXI pricing. Current published store-to-store rates used by the quote function: Standard 7–9 days R59.95; Standard 3–5 days R109.95; Large 7–9 days R119.95; Large 3–5 days R139.95. PAXI API remains provider-gated.
+- [ ] Live HTTP invocation test of the new quote function remains pending because the current runtime cannot make outbound DNS requests; this must be tested during browser/live QA after DNS is active.
+- [ ] No real order was created.
+- GitHub checkout commit: `35fa2fca8113bd380c805e2f66f2fa2270e42630`.
+- Supabase shipping function deployment ID: `ba634408-9d56-4db0-b79a-8e3d6a10f1fa`.
+- Source: official PAXI pricing pages verified 2026-10-07.
 
 ## CONTINUATION CHECKPOINT — 2026-10-07
 - Completed while DNS is pending: Axxess storefront upload, extraction, root placement and preservation of the original Axxess index backup.
