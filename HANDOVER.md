@@ -250,3 +250,7 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 
 - Verification task: Validate latest storefront optimisation deployment (BUY NOW + corrected WhatsApp link).
 - Status: SUCCESS. Cloudflare deployment, GitHub Pages deployment, Store Production QA, Storefront Smoke Test, Public SKU Exposure Audit, and Catalogue Image Audit all passed on the latest relevant commits. No catalogue/Supabase data changed. Axxess excluded.
+
+- Task: Improve cart usability with quantity +/- and REMOVE controls.
+- Status: SUCCESS. Added thumb-friendly quantity controls and removal without changing catalogue/Supabase data. Axxess excluded.
+- Commit: 2bf17a1f3fe23204b16a2f2b10c5ce7536498b11.
