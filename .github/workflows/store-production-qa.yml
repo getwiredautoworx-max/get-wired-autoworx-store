@@ -62,12 +62,12 @@ jobs:
           echo "Null-image sample count: $null_images"
           echo "Null-price sample count: $priced_nulls"
 
-      - name: Validate public source has no supplier-cost field
+      - name: Validate public source security boundaries
         shell: bash
         run: |
           set -euo pipefail
           files="$(git ls-files '*.html' '*.js' | grep -v '^functions/' || true)"
-          if [ -n "$files" ] && grep -nHE "cost_price|supplier_cost|supplier[[:space:]_-]*price" $files; then
-            echo "ERROR: possible supplier-cost field exposed in public source"
+          if [ -n "$files" ] && grep -nHE "cost_price|supplier_cost|supplier[[:space:]_-]*price|service_role|SUPABASE_SERVICE_ROLE_KEY|SUPABASE_SECRET_KEYS" $files; then
+            echo "ERROR: private supplier-cost or server-secret reference exposed in public source"
             exit 1
           fi
