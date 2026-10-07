@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-09-30 SAST
+Updated: 2026-10-07 09:29 SAST
 
 ## SOURCE OF TRUTH
 - Repository: getwiredautoworx-max/get-wired-autoworx-store
@@ -39,8 +39,9 @@ Updated: 2026-09-30 SAST
 
 ## 1.3 Checkout / orders
 - Server-authoritative product, price, stock, fulfilment and payment validation complete.
-- Nationwide delivery = R15.
-- Store pickup = R0.
+- Store pickup from the owner's premises = R0.
+- Delivery is NOT a fixed R15 fee: delivery is charged according to the courier/PAXI quotation for the customer's destination.
+- Packaging = R25 per item.
 - Cash-on-pickup restricted to pickup.
 - EFT/manual payment/cash-on-pickup paths implemented as applicable.
 - No real customer order created during QA.
@@ -934,3 +935,78 @@ The former supplier-specific public GitHub image-sync workflow has been removed 
 - [x] Image output upgraded from 1200x1200 to **1600x1600**, JPEG quality **98**, 4:4:4 chroma (subsampling=0), progressive encoding and 300 DPI metadata.
 - [x] Existing exact-SKU / verified-image protection remains unchanged: no visual-similarity substitution is authorised and uncertain/unverified catalogue images remain excluded.
 - [ ] The updated workflow must complete successfully and the resulting image set must be verified before this image pass is marked fully complete.
+
+
+---
+
+# 16. CURRENT CONTINUATION CHECKPOINT — 7 OCTOBER 2026
+
+## 16.1 Current verified position
+- Storefront remains the production foundation; no rebuild is justified.
+- Current Owner APK workflow is present and corrected for emulator validation: builds debug APK, preserves artifact, launches API 35 emulator, installs APK and checks Owner activity starts.
+- GitHub Pages remains blocked by the connected Actions integration's inability to create the Pages site. This is infrastructure/integration, not storefront code.
+- Cloudflare Pages workflow is correctly configured for Wrangler Pages deployment but requires the owner-controlled `CLOUDFLARE_API_TOKEN`. No Cloudflare credits are to be used.
+- Netlify remains excluded from production. No Netlify credits are to be used.
+
+## 16.2 Remaining tasks — priority order
+### P0 — Reachable public hosting
+- Establish a reachable public hosting route.
+- GitHub Pages: enable Pages manually in repository Settings -> Pages -> Deploy from a branch -> main -> /(root), if the account UI permits it.
+- If GitHub Pages remains blocked, Cloudflare Pages can be used only after the owner adds `CLOUDFLARE_API_TOKEN` to GitHub Actions secrets. Never paste the token into chat/source.
+
+### P1 — Public browser/live storefront verification
+Once a public URL exists, verify homepage, navigation, categories/subcategories, search, product detail/public SKU, images/placeholders, cart, checkout, pickup vs quoted delivery, R25 packaging per item, payment instructions, WhatsApp handoff, mobile/desktop behaviour, console/network errors and production/source/database consistency.
+
+### P1 — Fulfilment pricing correction
+- Pickup from owner's premises = R0.
+- Packaging = R25 per item.
+- Delivery = actual Courier Guy/PAXI quotation and subject to quotation.
+- No fixed R15 nationwide delivery fee is to be displayed or used.
+
+### P1 — 99 exact-SKU image binaries
+- 99 exact-SKU JPEG assets are prepared.
+- Commit binaries through a supported repository/storage path.
+- Only after final asset paths exist, update corresponding `image_url` values and verify deployed loading.
+- Preserve safe branded placeholders for unmatched products.
+
+### P1 — Owner APK functional acceptance
+- Test Owner login/authentication, dashboard, catalogue/product management, storefront/checkout paths exposed by the app, back navigation/WebView behaviour and runtime stability.
+- Do not invent credentials or bypass authentication.
+
+### P1 — Payment/bank-detail final verification
+- Confirm final customer-facing EFT/bank/payment-reference details.
+- Do not put private banking information into chat.
+
+### P1/P2 — Signed release APK, if required
+- Current debug APK is for internal acceptance only.
+- If distributable production APK is required: build signed release, verify application ID/version/versionCode, SHA-256, signature and installation.
+
+### P2 — Final operational QA
+After public hosting: run a non-production checkout/order-path test without creating a real customer order; verify order references/admin visibility, payment/fulfilment statuses, stock/price revalidation, pickup/quoted delivery and WhatsApp handoff.
+
+### P2 — Production deployment regression
+Verify the selected deployment path from current `main`, confirm no test source is deployed, confirm Owner APK workflow uses authoritative `android-owner-app`, and record final production commit/run evidence.
+
+### P3 — Post-launch enrichment
+Continue exact-SKU imagery, catalogue/compatibility QA, admin improvements, authorised supplier catalogue/feed publication, and payment-provider automation after merchant onboarding. These are not launch gates unless explicitly promoted.
+
+## 16.3 Do not redo
+- Do not rebuild the storefront.
+- Do not redo completed Supabase/catalogue foundation.
+- Do not use the obsolete 1,109-row CSV.
+- Do not substitute images by visual similarity.
+- Do not spend Replit, Cloudflare or Netlify credits.
+- Do not claim public/live until actual public browser evidence exists.
+
+## 16.4 Immediate sequence
+1. Establish reachable public hosting without prohibited credits.
+2. Run public storefront regression.
+3. Correct/verify pickup, quoted delivery and R25 packaging logic.
+4. Deploy the 99 exact-SKU binaries safely and verify.
+5. Complete Owner APK functional acceptance.
+6. Verify final payment/bank details.
+7. Run final operational QA.
+8. Build signed release APK if required.
+9. Record final live-readiness evidence.
+
+This section supersedes older conflicting blocker descriptions.
