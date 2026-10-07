@@ -375,3 +375,24 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] No Replit credits used.
 - [x] No paid GitHub Actions usage was purchased or enabled.
 - [ ] Final live testing remains gated by the remaining security/payment/deployment checks listed elsewhere in this handover.
+
+
+## 7 OCT 2026 — CHECKOUT PRICING CORRECTION + CI REPAIR
+- [x] Corrected the customer packaging charge from the previously incorrect R35.00 to the user-authoritative **R25.00 per item**.
+- [x] Corrected the Supabase `public.create_store_order` function so `packaging_fee = item_count × R25.00`.
+- [x] Verified pickup remains **R0.00 delivery charge**; pickup does not receive a courier/delivery fee.
+- [x] Verified delivery is **not hard-coded**: customer delivery is charged according to the selected courier quote / quotation, with no free pickup fee.
+- [x] Updated active checkout `checkout-v2.html`, legacy `checkout.html`, and storefront cart messaging in `store.html` to show R25 packaging and quoted delivery/pickup-free wording.
+- [x] Fixed the legacy checkout customer-facing REST selection from internal `sku` to `public_sku`.
+- [x] Fixed the public-SKU audit scope so the private Owner APK admin asset is not incorrectly treated as customer-facing source.
+- [x] Direct verification confirms checkout-v2 contains 4 R25.00 references and 0 R35.00 references; store.html contains 1 R25.00 reference and 0 R35.00 references.
+- [ ] GitHub Actions validation is queued/running after these fixes; do not mark CI green until the resulting runs report success.
+- [ ] Existing GitHub Pages workflow remains a separate hosting limitation and is not a substitute for final production hosting/testing.
+- No Cloudflare or Netlify credits were used.
+
+## CURRENT CUSTOMER CHARGE RULE — AUTHORITATIVE
+- Packaging: **R25.00 per item**.
+- Pickup from Get Wired AutoWorx premises: **R0.00 delivery/collection charge**.
+- Delivery: **charged separately according to the actual courier quotation/rate for the destination and parcel**.
+- Do not charge delivery per item.
+- Do not add a Phoenix Plaza pickup/dispatch fee to the customer order.
