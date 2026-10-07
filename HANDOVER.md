@@ -215,3 +215,12 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Commit: a04ed63b2d298fd5ddb54aabd48cea95b24db5eb.
 - No Supabase/catalogue data changed. No Axxess work performed.
 - Reason optimisation was not complete previously: the store had functional search, vehicle filtering, cart and checkout routing, but these usability layers had not yet been consolidated into a dedicated conversion/mobile optimisation pass. Current work starts that pass without rebuilding the foundation.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 SAST
+- Task: Continue mobile/conversion storefront optimisation and update handover.
+- Result: SUCCESS. Product cards were tightened for mobile, Add to Cart targets were enlarged to a thumb-friendly minimum, and product image containers now use browser content-visibility hints to reduce rendering work for long product lists. Existing visual foundation and catalogue behaviour were preserved.
+- Commit: 7ceb4afc2fa12479edcd9a1990ee420b04c72b83.
+- Pre-change automated checks on the prior optimisation commit: Store Production QA SUCCESS (37675262468), Storefront Smoke Test SUCCESS (37675262415), Cloudflare deployment SUCCESS (37675262393), Catalogue Image Audit SUCCESS (37675262370), Public SKU Exposure Audit SUCCESS (37675262341).
+- No Supabase/catalogue data changed. No Axxess work performed.
+- Pages deployment for the handover commit is pending; verify its terminal result before treating this optimisation commit as fully deployed.
