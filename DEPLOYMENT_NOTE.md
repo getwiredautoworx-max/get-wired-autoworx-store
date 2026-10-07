@@ -1,27 +1,62 @@
 # Deployment Note — Get Wired AutoWorx
 
-The current production deployment platform is **Cloudflare**. GitHub `main` is the source of truth.
+## Current hosting route — 2026-10-07
 
-The repository has been validated at code level and the automated storefront smoke test passes. The smoke test confirms the active storefront route and fixed R15.00 delivery requirement.
+The current preferred storefront host is **Axxess XS Linux Hosting DirectAdmin** for:
 
-**Cloudflare credit protection:** no Cloudflare deployment/build was triggered during this QA continuation. Cloudflare credit-dependent work remains reserved for final live testing/deployment.
+- **getwiredauto.co.za**
+- **www.getwiredauto.co.za**
 
-## Final live deployment checklist
-1. Publish the current approved `main` build through the existing Cloudflare project.
-2. Verify the published storefront on Android/mobile.
-3. Verify the published storefront on desktop.
-4. Verify one cart item = R15.00 delivery.
-5. Verify multiple cart items for the same delivery address = R15.00 delivery total, not R15 per item.
-6. Verify Phoenix Plaza is not displayed as a customer pickup/collection location.
-7. Verify the checkout route reaches `checkout-v2.html`.
-8. Verify the published storefront matches the approved dark blue/red design before final approval.
+GitHub `main` remains the source of truth.
+Supabase remains the backend/database and is **not** migrated to Axxess.
 
-## QA continuation checkpoint — 17 September 2026
-- `checkout-v2.html` rechecked on `main`.
-- Customer-facing delivery wording explicitly states **R15.00 per delivery address/order**, not per item.
-- Checkout notes explicitly keep Phoenix Plaza as an **internal dispatch reference only** and not a customer collection point.
-- Checkout adds the R15.00 delivery fee exactly once to the order total.
-- Cart products are revalidated against active Supabase products before order creation.
-- No Cloudflare or Netlify deployment/build was triggered during this checkpoint.
+The repository `CNAME` already contains `www.getwiredauto.co.za`.
 
-Do not revert to the legacy Netlify deployment instructions in this file.
+## Axxess deployment
+
+1. Open the Axxess Client Control Panel and choose **Open your hosting control panel**.
+2. In DirectAdmin open **File Manager**.
+3. Use the domain's **public_html** document root.
+4. Upload the approved GitHub `main` storefront files, preserving the required HTML, JS, CSS, `assets/`, `functions/` and support files.
+5. Verify the site's default `index.html` remains the entry point and routes to the approved storefront.
+6. In DirectAdmin go to **Account Manager → SSL Certificates** and enable the free automatic Let's Encrypt certificate for the domain and www host, then force HTTPS.
+7. Test the public domain from Android/mobile and desktop.
+
+Axxess official documentation states that website files normally use `public_html`, and its DirectAdmin SSL flow supports free automatic Let's Encrypt certificates and forcing HTTPS.
+
+## Current approved checkout rules
+
+- **Pickup from the owner's premises:** no pickup/delivery charge.
+- **Delivery:** quoted separately according to the selected courier/PAXI option and subject to quotation.
+- **Packaging:** **R25.00 per item**.
+- Delivery orders must have a confirmed delivery quotation before submission.
+- Full payment confirms the order.
+- Do not reintroduce the historical fixed R15 delivery charge.
+
+The current `checkout-v2.html` source has been checked and already reflects these rules.
+
+## Final live QA
+
+- Homepage loads on `https://getwiredauto.co.za` and `https://www.getwiredauto.co.za`.
+- Categories/subcategories navigate correctly.
+- Product search, product detail, SKU display and image handling work.
+- Vehicle make/model finder works against Supabase.
+- Cart works.
+- Checkout reaches `checkout-v2.html`.
+- Pickup remains free.
+- Delivery quote workflow is enforced.
+- Packaging is calculated at R25 per item.
+- Supabase product loading and order creation work.
+- Supplier-source request works.
+- WhatsApp links work.
+- Mobile layout works.
+- SSL/HTTPS is active.
+- No stale Cloudflare/Netlify production URL is presented to customers.
+
+## Cloudflare / GitHub Pages
+
+Axxess is the current zero-Cloudflare-credit production path. Cloudflare and GitHub Pages are not required for the storefront to go live.
+
+Historical Cloudflare/GitHub Pages workflows are retained for fallback/reference and must not be triggered as part of the Axxess deployment unless explicitly authorised.
+
+Do not spend Netlify or Cloudflare credits during the Axxess staging/verification process.
