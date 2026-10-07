@@ -224,3 +224,12 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Pre-change automated checks on the prior optimisation commit: Store Production QA SUCCESS (37675262468), Storefront Smoke Test SUCCESS (37675262415), Cloudflare deployment SUCCESS (37675262393), Catalogue Image Audit SUCCESS (37675262370), Public SKU Exposure Audit SUCCESS (37675262341).
 - No Supabase/catalogue data changed. No Axxess work performed.
 - Pages deployment for the handover commit is pending; verify its terminal result before treating this optimisation commit as fully deployed.
+
+
+## CONTINUATION TASK LOG — 2026-10-07 SAST
+- Task: Continue conversion optimisation through checkout.
+- Result: SUCCESS. Added a prominent WhatsApp help path to checkout-v2 for compatibility/delivery questions and improved mobile form control sizing for easier thumb input. Existing checkout flow and delivery/payment logic were preserved.
+- Commit: 5739509a67724095cf7bbcd33038bd9c757caf35.
+- No Supabase/catalogue data changed. No Axxess work performed.
+- Validation state at attempt: prior optimisation commit had Store Production QA SUCCESS (37675401140), Cloudflare deployment SUCCESS (37675401134), Public SKU Exposure Audit SUCCESS (37675401042), Catalogue Image Audit SUCCESS (37675401004); Storefront Smoke Test 37675401029 was still in post-test cleanup/in-progress and Pages deployment 37675427973 was in progress.
+- Next: allow the current optimisation commit's automated QA/deployment chain to complete, then continue only with remaining independent conversion/performance improvements and update this handover after each attempt.
