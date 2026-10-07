@@ -226,3 +226,13 @@ Previous detailed handover evidence remains preserved in Git history.
 - Corrected APK workflow commit: `cbbbce20eb92e4adae0776c1a77823eb46b97d09` — install APK before package-path verification.
 - APK repo handover updated at `3da506357763eddc07bbcf6ab3fcd6db753e945d`.
 - Corrected emulator run is now required before declaring the APK validation complete.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-07 17:36 SAST
+- [x] Fresh Supabase catalogue verification: **4,187 active products**, all **4,187 have SKUs**, all **4,187 have prices**, **0 uncategorized**, **0 active products with null image_url**.
+- [x] Fresh RLS inventory confirms every audited public-schema table has RLS enabled and at least one policy.
+- [x] Fresh SECURITY DEFINER audit confirms every public SECURITY DEFINER function has **anon EXECUTE=false, authenticated EXECUTE=false, PUBLIC EXECUTE=false**.
+- [x] Fresh Supabase Security Advisor: only remaining security warning is **Leaked Password Protection Disabled**; performance findings are unused-index INFO notices and are not being removed blindly.
+- [x] Owner APK corrected Run **37644777822 / #44** is active. Build job **112872589515 = SUCCESS**. Emulator job **112873076541 = IN PROGRESS**. No APK artifact is declared ready until emulator completion and artifact verification.
+- [ ] Axxess DNS/live browser QA remains blocked by DNS activation; no public-live claim made.
+- [ ] No real order created.
