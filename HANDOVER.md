@@ -277,3 +277,10 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Task: Enable CHECK STOCK action on out-of-stock product cards.
 - Status: SUCCESS. Removed the disabled state and routed zero-stock card clicks to a prefilled WhatsApp stock/availability enquiry; in-stock cards retain Add to Cart. No catalogue/Supabase data changed. Axxess excluded.
 - Commit: b4176224afed0b0b54106f5d161c714f9c137c7d.
+
+
+- Investigation: Root cause of failed stock-enquiry patch attempt.
+- Finding: The failure was in the automation patch-construction layer, not the storefront source. The attempted update embedded the storefront's JavaScript template-literal HTML (including `<article class="product">...`) inside another JavaScript template literal used to construct the patch. The nested backticks terminated the outer string early, causing the automation parser to report `SyntaxError: Unexpected token 'class'` before any GitHub update was attempted.
+- Impact: Zero repository/storefront changes were made by the failed attempt. The subsequent retry used static string fragments instead of nesting template literals and succeeded.
+- Resolution: Root cause resolved by using non-nested/static source fragments for repository patches. Successful commit b4176224afed0b0b54106f5d161c714f9c137c7d implements the stock enquiry action. No catalogue/Supabase data was changed.
+- Prevention: Future automated source edits will avoid embedding target template literals inside patch-construction template literals; patches will use static fragments/escaped delimiters and verify expected source patterns before committing.
