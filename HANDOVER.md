@@ -135,6 +135,17 @@ Updated: 2026-10-07 16:15 SAST
 - Preserve safe branded image fallbacks and exact-SKU matching controls.
 - Delivery is never a fixed R15 fee: pickup R0, packaging R25/item, delivery by actual courier/PAXI quotation subject to quotation.
 
+## AXXESS HOSTING DETAILS RECEIVED — 2026-10-07
+- Linux Control Panel host: dahost11.vpslocal.co.za:2222
+- Server IP: 156.155.252.98
+- Assigned nameserver 1: ns1.clusterdns.co.za — 41.76.111.83
+- Assigned nameserver 2: ns2.clusterdns.co.za — 154.0.166.77
+- Assigned nameserver 3: ns3.hostdns.co.za — 198.244.190.151
+- Assigned nameserver 4: ns4.clusterdns.org — 160.119.253.29
+- These are now the authoritative Axxess hosting/DNS values supplied by the user; do not substitute guessed records.
+- Account activation/payment confirmation remains outstanding.
+- No DirectAdmin password, payment data, tokens or other credentials are stored in this handover.
+
 ## RESTART INSTRUCTION
 When continuing, first verify the current GitHub main state and Axxess account/hosting status, then execute the next unresolved migration task. Do not redo the completed GitHub Pages permission fix or other verified work unless a new defect is demonstrated.
 
