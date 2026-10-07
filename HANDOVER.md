@@ -313,3 +313,12 @@ Previous detailed handover evidence remains preserved in Git history.
 - [x] New workflow Run #47 started from the fix; debug build completed successfully.
 - [ ] Run #47 emulator and signed-release jobs remain in progress; terminal result not yet available.
 - [x] No Axxess actions performed.
+
+
+## 2026-10-07 — AUTOMATED APK FOLLOW-UP
+- [x] Run #47 release build reached `assembleRelease` SUCCESS, confirming the JKS signing fix worked.
+- [x] Run #47 signed-release verification then failed because `apksigner` was not on PATH (exit 127); no APK signing failure occurred at that stage.
+- [x] Corrected APK workflow commit `e1e0a6ac219dad950629fdb7f5f9f09729b5f0d7` now resolves apksigner from Android SDK Build Tools.
+- [ ] Corrected workflow run must reach terminal SUCCESS and produce the signed-release artifact.
+- [ ] Run #47 emulator job remains in progress at this checkpoint.
+- [x] No Axxess work performed during the 24-hour exclusion.
