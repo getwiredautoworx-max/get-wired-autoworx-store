@@ -182,3 +182,11 @@ Updated: 2026-10-07 17:20 SAST
 When continuing, first verify the current GitHub main state and Axxess account/hosting status, then execute the next unresolved migration task. Do not redo the completed GitHub Pages permission fix or other verified work unless a new defect is demonstrated.
 
 Previous detailed handover evidence remains preserved in Git history.
+
+## CONTINUATION CHECKPOINT — 2026-10-07 17:30 SAST
+- [x] Owner APK source review completed: WebView correctly targets canonical production admin URL after correction.
+- [x] Owner admin web surface reviewed: Supabase Auth magic-link login, protected order RPC workflow, payment/order status controls, PAXI registration pack and tracking-reference workflow are present.
+- [x] Owner admin source contains no hard-coded staff credentials or service-role secrets.
+- [ ] Owner APK Run #43 is still in progress; artifact cannot yet be claimed/downloaded until the run completes.
+- [ ] Physical Android-device test remains pending.
+- [ ] Live admin authentication remains pending until authorized staff login is available.
