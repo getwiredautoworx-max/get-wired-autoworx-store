@@ -68,7 +68,7 @@ function search(q){
    for(const t of terms){let best=0;if(hay.includes(t))best=30;else if(words.some(w=>w.length>=Math.max(3,t.length-1)&&editDistance(t,w)<=Math.max(1,Math.floor(t.length/4))))best=12;if(!best)return null;score+=best}
    if(sku===q)score+=1000;else if(sku.includes(q))score+=180;
    if(name===q)score+=500;else if(name.includes(q))score+=140;
-   if(Number(p.stock_quantity||0)>0)score+=5;
+   if(Number(p.stock_quantity||0)>0)score+=5; if(p.featured)score+=2;
    return {p,score};
   }).filter(Boolean).sort((a,b)=>b.score-a.score||String(a.p.name).localeCompare(String(b.p.name))).map(x=>x.p);
   show(scored);
