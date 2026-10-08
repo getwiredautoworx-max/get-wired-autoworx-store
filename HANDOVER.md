@@ -474,3 +474,13 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] Do not claim Axxess deployment or live-browser verification until the files and URL are actually reachable.
 - Security note: because an FTP password was exposed in chat, the owner should rotate that FTP password after access setup; the replacement password must not be stored in the repository/handover.
 
+
+
+## 2026-10-08 — AXXESS PUBLIC_HTML FILES CONFIRMED
+
+- [x] Owner confirms the 390 MB store ZIP is already uploaded to Axxess `public_html`.
+- [x] Owner confirms the ZIP has already been extracted in `public_html`; both the archive and the unzipped store files are present.
+- [x] Therefore no further Axxess upload/extraction task is required.
+- [ ] Remaining Axxess blocker is solely direct ChatGPT access: no supported Axxess/FTP connector is available in the current tool environment, so live file inspection/browser verification from ChatGPT is not yet possible.
+- [ ] Next Axxess-side milestone is to obtain/confirm the accessible staging URL and then perform live browser/mobile QA when a supported access path is available.
+- [ ] Do not ask the owner to re-upload or re-extract the store archive.
