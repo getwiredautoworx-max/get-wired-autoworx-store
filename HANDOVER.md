@@ -777,3 +777,41 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Known catalogue completion: 3,395 placeholder customer-facing images still need verified source-image/SKU mapping.
 - No-credit rule: no Cloudflare, Netlify or Replit credits consumed by this pass.
 - No-data-mutation rule: no customer/test/demo orders and no product/category/image database changes were made.
+
+
+## 2026-10-08 — AXXESS-FIRST DEPLOYMENT STRATEGY CONFIRMED
+
+- [x] Owner confirmed the deployment strategy: build and finish the store for Axxess first; the owner will upload the finished storefront to Axxess when the package is available.
+- [x] Axxess is now the primary hosting target for the current build/release phase.
+- [x] Supabase remains the production backend/database for catalogue, customers, orders, checkout and protected admin operations.
+- [x] GitHub remains the source-control/version checkpoint. The final Axxess-ready build will be reconciled back to GitHub after Axxess build/fixes are finalized.
+- [x] Cloudflare is reserved for the final release/update stage only. No Cloudflare credits are to be consumed merely for staging or to bypass the current DNS/provider gate.
+- [x] Netlify and Replit remain excluded from the current deployment path and no credits should be consumed there.
+- [x] No unnecessary rebuild, re-upload, database reset, or deployment duplication is authorised.
+
+### Axxess-first release sequence
+1. Finish the storefront and remaining DNS-independent QA in the existing repository/Supabase foundation.
+2. Prepare the Axxess-ready website package without changing working production logic unnecessarily.
+3. Owner uploads the package to Axxess when it is available.
+4. After Axxess is reachable, perform live browser/mobile/HTTPS/storefront/Supabase/cart/checkout verification.
+5. Fix only defects actually found in Axxess/live testing.
+6. Reconcile the final tested Axxess version back into GitHub as the authoritative release checkpoint.
+7. Verify Supabase production state remains aligned with the final storefront.
+8. Perform the final Cloudflare update/deployment only when required, using credits only at this end stage.
+9. Complete final domain/DNS/HTTPS/payment/order-flow and launch-readiness verification.
+
+### Current deployment rule
+- **Do not spend credits while Axxess is being built/tested.**
+- **Do not treat GitHub Pages, Cloudflare staging or Netlify as blockers for Axxess production.**
+- **Do not create test/demo customer orders.**
+- **Do not overwrite verified catalogue/category/image mappings merely to make deployment appear complete.**
+- The Axxess upload is an owner-side action; until the package is supplied/uploaded and the site becomes reachable, Axxess-dependent live verification remains pending.
+
+### Current checkpoint
+- Axxess support/DNS response remains pending.
+- Store build work and safe automated QA can continue independently.
+- Known image completion item remains 3,395 placeholder-image products requiring verified source-image/SKU mapping; no blind rewrite.
+- Authoritative catalogue remains 4,187 active products / 4,187 unique active SKUs / 0 uncategorized / 27,745 active units.
+- Packaging remains R35/item; pickup R0; delivery separately quoted.
+- Owner APK automated Run #50 remains FULL SUCCESS; physical-device acceptance remains owner-side.
+- Supabase Security Advisor has only the known Leaked Password Protection Disabled warning.
