@@ -35,10 +35,15 @@ jobs:
             echo "ERROR: obsolete domain reference found"
             exit 1
           fi
-          grep -q "Packaging: R35.00 per item" checkout-v2.html
-          grep -q "Delivery: quoted separately" checkout-v2.html
-          grep -q "Pickup: R0.00" checkout-v2.html
-          grep -q "Delivery orders cannot be submitted until a quotation is confirmed" checkout-v2.html
+          grep -q "R15.00 despatch charge per delivery address" checkout-v2.html
+          grep -q "Your Courier" checkout-v2.html
+          grep -q "PEP PAXI" checkout-v2.html
+          grep -q "PUDO lockers" checkout-v2.html
+          if grep -Eiq "Pick up|pickup|Pickup|cash_on_pickup|R35\.00 per item" checkout-v2.html; then
+            echo "ERROR: obsolete pickup/packaging checkout rule found"
+            exit 1
+          fi
+          grep -q "Delivery must be quoted and confirmed" checkout-v2.html
 
       - name: Validate public catalogue invariants
         shell: bash
