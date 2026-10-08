@@ -844,3 +844,17 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 
 ### Immediate next action
 - Continue monitoring smoke run 37814267101 to terminal. If it fails, retrieve the job logs, diagnose only the actual failure and make the smallest safe correction. If it succeeds, record the terminal success and proceed to the next independent Axxess-ready task.
+
+
+## 2026-10-08 — IMAGE SOURCE / SMOKE CONTINUATION CHECKPOINT
+- [x] Rechecked Storefront Smoke Test 37814267101: still IN PROGRESS; no terminal success/failure yet.
+- [x] Confirmed the repository contains the watermarked source-image ZIP `Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip` (9,325,969 bytes).
+- [x] Confirmed the current `assets/products` directory contains 800 image files.
+- [x] Confirmed these 800 filenames are supplier/ASC-style source identifiers (examples include 0097.jpg, 017SK.jpg, 100701.jpg, 102-8MM.jpg), not public `GW-XXXXXXXX` SKUs. Therefore these files must not be directly assigned to public product records without exact internal mapping.
+- [x] Confirmed the repository's image-matching framework requires exact internal product matching, verified approval and a binary asset at its final production path before any `products.image_url` change.
+- [x] No image URLs or catalogue records were modified.
+- [x] No Cloudflare, Netlify or Replit credits were consumed.
+- [x] No Axxess/DNS changes were made.
+
+### Next safe action
+- Await/monitor smoke run 37814267101 to terminal. Separately, continue exact image-source reconciliation from the 800-file source set/ZIP and existing internal mappings; publish nothing until exact matches and production-path validation are proven.
