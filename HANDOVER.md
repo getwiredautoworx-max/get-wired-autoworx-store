@@ -450,3 +450,12 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] Remaining payment integration task: connect the approved merchant payment provider to the store-order flow, with server-side credentials and a verified live payment-link/API contract. This requires merchant/provider credentials or confirmation that the existing Peach account is ready for store-order payments.
 
 **Current state:** catalogue, cart, checkout totals and backend stock/order creation are functional; online payment handoff is the remaining material checkout gap. ETA after verified payment-provider access: approximately 1 focused implementation/QA batch.
+
+
+## 2026-10-08 — AXXESS STAGING WORKFLOW
+
+- User direction: use Axxess hosting as the development/live-test environment and avoid GitHub/paid deployment credits for iterative front-end testing.
+- GitHub remains the authoritative source/version history; Axxess is treated as a staging/edit/test copy, not a replacement for source control.
+- Recommended flow: edit/test on Axxess -> verify in browser/mobile -> synchronize approved files to GitHub -> deploy to Cloudflare only when a release is approved.
+- Supabase remains the live database/backend and is not copied for ordinary front-end edits.
+- No GitHub file changes were made in this workflow batch; therefore no GitHub credit-consuming deployment/build action was triggered.
