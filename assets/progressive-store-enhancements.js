@@ -56,6 +56,9 @@ function install(frame){
     }
   })}
   const obs=new MutationObserver(enrich);obs.observe(d.body,{childList:true,subtree:true});enrich();
+  // Install catalogue search/tools only after the search UI and product modal exist.
+  installFullCatalogueSearch(d);
+  installProductTools(d);
   if(!d.querySelector('.gwTrust')){const footer=d.getElementById('contact');if(footer){const t=d.createElement('div');t.className='gwTrust';t.textContent='Get Wired AutoWorx • Established 2012 • 074 4884 234 • 4.7/5 Google Rating • Nationwide delivery available';footer.parentNode.insertBefore(t,footer)}}
 }
   // Major-retailer search: operate on the full in-memory catalogue from the iframe document.
@@ -124,8 +127,6 @@ function install(frame){
     obs.observe(modal,{childList:true,subtree:true});
   }
 
-  installFullCatalogueSearch(d);
-  installProductTools(d);
 function boot(){const f=document.getElementById('store');if(!f)return;const go=()=>setTimeout(()=>{try{install(f)}catch(e){}},100);f.addEventListener('load',go);go();setInterval(()=>{try{install(f)}catch(e){}},2500)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
