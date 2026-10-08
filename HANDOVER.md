@@ -390,3 +390,14 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Live browser/Cloudflare verification remains pending.
 
 **Next:** validate checkout-side stock enforcement and payment/order handoff against the backend functions.
+
+
+## 2026-10-08 — CHECKOUT BACKEND ENFORCEMENT QA
+
+- [x] Inspected the live Supabase `store-checkout` Edge Function: it delegates order creation to the protected `create_store_order` RPC using the server-side secret, not a browser-exposed privileged key.
+- [x] Confirmed production migration history contains dedicated stock/delivery enforcement and stock reservation hardening: `enforce_order_stock_and_delivery_fee`, `harden_order_rpc_and_reserve_stock_v2`, `restore_stock_on_order_failure_or_cancellation`, and `restrict_order_and_owner_rpc_roles`.
+- [x] Confirmed current `store-checkout` function is ACTIVE (version 1) and JWT verification is intentionally disabled because it is a public storefront checkout endpoint; the function itself performs input validation before invoking the privileged RPC.
+- [x] Ran current Supabase security advisor: only existing warning is Leaked Password Protection Disabled; no new checkout-specific security warning was returned.
+- [ ] Direct live order simulation was not performed because it would create/reserve a real order and alter production stock.
+
+**Next:** improve related-product ranking and continue storefront UX/QA without placing live production orders.
