@@ -325,3 +325,13 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Continue independent shopability/source QA while www.getwiredauto.co.za registration/DNS work is in progress. Do not modify Cloudflare/Axxess settings from this session.
 
 **Current shopability priority:** product discovery/search relevance, product-image quality/fallback, product detail/related products, mobile/cart behaviour, then final automated regression. Domain/DNS/live-browser verification remains external and is not a blocker for source/database work.
+
+
+## 2026-10-08 — PRODUCT DISCOVERY BUG FIX
+
+- [x] Source QA found a concrete storefront defect in `index-new.html`: `card(p)` referenced `stock` before defining it. This could break product-card rendering whenever the catalogue listing was generated.
+- [x] Fixed by defining `const stock = Number(p.stock_quantity || 0)` inside `card(p)` before stock labels/button state are calculated.
+- [x] Committed to main: 0252618e78a4f2a1e1a25d561935fa5f68ac7031.
+- [ ] Live Cloudflare runtime verification still needs to be performed externally; source-side fix is complete.
+
+**Next shopability target:** validate product listing/card rendering, then strengthen search ranking and product-image fallback without changing the locked visual design.
