@@ -63,7 +63,7 @@ jobs:
             const delivery = await page.locator('#deliverySummary').textContent();
             if (!delivery || !delivery.includes('To be quoted')) throw new Error('Delivery must remain quoted separately until a delivery quote is selected');
             const notice = await page.locator('.notice').first().textContent();
-            if (!notice.includes('R25.00 per item')) throw new Error('R25-per-item packaging notice missing');
+            if (!notice.includes('R35.00 per item')) throw new Error('R25-per-item packaging notice missing');
             await page.selectOption('#fulfilment','pickup');
             await page.waitForTimeout(100);
             const pickup = await page.locator('#deliverySummary').textContent();
