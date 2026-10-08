@@ -520,3 +520,14 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 3. Run non-destructive storefront checks, including product rendering, search/filter, cart, checkout validation, delivery rules, and contact links. Do not create test orders in production without an explicitly safe test route.
 4. APK diagnosis requires the exact APK file that fails on the owner's phone. Inspect the artifact before signing or rebuilding.
 5. Continue recording each completed or failed task here before moving to the next major task.
+
+
+### Follow-up audit — checkout rules conflict detected (8 October 2026)
+**Status: FAILED QA / correction required; no production code changed.**
+
+- Checked the actual checkout entry point: `checkout.html` redirects to `checkout-v2.html`.
+- Static inspection of `checkout-v2.html` found customer pickup enabled, R35 packaging charges, and no R15 delivery-address fee or Phoenix Plaza despatch reference.
+- This conflicts with the owner's recorded operating rule: delivery options only (no customer pickup), despatch via Phoenix Plaza, and R15 per delivery address regardless of item count. Current checkout must therefore **not** be declared ready for live orders until the flow is reconciled with the owner-approved rules and server-side order totals are checked as well.
+- PAXI references are present, but their presence alone does not verify the complete approved fulfilment flow.
+- Confirmed repository tree paths for `store.html`, `checkout.html`, and this handover. The previous handover update was committed as `7058af1df68bac951208e0462689ef25298ec578`; this follow-up records the checkout audit only.
+- Next safe action: trace the server-side `store-checkout` and `shipping-quote` functions and confirm which values are calculated server-side before editing. Do not submit test orders to production or activate payments during this audit.
