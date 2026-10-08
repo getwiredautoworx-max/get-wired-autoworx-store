@@ -63,12 +63,10 @@ jobs:
             const delivery = await page.locator('#deliverySummary').textContent();
             if (!delivery || !delivery.includes('To be quoted')) throw new Error('Delivery must remain quoted separately until a delivery quote is selected');
             const notice = await page.locator('.notice').first().textContent();
-            if (!notice.includes('R35.00 per item')) throw new Error('R35-per-item packaging notice missing');
-            await page.selectOption('#fulfilment','pickup');
-            await page.waitForTimeout(100);
-            const pickup = await page.locator('#deliverySummary').textContent();
-            if (!pickup || !pickup.includes('Delivery:')) throw new Error('Pickup fulfilment summary missing expected Delivery label');
-            if (!pickup.includes('R0.00')) throw new Error('Pickup must be R0.00');
+            if (!notice.includes('R15.00 despatch charge per delivery address')) throw new Error('Phoenix Plaza R15 despatch rule missing');
+            if (!notice.includes('Courier Guy') && !notice.includes('PEP PAXI')) throw new Error('Delivery options missing');
+            const checkoutText = await page.locator('body').innerText();
+            if (/Pick up|pickup|Pickup|cash_on_pickup|R35\.00 per item/.test(checkoutText)) throw new Error('Obsolete pickup/packaging rule detected in checkout');
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
