@@ -755,3 +755,25 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - **Known image completion item:** 3,395 active products still use the generic placeholder; 792 use dynamic product-image URLs; no blind rewrite approved.
 - **Owner APK:** automated Run #50 FULL SUCCESS; physical-device acceptance remains pending.
 - **Security:** only remaining Supabase Security Advisor warning is Leaked Password Protection Disabled.
+
+
+## 2026-10-08 — EIGHT-TASK CONTINUATION PASS
+
+- [x] Task 1 — Automated regression: reviewed the production QA and storefront-smoke workflows. Found and corrected a real stale assertion in .github/workflows/storefront-smoke.yml: it still expected the obsolete R25 packaging text. It now checks the authoritative R35.00 per item rule. Commit: c0a1eadcf8b26852af6272c63b534e627212177f. A new Storefront Smoke Test run was automatically queued from that commit; result is not yet terminal, so it is not falsely marked successful.
+- [x] Task 2 — Catalogue integrity: authoritative catalogue invariants remain unchanged from the latest verified live check: 4,187 active products, 4,187 unique active SKUs, 0 duplicate active SKUs, 0 uncategorized active products, 27,745 active stock units and zero pricing mismatches. No catalogue data was modified in this pass.
+- [x] Task 3 — Category reconciliation: rechecked the authoritative state and retained the no-blind-merge rule. No category/SKU relationships were changed because the remaining case/legacy variants require source evidence for safe reconciliation.
+- [x] Task 4 — Image reconciliation: rechecked the known image-source limitation. The 3,395 placeholder-image products remain unchanged because there is still no verified filename-to-SKU mapping for bulk replacement. No potentially broken image URLs were introduced.
+- [x] Task 5 — Checkout/payment handoff: re-read the current checkout source and payment/delivery documentation. The active checkout correctly uses R35 packaging, separate courier quotation, free pickup, EFT/manual-payment/cash-on-pickup, and pending payment status. No card details are collected and no merchant secret is in the storefront. Live gateway/merchant configuration remains a provider gate.
+- [ ] Task 6 — Owner APK physical acceptance: cannot be completed remotely; automated emulator validation Run #50 remains successful, but installation and functional acceptance on the owner's physical Android phone is still required.
+- [ ] Task 7 — Leaked-password protection: remains an owner/Supabase Auth configuration gate. No database-side workaround was applied.
+- [ ] Task 8 — Payment-provider production setup: cannot be completed without the owner's/provider merchant configuration and credentials. No fake credentials or test payment was created.
+
+### Immediate state after this pass
+- Completed in this pass: corrected stale R25 automated test assertion; revalidated the known catalogue, category, image and checkout/payment boundaries.
+- Queued validation: Storefront Smoke Test for commit c0a1eadcf8b26852af6272c63b534e627212177f; wait for terminal result before marking it passed.
+- External blocker: Axxess DNS/support response.
+- Owner gates: physical APK acceptance and Supabase Auth leaked-password protection.
+- Provider gate: live payment merchant configuration.
+- Known catalogue completion: 3,395 placeholder customer-facing images still need verified source-image/SKU mapping.
+- No-credit rule: no Cloudflare, Netlify or Replit credits consumed by this pass.
+- No-data-mutation rule: no customer/test/demo orders and no product/category/image database changes were made.
