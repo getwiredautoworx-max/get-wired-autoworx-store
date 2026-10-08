@@ -64,3 +64,11 @@ Updated: 2026-09-16
 - [x] Checkout displays packaging separately from courier delivery.
 - [x] Delivery remains a separate courier quote where applicable; pickup has no delivery charge.
 - [x] `checkout.html` and `checkout-v2.html` updated to remove R15 wording and show R25-per-item packaging.
+
+
+## 2026-10-08 — CURRENT COMMERCIAL CHECKOUT RULES RECONCILED
+- [x] `checkout-v2.html` is the sole active customer checkout route from `store.html`.
+- [x] Legacy `checkout.html` is now a redirect-only compatibility page to prevent stale checkout rules being served.
+- [x] Current approved packaging charge is **R35.00 per item**; pickup is **R0.00**; delivery is charged according to the selected courier/PAXI quotation and is subject to quotation.
+- [x] Current `checkout-v2.html` source was re-read and confirmed to display/calculate R35 packaging, require a delivery quotation before delivery submission, and allow free pickup.
+- [x] No customer order or product data was changed during this reconciliation.
