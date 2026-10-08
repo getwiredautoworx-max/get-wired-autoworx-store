@@ -1,6 +1,6 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-08 12:xx SAST
+Updated: 2026-10-08 — latest continuation
 
 ## CURRENT CHECKPOINT
 - Continue from this file; preserve existing store and do not rebuild unnecessarily.
@@ -17,7 +17,7 @@ Updated: 2026-10-08 12:xx SAST
 - Uncategorized active products: 0.
 - Pricing mismatches: 0.
 - Pricing formula: supplier cost × 1.15 VAT × 1.35 markup.
-- Pickup: R0. Packaging: R25/item. Delivery: actual Courier Guy/PAXI quotation subject to quotation.
+- Pickup: R0. Packaging: R35/item. Delivery: actual Courier Guy/PAXI quotation subject to quotation.
 - No real customer order has been created during QA.
 
 ## AUTOMATED STORE QA
@@ -31,12 +31,12 @@ Updated: 2026-10-08 12:xx SAST
 ## OWNER APK — LATEST RUN
 - Package: za.co.getwiredautoworx.owner.
 - Version baseline: v1.0.1 / versionCode 2; compile/target SDK 35.
-- Run #48: 37658519204.
+- Latest automated validation: Run #50 (37673087846) = FULL SUCCESS.
 - [x] Build job 112919742928 = SUCCESS.
 - [x] Signed-release job 112920419830 = SUCCESS.
 - [x] Signed-release artifact: get-wired-owner-signed-release, artifact ID 11500252099.
 - [x] Signed-release digest: sha256:5fa63ffd7fc04326453759ee1b6641209d85191b75b57908d0d4ac4ef7976e88.
-- [ ] Emulator job 112920419890 is STILL IN PROGRESS at this checkpoint; therefore Run #48 is not yet terminal-successful.
+- [x] Emulator validation completed successfully in Run #50 (37673087846).
 - [ ] Physical Android-device installation/acceptance remains owner-input.
 - [ ] Permanent owner-controlled production signing identity remains owner-input; current CI release uses a temporary generated keystore and no signing secret was committed.
 - [x] Previous signing failures resolved: JKS keystore format and explicit Android SDK Build Tools apksigner path.
@@ -67,8 +67,8 @@ Updated: 2026-10-08 12:xx SAST
 
 ## REMAINING TASKS — CURRENT FINITE LIST
 ### Independent automated work
-1. [IN PROGRESS] Finish Owner APK Run #48 emulator terminal validation.
-2. [PENDING] Verify signed-release artifact/signature and record terminal result.
+1. [DONE] Owner APK Run #50 emulator terminal validation completed successfully.
+2. [DONE] Verify automated APK build/artifact/emulator validation state.
 3. [PENDING] Owner APK ↔ Supabase/admin non-destructive workflow QA.
 4. [PENDING] Finish exact SKU-level catalogue/category reconciliation.
 5. [PENDING] Complete exact-SKU image quality/watermark audit and safe binary deployment verification.
@@ -198,7 +198,6 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Storefront source validation: PASS.
 - Public catalogue invariants: PASS.
 - Public source security boundaries: PASS. The private android-owner-app/ supplier-cost fields no longer trigger the public-source scan.- This resolves the security-scan blocker. No Supabase/catalogue/storefront application data was changed.
-
 
 ## CONTINUATION TASK LOG — 2026-10-07 SAST
 - Task: Add WhatsApp message link to customer storefront.
@@ -397,7 +396,6 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [x] Confirmed production migration history contains dedicated stock/delivery enforcement and stock reservation hardening: `enforce_order_stock_and_delivery_fee`, `harden_order_rpc_and_reserve_stock_v2`, `restore_stock_on_order_failure_or_cancellation`, and `restrict_order_and_owner_rpc_roles`.
 - [x] Confirmed current `store-checkout` function is ACTIVE (version 1) and JWT verification is intentionally disabled because it is a public storefront checkout endpoint; the function itself performs input validation before invoking the privileged RPC.
 - [x] Ran current Supabase security advisor: only existing warning is Leaked Password Protection Disabled; no new checkout-specific security warning was returned.- [ ] Direct live order simulation was not performed because it would create/reserve a real order and alter production stock.
-
 **Next:** improve related-product ranking and continue storefront UX/QA without placing live production orders.
 
 
@@ -597,8 +595,7 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 
 ## 2026-10-08 — NEXT INDEPENDENT TASK QUEUE
 
-1. [DONE] Security hardening of the stale legacy checkout RPC and re-verification.
-2. [DONE] Reconcile Owner APK status to Run #50 terminal success.
+1. [DONE] Security hardening of the stale legacy checkout RPC and re-verification.2. [DONE] Reconcile Owner APK status to Run #50 terminal success.
 3. [NEXT] Continue independent storefront/checkout source QA without creating a real order.
 4. [NEXT] Continue catalogue/category/image QA where safe and automatable.
 5. [WAITING] Live Axxess browser/HTTPS/DNS verification once public DNS resolves.
@@ -606,3 +603,15 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 7. [OWNER/PROVIDER GATE] Live payment-provider merchant configuration and payment callback verification.
 
 **No-circle rule remains in force:** do not repeat completed APK emulator validation, re-upload/re-extract Axxess files, recreate completed checkout features, or blindly remove informational unused indexes.
+
+## 2026-10-08 — HANDOVER SYNCHRONISATION CHECK
+
+- [x] Reconciled stale top-level handover entries so the current authoritative state is no longer contradicted by older R25/R48 status lines.
+- [x] Authoritative packaging rule is **R35.00 per item**; pickup remains **R0.00** and delivery remains quotation-based.
+- [x] Authoritative Owner APK automated status is **Run #50 (37673087846) FULL SUCCESS**; physical-phone acceptance remains owner-side.
+- [x] Legacy checkout RPC security hardening from the preceding task remains completed: anon/authenticated execution revoked and explicit public search path set.
+- [x] Current Supabase Security Advisor state remains: only **Leaked Password Protection Disabled**.
+- [x] Axxess/DNS remains the live external blocker; no re-upload, extraction, rebuild, or DNS mutation was performed.
+- [x] Axxess guidance still confirms newly added subdomains require the appropriate A record and propagation before external testing; Axxess notes propagation can take roughly 4 hours for a new subdomain record. citeturn0search0turn0search3
+- [ ] Next independent work: continue safe storefront/checkout and catalogue/image QA without creating real orders.
+- [ ] Once DNS resolves: immediately perform Axxess HTTPS/browser/mobile QA, then proceed toward final release checks.
