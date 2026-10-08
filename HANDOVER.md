@@ -413,3 +413,14 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Live browser verification remains pending.
 
 **Next:** audit product-card purchase states and stale-cart handling, then continue checkout UX QA.
+
+
+## 2026-10-08 — STALE CART / PURCHASE STATE QA
+
+- [x] Fixed a second cart stock defect: ADD TO CART could previously increment an existing item without checking current stock.
+- [x] ADD TO CART now refuses zero-stock products and caps an existing cart quantity at live catalogue stock.
+- [x] Added cart reconciliation after the product catalogue loads: inactive/missing or zero-stock items are removed; current product name, public SKU and price are refreshed; quantity is capped to current stock.
+- [x] Commit: 03ff32dabfd1861bd5f6795b4b3545d5615b5936.
+- [ ] Live browser verification remains pending.
+
+**Next:** continue checkout UX audit, especially whether the cart's displayed subtotal/packaging/delivery totals remain consistent with checkout-v2 before payment handoff.
