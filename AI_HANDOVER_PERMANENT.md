@@ -531,3 +531,18 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - PAXI references are present, but their presence alone does not verify the complete approved fulfilment flow.
 - Confirmed repository tree paths for `store.html`, `checkout.html`, and this handover. The previous handover update was committed as `7058af1df68bac951208e0462689ef25298ec578`; this follow-up records the checkout audit only.
 - Next safe action: trace the server-side `store-checkout` and `shipping-quote` functions and confirm which values are calculated server-side before editing. Do not submit test orders to production or activate payments during this audit.
+
+
+### APK artifact inspection — 8 October 2026
+**Status: INSPECTED; INSTALLATION ROOT CAUSE NOT YET PROVEN. No APK modification or signing performed.**
+
+- Owner uploaded the exact reported file: `app-debug.apk`.
+- File type: Android APK; size 10,949 bytes.
+- SHA-256: `f9cdc252d10c2c0f6b39e8d399bbd2a2adb3fd20c2c5dfce4f682b634eac1110`.
+- ZIP/APK compressed structure test passed with no corrupt compressed entries.
+- APK contains `classes.dex`, `classes2.dex`, binary `AndroidManifest.xml`, resources and META-INF signature files.
+- DEX string evidence includes package namespace `za.co.getwiredautoworx.owner`; this is not a complete manifest decode and does not confirm the final application ID or device compatibility.
+- Certificate is the standard self-signed Android Debug certificate (CN=Android Debug), SHA-256 fingerprint `55:D2:F9:16:EA:D8:97:EE:5E:A5:2C:62:EB:AD:1D:7B:75:D0:95:B5:77:6D:80:A2:DB:8B:5D:A6:1F:39:AF:9A`; signature algorithm SHA256withRSA, 2048-bit RSA. JAR signature verification reports “jar verified” but also flags self-signed/untrusted certificate warnings and archive/JarInputStream inconsistencies. This is a debug-signed artifact, not evidence of a properly signed production release.
+- Available environment lacks `aapt`, `aapt2`, `apkanalyzer`, and `apksigner`; manifest minSdk/targetSdk, native ABI, APK v2/v3 verification, and installability therefore remain unverified.
+- No signing key, package version, Android device API compatibility, or Play Protect classification has been confirmed. Do not simply re-sign with a new key: it can cause signature conflicts with an existing installation and does not resolve policy or compatibility issues.
+- Next recovery path: use Android SDK build-tools / a trusted APK inspection utility to decode manifest and verify all signature schemes; compare minSdk/targetSdk and ABI to the owner's Android 13 device; then build a release APK from the original project using a stable owner-controlled release key. Test first on an emulator/API 33 and then on the owner's device. Preserve the original artifact and record the release hash separately.
