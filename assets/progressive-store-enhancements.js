@@ -21,7 +21,10 @@ function install(frame){
     .gwRecentItems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
     .gwRecentItem{min-width:0;text-align:left;background:#07111e;border:1px solid #17618b;color:#dff3ff;border-radius:8px;padding:8px;cursor:pointer}
     .gwRecentItem b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px}
-    .gwRecentItem small{display:block;color:#8fa4b8;margin-top:3px}
+     .gwRecentItem small{display:block;color:#8fa4b8;margin-top:3px}
+    #gwSavedPanel{position:fixed;right:14px;bottom:70px;z-index:120;background:#07111e;border:1px solid #087fe0;border-radius:12px;box-shadow:0 18px 55px #000;width:min(390px,calc(100vw - 28px));max-height:65vh;overflow:auto;padding:14px;color:#fff;display:none}
+    #gwSavedPanel.open{display:block}.gwSavedHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.gwSavedClose{background:none;border:0;color:#fff;font-size:22px;cursor:pointer}.gwSavedItem{display:flex;gap:9px;align-items:center;padding:9px 0;border-top:1px solid #123f60}.gwSavedItem button{background:#07111e;border:1px solid #17618b;color:#dff3ff;border-radius:7px;padding:7px;cursor:pointer}.gwSavedName{flex:1;min-width:0}.gwSavedName b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gwSavedName small{color:#8fa4b8}
+    .gwSavedToggle{border:1px solid #ff1c2d!important;background:#07111e!important;color:#fff!important}
     @media(max-width:900px){#gwSearchTools{padding:0 4px}.gwTrust{margin-left:12px;margin-right:12px}.gwTools{flex-direction:column}.gwCopy{width:100%}}
   `;d.head.appendChild(style);
 
@@ -118,6 +121,7 @@ function install(frame){
     if(!d)return;
     const modal=d.getElementById('productModal');if(!modal||modal.dataset.gwTools)return;
     modal.dataset.gwTools='1';
+    if(!d.getElementById('gwSavedToggle')){const b=d.createElement('button');b.id='gwSavedToggle';b.className='gwSavedToggle';b.textContent='♡ SAVED';const anchor=d.getElementById('searchInput');if(anchor&&anchor.parentElement){anchor.parentElement.parentElement.appendChild(b)}const panel=d.createElement('div');panel.id='gwSavedPanel';panel.innerHTML='<div class="gwSavedHead"><b>Saved Products</b><button class="gwSavedClose">×</button></div><div class="gwSavedList"></div>';d.body.appendChild(panel);b.onclick=()=>{renderSaved();panel.classList.toggle('open')};panel.querySelector('.gwSavedClose').onclick=()=>panel.classList.remove('open');function renderSaved(){let ids=[];try{ids=JSON.parse(localStorage.getItem('gw_wishlist')||'[]')}catch(e){};const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];const ps=ids.map(id=>all.find(x=>x.id===id)).filter(Boolean);const list=panel.querySelector('.gwSavedList');if(!ps.length){list.innerHTML='<div class="gwNoResults">No saved products yet. Open a product and tap SAVE PRODUCT.</div>';return}list.innerHTML=ps.map((p,i)=>'<div class="gwSavedItem"><div class="gwSavedName"><b>'+String(p.name||'Product').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</b><small>SKU: '+String(p.public_sku||p.sku||'')+'</small></div><button data-open="'+i+'">VIEW</button><button data-remove="'+i+'">REMOVE</button></div>').join('');list.querySelectorAll('[data-open]').forEach(x=>x.onclick=()=>{d.defaultView.gwOpenProduct(ps[Number(x.dataset.open)]);panel.classList.remove('open')});list.querySelectorAll('[data-remove]').forEach(x=>x.onclick=()=>{ids=ids.filter(id=>id!==ps[Number(x.dataset.remove)].id);localStorage.setItem('gw_wishlist',JSON.stringify(ids));renderSaved()})}}
     const obs=new MutationObserver(()=>{
       const detail=modal.querySelector('.detail');if(!detail)return;
       const title=detail.querySelector('h2')?.textContent?.trim();if(!title)return;
@@ -125,7 +129,7 @@ function install(frame){
       const p=all.find(x=>x.name===title);if(!p)return;
       const actions=detail.querySelector('.detailActions');if(!actions||actions.querySelector('.gwWishlist'))return;
       const b=d.createElement('button');b.className='gwWishlist';b.textContent='♡ SAVE PRODUCT';b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
-      b.onclick=()=>{let w=[];try{w=JSON.parse(localStorage.getItem('gw_wishlist')||'[]')}catch(e){};if(!w.includes(p.id))w.push(p.id);localStorage.setItem('gw_wishlist',JSON.stringify(w));b.textContent='♥ SAVED';};
+      b.onclick=()=>{let w=[];try{w=JSON.parse(localStorage.getItem('gw_wishlist')||'[]')}catch(e){};if(!w.includes(p.id))w.push(p.id);localStorage.setItem('gw_wishlist',JSON.stringify(w));b.textContent='♥ SAVED';const t=d.getElementById('gwSavedToggle');if(t)t.textContent='♥ SAVED ('+w.length+')';};
       actions.appendChild(b);
       let rv=[];try{rv=JSON.parse(localStorage.getItem('gw_recent')||'[]')}catch(e){}
       rv=[p.id,...rv.filter(x=>x!==p.id)].slice(0,10);localStorage.setItem('gw_recent',JSON.stringify(rv));
