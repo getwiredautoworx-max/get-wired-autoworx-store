@@ -535,3 +535,16 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] Final catalogue SKU/image/description/category manual QA remains the large non-automatable finishing task.
 
 **No-circle rule for next chat:** do not re-upload/extract Axxess, do not rebuild the storefront, do not reimplement WhatsApp, and do not repeat completed Supabase/RLS/catalogue QA. Work only on the first unchecked production blocker and then advance to the next one.
+
+
+## 2026-10-08 — LIVE DNS VERIFICATION / AXXESS BLOCKER CONFIRMED
+- [x] Re-tested public reachability of `getwiredauto.co.za`, `www.getwiredauto.co.za`, and `staging.getwiredauto.co.za` from an independent external verification path.
+- [x] All three hostnames remain unresolved/unreachable from the verification environment; no HTTP response is available yet.
+- [x] This is consistent with the previously identified DNS/delegation blocker, not a missing storefront upload: the Axxess `public_html` archive/extraction is already confirmed.
+- [x] Current known Axxess server IP: `156.155.252.98`.
+- [x] Axxess's current DirectAdmin guidance confirms that a newly created subdomain requires an A record to the hosting server and DNS propagation before it becomes externally reachable; Axxess states propagation can take roughly 4 hours for a newly added record. citeturn4search0turn4search5
+- [ ] Owner-side DNS action required: in Axxess Client Control Panel → `getwiredauto.co.za` → DNS zone, ensure `staging` has an **A** record pointing to `156.155.252.98`. Do not change nameservers, root/www records, MX, or other records as part of this fix.
+- [ ] After that record is saved and propagation begins, re-test `staging.getwiredauto.co.za`; then immediately proceed to HTTPS/storefront QA.
+- [ ] No source code, Supabase data, Axxess files, or Cloudflare deployment was changed during this verification.
+- **Current hard blocker:** DNS only. No further upload/extraction/rebuild is justified.
+
