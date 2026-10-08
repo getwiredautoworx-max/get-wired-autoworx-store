@@ -716,3 +716,42 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] Therefore it would be unsafe to convert the remaining 3,395 placeholder URLs to the dynamic product-image endpoint merely because supplier mappings exist; doing so could create broken image requests.
 - [ ] The missing 3,395 customer-facing images still require the actual source-image set or a verified mapping between the uploaded image filenames and supplier/product SKUs.
 - [x] No catalogue image records were modified during this investigation.
+
+
+## 2026-10-08 — AXXESS SUPPORT FOLLOW-UP / WAITING STATE
+
+- [x] Owner has contacted Axxess support again and is awaiting their reply.
+- [x] DNS/delegation is therefore treated as an external provider-response gate, not a reason to repeat hosting uploads, extraction, rebuilds or DNS changes.
+- [ ] Await Axxess confirmation of the authoritative DNS/delegation state and/or resolution of the affected records.
+- [ ] Once public DNS resolves, immediately verify root + www + staging, HTTPS/SSL, Axxess-served storefront, Supabase connectivity, cart, checkout and order-flow without creating a real customer order.
+
+### Work that can proceed while Axxess support is pending
+
+1. [NEXT] Run/verify the latest DNS-independent automated storefront regression and security checks.
+2. [NEXT] Recheck catalogue invariants and confirm no unintended data changes.
+3. [NEXT] Continue exact SKU/category reconciliation only where evidence is unambiguous; do not blindly merge categories.
+4. [NEXT] Continue safe image-source reconciliation; do not mass-rewrite the 3,395 placeholder products without verified source-image/SKU mapping.
+5. [NEXT] Reconcile checkout/payment handoff code so live payment configuration remains clearly separated from the pending checkout/order state.
+6. [OWNER GATE] Physical Android-phone installation/acceptance of the already emulator-validated Owner APK.
+7. [OWNER GATE] Enable Supabase Auth leaked-password protection through the authorised dashboard/configuration path.
+8. [PROVIDER GATE] Complete live payment-provider merchant verification/configuration and callback testing when the merchant credentials are available.
+
+### Explicit exclusions while waiting
+
+- Do not re-upload or re-extract the Axxess storefront.
+- Do not change MX/email records.
+- Do not change nameservers or unrelated DNS records without Axxess-confirmed instructions.
+- Do not consume Cloudflare, Netlify or Replit credits to bypass the DNS blocker.
+- Do not create test/demo/customer orders.
+- Do not repeat completed Owner APK emulator validation, Supabase RLS/security hardening, packaging R35 implementation, WhatsApp implementation, or completed storefront source QA unless a new change introduces a specific regression.
+
+## 2026-10-08 — CURRENT WAITING CHECKPOINT
+
+- **Primary external blocker:** Axxess DNS/delegation/public resolution.
+- **Axxess support status:** owner has followed up again; awaiting support response.
+- **Independent work status:** safe DNS-independent QA and reconciliation can continue without touching DNS/hosting.
+- **Authoritative packaging:** R35/item; pickup R0; delivery quoted separately.
+- **Catalogue invariant:** 4,187 active products / 4,187 unique active SKUs / 0 uncategorized / 27,745 active units.
+- **Known image completion item:** 3,395 active products still use the generic placeholder; 792 use dynamic product-image URLs; no blind rewrite approved.
+- **Owner APK:** automated Run #50 FULL SUCCESS; physical-device acceptance remains pending.
+- **Security:** only remaining Supabase Security Advisor warning is Leaked Password Protection Disabled.
