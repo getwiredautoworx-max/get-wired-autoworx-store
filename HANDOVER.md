@@ -639,3 +639,10 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] Confirmed all 4,187 active products remain categorized.
 - [x] Found legacy/duplicate category records still present with zero active products, plus several similarly named active buckets (for example case/format variants). These must not be blindly merged because exact SKU/category mapping is still the authoritative finishing task.
 - [ ] Continue exact SKU-level category reconciliation only where the catalogue evidence is unambiguous; retire obsolete zero-use category records only after foreign-key/dependency verification.
+
+
+## 2026-10-08 — PUBLIC DNS CHECK
+- [x] Independent public DNS/HTTPS check attempted for `getwiredauto.co.za` and `www.getwiredauto.co.za`.
+- [x] Both names currently fail DNS resolution from the verification environment; HTTPS therefore cannot yet be tested through the public domain.
+- [x] This is recorded as an external DNS/propagation state, not as a storefront application failure. No hosting/deployment changes were made.
+- [ ] Re-test root + www once Axxess/public DNS becomes resolvable, then verify HTTPS, storefront loading, Supabase connectivity, cart and checkout.
