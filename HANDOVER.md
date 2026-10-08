@@ -548,3 +548,12 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] No source code, Supabase data, Axxess files, or Cloudflare deployment was changed during this verification.
 - **Current hard blocker:** DNS only. No further upload/extraction/rebuild is justified.
 
+
+
+## 2026-10-08 — PACKAGING FEE UPDATED TO R35
+- [x] Owner-approved packaging fee changed from R25.00 to **R35.00 per item** to cover bubble wrap, boxes, security tape and related packing materials.
+- [x] Customer storefront wording updated in `index-new.html`, `checkout-v2.html`, and `store.html`.
+- [x] Production `create_store_order` RPC updated so backend packaging calculation is **item_count × R35.00**.
+- [x] No customer order was created during this change and no catalogue rows were changed.
+- [x] A repository search found no remaining `R25.00` packaging text.
+- [ ] Re-run final live checkout verification after Axxess DNS resolves.
