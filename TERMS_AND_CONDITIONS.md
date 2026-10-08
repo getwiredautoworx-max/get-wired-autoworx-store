@@ -50,19 +50,86 @@ Where collection is offered, customers will be notified when orders are ready an
 Customers should inspect deliveries promptly and photograph damaged packaging/product before installation or use where possible. Customers should retain packaging, labels, accessories, manuals, fittings, seals and proof of purchase until satisfied with the product.
 
 ## 12. Returns, Refunds and Exchanges
-Get Wired AutoWorx will process returns in accordance with these Terms & Conditions and applicable South African consumer law.
+Get Wired AutoWorx processes returns, repairs, replacements and refunds in accordance with these Terms & Conditions and the applicable laws of the Republic of South Africa, including the Consumer Protection Act 68 of 2008 (CPA) and, where applicable to electronic transactions, the Electronic Communications and Transactions Act 25 of 2002 (ECTA).
 
-Where a return is permitted or required, the customer may be required to return the product to Get Wired AutoWorx for inspection, assessment, repair, replacement, supplier assessment or other appropriate remedy.
+### 12.1 Return authorisation and inspection
+A customer must contact Get Wired AutoWorx before sending an item back and obtain a return/reference number or written return instruction where required. Unauthorised returns may be delayed while the return is identified and assessed.
 
-### Customer responsibility for return costs
-**Unless applicable law requires otherwise, the customer is responsible for the cost of returning any item to Get Wired AutoWorx**, including items requiring inspection, warranty assessment, repair or supplier assessment.
+Where a return is permitted or required, the item may be inspected by Get Wired AutoWorx and, where appropriate, referred to the applicable supplier, wholesaler, importer, manufacturer or authorised service agent for technical assessment.
 
-Customers must use suitable packaging and an appropriate delivery service when returning products. The customer remains responsible for the product until it has been safely received by Get Wired AutoWorx.
+### 12.2 Mandatory return address
+**All items returned for repair, warranty assessment, replacement or refund must be couriered directly to:**
 
-Where a product has been accepted for repair or warranty processing and the repair/assessment has been completed, **Get Wired AutoWorx will endeavour to facilitate delivery of the repaired or replacement item back to the customer, but responsibility for the warranty, guarantee, repair, replacement and associated costs remains solely with the applicable manufacturer, importer, supplier, wholesaler or authorised warranty provider.**
+**Get Wired AutoWorx**  
+**29 Wattlebrook Crescent**  
+**Brookdale, Phoenix**  
+**Durban, 4068**  
+**South Africa**
 
-Nothing in this section removes or limits a statutory consumer right where applicable law requires the supplier or seller to bear a particular cost.
+Customers must use suitable protective packaging and a trackable courier/service. The customer remains responsible for the parcel until it has been safely received and acknowledged by Get Wired AutoWorx, except where applicable law places the risk or return cost on the supplier.
 
+### 12.3 Customer responsibility for return costs
+**Unless applicable law requires otherwise, the customer is responsible for the full cost of returning an item to Get Wired AutoWorx**, including items submitted for repair, warranty assessment, inspection, supplier assessment or refund.
+
+Where South African consumer law specifically requires the supplier/seller to bear the return cost, that mandatory legal requirement will apply instead.
+
+### 12.4 Voluntary / change-of-mind refunds
+Get Wired AutoWorx does **not** provide an unrestricted general right to return goods simply because a customer has changed their mind, ordered incorrectly, no longer requires the item or has subsequently decided that the item is unsuitable, except where a statutory right to return applies.
+
+Where Get Wired AutoWorx agrees to accept a **discretionary/voluntary refund** that is not required by law, the following conditions apply:
+
+1. The item must be **unused, undamaged and in its original condition**;
+2. The item must be returned in its **original packaging**, with packaging suitable for resale;
+3. All accessories, manuals, labels, fittings, seals and other components supplied with the item must be returned;
+4. The item must be in a condition in which Get Wired AutoWorx can reasonably resell it as new;
+5. **A 25% handling/restocking fee will be deducted from the refund** to cover handling, inspection, administration, repacking, stock processing and the commercial cost of returning the item to saleable inventory; and
+6. The customer is responsible for the return courier cost.
+
+The 25% handling/restocking fee applies only to refunds or returns for which a charge is legally permitted. **It does not apply where the CPA, ECTA or another mandatory law requires a refund without such a charge.**
+
+### 12.5 Statutory returns — defective, unsafe or non-conforming goods
+Nothing in this policy removes or limits a consumer's non-excludable statutory rights.
+
+In particular, where goods fall within the CPA's statutory warranty/return provisions, the customer may have rights to return the goods without penalty and to obtain the remedy provided by law. A statutory return will be assessed on the facts and applicable law.
+
+**No 25% handling/restocking fee will be deducted from a refund where applicable law prohibits such a deduction.** Any statutory remedy will be applied as required by law.
+
+### 12.6 Electronic transaction cooling-off rights
+Where ECTA section 44 applies to the transaction, a consumer may have a statutory seven-day cooling-off right to cancel without reason or penalty, subject to the Act. In such a case, only the direct cost of returning the goods may be charged where permitted by ECTA.
+
+Where a statutory cooling-off right applies, the statutory refund and return rules take precedence over this discretionary refund policy.
+
+### 12.7 Goods returned for refund — resale condition
+**All items returned for a discretionary refund must be in their original condition and in original packaging fit for resale.**
+
+Items that have been installed, wired, programmed, coded, modified, dismantled, altered, damaged, used beyond reasonable inspection, exposed to incorrect voltage/polarity, contaminated, physically damaged, supplied without required components, or otherwise rendered unsuitable for resale may be refused as a discretionary return, subject always to any statutory rights that apply.
+
+For electrical and electronic products, installation or use may require technical assessment before any warranty, defect or refund determination is made.
+
+### 12.8 Incorrect item, damaged delivery or supplier error
+If Get Wired AutoWorx supplied an incorrect item, or an item arrives damaged or materially different from the agreement, the customer should notify Get Wired AutoWorx promptly and retain the packaging, labels and accessories.
+
+The applicable statutory remedy, contractual remedy or supplier/manufacturer process will be determined after inspection. **Where the law places the return or replacement cost on Get Wired AutoWorx, that cost will not be passed to the customer.**
+
+### 12.9 Special-order and supplier-sourced goods
+Special-order goods are products obtained specifically for a customer. Customers should confirm compatibility, specification, quantity and intended use before payment.
+
+Once a special-order product has been paid for or the supplier order has been placed, Get Wired AutoWorx will not provide a discretionary cancellation or refund merely because the customer changed their mind, ordered incorrectly or no longer requires the item. This is subject to any statutory consumer right that cannot lawfully be excluded.
+
+### 12.10 Warranty, repair and manufacturer assessment
+Manufacturer, importer, wholesaler and supplier warranties remain subject to the applicable warranty terms and statutory consumer protections. Get Wired AutoWorx will endeavour to facilitate the process but does not control third-party technical assessments, repair queues, replacement stock or turnaround times.
+
+Where a product is returned for repair or warranty assessment, the customer may be required to provide proof of purchase and, where reasonably necessary for electrical/electronic products, an installation certificate and/or diagnosis report from a suitably qualified technician.
+
+### 12.11 Refund method and timing
+Once a return has been received, inspected and approved for a refund, Get Wired AutoWorx will process the applicable refund using the original payment method where reasonably practicable, subject to payment-provider processing times and any statutory deadline that applies.
+
+Where only part of an order is approved for refund, the refund will relate only to the approved returned item(s) and any amounts the law requires to be refunded.
+
+### 12.12 Statutory rights prevail
+**This policy is intended to protect Get Wired AutoWorx's legitimate commercial interests to the maximum extent permitted by South African law. It must not, however, be interpreted as excluding, restricting or waiving any consumer right, remedy, warranty or protection that the CPA, ECTA or another mandatory law does not permit a supplier to exclude.**
+
+Where a statutory right provides a customer with a stronger remedy than this policy, the statutory remedy applies only to the extent required by law. All other lawful conditions in this policy remain applicable.
 ## 13. Defective, Damaged or Incorrect Products
 If a product is received damaged, defective, incomplete or different from the product ordered, the customer must notify Get Wired AutoWorx as soon as reasonably possible.
 
