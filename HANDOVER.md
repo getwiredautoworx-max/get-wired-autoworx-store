@@ -858,3 +858,19 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 
 ### Next safe action
 - Await/monitor smoke run 37814267101 to terminal. Separately, continue exact image-source reconciliation from the 800-file source set/ZIP and existing internal mappings; publish nothing until exact matches and production-path validation are proven.
+
+
+## 2026-10-08 — STOREFRONT SMOKE PARSE FIX
+- [x] Investigated smoke run 37814267101 / job 113438720791 instead of treating it as a generic storefront failure.
+- [x] Root cause isolated to the bright-storefront change set introduced in commit bed9459b07750639572b2619818af23a4a67d47b: the product-gallery ternary expression in `index-new.html` was syntactically ambiguous and the customer source-photo MIME regex contained an over-escaped slash.
+- [x] Repaired the product-gallery expression in commit ba5db05ddc2c30b3633866043b700b74f4bca08.
+- [x] Repaired the source-photo MIME regex in commit 5a34c2f16b7f98be3b63b8afa91b43b78078e9bc.
+- [x] Re-parsed all four inline scripts from the current `index-new.html`; all four now pass JavaScript syntax compilation with no parser errors.
+- [ ] GitHub Actions terminal smoke success still pending for the repaired commit. No success is claimed until the workflow actually executes against the repaired code.
+- [x] No Supabase data, product/category/image mappings, DNS, Axxess configuration or payment configuration changed.
+- [x] No Cloudflare, Netlify or Replit credits consumed.
+
+### Current smoke checkpoint
+- Previous run 37814267101 failed because `index-new.html` produced a JavaScript parse error; it is historical and is not being treated as a valid test of the repaired code.
+- Current repaired HEAD: 5a34c2f16b7f98be3b63b8afa91b43b78078e9bc.
+- Next validation: GitHub Actions Storefront Smoke Test must run on this repaired HEAD and reach terminal SUCCESS. If it does not auto-trigger, the workflow's existing manual dispatch remains the appropriate owner/connector action; do not create duplicate deployments.
