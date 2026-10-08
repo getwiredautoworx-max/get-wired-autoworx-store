@@ -497,3 +497,11 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] Once DNS resolves, perform live storefront/mobile QA on Axxess before any production release.
 - [x] Confirmed current ChatGPT tool inventory contains no Axxess/FTP/DirectAdmin connector, so direct account mutation from this session is not available. This is a tooling limitation, not a store-file limitation.
 - Recovery path: use the existing Axxess Client Control Panel DNS zone for `getwiredauto.co.za`; do not upload or extract the store again.
+
+
+## 2026-10-08 — Bright storefront/category navigation update
+- Updated `index-new.html` to use a substantially brighter storefront background/surface treatment while retaining the locked GW blue/red branding and existing store structure.
+- Added image-led category buttons using existing catalogue product imagery; each top-level category button now acts as a direct category link/filter and displays its product count.
+- No Cloudflare or Netlify deployment was performed; no deployment credits were consumed.
+- Source commit: `bed9459b07750639572b2619818af23a4a67d47b`.
+- Browser verification of the new version remains pending until an accessible staging/browser preview is available. Current Cloudflare preview remains the previously deployed version.
