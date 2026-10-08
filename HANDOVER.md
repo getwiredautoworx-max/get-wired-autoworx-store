@@ -706,3 +706,13 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] Supabase Security Advisor remains at the known single warning: Leaked Password Protection Disabled.
 - [ ] Payment-provider live merchant connection remains a production handoff item; no fake/live payment was generated.
 - [ ] Final public-domain HTTPS/storefront/cart/checkout/order-flow acceptance remains blocked until Axxess DNS resolves.
+
+
+## 2026-10-08 — IMAGE SOURCE REPOSITORY CROSS-CHECK
+
+- [x] GitHub recursive-tree audit confirms exactly 800 image files currently under assets/products/ on main.
+- [x] The image-audit workflow itself treats these as internal supplier-keyed source assets and does not expose them as public SKU references.
+- [x] Ten sampled placeholder products were checked against their supplier SKUs; those supplier-SKU filenames were not found by GitHub repository search.
+- [x] Therefore it would be unsafe to convert the remaining 3,395 placeholder URLs to the dynamic product-image endpoint merely because supplier mappings exist; doing so could create broken image requests.
+- [ ] The missing 3,395 customer-facing images still require the actual source-image set or a verified mapping between the uploaded image filenames and supplier/product SKUs.
+- [x] No catalogue image records were modified during this investigation.
