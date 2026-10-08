@@ -335,3 +335,14 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Live Cloudflare runtime verification still needs to be performed externally; source-side fix is complete.
 
 **Next shopability target:** validate product listing/card rendering, then strengthen search ranking and product-image fallback without changing the locked visual design.
+
+
+## 2026-10-08 — SEARCH RELEVANCE REFINEMENT
+
+- [x] Reviewed the live source search algorithm rather than rebuilding it.
+- [x] Search already prioritises exact SKU/name matches, partial matches, fuzzy matches, fitment/specification text and in-stock items.
+- [x] Added a small relevance tie-break for featured products so matching featured products rank slightly higher without overpowering exact SKU/name matches.
+- [x] Committed to main: 7cb3c6720dc0686de8a4a934b0b8853d9025069e.
+- [ ] Live browser/Cloudflare verification remains pending; source-side change is complete.
+
+**Next:** product-image fallback/failed-image handling and mobile product-card QA.
