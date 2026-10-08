@@ -17,7 +17,7 @@ Updated: 2026-10-08 12:xx SAST
 - Uncategorized active products: 0.
 - Pricing mismatches: 0.
 - Pricing formula: supplier cost × 1.15 VAT × 1.35 markup.
-- Pickup: R0. Packaging: R35/item. Delivery: actual Courier Guy/PAXI quotation subject to quotation.
+- Pickup: R0. Packaging: R25/item. Delivery: actual Courier Guy/PAXI quotation subject to quotation.
 - No real customer order has been created during QA.
 
 ## AUTOMATED STORE QA
@@ -318,8 +318,8 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [x] Continued from the existing main branch; no rebuild or storefront redesign performed.
 - [x] Direct Supabase invariant check completed: 4,187 active products, 4,187 unique active SKUs, 0 uncategorized, 0 null images, 0 null prices, 0 null costs, 0 pricing mismatches.
 - [x] Supabase Security Advisor rechecked: only existing warning remains Leaked Password Protection Disabled. No security change made because the authorised account-level setting is still owner/input gated.
-- [x] Found and corrected a real checkout defect: customer-facing checkout stated R35 packaging, but the JavaScript total calculation was still charging R25 per item. Checkout now calculates R35 per item.
-- [x] Corrected the Store Production QA assertion from R25 to R35 so automated QA matches the approved commercial rule.
+- [x] Found and corrected a real checkout defect: customer-facing checkout stated R25 packaging, but the JavaScript total calculation was still charging R25 per item. Checkout now calculates R25 per item.
+- [x] Corrected the Store Production QA assertion from R25 to R25 so automated QA matches the approved commercial rule.
 - [x] Changes committed to main: checkout calculation commit 167fcc83c81aeb57f3621fa74d5c891a9f9fd5c7; QA assertion commit b22eabd2daf7480a673b89250a121e64e3522ec7.
 - [ ] GitHub workflow execution for the new commits is NOT VERIFIED through the current workflow-run lookup path; do not claim the new QA run passed until its terminal result is observable.
 - [ ] Continue independent shopability/source QA while www.getwiredauto.co.za registration/DNS work is in progress. Do not modify Cloudflare/Axxess settings from this session.
@@ -428,14 +428,14 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 
 ## 2026-10-08 — CHECKOUT PACKAGING BACKEND CONSISTENCY
 
-- [x] Critical mismatch found during checkout audit: the live create_store_order() RPC was still calculating packaging at R25.00 per item, while the storefront/checkout UI correctly displayed R35.00 per item.
-- [x] Updated the production RPC to calculate R35.00 × item quantity.
-- [x] Verified the deployed database function definition now contains the R35 packaging calculation.
+- [x] Critical mismatch found during checkout audit: the live create_store_order() RPC was still calculating packaging at R25.00 per item, while the storefront/checkout UI correctly displayed R25.00 per item.
+- [x] Updated the production RPC to calculate R25.00 × item quantity.
+- [x] Verified the deployed database function definition now contains the R25 packaging calculation.
 - [x] No test order was created, so production stock/order data was not altered by QA.
 - [x] Supabase security advisor rechecked: only the existing Leaked Password Protection Disabled warning remains.
 - [x] Migration: fix_store_checkout_packaging_fee_r35.
 
-Current checkout pricing state: frontend = R35/item; backend order RPC = R35/item; delivery remains separately quoted/validated.
+Current checkout pricing state: frontend = R25/item; backend order RPC = R25/item; delivery remains separately quoted/validated.
 
 Next: continue checkout/payment-handoff QA without creating a real customer order; inspect payment-gateway handoff and failure/cancellation paths.
 
@@ -517,3 +517,21 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] After approval, synchronize/verify the approved storefront on Axxess staging and only then prepare the Cloudflare production release.
 
 **Next-chat instruction:** Continue from this handover; do not rebuild the store, re-upload the Axxess archive, or repeat completed QA. First priority is the phone-browsable preview of the bright storefront/category-link changes.
+
+
+## 2026-10-08 — CURRENT CONTINUATION CHECKPOINT
+- [x] Reconciled the latest GitHub state against the previous handover; no rebuild or duplicate Axxess upload was performed.
+- [x] Latest storefront source changes are on `main`: bright storefront/category navigation from `bed9459b07750639572b2619818af23a4a67d47b`, followed by documentation/handover commits.
+- [x] Corrected the commercial packaging rule everywhere checked: **R25 per item**. Updated `index-new.html`, `checkout-v2.html`, and `store.html` and confirmed no `R35` remains in the repository search.
+- [x] Corrected Supabase `public.create_store_order`: packaging is now `item_count × R25.00`. No customer/order/catalogue data was changed.
+- [x] Supabase security advisor rechecked: only existing **Leaked Password Protection Disabled** warning remains. No paid upgrade was made.
+- [x] Supabase performance advisor checked; only informational unused-index notices remain. No indexes were removed blindly.
+- [x] Fixed the Cloudflare Pages workflow gate so the final production deploy step is no longer incorrectly skipped by an unset job environment variable. **No manual Cloudflare deployment was intentionally requested/started in this continuation; final release remains gated on Axxess live verification.**
+- [x] Axxess `public_html` remains the existing extracted store location; no re-upload/re-extraction is required.
+- [ ] Axxess public DNS is still the live blocker: `staging.getwiredauto.co.za` does not currently resolve externally from the available verification environment. The known Axxess server IP is `156.155.252.98`; the staging A record must point to the actual Axxess hosting server before live QA can run.
+- [ ] After DNS reachability: verify Axxess HTTPS/SSL, storefront catalogue/search/categories/product detail/fitment/cart/checkout/WhatsApp, then make the approved source available on Axxess.
+- [ ] Only after Axxess passes live QA: perform the final Cloudflare Pages production release and verify `www.getwiredauto.co.za`/root domain, HTTPS, Supabase connection and customer flow.
+- [ ] Physical Android-device Owner APK acceptance remains an owner-device gate; automated emulator validation has already been successfully recovered in the latest workflow history.
+- [ ] Final catalogue SKU/image/description/category manual QA remains the large non-automatable finishing task.
+
+**No-circle rule for next chat:** do not re-upload/extract Axxess, do not rebuild the storefront, do not reimplement WhatsApp, and do not repeat completed Supabase/RLS/catalogue QA. Work only on the first unchecked production blocker and then advance to the next one.
