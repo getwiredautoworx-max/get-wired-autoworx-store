@@ -438,3 +438,15 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 Current checkout pricing state: frontend = R35/item; backend order RPC = R35/item; delivery remains separately quoted/validated.
 
 Next: continue checkout/payment-handoff QA without creating a real customer order; inspect payment-gateway handoff and failure/cancellation paths.
+
+
+## 2026-10-08 — PAYMENT HANDOFF AUDIT
+
+- [x] Audited checkout payment flow and the active payment-gateway Edge Function.
+- [x] Store checkout currently creates an order with payment status `pending`; it does not generate or redirect to a customer payment link.
+- [x] The existing `payment-gateway` function is currently designed for private supplier/quote payment links and Peach Payments webhook processing, not the public `orders` checkout flow.
+- [x] Its live link-creation path deliberately stops before money movement until the merchant account and exact Peach live request parameters are verified. No fake payment URL is generated.
+- [x] Therefore no unsafe payment integration was added or claimed as live.
+- [ ] Remaining payment integration task: connect the approved merchant payment provider to the store-order flow, with server-side credentials and a verified live payment-link/API contract. This requires merchant/provider credentials or confirmation that the existing Peach account is ready for store-order payments.
+
+**Current state:** catalogue, cart, checkout totals and backend stock/order creation are functional; online payment handoff is the remaining material checkout gap. ETA after verified payment-provider access: approximately 1 focused implementation/QA batch.
