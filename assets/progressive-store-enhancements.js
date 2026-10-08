@@ -58,44 +58,64 @@ function install(frame){
   const obs=new MutationObserver(enrich);obs.observe(d.body,{childList:true,subtree:true});enrich();
   if(!d.querySelector('.gwTrust')){const footer=d.getElementById('contact');if(footer){const t=d.createElement('div');t.className='gwTrust';t.textContent='Get Wired AutoWorx • Established 2012 • 074 4884 234 • 4.7/5 Google Rating • Nationwide delivery available';footer.parentNode.insertBefore(t,footer)}}
 }
-  // Major-retailer search: search the full in-memory 4,187-product catalogue,
-  // not merely the 60 cards currently rendered on screen.
-  function installFullCatalogueSearch(){
-    if(!d.getElementById('searchInput') || d.getElementById('gwFullSearchInstalled'))return;
-    const search=d.getElementById('searchInput');
-    const box=d.getElementById('gwSearchResults');
-    if(!box)return;
-    const mark=d.createElement('span'); mark.id='gwFullSearchInstalled'; mark.style.display='none'; d.body.appendChild(mark);
-    const renderFull=()=>{
-      const q=search.value.trim().toLowerCase();
-      if(!q){box.classList.remove('open');return}
-      const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
-      const hits=all.filter(p=>[p.name,p.public_sku,p.slug,p.description,p.compatible_vehicles].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,15);
-      box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+escFull(p.name)+'</b><small>SKU: '+escFull(p.public_sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
-      box._gwFullHits=hits; box.classList.add('open');
+  // Major-retailer search: operate on the full in-memory catalogue from the iframe document.
+  function installFullCatalogueSearch(d){
+    if(!d)return;
+    const search=d.getElementById('searchInput'), box=d.getElementById('gwSearchResults');
+    if(!search||!box||search.dataset.gwFullSearch)return;
+    search.dataset.gwFullSearch='1';
+    const normal=v=>String(v??'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+    const distance=(a,b)=>{
+      if(a===b)return 0;if(!a||!b)return Math.max(a.length,b.length);
+      if(Math.abs(a.length-b.length)>3)return 4;
+      const prev=Array.from({length:b.length+1},(_,i)=>i);
+      for(let i=1;i<=a.length;i++){const cur=[i];for(let j=1;j<=b.length;j++)cur[j]=Math.min(cur[j-1]+1,prev[j]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));prev.splice(0,prev.length,...cur);}
+      return prev[b.length];
     };
-    const escFull=v=>String(v??'').replace(/[&<>"]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[x]));
-    search.addEventListener('input',renderFull);
-    box.addEventListener('click',e=>{
-      const row=e.target.closest('[data-full-product]'); if(!row)return;
-      const p=box._gwFullHits?.[Number(row.dataset.fullProduct)];
-      if(p && typeof d.defaultView.gwOpenProduct==='function'){d.defaultView.gwOpenProduct(p);box.classList.remove('open')}
-    });
+    const score=(p,q)=>{
+      const fields=[
+        [normal(p.public_sku),80],[normal(p.sku),80],[normal(p.name),60],
+        [normal(p.slug),35],[normal(p.description),20],[normal(p.compatible_vehicles),30],
+        [normal(p.brand),30],[normal(p.category_name),15]
+      ];
+      const qt=normal(q).split(/\\s+/).filter(Boolean); let total=0;
+      for(const term of qt){
+        let best=0;
+        for(const [field,weight] of fields){
+          if(!field)continue;
+          const words=field.split(/\\s+/);
+          if(field===term||field.startsWith(term+' ')||field.includes(' '+term))best=Math.max(best,weight);
+          else if(words.some(w=>w.startsWith(term)))best=Math.max(best,weight*0.8);
+          else if(term.length>=4&&words.some(w=>distance(w,term)<=1))best=Math.max(best,weight*0.65);
+        }
+        total+=best;
+      }
+      return total+(p.stock_quantity>0?2:0);
+    };
+    const esc=v=>String(v??'').replace(/[&<>"]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[x]));
+    const render=()=>{
+      const q=search.value.trim(); if(!q){box.classList.remove('open');return;}
+      const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
+      const hits=all.map(p=>({p,s:score(p,q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,15).map(x=>x.p);
+      box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+esc(p.name)+'</b><small>SKU: '+esc(p.public_sku||p.sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
+      box._gwFullHits=hits;box.classList.add('open');
+    };
+    search.addEventListener('input',render);
+    box.addEventListener('click',e=>{const row=e.target.closest('[data-full-product]');if(!row)return;const p=box._gwFullHits?.[Number(row.dataset.fullProduct)];if(p&&typeof d.defaultView.gwOpenProduct==='function'){d.defaultView.gwOpenProduct(p);box.classList.remove('open');}});
   }
-  installFullCatalogueSearch();
 
-  // Recently viewed products + wishlist button on the product detail modal.
-  function installProductTools(){
-    const modal=d.getElementById('productModal'); if(!modal||modal.dataset.gwTools)return;
+  // Recently viewed products + wishlist button, scoped to the iframe document.
+  function installProductTools(d){
+    if(!d)return;
+    const modal=d.getElementById('productModal');if(!modal||modal.dataset.gwTools)return;
     modal.dataset.gwTools='1';
     const obs=new MutationObserver(()=>{
-      const detail=modal.querySelector('.detail'); if(!detail)return;
-      const title=detail.querySelector('h2')?.textContent?.trim(); if(!title)return;
+      const detail=modal.querySelector('.detail');if(!detail)return;
+      const title=detail.querySelector('h2')?.textContent?.trim();if(!title)return;
       const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
-      const p=all.find(x=>x.name===title); if(!p)return;
-      const actions=detail.querySelector('.detailActions'); if(!actions||actions.querySelector('.gwWishlist'))return;
-      const b=d.createElement('button'); b.className='gwWishlist'; b.textContent='♡ SAVE PRODUCT';
-      b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
+      const p=all.find(x=>x.name===title);if(!p)return;
+      const actions=detail.querySelector('.detailActions');if(!actions||actions.querySelector('.gwWishlist'))return;
+      const b=d.createElement('button');b.className='gwWishlist';b.textContent='♡ SAVE PRODUCT';b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
       b.onclick=()=>{let w=[];try{w=JSON.parse(localStorage.getItem('gw_wishlist')||'[]')}catch(e){};if(!w.includes(p.id))w.push(p.id);localStorage.setItem('gw_wishlist',JSON.stringify(w));b.textContent='♥ SAVED';};
       actions.appendChild(b);
       let rv=[];try{rv=JSON.parse(localStorage.getItem('gw_recent')||'[]')}catch(e){}
@@ -103,8 +123,9 @@ function install(frame){
     });
     obs.observe(modal,{childList:true,subtree:true});
   }
-  installProductTools();
 
+  installFullCatalogueSearch(d);
+  installProductTools(d);
 function boot(){const f=document.getElementById('store');if(!f)return;const go=()=>setTimeout(()=>{try{install(f)}catch(e){}},100);f.addEventListener('load',go);go();setInterval(()=>{try{install(f)}catch(e){}},2500)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
