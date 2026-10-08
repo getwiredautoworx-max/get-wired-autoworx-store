@@ -831,3 +831,16 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 3. Prepare the Axxess-ready storefront package without unnecessary rebuilds.
 4. After owner upload and DNS reachability, perform live Axxess QA and fix only actual live defects.
 5. Reconcile the final tested version to GitHub, verify Supabase alignment, then use Cloudflare only for the final required release/update.
+
+
+## 2026-10-08 — CONTINUATION / CURRENT AUTOMATION STATUS
+- [x] Checked the latest Storefront Smoke Test triggered by the R35 diagnostic cleanup.
+- [x] Latest smoke run: 37814267101, head SHA ddca53de4c60691df01e26c11de2548a5cf58dae.
+- [ ] Run 37814267101 is still IN PROGRESS; its smoke job 113438720791 has completed setup and is currently executing repository checkout. It is therefore not marked successful prematurely.
+- [x] The preceding smoke run 37813499766 failed on the earlier commit c0a1eadcf8b26852af6272c63b534e627212177f; this is retained as historical state and is not treated as the result of the current corrected workflow.
+- [x] Public web search for getwiredauto.co.za and www.getwiredauto.co.za still does not provide a live-domain result; no public-domain resolution has been established from the current verification environment.
+- [x] No Axxess/DNS mutation was performed, respecting the Axxess-first/no-credit strategy and the owner's pending support response.
+- [x] No Cloudflare, Netlify or Replit credits were consumed.
+
+### Immediate next action
+- Continue monitoring smoke run 37814267101 to terminal. If it fails, retrieve the job logs, diagnose only the actual failure and make the smallest safe correction. If it succeeds, record the terminal success and proceed to the next independent Axxess-ready task.
