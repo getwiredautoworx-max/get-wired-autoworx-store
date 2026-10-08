@@ -378,3 +378,15 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Live browser/Cloudflare verification remains pending.
 
 **Next:** continue functional QA of cart quantity controls, checkout handoff and related-product relevance.
+
+
+## 2026-10-08 — CART STOCK CONTROL QA
+
+- [x] Audited cart quantity controls and checkout handoff.
+- [x] Confirmed checkout is linked from the cart as `checkout-v2.html`.
+- [x] Found and fixed a real cart defect: quantity could previously be increased beyond the product's available stock.
+- [x] Cart increment is now capped at the current product stock quantity.
+- [x] Commit: b0361ad702ae688af40e7c5efa2f88d492b773d8.
+- [ ] Live browser/Cloudflare verification remains pending.
+
+**Next:** validate checkout-side stock enforcement and payment/order handoff against the backend functions.
