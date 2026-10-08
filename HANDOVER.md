@@ -557,3 +557,12 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] No customer order was created during this change and no catalogue rows were changed.
 - [x] A repository search found no remaining `R25.00` packaging text.
 - [ ] Re-run final live checkout verification after Axxess DNS resolves.
+
+
+## 2026-10-08 — CONTINUATION CHECK / DNS STILL PENDING
+- [x] Rechecked public DNS status from an independent external verification path during this continuation.
+- [ ] `staging.getwiredauto.co.za`, `www.getwiredauto.co.za`, and `getwiredauto.co.za` are still not confirmed as publicly resolving to the Axxess server from the available verification path.
+- [x] No DNS records, Axxess files, storefront source, Supabase data, or deployments were changed during this check.
+- [x] Packaging R35 change remains completed and is not being repeated.
+- [ ] Continue with live Axxess/HTTPS/storefront/checkout verification immediately when public DNS resolves.
+- [ ] Remaining owner/provider gates remain: physical-phone Owner APK acceptance and actual payment-provider merchant configuration.
