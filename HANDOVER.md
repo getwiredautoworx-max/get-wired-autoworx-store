@@ -311,3 +311,17 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Data integrity positives: 0 active blank names, 0 blank SKUs, 0 blank categories, 0 blank prices, 0 blank costs; 0 duplicate active SKU groups; 0 pricing mismatches against cost × 1.15 × 1.35; 27,745 active stock units reported. These checks do not cure the source/category/image contamination above.
 - Conclusion: the storefront UI/functionality has improved substantially, but the catalogue itself is NOT yet clean enough to call production-ready. The main remaining technical issue is catalogue normalization/source control, not another round of cosmetic storefront tweaks.
 - Required recovery path: isolate the 791 approved September products as the customer-facing validated catalogue; preserve the 3,396 legacy records as admin/import history or explicitly revalidate them against approved supplier sources before exposing them; normalize the 5 main categories and approved subcategories; perform actual image-by-image visual QA for the approved 791 assets; then perform exact SKU/product-name/category/price cross-reference against the official supplier source and current supplier data before final live-store sign-off. Axxess remains excluded for the current 24-hour exclusion window. PayFast/owner approvals remain untouched.
+
+
+## 2026-10-08 11:58 SAST — CONTINUATION WHILE DOMAIN REGISTRATION/DNS UPDATES
+
+- [x] Continued from the existing main branch; no rebuild or storefront redesign performed.
+- [x] Direct Supabase invariant check completed: 4,187 active products, 4,187 unique active SKUs, 0 uncategorized, 0 null images, 0 null prices, 0 null costs, 0 pricing mismatches.
+- [x] Supabase Security Advisor rechecked: only existing warning remains Leaked Password Protection Disabled. No security change made because the authorised account-level setting is still owner/input gated.
+- [x] Found and corrected a real checkout defect: customer-facing checkout stated R35 packaging, but the JavaScript total calculation was still charging R25 per item. Checkout now calculates R35 per item.
+- [x] Corrected the Store Production QA assertion from R25 to R35 so automated QA matches the approved commercial rule.
+- [x] Changes committed to main: checkout calculation commit 167fcc83c81aeb57f3621fa74d5c891a9f9fd5c7; QA assertion commit b22eabd2daf7480a673b89250a121e64e3522ec7.
+- [ ] GitHub workflow execution for the new commits is NOT VERIFIED through the current workflow-run lookup path; do not claim the new QA run passed until its terminal result is observable.
+- [ ] Continue independent shopability/source QA while www.getwiredauto.co.za registration/DNS work is in progress. Do not modify Cloudflare/Axxess settings from this session.
+
+**Current shopability priority:** product discovery/search relevance, product-image quality/fallback, product detail/related products, mobile/cart behaviour, then final automated regression. Domain/DNS/live-browser verification remains external and is not a blocker for source/database work.
