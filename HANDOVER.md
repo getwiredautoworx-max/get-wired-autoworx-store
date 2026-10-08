@@ -368,3 +368,13 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Actual browser/Cloudflare visual verification remains the external QA step because the current tool access does not provide a live Cloudflare browser session.
 
 **Next:** inspect related-product ranking and product-detail purchase flow for concrete functional defects before making further changes.
+
+
+## 2026-10-08 — PRODUCT DETAIL / MOBILE BUY FLOW FIX
+
+- [x] Fixed mobile product-detail **BUY NOW** so it opens the cart after adding the item, matching the desktop BUY NOW behaviour.
+- [x] Hardened gallery thumbnail switching: if a selected gallery image fails, it now falls back to the GW logo instead of displaying a broken image.
+- [x] Commit: 180fc89336c19998a97d43a6761fb0874e60266f.
+- [ ] Live browser/Cloudflare verification remains pending.
+
+**Next:** continue functional QA of cart quantity controls, checkout handoff and related-product relevance.
