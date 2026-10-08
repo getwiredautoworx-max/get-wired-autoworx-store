@@ -542,7 +542,7 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] All three hostnames remain unresolved/unreachable from the verification environment; no HTTP response is available yet.
 - [x] This is consistent with the previously identified DNS/delegation blocker, not a missing storefront upload: the Axxess `public_html` archive/extraction is already confirmed.
 - [x] Current known Axxess server IP: `156.155.252.98`.
-- [x] Axxess's current DirectAdmin guidance confirms that a newly created subdomain requires an A record to the hosting server and DNS propagation before it becomes externally reachable; Axxess states propagation can take roughly 4 hours for a newly added record. citeturn4search0turn4search5
+- [x] Axxess's current DirectAdmin guidance confirms that a newly created subdomain requires an A record to the hosting server and DNS propagation before it becomes externally reachable; Axxess states propagation can take roughly 4 hours for a newly added record.
 - [ ] Owner-side DNS action required: in Axxess Client Control Panel → `getwiredauto.co.za` → DNS zone, ensure `staging` has an **A** record pointing to `156.155.252.98`. Do not change nameservers, root/www records, MX, or other records as part of this fix.
 - [ ] After that record is saved and propagation begins, re-test `staging.getwiredauto.co.za`; then immediately proceed to HTTPS/storefront QA.
 - [ ] No source code, Supabase data, Axxess files, or Cloudflare deployment was changed during this verification.
