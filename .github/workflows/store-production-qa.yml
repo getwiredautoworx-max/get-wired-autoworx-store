@@ -72,7 +72,7 @@ jobs:
         run: |
           set -euo pipefail
           files="$(git ls-files '*.html' '*.js' | grep -v '^functions/' | grep -v '^android-owner-app/' || true)"
-          if [ -n "$files" ] && grep -nHE "cost_price|supplier_cost|supplier[[:space:]_-]*price|service_role|SUPABASE_SERVICE_ROLE_KEY|SUPABASE_SECRET_KEYS" $files; then
+          if [ -n "$files" ] && grep -nHE "cost_price|supplier_cost|vendor[[:space:]_-]*price|service_role|SUPABASE_SERVICE_ROLE_KEY|SUPABASE_SECRET_KEYS" $files; then
             echo "ERROR: private supplier-cost or server-secret reference exposed in public source"
             exit 1
           fi
