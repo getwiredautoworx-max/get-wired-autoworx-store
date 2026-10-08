@@ -401,3 +401,15 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Direct live order simulation was not performed because it would create/reserve a real order and alter production stock.
 
 **Next:** improve related-product ranking and continue storefront UX/QA without placing live production orders.
+
+
+## 2026-10-08 — RELATED PRODUCT RELEVANCE QA
+
+- [x] Replaced the previous related-product scoring that could rank arbitrary same-category items too highly.
+- [x] New ranking considers shared meaningful product-name terms, shared compatible-vehicle entries, same category, featured status, and stock availability.
+- [x] Fitment overlap receives the strongest weighting; name similarity is weighted next.
+- [x] Results remain capped at 3 and use deterministic name sorting for ties.
+- [x] Commit: c8471c48a13595d5ff6f964fa8b42db51a93fcfb.
+- [ ] Live browser verification remains pending.
+
+**Next:** audit product-card purchase states and stale-cart handling, then continue checkout UX QA.
