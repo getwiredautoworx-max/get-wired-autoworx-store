@@ -1,11 +1,11 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
-Updated: 2026-10-07 19:05 SAST
+Updated: 2026-10-08 12:xx SAST
 
 ## CURRENT CHECKPOINT
 - Continue from this file; preserve existing store and do not rebuild unnecessarily.
 - User requires execution-focused progress and handover updates after every task attempt.
-- Axxess remains excluded from all remaining tasks for the current 24-hour exclusion window.
+- Axxess staging is now active; the owner has created the staging subdomain and the remaining blocker is DNS/public reachability, not file upload or extraction.
 
 ## VERIFIED PRODUCTION STATE
 - Repository: getwiredautoworx-max/get-wired-autoworx-store, branch main.
@@ -17,7 +17,7 @@ Updated: 2026-10-07 19:05 SAST
 - Uncategorized active products: 0.
 - Pricing mismatches: 0.
 - Pricing formula: supplier cost × 1.15 VAT × 1.35 markup.
-- Pickup: R0. Packaging: R25/item. Delivery: actual Courier Guy/PAXI quotation subject to quotation.
+- Pickup: R0. Packaging: R35/item. Delivery: actual Courier Guy/PAXI quotation subject to quotation.
 - No real customer order has been created during QA.
 
 ## AUTOMATED STORE QA
@@ -469,7 +469,7 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] GitHub remains the authoritative source/version history; Supabase remains the live database/backend; Cloudflare remains the release/production deployment target after approval.
 - [x] FTP access details were supplied by the owner for staging access. **Credentials are intentionally NOT recorded in this handover or any repository file.**
 - [ ] Direct FTP manipulation from ChatGPT remains blocked because no supported Axxess/FTP connector is available in the current tool environment.
-- [ ] The uploaded 390 MB archive must be extracted/placed into the Axxess web root (`public_html`) using DirectAdmin/File Manager or an FTP client available to the owner.
+- [x] The uploaded 390 MB archive is already extracted in `public_html`; both ZIP and unzipped store files are present.
 - [ ] Once the extracted storefront is accessible at an Axxess URL, perform live browser/mobile QA there before any production Cloudflare release.
 - [ ] Do not claim Axxess deployment or live-browser verification until the files and URL are actually reachable.
 - Security note: because an FTP password was exposed in chat, the owner should rotate that FTP password after access setup; the replacement password must not be stored in the repository/handover.
@@ -484,3 +484,16 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] Remaining Axxess blocker is solely direct ChatGPT access: no supported Axxess/FTP connector is available in the current tool environment, so live file inspection/browser verification from ChatGPT is not yet possible.
 - [ ] Next Axxess-side milestone is to obtain/confirm the accessible staging URL and then perform live browser/mobile QA when a supported access path is available.
 - [ ] Do not ask the owner to re-upload or re-extract the store archive.
+
+
+## 2026-10-08 — AXXESS STAGING SUBDOMAIN / DNS BLOCKER
+
+- [x] Owner created the Axxess DirectAdmin subdomain `staging.getwiredauto.co.za`.
+- [x] Custom document root was set to `/domains/getwiredauto.co.za/public_html`, pointing the staging hostname at the existing uploaded/extracted store files.
+- [x] No re-upload, re-extraction, file replacement, or store rebuild was performed.
+- [x] Attempted external HTTP verification of `https://staging.getwiredauto.co.za`; the URL is currently not externally reachable from the available verification path.
+- [x] Axxess documentation confirms a newly created subdomain may require an A record pointing to the hosting server and DNS propagation before external access is available.
+- [ ] Determine/confirm the Axxess hosting-server IP and ensure the `staging` DNS A record points to it; then retry HTTPS/browser verification.
+- [ ] Once DNS resolves, perform live storefront/mobile QA on Axxess before any production release.
+- [x] Confirmed current ChatGPT tool inventory contains no Axxess/FTP/DirectAdmin connector, so direct account mutation from this session is not available. This is a tooling limitation, not a store-file limitation.
+- Recovery path: use the existing Axxess Client Control Panel DNS zone for `getwiredauto.co.za`; do not upload or extract the store again.
