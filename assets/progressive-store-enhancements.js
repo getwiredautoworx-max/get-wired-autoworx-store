@@ -16,6 +16,12 @@ function install(frame){
     .gwTools{display:flex;gap:7px;margin-top:7px}.gwCopy{flex:1;background:#07111e;border:1px solid #17618b;color:#dff3ff;border-radius:7px;padding:8px;font-weight:700;cursor:pointer}
     .gwTrust{margin:12px 20px 0;padding:12px;border:1px solid #12456c;border-radius:10px;background:#06111e;color:#cfe1f2;font-size:12px;text-align:center}
     .gwFitment{margin-top:8px;padding:9px;border:1px dashed #17618b;border-radius:7px;color:#aab7c8;font-size:11px;line-height:1.4}
+    .gwRecentStrip{margin-top:14px;padding:11px;border:1px solid #12456c;border-radius:10px;background:#06111e}
+    .gwRecentTitle{font-size:12px;font-weight:800;color:#dff3ff;margin-bottom:8px}
+    .gwRecentItems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+    .gwRecentItem{min-width:0;text-align:left;background:#07111e;border:1px solid #17618b;color:#dff3ff;border-radius:8px;padding:8px;cursor:pointer}
+    .gwRecentItem b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px}
+    .gwRecentItem small{display:block;color:#8fa4b8;margin-top:3px}
     @media(max-width:900px){#gwSearchTools{padding:0 4px}.gwTrust{margin-left:12px;margin-right:12px}.gwTools{flex-direction:column}.gwCopy{width:100%}}
   `;d.head.appendChild(style);
 
@@ -123,6 +129,20 @@ function install(frame){
       actions.appendChild(b);
       let rv=[];try{rv=JSON.parse(localStorage.getItem('gw_recent')||'[]')}catch(e){}
       rv=[p.id,...rv.filter(x=>x!==p.id)].slice(0,10);localStorage.setItem('gw_recent',JSON.stringify(rv));
+
+      // Surface recently viewed products inside the current product flow.
+      const oldRecent=detail.querySelector('.gwRecentStrip'); if(oldRecent) oldRecent.remove();
+      const recentIds=rv.filter(x=>x!==p.id).slice(0,4);
+      const recentProducts=recentIds.map(id=>all.find(x=>x.id===id)).filter(Boolean);
+      if(recentProducts.length){
+        const strip=d.createElement('div');strip.className='gwRecentStrip';
+        strip.innerHTML='<div class="gwRecentTitle">Recently viewed</div><div class="gwRecentItems">'+recentProducts.map((rp,i)=>'<button type="button" class="gwRecentItem" data-recent-index="'+i+'"><b>'+String(rp.name||'Product').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</b><small>'+String(rp.public_sku||rp.sku||'')+'</small></button>').join('')+'</div>';
+        strip.querySelectorAll('[data-recent-index]').forEach(btn=>btn.addEventListener('click',()=>{
+          const rp=recentProducts[Number(btn.dataset.recentIndex)];
+          if(rp&&typeof d.defaultView.gwOpenProduct==='function') d.defaultView.gwOpenProduct(rp);
+        }));
+        detail.appendChild(strip);
+      }
     });
     obs.observe(modal,{childList:true,subtree:true});
   }
