@@ -338,3 +338,69 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - Axxess remains the final hosting gate: upload approved storefront to `public_html`, preserve `cgi-bin`, configure Let's Encrypt SSL/HTTPS, then perform public Android/desktop QA.
 - Once Axxess upload + SSL are completed, current estimated time to live verification is **approximately 1–2 hours**, assuming normal DNS/SSL propagation and no blocking live defect.
 - Owner APK physical-device acceptance and live APK/backend testing can proceed in parallel after the public site is reachable.
+
+## 2026-10-08 — DNS-INDEPENDENT PRODUCTION CONTINUATION CHECKPOINT
+
+### VERIFIED DATABASE / SECURITY STATE
+- [x] Supabase production project ojytykqpvonxvepprgbh was rechecked directly.
+- [x] Active products: **4,187**.
+- [x] Active priced products: **4,187**.
+- [x] Unique active SKUs: **4,187**.
+- [x] Active products with null image URLs: **0**.
+- [x] Active products without category: **0**.
+- [x] Active pricing mismatches against cost_price × 1.15 × 1.35: **0**.
+- [x] Active products using the branded placeholder image: **3,395**. Exact-SKU image coverage remains the unfinished catalogue-image task; no guessed substitutions are permitted.
+- [x] Total product rows: **4,198**; distinct SKUs: **4,198**; active rows: **4,187**.
+- [x] Public categories: **241 total / 157 active / 57 active top-level**. Existing category structure was not rewritten.
+- [x] Category manual-review queue currently contains **198** records. These remain protected from automatic reassignment.
+- [x] All inspected public production tables remain RLS-enabled.
+- [x] admin_list_orders, admin_update_order, and both create_store_order overloads are not executable by anon, authenticated, or PUBLIC; privileged execution remains restricted.
+- [x] Supabase Security Advisor currently reports **one WARN only: Leaked Password Protection Disabled**. No unrelated database mutation was made.
+- [x] Supabase Performance Advisor currently reports INFO-only unused-index findings. No indexes were removed.
+- [x] Supabase current documentation/changelog was checked before this continuation. The upcoming October 30, 2026 Data API auto-exposure enforcement concerns newly created public tables; existing tables retain their current grants. No production schema change was made because of this check.
+
+### CHECKOUT / COMMERCIAL RULE RECONCILIATION
+- [x] Re-read live store-checkout Edge Function: ACTIVE, version 1, JWT verification intentionally disabled for public checkout.
+- [x] Re-read live shipping-quote Edge Function: ACTIVE, version 2.
+- [x] Current active checkout-v2.html source is authoritative.
+- [x] Current commercial rule is **R35.00 packaging per item**, **R0 pickup**, and **delivery charged according to selected courier/PAXI quotation and subject to quotation**.
+- [x] Delivery checkout requires a quotation before a delivery order can be submitted.
+- [x] Server-side order creation remains authoritative for product pricing, stock and packaging calculation.
+- [x] Legacy checkout.html contained stale R25 wording and was converted to a redirect-only compatibility page to checkout-v2.html. Commit: e2a95f5e83b87d62464ac2727b45d7361394e1bf.
+- [x] Checkout documentation was reconciled with the current R35 rule. Commit: 1bd92c80ded36d1471e70c794923fd13a47567a1.
+- [x] No customer/order/product data was created or changed during this reconciliation.
+
+### STOREFRONT / SEO SOURCE QA
+- [x] Current route remains index.html → store.html → index-new.html; store.html exposes checkout-v2.html.
+- [x] Current storefront source retains category navigation, vehicle finder/fitment, product grid, cart, product detail, fitment-help, WhatsApp and mobile controls.
+- [x] robots.txt continues to allow the public storefront while disallowing admin/private development paths.
+- [x] Added production SEO metadata to index-new.html: descriptive title, meta description, canonical https://www.getwiredauto.co.za/, robots directive, Open Graph title/description/url/image. Commit: 12e129c927fb0440e93aeca3c2115376d216c16d.
+- [x] No deployment or credit-dependent preview was triggered.
+
+### CURRENT REMAINING WORK THAT DOES NOT REQUIRE DNS
+1. [ ] Exact-SKU product-image coverage and visual verification for the remaining **3,395** branded placeholders. Do not guess images.
+2. [ ] Protected category-review queue/manual catalogue reconciliation for the **198** queued records where catalogue mapping needs human confirmation.
+3. [ ] Final source-level regression of all storefront routes after the latest SEO/checkout commits; automated/live browser testing remains separate.
+4. [ ] Owner APK physical-device installation/acceptance and owner-login functional test. Emulator validation is already successful; this is a genuine physical-device gate.
+5. [ ] PayFast/live payment automation remains owner/provider-gated; no live payment credentials are present.
+6. [ ] Supplier/courier automated registration/tracking remains provider-gated; PAXI portal fallback is already implemented.
+7. [ ] Supabase Auth leaked-password protection remains an owner/dashboard configuration gate.
+8. [ ] Backup/recovery confirmation and final production checklist can be completed independently; no destructive backup/index changes are required.
+9. [ ] Axxess upload/SSL/public-domain browser testing remains DNS/owner-access dependent and is intentionally excluded from this DNS-independent work.
+
+### CURRENT AUTHORITATIVE OWNER INPUTS / GATES
+- Physical Android device for Owner APK acceptance.
+- Owner/admin credentials when live authenticated testing is reached.
+- Payment-provider credentials/merchant approval for live payment automation.
+- Provider API access for fully automatic courier/PAXI registration where required.
+- Axxess authenticated File Manager/SSL actions and public DNS propagation for live-domain verification.
+
+### NO-CIRCLE / PRESERVATION CHECK
+- [x] No storefront rebuild.
+- [x] No catalogue re-import.
+- [x] No old 1,109-row CSV use.
+- [x] No blind image substitution.
+- [x] No unnecessary Supabase schema/data mutation.
+- [x] No unused-index removal.
+- [x] No Cloudflare, Netlify or Replit credit-dependent deployment used.
+- [x] Permanent 8 rules above remain unchanged and continue to govern all future sessions.
