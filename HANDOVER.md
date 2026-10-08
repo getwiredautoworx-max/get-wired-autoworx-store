@@ -632,3 +632,10 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [ ] Supabase Auth leaked-password protection remains the only Security Advisor warning and requires an authorised Auth configuration path/owner action.
 
 **Current next action:** continue independent source/database QA only; once Axxess DNS is reachable, perform the live storefront/mobile/checkout verification, then final Cloudflare release verification. No rebuild, re-upload, or repeated completed QA.
+
+
+## 2026-10-08 — CATEGORY STRUCTURE AUDIT
+- [x] Live category inventory reviewed without modifying product/category relationships.
+- [x] Confirmed all 4,187 active products remain categorized.
+- [x] Found legacy/duplicate category records still present with zero active products, plus several similarly named active buckets (for example case/format variants). These must not be blindly merged because exact SKU/category mapping is still the authoritative finishing task.
+- [ ] Continue exact SKU-level category reconciliation only where the catalogue evidence is unambiguous; retire obsolete zero-use category records only after foreign-key/dependency verification.
