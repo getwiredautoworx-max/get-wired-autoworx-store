@@ -663,3 +663,46 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] Security Advisor still reports only the existing Supabase Auth Leaked Password Protection Disabled warning.
 - [ ] No immediate Edge Function security change is justified; changing public functions merely to enable JWT would break intended customer/webhook flows and is therefore deferred.
 
+
+
+## 2026-10-08 — DNS-INDEPENDENT COMPLETION PASS
+
+### Storefront / checkout source QA
+- [x] Reviewed live repository storefront entry points: index.html, store.html routing, category.html, products.html, product.html, checkout-v2.html and admin.html.
+- [x] Public catalogue pages use the Supabase publishable key only; no service-role key is present in the reviewed storefront files.
+- [x] Product/category rendering escapes database-derived HTML values before insertion.
+- [x] Product listing limit of 1000 is sufficient for the current largest active category (879 products).
+- [x] Checkout uses the live store-checkout Edge Function and carries the R35-per-item packaging rule into the displayed total and order notes.
+- [x] Pickup and delivery/payment validation is enforced client-side before order submission; server-side order validation remains authoritative.
+- [x] Admin page routes through Supabase Auth and the protected admin RPCs already verified at database privilege level.
+
+### Exact SKU/category/image audit
+- [x] Active products rechecked: 4,187.
+- [x] Active products with missing category: 0.
+- [x] Active products with missing description: 0.
+- [x] Active products with missing image field: 0.
+- [x] Active products without a supplier-image mapping: 0.
+- [x] Duplicate active SKUs remain 0.
+- [!] Image quality/mapping audit found 3,395 active products currently pointing to the generic /assets/product-placeholder.svg; 792 active products use the dynamic Supabase product-image Edge Function URL.
+- [!] The dynamic product-image service resolves supplier SKU mappings through GitHub-hosted product assets, but external runtime image fetching could not be independently completed from the current verification environment. Therefore the 3,395 placeholder records were NOT mass-rewritten.
+- [!] This is now a known catalogue-image completion item, not a DNS issue. It requires successful runtime image resolution or a verified source-image mapping before bulk replacement.
+
+### Category taxonomy
+- [x] The seven hard-coded storefront navigation IDs checked in category-navigation.js/category.html all exist in Supabase with the intended category names.
+- [x] Category pages correctly descend into child categories before opening terminal product listings.
+- [!] Supabase contains legacy duplicate category names/case variants. Because active products are distributed among some of these records, no automatic merge was performed without exact SKU/source evidence.
+- [x] No SKU/category was changed during this pass.
+
+### Owner APK / admin workflow
+- [x] Reviewed Owner APK validation repository records: the APK is designed to route to the protected /admin.html surface.
+- [x] Admin workflow was cross-checked against the current store admin implementation: Supabase Auth OTP -> authenticated session -> admin_list_orders/admin_update_order.
+- [x] Critical admin RPCs remain denied to anon/authenticated database roles and protected by their own admin allowlist checks.
+- [ ] Physical Android installation/acceptance remains the only Owner APK validation item that genuinely requires the owner's physical device.
+
+### Launch checklist reconciliation
+- [x] DNS/delegation remains isolated as an external Axxess task; no DNS or hosting changes were made during this pass.
+- [x] No Cloudflare, Netlify or Replit credit-consuming deployment was performed.
+- [x] No customer/test/demo orders or catalogue data were created.
+- [x] Supabase Security Advisor remains at the known single warning: Leaked Password Protection Disabled.
+- [ ] Payment-provider live merchant connection remains a production handoff item; no fake/live payment was generated.
+- [ ] Final public-domain HTTPS/storefront/cart/checkout/order-flow acceptance remains blocked until Axxess DNS resolves.
