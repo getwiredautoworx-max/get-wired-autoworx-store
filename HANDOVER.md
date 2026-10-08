@@ -646,3 +646,20 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] Both names currently fail DNS resolution from the verification environment; HTTPS therefore cannot yet be tested through the public domain.
 - [x] This is recorded as an external DNS/propagation state, not as a storefront application failure. No hosting/deployment changes were made.
 - [ ] Re-test root + www once Axxess/public DNS becomes resolvable, then verify HTTPS, storefront loading, Supabase connectivity, cart and checkout.
+
+
+## 2026-10-08 — INDEPENDENT EDGE-FUNCTION SECURITY REVIEW
+
+- [x] Reviewed the live Supabase Edge Functions relevant to checkout, payment, shipping, supplier quotes, product images and browser storefront access.
+- [x] payment-gateway intentionally has JWT verification disabled because the Peach webhook is authenticated by its HMAC signature; owner/admin actions separately require a valid authenticated user in the enabled veyron_admin_users allowlist.
+- [x] supplier-quote intentionally exposes token-based customer offer/acceptance actions; owner/admin management actions separately require authenticated allowlisted users.
+- [x] store-checkout is intentionally public for customer checkout, but only forwards the explicitly allowed order fields to the protected create_store_order RPC; the RPC is currently not executable by anon/authenticated database roles.
+- [x] shipping-quote is intentionally public for delivery quotations and does not expose privileged database writes.
+- [x] product-image validates SKU format and active-product status before resolving the mapped supplier image; no secret key is returned to the client.
+- [x] get-wired-store-browser is a public HTML proxy only.
+- [x] No Edge Function was modified or redeployed during this review.
+- [x] No customer/order/catalogue data was created or changed.
+- [x] Current database privilege recheck confirms create_store_order, admin_list_orders, and admin_update_order are not executable by anon or authenticated.
+- [x] Security Advisor still reports only the existing Supabase Auth Leaked Password Protection Disabled warning.
+- [ ] No immediate Edge Function security change is justified; changing public functions merely to enable JWT would break intended customer/webhook flows and is therefore deferred.
+
