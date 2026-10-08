@@ -357,3 +357,14 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Live browser/Cloudflare visual verification remains pending.
 
 **Next:** inspect mobile product-card/detail behaviour and related-product rendering for concrete defects.
+
+
+## 2026-10-08 — PRODUCT IMAGE / MOBILE SOURCE QA
+
+- [x] Confirmed product cards already have a broken-image fallback to the Get Wired AutoWorx logo, so a missing/broken image URL does not leave a broken-image icon.
+- [x] Confirmed product detail main image also has the same fallback and an explicit logo fallback when no gallery image exists.
+- [x] Confirmed mobile responsive rules exist for 900px/480px layouts, single-column product grids, compact detail imagery, and the fixed mobile cart/buy bar.
+- [x] No unnecessary redesign or database image changes made.
+- [ ] Actual browser/Cloudflare visual verification remains the external QA step because the current tool access does not provide a live Cloudflare browser session.
+
+**Next:** inspect related-product ranking and product-detail purchase flow for concrete functional defects before making further changes.
