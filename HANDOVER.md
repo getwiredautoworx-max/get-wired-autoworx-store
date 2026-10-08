@@ -505,3 +505,15 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - No Cloudflare or Netlify deployment was performed; no deployment credits were consumed.
 - Source commit: `bed9459b07750639572b2619818af23a4a67d47b`.
 - Browser verification of the new version remains pending until an accessible staging/browser preview is available. Current Cloudflare preview remains the previously deployed version.
+
+
+## 2026-10-08 — PHONE-BROWSABLE PREVIEW HANDOFF
+
+- [x] Owner requested a phone-browsable preview of the new bright storefront/category-button version so it can be approved or rejected before deployment.
+- [x] Confirmed the latest source is present in GitHub; latest storefront source commit remains `bed9459b07750639572b2619818af23a4a67d47b`.
+- [x] Confirmed the existing Cloudflare Pages URL still represents the older deployed version; it must not be treated as approval of the new changes.
+- [ ] ChatGPT Sites Preview creation was attempted but the current execution session hit the user-visible Python/Instant tool rate limit before the self-contained preview file could be created. No preview was successfully created in this session.
+- [ ] NEXT CHAT: create the self-contained phone-browsable Sites Preview from the latest approved `index-new.html` design, then present it for owner approval/rejection. Do NOT deploy to Cloudflare or consume deployment credits merely to obtain the preview.
+- [ ] After approval, synchronize/verify the approved storefront on Axxess staging and only then prepare the Cloudflare production release.
+
+**Next-chat instruction:** Continue from this handover; do not rebuild the store, re-upload the Axxess archive, or repeat completed QA. First priority is the phone-browsable preview of the bright storefront/category-link changes.
