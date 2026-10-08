@@ -615,3 +615,20 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] Axxess guidance still confirms newly added subdomains require the appropriate A record and propagation before external testing; Axxess notes propagation can take roughly 4 hours for a new subdomain record. citeturn0search0turn0search3
 - [ ] Next independent work: continue safe storefront/checkout and catalogue/image QA without creating real orders.
 - [ ] Once DNS resolves: immediately perform Axxess HTTPS/browser/mobile QA, then proceed toward final release checks.
+
+
+## 2026-10-08 — CONTINUATION EXECUTION CHECKPOINT
+- [x] Direct Supabase catalogue invariant recheck completed against the live project: 4,187 active products; 4,187 unique active SKUs; 0 duplicates; 0 uncategorized; 0 null images; 0 null prices; 0 null costs; 27,745 active stock units; 0 pricing mismatches against cost × 1.15 VAT × 1.35 markup.
+- [x] Verified current production packaging rule in the live `public.create_store_order` RPC: **R35.00 per item**. The RPC calculates `item_count × 35.00`; no order/test data was created.
+- [x] Verified current `checkout-v2.html` also displays/calculates **R35.00 per item**, with pickup R0 and delivery separately quoted/confirmed. No live order was created.
+- [x] Rechecked Supabase Security Advisor: only the existing Leaked Password Protection Disabled warning remains; no new security warning was introduced.
+- [x] Rechecked admin RPC security: `admin_list_orders` and `admin_update_order` are SECURITY DEFINER but explicitly require an authenticated user and membership in the enabled `veyron_admin_users` allowlist; EXECUTE is denied to anon/authenticated/PUBLIC at the database privilege layer. This is intentional and verified.
+- [x] Verified latest Store Production QA run 37644253627 completed SUCCESS with its smoke job successful; no production data was changed.
+- [x] Verified Owner APK Run #50 remains the authoritative automated validation result: build, signed-release, emulator installation/launch and validation were previously recorded as FULL SUCCESS. Current connector artifact lookup is unavailable (404), so no contradictory failure is inferred.
+- [x] Confirmed the Owner APK is a WebView wrapper for the protected `/admin.html` portal and does not embed a service-role/secret key; Android manifest disables cleartext traffic. Physical-device acceptance remains owner-side.
+- [ ] Exact SKU-level category/image/description manual reconciliation remains unfinished; do not mass-rewrite uncertain mappings.
+- [ ] Axxess/DNS live browser verification remains the external blocker. Do not consume Cloudflare/Netlify credits merely to bypass it.
+- [ ] Payment-provider production handoff remains unfinished; current checkout records payment as pending and does not falsely claim live card/payment processing.
+- [ ] Supabase Auth leaked-password protection remains the only Security Advisor warning and requires an authorised Auth configuration path/owner action.
+
+**Current next action:** continue independent source/database QA only; once Axxess DNS is reachable, perform the live storefront/mobile/checkout verification, then final Cloudflare release verification. No rebuild, re-upload, or repeated completed QA.
