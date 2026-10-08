@@ -404,3 +404,52 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [x] No unused-index removal.
 - [x] No Cloudflare, Netlify or Replit credit-dependent deployment used.
 - [x] Permanent 8 rules above remain unchanged and continue to govern all future sessions.
+
+## 2026-10-08 — 8-TASK EXECUTION PASS
+
+### 1. Exact-SKU image task
+- [x] Database image invariant revalidated: 0 active null image URLs.
+- [x] Current remaining branded-placeholder count confirmed at **3,395**.
+- [ ] Final exact-SKU visual verification remains open because it requires reviewing the source image set against catalogue products; no automatic/guessed substitutions were made.
+
+### 2. Category reconciliation
+- [x] Category structure and protected review queue rechecked.
+- [x] **198** category-review records remain protected.
+- [ ] Manual confirmation is still required for those records; automatically changing them would violate the no-guessing/no-circle rule.
+
+### 3. Final source regression
+- [x] Current checkout route reconciled: legacy checkout redirects to checkout-v2.
+- [x] SEO metadata committed.
+- [x] robots.txt reviewed; admin/private paths remain disallowed.
+- [x] Repository code search found no matches for service_role, sb_secret_, sk_live_, stale Cloudflare Pages hostname, netlify.app, or R25.
+- [x] No customer data or production catalogue data changed during regression.
+- [ ] Live browser regression remains blocked by DNS; source-level regression is complete for this pass.
+
+### 4. Owner APK physical acceptance
+- [x] Automated emulator validation remains authoritative: Run #50 full success.
+- [ ] Physical-phone installation/login cannot be truthfully marked complete without the physical device. This is an owner-side hardware gate.
+
+### 5. Payment automation
+- [x] No live payment credentials or fake payment URL introduced.
+- [ ] Live payment-provider integration cannot be completed without merchant/provider credentials and the provider's live API contract. This remains a genuine owner/provider gate.
+
+### 6. Courier/PAXI automation
+- [x] Current shipping quotation path remains intact.
+- [ ] Fully automatic courier/PAXI registration/tracking cannot be completed without provider API credentials/access. PAXI/courier quotation fallback remains the safe current path.
+
+### 7. Supabase Auth leaked-password protection
+- [x] Security Advisor finding revalidated.
+- [x] Supabase documentation confirms leaked-password protection is an Auth setting and is available on Pro and above.
+- [ ] No account-level Auth setting was changed without owner authorization/required plan access. This remains an owner dashboard gate.
+
+### 8. Backup/recovery
+- [x] Supabase project health revalidated: **ACTIVE_HEALTHY**, Postgres 17.6.1.166.
+- [x] No destructive schema/data operation was performed.
+- [ ] A platform backup/restore drill cannot be truthfully marked successful from the available connector because backup/restore management is not exposed here. Axxess DirectAdmin backup confirmation also requires hosting-panel access.
+
+### FINAL STATUS OF THIS 8-TASK PASS
+- Independently executable tasks were completed/revalidated as far as available tooling permits.
+- The remaining unchecked items are **not failed tasks**; they are genuine physical/provider/account-access gates.
+- No DNS work was performed.
+- No Cloudflare, Netlify or Replit credit-dependent work was performed.
+- Master handover updated after this pass.
