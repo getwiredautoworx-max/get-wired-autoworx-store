@@ -197,8 +197,7 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Job 112973240356 completed SUCCESS.
 - Storefront source validation: PASS.
 - Public catalogue invariants: PASS.
-- Public source security boundaries: PASS. The private android-owner-app/ supplier-cost fields no longer trigger the public-source scan.
-- This resolves the security-scan blocker. No Supabase/catalogue/storefront application data was changed.
+- Public source security boundaries: PASS. The private android-owner-app/ supplier-cost fields no longer trigger the public-source scan.- This resolves the security-scan blocker. No Supabase/catalogue/storefront application data was changed.
 
 
 ## CONTINUATION TASK LOG — 2026-10-07 SAST
@@ -397,8 +396,7 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [x] Inspected the live Supabase `store-checkout` Edge Function: it delegates order creation to the protected `create_store_order` RPC using the server-side secret, not a browser-exposed privileged key.
 - [x] Confirmed production migration history contains dedicated stock/delivery enforcement and stock reservation hardening: `enforce_order_stock_and_delivery_fee`, `harden_order_rpc_and_reserve_stock_v2`, `restore_stock_on_order_failure_or_cancellation`, and `restrict_order_and_owner_rpc_roles`.
 - [x] Confirmed current `store-checkout` function is ACTIVE (version 1) and JWT verification is intentionally disabled because it is a public storefront checkout endpoint; the function itself performs input validation before invoking the privileged RPC.
-- [x] Ran current Supabase security advisor: only existing warning is Leaked Password Protection Disabled; no new checkout-specific security warning was returned.
-- [ ] Direct live order simulation was not performed because it would create/reserve a real order and alter production stock.
+- [x] Ran current Supabase security advisor: only existing warning is Leaked Password Protection Disabled; no new checkout-specific security warning was returned.- [ ] Direct live order simulation was not performed because it would create/reserve a real order and alter production stock.
 
 **Next:** improve related-product ranking and continue storefront UX/QA without placing live production orders.
 
@@ -566,3 +564,45 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - [x] Packaging R35 change remains completed and is not being repeated.
 - [ ] Continue with live Axxess/HTTPS/storefront/checkout verification immediately when public DNS resolves.
 - [ ] Remaining owner/provider gates remain: physical-phone Owner APK acceptance and actual payment-provider merchant configuration.
+
+## 2026-10-08 — SECURITY HARDENING / CHECKOUT RPC CLEANUP
+
+- [x] Re-ran the Supabase Security Advisor after the latest production checkout state.
+- [x] Found one stale/legacy 7-argument `public.create_store_order` overload that was still `SECURITY DEFINER` and executable by `anon` and `authenticated`.
+- [x] Confirmed the live `store-checkout` Edge Function uses the protected 11-argument production RPC, not the legacy 7-argument overload.
+- [x] Revoked `EXECUTE` on the legacy 7-argument overload from `anon`, `authenticated`, and `PUBLIC`.
+- [x] Set an explicit `search_path = public` on the legacy overload.
+- [x] Re-verified both `create_store_order` overloads: neither is executable by `anon` or `authenticated`; only the intended service role retains execution.
+- [x] Re-ran Security Advisor after the fix: the two SECURITY DEFINER warnings and mutable-search-path warning are cleared. The only remaining security warning is Supabase Auth **Leaked Password Protection Disabled**.
+- [x] No customer order, stock, catalogue row, or storefront data was changed.
+- [ ] Leaked-password protection remains an owner/Supabase Auth configuration gate because the current available database tooling cannot enable that Auth setting directly.
+
+## 2026-10-08 — APK STATUS RECONCILIATION
+
+- [x] Reconciled the handover against the latest verified Owner APK history: **Run #50 (37673087846) is FULL SUCCESS**.
+- [x] Debug APK built and artifact preserved.
+- [x] KVM/emulator setup succeeded.
+- [x] APK installed and launched successfully in the Android emulator.
+- [x] Automated emulator validation completed successfully.
+- [ ] Physical Android-phone installation/acceptance remains owner-side only.
+- [ ] Permanent owner-controlled production signing identity remains optional owner input if a production-signed release is required.
+
+## 2026-10-08 — CURRENT AUTHORITATIVE BUSINESS RULES
+
+- **Packaging: R35.00 per item.** This supersedes all older R25 packaging references in earlier handover sections.
+- **Pickup: R0.00.**
+- **Delivery: charged according to the applicable Courier Guy/PAXI quotation.**
+- Pricing remains supplier cost × 1.15 VAT × 1.35 markup.
+- No test/live customer order has been created during these QA/security checks.
+
+## 2026-10-08 — NEXT INDEPENDENT TASK QUEUE
+
+1. [DONE] Security hardening of the stale legacy checkout RPC and re-verification.
+2. [DONE] Reconcile Owner APK status to Run #50 terminal success.
+3. [NEXT] Continue independent storefront/checkout source QA without creating a real order.
+4. [NEXT] Continue catalogue/category/image QA where safe and automatable.
+5. [WAITING] Live Axxess browser/HTTPS/DNS verification once public DNS resolves.
+6. [OWNER GATE] Physical-phone APK acceptance.
+7. [OWNER/PROVIDER GATE] Live payment-provider merchant configuration and payment callback verification.
+
+**No-circle rule remains in force:** do not repeat completed APK emulator validation, re-upload/re-extract Axxess files, recreate completed checkout features, or blindly remove informational unused indexes.
