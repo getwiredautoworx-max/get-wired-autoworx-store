@@ -815,3 +815,19 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Packaging remains R35/item; pickup R0; delivery separately quoted.
 - Owner APK automated Run #50 remains FULL SUCCESS; physical-device acceptance remains owner-side.
 - Supabase Security Advisor has only the known Leaked Password Protection Disabled warning.
+
+
+## 2026-10-08 — DNS-INDEPENDENT SMOKE-TEST CLEANUP
+- [x] Reviewed the Storefront Smoke Test after the Axxess-first deployment strategy was confirmed.
+- [x] Found one remaining stale diagnostic string referring to the obsolete R25 packaging rule. The actual assertion already checked R35, but its failure message was misleading.
+- [x] Corrected the diagnostic to R35.00 per item in commit ddca53de4c60691df01e26c11de2548a5cf58dae.
+- [ ] The resulting automated smoke run must reach terminal SUCCESS before this change is treated as fully validated.
+- [x] No storefront application logic, Supabase data, catalogue records, DNS, Axxess configuration, or payment configuration was changed.
+- [x] No Cloudflare, Netlify or Replit credits were consumed.
+
+### Next safe execution order
+1. Verify the new smoke-test run when its terminal result is available.
+2. Continue remaining DNS-independent catalogue/category/image checks only where evidence is exact.
+3. Prepare the Axxess-ready storefront package without unnecessary rebuilds.
+4. After owner upload and DNS reachability, perform live Axxess QA and fix only actual live defects.
+5. Reconcile the final tested version to GitHub, verify Supabase alignment, then use Cloudflare only for the final required release/update.
