@@ -459,3 +459,18 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Recommended flow: edit/test on Axxess -> verify in browser/mobile -> synchronize approved files to GitHub -> deploy to Cloudflare only when a release is approved.
 - Supabase remains the live database/backend and is not copied for ordinary front-end edits.
 - No GitHub file changes were made in this workflow batch; therefore no GitHub credit-consuming deployment/build action was triggered.
+
+
+## 2026-10-08 — AXXESS STAGING ACCESS / STORE ARCHIVE
+
+- [x] Owner has created an Axxess XS Linux Hosting DirectAdmin account for `getwiredauto.co.za`.
+- [x] Owner has already uploaded the current **390 MB store ZIP archive** to Axxess.
+- [x] Axxess is confirmed as the intended development/staging and live-browser-testing environment so iterative testing does not consume GitHub/Cloudflare deployment credits.
+- [x] GitHub remains the authoritative source/version history; Supabase remains the live database/backend; Cloudflare remains the release/production deployment target after approval.
+- [x] FTP access details were supplied by the owner for staging access. **Credentials are intentionally NOT recorded in this handover or any repository file.**
+- [ ] Direct FTP manipulation from ChatGPT remains blocked because no supported Axxess/FTP connector is available in the current tool environment.
+- [ ] The uploaded 390 MB archive must be extracted/placed into the Axxess web root (`public_html`) using DirectAdmin/File Manager or an FTP client available to the owner.
+- [ ] Once the extracted storefront is accessible at an Axxess URL, perform live browser/mobile QA there before any production Cloudflare release.
+- [ ] Do not claim Axxess deployment or live-browser verification until the files and URL are actually reachable.
+- Security note: because an FTP password was exposed in chat, the owner should rotate that FTP password after access setup; the replacement password must not be stored in the repository/handover.
+
