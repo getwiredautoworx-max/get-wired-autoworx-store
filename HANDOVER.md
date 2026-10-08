@@ -346,3 +346,14 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Live browser/Cloudflare verification remains pending; source-side change is complete.
 
 **Next:** product-image fallback/failed-image handling and mobile product-card QA.
+
+
+## 2026-10-08 — PRODUCT IMAGE FALLBACK
+
+- [x] Added resilient image fallback to product cards: broken product URLs now fall back to the Get Wired AutoWorx logo instead of displaying a broken-image icon.
+- [x] Added the same fallback to the product-detail main image.
+- [x] Valid product/database image URLs are unchanged.
+- [x] Commit: af864e55e59098c60130f00b0fe3019cf7153379.
+- [ ] Live browser/Cloudflare visual verification remains pending.
+
+**Next:** inspect mobile product-card/detail behaviour and related-product rendering for concrete defects.
