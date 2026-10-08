@@ -496,3 +496,27 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] Run #48 Android API 35 emulator job remains in progress; APK validation is not marked complete until install/launch smoke validation reaches a terminal success.
 - [x] Attempted to retrieve the in-progress emulator job log; GitHub returned BlobNotFound/404 because the live job log was not yet available. Recovery: poll job status and fetch logs again after the job reaches/approaches completion.
 - [x] No Axxess work performed during the exclusion window.
+
+
+---
+
+## CONTINUATION LOG — 8 OCTOBER 2026
+
+### Task attempt: resume store/hosting review
+**Status: IN PROGRESS / PUBLIC HOSTING NOT VERIFIED**
+
+- Rechecked the existing `main` branch through the connected GitHub repository; no replacement repository or storefront was created.
+- Confirmed root `index.html` redirects to `store.html`.
+- Confirmed `store.html` exists and embeds `index-new.html`.
+- **Potential storefront defect found:** the fetched `store.html` contains the literal CSS text `\u0024{css}` in its inline style block. This appears to be an unresolved template placeholder and requires source-level review before claiming the storefront is production-ready. No change was made in this attempt.
+- `index.html` includes a Cloudflare Pages deployment-trigger comment dated 6 October 2026. This alone does not prove a successful deployment or confirm that the custom domain is serving the current code.
+- The GitHub Pages settings/status endpoint could not be verified with the current read-only repository fetch route. Owner must still enable/check GitHub Pages in repository Settings → Pages, or confirm which existing host is intended to be authoritative. Do not spend Netlify/Cloudflare credits without explicit approval.
+- APK remains blocked as last reported on 7 October: Play Protect warning; tapping “Install anyway” returns to the normal screen without installation. The exact blocked APK is not attached to this continuation, so package/signature/SDK/permissions/ABI/integrity checks cannot yet be performed. Do not disable Play Protect as the permanent solution.
+- No production deployment, payment activation, database migration, or APK change was performed.
+
+### Next execution steps
+1. Inspect `store.html` and `index-new.html` together; trace and safely resolve the literal CSS placeholder if confirmed to be a real defect, then run static checks.
+2. Verify hosting and domain status using an available supported read route; do not claim public hosting is live until tested.
+3. Run non-destructive storefront checks, including product rendering, search/filter, cart, checkout validation, delivery rules, and contact links. Do not create test orders in production without an explicitly safe test route.
+4. APK diagnosis requires the exact APK file that fails on the owner's phone. Inspect the artifact before signing or rebuilding.
+5. Continue recording each completed or failed task here before moving to the next major task.
