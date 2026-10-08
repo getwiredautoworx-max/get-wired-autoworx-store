@@ -6,7 +6,7 @@
 **Business:** Get Wired AutoWorx  
 **Address:** 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban, South Africa  
 **Email:** getwiredautoworx@gmail.com  
-**Website:** getwiredautoworx.co.za
+**Website:** getwiredauto.co.za
 
 ## 1. About Get Wired AutoWorx
 These Terms & Conditions govern use of the Get Wired AutoWorx website and purchases made through it. By using the website, requesting a quotation, placing an order or making payment, the customer agrees to these Terms & Conditions.
@@ -269,4 +269,4 @@ For special-order products, the customer additionally confirms that they have sa
 
 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban, South Africa  
 **Email:** getwiredautoworx@gmail.com  
-**Website:** getwiredautoworx.co.za
+**Website:** getwiredauto.co.za
