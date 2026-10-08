@@ -424,3 +424,17 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - [ ] Live browser verification remains pending.
 
 **Next:** continue checkout UX audit, especially whether the cart's displayed subtotal/packaging/delivery totals remain consistent with checkout-v2 before payment handoff.
+
+
+## 2026-10-08 — CHECKOUT PACKAGING BACKEND CONSISTENCY
+
+- [x] Critical mismatch found during checkout audit: the live create_store_order() RPC was still calculating packaging at R25.00 per item, while the storefront/checkout UI correctly displayed R35.00 per item.
+- [x] Updated the production RPC to calculate R35.00 × item quantity.
+- [x] Verified the deployed database function definition now contains the R35 packaging calculation.
+- [x] No test order was created, so production stock/order data was not altered by QA.
+- [x] Supabase security advisor rechecked: only the existing Leaked Password Protection Disabled warning remains.
+- [x] Migration: fix_store_checkout_packaging_fee_r35.
+
+Current checkout pricing state: frontend = R35/item; backend order RPC = R35/item; delivery remains separately quoted/validated.
+
+Next: continue checkout/payment-handoff QA without creating a real customer order; inspect payment-gateway handoff and failure/cancellation paths.
