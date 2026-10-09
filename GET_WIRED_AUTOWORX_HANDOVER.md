@@ -1,7 +1,7 @@
 # GET WIRED AUTOWORX ONLINE STORE — HANDOVER / CONTINUE FROM HERE
 
 ## STATUS
-Updated: 2026-09-19
+Updated: 2026-10-09
 Repository: `getwiredautoworx-max/get-wired-autoworx-store`
 Default branch: `main`
 Supabase project: `ojytykqpvonxvepprgbh`
@@ -481,3 +481,17 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] The next troubleshooting step must be to identify the exact remaining fault (if any) using current live behavior and existing repo/source; do not assume upload failed and do not instruct another upload without evidence.
 - Process correction: the previous handover checkpoint was stale because it was not updated after the owner completed the upload. Future handover entries must be updated as soon as owner reports a completed action, and all guidance must be grounded in that latest state.
 - Current known artifact remains run #4, commit `b5f66a666d369502201c2a76ef4387e0a2d2d7de`, 54.7 MB, SHA-256 `5f12833d18707e27af368f0040933e85a10ec632c7f3580054f3cf2c8fea43ad`.
+
+
+## 2026-10-09 — POST-UPLOAD CHECKOUT SOURCE / DATABASE QA
+
+- [x] Owner has already backed up the existing Axxess `public_html`, uploaded and extracted the approved package, and confirmed that the storefront loads. Do not repeat those steps.
+- [x] Read the current `checkout-v2.html` source from GitHub main and inspected the deployed Supabase `store-checkout` and `shipping-quote` Edge Functions plus the live database function definitions/schema.
+- [x] Confirmed checkout front end calculates packaging as **R35 × item quantity**, displays pickup at **R0 delivery**, requires a selected positive delivery quote for delivery orders, and submits the order to the `store-checkout` Edge Function.
+- [x] Confirmed the active `store-checkout` Edge Function forwards the supported customer, address, payment, cart, delivery fee and fulfilment fields to `create_store_order`; the current database function recalculates product subtotal from active database prices, checks stock, decrements stock, calculates packaging at R35 per quantity, forces pickup delivery to R0, and records the order with payment pending.
+- [x] Confirmed live database schema contains the checkout's expected `public_sku`, `active`, `stock_quantity`, parcel-dimension fields and order delivery/packaging columns.
+- [!] **Delivery quote integrity issue identified:** `shipping-quote` can return PAXI published rates with `live:false` and a note that destination-point and parcel eligibility still need confirmation. Current checkout lets a customer select these provisional options and submit them as if confirmed; the database only validates that the submitted delivery fee is positive. This does not meet the rule that delivery must be quoted/confirmed. Fix before treating delivery checkout as production-ready: provisional PAXI rates must not count as confirmed, and a safe staff-confirmed/manual quote path must exist without trusting an arbitrary customer-entered fee.
+- [!] Current checkout request payload includes `p_delivery_quote`, but the Edge Function allowlist omits it; the database RPC currently stores only a simplified quote record built from the fee and notes. Provider/service/timeframe should be preserved as structured order data when fixing the quote-confirmation path.
+- [ ] **Not yet end-to-end verified:** no live order has been submitted in this QA pass because a valid order changes stock and creates a real customer/order record. Do not claim successful live order submission until a controlled, explicitly authorised test order or a safe non-mutating test route is used.
+- [ ] Test `pickup` and delivery end-to-end on the Axxess live domain after correcting the quote-confirmation issue. Confirm subtotal, R35-per-quantity packaging, R0 pickup delivery, confirmed delivery fee, order number/status, persisted quote/provider details, and stock/order-item updates. Keep payment status pending; do not trigger payment or courier bookings.
+- [x] No Axxess re-upload, Cloudflare deploy, or Netlify deploy was triggered during this source/database QA.
