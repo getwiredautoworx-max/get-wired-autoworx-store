@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T08:42:01.616Z",
+  "generated_at": "2026-10-09T08:55:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -136,7 +136,7 @@
       "slug": "automotive-accessories",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 346
+      "direct_active_products": 345
     },
     {
       "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
@@ -312,7 +312,7 @@
       "slug": "consumables",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 75
+      "direct_active_products": 78
     },
     {
       "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
@@ -1192,7 +1192,7 @@
       "slug": "trailer-canopy",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 68
+      "direct_active_products": 66
     },
     {
       "id": "f9034e71-4b2b-4b88-9020-bf5b5ff7502a",
