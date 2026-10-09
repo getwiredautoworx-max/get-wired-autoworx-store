@@ -130,3 +130,37 @@ These are **proposed routing candidates**, not confirmed product-level assignmen
 5. Leave Spare Parts, mechanical categories, malformed titles and ambiguous items unassigned to the new approved roots until individually reviewed.
 6. Only then execute a controlled parent/category update and verify every active product is reachable, with no duplicate SKUs, missing category references or mechanical items mislabelled as electrical.
 
+
+
+## Immediate hierarchy repair applied — 9 October 2026
+The first controlled repair batch is now applied to Supabase and verified. This is a real database change, not merely a proposed map.
+
+### Product-category assignments consolidated
+Moved active product assignments into existing specialist child categories under the approved roots:
+- Auto Electrical: Electrical Spares (270), Switches (114), Fuses (110), Relays (51), Battery (50), Regulators (41), Ignition Spares (20).
+- Tools/Workshop: Automotive Tools (427), Spanners (72), Measuring Tools (30), Screwdrivers (30), Drill Bits (23).
+- Marine: Boat Accessories (53).
+- Accessories: Mirrors (79), Panel Clips (25), Wheel Accessories (135), Wipers (45), Automotive Accessories (22), Door Parts (51).
+- Lighting: Lamps (148), Globes and Globe Holders (18); the Lighting category was attached under the Auto Electrical root.
+- Trailer: Trailer & Towing (19), with the child moved under Trailer & Canopy.
+- Reparented Sensors under Auto Electrical.
+- Activated Camping / Leisure / Outdoors and Trailer & Canopy roots.
+
+Total products reassigned to existing child categories: **1,851** (1,291 + 303 + 257); plus 29 existing Spotlights products became reachable when Lighting was placed under Auto Electrical. No product records were deleted or deactivated.
+
+### Post-change verification
+- Active catalogue remains **4,187**.
+- Active products inside the eight approved root trees: **2,856**.
+- Active products still outside those trees: **1,331**.
+- Active products with no category: **0**.
+- Active products with missing/zero price: **0**.
+- Active products with missing SKU: **0**.
+- Tree totals: Security 2; Accessories 803; Camping/Leisure 0; Car Audio 41; Auto Electrical/Electrical 869; Marine 53; Tools/Workshop 989; Trailer & Canopy 99.
+
+### Storefront navigation fix
+Committed a change to `category.html` so a category with children also offers a **“View all products in [category]”** link. This makes products assigned directly to a root/category accessible alongside subcategories (for example, the direct products in Car Audio, Accessories and Trailer & Canopy).
+- Commit: `fadb1bc4805068b97b2d66b985a487da7b6bb7b1`
+- Static source was updated; browser/live QA is still pending and no deployment was triggered.
+
+### Remaining work
+The 1,331 products outside the approved roots are mostly broad or mixed legacy categories, especially Spare Parts (879), plus ambiguous mechanical, general lighting, hardware and mixed accessories. Do not bulk-move these without product-level review. Next, sample and split Spare Parts by clear SKU/name evidence, then check root-direct products and each category navigation path. The Camping/Leisure tree is active but currently contains no active products.
