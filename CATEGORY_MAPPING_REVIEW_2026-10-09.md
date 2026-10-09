@@ -68,3 +68,65 @@ Total in these eight subtrees: 976, matching the earlier audit; 3,211 active pro
 - The category page hard-codes the approved root IDs and overrides their display labels, so it can display a friendly name even while the underlying root label/parent hierarchy is inconsistent. This does not make the product assignments correct.
 - Do not simply flip inactive flags or move all legacy category groups by name. First resolve the full leaf-category mapping, then attach only verified leaf categories to the correct root and verify the 4,187 active products are discoverable in the intended hierarchy.
 - This was read-only. No active flags, category links, or product rows changed.
+
+
+## Legacy-category routing candidates — category-name pass only
+These are **proposed routing candidates**, not confirmed product-level assignments. Because each legacy category is currently unparented, the category itself must be reviewed before attaching it to an approved root.
+
+| Legacy category | Active products | Proposed destination | Confidence / handling |
+|---|---:|---|---|
+| Electrical Spares | 270 | Auto Electrical Spares | High category-level candidate; still sample product titles for mechanical contamination. |
+| Switches | 114 | Auto Electrical Spares | High |
+| Fuses | 110 | Auto Electrical Spares | High |
+| Sockets | 93 | Auto Electrical Spares or Tools/Hardware | Medium; automotive electrical sockets vs workshop sockets need sampling. |
+| Relays | 51 | Auto Electrical Spares | High |
+| Battery | 50 | Auto Electrical Spares | High for vehicle batteries/terminals/charging; review mixed items. |
+| Regulators | 41 | Auto Electrical Spares | High |
+| Ignition Spares | 20 | Auto Electrical Spares | High |
+| Sensors | 18 | Auto Electrical Spares | Medium-high; confirm automotive sensor types. |
+| Globes and Globe Holders | 18 | Auto Electrical Spares | High for vehicle 12V/24V items; review general lighting. |
+| Multimeters | 3 | Tools/Hardware/Consumables | High |
+| Automotive Tools | 427 | Tools/Hardware/Consumables | High category-level candidate; product sample required because source contains electrical accessories. |
+| Abrasives | 103 | Tools/Hardware/Consumables | High |
+| Spanners | 72 | Tools/Hardware/Consumables | High |
+| Measuring Tools | 30 | Tools/Hardware/Consumables | High |
+| Screwdrivers | 30 | Tools/Hardware/Consumables | High |
+| Drill Bits | 23 | Tools/Hardware/Consumables | High |
+| Garden Tools and Accessories | 7 | Camping/Leisure/Outdoors or Tools/Hardware/Consumables | Medium; inspect item types and intended range. |
+| Boat Accessories | 53 | Marine Spares & Accessories | Medium; 25 items were previously seen with generic source category Parts, so inspect product-level evidence. |
+| 4X4 Outdoor | 22 | Accessories or Camping/Leisure/Outdoors | Medium; mixed-use items require review. |
+| Trailer & Towing | 19 | Trailer & Canopy | High category-level candidate; verify towing items fit intended range. |
+| Aerials | 4 | Car Audio | Medium-high; confirm vehicle-audio aerials vs other antenna types. |
+| Lamps | 148 | Auto Electrical Spares or Accessories | Medium; distinguish vehicle 12V/24V lamps from general/camping lights. |
+| Spotlights | 29 | Auto Electrical Spares or Camping/Leisure/Outdoors | Medium; vehicle/boat spotlights vs portable outdoor lights. |
+| Wheel Accessories | 135 | Accessories | Medium; tyre/wheel hardware may include mechanical/consumable stock. |
+| Mirrors | 79 | Accessories | Medium-high; vehicle mirrors likely, but inspect product sample. |
+| Door Parts | 51 | Accessories or Vehicle Security | Medium; handles/window mechanisms vs locks/central locking. |
+| Wipers | 45 | Accessories | High category-level candidate. |
+| Clamps | 32 | Tools/Hardware/Consumables or Auto Electrical Spares | Low-medium; clamps vary widely. |
+| Thermostats & Pipes | 32 | Manual review / do not auto-publish to electrical | High confidence this is not an electrical-spares category; intended store range decision required. |
+| Suspension | 28 | Manual review / quarantine | Do not route to Auto Electrical Spares. |
+| Fuel Pumps & Oil Filter | 27 | Manual review / split by exact product | Fuel pumps may be electrical, oil filters are mechanical service parts; category is mixed. |
+| Brake Parts | 25 | Manual review / quarantine | Mechanical braking items; do not route to electrical spares. |
+| Panel Clips | 25 | Accessories | Medium-high; confirm automotive trim clips. |
+| Automotive Accessories | 22 | Accessories | High category-level candidate, with product-level exception checks. |
+| Steering Wheel Covers | 17 | Accessories | High |
+| Radiator Caps & Bottles | 12 | Manual review / quarantine | Mechanical cooling parts; do not route to electrical spares. |
+| Trailer & Canopy | approved root already has 80 active products | Trailer & Canopy | Root is currently inactive; do not toggle until final taxonomy review. |
+| Spare Parts | 879 | Manual SKU-level classification | Too broad for safe category-level routing. |
+| Door Parts | 51 | Accessories / Vehicle Security | Product-level split required. |
+| Cylinders | 5 | Manual review | Meaning varies; do not infer. |
+| Hand & Foot Pumps | 5 | Tools/Hardware or Camping/Leisure | Medium-low; inspect item purpose. |
+| Lifestyle | 11 | Camping/Leisure/Outdoors or Accessories | Low; inspect products. |
+| Padlocks | 8 | Vehicle Security or Tools/Hardware | Medium-low; use product context. |
+| Racing Stickers | 6 | Accessories | High |
+| Mirrors / Wheel Covers | 79 / 12 | Accessories | High category-level candidates, with sample check. |
+
+## Priority order for safe repair
+1. Preserve the current approved eight root IDs but resolve their names, active status and parent chains.
+2. Create/verify the required root nodes for Auto Electrical Spares and Marine, because their current trees have zero active products.
+3. Review the strongest legacy category candidates first (Fuses, Switches, Relays, Battery, Regulators, Ignition Spares; Spanners, Screwdrivers, Abrasives, Drill Bits).
+4. Split mixed categories such as Fuel Pumps & Oil Filter, Lamps, Spotlights, Sockets, Door Parts and Clamps at SKU level.
+5. Leave Spare Parts, mechanical categories, malformed titles and ambiguous items unassigned to the new approved roots until individually reviewed.
+6. Only then execute a controlled parent/category update and verify every active product is reachable, with no duplicate SKUs, missing category references or mechanical items mislabelled as electrical.
+
