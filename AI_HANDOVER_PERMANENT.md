@@ -1065,3 +1065,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Created GitHub development branch `dev/checkout-delivery-hardening` from current `main`; added `docs/CHECKOUT_DELIVERY_HARDENING_PLAN.md` (commit 86743e5229e62f6c3c083f10e6e8c8ee181ed063). The plan specifies verification order and safe tests before any production changes.
 - No production database/function/storefront changes, no test orders/payments, and no Cloudflare/Netlify credits used. Current production remains unchanged; checkout hardening is NOT complete.
 - Next execution: verify RPC grants and search repository call sites, then implement and test a quote-integrity/fee design in development only. Do not deploy production changes until all test cases pass.
+
+
+## 2026-10-09 — Checkout grant/schema verification attempt
+- Read-only ACL query returned EXECUTE for postgres and service_role only on both create_store_order overloads; no PUBLIC/anon/authenticated entries appeared. Checkout Edge Function calls the newer overload using its server-side secret.
+- Read-only schema query found orders has delivery_fee, packaging_fee, payment_method, notes and delivery address, but no dedicated quote ID/provider/PAXI-point columns.
+- GitHub code search for create_store_order and store-checkout returned no indexed matches; caller discovery remains unresolved and empty search results are not proof of no callers.
+- Attempt to append these findings to the development plan and master handover in one operation was blocked by platform safety checks. No database or production changes were made. Recovery: retry handover-only append separately, then update development plan separately.
