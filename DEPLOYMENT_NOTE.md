@@ -28,12 +28,13 @@ Axxess official documentation states that website files normally use `public_htm
 
 - **Pickup from the owner's premises:** no pickup/delivery charge.
 - **Delivery:** quoted separately according to the selected courier/PAXI option and subject to quotation.
-- **Packaging:** **R25.00 per item**.
+- **Packaging:** **R35.00 per item/quantity** (current approved rule; this supersedes older R25.00 notes).
 - Delivery orders must have a confirmed delivery quotation before submission.
+- Customer pickup has a R0.00 delivery charge.
 - Full payment confirms the order.
-- Do not reintroduce the historical fixed R15 delivery charge.
+- Do not reintroduce the historical fixed R15 delivery charge or Phoenix Plaza despatch fee.
 
-The current `checkout-v2.html` source has been checked and already reflects these rules.
+The current `checkout-v2.html` source has been updated to reflect these rules. The production database order function must remain the authority for the final calculated order total.
 
 ## Final live QA
 
@@ -43,9 +44,9 @@ The current `checkout-v2.html` source has been checked and already reflects thes
 - Vehicle make/model finder works against Supabase.
 - Cart works.
 - Checkout reaches `checkout-v2.html`.
-- Pickup remains free.
+- Pickup remains free (R0.00 delivery charge).
 - Delivery quote workflow is enforced.
-- Packaging is calculated at R25 per item.
+- Packaging is calculated at R35 per item/quantity.
 - Supabase product loading and order creation work.
 - Supplier-source request works.
 - WhatsApp links work.
