@@ -1089,3 +1089,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Workflow remains viable once a supported transfer path is established. Preferred secure recovery: owner creates a restricted, temporary FTP/SFTP account limited to a dedicated product-assets directory only if a transfer-capable environment/connector is available; do not share the main hosting password or Supabase/Cloudflare secrets in chat. Alternatively, owner can publish a temporary read-only download/archive link from Axxess that is accessible without login, then revoke it after processing.
 - Planned processing: preserve original images; extract SKU/product/price; calculate standard selling price as ex-VAT cost × 1.15 × 1.35; verify like-for-like South African market prices when identity/compatibility can be confirmed; flag ambiguous SKU/price matches and missing costs instead of guessing; produce an exception report; stage assets and catalogue changes in GitHub, test before any Cloudflare deployment.
 - Deployment restriction: no Cloudflare/Netlify credits until final testing; do not alter live storefront or production data before validation.
+
+
+## 2026-10-09 — Immediate Axxess access recovery attempt
+- Retried capability discovery for FTP/SFTP/SSH/remote hosting file access and searched available integrations for FTP/SFTP transfer.
+- Result: no connected Axxess, DirectAdmin, FTP, SFTP, or SSH file-transfer tool is available. Search returned unrelated storage/hosting apps but no direct Axxess connector. No plugin was installed or connected.
+- No Axxess folders could be listed or read; no product files downloaded; no prices/images processed; no live store files changed.
+- This is a hard access boundary, not a catalogue-processing failure. Do not claim access or use the supplied DirectAdmin URL as if authenticated.
+- Fastest viable owner action: create a temporary, read-only publicly accessible archive/download URL for the product folders from Axxess, or enable a supported transfer connector. Revoke any temporary public URL after processing. Do not send the main hosting password or other production secrets in chat.
+- Once a reachable archive URL is supplied, download/process folder hierarchy, preserve original images, match SKUs, calculate standard price as ex-VAT cost × 1.15 × 1.35, compare verified like-for-like South African market prices, produce exceptions report, commit approved assets/catalogue to GitHub, and leave Cloudflare deployment until final testing.
+- Locked restriction retained: no Cloudflare/Netlify credits before final testing; production store remains unchanged until validated.
