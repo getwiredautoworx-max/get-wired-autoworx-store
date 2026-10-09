@@ -546,3 +546,31 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Available environment lacks `aapt`, `aapt2`, `apkanalyzer`, and `apksigner`; manifest minSdk/targetSdk, native ABI, APK v2/v3 verification, and installability therefore remain unverified.
 - No signing key, package version, Android device API compatibility, or Play Protect classification has been confirmed. Do not simply re-sign with a new key: it can cause signature conflicts with an existing installation and does not resolve policy or compatibility issues.
 - Next recovery path: use Android SDK build-tools / a trusted APK inspection utility to decode manifest and verify all signature schemes; compare minSdk/targetSdk and ABI to the owner's Android 13 device; then build a release APK from the original project using a stable owner-controlled release key. Test first on an emulator/API 33 and then on the owner's device. Preserve the original artifact and record the release hash separately.
+
+
+## 2026-10-09 — AXXESS HOSTING WAIT / SOURCE-STATE RECHECK
+
+**Status: Axxess support response pending; Axxess production hosting and custom-domain delivery remain NOT VERIFIED.**
+
+### Confirmed repository/source facts
+- [x] Rechecked the existing repository and main branch; no new repository or project was created.
+- [x] Latest source commit verified: `6afbb75c3c8f0608ecd03ae5ab40af02a06f4ac6` — “Record product image proxy fix and verified image endpoints” (2026-10-09 03:53 UTC).
+- [x] Latest GitHub Pages workflow run associated with that commit completed successfully (run #228). This verifies that workflow only; it does **not** verify Axxess hosting, the intended domain, or the store’s live customer journey.
+- [x] Rechecked `store.html` and `checkout-v2.html`. Both currently display **R35.00 packaging per item**, pickup R0.00, and delivery quoted separately by parcel weight, size and destination. The current storefront smoke test also expects R35.00. Treat **R35.00 per item** as the current implemented checkout rule; older handover entries describing R25.00 conflict with current source/tests and must not be treated as current behavior unless the owner explicitly changes the price.
+- [x] Reconfirmed the image proxy fix is present in the latest source history. Four image endpoints were reported HTTP 200 by the prior image-audit checkpoint; the actual rendered images and complete image coverage remain NOT VERIFIED on Axxess.
+- [x] Rechecked `store.html`: its inline style contains the literal token `\${css}` (template placeholder). This appears to be stray CSS text. It is recorded for a focused source correction/validation; no claim is made that this alone explains the hosting failure.
+- [x] Confirmed the existing root entry redirects to `store.html`, which embeds `index-new.html`.
+
+### Axxess support / next decision
+- [x] User is awaiting Axxess support after being advised to send the issue to Hosting/Technical Support.
+- [ ] On receipt, use Axxess’s actual diagnosis to check domain-to-hosting assignment, DNS records, `public_html` document root/files, web-server logs, file permissions, and SSL/HTTPS. Check external Supabase connectivity only if server logs or browser errors indicate it is relevant.
+- [ ] Upload/synchronise the approved existing storefront into the existing Axxess `public_html` only after confirming the correct document root and required files; do not rebuild the site.
+- [ ] Verify the exact domain `https://www.getwiredauto.co.za` and HTTPS from a real browser/network. Do not call it live until it responds correctly.
+- [ ] Once hosting works, run one batched mobile QA pass: homepage, all products/pagination, categories, search, vehicle fitment, product detail/images, cart, R35/item packaging, pickup R0, delivery quote required, terms, order creation on a safe test path, and admin visibility.
+- [ ] Keep payment-provider activation, real courier quotes and leaked-password protection as separate production gates.
+
+### Limits / spending
+- No Axxess panel/FTP connector is available in this ChatGPT session, so no direct Axxess server changes were made.
+- No Cloudflare or Netlify credits were used. Do not deploy repeatedly or spend credits while Axxess support is diagnosing the hosting path.
+- ETA: after Axxess supplies a specific diagnosis and access/configuration is available, allow approximately 30–90 minutes for a focused correction and first retest; full customer/payment QA will take longer and remains provider-dependent.
+- Failure/recovery path: if DNS is correct but the server returns 403/404/500, ask Axxess to identify the exact log entry and correct the hosting/document-root/permission/server configuration; if files serve but Supabase calls fail, capture the browser console/network error and troubleshoot that request separately.
