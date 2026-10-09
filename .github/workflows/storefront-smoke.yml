@@ -57,7 +57,7 @@ jobs:
             const categoryLoadError = await categoryPage.locator('#grid').getAttribute('data-error');
             if (categoryLoadError) throw new Error('Category navigation failed: '+categoryLoadError);
             const rootOptions = await categoryPage.locator('#grid .card').count();
-            if (rootOptions < 1) throw new Error('No populated main categories rendered on category.html');
+            if (rootOptions < 1) throw new Error('No populated main categories rendered on category.html; debug='+await categoryPage.locator('#grid').getAttribute('data-debug')+'; grid='+await categoryPage.locator('#grid').innerText());
             const rootNames = await categoryPage.locator('#grid .card h2').allTextContents();
             if (!rootNames.some(n => n.trim() === 'Auto Electrical')) throw new Error('Auto Electrical root missing from category navigation');
             await categoryPage.locator('#grid .card').first().click();
