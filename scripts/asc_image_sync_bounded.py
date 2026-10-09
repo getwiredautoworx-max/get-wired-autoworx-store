@@ -171,11 +171,14 @@ def main():
     results = []
     with ThreadPoolExecutor(max_workers=8) as pool:
         futures = [pool.submit(sync_one, item) for item in batch]
-        for future in as_completed(futures):
+        for completed, future in enumerate(as_completed(futures), start=1):
             try:
-                results.append(future.result())
+                result = future.result()
+                results.append(result)
+                print(f"[{completed}/{len(batch)}] {result.get('public_sku')}: {result.get('status')}", flush=True)
             except Exception:
                 results.append({"public_sku": "GW-UNKNOWN", "status": "worker_error", "attempted_at": NOW.isoformat(), "sync_version": SYNC_VERSION})
+                print(f"[{completed}/{len(batch)}] worker_error", flush=True)
     merged = {x.get("public_sku"): x for x in history if x.get("public_sku")}
     for result in results:
         if result.get("public_sku") != "GW-UNKNOWN":
