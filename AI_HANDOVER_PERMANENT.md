@@ -1127,3 +1127,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 
 ## 2026-10-09 Owner correction
 Current checkout policy: flat R35.00 packaging charge per order (bubble wrap, security tape and protective materials), separate courier/PAXI/locker delivery quote, PayFast or direct EFT only, no cash. The earlier R15 dispatch rule is withdrawn. Checkout source and Supabase function were updated and read-back checks passed. PayFast live gateway is not yet verified; branch is not merged or deployed to Axxess. Handover append attempt failed safety validation; retry on next step.
+
+
+## 2026-10-09 — Delivery options expanded: Aramex and Courier Guy locker
+- [x] Updated `checkout-v2.html` on `fix/delivery-policy-2026-10-09` to list Aramex and The Courier Guy door delivery/locker (where available), alongside Your Courier, PEP PAXI and PUDO lockers.
+- [x] Verified the checkout still states flat R35.00 packaging per order, separate delivery quotation, PayFast/direct EFT only, and no R15 Phoenix Plaza surcharge.
+- Commit: `0cbe2073f35b82610a2cf165a57c4d629097f747`.
+- [ ] Shipping backend remains unverified for Aramex: current active `shipping-quote` Edge Function only loops through configured Bob Go, The Courier Guy and PUDO live-rate integrations, plus PAXI fallback rates. Aramex is not yet wired into the live quote function. Courier Guy locker availability depends on the configured TCG API returning a locker service/rate; the function currently selects only the first returned rate, so locker-specific quote exposure is not yet verified.
+- [ ] Do not tell customers Aramex or Courier Guy locker can be booked automatically until the quote function is extended and tested with valid provider credentials/API responses. Current checkout wording makes availability conditional; manual WhatsApp quotation remains available.
+- No production Edge Function deployment, order creation, stock mutation, or Cloudflare/Netlify credit usage occurred in this step. Checkout branch remains unmerged and not deployed to Axxess.
