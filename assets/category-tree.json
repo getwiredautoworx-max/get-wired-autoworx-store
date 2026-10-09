@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T09:20:00Z",
+  "generated_at": "2026-10-09T09:35:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -136,7 +136,7 @@
       "slug": "automotive-accessories",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 343
+      "direct_active_products": 324
     },
     {
       "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
@@ -176,7 +176,7 @@
       "slug": "automotive-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 347
+      "direct_active_products": 346
     },
     {
       "id": "cac9f536-b69b-4a06-a790-0bbb831bf73e",
@@ -312,7 +312,7 @@
       "slug": "consumables",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 78
+      "direct_active_products": 86
     },
     {
       "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
@@ -344,7 +344,7 @@
       "slug": "cutting-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 47
+      "direct_active_products": 48
     },
     {
       "id": "23272a41-f706-4d75-898b-b5410eab66d5",
@@ -744,7 +744,7 @@
       "slug": "lighting",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 0
+      "direct_active_products": 17
     },
     {
       "id": "f17406cf-cd7a-4726-8b55-4b2f7e5e28ec",
@@ -1168,7 +1168,7 @@
       "slug": "tools-workshop",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 158
+      "direct_active_products": 150
     },
     {
       "id": "71196695-5fa0-48eb-a17a-9fcb5bd76e04",
