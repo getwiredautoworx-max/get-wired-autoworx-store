@@ -67,7 +67,9 @@ jobs:
             console.log('CATEGORY_NAVIGATION_PASS: '+rootOptions+' populated main categories; '+childOptions+' populated Auto Electrical options');
             await categoryPage.close();
 
-            // Verify a logo placeholder is replaced by a verified public-SKU image.
+            // Verify the image fallback only tries the exact public-SKU WebP.
+            // A missing approved image must produce a clean "Image not available" state,
+            // never fall back to supplier/catalogue imagery.
             const imageFallbackPage = await browser.newPage();
             await imageFallbackPage.setContent('<iframe id="imageFrame"></iframe>');
             await imageFallbackPage.locator('#imageFrame').evaluate(frame => {
@@ -81,10 +83,22 @@ jobs:
             await imageFallbackPage.evaluate(() => window.installGetWiredProductImageFallback(document.querySelector('#imageFrame')));
             await imageFallbackPage.waitForFunction(() => {
               const frame = document.querySelector('#imageFrame');
-              const img = frame && frame.contentDocument && frame.contentDocument.querySelector('.prodImg img');
-              return img && img.complete && img.naturalWidth > 0 && img.src.includes('/functions/v1/product-image?sku=GW-000174D6');
+              const doc = frame && frame.contentDocument;
+              const img = doc && doc.querySelector('.prodImg img');
+              const box = doc && doc.querySelector('.prodImg');
+              if (!img || !box) return false;
+              const isExactLocalImage = img.complete && img.naturalWidth > 0 && /\/assets\/products_webp\/GW-000174D6\.webp(?:$|\?)/.test(img.src);
+              const isCleanMissingState = box.classList.contains('no-image') && box.textContent.includes('Image not available');
+              return isExactLocalImage || isCleanMissingState;
             }, null, {timeout:30000});
-            console.log('EXACT_SKU_IMAGE_FALLBACK_PASS');
+            const imageFallbackResult = await imageFallbackPage.locator('#imageFrame').evaluate(frame => {
+              const doc = frame.contentDocument;
+              const img = doc.querySelector('.prodImg img');
+              const box = doc.querySelector('.prodImg');
+              return {src:img && img.src, noImage:box && box.classList.contains('no-image'), text:box && box.textContent};
+            });
+            if (imageFallbackResult.src && imageFallbackResult.src.includes('/functions/v1/product-image')) throw new Error('Supplier image proxy must never be used in storefront fallback');
+            console.log('EXACT_SKU_IMAGE_FALLBACK_PASS: '+JSON.stringify(imageFallbackResult));
             await imageFallbackPage.close();
 
             await frame.locator('#featuredGrid .product').first().waitFor({timeout:60000});
