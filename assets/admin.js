@@ -70,9 +70,9 @@ async function savePaxiTracking(orderId){
 async function preparePaxi(orderId){
   const o=currentOrders.find(x=>x.id===orderId);
   if(!o){alert('Order not found.');return;}
-  const r=await client.from('order_items').select('product_name,sku,quantity,unit_price').eq('order_id',orderId);
-  if(r.error){alert('Could not load order items: '+r.error.message);return;}
-  const lines=(r.data||[]).map(i=>'- '+i.product_name+' | SKU '+(i.sku||'')+' | Qty '+i.quantity).join('\n');
+  // admin_list_orders returns the order items through its guarded admin RPC.
+  // Do not query order_items directly: client RLS intentionally denies that table.
+  const lines=(o.items||[]).map(i=>'- '+i.product_name+' | SKU '+(i.sku||'')+' | Qty '+i.quantity).join('\n');
   const pack=['GET WIRED AUTOWORX — PAXI REGISTRATION PACK','Order #'+o.order_number,'Customer: '+(o.customer_name||''),'Phone: '+(o.customer_phone||''),'Email: '+(o.customer_email||''),'Delivery address: '+(o.delivery_address||''),'Order notes / PAXI Point: '+(o.notes||''),'Items:',lines,'','Register this parcel in the authorised PAXI Portal. Keep the PAXI tracking/reference number against Order #'+o.order_number+'.'].join('\n');
   try{await navigator.clipboard.writeText(pack);}catch{}
   window.open('https://portal.paxi.co.za/dashboard','_blank','noopener');
