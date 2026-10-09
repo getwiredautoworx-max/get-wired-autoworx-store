@@ -48,6 +48,15 @@ jobs:
           fi
           grep -q "Delivery orders cannot be submitted until a quotation is confirmed" checkout-v2.html
 
+      - name: Verify canonical production domain is reachable
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-store-home.html -w '%{http_code}' https://www.getwiredauto.co.za/)"
+          test "$status" = "200"
+          grep -Eiq "Get Wired AutoWorx|Get Wired AutoWorx" /tmp/live-store-home.html
+          echo "Canonical production domain returned HTTP 200 and contains the Get Wired AutoWorx brand."
+
       - name: Validate delivery quote database rule
         shell: bash
         run: |
