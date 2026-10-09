@@ -195,3 +195,10 @@ The remaining broad/mixed categories (notably Spare Parts, Abrasives, Sockets, C
 - Moved **66** remaining explicit ignition-barrel/ignition-loom/ignition-set/starter-kit/brush-holder/contact products from Spare Parts to Electrical Spares, requiring both source category Auto Electrical and a specific product-name match.
 - Reviewed 93 products in legacy Sockets: 55 names containing “socket” moved to Sockets; 10 containing “spanner” moved to Spanners; remaining 28 workshop-tool items moved to Hand Tools. No product records were deleted/deactivated.
 - Latest verified totals: **4,187 active products; 3,193 inside approved trees; 994 outside; zero active products without a category**.
+
+
+## Sixth correction batch — outdoor and lifestyle categories
+- Moved **19** non-mechanical products from legacy 4X4 Outdoor into the existing 4X4 Outdoor child category; product names matching mechanical indicators were deliberately excluded for manual review.
+- Moved **11** Lifestyle products into the existing Lifestyle child category and reparented both 4X4 Outdoor and Lifestyle children under Camping / Leisure / Outdoors.
+- Latest verified totals: **4,187 active products; 3,223 inside approved trees; 964 outside; zero active products without a category**.
+- Remaining outside-tree groups: Spare Parts 697; Abrasives 103; Clamps 32; Thermostats & Pipes 32; Suspension 28; Fuel Pumps & Oil Filter 27; Brake Parts 25; Radiator Caps & Bottles 12; Cylinders 5; plus three mechanical 4X4 items held for review. Mechanical/mixed groups remain untouched rather than mislabelled as electrical spares.
