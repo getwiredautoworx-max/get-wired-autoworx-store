@@ -32,7 +32,7 @@ jobs:
           EOF
           find axxess-upload -type f | wc -l
           du -sh axxess-upload
-          zip -qr axxess-storefront-upload.zip axxess-upload
+          (cd axxess-upload && zip -qr ../axxess-storefront-upload.zip .)
           unzip -t axxess-storefront-upload.zip
       - name: Upload deployment ZIP
         uses: actions/upload-artifact@v4
