@@ -164,3 +164,12 @@ Committed a change to `category.html` so a category with children also offers a 
 
 ### Remaining work
 The 1,331 products outside the approved roots are mostly broad or mixed legacy categories, especially Spare Parts (879), plus ambiguous mechanical, general lighting, hardware and mixed accessories. Do not bulk-move these without product-level review. Next, sample and split Spare Parts by clear SKU/name evidence, then check root-direct products and each category navigation path. The Camping/Leisure tree is active but currently contains no active products.
+
+
+## Second correction batch — Spare Parts high-confidence SKU rules
+A product-name rule was applied only to explicit electrical component names within the broad legacy **Spare Parts** category. The rule excluded names matching mechanical indicators (brake, suspension, gearbox, engine mount, oil filter, thermostat, radiator, steering rack, wheel bearing, clutch).
+
+- **116 products** were reassigned to the existing Electrical Spares child category based on explicit names such as ignition coils, alternator components, starter solenoids, battery cables/terminals, fuse holders, relays, terminals/connectors and vehicle bulbs.
+- This is a narrow, name-based pass, not a claim that all remaining Spare Parts records have been classified.
+- Post-batch active products: **4,187**; inside approved category trees: **2,972**; outside approved trees: **1,215**.
+- No product was deleted or deactivated. The broad remaining Spare Parts population was not bulk-moved.
