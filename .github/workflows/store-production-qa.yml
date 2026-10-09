@@ -61,7 +61,11 @@ jobs:
           test "$snapshot_status" = "200"
           grep -q "Auto Electrical" /tmp/live-category.html
           grep -q "Spare Parts" /tmp/live-category-tree.json
-          echo "Canonical production domain and category snapshot returned HTTP 200; live category data includes Auto Electrical and Spare Parts."
+          image_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-000174D6.webp)"
+          test "$image_status" = "200"
+          image_type="$(file --mime-type -b /tmp/live-product-image.webp)"
+          test "$image_type" = "image/webp"
+          echo "Canonical domain, category snapshot, and exact-SKU WebP image returned HTTP 200; category data includes Auto Electrical and Spare Parts."
 
       - name: Validate delivery quote database rule
         shell: bash
