@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T07:04:00Z",
+  "generated_at": "2026-10-09T07:05:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -78,7 +78,7 @@
       "id": "e83f9321-3d4a-40ca-9f4a-0e3faaeeff0d",
       "name": "Air Filters",
       "slug": "air-filters",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 24
     },
@@ -158,7 +158,7 @@
       "id": "f34fd9a9-8b3c-4df9-a1f6-6f486969017e",
       "name": "Automotive Hoses",
       "slug": "automotive-hoses",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 9
     },
@@ -302,7 +302,7 @@
       "id": "e0eef3bf-a516-4729-9075-aa507a486acc",
       "name": "Clutch Master Cylinders",
       "slug": "clutch-master-cylinders",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 11
     },
@@ -358,7 +358,7 @@
       "id": "2da17284-d78f-4a53-a2f2-74f7552214ca",
       "name": "CYLINDERS",
       "slug": "cylinders",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 17
     },
@@ -382,7 +382,7 @@
       "id": "c85dec4d-a386-4f9e-96db-e6b50a2b49da",
       "name": "DOOR PARTS",
       "slug": "door-parts",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 51
     },
@@ -446,7 +446,7 @@
       "id": "a43f2d70-e8ef-4551-8549-cb1df695b65c",
       "name": "Exhaust Tail Pieces",
       "slug": "exhaust-tail-pieces",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 42
     },
@@ -478,7 +478,7 @@
       "id": "5549384b-cfaa-4e55-96f5-2f5d21509247",
       "name": "FUEL PUMPS & OIL FILTER",
       "slug": "fuel-pumps-oil-filter",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 11
     },
@@ -806,7 +806,7 @@
       "id": "294f2575-da85-4327-ac32-832f9ef1f4aa",
       "name": "MIRRORS",
       "slug": "mirrors",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 80
     },
@@ -910,7 +910,7 @@
       "id": "51bc3b05-a498-4d7d-bfab-df7254526fe1",
       "name": "RADIATOR CAPS & BOTTLES",
       "slug": "radiator-caps-bottles",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 25
     },
@@ -1118,7 +1118,7 @@
       "id": "ba26d072-fdc6-4dbe-9eb8-b374e8aacbf0",
       "name": "SUSPENSION",
       "slug": "suspension",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 47
     },
@@ -1158,7 +1158,7 @@
       "id": "09542c2c-2440-4ae3-a4c3-92749e0fdd40",
       "name": "THERMOSTATS & PIPES",
       "slug": "thermostats-pipes",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 44
     },
@@ -1278,7 +1278,7 @@
       "id": "bedbeb2d-a367-4cee-919d-2850d532f358",
       "name": "WIPERS",
       "slug": "wipers",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 45
     },
