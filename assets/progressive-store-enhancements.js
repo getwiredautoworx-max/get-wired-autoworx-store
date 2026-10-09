@@ -90,12 +90,12 @@ function install(frame){
         [normal(p.slug),35],[normal(p.description),20],[normal(p.compatible_vehicles),30],
         [normal(p.brand),30],[normal(p.category_name),15]
       ];
-      const qt=normal(q).split(/\\s+/).filter(Boolean); let total=0;
+      const qt=normal(q).split(/\s+/).filter(Boolean); let total=0;
       for(const term of qt){
         let best=0;
         for(const [field,weight] of fields){
           if(!field)continue;
-          const words=field.split(/\\s+/);
+          const words=field.split(/\s+/);
           if(field===term||field.startsWith(term+' ')||field.includes(' '+term))best=Math.max(best,weight);
           else if(words.some(w=>w.startsWith(term)))best=Math.max(best,weight*0.8);
           else if(term.length>=4&&words.some(w=>distance(w,term)<=1))best=Math.max(best,weight*0.65);
