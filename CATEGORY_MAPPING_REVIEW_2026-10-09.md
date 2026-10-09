@@ -189,3 +189,9 @@ Moved 62 active products from eight clearly named unparented categories into the
 - No product records deleted or deactivated.
 
 The remaining broad/mixed categories (notably Spare Parts, Abrasives, Sockets, Clamps and mechanical parts) are intentionally left for more detailed classification.
+
+
+## Fourth and fifth correction batches — ignition components and workshop sockets
+- Moved **66** remaining explicit ignition-barrel/ignition-loom/ignition-set/starter-kit/brush-holder/contact products from Spare Parts to Electrical Spares, requiring both source category Auto Electrical and a specific product-name match.
+- Reviewed 93 products in legacy Sockets: 55 names containing “socket” moved to Sockets; 10 containing “spanner” moved to Spanners; remaining 28 workshop-tool items moved to Hand Tools. No product records were deleted/deactivated.
+- Latest verified totals: **4,187 active products; 3,193 inside approved trees; 994 outside; zero active products without a category**.
