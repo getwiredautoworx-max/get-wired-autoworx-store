@@ -42,4 +42,5 @@ jobs:
           git add assets/products_webp image-sync/asc_image_sync_report.json
           git diff --cached --quiet && echo 'No image/report changes to commit' && exit 0
           git commit -m '[asc-image-sync] Add bounded exact-SKU product images'
+          git pull --rebase origin main
           git push
