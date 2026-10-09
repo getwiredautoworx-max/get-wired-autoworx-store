@@ -86,7 +86,7 @@ function install(frame){
     };
     const score=(p,q)=>{
       const fields=[
-        [normal(p.public_sku),80],[normal(p.sku),80],[normal(p.name),60],
+        [normal(p.public_sku),80],[normal(p.name),60],
         [normal(p.slug),35],[normal(p.description),20],[normal(p.compatible_vehicles),30],
         [normal(p.brand),30],[normal(p.category_name),15]
       ];
@@ -109,7 +109,7 @@ function install(frame){
       const q=search.value.trim(); if(!q){box.classList.remove('open');return;}
       const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
       const hits=all.map(p=>({p,s:score(p,q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,15).map(x=>x.p);
-      box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+esc(p.name)+'</b><small>SKU: '+esc(p.public_sku||p.sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
+      box.innerHTML=hits.length?hits.map((p,i)=>'<div class="gwResult" data-full-product="'+i+'"><b>'+esc(p.name)+'</b><small>SKU: '+esc(p.public_sku||'')+(p.price!=null?' · '+new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(p.price)):'')+'</small></div>').join(''):'<div class="gwNoResults">No matching product found. Try a SKU, part number, brand, vehicle or product name.</div>';
       box._gwFullHits=hits;box.classList.add('open');
     };
     search.addEventListener('input',render);
