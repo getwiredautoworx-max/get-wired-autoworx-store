@@ -1,0 +1,752 @@
+[
+  {
+    "public_sku": "GW-000174D6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-000634DC",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00104D4B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0010DCC4",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-001CED3B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-004E3609",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0058F0A9",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0060FD49",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0065AEDF",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00694AE0",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-007C7D94",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-008205B1",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-008B3FCA",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-008D63FA",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-008F0D67",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00959EF7",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00A44A9B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00AEA04F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00B3F2DE",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00B72FDB",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00B9A8C6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00BAB865",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00D4EED6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00D84E3C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-00E79CD5",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-01133390",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-013E29C0",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-013F4C1A",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-014297D3",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-016ED808",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-01728FA3",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-017EC9EB",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0181A26C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-01D7F380",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02011529",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-021C40A9",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-021CB6E1",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-021E567F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-022401E8",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02342045",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0254A2E1",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02995AD7",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02C7A178",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02C81189",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02E21BA4",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02E7D290",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-02F79D41",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-032CA5B2",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0330E222",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03642396",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-037D2C43",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-037F8C9C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-038DE6DE",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0398EB88",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-039DC23C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03A61E04",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03AA12CD",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03AC090F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03B513A4",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03DCD893",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03E5CD7C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03E711AC",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-03F06A44",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0401C840",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-040911CC",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-041914FE",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0426695B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-04364C78",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0439AB42",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0441B246",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-04448A1B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0455D9DB",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0465676E",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-04B5309A",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-04BBE51C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0503DE2E",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05091888",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-052A87CC",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0547D547",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-056ED23E",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05746665",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-057F39E7",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-058A717F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-058A8741",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-058DACA6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05AB86C0",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05AC3F61",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05B5C888",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05C3FEDA",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05DBF84F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-05F24051",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-060265FC",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0608AB44",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-060A6434",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06267C1B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-064FE6DE",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0668065B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-066B7508",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0696941A",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06B02B8B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06D22F3D",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06D7CFC5",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06E0B964",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06EA32B5",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06F1FC9F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-06F64B8C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-07168DA6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0724A8A9",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-072BE381",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0732DE87",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-07429CE2",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-075B643F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-07705E8E",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-07760806",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-07F900C6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-082670C6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-082F3D87",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-083784F1",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-083B2F56",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-083FEFB3",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0840E620",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0881E5A2",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-088C8692",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0893CC61",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-089F4228",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-08C9D1B8",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-08D65466",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09184FF5",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09270155",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0944C25A",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-094F662F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-096E0835",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0973C502",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-097805E6",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-098447F7",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09D1B7AD",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09D29DD8",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09D6A81C",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09E07E9A",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09E899F7",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09EA74A8",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09EFF6BD",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-09F9C5DF",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0A25BE4B",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0A2894B7",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0A5CAA99",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0A615C69",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0A9A2E8F",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0AACD164",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  },
+  {
+    "public_sku": "GW-0ABFAD58",
+    "status": "source_timeout_or_http_error",
+    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+  }
+]
