@@ -55,8 +55,7 @@
           if (existing.dataset.gwFallbackBound) return;
           existing.dataset.gwFallbackBound = '1';
           var original = existing.src;
-          if (isPlaceholder(original)) tryUrl(existing, 0, original);
-          else existing.addEventListener('error', function () { tryUrl(existing, 0, original); }, { once: true });
+          tryUrl(existing, 0, original);
           return;
         }
 
