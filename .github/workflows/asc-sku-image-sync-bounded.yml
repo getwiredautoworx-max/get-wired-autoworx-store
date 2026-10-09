@@ -36,11 +36,52 @@ jobs:
           ASC_BASE: https://accessoriesspares.co.za
         run: python scripts/asc_image_sync_bounded.py
       - name: Commit verified public-SKU images and progress report
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'Get Wired AutoWorx Image Sync'
           git config user.email 'actions@users.noreply.github.com'
           git add assets/products_webp image-sync/asc_image_sync_report.json
           git diff --cached --quiet && echo 'No image/report changes to commit' && exit 0
           git commit -m '[asc-image-sync] Add bounded exact-SKU product images'
-          git pull --rebase origin main
+          git fetch origin main
+          if ! git rebase origin/main; then
+            echo 'Concurrent report update detected; merging report entries and preserving all published images.'
+            git rebase --abort || true
+            git fetch origin main
+            git show HEAD:image-sync/asc_image_sync_report.json > /tmp/local-image-report.json
+            git show origin/main:image-sync/asc_image_sync_report.json > /tmp/remote-image-report.json
+            mkdir -p /tmp/local-webp
+            cp -a assets/products_webp/. /tmp/local-webp/ 2>/dev/null || true
+            git reset --mixed origin/main
+            if git cat-file -e origin/main:assets/products_webp 2>/dev/null; then
+              git checkout origin/main -- assets/products_webp
+            else
+              rm -rf assets/products_webp
+              mkdir -p assets/products_webp
+            fi
+            cp -a /tmp/local-webp/. assets/products_webp/ 2>/dev/null || true
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          local=json.loads(Path('/tmp/local-image-report.json').read_text())
+          remote=json.loads(Path('/tmp/remote-image-report.json').read_text())
+          merged={}
+          def score(item):
+              return (int(item.get('sync_version') or 0), str(item.get('attempted_at') or ''))
+          for item in remote + local:
+              key=item.get('public_sku')
+              if not key:
+                  continue
+              if key not in merged or score(item) >= score(merged[key]):
+                  merged[key]=item
+          Path('image-sync/asc_image_sync_report.json').write_text(
+              json.dumps(sorted(merged.values(), key=lambda x:x.get('public_sku','')), indent=2),
+              encoding='utf-8'
+          )
+          PY
+            git add assets/products_webp image-sync/asc_image_sync_report.json
+            git diff --cached --quiet && echo 'No merged changes to commit' && exit 0
+            git commit -m '[asc-image-sync] Merge bounded image-sync results'
+          fi
           git push
