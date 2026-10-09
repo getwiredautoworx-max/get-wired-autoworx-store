@@ -668,3 +668,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Validation:** Re-fetched the committed file and confirmed the SKU, Unicode-normalization, and query-token expressions use single-backslash regex escapes; no double-escaped `\\s` or `\\u` regex sequences remain. Static source validation only; browser search behavior still needs live QA.
 - **Next tests:** exact public SKU, leading/trailing whitespace, multi-word product name, accented text, brand/vehicle terms, typo tolerance, and no-results message.
 - **ETA:** Additional source correction under 5 minutes; browser acceptance QA 15–30 minutes after hosting access is available.
+
+
+## 2026-10-09 — Search normalization and SKU parsing correction
+- **Completed:** Corrected the remaining over-escaped regular expressions in assets/progressive-store-enhancements.js. SKU-label whitespace trimming now matches real whitespace, and Unicode combining marks are removed using the intended character range. These fixes accompany the preceding multi-word search tokenization correction.
+- **Source commit:** db96578e58bc5ae1775bd1d3f6ddf54263c0e197.
+- **Validation:** Re-fetched the committed file and confirmed the SKU, Unicode-normalization, and query-token expressions now use the intended regex escapes. Static source validation only; browser search behavior still needs live QA.
+- **Next tests:** exact public SKU, leading/trailing whitespace, multi-word product name, accented text, brand/vehicle terms, typo tolerance, and no-results message.
+- **ETA:** Source correction under 5 minutes; browser acceptance QA 15–30 minutes after hosting access is available.
