@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T11:00:00Z",
+  "generated_at": "2026-10-09T11:20:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -312,7 +312,7 @@
       "slug": "consumables",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 91
+      "direct_active_products": 89
     },
     {
       "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
@@ -576,7 +576,7 @@
       "slug": "hand-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 319
+      "direct_active_products": 320
     },
     {
       "id": "cefc3905-a81d-4ad7-803f-d2acd5d9f4c4",
@@ -592,7 +592,7 @@
       "slug": "hardware",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 19
+      "direct_active_products": 21
     },
     {
       "id": "4da98e3f-d542-4842-b6be-c4a8e109c0dd",
@@ -1168,7 +1168,7 @@
       "slug": "tools-workshop",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 137
+      "direct_active_products": 135
     },
     {
       "id": "71196695-5fa0-48eb-a17a-9fcb5bd76e04",
@@ -1304,7 +1304,7 @@
       "slug": "wiring-connectors",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 0
+      "direct_active_products": 1
     },
     {
       "id": "27b328f1-579c-4e68-9565-80a081e0abc4",
