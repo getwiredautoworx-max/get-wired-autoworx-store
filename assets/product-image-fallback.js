@@ -26,7 +26,7 @@
 
   function isPlaceholder(src) {
     var s = String(src || '').toLowerCase();
-    return !s || s.indexOf('placeholder') !== -1 || s.indexOf('no-image') !== -1 || s.indexOf('no_image') !== -1 || s.indexOf('default-product') !== -1;
+    return !s || s.indexOf('placeholder') !== -1 || s.indexOf('no-image') !== -1 || s.indexOf('no_image') !== -1 || s.indexOf('default-product') !== -1 || s.indexOf('gw-logo.png') !== -1;
   }
 
   function install(frame) {
@@ -43,7 +43,10 @@
 
         function tryUrl(img, index, original) {
           if (index >= urls.length) {
-            if (img && !original) img.remove();
+            if (img) {
+              if (original && isPlaceholder(original)) { img.onerror = null; img.src = original; }
+              else img.remove();
+            }
             return;
           }
           img.onerror = function () { tryUrl(img, index + 1, original); };
