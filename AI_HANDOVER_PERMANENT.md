@@ -574,3 +574,15 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - No Cloudflare or Netlify credits were used. Do not deploy repeatedly or spend credits while Axxess support is diagnosing the hosting path.
 - ETA: after Axxess supplies a specific diagnosis and access/configuration is available, allow approximately 30–90 minutes for a focused correction and first retest; full customer/payment QA will take longer and remains provider-dependent.
 - Failure/recovery path: if DNS is correct but the server returns 403/404/500, ask Axxess to identify the exact log entry and correct the hosting/document-root/permission/server configuration; if files serve but Supabase calls fail, capture the browser console/network error and troubleshoot that request separately.
+
+
+## 2026-10-09 — CLOUDFLARE DEPLOY FAILURE ROOT CAUSE (LOG-VERIFIED)
+
+- [x] Inspected Cloudflare Pages workflow run #248, run ID `37880686661`, for commit `bda463f1d338bbc8f0118c5330f3b1e02eaae408`.
+- [x] Confirmed the deployment job failed before uploading/deploying storefront assets because the workflow environment has an empty `CLOUDFLARE_API_TOKEN`.
+- [x] Exact error from Wrangler: a `CLOUDFLARE_API_TOKEN` environment variable is required in non-interactive mode.
+- [x] This is a deployment-authentication/configuration blocker, not evidence of a storefront-code build failure. Storefront Smoke Test #482 and Catalogue Image Audit #130 both passed on the same commit; Public SKU Exposure Audit #100 also passed.
+- [ ] Do not repeat the previously attempted token workaround, do not create a new Cloudflare project, and do not spend Cloudflare/Netlify credits before the final testing phase.
+- [ ] Cloudflare deployment remains deferred until final testing and authorised working credentials/access are available. Axxess remains the primary hosting route.
+- **Recovery:** continue source-level and non-credit QA while waiting for Axxess. At final deployment, verify the existing Cloudflare secret is populated by the authorised owner/admin or use the already-approved Axxess upload route. Never request or place secret values in chat.
+- **ETA:** no reliable deployment ETA until Axxess replies or authorised hosting/deployment access is available.
