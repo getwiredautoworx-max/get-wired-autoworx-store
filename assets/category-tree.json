@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T10:45:00Z",
+  "generated_at": "2026-10-09T11:00:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -136,7 +136,7 @@
       "slug": "automotive-accessories",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 322
+      "direct_active_products": 320
     },
     {
       "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
@@ -1160,7 +1160,7 @@
       "slug": "thermostats-pipes",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 44
+      "direct_active_products": 45
     },
     {
       "id": "77297c18-67f6-452e-8918-c55d2ef6231a",
@@ -1208,7 +1208,7 @@
       "slug": "trailer-towing",
       "parent_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
       "active": true,
-      "direct_active_products": 18
+      "direct_active_products": 19
     },
     {
       "id": "360c2d36-137a-498a-94f3-11a136c1039f",
