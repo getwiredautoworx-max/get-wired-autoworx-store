@@ -750,3 +750,15 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Validation limits:** The report is based on read-only samples and prior aggregate audits; it is not a complete 4,187-row export and does not claim the live storefront was tested.
 - **ETA:** 30–60 minutes for a reliable full candidate map after complete row retrieval; correction time depends on ambiguous rows.
 - **Hosting/credits:** No database writes, Cloudflare deployment, Netlify build or paid hosting credits were used.
+
+
+## 2026-10-09 — Approved category tree audit
+- **Completed:** Ran a read-only recursive query over the eight hard-coded storefront root IDs and all descendants.
+- **Verified subtree counts:** Vehicle Security/Alarms & Security 2 active products; Accessories/Automotive Accessories 446; Camping/Leisure/Outdoors 0 (root inactive); Car Audio 41; Auto Electrical/Electrical 0; Marine Spares & Accessories 0; Tools/Hardware/Consumables 407; Trailer & Canopy 80 (root inactive). Total = 976, consistent with the previous count; 3,211 active products remain outside the eight approved trees.
+- **Critical finding:** The intended Auto Electrical and Marine roots currently have zero active products in their descendant trees. The hard-coded UI labels mask underlying root names but do not repair parent relationships. Camping root is inactive and empty; Trailer & Canopy is inactive despite 80 active products in its subtree.
+- **Action:** Added these counts and safe-repair implications to `CATEGORY_MAPPING_REVIEW_2026-10-09.md`.
+- **Decision:** No category parent, active flag or product assignment was changed. Do not simply activate roots or bulk-move legacy categories by name; build the full leaf-category map first.
+- **Report commit:** 2a249eade4ba25e55e84e7a93b6f42f920e2ff7e.
+- **Next priority:** Inspect all legacy leaf categories, their parent IDs and product counts; map the correct leaves under the eight approved roots; then perform a reviewed database change and verify that all 4,187 active products are reachable through the intended category tree without misclassifying mechanical items.
+- **ETA:** Full mapping review 30–60 minutes after complete data retrieval; correction/QA time depends on ambiguous legacy categories.
+- **Hosting/credits:** No Cloudflare/Netlify deploy or credits used. No database rows changed.
