@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T07:02:43Z",
+  "generated_at": "2026-10-09T07:04:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -91,17 +91,17 @@
       "direct_active_products": 2
     },
     {
-      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
+      "id": "a4b912c4-25c6-4daa-a049-6b67818098ba",
       "name": "Amplifiers",
-      "slug": "car-audio-amplifiers",
+      "slug": "amplifiers",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
     },
     {
-      "id": "a4b912c4-25c6-4daa-a049-6b67818098ba",
+      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
       "name": "Amplifiers",
-      "slug": "amplifiers",
+      "slug": "car-audio-amplifiers",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
@@ -219,28 +219,20 @@
       "direct_active_products": 53
     },
     {
+      "id": "407e459f-a325-4542-9b9d-a0e3553e83db",
+      "name": "Brake Parts",
+      "slug": "brake-parts",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
+      "active": true,
+      "direct_active_products": 37
+    },
+    {
       "id": "53daec04-d315-43f9-91e0-2df49f9d89c6",
       "name": "Brake Parts",
       "slug": "catalogue-brake-parts",
       "parent_id": null,
       "active": true,
       "direct_active_products": 0
-    },
-    {
-      "id": "425ed8c5-761a-495d-a29f-bd8c430a6a8e",
-      "name": "Brake Parts",
-      "slug": "parts-brake",
-      "parent_id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
-      "active": true,
-      "direct_active_products": 7
-    },
-    {
-      "id": "407e459f-a325-4542-9b9d-a0e3553e83db",
-      "name": "BRAKE PARTS",
-      "slug": "brake-parts",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
-      "active": true,
-      "direct_active_products": 30
     },
     {
       "id": "af2f8625-4f42-45e6-9f21-d571d7415893",
@@ -315,20 +307,20 @@
       "direct_active_products": 11
     },
     {
-      "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
-      "name": "Consumables",
-      "slug": "catalogue-consumables",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "3d5606b5-bb09-4a5d-854a-70137861a87a",
       "name": "Consumables",
       "slug": "consumables",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
       "direct_active_products": 76
+    },
+    {
+      "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
+      "name": "Consumables",
+      "slug": "catalogue-consumables",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
     },
     {
       "id": "50cc925a-f099-46ee-8c5b-3532622dda52",
@@ -547,14 +539,6 @@
       "direct_active_products": 42
     },
     {
-      "id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
-      "name": "General Parts",
-      "slug": "parts-general",
-      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "7c5d5092-9d92-429d-985d-019aa0016979",
       "name": "Globes and Globe Holders",
       "slug": "catalogue-globes-and-globe-holders",
@@ -587,20 +571,20 @@
       "direct_active_products": 5
     },
     {
-      "id": "cefc3905-a81d-4ad7-803f-d2acd5d9f4c4",
-      "name": "Hand Tools",
-      "slug": "catalogue-hand-tools",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "3dc56750-9a07-44b3-93dc-ce263b18aeda",
       "name": "Hand Tools",
       "slug": "hand-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
       "direct_active_products": 336
+    },
+    {
+      "id": "cefc3905-a81d-4ad7-803f-d2acd5d9f4c4",
+      "name": "Hand Tools",
+      "slug": "catalogue-hand-tools",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
     },
     {
       "id": "c04c7226-405e-467a-892d-b713aa1ac9ac",
