@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T11:45:00Z",
+  "generated_at": "2026-10-09T12:00:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -296,7 +296,7 @@
       "slug": "clamps",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 39
+      "direct_active_products": 40
     },
     {
       "id": "e0eef3bf-a516-4729-9075-aa507a486acc",
@@ -424,7 +424,7 @@
       "slug": "electrical-spares",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 499
+      "direct_active_products": 501
     },
     {
       "id": "76ba68a2-465d-44ff-8db8-8f68158bae1e",
@@ -976,7 +976,7 @@
       "slug": "screwdrivers",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 30
+      "direct_active_products": 29
     },
     {
       "id": "c0aa1cae-0aef-4ef9-995d-37999da722ab",
@@ -1192,7 +1192,7 @@
       "slug": "trailer-canopy",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 66
+      "direct_active_products": 64
     },
     {
       "id": "f9034e71-4b2b-4b88-9020-bf5b5ff7502a",
