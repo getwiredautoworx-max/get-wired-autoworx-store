@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T09:45:00Z",
+  "generated_at": "2026-10-09T10:00:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -136,7 +136,7 @@
       "slug": "automotive-accessories",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 324
+      "direct_active_products": 322
     },
     {
       "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
@@ -1240,7 +1240,7 @@
       "slug": "wheel-accessories",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 134
+      "direct_active_products": 136
     },
     {
       "id": "6a89a4d7-e43a-4ad7-89c4-62453ff5f84d",
