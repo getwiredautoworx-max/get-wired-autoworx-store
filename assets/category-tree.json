@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T10:00:00Z",
+  "generated_at": "2026-10-09T10:15:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -296,7 +296,7 @@
       "slug": "clamps",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 3
+      "direct_active_products": 7
     },
     {
       "id": "e0eef3bf-a516-4729-9075-aa507a486acc",
@@ -312,7 +312,7 @@
       "slug": "consumables",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 86
+      "direct_active_products": 91
     },
     {
       "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
@@ -344,7 +344,7 @@
       "slug": "cutting-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 48
+      "direct_active_products": 51
     },
     {
       "id": "23272a41-f706-4d75-898b-b5410eab66d5",
@@ -592,7 +592,7 @@
       "slug": "hardware",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 18
+      "direct_active_products": 19
     },
     {
       "id": "4da98e3f-d542-4842-b6be-c4a8e109c0dd",
@@ -1168,7 +1168,7 @@
       "slug": "tools-workshop",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 150
+      "direct_active_products": 137
     },
     {
       "id": "71196695-5fa0-48eb-a17a-9fcb5bd76e04",
