@@ -173,3 +173,19 @@ A product-name rule was applied only to explicit electrical component names with
 - This is a narrow, name-based pass, not a claim that all remaining Spare Parts records have been classified.
 - Post-batch active products: **4,187**; inside approved category trees: **2,972**; outside approved trees: **1,215**.
 - No product was deleted or deactivated. The broad remaining Spare Parts population was not bulk-moved.
+
+
+## Third correction batch — clear small legacy categories
+Moved 62 active products from eight clearly named unparented categories into their existing specialist children:
+- Aerials → Car Audio (4)
+- Multimeters, Garden Tools and Accessories, Padlocks, Hand & Foot Pumps → Tools/Hardware/Consumables (23 total)
+- Racing Stickers, Steering Wheel Covers, Wheel Covers → Accessories (35 total)
+
+### Latest verification
+- Active products: **4,187**
+- Inside approved category trees: **3,034**
+- Outside approved category trees: **1,153**
+- Active products without category: **0**
+- No product records deleted or deactivated.
+
+The remaining broad/mixed categories (notably Spare Parts, Abrasives, Sockets, Clamps and mechanical parts) are intentionally left for more detailed classification.
