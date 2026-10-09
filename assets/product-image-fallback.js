@@ -19,8 +19,7 @@
     var e = encodeURIComponent(sku);
     return [
       'https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=' + e,
-      '/assets/products_webp/' + e + '.webp',
-      '/assets/products/' + e + '.jpg'
+      '/assets/products_webp/' + e + '.webp'
     ];
   }
 
@@ -44,8 +43,7 @@
         function tryUrl(img, index, original) {
           if (index >= urls.length) {
             if (img) {
-              if (original && isPlaceholder(original)) { img.onerror = null; img.src = original; }
-              else img.remove();
+              if (img) { img.onerror = null; img.style.display = 'none'; var box = img.closest('.prodImg, .detailImg'); if (box) { box.classList.add('no-image'); box.textContent = 'Image not available'; } }
             }
             return;
           }
