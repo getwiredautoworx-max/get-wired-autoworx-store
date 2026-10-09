@@ -1,0 +1,43 @@
+name: Prepare Axxess upload package
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Assemble minimal storefront package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p axxess-upload/assets
+          cp index.html store.html index-new.html checkout-v2.html category.html returns-refunds.html product-details.js category-navigation.js TERMS_AND_CONDITIONS.md axxess-upload/
+          cp assets/gw-logo.png assets/product-image-fallback.js assets/category-cleanup.js assets/progressive-store-enhancements.js assets/product-placeholder.svg assets/category-tree.json axxess-upload/assets/
+          cp -a assets/products_webp axxess-upload/assets/
+          cat > axxess-upload/UPLOAD-INSTRUCTIONS.txt <<'EOF'
+          GET WIRED AUTOWORX — AXXESS DIRECTADMIN DEPLOYMENT
+          
+          This package contains the storefront runtime files and 2,196 local WebP product-image files.
+          Before extraction, make a backup archive of the existing public_html contents in DirectAdmin File Manager.
+          Upload this ZIP to public_html, select it, and use Extract. Extract into public_html (not into a nested folder).
+          Confirm the existing admin.html is preserved; it is intentionally not included in this package.
+          Do not upload repository documentation, GitHub workflows, database files, or source archives.
+          After extraction, test /, /store.html, /category.html, /checkout-v2.html, and /returns-refunds.html.
+          The store uses Supabase remotely; this package does not move the database or secrets.
+          EOF
+          find axxess-upload -type f | wc -l
+          du -sh axxess-upload
+          zip -qr axxess-storefront-upload.zip axxess-upload
+          unzip -t axxess-storefront-upload.zip
+      - name: Upload deployment ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: axxess-storefront-upload
+          path: axxess-storefront-upload.zip
+          if-no-files-found: error
+          retention-days: 14
