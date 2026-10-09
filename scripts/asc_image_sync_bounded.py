@@ -15,9 +15,9 @@ SUPABASE_KEY = os.environ["SUPABASE_KEY"]
 ASC_BASE = os.environ.get("ASC_BASE", "https://accessoriesspares.co.za")
 OUT = Path("assets/products_webp")
 REPORT = Path("image-sync/asc_image_sync_report.json")
-BATCH_SIZE = 50
+BATCH_SIZE = 40
 RETRY_AFTER_DAYS = 30
-SYNC_VERSION = 4
+SYNC_VERSION = 5
 NOW = datetime.now(timezone.utc)
 OUT.mkdir(parents=True, exist_ok=True)
 REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -111,7 +111,7 @@ def sync_one(item):
         )))
         for search_url in searches:
             try:
-                response = session.get(search_url, timeout=(5, 20))
+                response = session.get(search_url, timeout=(5, 15))
                 response.raise_for_status()
                 soup = BeautifulSoup(response.text, "html.parser")
                 exact_card = None
@@ -137,7 +137,7 @@ def sync_one(item):
                     image_url = "https:" + image_url
                 elif image_url.startswith("/"):
                     image_url = ASC_BASE + image_url
-                image_response = session.get(image_url, timeout=(5, 20))
+                image_response = session.get(image_url, timeout=(5, 15))
                 image_response.raise_for_status()
                 if not (image_response.headers.get("content-type") or "").lower().startswith("image/"):
                     status = "candidate_url_not_image"
@@ -159,7 +159,7 @@ def sync_one(item):
         session.close()
 
 def main():
-    probe = requests.get(ASC_BASE, headers={"User-Agent": "Mozilla/5.0 (compatible; Get-Wired-AutoWorx-ImageAudit/3.0)"}, timeout=(5, 20))
+    probe = requests.get(ASC_BASE, headers={"User-Agent": "Mozilla/5.0 (compatible; Get-Wired-AutoWorx-ImageAudit/3.0)"}, timeout=(5, 15))
     print(f"ASC source connectivity: HTTP {probe.status_code}; response bytes: {len(probe.content)}")
     probe.raise_for_status()
     total, candidates = load_targets()
