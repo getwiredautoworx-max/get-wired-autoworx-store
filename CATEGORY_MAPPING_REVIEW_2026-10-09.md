@@ -44,3 +44,27 @@ Record verified catalogue classification problems and define a safe SKU-level co
 ## ETA
 - Full candidate export and rule-based review: 30–60 minutes once all rows can be retrieved reliably.
 - Corrections and regression checks: depends on the number of ambiguous rows; do not estimate completion until the report is reviewed.
+
+
+## Approved-root hierarchy check — follow-up read-only SQL
+The eight IDs currently hard-coded as storefront roots do not yet represent the intended taxonomy consistently. Recursive counts including descendants:
+
+| Database root label | Active flag | Category nodes | Active products in its subtree |
+|---|---:|---:|---:|
+| Alarms & Security (UI label: Vehicle Security) | true | 10 | 2 |
+| Automotive Accessories (UI label: Accessories) | true | 46 | 446 |
+| Camping / Leisure / Outdoors | false | 4 | 0 |
+| Car Audio | true | 20 | 41 |
+| Electrical (UI label: Auto Electrical) | true | 56 | 0 |
+| Marine Spares & Accessories | true | 10 | 0 |
+| Tools & Workshop (UI label: Tools / Hardware / Consumables) | true | 24 | 407 |
+| Trailer & Canopy | false | 3 | 80 |
+
+Total in these eight subtrees: 976, matching the earlier audit; 3,211 active products remain outside them.
+
+### Implications
+- The Auto Electrical and Marine roots have **zero active products in their own descendants**. The many products labelled Electrical Spares, Fuses, Relays, Marine/Boat Accessories etc. are likely still attached to legacy categories whose parent chains are not under the intended roots.
+- Camping / Leisure / Outdoors is inactive and has zero active products in its tree. Trailer & Canopy is inactive but has 80 active products in its subtree.
+- The category page hard-codes the approved root IDs and overrides their display labels, so it can display a friendly name even while the underlying root label/parent hierarchy is inconsistent. This does not make the product assignments correct.
+- Do not simply flip inactive flags or move all legacy category groups by name. First resolve the full leaf-category mapping, then attach only verified leaf categories to the correct root and verify the 4,187 active products are discoverable in the intended hierarchy.
+- This was read-only. No active flags, category links, or product rows changed.
