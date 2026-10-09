@@ -853,3 +853,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **SSL:** Do not request an Axxess website certificate while the website is intended to be served by Cloudflare Pages. The Pages/Cloudflare side must serve HTTPS for the website hostnames; the existing Axxess mail certificate is separate.
 - **Changes/validation:** Recorded provider response and recovery plan only. No DNS changes, deployment, hosting-file changes, Supabase writes, or Cloudflare/Netlify credits used.
 - **Next action:** Inspect Cloudflare Pages project/custom-domain and DNS configuration through available connected tools if accessible; otherwise owner must confirm the intended canonical domain and share the current Pages Custom Domains/DNS target details. Continue source/database work without deploying until DNS is verified.
+
+
+## 2026-10-09 — Canonical customer-facing hostname confirmed
+- **Owner decision:** `www.getwiredauto.co.za` is the customer-facing storefront hostname. Treat this as the canonical hostname for customer links and launch QA.
+- **DNS status remains:** Axxess support says `www` CNAME points to `get-wired-autoworx-store.pages.dev`, while the root/apex `getwiredauto.co.za` A record points to Axxess. Do not assume the current CNAME is fully validated in Cloudflare Pages merely because it exists.
+- **Next technical action:** Verify that `www.getwiredauto.co.za` is attached as a Custom Domain to the existing Cloudflare Pages project `get-wired-autoworx-store`; check the DNS target/status and HTTPS in Cloudflare Pages. Then decide whether the apex `getwiredauto.co.za` should redirect to `www.getwiredauto.co.za` and implement only using the exact Cloudflare-supported configuration. Preserve the current nameserver arrangement unless the owner explicitly authorizes changing it.
+- **Access limitation:** No Cloudflare DNS/Pages connector or dashboard API tool is available in this session. No DNS change or deployment was made. Owner hostname decision recorded; no Cloudflare/Netlify credits used.
