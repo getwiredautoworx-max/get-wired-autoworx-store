@@ -42,10 +42,23 @@ jobs:
 
           base=os.environ["SUPABASE_URL"]
           key=os.environ["SUPABASE_PUBLISHABLE_KEY"]
-          url=base+"/rest/v1/products?select=public_sku,image_url,active&active=eq.true&limit=10000"
-          req=Request(url,headers={"apikey":key})
-          with urlopen(req,timeout=30) as r:
-              products=json.load(r)
+          # PostgREST caps responses at 1,000 rows by default. Explicitly page
+          # through the whole active catalogue instead of silently auditing only
+          # the first batch.
+          products=[]
+          offset=0
+          page_size=1000
+          while True:
+              url=base+"/rest/v1/products?select=public_sku,image_url,active&active=eq.true&order=public_sku.asc&limit="+str(page_size)+"&offset="+str(offset)
+              req=Request(url,headers={"apikey":key})
+              with urlopen(req,timeout=30) as r:
+                  batch=json.load(r)
+              if not isinstance(batch,list):
+                  raise SystemExit("Unexpected catalogue response during paged image audit")
+              products.extend(batch)
+              if len(batch)<page_size:
+                  break
+              offset += page_size
 
           bad=[]
           proxy=[]
