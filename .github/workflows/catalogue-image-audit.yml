@@ -10,6 +10,7 @@ on:
       - '**/*.json'
       - 'scripts/public-sku-audit.py'
       - 'assets/products/**'
+      - 'assets/products_webp/**'
       - 'supabase/functions/product-image/**'
       - '.github/workflows/catalogue-image-audit.yml'
   schedule:
@@ -108,6 +109,25 @@ jobs:
             fi
           done
           echo "All four slash-normalised supplier image references return HTTP 200"
+
+      - name: Smoke test a published public-SKU WebP image when available
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(assets/products_webp/*.webp)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No WebP files published yet; existing JPG proxy samples were tested above."
+            exit 0
+          fi
+          file="${files[0]}"
+          sku="$(basename "$file" .webp)"
+          status="$(curl -sS -o /dev/null -w '%{http_code}' "https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=${sku}")"
+          if [ "$status" != "200" ]; then
+            echo "ERROR: WebP proxy returned HTTP $status for public SKU $sku"
+            exit 1
+          fi
+          echo "Public-SKU WebP image proxy returned HTTP 200"
 
       - name: Upload audit report
         if: always()
