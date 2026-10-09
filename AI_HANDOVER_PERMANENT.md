@@ -901,3 +901,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Delivery-only checkout:** Source commit `d9f84e0f93247ecfc81ce29cd5779e9278487f3b` removed customer pickup and cash-on-pickup options and makes address + delivery quote mandatory. First attempted commit `f53163c745ee3193e5b27e81b3ccf6f19e635e1e` only changed the heading and is superseded; see verification note in prior section.
 - **Validation:** JavaScript syntax parse PASS; no pickup references remain. This is source validation only. The backend RPC was read, not changed. No orders, product data or categories were changed. No deployment or Cloudflare/Netlify credits used.
 - **Important remaining check:** Confirm the customer-facing checkout page actually routes to `checkout-v2.html` and that the deployed site serves these committed source changes. Deployment/browser verification is deferred to final testing as required. Review PAXI rate freshness and provider quote contracts before release.
+
+
+## 2026-10-09 — Category snapshot/live catalogue count reconciliation
+- **Snapshot summary:** `assets/category-tree.json` is timestamped `2026-10-09T09:32:49Z`, with 165 active category entries and direct active-product assignments summing to 4,187.
+- **Live Supabase aggregate check:** 242 total category rows, 165 active categories, 58 active root categories, 4,187 active products, zero active products without a category, and zero active products pointing to a missing category ID. The snapshot category count and product-assignment total match live aggregate totals. Full per-category ID/parent/count comparison remains unverified; do not call this a full snapshot integrity proof.
+- **Failed query attempt recorded:** A combined aggregate query returned PostgreSQL error 42703 (“column active does not exist”) despite the separately confirmed schema containing `categories.active`; simplified separate aggregate query succeeded. No database writes occurred.
+- **No deployment credits used.** Continue with frontend checkout route/link regression and static QA; browser testing stays in final phase.
