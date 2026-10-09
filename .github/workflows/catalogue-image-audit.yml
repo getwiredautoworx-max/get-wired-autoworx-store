@@ -10,6 +10,7 @@ on:
       - '**/*.json'
       - 'scripts/public-sku-audit.py'
       - 'assets/products/**'
+      - 'supabase/functions/product-image/**'
       - '.github/workflows/catalogue-image-audit.yml'
   schedule:
     - cron: '17 2 * * *'
@@ -94,6 +95,19 @@ jobs:
           if bad:
               raise SystemExit("Public product-image audit found invalid or mismatched image references; see catalogue-image-audit.json")
           PY
+
+      - name: Smoke test slash-normalised supplier image filenames
+        run: |
+          set -euo pipefail
+          base="https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku="
+          for sku in GW-38E68CCF GW-D44F3E5F GW-026C7F71 GW-5E7F77E5; do
+            status="$(curl -sS -o /dev/null -w '%{http_code}' "${base}${sku}")"
+            if [ "$status" != "200" ]; then
+              echo "ERROR: product image proxy returned HTTP $status for $sku"
+              exit 1
+            fi
+          done
+          echo "All four slash-normalised supplier image references return HTTP 200"
 
       - name: Upload audit report
         if: always()
