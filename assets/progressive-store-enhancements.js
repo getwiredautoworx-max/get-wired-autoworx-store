@@ -35,9 +35,9 @@ function install(frame){
       const results=d.createElement('div');results.id='gwSearchResults';wrap.appendChild(results);wrap.parentElement.appendChild(tools);
       let mode='all';
       function data(){return Array.from(d.querySelectorAll('.product')).map(card=>({card,text:(card.textContent||'').toLowerCase()}));}
-      function filter(){const q=search.value.trim().toLowerCase();const rows=data();let shown=0;rows.forEach(x=>{const match=!q||x.text.includes(q);const stock=!mode||mode==='all'||(mode==='in'&&!/out of stock|sold out|unavailable/.test(x.text));x.card.style.display=match&&stock?'':'none';if(match&&stock)shown++});
+      function filter(){const q=search.value.trim().toLocaleLowerCase('en-ZA');const terms=q.split(/\s+/).filter(Boolean);const rows=data();let shown=0;rows.forEach(x=>{const match=!terms.length||terms.every(term=>x.text.includes(term));const stock=!mode||mode==='all'||(mode==='in'&&!/out of stock|sold out|unavailable/.test(x.text));x.card.style.display=match&&stock?'':'none';if(match&&stock)shown++});
         if(!q){results.classList.remove('open');return}
-        const hits=rows.filter(x=>x.text.includes(q)).slice(0,12);results.innerHTML=hits.length?hits.map(x=>`<div class="gwResult">${x.card.querySelector('h3')?.outerHTML||'<b>Product</b>'}<small>${(x.card.querySelector('.sku')?.textContent||'').trim()}</small></div>`).join(''):'<div class="gwNoResults">No matching product found. Try the SKU, part number or product name.</div>';
+        const hits=rows.filter(x=>terms.every(term=>x.text.includes(term))).slice(0,12);results.innerHTML=hits.length?hits.map(x=>`<div class="gwResult">${x.card.querySelector('h3')?.outerHTML||'<b>Product</b>'}<small>${(x.card.querySelector('.sku')?.textContent||'').trim()}</small></div>`).join(''):'<div class="gwNoResults">No matching product found. Try the SKU, part number or product name.</div>';
         results.classList.add('open');
       }
       search.addEventListener('input',filter);search.addEventListener('focus',()=>{if(search.value.trim())filter()});
