@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T11:20:00Z",
+  "generated_at": "2026-10-09T11:45:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -176,7 +176,7 @@
       "slug": "automotive-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 346
+      "direct_active_products": 327
     },
     {
       "id": "cac9f536-b69b-4a06-a790-0bbb831bf73e",
@@ -296,7 +296,7 @@
       "slug": "clamps",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 8
+      "direct_active_products": 39
     },
     {
       "id": "e0eef3bf-a516-4729-9075-aa507a486acc",
@@ -312,7 +312,7 @@
       "slug": "consumables",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 89
+      "direct_active_products": 84
     },
     {
       "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
@@ -1040,7 +1040,7 @@
       "slug": "spanners-wrenches",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 156
+      "direct_active_products": 148
     },
     {
       "id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
