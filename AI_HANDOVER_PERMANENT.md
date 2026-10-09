@@ -971,3 +971,9 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Source review confirms `store.html` embeds `index-new.html` in an iframe; product images are rendered directly from Supabase Edge Function HTTPS URLs for 791 rows, while 3,396 active products point to the shared local placeholder SVG. `product-image` Edge Function is ACTIVE v9 with `verify_jwt=false`, and source code sets `Access-Control-Allow-Origin: *`; no code changes made.
 - Remaining isolation test: test a real product image endpoint directly, e.g. `https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=GW-705CE825`. If it displays an image directly, the endpoint itself is functional and the next check is whether the .co.za page is serving the same `index-new.html` content/deployment as pages.dev and whether browser image requests are failing/cached differently. If it returns “Image not found” or an error, investigate SKU-to-private-supplier mapping/image asset availability in the Edge Function before modifying storefront code.
 - Do not spend Cloudflare/Netlify credits before final testing. No hosting, DNS, or database writes made.
+
+
+## 2026-10-09 — Follow-up: live product image endpoint confirmed working
+- Owner opened `https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=GW-705CE825` and confirmed the product picture opened correctly.
+- This confirms at least this SKU's Supabase Edge Function route, private SKU mapping, and upstream image are working. The issue is not a universal outage of the product-image service.
+- Remaining leading hypotheses: .co.za URL tested may be apex/root vs www (different hosting/DNS path), or that hostname is serving a stale/different storefront build or browser-cached content. Need exact failing hostname and, if it's www, compare deployed `store.html` / `index-new.html` and inspect a failed product image request. No DNS/code/database changes made; no Cloudflare/Netlify credits spent.
