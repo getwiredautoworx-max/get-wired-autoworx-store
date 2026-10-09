@@ -1041,3 +1041,9 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Data-integrity risk to verify before any fix:** the database still contains an older overload of `create_store_order` with different parameters and legacy `products.is_active/stock` columns. The active Edge Function appears intended to use the newer overload, but the old overload should be assessed for direct execution/grants and removed/locked only after confirming no live callers depend on it.
 - Recovery plan: patch in a development branch first; test delivery-only enforcement, malformed/zero/negative/forged fees, correct R15 surcharge, quantity/stock race behavior, and payment method allowlist; verify checkout/admin caller compatibility; then deploy only after test results. Do not run live-order tests before final testing authorization.
 - This review was read-only. No Cloudflare/Netlify credits were spent. Permanent handover updated with the finding.
+
+
+### Follow-up attempt — RPC grant verification
+- First read-only SQL grant-inspection query failed because its ORDER BY alias was not accepted by PostgreSQL (`42703: column "function_signature" does not exist`).
+- Retried with the explicit function-signature expression; the query was blocked by the platform safety layer before execution. No database change occurred.
+- Grant status for both `create_store_order` overloads remains **unverified**. Next recovery path: use Supabase function/grant metadata or a narrower safe catalog query, without altering grants until the actual callers and permissions are confirmed.
