@@ -17,6 +17,7 @@ OUT = Path("assets/products_webp")
 REPORT = Path("image-sync/asc_image_sync_report.json")
 BATCH_SIZE = 150
 RETRY_AFTER_DAYS = 30
+SYNC_VERSION = 2
 NOW = datetime.now(timezone.utc)
 OUT.mkdir(parents=True, exist_ok=True)
 REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -67,7 +68,7 @@ def load_targets():
                     continue
             except (TypeError, ValueError):
                 pass
-        eligible.append({"public_sku": public_sku, "supplier_sku": supplier_sku})
+        eligible.append({"public_sku": public_sku, "supplier_sku": supplier_sku, "name": row.get("name") or ""})
     return len(rows), eligible
 
 def save_valid_webp(raw, path):
@@ -89,12 +90,13 @@ def sync_one(item):
     target = OUT / (public_sku + ".webp")
     session = requests.Session()
     session.headers.update({"User-Agent": "Get-Wired-AutoWorx-Exact-SKU-Image-Sync/2.0"})
-    status = "not_found"
+    status = "no_exact_sku_match"
     try:
-        encoded = requests.utils.quote(supplier_sku, safe="")
+        encoded_name = requests.utils.quote(item.get("name", ""), safe="")
+        encoded_sku = requests.utils.quote(supplier_sku, safe="")
         searches = (
-            f"{ASC_BASE}/?s={encoded}&post_type=product",
-            f"{ASC_BASE}/?s={encoded}",
+            f"{ASC_BASE}/?s={encoded_name}&post_type=product",
+            f"{ASC_BASE}/?s={encoded_sku}&post_type=product",
         )
         for search_url in searches:
             try:
@@ -124,12 +126,12 @@ def sync_one(item):
                 if not (image_response.headers.get("content-type") or "").lower().startswith("image/"):
                     continue
                 if save_valid_webp(image_response.content, target):
-                    return {"public_sku": public_sku, "status": "matched", "attempted_at": NOW.isoformat()}
+                    return {"public_sku": public_sku, "status": "matched", "attempted_at": NOW.isoformat(), "sync_version": SYNC_VERSION}
             except requests.RequestException:
                 status = "source_timeout_or_http_error"
             except Exception:
                 status = "image_validation_failed"
-        return {"public_sku": public_sku, "status": status, "attempted_at": NOW.isoformat()}
+        return {"public_sku": public_sku, "status": status, "attempted_at": NOW.isoformat(), "sync_version": SYNC_VERSION}
     finally:
         session.close()
 
@@ -147,7 +149,7 @@ def main():
             try:
                 results.append(future.result())
             except Exception:
-                results.append({"public_sku": "GW-UNKNOWN", "status": "worker_error", "attempted_at": NOW.isoformat()})
+                results.append({"public_sku": "GW-UNKNOWN", "status": "worker_error", "attempted_at": NOW.isoformat(), "sync_version": SYNC_VERSION})
     merged = {x.get("public_sku"): x for x in history if x.get("public_sku")}
     for result in results:
         if result.get("public_sku") != "GW-UNKNOWN":
