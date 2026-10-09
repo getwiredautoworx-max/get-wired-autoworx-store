@@ -702,3 +702,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Known limitation:** Pickup currently permits only Cash on pickup in this checkout UI. If EFT/card pickup is required, the database API must be updated to accept a dedicated fulfilment field instead of inferring fulfilment from payment method.
 - **Next:** Continue read-only category mapping and source QA; when Axxess hosting is accessible, test pickup, delivery quote selection, totals, order creation, stock changes, and escaping in a real browser.
 - **ETA:** Source corrections completed in this batch; live checkout acceptance test 20–40 minutes once hosting access is available.
+
+
+## 2026-10-09 — Product-data quality sample
+- **Read-only sample:** Inspected active products with legacy category assignments and compared stored category labels with source-guide metadata. Examples show category pollution: the Automotive Tools category includes 12V bulbs, HID ballasts, temperature/volt gauges, fuel hoses, and other products that may belong in Auto Electrical Spares or Accessories; some records also have malformed/repeated product titles such as “*All *All” and duplicated size strings.
+- **Heuristic flags:** Query identified 101 active product names matching repeated-token/malformed-name patterns, 359 records where source category mentions tools but the current category label does not, and 305 records where source category mentions electrical but the current category label does not. These are triage flags, not confirmed error counts; source metadata itself may be noisy and every SKU must be reviewed before changes.
+- **No product or category rows changed.**
+- **Next:** Build a SKU-level review sheet using public SKU, current category, name, description, supplier-guide category/subcategory and suggested target category; include confidence and review reason. Auto-map only clear cases; quarantine malformed titles and mechanical products for review rather than silently publishing them.
+- **ETA:** A first-pass rule-based mapping report is estimated at 30–60 minutes once a full result export is available; corrections require row-level verification.
