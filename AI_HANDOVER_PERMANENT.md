@@ -1056,3 +1056,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - PAXI rates are emitted as fallback rates based on weight alone, without a destination point identifier in the request/response. The function itself notes destination point selection is required. Checkout must ensure a destination PEP/PAXI point is selected and persisted before an order can be accepted as final.
 - Live provider quote results are accepted when an upstream response includes a numeric price; this review did not validate each provider's actual API contract or credentials. Provider quote availability and returned service fields still need end-to-end verification.
 - No production changes or test orders were made. Cloudflare/Netlify credits were not used. The grant-verification attempt noted above remains unresolved. This section records additional concrete checkout tasks for final controlled testing.
+
+
+## 2026-10-09 — Checkout/delivery hardening investigation continued
+- Retrieved the active `store-checkout` Edge Function, `shipping-quote` Edge Function, checkout HTML, and live definitions of both `public.create_store_order` overloads using read-only inspection.
+- Confirmed checkout sends client-provided `p_delivery_fee` straight to the RPC. The newer RPC permits `cash_on_pickup` with zero delivery fee, trusts any positive submitted delivery fee, and does not enforce the R15 dispatch charge server-side. The legacy overload still supports pickup and uses legacy stock/active fields; its callers and EXECUTE grants must be checked before changing/removing it.
+- Confirmed PAXI point is currently entered as free-form notes rather than validated/persisted structured destination; shipping quote weight/dimensions are client-supplied and zero weight becomes provisional 1 kg. Provider credentials/API response contracts remain unverified.
+- Created GitHub development branch `dev/checkout-delivery-hardening` from current `main`; added `docs/CHECKOUT_DELIVERY_HARDENING_PLAN.md` (commit 86743e5229e62f6c3c083f10e6e8c8ee181ed063). The plan specifies verification order and safe tests before any production changes.
+- No production database/function/storefront changes, no test orders/payments, and no Cloudflare/Netlify credits used. Current production remains unchanged; checkout hardening is NOT complete.
+- Next execution: verify RPC grants and search repository call sites, then implement and test a quote-integrity/fee design in development only. Do not deploy production changes until all test cases pass.
