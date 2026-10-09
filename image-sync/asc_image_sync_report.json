@@ -14245,5 +14245,4188 @@
     "source": "woocommerce_store_api_exact_sku",
     "attempted_at": "2026-10-09T19:35:24.031565+00:00",
     "sync_version": 8
+  },
+  {
+    "public_sku": "GW-975E6ED9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-976B1DD5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-977034DC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-978990EB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-978F0E13",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9799808A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-97AEB07C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-97CBFBA1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-97D52A16",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-97D7F8CE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-97DB42B6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-97EC27FD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-97FF270C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98338EF9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9837F902",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98386D67",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98390E85",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-983B5305",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98504C6F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9860B8A5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9879AB43",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9887ED84",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98A335B5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98A8165D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98B32478",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98B58C04",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98C5D3BD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98E1A705",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98EC8CB1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98FDE155",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-98FE2E72",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9901EDDC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-991959D2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-992B0031",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-992BF431",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-993F3311",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9947CC34",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9975E273",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-99989667",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-99ADE5AB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9A1502D3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9A2816CA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9A346F63",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9A4838EA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9A798F2E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9A9BBA8F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9AAD6966",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9AAF72A9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9ABCC9B5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9AC881E3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9ACDE63B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B15B1FF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B17C40F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B1911B5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B2E1143",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B3AE13F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B3E50AE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B47D9FC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B4E926A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B5B5DD9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B5C8E3A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B8C8200",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9B9C57C1",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BAAC281",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BAF23A7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BB9C4AA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BBB9BA5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BC02C1E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BC4E887",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BDB0A4A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BDE0B74",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BEB8839",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9BFA2226",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C075AAC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C085AD1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C10605D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C36F3BD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C391914",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C4FC305",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C61019C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C7104DE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C83997A",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C84EFE4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C87ACD0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9C9DA4E7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9CAFE330",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9CB04ECB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9CB2342F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9CE2D0D7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9D1EA7F2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9D3D7544",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9D6D2BF2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9D801B88",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9D8CED62",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9D9B1BC1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9DCA0930",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9DE7EACE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E110C10",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E153E4B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E24B8D0",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E2A5A25",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E4118D5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E460A2E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E4F2452",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E819037",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E904A3C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E9BD029",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9E9BE3FD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9EA80365",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9EAB3346",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9EBCF05F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9ED3EF83",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9EF93EEC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9EFED8C0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9F0C6595",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9F0C6AE7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9F10A4BA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9F29AFF7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9F2C38F1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9F6AA5DE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9F7DEED5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9FBAB4BF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-9FFE02A9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0050AB6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A01A257E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A02A6A71",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A02B53C4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A03342E5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A041DD68",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A04ADD0B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A058B325",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0697915",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A07C5A5F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A081CFF9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0845C5A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A08AF072",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A08B034D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A090526A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A091F5D3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0A72671",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0A9142B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0AB1A81",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0E3B871",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A0F736E1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A1056EDB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A119C7B0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A1350AAE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A13AB782",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A1428BB9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A16BA2A4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A16E9D7E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A17CF150",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A19A6D53",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A19FFF9A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A2098EF6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A21507F6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A237681A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A2577BB7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A25EEE11",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A26A9F69",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A27F40F3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A2BF5DD3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A2F34593",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A31BDE2A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A322D0D4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3331275",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A334F964",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A33EC452",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A344A159",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A34ECBD2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A373666D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A380B25A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A38F230C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A39098AC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A395C950",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3B4D06C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3D4D70C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3DB20B2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3E41381",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3E68DD2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3ED9450",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A3F55B10",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A40BCEDA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A437C4FB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A45CC6B2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A46F00F5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A4A35CD2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A4A6A393",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A4A9B35F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A4CB1F12",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A4E2EEF3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A4EC3FAA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A4F9E57D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A524B952",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A5524092",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A56B5C10",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A5840564",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A59CFB47",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A5ADBEA8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A5D1B89A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A5DDCDEB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A5E859CE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A5F2C3A8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A60F06A6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A616BA38",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A62F7433",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A663D5CF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A6723FB6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A6C9340D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A6CC00D4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A6CDE1B8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A6F367EF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A705C1FA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A7256822",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A72BC41C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A72EA1E8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A75CF979",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A7778138",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A7817D48",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A78F6330",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A792D62B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A798BD5B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A7A046FB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A7AFC53F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A82CE123",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A82E6A01",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A8528293",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A860DE35",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A867DD20",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A86E1DD5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A87178E8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A879769A",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A88C88E3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A88E5F1A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A895CE5B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A8AD4BE9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A8AECE1C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A8C0F8BE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A8C53C0A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A8C5F6A6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A8D7BFCA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A903680D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A9122BDA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A927BCBA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A92C2DF7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A934556C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A93EA07E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A9497AB2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A984AA41",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A9924B9A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A9AF3705",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-A9E39E3A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA085120",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA12E525",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA157F54",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA315FEE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA37F51A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA3ECAD8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA6AFB4A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA8B0070",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AA9E8B23",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AAABE567",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AAC000C7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AAC76178",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AAD45B62",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AADF8727",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AAE4531A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AAF394DD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB09F6EC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB121120",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB1BF938",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB1CA17E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB220B33",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB225226",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB4FFE6B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB5EBE61",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB6DC35E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB7AAE1D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB8133D4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB847E91",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB84C536",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB85CA32",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AB99993E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ABA8A1C3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ABB632A6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ABB7B04A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ABB910AE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ABBEF94D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC00D3BA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC0AE6F2",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC13E1B7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC173DF1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC24B425",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC3EB917",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC6761F6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AC6B04DF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ACBAADC3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AD1AE862",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AD2727FD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AD3F681E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AD4586D0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AD4F911C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AD5A025F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AD5DFD8D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ADA9E27A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ADAAEA84",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ADCEBA85",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ADDC21C3",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ADDD3148",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-ADEE0805",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE338245",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE3399E0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE3DA961",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE6F4EA5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE829C5A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE8365A4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE9098D5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AE9263C7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AEF9CB36",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AEFCF1A5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF0696CB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF150C0C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF2815B8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF2AD64C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF524BF9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF59FCF7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF622AAC",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF80D061",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF88B366",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF8BEEA0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AF957F65",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AFB523A9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-AFC93D84",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B00080F4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B010CDE3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B02D3396",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B0510E67",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B075F840",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B07E6C92",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B0CDD259",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B0F322E0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B0F9B877",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B10BC707",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B11CC890",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B12B0AE2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B18ABCFD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B19EC0FC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1C3AFBE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1C8A0C1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1D0AB50",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1D49076",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1E50F39",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1F4B085",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1F61587",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B1FCF2F0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B207EE26",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B209C8F7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B2109595",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B21FEA84",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B2562786",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B266F58F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B2AA2524",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B2AF2B66",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B2B8132B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B2D9BACF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B2EE497D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B31AEF32",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B35046FF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B3603EBC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B37518B1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B37D7D92",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B39D97B7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B3D0BC1C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B3D5694B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B3E40CF2",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B3F4E67F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B3FCCB4A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B405A3C6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B44B4642",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B452212D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B45F8B2E",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B473BEAD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B475D3F9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4911381",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4A9C62D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4C079CA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4D85808",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4E3B79A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4E62F60",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4F09E4C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4F1464A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4F502E6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B4F835F2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B501F558",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B514DD4C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B525E030",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B53DCA71",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B5702B67",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B5D0BE74",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B5E5104B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B60C4701",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B615AAFF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B61F2EF6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B63FF083",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B652167F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B65401D6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B684CD04",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B687B876",
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B689BD16",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B694C993",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B6A0E95A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B6A2A687",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B6A8D9C3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B6AD9488",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B6E5404A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B6F4EED9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B7063C87",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B7137971",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B7144347",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B71649A6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B726C3A7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B743544A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B75B7457",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B75BD814",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B75CC080",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B78A456E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B7A730C0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B7F951DA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B7FA9084",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B82DBD4F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B849248D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B852F718",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B86E4B8F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8784684",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B88A7616",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B89305AD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8A4EEB1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8ABB0FA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8CA4B4D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8D83EFB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8E72395",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8EA3F95",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B8F75EA2",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B908E115",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9117B34",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B91548F4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B918F573",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B94FED81",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9502F5D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B953C505",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B968D68C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9691F33",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B969E65B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9A5C98B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9AD577D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9B05797",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9B47DC7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9BB7261",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9C247F8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-B9D845E9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA0E9191",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA185C7B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA1AA511",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA23576F",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA605C53",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA7DC6B6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA7E8A28",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA8D24CF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BA92CEC3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BAB78788",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BAB9A666",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BAEADEA6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BAF29EB3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BB021507",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BB15D8FA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BB38DF9B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BB38EA3A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BB8B2CE8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BBA9F879",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BBB74B6E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BBC43F85",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC02A6EC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC15A68E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC206641",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC3B3E83",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC4737D1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC5DED2E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC65C1BE",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC762FE9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC7869D4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC9D0762",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BC9FB2D0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BCB8CD3B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BCBB6067",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BCFFBA08",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD0636E8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD20922D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD34D53A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD3D16ED",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD60726D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD6DA16A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD942BBA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD944766",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BD9AD85D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BDCBF663",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BDCD41FF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BDE23E60",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BE0BD735",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BE1C7A95",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BE2D092A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BE324DF3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BE54E0DD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BEB99F1E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BEEF9E28",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF15DEAB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF2AD15E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF4089C4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF41CA99",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF505890",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF5821E4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF5F9F58",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF62CFCB",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF645F52",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF73CD12",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BF95A6AF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BFC1F900",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BFCA250A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BFDD308C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BFDDBCC5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BFE7F085",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BFED5917",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-BFFA383E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0096ED8",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0220384",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0350776",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C05710FF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C069348A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0793A22",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0A3DE7B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0A4BA6B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0AC5CBD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0BA2F88",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0DA5EB5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C0E05D95",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C102D805",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1079AA3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1209860",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C12593A2",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1297BCA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C13A29F5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C14BCECC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C15D2DDF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C15D8DDA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C186E095",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1897171",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1911AF1",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C191DC03",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1984A42",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1A1F8CA",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1AC5BC7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1B0BD1B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1B0C42D",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1B99054",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1BBCD15",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1C5D101",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1DF3657",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C1DFF234",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C20F2EDF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C22E38AC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2359DE4",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C24FA6F9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2531992",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C25804AD",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2620FF5",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C299BD7B",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2B0EE7A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2B46235",
+    "status": "sku_not_in_search_results",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2B74441",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2C1BFB7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C2E89BA6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C303646E",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C338D3A7",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C35D0CF6",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C36CF3D9",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C3ACE750",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C3B6B58C",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C3D304D0",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C40886AC",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C40C1E1B",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C42DDD94",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C42E4C04",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C4334992",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C44F8691",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C4507069",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C45517EF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C46BF6C3",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C48F9EDF",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C499176A",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C4B04041",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
+  },
+  {
+    "public_sku": "GW-C4BDAA15",
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
+    "sync_version": 8
   }
 ]
