@@ -55,7 +55,13 @@ jobs:
           status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-store-home.html -w '%{http_code}' https://www.getwiredauto.co.za/)"
           test "$status" = "200"
           grep -Eiq "Get Wired AutoWorx|Get Wired AutoWorx" /tmp/live-store-home.html
-          echo "Canonical production domain returned HTTP 200 and contains the Get Wired AutoWorx brand."
+          category_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category.html -w '%{http_code}' https://www.getwiredauto.co.za/category.html)"
+          test "$category_status" = "200"
+          snapshot_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category-tree.json -w '%{http_code}' https://www.getwiredauto.co.za/assets/category-tree.json)"
+          test "$snapshot_status" = "200"
+          grep -q "Auto Electrical" /tmp/live-category.html
+          grep -q "Spare Parts" /tmp/live-category-tree.json
+          echo "Canonical production domain and category snapshot returned HTTP 200; live category data includes Auto Electrical and Spare Parts."
 
       - name: Validate delivery quote database rule
         shell: bash
