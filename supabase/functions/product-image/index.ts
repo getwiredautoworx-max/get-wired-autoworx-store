@@ -1,8 +1,10 @@
 import { withSupabase } from "npm:@supabase/server@1";
 
 const SOURCES = [
-  "https://cdn.jsdelivr.net/gh/getwiredautoworx-max/get-wired-autoworx-store@main/assets/products/",
-  "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/assets/products/"
+  { base: "https://cdn.jsdelivr.net/gh/getwiredautoworx-max/get-wired-autoworx-store@main/assets/products_webp/", extension: ".webp", type: "image/webp" },
+  { base: "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/assets/products_webp/", extension: ".webp", type: "image/webp" },
+  { base: "https://cdn.jsdelivr.net/gh/getwiredautoworx-max/get-wired-autoworx-store@main/assets/products/", extension: ".jpg", type: "image/jpeg" },
+  { base: "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/assets/products/", extension: ".jpg", type: "image/jpeg" }
 ];
 
 function headers(type="image/jpeg") {
@@ -33,23 +35,26 @@ export default {
       .from("product_supplier_codes").select("supplier_sku").eq("product_id", product.id).limit(1).maybeSingle();
     if (mapError || !mapping?.supplier_sku) return new Response("Image not found", { status: 404 });
 
-    const supplierSku = String(mapping.supplier_sku);
-    // Supplier filenames replace slash characters with underscores (e.g. WP3/4 -> WP3_4.jpg).
-    // Normalise before URL construction so slashes cannot become path separators.
-    const sourceSku = supplierSku.replace(/[\\/]/g, "_");
+    const sourceSku = String(mapping.supplier_sku).replace(/[\\/]/g, "_");
     if (!/^[A-Za-z0-9._-]+$/.test(sourceSku)) return new Response("Image not found", { status: 404 });
 
-    for (const base of SOURCES) {
-      for (const ext of ["jpg","jpeg","png","webp"]) {
-        try {
-          const upstream = await fetch(base + encodeURIComponent(sourceSku) + "." + ext, { method: req.method, redirect: "follow" });
-          if (upstream.ok) {
-            const h = headers(upstream.headers.get("content-type") || "image/jpeg");
-            if (req.method === "HEAD") return new Response(null, { status: 200, headers: h });
-            return new Response(upstream.body, { status: 200, headers: h });
-          }
-        } catch (_) {}
-      }
+    // Prefer compressed exact-SKU WebP assets when the bounded image-sync job
+    // has published them; retain the existing JPG set as a safe fallback.
+    // Each upstream request is bounded so a missing image cannot hang a request.
+    for (const source of SOURCES) {
+      try {
+        const upstream = await fetch(
+          source.base + encodeURIComponent(
+            (source.extension === ".webp" ? requestedSku : sourceSku).replace(/[\\\\/]/g, "_")
+          ) + source.extension,
+          { method: req.method, redirect: "follow", signal: AbortSignal.timeout(7000) }
+        );
+        if (upstream.ok) {
+          const h = headers(source.type);
+          if (req.method === "HEAD") return new Response(null, { status: 200, headers: h });
+          return new Response(upstream.body, { status: 200, headers: h });
+        }
+      } catch (_) {}
     }
     return new Response("Image not found", { status: 404, headers: { "Access-Control-Allow-Origin": "*" } });
   })
