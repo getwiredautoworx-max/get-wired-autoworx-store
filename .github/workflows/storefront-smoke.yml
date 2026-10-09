@@ -108,7 +108,7 @@ jobs:
               contentType:'application/json',
               body:JSON.stringify([{
                 id:'test-product-id',name:'Test Fuse',public_sku:'GW-TEST0001',
-                description:'Clean customer description\\nBuyer’s Guide: page 12\\nsource_category: catalogue',
+                description:'Clean customer description\nBuyer’s Guide: page 12\nsource_category: catalogue',
                 price:10,stock_quantity:2,image_url:null,gallery_urls:[],
                 compatible_vehicles:[],category_id:'test-category-id',active:true,
                 specifications:{voltage:'12V',source_page:'page 12',source_guide:'Buyer’s Guide',supplier_sku:'SUPPLIER-SECRET',cost_price:5,internal_note:'catalogue page'}
