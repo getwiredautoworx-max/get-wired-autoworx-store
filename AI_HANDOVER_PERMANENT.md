@@ -1181,3 +1181,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Axxess upload is still outstanding**: no authenticated DirectAdmin/FTP/SFTP tool is connected, and no remote hosting files have been changed. Next owner action is one operation sequence in DirectAdmin: back up current `public_html`, upload the linked ZIP into `public_html`, extract into the root, then test the storefront URLs. Do not ask the owner to type out filenames or send screenshots.
 - Critical launch caveat remains: deployment package/source correctness does not prove live site or checkout is ready. After upload, verify `/`, `/store.html`, `/category.html`, `/checkout-v2.html`, and `/returns-refunds.html`; test free pickup, delivery fee calculation, R35 packaging per item, direct EFT order flow, mobile layout and admin visibility. PayFast remains pending. Do not place a live stock-changing test order without explicit approval.
 - No Cloudflare/Netlify credits used. Next priority remains Axxess upload and live QA; catalogue/image/category cleanup stays paused until that passes.
+
+
+## 2026-10-09 — Final package artifact verified (workflow run #6)
+- Workflow run #6 completed successfully: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/37956941121
+- Artifact `axxess-storefront-upload`, ID `11627459551`, downloaded and checked. The downloaded artifact now contains the storefront files directly at ZIP root (no nested ZIP), as intended.
+- Integrity verification passed: `unzip -t` reports no errors. Archive contains 2,212 entries, including 2,196 local WebP images and all package root HTML/runtime files. The package is 55 MB compressed and ready for one-archive upload.
+- Current-session verified file: `/mnt/data/axxess-storefront-upload.zip`. Use the ChatGPT file link supplied in the current response rather than downloading the earlier nested-artifact version.
+- Trigger-loop fix verified: workflow pushes are now filtered to relevant runtime/package files; handover-only edits will not rerun the package workflow.
+- Remaining required owner-side step: back up `public_html`, upload this ZIP into `public_html`, extract into that directory's root. The assistant has no authenticated Axxess file-transfer connection, so cannot perform that remote operation itself. After extraction, run the listed URL checks and report any failure for source-side correction. No Cloudflare/Netlify credits used.
