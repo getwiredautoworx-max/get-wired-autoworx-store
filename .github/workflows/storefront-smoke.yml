@@ -101,6 +101,32 @@ jobs:
             console.log('EXACT_SKU_IMAGE_FALLBACK_PASS: '+JSON.stringify(imageFallbackResult));
             await imageFallbackPage.close();
 
+            // Verify product detail pages never render Buyer’s Guide/source/cost metadata.
+            const productDetailPage = await browser.newPage();
+            await productDetailPage.route('**/rest/v1/products?*', route => route.fulfill({
+              status:200,
+              contentType:'application/json',
+              body:JSON.stringify([{
+                id:'test-product-id',name:'Test Fuse',public_sku:'GW-TEST0001',
+                description:'Clean customer description\\nBuyer’s Guide: page 12\\nsource_category: catalogue',
+                price:10,stock_quantity:2,image_url:null,gallery_urls:[],
+                compatible_vehicles:[],category_id:'test-category-id',active:true,
+                specifications:{voltage:'12V',source_page:'page 12',source_guide:'Buyer’s Guide',supplier_sku:'SUPPLIER-SECRET',cost_price:5,internal_note:'catalogue page'}
+              }])
+            }));
+            await productDetailPage.route('**/rest/v1/categories?*', route => route.fulfill({
+              status:200,
+              contentType:'application/json',
+              body:JSON.stringify([{id:'test-category-id',name:'Electrical',parent_id:null}])
+            }));
+            await productDetailPage.goto('http://127.0.0.1:4173/product.html?id=test-product-id',{waitUntil:'domcontentloaded'});
+            await productDetailPage.locator('.desc').waitFor({timeout:10000});
+            const productDetailText = await productDetailPage.locator('body').innerText();
+            if (!productDetailText.includes('Clean customer description') || !productDetailText.includes('12V')) throw new Error('Clean product description/specification missing');
+            if (/Buyer’s Guide|catalogue|source_page|source_guide|SUPPLIER-SECRET|cost_price|internal_note/i.test(productDetailText)) throw new Error('Internal Buyer’s Guide/supplier/cost metadata leaked into product details');
+            console.log('PRODUCT_METADATA_LEAK_GUARD_PASS');
+            await productDetailPage.close();
+
             await frame.locator('#featuredGrid .product').first().waitFor({timeout:60000});
             await frame.locator('#searchInput').fill('');
             await frame.locator('#featuredGrid .product').first().click();
