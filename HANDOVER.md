@@ -874,3 +874,38 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Previous run 37814267101 failed because `index-new.html` produced a JavaScript parse error; it is historical and is not being treated as a valid test of the repaired code.
 - Current repaired HEAD: 5a34c2f16b7f98be3b63b8afa91b43b78078e9bc.
 - Next validation: GitHub Actions Storefront Smoke Test must run on this repaired HEAD and reach terminal SUCCESS. If it does not auto-trigger, the workflow's existing manual dispatch remains the appropriate owner/connector action; do not create duplicate deployments.
+
+## 9 OCTOBER 2026 — AXXESS UPLOAD CONFIRMED BY OWNER; DEPLOYMENT VERIFICATION IN PROGRESS
+
+### Owner correction / do not repeat completed steps
+- Owner confirms the storefront files have already been uploaded to Axxess `public_html`. Do NOT instruct the owner to upload them again, re-extract a ZIP, or restart hosting setup.
+- Treat Axxess file upload as complete based on owner confirmation. Direct inspection of the Axxess filesystem is not available through the connected tools in this session, so the exact deployed file hashes and live served version are not independently verified.
+- Continue with verification and integration only: public HTTP response, correct document root/index routing, asset paths, Supabase connectivity, checkout, delivery quotations, and domain/DNS/TLS.
+
+### Current deployment checkpoints
+- Repository: `getwiredautoworx-max/get-wired-autoworx-store`, branch `main`.
+- Root `index.html` currently redirects to `store.html` (GitHub blob SHA `2e6e837a8e2515f09fd75ca997bfc8f1eb9b8e2c`).
+- Root `CNAME` currently contains `www.getwiredauto.co.za` (blob SHA `d8376babe494e3c8a348ba6f6bb31d2a56695d50`). This must be reconciled with the owner’s chosen canonical host and Axxess/Cloudflare DNS before any DNS change; do not guess target IPs or nameservers.
+- `checkout-v2.html` exists on `main` (blob SHA `bba1a167599961a833658386290c755a0497d375`). Existence in GitHub does not prove Axxess is serving this checkout or that the production domain is routed to Axxess.
+- Axxess account/domain context: `getwiredauto.co.za` is registered and active per the owner’s prior confirmation. Owner now confirms website files are already in Axxess `public_html`.
+- No connected Axxess or Cloudflare account-management action is available in this session. Do not claim DNS, SSL, Axxess configuration, or Cloudflare deployment has been changed unless a verified action/result proves it.
+
+### Checkout and fulfilment verification — still a release gate
+- Validate current production source and live page behavior for delivery-only checkout; R15 Phoenix Plaza despatch per delivery address; no customer pickup; and delivery choices only when supported by an actual quote.
+- Verify Supabase order submission and server-side fee validation. Test Aramex and Courier Guy locker/collection-point paths separately; do not advertise or charge a locker service until the provider adapter, credentials, supported locations, and returned price/availability are confirmed.
+- Existing notes indicate shipping-quote Edge Function and checkout delivery backend work exist, but Aramex credentials/adapter and Courier Guy locker-specific rate/availability are not verified. A deployed function is not proof that live carrier quotations work.
+- Use test/sandbox requests and do not create real customer orders or activate live payments during QA. PayFast activation remains owner-approved only after verification and explicit sign-off.
+
+### Next execution sequence — do not loop
+1. Probe `https://www.getwiredauto.co.za/` and `https://getwiredauto.co.za/` for HTTP status, redirects, TLS, and served index/store files; separately inspect relevant DNS records.
+2. Compare the served Axxess files/routes with the intended `main` release; patch only confirmed differences. Do not rebuild or overwrite unrelated files.
+3. Verify Supabase product loading, cart, checkout request, order write, server-side delivery fee calculation, and courier quotation/error paths.
+4. Resolve the domain target using actual Axxess hosting IP / Cloudflare DNS state. Change only required records, preserve unrelated DNS/email records, then verify TLS and both apex/www behavior.
+5. Run production smoke tests and report pass/fail evidence; only then label the store live/launch-ready.
+6. Update this handover after every attempt, including exact error and recovery action if blocked.
+
+### Owner operating instructions reaffirmed
+- Work execution-first; no repeated upload instructions, no circular explanations, no unnecessary progress narration.
+- Preserve the existing storefront, Supabase project, catalogue, GitHub history, domain, and current Axxess files.
+- Prioritise a commercially credible automotive store: accurate SKU/product mapping and pricing, reliable stock/availability wording, mobile UX, trustworthy checkout, real delivery quotes, fast search/category navigation, secure order handling, and measurable conversion/performance.
+- Do not call the store competitive with Takealot until storefront UX, checkout, fulfilment, reliability, product data, and customer service are actually tested against acceptance criteria.
