@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T07:05:00Z",
+  "generated_at": "2026-10-09T08:42:01.616Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -344,7 +344,7 @@
       "slug": "cutting-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 38
+      "direct_active_products": 47
     },
     {
       "id": "23272a41-f706-4d75-898b-b5410eab66d5",
@@ -1168,7 +1168,7 @@
       "slug": "tools-workshop",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 167
+      "direct_active_products": 158
     },
     {
       "id": "71196695-5fa0-48eb-a17a-9fcb5bd76e04",
