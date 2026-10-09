@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T12:30:00Z",
+  "generated_at": "2026-10-09T13:00:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -176,7 +176,7 @@
       "slug": "automotive-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 327
+      "direct_active_products": 326
     },
     {
       "id": "cac9f536-b69b-4a06-a790-0bbb831bf73e",
@@ -480,7 +480,7 @@
       "slug": "fuel-pumps-oil-filter",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 11
+      "direct_active_products": 12
     },
     {
       "id": "23a63b03-5a21-4b3b-84ca-0337a0d64cbd",
