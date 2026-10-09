@@ -1,16 +1,8 @@
 name: Deploy Store to Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '**/*.html'
-      - '**/*.js'
-      - '**/*.css'
-      - 'assets/**'
-      - 'functions/**'
-      - '.github/workflows/cloudflare-pages-deploy.yml'
+  # Deliberately manual-only until the approved release is ready and
+  # Cloudflare deployment secrets have been verified by the account owner.
   workflow_dispatch:
 
 permissions:
