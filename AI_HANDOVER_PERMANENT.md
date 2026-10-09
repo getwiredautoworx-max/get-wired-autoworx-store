@@ -774,3 +774,15 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Next:** Validate each candidate category with bounded product samples, then prepare a controlled migration plan with exact category IDs and post-update count assertions. Avoid changing the database until the proposed hierarchy and category labels are verified.
 - **ETA:** Candidate validation 30–60 minutes; controlled update and regression checks depend on review of mixed categories.
 - **Hosting/credits:** No Cloudflare or Netlify deployment/build was triggered; no credits used.
+
+
+## 2026-10-09 — Critical category hierarchy repair applied
+- **Database fix completed:** Consolidated 1,851 active product assignments into existing intended specialist child categories across Auto Electrical, Tools/Workshop, Marine, Accessories, Lighting and Trailer; reparented Lighting under Auto Electrical and Sensors under Auto Electrical; reparented Trailer & Towing under Trailer & Canopy; activated Camping/Leisure and Trailer & Canopy roots. A further 29 existing Spotlights products became reachable under Auto Electrical via the Lighting subtree.
+- **Post-change verification:** 4,187 active products retained; 2,856 now inside the eight approved category trees; 1,331 still outside and awaiting SKU-level classification; zero active products without a category; zero active products with missing/zero price; zero active products missing SKU.
+- **Tree totals:** Security 2; Accessories 803; Camping/Leisure 0; Car Audio 41; Auto Electrical 869; Marine 53; Tools/Workshop 989; Trailer & Canopy 99.
+- **Storefront source fix:** `category.html` now renders a “View all products in [category]” option alongside child categories, so products assigned directly to a parent are still reachable. Commit `fadb1bc4805068b97b2d66b985a487da7b6bb7b1`.
+- **Audit report:** `CATEGORY_MAPPING_REVIEW_2026-10-09.md`, commit e80e4323092233991bad04a61a065c0ff465943a.
+- **Important QA limit:** Database counts are verified through read-only SQL after writes. The storefront source patch has not been browser-tested or deployed; do not claim the live site is fixed until Axxess hosting is available and browser QA passes.
+- **Next priority:** SKU-level review of the remaining 1,331 products outside approved roots, beginning with broad legacy Spare Parts (879) and then mixed/ambiguous categories. No bulk reassignment of mixed categories.
+- **ETA:** Next bounded classification batch 30–60 minutes; full remaining review depends on ambiguity. Browser QA after Axxess access.
+- **Hosting/credits:** No Cloudflare/Netlify deployment or credits used.
