@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T09:35:00Z",
+  "generated_at": "2026-10-09T09:45:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -1264,7 +1264,7 @@
       "slug": "winch-spares-accessories",
       "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
       "active": true,
-      "direct_active_products": 21
+      "direct_active_products": 19
     },
     {
       "id": "b8ea4179-5b94-45ae-a143-09790aaf6068",
@@ -1272,7 +1272,7 @@
       "slug": "winches",
       "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
       "active": true,
-      "direct_active_products": 16
+      "direct_active_products": 18
     },
     {
       "id": "3bdf1771-e7a6-431c-8687-1e9d1801ed7f",
