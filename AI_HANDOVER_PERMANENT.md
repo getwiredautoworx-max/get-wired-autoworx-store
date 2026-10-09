@@ -977,3 +977,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Owner opened `https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=GW-705CE825` and confirmed the product picture opened correctly.
 - This confirms at least this SKU's Supabase Edge Function route, private SKU mapping, and upstream image are working. The issue is not a universal outage of the product-image service.
 - Remaining leading hypotheses: .co.za URL tested may be apex/root vs www (different hosting/DNS path), or that hostname is serving a stale/different storefront build or browser-cached content. Need exact failing hostname and, if it's www, compare deployed `store.html` / `index-new.html` and inspect a failed product image request. No DNS/code/database changes made; no Cloudflare/Netlify credits spent.
+
+
+## 2026-10-09 — Owner retest: product pictures load on both .co.za hostnames
+- Owner confirmed both .co.za addresses now load pictures correctly (www and root/apex).
+- The previously reported image-loading problem is currently not reproducible on the owner's retest. Product-image Edge Function diagnostic also opened successfully for SKU `GW-705CE825`.
+- No code, DNS, database, or deployment changes were made as part of this diagnostic. No Cloudflare/Netlify credits spent.
+- Status: image-loading discrepancy provisionally resolved / not reproducible. If it recurs, capture the exact product SKU, exact hostname, and failing image URL before changing code; check for stale cache/deployment differences first.
