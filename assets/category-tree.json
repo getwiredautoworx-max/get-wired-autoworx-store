@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T07:00:00Z",
+  "generated_at": "2026-10-09T07:02:00Z",
   "source": "Active category rows and active product assignments from Supabase; refresh after catalogue/category imports.",
   "categories": [
     {
@@ -343,7 +343,7 @@
       "name": "Brake Parts",
       "slug": "parts-brake",
       "parent_id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
-      "active": false,
+      "active": true,
       "direct_active_products": 7
     },
     {
@@ -878,8 +878,8 @@
       "id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
       "name": "General Parts",
       "slug": "parts-general",
-      "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
-      "active": false,
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
+      "active": true,
       "direct_active_products": 0
     },
     {
