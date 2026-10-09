@@ -1115,3 +1115,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [ ] Keep current Axxess-first strategy: preserve the existing storefront and Supabase; no new store, no unnecessary rebuild, and no Cloudflare/Netlify credits until final testing.
 - [ ] Continue to update this handover after every attempt, including failures.
 
+
+
+### 2026-10-09 — Post-migration read-back and source QA
+- [x] Read back the live `public.create_store_order` function definition after migration. Confirmed `v_packaging numeric := 0`, total is subtotal + delivery/dispatch fee, minimum delivery fee R15, full delivery address required, and `cash_on_pickup` is rejected.
+- [x] First automated boolean check reported `packaging_zero=false` because it searched for a different literal expression (`v_packaging := 0`) than the actual declaration (`v_packaging numeric := 0`). This was a check-string mismatch, not a database migration failure; the full function read-back confirmed the expected declaration and logic.
+- [x] Re-fetched the edited `checkout-v2.html` from branch `fix/delivery-policy-2026-10-09` and validated: R15 per address is present; dispatch fee is included once in the total; R35-per-item, cash_on_pickup, cash_on_despatch and per-item packaging calculation are absent; order submission requires a selected quote.
+- [ ] No end-to-end checkout/order test was run because that would create a real database order and reduce stock. Production order flow still requires a safe non-mutating acceptance path or owner-approved test environment.
+- [ ] Branch remains isolated; do not merge to `main` or trigger deployment until the Axxess release package is ready and checkout is validated.
