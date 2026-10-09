@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T10:15:00Z",
+  "generated_at": "2026-10-09T10:30:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -160,7 +160,7 @@
       "slug": "automotive-hoses",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 9
+      "direct_active_products": 10
     },
     {
       "id": "b8ffc1e1-636c-4da2-890c-744bc727b3e7",
@@ -224,7 +224,7 @@
       "slug": "brake-parts",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 36
+      "direct_active_products": 41
     },
     {
       "id": "53daec04-d315-43f9-91e0-2df49f9d89c6",
@@ -368,7 +368,7 @@
       "slug": "diagnostic-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 4
+      "direct_active_products": 5
     },
     {
       "id": "775d3823-57de-45bc-8c88-39c98656b536",
@@ -1184,7 +1184,7 @@
       "slug": "trailer",
       "parent_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
       "active": true,
-      "direct_active_products": 12
+      "direct_active_products": 4
     },
     {
       "id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
@@ -1320,7 +1320,7 @@
       "slug": "workshop-equipment",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 0
+      "direct_active_products": 1
     }
   ]
 }
