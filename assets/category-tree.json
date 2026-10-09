@@ -24,7 +24,7 @@
       "slug": "4x4-outdoor",
       "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
       "active": true,
-      "direct_active_products": 19
+      "direct_active_products": 16
     },
     {
       "id": "e165c7b9-d7ef-488e-8d50-3279533a16a6",
@@ -56,7 +56,7 @@
       "slug": "accessories-sub",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 70
+      "direct_active_products": 65
     },
     {
       "id": "7228adea-37f7-4d5a-b633-e138a3ed158d",
@@ -91,17 +91,17 @@
       "direct_active_products": 2
     },
     {
-      "id": "a4b912c4-25c6-4daa-a049-6b67818098ba",
+      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
       "name": "Amplifiers",
-      "slug": "amplifiers",
+      "slug": "car-audio-amplifiers",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
     },
     {
-      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
+      "id": "a4b912c4-25c6-4daa-a049-6b67818098ba",
       "name": "Amplifiers",
-      "slug": "car-audio-amplifiers",
+      "slug": "amplifiers",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
@@ -120,7 +120,7 @@
       "slug": "atv-winches-wheel-caps",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 2
+      "direct_active_products": 0
     },
     {
       "id": "0f9921f2-b066-4d2c-8995-4a0912faf6a8",
@@ -136,7 +136,7 @@
       "slug": "automotive-accessories",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 422
+      "direct_active_products": 346
     },
     {
       "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
@@ -152,7 +152,7 @@
       "slug": "automotive-accessories-sub",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 88
+      "direct_active_products": 85
     },
     {
       "id": "f34fd9a9-8b3c-4df9-a1f6-6f486969017e",
@@ -176,7 +176,7 @@
       "slug": "automotive-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 427
+      "direct_active_products": 347
     },
     {
       "id": "cac9f536-b69b-4a06-a790-0bbb831bf73e",
@@ -200,7 +200,7 @@
       "slug": "battery",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 50
+      "direct_active_products": 46
     },
     {
       "id": "b9c9aaa9-de94-491c-a02d-173b7d129245",
@@ -224,7 +224,7 @@
       "slug": "brake-parts",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 37
+      "direct_active_products": 36
     },
     {
       "id": "53daec04-d315-43f9-91e0-2df49f9d89c6",
@@ -248,7 +248,7 @@
       "slug": "car-audio-store",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 41
+      "direct_active_products": 40
     },
     {
       "id": "c910bc35-2f87-465e-b7c5-f6b27c133146",
@@ -312,7 +312,7 @@
       "slug": "consumables",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 76
+      "direct_active_products": 75
     },
     {
       "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
@@ -424,7 +424,7 @@
       "slug": "electrical-spares",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 519
+      "direct_active_products": 499
     },
     {
       "id": "76ba68a2-465d-44ff-8db8-8f68158bae1e",
@@ -496,7 +496,7 @@
       "slug": "fuses",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 110
+      "direct_active_products": 94
     },
     {
       "id": "d0eb91f4-8192-4d98-afc5-f06be2c4514e",
@@ -536,7 +536,7 @@
       "slug": "accessories-general",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 42
+      "direct_active_products": 41
     },
     {
       "id": "7c5d5092-9d92-429d-985d-019aa0016979",
@@ -576,7 +576,7 @@
       "slug": "hand-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 336
+      "direct_active_products": 319
     },
     {
       "id": "cefc3905-a81d-4ad7-803f-d2acd5d9f4c4",
@@ -696,7 +696,7 @@
       "slug": "lamps",
       "parent_id": "cfd3e001-9292-459f-b0e5-9502f160eb5c",
       "active": true,
-      "direct_active_products": 151
+      "direct_active_products": 142
     },
     {
       "id": "572d20e0-9e79-4352-a61d-0e9343aaa1ed",
@@ -808,7 +808,7 @@
       "slug": "mirrors",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 80
+      "direct_active_products": 57
     },
     {
       "id": "4e6922d3-4771-4249-b900-f5b5a990ccdd",
@@ -832,7 +832,7 @@
       "slug": "new-arrivals",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 14
+      "direct_active_products": 12
     },
     {
       "id": "133c6ef7-0cc4-4b8a-a9fe-a36f3776f258",
@@ -864,7 +864,7 @@
       "slug": "panel-clips",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 25
+      "direct_active_products": 148
     },
     {
       "id": "e9b2645b-9928-4333-b646-6c490c3554f9",
@@ -944,7 +944,7 @@
       "slug": "relays",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 51
+      "direct_active_products": 53
     },
     {
       "id": "a0a9698e-bf36-4e77-a28c-bfb9c9260d61",
@@ -979,20 +979,20 @@
       "direct_active_products": 30
     },
     {
-      "id": "b0fc911a-babb-4161-9558-9115887d2259",
-      "name": "Seat Covers",
-      "slug": "catalogue-seat-covers",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "c0aa1cae-0aef-4ef9-995d-37999da722ab",
       "name": "Seat Covers",
       "slug": "seat-covers",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
       "direct_active_products": 24
+    },
+    {
+      "id": "b0fc911a-babb-4161-9558-9115887d2259",
+      "name": "Seat Covers",
+      "slug": "catalogue-seat-covers",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
     },
     {
       "id": "76d6c6e2-d657-479d-8570-742836d478e9",
@@ -1036,11 +1036,11 @@
     },
     {
       "id": "0b002215-cd32-4c84-9719-292f95b53099",
-      "name": "SPANNERS",
-      "slug": "spanners",
+      "name": "Spanners & Wrenches",
+      "slug": "spanners-wrenches",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 82
+      "direct_active_products": 157
     },
     {
       "id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
@@ -1080,7 +1080,7 @@
       "slug": "spotlights",
       "parent_id": "cfd3e001-9292-459f-b0e5-9502f160eb5c",
       "active": true,
-      "direct_active_products": 29
+      "direct_active_products": 17
     },
     {
       "id": "302bb457-5f6b-403c-b41c-876f95ab3c5b",
@@ -1136,7 +1136,7 @@
       "slug": "switches",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 114
+      "direct_active_products": 170
     },
     {
       "id": "8ef57415-d348-46a6-84d0-2a03780e32d1",
@@ -1168,7 +1168,7 @@
       "slug": "tools-workshop",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 180
+      "direct_active_products": 167
     },
     {
       "id": "71196695-5fa0-48eb-a17a-9fcb5bd76e04",
@@ -1208,7 +1208,7 @@
       "slug": "trailer-towing",
       "parent_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
       "active": true,
-      "direct_active_products": 19
+      "direct_active_products": 18
     },
     {
       "id": "360c2d36-137a-498a-94f3-11a136c1039f",
@@ -1240,7 +1240,7 @@
       "slug": "wheel-accessories",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 135
+      "direct_active_products": 134
     },
     {
       "id": "6a89a4d7-e43a-4ad7-89c4-62453ff5f84d",
@@ -1259,12 +1259,20 @@
       "direct_active_products": 12
     },
     {
-      "id": "b8ea4179-5b94-45ae-a143-09790aaf6068",
-      "name": "Winches & Winch Parts",
-      "slug": "winches-winch-parts",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "id": "a1be0843-c0ef-4c3c-a57f-3759660e3475",
+      "name": "Winch Spares & Accessories",
+      "slug": "winch-spares-accessories",
+      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
       "active": true,
-      "direct_active_products": 0
+      "direct_active_products": 21
+    },
+    {
+      "id": "b8ea4179-5b94-45ae-a143-09790aaf6068",
+      "name": "Winches",
+      "slug": "winches",
+      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
+      "active": true,
+      "direct_active_products": 16
     },
     {
       "id": "3bdf1771-e7a6-431c-8687-1e9d1801ed7f",
@@ -1280,7 +1288,7 @@
       "slug": "wipers",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 45
+      "direct_active_products": 43
     },
     {
       "id": "64726cde-6d3b-4ca5-b778-9f1699e6602b",
