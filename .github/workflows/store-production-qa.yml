@@ -45,7 +45,7 @@ jobs:
             echo "ERROR: obsolete Phoenix Plaza despatch fee found"
             exit 1
           fi
-          grep -q "Delivery must be quoted and confirmed" checkout-v2.html
+          grep -q "Delivery orders cannot be submitted until a quotation is confirmed" checkout-v2.html
 
       - name: Validate public catalogue invariants
         shell: bash
