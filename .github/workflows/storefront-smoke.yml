@@ -123,6 +123,7 @@ jobs:
             await productDetailPage.locator('.desc').waitFor({timeout:10000});
             const productDetailText = await productDetailPage.locator('body').innerText();
             if (!productDetailText.includes('Clean customer description') || !productDetailText.includes('12V')) throw new Error('Clean product description/specification missing');
+            if (!productDetailText.includes('Vehicle compatibility not available')) throw new Error('Missing vehicle compatibility must show the customer-safe enquiry message');
             if (/Buyer’s Guide|catalogue|source_page|source_guide|SUPPLIER-SECRET|cost_price|internal_note/i.test(productDetailText)) throw new Error('Internal Buyer’s Guide/supplier/cost metadata leaked into product details');
             console.log('PRODUCT_METADATA_LEAK_GUARD_PASS');
             await productDetailPage.close();
