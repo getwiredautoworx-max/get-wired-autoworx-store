@@ -1099,3 +1099,66 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Fastest viable owner action: create a temporary, read-only publicly accessible archive/download URL for the product folders from Axxess, or enable a supported transfer connector. Revoke any temporary public URL after processing. Do not send the main hosting password or other production secrets in chat.
 - Once a reachable archive URL is supplied, download/process folder hierarchy, preserve original images, match SKUs, calculate standard price as ex-VAT cost × 1.15 × 1.35, compare verified like-for-like South African market prices, produce exceptions report, commit approved assets/catalogue to GitHub, and leave Cloudflare deployment until final testing.
 - Locked restriction retained: no Cloudflare/Netlify credits before final testing; production store remains unchanged until validated.
+
+
+## 2026-10-09 — Store continuation checkpoint (this chat)
+
+- [x] Read the Library handover and checked the live GitHub source before editing.
+- [x] Confirmed the current `main/checkout-v2.html` did **not** match the previously recorded delivery-only policy: it still displayed R35 packaging per item and included the legacy cash-on-despatch option. Do not treat the old checkout fix as live/verified.
+- [x] Created isolated branch `fix/delivery-policy-2026-10-09` to avoid triggering a hosting deployment or spending Netlify/Cloudflare credits.
+- [x] Updated `checkout-v2.html` on that branch to remove the R35-per-item charge and cash-on-despatch option, display R15 Phoenix Plaza despatch per delivery address, retain a separately quoted courier/PAXI/locker charge, require a confirmed quote and delivery address, and calculate totals without packaging.
+- [x] Checkout source pre-write validation passed: no R35-per-item, cash_on_pickup, cash_on_despatch, or packaging_fee markers remain in the edited file.
+- [x] Updated the production Supabase `public.create_store_order` overload used by the current checkout payload through migration `checkout_delivery_only_r15_dispatch_no_packaging`: customer pickup is rejected; complete delivery address is required; delivery fee must be at least R15 (dispatch included); packaging fee is zero; total is subtotal plus the submitted combined delivery/dispatch fee; order payment remains pending. Stock checks, row locks, stock decrement, and order-item inserts remain in place.
+- [ ] Verification after migration: read back the exact function definition and confirm the R15 guard, pickup rejection and zero packaging. No test/demo/customer order was created.
+- [ ] The checkout source change is isolated on the branch and is **not merged to main or deployed**. It still requires syntax/source validation, acceptance checks, and reconciliation into the Axxess release package; do not claim production checkout UI is fixed until the owner-uploaded Axxess build is tested.
+- [ ] Axxess folder access: no authenticated Axxess file/DNS connector is available in this environment. A public temporary file link or an archive uploaded directly into the conversation is required for direct inspection; never request or store the Axxess account password. This limitation does not block GitHub/Supabase work.
+- [ ] Keep current Axxess-first strategy: preserve the existing storefront and Supabase; no new store, no unnecessary rebuild, and no Cloudflare/Netlify credits until final testing.
+- [ ] Continue to update this handover after every attempt, including failures.
+
+
+
+### 2026-10-09 — Post-migration read-back and source QA
+- [x] Read back the live `public.create_store_order` function definition after migration. Confirmed `v_packaging numeric := 0`, total is subtotal + delivery/dispatch fee, minimum delivery fee R15, full delivery address required, and `cash_on_pickup` is rejected.
+- [x] First automated boolean check reported `packaging_zero=false` because it searched for a different literal expression (`v_packaging := 0`) than the actual declaration (`v_packaging numeric := 0`). This was a check-string mismatch, not a database migration failure; the full function read-back confirmed the expected declaration and logic.
+- [x] Re-fetched the edited `checkout-v2.html` from branch `fix/delivery-policy-2026-10-09` and validated: R15 per address is present; dispatch fee is included once in the total; R35-per-item, cash_on_pickup, cash_on_despatch and per-item packaging calculation are absent; order submission requires a selected quote.
+- [ ] No end-to-end checkout/order test was run because that would create a real database order and reduce stock. Production order flow still requires a safe non-mutating acceptance path or owner-approved test environment.
+- [ ] Branch remains isolated; do not merge to `main` or trigger deployment until the Axxess release package is ready and checkout is validated.
+
+
+## 2026-10-09 Owner correction
+Current checkout policy: flat R35.00 packaging charge per order (bubble wrap, security tape and protective materials), separate courier/PAXI/locker delivery quote, PayFast or direct EFT only, no cash. The earlier R15 dispatch rule is withdrawn. Checkout source and Supabase function were updated and read-back checks passed. PayFast live gateway is not yet verified; branch is not merged or deployed to Axxess. Handover append attempt failed safety validation; retry on next step.
+
+
+## 2026-10-09 — Delivery options expanded: Aramex and Courier Guy locker
+- [x] Updated `checkout-v2.html` on `fix/delivery-policy-2026-10-09` to list Aramex and The Courier Guy door delivery/locker (where available), alongside Your Courier, PEP PAXI and PUDO lockers.
+- [x] Verified the checkout still states flat R35.00 packaging per order, separate delivery quotation, PayFast/direct EFT only, and no R15 Phoenix Plaza surcharge.
+- Commit: `0cbe2073f35b82610a2cf165a57c4d629097f747`.
+- [ ] Shipping backend remains unverified for Aramex: current active `shipping-quote` Edge Function only loops through configured Bob Go, The Courier Guy and PUDO live-rate integrations, plus PAXI fallback rates. Aramex is not yet wired into the live quote function. Courier Guy locker availability depends on the configured TCG API returning a locker service/rate; the function currently selects only the first returned rate, so locker-specific quote exposure is not yet verified.
+- [ ] Do not tell customers Aramex or Courier Guy locker can be booked automatically until the quote function is extended and tested with valid provider credentials/API responses. Current checkout wording makes availability conditional; manual WhatsApp quotation remains available.
+- No production Edge Function deployment, order creation, stock mutation, or Cloudflare/Netlify credit usage occurred in this step. Checkout branch remains unmerged and not deployed to Axxess.
+
+
+## 2026-10-09 — Delivery quote backend v3 and release readiness
+- [x] Retrieved the deployed `shipping-quote` Edge Function before editing (v2); confirmed it supported configured Bob Go, The Courier Guy and PUDO endpoints plus published PAXI fallback rates, but omitted Aramex and returned only the first rate from each live provider response.
+- [x] Deployed `shipping-quote` v3 (SHA-256 `b676b7d7265d74a022a581837819bdca8db2bf9a8ad4dafec24c0954311820b2`). It now iterates all rate/service results, preserves service labels so a provider-returned locker/point service can be displayed distinctly, includes optional Aramex adapter support via server-side `ARAMEX_RATES_URL` and `ARAMEX_API_TOKEN`, and reports which live adapters are configured without exposing credentials. Provider errors do not fabricate prices or block other providers.
+- [x] Updated checkout quote request on `fix/delivery-policy-2026-10-09` to send full street address, province, city, postal code and parcel dimensions/weight. Commit: `97a0c1fbfcc70e902dd20a458dcde62f5ce1f3d5`.
+- [x] Source QA checks: flat R35 per order; PayFast/direct EFT only; no old R15 dispatch fee; full destination sent; Aramex and Courier Guy locker wording present; quote required before order submission.
+- [!] Remaining provider-account dependency: Aramex only returns a live quote if its server-side compatible adapter URL/token are configured. The current backend cannot prove those secrets/config exist through this connection. Courier Guy locker rates only appear if the configured TCG endpoint returns those locker services. Do not claim automated Aramex/locker booking until a real provider response is confirmed. Manual WhatsApp quotation remains fallback.
+- [x] SQL read-back found two overloads of `public.create_store_order`. The active checkout signature validates payment as PayFast/direct EFT, requires full delivery address and positive delivery quote, and applies R35 packaging once per order. The legacy overload is not executable by anon/authenticated/public roles according to privilege checks; no order/stock mutation was performed.
+- [ ] Live HTTP quote request and end-to-end checkout not executed from this environment. No customer order created and no stock changed. Must test with a real provider endpoint and a non-mutating/test environment before release.
+- [ ] Axxess deployment remains blocked by lack of authenticated file-transfer access and no temporary public archive URL supplied in this chat. Do not overwrite or replace unrelated working files. Upload/merge only after inspecting the current Axxess site tree; preserve a backup.
+- [ ] Cloudflare Pages production update deliberately deferred until Axxess release and final QA. No Cloudflare/Netlify credits intentionally used.
+- Next safe release path: prepare a minimal release archive from the exact current Axxess tree; replace only the approved checkout file(s); verify live checkout + catalogue + cart + Supabase connection; then merge/deploy the same tested commit to Cloudflare and verify `https://www.getwiredauto.co.za/`.
+- Handover must continue to be updated after every task attempt, including failures.
+
+
+### 2026-10-09 — Release checkpoint after PR creation
+- [x] Opened draft PR #5 for the two-file release (checkout source + permanent handover). PR URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/5
+- [x] Compared release branch against main: only `checkout-v2.html` and `AI_HANDOVER_PERMANENT.md` are changed in the PR diff. Branch is 9 commits ahead but the diff is limited to those two files.
+- [x] PR deliberately remains draft/unmerged. This prevents an untested production Cloudflare Pages deployment before the requested Axxess-first release and final QA.
+- [!] Tried to inspect the live domain's checkout/store pages with the available web fetch path; those URLs were not accessible to that fetcher, so live HTTP/site behavior is not verified by that method.
+- [ ] Required release input: provide the temporary HTTPS download URL for the current Axxess site archive/tree (or upload the archive here). No Axxess authenticated file-transfer action is available in this environment. Never send Axxess passwords. Once the archive is accessible, inspect and patch only required files, create a backup/rollback package, and return the exact upload package/instructions.
+- [ ] Do not merge PR #5 or trigger Cloudflare Pages deployment until the Axxess copy is updated and checked, and the delivery quote endpoint is tested against configured provider accounts. Current live Edge Function is v3; Aramex still requires a configured compatible server-side adapter, and Courier Guy locker quoting still depends on a returned locker-specific rate.
+
+
+- [x] Post-deploy log check performed once for `shipping-quote` in Supabase function logs; no matching entries were returned. This means no live request was available in the queried logs to verify provider behavior, not that a quote request passed. No retry loop was used.
