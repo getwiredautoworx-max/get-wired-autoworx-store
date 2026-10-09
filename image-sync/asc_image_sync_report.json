@@ -1,53 +1,63 @@
 [
   {
     "public_sku": "GW-000174D6",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "matched",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-000634DC",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-00104D4B",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "matched",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-0010DCC4",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-001CED3B",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-004E3609",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-0058F0A9",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-0060FD49",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-0065AEDF",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "matched",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-00694AE0",
-    "status": "source_timeout_or_http_error",
-    "attempted_at": "2026-10-09T06:48:10.803029+00:00"
+    "status": "no_product_cards",
+    "attempted_at": "2026-10-09T07:01:26.509237+00:00",
+    "sync_version": 3
   },
   {
     "public_sku": "GW-007C7D94",
