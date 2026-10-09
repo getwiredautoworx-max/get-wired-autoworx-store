@@ -50,8 +50,12 @@ jobs:
             }
             // Exercise the standalone category-navigation route as well as the embedded homepage.
             const categoryPage = await browser.newPage({viewport:{width:390,height:844}});
+            categoryPage.on('console', m => console.log('[category-browser:'+m.type()+'] '+m.text()));
+            categoryPage.on('pageerror', e => console.log('[category-pageerror] '+e.message));
             await categoryPage.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
-            await categoryPage.locator('#grid .card').first().waitFor({timeout:60000});
+            await categoryPage.waitForFunction(() => document.querySelector('#grid .card, #grid .empty, #grid .error') || document.querySelector('#grid')?.dataset.error, null, {timeout:60000});
+            const categoryLoadError = await categoryPage.locator('#grid').getAttribute('data-error');
+            if (categoryLoadError) throw new Error('Category navigation failed: '+categoryLoadError);
             const rootOptions = await categoryPage.locator('#grid .card').count();
             if (rootOptions < 1) throw new Error('No populated main categories rendered on category.html');
             const rootNames = await categoryPage.locator('#grid .card h2').allTextContents();
