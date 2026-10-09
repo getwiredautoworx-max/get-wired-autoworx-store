@@ -1150,3 +1150,12 @@ Current checkout policy: flat R35.00 packaging charge per order (bubble wrap, se
 - [ ] Cloudflare Pages production update deliberately deferred until Axxess release and final QA. No Cloudflare/Netlify credits intentionally used.
 - Next safe release path: prepare a minimal release archive from the exact current Axxess tree; replace only the approved checkout file(s); verify live checkout + catalogue + cart + Supabase connection; then merge/deploy the same tested commit to Cloudflare and verify `https://www.getwiredauto.co.za/`.
 - Handover must continue to be updated after every task attempt, including failures.
+
+
+### 2026-10-09 — Release checkpoint after PR creation
+- [x] Opened draft PR #5 for the two-file release (checkout source + permanent handover). PR URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/5
+- [x] Compared release branch against main: only `checkout-v2.html` and `AI_HANDOVER_PERMANENT.md` are changed in the PR diff. Branch is 9 commits ahead but the diff is limited to those two files.
+- [x] PR deliberately remains draft/unmerged. This prevents an untested production Cloudflare Pages deployment before the requested Axxess-first release and final QA.
+- [!] Tried to inspect the live domain's checkout/store pages with the available web fetch path; those URLs were not accessible to that fetcher, so live HTTP/site behavior is not verified by that method.
+- [ ] Required release input: provide the temporary HTTPS download URL for the current Axxess site archive/tree (or upload the archive here). No Axxess authenticated file-transfer action is available in this environment. Never send Axxess passwords. Once the archive is accessible, inspect and patch only required files, create a backup/rollback package, and return the exact upload package/instructions.
+- [ ] Do not merge PR #5 or trigger Cloudflare Pages deployment until the Axxess copy is updated and checked, and the delivery quote endpoint is tested against configured provider accounts. Current live Edge Function is v3; Aramex still requires a configured compatible server-side adapter, and Courier Guy locker quoting still depends on a returned locker-specific rate.
