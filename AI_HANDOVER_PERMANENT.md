@@ -984,3 +984,18 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - The previously reported image-loading problem is currently not reproducible on the owner's retest. Product-image Edge Function diagnostic also opened successfully for SKU `GW-705CE825`.
 - No code, DNS, database, or deployment changes were made as part of this diagnostic. No Cloudflare/Netlify credits spent.
 - Status: image-loading discrepancy provisionally resolved / not reproducible. If it recurs, capture the exact product SKU, exact hostname, and failing image URL before changing code; check for stale cache/deployment differences first.
+
+
+## 2026-10-09 — Next-step review after image diagnostic
+- Owner asked what comes next after confirming product images load on root .co.za, www .co.za, and the direct Supabase product-image endpoint. Image issue remains closed as not reproducible; no code fix is justified.
+- Next work order from existing task register:
+  1. Continue remaining non-credit audits/reports and preserve current deployment; no Cloudflare/Netlify credits.
+  2. Collect owner-completed manual category decisions for the 198-item worksheet before changing those product categories.
+  3. Obtain a complete current supplier stock feed before claiming full catalogue stock is verified or producing the final stock reconciliation.
+  4. Before launch, owner must enable Supabase Auth leaked-password protection, then run the final security advisor review and unauthorized-access tests.
+  5. Complete the root-domain HTTPS/TLS/301 redirect through authorized Axxess/DirectAdmin or DNS control without changing Axxess mail records; no hosting control connector is available in this session.
+  6. Complete PayFast verification/documents and secure production credentials before enabling real payment; keep payments unenabled until approved final testing.
+  7. Final live end-to-end customer/admin/order/delivery/payment testing and any credit-consuming deployment work remain last, per locked rules.
+- Existing storefront source-level routing and database/category integrity checks pass, but the full live end-to-end checkout has not been run and no test order has been created.
+- User-input dependencies: completed category decisions; current full supplier stock feed; owner setting change for leaked-password protection; authorized host/DNS access or owner-applied root redirect/TLS; PayFast account verification and credentials through secure configuration (never paste secrets into chat).
+- No code, DNS, database, payment, or deployment changes made during this review. No Cloudflare/Netlify credits spent.
