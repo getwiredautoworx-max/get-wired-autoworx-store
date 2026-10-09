@@ -453,3 +453,20 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - No DNS work was performed.
 - No Cloudflare, Netlify or Replit credit-dependent work was performed.
 - Master handover updated after this pass.
+
+## 2026-10-09 — AXXESS UPLOAD PACKAGE BUILT / AWAITING USER UPLOAD
+
+- [x] GitHub Actions workflow “Prepare Axxess upload package” run #4 completed successfully in 15 seconds.
+- [x] Commit: `b5f66a666d369502201c2a76ef4387e0a2d2d7de`.
+- [x] Artifact: `axxess-storefront-upload`, 54.7 MB.
+- [x] Artifact SHA-256 shown by GitHub: `5f12833d18707e27af368f0040933e85a10ec632c7f3580054f3cf2c8fea43ad`.
+- [x] Workflow notices: Node.js 20 deprecation notice for `actions/checkout@v4` and `actions/upload-artifact@v4`; Ubuntu-latest migration notice for 2026-10-19. Neither blocked the build.
+- [x] Supplemental checkpoint created: `HANDOVER_2026-10-09_AXXESS_UPLOAD.md`, commit `67ab7f287c6ab2d7d4a1f243bb33c8ff96c52af3`.
+- [ ] User still needs to download the artifact from https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/37956100308 (scroll to Artifacts and select `axxess-storefront-upload`).
+- [ ] ZIP has not yet been confirmed downloaded or extracted into Axxess DirectAdmin `public_html`.
+- [ ] Live website, SSL and product/category/cart/checkout functionality have not been verified after this package upload. Do not claim deployment is complete until tested.
+- [ ] Next: back up existing `public_html` files if possible, extract the ZIP contents directly into `public_html` (not a nested folder), preserve `cgi-bin` and unrelated hosting files, then test https://www.getwiredauto.co.za.
+- ETA: allow 15–30 minutes for careful upload and basic QA once the user has the ZIP and is in DirectAdmin; actual duration depends on connection and extraction speed.
+- Failure recovery: if extraction fails, redownload the artifact, confirm the Axxess 2 GB allocation has space, and use DirectAdmin File Manager's supported extraction method. Do not delete live files blindly.
+- [x] No Cloudflare or Netlify deployment/credits used for this package build.
+
