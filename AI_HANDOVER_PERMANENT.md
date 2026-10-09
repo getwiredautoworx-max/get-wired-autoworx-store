@@ -1099,3 +1099,19 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Fastest viable owner action: create a temporary, read-only publicly accessible archive/download URL for the product folders from Axxess, or enable a supported transfer connector. Revoke any temporary public URL after processing. Do not send the main hosting password or other production secrets in chat.
 - Once a reachable archive URL is supplied, download/process folder hierarchy, preserve original images, match SKUs, calculate standard price as ex-VAT cost × 1.15 × 1.35, compare verified like-for-like South African market prices, produce exceptions report, commit approved assets/catalogue to GitHub, and leave Cloudflare deployment until final testing.
 - Locked restriction retained: no Cloudflare/Netlify credits before final testing; production store remains unchanged until validated.
+
+
+## 2026-10-09 — Store continuation checkpoint (this chat)
+
+- [x] Read the Library handover and checked the live GitHub source before editing.
+- [x] Confirmed the current `main/checkout-v2.html` did **not** match the previously recorded delivery-only policy: it still displayed R35 packaging per item and included the legacy cash-on-despatch option. Do not treat the old checkout fix as live/verified.
+- [x] Created isolated branch `fix/delivery-policy-2026-10-09` to avoid triggering a hosting deployment or spending Netlify/Cloudflare credits.
+- [x] Updated `checkout-v2.html` on that branch to remove the R35-per-item charge and cash-on-despatch option, display R15 Phoenix Plaza despatch per delivery address, retain a separately quoted courier/PAXI/locker charge, require a confirmed quote and delivery address, and calculate totals without packaging.
+- [x] Checkout source pre-write validation passed: no R35-per-item, cash_on_pickup, cash_on_despatch, or packaging_fee markers remain in the edited file.
+- [x] Updated the production Supabase `public.create_store_order` overload used by the current checkout payload through migration `checkout_delivery_only_r15_dispatch_no_packaging`: customer pickup is rejected; complete delivery address is required; delivery fee must be at least R15 (dispatch included); packaging fee is zero; total is subtotal plus the submitted combined delivery/dispatch fee; order payment remains pending. Stock checks, row locks, stock decrement, and order-item inserts remain in place.
+- [ ] Verification after migration: read back the exact function definition and confirm the R15 guard, pickup rejection and zero packaging. No test/demo/customer order was created.
+- [ ] The checkout source change is isolated on the branch and is **not merged to main or deployed**. It still requires syntax/source validation, acceptance checks, and reconciliation into the Axxess release package; do not claim production checkout UI is fixed until the owner-uploaded Axxess build is tested.
+- [ ] Axxess folder access: no authenticated Axxess file/DNS connector is available in this environment. A public temporary file link or an archive uploaded directly into the conversation is required for direct inspection; never request or store the Axxess account password. This limitation does not block GitHub/Supabase work.
+- [ ] Keep current Axxess-first strategy: preserve the existing storefront and Supabase; no new store, no unnecessary rebuild, and no Cloudflare/Netlify credits until final testing.
+- [ ] Continue to update this handover after every attempt, including failures.
+
