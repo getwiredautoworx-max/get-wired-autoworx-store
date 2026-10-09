@@ -17,7 +17,7 @@ OUT = Path("assets/products_webp")
 REPORT = Path("image-sync/asc_image_sync_report.json")
 BATCH_SIZE = 40
 RETRY_AFTER_DAYS = 7
-SYNC_VERSION = 7
+SYNC_VERSION = 8
 NOW = datetime.now(timezone.utc)
 OUT.mkdir(parents=True, exist_ok=True)
 REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -108,6 +108,39 @@ def sync_one(item):
             f"{ASC_BASE}/?s={encoded_short_name}&post_type=product",
             f"{ASC_BASE}/?s={encoded_sku}&post_type=product",
         )))
+        # Use WooCommerce's public Store API first. It supports exact SKU
+        # queries and returns the product image URL without parsing page markup.
+        api_url = f"{ASC_BASE}/wp-json/wc/store/v1/products?sku={encoded_sku}&per_page=10"
+        try:
+            api_response = session.get(api_url, timeout=(5, 15), headers={"Accept": "application/json"})
+            if api_response.ok and "json" in (api_response.headers.get("content-type") or "").lower():
+                api_products = api_response.json()
+                if isinstance(api_products, list):
+                    for api_product in api_products:
+                        api_sku = str(api_product.get("sku") or "").strip()
+                        if api_sku.casefold() != supplier_sku.casefold():
+                            continue
+                        images = api_product.get("images") or []
+                        if not images:
+                            status = "exact_sku_api_product_without_image"
+                            continue
+                        image_url = images[0].get("src") or images[0].get("thumbnail") or ""
+                        if image_url.startswith("//"):
+                            image_url = "https:" + image_url
+                        elif image_url.startswith("/"):
+                            image_url = ASC_BASE + image_url
+                        if image_url:
+                            image_response = session.get(image_url, timeout=(5, 15))
+                            image_response.raise_for_status()
+                            if (image_response.headers.get("content-type") or "").lower().startswith("image/") and save_valid_webp(image_response.content, target):
+                                return {"public_sku": public_sku, "status": "matched", "source": "woocommerce_store_api_exact_sku", "attempted_at": NOW.isoformat(), "sync_version": SYNC_VERSION}
+        except requests.Timeout:
+            status = "source_timeout"
+        except requests.RequestException:
+            pass
+        except Exception:
+            pass
+
         for search_url in searches:
             try:
                 response = session.get(search_url, timeout=(5, 15))
