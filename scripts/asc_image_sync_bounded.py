@@ -61,7 +61,9 @@ def load_targets():
             continue
         prior = latest.get(public_sku, {})
         attempted = prior.get("attempted_at")
-        if attempted:
+        # Ignore outcomes from the old SKU-only search strategy; version 2
+        # searches by product name first and must retry those records.
+        if prior.get("sync_version") == SYNC_VERSION and attempted:
             try:
                 attempted_at = datetime.fromisoformat(attempted.replace("Z", "+00:00"))
                 if attempted_at > NOW - timedelta(days=RETRY_AFTER_DAYS):
@@ -80,7 +82,10 @@ def save_valid_webp(raw, path):
         image = image.convert("RGB")
         image.thumbnail((1000, 1000), Image.Resampling.LANCZOS)
         image.save(path, "WEBP", quality=82, method=5)
-        return path.exists() and path.stat().st_size > 1500
+        if not path.exists() or path.stat().st_size <= 1500:
+            path.unlink(missing_ok=True)
+            return False
+        return True
     except Exception:
         return False
 
