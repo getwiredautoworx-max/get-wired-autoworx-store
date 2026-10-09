@@ -1,0 +1,45 @@
+name: ASC Exact-SKU Image Sync (Bounded)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/asc-sku-image-sync-bounded.yml'
+      - 'scripts/asc_image_sync_bounded.py'
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: asc-exact-sku-image-sync-bounded
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: ${{ !contains(github.event.head_commit.message, '[asc-image-sync]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install bounded image-sync dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4 pillow
+      - name: Fetch one bounded batch of exact-SKU images
+        env:
+          SUPABASE_URL: https://ojytykqpvonxvepprgbh.supabase.co
+          SUPABASE_KEY: sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w
+          ASC_BASE: https://accessoriesspares.co.za
+        run: python scripts/asc_image_sync_bounded.py
+      - name: Commit verified public-SKU images and progress report
+        run: |
+          git config user.name 'Get Wired AutoWorx Image Sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add assets/products_webp image-sync/asc_image_sync_report.json
+          git diff --cached --quiet && echo 'No image/report changes to commit' && exit 0
+          git commit -m '[asc-image-sync] Add bounded exact-SKU product images'
+          git push
