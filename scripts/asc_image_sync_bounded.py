@@ -17,7 +17,7 @@ OUT = Path("assets/products_webp")
 REPORT = Path("image-sync/asc_image_sync_report.json")
 BATCH_SIZE = 50
 RETRY_AFTER_DAYS = 30
-SYNC_VERSION = 3
+SYNC_VERSION = 4
 NOW = datetime.now(timezone.utc)
 OUT.mkdir(parents=True, exist_ok=True)
 REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -97,12 +97,18 @@ def sync_one(item):
     session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; Get-Wired-AutoWorx-ImageAudit/3.0)", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"})
     status = "no_product_cards"
     try:
-        encoded_name = requests.utils.quote(item.get("name", ""), safe="")
+        product_name = item.get("name", "").strip()
+        name_terms = re.findall(r"[A-Za-z0-9]+", product_name)
+        short_name = " ".join(name_terms[:4])
+        encoded_name = requests.utils.quote(product_name, safe="")
+        encoded_short_name = requests.utils.quote(short_name, safe="")
         encoded_sku = requests.utils.quote(supplier_sku, safe="")
-        searches = (
+        searches = list(dict.fromkeys((
             f"{ASC_BASE}/?s={encoded_name}&post_type=product",
+            f"{ASC_BASE}/?s={encoded_short_name}&post_type=product",
             f"{ASC_BASE}/?s={encoded_sku}&post_type=product",
-        )
+            f"{ASC_BASE}/?s={encoded_name}",
+        )))
         for search_url in searches:
             try:
                 response = session.get(search_url, timeout=(5, 20))
