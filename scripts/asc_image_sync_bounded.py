@@ -111,7 +111,7 @@ def sync_one(item):
         )))
         for search_url in searches:
             try:
-                response = session.get(search_url, timeout=(5, 15))
+                response = session.get(search_url, timeout=(5, 20))
                 response.raise_for_status()
                 soup = BeautifulSoup(response.text, "html.parser")
                 exact_card = None
@@ -137,7 +137,7 @@ def sync_one(item):
                     image_url = "https:" + image_url
                 elif image_url.startswith("/"):
                     image_url = ASC_BASE + image_url
-                image_response = session.get(image_url, timeout=(5, 15))
+                image_response = session.get(image_url, timeout=(5, 20))
                 image_response.raise_for_status()
                 if not (image_response.headers.get("content-type") or "").lower().startswith("image/"):
                     status = "candidate_url_not_image"
