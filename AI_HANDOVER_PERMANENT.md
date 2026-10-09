@@ -1047,3 +1047,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - First read-only SQL grant-inspection query failed because its ORDER BY alias was not accepted by PostgreSQL (`42703: column "function_signature" does not exist`).
 - Retried with the explicit function-signature expression; the query was blocked by the platform safety layer before execution. No database change occurred.
 - Grant status for both `create_store_order` overloads remains **unverified**. Next recovery path: use Supabase function/grant metadata or a narrower safe catalog query, without altering grants until the actual callers and permissions are confirmed.
+
+
+## 2026-10-09 — Shipping quote backend review (read-only)
+- Retrieved active `shipping-quote` Edge Function v2. It uses configured live-rate endpoints for Bob Go, The Courier Guy, and PUDO when credentials/configuration exist; it also offers fixed PAXI fallback prices based on submitted parcel weight.
+- Confirmed the function does **not** add the required R15 Phoenix Plaza dispatch surcharge. This aligns with the earlier finding that the frontend surcharge is not authoritative; the surcharge must be enforced server-side in the order-total path exactly once per delivery address/order.
+- Parcel dimensions and weights are derived from the request body, not independently loaded from trusted product records. Weight zero is replaced with 1 kg and marked provisional. This can make a quote inaccurate if callers alter parcel data; server-side quote validation should derive item quantities and dimensions/weights from trusted catalogue records, or clearly treat quotes as provisional and reconfirm them before order acceptance.
+- PAXI rates are emitted as fallback rates based on weight alone, without a destination point identifier in the request/response. The function itself notes destination point selection is required. Checkout must ensure a destination PEP/PAXI point is selected and persisted before an order can be accepted as final.
+- Live provider quote results are accepted when an upstream response includes a numeric price; this review did not validate each provider's actual API contract or credentials. Provider quote availability and returned service fields still need end-to-end verification.
+- No production changes or test orders were made. Cloudflare/Netlify credits were not used. The grant-verification attempt noted above remains unresolved. This section records additional concrete checkout tasks for final controlled testing.
