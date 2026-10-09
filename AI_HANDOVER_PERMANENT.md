@@ -720,3 +720,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Validation:** Re-fetched the committed source and confirmed the pagination helper is used without a hard-coded `limit=1000`, multi-term tokenization is present, and the image error handler is attached. This is static source validation only; no browser or live image-load test was run.
 - **Remaining in this batch:** Category assignment repair is still held to SKU-level mapping; do not auto-move the 3,211 products outside the eight approved category trees based on category labels alone. Checkout, mobile, image success-rate, and full-catalogue QA still require browser tests.
 - **ETA:** Source corrections completed; browser QA estimate 30–60 minutes once Axxess is accessible.
+
+
+## 2026-10-09 — Search coverage and HTML escaping hardening
+- **Completed:** Standardised HTML escaping in `checkout-v2.html`, `category.html`, and `products.html` to explicitly escape ampersands, angle brackets, double quotes and apostrophes. This corrects the previous quote-escaping pattern, which did not reliably match a plain double quote.
+- **Completed:** Updated the homepage progressive search so both visible-card filtering and suggestion results match every whitespace-separated query term, rather than requiring the entire query as one continuous substring.
+- **Source commits:** 91b06e8f94f623cfecdd224d08a3f25deeaf1037 (checkout escaping); 1945f072105acd93d76cb170fbbee29ae22d64e0 (category escaping); be58afc999a250f18633864179c06324e5b547af (product-list escaping); e05353c495441a86673b28d6bcdc44e11789dd98 (homepage multi-term search).
+- **Validation:** Re-fetched committed files and confirmed each helper contains explicit quote escaping and both homepage search paths use the token list. Static source checks only; browser interaction, accessibility and XSS regression tests are still required.
+- **Current batch completed:** Category product pagination, multi-term category search, exact-SKU image fallback, explicit quote escaping, and homepage multi-term search are committed. No production deployment or paid hosting build was triggered.
+- **Next priorities:** SKU-level category map; correct only verified bad product records; test product images and mobile layouts; complete pickup/delivery checkout regression; legal/policy and payment-flow checks; then live Axxess QA after support responds.
+- **ETA:** Source edits completed. The remaining QA estimate is 30–90 minutes after the live host is accessible; data mapping time depends on how many rows can be classified confidently.
