@@ -17,10 +17,7 @@
   function localUrls(sku) {
     if (!sku) return [];
     var e = encodeURIComponent(sku);
-    return [
-      'https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=' + e,
-      '/assets/products_webp/' + e + '.webp'
-    ];
+    return ['/assets/products_webp/' + e + '.webp'];
   }
 
   function isPlaceholder(src) {
@@ -43,7 +40,13 @@
         function tryUrl(img, index, original) {
           if (index >= urls.length) {
             if (img) {
-              if (img) { img.onerror = null; img.style.display = 'none'; var box = img.closest('.prodImg, .detailImg'); if (box) { box.classList.add('no-image'); box.textContent = 'Image not available'; } }
+              img.onerror = null;
+              img.style.display = 'none';
+              var box = img.closest('.prodImg, .detailImg');
+              if (box) {
+                box.classList.add('no-image');
+                box.textContent = 'Image not available';
+              }
             }
             return;
           }
