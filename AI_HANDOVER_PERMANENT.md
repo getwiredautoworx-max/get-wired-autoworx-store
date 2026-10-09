@@ -825,3 +825,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Audit report:** `CATEGORY_MAPPING_REVIEW_2026-10-09.md`, commit a8438978aa780a42fd0e4fe529a335e60cd7f4e0.
 - **Storefront source fix:** “View all products” category option commit `fadb1bc4805068b97b2d66b985a487da7b6bb7b1`; not deployed or browser-tested.
 - **Hosting/credits:** No Cloudflare/Netlify deployment or credits used.
+
+## 2026-10-09 — Axxess / DirectAdmin access recovery attempt
+- **User request:** Find a workable way to give the assistant access to the live website files at `/domains/getwiredauto.co.za/public_html` without wasting more time.
+- **Attempt/status:** Opened the supplied DirectAdmin File Manager URL through available web access; the authenticated file-manager session did not load. Checked available connected tools; no FTP/SFTP, DirectAdmin, or hosting-file connector is available in this session. Creating FTP credentials alone would not give the assistant a network-capable FTP client here.
+- **Provider guidance checked:** Axxess's official “Creating FTP Accounts” article says to create a separate account in DirectAdmin → Account Manager → FTP Management and restrict its directory to the website files; it documents connecting with an FTP client. Source: https://help.axxess.co.za/knowledgebase.php?article=285
+- **Security:** Do not paste FTP/DirectAdmin/database passwords into chat. If FTP is used, prefer explicit FTP over TLS where supported; do not assume SFTP is enabled.
+- **Current safest viable recovery path:** In the logged-in DirectAdmin File Manager, create a ZIP archive of the target domain's `public_html` folder and attach/upload that ZIP to this conversation. Inspect the archive, compare live files against GitHub/handover, then prepare minimal corrections. This is currently the only available file-transfer route that does not require inventing an unavailable connector or exposing credentials.
+- **Domain discrepancy to verify:** User's current DirectAdmin URL uses `getwiredauto.co.za`; earlier project notes refer to `getwiredautoworx.co.za`. Treat these as potentially different domains until the archive confirms which is the active storefront.
+- **No changes made:** No live files changed; no database writes; no GitHub storefront source changes; no Cloudflare/Netlify credits used.
+- **Next step / blocker:** User must provide the ZIP archive from DirectAdmin (or an equivalent file attachment/export). Once available, continue inspection and repairs in one pass. Do not ask the user to create FTP credentials unless a compatible FTP connector becomes available.
