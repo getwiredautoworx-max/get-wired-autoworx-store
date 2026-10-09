@@ -940,3 +940,9 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Tool attempt failure recorded:** Fetching root `app.js` returned GitHub API 404 (file does not exist at that path); this does not block routing because current entry files and checkout links were found in `store.html`, `index-new.html`, and `products.html`. No source file was changed.
 - **Deployment / domain state:** No deployment or DNS/TLS change was made. `www.getwiredauto.co.za` remains owner-confirmed Active in Cloudflare Pages; apex/root redirect and website TLS remain unresolved because this session has no connected Cloudflare/Axxess/DirectAdmin management action. Live browser QA is still pending for final testing. No Cloudflare/Netlify credits used.
 - **Next:** Continue non-credit source and security review. Keep the storefront undeployed until final test phase. For the remaining domain change, use authorized DirectAdmin control or a connected hosting/DNS action; never guess apex IPs or alter mail DNS. For launch, enable leaked-password protection and run full browser checkout tests with a controlled test order only when explicitly authorized.
+
+
+## 2026-10-09 — Hosting integration discovery attempt
+- Searched the available plugin directory for Cloudflare DNS/Pages, DirectAdmin, hosting, FTP/SFTP and related domain-management access. Returned options did not include a Cloudflare or Axxess/DirectAdmin/FTP connector; no suitable plugin was found to perform the root-domain redirect from this session.
+- No plugin was installed or suggested because the search did not return a suitable connector. No hosting credentials requested, no DNS/hosting changes made, no deployment or credits used.
+- This discovery attempt confirms the same blocker rather than resolving it: the root-domain redirect and website TLS still require authorized access to the existing host/DNS dashboard or a compatible connected management tool.
