@@ -159,12 +159,91 @@ jobs:
               raise SystemExit(f'Only cleaned {count} images; refusing to publish an incomplete catalogue.')
           PY
 
+      - name: Publish exact public-SKU WebP aliases from cleaned images
+        env:
+          SUPABASE_URL: https://ojytykqpvonxvepprgbh.supabase.co
+          SUPABASE_PUBLISHABLE_KEY: sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w
+        run: |
+          python <<'PY'
+          import json, os, re
+          from pathlib import Path
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+          from PIL import Image
+
+          base=os.environ["SUPABASE_URL"].rstrip("/")
+          key=os.environ["SUPABASE_PUBLISHABLE_KEY"]
+          root=Path("assets/products")
+          out=Path("assets/products_webp")
+          out.mkdir(parents=True,exist_ok=True)
+          sku_re=re.compile(r"^GW-[A-Z0-9]{8}$")
+          files={p.stem.upper():p for p in root.iterdir() if p.is_file() and p.suffix.lower()==".jpg"}
+          products=[]
+          offset=0
+          while True:
+              params=urlencode({"select":"public_sku,sku,active","active":"eq.true","order":"public_sku.asc","limit":"1000","offset":str(offset)})
+              req=Request(base+"/rest/v1/products?"+params,headers={"apikey":key,"Authorization":"Bearer "+key})
+              with urlopen(req,timeout=30) as response:
+                  batch=json.load(response)
+              if not isinstance(batch,list):
+                  raise SystemExit("Unexpected Supabase product mapping response")
+              products.extend(batch)
+              if len(batch)<1000:
+                  break
+              offset+=1000
+
+          by_source={}
+          for product in products:
+              public_sku=(product.get("public_sku") or "").strip().upper()
+              supplier_sku=(product.get("sku") or "").strip()
+              if not sku_re.fullmatch(public_sku) or not supplier_sku:
+                  continue
+              source_key=re.sub(r"[\\/]", "_", supplier_sku).upper()
+              by_source.setdefault(source_key,[]).append(public_sku)
+
+          created=0
+          skipped_existing=0
+          no_source=0
+          ambiguous=0
+          for source_key, public_skus in by_source.items():
+              if len(set(public_skus)) != 1:
+                  ambiguous+=len(set(public_skus))
+                  continue
+              source=files.get(source_key)
+              if not source:
+                  no_source+=1
+                  continue
+              public_sku=public_skus[0]
+              destination=out/(public_sku+".webp")
+              if destination.exists():
+                  skipped_existing+=1
+                  continue
+              try:
+                  with Image.open(source) as im:
+                      im=im.convert("RGB")
+                      im.thumbnail((1200,1200),Image.Resampling.LANCZOS)
+                      im.save(destination,"WEBP",quality=82,method=6)
+                  created+=1
+              except Exception as error:
+                  print("SKIP_WEBP",public_sku,str(error))
+          print(json.dumps({
+              "active_products":len(products),
+              "cleaned_source_jpgs":len(files),
+              "created_public_sku_webp":created,
+              "existing_public_sku_webp_preserved":skipped_existing,
+              "ambiguous_supplier_sku_mappings_skipped":ambiguous,
+              "no_exact_cleaned_source_file":no_source
+          },indent=2))
+          if created==0 and skipped_existing==0:
+              raise SystemExit("No exact-SKU WebP images were created or preserved; refusing to report success")
+          PY
+
       - name: Commit cleaned catalogue images
         run: |
           git config user.name "Get Wired AutoWorx Image Cleaner"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git add assets/products
+          git add assets/products assets/products_webp
           if git diff --cached --quiet; then
             echo "No image changes to commit"
             exit 0
