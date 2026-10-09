@@ -1159,3 +1159,6 @@ Current checkout policy: flat R35.00 packaging charge per order (bubble wrap, se
 - [!] Tried to inspect the live domain's checkout/store pages with the available web fetch path; those URLs were not accessible to that fetcher, so live HTTP/site behavior is not verified by that method.
 - [ ] Required release input: provide the temporary HTTPS download URL for the current Axxess site archive/tree (or upload the archive here). No Axxess authenticated file-transfer action is available in this environment. Never send Axxess passwords. Once the archive is accessible, inspect and patch only required files, create a backup/rollback package, and return the exact upload package/instructions.
 - [ ] Do not merge PR #5 or trigger Cloudflare Pages deployment until the Axxess copy is updated and checked, and the delivery quote endpoint is tested against configured provider accounts. Current live Edge Function is v3; Aramex still requires a configured compatible server-side adapter, and Courier Guy locker quoting still depends on a returned locker-specific rate.
+
+
+- [x] Post-deploy log check performed once for `shipping-quote` in Supabase function logs; no matching entries were returned. This means no live request was available in the queried logs to verify provider behavior, not that a quote request passed. No retry loop was used.
