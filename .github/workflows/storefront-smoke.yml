@@ -48,6 +48,20 @@ jobs:
               const diag = await frame.locator('body').innerText().catch(()=>'<frame unavailable>');
               throw new Error('Category grid did not render within 60s. Frame text: '+diag.slice(0,1000));
             }
+            // Exercise the standalone category-navigation route as well as the embedded homepage.
+            const categoryPage = await browser.newPage({viewport:{width:390,height:844}});
+            await categoryPage.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
+            await categoryPage.locator('#grid .card').first().waitFor({timeout:60000});
+            const rootOptions = await categoryPage.locator('#grid .card').count();
+            if (rootOptions < 1) throw new Error('No populated main categories rendered on category.html');
+            const rootNames = await categoryPage.locator('#grid .card h2').allTextContents();
+            if (!rootNames.some(n => n.trim() === 'Auto Electrical')) throw new Error('Auto Electrical root missing from category navigation');
+            await categoryPage.locator('#grid .card').first().click();
+            await categoryPage.locator('#grid .card').first().waitFor({timeout:60000});
+            const childOptions = await categoryPage.locator('#grid .card').count();
+            if (childOptions < 1) throw new Error('Selected main category has no populated child/direct-product options');
+            console.log('CATEGORY_NAVIGATION_PASS: '+rootOptions+' populated main categories; '+childOptions+' populated Auto Electrical options');
+            await categoryPage.close();
             await frame.locator('#featuredGrid .product').first().waitFor({timeout:60000});
             await frame.locator('#searchInput').fill('');
             await frame.locator('#featuredGrid .product').first().click();
