@@ -2,6 +2,24 @@ name: Prepare Axxess upload package
 on:
   push:
     branches: [main]
+    paths:
+      - '.github/workflows/prepare-axxess-package.yml'
+      - 'index.html'
+      - 'store.html'
+      - 'index-new.html'
+      - 'checkout-v2.html'
+      - 'category.html'
+      - 'returns-refunds.html'
+      - 'product-details.js'
+      - 'category-navigation.js'
+      - 'TERMS_AND_CONDITIONS.md'
+      - 'assets/gw-logo.png'
+      - 'assets/product-image-fallback.js'
+      - 'assets/category-cleanup.js'
+      - 'assets/progressive-store-enhancements.js'
+      - 'assets/product-placeholder.svg'
+      - 'assets/category-tree.json'
+      - 'assets/products_webp/**'
   workflow_dispatch:
 permissions:
   contents: read
@@ -38,6 +56,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: axxess-storefront-upload
-          path: axxess-storefront-upload.zip
+          path: axxess-upload/
           if-no-files-found: error
           retention-days: 14
