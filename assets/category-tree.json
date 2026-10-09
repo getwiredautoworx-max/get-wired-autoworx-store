@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T10:30:00Z",
+  "generated_at": "2026-10-09T10:45:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -296,7 +296,7 @@
       "slug": "clamps",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 7
+      "direct_active_products": 8
     },
     {
       "id": "e0eef3bf-a516-4729-9075-aa507a486acc",
@@ -1040,7 +1040,7 @@
       "slug": "spanners-wrenches",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 157
+      "direct_active_products": 156
     },
     {
       "id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
