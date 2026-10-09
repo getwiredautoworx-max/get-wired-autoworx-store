@@ -3,6 +3,13 @@
   "source": "Active category rows and active product assignments from Supabase; refresh after catalogue/category imports.",
   "categories": [
     {
+      "id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "name": "12V Light Duty Vehicles (Cars and Bakkies etc)",
+      "slug": "12v-light-duty-vehicles",
+      "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "direct_active_products": 0
+    },
+    {
       "id": "ff3f339f-31da-4dfe-8246-385de1251fdb",
       "name": "4X4 Outdoor",
       "slug": "catalogue-4x4-outdoor",
@@ -395,6 +402,13 @@
       "direct_active_products": 0
     },
     {
+      "id": "fa08b2d8-a638-485a-b0ff-5c27a86b97ac",
+      "name": "Fuel Pumps",
+      "slug": "light-duty-fuel-pumps",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "direct_active_products": 4
+    },
+    {
       "id": "cfaf680b-27ec-428f-9580-8104acf576f4",
       "name": "Fuel Pumps & Oil Filter",
       "slug": "catalogue-fuel-pumps-and-oil-filter",
@@ -451,6 +465,13 @@
       "direct_active_products": 29
     },
     {
+      "id": "df14b7f8-f086-4fdb-8496-733bde7e18e7",
+      "name": "General Accessories",
+      "slug": "accessories-general",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "direct_active_products": 42
+    },
+    {
       "id": "7c5d5092-9d92-429d-985d-019aa0016979",
       "name": "Globes and Globe Holders",
       "slug": "catalogue-globes-and-globe-holders",
@@ -491,6 +512,13 @@
       "slug": "catalogue-hand-tools",
       "parent_id": null,
       "direct_active_products": 0
+    },
+    {
+      "id": "c04c7226-405e-467a-892d-b713aa1ac9ac",
+      "name": "Hardware",
+      "slug": "hardware",
+      "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
+      "direct_active_products": 18
     },
     {
       "id": "4da98e3f-d542-4842-b6be-c4a8e109c0dd",
@@ -1002,6 +1030,13 @@
       "slug": "towing-recovery",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "direct_active_products": 0
+    },
+    {
+      "id": "b0268448-35de-43a2-ab92-009aa57d1572",
+      "name": "Trailer",
+      "slug": "trailer",
+      "parent_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
+      "direct_active_products": 12
     },
     {
       "id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
