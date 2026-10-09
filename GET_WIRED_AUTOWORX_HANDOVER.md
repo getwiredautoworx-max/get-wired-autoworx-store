@@ -495,3 +495,18 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] **Not yet end-to-end verified:** no live order has been submitted in this QA pass because a valid order changes stock and creates a real customer/order record. Do not claim successful live order submission until a controlled, explicitly authorised test order or a safe non-mutating test route is used.
 - [ ] Test `pickup` and delivery end-to-end on the Axxess live domain after correcting the quote-confirmation issue. Confirm subtotal, R35-per-quantity packaging, R0 pickup delivery, confirmed delivery fee, order number/status, persisted quote/provider details, and stock/order-item updates. Keep payment status pending; do not trigger payment or courier bookings.
 - [x] No Axxess re-upload, Cloudflare deploy, or Netlify deploy was triggered during this source/database QA.
+
+
+## 2026-10-09 — 10-MINUTE AXXESS PUSH: CHECKOUT HOTFIX COMPLETED IN SOURCE
+
+- [x] Patched `checkout-v2.html` on `main` to stop provisional PAXI published rates (`live:false`) being selectable as confirmed delivery quotations.
+- [x] Provisional PAXI prices remain visible as clearly labelled indicative information, but have no selectable radio button. The order form still blocks delivery submission unless a live/confirmed rate is selected; the manual WhatsApp quote path remains visible.
+- [x] Fixed confirmed-rate selection indexing so live rates remain selectable even when provisional PAXI rates sort ahead of them.
+- [x] Order notes now preserve the selected live provider, service, price and timeframe for the store team.
+- [x] Static source checks passed for provisional-rate blocking, live-only selection, selection indexing, delivery submission gate, quote notes, R35-per-item packaging and R0 pickup.
+- [x] Checkout hotfix commits: `b08495628b6e1d3a99b04de2c18a07b7939b2e8a` and follow-up index fix `bc2d36d8dc82784c4e02fc5a41f08f3bae2e0`. Current checkout file blob SHA: `ac95dc81e46d905cc6f919bc5a41f08f9b80e4a8`.
+- [ ] **Axxess production files not yet updated by this assistant.** The package workflow watches `checkout-v2.html` and should build a fresh `axxess-storefront-upload` artifact automatically after the push. Available GitHub connector tools here do not expose a general list-workflow-runs/dispatch operation, and direct GitHub download from the runtime failed due DNS/network resolution. Do not claim a fresh ZIP was downloaded or that Axxess now serves this hotfix.
+- [ ] Fastest remaining owner-side step, if the latest workflow run is green: GitHub repository → Actions → latest successful **Prepare Axxess upload package** run → download `axxess-storefront-upload` artifact; in Axxess DirectAdmin File Manager upload/extract the ZIP into `public_html`, replacing updated storefront files while retaining the existing backup and `admin.html`. This is a new hotfix package deployment, not a repeat of the earlier completed upload.
+- [ ] After the new package is extracted, test `/checkout-v2.html`: pickup shows R0 delivery; packaging is R35 per unit quantity; provisional PAXI entries cannot be selected; only live rates can be selected for delivery; order submission has not yet been end-to-end tested in this pass. Do not create a fake order or claim order success without a controlled authorised test.
+- [ ] No Supabase schema/data changes, stock mutations, payment initiation, courier booking, Cloudflare deploy or Netlify deploy were performed.
+- Failure/limitation recorded: direct runtime network access to GitHub was unavailable (DNS resolution failed); no FTP/DirectAdmin connector or authorised Axxess credentials are available to upload files directly from this session.
