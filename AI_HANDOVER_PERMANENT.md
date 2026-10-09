@@ -686,3 +686,9 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Next action:** Prepare a SKU/product-level category mapping using product name, description, existing category, and supplier source category; map confidently, flag ambiguous/mechanical items for review, then test category navigation and product counts. Keep the eight approved roots and do not simply activate all legacy categories.
 - **ETA:** Initial mapping/report 30–60 minutes; safe database correction and QA depend on ambiguity volume.
 - **Source:** Supabase read-only SQL audit on 2026-10-09; no database rows changed.
+
+
+## 2026-10-09 — Checkout and Supabase advisor follow-up
+- **Checkout logic finding (not yet changed):** The current database checkout function infers pickup from payment method `cash_on_pickup`, rather than a dedicated fulfilment field. The frontend preselects that method for pickup, but a customer can change it to EFT; the backend may then treat a pickup as delivery and reject the order because its delivery address/fee is empty. Conversely, selecting cash-on-pickup for a delivery order will fail validation. Resolve this before live checkout by making fulfilment intent explicit and consistent across frontend, edge function, and database function; regression-test both pickup payment choices and delivery.
+- **Supabase advisor check:** Security advisor reports the already-known warning that leaked-password protection is disabled. Performance advisor reports 3 unindexed foreign keys and 5 sets of multiple permissive RLS policies, plus unused-index notices; do not remove indexes or rewrite policies blindly. Review only if relevant to store performance/security after core launch blockers are resolved.
+- **No checkout test order was created and no database rows were changed during these audits.**
