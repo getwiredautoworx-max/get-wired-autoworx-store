@@ -159,9 +159,12 @@ def sync_one(item):
         session.close()
 
 def main():
-    probe = requests.get(ASC_BASE, headers={"User-Agent": "Mozilla/5.0 (compatible; Get-Wired-AutoWorx-ImageAudit/3.0)"}, timeout=(5, 15))
-    print(f"ASC source connectivity: HTTP {probe.status_code}; response bytes: {len(probe.content)}")
-    probe.raise_for_status()
+    try:
+        probe = requests.get(ASC_BASE, headers={"User-Agent": "Mozilla/5.0 (compatible; Get-Wired-AutoWorx-ImageAudit/3.0)"}, timeout=(5, 15))
+        print(f"ASC source connectivity: HTTP {probe.status_code}; response bytes: {len(probe.content)}")
+        probe.raise_for_status()
+    except requests.RequestException as exc:
+        print(f"ASC source connectivity probe warning: {type(exc).__name__}: {exc}; continuing with bounded per-SKU requests.", flush=True)
     total, candidates = load_targets()
     batch = candidates[:BATCH_SIZE]
     print(f"Missing-image targets: {total}; eligible: {len(candidates)}; diagnostic batch: {len(batch)}")
