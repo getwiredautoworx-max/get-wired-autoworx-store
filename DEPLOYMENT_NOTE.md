@@ -61,3 +61,12 @@ Axxess is the current zero-Cloudflare-credit production path. Cloudflare and Git
 Historical Cloudflare/GitHub Pages workflows are retained for fallback/reference and must not be triggered as part of the Axxess deployment unless explicitly authorised.
 
 Do not spend Netlify or Cloudflare credits during the Axxess staging/verification process.
+
+
+## 2026-10-09 — Current QA and fallback deployment status
+
+- Axxess XS Linux Hosting DirectAdmin remains the primary production route; the approved deployment process is to upload/synchronise repository files to the domain's `public_html`, then verify SSL and storefront behaviour.
+- The Cloudflare Pages GitHub Action currently fails before deployment because the runner has no `CLOUDFLARE_API_TOKEN`. Cloudflare is a fallback, not the current primary route. Do not change DNS to accommodate this failed fallback.
+- GitHub Pages reported a successful workflow run, but that status is not evidence that Axxess `public_html`, the custom domain, checkout or product images are live and correct.
+- Current approved checkout rules: R35.00 packaging per item/quantity, free pickup, delivery quoted by actual parcel and destination. A live Supabase function restriction requiring at least R59.95 delivery was removed on 2026-10-09; any positive selected delivery quote is now accepted by the database function.
+- Catalogue audit: 4,187 active products, no missing image URLs, category IDs or prices; 3,395 products still use generic/placeholder-named image URLs and need SKU-matched image replacement.
