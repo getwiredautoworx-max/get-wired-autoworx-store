@@ -470,3 +470,14 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - Failure recovery: if extraction fails, redownload the artifact, confirm the Axxess 2 GB allocation has space, and use DirectAdmin File Manager's supported extraction method. Do not delete live files blindly.
 - [x] No Cloudflare or Netlify deployment/credits used for this package build.
 
+
+## 2026-10-09 — OWNER CONFIRMED AXXESS UPLOAD AND STOREFRONT LOAD
+
+- [x] Owner confirms the existing `public_html` was backed up.
+- [x] Owner confirms the Axxess upload package was uploaded and unzipped into the existing web root.
+- [x] Owner confirms the store was opened and loaded successfully after extraction. This supersedes the previous entry's assumption that upload/extraction was still pending.
+- [ ] Do not ask the owner to repeat backup, upload, unzip, or initial-load steps.
+- [ ] Deployment is not yet fully verified: successful initial page load does not prove product images, product/category filtering, search, cart totals, checkout/order submission, Supabase calls, and HTTPS/SSL are all correct. Continue with targeted checks from the current live state, not redeployment.
+- [ ] The next troubleshooting step must be to identify the exact remaining fault (if any) using current live behavior and existing repo/source; do not assume upload failed and do not instruct another upload without evidence.
+- Process correction: the previous handover checkpoint was stale because it was not updated after the owner completed the upload. Future handover entries must be updated as soon as owner reports a completed action, and all guidance must be grounded in that latest state.
+- Current known artifact remains run #4, commit `b5f66a666d369502201c2a76ef4387e0a2d2d7de`, 54.7 MB, SHA-256 `5f12833d18707e27af368f0040933e85a10ec632c7f3580054f3cf2c8fea43ad`.
