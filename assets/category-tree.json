@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T12:00:00Z",
+  "generated_at": "2026-10-09T12:30:00Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -72,7 +72,7 @@
       "slug": "aerials",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
-      "direct_active_products": 4
+      "direct_active_products": 6
     },
     {
       "id": "e83f9321-3d4a-40ca-9f4a-0e3faaeeff0d",
@@ -136,7 +136,7 @@
       "slug": "automotive-accessories",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 320
+      "direct_active_products": 306
     },
     {
       "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
@@ -256,7 +256,7 @@
       "slug": "car-mats-store",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 0
+      "direct_active_products": 3
     },
     {
       "id": "deee5051-0253-441a-ac16-54c21873bdb5",
@@ -456,7 +456,7 @@
       "slug": "exterior-accessories",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 0
+      "direct_active_products": 7
     },
     {
       "id": "fa08b2d8-a638-485a-b0ff-5c27a86b97ac",
@@ -960,7 +960,7 @@
       "slug": "safety-accessories",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 0
+      "direct_active_products": 2
     },
     {
       "id": "36629f43-c0e8-429f-93fb-03f92522e42d",
