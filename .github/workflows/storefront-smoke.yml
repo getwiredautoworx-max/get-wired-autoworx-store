@@ -66,6 +66,27 @@ jobs:
             if (childOptions < 1) throw new Error('Selected main category has no populated child/direct-product options');
             console.log('CATEGORY_NAVIGATION_PASS: '+rootOptions+' populated main categories; '+childOptions+' populated Auto Electrical options');
             await categoryPage.close();
+
+            // Verify a logo placeholder is replaced by a verified public-SKU image.
+            const imageFallbackPage = await browser.newPage();
+            await imageFallbackPage.setContent('<iframe id="imageFrame"></iframe>');
+            await imageFallbackPage.locator('#imageFrame').evaluate(frame => {
+              frame.srcdoc = '<!doctype html><html><body><div class="product"><div class="prodImg"><img src="/assets/gw-logo.png" alt=""></div><span class="sku">GW-000174D6</span><h3>Exact SKU fallback test</h3></div></body></html>';
+            });
+            await imageFallbackPage.waitForFunction(() => {
+              const frame = document.querySelector('#imageFrame');
+              return frame && frame.contentDocument && frame.contentDocument.readyState === 'complete';
+            }, null, {timeout:10000});
+            await imageFallbackPage.addScriptTag({path:'assets/product-image-fallback.js'});
+            await imageFallbackPage.evaluate(() => window.installGetWiredProductImageFallback(document.querySelector('#imageFrame')));
+            await imageFallbackPage.waitForFunction(() => {
+              const frame = document.querySelector('#imageFrame');
+              const img = frame && frame.contentDocument && frame.contentDocument.querySelector('.prodImg img');
+              return img && img.complete && img.naturalWidth > 0 && img.src.includes('/functions/v1/product-image?sku=GW-000174D6');
+            }, null, {timeout:30000});
+            console.log('EXACT_SKU_IMAGE_FALLBACK_PASS');
+            await imageFallbackPage.close();
+
             await frame.locator('#featuredGrid .product').first().waitFor({timeout:60000});
             await frame.locator('#searchInput').fill('');
             await frame.locator('#featuredGrid .product').first().click();
