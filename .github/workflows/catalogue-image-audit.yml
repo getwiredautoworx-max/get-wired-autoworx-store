@@ -94,11 +94,21 @@ jobs:
           # They are not public product references and therefore are not audited as public SKU files.
           source_root=Path("assets/products")
           source_files=[p.name for p in source_root.iterdir() if p.is_file() and p.suffix.lower() in {".jpg",".jpeg",".png",".webp"}] if source_root.exists() else []
+          webp_root=Path("assets/products_webp")
+          webp_skus={p.stem.upper() for p in webp_root.glob("*.webp") if public_sku_re.fullmatch(p.stem.upper())} if webp_root.exists() else set()
+          placeholder_skus=set(placeholder)
+          proxy_skus=set(proxy)
+          placeholder_with_webp=placeholder_skus & webp_skus
+          effective_image_skus=proxy_skus | webp_skus
 
           report={
             "active_products":len(products),
             "public_proxy_image_references":len(proxy),
             "placeholder_image_urls":len(placeholder),
+            "public_sku_webp_assets":len(webp_skus),
+            "placeholder_products_with_webp_asset":len(placeholder_with_webp),
+            "effective_known_image_coverage":len(effective_image_skus),
+            "placeholder_products_without_known_webp_asset":len(placeholder_skus-webp_skus),
             "invalid_or_mismatched_public_image_refs":bad,
             "internal_source_image_files":len(source_files)
           }
@@ -107,6 +117,10 @@ jobs:
             "active_products":len(products),
             "public_proxy_image_references":len(proxy),
             "placeholder_image_urls":len(placeholder),
+            "public_sku_webp_assets":len(webp_skus),
+            "placeholder_products_with_webp_asset":len(placeholder_with_webp),
+            "effective_known_image_coverage":len(effective_image_skus),
+            "placeholder_products_without_known_webp_asset":len(placeholder_skus-webp_skus),
             "invalid_or_mismatched_public_image_refs":len(bad),
             "internal_source_image_files":len(source_files)
           },indent=2))
