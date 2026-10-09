@@ -510,3 +510,14 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] After the new package is extracted, test `/checkout-v2.html`: pickup shows R0 delivery; packaging is R35 per unit quantity; provisional PAXI entries cannot be selected; only live rates can be selected for delivery; order submission has not yet been end-to-end tested in this pass. Do not create a fake order or claim order success without a controlled authorised test.
 - [ ] No Supabase schema/data changes, stock mutations, payment initiation, courier booking, Cloudflare deploy or Netlify deploy were performed.
 - Failure/limitation recorded: direct runtime network access to GitHub was unavailable (DNS resolution failed); no FTP/DirectAdmin connector or authorised Axxess credentials are available to upload files directly from this session.
+
+
+## 2026-10-09 — RELEASE VERIFICATION FOLLOW-UP
+
+- [x] Re-read the live `.github/workflows/prepare-axxess-package.yml` on `main`. It is configured to run on pushes to `main` when `checkout-v2.html` changes, and packages the storefront into `axxess-storefront-upload.zip` with 2,196 local WebP product images.
+- [x] Confirmed the checkout hotfix commit is present in GitHub: `bc2d36d8dc82784c4e02fc8a2bc61358f3bae2e0` (Fix confirmed courier rate selection index).
+- [x] Checked the commit combined-status endpoint; it returned no status entries. This is **not** proof that the package build succeeded.
+- [ ] Fresh workflow run and artifact still not independently verified: the available GitHub connector exposes artifact lookup only when a workflow run ID is known, but no general workflow-run listing or dispatch operation. Do not use old artifact `11627089901` / run `37956100308`; it predates the checkout hotfix.
+- [ ] Live domain browser test could not be completed through the available web fetcher for `https://www.getwiredauto.co.za/` or `/checkout-v2.html`; this does not establish whether the site is up/down. No live checkout result is claimed.
+- [ ] Deployment remains the actual gate: obtain the latest successful workflow artifact after commit `bc2d36d`, upload/extract into the existing Axxess `public_html` (preserve `admin.html` and backup), then test pickup and delivery flows. Do not create a production order without explicit approval because order creation may decrement stock.
+- Next action: open the repository Actions page at https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/prepare-axxess-package.yml, open the newest run after `bc2d36d`, and download its `axxess-storefront-upload` artifact only if the run succeeded. Then deploy and test on Axxess.
