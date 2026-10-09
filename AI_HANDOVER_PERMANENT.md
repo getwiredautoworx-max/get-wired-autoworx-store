@@ -710,3 +710,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **No product or category rows changed.**
 - **Next:** Build a SKU-level review sheet using public SKU, current category, name, description, supplier-guide category/subcategory and suggested target category; include confidence and review reason. Auto-map only clear cases; quarantine malformed titles and mechanical products for review rather than silently publishing them.
 - **ETA:** A first-pass rule-based mapping report is estimated at 30–60 minutes once a full result export is available; corrections require row-level verification.
+
+
+## 2026-10-09 — Category product-list resilience (source changes)
+- **Completed:** `products.html` now retrieves category products in 1,000-row ranges until the final short page, rather than hard-capping a category at the first 1,000 products. This avoids silently omitting products in large categories.
+- **Completed:** Category filtering now tokenises the combined search terms and requires each term to match the product name, public SKU, or description, improving multi-word searches.
+- **Completed:** Product cards now carry the public SKU and try exact-SKU WebP, exact-SKU JPG, then the existing Supabase product-image endpoint if the current image fails; final fallback is the store logo. It never selects a visually similar unrelated item.
+- **Source commits:** a3a026e071601bd157015d6353fc54a3f32ecba2 (pagination); 38c88d8da0e8677f488c03465c25d0c68acea0cb (multi-term filtering); f7cf07a8b395c67b327704eadff996a36c1c3adf (SKU image fallback).
+- **Validation:** Re-fetched the committed source and confirmed the pagination helper is used without a hard-coded `limit=1000`, multi-term tokenization is present, and the image error handler is attached. This is static source validation only; no browser or live image-load test was run.
+- **Remaining in this batch:** Category assignment repair is still held to SKU-level mapping; do not auto-move the 3,211 products outside the eight approved category trees based on category labels alone. Checkout, mobile, image success-rate, and full-catalogue QA still require browser tests.
+- **ETA:** Source corrections completed; browser QA estimate 30–60 minutes once Axxess is accessible.
