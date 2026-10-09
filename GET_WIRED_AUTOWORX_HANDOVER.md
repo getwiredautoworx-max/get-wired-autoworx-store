@@ -521,3 +521,13 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Live domain browser test could not be completed through the available web fetcher for `https://www.getwiredauto.co.za/` or `/checkout-v2.html`; this does not establish whether the site is up/down. No live checkout result is claimed.
 - [ ] Deployment remains the actual gate: obtain the latest successful workflow artifact after commit `bc2d36d`, upload/extract into the existing Axxess `public_html` (preserve `admin.html` and backup), then test pickup and delivery flows. Do not create a production order without explicit approval because order creation may decrement stock.
 - Next action: open the repository Actions page at https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/prepare-axxess-package.yml, open the newest run after `bc2d36d`, and download its `axxess-storefront-upload` artifact only if the run succeeded. Then deploy and test on Axxess.
+
+
+## 2026-10-09 — ACTION TAKEN TO FORCE A FRESH PACKAGE BUILD
+
+- [x] Created a new commit to the watched workflow file to force a fresh GitHub Actions package build from current `main`: commit `ef3238ce51ff57f15c4cb3c4e0e4e29c0323bbbf` (adds a workflow comment only; no storefront logic change).
+- [x] This commit changes `.github/workflows/prepare-axxess-package.yml`, which is explicitly included in its own push path filter; therefore it should trigger the packaging workflow.
+- [ ] Run status and artifact still need confirmation. The available connector lacks general workflow-run listing/dispatch; direct web open of the Actions page returned a cache-miss fetch failure. Do not state build succeeded until run/artifact is visible.
+- [ ] Axxess deployment remains blocked by no hosting/FTP connector in this session. The practical route is to download the fresh artifact from Actions and extract it in DirectAdmin `public_html`, preserving `admin.html` and the backup.
+- [ ] Live checkout route could not be fetched by the web tool; no live checkout test or order is claimed.
+- Root cause of delay: I had not attempted to force a new workflow build using the workflow's own watched-path trigger. That corrective action is now committed; follow up by checking Actions and deploy the resulting artifact.
