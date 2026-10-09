@@ -1123,3 +1123,7 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - [x] Re-fetched the edited `checkout-v2.html` from branch `fix/delivery-policy-2026-10-09` and validated: R15 per address is present; dispatch fee is included once in the total; R35-per-item, cash_on_pickup, cash_on_despatch and per-item packaging calculation are absent; order submission requires a selected quote.
 - [ ] No end-to-end checkout/order test was run because that would create a real database order and reduce stock. Production order flow still requires a safe non-mutating acceptance path or owner-approved test environment.
 - [ ] Branch remains isolated; do not merge to `main` or trigger deployment until the Axxess release package is ready and checkout is validated.
+
+
+## 2026-10-09 Owner correction
+Current checkout policy: flat R35.00 packaging charge per order (bubble wrap, security tape and protective materials), separate courier/PAXI/locker delivery quote, PayFast or direct EFT only, no cash. The earlier R15 dispatch rule is withdrawn. Checkout source and Supabase function were updated and read-back checks passed. PayFast live gateway is not yet verified; branch is not merged or deployed to Axxess. Handover append attempt failed safety validation; retry on next step.
