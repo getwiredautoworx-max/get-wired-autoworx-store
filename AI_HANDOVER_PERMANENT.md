@@ -815,3 +815,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Remaining:** 994 products outside approved roots. Do not bulk-move mixed categories or general Spare Parts. Next review the remaining 763 products in Spare Parts by product name and exact SKU; keep ambiguous/mechanical items separate until confidently mapped.
 - **Storefront source fix:** category “View all products” option committed as `fadb1bc4805068b97b2d66b985a487da7b6bb7b1`, not deployed/browser-tested.
 - **Hosting/credits:** No Cloudflare/Netlify deploy or credits used.
+
+
+## 2026-10-09 — Sixth category repair batch
+- **Completed:** Moved 19 non-mechanical products from legacy 4X4 Outdoor into the existing 4X4 OUTDOOR child and 11 Lifestyle products into the existing LIFESTYLE child; reparented both children under Camping / Leisure / Outdoors. Mechanical-keyword matches in 4X4 Outdoor were excluded.
+- **Latest verified totals:** 4,187 active products; 3,223 inside approved root trees; 964 outside; zero active products without a category.
+- **Total controlled product assignments changed:** 2,218 (previous 2,188 + 19 + 11), plus 29 Spotlights made reachable by the Lighting parent correction.
+- **Remaining outside-tree groups:** Spare Parts 697; Abrasives 103; Clamps 32; Thermostats & Pipes 32; Suspension 28; Fuel Pumps & Oil Filter 27; Brake Parts 25; Radiator Caps & Bottles 12; Cylinders 5; plus 3 mechanical 4X4 items. Do not misclassify mechanical or mixed stock as Auto Electrical Spares.
+- **Audit report:** `CATEGORY_MAPPING_REVIEW_2026-10-09.md`, commit a8438978aa780a42fd0e4fe529a335e60cd7f4e0.
+- **Storefront source fix:** “View all products” category option commit `fadb1bc4805068b97b2d66b985a487da7b6bb7b1`; not deployed or browser-tested.
+- **Hosting/credits:** No Cloudflare/Netlify deployment or credits used.
