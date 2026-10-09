@@ -13,6 +13,9 @@ on:
       - 'assets/products_webp/**'
       - 'supabase/functions/product-image/**'
       - '.github/workflows/catalogue-image-audit.yml'
+  workflow_run:
+    workflows: ["ASC Exact-SKU Image Sync (Bounded)"]
+    types: [completed]
   schedule:
     - cron: '17 2 * * *'
   workflow_dispatch:
@@ -22,6 +25,7 @@ permissions:
 
 jobs:
   audit:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
