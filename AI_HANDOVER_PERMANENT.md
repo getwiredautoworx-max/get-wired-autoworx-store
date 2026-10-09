@@ -1080,3 +1080,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Dependency catalog query found no view/rule dependency records for the two RPCs; this is not a complete application-caller inventory. GitHub code search still returned no indexed source matches.
 - No tests executed against production; no production changes, test orders, payment attempts, or Cloudflare/Netlify credits used. Backend hardening remains incomplete and the new matrix is a specification, not a pass report.
 - Next: locate and verify an isolated Supabase development database/branch, then implement quote verification and delivery-only enforcement there. Do not run DDL or deploy to production as a substitute for development isolation.
+
+
+## 2026-10-09 — Axxess product-folder access and catalogue workflow
+- Owner asked whether product images/prices can remain in category/subcategory folders on Axxess and be processed from there, with GitHub and Cloudflare updated as final backup/deployment.
+- Access capability check: available connected tools do not expose an Axxess/DirectAdmin/FTP/SFTP/SSH file-transfer connector. The previously supplied DirectAdmin file-manager URL does not grant this assistant authenticated file access by itself.
+- Status: cannot truthfully claim Axxess folders have been opened, downloaded, processed, or uploaded. No Axxess, GitHub storefront, Supabase, or Cloudflare production files were changed in this access check.
+- Workflow remains viable once a supported transfer path is established. Preferred secure recovery: owner creates a restricted, temporary FTP/SFTP account limited to a dedicated product-assets directory only if a transfer-capable environment/connector is available; do not share the main hosting password or Supabase/Cloudflare secrets in chat. Alternatively, owner can publish a temporary read-only download/archive link from Axxess that is accessible without login, then revoke it after processing.
+- Planned processing: preserve original images; extract SKU/product/price; calculate standard selling price as ex-VAT cost × 1.15 × 1.35; verify like-for-like South African market prices when identity/compatibility can be confirmed; flag ambiguous SKU/price matches and missing costs instead of guessing; produce an exception report; stage assets and catalogue changes in GitHub, test before any Cloudflare deployment.
+- Deployment restriction: no Cloudflare/Netlify credits until final testing; do not alter live storefront or production data before validation.
