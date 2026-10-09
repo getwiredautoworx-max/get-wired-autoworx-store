@@ -1072,3 +1072,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Read-only schema query found orders has delivery_fee, packaging_fee, payment_method, notes and delivery address, but no dedicated quote ID/provider/PAXI-point columns.
 - GitHub code search for create_store_order and store-checkout returned no indexed matches; caller discovery remains unresolved and empty search results are not proof of no callers.
 - Attempt to append these findings to the development plan and master handover in one operation was blocked by platform safety checks. No database or production changes were made. Recovery: retry handover-only append separately, then update development plan separately.
+
+
+## 2026-10-09 — Checkout delivery acceptance tests drafted
+- Re-read live Edge Function source and checkout form. Confirmed `store-checkout` whitelists request keys but forwards client-supplied `p_delivery_fee` directly to the service-role RPC. Checkout currently instructs PAXI users to put point name/code in free-form order notes; this is not validated structured destination data.
+- Added development-only acceptance matrix `docs/CHECKOUT_DELIVERY_ACCEPTANCE_TESTS.md` on `dev/checkout-delivery-hardening` (commit 124900a9bc5cfaa7a3c35b8a452c9c6d996f161f). Covers forged/expired quotes, R15 exactly once, pickup rejection, PAXI point validation, stock races, malformed carts, legacy RPC grants, and release gates.
+- Dependency catalog query found no view/rule dependency records for the two RPCs; this is not a complete application-caller inventory. GitHub code search still returned no indexed source matches.
+- No tests executed against production; no production changes, test orders, payment attempts, or Cloudflare/Netlify credits used. Backend hardening remains incomplete and the new matrix is a specification, not a pass report.
+- Next: locate and verify an isolated Supabase development database/branch, then implement quote verification and delivery-only enforcement there. Do not run DDL or deploy to production as a substitute for development isolation.
