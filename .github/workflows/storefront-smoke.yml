@@ -53,7 +53,7 @@ jobs:
             categoryPage.on('console', m => console.log('[category-browser:'+m.type()+'] '+m.text()));
             categoryPage.on('pageerror', e => console.log('[category-pageerror] '+e.message));
             await categoryPage.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
-            await categoryPage.waitForFunction(() => document.querySelector('#grid .card, #grid .empty, #grid .error') || document.querySelector('#grid')?.dataset.error, null, {timeout:60000});
+            await categoryPage.waitForFunction(() => { const grid=document.querySelector('#grid'); return !!grid && (grid.dataset.error || grid.innerText.trim() !== 'Loading categories…'); }, null, {timeout:60000});
             const categoryLoadError = await categoryPage.locator('#grid').getAttribute('data-error');
             if (categoryLoadError) throw new Error('Category navigation failed: '+categoryLoadError);
             const rootOptions = await categoryPage.locator('#grid .card').count();
