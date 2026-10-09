@@ -644,3 +644,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 6. All tasks requiring Cloudflare or Netlify credits will be added to the handover file to be completed at the very end, during the testing phase.
 7. AI will copy these rules into every new handover file and will not leave any rule out or edit any rule without user permission.
 8. AI will reply with these 8 rules when required by the user to be edited or removed.
+
+
+## 2026-10-09 — Store wrapper CSS cleanup
+- **Completed:** Removed the literal `\u0024{css}` token from the end of the inline `<style>` in `store.html`. The fetched source contained it as literal text, not a populated template variable.
+- **Commit:** `cb70c6236e2a501213a2a55311573d4f1d9cec44`.
+- **Validation:** Confirmed the token was present before the edit and absent from the updated content. This is a targeted source correction; it does **not** prove the live Axxess site is fixed or deployed.
+- **Next:** Continue source-level QA without using Cloudflare/Netlify credits. After the Axxess reply, publish the approved files to the correct hosting document root and run live mobile/browser checks.
+- **ETA:** Source correction under 5 minutes; live verification remains blocked on Axxess diagnosis/access.
