@@ -16,8 +16,8 @@ ASC_BASE = os.environ.get("ASC_BASE", "https://accessoriesspares.co.za")
 OUT = Path("assets/products_webp")
 REPORT = Path("image-sync/asc_image_sync_report.json")
 BATCH_SIZE = 40
-RETRY_AFTER_DAYS = 30
-SYNC_VERSION = 6
+RETRY_AFTER_DAYS = 7
+SYNC_VERSION = 7
 NOW = datetime.now(timezone.utc)
 OUT.mkdir(parents=True, exist_ok=True)
 REPORT.parent.mkdir(parents=True, exist_ok=True)
