@@ -76,7 +76,7 @@ function install(frame){
     const search=d.getElementById('searchInput'), box=d.getElementById('gwSearchResults');
     if(!search||!box||search.dataset.gwFullSearch)return;
     search.dataset.gwFullSearch='1';
-    const normal=v=>String(v??'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+    const normal=v=>String(v??'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
     const distance=(a,b)=>{
       if(a===b)return 0;if(!a||!b)return Math.max(a.length,b.length);
       if(Math.abs(a.length-b.length)>3)return 4;
