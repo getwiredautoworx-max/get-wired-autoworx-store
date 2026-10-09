@@ -95,7 +95,7 @@ def sync_one(item):
     target = OUT / (public_sku + ".webp")
     session = requests.Session()
     session.headers.update({"User-Agent": "Get-Wired-AutoWorx-Exact-SKU-Image-Sync/2.0"})
-    status = "no_exact_sku_match"
+    status = "no_product_cards"
     try:
         encoded_name = requests.utils.quote(item.get("name", ""), safe="")
         encoded_sku = requests.utils.quote(supplier_sku, safe="")
@@ -109,7 +109,10 @@ def sync_one(item):
                 response.raise_for_status()
                 soup = BeautifulSoup(response.text, "html.parser")
                 exact_card = None
-                for card in soup.select("li.product, .product.type-product, article.product"):
+                cards = soup.select("li.product, .product.type-product, article.product")
+                if cards:
+                    status = "sku_not_in_search_results"
+                for card in cards:
                     text = card.get_text(" ", strip=True)
                     if re.search(r"(?<![A-Za-z0-9])SKU\s*:\s*" + re.escape(supplier_sku) + r"(?![A-Za-z0-9])", text, re.I):
                         exact_card = card
@@ -118,9 +121,11 @@ def sync_one(item):
                     continue
                 image_tag = exact_card.select_one("img")
                 if image_tag is None:
+                    status = "exact_sku_card_without_image"
                     continue
                 image_url = image_tag.get("data-src") or image_tag.get("data-lazy-src") or image_tag.get("data-original") or image_tag.get("src")
                 if not image_url:
+                    status = "exact_sku_card_without_image_url"
                     continue
                 if image_url.startswith("//"):
                     image_url = "https:" + image_url
@@ -129,6 +134,7 @@ def sync_one(item):
                 image_response = session.get(image_url, timeout=(3, 8))
                 image_response.raise_for_status()
                 if not (image_response.headers.get("content-type") or "").lower().startswith("image/"):
+                    status = "candidate_url_not_image"
                     continue
                 if save_valid_webp(image_response.content, target):
                     return {"public_sku": public_sku, "status": "matched", "attempted_at": NOW.isoformat(), "sync_version": SYNC_VERSION}
@@ -161,7 +167,9 @@ def main():
             merged[result["public_sku"]] = result
     REPORT.write_text(json.dumps(sorted(merged.values(), key=lambda x: x.get("public_sku", "")), indent=2), encoding="utf-8")
     print(f"Exact-SKU images verified and saved: {sum(x.get('status') == 'matched' for x in results)}")
+    from collections import Counter
     print(f"Unresolved or timed out in this batch: {sum(x.get('status') != 'matched' for x in results)}")
+    print("Outcome reasons:", json.dumps(Counter(x.get("status", "unknown") for x in results), sort_keys=True))
 
 if __name__ == "__main__":
     main()
