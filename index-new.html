@@ -99,7 +99,88 @@ body{background:radial-gradient(ellipse at 50% 0,#071b31 0,#02060d 58%);color:#f
  .catImage{height:62px}
  .product .price{font-size:11px}
 }
-</style></head><body><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a><button class="btn secondary" type="button" onclick="openSupplierSource()">SOURCE A PART</button></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
+
+/* 2026-10-10: brighter, cleaner storefront and compact hero; preserve existing functionality */
+body{background:#eef3f8;color:#172b40}
+.top{background:#102b45;color:#f3f8fc;border-color:#244f70}
+.header{background:rgba(255,255,255,.98);border-bottom:2px solid #0a75b9;box-shadow:0 4px 16px rgba(18,48,73,.10)}
+.head{min-height:88px}
+.logo{height:72px}
+.search input{background:#f6f9fc;color:#172b40;border-color:#168ee8;box-shadow:none}
+.cart{color:#102b45}
+.nav{background:#102b45;border-color:#0b75b9}
+.nav a{color:#fff}
+.hero{margin-top:12px}
+.heroCard{min-height:285px;background:linear-gradient(115deg,rgba(255,255,255,.97),rgba(226,240,250,.91)),radial-gradient(circle at 90% 20%,#c9e9fb,#f8fbfd 62%);border:1px solid #a8cde4;border-left:6px solid #e51d35;border-radius:14px;box-shadow:0 8px 26px rgba(22,57,83,.10)}
+.heroText{padding:26px 30px;max-width:760px}
+.heroText h1{font-size:clamp(28px,3.2vw,42px);color:#102b45;text-shadow:none}
+.heroText h1 span{color:#e51d35}
+.heroText p{color:#405970;max-width:620px}
+.heroTagline{font-size:clamp(15px,1.8vw,20px);font-weight:900;color:#087fc1;margin:0 0 10px;letter-spacing:.1px}
+.since{padding:6px 11px;margin:0 0 10px;background:#e51d35}
+.ratingbox{background:#102b45;color:#fff;border:1px solid #168ee8;box-shadow:0 5px 16px rgba(16,43,69,.18)}
+.ratingbox small{color:#fff}
+.features{margin-top:10px}
+.feature,.service,.product{background:#fff;color:#172b40;border-color:#d0dfeb;box-shadow:0 4px 14px rgba(22,57,83,.07)}
+.feature span,.searchStatus,.sku{color:#62788c}
+.sectionTitle h2{color:#102b45}
+.catWrap{background:#fff;border:1px solid #bdd4e4;box-shadow:0 4px 14px rgba(22,57,83,.08)}
+.catBtn{color:#102b45}
+.catImage{background:#f3f7fa;border-bottom:1px solid #d5e4ee}
+.catContent b{color:#102b45}
+.catContent small{color:#657b8f}
+.children{background:#f7fafc;border-color:#d5e4ee}
+.child{color:#29465f;border-color:#dce7ef}
+.child span{color:#087fc1}
+.product .price{color:#102b45}
+.product button{background:#087fc1;color:#fff}
+.prodImg,.detailImg{background:#f3f7fa}
+.shopControls select,.shopControls button{background:#fff;color:#17324a;border-color:#b9cfdf}
+.vehicleFinder,.sourcePart{background:#fff;border-color:#bdd4e4}
+.vehicleFields select,.sourceGrid select,.sourceGrid input,.sourceGrid textarea{background:#f7fafd;color:#17324a;border-color:#b9cfdf}
+.footer{background:#e5edf4;border-top:1px solid #c4d7e5;color:#405970}
+.mobileNav{background:#102b45;border-top:2px solid #087fc1}
+.mobileNav a{color:#fff}
+.mobileNav a b{color:#fff}
+.mobileNav a:first-child,.mobileNav a:first-child b{color:#ff4054}
+.cartPanel,.modalBox{background:#fff;color:#172b40;border-color:#168ee8}
+.closeCart,.modalClose{color:#17324a}
+.infoBlock,.miniProduct{background:#f7fafc;border-color:#d7e3ec;color:#172b40}
+.mobileBuyBar{background:#fff;border-color:#bdd4e4}
+@media(max-width:700px){
+ .head{grid-template-rows:58px 44px;padding:6px 10px;gap:5px 8px}
+ .logo{height:54px}
+ .search input{height:40px;padding:8px 13px}
+ .hero{margin:8px 10px 0;padding:0}
+ .heroCard{min-height:255px;border-radius:12px;border-left-width:5px;background:linear-gradient(115deg,rgba(255,255,255,.98),rgba(226,240,250,.93))}
+ .heroText{padding:76px 14px 15px}
+ .heroText h1{font-size:clamp(23px,5.8vw,31px);margin-bottom:7px}
+ .heroText p{font-size:12px;max-width:100%;margin:6px 0 9px}
+ .heroTagline{font-size:14px;margin-bottom:7px;max-width:80%}
+ .since{font-size:10px;padding:5px 8px}
+ .ratingbox{top:8px;right:8px;transform:scale(.72)}
+ .heroBtns{gap:6px}
+ .heroBtns .btn{padding:9px 10px;font-size:11px}
+ .features{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;background:transparent;border:0;padding:8px 10px;margin:0}
+ .feature{border:1px solid #d0dfeb;border-radius:7px;padding:7px 5px}
+ .feature b{font-size:10px;color:#102b45}
+ .feature span{font-size:9px}
+ .section{margin-top:16px;padding:0 10px}
+ .cats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .catImage{height:90px}
+ .catContent{padding:9px 8px}
+ .catContent b{font-size:12px}
+ .catContent small{font-size:10px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .product{padding:8px}
+ .product h3,.product .name{font-size:12px}
+ .product .price{font-size:15px}
+ .product button{font-size:11px;padding:9px 5px}
+ .servicesList{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:390px){.heroCard{min-height:260px}.heroText{padding-top:76px}.heroText h1{font-size:23px}.heroTagline{font-size:13px}.catImage{height:78px}}
+
+</style></head><body><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a><button class="btn secondary" type="button" onclick="openSupplierSource()">SOURCE A PART</button></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
 <div class="sectionTitle"><h2>FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Vehicle-specific catalogue search</span></div>
 <div class="vehicleFinder">
 <div class="vehicleIntro"><b>Find parts by vehicle</b><span>Choose the vehicle brand first, then the model. Product counts show how many confirmed catalogue mappings are available.</span></div>
