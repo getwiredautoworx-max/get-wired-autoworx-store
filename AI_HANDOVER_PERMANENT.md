@@ -1215,3 +1215,29 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - QA limitation: source-level changes are committed but no live-browser preview or Axxess deployment verification has yet been completed. The user asked to preview before uploading, so do not upload/deploy until the visual preview is reviewed and accepted.
 - Next: assemble a safe preview of the actual pages and verify responsive styling, especially checkout form readability and category navigation. Then inspect all linked secondary pages and apply the shared theme where appropriate before preparing the final Axxess package. Do not trigger Cloudflare/Netlify deployments or spend credits.
 - ETA: three secondary-page style updates complete; visual preview and cross-page QA remain. Axxess upload remains a separate owner-side step because no authenticated hosting connection is available.
+
+
+## 2026-10-10 — Added Part Search, Request a Part and picture-assisted request dialogs
+- User requested that **Part Search** and **Request a Part** become buttons that open pop-up dialogs, and asked whether customers can search by picture.
+- Updated `index-new.html`:
+  - Added **PART SEARCH** and **REQUEST A PART** buttons to the homepage hero.
+  - Added a pop-up catalogue search that searches loaded catalogue records by product name, public GW SKU, description, compatible vehicle/application and specifications; matching items can be opened from the results.
+  - Added **SEARCH BY PICTURE — UPLOAD A PHOTO** inside the search dialog.
+  - The picture option opens the existing part-request form and focuses the photo upload control. It supports up to 5 JPG/PNG/WebP photos, max 5 MB each, using the existing `part-source-requests` Storage bucket and `part_source_requests` submission flow.
+  - Made vehicle brand/make/model optional in the part-request form so customers requesting marine/tools/general parts or identifying a loose part from a photo are not blocked when they do not know a vehicle.
+  - Added support for opening the request dialog through `index-new.html?open=request`, and pre-filling the part description via the `part` query parameter.
+- Updated entry points:
+  - `products.html` “CAN'T FIND IT? SOURCE A PART” now opens the request dialog on the homepage.
+  - `product.html` now has a floating **REQUEST A PART** action and passes the selected product name into the request dialog.
+- Source commits:
+  - `index-new.html` dialog and button implementation: `9f8a1149de5594b454041ddbd1903cef56c05d47`
+  - `index-new.html` optional vehicle fields and picture flow: `855a53fe0ef4380e62a67899cf1400c01c453b92`
+  - `products.html` request dialog link: `1a222c135c4a184a1b4ad84ad6953a37e603816b`
+  - `product.html` request button: `3035bd4d4786de390acdf1e19a9468967fd4b4da`
+  - `index-new.html` selected-part prefill: `68f3d767df73381c1cf55f66a4469d0b585e1683`
+  - `product.html` selected-product handoff: `1bc9aa5dcab3c585581389307d935d1de697569e`
+- Important capability boundary: this is **picture-assisted part identification**, not automated AI/image-recognition search. The uploaded photos are attached to a sourcing request for the Get Wired team to identify the part and query availability/pricing. Automated image matching would require a separate image-recognition service and matching catalogue image data; that has not been implemented.
+- Verification status: GitHub source updates were accepted and committed. The live site, browser interactions, photo upload permissions, Storage bucket policies and request-table submission have **not** yet been end-to-end tested. Do not claim the feature is live or fully verified until tested in the preview and then after the owner-approved upload.
+- Deployment remains paused pending the user-requested visual preview. Do not trigger a Cloudflare/Netlify deployment or spend credits. Do not overwrite Axxess files before backup and preview acceptance.
+- Next actions: create/review the actual storefront preview; exercise Part Search, empty/no-match search, product opening, Request a Part, photo validation/upload, form submission, mobile layout and cross-page entry points. If Storage or database policy rejects a test, diagnose the exact response and fix permissions/functionality before calling it complete.
+- ETA: source implementation committed. Preview and functional QA remain; deployment remains owner-side.
