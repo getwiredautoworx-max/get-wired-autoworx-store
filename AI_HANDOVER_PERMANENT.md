@@ -1202,3 +1202,16 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Next priority: inspect the latest `prepare-axxess-package.yml` workflow status/artifact after this source change, verify ZIP integrity and expected root layout, then use the existing one-archive Axxess procedure. After owner-side extraction, test the homepage visually on desktop/mobile, product/category navigation, search, cart, free pickup, delivery quote, R35-per-item packaging, direct EFT flow, and admin visibility. PayFast remains pending. Do not place a stock-changing live test order without explicit authorization.
 - Remaining known issues/tasks: visual confirmation of the new theme; catalogue category accuracy and image quality remain deferred until deployment/QA is complete; final live checkout/security/payment QA is outstanding.
 - ETA: source CSS change completed. Package artifact verification should take one focused check; owner-side upload/extraction and live browser checks cannot be completed until the hosting action is performed. No Cloudflare or Netlify credits used in this pass.
+
+
+## 2026-10-10 — Applied consistent light theme to secondary storefront pages
+- User requirement: all subsequent pages must carry the same design as the refreshed homepage.
+- Applied shared light neutral backgrounds, white panels/cards, dark-blue headings, blue interactive accents, red highlights, lighter form fields and borders to:
+  - `category.html` — commit `b0f47964eafdccb10b44a0274e57eb794614ad71`
+  - `checkout-v2.html` — commit `597303b80439a94e48fe4d1eb557471dea610c11`
+  - `returns-refunds.html` — commit `7cd70541bed991335eceacee6297710c6373c240`
+- These are CSS-only additions appended to each page's existing style block. Existing category/checkout/policy markup and JavaScript were preserved; no database, product data, order, payment, hosting, DNS, or deployment action was performed.
+- Homepage source remains the updated light-theme version from commit `52d217d1036bc3b49024e28edf1a4e45feb62ec5`; the exact tagline remains present.
+- QA limitation: source-level changes are committed but no live-browser preview or Axxess deployment verification has yet been completed. The user asked to preview before uploading, so do not upload/deploy until the visual preview is reviewed and accepted.
+- Next: assemble a safe preview of the actual pages and verify responsive styling, especially checkout form readability and category navigation. Then inspect all linked secondary pages and apply the shared theme where appropriate before preparing the final Axxess package. Do not trigger Cloudflare/Netlify deployments or spend credits.
+- ETA: three secondary-page style updates complete; visual preview and cross-page QA remain. Axxess upload remains a separate owner-side step because no authenticated hosting connection is available.
