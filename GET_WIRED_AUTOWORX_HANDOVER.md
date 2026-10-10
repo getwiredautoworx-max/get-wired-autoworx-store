@@ -584,3 +584,14 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Next: update the snapshot-generation workflow to run after the latest reviewed category changes, then compare live category counts with the generated JSON and the storefront root IDs. Produce a delta report first; do not silently overwrite product assignments or hide categories.
 - [ ] After reconciliation, update navigation in one controlled code change: the approved main category list, homepage bridge aliases, and category snapshot must agree. Then build a test report for each root and representative leaf page, including count and exact SKU checks.
 - [x] No live product/category rows changed; no hosting upload, checkout change, or deployment made in this pass.
+
+
+## 2026-10-10 — CUSTOMER-REQUESTED MOBILE STOREFRONT STYLE UPDATE
+- User supplied a mobile screenshot and explicitly approved that visual direction for the live storefront: near-black/navy background, electric-blue borders/glows, red accents, compact logo/search header, dense four-column category cards and product cards on mobile, compact service-benefit strip, and fixed bottom navigation.
+- [x] Updated `index-new.html` to remove the active light-theme class and apply screenshot-led dark/neon styling while retaining the existing catalogue queries, cart logic, product detail, vehicle finder, sourcing form, checkout links and category IDs.
+- [x] Added mobile CSS overrides so category cards and product cards stay in a compact four-column layout instead of collapsing to one column on small screens; retained existing mobile bottom navigation.
+- Commit: `79ee768158a40fe4ead49314a1b42711cc9a2416`.
+- [ ] Not yet deployed to Axxess or independently verified on the live domain. No hosting deployment/credits were used.
+- Visual limitation: the screenshot's custom multi-vehicle hero collage is not currently confirmed as a clean, available asset in the repository. The current hero still uses the existing logo background; do not claim a pixel-perfect match until an approved clean banner image is available and tested.
+- Existing catalogue image coverage remains a separate known issue: latest audit counted 3,945 exact-SKU public WebP assets and 242 active products without a known matching WebP; never fill gaps with unrelated or catalogue-watermarked images.
+- Next: inspect responsive rendering against the supplied screenshot, confirm actual markup selectors for the product cards and mobile nav, and make any narrowly scoped corrections; then continue category-tree reconciliation. Do not deploy without the project's existing end-stage deployment approval.
