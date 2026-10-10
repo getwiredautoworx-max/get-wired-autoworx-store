@@ -1,4 +1,24 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02060d"><title>Shop Categories | Get Wired AutoWorx</title><style>:root{--bg:#02060d;--blue:#08a5ff;--white:#f5f8fc;--muted:#9fb1c4}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#0d2d4b,#030914 42%,#02060d 78%);color:var(--white);font-family:Arial,Helvetica,sans-serif}.header{position:sticky;top:0;z-index:5;background:rgba(2,6,13,.97);backdrop-filter:blur(12px);border-bottom:1px solid #0c3b60}.head{max-width:1400px;margin:auto;min-height:82px;display:flex;align-items:center;gap:14px;padding:8px 14px}.logo{height:66px;width:min(330px,62vw);object-fit:contain}.back{border:1px solid #087fe0;background:#06111e;color:#fff;border-radius:9px;padding:10px 13px;font-weight:800;cursor:pointer}.search{margin-left:auto}.search input{width:min(430px,42vw);background:#050d18;border:2px solid #087fe0;border-radius:28px;padding:12px 17px;color:#fff;font-size:15px;outline:none}.wrap{max-width:1400px;margin:auto;padding:22px 18px 80px}.crumb{color:#8fa4b8;font-size:13px;margin-bottom:12px}.crumb a{color:#20b1ff;text-decoration:none}.title{display:flex;align-items:end;justify-content:space-between;gap:15px;border-bottom:1px solid #12456c;padding-bottom:14px;margin-bottom:20px}.title h1{font-size:30px;margin:0}.title p{margin:5px 0 0;color:var(--muted)}.count{color:#8fa4b8;font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{display:flex;flex-direction:column;justify-content:space-between;min-height:145px;background:linear-gradient(145deg,#0b1b30,#050d18);border:2px solid #087fe0;border-radius:14px;padding:20px;text-decoration:none;color:#fff;transition:.15s}.card:hover{transform:translateY(-2px);border-color:#20b1ff;box-shadow:0 12px 35px #000}.card h2{font-size:18px;margin:0 0 12px}.arrow{color:#20b1ff;font-size:27px;align-self:flex-end}.empty,.error{padding:25px;border:1px solid #12456c;border-radius:12px;background:#07111e;color:var(--muted)}.error{border-color:#ff1c2d;color:#ffd7da}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.search{display:none}}@media(max-width:500px){.grid{grid-template-columns:1fr}.head{min-height:74px}.logo{height:58px}.wrap{padding:16px 10px 80px}.card{min-height:115px}}
+
+/* Shared Get Wired light storefront theme */
+:root{--bg:#f3f6fa;--blue:#087fce;--white:#172b3d;--muted:#53687a}
+body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 70%,#eaf0f6 100%);color:#172b3d}
+.header{background:rgba(255,255,255,.97);border-bottom-color:#d5e0e9}
+.head{color:#173650}
+.back{background:#fff;color:#173650;border-color:#b9d2e3}
+.search input{background:#f8fafc;color:#172b3d;border-color:#1688d0}
+.wrap{padding-top:18px}
+.crumb,.count{color:#53687a}
+.crumb a{color:#087fce}
+.title{border-bottom-color:#d5e0e9}
+.title h1{color:#12344f}
+.title p{color:#53687a}
+.card{background:linear-gradient(145deg,#fff,#edf5fb);border:1px solid #cbdbe7;color:#173650;box-shadow:0 3px 12px rgba(25,55,80,.06)}
+.card:hover{border-color:#087fce;box-shadow:0 10px 24px rgba(25,55,80,.12)}
+.arrow{color:#087fce}
+.empty,.error{background:#fff;border-color:#d5e0e9;color:#53687a}
+.error{border-color:#e21d2f;color:#b42332}
+
 </style></head><body><header class="header"><div class="head"><button class="back" onclick="history.length>1?history.back():location.href='store.html'">← BACK</button><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx"><div class="search"><input id="search" placeholder="Search categories..."></div></div></header><main class="wrap"><div class="crumb"><a href="store.html">Home</a> / <span id="crumb">Shop Categories</span></div><div class="title"><div><h1 id="heading">SHOP BY CATEGORY</h1><p id="subtitle">Choose a main category to continue.</p></div><div class="count" id="count"></div></div><div class="grid" id="grid"><div class="empty">Loading categories…</div></div></main><script>
 const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';const p=new URLSearchParams(location.search),id=p.get('id'),slug=p.get('slug');
 const ROOTS=[['Auto Electrical','6cc56033-b0a9-4f25-b207-aeeb341a1c47'],['Spare Parts','68e6ada2-ddf8-4327-844f-771d92db54bd'],['Vehicle Security','8e93d917-8fcc-4427-b364-cdad244f263f'],['Car Audio','5ab55c53-eee3-41ce-ad48-04ad6df85181'],['Accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],['Marine Spares & Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],['Tools / Hardware / Consumables','77297c18-67f6-452e-8918-c55d2ef6231a'],['Camping / Leisure / Outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],['Trailer & Canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']];
