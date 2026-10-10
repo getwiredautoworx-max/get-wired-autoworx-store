@@ -572,3 +572,15 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Then export remaining out-of-tree products in bounded read-only batches through an approved path and create a SKU-level proposal with current category, parent chain, recommended destination, confidence and rationale. Move only high-confidence candidates; keep mechanical/mixed/ambiguous items for manual review.
 - [ ] Reconcile image audit figures with the current live data and exact SKU matching before changing product image URLs.
 - [x] No product/category database writes, stock/order changes, hosting uploads or deploys made during this read-only audit.
+
+
+## 2026-10-10 — STOREFRONT CATEGORY NAVIGATION SOURCE CHECK
+
+- [x] Read-only inspection of `category.html`, `products.html`, `store.html`, `category-navigation.js`, `assets/category-cleanup.js`, and `assets/category-tree.json`.
+- [x] Confirmed category pages are driven by a **static JSON snapshot** (`assets/category-tree.json`) generated at **2026-10-09 09:32:49 UTC**, not by a fresh category query in the browser. Product listing pages query live Supabase product rows by one exact `category_id`, so products in descendant leaves are not automatically included in a parent category's product list; users must navigate the hierarchy correctly.
+- [x] Confirmed `category.html` hardcodes **nine** top-level roots, including a generic **Spare Parts** root. This is inconsistent with the intended clean storefront grouping and risks exposing mixed/mechanical catalogue content as a main shop category. Do not simply remove that root until the products assigned there have been reviewed/reclassified, because that could make items harder to find.
+- [x] Parsed the existing snapshot: 165 active category rows; the nine hardcoded roots calculate to 4,187 products in total in that snapshot, but this conflicts with the newer correction-review record (3,223 in approved trees and 964 outside). Therefore the snapshot is stale relative to the latest documented category correction batches and must be regenerated/reconciled before it is trusted for customer navigation.
+- [x] Confirmed the homepage-to-category bridge only maps seven labels/IDs and still uses legacy labels such as “Auto Electrical”, “Car Alarms & Immobilizers”, “Reverse Camera”, “Car Lighting & LEDs”, and “Diagnostic Testing & Repairs”. This mapping should be aligned with the final approved storefront labels and IDs after the category mapping proposal is reconciled.
+- [ ] Next: update the snapshot-generation workflow to run after the latest reviewed category changes, then compare live category counts with the generated JSON and the storefront root IDs. Produce a delta report first; do not silently overwrite product assignments or hide categories.
+- [ ] After reconciliation, update navigation in one controlled code change: the approved main category list, homepage bridge aliases, and category snapshot must agree. Then build a test report for each root and representative leaf page, including count and exact SKU checks.
+- [x] No live product/category rows changed; no hosting upload, checkout change, or deployment made in this pass.
