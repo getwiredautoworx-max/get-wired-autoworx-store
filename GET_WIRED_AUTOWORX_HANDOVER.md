@@ -531,3 +531,19 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Axxess deployment remains blocked by no hosting/FTP connector in this session. The practical route is to download the fresh artifact from Actions and extract it in DirectAdmin `public_html`, preserving `admin.html` and the backup.
 - [ ] Live checkout route could not be fetched by the web tool; no live checkout test or order is claimed.
 - Root cause of delay: I had not attempted to force a new workflow build using the workflow's own watched-path trigger. That corrective action is now committed; follow up by checking Actions and deploy the resulting artifact.
+
+
+## 2026-10-10 — FRESH AXXESS HOTFIX ARTIFACT VERIFIED
+
+- [x] Retrieved the current master handover before continuing. Preserve the already-completed Axxess backup/upload/extraction; do not repeat the original deployment steps.
+- [x] Checked GitHub Actions workflow history. The latest successful **Prepare Axxess upload package** run is [run 37965454384](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/37965454384), on commit `ef3238ce51ff57f15c4cb3c4e0e4e29c0323bbbf` (workflow-trigger comment commit; storefront hotfix from `bc2d36d8` is included).
+- [x] Verified the run's artifact: `axxess-storefront-upload`, artifact ID `11632849925`, 57,525,957 bytes (~54.9 MiB), created 2026-10-09 17:19 UTC, not expired.
+- [x] Downloaded the exact artifact into the current working session as `/mnt/data/axxess-storefront-upload.zip`.
+- [x] Inspected ZIP contents: 2,212 entries, 58,530,113 uncompressed bytes; includes root-level `checkout-v2.html` (14,677 bytes), `index.html`, and product images under `assets/products_webp/`; `admin.html` is not included, so the existing admin file will not be overwritten by extracting this package.
+- [ ] Owner must deploy this **new hotfix package** to the already-backed-up Axxess `public_html` to make the provisional-PAXI checkout fix live. This is not a request to repeat the initial upload; it updates the newer checkout hotfix.
+- [ ] After extraction, verify `https://www.getwiredauto.co.za/checkout-v2.html`: pickup delivery R0; packaging R35 per item quantity; provisional PAXI rates display as indicative only and are not selectable; delivery submission requires a confirmed/live rate or manual quote path.
+- [ ] Still do not submit a real production order without explicit authorisation. Order creation can create customer/order records and decrement stock.
+- [ ] Live Axxess browser QA (images/categories/cart/checkout/SSL) is not claimed complete by this package inspection. Confirm from the actual domain after the hotfix is deployed.
+- ETA: ZIP transfer/extraction should generally take 5–15 minutes depending on connection and DirectAdmin extraction speed; allow another 10–20 minutes for the targeted checkout and storefront smoke checks.
+- Failure recovery: keep the existing backup; extract package contents into the existing `public_html` root, not a nested folder; do not delete `admin.html` or unrelated hosting files. If ZIP upload fails, retry the verified artifact download before changing any live files.
+- [x] No Netlify or Cloudflare deployment/credits used. No database, stock, order, payment, or courier changes made.
