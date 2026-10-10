@@ -608,3 +608,13 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - Failure/limitation: live browser runtime and authorised Supabase Edge Function deployment were not available through this source-edit pass.
 - ETA: CSS fix is committed; a realistic estimate for live AI recognition cannot be given until the provider integration path and secret configuration are authorised and tested. Dialog QA should take about 10–20 minutes once the current source is previewable in a browser.
 - Recovery path: keep the current modal UI; implement `part-image-search` as a server-side vision call that returns identified part details plus only plausible catalogue matches, clearly labelled as suggestions. If AI configuration is unavailable, keep the photo-request fallback working and do not block manual part requests.
+
+
+## 2026-10-10 — CORRECTION: AI IMAGE SEARCH SOURCE EXISTS, FUNCTION NOT DEPLOYED
+
+- Correction to the earlier continuation note: the repository **does contain** `supabase/functions/part-image-search/index.ts` and its setup README. The earlier code-search-only conclusion that no implementation was found was incomplete.
+- [x] Read the function source and README. It calls OpenAI Vision (default model `gpt-4.1-mini`), then ranks active catalogue products; it is designed not to change prices, stock, orders or product data.
+- [x] Checked the live Supabase Edge Function inventory: `part-image-search` is **not currently listed as deployed/active**. The existing frontend therefore cannot be treated as live AI recognition.
+- [ ] Required activation: confirm/secure the authorised `OPENAI_API_KEY` as a Supabase Edge Function secret, deploy `part-image-search` with JWT verification disabled as intended for this public CORS-protected endpoint, and run the documented positive/negative image tests. Do not put the provider key in the website source.
+- [ ] Before enabling for customers, confirm AI-provider usage limits/alerts and add a customer-facing disclosure that the chosen image is sent to the AI provider for analysis. Keep the Request a Part/photo-upload fallback available.
+- No Edge Function deployment or secret mutation was attempted because provider-key availability and spend authorisation have not been verified. No catalogue/database/order/stock/hosting changes were made.
