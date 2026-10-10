@@ -618,3 +618,13 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Required activation: confirm/secure the authorised `OPENAI_API_KEY` as a Supabase Edge Function secret, deploy `part-image-search` with JWT verification disabled as intended for this public CORS-protected endpoint, and run the documented positive/negative image tests. Do not put the provider key in the website source.
 - [ ] Before enabling for customers, confirm AI-provider usage limits/alerts and add a customer-facing disclosure that the chosen image is sent to the AI provider for analysis. Keep the Request a Part/photo-upload fallback available.
 - No Edge Function deployment or secret mutation was attempted because provider-key availability and spend authorisation have not been verified. No catalogue/database/order/stock/hosting changes were made.
+
+
+## 2026-10-10 — AI IMAGE SEARCH FUNCTION DEPLOYED; PROVIDER SECRET REMAINS
+
+- [x] Deployed `part-image-search` to Supabase project `ojytykqpvonxvepprgbh` as Edge Function version 1, status ACTIVE, `verify_jwt=false`. The function enforces allowed origins, POST-only access, file MIME/size limits, and a basic per-instance rate limit; do not treat that rate limit as durable production protection.
+- [x] Updated storefront AI picture-search copy to disclose that selected photos are sent to the AI provider and that matches do not guarantee identity or fitment. Source commit: `e331377dba631b29dbe224206936927962b61976`.
+- [ ] **One external prerequisite still blocks successful recognition:** configure the authorised `OPENAI_API_KEY` as a Supabase Edge Function secret. The deployed handler deliberately returns HTTP 503 when that secret is absent. No provider key is available in this workflow, and no secret was invented, exposed, or changed.
+- [ ] After secret setup: send a clear part photo and an ambiguous/non-part photo; confirm catalogue matches and safe fallback; add usage limits/alerts and durable rate limiting before public launch.
+- [ ] Preview/live QA still required for both modals, request-photo storage and request submission. No Axxess upload, Netlify/Cloudflare deploy, database/catalogue/order/stock mutation, or payment change was made.
+- Function deployment ID: `33ba0b75-eb4d-42e4-b123-b70b85ddb0d4`; function status returned ACTIVE, version 1.
