@@ -8,6 +8,7 @@ on:
       - 'index.html'
       - 'store.html'
       - 'index-new.html'
+      - 'product.html'
       - 'checkout-v2.html'
       - 'category.html'
       - 'returns-refunds.html'
@@ -35,7 +36,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p axxess-upload/assets
-          cp index.html store.html index-new.html checkout-v2.html category.html returns-refunds.html product-details.js category-navigation.js TERMS_AND_CONDITIONS.md axxess-upload/
+          cp index.html store.html index-new.html product.html checkout-v2.html category.html returns-refunds.html product-details.js category-navigation.js TERMS_AND_CONDITIONS.md axxess-upload/
           cp assets/gw-logo.png assets/product-image-fallback.js assets/category-cleanup.js assets/progressive-store-enhancements.js assets/product-placeholder.svg assets/category-tree.json axxess-upload/assets/
           cp -a assets/products_webp axxess-upload/assets/
           cat > axxess-upload/UPLOAD-INSTRUCTIONS.txt <<'EOF'
@@ -46,7 +47,7 @@ jobs:
           Upload this ZIP to public_html, select it, and use Extract. Extract into public_html (not into a nested folder).
           Confirm the existing admin.html is preserved; it is intentionally not included in this package.
           Do not upload repository documentation, GitHub workflows, database files, or source archives.
-          After extraction, test /, /store.html, /category.html, /checkout-v2.html, and /returns-refunds.html.
+          After extraction, test /, /store.html, /product.html, /category.html, /checkout-v2.html, and /returns-refunds.html.
           The store uses Supabase remotely; this package does not move the database or secrets.
           EOF
           find axxess-upload -type f | wc -l
