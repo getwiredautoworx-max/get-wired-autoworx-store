@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T09:32:49Z",
+  "generated_at": "2026-10-10T09:46:01Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -91,17 +91,17 @@
       "direct_active_products": 2
     },
     {
-      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
+      "id": "a4b912c4-25c6-4daa-a049-6b67818098ba",
       "name": "Amplifiers",
-      "slug": "car-audio-amplifiers",
+      "slug": "amplifiers",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
     },
     {
-      "id": "a4b912c4-25c6-4daa-a049-6b67818098ba",
+      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
       "name": "Amplifiers",
-      "slug": "amplifiers",
+      "slug": "car-audio-amplifiers",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
@@ -131,20 +131,20 @@
       "direct_active_products": 0
     },
     {
-      "id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
-      "name": "Automotive Accessories",
-      "slug": "automotive-accessories",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 291
-    },
-    {
       "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
       "name": "Automotive Accessories",
       "slug": "catalogue-automotive-accessories",
       "parent_id": null,
       "active": true,
       "direct_active_products": 0
+    },
+    {
+      "id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "name": "Automotive Accessories",
+      "slug": "automotive-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 291
     },
     {
       "id": "cb05745e-8a9c-4250-8509-f208e4ccb25e",
@@ -219,20 +219,20 @@
       "direct_active_products": 53
     },
     {
-      "id": "407e459f-a325-4542-9b9d-a0e3553e83db",
-      "name": "Brake Parts",
-      "slug": "brake-parts",
-      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
-      "active": true,
-      "direct_active_products": 41
-    },
-    {
       "id": "53daec04-d315-43f9-91e0-2df49f9d89c6",
       "name": "Brake Parts",
       "slug": "catalogue-brake-parts",
       "parent_id": null,
       "active": true,
       "direct_active_products": 0
+    },
+    {
+      "id": "407e459f-a325-4542-9b9d-a0e3553e83db",
+      "name": "Brake Parts",
+      "slug": "brake-parts",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
+      "active": true,
+      "direct_active_products": 41
     },
     {
       "id": "af2f8625-4f42-45e6-9f21-d571d7415893",
@@ -595,17 +595,17 @@
       "direct_active_products": 21
     },
     {
-      "id": "4da98e3f-d542-4842-b6be-c4a8e109c0dd",
+      "id": "a142d33a-0cb4-4971-9195-d85e5d39f352",
       "name": "Head Units",
-      "slug": "car-audio-head-units",
+      "slug": "head-units",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
     },
     {
-      "id": "a142d33a-0cb4-4971-9195-d85e5d39f352",
+      "id": "4da98e3f-d542-4842-b6be-c4a8e109c0dd",
       "name": "Head Units",
-      "slug": "head-units",
+      "slug": "car-audio-head-units",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
