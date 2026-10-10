@@ -561,3 +561,14 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Checkout follow-up is limited to verifying exact packaging arithmetic for quantity >1, pickup R0, and that provisional delivery prices cannot be selected as confirmed. No payment initiation, courier booking, or unapproved real order.
 - ETA: image exception report and category mapping should be tackled in bounded stages; do not claim a completion ETA until the full dataset can be retrieved and the number of ambiguous SKUs is known.
 - No product/category database writes were made in this pass. No hosting files changed and no Netlify/Cloudflare deployment was triggered.
+
+
+## 2026-10-10 — CONTINUED CATEGORY AUDIT (READ-ONLY)
+
+- [x] Queried the live Supabase `categories` table read-only. Confirmed a structural duplication issue: active top-level categories include both intended storefront roots and many catalogue-specific top-level nodes (for example Abrasives, Battery, Brake Parts, Clamps, Cylinders, Door Parts, Fuses, Hand Tools, Spanners, Switches, etc.). Some parallel active and inactive/legacy roots also exist for Accessories, Automotive Accessories, Car Audio and Electrical.
+- [x] Re-read the more recent `CATEGORY_MAPPING_REVIEW_2026-10-09.md`. Its later correction-batch record supersedes the older 976-in-tree figure: latest recorded count is **4,187 active products; 3,223 inside approved trees; 964 outside; zero active products without a category**. Remaining out-of-tree groups listed there: Spare Parts 697; Abrasives 103; Clamps 32; Thermostats & Pipes 32; Suspension 28; Fuel Pumps & Oil Filter 27; Brake Parts 25; Radiator Caps & Bottles 12; Cylinders 5; plus three mechanical 4X4 items held for review. These figures are the last documented review totals and should be re-counted before any further writes.
+- [x] Confirmed current product schema includes product ID, category_id, SKU/public_sku, name, description, image_url, gallery_urls and specifications. Product data query was blocked by the connected SQL safety gate in this pass, so no new SKU-level export was produced.
+- [ ] Next safe step: resolve the canonical active storefront roots and category navigation behavior in code before moving the remaining out-of-tree groups. Do not deactivate or delete top-level catalogue nodes yet: first check all product references, frontend root IDs/slugs and category page behavior.
+- [ ] Then export remaining out-of-tree products in bounded read-only batches through an approved path and create a SKU-level proposal with current category, parent chain, recommended destination, confidence and rationale. Move only high-confidence candidates; keep mechanical/mixed/ambiguous items for manual review.
+- [ ] Reconcile image audit figures with the current live data and exact SKU matching before changing product image URLs.
+- [x] No product/category database writes, stock/order changes, hosting uploads or deploys made during this read-only audit.
