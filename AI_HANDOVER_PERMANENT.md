@@ -1241,3 +1241,27 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Deployment remains paused pending the user-requested visual preview. Do not trigger a Cloudflare/Netlify deployment or spend credits. Do not overwrite Axxess files before backup and preview acceptance.
 - Next actions: create/review the actual storefront preview; exercise Part Search, empty/no-match search, product opening, Request a Part, photo validation/upload, form submission, mobile layout and cross-page entry points. If Storage or database policy rejects a test, diagnose the exact response and fix permissions/functionality before calling it complete.
 - ETA: source implementation committed. Preview and functional QA remain; deployment remains owner-side.
+
+
+## 2026-10-10 — AI picture recognition implementation prepared (activation still pending)
+- User instructed: “Continue and update handover file” after agreeing to implement automatic AI picture recognition for product/part search.
+- Updated `index-new.html` (commit `d1074adc75c20fe3f377b7f71d794b4cd5bdbc3e`):
+  - Added an **AI PICTURE IDENTIFICATION** section inside the Part Search popup.
+  - Customers can choose one JPG/PNG/WebP image (max 4 MB) and click **IDENTIFY PART WITH AI**.
+  - Added progress/error messages, a list of possible catalogue matches, product thumbnails when available, public GW SKUs, price/availability labels and a Request/Confirm handoff.
+  - The existing manual Request a Part + up-to-5-photo upload workflow remains available and unchanged.
+- Created Supabase Edge Function source `supabase/functions/part-image-search/index.ts` (initial commit `130b2cf0d7c001cb440a85a1567a726eddfc8c9d`; catalogue pagination correction commit `13b3c91d5b33eff0a082eb746c09889f93d8da3c`):
+  - Calls OpenAI vision model (default `gpt-4.1-mini`) from the server, not the browser.
+  - Requests a cautious part description, visible labels/numbers and search keywords.
+  - Scores the active catalogue across paginated product records and returns up to eight possible matches.
+  - Includes image type/size validation, restricted CORS origins, basic per-instance rate limiting and safe error messages.
+  - Does not write or change product records, prices, stock, orders or supplier data.
+  - Does not persist the analysis photo in this function; the photo is sent to OpenAI for analysis, so customer-facing disclosure is required.
+- Created setup notes `supabase/functions/part-image-search/README.md` (commit `1a8196cac56009cd36736aca52a356a821ba2246`), documenting the required secret and deployment command.
+- **Activation blocker:** no OpenAI API key has been supplied/configured in the Supabase project. The function source is committed but has NOT been deployed. The frontend will show a clear “not configured yet” message if the endpoint is unavailable or lacks the secret.
+- To activate, the owner must create an OpenAI API key, configure it as the Supabase Edge Function secret `OPENAI_API_KEY` (never in storefront HTML/GitHub client code), then deploy `part-image-search`. The README contains the exact CLI commands. AI-provider usage can incur charges.
+- Security/launch caveat: the current in-memory rate limiter is only a basic safeguard and does not provide durable rate limiting across Edge Function instances. Before public production activation, add durable rate limiting or a challenge such as Turnstile, configure provider spending alerts, confirm CORS origins, and run end-to-end tests.
+- Verification: GitHub source commits were accepted. No Edge Function deployment, OpenAI API call, browser preview, image-recognition result, Storage permission change or live-site test has been performed. Do not say AI recognition is live/operational yet.
+- Hosting rule remains unchanged: do not trigger Cloudflare/Netlify deployments or spend credits; do not upload to Axxess until the user-requested preview has been reviewed and approved. Existing catalogue/checkout remain untouched.
+- Next steps: configure the secret only after owner provides/creates the key; add durable abuse controls; deploy and test the function; review the storefront preview; test clear and ambiguous photos, no-match cases, invalid/oversize images, product handoff and mobile layout. Update this handover after each completed step.
+- ETA: implementation source and setup instructions committed. Live activation and end-to-end QA depend on OpenAI key configuration, deployment and testing.
