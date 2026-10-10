@@ -930,3 +930,12 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Function uses OpenAI Vision (default `gpt-4.1-mini`) and catalogue matching. Activation requires the authorised `OPENAI_API_KEY` secret, deploying the function with the intended public endpoint/CORS controls, customer disclosure of AI image processing, usage limits/alerts, and positive/negative test cases.
 - No secret or Edge Function deployment was changed because provider key availability and spend authorisation have not been verified.
 - Updated detailed handover commit: `3a1fbead26da15f8707b14049fe576cfe4a48638`.
+
+
+## CONTINUATION LOG — 2026-10-10: AI IMAGE SEARCH DEPLOYED
+
+- Supabase Edge Function `part-image-search` deployed successfully, ACTIVE version 1, ID `33ba0b75-eb4d-42e4-b123-b70b85ddb0d4`. `verify_jwt=false` matches the intended public storefront endpoint; handler applies origin/method/type/size checks and basic in-memory rate limiting.
+- Storefront source commit `e331377dba631b29dbe224206936927962b61976` adds disclosure that uploaded photos are sent to the AI provider and results are suggestions only.
+- Recognition still needs the authorised `OPENAI_API_KEY` set as a server-side Supabase secret. Without it, handler returns 503 and manual Request a Part fallback remains. No key was available to set, so do not claim end-to-end AI recognition works yet.
+- Detailed handover update commit: `e9390ce43a0ea24ea6a15183210bc110036e092d`.
+- No hosting deployment or catalogue/order/stock changes were made.
