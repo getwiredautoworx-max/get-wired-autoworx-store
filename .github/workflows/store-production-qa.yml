@@ -41,7 +41,7 @@ jobs:
           grep -q "Your Courier" checkout-v2.html
           grep -q "PEP PAXI" checkout-v2.html
           grep -q "PUDO lockers" checkout-v2.html
-          grep -q "cash_on_pickup" checkout-v2.html
+          grep -q "direct_eft" checkout-v2.html
           if grep -Eiq "R15\.00 despatch|Phoenix Plaza" checkout-v2.html; then
             echo "ERROR: obsolete Phoenix Plaza despatch fee found"
             exit 1
