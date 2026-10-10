@@ -547,3 +547,17 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - ETA: ZIP transfer/extraction should generally take 5–15 minutes depending on connection and DirectAdmin extraction speed; allow another 10–20 minutes for the targeted checkout and storefront smoke checks.
 - Failure recovery: keep the existing backup; extract package contents into the existing `public_html` root, not a nested folder; do not delete `admin.html` or unrelated hosting files. If ZIP upload fails, retry the verified artifact download before changing any live files.
 - [x] No Netlify or Cloudflare deployment/credits used. No database, stock, order, payment, or courier changes made.
+
+
+## 2026-10-10 — USER REPORT: CHECKOUT APPEARS TO WORK; NEXT PRIORITY CATALOGUE QA
+
+- [x] User reports the checkout seems to be working fine. Treat this as a positive user-observed smoke test, not proof that every payment, delivery, and order-persistence path is verified.
+- [x] Retrieved the latest successful Catalogue Image Audit workflow result (run [38017931131](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38017931131); artifact ID `11657220424`) and read its JSON report.
+- [x] Audit report counts: 4,187 active products; 791 public proxy image references; 3,396 placeholder image URLs; 3,945 public SKU WebP assets; 3,154 placeholder products have a known WebP asset; effective known image coverage 3,945; 242 placeholder products have no known matching WebP asset; 0 invalid/mismatched public image references; 800 internal source image files.
+- [ ] Next priority is catalogue/category correctness, not another checkout rebuild. The 242 products without known matching WebP assets need an exact-SKU image match or a clean “image unavailable” fallback; do not assign unrelated images or publish catalogue-watermarked source images.
+- [ ] Critical known category issue from `CATEGORY_MAPPING_REVIEW_2026-10-09.md`: previous tree audit found only 976 active products within the eight intended storefront roots/descendants and 3,211 outside them. Examples include tools in electrical/accessory categories and mechanical brake parts under electrical/outdoor categories. The full SKU-level candidate export and category hierarchy correction are still outstanding.
+- [ ] Safest next action: retrieve the complete active product/category dataset in bounded read-only batches, produce a SKU-level mapping report with current parent chain and suggested root/leaf plus reason/confidence, then apply only high-confidence reviewed changes. Do not bulk-reassign by supplier source category alone.
+- [ ] After taxonomy/image changes, test homepage category tiles, each root and child category, product filtering, search, product detail images, cart totals, and checkout on `https://www.getwiredauto.co.za`.
+- [ ] Checkout follow-up is limited to verifying exact packaging arithmetic for quantity >1, pickup R0, and that provisional delivery prices cannot be selected as confirmed. No payment initiation, courier booking, or unapproved real order.
+- ETA: image exception report and category mapping should be tackled in bounded stages; do not claim a completion ETA until the full dataset can be retrieved and the number of ambiguous SKUs is known.
+- No product/category database writes were made in this pass. No hosting files changed and no Netlify/Cloudflare deployment was triggered.
