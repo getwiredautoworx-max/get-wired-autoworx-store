@@ -921,3 +921,12 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Not changed: catalogue/database, order/stock data, payment/courier configuration, hosting, DNS, Netlify or Cloudflare.
 - Next: browser-test popup flows; test photo request upload/submission; implement/verify `part-image-search`; then return to SKU-level category and image exceptions. Preserve the existing design and do not upload/deploy until the existing release guardrails permit it.
 - ETA: CSS correction committed; modal QA is estimated at 10–20 minutes once a browser preview is available. AI completion ETA remains unestimated pending provider/secret/deployment access.
+
+
+## CONTINUATION LOG — 2026-10-10: AI IMAGE SEARCH STATUS VERIFIED
+
+- Correction: `supabase/functions/part-image-search/index.ts` and its setup README **do exist** in the repository; the previous note that repository code search found no implementation was incomplete.
+- Supabase's current Edge Function inventory does not list `part-image-search` as deployed. AI image recognition is therefore not live/verified.
+- Function uses OpenAI Vision (default `gpt-4.1-mini`) and catalogue matching. Activation requires the authorised `OPENAI_API_KEY` secret, deploying the function with the intended public endpoint/CORS controls, customer disclosure of AI image processing, usage limits/alerts, and positive/negative test cases.
+- No secret or Edge Function deployment was changed because provider key availability and spend authorisation have not been verified.
+- Updated detailed handover commit: `3a1fbead26da15f8707b14049fe576cfe4a48638`.
