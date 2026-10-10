@@ -102,12 +102,17 @@ Deno.serve(async (req: Request) => {
       return json({ error: "Catalogue matching is not configured yet. Please use Request a Part." }, 503, origin);
     }
     const db = createClient(SUPABASE_URL, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
-    const { data: products, error } = await db.from("products")
-      .select("id,name,public_sku,description,price,stock_quantity,image_url,compatible_vehicles,specifications")
-      .eq("active", true).limit(5000);
-    if (error) {
-      console.error("Catalogue lookup failed", error.message);
-      return json({ error: "The catalogue could not be searched. Please use Request a Part." }, 502, origin);
+    let products: any[] = [];
+    for (let offset = 0; offset < 5000; offset += 1000) {
+      const { data: batch, error } = await db.from("products")
+        .select("id,name,public_sku,description,price,stock_quantity,image_url,compatible_vehicles,specifications")
+        .eq("active", true).range(offset, offset + 999);
+      if (error) {
+        console.error("Catalogue lookup failed", error.message);
+        return json({ error: "The catalogue could not be searched. Please use Request a Part." }, 502, origin);
+      }
+      products = products.concat(batch || []);
+      if (!batch || batch.length < 1000) break;
     }
 
     const searchTerms = tokens([
