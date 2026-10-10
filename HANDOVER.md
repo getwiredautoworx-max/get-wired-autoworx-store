@@ -909,3 +909,15 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Preserve the existing storefront, Supabase project, catalogue, GitHub history, domain, and current Axxess files.
 - Prioritise a commercially credible automotive store: accurate SKU/product mapping and pricing, reliable stock/availability wording, mobile UX, trustworthy checkout, real delivery quotes, fast search/category navigation, secure order handling, and measurable conversion/performance.
 - Do not call the store competitive with Takealot until storefront UX, checkout, fulfilment, reliability, product data, and customer service are actually tested against acceptance criteria.
+
+
+## CONTINUATION LOG — 2026-10-10: PART SEARCH DIALOG CSS FIX
+
+- Source commit: `925ba1b8c7b4c38d8e32ee5aea17a0d79d4d846d`.
+- Master handover detail updated in `GET_WIRED_AUTOWORX_HANDOVER.md`, commit `6ec6dad30053ead8d6233d73020460831ba6b816`.
+- Inspected the current `index-new.html`: PART SEARCH and REQUEST A PART popup/dialog flows already exist, including catalogue search and photo attachments for sourcing requests.
+- Corrected malformed CSS selector `..sourcePart` to `.sourcePart`; static checks confirmed the two popup entry points and AI endpoint/fallback remain in source.
+- AI recognition is **not verified live**: the frontend calls Supabase Edge Function `part-image-search`, but a matching implementation was not found in repository code search. Implement/deploy that server-side vision endpoint with an authorised provider and server-held secret before advertising AI image identification as operational.
+- Not changed: catalogue/database, order/stock data, payment/courier configuration, hosting, DNS, Netlify or Cloudflare.
+- Next: browser-test popup flows; test photo request upload/submission; implement/verify `part-image-search`; then return to SKU-level category and image exceptions. Preserve the existing design and do not upload/deploy until the existing release guardrails permit it.
+- ETA: CSS correction committed; modal QA is estimated at 10–20 minutes once a browser preview is available. AI completion ETA remains unestimated pending provider/secret/deployment access.
