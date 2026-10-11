@@ -1080,3 +1080,13 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - This is a regression guard, not a data change. It leaves the 94 products without a matched WebP as placeholders until a correct source image is verified.
 - Catalogue Image Audit run `38122166074` was triggered for this change and is currently queued/in progress. Its terminal result must be checked; the latest prior audit `38121891563` passed before the 3,302 database image-reference updates and therefore does not verify the new database state.
 - Axxess package run `38122036759` remains successful with a verified fresh ZIP; temporary schedule was removed in commit `edaa38e448c27f5da7569faa2f8380371897c97f`. No duplicate package run was triggered by the cleanup.
+
+
+## CONTINUATION TASK LOG — 2026-10-11 09:42 SAST — IMAGE AUDIT VERIFIED
+- Task: Check terminal status of the image-audit release gate recorded in the previous handover entry.
+- Result: SUCCESS. GitHub Actions run 38122166074 completed; job 114418964177 concluded success. All steps passed: active SKU image mapping audit, slash-normalised supplier filename smoke test, public-SKU WebP smoke test, audit report upload, and job cleanup.
+- Workflow commit: 4dcf3ebb66e25a02ee9915e0acb599019245bdaf. This validates the new regression gate but does not mean all products have images; 94 active products remain on placeholders because no verified matching WebP was found.
+- Fresh Axxess package run 38122036759 also remains SUCCESS. Artifact axxess-storefront-upload, ID 11695159220, created 2026-10-11 and expires 2026-10-25. The nested deployment ZIP was integrity-checked; 7 HTML pages, 5 JavaScript files, and 4,093 WebP images were present.
+- Deployment boundary: no Axxess files were changed from this environment. Do not claim live deployment. Preserve existing public_html/admin.html and cgi-bin/ when performing any controlled replacement.
+- Next: inspect current repository deployment/workflow status and continue non-destructive checks; compare package against Axxess-hosted state before deciding whether upload is needed. Then run live browser/product/cart/checkout QA only when hosting is reachable/authorized. Keep checkout rules: pickup R0, packaging R35 per item, delivery quoted separately. No real customer order created.
+- Failures/blockers: Axxess live filesystem and external DNS/HTTP probes are not accessible through this tool path; no live deployment or browser verification can be claimed. Do not repeat package builds unnecessarily.
