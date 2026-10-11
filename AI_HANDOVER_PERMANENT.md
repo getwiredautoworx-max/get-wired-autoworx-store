@@ -1278,3 +1278,5 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Cloudflare backup deployment remains blocked by missing CLOUDFLARE_API_TOKEN; do not change DNS or credentials. Axxess support reply remains pending; no email inbox was checked. PayFast is not integrated; do not submit real orders/payments.
 
 - Production QA trigger updated at commit `eff54ec48e8deb73eab74d2228e135f8b105fbdf` to verify canonical homepage, category snapshot and exact-SKU WebP after image-sync/report or storefront-smoke changes. No DNS/credentials/payment/product rows changed.
+
+- 11 Oct verification update: Storefront Smoke Test `38120733807` passed including exact-SKU WebP naturalWidth=400 and modal interaction; Store Production QA `38120801809` passed canonical homepage/category snapshot/exact-SKU WebP checks. Supabase product-image v9 query returned 45 HTTP 200, avg 1.227s, max 2.084s. Bounded 40-target image sync `38120731540` remains in progress; wait for completion before reporting counts.
