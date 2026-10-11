@@ -952,3 +952,29 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Current checkout rules to preserve: pickup R0, packaging R35 per item, delivery quoted separately; no real customer/test orders.
 - Next action: verify the new workflow run and retrieve its artifact; inspect the artifact contents/ZIP integrity; only then hand over the single fresh package for the already-uploaded Axxess deployment. Continue category and exact-SKU image reconciliation without blind database changes.
 - ETA: workflow source correction completed. Fresh package ETA depends on the GitHub Actions run becoming available; Axxess live verification remains blocked until the public host is reachable and can be tested.
+
+
+## PERMANENT OWNER INSTRUCTIONS — LOCKED / OWNER-ONLY CHANGES
+**Authority:** These instructions were explicitly supplied by the owner on 2026-10-11. They are permanent project rules. They must be copied unchanged into every future handover and must never be edited, paraphrased, shortened, reordered, or removed unless the owner explicitly authorises that change.
+
+1. Always update the handover file.
+2. Do not work in circles.
+3. Update all store changes in Axxess for final update to Cloudflare and GitHub etc.
+4. Don't work in circles.
+5. Work smart, work fast, work effectively and efficiently.
+6. No unnecessary notifications or explaining.
+7. Always take initiative to solve any problems in front of you and only request owner assistance when absolutely necessary.
+8. Always work to the advantage of the owner.
+9. Don't be an incompetent idiot or slow.
+10. Search for every possible way to solve any issues.
+11. Work as if you have done this for 20 years and are among the best in the world.
+12. Make this store a viable competition to Takealot etc.
+
+### Enforcement / execution interpretation
+- Preserve the 12 owner instructions above verbatim in all future master-handover updates. Only the owner may authorise edits/removal.
+- After each meaningful task attempt or completed change, append a concise dated log entry recording what was changed, evidence/result, commit/run/artifact identifiers when available, failures and recovery path, ETA where meaningful, and the next non-duplicative action.
+- Treat Axxess as the primary build/hosting target for the current release. Keep the existing store foundation and make/verify changes in the Axxess release path first; reconcile the tested final release to GitHub, then perform the final Cloudflare update when appropriate. Do not claim an Axxess change has been made unless there is verified evidence. Connected tools may not directly access Axxess hosting; if blocked, pursue alternative evidence-based paths before asking the owner.
+- Maintain one authoritative release/package per release cycle. Inspect existing workflow runs/artifacts before triggering another build; never repeatedly upload, rebuild, commit, or ask the owner to re-extract the same package without a concrete reason.
+- Use objective acceptance checks to make the store commercially competitive: accurate catalogue/SKU/category/image mapping, correct prices and stock language, fast mobile search/navigation, reliable cart/checkout, secure order handling, real carrier quotes, payments only after authorised setup, accessible customer support, performance, and successful live regression testing.
+- Protect owner interests: do not expose supplier SKUs/costs or secrets publicly, do not create real customer/test orders, do not make blind destructive database/category/image changes, and do not consume Cloudflare/Netlify credits before the authorised final stage.
+- Ask for owner input only when a real permission, credential, account-only action, financial approval, or physical-device test is genuinely unavoidable. Explain the exact single action needed, not a broad list of speculative tasks.
