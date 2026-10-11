@@ -73,7 +73,7 @@ jobs:
             const imageFallbackPage = await browser.newPage();
             await imageFallbackPage.setContent('<iframe id="imageFrame"></iframe>');
             await imageFallbackPage.locator('#imageFrame').evaluate(frame => {
-              frame.srcdoc = '<!doctype html><html><body><div class="product"><div class="prodImg"><img src="/assets/gw-logo.png" alt=""></div><span class="sku">GW-000174D6</span><h3>Exact SKU fallback test</h3></div></body></html>';
+              frame.srcdoc = '<!doctype html><html><head><base href="http://127.0.0.1:4173/"></head><body><div class="product"><div class="prodImg"><img src="/assets/gw-logo.png" alt=""></div><span class="sku">GW-000174D6</span><h3>Exact SKU fallback test</h3></div></body></html>';
             });
             await imageFallbackPage.waitForFunction(() => {
               const frame = document.querySelector('#imageFrame');
@@ -89,15 +89,16 @@ jobs:
               if (!img || !box) return false;
               const isExactLocalImage = img.complete && img.naturalWidth > 0 && /\/assets\/products_webp\/GW-000174D6\.webp(?:$|\?)/.test(img.src);
               const isCleanMissingState = box.classList.contains('no-image') && box.textContent.includes('Image not available');
-              return isExactLocalImage || isCleanMissingState;
+              return isExactLocalImage;
             }, null, {timeout:30000});
             const imageFallbackResult = await imageFallbackPage.locator('#imageFrame').evaluate(frame => {
               const doc = frame.contentDocument;
               const img = doc.querySelector('.prodImg img');
               const box = doc.querySelector('.prodImg');
-              return {src:img && img.src, noImage:box && box.classList.contains('no-image'), text:box && box.textContent};
+              return {src:img && img.src, naturalWidth:img && img.naturalWidth, noImage:box && box.classList.contains('no-image'), text:box && box.textContent};
             });
-            if (imageFallbackResult.src && imageFallbackResult.src.includes('/functions/v1/product-image')) throw new Error('Supplier image proxy must never be used in storefront fallback');
+            if (!imageFallbackResult.src || !imageFallbackResult.src.includes('/assets/products_webp/GW-000174D6.webp') || imageFallbackResult.noImage || imageFallbackResult.naturalWidth < 1) throw new Error('Exact-SKU WebP did not render successfully: '+JSON.stringify(imageFallbackResult));
+            if (imageFallbackResult.src.includes('/functions/v1/product-image')) throw new Error('Supplier image proxy must never be used in storefront fallback');
             console.log('EXACT_SKU_IMAGE_FALLBACK_PASS: '+JSON.stringify(imageFallbackResult));
             await imageFallbackPage.close();
 
@@ -130,8 +131,13 @@ jobs:
 
             await frame.locator('#featuredGrid .product').first().waitFor({timeout:60000});
             await frame.locator('#searchInput').fill('');
-            await frame.locator('#featuredGrid .product').first().click();
-            await frame.locator('#productModal.open').waitFor({timeout:10000});
+            await frame.locator('#featuredGrid .product').first().locator('h3').click();
+            try {
+              await frame.locator('#productModal.open').waitFor({timeout:10000});
+            } catch (e) {
+              const modalDiag = await frame.locator('#productModal').evaluate(el => ({className:el.className, display:getComputedStyle(el).display, featuredCards:document.querySelectorAll('#featuredGrid .product').length, firstCardId:document.querySelector('#featuredGrid .product')?.getAttribute('data-id'), productsLoaded:Array.isArray(window.products)?window.products.length:'not-global'})).catch(()=>({error:'modal diagnostic unavailable'}));
+              throw new Error('Product detail modal failed to open after clicking product title: '+JSON.stringify(modalDiag));
+            }
             await frame.locator('#modalClose').click();
             await frame.locator('#featuredGrid .product button').first().click();
             await page.locator('#checkout').waitFor({timeout:10000});
