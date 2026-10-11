@@ -1319,3 +1319,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Re-read live rows after update: all three formula checks passed using round(cost_price × 1.15 × 1.35, 2). Source file/date/page and VERIFIED_PRICE status are stored in product specifications.
 - Workpaper refreshed with spatially aligned price candidates, vehicle-code match queue, and a verified correction log. 534 October guide code candidates have spatially aligned price values; do not bulk-apply them without exact product match and page/source review.
 - Remaining risks: 418 prior-audit formula failures; 126 unresolved historic prices; 470 June OCR staging rows; vehicle-specific code candidates beyond exact live matches still need match/quote processing. No full catalogue import or category changes made.
+
+
+## 2026-10-11 — FIRST SAFE INCREMENTAL PRICE DELTA COMPLETED
+- Applied 89 exact-SKU price/cost updates from the October Buyer's Guide to active product records after spatial price extraction and SKU/product-description matching. No product IDs, SKUs, image URLs, categories, stock, order references, or storefront code were changed. Source file, October 2026 date, page, cost basis, verification status, and previous prices are preserved in product specifications.
+- Live post-update integrity query: 4,187 active products; 4,187 unique active SKUs; 0 invalid prices; 0 active cost-to-retail formula mismatches; 0 missing image_url fields; 0 missing category_id; all 89 October-updated rows pass round(cost_price × 1.15 × 1.35, 2).
+- Workpaper updated with 89-row change log, 345 vehicle-catalogue code candidates, 45 exact code candidates appearing in the October guide, and source register. Workpaper is an audit record, not an import package.
+- Important distinction: 418 formula failures are reported by the old audit workbook; live DB now independently checks with zero formula mismatches. The old audit still has 126 unresolved historical source prices and must not be imported as-is.
+- Next execution: reconcile additional exact-code matches beyond the initial 89, complete the 126 unresolved rows and June OCR staging, then handle the remaining valid vehicle-specific catalogue lines as verified-price or quote-only. Review semantic ASC category placement separately; this batch deliberately did not alter categories.
+- No Cloudflare/Netlify credits used and no deployment attempted. ETA for full reconciliation still depends on remaining exact-match and OCR review workload.
