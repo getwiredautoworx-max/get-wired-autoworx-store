@@ -468,3 +468,14 @@ Read-only category notes:
 - Existing category-tree JSON was refreshed after those exact-SKU fixes. No broad restructuring has been performed.
 - Next: prepare SKU-level mapping output and exception list from active products/categories; report ambiguous/mechanical-scope products separately. Do not delete categories, update products.category_id, or build/upload an Axxess release before mapping review.
 - ETA: tree and mapping rules drafted; SKU-level mapping audit is next. No Axxess upload initiated.
+
+
+## CONTINUATION TASK LOG — 2026-10-11 — RESUMED FROM MASTER HANDOVER
+
+- Read the current repository master handover before acting. Continued from the existing release and catalogue state; no rebuild, Axxess upload, category deletion, or broad product reassignment was started.
+- Re-ran a read-only category/product assignment audit against Supabase project `ojytykqpvonxvepprgbh`. It confirms the need for SKU-level reconciliation before restructuring: active products still occupy legacy roots and child categories, including Spare Parts (136), Tools & Workshop root (133), Automotive Accessories root (288), Car Audio (39), Marine Spares & Accessories root (5), and Trailer & Canopy root (64). Counts are direct assignments, not complete tree totals.
+- Confirmed the approved public top-level tree remains the eight categories already recorded in this handover. The proposed subcategory tree and safeguards are retained; this audit did not authorize any new scope changes.
+- Safety boundary preserved: no category or product rows changed by this audit. Duplicate category names must be resolved by UUID and parent/child dependencies; product mapping must be exact-SKU/product-name/current-path based. Legacy mechanical-style spare parts remain a manual business-scope exception and must not be automatically relabelled as Auto Electrical Spares.
+- Next action: build the SKU-level mapping report with current category path, proposed destination, confidence, rationale, and manual-review flag; keep uncertain products unmoved. Then validate report coverage against all 4,187 active unique SKUs and the zero-uncategorized/zero-price-mismatch invariants before any reviewed migration.
+- Current release gates unchanged: 94 active products still use placeholder images pending exact-SKU source verification; automated Store Production QA, image audit, public-SKU audit, storefront smoke test, and Axxess package build had passed at the last recorded checkpoint. Those results do not prove the package has been installed on Axxess or that live checkout has been transaction-tested.
+- ETA: category snapshot audit complete. SKU-level mapping report is the next finite task; ETA depends on full catalogue extraction and classification. No owner action is required at this stage.
