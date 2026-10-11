@@ -31,22 +31,38 @@ export default {
     }
     if (error || !product || !product.active) return new Response("Image not found", { status: 404 });
 
+    // Exact public-SKU WebP files are published by the bounded ASC image-sync
+    // job. Try those first; they do not require a private supplier-code mapping.
+    const webpSources = SOURCES.filter(source => source.extension === ".webp");
+    for (const source of webpSources) {
+      try {
+        const upstream = await fetch(
+          source.base + encodeURIComponent(requestedSku) + source.extension,
+          { method: req.method, redirect: "follow", signal: AbortSignal.timeout(7000) }
+        );
+        if (upstream.ok) {
+          const h = headers(source.type);
+          if (req.method === "HEAD") return new Response(null, { status: 200, headers: h });
+          return new Response(upstream.body, { status: 200, headers: h });
+        }
+      } catch (_) {}
+    }
+
+    // Legacy JPGs use private supplier SKUs; resolve them only on the server.
     const { data: mapping, error: mapError } = await ctx.supabaseAdmin.schema("gw_private")
       .from("product_supplier_codes").select("supplier_sku").eq("product_id", product.id).limit(1).maybeSingle();
-    if (mapError || !mapping?.supplier_sku) return new Response("Image not found", { status: 404 });
+    if (mapError || !mapping?.supplier_sku) {
+      return new Response("Image not found", { status: 404, headers: { "Access-Control-Allow-Origin": "*" } });
+    }
 
     const sourceSku = String(mapping.supplier_sku).replace(/[\\/]/g, "_");
     if (!/^[A-Za-z0-9._-]+$/.test(sourceSku)) return new Response("Image not found", { status: 404 });
 
-    // Prefer compressed exact-SKU WebP assets when the bounded image-sync job
-    // has published them; retain the existing JPG set as a safe fallback.
-    // Each upstream request is bounded so a missing image cannot hang a request.
-    for (const source of SOURCES) {
+    const jpgSources = SOURCES.filter(source => source.extension === ".jpg");
+    for (const source of jpgSources) {
       try {
         const upstream = await fetch(
-          source.base + encodeURIComponent(
-            (source.extension === ".webp" ? requestedSku : sourceSku).replace(/[\\\\/]/g, "_")
-          ) + source.extension,
+          source.base + encodeURIComponent(sourceSku) + source.extension,
           { method: req.method, redirect: "follow", signal: AbortSignal.timeout(7000) }
         );
         if (upstream.ok) {
