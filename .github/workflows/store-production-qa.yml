@@ -9,6 +9,9 @@ on:
       - 'assets/**'
       - 'supabase/migrations/**'
       - '.github/workflows/store-production-qa.yml'
+      - '.github/workflows/storefront-smoke.yml'
+      - 'scripts/asc_image_sync_bounded.py'
+      - 'image-sync/**'
   workflow_dispatch:
 
 permissions:
