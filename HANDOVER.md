@@ -939,3 +939,16 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Recognition still needs the authorised `OPENAI_API_KEY` set as a server-side Supabase secret. Without it, handler returns 503 and manual Request a Part fallback remains. No key was available to set, so do not claim end-to-end AI recognition works yet.
 - Detailed handover update commit: `e9390ce43a0ea24ea6a15183210bc110036e092d`.
 - No hosting deployment or catalogue/order/stock changes were made.
+
+
+## CONTINUATION LOG — 2026-10-11: AXXESS PACKAGE WORKFLOW CORRECTION
+
+- Resumed from the existing repository and master handover; no rebuild of the storefront foundation was started.
+- Inspected `.github/workflows/prepare-axxess-package.yml`. Found a concrete release-artifact defect: the workflow created and integrity-tested `axxess-storefront-upload.zip`, but the final artifact-upload step published the unzipped `axxess-upload/` directory instead of the ZIP.
+- Corrected the upload step to publish `axxess-storefront-upload.zip` as the `axxess-storefront-upload` artifact. Workflow change commit: `1f04390fe4a5fb9caf0234391af8147c39c2ebea`.
+- This fixes which file GitHub Actions will publish on the next workflow run; it does **not** prove a new package was generated or that the workflow passed. A fresh successful run and artifact must still be verified before the ZIP is used.
+- The workflow packages the existing storefront pages/scripts and `assets/products_webp/`, and its instructions explicitly preserve the existing `admin.html` and `cgi-bin` on Axxess. Do not upload the stale artifact previously identified as run/artifact `11659021831`.
+- Live Axxess/browser/checkout verification remains unconfirmed from connected tools. Do not claim the site is live, payment is working, or DNS/SSL is fixed without live evidence.
+- Current checkout rules to preserve: pickup R0, packaging R35 per item, delivery quoted separately; no real customer/test orders.
+- Next action: verify the new workflow run and retrieve its artifact; inspect the artifact contents/ZIP integrity; only then hand over the single fresh package for the already-uploaded Axxess deployment. Continue category and exact-SKU image reconciliation without blind database changes.
+- ETA: workflow source correction completed. Fresh package ETA depends on the GitHub Actions run becoming available; Axxess live verification remains blocked until the public host is reachable and can be tested.
