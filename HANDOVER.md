@@ -1137,3 +1137,13 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Snapshot counts updated for the 11 affected category IDs: Fuel Pumps 3→10; LAMPS 142→138; Spotlights 17→15; FUEL PUMPS & OIL FILTER 14→13; Automotive Accessories 291→289; ACCESSORIES 65→60; Tools & Workshop 134→133; BOAT ACCESSORIES 53→52; AUTOMOTIVE TOOLS 320→321; Camping / Leisure / Outdoors 9→18; LIFESTYLE 11→20. All IDs were matched against the existing snapshot before writing; no other counts were changed.
 - This asset change legitimately triggers the existing storefront QA and Axxess-package workflows (both include `assets/category-tree.json` in their path filters). Do not trigger a second build. Check resulting workflow runs to terminal when available.
 - Database invariants remain verified after the 17 product changes: 4,187 active/unique SKUs, 0 uncategorized, 0 null images/prices/costs, 94 placeholders, 0 pricing mismatches, 27,745 stock units.
+
+
+## CONTINUATION TASK LOG — 2026-10-11 — CATEGORY RELEASE REGRESSION RESULTS
+- Store Production QA run `38122634362` completed SUCCESS on category snapshot commit `77d1f99ad06407ae7001a9a1562da66775fad900`. All steps passed, including storefront source validation, canonical `https://www.getwiredauto.co.za/` HTTP check, category JSON reachability, two exact-SKU WebP HTTP/content-type checks, delivery quote rule validation, live public catalogue invariants, and public-source security scan. This is a successful GitHub Actions live-domain check; it is not a substitute for Axxess file deployment verification or a customer order test.
+- Catalogue Image Audit run `38122634437` completed SUCCESS after the category snapshot change.
+- Public SKU Exposure Audit run `38122634358` completed SUCCESS.
+- Fresh Axxess package run `38122634462` completed SUCCESS; ZIP assembly and artifact upload passed from the updated category snapshot commit. Do not run another package build unless a further storefront/package input changes.
+- Storefront Smoke Test run `38122634373` is still in progress at Chromium installation; local storefront smoke test has not yet run. Poll to terminal and inspect logs if failed.
+- Pages deployment for the category snapshot commit (`38122634385`) was cancelled/superseded by the following handover-only commit (`0f49a79199cacf2360c7d48dee0c51275a30f2c7`). The newer Pages run `38122643010` is in progress. The cancellation is not a product failure; verify the newer Pages run to terminal.
+- Database invariants remain: 4,187 active/unique SKUs, 0 uncategorized, 94 placeholders, 0 missing image/price/cost, 0 pricing mismatches, 27,745 stock units. No real orders created; no Axxess filesystem mutation performed.
