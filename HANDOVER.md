@@ -504,3 +504,13 @@ Read-only category notes:
 - Required guardrails: do not discard unpriced vehicle-specific catalogue entries; keep them as quote-only candidates for review. Do not invent prices, fitment, or image matches. Do not change live records until the package passes reconciliation checks and is approved for import.
 - ETA: cannot be honestly fixed until the actual source files are located and their formats/volume inspected. Once accessible, provide a measured ETA after the first full extraction and exact-SKU comparison; do not substitute an invented date for evidence.
 - Status: HANDOVER UPDATED; CATALOGUE RECONCILIATION NOT COMPLETE; NO LIVE DATA CHANGED.
+
+
+## CORRECTION — 2026-10-11 — SOURCE FILES FOUND IN CHATGPT LIBRARY
+
+- Follow-up Library search located the existing workbook `Get_Wired_AutoWorx_Reconciliation_Status_2026-10-11.xlsx` and historic audit `Get_Wired_AutoWorx_CORRECTED_PRICE_AUDIT_Feb-Aug_2026.xlsx`, plus source PDFs/records identified in the status workbook.
+- Source queues already documented: historic Feb–Aug audit (3,578 unique SKUs; 3,160 staged PASS; 418 one-cent rounding exceptions); 126 unresolved source-price rows; June Buyer’s Guide (470 OCR staging records awaiting source code/cost verification); September Buyer’s Guide + corrected staging CSV; October Buyer’s Guide; October Promotions; Suzuki vehicle catalogue; Renault/Dacia vehicle catalogue; and ASC family catalogues.
+- The prior note saying the source files were not located applies only to the repository search, not the ChatGPT Library. The files exist in the Library; extraction and row-level reconciliation are still outstanding.
+- Reconciliation must use June through current plus vehicle-specific catalogues as the owner directed. Include valid unpriced vehicle-specific parts as quote-only candidates; do not discard them. The 418 one-cent historic audit exceptions are not permission to overwrite live prices: the recorded live price formula check passes for all 4,187 active rows.
+- Immediate next task: read the reconciliation workbook and materialize/read the actual source PDFs/CSV from the Library, then calculate exact row-level joins. Do not import anything until totals, duplicates, price source, fitment and review exceptions reconcile.
+- ETA: source inventory is now known, but a completion time is still not measurable until the first source extraction and SKU join are run. Do not give a fabricated go-live date.
