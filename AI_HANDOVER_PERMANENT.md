@@ -1298,3 +1298,13 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - No live product records were changed. No deployment credits used.
 - Next: inspect current trade price lists and vehicle catalogues; validate candidate SKUs visually/source-by-source; recompute all flagged pricing formulas; produce exact matched, quote-required and review queues; then one non-destructive delta package only after reconciliation.
 - ETA: not yet defensible until current trade-list files and SKU match rates are inventoried. Measured first-stage source scope: 32-page October guide, 20-page October promotions PDF, 3,578 historical audited price rows, 126 unresolved prices, 470 June OCR staging rows.
+
+
+## 2026-10-11 — SOURCE INVENTORY / FIRST RECONCILIATION PASS
+- Materialized and inspected the October Buyer's Guide (32 pages; 70,691 extracted text characters), October Promotions 2026 (20 pages; 27,489 extracted text characters), Suzuki vehicle catalogue (15 pages; 17,515 extracted text characters), and Renault/Dacia vehicle catalogue (14 pages; 15,512 extracted text characters).
+- Extracted 1,319 unique code-like candidates from the October guide. This is a staging list, not a count of verified products. 522 code candidates had adjacent OCR price patterns; prices are marked as candidates because the raised-cent typography and ex-VAT basis require visual verification.
+- Extracted 345 unique code-like candidates across Suzuki and Renault/Dacia catalogues. 45 exact code candidates also appear in the October guide; 44 have adjacent OCR price candidates. These must be visually checked before price use. Other catalogue lines remain in review/quote queue; absence from the guide alone does not prove no current price.
+- Updated workpaper now includes source register, October SKU cross-reference, vehicle-catalogue code/price cross-reference, and previous unresolved price queue. No live product rows changed.
+- Confirmed previous price audit's 418 formula failures and 126 unresolved rows; no bulk price import is safe until formula/source errors are reconciled.
+- Next step: visually verify extracted code/price candidates against the source page images and check exact SKU/cost/current price basis against live products before preparing any delta import. Keep all uncertain lines REVIEW_MATCH/QUOTE_REQUIRED.
+- Measured scope so far: 32 + 20 + 15 + 14 PDF pages inspected for extractable text; detailed visual verification and full cross-source matching remain outstanding. ETA for final package still depends on exception rates after visual checks.
