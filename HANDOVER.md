@@ -1090,3 +1090,13 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Deployment boundary: no Axxess files were changed from this environment. Do not claim live deployment. Preserve existing public_html/admin.html and cgi-bin/ when performing any controlled replacement.
 - Next: inspect current repository deployment/workflow status and continue non-destructive checks; compare package against Axxess-hosted state before deciding whether upload is needed. Then run live browser/product/cart/checkout QA only when hosting is reachable/authorized. Keep checkout rules: pickup R0, packaging R35 per item, delivery quoted separately. No real customer order created.
 - Failures/blockers: Axxess live filesystem and external DNS/HTTP probes are not accessible through this tool path; no live deployment or browser verification can be claimed. Do not repeat package builds unnecessarily.
+
+
+## CONTINUATION LOG — 2026-10-11: POST-UPDATE CATALOGUE IMAGE AUDIT PASSED
+
+- Catalogue Image Audit run `38122166074` completed **SUCCESS** against commit `4dcf3ebb66e25a02ee9915e0acb599019245bdaf` after the database image-reference updates.
+- The workflow's live proxy smoke tests passed for slash-normalised supplier image SKUs and a published public-SKU WebP image. This confirms the product-image endpoint is responding correctly to the workflow's test requests.
+- Downloaded audit report artifact `11695792128` and read `catalogue-image-audit.json`. Results: 4,187 active products; 4,093 public proxy references; 4,093 exact-public-SKU WebP assets; 94 placeholders; 0 placeholder products with an available exact-SKU WebP; 0 invalid/mismatched public image references; 800 internal source JPG assets.
+- This resolves the database/reference-to-asset coverage defect: all available exact-SKU WebP assets are now referenced, and the remaining 94 placeholders have no matching WebP binary in the repository/report. Visual watermark/content quality review of representative product images remains separate and must not be claimed complete based on this automated audit.
+- Axxess deployment ZIP remains verified: `/mnt/data/axxess-storefront-deploy.zip`, SHA-256 `735a454c780ac38539c1941fe4cfb407d1516797f732024282e95253c1903430`; package run `38122036759` SUCCESS and artifact `11695159220`.
+- Next release gate: the package is ready, but Axxess itself has not been updated/verified by connected tools. Compare/update the existing Axxess `public_html` through an authorised hosting path; preserve `admin.html` and `cgi-bin`; then test live product images, search/category navigation, cart, shipping quotation, checkout and HTTPS before any final Cloudflare change.
