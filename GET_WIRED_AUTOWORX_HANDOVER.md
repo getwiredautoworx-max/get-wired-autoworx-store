@@ -659,3 +659,5 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Continue with the normal scheduled bounded workflow only; it remains configured for version 9, batches of 40 and four workers. The current 94 unmatched SKUs require exact supplier images; preserve the unmatched status. Do not launch a broad workflow or fabricate imagery.
 - [ ] GitHub Pages latest deploy was still in progress/queued after repeated handover commits; canonical production QA passed for the current storefront source and one existing exact-SKU URL, but do not claim the newly added 11 WebPs are live on the Axxess host without checking those new URLs.
 - [ ] Cloudflare backup remains blocked by missing `CLOUDFLARE_API_TOKEN`; do not change credentials/DNS. Axxess reply pending; no email checked. PayFast not integrated; no real orders/payments.
+
+- Added a specific live canonical-domain assertion for newly synced `GW-001CED3B.webp` in Store Production QA (commit `8d2d9c42fc0e4f353c8afc3cf5bf833c566c7821`). Run `38120917779` is queued; result must determine whether the new assets are present on the Axxess-hosted domain. No upload/deployment to Axxess was attempted.
