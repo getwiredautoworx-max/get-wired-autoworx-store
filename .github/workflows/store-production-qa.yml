@@ -68,7 +68,12 @@ jobs:
           test "$image_status" = "200"
           image_type="$(file --mime-type -b /tmp/live-product-image.webp)"
           test "$image_type" = "image/webp"
-          echo "Canonical domain, category snapshot, and exact-SKU WebP image returned HTTP 200; category data includes Auto Electrical and Spare Parts."
+          # Also verify a WebP newly committed by the current bounded exact-SKU retry.
+          new_image_status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o /tmp/live-new-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-001CED3B.webp)"
+          test "$new_image_status" = "200"
+          new_image_type="$(file --mime-type -b /tmp/live-new-product-image.webp)"
+          test "$new_image_type" = "image/webp"
+          echo "Canonical domain, category snapshot, established exact-SKU image, and newly synced GW-001CED3B.webp all returned HTTP 200 with WebP content type."
 
       - name: Validate delivery quote database rule
         shell: bash
