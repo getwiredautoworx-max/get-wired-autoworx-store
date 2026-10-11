@@ -11,10 +11,23 @@
     'car-audio-store':'5ab55c53-eee3-41ce-ad48-04ad6df85181',
     'automotive-accessories':'87982093-7d81-4f2e-a8e2-e20cdeef30d8',
     lighting:'cfd3e001-9292-459f-b0e5-9502f160eb5c',
-    'tools-workshop':'77297c18-67f6-452e-8918-c55d2ef6231a'
+    'tools-workshop':'77297c18-67f6-452e-8918-c55d2ef6231a',
+    'camping-outdoors':'af2f8625-4f42-45e6-9f21-d571d7415893',
+    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79',
+    '4x4-outdoor':'182423ec-ea46-43e4-bbe3-b8857b5a1583',
+    'marine-spares':'38b382c1-6ee0-4b3c-86ad-399094bc40cc'
   };
   const ALIASES={
     'AUTO ELECTRICAL':'electrical',
+    'AUTO ELECTRICAL SPARES':'electrical',
+    'VEHICLE SECURITY':'alarms-security',
+    'CAR AUDIO & ENTERTAINMENT':'car-audio-store',
+    'AUTOMOTIVE ACCESSORIES':'automotive-accessories',
+    'MARINE SPARES & ACCESSORIES':'marine-spares',
+    'TOOLS, HARDWARE & CONSUMABLES':'tools-workshop',
+    'CAMPING, LEISURE & OUTDOORS':'camping-outdoors',
+    'TRAILER & CANOPY':'trailer-canopy',
+    '4X4 OUTDOOR':'4x4-outdoor',
     'CAR ALARMS & IMMOBILIZERS':'alarms-security',
     'CAR ALARMS & IMMOBILISERS':'alarms-security',
     'CENTRAL LOCKING':'central-locking',
