@@ -1005,3 +1005,17 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - No orders were created. No stock, product, category, DNS, hosting, payment, or shipping configuration was changed.
 - Next: inspect the admin frontend's invocation path before changing the two admin RPC grants; then continue package workflow dispatch/artifact verification and live-host diagnostics. Do not revoke admin RPC access blindly because that may break the protected owner admin panel.
 - ETA: checkout RPC privilege fix and verification completed in this pass.
+
+
+## CONTINUATION LOG — 2026-10-11: EXACT-SKU CATEGORY CLEANUP (9 PRODUCTS)
+
+- Read-only category analysis found several products incorrectly placed in the active `PANEL CLIPS` category because their names contained “clip” even when they were tools, battery terminals, wiper blades or canopy hardware.
+- Corrected nine exact supplier-SKU records only:
+  - `101002-B`, `101002-C`, `120105` → `Tools & Workshop > Hand Tools`.
+  - `WB23ES-2` → `Spare Parts > WIPERS`.
+  - `HM-231`, `HM-233I`, `HM-235`, `HM-236` → `Electrical > ELECTRICAL SPARES`.
+  - `M501BCC` → `Trailer & Canopy`.
+- Post-update SQL verification confirmed each SKU now points to its intended category and parent. Active catalogue invariants remain 4,187 active products, 4,187 unique active SKUs, 0 uncategorized active products, and 27,745 active stock units.
+- No product prices, stock quantities, descriptions, images, orders, or payment settings were changed. No other category assignments were modified.
+- This was a narrow evidence-based correction, not completion of the full category cleanup. Many legacy/duplicate empty category records remain and need dependency-aware reconciliation; do not delete/merge them blindly.
+- Next: continue exact-SKU cleanup from clear title/category evidence, prioritising other obvious cross-category items; then audit image mapping/quality and validate storefront behavior. Keep all permanent owner instructions unchanged in this file.
