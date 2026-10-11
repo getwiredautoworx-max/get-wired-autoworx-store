@@ -414,3 +414,57 @@ Poll Run #48 emulator job until terminal. If successful, verify artifact and upd
 - Located and inspected the existing library workbook Get_Wired_AutoWorx_UNMATCHED_IMAGE_VERIFICATION.xlsx (225 product rows, 12 columns). Its image verification fields are still marked pending; it does not contain verified image URLs/files for the current unresolved set.
 - Cross-checked the 94 current placeholder SKUs against this workbook: one SKU overlap found, C7-007 (Compressor Light), listed under Tools & Workshop > 4 CAMPING with February Buyer's Guide page 4 and status PENDING YOUR VERIFICATION. No verified image source/file is recorded, so no image was assigned and no product/category data was changed.
 - Next viable image step requires actual source image assets or a reliable supplier catalogue page for exact SKU verification. Do not treat the workbook SKU column alone as proof that a particular image matches. Current production placeholders remain 94.
+
+
+## CATEGORY STRUCTURE PROPOSAL — 2026-10-11 (OWNER SELECTED; MAPPING REVIEW ONLY)
+
+Owner selected these eight public storefront categories, with no extra changes requested:
+1. Auto Electrical Spares
+2. Vehicle Security
+3. Car Audio & Entertainment
+4. Automotive Accessories
+5. Marine Spares & Accessories
+6. Tools, Hardware & Consumables
+7. Camping, Leisure & Outdoors
+8. Trailer & Canopy
+
+Proposed tree (public-facing; child categories are proposed navigation labels, not yet a database migration):
+- Auto Electrical Spares
+  - 12V Light-Duty Vehicles (cars, bakkies, etc.)
+    - Alternators & Alternator Spares; Starter Motors & Starter Spares; Fuel Pumps; Ignition Coils & Ignition; Sensors; Fans & Fan Spares; Relays; Switches; Fuses; Wiring & Connectors; Lamps & Vehicle Electrical Lighting; Batteries (only where stocked/verified)
+  - 24V Heavy-Duty Vehicles (trucks, buses, etc.)
+    - Alternators & Alternator Spares; Starter Motors & Starter Spares; Fuel Pumps; Sensors; Fans & Fan Spares; Relays; Switches; Fuses; Wiring & Connectors; Lamps & Vehicle Electrical Lighting
+  - General Auto Electrical (only products not reliably assigned to 12V/24V)
+- Vehicle Security
+  - Vehicle Alarms; Central Locking; Immobilisers; Remote Controls; Vehicle Tracking; Central-Locking Parts
+- Car Audio & Entertainment
+  - Head Units / Radios; Speakers; Amplifiers; Subwoofers; Aerials; Crossovers & Equalisers; Audio Wiring & Installation; Multimedia / DVD
+- Automotive Accessories
+  - Interior Accessories; Exterior Accessories; Car Mats; Seat Covers; Gear Knobs & Hand-Brake Covers; Steering-Wheel Covers; Mirrors (accessory fitment only); Wheel Accessories & Covers; Panel Clips; Lighting Accessories; General Accessories; Safety Accessories
+- Marine Spares & Accessories
+  - Marine Electrical; Marine Lighting; Marine Audio; Marine Spares; Pumps & Plumbing; Marine Rigging; Boat Accessories
+- Tools, Hardware & Consumables
+  - Automotive Tools; Hand Tools; Electrical Tools; Diagnostic Tools; Measuring Tools & Multimeters; Cutting Tools & Drill Bits; Spanners / Sockets / Screwdrivers; Clamps; Hardware / Padlocks / Fasteners; Abrasives; Workshop Equipment; Consumables; Garden Tools (only if suitable for the store)
+- Camping, Leisure & Outdoors
+  - Camping; Lifestyle / Outdoor Living; 4x4 Outdoor; Winches; Winch Spares & Accessories; Portable Compressors; Hand & Foot Pumps; Outdoor Lighting
+- Trailer & Canopy
+  - Trailer; Trailer & Towing; Trailer Electrical / Lighting; Canopy; Towing & Recovery
+
+Product-mapping plan (no writes/deletions performed):
+1. Use active product UUID/SKU/name/current category as the migration key; preserve SKU, price, cost, stock, image URL, compatibility, specifications and active status.
+2. Build explicit old-category-ID -> proposed-category-ID mapping, then review product-level exceptions by SKU and name. Never migrate on a vague keyword alone.
+3. Keep families distinct: auto electrical spares vs automotive accessories; security vs audio; marine vs road-vehicle products; tools vs the part they service; camping/outdoors vs marine; trailer/canopy vs general accessories.
+4. Map only high-confidence categories automatically. Existing category records include duplicate root names and 242 total categories; resolve duplicate roots by UUID and active SKU membership, not name alone.
+5. Treat generic/mixed buckets as manual-review queues, especially root 'Spare Parts' (136 active products in the latest query), generic 'Electrical', generic 'Accessories', 'General Accessories', 'General Parts', and any product filed under a misleading family. The generic Spare Parts bucket has legacy mechanical-style subcategories (e.g. brakes, suspension, cylinders, exhaust, hoses, thermostats, wipers); do NOT automatically relabel these as Auto Electrical Spares. Flag them for owner/business-scope review because the store positioning excludes mechanical parts.
+6. For overlaps, classify by product function and fitment: vehicle electrical lamp/bulb vs decorative/accessory light; marine pump vs general pump; winch part vs workshop tool; trailer lamp/wiring vs generic auto electrical. If evidence is insufficient, leave current category untouched and report SKU as unresolved.
+7. Before database changes, produce a SKU-level CSV/report with old category path, proposed category path, confidence (high/medium/manual), rationale, and scope exception. No category deletes or product moves until mapping is reviewed.
+8. After owner mapping approval, apply a transaction/guarded migration; verify exactly 4,187 active products remain, zero active products uncategorized, and no product, pricing, stock, image, compatibility or order fields changed. Then regenerate category tree, run category/navigation smoke tests and QA, build one fresh Axxess package only once, and preserve existing Axxess admin.html and cgi-bin.
+
+Read-only category notes:
+- 242 category records exist; duplicate root names and legacy/empty records are present.
+- Root counts are not final family totals because children and duplicates exist.
+- Examples of populated branches: Automotive Accessories root (288 active); Car Audio root (39); Marine Spares & Accessories root (5) plus BOAT ACCESSORIES child (52); Tools & Workshop root (133) plus populated children; Camping / Leisure / Outdoors root (9) plus populated children; Trailer & Canopy root (64) plus populated children; Alarms & Security root (2) plus security child categories. These are current-category counts, not proposed totals.
+- Preserve previously confirmed exact-SKU corrections: 7 fuel-pump SKUs to 12V Light-Duty > Fuel Pumps; 9 camping SKUs to Camping/Leisure > Lifestyle; A10-048 fuel-pump-removal tool to Tools & Workshop > Automotive Tools.
+- Existing category-tree JSON was refreshed after those exact-SKU fixes. No broad restructuring has been performed.
+- Next: prepare SKU-level mapping output and exception list from active products/categories; report ambiguous/mechanical-scope products separately. Do not delete categories, update products.category_id, or build/upload an Axxess release before mapping review.
+- ETA: tree and mapping rules drafted; SKU-level mapping audit is next. No Axxess upload initiated.
