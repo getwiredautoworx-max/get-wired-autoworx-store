@@ -678,3 +678,14 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Axxess package must wait until mapping review and category/navigation QA are complete; avoid duplicate uploads.
 - Failure/blocker: the previous category audit notes that a full product/category query was blocked by the connected SQL safety gate. No complete new SKU-level export is available from that audit, so product-level reassignment must not be guessed.
 - ETA: no defensible ETA until an approved complete export is available and the number of ambiguous SKUs is known.
+
+
+## 2026-10-11 — LIVE READ-ONLY CATEGORY RECOUNT SUCCEEDED
+
+- [x] Re-tested the Supabase SQL read path and it now returns read-only results; the earlier SQL safety-gate block recorded in older notes did not prevent the current simple SELECT queries.
+- [x] Fresh live product invariant query: **4,187 active products; 4,187 unique active SKUs; 0 active products without category; 0 active products with null/non-positive price; 0 active products without an image_url value**.
+- [x] Fresh live category/root recount shows substantial differences from the old mapping review and snapshot: current recursive active-root counts include Electrical 1,149; Tools & Workshop 1,321; Automotive Accessories 874; Spare Parts 565; Trailer & Canopy 89; Camping / Leisure / Outdoors 84; Marine Spares & Accessories 57; Car Audio 46; Alarms & Security 2. Numerous unrelated legacy roots also exist. These are current query outputs and must be reconciled before using as final category totals.
+- [x] Live categories include duplicate active/inactive roots and specialist leaves, so root counts must not be summed blindly: verify recursive overlap/duplicate category references and category tree integrity as part of the next mapping report.
+- [ ] Next: query products in bounded batches with their current category and source metadata, then create a complete SKU-level candidate map and explicit ambiguity report. Do not move products or toggle root active flags during export/review.
+- [ ] Compare the live data against the generated `assets/category-tree.json` and storefront hard-coded root IDs; only then prepare a controlled code/data change.
+- [x] No database writes or product/category mutations occurred in these recounts; no deployment/upload triggered.
