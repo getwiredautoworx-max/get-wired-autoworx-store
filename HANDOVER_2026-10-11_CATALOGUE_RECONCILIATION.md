@@ -109,3 +109,10 @@
 - Workbook tabs: Executive Status; Source Register; Historic Exceptions (all 126 rows); Rounding Exceptions (all 418 historic one-cent exceptions). It records confirmed counts and separates completed checks from uncompleted source-to-live SKU joins. It is a tracking/audit workbook, **not** a live import file.
 - Current verified progress: database integrity checks completed; source inventory confirmed; historic exception root cause classified; no live product changes. Remaining: source-page extraction/verification and exact normalized-code joins for June, September, October, promotions and vehicle-specific catalogues. Quote-only candidate total remains unverified until those joins finish.
 - Latest source code commit before this entry: `ab8fbd8f75a88d10467489c9a21664edeac3d406`. This handover update records the workbook location; no deployment triggered.
+
+
+## 2026-10-11 — EXPANDED EXACT-SKU OCTOBER DELTA / POST-UPDATE QA
+- Expanded the October guide delta from 89 to 107 active product records. Match method: exact supplier SKU, spatially aligned whole-rand/cents price spans, no nearby asterisk marker, and description cross-check. All 107 prices/costs now carry source file/date/page and previous-price traceability. No product IDs/SKUs/images/categories/stock changed; no additions or deletions.
+- Held F7-MZ01 out of the price update because its live product name appears to combine unrelated text (“Black Plastic Caps, Valve Cores ...”); it remains in the workpaper review queue pending name/source reconciliation.
+- Post-update live QA: 4,187 active products, 4,187 unique SKUs, 0 invalid prices, 0 formula mismatches, 0 missing image_url fields, 0 missing category_id; all 107 October-updated rows pass the selling-price formula. No deployment used.
+- Workpaper now includes 107 live price updates and the F7-MZ01 hold reason. Full catalogue reconciliation is still not complete: remaining October candidates, 126 historic unresolved source prices, June OCR staging, and unpriced vehicle-specific catalogue lines need further matching and review.
