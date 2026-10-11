@@ -1019,3 +1019,15 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - No product prices, stock quantities, descriptions, images, orders, or payment settings were changed. No other category assignments were modified.
 - This was a narrow evidence-based correction, not completion of the full category cleanup. Many legacy/duplicate empty category records remain and need dependency-aware reconciliation; do not delete/merge them blindly.
 - Next: continue exact-SKU cleanup from clear title/category evidence, prioritising other obvious cross-category items; then audit image mapping/quality and validate storefront behavior. Keep all permanent owner instructions unchanged in this file.
+
+
+## CONTINUATION LOG — 2026-10-11: PRODUCT-IMAGE PROXY BUG FIX / COVERAGE RECONCILIATION
+
+- Audited the repository tree and the bounded ASC exact-SKU image-sync report against the active Supabase catalogue.
+- Exact coverage result: 4,093 WebP files exist in `assets/products_webp/`, and every one matches an active catalogue `public_sku` exactly. Of 4,187 active products, 94 have no local WebP file.
+- The image-sync report contains 3,396 products previously targeted because their database image URL was a placeholder: 3,302 have status `matched` from the exact-SKU ASC sync, while 29 were not found in search results, 57 had no product cards, and 8 attempts timed out. The report is source/SKU-match evidence, not a complete visual watermark/quality audit.
+- Found and fixed a production image-proxy logic defect: `product-image` required a private supplier-SKU mapping before trying the public-SKU WebP assets, causing valid exact-public-SKU WebPs to return 404 when the private mapping was absent.
+- Corrected source at `supabase/functions/product-image/index.ts`, commit `bbf4ff083f664dbfb9504f472542a42d48816229`; deployed Supabase Edge Function `product-image` ACTIVE version 10. The function now tries exact public-SKU WebP sources first and requires the private supplier mapping only for legacy supplier-SKU JPG fallback. Supplier SKUs remain server-side.
+- Verified the committed source and confirmed the deployed function inventory reports version 10 ACTIVE. Direct live HTTP image fetch could not be completed from this execution environment (DNS resolution unavailable), so do not claim a live 200 response yet.
+- No product `image_url` values were bulk-changed in this pass because the owner's watermark/quality requirement still needs visual validation before the 3,302 matched assets are promoted from placeholders. Do not bypass that requirement or call the images fully quality-approved.
+- Next: use a network-capable browser/HTTP path to test the proxy with known matched and unmatched SKUs, then visually audit representative exact-SKU images for catalogue text/watermarks. After that, update only placeholder records whose assets pass the agreed audit, and verify the resulting coverage. Continue without touching prices, stock or orders.
