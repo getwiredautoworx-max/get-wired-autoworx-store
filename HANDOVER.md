@@ -1031,3 +1031,12 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Verified the committed source and confirmed the deployed function inventory reports version 10 ACTIVE. Direct live HTTP image fetch could not be completed from this execution environment (DNS resolution unavailable), so do not claim a live 200 response yet.
 - No product `image_url` values were bulk-changed in this pass because the owner's watermark/quality requirement still needs visual validation before the 3,302 matched assets are promoted from placeholders. Do not bypass that requirement or call the images fully quality-approved.
 - Next: use a network-capable browser/HTTP path to test the proxy with known matched and unmatched SKUs, then visually audit representative exact-SKU images for catalogue text/watermarks. After that, update only placeholder records whose assets pass the agreed audit, and verify the resulting coverage. Continue without touching prices, stock or orders.
+
+
+## CONTINUATION LOG — 2026-10-11: CATEGORY EXCEPTION AUDIT
+
+- Rechecked the active catalogue after the nine exact-SKU corrections, using product-name keyword distributions grouped by the assigned category.
+- Confirmed the audited “clip” items now fall into intended groups: panel/body clips remain in PANEL CLIPS; 4 battery clips are in Electrical > ELECTRICAL SPARES; 3 circlip/pliers items are in Tools & Workshop > Hand Tools; the wiper-blade item is in Spare Parts > WIPERS; canopy clips are in Trailer & Canopy; 4 clip-on wheel-weight products are in WHEEL ACCESSORIES.
+- Confirmed active product names containing “switch” are assigned to SWITCHES (155 products) except 2 winch-specific switches correctly grouped with Winch Spares & Accessories. Product names containing “relay” are all assigned to RELAYS (40 products). Names containing “spanner” or “wrench” are all assigned to Spanners & Wrenches (108 products). Names containing “winch” are assigned to Winches (18) or Winch Spares & Accessories (21).
+- These keyword checks support the main requested subcategory grouping for those families but do not prove every title/category match across all 4,187 products. Continue broader source-based checks; do not claim full category reconciliation complete.
+- No further catalogue changes were made in this audit. The nine prior corrections remain verified; no price, stock, image URL or order data changed during this check.
