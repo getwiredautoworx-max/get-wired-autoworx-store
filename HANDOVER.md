@@ -1051,3 +1051,11 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - The proxy was deployed ACTIVE version 10 and now tries the public-SKU WebP files before private supplier-SKU JPG fallback. Direct live HTTP status checks remain unavailable in this environment because external DNS resolution failed; the source and function deployment are verified, but browser-rendered image success still needs a network-capable live check.
 - Important quality note: ASC sync status proves exact source-SKU matching and valid image binaries, not a complete visual watermark/quality audit. Do not describe the remaining visual audit as complete. If a sampled image shows catalogue text/watermarks or a wrong product, correct only the exact affected SKU and preserve the 94 unresolved placeholders until an exact source is verified.
 - Next: run the existing Catalogue Image Audit and live browser smoke test through GitHub Actions when dispatch is available; inspect actual rendered product images on the live Axxess site; then resolve the 94 unmatched images using approved exact-SKU sources. Continue final Axxess-first regression and only then reconcile the final tested release to GitHub/Cloudflare.
+
+
+## CONTINUATION LOG — 2026-10-11: ONE-SHOT PACKAGE WORKFLOW RECOVERY
+
+- The GitHub connector exposes workflow-run inspection and artifact download but no workflow-dispatch action; commits created through the connector did not start the Axxess package workflow, only Pages runs were visible.
+- Recovery workaround: temporarily added a 10-minute schedule to the existing `prepare-axxess-package.yml` so GitHub Actions can generate one fresh package without owner intervention. Workflow commit: `45b3ad2ecaf04ff41ac34ef723cf0ed80f5127d9`.
+- This schedule is explicitly temporary. As soon as the first package run starts, remove the schedule from the workflow and keep only the existing push/workflow_dispatch triggers; do not leave a recurring build schedule in production.
+- Next: identify the scheduled run by querying GitHub Actions, remove the temporary schedule immediately, wait for that one run to reach terminal status, then inspect/download the artifact and validate ZIP contents. Do not upload an old artifact.
