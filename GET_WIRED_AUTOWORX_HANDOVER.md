@@ -663,3 +663,18 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - Added a specific live canonical-domain assertion for newly synced `GW-001CED3B.webp` in Store Production QA (commit `8d2d9c42fc0e4f353c8afc3cf5bf833c566c7821`). Run `38120917779` is queued; result must determine whether the new assets are present on the Axxess-hosted domain. No upload/deployment to Axxess was attempted.
 
 - [x] Follow-up Store Production QA run `38120917779` succeeded on workflow commit `8d2d9c42fc0e4f353c8afc3cf5bf833c566c7821`. Its exact log confirms the canonical homepage, category page/snapshot, established WebP `GW-000174D6.webp`, and newly synced `GW-001CED3B.webp` all returned HTTP 200; both image responses had `image/webp` content type. The canonical host therefore serves at least one of the newly synced image files. QA also passed delivery rule, active catalogue invariants and public-source security checks.
+
+
+## 2026-10-11 — PROPOSED FINAL CATEGORY TREE PREPARED (READ-ONLY / NO LIVE MOVES)
+
+- [x] Re-read the master handover and the latest available category review and generated category-tree snapshot before continuing.
+- [x] Added `PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md` on GitHub main. Commit: `f7321c90f3aa2d683e12575e2ca2a32438399cd2`.
+- [x] Proposal preserves the eight owner-selected customer-facing roots: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy.
+- [x] Document defines candidate specialist child groups, explicit mechanical-item exclusions, confidence rules, a full 4,187-product SKU-level export requirement, duplicate/orphan/inactive-root checks, and the approval gate before any live writes.
+- [x] Reconfirmed category counts in older review sections are from different audit points (976 inside/3,211 outside versus later 3,223 inside/964 outside); neither should be treated as a current verified count without a fresh live recount.
+- [x] Current generated `assets/category-tree.json` is timestamped 2026-10-11 08:00 UTC and contains duplicate legacy/catalogue roots. It must be reconciled against live product assignments and the intended root IDs before final navigation changes.
+- [x] No category/product rows, active flags, prices, images, stock, orders, hosting files or deployment settings were changed. No Axxess upload, Cloudflare deployment or Netlify deployment was triggered.
+- [ ] Next safe task: obtain a complete read-only SKU-level export through an approved data-access path, produce the candidate mapping and ambiguity report, and reconcile live root IDs/parent chains. Only then consider owner-reviewed category changes.
+- [ ] Axxess package must wait until mapping review and category/navigation QA are complete; avoid duplicate uploads.
+- Failure/blocker: the previous category audit notes that a full product/category query was blocked by the connected SQL safety gate. No complete new SKU-level export is available from that audit, so product-level reassignment must not be guessed.
+- ETA: no defensible ETA until an approved complete export is available and the number of ambiguous SKUs is known.
