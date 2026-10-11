@@ -1163,3 +1163,11 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Current release gates from the prior successful run remain valid: 4,187 active products / unique SKUs, zero uncategorized products, zero missing price/cost/image URL, 94 unmatched image placeholders, zero pricing mismatches, and 27,745 stock units. No real order was created.
 - Outstanding items are unchanged: resolve the 94 placeholders only from verified exact-SKU source images; perform a visual image/watermark review; and verify the actual Axxess-hosted files plus mobile/product/category/search/cart/checkout flow. No connected Axxess filesystem/upload session is available here, so no Axxess deployment is claimed.
 - Next action: continue with read-only image/source reconciliation and available release checks. Do not rebuild the already successful Axxess package unless a storefront/package input changes.
+
+
+## CONTINUATION TASK LOG — 2026-10-11 — PLACEHOLDER IMAGE TRIAGE
+
+- Read-only query grouped the 94 active placeholder-image records by category to prioritize remediation. Largest groups: Automotive Accessories 12; ELECTRICAL SPARES 12; AUTOMOTIVE TOOLS 6; ACCESSORIES 5; LAMPS 5; AUTOMOTIVE ACCESSORIES 4; Hand Tools 4; SUSPENSION 4. The remaining 42 are spread across 27 smaller categories.
+- Exact SKU examples were recorded from the live database; no replacement images were assigned because the automated repository audit found no exact-public-SKU WebP for these 94 products. Do not use category stock photos as if they represent a specific part. Next viable route is to compare supplier catalogue/source imagery against the exact product SKU/name, starting with the two largest groups, then update only confirmed matches.
+- Category anomaly query produced no further confirmed misfilings; apparent matches were legitimate relays, workshop tools, or marine hand pumps. No additional category data changes were made.
+- GitHub Pages run 38122690984 reached SUCCESS, including deployment. This handover update will create a newer Pages run; avoid further handover-only commits while it runs.
