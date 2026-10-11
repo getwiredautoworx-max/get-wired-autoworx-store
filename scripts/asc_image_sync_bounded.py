@@ -15,9 +15,9 @@ SUPABASE_KEY = os.environ["SUPABASE_KEY"]
 ASC_BASE = os.environ.get("ASC_BASE", "https://accessoriesspares.co.za")
 OUT = Path("assets/products_webp")
 REPORT = Path("image-sync/asc_image_sync_report.json")
-BATCH_SIZE = 600
+BATCH_SIZE = 40
 RETRY_AFTER_DAYS = 7
-SYNC_VERSION = 8
+SYNC_VERSION = 9
 NOW = datetime.now(timezone.utc)
 OUT.mkdir(parents=True, exist_ok=True)
 REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -61,9 +61,10 @@ def load_targets():
             continue
         prior = latest.get(public_sku, {})
         attempted = prior.get("attempted_at")
-        # Ignore outcomes from the old SKU-only search strategy; version 2
-        # searches by product name first and must retry those records.
-        if prior.get("sync_version") == SYNC_VERSION and attempted:
+        # Retry policy: existing exact-SKU matches are already excluded by the
+        # published WebP file check above. Retry unresolved outcomes only after
+        # the cooldown, while version bumps permit one controlled migration pass.
+        if prior.get("status") != "matched" and prior.get("sync_version") == SYNC_VERSION and attempted:
             try:
                 attempted_at = datetime.fromisoformat(attempted.replace("Z", "+00:00"))
                 if attempted_at > NOW - timedelta(days=RETRY_AFTER_DAYS):
@@ -204,7 +205,7 @@ def main():
         print("No eligible targets in this run.")
         return
     results = []
-    with ThreadPoolExecutor(max_workers=8) as pool:
+    with ThreadPoolExecutor(max_workers=4) as pool:
         futures = [pool.submit(sync_one, item) for item in batch]
         for completed, future in enumerate(as_completed(futures), start=1):
             try:
