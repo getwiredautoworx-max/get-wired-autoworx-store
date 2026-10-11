@@ -661,3 +661,5 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Cloudflare backup remains blocked by missing `CLOUDFLARE_API_TOKEN`; do not change credentials/DNS. Axxess reply pending; no email checked. PayFast not integrated; no real orders/payments.
 
 - Added a specific live canonical-domain assertion for newly synced `GW-001CED3B.webp` in Store Production QA (commit `8d2d9c42fc0e4f353c8afc3cf5bf833c566c7821`). Run `38120917779` is queued; result must determine whether the new assets are present on the Axxess-hosted domain. No upload/deployment to Axxess was attempted.
+
+- [x] Follow-up Store Production QA run `38120917779` succeeded on workflow commit `8d2d9c42fc0e4f353c8afc3cf5bf833c566c7821`. Its exact log confirms the canonical homepage, category page/snapshot, established WebP `GW-000174D6.webp`, and newly synced `GW-001CED3B.webp` all returned HTTP 200; both image responses had `image/webp` content type. The canonical host therefore serves at least one of the newly synced image files. QA also passed delivery rule, active catalogue invariants and public-source security checks.
