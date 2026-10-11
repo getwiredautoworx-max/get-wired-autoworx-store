@@ -1265,3 +1265,14 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Hosting rule remains unchanged: do not trigger Cloudflare/Netlify deployments or spend credits; do not upload to Axxess until the user-requested preview has been reviewed and approved. Existing catalogue/checkout remain untouched.
 - Next steps: configure the secret only after owner provides/creates the key; add durable abuse controls; deploy and test the function; review the storefront preview; test clear and ambiguous photos, no-match cases, invalid/oversize images, product handoff and mobile layout. Update this handover after each completed step.
 - ETA: implementation source and setup instructions committed. Live activation and end-to-end QA depend on OpenAI key configuration, deployment and testing.
+
+
+## 2026-10-11 09:15 SAST — CONTINUATION EXECUTION UPDATE
+
+- Current main was inspected directly. Latest successful Catalogue Image Audit baseline: 4,082 effective known image routes/files (97.5% of 4,187 active products), with 105 unresolved placeholder SKUs.
+- Corrected the bounded exact-SKU sync script from version 8 / 600-item batches / eight workers to version 9 / 40-item batches / four workers. Existing WebP assets remain preserved; exact supplier-SKU matching remains mandatory. Version bump permits one controlled retry pass for unresolved SKUs, then the existing seven-day cooldown applies to same-version failures.
+- Corrected Storefront Smoke Test: image fallback now requires exact-SKU WebP load with naturalWidth > 0; a missing-image state cannot pass. Product modal test clicks the product title and captures diagnostic state on failure.
+- Commits: sync script 7ac386fa2628d441ce0f83312b4f798ce2f7433c; smoke test 48620aafa83830b7e2d6771a6c0df965eef99f82; working handover 658f9e9f67b978a4f24a6a747648b8e74c7b8172.
+- These source edits trigger normal bounded image sync (40 targets maximum) and storefront smoke test. No broad manual workflow dispatch was used.
+- Verify post-commit Actions results and current-head canonical-domain production QA before claiming resolution.
+- Cloudflare backup deployment remains blocked by missing CLOUDFLARE_API_TOKEN; do not change DNS or credentials. Axxess support reply remains pending; no email inbox was checked. PayFast is not integrated; do not submit real orders/payments.
