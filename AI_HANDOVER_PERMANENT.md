@@ -1286,3 +1286,15 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Added a canonical production QA check for newly synced `GW-001CED3B.webp` (workflow update commit `8d2d9c42fc0e4f353c8afc3cf5bf833c566c7821`) to verify whether recent image files are live on the Axxess-hosted domain. Run `38120917779` queued; no Axxess upload/deployment was attempted.
 
 - [x] Store Production QA run `38120917779` passed and explicitly confirmed canonical homepage/category/snapshot, `GW-000174D6.webp`, and newly synced `GW-001CED3B.webp` return HTTP 200 with image/webp content type. Canonical host has the newly synced file; no manual upload/deployment was performed.
+
+
+## 2026-10-11 — CATALOGUE RECONCILIATION ACTUALLY STARTED
+
+- Owner's follow-up correctly flagged that the prior turn stopped after writing the plan instead of starting the work. Do not repeat that mistake: execute the next measurable step after handover updates.
+- Read-only live Supabase verification: 4,187 active products; 4,187 unique active SKUs; 0 active products missing/invalid price; 0 missing image_url values; 0 active products without category_id. Image URL presence does not prove the image itself is valid; category linkage does not prove semantic category accuracy.
+- Recovered and inspected October Buyer's Guide PDF: 32 pages, 70,691 extracted text characters. October Promotions 2026 PDF: 20 pages, 27,489 extracted text characters. The buyer guide's raised-cent price typography requires careful validation; promotions must not be mistaken for supplier cost.
+- Existing Get_Wired_AutoWorx_CORRECTED_PRICE_AUDIT_Feb-Aug_2026.xlsx contains 3,578 audited SKU rows, 126 unresolved price rows, and its PRICE VERIFICATION tab flags 418 formula failures. Treat this audit as a baseline, not a safe-to-import final price source. June OCR staging contains 470 rows and remains unverified.
+- Created reconciliation workpaper: Get_Wired_AutoWorx_June_to_October_Catalogue_Reconciliation_Workpaper.xlsx. It contains a source register, an October guide SKU-candidate cross-reference with source pages/context and conservative REVIEW_MATCH statuses, and the previous unresolved-price queue. Candidate extraction is not yet a validated product import.
+- No live product records were changed. No deployment credits used.
+- Next: inspect current trade price lists and vehicle catalogues; validate candidate SKUs visually/source-by-source; recompute all flagged pricing formulas; produce exact matched, quote-required and review queues; then one non-destructive delta package only after reconciliation.
+- ETA: not yet defensible until current trade-list files and SKU match rates are inventoried. Measured first-stage source scope: 32-page October guide, 20-page October promotions PDF, 3,578 historical audited price rows, 126 unresolved prices, 470 June OCR staging rows.
