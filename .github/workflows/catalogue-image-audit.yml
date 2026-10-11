@@ -126,6 +126,11 @@ jobs:
           },indent=2))
           if bad:
               raise SystemExit("Public product-image audit found invalid or mismatched image references; see catalogue-image-audit.json")
+          if placeholder_with_webp:
+              raise SystemExit(
+                  f"{len(placeholder_with_webp)} active products still use a placeholder despite an exact-public-SKU WebP asset; "
+                  "promote only verified exact-SKU assets before release."
+              )
           PY
 
       - name: Smoke test slash-normalised supplier image filenames
