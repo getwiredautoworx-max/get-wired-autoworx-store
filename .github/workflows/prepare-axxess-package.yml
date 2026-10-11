@@ -58,6 +58,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: axxess-storefront-upload
-          path: axxess-upload/
+          path: axxess-storefront-upload.zip
           if-no-files-found: error
           retention-days: 14
