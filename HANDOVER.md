@@ -1147,3 +1147,10 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Storefront Smoke Test run `38122634373` is still in progress at Chromium installation; local storefront smoke test has not yet run. Poll to terminal and inspect logs if failed.
 - Pages deployment for the category snapshot commit (`38122634385`) was cancelled/superseded by the following handover-only commit (`0f49a79199cacf2360c7d48dee0c51275a30f2c7`). The newer Pages run `38122643010` is in progress. The cancellation is not a product failure; verify the newer Pages run to terminal.
 - Database invariants remain: 4,187 active/unique SKUs, 0 uncategorized, 94 placeholders, 0 missing image/price/cost, 0 pricing mismatches, 27,745 stock units. No real orders created; no Axxess filesystem mutation performed.
+
+
+## CONTINUATION TASK LOG — 2026-10-11 — SMOKE TEST TERMINAL
+- Storefront Smoke Test run `38122634373` completed SUCCESS on the category snapshot release commit. Playwright installed, Chromium installed, and the local storefront smoke test passed.
+- Combined current release checks on commit `77d1f99ad06407ae7001a9a1562da66775fad900`: Store Production QA SUCCESS (`38122634362`), Catalogue Image Audit SUCCESS (`38122634437`), Public SKU Exposure Audit SUCCESS (`38122634358`), Storefront Smoke Test SUCCESS (`38122634373`), Axxess package build/upload SUCCESS (`38122634462`).
+- Pages deployment for the latest handover-only commit is pending as run `38122661722`. Prior Pages runs were superseded/cancelled by subsequent handover commits. Check only the latest Pages run to terminal; do not make another source change unless a real defect is found.
+- The new Axxess artifact was built from the corrected category-tree snapshot; no Axxess upload/filesystem mutation was performed. Live-domain checks passed in QA, but actual Axxess deployment, SSL configuration and checkout transaction path are not confirmed.
