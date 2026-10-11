@@ -17340,8 +17340,8 @@
   {
     "public_sku": "GW-B8F75EA2",
     "status": "sku_not_in_search_results",
-    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-B908E115",
@@ -18263,8 +18263,8 @@
   {
     "public_sku": "GW-C299BD7B",
     "status": "sku_not_in_search_results",
-    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-C2B0EE7A",
@@ -18276,8 +18276,8 @@
   {
     "public_sku": "GW-C2B46235",
     "status": "sku_not_in_search_results",
-    "attempted_at": "2026-10-09T23:27:57.694088+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-C2B74441",
@@ -18681,8 +18681,8 @@
   {
     "public_sku": "GW-C7D4D7A9",
     "status": "sku_not_in_search_results",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-C7EB0CF3",
@@ -19156,8 +19156,8 @@
   {
     "public_sku": "GW-CCB92BFF",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-CCC4AA8B",
@@ -19358,8 +19358,8 @@
   {
     "public_sku": "GW-CFDC3EDB",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-CFEBD651",
@@ -19371,8 +19371,8 @@
   {
     "public_sku": "GW-D006E0F1",
     "status": "sku_not_in_search_results",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-D0529F13",
@@ -19853,8 +19853,8 @@
   {
     "public_sku": "GW-D594965A",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-D5A9A84E",
@@ -20013,14 +20013,14 @@
   {
     "public_sku": "GW-D7B05BA6",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-D7C5CCFF",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-D7D524E3",
@@ -20473,8 +20473,8 @@
   {
     "public_sku": "GW-DCD64185",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-DCD9F598",
@@ -20549,8 +20549,8 @@
   {
     "public_sku": "GW-DDA5C131",
     "status": "sku_not_in_search_results",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-DDAA53F3",
@@ -21094,8 +21094,8 @@
   {
     "public_sku": "GW-E3B81219",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-E3BC9C34",
@@ -22297,8 +22297,8 @@
   {
     "public_sku": "GW-F1F11003",
     "status": "sku_not_in_search_results",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F1F254C2",
@@ -22310,8 +22310,8 @@
   {
     "public_sku": "GW-F2043B2E",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T02:36:54.649586+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F22634B6",
@@ -22742,51 +22742,59 @@
   },
   {
     "public_sku": "GW-F60D9CE9",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F632303D",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F6416160",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F6461F7B",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F6672DED",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F672879F",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F68FB0CE",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F69F8DA1",
-    "status": "source_timeout",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "status": "matched",
+    "source": "woocommerce_store_api_exact_sku",
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F6AFBFEE",
@@ -22826,8 +22834,8 @@
   {
     "public_sku": "GW-F73C6CE8",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F7589F56",
@@ -22853,8 +22861,8 @@
   {
     "public_sku": "GW-F795FC4D",
     "status": "no_product_cards",
-    "attempted_at": "2026-10-10T08:58:46.673309+00:00",
-    "sync_version": 8
+    "attempted_at": "2026-10-11T14:17:24.751158+00:00",
+    "sync_version": 9
   },
   {
     "public_sku": "GW-F7AD32F6",
