@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T08:00:00Z",
+  "generated_at": "2026-10-11T09:56:20Z",
   "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
   "categories": [
     {
@@ -144,7 +144,7 @@
       "slug": "automotive-accessories",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 289
+      "direct_active_products": 288
     },
     {
       "id": "cb05745e-8a9c-4250-8509-f208e4ccb25e",
@@ -240,7 +240,7 @@
       "slug": "camping-leisure-outdoors",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 18
+      "direct_active_products": 9
     },
     {
       "id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
@@ -424,7 +424,7 @@
       "slug": "electrical-spares",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
-      "direct_active_products": 502
+      "direct_active_products": 506
     },
     {
       "id": "76ba68a2-465d-44ff-8db8-8f68158bae1e",
@@ -576,7 +576,7 @@
       "slug": "hand-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
-      "direct_active_products": 321
+      "direct_active_products": 324
     },
     {
       "id": "cefc3905-a81d-4ad7-803f-d2acd5d9f4c4",
@@ -864,7 +864,7 @@
       "slug": "panel-clips",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
-      "direct_active_products": 150
+      "direct_active_products": 141
     },
     {
       "id": "e9b2645b-9928-4333-b646-6c490c3554f9",
@@ -1192,7 +1192,7 @@
       "slug": "trailer-canopy",
       "parent_id": null,
       "active": true,
-      "direct_active_products": 63
+      "direct_active_products": 64
     },
     {
       "id": "f9034e71-4b2b-4b88-9020-bf5b5ff7502a",
@@ -1288,7 +1288,7 @@
       "slug": "wipers",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
-      "direct_active_products": 43
+      "direct_active_products": 44
     },
     {
       "id": "64726cde-6d3b-4ca5-b778-9f1699e6602b",
