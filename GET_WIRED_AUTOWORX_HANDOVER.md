@@ -628,3 +628,13 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] After secret setup: send a clear part photo and an ambiguous/non-part photo; confirm catalogue matches and safe fallback; add usage limits/alerts and durable rate limiting before public launch.
 - [ ] Preview/live QA still required for both modals, request-photo storage and request submission. No Axxess upload, Netlify/Cloudflare deploy, database/catalogue/order/stock mutation, or payment change was made.
 - Function deployment ID: `33ba0b75-eb4d-42e4-b123-b70b85ddb0d4`; function status returned ACTIVE, version 1.
+
+
+## 2026-10-11 — CONTROLLED IMAGE RETRY + STOREFRONT SMOKE TEST FIX
+
+- Verified current repository state before changes: active catalogue baseline 4,187 products; latest image audit reported 4,082 effective known image assets/routes and 105 unresolved placeholder SKUs. Current image-sync script was actually version 8 with 600-item batches, conflicting with the intended bounded 40-item policy.
+- Updated `scripts/asc_image_sync_bounded.py` to sync version 9, batches of 40, and four concurrent workers. It preserves exact-SKU checks and unmatched report outcomes. Existing WebP files continue to be skipped; unresolved outcomes are eligible again after the 7-day cooldown, while version bump permits a single controlled retry pass. No guessed images or product-row changes.
+- Corrected `.github/workflows/storefront-smoke.yml`: the image fallback test now sets a real base URL and requires the exact public-SKU WebP to load with `naturalWidth > 0`; clean missing-image fallback no longer counts as PASS. The modal test clicks the product title and captures diagnostic state on failure.
+- These two source edits were committed to main; bounded image sync is triggered by the script change and the storefront smoke test by the workflow change. Each image run remains limited to 40 product targets; no manual broad workflow dispatch was issued.
+- Next verification: inspect the resulting bounded image-sync run and smoke test. Do not call the store resolved until smoke test passes, current canonical domain passes Store Production QA against current main, and audit counts are refreshed.
+- Still blocked: latest Store Production QA must be checked against current main; Cloudflare backup deployment previously failed because `CLOUDFLARE_API_TOKEN` was empty; Axxess support reply pending (no email connector used); PayFast remains unintegrated and must not be tested with real orders/payments.
