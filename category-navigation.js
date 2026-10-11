@@ -36,11 +36,42 @@
     if(!id)return;
     window.open(BASE+'?id='+encodeURIComponent(id),'_blank','noopener');
   }
+  function installCategoryPresentation(frame){
+    try{
+      const d=frame.contentDocument;
+      if(!d||d.getElementById('gw-category-presentation'))return;
+      const style=d.createElement('style');
+      style.id='gw-category-presentation';
+      style.textContent=`
+        /* Approved category browsing: 3-column desktop/tablet grid, touch-scroll subcategories */
+        #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+        #categoryGrid .catWrap{min-width:0}
+        #categoryGrid .catBtn{min-width:0}
+        #categoryGrid .catBtn b{overflow-wrap:anywhere}
+        #categoryGrid .children{display:none;max-width:100%;padding:10px 8px 12px;overflow:hidden}
+        #categoryGrid .catWrap.open .children{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+        #categoryGrid .children .child{flex:0 0 auto;min-width:150px;max-width:210px;min-height:46px;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #28658c;border-radius:9px;background:#071728;scroll-snap-align:start}
+        #categoryGrid .children .child span{white-space:nowrap}
+        @media(max-width:700px){
+          #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+          #categoryGrid .catBtn{padding:10px 8px;min-height:74px}
+          #categoryGrid .catBtn b{font-size:12px;line-height:1.25}
+          #categoryGrid .catBtn i{font-size:18px}
+          #categoryGrid .children .child{min-width:138px;font-size:12px}
+        }
+        @media(max-width:360px){
+          #categoryGrid.cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+        }
+      `;
+      d.head.appendChild(style);
+    }catch(err){console.warn('GW category presentation:',err);}
+  }
   function install(frame){
     try{
       const d=frame.contentDocument;
       if(!d || d.__gwCategoryBridge)return;
       d.__gwCategoryBridge=true;
+      installCategoryPresentation(frame);
       d.addEventListener('click',function(e){
         const btn=e.target.closest('.catBtn');
         if(!btn)return;
@@ -56,6 +87,7 @@
     }catch(err){console.warn('GW category bridge:',err);}
   }
   window.installGetWiredCategoryNavigation=function(frame){
+    installCategoryPresentation(frame);
     install(frame);
     frame.addEventListener('load',function(){setTimeout(function(){install(frame)},0)});
     setInterval(function(){install(frame)},1500);
