@@ -1276,3 +1276,5 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - These source edits trigger normal bounded image sync (40 targets maximum) and storefront smoke test. No broad manual workflow dispatch was used.
 - Verify post-commit Actions results and current-head canonical-domain production QA before claiming resolution.
 - Cloudflare backup deployment remains blocked by missing CLOUDFLARE_API_TOKEN; do not change DNS or credentials. Axxess support reply remains pending; no email inbox was checked. PayFast is not integrated; do not submit real orders/payments.
+
+- Production QA trigger updated at commit `eff54ec48e8deb73eab74d2228e135f8b105fbdf` to verify canonical homepage, category snapshot and exact-SKU WebP after image-sync/report or storefront-smoke changes. No DNS/credentials/payment/product rows changed.
