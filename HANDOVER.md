@@ -1059,3 +1059,15 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Recovery workaround: temporarily added a 10-minute schedule to the existing `prepare-axxess-package.yml` so GitHub Actions can generate one fresh package without owner intervention. Workflow commit: `45b3ad2ecaf04ff41ac34ef723cf0ed80f5127d9`.
 - This schedule is explicitly temporary. As soon as the first package run starts, remove the schedule from the workflow and keep only the existing push/workflow_dispatch triggers; do not leave a recurring build schedule in production.
 - Next: identify the scheduled run by querying GitHub Actions, remove the temporary schedule immediately, wait for that one run to reach terminal status, then inspect/download the artifact and validate ZIP contents. Do not upload an old artifact.
+
+
+## CONTINUATION LOG — 2026-10-11: FRESH AXXESS DEPLOYMENT PACKAGE VERIFIED
+
+- Existing package workflow run `38122036759` (run #26) reached terminal **SUCCESS**. Its job completed all steps, including ZIP creation, `unzip -t` integrity check, and artifact upload.
+- Fresh artifact: `axxess-storefront-upload`, artifact ID `11695159220`, run commit `45b3ad2ecaf04ff41ac34ef723cf0ed80f5127d9`, artifact digest `sha256:4654d9801d68cacf641d6a9d20d66f675926112a106329af8c83d57439b7895e`. Artifact expires 2026-10-25.
+- Downloaded the artifact and unpacked the nested deployment ZIP to `/mnt/data/axxess-storefront-deploy.zip` for inspection. Verified the deployment ZIP itself passes `unzip -t` with no errors; SHA-256: `735a454c780ac38539c1941fe4cfb407d1516797f732024282e95253c1903430`.
+- Package contents verified: 7 HTML pages, 5 JavaScript files, 4,093 WebP product images, required category/navigation/terms files, and upload instructions. `admin.html` and `cgi-bin/` are excluded by design and must remain preserved in existing Axxess `public_html`.
+- Removed the temporary recurring schedule immediately after the package run started, and removed the workflow file itself from its push path filter to avoid a duplicate package build. Cleanup commit: `edaa38e448c27f5da7569faa2f8380371897c97f`. Existing `workflow_dispatch` and storefront-file push triggers remain.
+- The fresh package is verified and ready for the next Axxess release step. No Axxess filesystem write or upload was performed from this environment; owner previously confirmed files already exist there. Do not instruct a re-upload until comparing this new package against the live Axxess files and deciding the controlled update is necessary.
+- Next: compare the package to the Axxess-hosted version/live routes, apply the verified package update through the available hosting path, run live mobile/product/cart/checkout checks, and only then reconcile the tested release to GitHub/Cloudflare. External DNS/HTTP probes from this environment remain unavailable.
+- Checkout rules preserved: pickup R0, packaging R35 per item, delivery quote required; no real customer/test orders created.
