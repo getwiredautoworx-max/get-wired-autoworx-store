@@ -1130,3 +1130,10 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Verification: a follow-up query confirms all 17 assignments are at the intended category paths. No other product/category rows were modified by this update.
 - Next: continue exact-SKU anomaly audit for clearly mismatched category families, then test release workflows when a storefront/assets change warrants them. Category changes in Supabase do not automatically trigger GitHub source workflows; do not waste build credits with a handover-only push. Image watermark/content review and live Axxess/DNS/browser checkout QA remain outstanding.
 - Blockers: no connected Axxess filesystem or live browser route is available here; do not claim Axxess deployment or live checkout verified.
+
+
+## CONTINUATION TASK LOG — 2026-10-11 — CATEGORY SNAPSHOT REFRESHED
+- After the 17 exact-SKU database corrections, refreshed `assets/category-tree.json` so the static storefront category snapshot's direct product counts agree with the database changes. Commit: `77d1f99ad06407ae7001a9a1562da66775fad900`.
+- Snapshot counts updated for the 11 affected category IDs: Fuel Pumps 3→10; LAMPS 142→138; Spotlights 17→15; FUEL PUMPS & OIL FILTER 14→13; Automotive Accessories 291→289; ACCESSORIES 65→60; Tools & Workshop 134→133; BOAT ACCESSORIES 53→52; AUTOMOTIVE TOOLS 320→321; Camping / Leisure / Outdoors 9→18; LIFESTYLE 11→20. All IDs were matched against the existing snapshot before writing; no other counts were changed.
+- This asset change legitimately triggers the existing storefront QA and Axxess-package workflows (both include `assets/category-tree.json` in their path filters). Do not trigger a second build. Check resulting workflow runs to terminal when available.
+- Database invariants remain verified after the 17 product changes: 4,187 active/unique SKUs, 0 uncategorized, 0 null images/prices/costs, 94 placeholders, 0 pricing mismatches, 27,745 stock units.
