@@ -1308,3 +1308,14 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Confirmed previous price audit's 418 formula failures and 126 unresolved rows; no bulk price import is safe until formula/source errors are reconciled.
 - Next step: visually verify extracted code/price candidates against the source page images and check exact SKU/cost/current price basis against live products before preparing any delta import. Keep all uncertain lines REVIEW_MATCH/QUOTE_REQUIRED.
 - Measured scope so far: 32 + 20 + 15 + 14 PDF pages inspected for extractable text; detailed visual verification and full cross-source matching remain outstanding. ETA for final package still depends on exception rates after visual checks.
+
+
+## 2026-10-11 — VERIFIED PRICE CORRECTIONS APPLIED
+- Spatial PDF text-span analysis confirmed the raised-cent price typography; manually inspected October Buyer's Guide pages 23, 26, and 27 for exact product/price placement.
+- Exact SKU and product match verified for three active live records; updated only cost_price, advertised price, and source/verification fields in specifications. Preserved product ID, SKU, image_url and category_id. No product was added/deleted and no deployment was triggered.
+  - I1-154, page 23: ex-VAT cost R318.78 (was R299.98); advertised price R494.91 (was R465.72).
+  - RN-MF01, page 26: ex-VAT cost R76.72 (was R70.82); advertised price R119.11 (was R109.95).
+  - RT-EM02, page 27: ex-VAT cost R587.79 (was R572.72); advertised price R912.54 (was R889.15).
+- Re-read live rows after update: all three formula checks passed using round(cost_price × 1.15 × 1.35, 2). Source file/date/page and VERIFIED_PRICE status are stored in product specifications.
+- Workpaper refreshed with spatially aligned price candidates, vehicle-code match queue, and a verified correction log. 534 October guide code candidates have spatially aligned price values; do not bulk-apply them without exact product match and page/source review.
+- Remaining risks: 418 prior-audit formula failures; 126 unresolved historic prices; 470 June OCR staging rows; vehicle-specific code candidates beyond exact live matches still need match/quote processing. No full catalogue import or category changes made.
