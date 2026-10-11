@@ -63,14 +63,14 @@
         #categoryGrid .catBtn b{overflow-wrap:anywhere}
         #categoryGrid .children{display:none;max-width:100%;padding:10px 8px 12px;overflow:hidden}
         #categoryGrid .catWrap.open .children{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-        #categoryGrid .children .child{flex:0 0 auto;min-width:150px;max-width:210px;min-height:46px;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #28658c;border-radius:9px;background:#071728;scroll-snap-align:start}
+        #categoryGrid .children>.catWrap{flex:0 0 190px;min-width:0;max-width:220px;align-self:stretch;scroll-snap-align:start}\n        #categoryGrid .children>.catWrap .catBtn{min-height:78px;padding:10px}\n        #categoryGrid .children>.catWrap .catImage{height:92px;display:block;overflow:hidden}\n        #categoryGrid .children>.catWrap .catImage img{width:100%;height:100%;object-fit:contain}\n        #categoryGrid .children .child{flex:0 0 auto;min-width:150px;max-width:210px;min-height:46px;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #28658c;border-radius:9px;background:#071728;scroll-snap-align:start}
         #categoryGrid .children .child span{white-space:nowrap}
         @media(max-width:700px){
           #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
           #categoryGrid .catBtn{padding:10px 8px;min-height:74px}
           #categoryGrid .catBtn b{font-size:12px;line-height:1.25}
           #categoryGrid .catBtn i{font-size:18px}
-          #categoryGrid .children .child{min-width:138px;font-size:12px}
+          #categoryGrid .children>.catWrap{flex-basis:150px}\n          #categoryGrid .children>.catWrap .catImage{height:78px}\n          #categoryGrid .children .child{min-width:138px;font-size:12px}
         }
         @media(max-width:360px){
           #categoryGrid.cats{grid-template-columns:repeat(2,minmax(0,1fr))}
