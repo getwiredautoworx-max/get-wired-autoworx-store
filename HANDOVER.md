@@ -992,3 +992,16 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - Current authoritative catalogue checkpoint retained from previous verified run: 4,187 active products, 4,187 unique active SKUs, 0 uncategorized active products, 27,745 active stock units, 0 pricing mismatches. No catalogue data was changed in this continuation.
 - Checkout rules unchanged: pickup R0, packaging R35 per item, delivery quoted separately. No customer/test orders created.
 - Next action: pursue a supported way to dispatch and retrieve the existing package workflow run, then continue the next independent verification task. Do not ask the owner to repeat upload/extraction.
+
+
+## CONTINUATION LOG — 2026-10-11: CHECKOUT RPC SECURITY FIX
+
+- DNS-independent Supabase verification confirmed the production catalogue invariant: 4,187 active products, 4,187 unique active SKUs, 0 active uncategorized products, 0 active missing image URLs, 0 active missing prices, and 27,745 active stock units. No catalogue rows were modified.
+- Security Advisor identified a live-executable legacy overload of `public.create_store_order(..., p_delivery_method text)` granted to `PUBLIC`, `anon`, and `authenticated`. Its SECURITY DEFINER body creates customer/order records and decrements stock, so direct public RPC execution was not appropriate.
+- Verified the storefront `checkout-v2.html` submits to the `store-checkout` Edge Function, which calls the database RPC using the server-held service-role secret; the browser does not need direct EXECUTE permission on the database function.
+- Fixed the database grants: revoked EXECUTE from `PUBLIC`, `anon`, and `authenticated` on the exact 12-argument overload; explicitly granted EXECUTE to `service_role`.
+- Post-change verification: all three `create_store_order` overloads now report `anon_exec=false`, `auth_exec=false`, `service_role_exec=true`. The checkout Edge Function's service-role path remains authorised.
+- Security Advisor recheck: the public `create_store_order` finding disappeared. Remaining warnings are the authenticated admin RPCs `admin_list_orders` and `admin_update_order` (both contain explicit authenticated-user and `veyron_admin_users` membership checks; preserve their current admin workflow pending review of the caller) and Supabase Auth leaked-password protection disabled.
+- No orders were created. No stock, product, category, DNS, hosting, payment, or shipping configuration was changed.
+- Next: inspect the admin frontend's invocation path before changing the two admin RPC grants; then continue package workflow dispatch/artifact verification and live-host diagnostics. Do not revoke admin RPC access blindly because that may break the protected owner admin panel.
+- ETA: checkout RPC privilege fix and verification completed in this pass.
