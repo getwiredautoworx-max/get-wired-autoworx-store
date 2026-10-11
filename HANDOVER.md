@@ -1071,3 +1071,12 @@ Next: continue checkout/payment-handoff QA without creating a real customer orde
 - The fresh package is verified and ready for the next Axxess release step. No Axxess filesystem write or upload was performed from this environment; owner previously confirmed files already exist there. Do not instruct a re-upload until comparing this new package against the live Axxess files and deciding the controlled update is necessary.
 - Next: compare the package to the Axxess-hosted version/live routes, apply the verified package update through the available hosting path, run live mobile/product/cart/checkout checks, and only then reconcile the tested release to GitHub/Cloudflare. External DNS/HTTP probes from this environment remain unavailable.
 - Checkout rules preserved: pickup R0, packaging R35 per item, delivery quote required; no real customer/test orders created.
+
+
+## CONTINUATION LOG — 2026-10-11: IMAGE-AUDIT RELEASE GATE STRENGTHENED
+
+- After promoting exact-SKU image references, strengthened `.github/workflows/catalogue-image-audit.yml` to fail if any active product still uses the branded placeholder while a matching exact-public-SKU WebP exists in the repository.
+- Commit: `4dcf3ebb66e25a02ee9915e0acb599019245bdaf`.
+- This is a regression guard, not a data change. It leaves the 94 products without a matched WebP as placeholders until a correct source image is verified.
+- Catalogue Image Audit run `38122166074` was triggered for this change and is currently queued/in progress. Its terminal result must be checked; the latest prior audit `38121891563` passed before the 3,302 database image-reference updates and therefore does not verify the new database state.
+- Axxess package run `38122036759` remains successful with a verified fresh ZIP; temporary schedule was removed in commit `edaa38e448c27f5da7569faa2f8380371897c97f`. No duplicate package run was triggered by the cleanup.
