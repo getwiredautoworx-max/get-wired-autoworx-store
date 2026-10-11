@@ -1328,3 +1328,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Important distinction: 418 formula failures are reported by the old audit workbook; live DB now independently checks with zero formula mismatches. The old audit still has 126 unresolved historical source prices and must not be imported as-is.
 - Next execution: reconcile additional exact-code matches beyond the initial 89, complete the 126 unresolved rows and June OCR staging, then handle the remaining valid vehicle-specific catalogue lines as verified-price or quote-only. Review semantic ASC category placement separately; this batch deliberately did not alter categories.
 - No Cloudflare/Netlify credits used and no deployment attempted. ETA for full reconciliation still depends on remaining exact-match and OCR review workload.
+
+
+## 2026-10-11 — EXPANDED EXACT-SKU OCTOBER DELTA / POST-UPDATE QA
+- Expanded the October guide delta from 89 to 107 active product records. Match method: exact supplier SKU, spatially aligned whole-rand/cents price spans, no nearby asterisk marker, and description cross-check. All 107 prices/costs now carry source file/date/page and previous-price traceability. No product IDs/SKUs/images/categories/stock changed; no additions or deletions.
+- Held F7-MZ01 out of the price update because its live product name appears to combine unrelated text (“Black Plastic Caps, Valve Cores ...”); it remains in the workpaper review queue pending name/source reconciliation.
+- Post-update live QA: 4,187 active products, 4,187 unique SKUs, 0 invalid prices, 0 formula mismatches, 0 missing image_url fields, 0 missing category_id; all 107 October-updated rows pass the selling-price formula. No deployment used.
+- Workpaper now includes 107 live price updates and the F7-MZ01 hold reason. Full catalogue reconciliation is still not complete: remaining October candidates, 126 historic unresolved source prices, June OCR staging, and unpriced vehicle-specific catalogue lines need further matching and review.
