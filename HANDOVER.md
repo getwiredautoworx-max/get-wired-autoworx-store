@@ -830,3 +830,9 @@ Read-only category notes:
 - [!] Therefore the source/live reconciliation must compare source cost as well as price, and must preserve source guide/date and any approved current cost. A simple price overwrite would be unsafe and incorrect. The live database formula is correct based on its own cost values; the remaining issue is deciding which source cost is current/authoritative for each SKU.
 - No production rows changed; no imports/builds/deployments/DNS/payment settings changed.
 - Task result: LIVE DATABASE FORMULA PASS; SOURCE-TO-LIVE COST/PRICE RECONCILIATION STILL OPEN.
+
+
+## 2026-10-12 20:45 SAST — TASK START CHECKPOINT: FIND AN EXISTING SAFE AUTOMATED JOIN ROUTE
+- The source/live cost-price reconciliation is still blocked by the absence of a direct read-only CSV transfer between the workbook-processing runtime and Supabase query runtime.
+- Before requesting owner action or creating new infrastructure, inspect existing repository scripts/workflows for an already configured Supabase read credential and a way to run a read-only catalogue reconciliation. Reuse existing automation if safe; do not create/deploy new functions or trigger builds unnecessarily.
+- Goal: obtain row-level source-vs-live cost/price exceptions without modifying production records. Status: IN PROGRESS.
