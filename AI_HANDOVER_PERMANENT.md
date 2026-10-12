@@ -1430,3 +1430,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 ### 2026-10-12 — Task started: quantify October guide coverage of all 800 candidates
 
 - **Status: IN PROGRESS.** The 38 critical live price defects have been isolated, but current supplier-price freshness for the wider 785 active September-tagged candidate rows remains a launch gate. Starting a code-level cross-check of all 800 September candidate SKUs against the October Buyer’s Guide PDF text to distinguish listed-current products from not-listed/quote-required products. This is a source presence check only; a SKU mention without a price will not count as price-verified.
+
+
+### 2026-10-12 — October candidate-SKU coverage check completed
+
+- **Status: SUCCESS for source presence; price extraction remains in progress.** Exact token matching across the October Buyer's Guide PDF found 100 of the 800 September candidate SKUs mentioned in the October PDF. Of those 100, 34 occur on retail-display/product-listing pages that explicitly say to consult the representative for price availability (including affected items such as 500205, LEOPARD and LION); 66 occur on pages with standard catalogue pricing layout and are candidates for current-price extraction. Presence alone is not treated as proof of a current price.
+- The remaining 700 candidate SKUs do not appear as exact SKU tokens in extracted October PDF text. Their September prices must not be called October-verified. This establishes the next actionable split: extract and validate the October price for the 66 standard-layout matches; send quote/availability requests for the 34 rep-price items and the 700 not listed in October, with the 38 live scaling defects prioritized.
+- No live writes/deploys. Daily follow-up automation remains enabled. Next: extract prices from October pages only where the product code and adjacent price can be mapped confidently; mark ambiguous layout/OCR rows for manual review rather than guessing.
