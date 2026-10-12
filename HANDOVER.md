@@ -889,3 +889,11 @@ Read-only category notes:
 - No production data, order/stock data, DNS, hosting, payment configuration, deployment, or build was changed.
 - Next ordered action: resolve the price reconciliation data-transfer gate by obtaining the read-only CSV; meanwhile, prepare an explicit category exception report from the verified catalogue workbook and live category assignments without mutating production. Then finish exact category/SKU mapping and only later inspect/trigger the corrected Axxess packaging workflow when the release/credit constraints permit.
 - ETA: invariant audit complete (~2 minutes); row-level price join ETA remains dependent on CSV availability. Category mapping ETA cannot be stated until product-to-category evidence is reconciled.
+
+
+## 2026-10-12 20:58 SAST — FOLLOW-UP EVIDENCE: CATEGORY TREE STILL CONTAINS LEGACY/DUPLICATE NODES
+- [x] Inspected current generated `assets/category-tree.json` (blob `f28369104028760e3308ee5545c9243b71d00a7d`) and `assets/category-cleanup.js` (blob `d3f0f1227b578994229b31f0fd1b97a184598056`).
+- [x] Confirmed the frontend cleanup script only hides category cards with no products; it does not repair category assignments or merge duplicate nodes. The generated tree includes same/similar category names as both empty top-level catalogue placeholders and populated legacy/subcategory nodes (example: root `4X4 Outdoor` has 0 direct products while child `4X4 OUTDOOR` has 16).
+- [!] Therefore the current presentation may hide empty placeholders but the underlying taxonomy remains fragmented. Do not bulk-delete categories or move products based on matching names alone: some are intended parents/subcategories, and case/slug similarities are not sufficient proof of equivalent taxonomy.
+- No source code, database, hosting, deployment, DNS or payment settings changed in this follow-up inspection.
+- Next safe step: build a row-level category reconciliation report using product SKU/name/current category plus the authoritative source-guide category for each SKU; then stage a deterministic SKU-to-category mapping and validate totals before any production migration. The price/cost CSV transfer blocker remains separate and still must be resolved before catalogue import.
