@@ -870,3 +870,10 @@ Read-only category notes:
 - Start status: handover read from `main`; current release rules preserved. Axxess/DNS/SSL changes remain deferred under the recorded 24-hour exclusion. No Cloudflare/Netlify deployment credits to be used.
 - Execution method: inspect existing workflows/scripts first, then perform read-only Supabase checks and run only safe validation that is available through connected tools. Do not bulk-import or overwrite live data.
 - Completion record: pending; append verified results, blockers, and exact next action after the task attempt.
+
+
+## 2026-10-12 20:54 SAST — TASK START CHECKPOINT: CONTINUE FROM MASTER HANDOVER
+- Re-read `HANDOVER.md` on the default branch before continuing. The latest finite work list identifies the Feb–Sep source/live cost-and-price row-level reconciliation as blocked on a CSV transfer; do not repeat hash/sample checks or claim exception counts without the row-level join.
+- This task will pursue independent work that can be completed without that CSV: inspect the corrected Axxess package workflow/run/artifact state and perform read-only catalogue/category invariants in Supabase. Preserve prices, stock, orders, and hosting; no deployment, build trigger, DNS/payment changes, or live data writes.
+- Permanent owner instructions remain unchanged and must be preserved verbatim in this file.
+- Status: IN PROGRESS. Completion note to be appended after evidence is collected.
