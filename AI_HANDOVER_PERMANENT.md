@@ -1484,3 +1484,8 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Release decision for the 15 Oct target: fastest safe option is a clearly disclosed EFT/manual-payment soft launch, with only price-verified items enabled for direct purchase and all unverified/expired/incorrect-price products routed to quote-only or withheld from cart until current prices are verified. If the owner requires PayFast card payment at launch, the 15 Oct target depends on merchant approval/credentials and a completed end-to-end payment integration/test; this is not presently verified.
 - Security: Supabase Auth leaked-password protection remains disabled per existing handover. It is an owner action before final production sign-off; current connector has not exposed the management setting. Do not mark the final security gate passed until the owner enables it and the security advisor/access tests are rerun.
 - No secrets were read or printed; no live data, payment settings, deployment, or hosting credits changed.
+
+
+### 2026-10-12 — Task started: price-safe soft-launch feasibility check
+
+- **Status: IN PROGRESS.** Determine whether existing product UI already supports quote-only items and whether the current 785 unverified September-source candidates can be safely excluded from direct checkout without disabling the rest of the catalogue. This is a source inspection and read-only query only; no bulk live status changes.
