@@ -647,3 +647,10 @@ Read-only category notes:
 - Staged correction for the single consolidated release: for each of those eight rows only, change `image_url` from placeholder to the exact function URL using that row's identical `public_sku`. Before applying, assert each SKU has its matching WebP asset and current row still has the placeholder URL; abort if any predicate differs. Do not touch the other 86 placeholder products without verified matching WebPs.
 - [ ] No live product row changed in this task. No Axxess working package was modified because the available tools do not expose the Axxess file system/site editor in this session. The exact repair is prepared as a release instruction, not executed.
 - Task result: SOURCE LOGIC VERIFIED; EXACT REPAIR MAPPING PREPARED; PRODUCTION CHANGE PENDING CONSOLIDATED RELEASE. No build/deploy triggered.
+
+
+## 2026-10-12 19:30 SAST — TASK START CHECKPOINT: SOURCE CATALOGUE INVENTORY FOR RECONCILIATION
+- Task started: locate available June-through-current catalogues, vehicle-specific catalogues, validated staging CSVs, and reconciliation workbooks in the user's Library before calculating any product joins.
+- Scope follows owner's decision: use catalogues from June through current plus vehicle-specific catalogues without pricing; include valid unpriced vehicle-specific products as quote-only candidates; ignore asterisk/system-priced rows as directed; do not modify live products.
+- No production import, build, deployment, or catalogue write will occur in this task. Record exact source filenames and available data before matching.
+- Status: IN PROGRESS.
