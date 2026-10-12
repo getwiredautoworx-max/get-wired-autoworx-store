@@ -552,3 +552,35 @@ Read-only category notes:
 - Outstanding blockers and next steps: (1) obtain/parse the June, October, promotions, Suzuki, Renault/Dacia and ASC family source rows; (2) verify source page, SKU, product/application, cost and date; (3) exact-match each normalized source SKU against all 4,187 live SKUs; (4) deduplicate and classify KEEP / UPDATE / ADD / QUOTE / REVIEW with exact totals; (5) create a true import CSV/XLSX only after uniqueness, price, fitment and image checks pass; (6) repair only the eight exact verified image URLs via an authorized write path and rerun image audit; (7) run storefront and checkout QA against the exact deployed commit using an available workflow runner or manual test route; (8) verify canonical DNS/HTTPS and policy pages; then reassess PayFast/PayJustNow readiness.
 - ETA: no defensible go-live date yet. Exact reconciliation totals and current-deploy checkout QA are still unverified. Do not import the HOLD workbook.
 - Status: HANDOVER UPDATED; LIVE PRODUCT DATA UNCHANGED; IMPORT PACKAGE NOT YET VALIDATED; PAYMENTS NOT READY.
+
+
+## 2026-10-12 — Corrected deployment route and verified checkpoint
+
+### Deployment route correction
+- **Active intended deployment route: Cloudflare Pages/Workers, not Netlify.** Netlify credits are exhausted and Netlify is not the active release path. Do not treat Netlify deployment freshness as a Cloudflare release blocker or spend effort trying to trigger Netlify.
+- Cloudflare Pages project: `get-wired-autoworx-store`; project/repository: `getwiredautoworx-max/get-wired-autoworx-store`; Pages URL: `https://get-wired-autoworx-store.pages.dev`; production branch previously recorded as `main`.
+- GitHub `main` and the live Cloudflare deployment still need to be compared directly. Do not claim Cloudflare is current until the Cloudflare deployment metadata / deployed source is verified.
+- A successful test on an earlier commit is not proof that the currently deployed Cloudflare site or its checkout works. Test the Cloudflare Pages URL and production domain directly, then verify catalogue browsing, product detail, cart, checkout, and payment hand-off.
+- The old Netlify deployment metadata (published commit `37654d7c2e8e38dad80f9edf33413aa1be62d1a4`, 15 September) is historical only and is not the active deployment status.
+
+### Catalogue / production checkpoint
+- Read-only live Supabase check recorded: 4,187 active products; 4,187 unique SKUs; 0 missing SKUs; 0 invalid price/cost records under the checked conditions; 0 missing image URLs; 0 pricing-formula mismatches against `cost_price × 1.15 × 1.35`. No live product rows were changed during that check.
+- Existing review workbook: `Get_Wired_AutoWorx_RECONCILIATION_REVIEW_PACKAGE_2026-10-12.xlsx` (generated locally as `/mnt/data/Get_Wired_AutoWorx_Reconciliation_Review_Package_2026-10-12.xlsx`). This is a **review/HOLD package, not an import-ready validated package**.
+- Existing workbook covers Feb–Sep source data and does not yet prove complete reconciliation for June, October/current sources, or vehicle-specific guides. Quote-only unpriced items must be preserved as quote requests where source identity/fitment is valid; do not invent a price.
+- Image audit failure remains open: 94 placeholder mappings were recorded; 8 exact-SKU image files were found but not connected; 86 still lack a known exact-SKU image. Resolve exact SKU/image mappings and rerun the image audit.
+- Prior successful GitHub smoke/catalogue QA runs were on commit `445fb5355c0507d3f4b372962017a8b408774ccb`; they do not establish current Cloudflare deployment or checkout correctness.
+
+### Payments and domain
+- PayFast and PayJustNow checkout readiness is **not confirmed**. Do not submit `www.getwiredauto.co.za` as a verified live URL until the domain resolves over HTTPS, the Cloudflare-served store is reachable, and terms/shipping/returns URLs are checked.
+- No DNS, deployment settings, payment settings, or live product data were changed as part of this checkpoint.
+
+### Immediate next actions (Cloudflare-first; avoid repeated builds)
+1. Inspect Cloudflare Pages project/deployment metadata and identify the production deployment commit for `main`; compare it with current GitHub `main`.
+2. Smoke-test the deployed Cloudflare URL and custom domain, including product/category images, SKU search, cart totals, packaging fee, pickup/delivery, order creation, and payment hand-off. Record actual pass/fail evidence.
+3. Fix the image-audit failure by exact SKU mapping only; rerun the audit before deployment.
+4. Finish source-by-source reconciliation for June through current and all vehicle-specific catalogues, including valid quote-only records; output explicit matched/new/superseded/quote-only/unresolved totals.
+5. Produce a separate import-ready package only after reconciliation and pricing validation pass. Keep live product rows unchanged until the package is reviewed and approved.
+
+### ETA and blockers
+- **Go-live ETA: not yet responsibly estimable.** The blocking work is identifiable, but source-by-source reconciliation, image audit repair, current Cloudflare deployment verification, and live checkout/payment verification are incomplete. Do not replace this with a guessed date.
+- Main failure/risk: previous notes incorrectly foregrounded stale Netlify deployment status despite Netlify credits being exhausted. Use Cloudflare as the deployment path going forward.
