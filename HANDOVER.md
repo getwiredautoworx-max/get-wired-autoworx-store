@@ -877,3 +877,15 @@ Read-only category notes:
 - This task will pursue independent work that can be completed without that CSV: inspect the corrected Axxess package workflow/run/artifact state and perform read-only catalogue/category invariants in Supabase. Preserve prices, stock, orders, and hosting; no deployment, build trigger, DNS/payment changes, or live data writes.
 - Permanent owner instructions remain unchanged and must be preserved verbatim in this file.
 - Status: IN PROGRESS. Completion note to be appended after evidence is collected.
+
+
+## 2026-10-12 20:56 SAST — TASK COMPLETION: READ-ONLY CATALOGUE INVARIANTS AND PACKAGE WORKFLOW CHECK
+- [x] Updated this handover before the task started (start-checkpoint commit `9dffb7a9372529ef97cdbf9afb5c54a0bc5929d6`), then performed read-only checks only.
+- [x] Supabase production invariants pass: 4,187 active products; 4,187 distinct normalized active SKUs; 0 active products without a category; 0 active products missing cost or price; 0 live price-formula mismatches using PostgreSQL numeric rounding.
+- [x] Inspected `.github/workflows/prepare-axxess-package.yml` at blob `ffe76b9680687c9591902880557de407321809f6`. It now uploads `axxess-storefront-upload.zip` (corrected path), and the workflow's ZIP integrity test is configured. This confirms source configuration only, not a successful post-fix run or fresh artifact.
+- [!] Workflow-run verification is not available from the connected action lookup for fix commit `1f04390fe4a5fb9caf0234391af8147c39c2ebea` (returned no associated runs). No new workflow was triggered, to preserve build/credit constraints. Do not use the old/stale artifact.
+- [!] Category reconciliation is not complete: the live category table has 242 category records, 166 with zero active products, 163 distinct normalized names, and 76 category records currently assigned active products. Thus “0 uncategorized” is not proof of correct category mapping; legacy/duplicate category records remain. No category or product records were changed because SKU-level mapping evidence is required to avoid misclassification.
+- [!] Exact source/live cost-and-price row-level join remains blocked on transfer of the read-only CSV (`sku,cost_price,price`) into the workbook-processing runtime. Do not infer counts or overwrite prices.
+- No production data, order/stock data, DNS, hosting, payment configuration, deployment, or build was changed.
+- Next ordered action: resolve the price reconciliation data-transfer gate by obtaining the read-only CSV; meanwhile, prepare an explicit category exception report from the verified catalogue workbook and live category assignments without mutating production. Then finish exact category/SKU mapping and only later inspect/trigger the corrected Axxess packaging workflow when the release/credit constraints permit.
+- ETA: invariant audit complete (~2 minutes); row-level price join ETA remains dependent on CSV availability. Category mapping ETA cannot be stated until product-to-category evidence is reconciled.
