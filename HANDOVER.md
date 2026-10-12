@@ -748,3 +748,10 @@ Read-only category notes:
 - Current release status: BLOCKED. Catalogue cross-source join/package incomplete; 8 image repairs staged but not applied; 86 placeholder images unresolved; Axxess/current candidate QA not verified; domain/HTTPS not verified; PayFast checkout/PayJustNow approval not confirmed.
 - Task result: CONTROL PLAN WRITTEN AND LIVE BASELINE VERIFIED. No production rows, DNS, payment settings, or deployment changed. No build triggered.
 - Immediate next task: generate exact source-to-live SKU reconciliation from the verified Feb–Sep workbook against all live SKUs, then add October/vehicle-specific sources without importing. Do not switch to unrelated work until this reconciliation has a matched/new/price-change/quote-only/unresolved count that balances.
+
+
+## 2026-10-12 20:08 SAST — TASK START CHECKPOINT: FEB–SEP EXACT SKU RECONCILIATION
+- Task started immediately after the control plan was recorded.
+- Compare the verified workbook's distinct supplier SKU set with the live database's distinct active `sku` set. Use normalized exact code equality only; do not join on descriptions. Produce balanced counts for source matched-live, source not-live, live not-in-source, duplicate/source issues, plus price/formula/source-guide exceptions. Keep all results staging-only.
+- The 36 rows without a source guide and the difference between 4,188 source unique codes and 4,187 live distinct SKUs must be resolved by explicit row/code, not just count arithmetic.
+- No production writes/import/deploy/build. Status: IN PROGRESS.
