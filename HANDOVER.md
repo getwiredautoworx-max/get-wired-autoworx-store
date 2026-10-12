@@ -863,3 +863,10 @@ Read-only category notes:
 - Required next action: export only `sku,cost_price,price` for active products from Supabase Table Editor as CSV and attach it in the chat. No secret key is needed. Then compare exact SKU and Decimal/ROUND_HALF_UP amounts locally and produce balanced matched/cost-change/price-change/rounding/unresolved exception lists before any import decision.
 - Task result: READ-ONLY BASELINE PASS; AUTOMATED TRANSFER PATH NOT FOUND; SOURCE/LIVE PRICE JOIN NOT COMPLETE.
 - ETA: once the CSV is attached, the row-level join and exception report can be completed in one focused processing task; the wider catalogue reconciliation still requires June/current and vehicle-specific sources after this price gate is resolved.
+
+
+## 2026-10-12 — TASK START CHECKPOINT: INDEPENDENT CATALOGUE/STORE QA
+- Task selected: inspect repository automation and current Supabase catalogue/category state to advance SKU-level category reconciliation without touching customer-facing prices, stock, orders, or hosting.
+- Start status: handover read from `main`; current release rules preserved. Axxess/DNS/SSL changes remain deferred under the recorded 24-hour exclusion. No Cloudflare/Netlify deployment credits to be used.
+- Execution method: inspect existing workflows/scripts first, then perform read-only Supabase checks and run only safe validation that is available through connected tools. Do not bulk-import or overwrite live data.
+- Completion record: pending; append verified results, blockers, and exact next action after the task attempt.
