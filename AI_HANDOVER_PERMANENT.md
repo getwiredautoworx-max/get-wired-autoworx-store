@@ -1498,3 +1498,26 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Safest date-driven fallback:** in the single consolidated release, implement a customer-visible pricing status for source-unverified products. Verified-current-price products remain purchasable; unresolved products display “Price & availability on request” and offer a product-specific WhatsApp/quote action while suppressing Add to Cart/Buy Now. Keep the nine no-price entries quote-only. This avoids publishing stale prices and allows the catalogue to remain browsable, but requires a clear soft-launch disclosure that not every item is immediately purchasable.
 - Do not simply hide all 785 items without preserving enquiry/fitment routes, and do not mark the whole catalogue price-verified. The owner must decide whether this restricted, quote-assisted soft launch is acceptable if suppliers do not confirm all prices by 14 October. If full online purchase for all 4,187 products is mandatory by 15 October, a current supplier-price feed/confirmation for unresolved items becomes a hard dependency and the date cannot be guaranteed.
 - No source storefront files or live product rows changed during feasibility check; no deployment credits used.
+
+
+### 2026-10-12 — RELEASE TARGET PLAN LOCKED: 15 OCTOBER 2026
+
+**Current status: AMBER/RED — a quote-assisted soft launch is achievable only if the owner accepts the restricted price-safe route and the remaining external gates are completed. Full purchase of every product plus PayFast is not currently release-ready.**
+
+#### Exact work sequence to minimize elapsed time and credits
+
+- **12 Oct (completed source-only audit):** verified current published Netlify deploy is stale (15 Sep commit), found checkout-v2.html missing from the build copy list, confirmed Supabase store-checkout and shipping-quote functions are ACTIVE, confirmed checkout currently offers Direct EFT only with payment pending, and identified 785 September-source records whose current prices are not verified (38 known scaling defects + 747 freshness holds). No live product changes or deployment credits used.
+- **13 Oct — source/data package:** finalize the 785-SKU disposition: use supplier-confirmed current costs where available; otherwise set a durable quote-only status for unverified rows, with product-specific enquiry/WhatsApp and Add to Cart/Buy Now suppressed. Preserve the six existing October-source rows and nine inactive system-price rows. Validate formula = cost ex VAT × 1.15 × 1.35, source provenance, images, and exact SKU. Prepare one consolidated import/build package; no blind overwrites.
+- **14 Oct — non-credit QA and owner gates:** verify local/static links, include checkout-v2.html in dist, validate the existing Supabase checkout/shipping functions and order totals, confirm Terms/Privacy/Shipping links and EFT wording, enable leaked-password protection (owner action), and verify domain DNS/HTTPS. Confirm PayFast credentials/approval only if PayFast is required for launch. Run no production deploy until these checks pass.
+- **15 Oct — single release:** one coordinated source/data update and one final deployment to the existing host, then verify deployed commit and route; test product browse/search/category/product, price/quote-only gates, cart, pickup/delivery quote, R35-per-item packaging, order creation, pending EFT state, admin order visibility, mobile, failure handling, HTTPS/domain, and post-test DB integrity. Stop release if totals, pricing safety, checkout, security or order handling fail.
+
+#### Required owner decision / dependency
+
+- **Fastest safe route:** approve a limited quote-assisted soft launch by 15 Oct: only current-price-verified products are directly purchasable; the rest remain browsable but show “Price & availability on request”; payment is Direct EFT/manual confirmation and clearly disclosed as not card payment. If current supplier prices are not received, this approach avoids selling at stale or incorrectly scaled prices.
+- **If full online checkout for all 4,187 products and PayFast card payments are mandatory on 15 Oct:** that date is conditional on current price confirmation for the unresolved catalogue, PayFast merchant approval/credentials, integration and end-to-end test. These external prerequisites are not verified today; do not guarantee the date.
+- Owner must enable Supabase Auth leaked-password protection before final production sign-off. The desired custom domain www.getwiredauto.co.za and HTTPS must be independently verified; current Netlify deploy metadata alone does not prove custom-domain DNS works.
+
+#### Permanent execution/monitoring note
+
+- Daily automation “Get Wired Store Reconciliation” remains the persistent scheduled follow-up. It is daily, not continuous; ChatGPT cannot guarantee an immediate automatic restart at the exact moment a chat/session ends. The handover remains the source of truth; every new session must read it first, append task-start status before work, and append outcome immediately after each task.
+- Deployment/credit lock remains active: no intermediate builds or deployments, no unnecessary commits, no mass live overwrite, and no Netlify/Cloudflare credit usage until the one final testing phase.
