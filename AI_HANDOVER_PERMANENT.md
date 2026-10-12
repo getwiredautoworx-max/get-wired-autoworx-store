@@ -1581,3 +1581,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Consolidated release must remove/disable the duplicate modal path or replace it with a link into the single authoritative checkout page. Do not maintain two checkout implementations. The approved design should remain unchanged apart from functional corrections.
 - This reinforces that live test orders are unsafe before the correction; order creation decrements stock. No test order or live mutation was made. No builds/deployments/credits used.
 - Next: inspect static paths/assets and compile the final source correction checklist so the build-copy fix, single checkout path, quote-only gate, and delivery/payment contracts can be corrected together once.
+
+
+### 2026-10-12 — Task completed: production publish-path audit
+
+- **Status: SUCCESS — two missing publish-copy defects confirmed.** Current `index-new.html` loads root-level `product-details.js`, but `netlify.toml` does not copy that file into `dist`. The script is present on GitHub, so this is a publish-command defect rather than a missing source file. The final build must copy it to `dist/product-details.js`.
+- The storefront references `returns-refunds.html`, which exists in the repository, but `netlify.toml` does not copy it into `dist`. The final build must publish it. `TERMS_AND_CONDITIONS.md` exists as a Markdown file but is not a customer-facing HTML page; it should not be assumed to be a usable checkout terms URL. The repository paths `terms.html`, `privacy.html`, and `shipping.html` were not found by direct file lookup; do not link to them or claim they exist without locating/creating appropriate customer-facing pages.
+- The build already copies admin.html, assets/admin.js, checkout.html and the shared assets, but omits checkout-v2.html, product-details.js and returns-refunds.html. These three exact copy operations must be included in the consolidated final build command, followed by static validation of all local links and script references. Product image/logo files may be included in the product-image ZIP; verify archive paths during the final build package check rather than assuming.
+- No code or live data changed during this audit; no build/deploy or hosting credits used.
+- Next: finish the release-blocker matrix and implement a single authoritative checkout path plus quote-only price status in the consolidated source/function/data change. Do not deploy until all referenced pages and customer policy URLs are present.
