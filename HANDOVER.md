@@ -697,3 +697,13 @@ Read-only category notes:
 - Plan: extract the September PDF's text into a temporary staging-only table, identify supplier-code/description/price records, validate extraction quality, and compare source SKU uniqueness. This does not authorize price imports; PDF visual checks remain required for ambiguous OCR/layout rows.
 - No live product changes, imports, deployments, or builds.
 - Status: IN PROGRESS.
+
+
+## 2026-10-12 19:42 SAST — TASK COMPLETION: SEPTEMBER STAGING RECONSTRUCTION ATTEMPT
+- [x] Materialized the 32-page `September Buyer's Guide.pdf` and inspected extracted text across representative pages.
+- [x] Confirmed the PDF text layer has serious layout-order/price-digit fragmentation (e.g. catalogue codes and prices are split across separate lines/columns and decimal values are concatenated). A naive text-to-CSV reconstruction would risk pairing the wrong prices with supplier codes.
+- [x] Broader Library search for the September corrected staging CSV returned no matching CSV. It did find the source PDF, October guide, October promotions, historical audit/import CSV, and June–August audit workbook.
+- [!] Safe reconstruction from the extracted text is NOT completed. No CSV was fabricated from unreliable text order. The September PDF remains the source of truth, but SKU/cost pairs must be visually verified page-by-page or the original corrected CSV must be located.
+- No product data changed; no import, deployment, or build occurred.
+- Recovery: use PDF page image/column-position extraction to validate product-code/price pairs, or locate the exact prior staging CSV by its actual Library filename. Continue with October guide and vehicle-specific code/application joins independently; unpriced valid vehicle-specific items remain QUOTE candidates, not priced imports.
+- Task result: STAGING RECONSTRUCTION BLOCKED BY UNRELIABLE PDF TEXT ORDER; unsafe guess avoided. This is a real blocker and must remain visible in ETA.
