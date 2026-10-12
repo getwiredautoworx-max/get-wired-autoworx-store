@@ -1469,3 +1469,8 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Queued source fix for consolidated release:** amend netlify.toml build command to copy checkout-v2.html to dist/checkout-v2.html; then statically validate every local href/src and checkout endpoint, run available non-credit checks, and make one release deployment only after price holds and security/payment decision are resolved.
 - **Not yet verified:** live PayFast end-to-end flow, DNS/HTTPS for www.getwiredauto.co.za, customer order round trip, final Supabase security setting/advisor, and production mobile journey. These remain explicit release gates; no claim of launch readiness is made.
 - No storefront source code was changed in this audit; no product data changed; no build/deploy was triggered; no hosting credits consumed.
+
+
+### 2026-10-12 — Task started: payment and security release-gate audit
+
+- **Status: IN PROGRESS.** Check the existing payment gateway and checkout backend configuration without exposing secrets or changing production settings. Determine whether a verified manual-payment route is viable if PayFast merchant approval/credentials are still pending. Confirm the exact security setting that needs owner action. No live changes, secret reads, or deploys without explicit authorization.
