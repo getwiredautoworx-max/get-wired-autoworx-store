@@ -1347,3 +1347,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Immediate next work: recover/open the corrected 800-SKU QA workbook and dry-run CSV from the latest session artifacts; inspect the 38 flagged rows against the authoritative September PDF; verify exact supplier SKU, description and source cost; rerun the exact 800-SKU-to-live join and report KEEP / UPDATE / ADD / QUOTE / REVIEW counts. Do not write product data until the row-level comparison is validated.
 - Deployment / release: no product writes, no Cloudflare/Netlify build/deploy, and no deployment credits used during this recheck. Preserve the current approved storefront and defer the one coordinated release until catalogue and production QA gates pass.
 - ETA: live database integrity recheck completed. A reliable launch ETA is still blocked by the unresolved row-level 800-SKU source reconciliation and 38 source-price checks; give an ETA only after the exact join and exception counts are measured.
+
+
+## 2026-10-12 — TASK STARTED: RECOVER QA FILES / UNBLOCK RECONCILIATION
+
+- **Status: IN PROGRESS.** Per owner instruction, this task was recorded before recovery/reconciliation work began.
+- Work sequence: (1) search conversation uploads and Library for the exact corrected 800-SKU QA workbook, dry-run CSV and authoritative September source; (2) if present, inspect and calculate exact SKU-level KEEP / UPDATE / ADD / QUOTE / REVIEW totals; (3) record each success/failure/blocker in this handover immediately at the point it occurs; (4) do not mutate live product rows or deploy until source reconciliation passes.
+- Session continuity limitation: ChatGPT cannot promise to keep a background process alive or automatically restart it after a chat/session ends unless a persistent external scheduler/runner is explicitly configured and verified. Do not claim background monitoring or auto-restart is active unless an actual persistent job and its status can be shown. Investigate available repository automation only after the source-file recovery check; avoid a deployment/build and do not consume release credits.
