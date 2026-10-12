@@ -990,3 +990,18 @@ Read-only category notes:
 - No store source, catalogue, orders, stock, DNS, hosting, payment configuration, or deployment changed.
 - Next single action: obtain a fresh HTTP result from a network-capable external runner without triggering a new build/deployment. The connected GitHub toolset does not currently expose a safe trigger for that runner. If no authorised connector/runner becomes available, the only unavoidable owner input is the exact public Axxess staging hostname if it differs from the recorded canonical domain; do not ask for this unless the owner has an actual different hostname and no other tool path can reveal it.
 - ETA: task-start and completion handover updates are committed; current live URL verification remains blocked on external DNS-capable execution.
+
+
+## 2026-10-12 21:45 SAST — CONTINUATION HANDOVER: RESUME AT EXTERNAL HTTP VERIFICATION
+- [x] Owner requested that the handover be updated to continue from the exact current point. This entry preserves the existing release-first direction; do not restart prior audits or restate the plan as a substitute for execution.
+- Current release gate: obtain a fresh HTTP status/content check from a DNS-capable external runner for exactly:
+  1. `https://www.getwiredauto.co.za/`
+  2. `https://www.getwiredauto.co.za/terms-and-conditions.html`
+  3. `https://www.getwiredauto.co.za/returns-refunds.html`
+- Existing evidence: GitHub runner run `38122634362` returned HTTP 200 for the canonical homepage and selected assets on 2026-10-11. This is historical only. Direct probes in this runtime subsequently failed at DNS resolution (curl status 000), so current public reachability and policy-page content remain UNVERIFIED.
+- Execution limitation found: connected GitHub tools support inspecting workflow runs/jobs/logs and rerunning failed jobs, but do not expose a safe workflow-dispatch action to start the existing external HTTP probe without a new trigger/build. Do not create a dummy commit, trigger a deployment, or consume Cloudflare/Netlify credits just to work around DNS in this runtime.
+- Next operator action: first inspect the repository's available workflows and any existing scheduled/external test route for a no-build trigger; if a safe route exists, run it and record exact URL/status/redirect/content-type evidence. If none exists, use an already-authorized network-capable runner/connector, without changing production. Do not ask the owner to perform routine checks. Ask for owner input only if a true owner-only access/approval/credential is proven necessary.
+- After successful current HTTP verification, inspect the served page content and confirm policy links are present and resolve; only then prepare the exact verified storefront/policy URLs for PayFast and PayJustNow merchant review. Provider submission/approval is a separate step and must not be represented as completed without evidence.
+- Guardrails remain in force: preserve the existing storefront and all 4,187 active products/prices; no catalogue/category/image audit; no DNS/hosting mutation; no payment settings/credentials mutation; no real orders; no unnecessary builds or commits.
+- Handover process: append a task-start checkpoint before each meaningful attempt and a completion entry immediately after it, including exact outcome, error, commit/run ID, recovery action and ETA where supportable. Continue from this checkpoint in the next session.
+- ETA: no honest ETA until an available external HTTP execution path is identified. No store or hosting change was made in this handover-only update.
