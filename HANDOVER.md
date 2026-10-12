@@ -844,3 +844,11 @@ Read-only category notes:
 - [!] Exact source-to-live price/cost comparison still cannot be completed honestly with the current data-transfer boundary: source workbook is accessible in the local Python runtime, live database is accessible through SQL tools, but no tool directly moves a full live SKU/cost/price CSV into that Python runtime. Aggregate hashes and samples prove price differences exist but cannot enumerate the complete exception set.
 - Required next input to finish safely: export only `sku`, `cost_price`, and `price` for active products from Supabase Table Editor as CSV and attach/upload it in this conversation. No secret keys are required. Then join against the 4,186-row source workbook locally using exact SKU and Decimal/ROUND_HALF_UP, produce the complete matched/price-change/cost-change/unresolved CSVs, and prepare a staged package. Do not import or overwrite live rows until that report is complete and owner-approved.
 - Task result: EXISTING AUTOMATION INVESTIGATED; no reusable export/join route found; row-level price reconciliation remains blocked on a read-only CSV transfer. No production writes/builds/deployments.
+
+
+## 2026-10-12 20:40 SAST — TASK START CHECKPOINT: CONTINUE BUILD FROM HANDOVER
+- Read the current master handover file on GitHub before acting. Preserve the existing store; do not rebuild/redesign or trigger a deployment.
+- Current ordered blocker: Feb–Sep source SKU set reconciles (4,186 matched, 0 source-only, 1 live-only SKU `00-212-1960`), but row-level source/live cost-and-price reconciliation remains incomplete. The live database's own pricing formula passes for all 4,187 active products.
+- Previous attempts established that the workbook is available in the local processing runtime while Supabase SQL is available separately; no existing authorized automated route exports the full live `sku,cost_price,price` set into the same runtime. Do not repeat fingerprint/sample-only checks or infer exception totals.
+- Task now: make one final read-only check for an existing supported export/transfer path, then record the verified outcome. No production writes, imports, builds, deployments, DNS or payment changes.
+- Status: IN PROGRESS.
