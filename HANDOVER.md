@@ -679,3 +679,14 @@ Read-only category notes:
 - Goal: establish a reliable SKU/code join process and quantify which source queues can be matched without treating OCR-only or rounded-price exceptions as approved imports.
 - No production data writes, import, deployment, or code changes during this task.
 - Status: IN PROGRESS.
+
+
+## 2026-10-12 19:38 SAST — TASK COMPLETION: RECONCILIATION WORKBOOK STRUCTURE INSPECTED
+- [x] Materialized and inspected three actual workbooks locally; no changes were made to source files.
+- `Get_Wired_AutoWorx_Reconciliation_Status_2026-10-11.xlsx`: 4 sheets — Executive Status (29 rows), Source Register (10), Historic Exceptions (127), Rounding Exceptions (419). This is a control report, not an import file.
+- `Get_Wired_AutoWorx_Buyers_Guides_Audit_June_August_2026.xlsx`: 262 sheets; INDEX reports 4,820 product-line occurrences, 3,704 unique SKU records in five text guides, and 470 June OCR staging records. Main audit sheet pattern includes Category, Subcategory, SKU, Stock Description, Cost, VAT 15%, Cost + VAT, 35% Mark Amount, Final Advertised Selling Price, Stock Qty, Status, Source Guide, Source Page. The June OCR detail sheet contains 470 records but its SKU/cost values are explicitly marked as needing verification.
+- `Get_Wired_AutoWorx_CORRECTED_PRICE_AUDIT_Feb-Aug_2026.xlsx`: 7 sheets. `ALL PRODUCTS` has 3,578 rows and fields SKU, description, source guide/page, raw catalogue price, verified cost, calculated price components, formula check and source status. `UNRESOLVED SOURCE PRICES` has 126 rows. `PRICE HISTORY` has 3,578 rows. `PRICE VERIFICATION` records 418 formula flags.
+- Join rule confirmed: normalized exact supplier SKU/code is the primary join key; descriptions and vehicle applications are secondary evidence only. A one-cent historic staged-rounding exception is not authorization to overwrite a live selling price. June OCR-only rows must stay REVIEW until code and cost are visually verified against the PDF page. Unpriced but valid vehicle-specific codes can be QUOTE candidates only after exact code and application verification.
+- Limitation: this task inspected workbook structure and headers; it did not yet calculate cross-source-to-live joins or source-level matched/new/superseded/quote-only/unresolved totals.
+- Task result: STRUCTURE INSPECTION COMPLETE; LIVE DATA UNCHANGED. No deployment or build occurred.
+- Next task: locate the September corrected staging CSV or reconstruct it from the September PDF in a staging-only workspace; then compare exact supplier-code sets against the live product SKU list and the current guide price sources. Do not import until full totals reconcile.
