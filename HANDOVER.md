@@ -690,3 +690,10 @@ Read-only category notes:
 - Limitation: this task inspected workbook structure and headers; it did not yet calculate cross-source-to-live joins or source-level matched/new/superseded/quote-only/unresolved totals.
 - Task result: STRUCTURE INSPECTION COMPLETE; LIVE DATA UNCHANGED. No deployment or build occurred.
 - Next task: locate the September corrected staging CSV or reconstruct it from the September PDF in a staging-only workspace; then compare exact supplier-code sets against the live product SKU list and the current guide price sources. Do not import until full totals reconcile.
+
+
+## 2026-10-12 19:39 SAST — TASK START CHECKPOINT: RECONSTRUCT SEPTEMBER STAGING FROM SOURCE PDF
+- Task started because exact-title search did not locate the previously referenced corrected September staging CSV. The September PDF is available in Library.
+- Plan: extract the September PDF's text into a temporary staging-only table, identify supplier-code/description/price records, validate extraction quality, and compare source SKU uniqueness. This does not authorize price imports; PDF visual checks remain required for ambiguous OCR/layout rows.
+- No live product changes, imports, deployments, or builds.
+- Status: IN PROGRESS.
