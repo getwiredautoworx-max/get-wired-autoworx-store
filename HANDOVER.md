@@ -817,3 +817,8 @@ Read-only category notes:
 - No production writes, imports, builds, deployments, DNS or payment changes occurred.
 - Required recovery: enable a read-only CSV export of live `sku`, `cost_price`, and `price` (Supabase dashboard table export is preferred), then compare locally against the workbook by exact SKU with Decimal/ROUND_HALF_UP. Report counts and exception CSVs for same-price/same-cost, cost change, price change, source-price rounding exception, and unresolved rows. Do not adjust the 14 cent-rounding rows or any other price until the owner-approved rule and exact row-level reconciliation are applied to the consolidated staging package.
 - Task result: SKU SET PASS; FORMULA AUDIT FOUND 14 ONE-CENT EXCEPTIONS; SOURCE-TO-LIVE PRICE JOIN NOT COMPLETE AND PRICE DIFFERENCES CONFIRMED. Earlier “zero formula mismatches” claims are superseded by this Decimal audit.
+
+
+## 2026-10-12 20:40 SAST — TASK START CHECKPOINT: VERIFY LIVE PRICING FORMULA WITH EXACT NUMERIC ROUNDING
+- Source workbook audit found 14 one-cent exceptions when using Decimal/ROUND_HALF_UP, so prior binary-float validation cannot be trusted. Before attempting a bulk source/live join, independently verify the current live DB formula using Postgres numeric arithmetic.
+- Read-only query only: count active rows where `price` differs from `round(cost_price::numeric * 1.15 * 1.35, 2)` and list examples. No updates/imports/deployments. Status: IN PROGRESS.
