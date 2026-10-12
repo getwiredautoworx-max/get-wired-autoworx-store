@@ -1005,3 +1005,16 @@ Read-only category notes:
 - Guardrails remain in force: preserve the existing storefront and all 4,187 active products/prices; no catalogue/category/image audit; no DNS/hosting mutation; no payment settings/credentials mutation; no real orders; no unnecessary builds or commits.
 - Handover process: append a task-start checkpoint before each meaningful attempt and a completion entry immediately after it, including exact outcome, error, commit/run ID, recovery action and ETA where supportable. Continue from this checkpoint in the next session.
 - ETA: no honest ETA until an available external HTTP execution path is identified. No store or hosting change was made in this handover-only update.
+
+
+## 2026-10-12 21:47 SAST — CONTINUATION CHECKPOINT CONFIRMED
+- [x] Owner explicitly confirmed the next session must resume at external HTTP verification of the canonical homepage, terms-and-conditions page, and returns-refunds page. This is the sole next task.
+- [x] Reaffirmed that catalogue audits and rebuilds must not be restarted; no hosting, DNS, payment settings, or production data were changed by the preceding handover update.
+- Continue by locating a safe existing external HTTP runner/trigger that does not require a dummy commit or deployment. Verify current HTTP status, redirect chain, content type, and policy-page content for:
+  - `https://www.getwiredauto.co.za/`
+  - `https://www.getwiredauto.co.za/terms-and-conditions.html`
+  - `https://www.getwiredauto.co.za/returns-refunds.html`
+- Previous runtime DNS failures do not establish that the site is offline. Historical runner success on 2026-10-11 is not current verification.
+- Do not ask the owner to run routine tests. Only request input if an actual owner-only access/approval/credential is shown to be necessary after available tools are exhausted.
+- No store, hosting, DNS, payment, catalogue, order, or stock changes made in this checkpoint.
+- ETA: handover checkpoint saved; live URL verification remains pending a safe DNS-capable external execution path.
