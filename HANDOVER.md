@@ -725,3 +725,11 @@ Read-only category notes:
 - [ ] Exact join against the 4,187 live database supplier SKUs remains outstanding; this task does NOT establish which September codes are new/changed/already live.
 - [ ] The 36 rows with no Source Guide and the difference between 4,188 unique workbook codes and 4,187 live distinct SKUs must be explicitly reconciled, not discarded or silently imported.
 - Task result: SEPTEMBER STAGING SOURCE RECOVERED; SEPTEMBER FORMULA VALIDATION PASS; LIVE SKU RECONCILIATION PENDING. No production rows changed, no import/deploy/build triggered.
+
+
+## 2026-10-12 20:05 SAST — TASK START CHECKPOINT: RESET TO A SINGLE RELEASE CONTROL PLAN
+- Task started in response to owner asking how to correct the inefficient workflow.
+- Objective: replace ad-hoc task switching with one prioritized blocker register, explicit dependencies, pass/fail evidence, and a single release gate. This is documentation/control work plus read-only verification only.
+- Rules from owner: continue existing project; do not rebuild; Axxess remains the working editor; one consolidated update to GitHub/Supabase/Cloudflare; minimize credits; update handover before each task and immediately after completion; preserve unpriced verified items for quotation; no guessed SKU/image/price joins.
+- Work sequence to enforce: (1) establish current source/production baseline and release blockers, (2) finish source-to-live exact-SKU reconciliation and staged import package, (3) finish website UX/catalogue/image changes in Axxess, (4) run integrated QA on one release candidate, (5) confirm DNS/HTTPS/payment-provider readiness, (6) one coordinated release and post-release smoke test.
+- Do not perform live product mutations or deployments while writing this control plan. Status: IN PROGRESS.
