@@ -631,3 +631,10 @@ Read-only category notes:
 - Current database field check remains healthy: 4,187 active products; zero missing image_url, invalid/missing prices, or missing costs. This does not override the image-audit failure because URLs may point to placeholder proxies.
 - Task result: deployment pipeline success = PASS; current-domain reachability = UNVERIFIED; current-commit QA = NOT CONFIRMED; image audit = FAIL; release remains blocked.
 - No live data, DNS, payment settings, or deployment changed. Next: prepare/verify the exact eight-image mapping and reconcile catalogues in the Axxess working package; do not patch production rows or deploy piecemeal.
+
+
+## 2026-10-12 19:26 SAST — TASK START CHECKPOINT: PREPARE EXACT-SKU IMAGE REPAIR PLAN
+- Task started: inspect repository evidence for the failed image audit and locate the eight already-verified public-SKU WebP mappings. This is preparation only; no live product URL changes and no deployment.
+- Required safety: exact SKU match only; do not invent image URLs or replace unmatched products with unrelated imagery. Keep 86 unresolved placeholders untouched. Preserve Axxess-first and the single consolidated release cycle.
+- Intended output: a source-backed list of exact image URLs plus the relevant current file/workflow paths, or a recorded failure if the repository does not expose enough evidence.
+- Status: IN PROGRESS.
