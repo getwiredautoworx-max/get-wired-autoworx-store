@@ -1363,3 +1363,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Confirmed from the status workbook: historical Feb–Aug audit = 3,578 unique SKUs, 3,160 staged formula PASS and 418 one-cent rounding exceptions; historic unresolved-price queue = 126 rows; June OCR staging = 470 rows pending source-code/cost verification. September corrected staging CSV exists per status workbook, but its precise filename/file ID still needs locating.
 - Next action now underway: locate exact September PDF/CSV records in Library, materialize the reconciliation status workbook and relevant source files for programmatic inspection, then compute exact SKU joins without any live writes.
 - No production data changed; no build/deploy executed.
+
+
+### 2026-10-12 — Subtask started: rebuild September source extract from authority
+
+- **Status: IN PROGRESS.** The September Buyer's Guide PDF is now located in the Library (file ref surfaced as `file_00000000419c81faa3a92d2cdba5c33c`; uploaded 2026-09-09). The source guide states its prices exclude VAT and asterisked entries are system-dependent/variable.
+- The exact named `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv` was not found by targeted title search. To avoid blocking on a missing derivative file, reconstruct an independent, auditable source extract from the original PDF and explicitly mark uncertain OCR rows for review; do not represent the reconstruction as the missing corrected CSV.
+- Next: extract source pages/text; normalize supplier codes and numeric costs; separate asterisk/no-price entries; compare exact codes with live product records and preserve the source page for every row. No live writes/deploys.
