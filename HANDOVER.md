@@ -782,3 +782,10 @@ Read-only category notes:
 - No production changes, imports, builds, deployments, or DNS/payment edits occurred.
 - Recovery path: export the active `public.products.sku` column to a CSV using the Supabase dashboard or a supported export route, then compare it locally to the 4,186-row workbook extraction with exact normalized code matching; store the resulting reconciliation CSV/report in the project handover artifacts. Do not guess the unmatched code or proceed to catalogue import until the set difference balances.
 - Task result: SOURCE WORKBOOK VALIDATION PASS; EXACT LIVE SKU JOIN FAIL/NOT COMPLETED DUE DATA-TRANSFER LIMITATION. This limitation and the corrected count supersede the earlier 4,188/36-row statements.
+
+
+## 2026-10-12 20:30 SAST — TASK START CHECKPOINT: COMPLETE EXACT SKU SET JOIN USING AVAILABLE RUNTIMES
+- Task started after the last attempt could not transfer the live SKU inventory into the workbook-processing runtime.
+- New attempt: verify whether the materialized source workbook is accessible to the local Python runtime and inspect available Supabase/GitHub export routes. Prefer a read-only export that can be compared locally; do not change production schema/data or deploy a workaround just to move data.
+- Required output remains exact normalized SKU join, with source-only/live-only/matched totals and explicit exceptions. Do not infer the unmatched code from the one-row count difference.
+- No production mutations, builds, deployments, DNS/payment changes. Status: IN PROGRESS.
