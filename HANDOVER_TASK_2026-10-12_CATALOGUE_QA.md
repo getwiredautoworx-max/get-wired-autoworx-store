@@ -23,3 +23,8 @@ Read-only catalogue/category integrity QA. Master handover: `HANDOVER.md`.
 
 ## Handover write limitation
 The attempt to append this result directly to the large `HANDOVER.md` file was blocked by the connected GitHub write tool. This small task record preserves the verified result; the next continuation should link/reference it from the master handover when the master file can be updated safely.
+
+## Follow-up inspection
+- Read-only repository check confirmed `.github/workflows/catalogue-image-audit.yml` pages the full active catalogue in 1,000-row batches for image mapping, but it is not a product-cost/price export or category reconciliation workflow. `public-sku-exposure-audit.yml` only checks customer-facing source code.
+- The connected GitHub search did not surface a ready-made category reconciliation workflow. Two `catalog_import_parts` rows and four `catalog_import_chunks` rows exist; the returned data prefixes look like encoded/compressed payloads, but they have not been decoded or validated as catalogue source. Do not assume they replace the missing source-vs-live comparison.
+- Direct append to the large master `HANDOVER.md` was blocked by the connected write tool twice. This task record is committed at `465fc6e23b8bc49ba40720b4db11eae850f46fff`; the master should reference this record in a later safe edit. No user action was requested for this QA task.
