@@ -654,3 +654,21 @@ Read-only category notes:
 - Scope follows owner's decision: use catalogues from June through current plus vehicle-specific catalogues without pricing; include valid unpriced vehicle-specific products as quote-only candidates; ignore asterisk/system-priced rows as directed; do not modify live products.
 - No production import, build, deployment, or catalogue write will occur in this task. Record exact source filenames and available data before matching.
 - Status: IN PROGRESS.
+
+
+## 2026-10-12 19:33 SAST — TASK COMPLETION: SOURCE CATALOGUE INVENTORY
+- [x] Confirmed Library sources by exact filenames/search results:
+  - `June Buyer's Guide (1).pdf` (11,056,938 bytes; Library file ID `libfile_d62cce77ebac8191a6789e6a3f2f4b53`).
+  - `September Buyer's Guide.pdf` (5,803,563 bytes; Library file ID `libfile_32a320a3a63081918c6c0a6976bbd6ac`).
+  - `October Buyer's Guide.pdf` (5,186,389 bytes; Library file ID `libfile_e6c402d97ec0819181ad08d20d228d1f`).
+  - `October Promotions 2026.pdf` (32,243,575 bytes; Library file ID `libfile_9ccbcd1f9b388191b3d63478a3c2dda2`). Promotions must remain separate from normal cost updates and be checked for validity dates/terms.
+  - `ASC-Suzuki-Parts-Catalogue.pdf` (2,047,215 bytes; Library file ID `libfile_913bdb7e86c08191a80093e41e007e57`).
+  - `ASC-Renault-and-Dacia-Parts-Catalogue.pdf` (1,788,142 bytes; Library file ID `libfile_47581900b1308191a3c8afab0b38acb0`).
+  - `Get_Wired_AutoWorx_Reconciliation_Status_2026-10-11.xlsx` (43,299 bytes; Library file ID `libfile_8738ddd5616c819182b01132d5febede`).
+  - `Get_Wired_AutoWorx_CORRECTED_PRICE_AUDIT_Feb-Aug_2026.xlsx` (485,653 bytes; Library file ID `libfile_4e39bc84ec4c819196e8632b4af98eac`).
+  - `Get_Wired_AutoWorx_Buyers_Guides_Audit_June_August_2026.xlsx` (872,346 bytes; Library file ID `libfile_6d9065c202108191855533bd02a91b8d`).
+  - `Get_Wired_AutoWorx_STORE_STOCK_Feb-Sep_2026_VERIFIED.xlsx` (671,907 bytes; Library file ID `libfile_e2e92e2ff12c81918be763e7848cf8b5`).
+- [x] Existing reconciliation control report confirms: 4,187 active products / distinct live SKUs; 3,578 historical Feb–Aug unique SKUs; 3,160 formula PASS and 418 one-cent staged-rounding exceptions; 126 unresolved historic source-price rows; 470 June OCR staging records pending code/cost verification; September, October, promotion, Suzuki and Renault/Dacia exact joins not yet completed; quote-only count not established.
+- [!] The previously referenced `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv` was not returned by exact-title Library search in this inventory. Do not assume it's available in this session until located by a broader filename search or the PDF is reprocessed.
+- Task result: SOURCE INVENTORY PARTIALLY VERIFIED; key PDFs and workbooks are accessible in Library; exact September corrected CSV still unlocated. No product joins/imports/live data changes/builds/deployments occurred.
+- Next task: read the reconciliation workbook's actual sheets/headers and inspect the corrected price audit + June/August staging structure to define a reproducible exact-code join without relying on OCR-only rows. Then search for/locate the September corrected CSV before any import package is built.
