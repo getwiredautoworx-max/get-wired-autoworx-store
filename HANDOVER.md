@@ -605,3 +605,12 @@ Read-only category notes:
 - Guardrails: read-only checks only; no DNS, hosting, payment, credential, or product-row changes; no build/deploy; preserve the Axxess-first single consolidated release rule.
 - Known release gates from latest recorded checkpoint: canonical domain reachability/HTTPS unverified; image audit failed with 8 exact verified SKU image URLs to connect and 86 unmatched placeholders; QA must be run against the current deployed commit; catalogue reconciliation and quote-only import package remain outstanding; PayFast integration and PayJustNow approval are not confirmed.
 - Task status at start: IN PROGRESS. Record findings and pass/fail evidence immediately after checks.
+
+
+## 2026-10-12 19:22 SAST — TASK COMPLETION: READ-ONLY DOMAIN / RELEASE-GATE CHECK
+- [x] Recorded task start before checking (commit `54b59446c9653044832a28f000dcc0fab31d4776`).
+- [x] Read-only HTTPS checks attempted for `https://www.getwiredauto.co.za/` and the known GitHub Pages fallback URL. Both web fetch and local `curl` could not access/resolve the hosts from this execution environment; local resolver returned `curl: (6) Could not resolve host` for both domains.
+- Interpretation: the check environment cannot resolve public hosts at this time, so this is NOT sufficient by itself to prove a domain-specific DNS failure. However, the prior owner-device report of `DNS_PROBE_FINISHED_NXDOMAIN` remains a material unresolved warning. Domain and HTTPS are NOT verified; do not submit this URL as a confirmed live storefront.
+- Supabase read-only query executed successfully: 4,187 active products; 0 active products missing image_url; 0 active products with missing/invalid price; 0 active products missing cost_price. This confirms only database field completeness, not public image rendering or checkout readiness.
+- No DNS, hosting, payment, credential, or product data changed. No build/deploy was triggered.
+- Result: DOMAIN CHECK = INCONCLUSIVE / RELEASE BLOCKER REMAINS. Next task: inspect latest GitHub Actions release QA/image-audit evidence and current deployment commit; no deployment until consolidated release package is ready.
