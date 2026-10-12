@@ -971,3 +971,10 @@ Read-only category notes:
 - No source/storefront, Supabase records, orders, stock, provider settings, DNS, hosting or deployment were changed in this task.
 - **Next single action:** use the existing external-runner capability (without a new deployment/build) to run an HTTP check against the canonical homepage plus `/terms-and-conditions.html` and `/returns-refunds.html`, and capture status/content evidence. Inspect the existing workflow's manual/event triggers before any run; if it cannot be run without a new commit/build, do not create a dummy commit—use the owner-approved Axxess URL or ask for the exact public staging hostname only if it is not recorded in project data. Then record the evidence and submit the verified canonical URL/policy links to PayFast and PayJustNow for review.
 - ETA: read-only project and prior-run evidence review completed in this task. Current live-page verification and merchant URL submission remain pending; no honest completion time can be given until the external live check and provider submission route are available.
+
+
+## 2026-10-12 21:42 SAST — TASK START: EXECUTE PUBLIC URL CHECK WITHOUT OWNER HANDOFF
+- [x] Task-start checkpoint recorded before further investigation. Owner instruction reaffirmed: independently execute all available checks and fixes; do not delegate routine work or ask for input unless a real access/approval/credential gate remains.
+- [ ] Immediate action: test the exact canonical homepage and the two known policy routes using the best available no-build/no-deploy verification route; record actual response evidence, not assumptions.
+- [ ] Check whether the existing external runner can be reused without creating a commit or triggering a build. Do not change DNS, hosting settings, payment settings, catalogue/order/stock data, or consume deployment credits.
+- ETA: read-only verification attempt in this session. Completion entry must follow with actual outcome and the next single action.
