@@ -614,3 +614,10 @@ Read-only category notes:
 - Supabase read-only query executed successfully: 4,187 active products; 0 active products missing image_url; 0 active products with missing/invalid price; 0 active products missing cost_price. This confirms only database field completeness, not public image rendering or checkout readiness.
 - No DNS, hosting, payment, credential, or product data changed. No build/deploy was triggered.
 - Result: DOMAIN CHECK = INCONCLUSIVE / RELEASE BLOCKER REMAINS. Next task: inspect latest GitHub Actions release QA/image-audit evidence and current deployment commit; no deployment until consolidated release package is ready.
+
+
+## 2026-10-12 19:23 SAST — TASK START CHECKPOINT: CURRENT RELEASE EVIDENCE REVIEW
+- Task started: inspect the most recent recorded deployment, smoke-test, production-QA and image-audit run evidence, without rerunning workflows or deploying.
+- Last known references in handover: GitHub Pages deploy run 38163206860 on commit 1438773700215a79c2192d5d7d72e69e0ff0b01b; image audit run 38193464600 failed; earlier smoke test 38151715436 and production QA 38151715246 passed on older commit 445fb5355c0507d3f4b372962017a8b408774ccb.
+- Objective: establish what can be verified from available GitHub evidence and whether any read-only correction is possible without breaking the single consolidated release rule. No reruns, writes, or deployments authorized in this task.
+- Status: IN PROGRESS.
