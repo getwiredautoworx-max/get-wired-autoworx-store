@@ -707,3 +707,10 @@ Read-only category notes:
 - No product data changed; no import, deployment, or build occurred.
 - Recovery: use PDF page image/column-position extraction to validate product-code/price pairs, or locate the exact prior staging CSV by its actual Library filename. Continue with October guide and vehicle-specific code/application joins independently; unpriced valid vehicle-specific items remain QUOTE candidates, not priced imports.
 - Task result: STAGING RECONSTRUCTION BLOCKED BY UNRELIABLE PDF TEXT ORDER; unsafe guess avoided. This is a real blocker and must remain visible in ETA.
+
+
+## 2026-10-12 19:43 SAST — TASK START CHECKPOINT: CHECK VERIFIED FEB–SEP WORKBOOK AS ALTERNATE SOURCE
+- Task started after September PDF text extraction proved unsafe for automatic price pairing and the corrected CSV remained unlocated.
+- Inspect the existing verified store-stock workbook to see whether September-sourced exact SKU/cost rows are already preserved with page/source traceability. If the workbook lacks September data, record that failure; do not assume its filename guarantees September coverage.
+- No import or live changes; no builds/deployments.
+- Status: IN PROGRESS.
