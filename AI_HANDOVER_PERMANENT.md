@@ -1370,3 +1370,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Status: IN PROGRESS.** The September Buyer's Guide PDF is now located in the Library (file ref surfaced as `file_00000000419c81faa3a92d2cdba5c33c`; uploaded 2026-09-09). The source guide states its prices exclude VAT and asterisked entries are system-dependent/variable.
 - The exact named `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv` was not found by targeted title search. To avoid blocking on a missing derivative file, reconstruct an independent, auditable source extract from the original PDF and explicitly mark uncertain OCR rows for review; do not represent the reconstruction as the missing corrected CSV.
 - Next: extract source pages/text; normalize supplier codes and numeric costs; separate asterisk/no-price entries; compare exact codes with live product records and preserve the source page for every row. No live writes/deploys.
+
+
+### 2026-10-12 — Exact corrected September CSV recovered (SUCCESS)
+
+- **Status: SUCCESS.** The Library's filtered spreadsheet inventory located the actual file `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv` (file ref `file_00000000eefc82118ab7428c52667388`, 256,272 bytes) plus a duplicate `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED-1.csv` (same size). This corrects the earlier search limitation; the CSV is available and should be inspected, not replaced with a guessed reconstruction.
+- The authoritative `September Buyer's Guide.pdf` is also recovered and will be used to verify source price/code where exceptions are flagged.
+- Next: materialize both CSV copies, inspect headers/counts/SKU uniqueness/blank or asterisk prices and candidate formula logic; compare candidate SKU set to live products; identify exact source mismatches. Do not modify live product data.
