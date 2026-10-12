@@ -598,3 +598,10 @@ Read-only category notes:
 - **No production update until the consolidated package is validated and ready.** If a blocker makes the planned single release unsafe, stop that release, fix it in the preparation stage, and update this handover rather than making repeated partial deployments.
 - This workflow supersedes any earlier instruction or plan suggesting that the store should be updated in stages across GitHub/Supabase/Cloudflare during preparation. Use Axxess as the working point, then one coordinated production release to conserve credits.
 
+
+
+## 2026-10-12 19:20 SAST — TASK START CHECKPOINT: READ-ONLY DOMAIN / RELEASE GATE VERIFICATION
+- Task started: verify canonical domain reachability and re-check release-blocker evidence before making any changes.
+- Guardrails: read-only checks only; no DNS, hosting, payment, credential, or product-row changes; no build/deploy; preserve the Axxess-first single consolidated release rule.
+- Known release gates from latest recorded checkpoint: canonical domain reachability/HTTPS unverified; image audit failed with 8 exact verified SKU image URLs to connect and 86 unmatched placeholders; QA must be run against the current deployed commit; catalogue reconciliation and quote-only import package remain outstanding; PayFast integration and PayJustNow approval are not confirmed.
+- Task status at start: IN PROGRESS. Record findings and pass/fail evidence immediately after checks.
