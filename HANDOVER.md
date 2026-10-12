@@ -584,3 +584,17 @@ Read-only category notes:
 ### ETA and blockers
 - **Go-live ETA: not yet responsibly estimable.** The blocking work is identifiable, but source-by-source reconciliation, image audit repair, current Cloudflare deployment verification, and live checkout/payment verification are incomplete. Do not replace this with a guessed date.
 - Main failure/risk: previous notes incorrectly foregrounded stale Netlify deployment status despite Netlify credits being exhausted. Use Cloudflare as the deployment path going forward.
+
+
+## PERMANENT WORKFLOW RULE — Axxess-first, one consolidated release
+
+**Owner's permanent instruction (effective 2026-10-12):**
+- Make and consolidate store/catalogue changes in **Axxess first**. Do not make piecemeal releases to GitHub, Supabase, Cloudflare, or other production services while the work is still being prepared.
+- Complete the planned changes, catalogue reconciliation, SKU/category/fitment checks, price validation, image matching, and pre-release QA as one coordinated batch.
+- Prepare **one consolidated, validated release package** and perform **one planned update/release cycle** to the relevant targets: GitHub, Supabase, Cloudflare, and any other service that actually needs updating.
+- Minimise credits, builds, deployments, API calls, and repeated commits. Do not trigger unnecessary builds or redeployments to test individual unfinished changes. Batch checks and fixes before the release wherever practical.
+- Before the consolidated release, preserve a clear checkpoint/backup and record exactly what will change, which systems need updating, the validation evidence, and any unresolved blockers. Do not push unverified or incomplete catalogue data into production.
+- After the single release cycle, verify the resulting GitHub commit, Supabase data/counts, Cloudflare deployment/commit, and live storefront/checkout. Report actual results and failures; do not infer that one system updated because another succeeded.
+- **No production update until the consolidated package is validated and ready.** If a blocker makes the planned single release unsafe, stop that release, fix it in the preparation stage, and update this handover rather than making repeated partial deployments.
+- This workflow supersedes any earlier instruction or plan suggesting that the store should be updated in stages across GitHub/Supabase/Cloudflare during preparation. Use Axxess as the working point, then one coordinated production release to conserve credits.
+
