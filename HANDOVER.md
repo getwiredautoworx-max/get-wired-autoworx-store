@@ -764,3 +764,10 @@ Read-only category notes:
 - No production data changed; no staging import, deployment, or build occurred.
 - Recovery required before next phase: run a controlled exact-code comparison in one environment that has both the workbook SKU column and the exported live SKU list (e.g. export live `sku` values to a CSV from Supabase, then compare locally to the workbook); output explicit `MATCHED`, `SOURCE_NOT_LIVE`, `LIVE_NOT_IN_SOURCE`, duplicate, untagged, and price-exception lists with balanced totals. Only after the lists balance should June–current and vehicle-specific catalogues be added. Keep this as the next task; do not jump to images or website fixes before it is resolved or formally scoped as an approved parallel workstream.
 - Task result: LIVE BASELINE VERIFIED; EXACT JOIN BLOCKED/NOT COMPLETE. This is recorded as a failure to complete, not a pass.
+
+
+## 2026-10-12 20:15 SAST — TASK START CHECKPOINT: MAKE SKU RECONCILIATION EXECUTABLE
+- Task started following the documented failure to calculate the exact source-to-live SKU set difference in the prior attempt.
+- New approach: inspect the available connector and file-processing capabilities, then choose a path that places both the workbook SKU list and live SKU list into one comparison environment. Do not rely on aggregate counts or manually copy thousands of SKUs from tool output.
+- Required output: balanced exact-code reconciliation with source-only/live-only/matched counts, plus explicit handling of the 36 untagged workbook rows and any duplicate or normalization collisions. Preserve supplier codes exactly; normalization is for comparison only.
+- No live writes, imports, DNS edits, builds, or deployments. Status: IN PROGRESS.
