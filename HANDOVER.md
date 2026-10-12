@@ -714,3 +714,14 @@ Read-only category notes:
 - Inspect the existing verified store-stock workbook to see whether September-sourced exact SKU/cost rows are already preserved with page/source traceability. If the workbook lacks September data, record that failure; do not assume its filename guarantees September coverage.
 - No import or live changes; no builds/deployments.
 - Status: IN PROGRESS.
+
+
+## 2026-10-12 19:47 SAST — TASK COMPLETION: VERIFIED FEB–SEP WORKBOOK IS A USABLE SEPTEMBER STAGING SOURCE
+- [x] Inspected `Get_Wired_AutoWorx_STORE_STOCK_Feb-Sep_2026_VERIFIED.xlsx` directly from the XLSX XML after the normal workbook loader timed out on its 299 sheets. No source workbook was modified.
+- [x] The workbook's SUMMARY explicitly states “February–September 2026 buyer-guide reconciliation”, 4,186 priced SKU records, VAT 15%, markup 35%, formula `Cost × 1.15 × 1.35`.
+- [x] Parsed all category tabs directly from the workbook XML: 4,222 source row occurrences; 4,188 unique normalized supplier SKU codes. Source-guide row counts: Feb 579, March 685, May 616, July 692, August 823, September 791, plus 36 rows without a source guide.
+- [x] September staging alternative is confirmed: 791 rows tagged `September Buyer's Guide`, 791 unique SKUs, 0 missing costs, 0 missing final prices, and 0 mismatches against the required final-only rounding formula `round(cost × 1.15 × 1.35, 2)`.
+- [!] This resolves the immediate missing-CSV problem for September staging: use the 791-row traceable subset from the existing verified workbook rather than reconstructing prices from the fragmented PDF text layer.
+- [ ] Exact join against the 4,187 live database supplier SKUs remains outstanding; this task does NOT establish which September codes are new/changed/already live.
+- [ ] The 36 rows with no Source Guide and the difference between 4,188 unique workbook codes and 4,187 live distinct SKUs must be explicitly reconciled, not discarded or silently imported.
+- Task result: SEPTEMBER STAGING SOURCE RECOVERED; SEPTEMBER FORMULA VALIDATION PASS; LIVE SKU RECONCILIATION PENDING. No production rows changed, no import/deploy/build triggered.
