@@ -638,3 +638,12 @@ Read-only category notes:
 - Required safety: exact SKU match only; do not invent image URLs or replace unmatched products with unrelated imagery. Keep 86 unresolved placeholders untouched. Preserve Axxess-first and the single consolidated release cycle.
 - Intended output: a source-backed list of exact image URLs plus the relevant current file/workflow paths, or a recorded failure if the repository does not expose enough evidence.
 - Status: IN PROGRESS.
+
+
+## 2026-10-12 19:28 SAST — TASK COMPLETION: EXACT-SKU IMAGE REPAIR PREPARATION
+- [x] Read the actual `.github/workflows/catalogue-image-audit.yml` source. It pages through the full active catalogue and deliberately fails if an active product still points at `/assets/product-placeholder.svg` while an exact matching `assets/products_webp/GW-XXXXXXXX.webp` exists.
+- [x] The required production image URL format is explicitly defined by the audit: `https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=GW-XXXXXXXX`. No new URL scheme or unrelated images are needed.
+- [x] The 8 exact SKU repairs recorded in the previous checkpoint are: `GW-F60D9CE9`, `GW-F632303D`, `GW-F6416160`, `GW-F6461F7B`, `GW-F6672DED`, `GW-F672879F`, `GW-F68FB0CE`, `GW-F69F8DA1`.
+- Staged correction for the single consolidated release: for each of those eight rows only, change `image_url` from placeholder to the exact function URL using that row's identical `public_sku`. Before applying, assert each SKU has its matching WebP asset and current row still has the placeholder URL; abort if any predicate differs. Do not touch the other 86 placeholder products without verified matching WebPs.
+- [ ] No live product row changed in this task. No Axxess working package was modified because the available tools do not expose the Axxess file system/site editor in this session. The exact repair is prepared as a release instruction, not executed.
+- Task result: SOURCE LOGIC VERIFIED; EXACT REPAIR MAPPING PREPARED; PRODUCTION CHANGE PENDING CONSOLIDATED RELEASE. No build/deploy triggered.
