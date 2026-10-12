@@ -822,3 +822,11 @@ Read-only category notes:
 ## 2026-10-12 20:40 SAST — TASK START CHECKPOINT: VERIFY LIVE PRICING FORMULA WITH EXACT NUMERIC ROUNDING
 - Source workbook audit found 14 one-cent exceptions when using Decimal/ROUND_HALF_UP, so prior binary-float validation cannot be trusted. Before attempting a bulk source/live join, independently verify the current live DB formula using Postgres numeric arithmetic.
 - Read-only query only: count active rows where `price` differs from `round(cost_price::numeric * 1.15 * 1.35, 2)` and list examples. No updates/imports/deployments. Status: IN PROGRESS.
+
+
+## 2026-10-12 20:40 SAST — TASK COMPLETION: LIVE DATABASE PRICE FORMULA PASS
+- [x] Read-only exact Postgres numeric audit confirms 4,187 active products; zero active rows with missing cost_price or price; zero formula mismatches using `price::numeric = round(cost_price::numeric * 1.15 * 1.35, 2)`.
+- [x] Sampled source/live comparisons clarify that some differences are not merely rounding: `A10-048` source workbook cost R26.31 / final price R40.85 versus live cost R39.45 / price R61.25. Both sides individually follow the markup formula, but their source costs differ materially. For `00736`, source workbook cost R26.00 / final price R40.36 while live cost R26.00 / price R40.37; the one-cent difference is due to the required exact half-up rounding rule.
+- [!] Therefore the source/live reconciliation must compare source cost as well as price, and must preserve source guide/date and any approved current cost. A simple price overwrite would be unsafe and incorrect. The live database formula is correct based on its own cost values; the remaining issue is deciding which source cost is current/authoritative for each SKU.
+- No production rows changed; no imports/builds/deployments/DNS/payment settings changed.
+- Task result: LIVE DATABASE FORMULA PASS; SOURCE-TO-LIVE COST/PRICE RECONCILIATION STILL OPEN.
