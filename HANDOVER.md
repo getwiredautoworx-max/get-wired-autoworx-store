@@ -621,3 +621,13 @@ Read-only category notes:
 - Last known references in handover: GitHub Pages deploy run 38163206860 on commit 1438773700215a79c2192d5d7d72e69e0ff0b01b; image audit run 38193464600 failed; earlier smoke test 38151715436 and production QA 38151715246 passed on older commit 445fb5355c0507d3f4b372962017a8b408774ccb.
 - Objective: establish what can be verified from available GitHub evidence and whether any read-only correction is possible without breaking the single consolidated release rule. No reruns, writes, or deployments authorized in this task.
 - Status: IN PROGRESS.
+
+
+## 2026-10-12 19:25 SAST — TASK COMPLETION: RELEASE EVIDENCE REVIEW
+- [x] Read-only GitHub Actions job evidence retrieved for all four referenced runs; no workflow was rerun.
+- GitHub Pages deployment run `38163206860` is terminal SUCCESS (build, status report and deploy jobs all succeeded). Handover records its deployed commit as `1438773700215a79c2192d5d7d72e69e0ff0b01b`. This proves GitHub Pages deployment succeeded, but does not prove `www.getwiredauto.co.za` DNS/HTTPS is working or that the exact current commit passed production QA.
+- Storefront smoke run `38151715436` = SUCCESS; source/catalogue production QA `38151715246` = SUCCESS. Both were run against older commit `445fb5355c0507d3f4b372962017a8b408774ccb` per the existing handover; current deployed commit still lacks a confirmed matching QA pass.
+- Catalogue image audit run `38193464600` = FAILURE at step “Audit active SKU image mapping”; report upload succeeded. Existing report evidence says 8 exact verified WebP images can be connected to active product image URLs; 86 placeholders have no known exact-SKU WebP and must remain unresolved rather than guessed.
+- Current database field check remains healthy: 4,187 active products; zero missing image_url, invalid/missing prices, or missing costs. This does not override the image-audit failure because URLs may point to placeholder proxies.
+- Task result: deployment pipeline success = PASS; current-domain reachability = UNVERIFIED; current-commit QA = NOT CONFIRMED; image audit = FAIL; release remains blocked.
+- No live data, DNS, payment settings, or deployment changed. Next: prepare/verify the exact eight-image mapping and reconcile catalogues in the Axxess working package; do not patch production rows or deploy piecemeal.
