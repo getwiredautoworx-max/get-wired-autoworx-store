@@ -897,3 +897,17 @@ Read-only category notes:
 - [!] Therefore the current presentation may hide empty placeholders but the underlying taxonomy remains fragmented. Do not bulk-delete categories or move products based on matching names alone: some are intended parents/subcategories, and case/slug similarities are not sufficient proof of equivalent taxonomy.
 - No source code, database, hosting, deployment, DNS or payment settings changed in this follow-up inspection.
 - Next safe step: build a row-level category reconciliation report using product SKU/name/current category plus the authoritative source-guide category for each SKU; then stage a deterministic SKU-to-category mapping and validate totals before any production migration. The price/cost CSV transfer blocker remains separate and still must be resolved before catalogue import.
+
+
+## 2026-10-12 21:02 SAST — RELEASE-FIRST DIRECTION RESET (USER FEEDBACK)
+- User is rightly demanding a working launch path, not repeated audits. Prioritize release execution and checkout/integration readiness over further catalogue investigations.
+- Decision: freeze catalogue scope for the initial launch. Preserve all 4,187 active products and current prices; do not block release on cosmetic/legacy category cleanup unless a specific issue makes shopping unusable or prices/stock unsafe.
+- Immediate release sequence:
+  1. Verify exact Axxess runtime files and client-side Supabase configuration in repository; identify any hard blockers to serving the storefront.
+  2. Produce/verify one fresh deployment ZIP from the current main source. Existing workflow YAML has corrected artifact path, but connected GitHub tools available in this session do not expose workflow dispatch/list-run capability; do not claim artifact exists or is fresh.
+  3. Validate the live Axxess URL pages and storefront behavior; do not alter DNS/hosting without verified account access.
+  4. Make payment/delivery integrations configurable and checkout-ready: PayFast (merchant credentials/signature/notify URL), PayJustNow (merchant approval and integration credentials), The Courier Guy and locker selection (API/account credentials, rates and serviceability). Credentials and merchant approvals must be supplied by the user/provider; never hardcode secrets. If not available, make launch checkout truthful and explicitly label manual/quote-based delivery and pending payment method rather than pretending integration is live.
+  5. Run one consolidated test matrix: category browsing, search, product detail, cart, customer details, packaging fee, pickup, delivery/locker selection, order creation, and payment callbacks.
+- No further source-vs-live price or category audits unless they unblock one of the above steps. Exact SKU price join remains pending CSV transfer, but is not by itself a reason to hold a safe soft launch if existing verified live prices are retained.
+- No deployment was performed in this step. Do not state the store is live until actual public URL checks and checkout tests pass.
+- Handover updated immediately after the release-first decision. Next task must start at step 1 above, not restart earlier investigations.
