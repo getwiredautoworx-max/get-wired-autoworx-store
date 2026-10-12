@@ -852,3 +852,14 @@ Read-only category notes:
 - Previous attempts established that the workbook is available in the local processing runtime while Supabase SQL is available separately; no existing authorized automated route exports the full live `sku,cost_price,price` set into the same runtime. Do not repeat fingerprint/sample-only checks or infer exception totals.
 - Task now: make one final read-only check for an existing supported export/transfer path, then record the verified outcome. No production writes, imports, builds, deployments, DNS or payment changes.
 - Status: IN PROGRESS.
+
+
+## 2026-10-12 20:41 SAST — TASK COMPLETION: LIVE EXPORT ROUTE CHECKED; PRICE JOIN STILL BLOCKED
+- [x] Re-read the current master handover and recorded the task-start checkpoint before testing.
+- [x] Ran a fresh read-only Supabase query: 4,187 active products, 4,187 distinct normalized SKU values, and 0 active rows missing cost or price.
+- [x] Rechecked the available direct SQL route. It returns query results inside the connector, but does not create a downloadable CSV in the local workbook-processing runtime. Existing repository workflow inspection already found no authorized full-table export/join workflow. No new infrastructure or credentials were introduced.
+- [!] The exact row-level source-versus-live cost/price comparison remains BLOCKED until the live active-products columns `sku,cost_price,price` can be transferred as a CSV to the same runtime as the Feb–Sep workbook. Do not infer differences from hashes, samples, or aggregate counts.
+- No production rows changed; no imports, builds, deployments, DNS edits or payment settings changed.
+- Required next action: export only `sku,cost_price,price` for active products from Supabase Table Editor as CSV and attach it in the chat. No secret key is needed. Then compare exact SKU and Decimal/ROUND_HALF_UP amounts locally and produce balanced matched/cost-change/price-change/rounding/unresolved exception lists before any import decision.
+- Task result: READ-ONLY BASELINE PASS; AUTOMATED TRANSFER PATH NOT FOUND; SOURCE/LIVE PRICE JOIN NOT COMPLETE.
+- ETA: once the CSV is attached, the row-level join and exception report can be completed in one focused processing task; the wider catalogue reconciliation still requires June/current and vehicle-specific sources after this price gate is resolved.
