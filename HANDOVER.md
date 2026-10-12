@@ -911,3 +911,9 @@ Read-only category notes:
 - No further source-vs-live price or category audits unless they unblock one of the above steps. Exact SKU price join remains pending CSV transfer, but is not by itself a reason to hold a safe soft launch if existing verified live prices are retained.
 - No deployment was performed in this step. Do not state the store is live until actual public URL checks and checkout tests pass.
 - Handover updated immediately after the release-first decision. Next task must start at step 1 above, not restart earlier investigations.
+
+
+## 2026-10-12 21:10 SAST — STOREFRONT RELEASE WORK STARTED
+- [ ] Task started: inspect actual storefront entry points, browser-side Supabase configuration, product/category/cart/checkout wiring, and hosting URLs. This is implementation work toward a usable deployment, not another catalogue audit.
+- Required output for this task: identify specific code blockers, fix safe source-level blockers where evidence is clear, and update this handover again with exact files/commit and remaining provider/hosting dependencies.
+- Guardrails: preserve the 4,187 active product records and current prices; do not change DNS, Netlify deploy settings, provider secrets, or production data; do not claim a deployment/test passed unless verified.
