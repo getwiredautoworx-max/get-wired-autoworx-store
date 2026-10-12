@@ -672,3 +672,10 @@ Read-only category notes:
 - [!] The previously referenced `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv` was not returned by exact-title Library search in this inventory. Do not assume it's available in this session until located by a broader filename search or the PDF is reprocessed.
 - Task result: SOURCE INVENTORY PARTIALLY VERIFIED; key PDFs and workbooks are accessible in Library; exact September corrected CSV still unlocated. No product joins/imports/live data changes/builds/deployments occurred.
 - Next task: read the reconciliation workbook's actual sheets/headers and inspect the corrected price audit + June/August staging structure to define a reproducible exact-code join without relying on OCR-only rows. Then search for/locate the September corrected CSV before any import package is built.
+
+
+## 2026-10-12 19:34 SAST — TASK START CHECKPOINT: INSPECT RECONCILIATION WORKBOOK STRUCTURE
+- Task started: inspect workbook sheets, headers, row counts, and key identifier columns for the reconciliation status, June–August audit, and corrected price audit. This is data inspection only.
+- Goal: establish a reliable SKU/code join process and quantify which source queues can be matched without treating OCR-only or rounded-price exceptions as approved imports.
+- No production data writes, import, deployment, or code changes during this task.
+- Status: IN PROGRESS.
