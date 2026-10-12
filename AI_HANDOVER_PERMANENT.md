@@ -1454,3 +1454,8 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Existing public test URL remains https://get-wired-autoworx-store.netlify.app; custom-domain status is not proven by this deploy check. Do not submit www.getwiredauto.co.za as a functioning live URL until DNS/HTTPS and the actual public page are verified.
 - Efficiency decision: reserve one final deployment only after consolidated source is ready; do not use deploy credits to test intermediate candidates. At final release, confirm the resulting commit includes the current frontend and required serverless functions, then verify the published deploy ID/commit and end-to-end checkout.
 - No deploy was triggered; no product writes or deployment credits used.
+
+
+### 2026-10-12 — Task started: final-build source completeness audit
+
+- **Status: IN PROGRESS.** Before any release build, verify the current Netlify build command actually publishes every referenced customer/admin page and required serverless function. This is a source-only/read-only audit; do not trigger a build/deploy or spend credits. Log any missing publish copy steps and queue them for the single consolidated release.
