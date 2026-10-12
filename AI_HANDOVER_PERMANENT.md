@@ -1377,3 +1377,12 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - **Status: SUCCESS.** The Library's filtered spreadsheet inventory located the actual file `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv` (file ref `file_00000000eefc82118ab7428c52667388`, 256,272 bytes) plus a duplicate `September_Buyers_Guide_VALIDATED_STAGING_CORRECTED-1.csv` (same size). This corrects the earlier search limitation; the CSV is available and should be inspected, not replaced with a guessed reconstruction.
 - The authoritative `September Buyer's Guide.pdf` is also recovered and will be used to verify source price/code where exceptions are flagged.
 - Next: materialize both CSV copies, inspect headers/counts/SKU uniqueness/blank or asterisk prices and candidate formula logic; compare candidate SKU set to live products; identify exact source mismatches. Do not modify live product data.
+
+
+### 2026-10-12 — Candidate integrity audit / exact inventory join (milestone)
+
+- **Status: IN PROGRESS; key match succeeded.** The corrected September CSV contains exactly 800 rows, 800 unique SKUs: 791 priced candidates and 9 asterisk/system-price quote-only candidates.
+- Its specifications.source_price_ex_vat formatting is mixed: 753 rows store whole-number strings that represent cents from the PDF (for example 48079 = R480.79), 38 rows already contain decimal-formatted rand values, and 9 rows are * with no numeric cost/price. The CSV's current 791 priced rows incorrectly set price = cost_price × 1.15 and do not apply the required 35% markup; for 753 rows the raw integer cents were also loaded as whole rand. This is a serious candidate-file defect, not a live database finding.
+- Independent exact SKU join against the verified Feb–Sep inventory workbook succeeded for all 791 priced candidates; all 791 are present in its September-source SKU set. The 9 asterisk candidates are excluded from priced import and remain quote-only.
+- Next: compare product names and normalized source costs to the verified inventory workbook; recompute correct candidate final price as round(normalized_cost × 1.15 × 1.35, 2); identify rounding/description exceptions; confirm exact candidate-vs-live coverage with source-tagged live counts before any write.
+- No live writes/deploys. Keep the September candidate quarantined from import until validation is complete.
