@@ -800,3 +800,9 @@ Read-only category notes:
 - No production rows changed; no import/build/deploy/DNS/payment changes occurred.
 - Next task: isolate exact source-vs-live price differences with staged per-prefix hash subdivision or a safe local export/join; classify same-price vs price-change and record actual SKU list/count before preparing any import. After that, continue adding June/current October and vehicle-specific sources; do not treat Feb–Sep SKU set reconciliation alone as full catalogue reconciliation.
 - Task result: FEB–SEP SKU SET PASS; SOURCE-TO-LIVE PRICE COMPARISON PENDING. This supersedes prior notes saying the exact SKU join itself was blocked.
+
+
+## 2026-10-12 20:35 SAST — TASK START CHECKPOINT: ISOLATE SOURCE-TO-LIVE PRICE DIFFERENCES
+- Feb–Sep exact SKU set is reconciled and balanced; this task now compares workbook `Final Advertised Selling Price` against live `products.price` for the 4,186 shared SKUs.
+- Use the same exact normalized SKU and two-decimal price formatting on both sides. Start with prefix-group fingerprints and recursively subdivide only groups that differ. Verify individual codes and amounts before declaring a price change.
+- Never overwrite prices or import data based on fingerprints alone. No production writes, imports, builds, deployments, DNS or payment changes. Status: IN PROGRESS.
