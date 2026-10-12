@@ -1521,3 +1521,11 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 
 - Daily automation “Get Wired Store Reconciliation” remains the persistent scheduled follow-up. It is daily, not continuous; ChatGPT cannot guarantee an immediate automatic restart at the exact moment a chat/session ends. The handover remains the source of truth; every new session must read it first, append task-start status before work, and append outcome immediately after each task.
 - Deployment/credit lock remains active: no intermediate builds or deployments, no unnecessary commits, no mass live overwrite, and no Netlify/Cloudflare credit usage until the one final testing phase.
+
+
+### 2026-10-12 — Task started: pre-release source/package validation (continued session)
+
+- **Status: IN PROGRESS.** Read the current master handover first. Resume from the price-safe launch path; do not restart reconciliation, rebuild the storefront, modify live product rows, or consume hosting credits.
+- Current critical path carried forward: resolve current-price disposition for 785 September-source products (38 confirmed scaling defects + 747 freshness holds); preserve 6 October-source rows and 9 quote-only rows; verify the 66 exact October-guide standard-price candidates without treating SKU presence as price proof; keep all unresolved items quote-only/withheld from direct purchase in the eventual consolidated release.
+- Existing source defect remains queued: `netlify.toml` copies `checkout.html` but not its redirect target `checkout-v2.html` into `dist`. This must be corrected and statically validated in the single final build package, not tested via an intermediate deployment.
+- **Task-start checkpoint only:** no source or live data changed; no build/deploy or hosting credits used. Record verified outcome immediately after the next subtask.
