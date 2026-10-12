@@ -1538,3 +1538,10 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - This differs from the earlier logged 100 / 34 / 66 split. Do **not** silently retain either set as final; the current independent scan is broader across all extracted pages, and the exact page-level price mapping still needs validation. SKU presence is not price verification, and “other page” does not prove a price can be safely mapped to the SKU.
 - No selling prices were extracted or approved, no live products were changed, and no deployment/build credits were used. The 38 scaling defects and all unresolved September freshness holds remain held from direct purchase until current price is proven or the item is quote-only.
 - **Next action:** map the 67 standard-layout candidate SKUs to their exact October page rows and adjacent supplier prices; separately retain the 35 rep-price items and 689 not-listed items as unverified/quote-required. If text layout does not unambiguously bind code, description and price, mark for visual/manual source review rather than guessing.
+
+
+### 2026-10-12 — Task started: checkout and catalogue release-safety verification
+
+- **Status: IN PROGRESS.** Continuing directly from the previous audit. The permanent handover is updated before this subtask, as required.
+- Scope: read-only check of the current Supabase active catalogue and checkout Edge Function contracts to confirm the next lowest-risk source fix. Do not write product rows, change payment configuration, build/deploy, or consume hosting credits.
+- Existing queued issue: `netlify.toml` must copy `checkout-v2.html` into `dist` in the one final build. Price-safe launch still requires a quote-only gate for items without verified current prices.
