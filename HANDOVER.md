@@ -755,3 +755,12 @@ Read-only category notes:
 - Compare the verified workbook's distinct supplier SKU set with the live database's distinct active `sku` set. Use normalized exact code equality only; do not join on descriptions. Produce balanced counts for source matched-live, source not-live, live not-in-source, duplicate/source issues, plus price/formula/source-guide exceptions. Keep all results staging-only.
 - The 36 rows without a source guide and the difference between 4,188 source unique codes and 4,187 live distinct SKUs must be resolved by explicit row/code, not just count arithmetic.
 - No production writes/import/deploy/build. Status: IN PROGRESS.
+
+
+## 2026-10-12 20:10 SAST — TASK COMPLETION: EXACT SKU RECONCILIATION ATTEMPT (NOT COMPLETE)
+- [x] Live active SKU set count reconfirmed from Supabase: 4,187 active rows and 4,187 distinct normalized SKU values.
+- [x] Source workbook baseline already verified: 4,188 distinct supplier codes, including 791 September-tagged rows; 36 source rows have no guide tag.
+- [!] Exact source-to-live set difference was NOT calculated in this task. The available tool calls returned the database SKU inventory as a large tool result but did not provide a safe direct transfer into the local workbook-processing runtime within this task; do not claim a matched/new/price-change count from totals alone. Count difference of one does not identify the actual SKU.
+- No production data changed; no staging import, deployment, or build occurred.
+- Recovery required before next phase: run a controlled exact-code comparison in one environment that has both the workbook SKU column and the exported live SKU list (e.g. export live `sku` values to a CSV from Supabase, then compare locally to the workbook); output explicit `MATCHED`, `SOURCE_NOT_LIVE`, `LIVE_NOT_IN_SOURCE`, duplicate, untagged, and price-exception lists with balanced totals. Only after the lists balance should June–current and vehicle-specific catalogues be added. Keep this as the next task; do not jump to images or website fixes before it is resolved or formally scoped as an approved parallel workstream.
+- Task result: LIVE BASELINE VERIFIED; EXACT JOIN BLOCKED/NOT COMPLETE. This is recorded as a failure to complete, not a pass.
