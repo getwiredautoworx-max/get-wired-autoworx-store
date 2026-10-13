@@ -1,3 +1,14 @@
+## CONTINUATION LOG — 2026-10-13 06:15 SAST — SMOKE TEST UPDATED TO FOLLOW REAL SEARCH FLOW
+
+- Root cause confirmed in run #625: test typed the SKU then clicked an underlying card's Add to Cart button while the product-search dropdown was still open and physically covering the target. The runner's log explicitly says `.gwResult[data-full-product="2"]` intercepted pointer events and Playwright retried until timeout.
+- Narrow test correction committed to `.github/workflows/storefront-smoke.yml` in commits `bd99e2143dda27b8a4b8caa9a5aea00b8619cf7e` and `ac18518ceb701501ca8441a805bd728b18af9866`: after validating the formula-priced card, the smoke test now selects the matching search suggestion, waits for the product detail modal, and adds the product through the real detail Add to Cart control, which closes the modal/search overlay. This preserves the public cart assertion without force-clicking through an overlay.
+- Production UI source was not changed; the failure was in test interaction order. The latest fix commit should trigger a fresh Storefront Smoke Test. Wait for the new run and inspect its exact result before considering this fixed.
+- Production QA #177 passed on earlier commit `f8bc8e5d05999b097e4c9a317f16934b70de3812`; this does not validate the latest test-only commit.
+- Exact image exceptions remain: `GW-F60D9CE9`, `GW-F632303D`, `GW-F6416160`, `GW-F6461F7B`, `GW-F6672DED`, `GW-F672879F`, `GW-F68FB0CE`, `GW-F69F8DA1`. Do not update DB until all eight live asset URLs are verified.
+- Completed this task: isolated failure from decoded logs and revised smoke interaction to match the intended public search → product detail → Add to Cart journey. No production data or runtime source changed.
+- Next: check the latest smoke run for syntax and interaction success; then verify eight live WebP URLs and make only targeted mapping updates if all return HTTP 200. No real customer order.
+- ETA: smoke rerun 2–5 minutes after runner starts; image live verification and targeted repair 5–15 minutes after QA access.
+
 ## CONTINUATION LOG — 2026-10-13 06:12 SAST — STOREFRONT SMOKE FAILURE ROOT CAUSE FOUND
 
 - Retrieved decoded GitHub Actions logs for Storefront Smoke Test #625 (run 38344622355; job 115123018094). It passed the category-navigation stage (9 populated main categories; 12 Auto Electrical options) and reached the public storefront cart test.
