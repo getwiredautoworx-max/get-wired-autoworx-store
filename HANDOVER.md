@@ -905,3 +905,16 @@ Read-only category notes:
 - **Status at task start:** pending independent HTTP evidence; the previous assistant environment could not resolve target hostnames. User has since said all three URLs load perfectly in their browser, which is useful browser-side evidence but does not substitute for recording independent HTTP status codes.
 - **ETA:** one inspection plus one focused GitHub Actions run, then review logs. If the runner cannot resolve a hostname, capture the exact DNS/network error and test the known canonical hosting URL without changing production DNS.
 - **NEXT ACTION:** inspect current workflow files and recent run history to find the safest way to run three HTTP GET checks on GitHub Actions without triggering a storefront deployment; then record run ID, status codes, final result, and any remaining limitation here.
+
+
+## 2026-10-13 — TASK COMPLETE: INDEPENDENT PUBLIC URL HTTP VERIFICATION
+- **Task result:** PASS. Added isolated workflow `.github/workflows/public-url-http-check.yml` in commit `a57099ab135a350d78379a42a70f4e9c7de3843f`. It checks the public GitHub Pages candidate from a GitHub-hosted runner without deploying the storefront or changing production settings.
+- **Run evidence:** [GitHub Actions run `38340428287`](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38340428287), job `115109943912`, completed successfully at `2026-10-13T03:10:27Z`. Logs explicitly confirm:
+  - `https://getwiredautoworx-max.github.io/get-wired-autoworx-store/` — HTTP **200**, expected Get Wired AutoWorx page marker present.
+  - `https://getwiredautoworx-max.github.io/get-wired-autoworx-store/terms-and-conditions.html` — HTTP **200**, expected Terms and Conditions marker present.
+  - `https://getwiredautoworx-max.github.io/get-wired-autoworx-store/returns-refunds.html` — HTTP **200**, expected Returns and Refunds marker present.
+  - Final log marker: `PUBLIC_URL_HTTP_CHECK_PASS`.
+- **Important limitation:** these results verify that the GitHub Pages fallback host and its three required pages are reachable and contain the expected page markers. They do not prove that `www.getwiredauto.co.za` is live, that PayFast/PayJustNow have approved this URL, or that order submission/payment callbacks work.
+- **Environment comparison:** this assistant-side container still cannot resolve `getwiredautoworx-max.github.io` (curl exit 6); the GitHub-hosted runner can resolve it and returned the above real HTTP status codes. Use the runner as the independent network check.
+- **NEXT ACTION:** inspect the same public host's checkout, category/product navigation, and essential image/static assets with HTTP checks. Then review whether the public checkout can safely create an unpaid/test order and confirm the exact PayFast/PayJustNow URL submission requirements. Do not submit a real paid order, change production records, or change DNS/hosting/payment settings without authorization.
+- **ETA / fallback:** one focused extension to the existing HTTP-check workflow and one run. If a page is HTTP 200 but contains the wrong application, inspect the served HTML and Pages publish configuration before changing any production settings.
