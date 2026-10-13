@@ -1763,3 +1763,24 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - **Still in progress:** visually verify every later-guide match and price; preserve full June OCR transcript to staging; process remaining pages for all four guides; extend exact-SKU matching from the sample pages to the full guides; join against current store catalogue and classify KEEP/UPDATE/ADD/QUOTE/REVIEW.
 - Exact SKU hits in OCR text are only match candidates until description and page context confirm that the same item is being advertised. A missing hit in extracted text is not proof that the item is absent from a guide.
 - **No live changes:** no Supabase product/category/price/availability changes and no Axxess upload or production deployment occurred.
+
+
+## CONTINUATION LOG — 2026-10-13 — Cross-guide code candidate join and live catalogue read-only checks
+
+### Cross-guide exact-code candidate index
+- Added [july-september-exact-code-cross-guide-candidates.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/july-september-exact-code-cross-guide-candidates.csv): 90 distinct code-token candidates recurring across at least two of the July/August/September extracted guide texts. It records each guide's candidate page number and nearby text. Because OCR/layout can split columns and numeric tokens can be ambiguous, this is a **candidate index**, not 90 verified products.
+- Read-only comparison against Supabase returned 33 live product rows whose supplier SKU/product SKU matched one of those 90 tokens. The matches are not all yet proven to be the same advertised item; several require source-description context review. Added [july-september-code-candidates-live-crosscheck.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/july-september-code-candidates-live-crosscheck.csv) with live product name, category, current cost/price and active state for triage. No database rows were modified.
+
+### June page 3: live crosscheck and four visual confirmations
+- Added [june-page3-sample-live-crosscheck.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/june-page3-sample-live-crosscheck.csv). Of 18 readable source-code candidates from the 19-row June page-3 sample, 11 matched a live supplier SKU/product SKU. The product-name check confirmed those 11 were the same items; the remaining seven require review or have no current exact code match. These results are only for that page, not the whole catalogue.
+- Visually inspected original later-guide pages and verified four sample source-code/price/formula rows in [sku-price-formula-sample.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/sku-price-formula-sample.csv):
+  - `C10-101-400`: June R10.05; August page 4 R9.52; live cost R9.52 and live price R14.78. August exact-SKU listing takes precedence.
+  - `A833511`: June and September page 5 R55.33; live cost R55.33 and price R85.90. September listing is visually the same air-brush compressor hose.
+  - `4217S-KIT`: June and September page 11 R155.84; live cost R155.84 and price R241.94. September listing is visually the same pre-wired 7-pin socket kit.
+  - `SC818`: June R173.89 and July code candidate; no August/September exact SKU found in the extracted texts. Live cost R173.89 and price R269.96, but under the owner's rule its guide-derived status remains **Subject to price and availability confirmation** until a later exact-SKU listing is verified.
+- The four samples pass the store's cost-ex-VAT × 1.15 VAT × 1.35 markup formula at two decimal places. This small sample is a validation check only, not a bulk pricing approval or authorization to change live values.
+
+### Risks and next actions
+- Source pages explicitly state that guide prices exclude VAT; the August/September prices should be treated as supplier catalogue price/cost inputs only after confirming the code and item. The formula sample supports the existing price calculation on four products, but every price update still needs a verified source row.
+- Continue exact-SKU matching across all source pages, confirm descriptions visually for all candidate joins, and join the verified source ledger against live products. Prioritize guide items where later prices differ from June/July, older items lacking August/September matches, and live category anomalies. No automatic changes to live prices, categories or customer-facing availability are authorized by these checks.
+- **Current state:** source staging improved and the first reconciliation proof samples pass; complete four-guide product ledger, final category map, live-store discrepancy review and any approved production changes remain unresolved.
