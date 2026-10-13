@@ -15,7 +15,6 @@
       "slug": "auto-electrical-spares",
       "label": "Auto Electrical Spares",
       "icon": "⚡",
-      "legacy_category_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "subcategories": [
         {
           "slug": "auto-electrical",
@@ -404,7 +403,6 @@
       "slug": "vehicle-security",
       "label": "Vehicle Security",
       "icon": "🔒",
-      "legacy_category_id": "8e93d917-8fcc-4427-b364-cdad244f263f",
       "subcategories": [
         {
           "slug": "security",
@@ -439,7 +437,6 @@
       "slug": "car-audio-entertainment",
       "label": "Car Audio & Entertainment",
       "icon": "🔊",
-      "legacy_category_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "subcategories": [
         {
           "slug": "aerial",
@@ -513,7 +510,6 @@
       "slug": "automotive-accessories",
       "label": "Automotive Accessories",
       "icon": "🚘",
-      "legacy_category_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "subcategories": [
         {
           "slug": "accessories",
@@ -817,7 +813,6 @@
       "slug": "marine-spares-accessories",
       "label": "Marine Spares & Accessories",
       "icon": "⚓",
-      "legacy_category_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
       "subcategories": [
         {
           "slug": "boat-accessories",
@@ -895,7 +890,6 @@
       "slug": "tools-hardware-consumables",
       "label": "Tools, Hardware & Consumables",
       "icon": "🛠️",
-      "legacy_category_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "subcategories": [
         {
           "slug": "abrasives",
@@ -1488,7 +1482,6 @@
       "slug": "camping-leisure-outdoors",
       "label": "Camping, Leisure & Outdoors",
       "icon": "🏕️",
-      "legacy_category_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
       "subcategories": [
         {
           "slug": "4x4-outdoor",
@@ -1686,7 +1679,6 @@
       "slug": "trailer-canopy",
       "label": "Trailer & Canopy",
       "icon": "🚚",
-      "legacy_category_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
       "subcategories": [
         {
           "slug": "trailer-and-towing",
