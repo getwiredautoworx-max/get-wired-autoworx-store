@@ -219,7 +219,7 @@ jobs:
               const publicPage = await browser.newPage({viewport:{width:390,height:844}});
               const response = await publicPage.goto('https://www.getwiredauto.co.za/store',{waitUntil:'domcontentloaded',timeout:45000});
               if (!response || response.status() >= 400) throw new Error('Public storefront did not return a successful HTTP response');
-              const publicFrame = publicPage.frameLocator('iframe[name="store"]');
+              const publicFrame = publicPage.frameLocator('iframe#store');
               await publicFrame.locator('#allProductsLink').waitFor({timeout:25000});
               await publicFrame.locator('#featuredGrid .product').first().waitFor({timeout:30000});
               await publicFrame.locator('#allProductsLink').click();
