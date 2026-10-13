@@ -215,6 +215,26 @@ jobs:
             await productQuotePage.close();
 
             await page.setViewportSize({width:1280,height:900});
+            const publicPage = await browser.newPage({viewport:{width:390,height:844}});
+            const publicResponse = await publicPage.goto('https://getwiredautoworx-max.github.io/get-wired-autoworx-store/',{waitUntil:'domcontentloaded',timeout:45000});
+            if (!publicResponse || publicResponse.status() >= 400) throw new Error('Public fallback homepage did not return a successful HTTP response');
+            const publicFrame = publicPage.frameLocator('iframe').first();
+            await publicFrame.locator('#allProductsLink').waitFor({timeout:25000});
+            await publicFrame.locator('#allProductsLink').click();
+            await publicFrame.locator('#searchInput').fill('GW-B4F502E6');
+            const publicProduct = publicFrame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
+            await publicProduct.waitFor({timeout:20000});
+            const publicProductText = await publicProduct.innerText();
+            if (publicProductText.includes('Price on request') || !publicProductText.includes('ADD TO CART')) throw new Error('Public fallback host still blocks a correctly priced product with no legacy verified flag: '+publicProductText);
+            await publicProduct.getByRole('button',{name:'ADD TO CART',exact:true}).click();
+            const publicCart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
+            if (!publicCart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public fallback host did not persist the product in cart');
+            await publicPage.goto('https://getwiredautoworx-max.github.io/get-wired-autoworx-store/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
+            await publicPage.locator('#summaryTotal').waitFor({timeout:20000});
+            if (!(await publicPage.locator('#packagingSummary').innerText()).includes('Packaging:') || !(await publicPage.locator('#items').innerText()).includes('GW-B4F502E6')) throw new Error('Public fallback checkout did not load cart items and packaging summary');
+            console.log('PUBLIC_FALLBACK_CART_CHECKOUT_PASS');
+            await publicPage.close();
+
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
