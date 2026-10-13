@@ -1441,3 +1441,10 @@ Read-only category notes:
 - Fix commit: `6dc9509af300a620630090dc8c12fba0caa186ab`.
 - New runs triggered and in progress at last check: Storefront Smoke Test #646 [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378730537), Store Production QA #197 [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378730376), Pages deployment #905 [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378729847).
 - Release sign-off remains blocked pending completion of #646 and confirmation that the homepage/storefront and both policy URLs return successful HTTP responses; do not upload to Axxess until evidence is recorded. Next action: poll these runs, inspect exact failing step/logs if needed, fix only demonstrated causes, and append each material result here.
+
+
+## Continuation log — 2026-10-13 09:49 SAST
+- Storefront Smoke Test #646 failed earlier than the cart assertion because Playwright's strict locator `.gwResult` matched 15 suggestion-result elements; the wait call expected a single element. This is a test selector issue, not evidence of a storefront runtime failure.
+- Corrected the test to clear the search field and wait until every suggestion element is hidden or detached from layout before attempting the real cart click.
+- Follow-up commit: `2a0776235fb9204d8ccf3cae5a4dc0f335d83be2`. Store Production QA #197 passed on the preceding test-only commit; Pages deployment #905 was cancelled as newer commits superseded it. A fresh smoke run is expected for this commit; poll the latest run and record final outcome before release sign-off.
+- No application files or Axxess production content were changed. Release remains blocked pending passing smoke verification and explicit HTTP 200 evidence for the homepage/storefront and policy pages.
