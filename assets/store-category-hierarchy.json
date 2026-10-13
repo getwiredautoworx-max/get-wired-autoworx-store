@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "generated_at": "2026-10-13",
-  "status": "STAGING_ONLY_NOT_APPROVED_FOR_PRODUCT_IMPORT",
+  "status": "STAGING_TAXONOMY_ONLY_NOT_APPROVED_FOR_PRODUCT_IMPORT",
   "source_crosswalk": "staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv",
   "live_catalogue_enabled": false,
   "notes": [
-    "This hierarchy is derived from the current ASC source-heading crosswalk; it is a reviewable proposal, not final product-level approval.",
+    "Hierarchy derived from the current ASC source-heading crosswalk; reviewable proposal, not final product-level approval.",
     "Do not display or import legacy catalogue products using these headings.",
-    "Headings mapped to review/conflict/promotion destinations are intentionally excluded from customer-facing category buttons until manually reconciled.",
+    "Headings mapped to review/conflict/promotion destinations are excluded from customer-facing category buttons until manually reconciled.",
     "Preserve exact source heading variants and guide/page references for auditability."
   ],
   "roots": [
@@ -267,7 +267,7 @@
           ]
         },
         {
-          "slug": "globes-globe-holders",
+          "slug": "globes-and-globe-holders",
           "label": "GLOBES & GLOBE HOLDERS",
           "source_heading_variants": [
             "GLOBES & GLOBE HOLDERS"
@@ -377,7 +377,7 @@
           ]
         },
         {
-          "slug": "starter-kits-regulators",
+          "slug": "starter-kits-and-regulators",
           "label": "STARTER KITS & REGULATORS",
           "source_heading_variants": [
             "STARTER KITS & REGULATORS"
@@ -1280,7 +1280,7 @@
           ]
         },
         {
-          "slug": "laser-distance-meter-digital-torque-wrench",
+          "slug": "laser-distance-meter-and-digital-torque-wrench",
           "label": "Laser Distance Meter & Digital Torque Wrench",
           "source_heading_variants": [
             "Laser Distance Meter & Digital Torque Wrench"
@@ -1302,7 +1302,7 @@
           ]
         },
         {
-          "slug": "locks-padlocks",
+          "slug": "locks-and-padlocks",
           "label": "LOCKS & PADLOCKS",
           "source_heading_variants": [
             "LOCKS & PADLOCKS"
@@ -1494,22 +1494,31 @@
           "slug": "4x4-outdoor",
           "label": "4X4 & OUTDOOR",
           "source_heading_variants": [
-            "4X4 & OUTDOOR"
+            "4X4 & OUTDOOR",
+            "4x4 and Outdoor",
+            "4X4 OUTDOOR"
           ],
           "source_references": [
-            "June 2026 p.3"
+            "June 2026 p.3",
+            "February 2026 p.4; March 2026 p.4",
+            "August 2026 p.4-5; September 2026 p.4-5"
           ],
           "source_statuses": [
-            "OCR recovered"
+            "OCR recovered",
+            "TOC extracted; mapping provisional",
+            "Text extracted"
           ],
           "evidence_statuses": [
-            "OCR recovered"
+            "OCR recovered",
+            "TOC/text extracted",
+            "Text extracted"
           ],
           "visual_verification_statuses": [
             "Not visually verified; page-image QA pending"
           ],
           "mapping_notes": [
-            "Page heading recovered from June PDF OCR Store-root normalized: vehicle-mounted 4x4 items may map to Automotive Accessories after SKU review. | Separate vehicle-mounted items to Automotive Accessories only after SKU/application review."
+            "Page heading recovered from June PDF OCR Store-root normalized: vehicle-mounted 4x4 items may map to Automotive Accessories after SKU review. | Separate vehicle-mounted items to Automotive Accessories only after SKU/application review.",
+            "Keep source heading; review item-by-item for vehicle-mounted vs outdoor use. | Separate outdoor leisure goods from vehicle-mounted accessories by SKU."
           ]
         },
         {
@@ -1535,49 +1544,7 @@
           ]
         },
         {
-          "slug": "4x4-and-outdoor",
-          "label": "4x4 and Outdoor",
-          "source_heading_variants": [
-            "4x4 and Outdoor"
-          ],
-          "source_references": [
-            "February 2026 p.4; March 2026 p.4"
-          ],
-          "source_statuses": [
-            "TOC extracted; mapping provisional"
-          ],
-          "evidence_statuses": [
-            "TOC/text extracted"
-          ],
-          "visual_verification_statuses": [
-            "Not visually verified; page-image QA pending"
-          ],
-          "mapping_notes": [
-            "Keep source heading; review item-by-item for vehicle-mounted vs outdoor use. | Separate outdoor leisure goods from vehicle-mounted accessories by SKU."
-          ]
-        },
-        {
-          "slug": "4x4-outdoor",
-          "label": "4X4 OUTDOOR",
-          "source_heading_variants": [
-            "4X4 OUTDOOR"
-          ],
-          "source_references": [
-            "August 2026 p.4-5; September 2026 p.4-5"
-          ],
-          "source_statuses": [
-            "Text extracted"
-          ],
-          "evidence_statuses": [
-            "Text extracted"
-          ],
-          "visual_verification_statuses": [
-            "Not visually verified; page-image QA pending"
-          ],
-          "mapping_notes": []
-        },
-        {
-          "slug": "atv-winches-wheel-caps",
+          "slug": "atv-winches-and-wheel-caps",
           "label": "ATV WINCHES & WHEEL CAPS",
           "source_heading_variants": [
             "ATV WINCHES & WHEEL CAPS"
@@ -1722,43 +1689,25 @@
       "legacy_category_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
       "subcategories": [
         {
-          "slug": "trailer-towing",
+          "slug": "trailer-and-towing",
           "label": "TRAILER & TOWING",
           "source_heading_variants": [
-            "TRAILER & TOWING"
-          ],
-          "source_references": [
-            "September 2026 p.5"
-          ],
-          "source_statuses": [
-            "Text extracted"
-          ],
-          "evidence_statuses": [
-            "Text extracted"
-          ],
-          "visual_verification_statuses": [
-            "Not visually verified; page-image QA pending"
-          ],
-          "mapping_notes": []
-        },
-        {
-          "slug": "trailer-and-towing",
-          "label": "Trailer And Towing",
-          "source_heading_variants": [
+            "TRAILER & TOWING",
             "Trailer And Towing",
             "TRAILER AND TOWING"
           ],
           "source_references": [
+            "September 2026 p.5",
             "March 2026 p.4-5",
             "July 2026 p.7"
           ],
           "source_statuses": [
-            "TOC extracted; mapping provisional",
-            "Text extracted"
+            "Text extracted",
+            "TOC extracted; mapping provisional"
           ],
           "evidence_statuses": [
-            "TOC/text extracted",
-            "Text extracted"
+            "Text extracted",
+            "TOC/text extracted"
           ],
           "visual_verification_statuses": [
             "Not visually verified; page-image QA pending"
