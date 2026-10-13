@@ -83,3 +83,27 @@ Next: inspect newest Actions list for any newly triggered jobs; do visual/manual
 - Manual visual QA at 390px and desktop remains outstanding. Real payment provider and live production checkout readiness remain unverified.
 
 Next precise action: access the staging preview and perform visual/manual QA; record actual observations. Then continue category/subcategory reconciliation before catalogue import. No production Axxess changes have been made.
+
+
+## Continuation update — 13 October 2026, current session
+
+### Background tasks verified
+- GitHub Actions latest run scan returned 20 recent runs; all returned runs were completed. No queued or in-progress run appeared in this latest page.
+- Staging Category Navigation Chromium Acceptance #3: PASS, run ID 38435206322, tested commit 03cd8d9e229e4f22a899744559b477a3a7df9180. The test command exited successfully. Run link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435206322.
+- Storefront Smoke Test #668: PASS, run ID 38435448619, commit 68cfeb1f; #667: PASS, run ID 38435403130, commit 9be92c3a. These are local/staging smoke tests, not live payment or Axxess verification.
+- GitHub Pages deployment #978: PASS, run ID 38435796239, commit a2cf53f8; #977 also passed. This does not prove the Axxess production store changed.
+- Buyer-guide extraction runs #50–#53 (IDs 38435893489, 38436264146, 38436393331, 38436501582): all PASS. Run #53 is the latest, commit 0c4b4a2e1e0f92c50f36241f0005ff8e1bf6bf3e.
+- No newer run appeared in the latest 20-run scan. No production deployment, DNS change, payment change, or catalogue import was performed.
+
+### Visual QA status
+- Manual visual QA remains **NOT VERIFIED**. The connected GitHub Actions result confirms automated tests only; no screenshot artifacts were attached to run #3, and this session has not independently inspected a live mobile/desktop rendering. Do not upgrade this status based solely on green CI.
+- Next QA path: create or use a staging-only screenshot capture that saves mobile 390px and desktop 1280px screenshots as workflow artifacts, then inspect them before approving any production upload. Keep the change on the staging branch; do not spend Netlify/Cloudflare credits.
+
+### Next work after QA
+- Continue category/subcategory reconciliation from the extracted buyer-guide sources and approved eight root categories; inspect existing extraction outputs and category mapping files before creating new ones.
+- Do not import the full catalogue until category mapping and visual acceptance are validated. Preserve the user's existing source PDFs and all previously completed extraction work.
+- Keep production Axxess untouched. A green Pages build is not an Axxess release.
+
+### Continuation rules
+- For every future session, check the newest background run statuses first, update this handover after material outcomes, and leave an exact resume point with run IDs, commit IDs, status, blockers, and next action.
+- Daily monitoring automation exists; it is not continuous monitoring and cannot guarantee detection between scheduled runs.
