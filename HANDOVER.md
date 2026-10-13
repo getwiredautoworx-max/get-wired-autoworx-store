@@ -1824,3 +1824,24 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - GitHub Actions run #26 (ID `38402345015`) started for the workflow change and was observed `in_progress`. Do not report extraction success until the run completes and the manifest/text files are checked.
 - This workflow is intended to write only text/manifest outputs under `staging/source-extracts/` on the isolated audit branch. It does not write to Supabase, alter the storefront catalogue, deploy, or upload to Axxess.
 - Next: verify run conclusion and inspect the resulting manifest and the three new extracted text files. Then inspect source category headings/page boundaries, preserve ASC source taxonomy alongside the eight approved store roots, and flag OCR/price ambiguity rather than guessing.
+
+
+## CONTINUATION LOG — 2026-10-13 — Seven-guide text extraction verified; category reconciliation v5 created
+
+- GitHub Actions staging extraction succeeded in run #27: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38402395937 (commit `4e3c041ef39ba3beabe58ec4a668b18f608bfc77`). The earlier overlapping run #26 failed only at push time because both runs tried to push the same audit branch; run #27 completed successfully and committed the new extracted files. No production data was touched.
+- Verified extracted text files for the newly uploaded guides:
+  - February 2026: 36 pages; 118,006 extracted characters; `staging/source-extracts/Feb_Buyers_Guide.txt`
+  - March 2026: 32 pages; 113,022 extracted characters; `staging/source-extracts/March_Buyers_Guide.txt`
+  - May 2026: 32 pages; 111,885 extracted characters; `staging/source-extracts/May_Buyers_Guide.txt`
+  - July 2026: 32 pages; 115,529 extracted characters
+  - August 2026: 32 pages; 117,837 extracted characters
+  - September 2026: 32 pages; 105,785 extracted characters
+  - June 2026: 32 pages but text-layer extraction is only 668 characters because it is scanned; use the separate page-numbered `June_Buyers_Guide_OCR.txt` and OCR addendum, not the weak raw text file.
+- Created `staging/source-extracts/category-reconciliation-review-v5.csv`: it retains the prior v4 register and adds 52 source-heading rows from the February, March and May contents pages. Each added row preserves the exact source heading/page range and a separate provisional store mapping/status. Broad or out-of-scope source headings are explicitly marked for SKU-level/manual review rather than forced into unrelated roots.
+- Confirmed February contents include 4x4 and Outdoor, Accessories / Accessories-Quantum, Adhesives and Silicones, Automotive Hardware, Chemicals Lubricants and Oils, Automotive Electrical, Automotive Gaskets, Automotive Gauges, Automotive Brake & Clutch, Automotive Door Parts, Automotive Sound, Automotive Spare Parts / Quantum, Automotive Wheel Accessories, Automotive Window Spares, Automotive Tools and Hardware.
+- Confirmed March contents include 4x4 and Outdoor, Automotive Accessories, Trailer And Towing, Automotive Electrical, Spare Parts, Wheel Accessories, Automotive Tools, Cutting Tools, Abrasives, Hand Tools, Laser Distance Meter & Digital Torque Wrench, Garden Tools, Measuring Tools, Welding, Consumables, Lifestyle, Safety, Security, Rigging and SPECIAL DISCOUNTED PRICE.
+- Confirmed May contents include Outdoor, Safety, Accessories, Chemicals, Auto Spares, Auto Electrical, Winches & Spares, Pumps And Filters, Fuel Caps, Engine Cooling, Ignition Spares, Automotive Tools, Boat Accessories and SPECIAL DISCOUNTED PRICE. Some May page ranges appear affected by a two-column contents layout; the 20–30 Boat Accessories range is explicitly flagged for page-by-page verification.
+- Workflow trigger filters were tightened so future handover/category-register documentation edits do not rerun PDF extraction. PDF extraction remains confined to the audit branch.
+- ASC/source taxonomy rule remains mandatory: preserve original ASC/guide heading and page provenance as separate source fields alongside the approved eight Get Wired AutoWorx customer-facing roots; exact SKU + item description/fitment required before product matching; image matching only by exact SKU.
+- Remaining work: extract/verify the remaining page-level category headings from all guides (especially scanned June), inspect actual ASC catalogue and vehicle-specific source files if present, consolidate source labels/aliases into a full cross-month register, then build a SKU-level staged product ledger with original category, proposed store category, page, exact code, description, fitment, price evidence, status and review reason. Existing text extraction is not import-ready product data.
+- No product/category/price/stock/image writes, database imports, production deployments or Axxess uploads performed.
