@@ -2042,3 +2042,12 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - IMPORTANT: this is not yet a full functional/browser acceptance test. It still needs browser testing against the real staging data to confirm the category IDs and parent-child records map correctly, all eight roots navigate, empty categories are handled, and the back/product paths work. Do not deploy or merge to main/Axxess yet.
 - No product import, Supabase changes, live catalogue changes, payment changes, or production deployment occurred. The old catalogue remains out of scope for recovery.
 - Next: run a browser-level staging test and fix any mismatches; verify category/grouping rules and source-page visual QA before authorizing product import. Preserve Axxess-first and one-final-sync workflow.
+
+
+## CONTINUATION LOG — 2026-10-13 — TAXONOMY-ONLY SAFETY CORRECTION
+
+- Follow-up commit on staging branch: `388f3996ec654af7caab26069ffde4ab22ca4dd2` updates `index-new.html` to use the reviewed staging taxonomy JSON embedded as a snapshot (8 roots / 71 subcategories), rather than reading legacy database category children for the new navigation.
+- This supersedes the earlier first-pass implementation for category selection. Root clicks now open the staging taxonomy's subcategory list; subcategory clicks open a clear staging placeholder screen and do NOT display legacy catalogue products. Back controls return to the root or parent subcategory list.
+- Static read-back checks passed for the embedded taxonomy, eight root buttons, 71 source subcategories, root/subcategory handlers, back controls, the legacy-product display guard, and `live_catalogue_enabled=false`. The fetched file is 92,628 characters. These are source/static checks only; no browser runtime/visual test has been executed, so do not mark the navigation task fully accepted yet.
+- Production remains untouched. No merge to main, Axxess upload, Supabase product import, payment change, or catalogue deletion was performed.
+- Next acceptance gate: execute a real browser test on the staging file, check mobile/desktop layout and all root/subcategory/back paths, and fix any console errors before product mapping/import. Keep the old catalogue excluded.
