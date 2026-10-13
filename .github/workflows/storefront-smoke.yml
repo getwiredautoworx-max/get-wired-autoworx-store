@@ -223,7 +223,14 @@ jobs:
             await publicFrame.locator('#allProductsLink').click();
             await publicFrame.locator('#searchInput').fill('GW-B4F502E6');
             const publicProduct = publicFrame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
-            await publicProduct.waitFor({timeout:20000});
+            try {
+              await publicProduct.waitFor({timeout:20000});
+            } catch (error) {
+              const publicDiag = await publicFrame.locator('body').innerText().catch(()=>'(body unavailable)');
+              const publicCount = await publicFrame.locator('#productCount').innerText().catch(()=>'(count unavailable)');
+              const publicGrid = await publicFrame.locator('#allProductsGrid').innerText().catch(()=>'(grid unavailable)');
+              throw new Error('Public fallback product lookup failed. URL='+publicPage.url()+' count='+publicCount+' grid='+publicGrid.slice(0,800)+' body='+publicDiag.slice(0,1200));
+            }
             const publicProductText = await publicProduct.innerText();
             if (publicProductText.includes('Price on request') || !publicProductText.includes('ADD TO CART')) throw new Error('Public fallback host still blocks a correctly priced product with no legacy verified flag: '+publicProductText);
             await publicProduct.getByRole('button',{name:'ADD TO CART',exact:true}).click();
