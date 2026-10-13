@@ -1415,3 +1415,12 @@ Read-only category notes:
 - This is a real unresolved public cart/test issue, not a policy-page result. Do not mark release ready or upload a new package to Axxess on this evidence.
 - Next step: inspect the product card's actual add-to-cart handler and localStorage/cart key flow, compare the iframe's storage state with the top-level page's storage, and distinguish a production defect from a test harness assumption. Make only a targeted change, then rerun the main-branch smoke test. Preserve price verification safeguards and avoid unnecessary storefront rebuilds.
 - Release status: **BLOCKED — public cart persistence assertion failed; checkout and policy-page HTTP checks remain unverified.** No production data, DNS, payment settings, or Axxess files changed during this investigation.
+
+
+## CONTINUATION LOG — 2026-10-13 — TARGETED CART TEST DIAGNOSTICS
+
+- Investigated Smoke Test #643 failure. The workflow loaded the live formula-priced product card, but the test used a synthetic DOM `el.click()` followed by an immediate top-level localStorage assertion. This did not prove whether the failure was in the live cart handler or in the test's click/storage observation. No policy checks ran after this failure.
+- Made a narrow test-only correction in `.github/workflows/storefront-smoke.yml` (commit `57057e9daa235ed1b4e3d34c25d96b72bd5bb9aa`): use Playwright's real locator click, wait briefly for the expected cart entry, and on failure report both top-level and iframe localStorage diagnostics. Storefront files and price-validation logic were not changed.
+- Main-branch Storefront Smoke Test #644 is **IN PROGRESS**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38377675504
+- Next: inspect #644 after completion. If the cart assertion passes, verify the checkout marker and both policy-page HTTP 200 markers. If it fails, use its diagnostic payload to make a real targeted fix instead of masking the assertion. Do not sign off or upload a new Axxess package until the live verification is successful.
+- Current status: **BLOCKED pending Smoke Test #644**. QA #193, image audit #271, Pages deployment #896, and package build #34 passed previously. No Axxess upload, DNS change, payment configuration change, or production-data modification was made.
