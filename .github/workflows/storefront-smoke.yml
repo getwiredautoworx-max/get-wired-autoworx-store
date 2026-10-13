@@ -148,7 +148,18 @@ jobs:
               throw new Error('Product detail modal failed to open after clicking product title: '+JSON.stringify(modalDiag));
             }
             await frame.locator('#modalClose').click();
-            await frame.locator('#featuredGrid .product button').first().click();
+            await frame.locator('#allProductsLink').click();
+            await frame.locator('#searchInput').fill('GW-B4F502E6');
+            const quoteOnlyCard = frame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
+            await quoteOnlyCard.waitFor({timeout:15000});
+            const quoteOnlyText = await quoteOnlyCard.innerText();
+            if (!quoteOnlyText.includes('Price on request') || !quoteOnlyText.includes('REQUEST PRICE')) throw new Error('Unverified product must show Price on request and REQUEST PRICE');
+            await frame.locator('#searchInput').fill('GW-F165DD11');
+            const verifiedCard = frame.locator('.product').filter({hasText:'GW-F165DD11'}).first();
+            await verifiedCard.waitFor({timeout:15000});
+            const verifiedText = await verifiedCard.innerText();
+            if (!verifiedText.includes('ADD TO CART') || verifiedText.includes('Price on request')) throw new Error('Verified product must show its price and Add to Cart');
+            await verifiedCard.locator('button').click();
             await page.locator('#checkout').waitFor({timeout:10000});
             await page.locator('#checkout').click();
             await page.waitForURL('**/checkout-v2.html');
