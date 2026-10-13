@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          source_commit="388f3996ec654af7caab26069ffde4ab22ca4dd2"
+          source_commit="0041a9d02a354846816c4303b838de68818bc18c"
           curl -fsSL "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/${source_commit}/index-new.html" -o index-new-staging-test.html
           curl -fsSL "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/${source_commit}/assets/store-category-hierarchy.json" -o store-category-hierarchy-staging-test.json
           python3 -m http.server 4174 --bind 127.0.0.1 >/tmp/gw-category-test-http.log 2>&1 &
