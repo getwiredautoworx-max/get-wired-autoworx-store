@@ -242,7 +242,14 @@ jobs:
             const publicProductText = await publicProduct.innerText();
             const publicProductMarkup = await publicProduct.evaluate(el=>({html:el.outerHTML.slice(0,1800),children:Array.from(el.children).map(c=>({tag:c.tagName,cls:c.className,display:getComputedStyle(c).display,visibility:getComputedStyle(c).visibility,text:(c.innerText||'').slice(0,100)}))}));
             if (publicProductText.includes('Price on request') || !publicProductText.includes('ADD TO CART')) throw new Error('Public fallback purchase-card diagnostic: text='+publicProductText+' markup='+JSON.stringify(publicProductMarkup));
-            await publicProduct.getByRole('button',{name:'ADD TO CART',exact:true}).click();
+            // The live search dropdown overlays the catalogue cards while a query is present.
+            // Dismiss it before clicking the card; this preserves real pointer-interaction checks
+            // and avoids force-clicking through a genuine UI overlay.
+            await publicFrame.locator('#searchInput').fill('');
+            await publicFrame.locator('.gwResult').first().waitFor({state:'hidden',timeout:10000}).catch(()=>{});
+            const publicPurchaseCard = publicFrame.locator('#allProductsGrid .product').filter({hasText:'GW-F165DD11'}).first();
+            await publicPurchaseCard.waitFor({timeout:15000});
+            await publicPurchaseCard.getByRole('button',{name:'ADD TO CART',exact:true}).click();
             const publicCart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
             if (!publicCart.some(item=>item.public_sku==='GW-F165DD11' && Number(item.qty)===1)) throw new Error('Public fallback host did not persist the product in cart');
             await publicPage.goto('https://getwiredautoworx-max.github.io/get-wired-autoworx-store/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
