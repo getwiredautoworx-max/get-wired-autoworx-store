@@ -2032,3 +2032,13 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Category crosswalk: 115 rows / 8 columns, no exact duplicate headings, June index coverage complete (33/33). Original guide page-image verification and SKU-level product ledger remain outstanding. Do not call the catalogue fully resolved or import products until source QA and owner category review are complete.
 - No production catalogue, Supabase, payment, hosting, or Axxess changes were made.
 - Next: owner browses both staging files and returns the edited category CSV/decisions; continue source-page visual verification and build the SKU-level ledger once category mappings are reviewed. Preserve Axxess-first and one-final-sync workflow.
+
+
+## CONTINUATION LOG — 2026-10-13 — STAGING CATEGORY NAVIGATION PATCH COMMITTED
+
+- Implemented and committed a targeted navigation patch to `index-new.html` on the staging/audit branch only: `326d0a7e9316b73f0dc97bad0aa0488203a0a5fa`.
+- The eight homepage category buttons now carry a root index and route to a subcategory view using the existing category tree. The subcategory view shows child category buttons and product counts; clicking a category with further children opens the next level, while a leaf category opens the matching products. A back control returns to the eight root categories.
+- File was fetched back from GitHub after the commit. Static verification confirmed the root-index attribute, the navigation function, the root click route, and that `assets/store-category-hierarchy.json` remains staging-only with `live_catalogue_enabled=false`.
+- IMPORTANT: this is not yet a full functional/browser acceptance test. It still needs browser testing against the real staging data to confirm the category IDs and parent-child records map correctly, all eight roots navigate, empty categories are handled, and the back/product paths work. Do not deploy or merge to main/Axxess yet.
+- No product import, Supabase changes, live catalogue changes, payment changes, or production deployment occurred. The old catalogue remains out of scope for recovery.
+- Next: run a browser-level staging test and fix any mismatches; verify category/grouping rules and source-page visual QA before authorizing product import. Preserve Axxess-first and one-final-sync workflow.
