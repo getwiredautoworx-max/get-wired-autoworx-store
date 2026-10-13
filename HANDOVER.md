@@ -1622,3 +1622,38 @@ Owner correctly pointed out that the original four Buyer’s Guide PDFs were upl
 3. If checkout or extraction fails, inspect job logs and adjust the isolated workflow; do not ask for attachments or deploy to production.
 4. If text extraction shows scanned pages or missing descriptions/tables, add page-specific OCR/table review only for those pages and preserve the original source.
 5. Continue applying the owner-approved June → July → August → September import and stock/price rules. No production import or Axxess upload until source accuracy and category mappings are reviewed.
+
+
+## 2026-10-13 — Category approval and Buyers Guide import status
+
+### Owner decision
+- Owner approved the proposed category framework so far.
+- Move **Caravan accessories** under **Camping, Leisure & Outdoors** (owner wording: “Camping and outdoor”).
+- All other proposed categories remain provisionally approved; retain original supplier guide headings in the reconciliation so no product family is lost.
+- Do not perform category moves or product imports until the source-derived category reconciliation and mapping are ready for review.
+
+### Direct answer on imports
+- **No: the remaining Buyers Guides have not been imported into the live store or assigned to live categories.**
+- No live product/category/database changes or Axxess uploads have been made as part of this step.
+- Existing audit workbook is not safe for blind import due to extraction anomalies and must not replace source-of-truth PDFs.
+
+### PDF text extraction workflow
+- Isolated GitHub Actions run `38387571992` on branch `audit/buyer-guide-extraction` completed successfully.
+- Extracted text files now exist for June, July, August and September 2026 guides under `staging/source-extracts/`.
+- Manifest reports: June 32 pages / only 668 extracted text characters; July 32 pages / 115,529 characters; August 32 pages / 117,837 characters; September 32 pages / 105,785 characters.
+- **June extraction is incomplete/poor** (most pages are blank page separators and sparse headings); do not treat June as reconciled. It needs page-image OCR or another controlled extraction pass.
+- July–September extraction text is available but still requires parsing and validation of category boundaries, exact SKUs, descriptions, raw prices and page references. Text extraction success is not import approval.
+
+### Next actions
+1. Build a source-faithful category/section register from the contents pages and page headings in all four guides, keeping each guide/page provenance.
+2. Re-run OCR for the June PDF pages where extracted text is missing, without changing the original PDF.
+3. Produce a reviewable category reconciliation showing original heading, guide/month/page, proposed main category, proposed subcategory, and whether it is new/overlapping/ambiguous.
+4. After owner confirms the mapping, build the SKU-level staging ledger in chronological order June → July → August → September; validate exact codes and prices and classify KEEP / UPDATE / ADD / QUOTE / REVIEW.
+5. Only after review and approval may any live database import or production category assignment occur. Keep the Axxess-first workflow and avoid unnecessary deployments/credits.
+
+### Status
+- Category framework: provisionally approved with Caravan accessories moved to Camping and outdoor.
+- Source text extraction: July–September available; June incomplete.
+- Category reconciliation: not complete.
+- Product imports from remaining guides: not performed.
+- Live writes/deployments from this step: none.
