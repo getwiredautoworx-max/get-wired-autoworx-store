@@ -55,6 +55,31 @@ jobs:
           check_url homepage "/" "Get Wired AutoWorx"
           check_url terms "/terms-and-conditions.html" "Terms.*Conditions"
           check_url returns "/returns-refunds.html" "Returns.*Refunds"
+          check_url checkout "/checkout-v2.html" "Checkout|checkout|Your cart"
+          check_url categories "/category.html" "Auto Electrical|Categories|category"
+          check_url product "/product.html" "Product|product|Price on request"
+
+          json_url="$base/assets/category-tree.json"
+          json_status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --connect-timeout 10 --max-time 35 -o /tmp/gw-category-tree.json -w '%{http_code}' "$json_url")" || { echo "HTTP_REQUEST_FAILED label=category_tree"; failed=1; json_status="000"; }
+          echo "CHECK_URL=$json_url"
+          echo "HTTP_STATUS_category_tree=$json_status"
+          if [ "$json_status" = "200" ] && jq -e 'type == "array" or type == "object"' /tmp/gw-category-tree.json >/dev/null && grep -Eiq "Auto Electrical|Spare Parts" /tmp/gw-category-tree.json; then
+            echo "PASS: category tree returned valid JSON with expected category marker"
+          else
+            echo "FAIL: category tree status/content invalid"
+            failed=1
+          fi
+
+          image_url="$base/assets/products_webp/GW-000174D6.webp"
+          image_status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --connect-timeout 10 --max-time 35 -o /tmp/gw-exact-sku.webp -w '%{http_code} %{content_type}' "$image_url")" || { echo "HTTP_REQUEST_FAILED label=exact_sku_image"; failed=1; image_status="000"; }
+          echo "CHECK_URL=$image_url"
+          echo "HTTP_STATUS_and_CONTENT_TYPE_exact_sku_image=$image_status"
+          if [[ "$image_status" == "200 image/webp"* ]] && file --mime-type -b /tmp/gw-exact-sku.webp | grep -qx "image/webp"; then
+            echo "PASS: exact-SKU product image returned HTTP 200 with WebP content type"
+          else
+            echo "FAIL: exact-SKU image status/content type invalid"
+            failed=1
+          fi
 
           if [ "$failed" -ne 0 ]; then
             echo "PUBLIC_URL_HTTP_CHECK_FAILED"
