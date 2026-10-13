@@ -1541,3 +1541,38 @@ These paths and sizes were verified against the GitHub repository tree on 2026-1
 - SKU/image matching and category audit: **PENDING**.
 - Public-repository commercial exposure review: **OWNER ATTENTION REQUIRED**.
 - Axxess upload/release: **ON HOLD — awaiting category/image improvements and owner approval**.
+
+
+---
+
+## 2026-10-13 — Owner-approved Buyer’s Guide import policy (PERMANENT)
+
+The owner explicitly instructed that this workflow is to be followed exactly. Treat these rules as permanent unless the owner explicitly changes them.
+
+### Import order and category authority
+1. Import all products from the June Buyer’s Guide faithfully as a source-baseline batch. Preserve each listed product's exact supplier/ASC code, description/specification and the category/subcategory assigned in that guide. Do not silently rename, merge, omit or reclassify products during the baseline import.
+2. Repeat the same faithful import/reconciliation for the July Buyer’s Guide, then August, then September, preserving each guide's own category assignments as the source record for that edition.
+3. Process guides chronologically (June → July → August → September). When a later guide advertises a known SKU, use the later guide as the newer source for relevant fields (including category/subcategory, price and listing status), while retaining source provenance and the previous value in the audit trail. Do not overwrite a value when SKU identity is uncertain.
+4. Add categories/subcategories that appear in a guide but do not yet exist in the store. Preserve the guide's category naming and parent relationship first; map to the approved ASC hierarchy only when the source taxonomy supports it and record any necessary mapping for review.
+5. Follow ASC categories and the categories/subcategories shown in the guides as the authoritative taxonomy. After the source-faithful import/reconciliation is complete, fine-tune merchandising and navigation with the owner. Existing proposed eight storefront roots remain proposals until the mapping is validated; do not use the old seven-root import rule to suppress source categories.
+6. Preserve exact supplier SKU/part numbers and source catalogue/month/page references. No invented codes, guessed category moves, duplicate SKU creation, generic picture substitution or untraceable edits.
+
+### Stock/price confirmation rule
+- For any product found in the June or July guides (i.e. before August), if that item is **not advertised in any later guide (August or September)**, display a **“Confirm stock and price”** button/status for the customer instead of presenting it as confirmed in-stock/current-price stock.
+- If a June/July item is also advertised in August or September, the later listing takes precedence and the item is treated under the later-guide rule.
+- Assume items advertised in the August Buyer’s Guide and/or a later guide (including September) have stock on hand, as instructed by the owner. This is a working catalogue assumption, not a physical stock count; retain source month and allow the owner to revise the assumption.
+- Do not fabricate or recalculate a price when a guide does not supply a usable price. Keep the item in staging for review/quotation or the confirm-stock-and-price state as applicable. Where cost is supplied and a selling price must be calculated, preserve the existing approved rule only after source extraction is verified: cost excl. VAT × 1.15 × 1.35, rounded to two decimals. Do not bulk-overwrite existing live prices from a rounded calculation without exact source reconciliation.
+
+### Required execution and safeguards
+1. Extract all four existing root-level PDFs: `June Buyer's Guide (1).pdf`, `July Buyer's Guide.pdf`, `August Buyer's Guide.pdf`, and `September Buyer's Guide.pdf`. They are already in the public GitHub repository; do not upload duplicate copies.
+2. Build a staging ledger with one row per source listing and at minimum: source month/file/page, exact SKU/part code, product name/description, guide category/subcategory, raw listed price/cost and price type, source image/page reference, matched live product ID/SKU if any, later-guide match, stock/price status, proposed action (KEEP/UPDATE/ADD/QUOTE/REVIEW), and reason/confidence.
+3. Reconcile duplicates across months by exact code first. Use normalized names only to create manual-review candidates, never as sole authority to merge records.
+4. Validate category and product counts by source month; report extraction exceptions and ambiguous SKUs rather than silently skipping them.
+5. Do not write to Supabase/live catalogue, alter production category IDs, change existing live prices, edit deployed images or upload to Axxess until staging output has been reviewed and approved. Keep the originals unchanged.
+6. Keep the current Axxess-first, test-before-upload workflow. Avoid unnecessary GitHub Actions/Pages deployments and conserve credits. A documentation-only commit is not permission to deploy the store.
+
+### Status at time of approval (2026-10-13)
+- Policy approved by owner in chat and written to the master handover and catalogue import rules.
+- Source PDF paths and sizes verified in GitHub. Actual PDF extraction/reconciliation is the next work item and is **not yet complete**.
+- No live products, prices, stock values, categories, images, hosting or deployment settings were changed by this policy update.
+- Store redesign/upload remains ON HOLD pending category and product-image audit and owner review.
