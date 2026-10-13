@@ -945,3 +945,11 @@ Read-only category notes:
 - **Interpretation:** the GitHub Pages host is publicly reachable and serves the tested static pages/assets. This is not yet an end-to-end cart/order test; HTTP 200 on `product.html` does not prove a selected product renders, and HTTP 200 on checkout does not prove checkout can submit an order.
 - **NEXT ACTION:** run a safe, public-host browser test against the GitHub Pages site to verify category navigation/product loading and checkout form behaviour without submitting a real order. In parallel, verify whether PayFast/PayJustNow will accept the GitHub Pages URL for merchant review; keep `www.getwiredauto.co.za` unapproved/unverified until independently tested. Do not enter live payment details, create paid orders, or alter DNS/hosting/payment settings.
 - **ETA / fallback:** one browser-focused GitHub Actions run plus provider requirement review. If browser functionality depends on unavailable public configuration or Supabase policies, record the exact browser/network error and stop before any production order write.
+
+
+## 2026-10-13 — TASK START: PUBLIC-HOST BROWSER CHECKOUT SAFETY REVIEW
+- **Started:** after independent HTTP verification passed for eight public endpoints/assets in run `38340540093`.
+- **Goal:** determine whether public GitHub Pages actually runs category/product/checkout interactions and whether PayFast/PayJustNow URL requirements can be established without altering production settings.
+- **First step:** inspect current browser smoke workflow, public entry-page routing, checkout submit handler, and order-creation safeguards. Only then add a public-host browser test that cannot submit a real order. No production data writes, live payment details, DNS changes, or deploy setting changes.
+- **ETA:** inspect code and available provider information; one isolated automated browser run if safe. If test safety cannot be guaranteed, use read-only browser interactions and document the blocker.
+- **NEXT ACTION:** inspect the current `storefront-smoke.yml`, checkout implementation, and existing payment provider setup references to design a safe test that stops before any order-creation network call.
