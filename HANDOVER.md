@@ -1714,3 +1714,17 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - No production/live data or deployment changed.
 - Current status: June OCR output exists but is noisy and not import-ready; exact workflow run ID remains unverified; visual comparison artifact change is blocked.
 - Next safe option: use the repository's existing Actions page in the owner's browser to inspect the run associated with the OCR workflow change and download the current logs/artifacts if present, or have the owner explicitly authorize a different evidence-transfer route. Do not repeat the same rejected workflow write without a changed, approved approach.
+
+
+## PERMANENT OWNER INSTRUCTION — CATALOGUE RESET (2026-10-13)
+- Owner instruction: current product listings need to be removed because image quality is poor and products are assigned to incorrect categories. Treat this as the approved direction for a catalogue reset/rebuild, while preserving original supplier guides, source images, SKU/source history, and category mapping evidence.
+- Safety boundary: this instruction is not blanket authorization to execute destructive deletion against the live database or published store. First identify the actual product data source, distinguish staging/test data from live production, inspect dependencies and backup/restore options, and propose a reversible reset plan. Do not delete live rows or overwrite production files until the exact target and consequences are confirmed with the owner.
+- Rebuild principles: source-catalogue-first, June first then later guides in chronological order; preserve source categories and subcategories; later guides update matching products; add missing guide categories; keep uncertain image/product/category/price mappings in review status. Never infer image-to-product matching or price decimals.
+
+## PRE-TASK CHECKPOINT — 2026-10-13 — Inventory product data sources before catalogue reset
+- Task: read-only inventory of the main-branch storefront's product data files/configuration and the known Supabase project's public table schema, to establish where products are stored and what would be affected by a reset.
+- Scope: read-only GitHub file/schema inspection only. No DELETE/TRUNCATE/UPDATE/INSERT SQL; no file writes to main; no live store changes; no Axxess, Cloudflare, payment or DNS changes.
+- Known facts: user reports poor image quality and incorrect category assignments and directs removal of all store products. Prior project notes identify Supabase project ref ojytykqpvonxvepprgbh and a product import problem, but current production connection must be verified before acting.
+- Risks: deleting the wrong environment or dependent rows; breaking cart/orders/checkout; losing product-source evidence. Mitigation: inspect schema, dependencies and code references only; preserve data and request owner confirmation before destructive production action.
+- Success criteria: identify probable product source(s), relevant tables/files and dependency risks; record evidence and recommend the safest reversible reset path.
+- After-task requirement: update this handover with verified findings and exact next action before any destructive task.
