@@ -1576,3 +1576,28 @@ The owner explicitly instructed that this workflow is to be followed exactly. Tr
 - Source PDF paths and sizes verified in GitHub. Actual PDF extraction/reconciliation is the next work item and is **not yet complete**.
 - No live products, prices, stock values, categories, images, hosting or deployment settings were changed by this policy update.
 - Store redesign/upload remains ON HOLD pending category and product-image audit and owner review.
+
+
+---
+
+## 2026-10-13 — Existing June–August audit workbook QA (READ-ONLY)
+
+### Existing staged file located
+Library file `Get_Wired_AutoWorx_Buyers_Guides_Audit_June_August_2026.xlsx` was inspected programmatically. It is a prior extracted/staging workbook, not the original PDFs and not safe as an import file without correction. Its INDEX reports 4,820 product-line occurrences, 3,704 unique SKU records across five text guides, and 470 June OCR staging rows. Sheet-level parsed rows included February, March, May, June OCR, July and August; it is not a complete June/July/August/September source-of-truth set for the newly approved import sequence.
+
+### Verified data-quality blocker
+A read-only scan of the workbook's parsed rows found severe extraction anomalies in guide cost fields:
+- August: 847 parsed rows; 27 costs blank; 820 cost values greater than 10,000 (local currency), including examples with multi-billion values for ordinary automotive parts.
+- July: 748 parsed rows; 144 costs blank; 604 cost values greater than 10,000, including implausible multi-million/multi-billion values for ordinary items.
+- June OCR staging: 470 rows, all 470 costs blank; descriptions are generic placeholders such as “June Buyers Guide item [SKU]”, not actual product descriptions.
+These counts are QA flags, not a statement that every row is wrong. They demonstrate that the prior extraction cannot be blindly imported and must be re-extracted/verified against the original PDF pages. Preserve raw extracted values separately and do not “fix” prices by guessing where decimal points belong.
+
+### Action taken / not taken
+- No product records, stock, prices, categories, images, Supabase data, or production files changed.
+- No deployment or GitHub Actions workflow was triggered.
+- The four original PDFs remain in repository root and are the source of truth.
+- The current connected GitHub file reader can enumerate the PDF paths and sizes but does not provide usable PDF binary/page-image content through its text fetch. Therefore full PDF page-level extraction is blocked in this session unless the source PDFs are attached/uploaded through a file channel that exposes their bytes, or a controlled extraction workflow is explicitly run and its outputs reviewed.
+- Do not use the existing June–August audit workbook or the generated illustrated catalogue as a substitute for the original guides.
+
+### Next work item
+Obtain readable page-level content from the original June, July, August and September PDFs; extract each guide separately with page/category boundaries intact; validate exact SKU, product description, raw cost/list price, source category/subcategory and page before chronological SKU reconciliation. Then apply the owner's permanent stock/price confirmation rule and create a reviewable staging ledger. No production writes or Axxess upload until reviewed and approved.
