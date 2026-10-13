@@ -221,6 +221,18 @@ jobs:
                   console.log('LIVE_GRID_SKU_SEARCH_DIAGNOSTIC='+JSON.stringify(after));
                 }
               }
+              const policyLinks = await frame.locator('a').evaluateAll(anchors => anchors
+                .filter(a => /terms|returns|refund/i.test((a.textContent || '') + ' ' + (a.getAttribute('href') || '')))
+                .map(a => ({text:(a.textContent || '').trim(),href:a.href})));
+              console.log('LIVE_POLICY_LINKS='+JSON.stringify(policyLinks));
+              for (const link of policyLinks) {
+                try {
+                  const response = await page.request.get(link.href,{timeout:20000});
+                  console.log('LIVE_POLICY_LINK_RESPONSE='+response.status()+' requested='+link.href+' final='+response.url());
+                } catch (e) {
+                  console.log('LIVE_POLICY_LINK_REQUEST_FAILED='+link.href+' error='+e.message);
+                }
+              }
               console.log('LIVE_GRID_DIAGNOSTIC_COMPLETE');
             } finally {
               await browser.close();
