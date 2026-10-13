@@ -1,0 +1,22 @@
+name: Staging Category Navigation Chromium Acceptance
+on:
+  push:
+    branches: [audit/buyer-guide-extraction]
+    paths:
+      - 'index-new.html'
+      - 'scripts/test-staging-category-navigation.cjs'
+      - '.github/workflows/staging-category-navigation-acceptance.yml'
+  workflow_dispatch:
+jobs:
+  chromium-acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/buyer-guide-extraction
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-staging-category-navigation.cjs
