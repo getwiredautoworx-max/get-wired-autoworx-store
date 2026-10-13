@@ -2123,3 +2123,13 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Do not merge audit branch into main: it remains substantially diverged (97 commits ahead / 47 behind at last comparison). No live storefront, Axxess, Supabase catalogue, checkout/payment settings or old catalogue was changed by these commits.
 - Next: inspect GitHub Actions directly for workflow `Staging Category Navigation Chromium Acceptance`, fix any actual failing assertions, and rerun until a green result exists. Then compare embedded taxonomy to the approved category reconciliation artifact and verify the exact subcategory count. Port the minimum reviewed change to a clean branch based on current main only after tests pass.
 - Current status: **IN PROGRESS — browser acceptance harness committed; run result not available through current connector, so successful execution is not claimed.**
+
+
+## CONTINUATION LOG — 2026-10-13 — ACCEPTANCE TEST ASSERTION CORRECTION
+
+- Reviewed the newly committed Chromium acceptance script against the actual staged storefront source and found a test-only defect: the storefront CSS transforms category labels to uppercase, while the script compared the rendered heading against mixed-case expected text. This could falsely fail a working root-navigation step.
+- Corrected the heading comparison to be case-insensitive and strengthened the test to require exactly 71 subcategories across the eight root categories (not merely at least one subcategory per root). Change committed on `audit/buyer-guide-extraction`: `61d971bdb8805ebca064e26bfe334945bc16ea34`.
+- The push matches the acceptance workflow's configured paths and should trigger a new Chromium run. The connected GitHub run-list operation does not expose push-triggered runs, so the new run's completion/result cannot yet be verified from the available response. No green result is claimed.
+- Still required for acceptance: run all root/subcategory/back paths; verify mobile 390px and desktop 1280px have no horizontal overflow; confirm zero browser runtime errors. The previously measured 390px overflow (document 404px vs viewport 390px) remains unresolved until a passing run confirms the CSS patch works.
+- No production/main storefront change, Axxess upload, deployment, Supabase catalogue import, checkout/payment setting change, or old catalogue deletion occurred. Keep the audit branch isolated; do not merge its divergent history.
+- Status: **IN PROGRESS — test assertion fixed and exact taxonomy count enforced; real Chromium result still pending/unavailable.**
