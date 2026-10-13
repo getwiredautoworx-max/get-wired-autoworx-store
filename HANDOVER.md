@@ -1,3 +1,14 @@
+## CONTINUATION LOG — 2026-10-13 — HOMEPAGE CATEGORY BUTTONS DECOUPLED FROM OLD CATALOGUE
+
+- Follow-up inspection found the current homepage category renderer only showed root buttons when legacy active product counts were greater than zero. That would hide categories during the catalogue rebuild and would make the new hierarchy depend on the old catalogue the owner has rejected.
+- On `audit/buyer-guide-extraction`, changed `index-new.html` so the existing homepage format always renders exactly the eight agreed main-category buttons independently of legacy product counts. Current card content uses category glyph tiles as temporary visuals; dedicated category/subcategory images remain a later UI task.
+- Updated `assets/category-cleanup.js` so it does not hide approved root buttons merely because replacement products have not yet been imported.
+- Updated `category-navigation.js` styling for the category glyph tile and kept root-button labels mapped to the eight staged hierarchy slugs. Existing category click handling is intended to navigate from homepage -> `category.html?root=...`.
+- Validation after these edits: eight root labels present; all eight expected root aliases exist; 71 subcategory buttons are derived from the approved-destination rows of the ASC crosswalk; zero duplicate subcategory slugs; 17 product grouping rules; all five changed HTML/JS files passed source-level JavaScript syntax parsing. The staged `products.html?root=...&subcategory=...` path bypasses the legacy Supabase product query and shows the “catalogue rebuild in progress” placeholder instead of old products.
+- Browser rendering and actual click testing have not been run in this environment; do not claim end-to-end navigation is fully tested. Changes remain audit-branch-only, not live, and not uploaded to Axxess.
+- Next: continue validating the root-to-subcategory mapping against original Buyers Guide page images, then test the route flow in a safe browser preview if an existing preview mechanism is available without a production deploy. Only after owner/category sign-off should category images and product group data be finalized for the new SKU ledger.
+- Status: first hierarchy/navigation scaffold implemented in staging; source visual QA, live product group rendering, product import and release approval remain pending.
+ 
 ## CONTINUATION LOG — 2026-10-13 — CATEGORY HIERARCHY AND PRODUCT GROUPING STAGED
 
 - Owner approved the implementation direction: preserve the existing store format; main category button -> dedicated subcategory screen -> dedicated product page with logically grouped products as the customer scrolls. Do this before importing the replacement catalogue.
