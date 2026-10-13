@@ -2,7 +2,7 @@ name: Storefront Smoke Test
 
 on:
   push:
-    branches: [main]
+    branches: [main, release/verified-price-checkout-2026-10-13]
     paths:
       - '**/*.html'
       - '**/*.js'
@@ -24,6 +24,15 @@ jobs:
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Verify verified-price checkout gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq "price_status==='VERIFIED_PRICE'" index-new.html
+          grep -Fq "PRICE_CONFIRMATION_REQUIRED" supabase/functions/store-checkout/index.ts
+          grep -Fq "Price confirmation required" checkout-v2.html
+          grep -Fq "Price on request" index-new.html
+          echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
       - name: Run local storefront smoke test
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/store-http.log 2>&1 &
