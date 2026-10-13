@@ -230,7 +230,7 @@ jobs:
             await publicFrame.locator('#allProductsGrid .product').first().waitFor({timeout:60000});
             console.log('PUBLIC_PRODUCTS_RENDERED',await publicFrame.locator('#productCount').innerText().catch(()=>'(count missing)'),(await publicFrame.locator('#allProductsGrid').innerText().catch(()=>'(grid missing)')).slice(0,350));
             await publicFrame.locator('#searchInput').fill('GW-B4F502E6');
-            const publicProduct = publicFrame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
+            const publicProduct = publicFrame.locator('#allProductsGrid .product').filter({hasText:'GW-B4F502E6'}).first();
             try {
               await publicProduct.waitFor({timeout:20000});
             } catch (error) {
