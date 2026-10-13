@@ -1397,3 +1397,12 @@ Read-only category notes:
 - Next priority: obtain a **main-branch** run of Storefront Smoke Test and inspect its decoded job log for both `PUBLIC_POLICY_PASS ... HTTP 200` lines plus `PUBLIC_FALLBACK_CART_CHECKOUT_PASS` and `STOREFRONT_SMOKE_PASS`. Do not claim release sign-off until this evidence exists. If dispatch is unavailable, make no unrelated production changes just to trigger it; use a narrow workflow-only trigger or the GitHub Actions UI, without deploying an unnecessary storefront rebuild.
 - Do not upload to Axxess yet based solely on workflow success; first finish live-domain verification. Do not change DNS, payment settings, production data, or catalogue data during this verification.
 - Current release status: **NOT SIGNED OFF — live homepage/terms/refunds checks need explicit main-branch runner evidence.** Latest Pages deploy and Axxess package build succeeded; no fresh Axxess upload was performed in this task.
+
+
+## CONTINUATION LOG — 2026-10-13 11:30 SAST — MAIN-BRANCH LIVE VERIFICATION STARTED
+
+- Committed workflow-only trigger `c96563061f78b19b92adff3a646d3451c5b93e1e` to `.github/workflows/storefront-smoke.yml` so the existing main-branch public-domain checks run without changing storefront code or production data.
+- Storefront Smoke Test #643 is now **IN PROGRESS** on main (run 38376667841): https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38376667841
+- A Pages run was also triggered by repository automation; this commit changes workflow documentation/trigger only, not storefront assets. Do not upload a new package to Axxess because of this test-only change.
+- Next: inspect Smoke #643 until completed and read its decoded job log. Required evidence: `PUBLIC_FALLBACK_CART_CHECKOUT_PASS`, `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/terms-and-conditions.html HTTP 200`, `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/returns-refunds.html HTTP 200`, and `STOREFRONT_SMOKE_PASS`. If it fails, use the exact failure log and make only a targeted fix.
+- Release remains **NOT SIGNED OFF** until the main-branch live checks finish successfully. QA #193, Image Audit #271, Pages #896, and Axxess package build #34 previously passed; package #34 is built but has not been uploaded in this task.
