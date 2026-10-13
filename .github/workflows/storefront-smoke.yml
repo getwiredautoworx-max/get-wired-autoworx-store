@@ -306,8 +306,11 @@ jobs:
             // Confirm the first main-category action produces a real product listing rather than a dead click.
             await page.setViewportSize({width:390,height:844});
             await page.locator('#categoryGrid .catBtn').first().click();
-            await page.locator('#shop.visible').waitFor({timeout:10000});
-            await page.locator('#allProductsGrid .product, #featuredGrid .product').first().waitFor({timeout:15000}).catch(()=>{});
+            await page.waitForURL('**/category.html?id=*',{timeout:15000});
+            await page.locator('#grid .card').first().waitFor({timeout:15000});
+            const firstCategoryHeading=await page.locator('#heading').innerText();
+            const firstCategoryOptions=await page.locator('#grid .card').count();
+            if(firstCategoryOptions<1) throw new Error('Homepage category button did not open a populated category screen: '+firstCategoryHeading);
             console.log('INDEX_NEW_RESPONSIVE_PASS '+JSON.stringify({categoryCount,categoryLabels,results}));
             // Test the standalone screen-based category navigation at mobile and desktop widths.
             const categoryPage=await browser.newPage({viewport:{width:390,height:844}});
