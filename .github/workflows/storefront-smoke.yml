@@ -249,7 +249,13 @@ jobs:
               if (!cart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public cart did not persist the formula-priced product');
               await publicPage.goto('https://www.getwiredauto.co.za/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
               await publicPage.locator('#summaryTotal').waitFor({timeout:20000});
-              if (!(await publicPage.locator('#packagingSummary').innerText()).includes('Packaging:') || !(await publicPage.locator('#items').innerText()).includes('GW-B4F502E6')) throw new Error('Public checkout did not load cart items and packaging');
+              // The checkout layout appears before its asynchronous product verification fetch finishes.
+              // Wait for the SKU row itself to avoid treating a transient empty summary as a failure.
+              await publicPage.locator('#items').getByText('GW-B4F502E6').waitFor({timeout:20000});
+              const packagingText = await publicPage.locator('#packagingSummary').innerText();
+              if (!packagingText.includes('Packaging:') || !(await publicPage.locator('#items').innerText()).includes('GW-B4F502E6')) {
+                throw new Error('Public checkout did not load cart items and packaging: packaging='+packagingText+'; items='+(await publicPage.locator('#items').innerText()));
+              }
               console.log('PUBLIC_FALLBACK_CART_CHECKOUT_PASS');
 
               const policyChecks = [
