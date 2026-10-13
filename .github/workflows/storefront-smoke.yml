@@ -192,6 +192,8 @@ jobs:
             await listingPage.close();
 
             const productQuotePage = await browser.newPage({viewport:{width:390,height:844}});
+            productQuotePage.on('response',async response=>{if(response.url().includes('/rest/v1/products?')) console.log('PRODUCT_DETAIL_API_RESPONSE',response.status(),response.url(),(await response.text()).slice(0,500));});
+            productQuotePage.on('requestfailed',request=>{if(request.url().includes('/rest/v1/products?')) console.log('PRODUCT_DETAIL_API_REQUEST_FAILED',request.url(),request.failure()?.errorText);});
             await productQuotePage.goto('http://127.0.0.1:4173/product.html?id=b1c995e6-8fc1-4e09-8303-881c6312a53e',{waitUntil:'domcontentloaded'});
             await productQuotePage.locator('#root .error, #root #add').first().waitFor({timeout:15000});
             const productQuoteText = await productQuotePage.locator('body').innerText();
