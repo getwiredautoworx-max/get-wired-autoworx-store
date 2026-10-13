@@ -192,9 +192,9 @@ jobs:
             await listingPage.close();
 
             const productQuotePage = await browser.newPage({viewport:{width:390,height:844}});
-            productQuotePage.on('response',async response=>{if(response.url().includes('/rest/v1/products?')) console.log('PRODUCT_DETAIL_API_RESPONSE',response.status(),response.url(),(await response.text()).slice(0,500));});
-            productQuotePage.on('requestfailed',request=>{if(request.url().includes('/rest/v1/products?')) console.log('PRODUCT_DETAIL_API_REQUEST_FAILED',request.url(),request.failure()?.errorText);});
-            await productQuotePage.goto('http://127.0.0.1:4173/product.html?id=b1c995e6-8fc1-4e09-8303-881c6312a53e',{waitUntil:'domcontentloaded'});
+            await productQuotePage.route('**/rest/v1/products?*', route => route.fulfill({status:200,contentType:'application/json',body:'[{"id":"quote-test","name":"Quote-only test product","public_sku":"GW-B4F502E6","description":"Customer-safe description","price":123.45,"stock_quantity":3,"image_url":null,"gallery_urls":[],"compatible_vehicles":[],"category_id":"quote-category","active":true,"specifications":{"price_status":"QUOTE_REQUIRED"}}]'}));
+            await productQuotePage.route('**/rest/v1/categories?*', route => route.fulfill({status:200,contentType:'application/json',body:'[{"id":"quote-category","name":"Accessories","parent_id":null}]'}));
+            await productQuotePage.goto('http://127.0.0.1:4173/product.html?id=quote-test',{waitUntil:'domcontentloaded'});
             await productQuotePage.locator('#root .error, #root #add').first().waitFor({timeout:15000});
             const productQuoteText = await productQuotePage.locator('body').innerText();
             if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail price gate failed. Page content: '+productQuoteText.slice(0,600));
