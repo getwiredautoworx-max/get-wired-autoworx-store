@@ -71,3 +71,15 @@ Immediate next action: poll smoke runs #668 and #667 to completion and inspect t
 - Permanent handover latest update commit: `8050ff340ddf8239b16ee4a65678f626ce07aa9a`.
 
 Next: inspect newest Actions list for any newly triggered jobs; do visual/manual 390px and desktop QA with evidence, then continue category reconciliation. Preserve catalogue and leave Axxess untouched.
+
+
+## Final monitor pass — 19:12 SAST
+- Buyer-guide extraction runs #50 (ID `38435893489`), #51 (`38436264146`), #52 (`38436393331`), and #53 (`38436501582`) all completed successfully.
+- Repeated extractions were triggered by handover/workflow-only commits. Workflow `.github/workflows/extract-buyer-guides-staging.yml` now excludes both `AI_HANDOVER*.md` and its own workflow file in `paths-ignore`. Fix commits: `0c4b4a2e1e0f92c50f36241f0005ff8e1bf6bf3e` and `017df2a492a2948b53f393b17bf0b9a4017d6aae`. The latest Actions list had no run after #53, so no extra extraction was triggered by the final fix.
+- Permanent handover current commit: `e64141c1904823820d01b009b3298feb4a4c812c`.
+- Automated staging category acceptance #3: PASS.
+- Storefront Smoke Tests #667 and #668: PASS, including verified-price checkout gate and local storefront smoke test.
+- GitHub Pages deployment #978: PASS (not Axxess).
+- Manual visual QA at 390px and desktop remains outstanding. Real payment provider and live production checkout readiness remain unverified.
+
+Next precise action: access the staging preview and perform visual/manual QA; record actual observations. Then continue category/subcategory reconciliation before catalogue import. No production Axxess changes have been made.
