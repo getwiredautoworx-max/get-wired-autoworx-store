@@ -1,3 +1,11 @@
+## CONTINUATION LOG — 2026-10-13 06:31 SAST — SMOKE #639 / QA #192 RUNNING
+
+- Verified GitHub Actions automatically started Storefront Smoke Test #639 and Store Production QA #192 on workflow-fix commit `6d0d77288a560258a84b1162c1080e54fd7e7b56`.
+- Latest status poll: both runs are still `in_progress`; no final result is available yet. Smoke #639 is at the runner job stage; do not assume the policy assertions have passed until the terminal logs show `PUBLIC_POLICY_PASS` for both URLs and `STOREFRONT_SMOKE_PASS`.
+- The code-level false failure has been corrected. Remaining verification: await runner completion, inspect logs, and if successful confirm latest Pages deployment status; if a different assertion fails, read the exact log and make a narrow correction. No duplicate run started.
+- Handover updated with this current checkpoint. Release remains NOT signed off while the smoke run is active.
+- ETA: dependent on the GitHub-hosted runner; last poll had no completion timestamp, so a reliable ETA cannot be claimed.
+
 ## CONTINUATION LOG — 2026-10-13 06:30 SAST — POLICY HTML REGEX CORRECTED
 
 - Workflow fix committed as `6d0d77288a560258a84b1162c1080e54fd7e7b56`. Corrected the policy-check regex from a double-escaped whitespace token to the proper JavaScript `\s` whitespace token. This removes a false failure against standard `<html lang="...">` documents.
