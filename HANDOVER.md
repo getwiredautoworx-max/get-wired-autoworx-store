@@ -1635,3 +1635,10 @@ Obtain readable page-level content from the original June, July, August and Sept
 3. Validate representative July, August and September pages against page images to ensure price/SKU pairing is correct.
 4. Build a reviewable staging ledger with source guide, page, category/subcategory, supplier code, description, raw cost/list price, stock rule, match status (KEEP/UPDATE/ADD/QUOTE/REVIEW), and validation notes.
 5. Only after staging QA, test and refine the storefront locally/through the audit branch. Do not upload to Axxess until the owner approves the design and catalogue mappings.
+
+
+### Follow-up action — June page OCR added
+- Updated `.github/workflows/extract-buyer-guides-staging.yml` on `audit/buyer-guide-extraction` to install Tesseract, render the original June PDF page-by-page at 200 DPI, OCR each page separately, and assemble `staging/source-extracts/June_Buyers_Guide_OCR.txt` with page labels.
+- Workflow edit commit: `cdb36840281731b2c3444be936883eafc6f3937a`.
+- This branch-only change should trigger the isolated extraction workflow. The follow-up run ID and OCR result have not yet been verified in this turn; do not report OCR as complete until the run succeeds and the OCR text is inspected.
+- OCR output is staging evidence only. Do not import rows until SKU, description, price, source page and category are validated.
