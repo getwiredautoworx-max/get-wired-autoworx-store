@@ -1454,3 +1454,10 @@ Read-only category notes:
 - Storefront Smoke Test #647 failed because the workflow's test harness frame wrapper does not implement `waitForFunction` (`TypeError: publicFrame.waitForFunction is not a function`). The test did not reach the cart click or public policy checks. The production QA workflow #198 passed on the same application/test change commit.
 - Replaced the unsupported frame method with Playwright's supported locator wait on the first suggestion element after clearing the search field. This remains test-only; no production storefront files changed.
 - Follow-up commit: `2168924a0838235f1abd8b1d5b612dd8053e2315`. New smoke workflow run should be polled immediately. Release sign-off is still blocked until a smoke run reaches and passes public cart/checkout and HTTP checks for both policy URLs.
+
+
+## Continuation log — 2026-10-13 09:51 SAST
+- Storefront Smoke Test #648 PASSED: [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38379154451). Confirmed markers in runner logs: `PUBLIC_FALLBACK_CART_CHECKOUT_PASS`; `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/terms-and-conditions.html HTTP 200`; `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/returns-refunds.html HTTP 200`; and `STOREFRONT_SMOKE_PASS`.
+- Store Production QA #199 PASSED: [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38379154594).
+- Additional coverage gap identified: #648 verified the /store page response but did not separately log the root homepage URL. Added explicit root homepage HTTP-status verification and success markers for both root and /store in the smoke workflow.
+- New test-only commit: `5c41f9a1425ec583cf02a889e1f31ae1f424afd4`. Poll its new smoke run; release sign-off remains pending until this root-page check and existing storefront/policy/cart checks pass together. No live storefront application code or Axxess upload changed.
