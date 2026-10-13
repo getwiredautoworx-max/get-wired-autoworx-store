@@ -63,6 +63,7 @@
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
         #categoryGrid .catImage{display:block;width:100%;height:clamp(76px,11vw,140px);overflow:hidden}
         #categoryGrid .catImage img{display:block;width:100%;height:100%;object-fit:contain}
+        #categoryGrid .catImage .catGlyph{display:grid;width:100%;height:100%;place-items:center;font-size:clamp(30px,6vw,56px);background:linear-gradient(145deg,#e8f5ff,#cfe9fb);}
         #categoryGrid .catContent{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:6px;padding:10px}
         #categoryGrid .catContent b{overflow-wrap:anywhere;line-height:1.25}
         #categoryGrid .catContent small{font-size:12px}
