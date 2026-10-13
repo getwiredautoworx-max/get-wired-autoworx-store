@@ -1796,3 +1796,11 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - Task: compile a consolidated, deduplicated list of every category/section heading currently evidenced across June, July, August and September Buyer’s Guides for the owner to assign main/subcategories.
 - Scope: read-only source extracts and the existing draft reconciliation. Preserve alternate source labels and indicate guide/page evidence and OCR uncertainty; do not decide the final hierarchy for the owner.
 - Success criteria: one editable draft list that includes unique and variant labels, separates promotional/editorial groupings from likely product sections, and flags June OCR-only entries for visual confirmation. No category/product imports or live changes.
+
+
+## COMPLETED TASK RESULT — 2026-10-13 — Owner-editable flat category list
+- Created `staging/owner-category-worklist.md` on `audit/buyer-guide-extraction`, commit `d3572ea0cb7ca5b69904c84b0c365fcf47c1fe08`.
+- Worklist contains 69 numbered entries including individual source labels, cross-guide variants, page references where available, and a blank owner-classification column. It intentionally does not assign main/subcategory hierarchy.
+- June items are marked OCR/approximate and require visual confirmation. Promotions such as Super Save are included but flagged for owner decision rather than treated as permanent categories automatically.
+- No production data or storefront files changed; no categories/products imported, hidden or deleted.
+- Next: owner marks the worklist as Main / Subcategory / Keep separate / Merge / Review. After receiving the owner-classified list, reconcile names/aliases against the live category IDs, validate backup/staging strategy, then import categories into isolated staging only after checkpointing that task.
