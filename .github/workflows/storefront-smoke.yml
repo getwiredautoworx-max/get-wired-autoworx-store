@@ -1,4 +1,5 @@
 name: Storefront Smoke Test
+# Keep the main-branch live-domain HTTP checks runnable from a workflow-only change.
 
 on:
   push:
