@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-13 06:29 SAST — POLICY CHECK FAILURE ROOT CAUSE FOUND
+
+- Inspected the repository's canonical policy files: root-level `terms-and-conditions.html` exists (blob `802b3210b7a82938ce2c2ca5e6f6c87ddec19e75`) and `returns-refunds.html` exists (blob `48d92c06943ef9c99ef959c984f34750a6200801`).
+- Root cause is the smoke test's HTML detection regex, not yet evidence of a broken policy page: workflow source contains `/<html[\\s>]/i` with a double-escaped `\\s`, which matches a literal backslash or “s” rather than whitespace. A normal response beginning `<html lang=...` therefore fails the HTML predicate even when HTTP 200 and the expected policy word are present.
+- Next: correct only the regex to `/<html[\s>]/i` (single backslash in the JavaScript regex), commit, then allow the automatic smoke/QA runs. The current runner cannot access DNS from this tool environment, so rely on the GitHub Actions runner's actual public requests for external verification.
+- Smoke #638's public checkout assertion passed. Release remains blocked until corrected smoke confirms both public policy pages and the overall run passes.
+- No production policy content or URLs changed; no DNS/hosting/payment or catalogue data changed.
+- ETA: workflow correction plus automatic smoke run 3–8 minutes once the runner completes.
+
 ## CONTINUATION LOG — 2026-10-13 06:28 SAST — SMOKE #638 REACHED CHECKOUT; POLICY ASSERTION FAILED
 
 - Smoke Test #638 completed FAILURE after the previous cart-close fix. Crucially, public fallback cart/checkout assertion PASSED (`PUBLIC_FALLBACK_CART_CHECKOUT_PASS`), so the test now traverses public product → cart → checkout successfully.
