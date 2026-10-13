@@ -44,6 +44,27 @@ jobs:
             chars=$(wc -m < "$out")
             printf 'FILE: %s\nPAGES: %s\nBYTES: %s\nTEXT_CHARS: %s\nTEXT_FILE: %s\n---\n' "$pdf" "$pages" "$bytes" "$chars" "$out" | tee -a staging/source-extracts/manifest.txt
           done
+      - name: OCR scanned June guide pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get install -y tesseract-ocr
+          mkdir -p staging/source-extracts/june-page-images staging/source-extracts/june-ocr-pages
+          pdfinfo "June Buyer's Guide (1).pdf" | awk '/^Pages:/ {print $2}' > staging/source-extracts/june-page-count.txt
+          # Render one page at a time at 200 DPI; OCR output retains page numbers.
+          pages=$(cat staging/source-extracts/june-page-count.txt)
+          for page in $(seq 1 "$pages"); do
+            image="staging/source-extracts/june-page-images/page-$(printf '%02d' "$page")"
+            pdftoppm -f "$page" -l "$page" -r 200 -gray -png -singlefile "June Buyer's Guide (1).pdf" "$image"
+            tesseract "${image}.png" "staging/source-extracts/june-ocr-pages/page-$(printf '%02d' "$page")" -l eng --psm 6 2>/dev/null || true
+          done
+          : > staging/source-extracts/June_Buyers_Guide_OCR.txt
+          for txt in staging/source-extracts/june-ocr-pages/page-*.txt; do
+            [ -f "$txt" ] || continue
+            printf '\n\n===== %s =====\n' "$(basename "$txt" .txt)" >> staging/source-extracts/June_Buyers_Guide_OCR.txt
+            cat "$txt" >> staging/source-extracts/June_Buyers_Guide_OCR.txt
+          done
+          wc -m staging/source-extracts/June_Buyers_Guide_OCR.txt | tee staging/source-extracts/june-ocr-char-count.txt
       - name: Commit extraction text to audit branch only
         run: |
           git config user.name "github-actions[bot]"
