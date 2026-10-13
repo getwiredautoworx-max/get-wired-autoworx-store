@@ -107,3 +107,15 @@ Next precise action: access the staging preview and perform visual/manual QA; re
 ### Continuation rules
 - For every future session, check the newest background run statuses first, update this handover after material outcomes, and leave an exact resume point with run IDs, commit IDs, status, blockers, and next action.
 - Daily monitoring automation exists; it is not continuous monitoring and cannot guarantee detection between scheduled runs.
+
+
+## Screenshot QA implementation — current session update
+- Added mobile (390×844 viewport) and desktop (1280×900 viewport) full-page screenshot capture to `scripts/test-staging-category-navigation.cjs`. Screenshots are written to `artifacts/category-home-mobile-390.png` and `artifacts/category-home-desktop-1280.png`.
+- Updated `.github/workflows/staging-category-navigation-acceptance.yml` to upload these files as artifact `staging-category-visual-qa` for 7 days, even if the test fails (with missing artifacts warned).
+- Script commit: `e26c22303c187a51f4c3a33edc92cf0200d85da3`.
+- Workflow/artifact commit: `6111bf8a3361fb9080eca66476e10e975f453dbf`.
+- Acceptance run #4, ID `38437209479`, tested script commit `e26c2230`: in progress at last check; test step was running after Playwright/Chromium setup succeeded. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38437209479
+- Acceptance run #5, ID `38437226467`, latest workflow/artifact commit `6111bf8a`: in progress at last check; test step was running after setup succeeded. This is the run expected to upload screenshots. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38437226467
+- Buyer-guide extraction #54 (ID `38437209550`) and #55 (ID `38437226369`) both completed successfully. The two runs were triggered by sequential staging-branch commits before the full workflow update; no source PDF was modified. These are extraction runs only, not storefront tests.
+- No screenshot has yet been inspected. Visual QA remains **pending** until run #5 completes and its artifact is accessible and inspected.
+- Next: poll acceptance #4 and #5; use #5 as the authoritative artifact run; confirm test result and artifact count; inspect screenshots for clipping, category tile layout, mobile banner/header, and desktop alignment. If the screenshot artifact is absent or tests fail, diagnose and fix only staging files. Do not deploy to Axxess or spend Netlify/Cloudflare credits.
