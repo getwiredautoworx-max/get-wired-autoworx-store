@@ -71,3 +71,13 @@ Safeguards: preserve originals; reconcile by exact code first; use name-only mat
 ## Extraction-quality gate — added 2026-10-13
 
 The existing June–August audit workbook is not a source-of-truth import file. Its June OCR staging has 470 rows with blank costs and generic placeholder descriptions; July/August staging contains large numbers of implausible cost values. Never import it blindly or repair decimal points by guesswork. Verify each field against the original guide page. The original monthly PDFs remain authoritative. Keep extraction QA findings separate from raw source values, and do not write live data until exact-code/category/price checks and owner review are complete.
+
+
+## Expanded source set and dual category taxonomy — 2026-10-13
+
+- Source guides to reconcile chronologically: February, March, May, June, July, August, September, plus applicable later guides/promotions, ASC catalogues and vehicle-specific catalogues.
+- Preserve original source filename/month/page, printed category/subcategory, exact supplier/ASC SKU or part number, description, fitment, price as printed, and extraction/review status.
+- **Store both taxonomies:** (1) original ASC/Buyers Guide category and subcategory, and (2) proposed Get Wired AutoWorx main category and subcategory. Record mapping rationale and review status. The ASC hierarchy must remain visible in the source ledger; store taxonomy is an additional merchandising layer, not a replacement for source classification. Do not force ambiguous products into unrelated categories.
+- Approved customer-facing store roots: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. Caravan Accessories maps to Camping, Leisure & Outdoors per owner decision. No live category changes during reconciliation.
+- Use exact ASC SKU plus verified description/fitment for identity; never use a similar-looking image as a substitute. February/March/May/June/July listings require “Subject to price and availability confirmation” unless the exact same item is verified in August or a later guide. August–September/later listing prices and availability are still subject to confirmation, with the owner's stock-on-hand assumption for items advertised in August/September.
+- New February, March and May PDFs have been verified on `main`; they are not yet at the root of the isolated audit branch and must not be represented as extracted/import-ready. No production writes or deployments are authorised by this staging rule.
