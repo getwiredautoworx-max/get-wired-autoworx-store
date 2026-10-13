@@ -1010,3 +1010,15 @@ Read-only category notes:
 - **Scope:** workflow diagnostics only. Do not edit storefront HTML, policy text, DNS, hosting, payment configuration, or production data in this task.
 - **ETA:** one diagnostic run.
 - **NEXT ACTION:** extend the existing live-browser diagnostic step to list policy footer links and fetch their actual hrefs, then monitor the run to terminal state and record results.
+
+
+## 2026-10-13 — TASK COMPLETE: LIVE POLICY LINK TARGETS VERIFIED
+- **Run:** [`38341445261`](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38341445261), job `115113113171`, terminal conclusion success. Existing HTTP checks and safe checkout interception also passed.
+- **Live storefront:** `https://www.getwiredauto.co.za/store` returned HTTP 200; embedded store loaded at `https://www.getwiredauto.co.za/index-new`. The live catalogue returned all 4,187 active products across five HTTP 206 range responses.
+- **Actual footer policy links and response bodies:**
+  - Returns link `https://www.getwiredauto.co.za/returns-refunds.html` returned HTTP 200, redirected to `https://www.getwiredauto.co.za/returns-refunds`, content type `text/html; charset=utf-8`, HTML document confirmed.
+  - Terms link `https://www.getwiredauto.co.za/TERMS_AND_CONDITIONS.md` returned HTTP 200 but content type `text/markdown; charset=utf-8`, response starts with raw Markdown heading `# Get Wired AutoWorx — Terms & Conditions`; it is **not an HTML policy page**. The separately checked `terms-and-conditions.html` page returns HTTP 200, but the live footer currently links to the raw Markdown file instead.
+- **Release blocker confirmed:** update the homepage/footer Terms link to `terms-and-conditions.html` (or the canonical `/terms-and-conditions` route if that is the chosen final URL), and ensure checkout requires affirmative acceptance of Terms and Returns before order submission. Do these in the planned Axxess consolidated edit; do not patch production HTML piecemeal in GitHub.
+- **No production changes:** diagnostics only; no database writes, order submissions, DNS, hosting, or payment changes.
+- **NEXT ACTION:** prepare/complete the consolidated Axxess edit for (1) Terms link target, (2) required policy-acceptance checkbox, and (3) frontend price eligibility aligned to the backend formula gate; then perform the single planned GitHub/Supabase/Cloudflare update and rerun external URL, product-card, and safe checkout tests. Confirm PayFast/PayJustNow merchant acceptance and sandbox integration separately before enabling them.
+- **ETA / fallback:** verification of the current footer link is complete. The next code changes must occur in the user's Axxess editing workflow; after the consolidated deployment, rerun the existing tests. If the Terms HTML route is not included in the Axxess output, publish a real HTML page and make the footer point to that page before merchant review.
