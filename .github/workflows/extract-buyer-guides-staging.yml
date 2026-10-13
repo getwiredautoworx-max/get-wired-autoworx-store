@@ -6,6 +6,11 @@ on:
       - audit/buyer-guide-extraction
     paths-ignore:
       - 'staging/source-extracts/**'
+      - 'HANDOVER*.md'
+      - 'CATALOGUE_IMPORT_RULES.md'
+      - 'PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_*.md'
+      - 'staging/**/*.md'
+      - 'staging/source-extracts/category-reconciliation*.csv'
   workflow_dispatch:
 
 permissions:
