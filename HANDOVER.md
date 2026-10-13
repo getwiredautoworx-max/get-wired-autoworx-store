@@ -1,5 +1,16 @@
 # GET WIRED AUTOWORX ONLINE STORE — MASTER HANDOVER
 
+## LATEST VERIFIED CHECKPOINT — 2026-10-13
+- Release-safety changes merged to `main` in PR #6, merge commit `db99549a68be5dda6968aa76d37a1d2846df2250`. The canonical production domain is `https://www.getwiredauto.co.za/`; GitHub Actions independently confirmed homepage, category page, category-tree JSON, an established exact-SKU WebP, and newly synced `GW-001CED3B.webp` all returned HTTP 200. The main-branch GitHub Pages build/deploy and Cloudflare Pages build succeeded.
+- Browser smoke test on the merged source passed: 9 main categories and 12 Auto Electrical options rendered; exact-SKU image fallback rendered a 400px WebP; product metadata leak guard passed; verified-price cart and quote-only price gates passed; pickup/packaging and delivery-quote checkout UI checks passed. No real customer order was submitted.
+- Supabase `store-checkout` Edge Function is ACTIVE v3. Server-side order creation now rejects any active product without `specifications.price_status = VERIFIED_PRICE` before calling the order RPC. Function secret-key handling supports the documented JSON `SUPABASE_SECRET_KEYS` format and legacy service-role JWT fallback. Function source is committed at `supabase/functions/store-checkout/index.ts` in the release branch/merged PR.
+- Checkout remains **Direct EFT / bank transfer only**. PayFast and PayJustNow are not confirmed integrated or live; Peach payment-link flow remains subject to merchant verification. Do not claim card/payment-provider checkout is ready.
+- Automated catalogue image audit failed on a known, bounded issue: **8 active products still use a placeholder despite an exact-public-SKU WebP asset**. It reported 4,101 public-SKU WebP assets and **0 invalid/mismatched public image references**. Do not restart the catalogue audit; fix only the eight identified placeholder mappings as a separate targeted task.
+- Legacy Netlify redirect/header/page checks and the separate Cloudflare Workers build check failed. Cloudflare Pages and GitHub Pages succeeded. Do not change Netlify or Cloudflare deployment settings during this task; investigate the duplicate/legacy build path separately if it blocks production delivery.
+- Immediate next verification: extend the production QA runner to check `/terms-and-conditions.html` and `/returns-refunds.html` on the canonical domain, then use that runner's HTTP results. Afterward, the owner must do a safe real-device cart/checkout review without submitting an order. Payment-provider integration and merchant reviews remain separate release tasks.
+- No DNS or hosting settings were changed. No product/order/customer database records were changed. The only production backend change was deploying the guarded `store-checkout` Edge Function v3; it prevents unverified-price items from creating orders.
+
+
 Updated: 2026-10-08 — latest continuation
 
 ## CURRENT CHECKPOINT

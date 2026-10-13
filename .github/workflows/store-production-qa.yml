@@ -58,6 +58,12 @@ jobs:
           status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-store-home.html -w '%{http_code}' https://www.getwiredauto.co.za/)"
           test "$status" = "200"
           grep -Eiq "Get Wired AutoWorx|Get Wired AutoWorx" /tmp/live-store-home.html
+          terms_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-terms.html -w '%{http_code}' https://www.getwiredauto.co.za/terms-and-conditions.html)"
+          test "$terms_status" = "200"
+          grep -Eiq "Terms & Conditions" /tmp/live-terms.html
+          returns_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-returns.html -w '%{http_code}' https://www.getwiredauto.co.za/returns-refunds.html)"
+          test "$returns_status" = "200"
+          grep -Eiq "Returns & Refunds" /tmp/live-returns.html
           category_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category.html -w '%{http_code}' https://www.getwiredauto.co.za/category.html)"
           test "$category_status" = "200"
           snapshot_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category-tree.json -w '%{http_code}' https://www.getwiredauto.co.za/assets/category-tree.json)"
