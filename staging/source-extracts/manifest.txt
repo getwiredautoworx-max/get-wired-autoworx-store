@@ -1,0 +1,24 @@
+FILE: June Buyer's Guide (1).pdf
+PAGES: 32
+BYTES: 11056938
+TEXT_CHARS: 668
+TEXT_FILE: staging/source-extracts/June_Buyers_Guide_1.txt
+---
+FILE: July Buyer's Guide.pdf
+PAGES: 32
+BYTES: 5561955
+TEXT_CHARS: 115529
+TEXT_FILE: staging/source-extracts/July_Buyers_Guide.txt
+---
+FILE: August Buyer's Guide.pdf
+PAGES: 32
+BYTES: 6291527
+TEXT_CHARS: 117837
+TEXT_FILE: staging/source-extracts/August_Buyers_Guide.txt
+---
+FILE: September Buyer's Guide.pdf
+PAGES: 32
+BYTES: 5803563
+TEXT_CHARS: 105785
+TEXT_FILE: staging/source-extracts/September_Buyers_Guide.txt
+---
