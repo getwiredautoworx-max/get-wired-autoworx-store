@@ -170,6 +170,14 @@ jobs:
             await pricedCard.waitFor({timeout:15000});
             const pricedText = await pricedCard.innerText();
             if (!pricedText.includes('ADD TO CART') || pricedText.includes('Price on request')) throw new Error('Formula-priced catalogue product must be purchasable unless explicitly marked QUOTE_REQUIRED: '+pricedText);
+            // Search suggestions intentionally sit above the product grid. Select the matching
+            // suggestion to open the product detail modal and close the dropdown before testing
+            // the card action; clicking through the overlay is not a valid user interaction.
+            const pricedSuggestion = frame.locator('.gwResult[data-full-product]').filter({hasText:'GW-B4F502E6'}).first();
+            await pricedSuggestion.waitFor({timeout:10000});
+            await pricedSuggestion.click();
+            await frame.locator('#productModal.open').waitFor({timeout:10000});
+            await frame.locator('#modalClose').click();
             await frame.locator('#searchInput').fill('GW-F165DD11');
             const verifiedCard = frame.locator('.product').filter({hasText:'GW-F165DD11'}).first();
             await verifiedCard.waitFor({timeout:15000});
