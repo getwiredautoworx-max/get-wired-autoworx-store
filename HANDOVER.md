@@ -2159,3 +2159,11 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Commits: workflow fixture pin `9be92c3acc46fb696b27605011f5ff3c933d05e9`; test diagnostics `68cfeb1fa04342e9a708a93cb2d58b8b45bcaa90`. PR #11 remains open/draft and is not merged. The GitHub connector currently does not expose a completed Actions run for the new head, so the corrected run's result is not yet verifiable; do not mark browser acceptance passed.
 - No production storefront, live catalogue, Supabase records, Axxess hosting, checkout/payment configuration, DNS, or production deployment was changed. The staged catalogue import flag remains disabled. Continue by retrieving the new PR Actions job/logs, applying the narrowest real CSS correction if overflow remains, and rerunning until all 8 roots / 71 subcategories and back paths pass at 390px and 1280px with no runtime errors.
 - Status: IN PROGRESS — test now targets the patched source and reports overflow offenders; end-to-end acceptance still unverified.
+
+
+## CONTINUATION LOG — 2026-10-13 — CORRECTED CHROMIUM RUNS STARTED
+
+- The corrected PR #11 workflow pin triggered two Storefront Smoke Test runs: #667 (`38435403130`, from workflow-pin commit `9be92c3acc46fb696b27605011f5ff3c933d05e9`) and #668 (`38435448619`, from diagnostic commit `68cfeb1fa04342e9a708a93cb2d58b8b45bcaa90`). Both have completed setup/Chromium installation and were still in the browser acceptance step at the latest status poll. No pass/fail result is available yet.
+- The source pin is now the patched staging HTML commit `0041a9d02a354846816c4303b838de68818bc18c`; the taxonomy JSON blob is unchanged versus the prior fixture. The overflow assertion remains enabled; diagnostic version reports candidate overflowing elements if it fails.
+- Next: poll runs #667/#668 to completion, read the actual browser output, and fix the precise failing UI/test condition. Do not merge PR #11 or deploy to Axxess until the real-browser acceptance passes and the minimal patch is reviewed. All production/catalogue/payment/DNS state remains untouched.
+- Status: IN PROGRESS — corrected-source Chromium runs are active; mobile/desktop acceptance is not yet verified.
