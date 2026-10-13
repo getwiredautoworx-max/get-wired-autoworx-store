@@ -71,7 +71,7 @@ assert.deepEqual(
         await page.locator('#categoryGrid button[data-gw-back-roots]').click();
         assert.equal(await page.locator('#categoryGrid button[data-gw-root-index]').count(), 8, 'Root back control failed for '+root.label);
       }
-      const widthCheck = await page.evaluate(() => ({viewport:innerWidth,document:document.documentElement.scrollWidth,grid:document.querySelector('#categoryGrid').scrollWidth,gridClient:document.querySelector('#categoryGrid').clientWidth}));
+      const widthCheck = await page.evaluate(() => ({viewport:innerWidth,document:document.documentElement.scrollWidth,grid:document.querySelector('#categoryGrid').scrollWidth,gridClient:document.querySelector('#categoryGrid').clientWidth,offenders:[...document.querySelectorAll('body *')].map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',text:(el.innerText||'').trim().slice(0,70),left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),position:s.position,overflowX:s.overflowX}}).filter(x=>x.right>innerWidth+1||x.left< -1).sort((a,b)=>b.right-a.right).slice(0,12)}));
       assert.ok(widthCheck.document <= widthCheck.viewport + 2, 'Unexpected horizontal page overflow at viewport '+viewport.width+': '+JSON.stringify(widthCheck));
       console.log('CATEGORY_NAV_BROWSER_PASS viewport='+viewport.width+' roots='+taxonomy.roots.length+' subcategories='+taxonomy.roots.reduce((n,r)=>n+r.subcategories.length,0));
       await page.close();
