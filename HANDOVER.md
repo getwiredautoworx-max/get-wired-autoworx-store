@@ -1,3 +1,14 @@
+## CONTINUATION LOG — 2026-10-13 06:10 SAST — EXACT IMAGE AUDIT EXCEPTIONS IDENTIFIED
+
+- Downloaded and read audit artifact `catalogue-image-audit` from failed run #269. Counts: 4,187 active products; 4,093 image-proxy references; 94 placeholders; 4,101 exact-public-SKU WebP assets; 8 placeholder rows intersect exact WebP assets; 86 placeholders have no known exact-SKU WebP; zero invalid/mismatched public image references.
+- Read-only intersection of the 94 active placeholder SKUs with the GitHub `main` tree's 4,101 WebP paths identified exactly these eight candidate repairs: `GW-F60D9CE9`, `GW-F632303D`, `GW-F6416160`, `GW-F6461F7B`, `GW-F6672DED`, `GW-F672879F`, `GW-F68FB0CE`, `GW-F69F8DA1`.
+- No database rows were updated: repository presence proves the exact SKU assets exist in source, but their live public HTTP responses on the canonical domain have not yet been verified. Next verify all eight public URLs return HTTP 200 and WebP content before applying only these eight URL corrections. Leave the other 86 placeholders unchanged; no image guessing.
+- Current main checkout deployment parity: production `store-checkout` v4 exactly matches main source and uses the formula validation / quote-only guard. No deployment required for this parity task.
+- Current latest workflows at last observation: Smoke #625, Production QA #177, Pages #837 were running on commit `f8bc8e5d05999b097e4c9a317f16934b70de3812`. Recheck their terminal results before sign-off.
+- Task completed: audit artifact downloaded/read; exact-SKU intersection completed read-only; handover updated. No DB write, function deployment, hosting/DNS/payment mutation, or customer order.
+- Next: poll #625/#177/#837; use successful production QA or another independent runner to verify all eight image URLs; then perform only the eight exact-SKU image URL corrections if live checks pass, rerun bounded image audit, and update handover with counts and run IDs.
+- ETA: live asset check 5–10 minutes after runner completion; eight-row targeted correction and bounded audit 5–15 minutes if URL checks pass and authorised write path remains available.
+
 ## CONTINUATION LOG — 2026-10-13 06:07 SAST — CHECKOUT DEPLOYMENT PARITY VERIFIED
 
 - Correction to the 06:05 note: production `store-checkout` ACTIVE version 4 was retrieved directly from Supabase. Its complete deployed `index.ts` is an **exact byte-for-byte match** to `main:supabase/functions/store-checkout/index.ts` (5,442 characters; GitHub blob SHA `ef524611c5f095eb831383439417830d632e1744`). The deployed code uses the agreed `cost_price × 1.15 × 1.35` formula with cent rounding, rejects `QUOTE_REQUIRED`, and calls `create_store_order_v2`. Checkout source/deployment parity is verified; no redeployment is needed for this gate. The older opening checkpoint's “ACTIVE v3” statement is superseded by observed ACTIVE v4.
