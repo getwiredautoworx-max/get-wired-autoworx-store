@@ -1,3 +1,11 @@
+## CONTINUATION LOG — 2026-10-13 06:30 SAST — POLICY HTML REGEX CORRECTED
+
+- Workflow fix committed as `6d0d77288a560258a84b1162c1080e54fd7e7b56`. Corrected the policy-check regex from a double-escaped whitespace token to the proper JavaScript `\s` whitespace token. This removes a false failure against standard `<html lang="...">` documents.
+- This is test-only; canonical policy page content and URLs remain unchanged. No production code, DNS, hosting settings, payments, or product/order/customer data changed.
+- Automatic Storefront Smoke Test and Store Production QA should run for this workflow commit. Next: poll their results, inspect exact smoke logs, and confirm both `PUBLIC_POLICY_PASS` lines and `STOREFRONT_SMOKE_PASS`. If any other assertion fails, diagnose that exact failure before changing anything else.
+- Release remains blocked until the current smoke run passes; the prior run had already passed the public checkout/cart assertion.
+- ETA: automatic smoke/QA runner result typically 3–8 minutes after the commit; do not manually start duplicate workflows.
+
 ## CONTINUATION LOG — 2026-10-13 06:29 SAST — POLICY CHECK FAILURE ROOT CAUSE FOUND
 
 - Inspected the repository's canonical policy files: root-level `terms-and-conditions.html` exists (blob `802b3210b7a82938ce2c2ca5e6f6c87ddec19e75`) and `returns-refunds.html` exists (blob `48d92c06943ef9c99ef959c984f34750a6200801`).
