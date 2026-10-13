@@ -2076,3 +2076,10 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - GitHub Actions run `38426761492` started from PR #11 and was in progress at handover update time. Browser acceptance result is pending; do not mark the task resolved until the run completes and its test step is inspected. The existing workflow has additional unrelated storefront smoke tests after the new step, so report the category-specific step separately from the overall workflow result.
 - This is test-only infrastructure. No changes were made to live product data, Supabase, Axxess, Cloudflare deployments, checkout/payment configuration, or the production branch.
 - Category-source audit snapshot: crosswalk has 115 unique source headings; 24 rows remain explicit review/conflict/promotion cases; 106 rows still await visual verification; 9 rows are visually verified. The taxonomy remains staging-only with `live_catalogue_enabled=false`. One duplicate subcategory slug `garden-tools` exists under Tools, Hardware & Consumables and Camping, Leisure & Outdoors; any future category URL must be root-scoped or use a globally unique key.
+
+
+## CONTINUATION LOG — 2026-10-13 — BROWSER TEST ITERATION 1–3
+
+- The first two Playwright attempts reached the root-button assertion but failed because the UI's CSS transforms category labels to uppercase while the test compared mixed-case taxonomy labels. This is a test assertion mismatch, not yet evidence of a storefront navigation failure.
+- Added complete CORS preflight handling to mocked Supabase REST calls, then changed root/subcategory assertions to compare labels case-insensitively. The latest test commit is `586b923d2a764ff78030f97786202cdcb72ddf12` on the draft PR branch. A new GitHub Actions run should verify this correction.
+- Browser tests have not passed yet. The latest completed run failed at the case-sensitive root-label assertion; the overall workflow stopped before unrelated existing smoke steps. Do not claim acceptance until the next run completes and all 8 roots / 71 subcategories pass at both viewports.
