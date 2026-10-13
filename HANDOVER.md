@@ -1734,3 +1734,11 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - An attempt to commit a June page QA CSV failed at the GitHub API connection layer and a follow-up fetch confirmed that file was not created. No claim is made that the June QA CSV is available. Retry later with a smaller payload or a different transfer route.
 - June OCR remains local in this working session and has not yet been preserved in the audit branch. The next concrete action is to persist it and its page QA status in isolated staging, then visually verify sample product blocks and only after that build exact-SKU rows.
 - No live catalogue, price, stock, category, Supabase, Cloudflare or Axxess changes occurred during this OCR QA check.
+
+
+## CONTINUATION LOG — 2026-10-13 — June OCR page QA index persisted successfully
+
+- Retry succeeded: [june-ocr-page-qa-index.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/june-ocr-page-qa-index.csv) is now committed on `audit/buyer-guide-extraction` (commit `f34d9074e306ba0559c539861ac1d3f2b48d3448`). It records all 32 pages with OCR character counts, candidate SKU-like and price-like token counts, and review notes.
+- Pages 29–32 are flagged for manual page-image review due to poor OCR; pages 3–28 are only candidate OCR, not validated source rows. The index explicitly avoids presenting token counts as verified products or prices.
+- The earlier log that a first attempt failed remains accurate for that first attempt; this entry records the successful retry. June transcript itself still needs to be preserved to staging, and no product-level exact-SKU ledger has been completed yet.
+- No production/live data or Axxess files changed.
