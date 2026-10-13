@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-13 06:28 SAST — SMOKE #638 REACHED CHECKOUT; POLICY ASSERTION FAILED
+
+- Smoke Test #638 completed FAILURE after the previous cart-close fix. Crucially, public fallback cart/checkout assertion PASSED (`PUBLIC_FALLBACK_CART_CHECKOUT_PASS`), so the test now traverses public product → cart → checkout successfully.
+- New precise failure: `https://www.getwiredauto.co.za/terms-and-conditions.html` returned HTTP 200, but body-content assertion failed because it did not contain the expected word "Terms" (case-insensitive) or did not look like the expected HTML. The existing error only reports HTTP 200, hiding the actual body reason. Returns/refunds check was not reached.
+- Next: inspect canonical repository policy-page source and production response body/metadata; distinguish wrong URL/hosting fallback from an over-strict content assertion. Make the narrowest evidence-based correction (production page/path only if actually broken; otherwise improve smoke diagnostics/robust content assertion). Then verify both policy pages independently and poll the new smoke run. Do not declare release-ready until both policy pages pass.
+- Latest Production QA #191 PASSED. Image audit #270 PASSED. Public checkout smoke assertion passed. Release still BLOCKED by public terms page assertion.
+- No production customer/order/catalogue/price/stock/payment/DNS changes during this diagnosis. Handover updated before next fix.
+- ETA: one diagnostic/fix commit and automatic run about 3–8 minutes; dependent on finding whether URL serves fallback HTML or the test assertion is wrong.
+
 ## CONTINUATION LOG — 2026-10-13 06:26 SAST — QA PASSED; SMOKE #638 STILL RUNNING
 
 - Store Production QA #191 completed SUCCESS on fix commit `6815f2e8205f2ba06a5a7fdaacf5d86af1ae9dcb`. This confirms the current production QA assertions passed.
