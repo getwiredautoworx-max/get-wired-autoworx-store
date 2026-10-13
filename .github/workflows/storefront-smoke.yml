@@ -215,6 +215,42 @@ jobs:
             if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail price gate failed. Page content: '+productQuoteText.slice(0,600));
             await productQuotePage.close();
 
+            if (process.env.GITHUB_REF === 'refs/heads/main') {
+              const publicPage = await browser.newPage({viewport:{width:390,height:844}});
+              const response = await publicPage.goto('https://www.getwiredauto.co.za/store',{waitUntil:'domcontentloaded',timeout:45000});
+              if (!response || response.status() >= 400) throw new Error('Public storefront did not return a successful HTTP response');
+              const publicFrame = publicPage.frameLocator('iframe[name="store"]');
+              await publicFrame.locator('#allProductsLink').waitFor({timeout:25000});
+              await publicFrame.locator('#featuredGrid .product').first().waitFor({timeout:30000});
+              await publicFrame.locator('#allProductsLink').click();
+              await publicFrame.locator('#allProductsGrid .product').first().waitFor({timeout:60000});
+              await publicFrame.locator('#searchInput').fill('GW-B4F502E6');
+              const product = publicFrame.locator('#allProductsGrid .product').filter({hasText:'GW-B4F502E6'}).first();
+              await product.waitFor({timeout:20000});
+              const productText = await product.innerText();
+              if (productText.includes('Price on request') || !productText.includes('ADD TO CART')) throw new Error('Public storefront still blocks formula-priced SKU GW-B4F502E6: '+productText);
+              await product.getByRole('button',{name:'ADD TO CART',exact:true}).click();
+              const cart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
+              if (!cart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public cart did not persist the formula-priced product');
+              await publicPage.goto('https://www.getwiredauto.co.za/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
+              await publicPage.locator('#summaryTotal').waitFor({timeout:20000});
+              if (!(await publicPage.locator('#packagingSummary').innerText()).includes('Packaging:') || !(await publicPage.locator('#items').innerText()).includes('GW-B4F502E6')) throw new Error('Public checkout did not load cart items and packaging');
+              console.log('PUBLIC_FALLBACK_CART_CHECKOUT_PASS');
+
+              const policyChecks = [
+                {url:'https://www.getwiredauto.co.za/terms-and-conditions.html', expected:'Terms'},
+                {url:'https://www.getwiredauto.co.za/returns-refunds.html', expected:'Returns'}
+              ];
+              for (const policy of policyChecks) {
+                const policyResponse = await fetch(policy.url,{redirect:'follow'});
+                const policyBody = await policyResponse.text();
+                if (!policyResponse.ok || !/<html[\\s>]/i.test(policyBody) || !policyBody.toLowerCase().includes(policy.expected.toLowerCase())) {
+                  throw new Error('Public policy verification failed for '+policy.url+': HTTP '+policyResponse.status);
+                }
+                console.log('PUBLIC_POLICY_PASS '+policy.url+' HTTP '+policyResponse.status);
+              }
+              await publicPage.close();
+            }
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
