@@ -8,6 +8,7 @@ on:
       - 'staging/source-extracts/**'
       - 'HANDOVER*.md'
       - 'AI_HANDOVER*.md'
+      - '.github/workflows/extract-buyer-guides-staging.yml'
       - 'CATALOGUE_IMPORT_RULES.md'
       - 'PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_*.md'
       - 'staging/**/*.md'
