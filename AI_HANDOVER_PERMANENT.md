@@ -1767,3 +1767,12 @@ Follow-up poll confirms both previously active storefront smoke tests completed 
 - Buyer-guide extraction run #59 (ID `38439364567`) PASS. Extraction workflow now ignores storefront HTML and browser-test script edits to avoid redundant PDF extraction for UI-only changes.
 - Main Pages deployment #979 (ID `38439838307`, main SHA `f0e44cf6134384cd76257e770171f277d4c81626`) was separately in progress; this is not an Axxess deployment.
 - Immediate next action: poll run #10 and inspect artifact screenshots, then record final mobile/desktop visual status. No Axxess upload, DNS/payment changes, or Cloudflare/Netlify credit use.
+
+
+## Latest UI acceptance / monitoring update — 13 October 2026
+- Staging acceptance #10 PASS (run `38439896256`, commit `ad28c51c08fbdf3272ef1a50d15c446a7747391e`). Assertions: 8 root categories, all 71 subcategories individually opened and returned, mobile 390/390 width, desktop 1280/1280 width, zero off-screen elements, zero browser errors, mobile buy bar hidden on initial homepage and product modal closed.
+- Screenshot artifact ID `11835171158` from run #10 was downloaded and visually inspected: search fits mobile viewport, category tiles are legible, categories now precede services, mobile cart badge is contained, and idle mobile buy bar is hidden.
+- Hero remained larger than desired on desktop, so latest staging-only compact hero adjustment is commit `3e25147ebb774001c9c5265f336c77751dbd4ee6`. Acceptance run #11 ID `38440567696` was queued on commit `3e25147e`; poll and inspect its screenshots before considering visual QA complete.
+- GitHub Pages deployments #979 and #980 completed successfully on main; neither means Axxess production was updated.
+- PDF extraction run #59 PASS. Extraction workflow now ignores storefront UI/test-only changes to avoid redundant extraction jobs.
+- Immediate next action: monitor acceptance #11 and inspect the artifact; continue category mapping after green QA. No Axxess upload or release-credit usage.
