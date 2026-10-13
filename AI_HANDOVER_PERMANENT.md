@@ -1688,3 +1688,18 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Visual/manual mobile QA: **NOT YET VERIFIED**.
 - Full catalogue import: **not started; preserve existing new-catalogue work**.
 - Production Axxess deployment: **not changed by this test**.
+
+
+## Background-task monitor update — 2026-10-13 19:08 SAST
+
+Fresh GitHub Actions poll after the successful category acceptance:
+- **Staging Category Navigation Chromium Acceptance #3** (run ID `38435206322`): completed successfully. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435206322
+- **GitHub Pages build/deployment #978** (run ID `38435796239`): completed successfully, including build, artifact upload, and deploy steps. This is a GitHub Pages deployment only and does not mean Axxess production was updated. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435796239
+- **Buyer-guide text extraction #50** (run ID `38435893489`): completed successfully; source PDF extraction/OCR job and audit-branch commit steps succeeded. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435893489
+- **Storefront Smoke Test #668** (run ID `38435448619`): still `in_progress`; Playwright setup succeeded; staging category browser test is the active step. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435448619
+- **Storefront Smoke Test #667** (run ID `38435403130`): still `in_progress`; Playwright setup succeeded; staging category browser test is the active step. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435403130
+- No test artifacts/stdout were available via the current connector for the in-progress smoke runs. Do not infer success from setup steps.
+- These smoke tests are on branch `test/staging-category-navigation-browser-2026-10-13`; they explicitly test a pinned staging commit and state no production deployment.
+
+### Next precise action
+Poll runs `38435448619` and `38435403130` until completed, inspect every step/conclusion, then update this handover. If both remain in progress across a long interval, investigate the active browser-test step for a hang/time limit rather than launching more duplicate tests. Once smoke runs finish, perform visual/manual mobile QA at 390px and desktop width. Keep Axxess unchanged and do not restart catalogue work.
