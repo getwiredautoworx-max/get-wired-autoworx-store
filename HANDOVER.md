@@ -1673,3 +1673,21 @@ The following headings are directly visible in the extracted contents text and m
 - Preserve Wheel Accessories, ATV Winches & Wheel Caps, Padlocks, Knives, Aerials, Battery, New Car Mat Sets, Portable Compressors, Engine Timing Kits, Brake Spares & Cylinders, and Boat Accessories as explicit source sections during the first pass. The owner may later choose their parent category.
 - “Super Save” appears to be a promotional grouping, not necessarily a durable product category; retain it as source metadata and verify the promotion terms before deciding whether it becomes a storefront category.
 - The headings above are an initial extraction from contents text, not a complete product-level category inventory. Confirm page-level headings while parsing the full text; June requires OCR.
+
+
+## 2026-10-13 — PERMANENT source recency, price and availability rule (owner clarification)
+
+This clarification supersedes any earlier ambiguous wording about June/July items and August/September availability. Apply it in all future source reconciliation, staging, storefront-status design, and handover updates unless the owner explicitly changes it.
+
+- **August and September 2026 guide listings:** treat as the current/live catalogue price and availability baseline, **subject to confirmation**. This is not a guarantee of physical stock or final supplier price; retain the guide month/page and flag confirmation where required.
+- **July 2026 and every earlier guide listing:** mark **“Subject to price and availability confirmation”** by default.
+- **Exact-SKU exception:** a July-or-earlier item may inherit the August-and-later current/live price/availability treatment only when the **same item is verified by exact supplier SKU/part code** in an August or later guide. A similar name, image, description, or apparent equivalent is not enough. If the code is missing, obscured, or ambiguous, classify REVIEW and keep the earlier-guide confirmation wording.
+- **Later listing wins:** for an exact-SKU match, use the newest verified August/September source for current price/category/listing status; preserve earlier values and provenance in the audit trail. If the latest source has no usable price, do not invent one; flag price confirmation/QUOTE/REVIEW as appropriate.
+- **No physical-stock claim from a guide alone:** guide-based “availability” is a working supplier-catalogue status only. Do not claim warehouse stock or guaranteed dispatch without a separate stock check.
+- Required staging fields include source month/file/page, exact source SKU, raw listed price and its type, newest exact-SKU guide match, match evidence, status phrase, and KEEP/UPDATE/ADD/QUOTE/REVIEW action. Never use name-only fuzzy matching to confer current status or overwrite prices.
+- **Safety gate:** no live Supabase writes, product/category moves, price updates, customer-facing status changes, or Axxess upload until the source-level ledger and category mapping are validated and reviewed. Continue working in isolated staging, and update this master HANDOVER.md after each material step.
+
+### Work checkpoint — 2026-10-13
+- June scanned-PDF OCR recovery and the initial 62-row heading register are recorded in the separate supplement `HANDOVER_OCR_RECOVERY_2026-10-13.md`; register is at `staging/source-extracts/category-reconciliation-initial.csv` on branch `audit/buyer-guide-extraction`.
+- The heading register is explicitly preliminary, not an exhaustive final inventory or a product import. The next work is to strengthen the section register and create an exact-SKU ledger with page-level evidence across all four guides.
+- No live catalogue, price, availability, category, Supabase or Axxess changes were made by this clarification.
