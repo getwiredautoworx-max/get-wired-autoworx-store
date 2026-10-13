@@ -23,9 +23,9 @@ jobs:
           set -euo pipefail
           git fetch origin main
           mkdir -p artifacts/source-page-qa
-          git show 'origin/main:Feb Buy'''s Guide.pdf' > /tmp/feb.pdf
-          git show 'origin/main:March Buy'''s Guide.pdf' > /tmp/march.pdf
-          git show 'origin/main:May Buyers Guide.pdf' > /tmp/may.pdf
+          git show "origin/main:Feb Buyer's Guide.pdf" > /tmp/feb.pdf
+          git show "origin/main:March Buyer's Guide.pdf" > /tmp/march.pdf
+          git show "origin/main:May Buyers Guide.pdf" > /tmp/may.pdf
           pdftoppm -f 5 -l 5 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p05-aerial
           pdftoppm -f 6 -l 6 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p06-accessories
           pdftoppm -f 7 -l 7 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p07-accessories
