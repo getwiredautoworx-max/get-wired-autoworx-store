@@ -244,9 +244,24 @@ jobs:
               await product.waitFor({timeout:20000});
               const productText = await product.innerText();
               if (productText.includes('Price on request') || !productText.includes('ADD TO CART')) throw new Error('Public storefront still blocks formula-priced SKU GW-B4F502E6: '+productText);
-              await product.locator('button').first().evaluate(el => el.click());
+              // Use a real browser click and wait for the synchronous cart write before asserting.
+              await product.locator('button').first().click();
+              await publicPage.waitForFunction(() => {
+                try { return JSON.parse(localStorage.getItem('gw_cart') || '[]').some(item => item.public_sku === 'GW-B4F502E6' && Number(item.qty) === 1); }
+                catch (_) { return false; }
+              }, null, {timeout:5000}).catch(async () => {
+                const diag = await publicPage.evaluate(() => {
+                  let cart = null;
+                  try { cart = JSON.parse(localStorage.getItem('gw_cart') || '[]'); } catch (e) { cart = String(e); }
+                  const frame = document.querySelector('iframe#store');
+                  let frameCart = null;
+                  try { frameCart = frame?.contentWindow?.localStorage?.getItem('gw_cart'); } catch (e) { frameCart = String(e); }
+                  return {cart, frameCart, url:location.href};
+                });
+                throw new Error('Public cart did not persist formula-priced SKU GW-B4F502E6 after real click: '+JSON.stringify(diag));
+              });
               const cart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
-              if (!cart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public cart did not persist the formula-priced product');
+              if (!cart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public cart state did not retain formula-priced SKU GW-B4F502E6');
               await publicPage.goto('https://www.getwiredauto.co.za/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
               await publicPage.locator('#summaryTotal').waitFor({timeout:20000});
               // The checkout layout appears before its asynchronous product verification fetch finishes.
