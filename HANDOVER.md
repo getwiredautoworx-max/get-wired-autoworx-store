@@ -1825,3 +1825,12 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Approved store roots: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. Owner-approved exception: Caravan Accessories → Camping, Leisure & Outdoors. No live category changes during source reconciliation.
 - Pricing: August/September and later listings are price/availability candidates subject to confirmation; items advertised in August/September follow the owner's stock-on-hand assumption. February/March/May/June/July items without a verified later exact-SKU and item-context match remain “Subject to price and availability confirmation.”
 - Status: source files verified on main and rules recorded. Pending: stage/reference new guides in isolated audit work, extract page/category headings, validate ASC hierarchy and reconcile exact SKUs/item context. No product/category/price/stock/image writes, deployment or Axxess upload performed.
+
+
+## CONTINUATION LOG — 2026-10-13 — Buyer Guide extraction expanded to February, March and May
+
+- Updated `.github/workflows/extract-buyer-guides-staging.yml` on `audit/buyer-guide-extraction` (commit `11b6ac134a95e9a7b393c8c1d96f93415a377c10`) so the staging extraction retrieves the February, March and May original PDFs from `main` at runtime, without copying those large binary PDFs into the audit branch history.
+- The staging extraction loop now covers February, March, May, June, July, August and September; June OCR is skipped if the prior OCR text already exists to avoid an unnecessary repeat.
+- GitHub Actions run #26 (ID `38402345015`) started for the workflow change and was observed `in_progress`. Do not report extraction success until the run completes and the manifest/text files are checked.
+- This workflow is intended to write only text/manifest outputs under `staging/source-extracts/` on the isolated audit branch. It does not write to Supabase, alter the storefront catalogue, deploy, or upload to Axxess.
+- Next: verify run conclusion and inspect the resulting manifest and the three new extracted text files. Then inspect source category headings/page boundaries, preserve ASC source taxonomy alongside the eight approved store roots, and flag OCR/price ambiguity rather than guessing.
