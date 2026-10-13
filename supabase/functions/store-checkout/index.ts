@@ -14,7 +14,7 @@ Deno.serve(async (req: Request) => {
     const body = await req.json();
     if (!body || typeof body !== "object") throw new Error("Invalid order request.");
 
-    const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method"];
+    const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method","p_delivery_quote"];
     const payload: Record<string, unknown> = {};
     for (const key of allowed) payload[key] = body[key];
 
@@ -84,7 +84,7 @@ Deno.serve(async (req: Request) => {
       }), { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order", {
+    const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
       method: "POST",
       headers: adminHeaders,
       body: JSON.stringify(payload),
