@@ -1,6 +1,6 @@
 {
   "date": "2026-10-13",
-  "status": "STAGING_VISUAL_QA_BATCH_PENDING_REVIEW",
+  "status": "STAGING_VISUAL_QA_BATCH_RETRY_AFTER_PATH_QUOTING_FIX",
   "purpose": "Render source guide pages for crosswalk headings marked Needs review. Page numbers are PDF page indices as recorded in the crosswalk.",
   "items": [
     {
@@ -83,5 +83,6 @@
       "file": "May Buyers Guide.pdf",
       "pdf_page": 18
     }
-  ]
+  ],
+  "retry_attempt": 2
 }
