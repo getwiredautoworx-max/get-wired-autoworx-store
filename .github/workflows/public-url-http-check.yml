@@ -228,7 +228,8 @@ jobs:
               for (const link of policyLinks) {
                 try {
                   const response = await page.request.get(link.href,{timeout:20000});
-                  console.log('LIVE_POLICY_LINK_RESPONSE='+response.status()+' requested='+link.href+' final='+response.url());
+                  const body = await response.text().catch(()=> '');
+                  console.log('LIVE_POLICY_LINK_RESPONSE='+response.status()+' requested='+link.href+' final='+response.url()+' contentType='+(response.headers()['content-type']||'')+' htmlDocument='+(/<html|<body/i.test(body))+' markdownHeading='+(/^# /m.test(body))+' preview='+JSON.stringify(body.slice(0,180)));
                 } catch (e) {
                   console.log('LIVE_POLICY_LINK_REQUEST_FAILED='+link.href+' error='+e.message);
                 }
