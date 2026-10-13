@@ -31,7 +31,7 @@ const { pathToFileURL } = require('url');
   await page.waitForSelector('#categoryGrid [data-gw-root-index]');
  }
  if(totalSubcategories!==71) throw new Error('Expected 71 subcategories, got '+totalSubcategories);
- const width=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
+ const width=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('body *')].map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',text:(el.innerText||'').trim().slice(0,80),left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),position:s.position,overflowX:s.overflowX}}).filter(x=>x.right>innerWidth+1||x.left< -1).sort((a,b)=>b.right-a.right).slice(0,12)}));
  if(width.document>width.viewport) throw new Error('Horizontal overflow at 390px: '+JSON.stringify(width));
  if(errors.length) throw new Error('Browser runtime errors: '+errors.join(' | '));
  await page.setViewportSize({width:1280,height:900});
