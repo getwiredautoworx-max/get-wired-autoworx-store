@@ -247,7 +247,7 @@ jobs:
               // Escape does not consistently dismiss the production suggestions overlay.
               // Clear the query explicitly and require the overlay to disappear before the real click.
               await publicFrame.locator('#searchInput').fill('');
-              await publicFrame.waitForFunction(() => [...document.querySelectorAll('.gwResult')].every(el => getComputedStyle(el).display === 'none' || el.offsetParent === null), null, {timeout:10000});
+              await publicFrame.locator('.gwResult').first().waitFor({state:'hidden',timeout:10000});
               // Use a real browser click and wait for the synchronous cart write before asserting.
               await product.locator('button').first().click({timeout:15000});
               await publicPage.waitForFunction(() => {
