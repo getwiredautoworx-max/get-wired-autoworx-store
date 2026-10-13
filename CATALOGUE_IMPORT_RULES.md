@@ -50,3 +50,19 @@ Subcategories belong under the appropriate active top-level category. If a futur
 - [ ] No duplicate products are created.
 - [ ] Image paths are valid or intentionally left for exact-SKU fallback.
 - [ ] Import is reviewed before production write.
+
+
+---
+
+## Owner-approved monthly Buyer’s Guide policy — 2026-10-13 (PERMANENT)
+
+Process source guides chronologically: June, July, August, September. Import each guide faithfully, preserving exact source SKU/part number, description and its own category/subcategory. When the same exact SKU appears in a later guide, the later guide updates relevant current fields; retain month/page provenance and a history of previous values. Add source categories/subcategories missing from the store rather than dropping or forcing them into an unrelated existing category. Follow ASC taxonomy and the guide's category structure; merchandising fine-tuning comes only after source-faithful reconciliation and owner review.
+
+Stock/customer status:
+- June/July listing not present in any later guide (August/September): show **Confirm stock and price**; do not imply current availability/current price.
+- June/July listing also present in August/September: later listing takes precedence.
+- Any item advertised in August or September: assume stock on hand, per owner instruction. This is a catalogue assumption, not a verified physical stock count.
+- If a valid price is absent or unclear, do not invent one. Stage as REVIEW/QUOTE or appropriate confirm-stock-and-price state.
+- Existing price formula where verified cost excl. VAT is available: round(cost × 1.15 × 1.35, 2). Do not bulk overwrite live prices without exact source reconciliation and approval.
+
+Safeguards: preserve originals; reconcile by exact code first; use name-only matches for manual review; record file/month/page, source category, price type, image reference, live SKU match, later-guide match, action and reason. Stage and review before any production database write, category move, image edit, price/stock change or Axxess upload. No deployment should be triggered merely to inspect catalogues.
