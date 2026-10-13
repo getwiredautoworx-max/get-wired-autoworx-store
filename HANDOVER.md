@@ -1601,3 +1601,24 @@ These counts are QA flags, not a statement that every row is wrong. They demonst
 
 ### Next work item
 Obtain readable page-level content from the original June, July, August and September PDFs; extract each guide separately with page/category boundaries intact; validate exact SKU, product description, raw cost/list price, source category/subcategory and page before chronological SKU reconciliation. Then apply the owner's permanent stock/price confirmation rule and create a reviewable staging ledger. No production writes or Axxess upload until reviewed and approved.
+
+
+---
+
+## 2026-10-13 — Corrected PDF access approach (GitHub-only; no attachments)
+
+Owner correctly pointed out that the original four Buyer’s Guide PDFs were uploaded to GitHub because attachments are unavailable. Do not ask the owner to attach or re-upload the files.
+
+### Action taken
+- Created isolated branch `audit/buyer-guide-extraction` from main.
+- Added `.github/workflows/extract-buyer-guides-staging.yml` to that branch only. It uses the existing four root-level PDFs, installs Poppler utilities, extracts layout-preserving text to `staging/source-extracts/`, and commits only the extracted text/manifest back to the audit branch.
+- Workflow run ID `38387571992`, URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38387571992
+- Last observed status at handover update: `in_progress`; checkout step was still in progress, extraction has **not yet been confirmed complete**.
+- No catalogue PDFs were modified, no live data was written, and no Axxess upload was performed. The workflow is isolated to the audit branch; its path-ignore rule prevents a second run from the generated staging text.
+
+### Next steps
+1. Monitor run `38387571992` until it completes or fails.
+2. If successful, read the generated manifest and June/July/August/September text outputs from the audit branch, verify page/category boundaries and extraction quality, and build a reviewable SKU/category/price staging ledger.
+3. If checkout or extraction fails, inspect job logs and adjust the isolated workflow; do not ask for attachments or deploy to production.
+4. If text extraction shows scanned pages or missing descriptions/tables, add page-specific OCR/table review only for those pages and preserve the original source.
+5. Continue applying the owner-approved June → July → August → September import and stock/price rules. No production import or Axxess upload until source accuracy and category mappings are reviewed.
