@@ -1703,3 +1703,21 @@ Fresh GitHub Actions poll after the successful category acceptance:
 
 ### Next precise action
 Poll runs `38435448619` and `38435403130` until completed, inspect every step/conclusion, then update this handover. If both remain in progress across a long interval, investigate the active browser-test step for a hang/time limit rather than launching more duplicate tests. Once smoke runs finish, perform visual/manual mobile QA at 390px and desktop width. Keep Axxess unchanged and do not restart catalogue work.
+
+
+## Background-task completion update — 2026-10-13 19:10 SAST
+
+Follow-up poll confirms both previously active storefront smoke tests completed successfully:
+- **Storefront Smoke Test #668**, run ID `38435448619`: **PASS**. All steps succeeded, including staging category browser navigation, verified-price checkout gate, and local storefront smoke test. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435448619
+- **Storefront Smoke Test #667**, run ID `38435403130`: **PASS**. All steps succeeded, including staging category browser navigation, verified-price checkout gate, and local storefront smoke test. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435403130
+
+### What this does and does not prove
+- Automated staging category acceptance and the staging smoke/verified-price checkout gate are green.
+- These workflow steps ran against pinned staging content and did not deploy to Axxess production.
+- Visual/manual QA on a real mobile viewport and production checkout/payment-provider readiness remain unverified.
+
+### Next action / resume point
+1. Check the newest GitHub Actions run list after these completions and note any newly triggered workflow.
+2. Perform visual/manual review of the category UI at 390px and desktop width if a usable staging preview is available; record evidence, not assumptions.
+3. Continue category reconciliation and catalogue mapping before the full import.
+4. Do not restart the catalogue, touch live Axxess, change payment/DNS settings, or consume release credits without explicit owner approval.
