@@ -100,6 +100,9 @@ body{background:radial-gradient(ellipse at 50% 0,#071b31 0,#02060d 58%);color:#f
  .product .price{font-size:11px}
 }
 
+
+/* Mobile viewport containment: prevent fixed/long-content children from widening the document. */
+@media(max-width:700px){html,body{width:100%;max-width:100%;overflow-x:clip}#categoryGrid,.gw-category-level,.gw-subcategory-grid,.catWrap,.catBtn,.catContent{min-width:0;max-width:100%}.gw-subcategory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catBtn{gap:8px;overflow-wrap:anywhere}.catContent b,.gw-category-level h3{overflow-wrap:anywhere}}
 /* 2026-10-10: brighter, cleaner storefront and compact hero; preserve existing functionality */
 body{background:#eef3f8;color:#172b40}
 .top{background:#102b45;color:#f3f8fc;border-color:#244f70}
