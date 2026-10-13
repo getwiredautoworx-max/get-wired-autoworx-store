@@ -232,8 +232,12 @@ jobs:
 
             if (process.env.GITHUB_REF === 'refs/heads/main') {
               const publicPage = await browser.newPage({viewport:{width:390,height:844}});
+              const homeResponse = await publicPage.goto('https://www.getwiredauto.co.za/',{waitUntil:'domcontentloaded',timeout:45000});
+              if (!homeResponse || homeResponse.status() >= 400) throw new Error('Public homepage did not return a successful HTTP response');
+              console.log('PUBLIC_HOMEPAGE_PASS https://www.getwiredauto.co.za/ HTTP '+homeResponse.status());
               const response = await publicPage.goto('https://www.getwiredauto.co.za/store',{waitUntil:'domcontentloaded',timeout:45000});
               if (!response || response.status() >= 400) throw new Error('Public storefront did not return a successful HTTP response');
+              console.log('PUBLIC_STOREFRONT_PASS https://www.getwiredauto.co.za/store HTTP '+response.status());
               const publicFrame = publicPage.frameLocator('iframe#store');
               await publicFrame.locator('#allProductsLink').waitFor({timeout:25000});
               await publicFrame.locator('#featuredGrid .product').first().waitFor({timeout:30000});
