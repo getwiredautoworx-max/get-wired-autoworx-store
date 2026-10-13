@@ -1002,3 +1002,11 @@ Read-only category notes:
 - **No storefront/database/hosting changes:** only the release-branch workflow test changed. No production data writes or order submissions.
 - **NEXT ACTION:** audit the actual Terms and Returns link targets shown in the live homepage footer, including final URL and HTTP status. The source currently links Terms to `TERMS_AND_CONDITIONS.md` while the passing HTTP check tested `terms-and-conditions.html`; verify the actual clicked link before declaring policy links release-ready.
 - **ETA / fallback:** one short extension to the existing diagnostic workflow and one GitHub-hosted run. If the Markdown target is broken or serves raw Markdown, include the correction to point to `terms-and-conditions.html` in the same planned Axxess consolidated source edit.
+
+
+## 2026-10-13 — TASK START: VERIFY LIVE FOOTER POLICY LINKS
+- **Goal:** inspect the actual live store iframe footer links and request the exact targets from a GitHub-hosted runner, recording each href, HTTP status, and final URL.
+- **Reason:** the public homepage and both policy pages individually returned HTTP 200, but source inspection shows the footer's Terms link points to `TERMS_AND_CONDITIONS.md`, while the prior test used `terms-and-conditions.html`. The real click target must be verified.
+- **Scope:** workflow diagnostics only. Do not edit storefront HTML, policy text, DNS, hosting, payment configuration, or production data in this task.
+- **ETA:** one diagnostic run.
+- **NEXT ACTION:** extend the existing live-browser diagnostic step to list policy footer links and fetch their actual hrefs, then monitor the run to terminal state and record results.
