@@ -1941,3 +1941,13 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Found one missing exact source heading: `STICKERS (SPECIAL DISCOUNTED PRICE)` (June 2026 p.29–30). Added it to the crosswalk, preserving its expired promotion label as a source heading and its explicit “not visually verified” status. Commit: `f021a5afa8cbc2e5ffd5f4c1489d66578c524790`.
 - This is a completeness fix only. It does not verify the original PDF image, make the June promotional price live, or approve individual sticker SKUs. June special prices expired 30 June 2026.
 - Next action: validate the crosswalk again for CSV shape, duplicate exact source headings, June index coverage, and review flags; then continue visual/page-heading QA. No production catalogue, Supabase, payment, deployment, or Axxess changes.
+
+
+## CONTINUATION LOG — 2026-10-13 — OFFLINE CATEGORY REVIEW WORKSPACE
+
+- Created `staging/category-review-workspace.html` on `audit/buyer-guide-extraction`, commit `59fe46862c2982803d8b133a772d76502035fa97`.
+- The self-contained offline review workspace embeds the current 115-row, 8-column crosswalk and supports search/filtering, editing proposed store destination, recording original-page visual verification state, adding notes, and exporting a reviewed CSV. No external runtime network requests are required. It is a review artifact, not a deployed store or production import.
+- User can open/download the HTML from the audit branch and open it locally in a browser to browse and edit category decisions; use “Export reviewed CSV” to save edits. Changes in the browser session are not automatically committed to GitHub; exported CSV must be uploaded/committed separately.
+- Crosswalk validation remains: 115 data rows, 8 columns, no duplicate exact source headings, and all 33 June index headings represented. Visual verification of original guide page images remains incomplete; do not label the catalogue/category reconciliation complete.
+- No product import, Supabase write, live catalogue change, production deployment, payment configuration, or Axxess upload was performed.
+- Next: make the workspace available to the owner for category review; continue source-page verification from actual guide images when accessible; use the reviewed/exported category decisions to finalize the taxonomy before building the SKU-level ledger. Preserve the owner's Axxess-first workflow and do not upload/deploy before the owner is satisfied with the preview.
