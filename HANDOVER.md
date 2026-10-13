@@ -1882,3 +1882,34 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Crosswalk validation passed: 110 data rows, six columns consistently, no malformed CSV rows. One source heading has multiple contextual destination suggestions and is explicitly flagged for review instead of silently selecting one.
 - The detailed month-by-month register remains the source evidence: `category-reconciliation-review-v5.csv` (148 rows, seven columns). Crosswalk is a navigation/summary layer and does not replace the original heading/page references.
 - Next: finish category/page-heading verification, particularly OCR-only June and any ambiguous source headings; only then create the product-level staging ledger and begin exact-SKU reconciliation. No production imports or storefront changes.
+
+
+## RESUME CHECKPOINT — 2026-10-13 — Continue from consolidated category crosswalk
+
+### Current confirmed state
+- Main handover is the canonical resume point; audit work is isolated on `audit/buyer-guide-extraction`.
+- The February, March and May 2026 Buyers Guide PDFs are confirmed on `main`; June, July, August and September are also present.
+- GitHub Actions extraction succeeded in run #27: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38402395937. The documentation-trigger-filter run #28 also succeeded: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38402977808.
+- Staged text extraction files for February, March and May are available in `staging/source-extracts/` on the audit branch. June's ordinary text extraction is inadequate (32-page PDF yields only 668 characters); use page-numbered OCR and visually verify it.
+- Detailed category register: `staging/source-extracts/category-reconciliation-review-v5.csv` — 148 data rows, seven columns validated. Includes month/page references, source heading, proposed store destination, status and notes.
+- Consolidated source crosswalk: `staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv` — 110 distinct source headings, six columns validated; one conflicting mapping is explicitly flagged for review.
+- Both files live on `audit/buyer-guide-extraction`; the main handover is updated with this checkpoint. Do not assume these staging CSVs are on `main`.
+- The approved customer-facing store roots remain: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy.
+- Preserve original ASC/Buyers Guide source taxonomy and page provenance separately from the proposed store taxonomy. Exact ASC SKU plus matching description/application context is required for product identity; only match images by exact SKU.
+- Pricing/availability policy: August–September and later entries represent live pricing/availability subject to confirmation; February/March/May/June/July entries remain “Subject to price and availability confirmation” unless the exact same SKU and item context is verified in August or later. Do not infer stock counts or guess prices.
+- No production catalogue/database changes, product imports, or Axxess upload were performed. The old catalogue is considered unusable by the owner and is not a recovery target.
+
+### Immediate next action
+1. Continue from the two audit-branch category files; do not redo successful extraction or rebuild the store.
+2. Inspect the existing June OCR text/page labels and validate source headings against guide pages; then check any remaining ambiguous page ranges/TOC OCR in February, March and May.
+3. Produce a verified category/alias register across all seven guides. Keep uncertain mappings flagged and never force mechanical/out-of-scope products into an approved root.
+4. Only after the category register is reconciled, create a separate SKU-level product ledger with at least: source guide/date, source page, exact source heading/subcategory, ASC SKU/part number, exact description, vehicle/application, supplier cost excl. VAT, source price evidence, image path and exact-SKU match status, proposed store category/subcategory, availability status, review status and review reason.
+5. Compare repeated SKUs across guides only after checking item description and fitment context. Calculate customer price only from verified supplier cost using round(cost × 1.15 × 1.35, 2); leave special/asterisk/unverifiable prices blank and flag them.
+6. Validate ledger row counts, required fields, duplicate handling and CSV structure. Do not import into Supabase, edit live catalogue rows, deploy or upload to Axxess until source-level QA and owner category review are complete.
+7. Append a handover checkpoint after every material change on both main and audit branch; do not trigger extraction workflows for documentation-only edits.
+
+### Files to resume from
+- Detailed register: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/category-reconciliation-review-v5.csv
+- Consolidated crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
+- Audit branch: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/audit/buyer-guide-extraction
+- Workflow run #27 (extraction): https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38402395937
