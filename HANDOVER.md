@@ -1,3 +1,11 @@
+## CONTINUATION LOG — 2026-10-13 06:26 SAST — QA PASSED; SMOKE #638 STILL RUNNING
+
+- Store Production QA #191 completed SUCCESS on fix commit `6815f2e8205f2ba06a5a7fdaacf5d86af1ae9dcb`. This confirms the current production QA assertions passed.
+- Storefront Smoke Test #638 is still IN PROGRESS on the same commit; the local storefront smoke step has not yet reported a terminal result. Do not infer success from QA.
+- Pages deployment #864 for the workflow-fix commit was cancelled by a newer handover documentation commit; Pages run #865 for the handover-only commit is in progress. The workflow change is test-only, not storefront production code.
+- Next: poll Smoke #638 until terminal, then inspect its decoded log. If it passes, capture the policy URL HTTP status lines and latest public checkout evidence; if it fails, use the exact error to make one bounded correction. Do not manually rerun workflows or change DNS/payments/production data.
+- ETA: awaiting active runner; no reliable completion time until the smoke step finishes. Release remains unsigned until smoke passes.
+
 ## CONTINUATION LOG — 2026-10-13 06:25 SAST — HIDDEN CART CLOSE CLICK REMOVED
 
 - Workflow fix committed: `6815f2e8205f2ba06a5a7fdaacf5d86af1ae9dcb`. In `.github/workflows/storefront-smoke.yml`, the test already removes the cart panel's `open` class at line 181, then previously tried to click `#closeCart` even though that control was consequently hidden. Removed only the contradictory click and documented the existing harness state transition. No storefront production source changed.
