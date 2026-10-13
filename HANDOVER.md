@@ -1856,3 +1856,11 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - Extraction workflow #28 passed after the trigger filters were tightened: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38402977808. Future documentation/category CSV changes under the configured ignored paths will not retrigger PDF extraction.
 - Next: verify each candidate heading against page images, complete the full cross-month source category/alias list, then begin a separate staged product ledger. Do not use the legacy product import SQL/ZIP as a replacement source of truth, and do not import unverified extracted text.
 - No production catalogue or live storefront data was changed.
+
+
+## CONTINUATION LOG — 2026-10-13 — Store-root mapping normalization complete for category register v5
+
+- Normalized the 148-row category reconciliation register so the proposed destination field uses only the eight approved Get Wired AutoWorx roots or an explicit review/promotion status. Canonical roots now represented: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy.
+- Replaced non-approved pseudo-roots such as “4x4 & Off-road,” “Lighting,” “Automotive Spares & Parts,” and “Tools Hardware & Consumables” with approved-root mappings or explicit SKU-level review labels. Added notes where 4x4/outdoor classification depends on vehicle-mounted vs leisure use. Generic mechanical/ambiguous headings remain flagged rather than being forced into a wrong root.
+- CSV integrity rechecked after normalization: 148 data rows, exactly seven columns on every row. Current register file: [category-reconciliation-review-v5.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/category-reconciliation-review-v5.csv).
+- These are provisional category-heading mappings, not product imports. Exact SKU, product description, fitment and original page must be checked before a product inherits a final store category.
