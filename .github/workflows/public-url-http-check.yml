@@ -14,7 +14,7 @@ jobs:
   public-http-check:
     name: Check public homepage and policy pages
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 10
     steps:
       - name: Check homepage and both policy pages from GitHub-hosted runner
         shell: bash
@@ -86,3 +86,90 @@ jobs:
             exit 1
           fi
           echo "PUBLIC_URL_HTTP_CHECK_PASS: homepage, Terms and Conditions, and Returns/Refunds all returned HTTP 200."
+
+      - name: Set up Node for safe public checkout browser test
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright browser
+        shell: bash
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Verify public checkout totals and block real order submission
+        shell: bash
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const base = 'https://getwiredautoworx-max.github.io/get-wired-autoworx-store';
+          const supabase = 'https://ojytykqpvonxvepprgbh.supabase.co';
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              const page = await browser.newPage({viewport:{width:390,height:844}});
+              let interceptedOrder = false;
+              page.on('pageerror', e => console.log('PUBLIC_CHECKOUT_PAGE_ERROR='+e.message));
+              await page.addInitScript(() => localStorage.setItem('gw_cart', JSON.stringify([{id:'00000000-0000-0000-0000-000000000001',qty:1}])));
+              await page.route(new RegExp(supabase.replace(/[.*+?^${}()|[\]\\]/g, '\\          echo "PUBLIC_URL_HTTP_CHECK_PASS: homepage, Terms and Conditions, and Returns/Refunds all returned HTTP 200."
+') + '/rest/v1/products(?:\\?.*)?), async route => {
+                const req = route.request();
+                const cors = {
+                  'access-control-allow-origin':'*',
+                  'access-control-allow-methods':'GET, OPTIONS',
+                  'access-control-allow-headers':'apikey,authorization,content-type,prefer,range',
+                  'access-control-max-age':'600'
+                };
+                if (req.method() === 'OPTIONS') return route.fulfill({status:204,headers:cors,body:''});
+                return route.fulfill({
+                  status:200, contentType:'application/json',
+                  headers:cors,
+                  body:JSON.stringify([{
+                    id:'00000000-0000-0000-0000-000000000001',
+                    name:'Safe Test Verified Item',public_sku:'GW-TEST0001',price:100,
+                    active:true,weight_kg:0.5,length_cm:10,width_cm:10,height_cm:10,
+                    specifications:{price_status:'VERIFIED_PRICE'}
+                  }])
+                });
+              });
+              await page.route(new RegExp(supabase.replace(/[.*+?^${}()|[\]\\]/g, '\\          echo "PUBLIC_URL_HTTP_CHECK_PASS: homepage, Terms and Conditions, and Returns/Refunds all returned HTTP 200."
+') + '/functions/v1/store-checkout(?:\\?.*)?), async route => {
+                const req = route.request();
+                const cors = {
+                  'access-control-allow-origin':'*',
+                  'access-control-allow-methods':'POST, OPTIONS',
+                  'access-control-allow-headers':'apikey,authorization,content-type',
+                  'access-control-max-age':'600'
+                };
+                if (req.method() === 'OPTIONS') return route.fulfill({status:204,headers:cors,body:''});
+                if (req.method() === 'POST') {
+                  interceptedOrder = true;
+                  console.log('SAFE_TEST_ORDER_POST_INTERCEPTED_BEFORE_NETWORK=YES');
+                  return route.fulfill({status:503,contentType:'application/json',headers:cors,body:JSON.stringify({error:'SAFE_TEST_BLOCKED: simulated response; no order was sent to Supabase'})});
+                }
+                return route.abort();
+              });
+              await page.goto(base+'/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:45000});
+              await page.locator('#checkout').waitFor({state:'visible',timeout:20000});
+              const summary = await page.locator('#summaryTotal').innerText();
+              const items = await page.locator('#items').innerText();
+              console.log('PUBLIC_CHECKOUT_ITEM='+items.replace(/\s+/g,' ').trim());
+              console.log('PUBLIC_CHECKOUT_INITIAL_TOTAL='+summary);
+              if (!items.includes('Safe Test Verified Item')) throw new Error('Fixture product was not rendered.');
+              if (!summary.includes('135')) throw new Error('Expected R135 total (R100 item + R35 packaging, free pickup) not rendered.');
+              await page.locator('#fulfilment').selectOption('pickup');
+              await page.locator('#name').fill('Safe Browser Test');
+              await page.locator('#phone').fill('0700000000');
+              const policyCheckboxCount = await page.locator('#form input[type="checkbox"]').count();
+              console.log('CHECKOUT_POLICY_ACCEPTANCE_CHECKBOX_COUNT='+policyCheckboxCount);
+              await page.locator('#form button[type="submit"]').click();
+              await page.waitForFunction(() => document.querySelector('#msg')?.textContent.includes('SAFE_TEST_BLOCKED'), null, {timeout:10000});
+              if (!interceptedOrder) throw new Error('Expected checkout submission to be intercepted before network.');
+              console.log('PUBLIC_CHECKOUT_SAFE_TEST_PASS: totals and pickup flow rendered; order POST intercepted before network.');
+              if (policyCheckboxCount === 0) console.log('RELEASE_READINESS_NOTE: checkout currently has no policy-acceptance checkbox.');
+            } finally {
+              await browser.close();
+            }
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
