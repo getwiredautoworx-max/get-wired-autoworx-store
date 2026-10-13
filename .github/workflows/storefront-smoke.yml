@@ -192,6 +192,7 @@ jobs:
             await page.locator('#fulfilment').selectOption('delivery');
             if (!(await page.locator('#deliverySummary').textContent()).includes('To be quoted')) throw new Error('Delivery must reset to quote pending when delivery is selected');
             const listingPage = await browser.newPage({viewport:{width:390,height:844}});
+            await listingPage.route('**/rest/v1/products?*', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{id:'quote-listing-test',name:'Quote-only listing test',public_sku:'GW-B4F502E6',description:'Customer-safe description',price:123.45,stock_quantity:3,image_url:null,specifications:{price_status:'QUOTE_REQUIRED'},active:true}])}));
             await listingPage.goto('http://127.0.0.1:4173/products.html?category=df14b7f8-f086-4fdb-8496-733bde7e18e7',{waitUntil:'domcontentloaded'});
             const listingQuoteCard = listingPage.locator('.card').filter({hasText:'GW-B4F502E6'}).first();
             await listingQuoteCard.waitFor({timeout:15000});
