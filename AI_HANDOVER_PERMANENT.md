@@ -1721,3 +1721,28 @@ Follow-up poll confirms both previously active storefront smoke tests completed 
 2. Perform visual/manual review of the category UI at 390px and desktop width if a usable staging preview is available; record evidence, not assumptions.
 3. Continue category reconciliation and catalogue mapping before the full import.
 4. Do not restart the catalogue, touch live Axxess, change payment/DNS settings, or consume release credits without explicit owner approval.
+
+
+## Monitoring and workflow-trigger fix — 2026-10-13 19:12 SAST
+
+### Completed extraction runs
+- Buyer-guide text extraction #50 (ID `38435893489`): PASS.
+- Buyer-guide text extraction #51 (ID `38436264146`): PASS.
+- Buyer-guide text extraction #52 (ID `38436393331`): PASS.
+- Buyer-guide text extraction #53 (ID `38436501582`): PASS.
+- Run #53 was triggered by a workflow-file-only edit; #50–#52 followed handover-only updates. These were unnecessary repeated PDF extraction/OCR jobs, although all four completed successfully.
+
+### Preventing repeated extraction on handover/config-only edits
+- Updated `.github/workflows/extract-buyer-guides-staging.yml` to ignore `AI_HANDOVER*.md` and its own workflow file in `paths-ignore`, alongside the existing `HANDOVER*.md` exclusions.
+- Workflow-fix commits: `0c4b4a2e1e0f92c50f36241f0005ff8e1bf6bf3e`, followed by `017df2a492a2948b53f393b17bf0b9a4017d6aae`.
+- Purpose: keep ordinary handover maintenance from unnecessarily launching expensive PDF extraction/OCR, while preserving manual `workflow_dispatch` capability.
+- Latest Actions list check showed run #53 as the newest run and no additional run triggered by the final ignore-rule change.
+
+### Latest verified project status
+- Category navigation acceptance #3: PASS.
+- Storefront Smoke Tests #667 and #668: PASS, including staging category browser navigation, verified-price checkout gate, and local storefront smoke test.
+- GitHub Pages deployment #978: PASS; does not imply Axxess deployment.
+- Buyer-guide extraction #50–#53: PASS.
+- Manual/visual QA at 390px and desktop: still required.
+- Production Axxess deployment: unchanged/not performed.
+- Next action: proceed with manual/visual staging QA if an appropriate preview is accessible, then continue category/subcategory reconciliation. Do not restart the catalogue or treat staging test success as payment-provider or production readiness.
