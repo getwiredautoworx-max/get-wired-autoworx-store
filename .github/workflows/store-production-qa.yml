@@ -79,7 +79,15 @@ jobs:
           test "$new_image_status" = "200"
           new_image_type="$(file --mime-type -b /tmp/live-new-product-image.webp)"
           test "$new_image_type" = "image/webp"
-          echo "Canonical domain, category snapshot, established exact-SKU image, and newly synced GW-001CED3B.webp all returned HTTP 200 with WebP content type."
+          # Targeted verification for the eight exact-SKU assets found by the bounded image audit.
+          for sku in GW-F60D9CE9 GW-F632303D GW-F6416160 GW-F6461F7B GW-F6672DED GW-F672879F GW-F68FB0CE GW-F69F8DA1; do
+            status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o "/tmp/${sku}.webp" -w '%{http_code}' "https://www.getwiredauto.co.za/assets/products_webp/${sku}.webp")"
+            test "$status" = "200" || { echo "ERROR: exact-SKU asset ${sku} returned HTTP ${status}"; exit 1; }
+            type="$(file --mime-type -b "/tmp/${sku}.webp")"
+            test "$type" = "image/webp" || { echo "ERROR: exact-SKU asset ${sku} returned MIME ${type}"; exit 1; }
+            echo "EXACT_SKU_IMAGE_PASS: ${sku} HTTP ${status} ${type}"
+          done
+          echo "Canonical domain, category snapshot, established/new exact-SKU images, and all eight audit exception images returned HTTP 200 with WebP content type."
 
       - name: Validate delivery quote database rule
         shell: bash
