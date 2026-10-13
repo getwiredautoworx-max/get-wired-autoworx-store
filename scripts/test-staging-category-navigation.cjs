@@ -45,7 +45,7 @@ const { pathToFileURL } = require('url');
  await page.waitForSelector('#categoryGrid [data-gw-root-index]');
  await page.screenshot({path:'artifacts/category-home-desktop-1280.png',fullPage:false});
  await page.locator('#categoryGrid').scrollIntoViewIfNeeded();
- await page.screenshot({path:'artifacts/category-grid-desktop-1280.png',fullPage:false);
+ await page.screenshot({path:'artifacts/category-grid-desktop-1280.png',fullPage:false});
  const desktop=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
  if(desktop.document>desktop.viewport) throw new Error('Horizontal overflow at 1280px: '+JSON.stringify(desktop));
  console.log(JSON.stringify({status:'PASS',roots:rootCount,subcategories:totalSubcategories,subcategoriesChecked:'all subcategories individually opened and returned',mobile:width,desktop,browserErrors:errors.length},null,2));
