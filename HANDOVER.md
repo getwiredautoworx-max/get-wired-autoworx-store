@@ -1924,3 +1924,12 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Scope guardrails: Fuel Pumps, Fan Blades, Automotive Spares, Brake Spares & Cylinders, Engine Timing Kits, Tappet Covers/Engine Parts, and uncertain ignition/winch items remain review-flagged rather than forced into an approved root. Keep clips together, spanners together, and winches/winch spares grouped; promotions are not permanent categories.
 - No product import, Supabase write, production deployment, Axxess upload, or live catalogue change occurred.
 - Next: inspect actual June source page images for headings/SKU/price evidence where repository image assets are available; verify February/March/May page-heading candidates and TOC ranges; reconcile remaining cross-guide aliases; then build the SKU-level staging ledger with exact SKU, description/application, source page, price evidence, image match status, and pricing/availability decision. Do not claim category reconciliation or product import is complete yet.
+
+
+## CONTINUATION LOG — 2026-10-13 — POST-WRITE VALIDATION
+
+- Validated `june-2026-ocr-category-heading-index.csv`: 33 data rows, 7 columns, no malformed-width rows. All 33 explicitly state that visual verification was not performed in this step.
+- Validated `ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv`: 114 data rows, 8 columns, no malformed-width rows and no exact duplicate source-heading keys. 36 rows include June references; 105 rows still indicate page-image QA pending. Capitalization variants remain preserved as separate exact source labels.
+- The first crosswalk write was superseded by a corrective commit to prevent duplicate June references from inflating occurrence counts. Current authoritative crosswalk commit: `7c5334192b6bf8768d4f18fb4593f1d848e7f1a0`. Current June index commit: `5cd821793b3c0a88a7284dadba94d1b9d6f0c738`.
+- This is a source-audit checkpoint only, not completion of the category reconciliation. The guide page images are present in the audit branch under `staging/source-extracts/june-page-images/`, but actual image-by-image visual confirmation remains outstanding.
+- No live store, product catalogue, Supabase data, payment setup, or hosting/deployment was changed.
