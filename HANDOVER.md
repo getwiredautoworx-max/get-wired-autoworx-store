@@ -1,3 +1,22 @@
+## CONTINUATION LOG — 2026-10-13 06:20 SAST — EIGHT IMAGE MAPPINGS REPAIRED
+
+- Store Production QA run #183 (workflow run 38345077146, commit `b39e1db69635fc6d372c963d760cb530bec895ba`) completed SUCCESS after the new bounded check was added. That workflow checks each of the eight exact-SKU asset URLs on the canonical domain for HTTP 200 and MIME `image/webp`; therefore all eight assets passed live URL/content-type verification.
+- Applied a targeted SQL update to exactly the eight active products previously using the placeholder while their exact-SKU WebP asset existed. Updated paths:
+  - `GW-F60D9CE9` → `/assets/products_webp/GW-F60D9CE9.webp`
+  - `GW-F632303D` → `/assets/products_webp/GW-F632303D.webp`
+  - `GW-F6416160` → `/assets/products_webp/GW-F6416160.webp`
+  - `GW-F6461F7B` → `/assets/products_webp/GW-F6461F7B.webp`
+  - `GW-F6672DED` → `/assets/products_webp/GW-F6672DED.webp`
+  - `GW-F672879F` → `/assets/products_webp/GW-F672879F.webp`
+  - `GW-F68FB0CE` → `/assets/products_webp/GW-F68FB0CE.webp`
+  - `GW-F69F8DA1` → `/assets/products_webp/GW-F69F8DA1.webp`
+- Read-only post-update counts: active products 4,187; active placeholder image URLs 86 (down from 94); active direct WebP refs 8; unresolved rows among these eight 0. The other 86 placeholders have no exact-SKU WebP match in the current repository and were intentionally left unchanged. No other product rows were targeted.
+- Requested rerun of failed Catalogue Image Audit #269 (run 38343825541) after the database-only fix; GitHub accepted the rerun. Await the new attempt's terminal result and report. This is the acceptance gate for the image mapping fix.
+- Checkout deployment parity remains verified: production `store-checkout` v4 exactly matches `main` source. Production QA #182 succeeded on commit `90a74d7a218dbb0befd421c2b0ae0d4679c4d897`. Smoke #630 failed on that earlier commit; the intended interaction fix is in later commit `ac18518ceb701501ca8441a805bd728b18af9866`, so inspect run #629 for the current test code and do not use #630 to judge it.
+- Completed this task: verified live assets, corrected exactly eight image_url values, verified catalogue counts, and initiated bounded audit rerun. No order/customer/stock/pricing/category changes, hosting/DNS/payment changes, or function redeploy.
+- Next: poll audit rerun; poll Smoke #629; if smoke fails, inspect the actual error and repair the current test/code path. Then check current-main production QA after the workflow change and continue only with independent release blockers.
+- ETA: audit rerun and smoke result 2–5 minutes once GitHub runners complete.
+
 ## CONTINUATION LOG — 2026-10-13 06:17 SAST — TARGETED LIVE IMAGE CHECK ADDED
 
 - Added a bounded public-image verification loop to `.github/workflows/store-production-qa.yml` in commit `b39e1db69635fc6d372c963d760cb530bec895ba`. The runner now checks each of the eight exact-SKU URLs on `https://www.getwiredauto.co.za/assets/products_webp/{SKU}.webp` for HTTP 200 and MIME `image/webp`, printing one pass line per SKU. This is verification only; it does not change product data.
