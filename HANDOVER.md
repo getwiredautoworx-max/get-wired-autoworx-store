@@ -1742,3 +1742,24 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Pages 29–32 are flagged for manual page-image review due to poor OCR; pages 3–28 are only candidate OCR, not validated source rows. The index explicitly avoids presenting token counts as verified products or prices.
 - The earlier log that a first attempt failed remains accurate for that first attempt; this entry records the successful retry. June transcript itself still needs to be preserved to staging, and no product-level exact-SKU ledger has been completed yet.
 - No production/live data or Axxess files changed.
+
+
+## CONTINUATION LOG — 2026-10-13 — June pages 29–32 recovered and first exact-SKU samples staged
+
+### Improved June source recovery
+- Visually inspected the original June PDF pages 29–32 and reran OCR at 3x render resolution with contrast/sharpness enhancement. This recovered readable content previously missed by the first OCR pass.
+- New transcript addendum: [June_pages_29-32_improved_OCR_addendum.txt](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/June_pages_29-32_improved_OCR_addendum.txt). It records recovered listings from locks/padlocks, garden tools, toolboxes, stickers, water sports, tappet covers, ignition barrels/switches, hand winches and spanners. OCR uncertainties are explicitly marked; prices remain source-guide display values, not confirmed costs or live-store retail prices.
+- June QA index updated to mark pages 29–32 as improved OCR but still requiring page-level verification: [june-ocr-page-qa-index.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/june-ocr-page-qa-index.csv).
+- Category register expanded: [category-reconciliation-review-v3.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/category-reconciliation-review-v3.csv). This adds nine June headings found on pages 29–32. Parent-category assignments remain proposals pending full SKU-level mapping and owner review; no live categories were changed.
+
+### First SKU reconciliation samples
+- [June page 3 exact-SKU sample](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/june-page3-exact-sku-sample.csv): 19 item rows transcribed from a visually checked page and searched against August/September extracted text. Exact-code candidates are flagged where descriptions/price need visual confirmation; code variants are not treated as exact matches.
+- [June page 32 spanner reconciliation — part 1](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/june-page32-spanners-exact-sku-reconciliation.csv): 11 rows.
+- [June page 32 spanner reconciliation — part 2](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/june-page32-spanners-exact-sku-reconciliation-part2.csv): 13 rows. Together, these contain 24 June spanner items, later exact-SKU candidates, and current guide prices where extraction gave a sufficiently clear value. Prices not safely read are marked for visual verification. These are source-reconciliation records, not a live price update.
+- Early matching confirms that some June spanner codes recur in August/September with changed guide prices. For example, CV23MM is R32.13 in June and R34.68 in August; CV25MM R29.41 to R41.39; CV28MM R43.46 to R66.20; CV29MM R54.82 to R65.87; CV30MM R70.80 to R80.48; 192314 R90.00 in June and R101.05 in September; 192402 R36.62 in June and R50.14 in September. These are **guide-listed prices**, not independently confirmed supplier costs. Do not calculate final retail or write live prices until price role and exact item match are verified against page images.
+
+### Current status and next steps
+- **Completed in this segment:** improved OCR for June pages 29–32; added nine recovered source headings; created first exact-SKU sample ledgers for June pages 3 and 32; updated QA index and this handover.
+- **Still in progress:** visually verify every later-guide match and price; preserve full June OCR transcript to staging; process remaining pages for all four guides; extend exact-SKU matching from the sample pages to the full guides; join against current store catalogue and classify KEEP/UPDATE/ADD/QUOTE/REVIEW.
+- Exact SKU hits in OCR text are only match candidates until description and page context confirm that the same item is being advertised. A missing hit in extracted text is not proof that the item is absent from a guide.
+- **No live changes:** no Supabase product/category/price/availability changes and no Axxess upload or production deployment occurred.
