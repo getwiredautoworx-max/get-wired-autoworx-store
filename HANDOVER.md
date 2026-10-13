@@ -1657,3 +1657,19 @@ Owner correctly pointed out that the original four Buyer’s Guide PDFs were upl
 - Category reconciliation: not complete.
 - Product imports from remaining guides: not performed.
 - Live writes/deployments from this step: none.
+
+
+### Source-derived contents headings captured from extracted text (initial register; not final)
+The following headings are directly visible in the extracted contents text and must be preserved for category mapping. Page ranges are taken from the guides' contents where visible; headings with no range are still source headings.
+
+- **July 2026:** 4X4 And Camping (p. 7); Trailer And Towing (p. 7); General Accessories (pp. 8–12); Door Parts (pp. 12–13); Automotive Electrical (pp. 13–15 and 18–22); Hoteche Tools (pp. 16–17); Automotive Spares (pp. 22–24); Wheel Accessories (pp. 25–27); Automotive Tools (p. 28); Hardware (pp. 28–32).
+- **August 2026:** Accessories (p. 4); Garden Tools (p. 4); Lifestyle (p. 4); Camping (p. 4); 4X4 Outdoor (pp. 4–5); Auto Accessories (pp. 5–13); Auto Electrical (pp. 13–15 and 18–23); New Car Mat Sets (pp. 16–17); Auto Spares (pp. 23–26); Wheel Accessories (p. 26); Auto Tools (pp. 26–27); Hand Tools (pp. 27–30); Consumables (p. 30); Abrasives (pp. 30–31); Padlocks (p. 31); Boat Accessories (p. 31); Super Save (pp. 31–32).
+- **September 2026:** Accessories (p. 4); Knives (p. 4); Lifestyle (p. 4); 4x4 Outdoor (pp. 4–5); Trailer & Towing (p. 5); Auto Accessories (pp. 5–8); Door Parts (pp. 8–9); Aerials (p. 10); Battery (p. 11); Electrical Spares (pp. 11–15); Auto Spares (p. 15 and pp. 18–22); ATV Winches & Wheel Caps (pp. 16–17); Wheel Accessories (pp. 22–23); Auto Tools (p. 23); Hardware (p. 24); Consumables (pp. 30–31); Boat Accessories (p. 31); Portable Compressors (p. 32).
+- **June 2026:** The extracted text is too incomplete to establish a complete contents list. Visible headings include Door Parts; Automotive Spares; Brake Spares & Cylinders; Automotive Tools; Engine Timing Kits; Abrasives; Cutting Tools; Consumables; Drilling Tools; Hand Tools. This list is partial and must not be treated as exhaustive.
+
+### Initial mapping notes (proposals only; no live changes)
+- Map **Caravan accessories** to **Camping, Leisure & Outdoors** per owner approval.
+- Keep Trailer & Towing / Trailer & Canopy as a distinct candidate area until the source products are reconciled; do not silently merge trailer parts into camping.
+- Preserve Wheel Accessories, ATV Winches & Wheel Caps, Padlocks, Knives, Aerials, Battery, New Car Mat Sets, Portable Compressors, Engine Timing Kits, Brake Spares & Cylinders, and Boat Accessories as explicit source sections during the first pass. The owner may later choose their parent category.
+- “Super Save” appears to be a promotional grouping, not necessarily a durable product category; retain it as source metadata and verify the promotion terms before deciding whether it becomes a storefront category.
+- The headings above are an initial extraction from contents text, not a complete product-level category inventory. Confirm page-level headings while parsing the full text; June requires OCR.
