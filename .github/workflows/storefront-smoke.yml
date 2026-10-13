@@ -216,6 +216,9 @@ jobs:
 
             await page.setViewportSize({width:1280,height:900});
             const publicPage = await browser.newPage({viewport:{width:390,height:844}});
+            publicPage.on('response',response=>{if(response.url().includes('supabase.co/rest/v1/products')) console.log('PUBLIC_PRODUCTS_API',response.status(),response.url().slice(0,260));});
+            publicPage.on('requestfailed',request=>{if(request.url().includes('supabase.co/rest/v1/products')) console.log('PUBLIC_PRODUCTS_REQUEST_FAILED',request.failure()?.errorText,request.url().slice(0,260));});
+            publicPage.on('console',message=>{if(message.type()==='error')console.log('PUBLIC_BROWSER_ERROR',message.text().slice(0,500));});
             const publicResponse = await publicPage.goto('https://getwiredautoworx-max.github.io/get-wired-autoworx-store/',{waitUntil:'domcontentloaded',timeout:45000});
             if (!publicResponse || publicResponse.status() >= 400) throw new Error('Public fallback homepage did not return a successful HTTP response');
             const publicFrame = publicPage.frameLocator('iframe').first();
@@ -229,7 +232,7 @@ jobs:
               const publicDiag = await publicFrame.locator('body').innerText().catch(()=>'(body unavailable)');
               const publicCount = await publicFrame.locator('#productCount').innerText().catch(()=>'(count unavailable)');
               const publicGrid = await publicFrame.locator('#allProductsGrid').innerText().catch(()=>'(grid unavailable)');
-              throw new Error('Public fallback product lookup failed. URL='+publicPage.url()+' count='+publicCount+' grid='+publicGrid.slice(0,800)+' body='+publicDiag.slice(0,1200));
+              throw new Error('Public fallback product lookup failed. URL='+publicPage.url()+' frames='+JSON.stringify(publicPage.frames().map(f=>({name:f.name(),url:f.url()})))+' count='+publicCount+' grid='+publicGrid.slice(0,800)+' body='+publicDiag.slice(0,1200));
             }
             const publicProductText = await publicProduct.innerText();
             if (publicProductText.includes('Price on request') || !publicProductText.includes('ADD TO CART')) throw new Error('Public fallback host still blocks a correctly priced product with no legacy verified flag: '+publicProductText);
