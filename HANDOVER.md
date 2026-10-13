@@ -1670,3 +1670,21 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - Risks: falsely treating OCR output as accurate; triggering duplicate workflows; importing misaligned SKUs/prices. Mitigation: inspect run evidence and OCR page labels, and do not import anything in this task.
 - Success criteria: identify the latest run for the audit-branch workflow edit, verify terminal status, and if success inspect the OCR artifact/file. If the run cannot be found via the connector, document that limitation and use a read-only Actions API/page lookup.
 - After-task requirement: immediately append the verified outcome and exact next step to this handover before beginning another task.
+
+
+## COMPLETED TASK RESULT — 2026-10-13 — June OCR output verified (staging only)
+- Result: **WORKFLOW OUTPUT PRESENT; OCR JOB COMPLETION INFERRED FROM COMMITTED OUTPUT, RUN ID NOT YET IDENTIFIED.** The audit-branch file staging/source-extracts/June_Buyers_Guide_OCR.txt now exists and contains 57,426 characters, 32 page labels (page-01 through page-32), and non-empty OCR text for all 32 pages. The file's current blob SHA is c5e7510d79d2fbefa574f471641ba897b47ffe4e.
+- OCR recovered useful catalogue text and SKU-like tokens (roughly 520 token matches by a broad pattern), including visible category headings such as 4X4 & OUTDOOR, LIFESTYLE, PANEL CLIPS and GENERAL ACCESSORIES. This is a material improvement over the 668-character embedded-text extraction.
+- **Important quality limitation:** OCR is noisy. Representative page 3–5 samples show product descriptions, SKUs and prices are often misaligned or characters are misread (e.g. punctuation/decimal digits and OCR artifacts). Therefore June OCR is NOT import-ready. Do not treat the broad token count as a validated product count, and do not calculate selling prices from uncertain OCR values.
+- The current workflow source uses Tesseract with page segmentation mode 6 and has a '|| true' safeguard per page; existence of the assembled file proves output was committed but does not by itself establish every Tesseract page had a clean exit. Inspect workflow run evidence/logs if accessible.
+- No product rows, prices, stock, category IDs, Supabase/live catalogue, main branch, production storefront, DNS, payment settings, or Axxess files were changed. Work remains isolated to audit/buyer-guide-extraction.
+- Current status: June page OCR OUTPUT GENERATED, June data validation BLOCKED/PENDING, July–September source alignment validation PENDING, chronological staging ledger NOT YET BUILT.
+- Next task: validate extraction fidelity against the actual rendered source page images. Start with a small, representative sample (pages 3–5 for categories/SKUs/prices and one later-page table), determine whether OCR needs higher DPI/alternate page segmentation or human-assisted table transcription, and build a QA ledger that preserves raw OCR plus verified values. Do not import or guess ambiguous values.
+
+## PRE-TASK CHECKPOINT — 2026-10-13 — Sample-validate OCR and locate exact Actions run
+- Task: independently identify the GitHub Actions run that produced the committed OCR output, then perform a bounded QA of representative June pages and assess whether SKU/description/price pairings are reliable enough for staging.
+- Scope: read-only review of audit-branch outputs and workflow logs/page renders where available. No production or live data changes; no catalogue import.
+- Known facts: OCR text exists for all 32 pages, but sample text is noisy and not import-ready. The output file is 57,426 characters. Prior text-only extraction failed for June.
+- Risks: interpreting OCR text order as a structured product row; price decimal corruption; false SKU merges. Mitigation: compare to source page layout, retain raw OCR, and classify uncertain fields as REVIEW.
+- Success criteria: record a verified run ID/status if the connector can retrieve it; provide a documented sample-quality verdict and exact next action. If actual page images/run logs are not available through this connector, document the limitation rather than claiming a page-by-page comparison.
+- After-task requirement: update this handover with outcome and evidence before starting any further task.
