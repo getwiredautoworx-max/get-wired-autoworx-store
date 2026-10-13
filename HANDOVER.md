@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-13 — CATEGORY NAVIGATION IMPLEMENTATION ATTEMPT
+
+- Continued into the existing `index-new.html` on `audit/buyer-guide-extraction` (not a standalone prototype). Inspection found a functional blocker: the current `renderCats()` paints eight approved root buttons without click targets, while the delegated `.catBtn` handler expects `data-filter`; those approved root buttons therefore do not navigate to subcategories correctly.
+- Reviewed the staged hierarchy (8 roots, 71 subcategory entries) and the 17 proposed grouping rules. The grouping rules are explicitly pending SKU-level validation; they must not be presented as verified product assignments.
+- Attempted to write the navigation change safely to the audit branch, but the repository write call was blocked by tool safety checks before a successful commit was returned. No change to `index-new.html` or new JS navigation file is claimed; the branch remains unchanged by this attempt.
+- This is now the immediate implementation blocker. Next: apply a minimal, reviewable patch to the existing `index-new.html` through an approved repository editing route; verify root -> subcategory -> proposed grouping screen and back navigation in a safe preview; confirm no old catalogue products are displayed in the staged category flow. Keep all changes on the audit branch until tested.
+- Existing validation remains: crosswalk 115 source-heading rows with no duplicate exact keys; June OCR index 33/33 headings represented; 106 crosswalk rows still await/indicate pending visual verification. The duplicate `garden-tools` slug is present in two different roots, so navigation must remain root-scoped.
+- No production store, Supabase data, Axxess, DNS, checkout, payment configuration, or deployment was changed. Do not call this task resolved yet.
+
 ## CONTINUATION LOG — 2026-10-13 — RESUME VALIDATION AFTER TAXONOMY STAGING
 
 - Re-read the canonical `HANDOVER.md` on `main` and resumed from the newest category-hierarchy checkpoint on `audit/buyer-guide-extraction`; no rebuild, deployment, or live-store edit was started.
