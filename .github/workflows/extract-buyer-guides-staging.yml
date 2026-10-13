@@ -1,0 +1,57 @@
+name: Extract Buyer Guide PDF Text (Staging Only)
+
+on:
+  push:
+    branches:
+      - audit/buyer-guide-extraction
+    paths-ignore:
+      - 'staging/source-extracts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: audit/buyer-guide-extraction
+      - name: Install PDF utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+      - name: Extract source PDF text without changing originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p staging/source-extracts
+          : > staging/source-extracts/manifest.txt
+          for pdf in "June Buyer's Guide (1).pdf" "July Buyer's Guide.pdf" "August Buyer's Guide.pdf" "September Buyer's Guide.pdf"; do
+            if [ ! -f "$pdf" ]; then
+              echo "MISSING: $pdf" | tee -a staging/source-extracts/manifest.txt
+              continue
+            fi
+            base="${pdf%.pdf}"
+            safe=$(printf '%s' "$base" | tr ' /' '__' | tr -cd '[:alnum:]_.-')
+            pages=$(pdfinfo "$pdf" | awk '/^Pages:/ {print $2}')
+            bytes=$(wc -c < "$pdf")
+            out="staging/source-extracts/$safe.txt"
+            pdftotext -layout -enc UTF-8 "$pdf" "$out"
+            chars=$(wc -m < "$out")
+            printf 'FILE: %s\nPAGES: %s\nBYTES: %s\nTEXT_CHARS: %s\nTEXT_FILE: %s\n---\n' "$pdf" "$pages" "$bytes" "$chars" "$out" | tee -a staging/source-extracts/manifest.txt
+          done
+      - name: Commit extraction text to audit branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add staging/source-extracts/
+          if git diff --cached --quiet; then
+            echo "No extraction output to commit"
+            exit 0
+          fi
+          git commit -m "staging: extract buyer guide PDF text for audit"
+          git push origin HEAD:audit/buyer-guide-extraction
