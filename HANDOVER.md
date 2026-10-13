@@ -1433,3 +1433,11 @@ Read-only category notes:
 - Storefront Smoke Test #645 is now **IN PROGRESS** on main: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378103401
 - Continue monitoring #645. Required success evidence: `PUBLIC_FALLBACK_CART_CHECKOUT_PASS`, HTTP 200 markers for both `terms-and-conditions.html` and `returns-refunds.html`, and `STOREFRONT_SMOKE_PASS`. If it fails, inspect the exact failure logs and make a narrowly scoped fix.
 - Release remains **BLOCKED / NOT SIGNED OFF** until all live checks pass. Do not upload an Axxess package or alter live store files for a workflow-only issue. No DNS, payment settings, inventory, or production data changed during this step.
+
+
+## Continuation log — 2026-10-13 09:47 SAST
+- Rechecked Storefront Smoke Test #645: failed at the public cart check. The test's Escape key did not dismiss the production search-suggestion overlay; Playwright logs confirm `.gwResult` / logo elements intercepted the Add to Cart click. This is an automation/UI-overlay interaction and does not alone establish that the cart implementation is broken.
+- Made a narrowly scoped test-only correction in `.github/workflows/storefront-smoke.yml`: clear the search input explicitly, require suggestion overlay to become hidden, then perform the real Add to Cart click. No storefront application code, pricing, catalogue, DNS, payment settings, or Axxess files changed.
+- Fix commit: `6dc9509af300a620630090dc8c12fba0caa186ab`.
+- New runs triggered and in progress at last check: Storefront Smoke Test #646 [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378730537), Store Production QA #197 [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378730376), Pages deployment #905 [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378729847).
+- Release sign-off remains blocked pending completion of #646 and confirmation that the homepage/storefront and both policy URLs return successful HTTP responses; do not upload to Axxess until evidence is recorded. Next action: poll these runs, inspect exact failing step/logs if needed, fix only demonstrated causes, and append each material result here.
