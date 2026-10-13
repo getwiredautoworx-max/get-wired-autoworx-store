@@ -1758,3 +1758,12 @@ Follow-up poll confirms both previously active storefront smoke tests completed 
 - Immediate next action: add/use a staging-only screenshot capture for 390px mobile and 1280px desktop, publish screenshots as a GitHub Actions artifact on the staging branch, inspect them, and record actual findings. Do not use Netlify/Cloudflare credits or touch Axxess production.
 - After visual QA, continue category/subcategory reconciliation using existing buyer-guide extraction outputs and approved eight root categories. No catalogue import until mapping is reconciled and reviewed.
 - Continuation checkpoint: HANDOVER_CHECKPOINT_2026-10-13.md, latest update commit a2ab181fd87ff37653634af0c6151ed385192e7c on audit/buyer-guide-extraction.
+
+
+## Continuation monitor — screenshot-led mobile/category QA (13 October 2026)
+- Staging acceptance #9 PASS, run ID `38439364575`, commit `eeb725de8a6ca669cea05664fcf1aa42b9059deb`. Output: 8 approved root categories; all 71 subcategories individually opened and returned; viewport/document width 390/390 and 1280/1280; zero browser errors; zero off-screen elements; mobile buy bar hidden on initial homepage and product modal closed. Screenshot artifact ID `11833614788` contained four viewport screenshots.
+- Visual review drove staging-only corrections: category cards simplified and made legible, desktop grid set to 3 columns / mobile 2 columns, search constrained within viewport, idle mobile buy bar hidden unless product modal is open, mobile cart badge contained, mobile hero reduced, and approved category section moved above services. Latest UI commit `ad28c51c08fbdf3272ef1a50d15c446a7747391e` is being retested.
+- Acceptance run #10 (ID `38439896256`, commit `ad28c51c`) was in progress at last check. Must inspect fresh screenshots and verify final result before marking visual QA complete.
+- Buyer-guide extraction run #59 (ID `38439364567`) PASS. Extraction workflow now ignores storefront HTML and browser-test script edits to avoid redundant PDF extraction for UI-only changes.
+- Main Pages deployment #979 (ID `38439838307`, main SHA `f0e44cf6134384cd76257e770171f277d4c81626`) was separately in progress; this is not an Axxess deployment.
+- Immediate next action: poll run #10 and inspect artifact screenshots, then record final mobile/desktop visual status. No Axxess upload, DNS/payment changes, or Cloudflare/Netlify credit use.
