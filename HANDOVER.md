@@ -1790,3 +1790,9 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - The live tree also has duplicates/overlapping labels and inconsistent casing (examples seen: multiple active Accessories/Automotive Accessories rows; both Electrical and Electrical Spares; Car Audio/Aerials; overlapping Spanners and Spanners & Wrenches; repeated child labels in some branches). This is evidence that we should reconcile before adding categories; do not bulk-create names from OCR or delete/merge current categories automatically.
 - The query was read-only. No product/category rows were changed.
 - Source-page visual validation remains a blocker with the current tools: repository fetch-file gives text, while June's source is image-based and OCR is noisy. Current draft therefore remains **not approved for import**. A safe next step is to create a controlled, audit-branch-only page-render artifact or another verifiable visual review route for the contents/category pages; this must be checkpointed before doing it. Until visual validation, no category creation or product import.
+
+
+## PRE-TASK CHECKPOINT — 2026-10-13 — Prepare owner-editable master category list
+- Task: compile a consolidated, deduplicated list of every category/section heading currently evidenced across June, July, August and September Buyer’s Guides for the owner to assign main/subcategories.
+- Scope: read-only source extracts and the existing draft reconciliation. Preserve alternate source labels and indicate guide/page evidence and OCR uncertainty; do not decide the final hierarchy for the owner.
+- Success criteria: one editable draft list that includes unique and variant labels, separates promotional/editorial groupings from likely product sections, and flags June OCR-only entries for visual confirmation. No category/product imports or live changes.
