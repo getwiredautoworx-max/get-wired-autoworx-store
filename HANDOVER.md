@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-13 06:24 SAST — SMOKE #637 FAILURE ROOT CAUSE IDENTIFIED; FIX IN PROGRESS
+
+- Latest run review: Catalogue Image Audit #270 PASSED (4,187 active products audited; exact-SKU direct WebP validation accepted). Store Production QA #190 PASSED on commit `55df98e097de5cc367a0b4486ca5b0fc0bf91efa`. Pages deployment #862 SUCCEEDED on earlier commit `e5c56654410a954042121d66647724d88eb5380c`.
+- Storefront Smoke Test #637 FAILED on commit `55df98e097de5cc367a0b4486ca5b0fc0bf91efa`. Decoded runner log gives precise cause: at line 131, test tries to click iframe `#closeCart`, but that button is not visible. It retries for 30 seconds and times out. This is a smoke-test state/visibility bug, not evidence of a production checkout failure.
+- Next action: inspect the exact workflow source around the close-cart sequence; make a minimal conditional visibility/state-safe test correction; update this handover before the change and immediately after; then let the commit-triggered smoke/QA/Pages workflows run and inspect latest terminal results. Do not manually trigger duplicate runs.
+- Release remains BLOCKED: latest public storefront smoke has not passed. Earlier public homepage/store route was reached by the runner, and category/image/metadata checks passed before this test-only failure, but checkout + policy assertions were not reached in #637. Do not claim final release sign-off.
+- No DNS, hosting configuration, payment settings, catalogue prices, orders, customers, stock, or production checkout source changed during this diagnosis. No unrelated catalogue audit restart.
+- ETA: narrow workflow fix + automatic reruns typically 3–8 minutes after commit; if a further failure occurs, use its decoded logs and repair only the demonstrated issue.
+
 ## CONTINUATION LOG — 2026-10-13 06:29 SAST — IMAGE AUDIT PASSED; CHECKOUT ASSERTION RACE FIXED
 
 - Catalogue Image Audit run #270 (workflow run 38345337124, commit `b28a428a21ef7e0cb22ae23033f424220d213c88`) completed **SUCCESS** after the direct-WebP validator fix. This confirms 4,187 active products were audited, all public image references are valid, and the eight exact-SKU image mappings no longer trigger the placeholder-with-asset exception. Earlier read-only count showed active placeholders reduced from 94 to 86; direct WebP references = 8. The other 86 placeholders remain intentionally unchanged because no exact-SKU asset exists for them.
