@@ -1022,3 +1022,11 @@ Read-only category notes:
 - **No production changes:** diagnostics only; no database writes, order submissions, DNS, hosting, or payment changes.
 - **NEXT ACTION:** prepare/complete the consolidated Axxess edit for (1) Terms link target, (2) required policy-acceptance checkbox, and (3) frontend price eligibility aligned to the backend formula gate; then perform the single planned GitHub/Supabase/Cloudflare update and rerun external URL, product-card, and safe checkout tests. Confirm PayFast/PayJustNow merchant acceptance and sandbox integration separately before enabling them.
 - **ETA / fallback:** verification of the current footer link is complete. The next code changes must occur in the user's Axxess editing workflow; after the consolidated deployment, rerun the existing tests. If the Terms HTML route is not included in the Axxess output, publish a real HTML page and make the footer point to that page before merchant review.
+
+
+## 2026-10-13 — TASK START: MERCHANT POLICY CONTENT READINESS REVIEW
+- **Goal:** compare the live Terms and Returns policy content plus checkout controls against current official PayFast merchant website requirements, and identify remaining items for the consolidated Axxess edit.
+- **Known gaps already confirmed:** footer Terms link serves raw Markdown; checkout has no acceptance checkbox; payment method is Direct EFT only; PayFast/PayJustNow are not integrated in the checked checkout page.
+- **Scope:** read-only review of policy HTML and official merchant guidance. No edits to policy source, payment configuration, database, DNS, or hosting.
+- **ETA:** focused review and one handover update with exact requirements and blockers.
+- **NEXT ACTION:** verify whether the policy content explicitly identifies transaction currency and the payment/security details required before card/BnPL integration, then record the consolidated edit checklist.
