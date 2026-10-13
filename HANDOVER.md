@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-13 06:17 SAST — TARGETED LIVE IMAGE CHECK ADDED
+
+- Added a bounded public-image verification loop to `.github/workflows/store-production-qa.yml` in commit `b39e1db69635fc6d372c963d760cb530bec895ba`. The runner now checks each of the eight exact-SKU URLs on `https://www.getwiredauto.co.za/assets/products_webp/{SKU}.webp` for HTTP 200 and MIME `image/webp`, printing one pass line per SKU. This is verification only; it does not change product data.
+- Smoke test interaction fix is committed; current smoke run #629 on `ac18518ceb701501ca8441a805bd728b18af9866` was still in progress at Chromium installation when last polled. Older run #627 failed, and run #628 was also in progress; only run #629 tests the complete follow-up interaction adjustment. Await the newest run after the QA workflow commit before sign-off.
+- Production QA run #181 passed on `ac18518ceb701501ca8441a805bd728b18af9866`, but it predates the new eight-image loop. A new QA run should start for the workflow change; read its actual result.
+- No product rows have been changed. Next sequence: wait for newest QA to verify the eight live assets, wait for newest smoke test, then if all eight images pass, apply exactly eight image_url corrections in one targeted SQL update and rerun the bounded image audit. If any URL fails, leave the corresponding product unchanged and diagnose hosting path instead.
+- Completed this task: added explicit HTTP/MIME assertions for the eight audit exceptions. No database or hosting configuration changes.
+- ETA: next QA runner 2–5 minutes; targeted SQL mapping and audit 5–15 minutes after all eight URLs pass.
+
 ## CONTINUATION LOG — 2026-10-13 06:15 SAST — SMOKE TEST UPDATED TO FOLLOW REAL SEARCH FLOW
 
 - Root cause confirmed in run #625: test typed the SKU then clicked an underlying card's Add to Cart button while the product-search dropdown was still open and physically covering the target. The runner's log explicitly says `.gwResult[data-full-product="2"]` intercepted pointer events and Playwright retried until timeout.
