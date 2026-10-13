@@ -1696,3 +1696,12 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - Limitation: actual rendered page PNGs and per-page Tesseract logs are ephemeral in the workflow and were not committed or exposed as a workflow artifact. Thus the source-image comparison requested in the pre-task checkpoint could not be completed through the currently available connector.
 - No production or live data changed. No products, prices, stock, category IDs, Supabase, Axxess, DNS, payments, or main-branch catalogue data were changed.
 - Next: add a small, bounded evidence artifact to the isolated OCR workflow (page images for representative pages 3–5 plus per-page OCR output and run metadata) so visual comparison and run traceability are possible. Keep the artifact limited in size; do not commit all 32 PNGs into the repository. Before modifying the workflow, append a pre-task checkpoint (as required by the permanent handover-first rule), then update the handover immediately after the change and after its result.
+
+
+## PRE-TASK CHECKPOINT — 2026-10-13 — Add bounded OCR evidence artifact
+- Task: modify only the isolated audit-branch OCR workflow so its next run uploads a small GitHub Actions artifact containing June pages 3–5 as rendered PNGs, corresponding per-page Tesseract text, the combined OCR text, and run metadata. This will enable visual verification and preserve reproducible evidence without committing image binaries into the repository.
+- Scope: .github/workflows/extract-buyer-guides-staging.yml and HANDOVER.md on audit/buyer-guide-extraction only. Do not alter the four source PDFs or generated OCR text; do not change main branch, storefront, Supabase, Axxess, Cloudflare, DNS, payments, or live product data.
+- Known facts: OCR output exists for 32 pages but product-card columns make SKU/description/price pairings ambiguous. The connector could not retrieve an exact workflow run ID or ephemeral rendered page images.
+- Risk controls: artifact limited to pages 3–5 plus text/metadata; do not upload all 32 page images, do not commit PNGs, do not import OCR rows. Keep existing extraction behavior unchanged.
+- Success criteria: workflow YAML has a valid upload-artifact step for the bounded evidence set; the commit triggers one audit-branch run; then inspect run status/artifact presence before claiming it works.
+- After-task requirement: update this handover with commit, run status, artifact availability, and any blocker before starting another task.
