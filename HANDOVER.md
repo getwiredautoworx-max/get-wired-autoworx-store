@@ -1725,3 +1725,12 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Staging branch now contains: initial source heading register, category mapping review v2, exact-SKU price/availability decision matrix, and 96-page extraction QA index. Latest audit-branch commits are isolated from production deployment.
 - June remains a separate OCR-recovery task: prior direct text extraction is only 668 characters, and OCR output needs to be preserved with page provenance and checked against the original page images. The current index deliberately does not pretend that the June OCR transcript is a verified SKU/cost ledger.
 - **Next:** improve page-by-page extraction to pair descriptions, codes and price columns; verify a sample visually for each guide before generating the full SKU reconciliation; then exact-SKU join month to month and classify KEEP/UPDATE/ADD/QUOTE/REVIEW under the permanent rule. No live data or Axxess package changed.
+
+
+## CONTINUATION LOG — 2026-10-13 — June OCR quality reviewed page by page
+
+- Rechecked local first-pass June OCR transcript `/mnt/data/buyer_guides/June_OCR_all.txt`: it contains OCR markers for all 32 source pages and about 50,787 characters, substantially more than the original 668-character PDF text extraction.
+- Pages 3–28 contain readable OCR candidate content and section headings, but candidate SKU-like tokens/prices still require comparison with original page images because OCR and the multi-column layout can misassociate codes, descriptions and prices. Pages 29–32 are especially weak (pages 29–31 contain only about 44 / 17 / 129 characters; page 32 has about 1,273 characters but is visibly garbled). These are manual image-review exceptions, not safe import rows.
+- An attempt to commit a June page QA CSV failed at the GitHub API connection layer and a follow-up fetch confirmed that file was not created. No claim is made that the June QA CSV is available. Retry later with a smaller payload or a different transfer route.
+- June OCR remains local in this working session and has not yet been preserved in the audit branch. The next concrete action is to persist it and its page QA status in isolated staging, then visually verify sample product blocks and only after that build exact-SKU rows.
+- No live catalogue, price, stock, category, Supabase, Cloudflare or Axxess changes occurred during this OCR QA check.
