@@ -143,3 +143,10 @@ Next precise action: access the staging preview and perform visual/manual QA; re
 - Buyer-guide extraction #59 passed. The extraction workflow now ignores `index-new.html` and the browser-test script so future UI-only edits do not trigger PDF extraction.
 - A transient acceptance run #7 failed because the first screenshot-test edit had a syntax typo; this was corrected, and runs #8–#10 passed. Do not treat the corrected current state as failed.
 - Next action: monitor run #11, inspect artifact ID from its completed run, and if green continue category-to-subcategory reconciliation. Do not import catalogue or deploy Axxess until this validation is complete.
+
+
+## Monitor poll — 13 October 2026, 19:44 SAST
+- Latest screenshot/UI acceptance run #11 (ID `38440567696`, commit `3e25147ebb774001c9c5265f336c77751dbd4ee6`) remains **IN PROGRESS**; setup and Chromium installation completed, but the Playwright test step was still marked in progress at the latest poll. The workflow's updated_at remained `2026-10-13T17:40:37Z` over repeated checks; job logs/artifact are not yet available while GitHub reports it active. Link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38440567696
+- GitHub Pages deployment #980 (run ID `38440203547`, main SHA `d66064de`) completed successfully; main Pages only, not Axxess.
+- The previous confirmed visual/automated checkpoint remains run #10 PASS with artifact `11835171158`. Do not assume run #11 passed until its final conclusion is returned.
+- Immediate next action in the next poll: recheck run #11 status; if completed, read job logs for test output and artifact ID, inspect the updated four screenshots (especially compact hero), then update both handovers. If still active and unchanged for an unusually long interval, diagnose using available GitHub Actions details rather than launching another duplicate test. No live Axxess changes.
