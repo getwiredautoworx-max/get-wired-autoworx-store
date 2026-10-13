@@ -1050,3 +1050,12 @@ Read-only category notes:
 - **Policy text:** add explicit `Currency: South African Rand (ZAR)` and, when a gateway is actually integrated, clear payment-method and card-data security information. Preserve existing business contact, R35/item packaging, delivery quote, special-order, and returns/warranty terms.
 - **Workflow sequencing:** edit these source files in Axxess first, validate locally, then do the one planned consolidated GitHub/Supabase/Cloudflare update. After deployment, require: (a) external HTTP check; (b) live product `GW-B4F502E6` shows R105.31 and `ADD TO CART`; (c) cart/checkout uses formula-validated price; (d) policy checkbox blocks unchecked submission; (e) safe browser test intercepts the order POST before network; (f) no real paid order during QA.
 - **Access boundary:** this session has GitHub and Supabase read/write tools but no connected Axxess workspace action. Do not bypass the user's consolidated-update rule by editing production storefront HTML directly in GitHub. Resume from this specification once the Axxess source edit is ready to consolidate.
+
+
+## 2026-10-13 — PRODUCTION PRICE-GATE / CHECKOUT RELEASE
+
+- Database audit: 4,187 active products match cost × 1.15 VAT × 1.35; only 107 had the old verified flag. The targeted fix allows positive-priced products unless explicitly marked `QUOTE_REQUIRED`, and the server checks the formula against database cost/price.
+- Supabase `create_store_order_v2` is deployed and passed a rollback-only order test. `store-checkout` Edge Function v4 calls the current-schema RPC and forwards `p_delivery_quote`. No real order was created and stock remains unchanged.
+- Public runner reached `https://www.getwiredauto.co.za/store`; the catalogue API returned all 4,187 active products. The live UI still showed `GW-B4F502E6` (R105.31, stock 5) as quote-only because main still used the old gate.
+- The targeted production fix passes the release-candidate local smoke test and the safe invalid-request probe. Public cart/checkout test is gated to main so it runs after production deployment.
+- Remaining release gates: merge targeted code, wait for Pages deployment, rerun public cart/checkout smoke, commit the SQL migration source, and handle payment-provider integration. PayFast is not integrated; PayJustNow remains unverified. Do not create a real test order without authorization.
