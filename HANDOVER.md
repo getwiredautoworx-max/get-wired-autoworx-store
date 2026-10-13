@@ -1,3 +1,14 @@
+## CONTINUATION LOG — 2026-10-13 — STORE FORMAT AND CATEGORY PRIORITY CONFIRMED
+
+- Owner explicitly confirmed: keep the current store format. Product categories, subcategories, and product discovery are a major focus, but do not replace the existing storefront with a separate prototype or redesign the full store unnecessarily.
+- Verified current production-branch entry points: `index.html` redirects to `store.html`; `store.html` embeds `index-new.html` and loads existing enhancement scripts including `category-navigation.js`. The actual current storefront source is `index-new.html` (not `staging/storefront-preview.html`).
+- Existing `category-navigation.js` already applies a three-column category grid and links known category labels to `category.html` IDs. This needs reconciliation against the agreed eight top-level categories and the ASC category crosswalk, not an unrelated new storefront.
+- Keep all existing working store features (header/navigation/search/cart/checkout/product details) intact. Category work must be a targeted modification to the existing storefront and supporting category scripts/pages.
+- Agreed top-level categories remain: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. Preserve useful ASC source categories/subcategories in the reconciliation/mapping; do not import or publish stale legacy catalogue records.
+- The standalone staging storefront preview is for reference only; it is not the working store and should not be used as the replacement. No production code, product records, Supabase, payment, DNS, or Axxess changes were made in this step.
+- Next actions: inspect the current `index-new.html`, category-navigation bridge, category page and source category mapping; identify exact minimal edits; then test category paths and responsive presentation while preserving checkout. Product imports remain blocked until category mapping and source-level SKU/price/availability rules are checked.
+- Status: direction recorded; category implementation and catalogue reconciliation remain IN PROGRESS. No claim of release readiness.
+ 
 ## CONTINUATION LOG — 2026-10-13 06:31 SAST — SMOKE #639 / QA #192 RUNNING
 
 - Verified GitHub Actions automatically started Storefront Smoke Test #639 and Store Production QA #192 on workflow-fix commit `6d0d77288a560258a84b1162c1080e54fd7e7b56`.
