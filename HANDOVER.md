@@ -1461,3 +1461,17 @@ Read-only category notes:
 - Store Production QA #199 PASSED: [run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38379154594).
 - Additional coverage gap identified: #648 verified the /store page response but did not separately log the root homepage URL. Added explicit root homepage HTTP-status verification and success markers for both root and /store in the smoke workflow.
 - New test-only commit: `5c41f9a1425ec583cf02a889e1f31ae1f424afd4`. Poll its new smoke run; release sign-off remains pending until this root-page check and existing storefront/policy/cart checks pass together. No live storefront application code or Axxess upload changed.
+
+
+## Release verification result — 2026-10-13 09:54 SAST
+- **Storefront Smoke Test #649 PASSED**: [GitHub Actions run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38379415539).
+- Verified from external GitHub Actions runner logs:
+  - `PUBLIC_HOMEPAGE_PASS https://www.getwiredauto.co.za/ HTTP 200`
+  - `PUBLIC_STOREFRONT_PASS https://www.getwiredauto.co.za/store HTTP 200`
+  - `PUBLIC_FALLBACK_CART_CHECKOUT_PASS`
+  - `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/terms-and-conditions.html HTTP 200`
+  - `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/returns-refunds.html HTTP 200`
+  - `STOREFRONT_SMOKE_PASS`
+- **Store Production QA #200 PASSED**: [GitHub Actions run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38379415206).
+- The test-only workflow fixes are committed and now pass. The earlier failures were in smoke-test interaction/wait handling, not confirmed application checkout failures.
+- **Scope and next step:** this session changed only `.github/workflows/storefront-smoke.yml` and `HANDOVER.md`; it did not upload files to Axxess, change live storefront application code, DNS, payment settings, or catalogue data. The external homepage/storefront/policy/cart smoke checks are now green. Do not treat this as payment-provider approval or full order/payment transaction certification; those remain separate readiness tasks. Pages workflow #912 was queued at last check due to documentation-only commit; it is not required to serve the already-live Axxess domain. Continue with the next handover item, prioritizing low-risk checkout/payment readiness and Axxess-first workflow, without unnecessary rebuilds.
