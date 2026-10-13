@@ -4,18 +4,18 @@
  */
 (function(){
   const BASE='category.html';
-  const CATEGORY_IDS={
-    electrical:'6cc56033-b0a9-4f25-b207-aeeb341a1c47',
-    'alarms-security':'8e93d917-8fcc-4427-b364-cdad244f263f',
-    'central-locking':'deee5051-0253-441a-ac16-54c21873bdb5',
-    'car-audio-store':'5ab55c53-eee3-41ce-ad48-04ad6df85181',
-    'automotive-accessories':'87982093-7d81-4f2e-a8e2-e20cdeef30d8',
-    lighting:'cfd3e001-9292-459f-b0e5-9502f160eb5c',
-    'tools-workshop':'77297c18-67f6-452e-8918-c55d2ef6231a',
-    'camping-outdoors':'af2f8625-4f42-45e6-9f21-d571d7415893',
-    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79',
-    '4x4-outdoor':'182423ec-ea46-43e4-bbe3-b8857b5a1583',
-    'marine-spares':'38b382c1-6ee0-4b3c-86ad-399094bc40cc'
+  const CATEGORY_SLUGS={
+    electrical:'auto-electrical-spares',
+    'alarms-security':'vehicle-security',
+    'central-locking':'vehicle-security',
+    'car-audio-store':'car-audio-entertainment',
+    'automotive-accessories':'automotive-accessories',
+    lighting:'automotive-accessories',
+    'tools-workshop':'tools-hardware-consumables',
+    'camping-outdoors':'camping-leisure-outdoors',
+    'trailer-canopy':'trailer-canopy',
+    '4x4-outdoor':'camping-leisure-outdoors',
+    'marine-spares':'marine-spares-accessories'
   };
   const ALIASES={
     'AUTO ELECTRICAL':'electrical',
@@ -45,9 +45,9 @@
   function openCategory(name){
     const key=clean(name);
     const slug=ALIASES[key];
-    const id=slug && CATEGORY_IDS[slug];
-    if(!id)return;
-    window.open(BASE+'?id='+encodeURIComponent(id),'_blank','noopener');
+    const root=slug && CATEGORY_SLUGS[slug];
+    if(!root)return;
+    window.location.href=BASE+'?root='+encodeURIComponent(root);
   }
   function installCategoryPresentation(frame){
     try{
