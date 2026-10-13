@@ -1746,3 +1746,15 @@ Follow-up poll confirms both previously active storefront smoke tests completed 
 - Manual/visual QA at 390px and desktop: still required.
 - Production Axxess deployment: unchanged/not performed.
 - Next action: proceed with manual/visual staging QA if an appropriate preview is accessible, then continue category/subcategory reconciliation. Do not restart the catalogue or treat staging test success as payment-provider or production readiness.
+
+
+## Background monitor update — 13 October 2026 (latest continuation)
+- Latest recent GitHub Actions scan: 20 recent runs returned, all completed; no queued/in-progress runs appeared in that scan.
+- Staging Category Navigation Chromium Acceptance #3 PASS (run 38435206322; tested commit 03cd8d9e229e4f22a899744559b477a3a7df9180).
+- Storefront Smoke Test #668 PASS (run 38435448619, commit 68cfeb1f) and #667 PASS (run 38435403130, commit 9be92c3a). Staging/local checks only; not proof of live payments or Axxess deployment.
+- GitHub Pages deployment #978 PASS (run 38435796239, commit a2cf53f8). Pages is not Axxess production.
+- Buyer-guide extraction runs #50–#53 all PASS; latest #53 run 38436501582, commit 0c4b4a2e1e0f92c50f36241f0005ff8e1bf6bf3e. Handover-only workflow retrigger issue has been addressed by path ignores.
+- Manual visual QA remains NOT VERIFIED. Run #3 has no attached screenshot artifacts; automated green status must not be represented as a visual/manual pass.
+- Immediate next action: add/use a staging-only screenshot capture for 390px mobile and 1280px desktop, publish screenshots as a GitHub Actions artifact on the staging branch, inspect them, and record actual findings. Do not use Netlify/Cloudflare credits or touch Axxess production.
+- After visual QA, continue category/subcategory reconciliation using existing buyer-guide extraction outputs and approved eight root categories. No catalogue import until mapping is reconciled and reviewed.
+- Continuation checkpoint: HANDOVER_CHECKPOINT_2026-10-13.md, latest update commit a2ab181fd87ff37653634af0c6151ed385192e7c on audit/buyer-guide-extraction.
