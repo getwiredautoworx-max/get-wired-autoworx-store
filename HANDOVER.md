@@ -1,3 +1,11 @@
+## CONTINUATION LOG — 2026-10-13 06:12 SAST — STOREFRONT SMOKE FAILURE ROOT CAUSE FOUND
+
+- Retrieved decoded GitHub Actions logs for Storefront Smoke Test #625 (run 38344622355; job 115123018094). It passed the category-navigation stage (9 populated main categories; 12 Auto Electrical options) and reached the public storefront cart test.
+- Exact failure: Playwright timed out clicking the `ADD TO CART` button for public SKU `GW-B4F502E6`. The button was visible, but the header's `.gwResult[data-full-product="2"]` search-result overlay intercepted pointer events; the product card was also detached/re-rendered during click attempts. This is a reproducible test/UI interaction issue, not a category-load or price-gate assertion failure.
+- Next inspect `index-new.html` search overlay and the smoke-test sequence. Prefer a genuine user-safe fix: close/blur the search result dropdown before product-card actions and ensure overlay only intercepts events while intentionally open; then rerun smoke. Do not use Playwright force-click as the only fix because it would hide a real pointer-interception bug.
+- Production QA #177 on the same commit passed, including homepage and both policy routes; this does not override the failed interactive smoke test.
+- Task completed: fetched actual run logs and isolated the failing locator and overlay element. No storefront source or production data changed in this task.
+- ETA: inspect and apply a narrowly scoped overlay/test fix 10–20 minutes; rerun smoke and confirm the exact public cart flow.
 ## CONTINUATION LOG — 2026-10-13 06:10 SAST — EXACT IMAGE AUDIT EXCEPTIONS IDENTIFIED
 
 - Downloaded and read audit artifact `catalogue-image-audit` from failed run #269. Counts: 4,187 active products; 4,093 image-proxy references; 94 placeholders; 4,101 exact-public-SKU WebP assets; 8 placeholder rows intersect exact WebP assets; 86 placeholders have no known exact-SKU WebP; zero invalid/mismatched public image references.
