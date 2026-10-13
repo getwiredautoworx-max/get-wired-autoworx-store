@@ -74,3 +74,10 @@ Review: do not activate/re-parent the current root or move its products until ro
 
 ## Completion gate
 Do not mark the category task complete until a complete SKU-level mapping report exists, all ambiguous rows are explicitly held for review, counts reconcile to the live 4,187 active products, and navigation tests pass. The next Axxess package should be prepared only after that gate and the existing upload/deployment constraints are respected.
+
+
+## Source taxonomy preservation — owner instruction added 2026-10-13
+
+This proposed store tree is a separate customer-facing layer. During Buyers Guide and ASC catalogue reconciliation, retain the exact original ASC/source category and subcategory in dedicated source fields and retain the source heading/page as evidence. Add separate proposed Get Wired AutoWorx main-category and subcategory fields plus mapping rationale, confidence and review status. Do not treat ASC categories as disposable labels, and do not treat the store tree as permission to erase or rewrite source classifications. Where ASC and guide headings differ, preserve both and record the discrepancy for review. Use exact ASC SKU plus verified item description/fitment for identity; images must match exact SKU. No live category move or database write is authorised by this proposal.
+
+Chronological guide set is February → March → May → June → July → August → September, plus relevant later promotions and vehicle-specific/ASC catalogues. August–September/later source listings are candidates subject to price/availability confirmation; February–July items require the “Subject to price and availability confirmation” status unless the same item is verified in August or a later guide by exact SKU and item context.
