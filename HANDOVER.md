@@ -1716,3 +1716,12 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - **In progress / unresolved:** complete source-page register and exact-SKU product ledger; validate OCR/table reading; source price checks; category mapping review.
 - **Not done:** live product/category/price/availability edits, Supabase writes, Cloudflare/GitHub production deployment, or Axxess upload. No such change is authorised by this staging work.
 - ETA: not responsibly estimable until page-level parsing and exact-SKU join quality are measured. Continue updating this master handover after each material result.
+
+
+## CONTINUATION LOG — 2026-10-13 — Page-level extraction QA index added
+
+- Added [page-extraction-qa-index.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/page-extraction-qa-index.csv) on the isolated audit branch. It contains exactly 96 page rows: 32 each for July, August and September. Each row records text character count, candidate SKU-like token count, candidate price-like token count, and an explicit warning that multi-column associations are unverified. These counts are triage indicators only; they are **not** verified product records, prices, or a SKU ledger.
+- The first draft counted trailing form-feed separators as extra pages; corrected the index to the actual 32 pages per guide before proceeding. Latest index commit: `20afa30f9f494ad50e77e109279d9ce99d696779`.
+- Staging branch now contains: initial source heading register, category mapping review v2, exact-SKU price/availability decision matrix, and 96-page extraction QA index. Latest audit-branch commits are isolated from production deployment.
+- June remains a separate OCR-recovery task: prior direct text extraction is only 668 characters, and OCR output needs to be preserved with page provenance and checked against the original page images. The current index deliberately does not pretend that the June OCR transcript is a verified SKU/cost ledger.
+- **Next:** improve page-by-page extraction to pair descriptions, codes and price columns; verify a sample visually for each guide before generating the full SKU reconciliation; then exact-SKU join month to month and classify KEEP/UPDATE/ADD/QUOTE/REVIEW under the permanent rule. No live data or Axxess package changed.
