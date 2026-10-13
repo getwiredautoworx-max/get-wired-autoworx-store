@@ -1913,3 +1913,14 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Consolidated crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
 - Audit branch: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/audit/buyer-guide-extraction
 - Workflow run #27 (extraction): https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38402395937
+
+
+## CONTINUATION LOG — 2026-10-13 — JUNE OCR CATEGORY INDEX + CROSSWALK QA
+
+- Added `staging/source-extracts/june-2026-ocr-category-heading-index.csv` on `audit/buyer-guide-extraction` (33 June heading entries; commit `5cd821793b3c0a88a7284dadba94d1b9d6f0c738`). It records exact OCR heading strings, printed page ranges, provisional destinations/review flags, and explicit evidence/visual-verification status.
+- Updated `staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv` with two QA columns: `evidence_status` and `visual_verification_status`. Crosswalk now has 114 heading rows and 8 columns; June OCR headings/references were added where missing, while exact source-heading capitalization variants remain separate. Commit: `7c5334192b6bf8768d4f18fb4593f1d848e7f1a0`.
+- Important limitation: June headings are OCR-derived. This step did not visually verify the original PDF page images, so the new June OCR index explicitly marks those headings as “Not visually verified in this step”; the crosswalk likewise flags page-image QA as pending unless a prior source status already records image checking.
+- Source OCR notes: June pages 29–32 improved OCR remains a transcription aid only. Ambiguous SKU characters and displayed-price formatting must be verified against original page images before product-ledger approval. The June guide states its special offer ends 30 June 2026 and prices exclude VAT; do not treat those old promotion prices as live.
+- Scope guardrails: Fuel Pumps, Fan Blades, Automotive Spares, Brake Spares & Cylinders, Engine Timing Kits, Tappet Covers/Engine Parts, and uncertain ignition/winch items remain review-flagged rather than forced into an approved root. Keep clips together, spanners together, and winches/winch spares grouped; promotions are not permanent categories.
+- No product import, Supabase write, production deployment, Axxess upload, or live catalogue change occurred.
+- Next: inspect actual June source page images for headings/SKU/price evidence where repository image assets are available; verify February/March/May page-heading candidates and TOC ranges; reconcile remaining cross-guide aliases; then build the SKU-level staging ledger with exact SKU, description/application, source page, price evidence, image match status, and pricing/availability decision. Do not claim category reconciliation or product import is complete yet.
