@@ -1705,3 +1705,12 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - Risk controls: artifact limited to pages 3–5 plus text/metadata; do not upload all 32 page images, do not commit PNGs, do not import OCR rows. Keep existing extraction behavior unchanged.
 - Success criteria: workflow YAML has a valid upload-artifact step for the bounded evidence set; the commit triggers one audit-branch run; then inspect run status/artifact presence before claiming it works.
 - After-task requirement: update this handover with commit, run status, artifact availability, and any blocker before starting another task.
+
+
+## COMPLETED TASK RESULT — 2026-10-13 — Bounded OCR evidence artifact change BLOCKED
+- Pre-task checkpoint was committed as ad6712ee989b669a40019a8cf19aff7b026c8742 before attempting the workflow edit.
+- Attempted a narrow edit to .github/workflows/extract-buyer-guides-staging.yml to upload only June pages 3–5, their OCR text, combined OCR text and run metadata as a seven-day GitHub Actions artifact. The tool rejected the write at the safety-check stage; no workflow edit was committed and no new run was started by this attempted change.
+- This is a tooling/safety blocker, not a YAML validation failure. Do not claim artifact upload is configured. The existing OCR output and existing workflow remain unchanged.
+- No production/live data or deployment changed.
+- Current status: June OCR output exists but is noisy and not import-ready; exact workflow run ID remains unverified; visual comparison artifact change is blocked.
+- Next safe option: use the repository's existing Actions page in the owner's browser to inspect the run associated with the OCR workflow change and download the current logs/artifacts if present, or have the owner explicitly authorize a different evidence-transfer route. Do not repeat the same rejected workflow write without a changed, approved approach.
