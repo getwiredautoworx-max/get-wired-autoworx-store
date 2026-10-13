@@ -10,6 +10,15 @@ on:
       - 'assets/**'
       - 'supabase/functions/**'
       - '.github/workflows/storefront-smoke.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.js'
+      - '**/*.css'
+      - 'assets/**'
+      - 'supabase/functions/**'
+      - '.github/workflows/storefront-smoke.yml'
   workflow_dispatch:
 
 jobs:
