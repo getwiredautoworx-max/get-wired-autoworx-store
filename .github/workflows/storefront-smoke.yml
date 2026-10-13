@@ -264,7 +264,7 @@ jobs:
               for (const policy of policyChecks) {
                 const policyResponse = await fetch(policy.url,{redirect:'follow'});
                 const policyBody = await policyResponse.text();
-                if (!policyResponse.ok || !/<html[\\s>]/i.test(policyBody) || !policyBody.toLowerCase().includes(policy.expected.toLowerCase())) {
+                if (!policyResponse.ok || !/<html[\s>]/i.test(policyBody) || !policyBody.toLowerCase().includes(policy.expected.toLowerCase())) {
                   throw new Error('Public policy verification failed for '+policy.url+': HTTP '+policyResponse.status);
                 }
                 console.log('PUBLIC_POLICY_PASS '+policy.url+' HTTP '+policyResponse.status);
