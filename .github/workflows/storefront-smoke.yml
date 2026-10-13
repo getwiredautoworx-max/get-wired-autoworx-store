@@ -193,9 +193,9 @@ jobs:
 
             const productQuotePage = await browser.newPage({viewport:{width:390,height:844}});
             await productQuotePage.goto('http://127.0.0.1:4173/product.html?id=b1c995e6-8fc1-4e09-8303-881c6312a53e',{waitUntil:'domcontentloaded'});
-            await productQuotePage.locator('#add').waitFor({timeout:15000});
+            await productQuotePage.locator('#root .error, #root #add').first().waitFor({timeout:15000});
             const productQuoteText = await productQuotePage.locator('body').innerText();
-            if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail exposed an unverified price or Add to Cart');
+            if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail price gate failed. Page content: '+productQuoteText.slice(0,600));
             await productQuotePage.close();
 
             await page.setViewportSize({width:1280,height:900});
