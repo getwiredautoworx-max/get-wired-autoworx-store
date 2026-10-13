@@ -1874,3 +1874,11 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Replaced non-approved pseudo-roots such as “4x4 & Off-road,” “Lighting,” “Automotive Spares & Parts,” and “Tools Hardware & Consumables” with approved-root mappings or explicit SKU-level review labels. Added notes where 4x4/outdoor classification depends on vehicle-mounted vs leisure use. Generic mechanical/ambiguous headings remain flagged rather than being forced into a wrong root.
 - CSV integrity rechecked after normalization: 148 data rows, exactly seven columns on every row. Current register file: [category-reconciliation-review-v5.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/category-reconciliation-review-v5.csv).
 - These are provisional category-heading mappings, not product imports. Exact SKU, product description, fitment and original page must be checked before a product inherits a final store category.
+
+
+## CONTINUATION LOG — 2026-10-13 — Consolidated ASC source-heading crosswalk generated and validated
+
+- Created [ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv), consolidating the month/page references and provisional Get Wired AutoWorx mapping for 110 distinct source headings from the current category reconciliation register.
+- Crosswalk validation passed: 110 data rows, six columns consistently, no malformed CSV rows. One source heading has multiple contextual destination suggestions and is explicitly flagged for review instead of silently selecting one.
+- The detailed month-by-month register remains the source evidence: `category-reconciliation-review-v5.csv` (148 rows, seven columns). Crosswalk is a navigation/summary layer and does not replace the original heading/page references.
+- Next: finish category/page-heading verification, particularly OCR-only June and any ambiguous source headings; only then create the product-level staging ledger and begin exact-SKU reconciliation. No production imports or storefront changes.
