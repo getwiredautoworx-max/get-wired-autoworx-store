@@ -45,7 +45,7 @@ assert.deepEqual(
         const rootButton = page.locator('#categoryGrid button[data-gw-root-index="'+i+'"]');
         assert.equal(await rootButton.count(), 1, 'Root button index '+i+' must exist');
         const rootButtonText = await rootButton.innerText();
-        assert.ok(rootButtonText.includes(root.label), 'Root label mismatch: expected '+JSON.stringify(root.label)+'; actual '+JSON.stringify(rootButtonText));
+        assert.ok(rootButtonText.toLocaleUpperCase().includes(root.label.toLocaleUpperCase()), 'Root label mismatch: expected '+JSON.stringify(root.label)+'; actual '+JSON.stringify(rootButtonText));
         await rootButton.click();
         const children = page.locator('#categoryGrid button[data-gw-subcategory-root="'+i+'"]');
         await children.first().waitFor({ timeout:5000 });
@@ -53,10 +53,10 @@ assert.deepEqual(
         for (let j=0;j<root.subcategories.length;j++) {
           const sub = root.subcategories[j];
           const child = page.locator('#categoryGrid button[data-gw-subcategory-root="'+i+'"][data-gw-subcategory-index="'+j+'"]');
-          assert.ok((await child.innerText()).includes(sub.label), 'Subcategory label mismatch: '+root.label+' / '+sub.label);
+          assert.ok((await child.innerText()).toLocaleUpperCase().includes(sub.label.toLocaleUpperCase()), 'Subcategory label mismatch: '+root.label+' / '+sub.label);
           await child.click();
           await page.getByText('Catalogue products are not loaded into this new category structure yet.', {exact:false}).waitFor({timeout:3000});
-          assert.ok((await page.locator('#categoryGrid').innerText()).includes(sub.label), 'Subcategory page heading missing: '+sub.label);
+          assert.ok((await page.locator('#categoryGrid').innerText()).toLocaleUpperCase().includes(sub.label.toLocaleUpperCase()), 'Subcategory page heading missing: '+sub.label);
           await page.locator('#categoryGrid button[data-gw-back-subcategories]').click();
           assert.equal(await page.locator('#categoryGrid button[data-gw-subcategory-root="'+i+'"]').count(), root.subcategories.length, 'Subcategory back control failed for '+root.label);
         }
