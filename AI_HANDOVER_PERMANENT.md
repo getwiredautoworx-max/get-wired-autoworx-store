@@ -1783,3 +1783,11 @@ Follow-up poll confirms both previously active storefront smoke tests completed 
 - Pages #980 (run `38440203547`, main SHA `d66064de`) PASS; Pages only, not Axxess.
 - Last verified staging acceptance is #10 PASS with screenshot artifact ID `11835171158`. Do not claim compact-hero CSS passed until #11 completes and fresh screenshots are inspected.
 - Next: poll #11, inspect logs and the four screenshot artifact files if completed; otherwise diagnose the unusually long-running test step without launching duplicate work. Axxess remains untouched.
+
+
+## Final compact-hero QA result — 13 October 2026
+- Staging category acceptance #11 **PASS** (run `38440567696`, commit `3e25147ebb774001c9c5265f336c77751dbd4ee6`). 8 roots and 71 subcategories individually navigated; mobile 390/390, desktop 1280/1280; no off-screen elements; zero browser errors; idle mobile buy bar hidden; product modal closed.
+- Artifact `11835246761` inspected visually: mobile search fits, rating box compact, mobile hero reduced, category roots shown before services, tiles legible, desktop 3-column / mobile 2-column grid, cart badge contained. Screenshot artifact expires 20 Oct 2026. Run link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38440567696
+- Pages #980 PASS on main (run `38440203547`), not an Axxess release.
+- Staging mobile/desktop visual and automated acceptance are now green for this checkpoint. No Axxess deployment or release-credit use.
+- Next action: continue existing category reconciliation using `CATEGORY_MAPPING_REVIEW_2026-10-09.md`, `PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md`, `staging/source-extracts/category-reconciliation-review-v5.csv`, and `staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv`. Validate source-category coverage and grouping rules before catalogue import; keep all work staging-only and reversible.
