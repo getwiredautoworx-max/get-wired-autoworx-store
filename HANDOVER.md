@@ -1,3 +1,13 @@
+## CONTINUATION LOG — 2026-10-13 06:26 SAST — IMAGE AUDIT NOW SUPPORTS VERIFIED DIRECT WEBP PATHS
+
+- Fixed `.github/workflows/catalogue-image-audit.yml` in commit `b28a428a21ef7e0cb22ae23033f424220d213c88`. The audit now accepts a direct public image URL only if it matches `/assets/products_webp/{SKU}.webp`, the embedded SKU exactly matches the product's public SKU, and that exact WebP file exists in the repository. Proxy URLs retain their SKU-match validation; other URL forms remain rejected. Report now separately counts direct public WebP references.
+- This is the correct validator update for the eight live-verified direct WebP mappings. The prior audit attempt failed because its old validator only recognised the Supabase image proxy; the eight direct paths are valid and their live HTTP/MIME checks passed in Production QA #183.
+- Commit changes the audit workflow path, so a fresh Catalogue Image Audit should run automatically. Do not manually launch a duplicate audit unless no automatic run appears.
+- Smoke test #629 failed because the cart drawer intercepted the next search suggestion after the first Add to Cart; commit `43bc258fbb6464a213d686874c24ced5fb740d82` added an explicit close-cart step. Await the new smoke run for this correction.
+- Completed this task: updated audit policy to validate exact direct-SKU static images without weakening the proxy/SKU safety checks. No production data changed during this task.
+- Next: poll latest Catalogue Image Audit and Storefront Smoke Test. If audit succeeds, image exceptions are resolved. If smoke fails, read latest logs and correct only the identified interaction. Keep release blocked until smoke passes and latest policy/production QA remains successful.
+- ETA: automatic audit/smoke run 2–5 minutes once GitHub Actions schedules the new commits.
+
 ## CONTINUATION LOG — 2026-10-13 06:23 SAST — FOLLOW-UP SMOKE AND IMAGE AUDIT DIAGNOSIS
 
 - Store Production QA #184 succeeded on commit `178fb8a973624277b68f4eee8ebcf5ead39e9e17`.
