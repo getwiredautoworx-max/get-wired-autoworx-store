@@ -62,3 +62,12 @@ Continue mobile and category-navigation acceptance testing on staging. Do not re
 - The current connector exposes no downloadable artifacts/stdout for these runs. No conclusion is claimed for either smoke test while it is in progress.
 
 Immediate next action: poll smoke runs #668 and #667 to completion and inspect their conclusions; if they remain active unusually long, investigate the running browser-test step rather than launching more duplicate tests. Then perform separate visual/manual mobile QA. Keep Axxess production untouched.
+
+
+## Completion update — 19:10 SAST
+- Storefront Smoke Test #668 (run ID `38435448619`): **PASS**. Browser category navigation, verified-price checkout gate, and local storefront smoke test all succeeded. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435448619
+- Storefront Smoke Test #667 (run ID `38435403130`): **PASS**. Browser category navigation, verified-price checkout gate, and local storefront smoke test all succeeded. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435403130
+- These are staging/local tests only; they do not verify real payment processing or mean the Axxess production site was deployed.
+- Permanent handover latest update commit: `8050ff340ddf8239b16ee4a65678f626ce07aa9a`.
+
+Next: inspect newest Actions list for any newly triggered jobs; do visual/manual 390px and desktop QA with evidence, then continue category reconciliation. Preserve catalogue and leave Axxess untouched.
