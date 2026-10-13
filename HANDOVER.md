@@ -1,3 +1,11 @@
+## CONTINUATION LOG — 2026-10-13 06:25 SAST — HIDDEN CART CLOSE CLICK REMOVED
+
+- Workflow fix committed: `6815f2e8205f2ba06a5a7fdaacf5d86af1ae9dcb`. In `.github/workflows/storefront-smoke.yml`, the test already removes the cart panel's `open` class at line 181, then previously tried to click `#closeCart` even though that control was consequently hidden. Removed only the contradictory click and documented the existing harness state transition. No storefront production source changed.
+- This should automatically trigger Storefront Smoke Test and Store Production QA, with Pages deployment workflow behaviour controlled by repository automation. Do not manually trigger duplicates.
+- Next: inspect runs for commit `6815f2e8205f2ba06a5a7fdaacf5d86af1ae9dcb`. If smoke advances past local interactions, review its public checkout and policy assertions; if it fails, read the newest decoded log and fix only that root cause. QA success alone does not replace smoke success.
+- Handover updated before and after this task. Release still not signed off until the latest smoke test and public policy checks pass. No hosting/DNS/payment settings or production data changed.
+- ETA: auto-run results typically 3–8 minutes from commit; next step is poll and inspect, not rebuild or unrelated audit.
+
 ## CONTINUATION LOG — 2026-10-13 06:24 SAST — SMOKE #637 FAILURE ROOT CAUSE IDENTIFIED; FIX IN PROGRESS
 
 - Latest run review: Catalogue Image Audit #270 PASSED (4,187 active products audited; exact-SKU direct WebP validation accepted). Store Production QA #190 PASSED on commit `55df98e097de5cc367a0b4486ca5b0fc0bf91efa`. Pages deployment #862 SUCCEEDED on earlier commit `e5c56654410a954042121d66647724d88eb5380c`.
