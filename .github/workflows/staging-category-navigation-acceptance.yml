@@ -20,3 +20,11 @@ jobs:
       - run: npm install --no-save playwright
       - run: npx playwright install --with-deps chromium
       - run: node scripts/test-staging-category-navigation.cjs
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: staging-category-visual-qa
+          path: artifacts/*.png
+          if-no-files-found: warn
+          retention-days: 7
