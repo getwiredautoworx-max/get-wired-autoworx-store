@@ -50,3 +50,15 @@ Continue mobile and category-navigation acceptance testing on staging. Do not re
 - Permanent handover updated with this outcome in `AI_HANDOVER_PERMANENT.md` (commit `a0b8bd443b4eb6ee9cf395961dce57a1279b66fd`).
 - Daily automation `Monitor Get Wired Store Tasks` was updated to include this workflow and handover discipline. It runs on a daily schedule; this does not mean continuous/hourly monitoring between runs.
 - Next exact action: inspect latest workflow runs for regressions, then perform visual/manual QA at 390px and desktop width. Keep Axxess production untouched.
+
+
+## Background task monitor update — 19:08 SAST
+- Staging Category Navigation Chromium Acceptance #3: **PASS**, run ID `38435206322`.
+- GitHub Pages build/deployment #978: **PASS**, run ID `38435796239`. This is Pages only, not Axxess production.
+- Buyer-guide text extraction #50: **PASS**, run ID `38435893489`; extraction/OCR steps and audit-branch commit completed.
+- Storefront Smoke Test #668: **IN PROGRESS**, run ID `38435448619`; Playwright setup passed, staging category browser test remains active.
+- Storefront Smoke Test #667: **IN PROGRESS**, run ID `38435403130`; Playwright setup passed, staging category browser test remains active.
+- Smoke-test links: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435448619 and https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435403130
+- The current connector exposes no downloadable artifacts/stdout for these runs. No conclusion is claimed for either smoke test while it is in progress.
+
+Immediate next action: poll smoke runs #668 and #667 to completion and inspect their conclusions; if they remain active unusually long, investigate the running browser-test step rather than launching more duplicate tests. Then perform separate visual/manual mobile QA. Keep Axxess production untouched.
