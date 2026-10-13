@@ -1,3 +1,9 @@
+## CONTINUATION LOG — 2026-10-13 — TAXONOMY DECOUPLED FROM LEGACY DATABASE IDS
+
+- Removed all legacy Supabase category IDs from both hierarchy JSON files. The staged hierarchy now depends on the approved root slugs and crosswalk evidence only; the staged category screens do not rely on old category IDs or old catalogue rows.
+- The original June/July/August/September PDF guides are present in the audit branch, and extracted text is available in staging. Original-page visual QA remains pending; no visual verification is claimed from text-only evidence.
+- No production data or deployment changes.
+ 
 ## CONTINUATION LOG — 2026-10-13 — GROUP ROUTE TESTS AND STAGING SEARCH STATE
 
 - Added a clear disabled-state message to the staged product-group route: the top product search now says it becomes available after the replacement catalogue import and is disabled while the staged route intentionally shows no old product data.
