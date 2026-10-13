@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-13 06:07 SAST — CHECKOUT DEPLOYMENT PARITY VERIFIED
+
+- Correction to the 06:05 note: production `store-checkout` ACTIVE version 4 was retrieved directly from Supabase. Its complete deployed `index.ts` is an **exact byte-for-byte match** to `main:supabase/functions/store-checkout/index.ts` (5,442 characters; GitHub blob SHA `ef524611c5f095eb831383439417830d632e1744`). The deployed code uses the agreed `cost_price × 1.15 × 1.35` formula with cent rounding, rejects `QUOTE_REQUIRED`, and calls `create_store_order_v2`. Checkout source/deployment parity is verified; no redeployment is needed for this gate. The older opening checkpoint's “ACTIVE v3” statement is superseded by observed ACTIVE v4.
+- Current workflow status as observed at 06:07 SAST: Storefront Smoke Test #625, Store Production QA #177, and Pages deployment #837 are in progress on commit `f8bc8e5d05999b097e4c9a317f16934b70de3812`. Earlier Smoke Test #624 attempt 2 ended failure. Do not assume the newer run's result until it completes.
+- Image audit #269 artifact exists (artifact ID 11788550208, `catalogue-image-audit`, 354 bytes). Next retrieve/read the report to get the exact SKU intersection; do not update any product row until matching public-SKU WebP assets are verified.
+- Completed this task: retrieved deployed Edge Function source and compared the complete source string to main; exact match passed. No deployment, SQL write, product/order/customer changes, DNS or payment setting changes.
+- Next: inspect the small image-audit artifact, then check completion/results for smoke #625 and production QA #177. If the smoke run fails, obtain the actual browser error/log before changing tests. Keep the public homepage and policy-route success from QA #176 as valid evidence for that commit only; wait for run #177 for current-main evidence.
+- ETA: artifact report inspection and workflow-result review 5–15 minutes, subject to tool access and runner completion.
+
 ## CONTINUATION LOG — 2026-10-13 06:05 SAST — DEPLOYED CHECKOUT VERSION MISMATCH IDENTIFIED
 
 - Read-only Supabase function inventory confirms production `store-checkout` is ACTIVE **version 4**, while the current `main` source at `supabase/functions/store-checkout/index.ts` contains the formula-based gate: active products must have positive price and cost, selling price must equal rounded `cost_price × 1.15 × 1.35`, and products explicitly marked `QUOTE_REQUIRED` remain blocked. It then calls `create_store_order_v2`.
