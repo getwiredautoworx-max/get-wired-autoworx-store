@@ -244,8 +244,11 @@ jobs:
               await product.waitFor({timeout:20000});
               const productText = await product.innerText();
               if (productText.includes('Price on request') || !productText.includes('ADD TO CART')) throw new Error('Public storefront still blocks formula-priced SKU GW-B4F502E6: '+productText);
+              // Search suggestions are rendered in a high-z-index header overlay; dismiss them before clicking the product.
+              await publicFrame.locator('#searchInput').press('Escape');
+              await publicFrame.locator('.gwResult').waitFor({state:'hidden',timeout:5000}).catch(()=>{});
               // Use a real browser click and wait for the synchronous cart write before asserting.
-              await product.locator('button').first().click();
+              await product.locator('button').first().click({timeout:15000});
               await publicPage.waitForFunction(() => {
                 try { return JSON.parse(localStorage.getItem('gw_cart') || '[]').some(item => item.public_sku === 'GW-B4F502E6' && Number(item.qty) === 1); }
                 catch (_) { return false; }
