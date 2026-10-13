@@ -2,12 +2,22 @@ name: Storefront Smoke Test
 
 on:
   push:
-    branches: [main, release/verified-price-checkout-2026-10-13]
+    branches: [main, release/verified-price-checkout-2026-10-13, fix/current-main-price-gate-2026-10-13]
     paths:
       - '**/*.html'
       - '**/*.js'
       - '**/*.css'
       - 'assets/**'
+      - 'supabase/functions/**'
+      - '.github/workflows/storefront-smoke.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.js'
+      - '**/*.css'
+      - 'assets/**'
+      - 'supabase/functions/**'
       - '.github/workflows/storefront-smoke.yml'
   workflow_dispatch:
 
@@ -28,12 +38,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -Fq "price_status==='VERIFIED_PRICE'" index-new.html
+          grep -Fq "price_status!=='QUOTE_REQUIRED'" index-new.html
           grep -Fq "PRICE_CONFIRMATION_REQUIRED" supabase/functions/store-checkout/index.ts
-          grep -Fq "Price confirmation required" checkout-v2.html
+          grep -Fq 'price_status !== "QUOTE_REQUIRED"' supabase/functions/store-checkout/index.ts
+          grep -Fq 'create_store_order_v2' supabase/functions/store-checkout/index.ts
+          grep -Fq "price_status==='QUOTE_REQUIRED'" checkout-v2.html
           grep -Fq "Price on request" index-new.html
-          grep -Fq "price_status==='VERIFIED_PRICE'" products.html
-          grep -Fq "price_status==='VERIFIED_PRICE'" product.html
+          grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
+          grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
           echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
       - name: Run local storefront smoke test
         run: |
@@ -151,11 +163,13 @@ jobs:
             }
             await frame.locator('#modalClose').click();
             await frame.locator('#allProductsLink').click();
+            const quoteOnlyHtml = await frame.locator('#featuredGrid').evaluate(grid => grid.ownerDocument.defaultView.card({id:'quote-only-test',name:'Quote-only test product',public_sku:'GW-TEST0001',price:123.45,stock_quantity:3,image_url:null,specifications:{price_status:'QUOTE_REQUIRED'}}));
+            if (!quoteOnlyHtml.includes('Price on request') || !quoteOnlyHtml.includes('REQUEST PRICE')) throw new Error('Explicit quote-only product must show Price on request and REQUEST PRICE');
             await frame.locator('#searchInput').fill('GW-B4F502E6');
-            const quoteOnlyCard = frame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
-            await quoteOnlyCard.waitFor({timeout:15000});
-            const quoteOnlyText = await quoteOnlyCard.innerText();
-            if (!quoteOnlyText.includes('Price on request') || !quoteOnlyText.includes('REQUEST PRICE')) throw new Error('Unverified product must show Price on request and REQUEST PRICE');
+            const pricedCard = frame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
+            await pricedCard.waitFor({timeout:15000});
+            const pricedText = await pricedCard.innerText();
+            if (!pricedText.includes('ADD TO CART') || pricedText.includes('Price on request')) throw new Error('Formula-priced catalogue product must be purchasable unless explicitly marked QUOTE_REQUIRED: '+pricedText);
             await frame.locator('#searchInput').fill('GW-F165DD11');
             const verifiedCard = frame.locator('.product').filter({hasText:'GW-F165DD11'}).first();
             await verifiedCard.waitFor({timeout:15000});
@@ -184,8 +198,9 @@ jobs:
             await page.locator('#fulfilment').selectOption('delivery');
             if (!(await page.locator('#deliverySummary').textContent()).includes('To be quoted')) throw new Error('Delivery must reset to quote pending when delivery is selected');
             const listingPage = await browser.newPage({viewport:{width:390,height:844}});
+            await listingPage.route('**/rest/v1/products?*', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{id:'quote-listing-test',name:'Quote-only listing test',public_sku:'GW-TEST0001',description:'Customer-safe description',price:123.45,stock_quantity:3,image_url:null,specifications:{price_status:'QUOTE_REQUIRED'},active:true,category_id:'df14b7f8-f086-4fdb-8496-733bde7e18e7'}])}));
             await listingPage.goto('http://127.0.0.1:4173/products.html?category=df14b7f8-f086-4fdb-8496-733bde7e18e7',{waitUntil:'domcontentloaded'});
-            const listingQuoteCard = listingPage.locator('.card').filter({hasText:'GW-B4F502E6'}).first();
+            const listingQuoteCard = listingPage.locator('.card').filter({hasText:'GW-TEST0001'}).first();
             await listingQuoteCard.waitFor({timeout:15000});
             const listingQuoteText = await listingQuoteCard.innerText();
             if (!listingQuoteText.includes('Price on request') || !listingQuoteText.includes('REQUEST PRICE')) throw new Error('Category product listing exposed an unverified price or Add to Cart');
