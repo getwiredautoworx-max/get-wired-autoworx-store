@@ -1,12 +1,15 @@
 const { chromium } = require('playwright');
 const path = require('path');
+const fs = require('fs');
 const { pathToFileURL } = require('url');
 (async()=>{
  const browser=await chromium.launch({headless:true});
- const page=await browser.newPage({viewport:{width:390,height:844}});
+ const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
+ fs.mkdirSync('artifacts',{recursive:true});
  const errors=[]; page.on('pageerror',e=>errors.push(e.message));
  await page.goto(pathToFileURL(path.resolve('index-new.html')).href,{waitUntil:'domcontentloaded'});
  await page.waitForSelector('#categoryGrid [data-gw-root-index]',{timeout:15000});
+ await page.screenshot({path:'artifacts/category-home-mobile-390.png',fullPage:true});
  const roots=page.locator('#categoryGrid [data-gw-root-index]');
  const rootCount=await roots.count();
  if(rootCount!==8) throw new Error('Expected 8 root categories, got '+rootCount);
@@ -37,6 +40,7 @@ const { pathToFileURL } = require('url');
  await page.setViewportSize({width:1280,height:900});
  await page.reload({waitUntil:'domcontentloaded'});
  await page.waitForSelector('#categoryGrid [data-gw-root-index]');
+ await page.screenshot({path:'artifacts/category-home-desktop-1280.png',fullPage:true});
  const desktop=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
  if(desktop.document>desktop.viewport) throw new Error('Horizontal overflow at 1280px: '+JSON.stringify(desktop));
  console.log(JSON.stringify({status:'PASS',roots:rootCount,subcategories:totalSubcategories,subcategoriesChecked:'all subcategories individually opened and returned',mobile:width,desktop,browserErrors:errors.length},null,2));
