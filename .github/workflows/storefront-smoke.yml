@@ -240,7 +240,8 @@ jobs:
               throw new Error('Public fallback product lookup failed. URL='+publicPage.url()+' frames='+JSON.stringify(publicPage.frames().map(f=>({name:f.name(),url:f.url()})))+' count='+publicCount+' grid='+publicGrid.slice(0,800)+' body='+publicDiag.slice(0,1200));
             }
             const publicProductText = await publicProduct.innerText();
-            if (publicProductText.includes('Price on request') || !publicProductText.includes('ADD TO CART')) throw new Error('Public fallback host still blocks a correctly priced product with no legacy verified flag: '+publicProductText);
+            const publicProductMarkup = await publicProduct.evaluate(el=>({html:el.outerHTML.slice(0,1800),children:Array.from(el.children).map(c=>({tag:c.tagName,cls:c.className,display:getComputedStyle(c).display,visibility:getComputedStyle(c).visibility,text:(c.innerText||'').slice(0,100)}))}));
+            if (publicProductText.includes('Price on request') || !publicProductText.includes('ADD TO CART')) throw new Error('Public fallback purchase-card diagnostic: text='+publicProductText+' markup='+JSON.stringify(publicProductMarkup));
             await publicProduct.getByRole('button',{name:'ADD TO CART',exact:true}).click();
             const publicCart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
             if (!publicCart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public fallback host did not persist the product in cart');
