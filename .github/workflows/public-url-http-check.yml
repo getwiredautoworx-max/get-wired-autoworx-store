@@ -1,0 +1,63 @@
+name: Public URL HTTP Verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/public-url-http-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-http-check:
+    name: Check public homepage and policy pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check homepage and both policy pages from GitHub-hosted runner
+        shell: bash
+        run: |
+          set -uo pipefail
+          base="https://getwiredautoworx-max.github.io/get-wired-autoworx-store"
+          failed=0
+
+          check_url() {
+            local label="$1"
+            local path="$2"
+            local expected="$3"
+            local body="/tmp/gw-${label}.html"
+            local status
+            echo "CHECK_LABEL=$label"
+            echo "CHECK_URL=$base$path"
+            if ! status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --connect-timeout 10 --max-time 35 -o "$body" -w '%{http_code}' "$base$path")"; then
+              echo "HTTP_REQUEST_FAILED label=$label curl_status=$status"
+              failed=1
+              return
+            fi
+            echo "HTTP_STATUS_${label}=$status"
+            if [ "$status" != "200" ]; then
+              echo "FAIL: expected HTTP 200 for $label, got $status"
+              failed=1
+              return
+            fi
+            if ! grep -Eiq "$expected" "$body"; then
+              echo "FAIL: HTTP 200 body did not contain expected page marker for $label"
+              head -c 500 "$body" || true
+              echo
+              failed=1
+              return
+            fi
+            echo "PASS: $label returned HTTP 200 and expected page marker"
+          }
+
+          check_url homepage "/" "Get Wired AutoWorx"
+          check_url terms "/terms-and-conditions.html" "Terms.*Conditions"
+          check_url returns "/returns-refunds.html" "Returns.*Refunds"
+
+          if [ "$failed" -ne 0 ]; then
+            echo "PUBLIC_URL_HTTP_CHECK_FAILED"
+            exit 1
+          fi
+          echo "PUBLIC_URL_HTTP_CHECK_PASS: homepage, Terms and Conditions, and Returns/Refunds all returned HTTP 200."
