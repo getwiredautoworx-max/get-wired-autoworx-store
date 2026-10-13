@@ -1,0 +1,83 @@
+# ASC / Buyer Guide Category Crosswalk Gap Audit
+Date: 13 October 2026
+Branch: `audit/buyer-guide-extraction`
+Status: **READ-ONLY AUDIT — NOT APPROVED FOR PRODUCT IMPORT OR LIVE CATEGORY WRITES**
+
+## Purpose
+Reconcile the current source-heading crosswalk and the proposed customer-facing hierarchy before product-level catalogue import. This report records coverage gaps and unresolved headings only. It does not authorize changing live products, category IDs, prices, stock, images, or active flags.
+
+## Verified input files
+- `staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv`
+- `staging/source-extracts/category-reconciliation-review-v5.csv`
+- `staging/source-extracts/STORE_CATEGORY_HIERARCHY_2026-10-13.json`
+- `staging/source-extracts/PRODUCT_GROUPING_RULES_2026-10-13.json`
+- `CATEGORY_MAPPING_REVIEW_2026-10-09.md`
+- `PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md`
+
+## Reconciliation counts
+
+| Measure | Verified count | Interpretation |
+|---|---:|---|
+| Buyer-guide heading rows in review v5 | 148 | Heading occurrences/records across February, March, May, June, July, August and September sources |
+| Unique crosswalk heading rows | 115 | Crosswalk aggregates variants/repeated source headings |
+| Occurrence total recorded in crosswalk | 165 | Source occurrence field total; not directly interchangeable with review-v5 row count |
+| Proposed customer-facing roots | 8 | Matches the approved eight-root navigation |
+| Proposed child headings in taxonomy JSON | 71 | Current staging taxonomy only |
+| Crosswalk rows pending page-image QA | 105 / 115 | 91.3% still require visual verification |
+| Crosswalk rows visually verified in a prior QA record | 9 / 115 | 7.8% |
+| Crosswalk rows marked “Needs review” for evidence | 10 / 115 | Must resolve before treating those headings as verified |
+| Crosswalk rows routed outside approved roots pending scope decision | 15 / 115 | Do not force into another category |
+| Crosswalk rows needing item/application classification | 6 / 115 | Resolve at SKU/product level |
+| Promotion-only headings | 2 / 115 | Do not create permanent navigation categories |
+| Crosswalk rows with any review/conflict/promotion destination | 24 / 115 | Manual reconciliation queue |
+
+**Important:** The 115-row crosswalk and the 148-row review v5 are different representations. Do not assume that one row equals one source occurrence. Exact source heading variants and guide/page references must remain preserved.
+
+## Unresolved heading queue
+
+| Source heading | Guide reference | Current destination / hold reason |
+|---|---|---|
+| Auto Spares | May 2026 p.4–7 | Broad source heading; SKU and store-scope review |
+| AUTO SPARES | August 2026 p.23–26; September 2026 p.15, 18–22 | Keep out of approved roots unless exact item is confirmed in scope |
+| Automotive Brake & Clutch | February 2026 p.22–23 | Mechanical items not automatically in scope |
+| Automotive Door Parts | February 2026 p.23 | Classify by actual function; do not infer security |
+| Automotive Gaskets | February 2026 p.21 | Mechanical parts; hold |
+| Automotive Spare Parts | February 2026 p.23–26 | Generic heading; product-level evidence required |
+| Automotive Spare Parts-Quantum | February 2026 p.27 | Preserve Quantum source distinction; review SKU and function |
+| AUTOMOTIVE SPARES | July 2026 p.22–24; June 2026 p.19 | Broad heading; do not force mechanical items into approved roots |
+| Automotive Window Spares | February 2026 p.29 | Classify by actual function; do not infer security |
+| BRAKE SPARES & CYLINDERS | June 2026 p.20 | Mechanical/out-of-scope hold |
+| DOOR PARTS | June 2026 p.18–19; July 2026 p.12–13; September 2026 p.8–9; February 2026 p.6, 23 | Conflicting context; SKU/application required |
+| Engine Cooling | May 2026 p.13–14 | Mechanical cooling items must not be forced into Auto Electrical |
+| ENGINE TIMING KITS | June 2026 p.22–23 | Mechanical engine parts; hold |
+| FUEL PUMPS | June 2026 p.15 | Classify only after exact item/function check; verified electrical fuel-pump SKUs may qualify under the approved electrical hierarchy |
+| Pumps And Filters | May 2026 p.12 | Mixed heading; separate fuel, marine and general pumps by SKU/application |
+| Safety | March 2026 p.27–28; May 2026 p.3 | Broad heading; classify item-by-item |
+| Spare Parts | March 2026 p.8–11 | Generic heading; do not infer destination |
+| SPECIAL DISCOUNTED PRICE | March 2026 p.30–32; May 2026 p.30–32 | Promotion block, not a permanent category |
+| SUPER SAVE | August 2026 p.31–32 | Promotion block, not a permanent category |
+| TAPPET COVERS | June 2026 p.30 | Mechanical engine parts; hold |
+| Winches & Spares | May 2026 p.11 | Keep winches and spares related, then classify hand/ATV/trailer/vehicle application |
+| FAN BLADES | June 2026 p.15 | Confirm automotive/electrical scope before mapping |
+| HAND WINCHES (SPECIAL DISCOUNTED PRICE) | June 2026 p.31 | Classify by winch application; promotion label is not a permanent category |
+| TAPPET COVERS / ENGINE PARTS | June 2026 p.30 | Mechanical engine parts; some SKU transcription remains uncertain |
+
+## Rules to preserve during mapping
+1. Keep the exact ASC/source heading, source subcategory, source SKU, guide/month and page reference as audit evidence. Store destination root/leaf must be separate fields.
+2. Use exact SKU plus product identity, title, description and fitment. Do not map solely from source metadata or broad keywords.
+3. Do not force mechanical brakes, suspension, gearbox, engine timing, gaskets, tappet covers or generic cooling parts into Auto Electrical Spares or Automotive Accessories.
+4. Keep the exact-SKU verified corrections already recorded in the permanent handover. A broad source heading does not invalidate a specific verified SKU mapping.
+5. Preserve useful specialist subcategories under the correct approved root. Avoid flattening all products into root categories.
+6. Keep clips and fasteners together where product function agrees; keep spanners/wrenches together; separate individual tools from kits/sets; keep switches and relays in the electrical family; relate winches and winch spares while separating by application.
+7. Treat promotional headings as merchandising evidence only, not permanent categories or proof of current pricing.
+8. Where page-image verification is pending, retain that status; do not relabel OCR/text-extracted headings as visually verified.
+9. Any low-confidence or conflicting row remains in a manual-review queue. Do not delete or re-parent categories and do not update live product rows in this audit stage.
+
+## Next bounded tasks
+1. **Visual source QA:** Prioritize the 10 crosswalk headings with `evidence_status=Needs review`, then review the remaining 105 page-image-pending crosswalk entries in bounded guide/month batches. Record the checked page range and outcome; keep original source PDFs unchanged.
+2. **Taxonomy reconciliation:** Compare every source heading variant against the 71-child staging hierarchy. Confirm exact source-to-store destination, or retain a reasoned review/hold destination.
+3. **SKU-level mapping:** Build a full candidate export with product UUID, public SKU, name, description, current category path, source heading/subheading, proposed store root/leaf, confidence, evidence and review status. This is separate from this source-heading audit.
+4. **Approval gate:** No product import or category writes until source crosswalk gaps are resolved, ambiguous/mechanical items are explicitly held, and the complete active catalogue reconciles to the verified 4,187 active-product baseline in the permanent handover.
+
+## Current decision
+The source taxonomy and proposed store hierarchy are usable as a **staging review framework**, not as an import-ready final mapping. The key blockers are page-image verification and item/SKU-level resolution of the 24 review/conflict/promotion headings. No live database rows were changed.
