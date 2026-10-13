@@ -1642,3 +1642,12 @@ Obtain readable page-level content from the original June, July, August and Sept
 - Workflow edit commit: `cdb36840281731b2c3444be936883eafc6f3937a`.
 - This branch-only change should trigger the isolated extraction workflow. The follow-up run ID and OCR result have not yet been verified in this turn; do not report OCR as complete until the run succeeds and the OCR text is inspected.
 - OCR output is staging evidence only. Do not import rows until SKU, description, price, source page and category are validated.
+
+
+### 2026-10-13 continuation checkpoint — OCR workflow verification pending
+- Re-read the audit-branch handover, June–September extraction manifest, and June OCR workflow definition.
+- Confirmed the manifest is still the original text-only manifest: June has only 668 extracted characters; July 115,529; August 117,837; September 105,785. The manifest does not yet prove that the newly added June OCR step has run.
+- The workflow file on the audit branch now contains a page-by-page June OCR step using Tesseract at 200 DPI. Its change is recorded at commit `cdb36840281731b2c3444be936883eafc6f3937a`; handover update commit before this checkpoint is `59f47131b1eb80912c4978f9b357428b988be72e`.
+- The available GitHub run lookup in this session has not returned the new run ID/status, and no June OCR output was yet verified. Treat OCR as **pending**, not completed. Do not claim the workflow failed or succeeded without run evidence.
+- Safe next step: locate the Actions run for the audit branch's OCR workflow edit; if it succeeded, inspect `June_Buyers_Guide_OCR.txt`, page labels, and OCR quality; if failed, inspect job logs and repair the isolated workflow. Then verify SKU/description/price pairing on sampled July–September pages.
+- No production data or storefront deployment was changed. Main branch, Supabase, and Axxess remain untouched. Do not request attachments; the original PDFs are in the GitHub repository root.
