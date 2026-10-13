@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-13 06:23 SAST — FOLLOW-UP SMOKE AND IMAGE AUDIT DIAGNOSIS
+
+- Store Production QA #184 succeeded on commit `178fb8a973624277b68f4eee8ebcf5ead39e9e17`.
+- The image audit rerun (run 38343825541, attempt 2, job 115124761205) failed for a new reason after the eight targeted repairs: its validator only permits product-image proxy URLs and flags the newly verified exact static WebP paths as `non_public_image_reference`. The product paths are intentional and were live-verified HTTP 200 + `image/webp`; update the audit validator to accept a direct path only when it exactly equals `/assets/products_webp/{same-public-SKU}.webp` and the file exists in `assets/products_webp/`. Do not roll back the eight valid image mappings.
+- Smoke Test #629 (commit `ac18518ceb701501ca8441a805bd728b18af9866`) failed after the search-result interaction fix: the detail Add to Cart correctly opened the cart drawer, and the drawer then intercepted the next search suggestion click. Corrected workflow sequence in commit `43bc258fbb6464a213d686874c24ced5fb740d82` to close `#closeCart` after the first item is added before proceeding with the next search. Await a new run testing this latest change.
+- Task completed: isolated both failures from decoded workflow logs and applied a narrow smoke sequence correction. No production code or data changed during this step; the earlier eight image_url corrections remain in place.
+- Next: amend the image audit validator to accept exact-SKU direct WebP paths with file existence and SKU-match checks, then rerun the bounded audit. Poll the new smoke run after commit `43bc258fbb6464a213d686874c24ced5fb740d82`.
+- ETA: audit validator change and rerun 5–10 minutes; smoke run 2–5 minutes once runner starts.
+
 ## CONTINUATION LOG — 2026-10-13 06:20 SAST — EIGHT IMAGE MAPPINGS REPAIRED
 
 - Store Production QA run #183 (workflow run 38345077146, commit `b39e1db69635fc6d372c963d760cb530bec895ba`) completed SUCCESS after the new bounded check was added. That workflow checks each of the eight exact-SKU asset URLs on the canonical domain for HTTP 200 and MIME `image/webp`; therefore all eight assets passed live URL/content-type verification.
