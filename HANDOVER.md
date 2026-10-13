@@ -1406,3 +1406,12 @@ Read-only category notes:
 - A Pages run was also triggered by repository automation; this commit changes workflow documentation/trigger only, not storefront assets. Do not upload a new package to Axxess because of this test-only change.
 - Next: inspect Smoke #643 until completed and read its decoded job log. Required evidence: `PUBLIC_FALLBACK_CART_CHECKOUT_PASS`, `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/terms-and-conditions.html HTTP 200`, `PUBLIC_POLICY_PASS https://www.getwiredauto.co.za/returns-refunds.html HTTP 200`, and `STOREFRONT_SMOKE_PASS`. If it fails, use the exact failure log and make only a targeted fix.
 - Release remains **NOT SIGNED OFF** until the main-branch live checks finish successfully. QA #193, Image Audit #271, Pages #896, and Axxess package build #34 previously passed; package #34 is built but has not been uploaded in this task.
+
+
+## CONTINUATION LOG — 2026-10-13 — MAIN LIVE SMOKE TEST RESULT
+
+- Inspected main-branch Storefront Smoke Test #643: **FAILED** at the live cart persistence assertion. Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38376667841
+- Confirmed the verified-price checkout gate passed; the failure occurred after the live page loaded the formula-priced SKU `GW-B4F502E6` and displayed an `ADD TO CART` control. The workflow's click did not result in the expected `gw_cart` localStorage item. Therefore the run did not reach checkout verification or either live policy-page check; there are no policy HTTP 200 confirmations from this run.
+- This is a real unresolved public cart/test issue, not a policy-page result. Do not mark release ready or upload a new package to Axxess on this evidence.
+- Next step: inspect the product card's actual add-to-cart handler and localStorage/cart key flow, compare the iframe's storage state with the top-level page's storage, and distinguish a production defect from a test harness assumption. Make only a targeted change, then rerun the main-branch smoke test. Preserve price verification safeguards and avoid unnecessary storefront rebuilds.
+- Release status: **BLOCKED — public cart persistence assertion failed; checkout and policy-page HTTP checks remain unverified.** No production data, DNS, payment settings, or Axxess files changed during this investigation.
