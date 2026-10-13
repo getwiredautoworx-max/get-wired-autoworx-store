@@ -223,6 +223,7 @@ jobs:
             if (!publicResponse || publicResponse.status() >= 400) throw new Error('Public fallback homepage did not return a successful HTTP response');
             const publicFrame = publicPage.frameLocator('iframe').first();
             await publicFrame.locator('#allProductsLink').waitFor({timeout:25000});
+            await publicFrame.locator('#featuredGrid .product').first().waitFor({timeout:30000});
             await publicFrame.locator('#allProductsLink').click();
             console.log('PUBLIC_BEFORE_SEARCH',await publicFrame.locator('#productCount').innerText().catch(()=>'(count missing)'),(await publicFrame.locator('#allProductsGrid').innerText().catch(()=>'(grid missing)')).slice(0,350));
             await publicFrame.locator('#searchInput').fill('GW-B4F502E6');
