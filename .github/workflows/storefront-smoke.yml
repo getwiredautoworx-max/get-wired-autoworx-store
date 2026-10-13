@@ -229,7 +229,7 @@ jobs:
               await product.waitFor({timeout:20000});
               const productText = await product.innerText();
               if (productText.includes('Price on request') || !productText.includes('ADD TO CART')) throw new Error('Public storefront still blocks formula-priced SKU GW-B4F502E6: '+productText);
-              await product.getByRole('button',{name:'ADD TO CART',exact:true}).click();
+              await product.locator('button').filter({hasText:'ADD TO CART'}).first().click();
               const cart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
               if (!cart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public cart did not persist the formula-priced product');
               await publicPage.goto('https://www.getwiredauto.co.za/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
