@@ -24,6 +24,13 @@ assert.deepEqual(
     for (const viewport of [{width:390,height:844},{width:1280,height:900}]) {
       const page = await browser.newPage({ viewport });
       page.on('pageerror', error => failures.push('pageerror: '+error.message));
+      await page.addInitScript(() => {
+        const originalScrollIntoView = Element.prototype.scrollIntoView;
+        Element.prototype.scrollIntoView = function(options) {
+          if (options && typeof options === 'object') return originalScrollIntoView.call(this, {...options, behavior:'auto'});
+          return originalScrollIntoView.call(this, options);
+        };
+      });
       await page.route('https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/**', route => {
         const req = route.request();
         const cors = {
@@ -42,6 +49,7 @@ assert.deepEqual(
       assert.equal(await roots.count(), 8, 'Exactly eight root category buttons should render');
       for (let i=0;i<taxonomy.roots.length;i++) {
         const root = taxonomy.roots[i];
+        console.log('TEST_ROOT_START '+root.label+' viewport='+viewport.width);
         const rootButton = page.locator('#categoryGrid button[data-gw-root-index="'+i+'"]');
         assert.equal(await rootButton.count(), 1, 'Root button index '+i+' must exist');
         const rootButtonText = await rootButton.innerText();
