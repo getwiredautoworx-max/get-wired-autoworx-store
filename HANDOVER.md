@@ -1933,3 +1933,11 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - The first crosswalk write was superseded by a corrective commit to prevent duplicate June references from inflating occurrence counts. Current authoritative crosswalk commit: `7c5334192b6bf8768d4f18fb4593f1d848e7f1a0`. Current June index commit: `5cd821793b3c0a88a7284dadba94d1b9d6f0c738`.
 - This is a source-audit checkpoint only, not completion of the category reconciliation. The guide page images are present in the audit branch under `staging/source-extracts/june-page-images/`, but actual image-by-image visual confirmation remains outstanding.
 - No live store, product catalogue, Supabase data, payment setup, or hosting/deployment was changed.
+
+
+## CONTINUATION LOG — 2026-10-13 — JUNE CROSSWALK COMPLETENESS CHECK
+
+- Compared all 33 rows in `june-2026-ocr-category-heading-index.csv` against the authoritative 8-column `ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv` on `audit/buyer-guide-extraction`.
+- Found one missing exact source heading: `STICKERS (SPECIAL DISCOUNTED PRICE)` (June 2026 p.29–30). Added it to the crosswalk, preserving its expired promotion label as a source heading and its explicit “not visually verified” status. Commit: `f021a5afa8cbc2e5ffd5f4c1489d66578c524790`.
+- This is a completeness fix only. It does not verify the original PDF image, make the June promotional price live, or approve individual sticker SKUs. June special prices expired 30 June 2026.
+- Next action: validate the crosswalk again for CSV shape, duplicate exact source headings, June index coverage, and review flags; then continue visual/page-heading QA. No production catalogue, Supabase, payment, deployment, or Axxess changes.
