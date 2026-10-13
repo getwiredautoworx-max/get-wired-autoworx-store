@@ -177,7 +177,10 @@ jobs:
             await pricedSuggestion.waitFor({timeout:10000});
             await pricedSuggestion.click();
             await frame.locator('#productModal.open').waitFor({timeout:10000});
-            await frame.locator('#modalClose').click();
+            await frame.locator('#detailAdd').click();
+            await frame.locator('#productModal.open').waitFor({state:'detached',timeout:10000}).catch(async () => {
+              if (await frame.locator('#productModal').evaluate(el => el.classList.contains('open'))) throw new Error('Adding formula-priced product did not close the detail modal');
+            });
             await frame.locator('#searchInput').fill('GW-F165DD11');
             const verifiedCard = frame.locator('.product').filter({hasText:'GW-F165DD11'}).first();
             await verifiedCard.waitFor({timeout:15000});
