@@ -1655,3 +1655,36 @@ If the user edits this file, preserve their edits and treat the latest user-edit
 - Corrected `.github/workflows/storefront-smoke.yml` on the existing release branch to use the already identified verified-price SKU `GW-F165DD11` for the public-host add-to-cart/cart/checkout portion, while retaining the separate quote-only tests for `GW-B4F502E6`. Commit: `7531d58ae6be7f35da29a50f149290d20d956ee7`.
 - **Next:** retrieve the new branch smoke run triggered by that commit. If it fails, inspect the exact failing assertion and fix only the demonstrated defect. Do not weaken the price gate, create a live order, alter stock, merge/deploy, or consume hosting credits.
 - Hosting ZIP cleanup remains a separate pending Axxess file-manager task: repository main has no `public_html` directory, and no hosting ZIP was deleted.
+
+
+---
+
+## Automated continuation update — 2026-10-13 19:05 SAST
+
+### Background task result
+- GitHub Actions workflow: **Staging Category Navigation Chromium Acceptance**, run #3.
+- Run ID: `38435206322`; commit tested: `03cd8d9e229e4f22a899744559b477a3a7df9180`.
+- Run status: `completed`; conclusion: `success`.
+- Chromium acceptance test step `node scripts/test-staging-category-navigation.cjs` completed successfully; browser/dependency setup also succeeded.
+- Evidence: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38435206322
+- No downloadable artifacts were attached to this run. The test log endpoint did not expose the stdout payload through the current connector, so do not invent exact measured widths, category counts, or console-error counts beyond the test's successful exit and the assertions in the checked-in script.
+- This establishes that the automated staging acceptance script passed. It does **not** establish manual visual approval, production QA, payment readiness, or deployment to Axxess.
+
+### Handover/checkpoint maintenance
+- Detailed checkpoint: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/HANDOVER_CHECKPOINT_2026-10-13.md
+- Checkpoint commit before this update: `14e50f1f2af0296f30663ffd808fdc00cbf04eb7`.
+- Daily automation **Monitor Get Wired Store Tasks** was updated to include this category-acceptance workflow, the current successful result, handover-first workflow, and explicit safeguards against claiming staging success as production success.
+- Daily automation is scheduled; it is not a promise of continuous or hourly observation between runs.
+
+### Exact resume point
+1. Run a fresh check of the latest GitHub Actions runs and confirm no new failure/regression after run #3.
+2. Do the separate visual/manual mobile QA at 390px and desktop QA; inspect long labels, category/subcategory screens, back navigation, and console/network errors.
+3. Update the staging handover with observed evidence from visual QA.
+4. Continue category-to-subcategory reconciliation and buyer-guide mapping before any full catalogue import.
+5. Keep live Axxess untouched until staging acceptance plus visual QA are complete; do not restart catalogue work or perform production deployment without owner approval.
+
+### Current status
+- Automated staging category-navigation acceptance: **PASS** (run #3).
+- Visual/manual mobile QA: **NOT YET VERIFIED**.
+- Full catalogue import: **not started; preserve existing new-catalogue work**.
+- Production Axxess deployment: **not changed by this test**.
