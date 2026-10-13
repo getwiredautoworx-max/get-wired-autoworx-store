@@ -34,6 +34,8 @@ async function renderStagedGroups(){
     document.querySelector('.title p').textContent='Products are organised into clear groups so individual items and sets stay separate.';
     document.getElementById('categoryLink').href='category.html?root='+encodeURIComponent(root.slug);
     if(tools)tools.style.display='none';
+    const searchBox=document.getElementById('topSearch');
+    if(searchBox){searchBox.disabled=true;searchBox.placeholder='Product search available after catalogue import';searchBox.setAttribute('aria-label','Product search available after catalogue import');}
     grid.style.display='none';
     let candidates=(grouping.groups||[]).filter(g=>g.root_slug===root.slug);
     const label=slugText(sub.label);
