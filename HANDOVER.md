@@ -1424,3 +1424,12 @@ Read-only category notes:
 - Main-branch Storefront Smoke Test #644 is **IN PROGRESS**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38377675504
 - Next: inspect #644 after completion. If the cart assertion passes, verify the checkout marker and both policy-page HTTP 200 markers. If it fails, use its diagnostic payload to make a real targeted fix instead of masking the assertion. Do not sign off or upload a new Axxess package until the live verification is successful.
 - Current status: **BLOCKED pending Smoke Test #644**. QA #193, image audit #271, Pages deployment #896, and package build #34 passed previously. No Axxess upload, DNS change, payment configuration change, or production-data modification was made.
+
+
+## CONTINUATION LOG — 2026-10-13 — MONITORING SMOKE TEST #644 AND FOLLOW-UP FIX
+
+- Monitored Storefront Smoke Test #644 to completion. It **FAILED** before cart persistence assertion: Playwright's real click timed out because a live search suggestion overlay (`.gwResult` under the header) intercepted pointer events on the product card button. This explains the immediate failure; it does not establish that the cart handler itself is broken. Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38377675504
+- Made a targeted **test-only** fix in `.github/workflows/storefront-smoke.yml` (commit `745918edb5ee3590261632f862ddf795974fabbc`): press Escape in the product search field and wait for the suggestion overlay to hide before clicking ADD TO CART. Storefront HTML/JS and pricing logic remain unchanged.
+- Storefront Smoke Test #645 is now **IN PROGRESS** on main: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38378103401
+- Continue monitoring #645. Required success evidence: `PUBLIC_FALLBACK_CART_CHECKOUT_PASS`, HTTP 200 markers for both `terms-and-conditions.html` and `returns-refunds.html`, and `STOREFRONT_SMOKE_PASS`. If it fails, inspect the exact failure logs and make a narrowly scoped fix.
+- Release remains **BLOCKED / NOT SIGNED OFF** until all live checks pass. Do not upload an Axxess package or alter live store files for a workflow-only issue. No DNS, payment settings, inventory, or production data changed during this step.
