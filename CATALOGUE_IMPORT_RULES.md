@@ -66,3 +66,8 @@ Stock/customer status:
 - Existing price formula where verified cost excl. VAT is available: round(cost × 1.15 × 1.35, 2). Do not bulk overwrite live prices without exact source reconciliation and approval.
 
 Safeguards: preserve originals; reconcile by exact code first; use name-only matches for manual review; record file/month/page, source category, price type, image reference, live SKU match, later-guide match, action and reason. Stage and review before any production database write, category move, image edit, price/stock change or Axxess upload. No deployment should be triggered merely to inspect catalogues.
+
+
+## Extraction-quality gate — added 2026-10-13
+
+The existing June–August audit workbook is not a source-of-truth import file. Its June OCR staging has 470 rows with blank costs and generic placeholder descriptions; July/August staging contains large numbers of implausible cost values. Never import it blindly or repair decimal points by guesswork. Verify each field against the original guide page. The original monthly PDFs remain authoritative. Keep extraction QA findings separate from raw source values, and do not write live data until exact-code/category/price checks and owner review are complete.
