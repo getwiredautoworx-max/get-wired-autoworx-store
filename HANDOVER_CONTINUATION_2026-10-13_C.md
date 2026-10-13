@@ -29,3 +29,16 @@ Still unresolved:
 6. Obtain approval before any live Supabase changes, customer-facing availability edits, deployment, or Axxess upload.
 
 No live catalogue, price, category, availability, Supabase, or Axxess change occurred in this continuation.
+
+
+## Further verified progress — same session
+
+- Cross-guide candidate index: 90 distinct code tokens recurring across at least two of July/August/September extracted texts. Read-only comparison found 33 live catalogue code matches. Treat these as candidates until original-page descriptions confirm the same item; numeric and OCR tokens can create false positives. Files: [candidate index](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/july-september-exact-code-cross-guide-candidates.csv) and [live crosscheck](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/july-september-code-candidates-live-crosscheck.csv).
+- June page 3: 11 of 18 readable code candidates matched live supplier/product SKUs with matching names. See [page 3 live crosscheck](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/june-page3-sample-live-crosscheck.csv).
+- Four visually checked examples validate the exact-SKU rule and current pricing formula:
+  - SC818: June R173.89; no August/September exact-SKU listing found; live cost R173.89, live price R269.96. Status remains “Subject to price and availability confirmation.”
+  - C10-101-400: June R10.05, August p.4 R9.52; live cost R9.52, live price R14.78.
+  - A833511: June and September p.5 R55.33; same compressor hose confirmed visually; live cost R55.33, live price R85.90.
+  - 4217S-KIT: June and September p.11 R155.84; same pre-wired 7-pin socket kit confirmed visually; live cost R155.84, live price R241.94.
+- All four sample live prices equal cost excl. VAT × 1.15 × 1.35 rounded to two decimals. This does not authorize a bulk update. See [sample price/formula check](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/sku-price-formula-sample.csv).
+- Added further June headings in category register v4. The master HANDOVER.md remains unchanged after the last successful master commit because two attempts to append the latest note were blocked by connector safety checks; this small continuation file is the durable log of subsequent work until master-file editing becomes possible.
