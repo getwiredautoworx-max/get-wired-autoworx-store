@@ -1804,3 +1804,13 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Required build sequence: (1) extract and reconcile source categories from all relevant guides/catalogues; (2) present the consolidated category list for owner to assign main/subcategories; (3) complete source-led SKU/item/price/image records with source references and review status; (4) stage/import into a clean replacement catalogue; (5) validate uniqueness, category assignment, product content, image rendering, pricing and navigation; (6) verify storefront, cart and checkout; (7) clear out old catalogue records and replace them with the validated new set before launch. Because the store is not live, no rollback archive of bad catalogue content is required by owner; keep only source files and build/audit evidence needed to recreate the clean catalogue.
 - Pricing rule remains: August–September and later guides are live price/availability candidates subject to confirmation; July and earlier guides are “Subject to price and availability confirmation” unless the exact same item is advertised in August or a later guide, verified by exact SKU plus item context.
 - This is a change in scope and priority. The full source category map and source-led product ledger are still incomplete. No live catalogue rows were deleted in recording this decision.
+
+
+## CONTINUATION LOG — 2026-10-13 — Owner reports older Buyers Guides uploaded
+
+- Owner has confirmed the older Buyers Guides upload is complete. The upload itself has not yet been independently verified against the repository's current file listing; do not claim exact filenames/counts until checked.
+- Next action: verify the newly uploaded source files and preserve their original filenames; identify which months/editions are present and any duplicates/missing guides.
+- Continue the isolated source-extraction workflow only: reconcile June → July → August → September, preserve each guide's category boundaries, and verify exact SKU plus item-description context before classifying matches or prices.
+- Pricing policy: August–September and later guide listings are price/availability candidates subject to confirmation; July and earlier are “Subject to price and availability confirmation” unless the same item is verified by exact SKU and item context in August or a later guide.
+- Do not import, delete, hide, or modify storefront catalogue data at this stage. The legacy catalogue remains obsolete and is not a source of truth. No Axxess upload or production deployment is authorised by this step.
+- Status: upload reported complete; repository file verification and full page-level product/category reconciliation remain pending.
