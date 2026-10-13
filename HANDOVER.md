@@ -1101,3 +1101,10 @@ Read-only category notes:
 - Fetched `checkout-v2.html` from that branch: it is identical to current main at blob SHA `9893aaa5c07a4e39ed9736be6db8323472288c85` and still has the strict `VERIFIED_PRICE` filter with no policy checkbox. The passing branch therefore cannot resolve the identified checkout/policy blockers by itself.
 - Current policy page source files exist as HTML, but this source inspection does not prove public HTTP 200 responses or correct served content. Do not mark policy routes verified until a live/independent runner confirms status and body.
 - **Next:** do not merge either diverged branch. Keep them as evidence/reference only. The consolidated checkout + policy fix remains blocked on the permitted Axxess-first source edit or an explicitly authorised replacement source-of-truth path; after that, run main-branch smoke/public cart checkout and verify both policy routes.
+
+
+## 2026-10-13 05:47 SAST — TASK START: SAFE REBASE OF PR #9 PRICE-GATE FIX
+- User requested continuing until the checkout fix is resolved. PR #9 inspection confirms the intended fix updates `index-new.html`, `products.html`, `product.html`, `supabase/functions/store-checkout/index.ts`, and the smoke workflow, but leaves legacy `checkout-v2.html` unchanged.
+- PR #9 is currently `mergeable=false`; its base is older than current `main`. Handover commits on main increased the divergence, so merging the existing branch directly is unsafe.
+- **Approach:** create a fresh candidate branch from current main; apply the narrow price-gate/server-RPC changes against current file contents rather than copying stale full files. Include the checkout page's own product price formula gate and smoke assertions. Keep all order creation protected server-side. Run existing workflow if available; no real order or production database mutation. Do not change DNS/hosting/payment settings.
+- **ETA:** one focused code/test pass. If any expected source pattern does not match, stop that file's edit and document exact blocker rather than making broad replacements.
