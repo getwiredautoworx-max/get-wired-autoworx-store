@@ -1448,3 +1448,9 @@ Read-only category notes:
 - Corrected the test to clear the search field and wait until every suggestion element is hidden or detached from layout before attempting the real cart click.
 - Follow-up commit: `2a0776235fb9204d8ccf3cae5a4dc0f335d83be2`. Store Production QA #197 passed on the preceding test-only commit; Pages deployment #905 was cancelled as newer commits superseded it. A fresh smoke run is expected for this commit; poll the latest run and record final outcome before release sign-off.
 - No application files or Axxess production content were changed. Release remains blocked pending passing smoke verification and explicit HTTP 200 evidence for the homepage/storefront and policy pages.
+
+
+## Continuation log — 2026-10-13 09:50 SAST
+- Storefront Smoke Test #647 failed because the workflow's test harness frame wrapper does not implement `waitForFunction` (`TypeError: publicFrame.waitForFunction is not a function`). The test did not reach the cart click or public policy checks. The production QA workflow #198 passed on the same application/test change commit.
+- Replaced the unsupported frame method with Playwright's supported locator wait on the first suggestion element after clearing the search field. This remains test-only; no production storefront files changed.
+- Follow-up commit: `2168924a0838235f1abd8b1d5b612dd8053e2315`. New smoke workflow run should be polled immediately. Release sign-off is still blocked until a smoke run reaches and passes public cart/checkout and HTTP checks for both policy URLs.
