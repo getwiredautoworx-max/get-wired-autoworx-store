@@ -1010,3 +1010,12 @@ Read-only category notes:
 - **Scope:** workflow diagnostics only. Do not edit storefront HTML, policy text, DNS, hosting, payment configuration, or production data in this task.
 - **ETA:** one diagnostic run.
 - **NEXT ACTION:** extend the existing live-browser diagnostic step to list policy footer links and fetch their actual hrefs, then monitor the run to terminal state and record results.
+
+
+## 2026-10-13 — PRICE-GATE / CHECKOUT RELEASE ACTION
+
+- Database audit: all 4,187 active products match cost × 1.15 VAT × 1.35; only 107 had the old verified flag. Frontend and server-side validation are being aligned so positive-priced products remain purchasable unless explicitly marked `QUOTE_REQUIRED`.
+- Supabase `create_store_order_v2` is deployed and tested with a transaction that was explicitly rolled back. The `store-checkout` Edge Function is version 4 and calls this RPC. No real order was created and stock remains unchanged.
+- Public runner reached `https://www.getwiredauto.co.za/store` and confirmed the live catalogue API returns all 4,187 active products. The live UI still shows `GW-B4F502E6` (R105.31, stock 5) as quote-only because the current production branch still uses the old metadata gate.
+- Targeted production-branch fix is prepared in `fix/main-price-gate-checkout-2026-10-13`. Local smoke and the safe invalid-request probe passed on the release candidate; the public cart/checkout check is configured to run only on main after deployment.
+- Remaining: merge the targeted fix, wait for Cloudflare Pages / GitHub Pages deployment, rerun public cart/checkout smoke, commit the SQL migration source, and integrate/verify payment providers. PayFast is not integrated; PayJustNow remains unverified. Do not create a real test order without authorization.

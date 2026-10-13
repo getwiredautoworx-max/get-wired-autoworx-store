@@ -14,7 +14,7 @@ Deno.serve(async (req: Request) => {
     const body = await req.json();
     if (!body || typeof body !== "object") throw new Error("Invalid order request.");
 
-    const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method"];
+    const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method","p_delivery_quote"];
     const payload: Record<string, unknown> = {};
     for (const key of allowed) payload[key] = body[key];
 
@@ -55,7 +55,7 @@ Deno.serve(async (req: Request) => {
       throw new Error("Every cart item must have a valid public SKU.");
     }
     const productsUrl = new URL(supabaseUrl + "/rest/v1/products");
-    productsUrl.searchParams.set("select", "public_sku,active,specifications");
+    productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price");
     productsUrl.searchParams.set("public_sku", "in.(" + publicSkus.join(",") + ")");
     productsUrl.searchParams.set("active", "eq.true");
     const productCheck = await fetch(productsUrl, {
@@ -65,10 +65,14 @@ Deno.serve(async (req: Request) => {
     const verifiedRows = await productCheck.json();
     const verifiedSkus = new Set(
       verifiedRows
-        .filter((product: Record<string, unknown>) =>
-          product.active === true &&
-          (product.specifications as Record<string, unknown> | null)?.price_status === "VERIFIED_PRICE"
-        )
+        .filter((product: Record<string, unknown>) => {
+          const spec = product.specifications as Record<string, unknown> | null;
+          const price = Number(product.price), cost = Number(product.cost_price);
+          const expected = Math.round(cost * 1.15 * 1.35 * 100) / 100;
+          return product.active === true && spec?.price_status !== "QUOTE_REQUIRED" &&
+            Number.isFinite(price) && price > 0 && Number.isFinite(cost) && cost > 0 &&
+            Math.abs(price - expected) < 0.011;
+        })
         .map((product: Record<string, unknown>) => String(product.public_sku))
     );
     const blockedSkus = publicSkus.filter(sku => !verifiedSkus.has(sku));
@@ -80,7 +84,7 @@ Deno.serve(async (req: Request) => {
       }), { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order", {
+    const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
       method: "POST",
       headers: adminHeaders,
       body: JSON.stringify(payload),
