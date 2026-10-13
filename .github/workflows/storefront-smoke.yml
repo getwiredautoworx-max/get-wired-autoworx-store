@@ -299,7 +299,7 @@ jobs:
               await page.setViewportSize({width:v.width,height:v.height});
               await page.waitForTimeout(250);
               const layout=await page.evaluate(()=>({viewport:innerWidth,docWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,gridColumns:getComputedStyle(document.querySelector('#categoryGrid')).gridTemplateColumns,categoryCount:document.querySelectorAll('#categoryGrid .catWrap').length}));
-              if(layout.docWidth>v.width+2||layout.bodyWidth>v.width+2) throw new Error(v.name+' horizontal overflow: '+JSON.stringify(layout));
+              if(layout.docWidth>v.width+2||layout.bodyWidth>v.width+2){const offenders=await page.evaluate(()=>Array.from(document.querySelectorAll('body *')).map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),position:s.position,overflowX:s.overflowX,text:(el.innerText||'').slice(0,55)}}).filter(x=>x.width>0&&(x.right>innerWidth+2||x.left< -2)).sort((a,b)=>b.right-a.right).slice(0,20));throw new Error(v.name+' horizontal overflow: '+JSON.stringify({layout,offenders}));}
               if(layout.categoryCount<8) throw new Error(v.name+' lost category cards after resize: '+JSON.stringify(layout));
               results.push({viewport:v.name,...layout});
             }
