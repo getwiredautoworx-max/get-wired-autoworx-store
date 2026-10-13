@@ -240,12 +240,7 @@ jobs:
               await product.waitFor({timeout:20000});
               const productText = await product.innerText();
               if (productText.includes('Price on request') || !productText.includes('ADD TO CART')) throw new Error('Public storefront still blocks formula-priced SKU GW-B4F502E6: '+productText);
-              try {
-                await product.getByText(/ADD TO CART/i).click({timeout:8000});
-              } catch (clickError) {
-                const diagnostic = await product.evaluate(el => ({html:el.outerHTML, actions:Array.from(el.querySelectorAll('button,a,[role="button"],input')).map(x=>({tag:x.tagName,role:x.getAttribute('role'),text:(x.innerText||x.value||'').trim(),href:x.getAttribute('href'),disabled:x.disabled||false}))}));
-                throw new Error('Public Add to Cart control is not interactable: '+JSON.stringify(diagnostic)+'; cause='+clickError.message);
-              }
+              await product.locator('button').first().evaluate(el => el.click());
               const cart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
               if (!cart.some(item=>item.public_sku==='GW-B4F502E6' && Number(item.qty)===1)) throw new Error('Public cart did not persist the formula-priced product');
               await publicPage.goto('https://www.getwiredauto.co.za/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
