@@ -104,16 +104,14 @@ jobs:
           node <<'NODE'
           const { chromium } = require('playwright');
           const base = 'https://getwiredautoworx-max.github.io/get-wired-autoworx-store';
-          const supabase = 'https://ojytykqpvonxvepprgbh.supabase.co';
+          const browser = await chromium.launch({headless:true});
           (async () => {
-            const browser = await chromium.launch({headless:true});
             try {
               const page = await browser.newPage({viewport:{width:390,height:844}});
               let interceptedOrder = false;
-              page.on('pageerror', e => console.log('PUBLIC_CHECKOUT_PAGE_ERROR='+e.message));
+              page.on('pageerror', e => console.log('PUBLIC_CHECKOUT_PAGE_ERROR=' + e.message));
               await page.addInitScript(() => localStorage.setItem('gw_cart', JSON.stringify([{id:'00000000-0000-0000-0000-000000000001',qty:1}])));
-              await page.route(new RegExp(supabase.replace(/[.*+?^${}()|[\]\\]/g, '\\          echo "PUBLIC_URL_HTTP_CHECK_PASS: homepage, Terms and Conditions, and Returns/Refunds all returned HTTP 200."
-') + '/rest/v1/products(?:\\?.*)?), async route => {
+              await page.route('**/rest/v1/products*', async route => {
                 const req = route.request();
                 const cors = {
                   'access-control-allow-origin':'*',
@@ -123,8 +121,7 @@ jobs:
                 };
                 if (req.method() === 'OPTIONS') return route.fulfill({status:204,headers:cors,body:''});
                 return route.fulfill({
-                  status:200, contentType:'application/json',
-                  headers:cors,
+                  status:200, contentType:'application/json', headers:cors,
                   body:JSON.stringify([{
                     id:'00000000-0000-0000-0000-000000000001',
                     name:'Safe Test Verified Item',public_sku:'GW-TEST0001',price:100,
@@ -133,8 +130,7 @@ jobs:
                   }])
                 });
               });
-              await page.route(new RegExp(supabase.replace(/[.*+?^${}()|[\]\\]/g, '\\          echo "PUBLIC_URL_HTTP_CHECK_PASS: homepage, Terms and Conditions, and Returns/Refunds all returned HTTP 200."
-') + '/functions/v1/store-checkout(?:\\?.*)?), async route => {
+              await page.route('**/functions/v1/store-checkout*', async route => {
                 const req = route.request();
                 const cors = {
                   'access-control-allow-origin':'*',
@@ -154,15 +150,15 @@ jobs:
               await page.locator('#checkout').waitFor({state:'visible',timeout:20000});
               const summary = await page.locator('#summaryTotal').innerText();
               const items = await page.locator('#items').innerText();
-              console.log('PUBLIC_CHECKOUT_ITEM='+items.replace(/\s+/g,' ').trim());
-              console.log('PUBLIC_CHECKOUT_INITIAL_TOTAL='+summary);
+              console.log('PUBLIC_CHECKOUT_ITEM=' + items.replace(/\s+/g,' ').trim());
+              console.log('PUBLIC_CHECKOUT_INITIAL_TOTAL=' + summary);
               if (!items.includes('Safe Test Verified Item')) throw new Error('Fixture product was not rendered.');
               if (!summary.includes('135')) throw new Error('Expected R135 total (R100 item + R35 packaging, free pickup) not rendered.');
               await page.locator('#fulfilment').selectOption('pickup');
               await page.locator('#name').fill('Safe Browser Test');
               await page.locator('#phone').fill('0700000000');
               const policyCheckboxCount = await page.locator('#form input[type="checkbox"]').count();
-              console.log('CHECKOUT_POLICY_ACCEPTANCE_CHECKBOX_COUNT='+policyCheckboxCount);
+              console.log('CHECKOUT_POLICY_ACCEPTANCE_CHECKBOX_COUNT=' + policyCheckboxCount);
               await page.locator('#form button[type="submit"]').click();
               await page.waitForFunction(() => document.querySelector('#msg')?.textContent.includes('SAFE_TEST_BLOCKED'), null, {timeout:10000});
               if (!interceptedOrder) throw new Error('Expected checkout submission to be intercepted before network.');
