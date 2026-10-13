@@ -23,8 +23,29 @@ Deno.serve(async (req: Request) => {
     if (payload.p_items.length > 100) throw new Error("Too many cart items.");
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const secret = Deno.env.get("SUPABASE_SECRET_KEYS") || Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    let secret: string | null = null;
+    let usesSecretApiKey = false;
+    const secretKeysEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
+    if (secretKeysEnv) {
+      try {
+        const parsed = JSON.parse(secretKeysEnv);
+        if (typeof parsed === "string") secret = parsed;
+        else if (parsed && typeof parsed.default === "string") secret = parsed.default;
+      } catch {
+        // Support a plain secret value if the runtime exposes one rather than the documented JSON object.
+        secret = secretKeysEnv;
+      }
+      usesSecretApiKey = Boolean(secret);
+    }
+    if (!secret) secret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || null;
     if (!supabaseUrl || !secret) throw new Error("Checkout service is not configured.");
+
+    // New sb_secret keys are sent in apikey only; legacy service-role JWTs also use Authorization.
+    const adminHeaders: Record<string, string> = {
+      apikey: secret,
+      "Content-Type": "application/json",
+    };
+    if (!usesSecretApiKey) adminHeaders.Authorization = "Bearer " + secret;
 
     // Only products with an explicitly verified current selling price may enter paid checkout.
     // The RPC is service_role-only, so this server-side gate cannot be bypassed by the public client.
@@ -38,7 +59,7 @@ Deno.serve(async (req: Request) => {
     productsUrl.searchParams.set("public_sku", "in.(" + publicSkus.join(",") + ")");
     productsUrl.searchParams.set("active", "eq.true");
     const productCheck = await fetch(productsUrl, {
-      headers: { apikey: secret, Authorization: "Bearer " + secret },
+      headers: adminHeaders,
     });
     if (!productCheck.ok) throw new Error("Unable to verify current product prices. Please try again.");
     const verifiedRows = await productCheck.json();
@@ -61,7 +82,7 @@ Deno.serve(async (req: Request) => {
 
     const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order", {
       method: "POST",
-      headers: { apikey: secret, Authorization: "Bearer " + secret, "Content-Type": "application/json" },
+      headers: adminHeaders,
       body: JSON.stringify(payload),
     });
 
