@@ -169,3 +169,61 @@ jobs:
             }
           })().catch(e => { console.error(e); process.exit(1); });
           NODE
+
+      - name: Diagnose live public product grid and iframe routing
+        shell: bash
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              const page = await browser.newPage({viewport:{width:390,height:844}});
+              page.on('request', req => {
+                if (req.url().includes('supabase.co/rest/v1/products')) console.log('LIVE_PRODUCT_REQUEST='+req.method()+' '+req.url().slice(0,500));
+              });
+              page.on('response', res => {
+                if (res.url().includes('supabase.co/rest/v1/products')) console.log('LIVE_PRODUCT_RESPONSE='+res.status()+' '+res.url().slice(0,500));
+                if (res.url().includes('index-new.html') || res.url().endsWith('/store') || res.url().endsWith('/store/')) console.log('LIVE_PAGE_RESPONSE='+res.status()+' '+res.url());
+              });
+              page.on('requestfailed', req => {
+                if (req.url().includes('supabase.co/rest/v1/products')) console.log('LIVE_PRODUCT_REQUEST_FAILED='+req.failure()?.errorText+' '+req.url().slice(0,500));
+              });
+              const response = await page.goto('https://www.getwiredauto.co.za/store',{waitUntil:'domcontentloaded',timeout:45000});
+              console.log('LIVE_STORE_HTTP_STATUS='+(response?response.status():'no-response'));
+              console.log('LIVE_STORE_FINAL_URL='+page.url());
+              await page.waitForTimeout(6000);
+              console.log('LIVE_STORE_FRAMES='+JSON.stringify(page.frames().map(f=>({name:f.name(),url:f.url()}))));
+              const frame = page.frames().find(f=>f.url().includes('index-new.html')) || page.frames().find(f=>f!==page.mainFrame());
+              if (!frame) {
+                console.log('LIVE_GRID_DIAGNOSTIC_WARNING=No embedded store frame was found.');
+              } else {
+                const info = await frame.evaluate(() => ({
+                  url:location.href,
+                  title:document.title,
+                  body:document.body?.innerText?.slice(0,1000)||'',
+                  productCount:document.querySelector('#productCount')?.innerText||'',
+                  allProductsText:document.querySelector('#allProductsGrid')?.innerText?.slice(0,500)||'',
+                  searchInput:!!document.querySelector('#searchInput'),
+                  allProductsLink:!!document.querySelector('#allProductsLink')
+                })).catch(e=>({error:e.message,url:frame.url()}));
+                console.log('LIVE_GRID_INITIAL_DIAGNOSTIC='+JSON.stringify(info));
+                const search = frame.locator('#searchInput');
+                if (await search.count()) {
+                  await search.fill('GW-B4F502E6');
+                  await page.waitForTimeout(3000);
+                  const after = await frame.evaluate(() => ({
+                    productCount:document.querySelector('#productCount')?.innerText||'',
+                    allProductsText:document.querySelector('#allProductsGrid')?.innerText?.slice(0,800)||'',
+                    productCards:document.querySelectorAll('#allProductsGrid .product').length,
+                    body:document.body?.innerText?.slice(0,1000)||''
+                  })).catch(e=>({error:e.message}));
+                  console.log('LIVE_GRID_SKU_SEARCH_DIAGNOSTIC='+JSON.stringify(after));
+                }
+              }
+              console.log('LIVE_GRID_DIAGNOSTIC_COMPLETE');
+            } finally {
+              await browser.close();
+            }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
