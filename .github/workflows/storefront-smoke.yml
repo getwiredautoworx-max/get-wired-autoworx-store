@@ -253,8 +253,17 @@ jobs:
             const publicCart = await publicPage.evaluate(() => JSON.parse(localStorage.getItem('gw_cart') || '[]'));
             if (!publicCart.some(item=>item.public_sku==='GW-F165DD11' && Number(item.qty)===1)) throw new Error('Public fallback host did not persist the product in cart');
             await publicPage.goto('https://getwiredautoworx-max.github.io/get-wired-autoworx-store/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:30000});
-            await publicPage.locator('#summaryTotal').waitFor({timeout:20000});
-            if (!(await publicPage.locator('#packagingSummary').innerText()).includes('Packaging:') || !(await publicPage.locator('#items').innerText()).includes('GW-F165DD11')) throw new Error('Public fallback checkout did not load cart items and packaging summary');
+            // #summaryTotal is present in the initial HTML before the asynchronous product
+            // verification request completes. Wait for the verified cart item itself, not a
+            // static shell element, before asserting checkout totals and packaging.
+            try {
+              await publicPage.locator('#items').getByText('GW-F165DD11').waitFor({timeout:30000});
+            } catch (error) {
+              const checkoutDiag = await publicPage.locator('body').innerText().catch(()=>'(body unavailable)');
+              const checkoutCart = await publicPage.evaluate(() => localStorage.getItem('gw_cart'));
+              throw new Error('Public fallback checkout item did not render after async product verification. cart='+checkoutCart+' body='+checkoutDiag.slice(0,1200));
+            }
+            if (!(await publicPage.locator('#packagingSummary').innerText()).includes('Packaging:')) throw new Error('Public fallback checkout did not render the packaging summary');
             console.log('PUBLIC_FALLBACK_CART_CHECKOUT_PASS');
             await publicPage.close();
 
