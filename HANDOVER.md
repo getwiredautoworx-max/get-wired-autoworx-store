@@ -1760,3 +1760,10 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - These are **OCR-discovered candidate headings, not an approved final category map**. The OCR has noisy characters and uncertain page layout, and category headings may be main categories, subcategories, or promotional-page groupings. Do not create database categories from this list without checking source page layout and comparing July–September guides.
 - No category or product import was performed. No database writes or live-store changes occurred. The previous read-only counts remain only a point-in-time inventory.
 - Next task: build a source-grounded category reconciliation table across June, July, August and September, keeping raw heading, source guide/page, proposed parent category, confidence, and review status. Need visual review of source pages to resolve hierarchy before any category creation. Continue to keep all work on the audit branch.
+
+
+## PRE-TASK CHECKPOINT — 2026-10-13 — Reconcile buyer-guide category hierarchy (read-only)
+- Task: build a first-pass category reconciliation table across June, July, August and September guides using the committed text extracts and June OCR; separately identify the live catalogue source and reversible reset requirements if source evidence is available.
+- Scope: read-only inspection of audit branch source extracts, main branch storefront entry points/scripts, and read-only Supabase metadata. No product/category mutations, no production visibility changes, no deployment.
+- Method: compare repeated section headings and candidate category labels; preserve guide/page provenance; classify OCR-only ambiguous headings as review-needed. Inspect storefront script/data references to establish whether product records are fetched from Supabase or embedded statically.
+- Success criteria: a draft comparison table with per-guide presence, source page(s), hierarchy confidence, and unresolved items; documented live source evidence or explicit blocker. No category import until map is checked.
