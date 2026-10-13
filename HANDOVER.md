@@ -1,3 +1,13 @@
+## CONTINUATION LOG — 2026-10-13 — RESUME VALIDATION AFTER TAXONOMY STAGING
+
+- Re-read the canonical `HANDOVER.md` on `main` and resumed from the newest category-hierarchy checkpoint on `audit/buyer-guide-extraction`; no rebuild, deployment, or live-store edit was started.
+- Revalidated the staged ASC source crosswalk: 115 data rows, 8 columns, zero duplicate exact source-heading keys. Revalidated June's OCR heading index: 33 rows, 7 columns, and all 33 exact OCR headings are represented in the crosswalk.
+- Revalidated the hierarchy JSON: all eight approved customer-facing roots are present with 71 subcategory entries; no duplicate subcategory slugs occur within any one root. The same slug `garden-tools` exists under Tools, Hardware & Consumables and Camping, Leisure & Outdoors, with different source references; this is acceptable only while routing is root-scoped (`root + subcategory`) and should be checked in browser navigation before release.
+- The taxonomy remains explicitly staging-only: `live_catalogue_enabled=false`, status `STAGING_TAXONOMY_ONLY_NOT_APPROVED_FOR_PRODUCT_IMPORT`. 106 crosswalk rows still carry pending/not-visually-verified page-image status, so source-page QA is still a major blocker. No claim of visual verification was made because binary guide images could not be inspected through the available repository connector in this step.
+- Confirmed next sequence: (1) inspect original guide page images through a working visual route, starting with June OCR-only headings and the ambiguous TOC ranges; (2) record each verified/pending result in the crosswalk; (3) only then build the exact-SKU product staging ledger and validate group assignments against actual rows; (4) browser-test root -> subcategory -> product group flow on a safe preview; (5) update handover after each material change.
+- Preserved constraints: old/incorrect catalogue is not a recovery target; do not import legacy products; keep clips together, spanners/wrenches together, and winches with winch spares; match images only by exact SKU; keep August–September/later price and availability as confirmation-required, and older guide prices subject to price/availability confirmation unless the exact SKU and item context are verified in August or later.
+- No production catalogue, Supabase data, Axxess, DNS, payment settings, checkout, or live deployment changes occurred.
+
 ## CONTINUATION LOG — 2026-10-13 — TAXONOMY DECOUPLED FROM LEGACY DATABASE IDS
 
 - Removed all legacy Supabase category IDs from both hierarchy JSON files. The staged hierarchy now depends on the approved root slugs and crosswalk evidence only; the staged category screens do not rely on old category IDs or old catalogue rows.
