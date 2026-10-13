@@ -24,9 +24,17 @@ assert.deepEqual(
     for (const viewport of [{width:390,height:844},{width:1280,height:900}]) {
       const page = await browser.newPage({ viewport });
       page.on('pageerror', error => failures.push('pageerror: '+error.message));
-      await page.route('https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/**', route =>
-        route.fulfill({ status:200, contentType:'application/json', headers:{'access-control-allow-origin':'*'}, body:'[]' })
-      );
+      await page.route('https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/**', route => {
+        const req = route.request();
+        const cors = {
+          'access-control-allow-origin':'*',
+          'access-control-allow-methods':'GET, OPTIONS',
+          'access-control-allow-headers':'apikey,authorization,prefer,range,content-type',
+          'access-control-max-age':'600'
+        };
+        if (req.method() === 'OPTIONS') return route.fulfill({status:204,headers:cors,body:''});
+        return route.fulfill({status:200,contentType:'application/json',headers:cors,body:'[]'});
+      });
       const response = await page.goto('http://127.0.0.1:4174/index-new-staging-test.html', { waitUntil:'domcontentloaded' });
       assert.ok(response && response.status() === 200, 'Staging HTML should load over local HTTP');
       const roots = page.locator('#categoryGrid button[data-gw-root-index]');
