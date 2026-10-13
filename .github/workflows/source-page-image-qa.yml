@@ -1,0 +1,51 @@
+name: Source Heading Page Image QA (Staging Only)
+on:
+  push:
+    branches: [audit/buyer-guide-extraction]
+    paths:
+      - 'staging/source-extracts/page-image-qa-manifest-2026-10-13.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render-source-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/buyer-guide-extraction
+      - name: Install PDF renderer
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: Fetch source PDFs from main and render selected pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          mkdir -p artifacts/source-page-qa
+          git show 'origin/main:Feb Buy'''s Guide.pdf' > /tmp/feb.pdf
+          git show 'origin/main:March Buy'''s Guide.pdf' > /tmp/march.pdf
+          git show 'origin/main:May Buyers Guide.pdf' > /tmp/may.pdf
+          pdftoppm -f 5 -l 5 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p05-aerial
+          pdftoppm -f 6 -l 6 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p06-accessories
+          pdftoppm -f 7 -l 7 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p07-accessories
+          pdftoppm -f 8 -l 8 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p08-accessories
+          pdftoppm -f 12 -l 12 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p12-globes
+          pdftoppm -f 14 -l 14 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p14-fuses
+          pdftoppm -f 36 -l 36 -png -r 100 -singlefile /tmp/feb.pdf artifacts/source-page-qa/feb-p36-security
+          pdftoppm -f 5 -l 5 -png -r 100 -singlefile /tmp/march.pdf artifacts/source-page-qa/mar-p05-gauges
+          pdftoppm -f 6 -l 6 -png -r 100 -singlefile /tmp/march.pdf artifacts/source-page-qa/mar-p06-gauges
+          pdftoppm -f 8 -l 8 -png -r 100 -singlefile /tmp/march.pdf artifacts/source-page-qa/mar-p08-globes
+          pdftoppm -f 24 -l 24 -png -r 100 -singlefile /tmp/march.pdf artifacts/source-page-qa/mar-p24-sockets
+          pdftoppm -f 28 -l 28 -png -r 100 -singlefile /tmp/march.pdf artifacts/source-page-qa/mar-p28-security
+          pdftoppm -f 7 -l 7 -png -r 100 -singlefile /tmp/may.pdf artifacts/source-page-qa/may-p07-mirrors
+          pdftoppm -f 9 -l 9 -png -r 100 -singlefile /tmp/may.pdf artifacts/source-page-qa/may-p09-fuses
+          pdftoppm -f 15 -l 15 -png -r 100 -singlefile /tmp/may.pdf artifacts/source-page-qa/may-p15-ignition-coils
+          pdftoppm -f 18 -l 18 -png -r 100 -singlefile /tmp/may.pdf artifacts/source-page-qa/may-p18-booster-cables
+          test "$(find artifacts/source-page-qa -name '*.png' | wc -l)" -eq 16
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-heading-page-images-qa
+          path: artifacts/source-page-qa/*.png
+          if-no-files-found: error
+          retention-days: 7

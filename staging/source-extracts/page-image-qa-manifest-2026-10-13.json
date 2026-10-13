@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-13",
+  "status": "STAGING_VISUAL_QA_BATCH_PENDING_REVIEW",
+  "purpose": "Render source guide pages for crosswalk headings marked Needs review. Page numbers are PDF page indices as recorded in the crosswalk.",
+  "items": [
+    {
+      "heading": "AERIAL",
+      "file": "Feb Buyer's Guide.pdf",
+      "pdf_page": 5
+    },
+    {
+      "heading": "AUTOMOTIVE ACCESSORIES",
+      "file": "Feb Buyer's Guide.pdf",
+      "pdf_page": 6
+    },
+    {
+      "heading": "AUTOMOTIVE ACCESSORIES",
+      "file": "Feb Buyer's Guide.pdf",
+      "pdf_page": 7
+    },
+    {
+      "heading": "Accessories",
+      "file": "Feb Buyer's Guide.pdf",
+      "pdf_page": 8
+    },
+    {
+      "heading": "GLOBES",
+      "file": "Feb Buyer's Guide.pdf",
+      "pdf_page": 12
+    },
+    {
+      "heading": "FUSES",
+      "file": "Feb Buyer's Guide.pdf",
+      "pdf_page": 14
+    },
+    {
+      "heading": "SECURITY",
+      "file": "Feb Buyer's Guide.pdf",
+      "pdf_page": 36
+    },
+    {
+      "heading": "GAUGES",
+      "file": "March Buyer's Guide.pdf",
+      "pdf_page": 5
+    },
+    {
+      "heading": "GAUGES",
+      "file": "March Buyer's Guide.pdf",
+      "pdf_page": 6
+    },
+    {
+      "heading": "GLOBES",
+      "file": "March Buyer's Guide.pdf",
+      "pdf_page": 8
+    },
+    {
+      "heading": "SOCKETS",
+      "file": "March Buyer's Guide.pdf",
+      "pdf_page": 24
+    },
+    {
+      "heading": "SECURITY",
+      "file": "March Buyer's Guide.pdf",
+      "pdf_page": 28
+    },
+    {
+      "heading": "MIRRORS",
+      "file": "May Buyers Guide.pdf",
+      "pdf_page": 7
+    },
+    {
+      "heading": "FUSES",
+      "file": "May Buyers Guide.pdf",
+      "pdf_page": 9
+    },
+    {
+      "heading": "IGNITION COILS",
+      "file": "May Buyers Guide.pdf",
+      "pdf_page": 15
+    },
+    {
+      "heading": "BOOSTER CABLES",
+      "file": "May Buyers Guide.pdf",
+      "pdf_page": 18
+    }
+  ]
+}
