@@ -9,7 +9,7 @@ const { pathToFileURL } = require('url');
  const errors=[]; page.on('pageerror',e=>errors.push(e.message));
  await page.goto(pathToFileURL(path.resolve('index-new.html')).href,{waitUntil:'domcontentloaded'});
  await page.waitForSelector('#categoryGrid [data-gw-root-index]',{timeout:15000});
- await page.screenshot({path:'artifacts/category-home-mobile-390.png',fullPage:true});
+ await page.screenshot({path:'artifacts/category-home-mobile-390.png',fullPage:false});
  const roots=page.locator('#categoryGrid [data-gw-root-index]');
  const rootCount=await roots.count();
  if(rootCount!==8) throw new Error('Expected 8 root categories, got '+rootCount);
