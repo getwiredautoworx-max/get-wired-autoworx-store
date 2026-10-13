@@ -216,7 +216,7 @@ jobs:
 
             await page.setViewportSize({width:1280,height:900});
             const publicPage = await browser.newPage({viewport:{width:390,height:844}});
-            publicPage.on('response',response=>{if(response.url().includes('supabase.co/rest/v1/products')) console.log('PUBLIC_PRODUCTS_API',response.status(),response.url().slice(0,260));});
+            publicPage.on('response',async response=>{if(response.url().includes('supabase.co/rest/v1/products')){const body=await response.text().catch(()=> '');console.log('PUBLIC_PRODUCTS_API',response.status(),'range='+response.headers()['content-range'],'bytes='+body.length,'hasB4='+body.includes('GW-B4F502E6'),'hasF165='+body.includes('GW-F165DD11'));}});
             publicPage.on('requestfailed',request=>{if(request.url().includes('supabase.co/rest/v1/products')) console.log('PUBLIC_PRODUCTS_REQUEST_FAILED',request.failure()?.errorText,request.url().slice(0,260));});
             publicPage.on('console',message=>{if(message.type()==='error')console.log('PUBLIC_BROWSER_ERROR',message.text().slice(0,500));});
             const publicResponse = await publicPage.goto('https://getwiredautoworx-max.github.io/get-wired-autoworx-store/',{waitUntil:'domcontentloaded',timeout:45000});
@@ -224,6 +224,7 @@ jobs:
             const publicFrame = publicPage.frameLocator('iframe').first();
             await publicFrame.locator('#allProductsLink').waitFor({timeout:25000});
             await publicFrame.locator('#allProductsLink').click();
+            console.log('PUBLIC_BEFORE_SEARCH',await publicFrame.locator('#productCount').innerText().catch(()=>'(count missing)'),(await publicFrame.locator('#allProductsGrid').innerText().catch(()=>'(grid missing)')).slice(0,350));
             await publicFrame.locator('#searchInput').fill('GW-B4F502E6');
             const publicProduct = publicFrame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
             try {
