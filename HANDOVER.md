@@ -852,3 +852,14 @@ Read-only category notes:
 - PayFast readiness remains separate: submit a public URL only as the merchant review URL if the merchant portal accepts the GitHub Pages host, but do not claim PayFast is integrated or live. Confirm provider requirements and implement/test payment callbacks and return URLs only in a planned consolidated payment task. Keep `https://www.getwiredauto.co.za/` as intended canonical host until DNS/hosting mapping is verified.
 - No production database, orders, DNS, hosting settings, payment settings, or Edge Function code changed. No new deploy triggered by this read-only inspection.
 - Next task: run the candidate-host cart/checkout smoke test and separately plan payment integration. Do not restart catalogue reconciliation or repeat the same DNS-resolution attempts from the isolated assistant environment.
+
+
+## 2026-10-13 — CHECKOUT REPAIR AND VERIFICATION
+
+- Pricing audit: 4,187 active products all match cost × 1.15 VAT × 1.35 markup. Only 107 had the old explicit verified-price flag, which incorrectly blocked the other 4,080 products. Storefront and server-side checks now allow positive-priced products unless explicitly marked `QUOTE_REQUIRED`, and validate the price formula against the database.
+- Created `create_store_order_v2` in Supabase to use the current `public_sku`, `active`, and `stock_quantity` schema; it calculates prices from the database, adds R35 packaging per item, validates live delivery quotes, and leaves payment pending. Supabase Edge Function `store-checkout` version 4 now calls this RPC and forwards the delivery quote.
+- Safe rollback test returned R44.62 subtotal + R35 packaging = R79.62 total. After rollback, the database still had 0 orders and the test product still had stock 5. The rollback consumed order number 100001; the first committed order may be 100002 (normal identity-sequence gap).
+- GitHub Actions smoke run `38340210241` passed: live invalid-request rejection, 9 populated main categories, 12 populated Auto Electrical options, exact-SKU product image loaded at 400px, metadata leak guard, and `STOREFRONT_SMOKE_PASS`. Cloudflare Pages check succeeded for the release candidate. Separate Workers Builds and Netlify checks failed; Netlify was not changed.
+- Public fallback pages were confirmed by the user to load. The canonical `https://www.getwiredauto.co.za/` is still unverified. Checkout still offers Direct EFT / bank payment only; PayFast card checkout is not integrated and PayJustNow status remains unverified.
+- No real order or stock change was made. The Supabase RPC was applied directly; a matching migration file still needs to be committed to keep the database change reproducible.
+- Next: verify the candidate host's cart/checkout journey, commit the SQL migration source, and then handle payment-provider integration. Do not create a real test order without permission or restart catalogue reconciliation.
