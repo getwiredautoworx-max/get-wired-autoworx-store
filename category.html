@@ -1,27 +1,50 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02060d"><title>Shop Categories | Get Wired AutoWorx</title><style>:root{--bg:#02060d;--blue:#08a5ff;--white:#f5f8fc;--muted:#9fb1c4}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#0d2d4b,#030914 42%,#02060d 78%);color:var(--white);font-family:Arial,Helvetica,sans-serif}.header{position:sticky;top:0;z-index:5;background:rgba(2,6,13,.97);backdrop-filter:blur(12px);border-bottom:1px solid #0c3b60}.head{max-width:1400px;margin:auto;min-height:82px;display:flex;align-items:center;gap:14px;padding:8px 14px}.logo{height:66px;width:min(330px,62vw);object-fit:contain}.back{border:1px solid #087fe0;background:#06111e;color:#fff;border-radius:9px;padding:10px 13px;font-weight:800;cursor:pointer}.search{margin-left:auto}.search input{width:min(430px,42vw);background:#050d18;border:2px solid #087fe0;border-radius:28px;padding:12px 17px;color:#fff;font-size:15px;outline:none}.wrap{max-width:1400px;margin:auto;padding:22px 18px 80px}.crumb{color:#8fa4b8;font-size:13px;margin-bottom:12px}.crumb a{color:#20b1ff;text-decoration:none}.title{display:flex;align-items:end;justify-content:space-between;gap:15px;border-bottom:1px solid #12456c;padding-bottom:14px;margin-bottom:20px}.title h1{font-size:30px;margin:0}.title p{margin:5px 0 0;color:var(--muted)}.count{color:#8fa4b8;font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{display:flex;flex-direction:column;justify-content:space-between;min-height:145px;background:linear-gradient(145deg,#0b1b30,#050d18);border:2px solid #087fe0;border-radius:14px;padding:20px;text-decoration:none;color:#fff;transition:.15s}.card:hover{transform:translateY(-2px);border-color:#20b1ff;box-shadow:0 12px 35px #000}.card h2{font-size:18px;margin:0 0 12px}.arrow{color:#20b1ff;font-size:27px;align-self:flex-end}.empty,.error{padding:25px;border:1px solid #12456c;border-radius:12px;background:#07111e;color:var(--muted)}.error{border-color:#ff1c2d;color:#ffd7da}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.search{display:none}}@media(max-width:500px){.grid{grid-template-columns:1fr}.head{min-height:74px}.logo{height:58px}.wrap{padding:16px 10px 80px}.card{min-height:115px}}
-
-/* Shared Get Wired light storefront theme */
-:root{--bg:#f3f6fa;--blue:#087fce;--white:#172b3d;--muted:#53687a}
-body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 70%,#eaf0f6 100%);color:#172b3d}
-.header{background:rgba(255,255,255,.97);border-bottom-color:#d5e0e9}
-.head{color:#173650}
-.back{background:#fff;color:#173650;border-color:#b9d2e3}
-.search input{background:#f8fafc;color:#172b3d;border-color:#1688d0}
-.wrap{padding-top:18px}
-.crumb,.count{color:#53687a}
-.crumb a{color:#087fce}
-.title{border-bottom-color:#d5e0e9}
-.title h1{color:#12344f}
-.title p{color:#53687a}
-.card{background:linear-gradient(145deg,#fff,#edf5fb);border:1px solid #cbdbe7;color:#173650;box-shadow:0 3px 12px rgba(25,55,80,.06)}
-.card:hover{border-color:#087fce;box-shadow:0 10px 24px rgba(25,55,80,.12)}
-.arrow{color:#087fce}
-.empty,.error{background:#fff;border-color:#d5e0e9;color:#53687a}
-.error{border-color:#e21d2f;color:#b42332}
-
-</style></head><body><header class="header"><div class="head"><button class="back" onclick="history.length>1?history.back():location.href='store.html'">← BACK</button><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx"><div class="search"><input id="search" placeholder="Search categories..."></div></div></header><main class="wrap"><div class="crumb"><a href="store.html">Home</a> / <span id="crumb">Shop Categories</span></div><div class="title"><div><h1 id="heading">SHOP BY CATEGORY</h1><p id="subtitle">Choose a main category to continue.</p></div><div class="count" id="count"></div></div><div class="grid" id="grid"><div class="empty">Loading categories…</div></div></main><script>
-const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';const p=new URLSearchParams(location.search),id=p.get('id'),slug=p.get('slug');
-const ROOTS=[['Auto Electrical','6cc56033-b0a9-4f25-b207-aeeb341a1c47'],['Spare Parts','68e6ada2-ddf8-4327-844f-771d92db54bd'],['Vehicle Security','8e93d917-8fcc-4427-b364-cdad244f263f'],['Car Audio','5ab55c53-eee3-41ce-ad48-04ad6df85181'],['Accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],['Marine Spares & Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],['Tools / Hardware / Consumables','77297c18-67f6-452e-8918-c55d2ef6231a'],['Camping / Leisure / Outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],['Trailer & Canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']];
-const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function render(items,title,sub){document.getElementById('heading').textContent=title;document.getElementById('subtitle').textContent=sub;document.getElementById('count').textContent=items.length+' options';document.getElementById('grid').innerHTML=items.length?items.map(c=>`<a class="card" href="${c.isAllProducts?'products.html?category='+encodeURIComponent(c.id):'category.html?id='+encodeURIComponent(c.id)}"><h2>${esc(c.label||c.name)}</h2><span class="arrow">→</span></a>`).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>'}
-async function main(){try{const response=await fetch('assets/category-tree.json',{cache:'no-cache'});if(!response.ok)throw Error('Category snapshot load failed ('+response.status+')');const snapshot=await response.json();const cats=(Array.isArray(snapshot.categories)?snapshot.categories:[]).filter(c=>c.active!==false);if(!cats.length)throw Error('Category snapshot is empty');const direct=new Map(cats.map(c=>[c.id,Number(c.direct_active_products||0)]));const byId=new Map(cats.map(c=>[c.id,c]));const memo=new Map();function total(c,seen=new Set()){if(memo.has(c.id))return memo.get(c.id);if(seen.has(c.id))return direct.get(c.id)||0;const next=new Set(seen);next.add(c.id);const n=(direct.get(c.id)||0)+cats.filter(x=>x.parent_id===c.id).reduce((sum,ch)=>sum+total(ch,next),0);memo.set(c.id,n);return n}document.getElementById('grid').dataset.debug=JSON.stringify({activeCategories:cats.length,activeProducts:cats.reduce((n,c)=>n+(Number(c.direct_active_products)||0),0),rootChecks:ROOTS.map(([label,cid])=>{const c=byId.get(cid);return {label,found:!!c,direct:direct.get(cid)||0,total:c?total(c):null}})});let current=id?byId.get(id):slug?cats.find(c=>c.slug===slug):null;if(!current){const roots=ROOTS.map(([label,cid])=>{const c=byId.get(cid);return c&&total(c)>0?{...c,label,count:total(c)}:null}).filter(Boolean);render(roots,'SHOP BY CATEGORY','Choose a main category to continue.');return}if(total(current)===0){render([],'CATEGORY UNAVAILABLE','There are no active products assigned to this category yet. Please choose another category or use Search / WhatsApp.');return}document.title=current.name+' | Get Wired AutoWorx';document.getElementById('crumb').textContent=current.name;const children=cats.filter(c=>c.parent_id===current.id&&total(c)>0);const items=[];if((direct.get(current.id)||0)>0)items.push({id:current.id,label:'View '+(direct.get(current.id)||0)+' products in '+current.name,isAllProducts:true});children.forEach(c=>items.push({...c,count:total(c)}));if(children.length){render(items,current.name,'Choose products assigned directly to this category or browse a populated sub-category.');return}location.replace('products.html?category='+encodeURIComponent(current.id))}catch(e){console.error('Category navigation load failed',e);document.getElementById('grid').dataset.error=String(e);document.getElementById('grid').innerHTML='<div class="error">Unable to load this category right now. Please try again.</div>'}}
-document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?'flex':'none')});main();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f3f6fa">
+<title>Shop Categories | Get Wired AutoWorx</title>
+<style>
+:root{--ink:#173650;--muted:#53687a;--blue:#087fce;--line:#d5e0e9;--panel:#fff;--bg:#f3f6fa}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#fff 0%,#f3f6fa 68%,#eaf0f6 100%);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+.header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.head{max-width:1320px;margin:auto;min-height:78px;display:flex;align-items:center;gap:14px;padding:8px 16px}
+.back{border:1px solid #b9d2e3;background:#fff;color:var(--ink);border-radius:9px;padding:10px 13px;font-weight:800;cursor:pointer}
+.logo{height:60px;width:min(300px,52vw);object-fit:contain}
+.search{margin-left:auto;max-width:430px;flex:1}
+.search input{width:100%;background:#f8fafc;color:var(--ink);border:1px solid #1688d0;border-radius:28px;padding:12px 16px;font-size:15px;outline:none}
+.wrap{max-width:1320px;margin:auto;padding:22px 18px 80px}
+.crumb{font-size:13px;color:var(--muted);margin-bottom:12px}.crumb a{color:var(--blue);text-decoration:none}
+.title{display:flex;align-items:end;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:20px}
+.title h1{font-size:clamp(25px,4vw,32px);margin:0;color:#12344f}.title p{margin:6px 0 0;color:var(--muted);line-height:1.45}.count{font-size:13px;color:var(--muted);white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{min-width:0;min-height:145px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:18px;background:linear-gradient(145deg,#fff,#edf5fb);border:1px solid #cbdbe7;border-radius:14px;color:var(--ink);text-decoration:none;box-shadow:0 3px 12px rgba(25,55,80,.06);transition:transform .15s,border-color .15s,box-shadow .15s}
+.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 10px 24px rgba(25,55,80,.12);outline:none}
+.cardtop{display:flex;align-items:flex-start;gap:12px}.icon{width:48px;height:48px;flex:0 0 48px;border-radius:12px;background:#e4f3fd;display:grid;place-items:center;font-size:25px}
+.card h2{font-size:17px;line-height:1.25;margin:2px 0 6px;overflow-wrap:anywhere}.card p{font-size:13px;line-height:1.4;color:var(--muted);margin:0}
+.arrow{align-self:flex-end;color:var(--blue);font-size:24px;font-weight:800}
+.empty{padding:24px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--muted)}
+@media(max-width:760px){.grid{gap:8px}.card{padding:10px;min-height:125px;gap:8px}.cardtop{display:block}.icon{width:38px;height:38px;font-size:21px;margin-bottom:8px}.card h2{font-size:13px}.card p{font-size:11px}.head{gap:8px}.logo{height:49px}.back{padding:9px;font-size:12px}.search{max-width:40vw}.wrap{padding:16px 10px 60px}}
+@media(max-width:360px){.grid{gap:6px}.card{padding:8px}.card h2{font-size:12px}.card p{font-size:10px}}
+</style>
+</head>
+<body>
+<header class="header"><div class="head"><button class="back" id="back">← BACK</button><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx"><div class="search"><input id="search" placeholder="Search categories..." aria-label="Search categories"></div></div></header>
+<main class="wrap"><div class="crumb"><a href="store.html">Home</a> / <span id="crumb">Shop Categories</span></div><div class="title"><div><h1 id="heading">SHOP BY CATEGORY</h1><p id="subtitle">Choose a main category to continue.</p></div><div class="count" id="count"></div></div><div class="grid" id="grid"><div class="empty">Loading category hierarchy…</div></div></main>
+<script>
+const params=new URLSearchParams(location.search),rootSlug=params.get('root');
+const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+let hierarchy=null,items=[];
+function render(rows,title,subtitle,crumb){items=rows;document.getElementById('heading').textContent=title;document.getElementById('subtitle').textContent=subtitle;document.getElementById('crumb').textContent=crumb;document.getElementById('count').textContent=rows.length+' options';document.getElementById('grid').innerHTML=rows.length?rows.map(c=>'<a class="card" href="'+esc(c.href)+'"><div class="cardtop"><span class="icon" aria-hidden="true">'+esc(c.icon||'▦')+'</span><div><h2>'+esc(c.label)+'</h2><p>'+esc(c.description||'Browse related products and options.')+'</p></div></div><span class="arrow" aria-hidden="true">→</span></a>').join(''):'<div class="empty">No subcategories are listed here yet. The category mapping must be reviewed before products are imported.</div>'}
+function searchFilter(){const q=document.getElementById('search').value.trim().toLocaleLowerCase('en-ZA');document.querySelectorAll('.card').forEach(el=>el.style.display=el.textContent.toLocaleLowerCase('en-ZA').includes(q)?'flex':'none')}
+async function main(){try{const r=await fetch('staging/source-extracts/STORE_CATEGORY_HIERARCHY_2026-10-13.json',{cache:'no-store'});if(!r.ok)throw Error('Staged category hierarchy unavailable');hierarchy=await r.json();const root=hierarchy.roots.find(x=>x.slug===rootSlug);
+if(!root){document.title='Shop Categories | Get Wired AutoWorx';render(hierarchy.roots.map(x=>({label:x.label,icon:x.icon,description:x.subcategories.length+' source subcategories mapped for review',href:'category.html?root='+encodeURIComponent(x.slug)})),'SHOP BY CATEGORY','Choose a main category to continue.','Shop Categories');return}
+document.title=root.label+' | Get Wired AutoWorx';const subs=root.subcategories||[];render(subs.map(x=>({label:x.label,icon:root.icon,description:'Browse '+x.label.toLocaleLowerCase('en-ZA')+' products',href:'products.html?root='+encodeURIComponent(root.slug)+'&subcategory='+encodeURIComponent(x.slug)})),root.label,'Choose a subcategory to continue.',root.label);
+}catch(e){console.error(e);document.getElementById('grid').innerHTML='<div class="empty">Unable to load the staged category hierarchy. Please retry later.</div>'}}
+document.getElementById('back').addEventListener('click',()=>{if(rootSlug)location.href='category.html';else location.href='store.html'});
+document.getElementById('search').addEventListener('input',searchFilter);main();
+</script>
+</body>
+</html>
