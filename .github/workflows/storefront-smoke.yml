@@ -225,7 +225,10 @@ jobs:
             await publicFrame.locator('#allProductsLink').waitFor({timeout:25000});
             await publicFrame.locator('#featuredGrid .product').first().waitFor({timeout:30000});
             await publicFrame.locator('#allProductsLink').click();
-            console.log('PUBLIC_BEFORE_SEARCH',await publicFrame.locator('#productCount').innerText().catch(()=>'(count missing)'),(await publicFrame.locator('#allProductsGrid').innerText().catch(()=>'(grid missing)')).slice(0,350));
+            // Wait until the complete async catalogue fetch has rendered at least one all-products card.
+            // Filling the search before this point can be overwritten by the initial catalogue render.
+            await publicFrame.locator('#allProductsGrid .product').first().waitFor({timeout:60000});
+            console.log('PUBLIC_PRODUCTS_RENDERED',await publicFrame.locator('#productCount').innerText().catch(()=>'(count missing)'),(await publicFrame.locator('#allProductsGrid').innerText().catch(()=>'(grid missing)')).slice(0,350));
             await publicFrame.locator('#searchInput').fill('GW-B4F502E6');
             const publicProduct = publicFrame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
             try {
