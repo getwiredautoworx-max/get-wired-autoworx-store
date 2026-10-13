@@ -1,0 +1,41 @@
+const { chromium } = require('playwright');
+const path = require('path');
+const { pathToFileURL } = require('url');
+(async()=>{
+ const browser=await chromium.launch({headless:true});
+ const page=await browser.newPage({viewport:{width:390,height:844}});
+ const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(pathToFileURL(path.resolve('index-new.html')).href,{waitUntil:'domcontentloaded'});
+ await page.waitForSelector('#categoryGrid [data-gw-root-index]',{timeout:15000});
+ const roots=page.locator('#categoryGrid [data-gw-root-index]');
+ const rootCount=await roots.count();
+ if(rootCount!==8) throw new Error('Expected 8 root categories, got '+rootCount);
+ const expected=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
+ for(let i=0;i<8;i++){
+  await page.locator('#categoryGrid [data-gw-root-index="'+i+'"]').click();
+  await page.waitForSelector('#categoryGrid [data-gw-subcategory-index]');
+  const heading=(await page.locator('#categoryGrid h3').innerText()).trim();
+  if(!heading.startsWith(expected[i])) throw new Error('Wrong root heading at '+i+': '+heading);
+  const subs=page.locator('#categoryGrid [data-gw-subcategory-index]');
+  const n=await subs.count();
+  if(n<1) throw new Error('No subcategories for '+heading);
+  for(let k=0;k<n;k++){
+   await page.locator('#categoryGrid [data-gw-subcategory-root="'+i+'"][data-gw-subcategory-index="'+k+'"]').click();
+   await page.waitForSelector('#categoryGrid [data-gw-back-subcategories]');
+   await page.locator('#categoryGrid [data-gw-back-subcategories]').click();
+   await page.waitForSelector('#categoryGrid [data-gw-subcategory-index]');
+  }
+  await page.locator('#categoryGrid [data-gw-back-roots]').click();
+  await page.waitForSelector('#categoryGrid [data-gw-root-index]');
+ }
+ const width=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
+ if(width.document>width.viewport) throw new Error('Horizontal overflow at 390px: '+JSON.stringify(width));
+ if(errors.length) throw new Error('Browser runtime errors: '+errors.join(' | '));
+ await page.setViewportSize({width:1280,height:900});
+ await page.reload({waitUntil:'domcontentloaded'});
+ await page.waitForSelector('#categoryGrid [data-gw-root-index]');
+ const desktop=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
+ if(desktop.document>desktop.viewport) throw new Error('Horizontal overflow at 1280px: '+JSON.stringify(desktop));
+ console.log(JSON.stringify({status:'PASS',roots:rootCount,subcategoriesChecked:'all subcategories individually opened and returned',mobile:width,desktop,browserErrors:errors.length},null,2));
+ await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});
