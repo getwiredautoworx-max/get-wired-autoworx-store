@@ -918,3 +918,12 @@ Read-only category notes:
 - **Environment comparison:** this assistant-side container still cannot resolve `getwiredautoworx-max.github.io` (curl exit 6); the GitHub-hosted runner can resolve it and returned the above real HTTP status codes. Use the runner as the independent network check.
 - **NEXT ACTION:** inspect the same public host's checkout, category/product navigation, and essential image/static assets with HTTP checks. Then review whether the public checkout can safely create an unpaid/test order and confirm the exact PayFast/PayJustNow URL submission requirements. Do not submit a real paid order, change production records, or change DNS/hosting/payment settings without authorization.
 - **ETA / fallback:** one focused extension to the existing HTTP-check workflow and one run. If a page is HTTP 200 but contains the wrong application, inspect the served HTML and Pages publish configuration before changing any production settings.
+
+
+## 2026-10-13 — TASK START: PUBLIC CHECKOUT AND CORE-ASSET HTTP VERIFICATION
+- **Started after:** public homepage and both policy pages independently passed HTTP 200 in run `38340428287`.
+- **Goal:** verify that the same public GitHub Pages host serves the checkout page, category navigation, product detail route, category-tree JSON, and a known approved exact-SKU WebP. This is static public-host reachability/content verification, not a purchase or payment test.
+- **Target host:** `https://getwiredautoworx-max.github.io/get-wired-autoworx-store`.
+- **Scope exclusions:** no real order submission, no production database changes, no payment-provider configuration, no DNS/hosting changes, and no Cloudflare deploy. Reuse the just-created HTTP workflow; do not install Playwright again or repeat the already-passing homepage/policy checks except as part of its summary.
+- **ETA:** extend the single-purpose HTTP workflow and monitor one run to terminal status; inspect exact logs if any URL/status/content assertion fails.
+- **NEXT ACTION:** add HTTP 200 and page-marker checks for `checkout-v2.html`, `category.html`, `product.html`, `assets/category-tree.json`, and `assets/products_webp/GW-000174D6.webp`; confirm JSON/category and image content types. Then record the run and results before moving to payment readiness.
