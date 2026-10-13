@@ -304,7 +304,11 @@ body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 62%,#eaf0f6 100%);color:#
 
 
 /* Staging visual QA corrections — compact hero, legible category tiles, correct hidden buy bar */
-.mobileBuyBar[hidden]{display:none!important}
+#mobileBuyBar{display:none!important}
+#mobileBuyBar[hidden]{display:none!important}
+body:has(#productModal.open) #mobileBuyBar:not([hidden]){display:flex!important}
+.mobileNav a{position:relative}
+.mobileNav .badge{top:0;right:8px}
 .search{box-sizing:border-box}
 .search input{box-sizing:border-box;max-width:100%}
 @media(max-width:900px){
