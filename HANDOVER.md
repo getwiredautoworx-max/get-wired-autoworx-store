@@ -2060,3 +2060,10 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - A lightweight function-level simulation exercised all 8 root views and all 71 subcategory views: every root displayed its expected heading and all child labels, every root view exposed its back control, and every subcategory view displayed the explicit “catalogue products are not loaded” guard plus its parent back control. 79 view cases total; zero simulation failures.
 - This is stronger than string checks but is still NOT a full browser/DOM/mobile/desktop acceptance test. Event delegation, actual CSS layout, image loading, browser console, and full application startup remain unverified because a browser session was not available in this execution path.
 - No production deployment or catalogue import. Continue by testing the actual page in a browser if a preview/browser environment becomes available, then review source-category mappings and product-group rules before import.
+
+
+## CONTINUATION LOG — 2026-10-13 — BACK-NAVIGATION CALLBACK SIMULATION
+
+- Additional function-level simulation completed against staging `index-new.html`: activating the root back callback rebuilt all 8 root buttons (including root index 0), and activating a subcategory back callback returned to the correct parent category view. Both checks passed.
+- Combined code-level coverage now includes syntax compilation for all 4 inline scripts, matching 8-root/71-subcategory embedded taxonomy, all 8 root views, all 71 subcategory views, root back behavior, and parent-subcategory back behavior. These are isolated function simulations, not an actual browser run.
+- Remaining acceptance blocker: full browser/runtime/mobile/desktop testing has not yet been performed. Keep staging-only; do not merge or upload to Axxess before that test and the category mapping review.
