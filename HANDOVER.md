@@ -1601,3 +1601,37 @@ These counts are QA flags, not a statement that every row is wrong. They demonst
 
 ### Next work item
 Obtain readable page-level content from the original June, July, August and September PDFs; extract each guide separately with page/category boundaries intact; validate exact SKU, product description, raw cost/list price, source category/subcategory and page before chronological SKU reconciliation. Then apply the owner's permanent stock/price confirmation rule and create a reviewable staging ledger. No production writes or Axxess upload until reviewed and approved.
+
+
+---
+
+## 2026-10-13 — Buyer-guide extraction workflow result and QA
+
+### Workflow result
+- GitHub Actions run `38387571992` completed successfully on the isolated branch `audit/buyer-guide-extraction`.
+- Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38387571992
+- The workflow extracted layout-preserving text from the four original root-level PDFs and committed the outputs only to the audit branch. Original PDFs were not changed.
+- Manifest: `staging/source-extracts/manifest.txt`.
+- Extracts: `staging/source-extracts/June_Buyers_Guide_1.txt`, `July_Buyers_Guide.txt`, `August_Buyers_Guide.txt`, and `September_Buyers_Guide.txt`.
+
+### Extraction quality check
+| Guide | Pages | Extracted text characters | Result |
+|---|---:|---:|---|
+| June 2026 | 32 | 668 | FAIL for product import: text is mostly headings/page numbers; product tables appear scanned/image-based and are not extracted |
+| July 2026 | 32 | 115,529 | Text extracted; product row and price alignment still requires validation |
+| August 2026 | 32 | 117,837 | Text extracted; product row and price alignment still requires validation |
+| September 2026 | 32 | 105,785 | Text extracted; product row and price alignment still requires validation |
+
+### Current conclusion
+- Workflow success means the extraction job ran; it does not mean the catalogue data is validated or import-ready.
+- June requires OCR from rendered PDF pages, followed by SKU, description, price, page and category verification. Do not substitute placeholder descriptions or invent/repair prices.
+- For July–September, preserve raw extracted text and verify that descriptions, supplier codes and prices remain paired correctly on each page before creating product rows.
+- Apply the owner's permanent policy: June first; then later guides in chronological order; preserve source category/subcategory; update existing SKUs from later guides; add categories present in guides but absent from the store. For stock/price handling, items no longer advertised in later guides must be flagged “confirm stock and price”; August onward are assumed in stock per owner instruction.
+- No production/Supabase writes, main-branch catalogue import, storefront release, or Axxess upload was performed. Continue on the isolated audit branch and do not ask the owner to re-upload attachments.
+
+### Next actions
+1. Render June PDF pages to images in the isolated workflow and run OCR page-by-page, preserving page boundaries.
+2. Add OCR/text quality checks for missing SKU, description, and price fields; send low-confidence rows to review rather than guessing.
+3. Validate representative July, August and September pages against page images to ensure price/SKU pairing is correct.
+4. Build a reviewable staging ledger with source guide, page, category/subcategory, supplier code, description, raw cost/list price, stock rule, match status (KEEP/UPDATE/ADD/QUOTE/REVIEW), and validation notes.
+5. Only after staging QA, test and refine the storefront locally/through the audit branch. Do not upload to Axxess until the owner approves the design and catalogue mappings.
