@@ -1,0 +1,5 @@
+sku,june_price_ex_vat,latest_guide,latest_page,latest_price_ex_vat,live_cost,live_price,formula_result,formula_check,required_status,notes
+SC818,173.89,none in Aug/Sep,,,"173.89","269.96","269.96","PASS","Subject to price and availability confirmation","No Aug/Sep exact-SKU listing found; do not infer current availability"
+C10-101-400,10.05,August,4,9.52,9.52,14.78,14.78,PASS,"Current guide price and availability subject to confirmation","Exact code and description visually match; August supersedes June"
+A833511,55.33,September,5,55.33,55.33,85.90,85.90,PASS,"Current guide price and availability subject to confirmation","Exact code and description visually match on September page image"
+4217S-KIT,155.84,September,11,155.84,155.84,241.94,241.94,PASS,"Current guide price and availability subject to confirmation","Exact code and description visually match on September page image"
