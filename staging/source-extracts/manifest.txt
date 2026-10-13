@@ -1,3 +1,21 @@
+FILE: Feb Buyer's Guide.pdf
+PAGES: 36
+BYTES: 7057783
+TEXT_CHARS: 118006
+TEXT_FILE: staging/source-extracts/Feb_Buyers_Guide.txt
+---
+FILE: March Buyer's Guide.pdf
+PAGES: 32
+BYTES: 6527231
+TEXT_CHARS: 113022
+TEXT_FILE: staging/source-extracts/March_Buyers_Guide.txt
+---
+FILE: May Buyers Guide.pdf
+PAGES: 32
+BYTES: 6857284
+TEXT_CHARS: 111885
+TEXT_FILE: staging/source-extracts/May_Buyers_Guide.txt
+---
 FILE: June Buyer's Guide (1).pdf
 PAGES: 32
 BYTES: 11056938
