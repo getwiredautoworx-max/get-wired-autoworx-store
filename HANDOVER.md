@@ -1,3 +1,11 @@
+## CONTINUATION LOG — 2026-10-13 — GROUP ROUTE TESTS AND STAGING SEARCH STATE
+
+- Added a clear disabled-state message to the staged product-group route: the top product search now says it becomes available after the replacement catalogue import and is disabled while the staged route intentionally shows no old product data.
+- Source-level route/grouping checks passed for these examples: SPANNERS -> individual spanners + spanner sets; PANEL CLIPS -> individual clips + clip/fastener assortments; RELAYS -> relays; IGNITION BARRELS AND SWITCHES -> switches; HAND WINCHES -> winches + winch spares. These are rule-selection tests only, not tests against actual product records.
+- Re-validated: eight agreed root categories, 71 distinct subcategory entries, zero duplicate subcategory slugs within roots, 17 grouping rules, legacy catalogue flag disabled, and syntax parsing passed for `index-new.html`, `category.html`, `products.html`, `category-navigation.js`, and `assets/category-cleanup.js`.
+- Still not verified in a browser: real tap/click navigation, CSS rendering at phone widths, and back-button behavior. The category buttons currently use temporary glyph tiles rather than final category/subcategory photographs. All changes remain on the audit branch only; no production/Axxess/Supabase product-data changes.
+- Next: proceed to original Buyers Guide visual QA and resolve category mappings with source-page evidence, then build/validate the product-level staging ledger so the group rules can be checked against actual SKUs. Keep final category imagery, search/filter wiring to the replacement catalogue, and full browser checkout smoke tests as later pre-release tasks.
+ 
 ## CONTINUATION LOG — 2026-10-13 — HOMEPAGE CATEGORY BUTTONS DECOUPLED FROM OLD CATALOGUE
 
 - Follow-up inspection found the current homepage category renderer only showed root buttons when legacy active product counts were greater than zero. That would hide categories during the catalogue rebuild and would make the new hierarchy depend on the old catalogue the owner has rejected.
