@@ -1507,3 +1507,37 @@ Read-only category notes:
 - After DNS and file deployment, verify HTTPS and HTTP status for `https://www.getwiredauto.co.za/`, `https://www.getwiredauto.co.za/store`, checkout, Terms & Conditions, and Returns & Refunds. Recheck the apex domain too.
 - **Current launch status:** not signed off as fully live on the latest package until the Axxess file deployment and live-domain checks are completed. Payment-provider approval/real-payment confirmation is a separate outstanding launch check.
 - **Estimated hands-on time:** about 30–60 minutes for upload, extraction and smoke tests if no new issue appears; DNS/SSL propagation or configuration issues can add time.
+
+
+---
+
+## 2026-10-13 — Buyer’s Guide PDFs and product-image/category audit (continuation)
+
+### Confirmed source files
+The four monthly Buyer’s Guide PDFs already exist at the **repository root** (not inside a `store/` directory), on the default `main` branch:
+- `June Buyer's Guide (1).pdf` — 11,056,918 bytes
+- `July Buyer's Guide.pdf` — 5,561,955 bytes
+- `August Buyer's Guide.pdf` — 6,291,527 bytes
+- `September Buyer's Guide.pdf` — 5,803,563 bytes
+
+These paths and sizes were verified against the GitHub repository tree on 2026-10-13. The repository is currently **public**. Buyer’s Guides may contain supplier costs or commercially sensitive pricing; owner should decide whether to make the repository private or otherwise remove sensitive source material from public access. Do not change repository visibility, delete source PDFs, or rewrite repository history without explicit owner approval. Treat public exposure as a security/commercial attention item.
+
+### Required workflow — do not deploy these source PDFs
+- Do not re-upload duplicate copies; the four files are already present.
+- Preserve the originals unchanged. Do not move them, delete them, or include them in the Axxess website package.
+- Do not trigger a Pages deployment merely to read or transfer catalogues.
+- Extract/compare catalogue data in a separate audit/staging output. Record source file/month/page, product code/SKU, description, vehicle/application, category/subcategory, supplier cost excluding VAT where present, image reference, and review status.
+- Match exact product codes/SKUs before associating a picture or changing a product record. Do not substitute generic imagery or infer missing product facts.
+- Compare month-to-month changes only after normalising SKU/code; classify each candidate as KEEP / UPDATE / ADD / QUOTE / REVIEW. Do not bulk-overwrite live prices, alter Supabase/live data, or deploy until owner-approved checks pass.
+- Start with a small representative sample from all four guides, assess PDF extraction quality and image quality, then scale the audit if reliable.
+- Catalogue/image audit focus: exact SKU-image match, image sharpness/resolution, embedded supplier text/graphics, missing/broken image assets, consistent presentation, and correct category/subcategory.
+- Proposed top-level category set for validation (not yet an approved live change): Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. Check source taxonomy and actual catalogue before moving or renaming products. Keep Clips/Fasteners together, Spanners/Wrenches together, Switches/Relays together, and Winches/Winch Spares together. Resolve whether 4x4 merits its own category/button from the actual range; do not assume.
+- User is not satisfied with the current store design and specifically identifies product categories and product-picture quality as the largest concerns. **No Axxess upload until the user has reviewed and approved the revised store.**
+- Continue the standing workflow: build/edit/test first; one final synchronised update to GitHub, Supabase SQL, Cloudflare and related services after approval; conserve credits and avoid unnecessary rebuilds. Monitor background tasks and record exact statuses/results; do not claim a test passed without evidence.
+
+### Current status
+- Source discovery: **COMPLETE** — all four PDFs found in repository root.
+- PDF text/table/image extraction: **NOT YET RUN**.
+- SKU/image matching and category audit: **PENDING**.
+- Public-repository commercial exposure review: **OWNER ATTENTION REQUIRED**.
+- Axxess upload/release: **ON HOLD — awaiting category/image improvements and owner approval**.
