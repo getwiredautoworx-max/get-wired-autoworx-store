@@ -178,7 +178,7 @@ jobs:
             await pricedSuggestion.click();
             await frame.locator('#productModal.open').waitFor({timeout:10000});
             await frame.locator('#detailAdd').click();
-            await page.locator('#closeCart').click({force:true});
+            await frame.locator('#closeCart').click({force:true});
             await frame.locator('#productModal.open').waitFor({state:'detached',timeout:10000}).catch(async () => {
               if (await frame.locator('#productModal').evaluate(el => el.classList.contains('open'))) throw new Error('Adding formula-priced product did not close the detail modal');
             });
