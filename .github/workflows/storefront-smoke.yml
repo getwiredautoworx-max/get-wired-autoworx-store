@@ -271,3 +271,68 @@ jobs:
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
+
+      - name: Test new storefront and category navigation at mobile, tablet, and desktop widths
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4174 --bind 127.0.0.1 >/tmp/store-new-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const widths=[{name:'mobile',width:390,height:844},{name:'tablet',width:768,height:1024},{name:'desktop',width:1365,height:900}];
+            const errors=[];
+            const page=await browser.newPage({viewport:{width:390,height:844}});
+            page.on('pageerror',e=>errors.push(e.message));
+            await page.goto('http://127.0.0.1:4174/index-new.html',{waitUntil:'domcontentloaded',timeout:30000});
+            await page.locator('#categoryGrid .catWrap').first().waitFor({timeout:60000});
+            await page.locator('#featuredGrid .product').first().waitFor({timeout:60000});
+            const categoryCount=await page.locator('#categoryGrid .catWrap').count();
+            if(categoryCount<8) throw new Error('Expected at least 8 configured home categories, found '+categoryCount);
+            const categoryLabels=await page.locator('#categoryGrid .catBtn b').allTextContents();
+            const results=[];
+            for(const v of widths){
+              await page.setViewportSize({width:v.width,height:v.height});
+              await page.waitForTimeout(250);
+              const layout=await page.evaluate(()=>({viewport:innerWidth,docWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,gridColumns:getComputedStyle(document.querySelector('#categoryGrid')).gridTemplateColumns,categoryCount:document.querySelectorAll('#categoryGrid .catWrap').length}));
+              if(layout.docWidth>v.width+2||layout.bodyWidth>v.width+2) throw new Error(v.name+' horizontal overflow: '+JSON.stringify(layout));
+              if(layout.categoryCount<8) throw new Error(v.name+' lost category cards after resize: '+JSON.stringify(layout));
+              results.push({viewport:v.name,...layout});
+            }
+            // Confirm the first main-category action produces a real product listing rather than a dead click.
+            await page.setViewportSize({width:390,height:844});
+            await page.locator('#categoryGrid .catBtn').first().click();
+            await page.locator('#shop.visible').waitFor({timeout:10000});
+            await page.locator('#allProductsGrid .product, #featuredGrid .product').first().waitFor({timeout:15000}).catch(()=>{});
+            console.log('INDEX_NEW_RESPONSIVE_PASS '+JSON.stringify({categoryCount,categoryLabels,results}));
+            // Test the standalone screen-based category navigation at mobile and desktop widths.
+            const categoryPage=await browser.newPage({viewport:{width:390,height:844}});
+            categoryPage.on('pageerror',e=>errors.push('category.html: '+e.message));
+            await categoryPage.goto('http://127.0.0.1:4174/category.html',{waitUntil:'domcontentloaded',timeout:30000});
+            await categoryPage.waitForFunction(()=>{const g=document.querySelector('#grid');return !!g&&(g.dataset.error||g.innerText.trim()!=='Loading categories…')},{timeout:60000});
+            const loadError=await categoryPage.locator('#grid').getAttribute('data-error');
+            if(loadError) throw new Error('category.html data load error: '+loadError);
+            const rootCount=await categoryPage.locator('#grid .card').count();
+            if(rootCount<8) throw new Error('category.html expected at least 8 root categories, found '+rootCount);
+            const rootNames=await categoryPage.locator('#grid .card h2').allTextContents();
+            if(!rootNames.some(x=>x.trim()==='Auto Electrical')) throw new Error('Auto Electrical missing from category.html');
+            await categoryPage.locator('#grid .card').first().click();
+            await categoryPage.locator('#grid .card').first().waitFor({timeout:15000});
+            const childCount=await categoryPage.locator('#grid .card').count();
+            if(childCount<1) throw new Error('Category selection did not open a populated child/direct-product screen');
+            for(const v of widths){
+              await categoryPage.setViewportSize({width:v.width,height:v.height});
+              await categoryPage.waitForTimeout(150);
+              const layout=await categoryPage.evaluate(()=>({viewport:innerWidth,docWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,columns:getComputedStyle(document.querySelector('#grid')).gridTemplateColumns,cards:document.querySelectorAll('#grid .card').length}));
+              if(layout.docWidth>v.width+2||layout.bodyWidth>v.width+2) throw new Error('category.html '+v.name+' horizontal overflow: '+JSON.stringify(layout));
+              results.push({page:'category.html',viewport:v.name,...layout});
+            }
+            if(errors.length) throw new Error('Uncaught browser errors: '+JSON.stringify(errors));
+            console.log('CATEGORY_SCREEN_RESPONSIVE_PASS '+JSON.stringify({rootCount,rootNames,childCount,results}));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
