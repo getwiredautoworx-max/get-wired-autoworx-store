@@ -244,9 +244,10 @@ jobs:
               await product.waitFor({timeout:20000});
               const productText = await product.innerText();
               if (productText.includes('Price on request') || !productText.includes('ADD TO CART')) throw new Error('Public storefront still blocks formula-priced SKU GW-B4F502E6: '+productText);
-              // Search suggestions are rendered in a high-z-index header overlay; dismiss them before clicking the product.
-              await publicFrame.locator('#searchInput').press('Escape');
-              await publicFrame.locator('.gwResult').waitFor({state:'hidden',timeout:5000}).catch(()=>{});
+              // Escape does not consistently dismiss the production suggestions overlay.
+              // Clear the query explicitly and require the overlay to disappear before the real click.
+              await publicFrame.locator('#searchInput').fill('');
+              await publicFrame.locator('.gwResult').waitFor({state:'hidden',timeout:10000});
               // Use a real browser click and wait for the synchronous cart write before asserting.
               await product.locator('button').first().click({timeout:15000});
               await publicPage.waitForFunction(() => {
