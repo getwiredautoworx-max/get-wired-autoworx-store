@@ -1651,3 +1651,22 @@ Obtain readable page-level content from the original June, July, August and Sept
 - The available GitHub run lookup in this session has not returned the new run ID/status, and no June OCR output was yet verified. Treat OCR as **pending**, not completed. Do not claim the workflow failed or succeeded without run evidence.
 - Safe next step: locate the Actions run for the audit branch's OCR workflow edit; if it succeeded, inspect `June_Buyers_Guide_OCR.txt`, page labels, and OCR quality; if failed, inspect job logs and repair the isolated workflow. Then verify SKU/description/price pairing on sampled July–September pages.
 - No production data or storefront deployment was changed. Main branch, Supabase, and Axxess remain untouched. Do not request attachments; the original PDFs are in the GitHub repository root.
+
+
+## PERMANENT OWNER INSTRUCTION — HANDOVER-FIRST TASK CONTROL (2026-10-13)
+
+This rule applies to every subsequent task and must not be removed unless the owner explicitly asks to change it:
+1. **Before starting any task or subtask**, read the latest handover and append a pre-task checkpoint describing the exact task, scope, known facts, risks, intended steps, success criteria, and what will not be changed. Commit that checkpoint to the active working branch before doing the work.
+2. If a clarification is genuinely needed to avoid an irreversible or materially risky mistake, stop and ask the owner before acting. Do not guess. For safe, reversible investigation, proceed and record assumptions explicitly.
+3. **After the task finishes—whether successful, failed, blocked, or partially complete—immediately update the handover** with the outcome, evidence (run IDs, commit IDs, logs/paths), failures/blockers, changes made/not made, current status, and exact next step. Do not claim success without evidence.
+4. Record every new owner instruction in the handover as a permanent instruction where applicable, including this instruction itself. If work spans multiple distinct tasks, checkpoint each task before it begins and record its result before moving to the next task.
+5. Keep work isolated from production unless expressly approved. Do not deploy to Axxess, change live catalogue data, prices, stock, payments, DNS, or production configuration without the applicable owner approval. Preserve source PDFs and source facts; never invent catalogue values.
+6. Continue from the latest recorded checkpoint, avoid unnecessary rebuilds/duplicate workflow runs, conserve credits, and report exactly what is verified versus pending.
+
+## PRE-TASK CHECKPOINT — 2026-10-13 — Verify June OCR workflow
+- Task: find the GitHub Actions run triggered by OCR workflow commit `cdb36840281731b2c3444be936883eafc6f3937a` on `audit/buyer-guide-extraction`; verify status; if successful, inspect OCR output and quality; if failed, inspect logs before proposing a narrow repair.
+- Scope: GitHub repository and audit branch only. No production code, Supabase, Axxess, Cloudflare deployment, DNS, payment settings, or live catalogue changes.
+- Known facts: previous extraction run `38387571992` succeeded; June normal text extraction is only 668 characters and is not import-ready; OCR workflow was added but its run/output was unverified at the last checkpoint.
+- Risks: falsely treating OCR output as accurate; triggering duplicate workflows; importing misaligned SKUs/prices. Mitigation: inspect run evidence and OCR page labels, and do not import anything in this task.
+- Success criteria: identify the latest run for the audit-branch workflow edit, verify terminal status, and if success inspect the OCR artifact/file. If the run cannot be found via the connector, document that limitation and use a read-only Actions API/page lookup.
+- After-task requirement: immediately append the verified outcome and exact next step to this handover before beginning another task.
