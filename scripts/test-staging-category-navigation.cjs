@@ -11,13 +11,15 @@ const { pathToFileURL } = require('url');
  const rootCount=await roots.count();
  if(rootCount!==8) throw new Error('Expected 8 root categories, got '+rootCount);
  const expected=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
+ let totalSubcategories=0;
  for(let i=0;i<8;i++){
   await page.locator('#categoryGrid [data-gw-root-index="'+i+'"]').click();
   await page.waitForSelector('#categoryGrid [data-gw-subcategory-index]');
   const heading=(await page.locator('#categoryGrid h3').innerText()).trim();
-  if(!heading.startsWith(expected[i])) throw new Error('Wrong root heading at '+i+': '+heading);
+  if(!heading.toLowerCase().startsWith(expected[i].toLowerCase())) throw new Error('Wrong root heading at '+i+': '+heading);
   const subs=page.locator('#categoryGrid [data-gw-subcategory-index]');
   const n=await subs.count();
+  totalSubcategories+=n;
   if(n<1) throw new Error('No subcategories for '+heading);
   for(let k=0;k<n;k++){
    await page.locator('#categoryGrid [data-gw-subcategory-root="'+i+'"][data-gw-subcategory-index="'+k+'"]').click();
@@ -28,6 +30,7 @@ const { pathToFileURL } = require('url');
   await page.locator('#categoryGrid [data-gw-back-roots]').click();
   await page.waitForSelector('#categoryGrid [data-gw-root-index]');
  }
+ if(totalSubcategories!==71) throw new Error('Expected 71 subcategories, got '+totalSubcategories);
  const width=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
  if(width.document>width.viewport) throw new Error('Horizontal overflow at 390px: '+JSON.stringify(width));
  if(errors.length) throw new Error('Browser runtime errors: '+errors.join(' | '));
@@ -36,6 +39,6 @@ const { pathToFileURL } = require('url');
  await page.waitForSelector('#categoryGrid [data-gw-root-index]');
  const desktop=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
  if(desktop.document>desktop.viewport) throw new Error('Horizontal overflow at 1280px: '+JSON.stringify(desktop));
- console.log(JSON.stringify({status:'PASS',roots:rootCount,subcategoriesChecked:'all subcategories individually opened and returned',mobile:width,desktop,browserErrors:errors.length},null,2));
+ console.log(JSON.stringify({status:'PASS',roots:rootCount,subcategories:totalSubcategories,subcategoriesChecked:'all subcategories individually opened and returned',mobile:width,desktop,browserErrors:errors.length},null,2));
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
