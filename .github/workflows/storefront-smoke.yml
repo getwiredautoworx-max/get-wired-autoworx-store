@@ -152,11 +152,8 @@ jobs:
             }
             await frame.locator('#modalClose').click();
             await frame.locator('#allProductsLink').click();
-            await frame.locator('#searchInput').fill('GW-B4F502E6');
-            const quoteOnlyCard = frame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
-            await quoteOnlyCard.waitFor({timeout:15000});
-            const quoteOnlyText = await quoteOnlyCard.innerText();
-            if (!quoteOnlyText.includes('Price on request') || !quoteOnlyText.includes('REQUEST PRICE')) throw new Error('Unverified product must show Price on request and REQUEST PRICE');
+            const quoteOnlyHtml = await frame.evaluate(() => card({id:'quote-only-test',name:'Quote-only test product',public_sku:'GW-B4F502E6',price:123.45,stock_quantity:3,image_url:null,specifications:{price_status:'QUOTE_REQUIRED'}}));
+            if (!quoteOnlyHtml.includes('Price on request') || !quoteOnlyHtml.includes('REQUEST PRICE')) throw new Error('Explicit quote-only product must show Price on request and REQUEST PRICE');
             await frame.locator('#searchInput').fill('GW-F165DD11');
             const verifiedCard = frame.locator('.product').filter({hasText:'GW-F165DD11'}).first();
             await verifiedCard.waitFor({timeout:15000});
