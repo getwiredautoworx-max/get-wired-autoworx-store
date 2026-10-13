@@ -2051,3 +2051,12 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Static read-back checks passed for the embedded taxonomy, eight root buttons, 71 source subcategories, root/subcategory handlers, back controls, the legacy-product display guard, and `live_catalogue_enabled=false`. The fetched file is 92,628 characters. These are source/static checks only; no browser runtime/visual test has been executed, so do not mark the navigation task fully accepted yet.
 - Production remains untouched. No merge to main, Axxess upload, Supabase product import, payment change, or catalogue deletion was performed.
 - Next acceptance gate: execute a real browser test on the staging file, check mobile/desktop layout and all root/subcategory/back paths, and fix any console errors before product mapping/import. Keep the old catalogue excluded.
+
+
+## CONTINUATION LOG — 2026-10-13 — CATEGORY NAVIGATION STATIC + UNIT SIMULATION
+
+- Further validation performed against the committed staging `index-new.html` at blob `d85584069bd57dc0b311baf5e07638a3409034f8`.
+- JavaScript syntax compilation passed for all 4 inline script blocks (30,004? source lengths were checked in-tool; no browser engine was used). The embedded taxonomy matches the source JSON: 8 roots and 71 subcategories, with root labels matching in order.
+- A lightweight function-level simulation exercised all 8 root views and all 71 subcategory views: every root displayed its expected heading and all child labels, every root view exposed its back control, and every subcategory view displayed the explicit “catalogue products are not loaded” guard plus its parent back control. 79 view cases total; zero simulation failures.
+- This is stronger than string checks but is still NOT a full browser/DOM/mobile/desktop acceptance test. Event delegation, actual CSS layout, image loading, browser console, and full application startup remain unverified because a browser session was not available in this execution path.
+- No production deployment or catalogue import. Continue by testing the actual page in a browser if a preview/browser environment becomes available, then review source-category mappings and product-group rules before import.
