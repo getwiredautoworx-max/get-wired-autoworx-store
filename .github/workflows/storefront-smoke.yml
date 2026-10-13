@@ -322,7 +322,7 @@ jobs:
             const rootCount=await categoryPage.locator('#grid .card').count();
             if(rootCount<8) throw new Error('category.html expected at least 8 root categories, found '+rootCount);
             const rootNames=await categoryPage.locator('#grid .card h2').allTextContents();
-            if(!rootNames.some(x=>x.trim()==='Auto Electrical')) throw new Error('Auto Electrical missing from category.html');
+            if(!rootNames.some(x=>x.trim()==='Auto Electrical Spares')) throw new Error('Auto Electrical Spares missing from category.html');
             await categoryPage.locator('#grid .card').first().click();
             await categoryPage.locator('#grid .card').first().waitFor({timeout:15000});
             const childCount=await categoryPage.locator('#grid .card').count();
