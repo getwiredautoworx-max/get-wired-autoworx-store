@@ -927,3 +927,21 @@ Read-only category notes:
 - **Scope exclusions:** no real order submission, no production database changes, no payment-provider configuration, no DNS/hosting changes, and no Cloudflare deploy. Reuse the just-created HTTP workflow; do not install Playwright again or repeat the already-passing homepage/policy checks except as part of its summary.
 - **ETA:** extend the single-purpose HTTP workflow and monitor one run to terminal status; inspect exact logs if any URL/status/content assertion fails.
 - **NEXT ACTION:** add HTTP 200 and page-marker checks for `checkout-v2.html`, `category.html`, `product.html`, `assets/category-tree.json`, and `assets/products_webp/GW-000174D6.webp`; confirm JSON/category and image content types. Then record the run and results before moving to payment readiness.
+
+
+## 2026-10-13 — TASK COMPLETE: PUBLIC CHECKOUT AND CORE-ASSET HTTP VERIFICATION
+- **Result:** PASS. Extended `.github/workflows/public-url-http-check.yml` in commit `5ae9a6c11ebf324a1b53809ffdce62ec3040e04e`.
+- **Run:** [`38340540093`](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38340540093), job `115110293399`, completed successfully at `2026-10-13T03:11:52Z`.
+- **Independent GitHub-hosted runner results:**
+  - Homepage — HTTP 200; expected brand marker found.
+  - Terms and Conditions — HTTP 200; expected page marker found.
+  - Returns and Refunds — HTTP 200; expected page marker found.
+  - `checkout-v2.html` — HTTP 200; checkout marker found.
+  - `category.html` — HTTP 200; category marker found.
+  - `product.html` — HTTP 200; product marker found.
+  - `assets/category-tree.json` — HTTP 200; valid JSON and expected category marker found.
+  - `assets/products_webp/GW-000174D6.webp` — HTTP 200, content type `image/webp`, file recognized as WebP.
+  - Final log marker `PUBLIC_URL_HTTP_CHECK_PASS`; the run's success conclusion is verified.
+- **Interpretation:** the GitHub Pages host is publicly reachable and serves the tested static pages/assets. This is not yet an end-to-end cart/order test; HTTP 200 on `product.html` does not prove a selected product renders, and HTTP 200 on checkout does not prove checkout can submit an order.
+- **NEXT ACTION:** run a safe, public-host browser test against the GitHub Pages site to verify category navigation/product loading and checkout form behaviour without submitting a real order. In parallel, verify whether PayFast/PayJustNow will accept the GitHub Pages URL for merchant review; keep `www.getwiredauto.co.za` unapproved/unverified until independently tested. Do not enter live payment details, create paid orders, or alter DNS/hosting/payment settings.
+- **ETA / fallback:** one browser-focused GitHub Actions run plus provider requirement review. If browser functionality depends on unavailable public configuration or Supabase policies, record the exact browser/network error and stop before any production order write.
