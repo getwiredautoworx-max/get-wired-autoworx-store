@@ -1951,3 +1951,15 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Crosswalk validation remains: 115 data rows, 8 columns, no duplicate exact source headings, and all 33 June index headings represented. Visual verification of original guide page images remains incomplete; do not label the catalogue/category reconciliation complete.
 - No product import, Supabase write, live catalogue change, production deployment, payment configuration, or Axxess upload was performed.
 - Next: make the workspace available to the owner for category review; continue source-page verification from actual guide images when accessible; use the reviewed/exported category decisions to finalize the taxonomy before building the SKU-level ledger. Preserve the owner's Axxess-first workflow and do not upload/deploy before the owner is satisfied with the preview.
+
+
+## CONTINUATION LOG — 2026-10-13 — OWNER-BROWSABLE STOREFRONT PREVIEW
+
+- Added `staging/storefront-preview.html` to `audit/buyer-guide-extraction`, commit `ff4c559b3c9cfe2ea4c90d3cf77ff92c9ba26e79`.
+- The self-contained prototype includes the eight approved store roots in a responsive category grid, smaller banner treatment, branded header, search UI, Part Search and Request a Part modals, local reference-photo selection indicators, and an Edit Preview mode for changing marked copy in the browser. It is a visual/interaction prototype, not connected to live inventory, checkout, email, AI image recognition, or the production database. Demo product cards are explicitly placeholders and must not be treated as real stock or prices.
+- Also added `staging/category-review-workspace.html` (commit `59fe46862c2982803d8b133a772d76502035fa97`) for browsing/filtering and editing the 115-row category crosswalk, recording visual-verification status and notes, and exporting reviewed CSV.
+- Both are staging artifacts on the audit branch only; neither has been deployed to Axxess or merged into production. To use locally, download each HTML file from GitHub and open it in a browser. Storefront text edits are in-session only; the category workspace's durable handoff is its exported CSV.
+- Validation of file contents: storefront HTML fetched back from GitHub (16,150 characters); category workspace fetched back (59,446 characters). These checks confirm files are committed, not a full browser rendering/functional test. A real browser preview/runtime test has not been performed in this environment.
+- Category crosswalk: 115 rows / 8 columns, no exact duplicate headings, June index coverage complete (33/33). Original guide page-image verification and SKU-level product ledger remain outstanding. Do not call the catalogue fully resolved or import products until source QA and owner category review are complete.
+- No production catalogue, Supabase, payment, hosting, or Axxess changes were made.
+- Next: owner browses both staging files and returns the edited category CSV/decisions; continue source-page visual verification and build the SKU-level ledger once category mappings are reviewed. Preserve Axxess-first and one-final-sync workflow.
