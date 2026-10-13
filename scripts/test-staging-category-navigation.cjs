@@ -44,7 +44,8 @@ assert.deepEqual(
         const root = taxonomy.roots[i];
         const rootButton = page.locator('#categoryGrid button[data-gw-root-index="'+i+'"]');
         assert.equal(await rootButton.count(), 1, 'Root button index '+i+' must exist');
-        assert.ok((await rootButton.innerText()).includes(root.label), 'Root label mismatch: '+root.label);
+        const rootButtonText = await rootButton.innerText();
+        assert.ok(rootButtonText.includes(root.label), 'Root label mismatch: expected '+JSON.stringify(root.label)+'; actual '+JSON.stringify(rootButtonText));
         await rootButton.click();
         const children = page.locator('#categoryGrid button[data-gw-subcategory-root="'+i+'"]');
         await children.first().waitFor({ timeout:5000 });
