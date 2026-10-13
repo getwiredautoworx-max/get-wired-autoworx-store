@@ -1691,3 +1691,28 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - June scanned-PDF OCR recovery and the initial 62-row heading register are recorded in the separate supplement `HANDOVER_OCR_RECOVERY_2026-10-13.md`; register is at `staging/source-extracts/category-reconciliation-initial.csv` on branch `audit/buyer-guide-extraction`.
 - The heading register is explicitly preliminary, not an exhaustive final inventory or a product import. The next work is to strengthen the section register and create an exact-SKU ledger with page-level evidence across all four guides.
 - No live catalogue, price, availability, category, Supabase or Axxess changes were made by this clarification.
+
+
+## CONTINUATION LOG — 2026-10-13 — Exact-SKU recency rule staged; category register v2 created
+
+### Owner instruction now recorded as permanent policy
+- August and September listings are the current guide-based price/availability baseline, subject to confirmation.
+- July and earlier listings remain **“Subject to price and availability confirmation”** unless the same item is verified by exact supplier SKU/part code in August or a later guide.
+- For a verified exact-SKU match, the newest August/September listing takes precedence for current guide price/status. Similar name/image/specification is not sufficient. Unclear/missing codes or prices remain REVIEW/QUOTE; do not invent prices.
+- A guide listing is not proof of physical warehouse stock or guaranteed dispatch.
+
+### Staging artifacts committed on isolated branch
+- Updated preliminary category mapping copy: [category-reconciliation-review-v2.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/category-reconciliation-review-v2.csv) — 62 source-heading rows plus header. This version aligns the camping parent label to **Camping, Leisure & Outdoors**; it remains a proposal pending page/SKU validation, not a live category update.
+- Added [price-availability-decision-matrix.csv](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/price-availability-decision-matrix.csv) — seven decision rows covering August/September listings, older items, exact-SKU matches, ambiguity, missing prices and the difference between catalogue status and physical stock.
+- Main-branch policy update committed as `ed7e2a7dbc6b7450af2a9d43b1cb9068aa512e6b`. Audit artifacts were committed separately to `audit/buyer-guide-extraction`; no production deployment was requested.
+
+### Extraction findings and current blockers
+- July, August and September text extracts are available (about 115,529 / 117,837 / 105,785 characters respectively), but they are multi-column layout text and not yet a reliable product-level SKU/price ledger. The original June text extraction was only 668 characters; June OCR recovery exists as a local first-pass transcript and needs to be preserved in the audit branch with page provenance before SKU reconciliation.
+- The 62-row category register is only an initial contents/heading index. Page-level heading checks, exact SKU, description, raw price/cost and later-guide matches are still outstanding. Do not claim that all guide products are reconciled/imported.
+- Next sequence: (1) preserve June OCR transcript as staging evidence, (2) extract/structure each guide page-by-page with page/category boundaries, (3) reconcile exact SKUs chronologically June → July → August → September, (4) classify KEEP/UPDATE/ADD/QUOTE/REVIEW and apply the decision matrix, (5) validate category counts and exception rows, (6) obtain owner review before any live changes.
+
+### Safety/status
+- **Completed:** master handover policy update; exact-SKU decision matrix; category register v2 copy.
+- **In progress / unresolved:** complete source-page register and exact-SKU product ledger; validate OCR/table reading; source price checks; category mapping review.
+- **Not done:** live product/category/price/availability edits, Supabase writes, Cloudflare/GitHub production deployment, or Axxess upload. No such change is authorised by this staging work.
+- ETA: not responsibly estimable until page-level parsing and exact-SKU join quality are measured. Continue updating this master handover after each material result.
