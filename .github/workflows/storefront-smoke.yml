@@ -2,7 +2,7 @@ name: Storefront Smoke Test
 
 on:
   push:
-    branches: [main]
+    branches: [main, release/verified-price-checkout-2026-10-13]
     paths:
       - '**/*.html'
       - '**/*.js'
@@ -24,6 +24,17 @@ jobs:
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Verify verified-price checkout gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq "price_status==='VERIFIED_PRICE'" index-new.html
+          grep -Fq "PRICE_CONFIRMATION_REQUIRED" supabase/functions/store-checkout/index.ts
+          grep -Fq "Price confirmation required" checkout-v2.html
+          grep -Fq "Price on request" index-new.html
+          grep -Fq "price_status==='VERIFIED_PRICE'" products.html
+          grep -Fq "price_status==='VERIFIED_PRICE'" product.html
+          echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
       - name: Run local storefront smoke test
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/store-http.log 2>&1 &
@@ -139,7 +150,22 @@ jobs:
               throw new Error('Product detail modal failed to open after clicking product title: '+JSON.stringify(modalDiag));
             }
             await frame.locator('#modalClose').click();
-            await frame.locator('#featuredGrid .product button').first().click();
+            await frame.locator('#allProductsLink').click();
+            await frame.locator('#searchInput').fill('GW-B4F502E6');
+            const quoteOnlyCard = frame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
+            await quoteOnlyCard.waitFor({timeout:15000});
+            const quoteOnlyText = await quoteOnlyCard.innerText();
+            if (!quoteOnlyText.includes('Price on request') || !quoteOnlyText.includes('REQUEST PRICE')) throw new Error('Unverified product must show Price on request and REQUEST PRICE');
+            await frame.locator('#searchInput').fill('GW-F165DD11');
+            const verifiedCard = frame.locator('.product').filter({hasText:'GW-F165DD11'}).first();
+            await verifiedCard.waitFor({timeout:15000});
+            const verifiedText = await verifiedCard.innerText();
+            if (!verifiedText.includes('ADD TO CART') || verifiedText.includes('Price on request')) throw new Error('Verified product must show its price and Add to Cart');
+            const verifiedSuggestion = frame.locator('.gwResult').filter({hasText:'GW-F165DD11'}).first();
+            await verifiedSuggestion.waitFor({timeout:10000});
+            await verifiedSuggestion.click();
+            await frame.locator('#productModal.open').waitFor({timeout:10000});
+            await frame.locator('#detailAdd').click();
             await page.locator('#checkout').waitFor({timeout:10000});
             await page.locator('#checkout').click();
             await page.waitForURL('**/checkout-v2.html');
@@ -157,6 +183,23 @@ jobs:
             if (!(await page.locator('#packagingSummary').textContent()).includes('R35.00 per item')) throw new Error('Packaging summary must show R35.00 per item');
             await page.locator('#fulfilment').selectOption('delivery');
             if (!(await page.locator('#deliverySummary').textContent()).includes('To be quoted')) throw new Error('Delivery must reset to quote pending when delivery is selected');
+            const listingPage = await browser.newPage({viewport:{width:390,height:844}});
+            await listingPage.goto('http://127.0.0.1:4173/products.html?category=df14b7f8-f086-4fdb-8496-733bde7e18e7',{waitUntil:'domcontentloaded'});
+            const listingQuoteCard = listingPage.locator('.card').filter({hasText:'GW-B4F502E6'}).first();
+            await listingQuoteCard.waitFor({timeout:15000});
+            const listingQuoteText = await listingQuoteCard.innerText();
+            if (!listingQuoteText.includes('Price on request') || !listingQuoteText.includes('REQUEST PRICE')) throw new Error('Category product listing exposed an unverified price or Add to Cart');
+            await listingPage.close();
+
+            const productQuotePage = await browser.newPage({viewport:{width:390,height:844}});
+            await productQuotePage.route('**/rest/v1/products?*', route => route.fulfill({status:200,contentType:'application/json',body:'[{"id":"quote-test","name":"Quote-only test product","public_sku":"GW-B4F502E6","description":"Customer-safe description","price":123.45,"stock_quantity":3,"image_url":null,"gallery_urls":[],"compatible_vehicles":[],"category_id":"quote-category","active":true,"specifications":{"price_status":"QUOTE_REQUIRED"}}]'}));
+            await productQuotePage.route('**/rest/v1/categories?*', route => route.fulfill({status:200,contentType:'application/json',body:'[{"id":"quote-category","name":"Accessories","parent_id":null}]'}));
+            await productQuotePage.goto('http://127.0.0.1:4173/product.html?id=quote-test',{waitUntil:'domcontentloaded'});
+            await productQuotePage.locator('#root .error, #root #add').first().waitFor({timeout:15000});
+            const productQuoteText = await productQuotePage.locator('body').innerText();
+            if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail price gate failed. Page content: '+productQuoteText.slice(0,600));
+            await productQuotePage.close();
+
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
