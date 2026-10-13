@@ -6,6 +6,7 @@ on:
       - audit/buyer-guide-extraction
     paths-ignore:
       - 'staging/source-extracts/**'
+      - 'scripts/test-staging-category-navigation.cjs'
       - 'HANDOVER*.md'
       - 'AI_HANDOVER*.md'
       - '.github/workflows/extract-buyer-guides-staging.yml'
