@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - 'staging/source-extracts/**'
       - 'HANDOVER*.md'
+      - 'AI_HANDOVER*.md'
       - 'CATALOGUE_IMPORT_RULES.md'
       - 'PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_*.md'
       - 'staging/**/*.md'
