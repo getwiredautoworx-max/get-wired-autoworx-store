@@ -1777,3 +1777,9 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - Reset proposal in the draft: verified export/backup of products/categories/dependencies; isolated staging schema/project; visual approval of category hierarchy; import June and QA; then July, August, September in order; staging storefront test; owner-approved cutover with rollback. Production data remains untouched.
 - Limitation: June source text is OCR-derived and page layout/hierarchy cannot be certified from OCR alone. Draft is not an approved final category map and must not be used for import yet. Some page references for July–September are based on contents pages; headings marked as approximate need visual confirmation.
 - Exact next task: visually validate the category hierarchy against source guide pages and compare the current production category tree read-only. If the PDF pages cannot be retrieved/rendered through the available connected tools, record that blocker and ask for an alternative source access method; do not guess or import categories.
+
+
+## PRE-TASK CHECKPOINT — 2026-10-13 — Compare live category tree and check source-page access (read-only)
+- Task: retrieve the current production category tree read-only and determine whether the source PDFs/pages can be inspected visually through available repository/file tools.
+- Scope: SELECT-only Supabase metadata/data reads; GitHub read-only inspection. No production writes, no staging imports, no deployments.
+- Success criteria: document current active category hierarchy/count and identify a safe way to validate June OCR headings against page images. If visual source pages are not available through the current tools, clearly record the blocker and pause category approval rather than infer hierarchy.
