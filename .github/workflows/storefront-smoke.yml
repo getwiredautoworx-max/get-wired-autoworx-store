@@ -32,6 +32,8 @@ jobs:
           grep -Fq "PRICE_CONFIRMATION_REQUIRED" supabase/functions/store-checkout/index.ts
           grep -Fq "Price confirmation required" checkout-v2.html
           grep -Fq "Price on request" index-new.html
+          grep -Fq "price_status==='VERIFIED_PRICE'" products.html
+          grep -Fq "price_status==='VERIFIED_PRICE'" product.html
           echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
       - name: Run local storefront smoke test
         run: |
@@ -159,7 +161,7 @@ jobs:
             await verifiedCard.waitFor({timeout:15000});
             const verifiedText = await verifiedCard.innerText();
             if (!verifiedText.includes('ADD TO CART') || verifiedText.includes('Price on request')) throw new Error('Verified product must show its price and Add to Cart');
-            await verifiedCard.locator('button').click();
+            await verifiedCard.getByRole('button',{name:'ADD TO CART',exact:true}).click();
             await page.locator('#checkout').waitFor({timeout:10000});
             await page.locator('#checkout').click();
             await page.waitForURL('**/checkout-v2.html');
@@ -177,6 +179,21 @@ jobs:
             if (!(await page.locator('#packagingSummary').textContent()).includes('R35.00 per item')) throw new Error('Packaging summary must show R35.00 per item');
             await page.locator('#fulfilment').selectOption('delivery');
             if (!(await page.locator('#deliverySummary').textContent()).includes('To be quoted')) throw new Error('Delivery must reset to quote pending when delivery is selected');
+            const listingPage = await browser.newPage({viewport:{width:390,height:844}});
+            await listingPage.goto('http://127.0.0.1:4173/products.html?category=df14b7f8-f086-4fdb-8496-733bde7e18e7',{waitUntil:'domcontentloaded'});
+            const listingQuoteCard = listingPage.locator('.card').filter({hasText:'GW-B4F502E6'}).first();
+            await listingQuoteCard.waitFor({timeout:15000});
+            const listingQuoteText = await listingQuoteCard.innerText();
+            if (!listingQuoteText.includes('Price on request') || !listingQuoteText.includes('REQUEST PRICE')) throw new Error('Category product listing exposed an unverified price or Add to Cart');
+            await listingPage.close();
+
+            const productQuotePage = await browser.newPage({viewport:{width:390,height:844}});
+            await productQuotePage.goto('http://127.0.0.1:4173/product.html?id=b1c995e6-8fc1-4e09-8303-881c6312a53e',{waitUntil:'domcontentloaded'});
+            await productQuotePage.locator('#add').waitFor({timeout:15000});
+            const productQuoteText = await productQuotePage.locator('body').innerText();
+            if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail exposed an unverified price or Add to Cart');
+            await productQuotePage.close();
+
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
