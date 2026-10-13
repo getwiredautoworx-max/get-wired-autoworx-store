@@ -1,0 +1,129 @@
+source_month,source_heading,source_page_or_range,proposed_main_category,proposed_subcategory,status,notes
+June 2026,4X4 & OUTDOOR,3,4x4 & Off-road,4x4 outdoor,OCR recovered,Page heading recovered from June PDF OCR
+June 2026,LIFESTYLE,3-4,Camping, Leisure & Outdoors,Lifestyle,OCR recovered,Includes caravan covers and camping/leisure products; Caravan accessories mapping approved by owner
+June 2026,PANEL CLIPS,4-5,Automotive Accessories,Clips and fasteners,OCR recovered,Keep clips together as requested
+June 2026,GENERAL ACCESSORIES,6-8,Automotive Accessories,General accessories,OCR recovered,Preserve source heading pending detailed SKU mapping
+June 2026,ELECTRICAL ACCESSORIES,9,Auto Electrical Spares,Electrical accessories,OCR recovered,Preserve distinct source heading
+June 2026,AERIALS,10,Car Audio & Entertainment,Aerials,OCR recovered,Preserve distinct source heading
+June 2026,BATTERY ACCESSORIES,11,Auto Electrical Spares,Battery accessories,OCR recovered,Preserve distinct source heading
+June 2026,GLOBES & GLOBE HOLDERS,13,Lighting,Globes and globe holders,OCR recovered,Preserve distinct source heading
+June 2026,STARTER KITS & REGULATORS,14,Auto Electrical Spares,Starter kits and regulators,OCR recovered,Preserve distinct source heading
+June 2026,FUEL PUMPS,15,Automotive Spares & Parts,Fuel pumps,OCR recovered,Preserve distinct source heading
+June 2026,HOTECHE,16-17,Tools Hardware & Consumables,Hoteche tools,OCR recovered,Brand/section heading; confirm products during SKU mapping
+June 2026,DOOR PARTS,18-19,Automotive Spares & Parts,Door parts,OCR recovered,Preserve source heading
+June 2026,BRAKE SPARES & CYLINDERS,20,Automotive Spares & Parts,Brake spares and cylinders,OCR recovered,Preserve source heading
+June 2026,AUTOMOTIVE TOOLS,21-22,Tools Hardware & Consumables,Automotive tools,OCR recovered,Preserve source heading
+June 2026,ENGINE TIMING KITS,23,Automotive Spares & Parts,Engine timing kits,OCR recovered,Preserve source heading
+June 2026,ABRASIVES,24,Tools Hardware & Consumables,Abrasives,OCR recovered,Preserve source heading
+June 2026,CONSUMABLES,25,Tools Hardware & Consumables,Consumables,OCR recovered,Preserve source heading
+June 2026,HAND TOOLS,26-28,Tools Hardware & Consumables,Hand tools,OCR recovered,Preserve source heading
+July 2026,4X4 AND CAMPING,7,Camping, Leisure & Outdoors,4x4 and camping,Text extracted,Map to approved top-level category after SKU-level review
+July 2026,TRAILER AND TOWING,7,Trailer & Canopy,Trailer and towing,Text extracted,Keep separate from camping pending owner taxonomy
+July 2026,GENERAL ACCESSORIES,8-12,Automotive Accessories,General accessories,Text extracted,
+July 2026,DOOR PARTS,12-13,Automotive Spares & Parts,Door parts,Text extracted,
+July 2026,AUTOMOTIVE ELECTRICAL,13-15;18-22,Auto Electrical Spares,Automotive electrical,Text extracted,Split contents listing spans two page ranges
+July 2026,HOTECHE TOOLS,16-17,Tools Hardware & Consumables,Hoteche tools,Text extracted,
+July 2026,AUTOMOTIVE SPARES,22-24,Automotive Spares & Parts,Automotive spares,Text extracted,
+July 2026,WHEEL ACCESSORIES,25-27,Automotive Accessories,Wheel accessories,Text extracted,
+July 2026,AUTOMOTIVE TOOLS,28,Tools Hardware & Consumables,Automotive tools,Text extracted,
+July 2026,HARDWARE,28-32,Tools Hardware & Consumables,Hardware,Text extracted,
+August 2026,ACCESSORIES,4,Automotive Accessories,Accessories,Text extracted,
+August 2026,GARDEN TOOLS,4,Camping, Leisure & Outdoors,Garden tools,Text extracted,
+August 2026,LIFESTYLE,4,Camping, Leisure & Outdoors,Lifestyle,Text extracted,
+August 2026,CAMPING,4,Camping, Leisure & Outdoors,Camping,Text extracted,
+August 2026,4X4 OUTDOOR,4-5,Camping, Leisure & Outdoors,4x4 outdoor,Text extracted,
+August 2026,AUTO ACCESSORIES,5-13,Automotive Accessories,Auto accessories,Text extracted,
+August 2026,AUTO ELECTRICAL,13-15;18-23,Auto Electrical Spares,Auto electrical,Text extracted,
+August 2026,NEW CAR MAT SETS,16-17,Automotive Accessories,Car mat sets,Text extracted,
+August 2026,AUTO SPARES,23-26,Automotive Spares & Parts,Auto spares,Text extracted,
+August 2026,WHEEL ACCESSORIES,26,Automotive Accessories,Wheel accessories,Text extracted,
+August 2026,AUTO TOOLS,26-27,Tools Hardware & Consumables,Auto tools,Text extracted,
+August 2026,HAND TOOLS,27-30,Tools Hardware & Consumables,Hand tools,Text extracted,
+August 2026,CONSUMABLES,30,Tools Hardware & Consumables,Consumables,Text extracted,
+August 2026,ABRASIVES,30-31,Tools Hardware & Consumables,Abrasives,Text extracted,
+August 2026,PADLOCKS,31,Tools Hardware & Consumables,Padlocks,Text extracted,Preserve explicit source section
+August 2026,BOAT ACCESSORIES,31,Marine Spares & Accessories,Boat accessories,Text extracted,
+August 2026,SUPER SAVE,31-32,Review as promotion grouping,Promotional selection,Text extracted,Do not treat as permanent category until promotion eligibility checked
+September 2026,ACCESSORIES,4,Automotive Accessories,Accessories,Text extracted,
+September 2026,KNIVES,4,Tools Hardware & Consumables,Knives,Text extracted,Preserve source heading; owner to confirm parent if needed
+September 2026,LIFESTYLE,4,Camping, Leisure & Outdoors,Lifestyle,Text extracted,
+September 2026,4X4 OUTDOOR,4-5,Camping, Leisure & Outdoors,4x4 outdoor,Text extracted,
+September 2026,TRAILER & TOWING,5,Trailer & Canopy,Trailer and towing,Text extracted,
+September 2026,AUTO ACCESSORIES,5-8,Automotive Accessories,Auto accessories,Text extracted,
+September 2026,DOOR PARTS,8-9,Automotive Spares & Parts,Door parts,Text extracted,
+September 2026,AERIALS,10,Car Audio & Entertainment,Aerials,Text extracted,
+September 2026,BATTERY,11,Auto Electrical Spares,Battery,Text extracted,
+September 2026,ELECTRICAL SPARES,11-15,Auto Electrical Spares,Electrical spares,Text extracted,
+September 2026,AUTO SPARES,15;18-22,Automotive Spares & Parts,Auto spares,Text extracted,
+September 2026,ATV WINCHES & WHEEL CAPS,16-17,4x4 & Off-road,ATV winches and wheel caps,Text extracted,Keep winches and winch spares grouped; wheel caps may need separate mapping
+September 2026,WHEEL ACCESSORIES,22-23,Automotive Accessories,Wheel accessories,Text extracted,
+September 2026,AUTO TOOLS,23,Tools Hardware & Consumables,Auto tools,Text extracted,
+September 2026,HARDWARE,24,Tools Hardware & Consumables,Hardware,Text extracted,
+September 2026,CONSUMABLES,30-31,Tools Hardware & Consumables,Consumables,Text extracted,
+September 2026,BOAT ACCESSORIES,31,Marine Spares & Accessories,Boat accessories,Text extracted,
+September 2026,PORTABLE COMPRESSORS,32,Tools Hardware & Consumables,Portable compressors,Text extracted,Confirm whether tools or camping based on individual products
+"June 2026","LOCKS & PADLOCKS","29","Tools, Hardware & Consumables","Locks and padlocks","OCR recovered; image checked","June pages 29–32 improved OCR addendum; SKU/price validation still required"
+"June 2026","GARDEN TOOLS","29","Camping, Leisure & Outdoors","Garden tools","OCR recovered; image checked","Parent mapping proposed; confirm against owner taxonomy"
+"June 2026","TOOLBOXES","29","Tools, Hardware & Consumables","Toolboxes","OCR recovered; image checked","Keep distinct from hand tools"
+"June 2026","STICKERS","29–30","Automotive Accessories","Vehicle stickers and racing stripes","OCR recovered; image checked","Marked special discounted price in June guide; not current pricing"
+"June 2026","WATER SPORTS","30","Marine Spares & Accessories","Water sports","OCR recovered; image checked","Parent mapping proposed; includes kayaks, SUP board and paddles"
+"June 2026","TAPPET COVERS","30","Automotive Spares & Parts","Tappet covers and intake manifolds","OCR recovered; image checked","Vehicle application and exact SKU need review"
+"June 2026","IGNITION BARRELS AND SWITCHES","31","Auto Electrical Spares","Ignition barrels and switches","OCR recovered; image checked","Preserve ignition switch/relay taxonomy pending item mapping"
+"June 2026","HAND WINCHES","31","4x4 & Off-road","Hand winches and winch spares","OCR recovered; image checked","Group winches with winch spares as requested; review trailer/camping use cases"
+"June 2026","SPANNERS","32","Tools, Hardware & Consumables","Spanners and combination spanners","OCR recovered; image checked","Keep spanners/wrenches together; printed table provides explicit prices for 11 SKUs"
+"June 2026","CUTTING TOOLS","24","Tools, Hardware & Consumables","Cutting tools","OCR recovered; section heading seen in page OCR","Preserve source heading; map exact products during SKU ledger"
+"June 2026","DRILLING TOOLS","25","Tools, Hardware & Consumables","Drilling tools","OCR recovered; section heading seen in page OCR","Preserve source heading; includes drill bits and related accessories"
+"June 2026","MEASURING TOOLS","28","Tools, Hardware & Consumables","Measuring tools","OCR recovered; section heading seen in page OCR","Preserve source heading; keep distinct subcategory"
+"June 2026","LOCKS & PADLOCKS","28–29","Tools, Hardware & Consumables","Locks and padlocks","OCR recovered; page 29 visually checked","Section starts near printed page 28/29 boundary; verify exact start page"
+"February 2026","4x4 and Outdoor","4","Camping, Leisure & Outdoors","4x4 outdoor","TOC extracted; mapping provisional","Keep source heading; review item-by-item for vehicle-mounted vs outdoor use."
+"February 2026","Accessories","5-8","Automotive Accessories","Accessories","TOC extracted; mapping provisional","Broad source section; preserve source label and map individual SKUs."
+"February 2026","Accessories-Quantum","8","Automotive Accessories","Accessories — Quantum source alias","TOC extracted; mapping provisional","Preserve Quantum distinction in source taxonomy; do not assume every item is equivalent to non-Quantum products."
+"February 2026","Adhesives and Silicones","9","Tools, Hardware & Consumables","Adhesives and silicones","TOC extracted; mapping provisional","Consumable classification; verify individual products."
+"February 2026","Automotive Hardware","9-10","Tools, Hardware & Consumables","Automotive hardware","TOC extracted; mapping provisional","Use item function, not source heading alone."
+"February 2026","Chemicals Lubricants and Oils","10","Tools, Hardware & Consumables","Chemicals, lubricants and oils","TOC extracted; mapping provisional","Preserve exact source heading; confirm store scope and product safety/fitment."
+"February 2026","Automotive Electrical","10-21","Auto Electrical Spares","Automotive electrical","TOC extracted; mapping provisional","Keep source category separate from store root; SKU/description verification required."
+"February 2026","Automotive Gaskets","21","Review — outside approved roots unless confirmed in-scope","Automotive gaskets","TOC extracted; manual review required","Do not force mechanical engine parts into an unrelated store root."
+"February 2026","Automotive Gauges","21","Auto Electrical Spares","Automotive gauges/instruments","TOC extracted; mapping provisional","Verify electrical/vehicle application per SKU."
+"February 2026","Automotive Brake & Clutch","22-23","Review — outside approved roots unless confirmed in-scope","Brake and clutch","TOC extracted; manual review required","Mechanical parts are not automatically in scope; preserve source category pending owner review."
+"February 2026","Automotive Door Parts","23","Review — Vehicle Security or Automotive Accessories after SKU review","Door parts","TOC extracted; mapping provisional","Choose by actual function; do not map every door part to security."
+"February 2026","Automotive Sound","23","Car Audio & Entertainment","Automotive sound","TOC extracted; mapping provisional","Verify product type and exact SKU."
+"February 2026","Automotive Spare Parts","23-26","Review — outside approved roots unless confirmed in-scope","Automotive spare parts","TOC extracted; manual review required","Generic heading is insufficient to infer customer-facing category."
+"February 2026","Automotive Spare Parts-Quantum","27","Review — outside approved roots unless confirmed in-scope","Automotive spare parts — Quantum source alias","TOC extracted; manual review required","Preserve Quantum source distinction; map only after SKU and product-function check."
+"February 2026","Automotive Wheel Accessories","27-29","Automotive Accessories","Wheel accessories","TOC extracted; mapping provisional","Review individual products for accessories vs mechanical parts."
+"February 2026","Automotive Window Spares","29","Review — Vehicle Security or Automotive Accessories after SKU review","Window spares","TOC extracted; mapping provisional","Classify by actual product function; do not infer all are security products."
+"February 2026","Automotive Tools","30","Tools, Hardware & Consumables","Automotive tools","TOC extracted; mapping provisional","Retain tool subtype for navigation."
+"February 2026","Hardware","31-36","Tools, Hardware & Consumables","Hardware","TOC extracted; mapping provisional","Broad source heading; retain source hierarchy and verify each SKU."
+"March 2026","4x4 and Outdoor","4","Camping, Leisure & Outdoors","4x4 outdoor","TOC extracted; mapping provisional","Separate outdoor leisure goods from vehicle-mounted accessories by SKU."
+"March 2026","Automotive Accessories","4","Automotive Accessories","Automotive accessories","TOC extracted; mapping provisional","Preserve source heading."
+"March 2026","Trailer And Towing","4-5","Trailer & Canopy","Trailer and towing","TOC extracted; mapping provisional","Preserve original wording and page range."
+"March 2026","Automotive Electrical","5-8","Auto Electrical Spares","Automotive electrical","TOC extracted; mapping provisional","SKU/description verification required."
+"March 2026","Spare Parts","8-11","Review — outside approved roots unless confirmed in-scope","Spare parts","TOC extracted; manual review required","Generic heading; don't infer destination without product-level evidence."
+"March 2026","Wheel Accessories","12","Automotive Accessories","Wheel accessories","TOC extracted; mapping provisional","Review product function at SKU level."
+"March 2026","Automotive Tools","12","Tools, Hardware & Consumables","Automotive tools","TOC extracted; mapping provisional","Retain tool subtype."
+"March 2026","Cutting Tools","13","Tools, Hardware & Consumables","Cutting tools","TOC extracted; mapping provisional","Preserve source heading."
+"March 2026","Abrasives","13","Tools, Hardware & Consumables","Abrasives","TOC extracted; mapping provisional","Preserve source heading."
+"March 2026","Hand Tools","14-17;20-24","Tools, Hardware & Consumables","Hand tools","TOC extracted; mapping provisional","Two separate page ranges in contents; preserve both."
+"March 2026","Laser Distance Meter & Digital Torque Wrench","18-19","Tools, Hardware & Consumables","Measuring and torque tools","TOC extracted; mapping provisional","Preserve exact source heading in source field."
+"March 2026","Garden Tools","24-25","Tools, Hardware & Consumables","Garden tools","TOC extracted; mapping provisional","Store root to be reviewed against owner navigation preference; don't force into camping."
+"March 2026","Measuring Tools","25-26","Tools, Hardware & Consumables","Measuring tools","TOC extracted; mapping provisional","Preserve source heading."
+"March 2026","Welding","26","Tools, Hardware & Consumables","Welding tools and consumables","TOC extracted; mapping provisional","Check each item and store scope."
+"March 2026","Consumables","27","Tools, Hardware & Consumables","Consumables","TOC extracted; mapping provisional","Broad source heading; preserve and map individual SKUs."
+"March 2026","Lifestyle","27","Camping, Leisure & Outdoors","Lifestyle","TOC extracted; mapping provisional","Keep caravan-accessory owner mapping under Camping, Leisure & Outdoors."
+"March 2026","Safety","27-28","Review — classify by item use","Safety products","TOC extracted; manual review required","Could include vehicle, workshop, camping or general safety; use item-level evidence."
+"March 2026","Security","28","Vehicle Security","Security","TOC extracted; mapping provisional","Verify actual vehicle-security purpose before mapping."
+"March 2026","Rigging","29","Marine Spares & Accessories","Rigging","TOC extracted; mapping provisional","Verify marine use per item; retain original heading."
+"March 2026","SPECIAL DISCOUNTED PRICE","30-32","Promotion grouping — not a permanent category","Special discounted price","TOC extracted; promotional section","Do not create a permanent navigation category from a promotional block."
+"May 2026","Outdoor","3","Camping, Leisure & Outdoors","Outdoor","TOC extracted; mapping provisional","Preserve source heading; classify individual products."
+"May 2026","Safety","3","Review — classify by item use","Safety products","TOC extracted; manual review required","Do not infer a store root from broad heading alone."
+"May 2026","Accessories","3-4","Automotive Accessories","Accessories","TOC extracted; mapping provisional","Broad source heading; preserve exact source category."
+"May 2026","Chemicals","4","Tools, Hardware & Consumables","Chemicals","TOC extracted; mapping provisional","Review individual items and intended use."
+"May 2026","Auto Spares","4-7","Review — outside approved roots unless confirmed in-scope","Auto spares","TOC extracted; manual review required","Broad heading; classify by exact SKU, description and store scope."
+"May 2026","Auto Electrical","7-10","Auto Electrical Spares","Auto electrical","TOC extracted; mapping provisional","Preserve source heading and SKU identity."
+"May 2026","Winches & Spares","11","Automotive Accessories or Trailer & Canopy after SKU review","Winches and winch spares","TOC extracted; mapping provisional","Keep winches and winch spares grouped as requested; distinguish hand, ATV, trailer and vehicle applications."
+"May 2026","Pumps And Filters","12","Review — classify by item/application","Pumps and filters","TOC extracted; manual review required","Mixed source heading; don't force fuel, marine and general pumps into one store leaf."
+"May 2026","Fuel Caps","12","Automotive Accessories","Fuel caps","TOC extracted; mapping provisional","Verify exact vehicle application."
+"May 2026","Engine Cooling","13-14","Review — outside approved roots unless confirmed in-scope","Engine cooling","TOC extracted; manual review required","Mechanical cooling items should not be forced into Auto Electrical."
+"May 2026","Ignition Spares","14-17","Auto Electrical Spares","Ignition spares","TOC extracted; mapping provisional","Verify exact SKU and whether component is electrical."
+"May 2026","Automotive Tools","26-29","Tools, Hardware & Consumables","Automotive tools","TOC extracted; mapping provisional","Preserve source heading."
+"May 2026","Boat Accessories","20-30","Marine Spares & Accessories","Boat accessories","TOC extracted; mapping provisional","TOC page range overlaps due to multi-column layout; verify actual pages before product-level mapping."
+"May 2026","SPECIAL DISCOUNTED PRICE","30-32","Promotion grouping — not a permanent category","Special discounted price","TOC extracted; promotional section","Do not treat as a permanent category or live price guarantee."
