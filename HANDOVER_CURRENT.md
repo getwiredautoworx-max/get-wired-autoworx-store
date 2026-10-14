@@ -142,3 +142,16 @@ Continue visual verification from printed page 24 of the June Buyer’s Guide an
 - Page 28 hand-pump examples: 822 and 891AG. Measuring-tool examples: 282004, 282202, 282401, 282501, 282516, 283305, 283502, 283511, 283521, 284271, 284902, 284904, 284905 and 285144. Locks/padlocks examples: 180821, 180004, 180005, 180101, 180114, 180202, 180203 and 180304.
 - Code lists are selected visual candidates only; check exact SKU, description, unit/pack size and price against the source image and newer authoritative pricing before staging as verified. No live store/database changes, imports, uploads or deployments performed.
 - Next action: continue from printed page 29, where the guide moves into the final hardware and special-discounted sections.
+
+
+## Progress made 2026-10-14 — June guide pages 24–28
+- Visually inspected printed pages 24–28. Selected visible codes are for traceability only; full SKU/description/price joins remain outstanding.
+- Page 24 (Abrasives, Cutting Tools, Consumables): examples A8-WP600-10P, 0100F, A8-001-115, A8-0255, 331101, 310911, 311215, 325010, A8-SCD115, 570203, A2-053-22, C5-036B, C5-036B-10, C5-036S, C5-036S-10, PVC-BL, PVC-Y, CT25-100, CT25-100B, CT25-120B, CT36-120B, CT36-180B, NA540B, NA660, NA8100B, 161002, 161003, 171038 and F7-010-14.
+- Page 25 (Consumables, Drilling Tools, Hand Tools): examples F7-008-18, F7-008-20, F7-008-013, F7-008-2, H5-006-16, H5-012-10, 560162, 520108, 520305, 530103, 530125, T2-021-SL7, 510111, G840593, 300801, 500213, table SKUs 500308/500309/500310/500314/500316, 424305, 424503, T1-065-150, T1-109-75, T1-167, T1-167 (check duplicate/reading against image), 290452, 290604, 290606, 290740 and B30002.
+- Page 26 (Hand Tools): examples 456066, 383125, C13-025-300, HCS332W-10, HCS572W-10, A831101, A830050E, A834004, A831402, A831409, A832027E, A832311, 550710, 610004, 210205, 210901, 220403, T1-011-5, 284115, 284220, 120101, P5-208-8, 10100C-2, P5-047-9P, 100146, 130203, 130206, 140606, 120106, 100912, 101501, 120105, 100501, 110601 and P7-001-1.5.
+- Page 27 (Hand Tools): examples P7-013-6, P7-016-3, P7-017-4, 260067, 260071, 260072, 300114, 270330, 261012, 601011, 259001, 786C, T683, P812161-TP0.8, P812161-TP1.0, 455005, T14-015B, T15-007-T10, T15-007-T20, T15-007-T27, 242515, 251001, 251002, 251004, 251008, 251037, 630610, 240815, 240825, 109650, 251006, 770401 and 770402.
+- Page 28 (Hand Tools, Measuring Tools, Locks and Padlocks): examples 822, 891AG, 2021, 282004, 282202, 282401, 282501, 282516, 283305, 283502, 283511, 283521, 284271, 284902, 284904, 284905, 285144, 180821, 180004, 180005, 180101, 180114, 180102, 180203 and 180304.
+- Continue to regard printed June prices as historical and verify exact codes, item descriptions and prices against source page images and later/current sources before classifying rows. No live writes, imports, deployments or Axxess uploads performed.
+
+## Immediate next action
+Inspect printed pages 29–32, then perform exact SKU joins against the crosswalk and subsequent buyer’s guides. The remaining work is more than page transcription: it includes source-price reconciliation, deduplication, category mapping and storefront QA.
