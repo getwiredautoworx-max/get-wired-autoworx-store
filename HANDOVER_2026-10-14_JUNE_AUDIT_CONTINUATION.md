@@ -185,3 +185,10 @@ Production untouched.
 - Added `staging/source-extracts/june-source-coverage-audit-pages12-14.csv` (44 source coverage exceptions; audit branch commit `8199091e9e6fc55242cb76323187723f40f28d3f`).
 - Missing-source examples include fuse/relay codes on page 12 (`F3-004-7.5`, `MPF10AMPC`, `WPF3AMP`, `FL30`, `FL50`, `ND89`, `ND105`, `F4-002`); globe/starter-kit codes on page 13 (`286D-10`, `339-10`, `582ALED`, `H170W24V`, `1DS-8000`, `041SK`, `223SK`); and regulator/fuel-pump codes on page 14 (`VR1021`, `VR1029`, `ST2025`, `F1-005`, `F1-016`, `F1-035`, `F1-049`).
 - The source-coverage exception queue is now available for printed pages 3–5, 6–8, 9–11 and 12–14, in separate audit-only files. This is a partial source coverage audit, not a fully reconciled catalogue.
+
+
+## 2026-10-14 follow-up — page 15 coverage review
+- Visually inspected printed page 15 and compared source codes to the full 470-row worksheet.
+- Added `staging/source-extracts/june-source-coverage-audit-page15.csv` with 13 source items absent from staging; latest audit-branch commit for the correctly scoped file is `eb941d80ade4e25deaf8492cdf2cdc2c8013d985`.
+- Missing examples include fuel-pump codes `F1-108`, `F1-119`, `UC-JC10HC`, `F1-042`, and fan-blade/viscous-clutch codes `F9-TY02AC`, `F9-001-5`, `F9-001-28`, `F9-001-66`, `F9-001-75`, `F9-002-15`, `F9-002-51`, `F9-002-70`, `F9-002-81`.
+- Page 16–17 remain classified as Hoteche promotional/display material rather than normal priced product pages; page 18 source-image review is still to be completed.
