@@ -81,3 +81,11 @@ Immediate next action: continue visual verification from printed page 11 of the 
 - All listed codes are visual candidates, not completed exact SKU/cost reconciliation. June guide pricing remains historical and must be checked against later guides/current supplier costs before becoming a live price.
 - No live store/database changes, imports, uploads, or deployments performed.
 - Next action: continue with printed page 17 onward; maintain staged-only reconciliation.
+
+
+## Progress made 2026-10-14 — June guide pages 17–19
+- Visually inspected printed pages 17–19. Page 17 is Hoteche display-stand terms rather than a priced stock list: display stand loan offer requires R18,000 or more purchase from Hoteche range; only five stands available; stand is for displaying Hoteche range and remains property of Accessories Spares Centre. Do not treat the display stand as a sale item.
+- Page 18 Door Parts visible examples: JTL-6106, Q-SDC02, Q-SDH03, Q-BDS01, Q-BDSC02, Q-DC02, Q-LR01, Q-SDL01, Q-SDS02, Q-FSDL02, VIC-AC072, VIC-AC108T, DHFL-NP200, DHFL-SE01, DHFL-SS01, DHFR-SB01, DHFR-SB02, DHFR-SS01, DTHL-CA2HCB, DTHL-NP200B, DHIL-SB01, DHIL-YHG, DHIR-HAC2, DHIR-NP200B, DHRL-SE01, DHRR-SE01, KOA1069SBL, KOA1081B, M-WRH02, N-WRH01, N-WRH02 and O-WRH02.
+- Page 19 continues Door Parts then starts Automotive Spares. Door-part examples: S-WRH03, T-WR002R, T-WR003L, V-WRH02. Automotive Spares examples: A3-003BCABL, A3-003GR, A3-023BL, A3-030CH, A3-032BL, A3-021B, A3-021Y, A3-011BL, T-CBP01, CL-1260, SV-8345, AF-002, AF-010, CF-001, LP, FF-006, GF-239/240, JT-215, AF-004, BS-302, BS-T9, BS-T9B, SC-SB01, SE-CVB01, 335-4 and 98013.
+- As before, transcribed codes require exact row matching before price, description or application is marked verified. Printed June prices are not automatically current costs. No live store/database changes, imports, uploads or deployments performed.
+- Next action: continue printed page 20 onward; preserve staged-only workflow.
