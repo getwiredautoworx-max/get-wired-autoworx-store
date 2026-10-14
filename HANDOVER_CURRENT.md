@@ -135,3 +135,42 @@ This section records the latest owner-facing release plan. “Ready for live tes
 6. Once applicable gates pass, perform the controlled QA and one-batch release; update this handover with measured results and commit references.
 
 No production catalogue write, unsafe SQL execution, deployment/upload, DNS change, or payment-setting change was performed by this handover update.
+
+
+## OWNER DIRECTIVE — LIVE-TESTING TASK TRACKER CHECKPOINT (2026-10-14)
+
+Owner reiterated that readiness must be evidence-based and requested execution through completion, with handover updated. Do not claim tasks are resolved unless exit evidence exists. Do not repeat successful workflows without a relevant change/failure.
+
+### New deliverable: revised 800-row category mapping (STAGING ONLY)
+- Generated local file: `/mnt/data/Get_Wired_AutoWorx_800_Category_Mapping_REVISED_STAGING_2026-10-14.csv`.
+- Validation: 800 rows; 800 unique SKUs. Every row has a proposed storefront top-level category, proposed subcategory, source category/subcategory retained, mapping confidence/reason, exception flag, `Import_Eligible=False`, `Staging_Only=True`, and a status explicitly stating it is proposed staging mapping, not production-approved.
+- Proposed top-level counts (staging proposals, not final approved taxonomy): Automotive Accessories 361; Tools, Hardware & Consumables 253; Auto Electrical Spares 117; Car Audio & Entertainment 34; Trailer & Canopy 20; Camping, Leisure & Outdoors 10; Marine Spares & Accessories 5. Vehicle Security currently has 0 proposed rows in this candidate based on available source headings/descriptions; do not manufacture assignments without evidence.
+- Confidence counts: High 610; Medium 184; Low 6. Six low-confidence rows are under the promotional source heading `New Arrivals`; product-family evidence is insufficient to approve them, so retain explicit exceptions for follow-up.
+- Important limitations: this is a deterministic first-pass staging map based on source headings and available product descriptions, not proof that all 800 source pages/images have been visually verified. SKU-prefix rules are only populated where a meaningful family rule was defensible; do not infer prefixes where unsupported. The file does not authorize production taxonomy changes or import. All 800 remain import-ineligible pending pricing, image/rights and catalogue-integrity gates.
+- Mapping file has been created locally; it has not yet been committed as a downloadable artifact in GitHub. Use the conversation download link for this generated CSV where available.
+
+### Exact live-testing readiness task tracker — current evidence
+1. **800-row SKU/description/cost reconciliation and safe price candidate:** OPEN / BLOCKED. Prior audit proved candidate SQL price formula is VAT-only and source join errors exist. Required formula remains cost ex VAT × 1.15 × 1.35; mathematical recalculation does not verify current supplier price. Never execute the unsafe September SQL. Keep nine quote-only SKUs excluded from sale and not active at zero.
+2. **Category mapping:** FIRST-PASS STAGING DELIVERABLE GENERATED. 800/800 rows mapped to a proposed top-level category and subcategory; 6 low-confidence New Arrivals exceptions remain. This does not pass full source-page validation or authorize import. Next: resolve those six with exact description/SKU-prefix evidence and retain the source heading.
+3. **Exact-SKU image verification and usage rights:** OPEN / BLOCKED. 30/38 held SKUs are in the unmatched-image queue; absence from the queue is not proof. The 800-row candidate's image paths/rights remain unproven. Use only exact SKU/model evidence and authorized images.
+4. **Current prices for 38 live price-scaling defects:** OPEN / WAITING ON SUPPLIER. No current written supplier confirmation recorded. Correct only from current cost evidence or hold the affected SKU.
+5. **Axxess root/www DNS and SSL:** OPEN / WAITING ON AXXESS. Verify both root and www, certificate validity, canonical behavior and preservation of MX/SPF/DKIM after provider action.
+6. **Complete controlled storefront/checkout QA:** OPEN / PARTIAL. Earlier workflow 38559111166 passed its defined limited test scope; this is not full catalogue QA or proof of current root/www SSL. No real paid order; PayFast/PayJustNow settings remain untouched.
+7. **Staged-to-live 4,187-SKU delta ledger, backup and rollback:** OPEN. Baseline recorded as 4,187 active products/SKUs; a reviewed KEEP/UPDATE/ADD/QUOTE/HOLD ledger is not yet evidenced.
+8. **One controlled release, post-upload smoke tests and exact deployed-version record:** OPEN / NOT AUTHORIZED. Only proceed when applicable gates pass; one approved package/upload, rollback checkpoint, post-upload tests and handover evidence.
+
+### Excluded/deferred work
+- PayFast and PayJustNow approval/payment verification remain deferred per owner instruction. They are not prerequisites for non-payment storefront testing, but are required before claiming online payments are production-ready.
+- Cloudflare/GitHub/Supabase mirror synchronization is to be batched with final release only where required and when access/token blockers are resolved. Avoid repeated builds/credit use.
+- Do not rerun the previously successful release-gate/monitoring workflows absent relevant changes or failures.
+
+### Current decision
+**NOT YET READY FOR LIVE TESTING OF THE RECONCILED CATALOGUE; CUSTOMER LAUNCH HOLD.** The revised category mapping is now generated as a staging deliverable, reducing the previous category-review queue to six explicitly low-confidence promotional-heading rows for follow-up, but catalogue source joins, current pricing, exact-SKU image evidence/rights, Axxess DNS/SSL, complete QA and the live-delta/rollback ledger remain open. No production catalogue change, SQL execution, deployment/upload, DNS change or payment-setting change was made in this checkpoint.
+
+### Immediate next execution order
+1. Resolve six New Arrivals rows from product descriptions and SKU-family evidence; update the mapping and handover with actual outcomes.
+2. Continue correcting 800-row source SKU/description/cost joins and safe formula audit; keep all records staging-only.
+3. Build/continue exact-SKU image crosswalk and supplier rights request; do not publish unauthorized guide crops.
+4. Reconcile supplier responses for the 38 held price SKUs; hold any without current evidence.
+5. Continue Axxess-independent QA and prepare the staged-to-live change ledger/rollback plan.
+6. After external dependencies and applicable exit criteria pass, perform controlled QA and a single release; record the deployed version and post-upload smoke-test evidence.
