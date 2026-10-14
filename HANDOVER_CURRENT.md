@@ -385,3 +385,11 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - If the PDF itself is unavailable in the Library, use the original supplier file from the existing project/reconciliation workspace or its previously uploaded conversation attachment. Do not invent records or prices. Continue the rest of the release work using the verified live baseline and independent QA while source reconstruction proceeds.
 - No production catalogue/database/hosting/DNS/payment changes made. No Axxess upload or deployment performed. PayFast/PayJustNow remain intentionally bypassed until the public live URL and required policy pages are available for provider review.
 - Next execution: recover the PDF bytes, extract/normalize September rows to a new staged CSV, validate counts/duplicate SKUs/asterisk rows, then exact-join to the live SKU list and produce KEEP/UPDATE/ADD/QUOTE/REVIEW delta. Continue handover updates on each material checkpoint; do not circle back to the missing-CSV search once PDF recovery succeeds.
+
+
+## 2026-10-14 16:22 SAST — blocker recovery result
+
+- **Resolved the missing-source dependency:** located and materialized the original September Buyer's Guide.pdf from the project Library. Exact file: 5,803,563 bytes, 32 pages; text extraction succeeded (1,604 extracted lines).
+- The corrected September staging CSV still was not found in the accessible Library inventory. Do not keep searching in circles: reconstruct from this recovered original PDF and treat PDF page imagery as authority.
+- PDF contents page confirms source sections and page ranges; printed page 3 includes identifiable supplier codes such as STUD1005, 560102, NO-001-24V-NB, SFBP2-G1100-13A, SFBP2-G1500-13A, SFCBS-275-201, SFCBS-300-202, SFDP1-015-080-31, T39B/T39CH/T39G/T53B/T53CH/T53G/T54B/T54CH/T54G. Text extraction contains price typography that needs structured row/page-image validation before it is safe to treat as costs.
+- Next action has changed from locating the CSV to building a new evidence-backed staging file from the recovered PDF, validating the expected 800 unique SKU / 791 fixed-price / 9 system-priced baseline, then exact-joining live SKUs. No live data, hosting, DNS, payment settings, or deployment changed.
