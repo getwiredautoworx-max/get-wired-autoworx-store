@@ -488,3 +488,28 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - The clean illustrated catalogue page 104 was visually inspected. Both `EWV4500` and `ROMA13XP` show explicit `IMAGE NOT AVAILABLE / No verified SKU-matched catalogue image located` placeholders. No image was assigned based on appearance alone.
 - Updated review CSV `Get_Wired_AutoWorx_38_SKU_Exact_Review_2026-10-14.csv` now records the unmatched-queue cross-check and the distinction between listed vs not listed; all 38 remain held. Full 800-row read-only audit is `Get_Wired_AutoWorx_800_SQL_ReadOnly_Audit_2026-10-14.csv`.
 - Next: inspect the image-index source for the eight not in the unmatched queue, then create a review-only corrected-price candidate (791 rows formula-corrected, nine quote-only rows excluded/inactive) and a separate category/image verification queue. Do not execute SQL or publish product changes.
+
+
+## 2026-10-14 — Original September Guide recovered; review-only corrected-price candidate built
+
+### Supersedes earlier source-file availability assumption
+- Located and visually inspected the original `September Buyer's Guide.pdf` in the Library (32 pages). Relevant original source pages 16, 26, 28, 29 and 32 have been inspected as images, not just OCR.
+- All 38 price-hold SKU codes appear on their cited original September guide pages. Their source cost/guide prices are supported by the original guide, including the two compressor prices printed without decimal punctuation in the rendered page text. This verifies the September historical source record, **not current supplier pricing**: the guide says the offer ended 30 September 2026. Current supplier confirmation is still required before any held price is published.
+- Image evidence refined: exact model/SKU image panels are visible for `EWV4500` and `ROMA13XP` on page 16; named model photos/specification panels are visible for `LEOPARD` and `LION` on page 32. The other 34 held SKUs have only grouped/family images on pages 26, 28 and 29, not distinct size-specific images. Do not auto-assign the same family image to every size SKU as if exact. The supplier PDF states ASC owns the intellectual property and unauthorized use is prohibited; image publication rights are not verified.
+- Internal QA-only source crops packaged at `/mnt/data/Get_Wired_AutoWorx_September_Source_Image_Evidence_2026-10-14.zip`. These are evidence references, not approved production images.
+
+### Formula-corrected staging candidate (not importable)
+- Built `/mnt/data/Get_Wired_AutoWorx_800_Formula_Corrected_REVIEW_ONLY_2026-10-14.csv` from the read-only 800-row SQL payload. It contains 800 unique SKU rows; 791 priced rows have a review-only calculated final price using `round(cost_ex_vat × 1.15 × 1.35, 2)`; the 9 unpriced/asterisk rows remain quote-only with blank price, `candidate_active=false`, and `import_eligible=false`.
+- Import-eligible rows: **0/800**. All rows remain held for current supplier-price confirmation, image verification/rights, and category/subcategory validation. The candidate SQL itself remains unsafe: 791 rows use VAT-only pricing and 9 quote-only rows can be coerced to zero selling price while active. Never execute it.
+- Additional review artifacts:
+  - `/mnt/data/Get_Wired_AutoWorx_38_SKU_Exact_Review_2026-10-14.csv`
+  - `/mnt/data/Get_Wired_AutoWorx_38_SKU_Source_Image_Crosswalk_2026-10-14.csv`
+  - `/mnt/data/Get_Wired_AutoWorx_800_SQL_ReadOnly_Audit_2026-10-14.csv`
+  - `/mnt/data/Get_Wired_AutoWorx_September_Source_Image_Evidence_2026-10-14.zip`
+- No production SQL execution, Supabase write, live product/image/category change, Axxess upload, DNS/payment change or deployment occurred. Release remains **HOLD**.
+
+### Next execution order
+1. Reconcile category/subcategory mapping for the 800 rows against source guide headings, then resolve the 34 family-only image cases without false size-specific matches.
+2. Obtain current supplier price confirmation for the 38 live price holds and any other rows selected for publication.
+3. Confirm rights to use/crop ASC images before public upload; if rights are not confirmed, obtain permitted product images.
+4. Run final review gates only after evidence is complete; do not import or deploy on the strength of historical guide data alone.
