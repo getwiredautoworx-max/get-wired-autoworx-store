@@ -102,3 +102,12 @@ Immediate next action: continue visual verification from printed page 11 of the 
 
 ## Immediate next action
 Continue visual verification from printed page 19 through page 32, then reconcile each item against the staged crosswalk and later guides. Do not mark rows verified from code-only sightings; require exact SKU, description, source price/cost, page and later-guide status where applicable.
+
+
+## Progress made 2026-10-14 — June guide pages 20–22
+- Visually inspected printed pages 20–22. Page 20 is Brake Spares & Cylinders; pages 21–22 are Automotive Tools, with Engine Timing Kits beginning on page 22.
+- Page 20 brake/cylinder examples: AF871, Q-RWCO, 18314, A-2191, A3350, AF532, AF749, AF994, AH1071, AH8137, AH8154, AH8891, B10-2700L, B10-547L, B10-578R, B10-802L, E26-BSK01, T-BSE01, N-CP001, BH1961, BH1968, BH1985, T-BP001, BM01, BM17, BM12, CM04, CM29, CM32, CM33, CS01, CS05, CS14, CM20 and HL-WC01.
+- Page 21 automotive-tool examples: 284804, A10-003, A10-008, A10-014, A10-018, A10-021, A10-026, A10-028, A10-031-4, A10-036, A10-040, A10-047, A10-048, A10-052, A10-056, A10-058, A10-061, A10-062, A10-068, A10-081, A10-084, A10-086 and A10-089.
+- Page 22 automotive-tool examples: A10-095, A10-100, A10-120, LF101, OR604, SFOCS-008-3, T-192, TL24, TPS16X200, TPS21X200, TW200 and TW301. Engine timing kit examples: TTK-MB05, TTK-W10, TTK-BM02B, TTK-BM04-2, TTK-BM11, TTK-BM15, TTK-BM22, TTK-MN01 and TTK-FT02.
+- These are selected visible codes, not a complete row-level SKU/description/price reconciliation. Confirm each exact code and application from the page and validate costs against a current authoritative guide before using as live pricing. No live writes, imports, uploads or deployment performed.
+- Next action: continue visual inspection from printed page 23.
