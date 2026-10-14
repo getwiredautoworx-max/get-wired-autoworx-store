@@ -126,3 +126,19 @@ Production untouched.
 - Known source/staging mismatch and missing page-32 items are documented in the audit branch; source CSV is audit-only and not a production import.
 - Current supplier costs, full 470-row SKU/description/category mapping, duplicate detection across the complete catalogue, and live storefront QA remain incomplete.
 - No live-store, Supabase, Axxess, Cloudflare, or production catalogue writes were performed.
+
+
+## 2026-10-14 follow-up — production QA and storefront smoke test completed
+- Triggered the existing workflows through comment-only edits to their workflow YAML files; test behavior was not changed.
+- **Store Production QA run #203: PASS** at commit `2d2c6b8fe2c13314e8e93fc06ebb569955f4f176`. Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38535435881
+  - Source validation passed.
+  - Canonical production domain, terms, returns/refunds, category page, category tree and required exact-SKU WebP assets returned expected HTTP 200 responses.
+  - Delivery quote database-rule checks passed.
+  - Public catalogue invariants and public-source security-boundary checks passed.
+- **Storefront Smoke Test run #669: PASS** at commit `880539da5e13df2a088b222f9aca8458ce38ca823`. Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38535429049
+  - Verified-price checkout gate passed.
+  - Local mobile viewport smoke, category navigation, exact-SKU image fallback, metadata leak guard, price/quote gates, cart and checkout flow passed.
+  - Live homepage/store checks and public terms/returns pages passed; terms and returns returned HTTP 200.
+- This resolves the prior **live QA execution blocker**. It does not establish that all 470 June source records are correct or that current supplier costs are available.
+- No catalogue rows were promoted and no Supabase/Axxess/Cloudflare production writes were performed.
+- Audit branch page-image cross-check remains at 50 rows after the page-32 pass. Continue source reconciliation for the remaining June staging rows, keep glyph ambiguity and unpriced items quarantined, and do not treat historical brochure prices as current supplier costs.
