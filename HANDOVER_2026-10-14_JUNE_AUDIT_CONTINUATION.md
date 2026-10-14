@@ -27,3 +27,12 @@
 Improved: exact PDF location verified; 33-row CSV and existing OCR transcript retrieved from audit branch.
 Not resolved: full 470-row SKU/price reconciliation, deduplication, complete category validation, and source-image confirmation for ambiguous codes.
 Production untouched.
+
+
+## 2026-10-14 user-reported GitHub preview issue
+- User reports GitHub displays “unable to render block code” when opening the June Buyer’s Guide.
+- Rechecked the repository file through GitHub: the PDF path exists on `main`, and its blob SHA remains `eb01206c101b359c761daea4ae55bd7f2267f7e1`. The connector returns no PDF binary bytes, so this confirms the file reference/metadata, not the PDF's internal integrity.
+- Workaround: use the GitHub PDF page's **Download raw file** / download control, then open the downloaded PDF in a PDF viewer. Do not replace or re-upload the original merely because the browser preview fails.
+- Original page: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/June%20Buyer's%20Guide%20(1).pdf
+- Direct raw/download endpoint to try if the preview control is unavailable: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/raw/refs/heads/main/June%20Buyer's%20Guide%20(1).pdf
+- Audit remains staged and production untouched. This preview issue does not invalidate the existing OCR transcript or the 33-row audit CSV, but ambiguous SKU corrections still require visual source confirmation.
