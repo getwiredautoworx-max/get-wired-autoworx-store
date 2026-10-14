@@ -233,3 +233,22 @@ This section is a permanent project operating requirement. Preserve it in future
 - Automated background execution/continuous monitoring has not been verified as currently running. Do not claim it is running unless a configured schedule/workflow and current run evidence are checked and recorded.
 - Customer launch remains HOLD. Planning estimate: 6–10 focused work sessions after source/evidence is available, plus supplier/Axxess response and propagation time; calendar date unknown.
 
+
+
+## PERMANENT OWNER DIRECTIVE — NO MORE PLANNING-ONLY RESPONSES; ACTIVE EXECUTION BLOCKS (2026-10-14)
+
+Owner stated: “Yet you continue to update me with useless data and nonsense explaining and still you refuse to execute my instructions...” Owner requests 15 minutes of continuous task execution, frequent handover updates, and an estimate of what can be completed in two hours. Preserve this feedback as an execution requirement, not as a reason to send reassurance in place of work.
+
+### Required behavior
+- During each active session, execute concrete work continuously while tools and evidence are available. Do not stop after updating the handover or repeat the same blocker summary when there is a viable artifact-recovery, validation, code or staging action to attempt.
+- Use short execution batches with measurable outputs; after each material batch, commit the handover and continue to the next unfinished task within the active session.
+- Prioritize recovery of the missing 800-row mapping and exact six exception records, then perform deterministic row-level category corrections, validate row counts and unique SKUs, and continue the source SKU/description/cost/formula audit. Keep all work staging-only and import-ineligible.
+- Inspect existing SQL/CSV/workbook and Library artifacts before claiming a source is unavailable. If an exact artifact is missing, recover its data from a verified source artifact where safe, document the provenance, and label the reconstruction accurately; do not treat the unsafe SQL as executable or production-ready.
+- Every checkpoint must say what was actually executed, counts before/after, artifact paths/commit links, validation outcomes, failures and the next concrete action. Do not pad the response with explanations that are not paired with work.
+- Two-hour estimate must be capacity-based, not a guarantee: with source artifacts accessible, target to recover and validate the 800-row staging map; resolve all six category exceptions if source evidence is sufficient; produce row-count/uniqueness/required-field and price-formula audits; and prepare/commit a corrected staging artifact plus updated handover. If evidence or permissions block any task, complete independent audits and record the exact residual blocker. Do not promise completion of supplier-dependent price confirmation, image-use permission, Axxess response, deployment or release within two hours.
+- No deployment, production data write, unsafe SQL execution, DNS/payment change or customer launch without the documented release gates passing. PayFast/PayJustNow remain deferred.
+
+### Current active execution record
+- Repository mapping CSV search returned no committed mapping file. A Library semantic search located the archived September import SQL, which contains a JSON product payload and can be used as a read-only recovery source for row identities/category evidence, not as SQL to execute. A recovery summary also states that a separate reconstructed 800-row staging candidate was derived from the reconciled inventory workbook and is not the original September candidate.
+- Next action in this session: inspect the archived SQL payload read-only to extract the exact six low-confidence New Arrivals records; recover or regenerate a separate staging CSV from a verified data artifact; run structural validation and document any source limitations. No production writes.
+
