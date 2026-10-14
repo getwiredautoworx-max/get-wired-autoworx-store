@@ -350,3 +350,10 @@ Read the repository's current workflow definitions and `automation/task-queue.js
 
 ### Owner accountability update
 The project does have scheduled automation for bounded exact-SKU image retrieval, monitoring/checkpointing and QA gates. It does **not** automatically complete supplier price confirmation, image usage rights, source-page reconciliation, the six original mapping exceptions, Axxess DNS/SSL or controlled release. Those remain staged/manual or provider-dependent. No production data, DNS, payment settings or deployment changed during this automation inspection.
+
+
+## AUDIT-BRANCH SOURCE RECOVERY CHECK — 2026-10-14 20:05 SAST
+
+- Checked `audit/buyer-guide-extraction`. Three expected source-extract files exist: `staging/source-extracts/PRICE_RECONCILIATION_EFFECTIVE_STATUS_2026-10-14.csv`, `staging/source-extracts/CATEGORY_QUEUE_EXACT_SKU_SOURCE_OCR_CROSSCHECK_2026-10-14.csv`, and `staging/source-extracts/CATEGORY_REVIEW_CANDIDATE_SUGGESTIONS_2026-10-14.csv`. The category suggestion and OCR queue contain 198 data rows each and no `New Arrivals` source-subcategory rows.
+- The original `Get_Wired_AutoWorx_800_Category_Mapping_REVISED_STAGING_2026-10-14.csv` is also absent from the audit branch root. The branch does contain `Get_Wired_AutoWorx_4186_CATALOG_IMPORT.sql`, which supports historical family/source cross-checks but does not restore the original six exception flags.
+- Therefore the six original row identities remain unverified; continue with the clearly labelled reconstruction unless the original generated CSV is recovered from another committed path/artifact. Workflow schedules are configured, but latest run conclusions remain unverified; no workflow rerun/dispatch was made.
