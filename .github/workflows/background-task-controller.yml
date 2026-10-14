@@ -2,8 +2,21 @@ name: Background Task Controller
 
 on:
   schedule:
-    - cron: '23 */6 * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - ASC Exact-SKU Image Sync (Bounded)
+      - Catalogue Image Audit
+      - Public SKU Exposure Audit
+      - Refresh Category Snapshot
+      - Store Production QA
+      - Storefront Smoke Test
+      - Prepare Axxess upload package
+      - Public URL HTTP Verification
+      - pages build and deployment
+    types:
+      - completed
 
 permissions:
   contents: read
@@ -15,6 +28,8 @@ concurrency:
 
 jobs:
   monitor-and-checkpoint:
+    # workflow_run gives event-driven checks when monitored workflows finish.
+    # A 15-minute schedule catches events that were missed or delayed.
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
