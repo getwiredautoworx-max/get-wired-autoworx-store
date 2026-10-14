@@ -111,3 +111,15 @@ Eleven more crosswalk records were reviewed against original source page images;
 ### Correction — MIRRORS heading (2026-10-14)
 
 A direct reinspection of the May 2026 p.7 page image shows **MIRRORS is printed as a standalone section heading at the top of the page**. The earlier statement in this audit that MIRRORS was not a standalone heading was a visual misread and is superseded. The crosswalk row was corrected in commit `fe163813b591b3cbbefec09e9db50287997d0de3`. Keep the page-image finding as confirmed; product-level category decisions remain separate.
+
+## 2026-10-14 additional automotive/tool source-heading findings
+
+- September pp.16-17 were checked for **ATV WINCHES & WHEEL CAPS**. These pages are a Runva ATV winch promotional feature (p.16) and a WHEEL NUT BOLT HEAD COVERS feature (p.17); the exact aggregate heading is not printed on those pages.
+- August p.5-6 and September p.5-6 show the exact printed headings **4X4 AND OUTDOOR / 4X4 OUTDOOR**, **ACCESSORIES**, and **AUTOMOTIVE ACCESSORIES**. “AUTO ACCESSORIES” is an aggregate/alias label rather than the exact printed heading on the checked pages.
+- May pp.7-8 show **MIRRORS**, **ELECTRICAL SPARES**, and **FUSES**. “Auto Electrical” is a broader/TOC label, not the exact heading on the checked pages.
+- August p.13 and p.18 show **PANEL CLIPS**, **ELECTRICAL SPARES**, **FUSES**, **RELAYS**, and **GAUGES**; “AUTO ELECTRICAL” is an aggregate label on these cited pages.
+- February pp.22-23 show distinct headings **HAND TOOLS**, **HOSES**, **BRAKE PARTS**, **CLUTCH MASTER CYLINDERS**, **DOOR PARTS**, **SOUND**, and **AIR FILTERS**. “Automotive Brake & Clutch”, “Automotive Door Parts”, and “Automotive Sound” are aggregate/TOC variants, not exact printed headings on the cited page images.
+- February p.27 shows **SPARE PARTS QUANTUM**; pp.27-29 show **WHEEL ACCESSORIES**; p.29 shows **WINDOW SPARES**. March p.12 and May p.26 confirm **AUTOMOTIVE TOOLS**. “AUTO TOOLS” is an alias, not the exact printed heading on August pp.26-27 and September p.23.
+- March p.12 and May p.26 confirm AUTOMOTIVE TOOLS, but February p.30 and May pp.27-29 remain pending for the full crosswalk reference set. February p.9 confirms AUTOMOTIVE HARDWARE, but February p.10 remains pending.
+- The crosswalk now has page-image findings recorded for **34 of 115 rows**; **81 rows have no page-image finding yet**. Some of the 34 findings are explicitly partial/alias findings and still have uninspected cited pages. There are zero rows left in the former `Needs review` status, but page-image verification is not complete.
+- Crosswalk latest update: `2f362dfe9cb4a749aef48740d43d8fffadb6d455`; subsequent March Automotive Accessories row update: `b4f694483d92f186ae9d101be28686badad131e9`. Keep printed heading, TOC/aggregate label, and product-level category decision as three separate fields.
