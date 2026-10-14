@@ -2386,3 +2386,10 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Examples include page 5 `A2-FFOQ1 → A2-FF01`, page 6 `AS-105B → A5-108B`, page 18 `Q-SDCO2 → Q-SDC02`, page 23 `TTK-FDO05 → TTK-FD05`, and page 31 `IG-HNO4 → IG-HN04`. These are correction candidates to apply to a separate staging copy, not live updates.
 - Critical audit finding: the 470-row June OCR staging sheet remains sparse relative to the visible products and has placeholder descriptions/blank costs; visual page review alone does not reconcile every SKU/description/price. Exact current pricing joins, duplicate detection against the 126-row unresolved queue, and September/October exact-SKU joins remain outstanding.
 - Next action: apply the visual correction ledger to a separate staged copy of the June OCR sheet, then reconcile row coverage and exact printed descriptions/costs against the source pages and newer guide prices. Keep all outputs staging-only; no Supabase/catalogue/Axxess writes.
+
+
+## CONTINUATION LOG — 2026-10-14 — DEPLOYED-VERSION CLAIM QUALIFIED
+
+- Clarification: Live Release Gates run #3 verified six public routes (all HTTP 200), successful TLS through curl, and successful desktop/mobile category + safe checkout browser checks. It also found that live `VERSION.txt` equals the repository's `VERSION.txt`, whose content is the legacy text `2026-09-15 product details`. That text is not a commit hash and **does not by itself prove the deployed source version**.
+- Added exact byte-for-byte comparisons of the live `index.html`, `index-new.html`, `category.html`, `checkout-v2.html`, and `assets/category-tree.json` against repository source to the live gate. A mismatch will now block the gate after browser tests complete. The next workflow run must establish these source hashes before claiming the live deployment is current.
+- PayFast/PayJustNow remain not integrated/confirmed; only Direct EFT appears in live checkout. Catalogue evidence and current price reconciliation remain unresolved. No live catalogue, database, hosting or payment settings were changed.
