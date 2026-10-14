@@ -516,3 +516,16 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 - Current exact deployment version / current source hash comparison: **NOT RECHECKED after latest documentation commits**. Re-run the existing CI release gate on the exact candidate before live-test approval.
 
 **Release remains HOLD.** No production data, image, price, category, payment, DNS or hosting changes were made. The blockers that require evidence rather than guesswork remain: exact image identity, the 31 row decisions, current supplier prices, rights evidence, category tree coverage, and current deployment verification.
+
+
+## VERIFIED-PICTURE CATALOGUE CROSS-JOIN — 2026-10-14
+
+- Extracted all 53 SKU labels from the 18-page `Get_Wired_AutoWorx_VERIFIED_SKU_PICTURE_CATALOGUE_UPDATE_53.pdf` and compared them by exact code against the recovered 800-row September CSV.
+- Result: **6/53 exact SKU overlaps** with the September candidate CSV: `WR-75G-25`, `EX908-4M`, `GK-311N`, `F3-011-20`, `9008`, `L4-010R`. The other 47 do not occur in the September 800-row source and must not be assigned to it. These six are candidate crosswalk entries only; visual identity of the actual image binary and rights to use/edit still require proof.
+- The PDF's own extracted catalogue shows taxonomy inconsistencies on examples (e.g. bulbs under Relays, fuel pump under Lighting, LED bulb under Tools & Workshop). This confirms the 53-item showcase cannot be treated as a trusted category map; verify every product independently.
+- This improves the candidate search with a grounded exact-key intersection but does **not** complete the 800-row image mapping. The PDF is a report/catalogue, not the original 53-PNG image archive; the ZIP archive was not accessible through the current binary-fetch path.
+
+### Current progress delta
+- Candidate picture-code comparison: **6 exact SKU intersections / 53 candidate labels**, with 47 excluded from the September source on exact-key mismatch.
+- September image mapping remains **0 fully verified / 800** because no selected image has yet passed the combined exact SKU + visual identity + usage-rights gate.
+- All prior holds remain. No production writes or deployments were made.
