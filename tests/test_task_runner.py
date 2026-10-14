@@ -54,7 +54,7 @@ class RunnerTests(unittest.TestCase):
                     self.assertEqual(state1["tasks"]["synthetic_check"]["status"], "failed")
                     self.assertEqual(state1["tasks"]["synthetic_check"]["attempts"], 2)
                     with contextlib.redirect_stdout(io.StringIO()):
-                        self.assertEqual(runner.main(), 0)
+                        self.assertEqual(runner.main([]), 0)
                     state2 = json.loads(runner.STATE.read_text())
                     self.assertEqual(state2["tasks"]["synthetic_check"]["status"], "passed")
                     self.assertEqual(state2["tasks"]["synthetic_check"]["total_attempts"], 3)
