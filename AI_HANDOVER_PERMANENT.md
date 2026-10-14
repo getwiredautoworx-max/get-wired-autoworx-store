@@ -1983,3 +1983,26 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Background execution is now scheduled/event-triggered with bounded retries; it is not a permanently resident worker. GitHub may delay scheduled runs. Retries can recover transient failures, not fix deterministic code defects or resolve catalogue evidence holds.
 - Unresolved owner-evidence blockers remain: verify 16 provisional category routes against original source-page images; keep 6007-13 and 02-09 held until evidence resolves them; inspect image-sync exceptions before any manual sync retry. Production remains protected.
 - No Axxess upload, Supabase mutation, Cloudflare deployment, or Netlify spend initiated by this change.
+
+
+## 2026-10-14 — continuation: source evidence and storefront QA checkpoint
+
+### Background task status
+- Checked Actions after merge of the bounded-retry controller. Latest main Pages run #1062 (`38544212543`) completed successfully: build, status report, and deploy jobs all succeeded. This is GitHub Pages deployment evidence only; it does not verify Axxess hosting or checkout transactions.
+- Latest observed `Background Task Controller` run remains run #1 (`38541786861`) from before bounded retry was merged. No post-merge controller run/checkpoint artifact is yet visible. The new auto-retry policy is therefore merged but not yet end-to-end validated.
+- Store Production QA run `38535435881` completed successfully, and Storefront Smoke Test run `38535429049` completed successfully. Both are older than the latest monitoring-only changes; no store HTML/catalogue source was modified in this continuation. The current controller cannot dispatch workflows directly through the connected GitHub actions in this session.
+- Catalogue Image Audit run #280 (`38541293000`) and Public SKU Exposure Audit #211 (`38541293141`) completed successfully. The image audit artifact is very small (365 bytes), so inspect its report contents before assuming exceptions are resolved.
+
+### Source evidence review (staging only)
+- Re-read `HANDOVER_2026-10-14_JUNE_AUDIT_CONTINUATION.md`, `CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md`, category routing candidate CSVs, June OCR heading index, page QA index, and existing visual cross-check CSVs on branch `audit/buyer-guide-extraction`.
+- Crosswalk status remains 105 of 115 heading rows pending page-image QA; only 9 of 115 are marked visually verified in the crosswalk, and 10 are evidence-review holds. The 115 headings are not 115 verified categories.
+- Existing page 29–32 cross-check contains 33 data rows, but the records marked visually confirmed are mostly code-only checks; prices remain historical and are not validated current supplier costs. It also flags source/OCR code conflicts such as `SF-5002` vs `SF-SO002`, and other letter/number ambiguities. Page 18 cross-check flags 11+ code candidates where OCR letter O should be digit zero. Preserve source and OCR forms; do not approve from OCR alone.
+- Inspected OCR transcripts for printed pages 5–12 to locate headings and candidate SKU blocks. This is OCR-text review only, not a visual source-page confirmation; no candidate was promoted to verified based on OCR alone. Noted page 5 begins/continues Panel Clips then General Accessories; pages 8–9 include Wheel Accessories and Electrical Accessories; page 10 includes Aerials and Battery Accessories; page 12 includes Relays. Product-level scope still matters (e.g. gauges, central-locking kits, vehicle trim versus generic accessories).
+- Category review queue and source heading crosswalk remain staging-only. Do not reassign live categories based on heading-name alone; 4,187 active products remain the established baseline unless a fresh read-only audit proves otherwise.
+
+### Next execution target
+1. Recover/view the source page images for June printed pages 5–12 and continue the existing page-by-page evidence log; explicitly distinguish visual code confirmation from price verification.
+2. Process existing cross-checks first (page 18, page 29–32) to resolve only items where source image is clear; keep ambiguous glyphs held.
+3. Inspect full contents of image audit artifact and latest image-sync exception ledger; do not rerun image sync blindly.
+4. Run or obtain fresh Storefront Smoke Test and Store Production QA outcomes after the controller is validated; then verify Axxess live-domain behaviour separately. Existing passing runs are not proof of Axxess checkout acceptance.
+5. Keep all catalogue/category changes staged; no live database writes, Axxess uploads, or production changes were made in this continuation.
