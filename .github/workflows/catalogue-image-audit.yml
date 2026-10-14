@@ -123,6 +123,9 @@ jobs:
             "placeholder_products_with_webp_asset":len(placeholder_with_webp),
             "effective_known_image_coverage":len(effective_image_skus),
             "placeholder_products_without_known_webp_asset":len(placeholder_skus-webp_skus),
+            "placeholder_skus":sorted(placeholder_skus),
+            "placeholder_products_with_webp_skus":sorted(placeholder_with_webp),
+            "placeholder_products_without_known_webp_skus":sorted(placeholder_skus-webp_skus),
             "invalid_or_mismatched_public_image_refs":bad,
             "internal_source_image_files":len(source_files)
           }
