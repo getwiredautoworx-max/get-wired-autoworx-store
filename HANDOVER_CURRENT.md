@@ -402,3 +402,10 @@ Status remains **HOLD — NOT IMPORT-ELIGIBLE**. This is an evidence-based hold,
 - No production data, checkout, payment settings, DNS or hosting deployment was changed.
 - The available evidence does not yet establish that the ZIP contains the missing images for all 800 products, nor does it establish image-use permission or current supplier prices. Do not claim these blockers are resolved until file-level checks and written supplier evidence exist.
 - If the owner can provide only one missing input, request the original September corrected staging CSV and its matching image folder/archive; do not ask them to re-send artifacts already present in the library.
+
+
+### ZIP inventory result — 2026-10-14 20:47 SAST
+- Inspected `Get_Wired_AutoWorx_VERIFIED_SKU_IMAGES_53.zip`: 55 archive entries = one directory, 53 PNG files named with SKU-like codes, and `verified_picture_catalogue_items.csv`.
+- The companion manifest has 53 rows and includes SKU, description, category/subcategory, stock and selling price. It is a useful candidate crosswalk, **not a clean import mapping**: several category/description pairings look inconsistent on their face (for example, a fuse SKU under “14 FUEL PUMPS”, a bulb SKU under “20 RELAYS”, and a 4x4 winch under “WINCHES AND SPARES” but categorized “Tools & Workshop”). This must be compared against original guide pages and exact product codes before copying any fields into September staging.
+- Therefore, the archive makes 53 image candidates available for verification; it does not establish 53 fully approved product rows. No image paths were added to the 800-row CSV, and no supplier-price, description, category, permission, or production data was changed during this inventory.
+- Next deterministic action: compare the 53 manifest rows against the September source PDF and corrected CSV by exact SKU; produce row-level PASS/REVIEW results and image-path mapping only for proven exact matches. Keep all remaining rows blocked.
