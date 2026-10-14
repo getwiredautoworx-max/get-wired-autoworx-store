@@ -39,5 +39,5 @@ This is a validation checkpoint for the 18 proposed routes in `CATEGORY_REVIEW_Q
 
 1. Locate the original page images for the 16 provisional items and confirm the visual row/heading boundaries; use the exact-SKU OCR crosscheck as a locator, not as final approval. `017SK` has the same title in March and September guide OCR and is provisional, not held.
 2. **Resolved 2026-10-14:** the two previously flagged crosswalk entries are not wrong-page references. June p.31 contains IGNITION BARRELS AND SWITCHES in its upper section and HAND WINCHES lower down; June p.30 contains WATER SPORTS in the middle, with STICKERS above and TAPPET COVERS below. The crosswalk was corrected to record both as mixed-heading pages, not mismatches. Commit: `a8bad930bbe7bfda24f8490de971c8e669bd1af4`.
-3. Rebuild the candidate routing export once from corrected item-level evidence; keep the remaining 180 queue rows held unless item-level evidence supports a destination.
+3. Rebuild the candidate routing export once from corrected item-level evidence; keep the remaining 181 queue rows held unless item-level evidence supports a destination.
 4. Only after review, run category integrity and storefront acceptance checks. Do not deploy during this audit.
