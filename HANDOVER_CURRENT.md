@@ -182,3 +182,15 @@ Inspect printed pages 29–32, then perform exact SKU joins against the crosswal
 - June page-viewing status: printed pages 2–32 visually inspected; selected codes and category transitions captured in this handover. Still outstanding: line-by-line verification of OCR/crosswalk records, exact description/cost/page reconciliation, de-duplication against the 126-row unresolved queue, and later-guide joins. Page inspection alone does not mean all records are verified.
 - No live store/database writes, catalogue imports, Axxess uploads, or deployments were performed.
 - Next action: move to exact-SKU reconciliation using the June page evidence and current/later guides; retain source page, source date, status, and price-validity notes. Then complete February/March/May heading/page-range checks, September/October and promotion joins, and Suzuki/Renault-Dacia exact-code joins as previously ordered.
+
+
+## Extraction workflow verification — 2026-10-14
+- GitHub Actions run 38387571992 on `audit/buyer-guide-extraction` completed with conclusion `success`; job `extract` and its PDF text extraction / commit steps completed successfully.
+- The run created no downloadable artifacts; its outputs were committed to the audit branch. The manifest records extraction text for February (118,006 chars), March (113,022), May (111,885), July (115,529), August (117,837), and September (105,785). June's direct PDF text extraction is only 668 chars because the guide is scanned; the separate Tesseract OCR text file was generated.
+- This confirms extraction execution, not accuracy of extracted SKU/cost rows. OCR and the 470-row June staging list still require line-by-line visual cross-check and exact-SKU/cost reconciliation.
+- Live store remains untouched; no Supabase writes, production catalogue import, deployment or Axxess upload.
+
+## Current handoff state
+- June guide visual page coverage: completed for pages 1–32; exact row-level crosswalk verification: not complete.
+- Catalogue reconciliation, source-price joins, deduplication, category mapping validation and storefront/mobile QA: still outstanding.
+- Next task is to use the generated audit-branch OCR/text files and June crosswalk to verify SKU + description + price against page evidence, marking each row with a page-specific status. Do not promote the OCR staging file directly into the live catalogue.
