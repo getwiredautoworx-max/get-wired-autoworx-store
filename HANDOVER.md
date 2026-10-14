@@ -2352,3 +2352,10 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - That run then failed inside the test harness before Playwright because the script expected the homepage response at the wrong temporary filename (`/tmp/live-__` instead of `/tmp/live-_`). Therefore desktop/mobile browser tests and the deployed-version comparison were skipped; the run is not a full QA pass.
 - Fixing the temporary homepage filename in `.github/workflows/live-release-gates.yml` and re-running the full workflow is the immediate next action. Version match remains unverified until that run completes.
 - PayFast/PayJustNow remain unconfirmed; the source inspection shows checkout exposes Direct EFT only. Catalogue reconciliation remains a separate unresolved release gate. No production data, hosting files, DNS, or payment configuration was changed.
+
+
+## CONTINUATION LOG — 2026-10-14 — LIVE GATE ROUTE-FILENAME FIX
+
+- The second live-gate run again confirmed all six canonical-domain URLs returned HTTP 200 and confirmed `DEPLOYED_VERSION_MATCH=true` by byte-comparing live `VERSION.txt` with the repository marker.
+- It then stopped in the route-check script because the category-tree temporary filename was derived incorrectly. The second harness defect is being fixed by normalizing URL paths to stable names (`home`, `category_html`, `assets_category-tree_json`) before assertions. Playwright steps have not yet run; do not mark full browser QA complete.
+- Current positive evidence: canonical domain routes return HTTP 200 and the public `VERSION.txt` matches repository `VERSION.txt` at the time of run #2. Remaining gates: successful browser navigation/checkout tests, payment provider readiness/integration, and catalogue evidence/reconciliation. Production remains protected.

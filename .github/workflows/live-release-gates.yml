@@ -41,13 +41,13 @@ jobs:
           base="https://www.getwiredauto.co.za"
           failed=0
           for path in / /category.html /checkout-v2.html /terms-and-conditions.html /returns-refunds.html /assets/category-tree.json; do
-            safe="$(printf '%s' "$path" | tr '/.' '__')"
+            if [ "$path" = "/" ]; then safe="home"; else safe="${path#/}"; safe="${safe//\//_}"; safe="${safe//./_}"; fi
             code="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --connect-timeout 10 --max-time 45 -o "/tmp/live-$safe" -w '%{http_code}' "$base$path")"
             printf 'LIVE_HTTP %s %s\n' "$path" "$code"
             if [ "$code" != "200" ]; then echo "FAIL: $path returned $code"; failed=1; fi
           done
-          grep -Eiq "Get Wired AutoWorx" /tmp/live-_
-          jq -e 'type == "array" or type == "object"' /tmp/live-__assets__category-tree_json >/dev/null || { echo "FAIL: category tree is not valid JSON"; failed=1; }
+          grep -Eiq "Get Wired AutoWorx" /tmp/live-home
+          jq -e 'type == "array" or type == "object"' /tmp/live-assets_category-tree_json >/dev/null || { echo "FAIL: category tree is not valid JSON"; failed=1; }
           if [ -s VERSION.txt ]; then
             remote_code="$(curl --retry 1 --retry-all-errors --retry-delay 1 -sS -L --connect-timeout 10 --max-time 30 -o /tmp/live-version -w '%{http_code}' "$base/VERSION.txt" || true)"
             if [ "$remote_code" = "200" ] && cmp -s VERSION.txt /tmp/live-version; then
