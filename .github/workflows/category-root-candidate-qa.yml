@@ -1,0 +1,70 @@
+name: Category Root Candidate QA
+
+on:
+  push:
+    branches:
+      - qa/category-root-fix-2026-10-14
+    paths:
+      - "category.html"
+      - "assets/category-tree.json"
+      - ".github/workflows/category-root-candidate-qa.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  candidate-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser test
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static candidate
+        run: |
+          python3 -m http.server 4173 >/tmp/category-server.log 2>&1 &
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:4173/category.html >/dev/null && exit 0; sleep 1; done
+          cat /tmp/category-server.log
+          exit 1
+      - name: Verify eight roots and responsive navigation
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              for (const viewport of [{width:1365,height:900,label:'desktop'},{width:390,height:844,label:'mobile'}]) {
+                const page = await browser.newPage({viewport:{width:viewport.width,height:viewport.height}});
+                const errors=[];
+                page.on('pageerror', e=>errors.push(e.message));
+                const response=await page.goto('http://127.0.0.1:4173/category.html',{waitUntil:'domcontentloaded'});
+                if (!response || response.status()!==200) throw new Error(viewport.label+': category page did not return 200');
+                await page.waitForFunction(()=>{const g=document.querySelector('#grid');return !!g&&(g.dataset.error||g.querySelectorAll('.card').length>0)},{timeout:15000});
+                const names=await page.locator('#grid .card h2').allTextContents();
+                if(names.length!==8) throw new Error(viewport.label+': expected 8 roots, got '+names.length+' ('+names.join('|')+')');
+                if(names.some(n=>/Spare Parts/i.test(n))) throw new Error(viewport.label+': legacy Spare Parts root is still displayed');
+                if(!names.some(n=>/Auto Electrical/i.test(n))) throw new Error(viewport.label+': Auto Electrical missing');
+                const expected=[/Auto Electrical/,/Vehicle Security/,/Car Audio/,/Accessories/,/Marine Spares & Accessories/,/Tools \/ Hardware \/ Consumables/,/Camping \/ Leisure \/ Outdoors/,/Trailer & Canopy/];
+                for(const re of expected) if(!names.some(n=>re.test(n))) throw new Error(viewport.label+': missing approved root '+re);
+                const links=await page.locator('#grid .card').evaluateAll(cards=>cards.map(c=>c.getAttribute('href')));
+                if(links.some(h=>!h)) throw new Error(viewport.label+': a root card has no route');
+                for(let i=0;i<8;i++){
+                  await page.goto('http://127.0.0.1:4173/category.html',{waitUntil:'domcontentloaded'});
+                  await page.waitForSelector('#grid .card');
+                  await page.locator('#grid .card').nth(i).click();
+                  await page.waitForTimeout(200);
+                  const url=new URL(page.url());
+                  if(!['category.html','products.html'].includes(url.pathname.split('/').pop())) throw new Error(viewport.label+': unexpected route '+url.pathname);
+                }
+                if(errors.length) throw new Error(viewport.label+': page errors '+errors.join('; '));
+                console.log('CATEGORY_CANDIDATE_PASS '+viewport.label+' roots=8 all_root_links=8');
+                await page.close();
+              }
+            } finally { await browser.close(); }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
