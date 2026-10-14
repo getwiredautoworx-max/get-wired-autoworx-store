@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-13",
+  "status": "PROPOSED_RULES_PENDING_SKU_LEVEL_VALIDATION",
+  "principles": [
+    "One product record appears once in its primary category and product group; do not duplicate products to fill multiple groups.",
+    "Use verified SKU and product identity first; never infer a set from a loose item solely because the names are similar.",
+    "Keep loose/individual tools separate from kits, assortments and sets.",
+    "Keep winches and winch spares in a related browse family, but split hand, ATV, trailer and vehicle-mounted applications after SKU/application review.",
+    "Keep clips and fasteners together in a relevant subcategory; distinguish individual clips from assorted clip kits where the source supports it.",
+    "Keep relays and switches in a logical electrical family, but preserve their individual product types and applications.",
+    "Sort products within a group by descriptive name, then size/part number when available; do not mix price-confirmation states as if equally current."
+  ],
+  "groups": [
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "screwdrivers-individual",
+      "label": "Screwdrivers — individual tools",
+      "order": 10,
+      "match_any": [
+        "screwdriver"
+      ],
+      "exclude_any": [
+        "set",
+        "kit",
+        "assortment",
+        "pack of"
+      ],
+      "note": "Individual screwdriver SKUs only."
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "screwdriver-sets",
+      "label": "Screwdriver Sets",
+      "order": 20,
+      "match_any": [
+        "screwdriver"
+      ],
+      "require_any": [
+        "set",
+        "kit",
+        "assortment"
+      ],
+      "note": "Sets and kits stay separate from individual screwdrivers."
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "spanners-individual",
+      "label": "Spanners & Wrenches — individual tools",
+      "order": 30,
+      "match_any": [
+        "spanner",
+        "wrench"
+      ],
+      "exclude_any": [
+        "set",
+        "kit",
+        "assortment"
+      ],
+      "note": "Group loose spanners and wrenches together."
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "spanner-sets",
+      "label": "Spanner & Wrench Sets",
+      "order": 40,
+      "match_any": [
+        "spanner",
+        "wrench"
+      ],
+      "require_any": [
+        "set",
+        "kit",
+        "assortment"
+      ],
+      "note": "Keep complete sets separate from individual tools."
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "sockets-individual",
+      "label": "Sockets — individual",
+      "order": 50,
+      "match_any": [
+        "socket"
+      ],
+      "exclude_any": [
+        "set",
+        "kit",
+        "assortment"
+      ]
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "socket-sets",
+      "label": "Socket Sets",
+      "order": 60,
+      "match_any": [
+        "socket"
+      ],
+      "require_any": [
+        "set",
+        "kit",
+        "assortment"
+      ]
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "pliers-individual",
+      "label": "Pliers — individual tools",
+      "order": 70,
+      "match_any": [
+        "plier"
+      ],
+      "exclude_any": [
+        "set",
+        "kit",
+        "assortment"
+      ]
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "plier-sets",
+      "label": "Pliers Sets",
+      "order": 80,
+      "match_any": [
+        "plier"
+      ],
+      "require_any": [
+        "set",
+        "kit",
+        "assortment"
+      ]
+    },
+    {
+      "root_slug": "tools-hardware-consumables",
+      "group_slug": "other-tools",
+      "label": "Other Tools",
+      "order": 90,
+      "match_any": [],
+      "fallback": true
+    },
+    {
+      "root_slug": "automotive-accessories",
+      "group_slug": "clips-individual",
+      "label": "Clips & Fasteners — individual",
+      "order": 10,
+      "match_any": [
+        "clip",
+        "fastener"
+      ],
+      "exclude_any": [
+        "set",
+        "kit",
+        "assortment",
+        "mixed pack"
+      ]
+    },
+    {
+      "root_slug": "automotive-accessories",
+      "group_slug": "clips-sets",
+      "label": "Clip & Fastener Assortments",
+      "order": 20,
+      "match_any": [
+        "clip",
+        "fastener"
+      ],
+      "require_any": [
+        "set",
+        "kit",
+        "assortment",
+        "mixed pack"
+      ]
+    },
+    {
+      "root_slug": "auto-electrical-spares",
+      "group_slug": "relays",
+      "label": "Relays",
+      "order": 10,
+      "match_any": [
+        "relay"
+      ]
+    },
+    {
+      "root_slug": "auto-electrical-spares",
+      "group_slug": "switches",
+      "label": "Switches",
+      "order": 20,
+      "match_any": [
+        "switch"
+      ]
+    },
+    {
+      "root_slug": "auto-electrical-spares",
+      "group_slug": "wiring-connectors",
+      "label": "Wiring & Connectors",
+      "order": 30,
+      "match_any": [
+        "wiring",
+        "connector",
+        "terminal"
+      ]
+    },
+    {
+      "root_slug": "camping-leisure-outdoors",
+      "group_slug": "winches",
+      "label": "Winches",
+      "order": 10,
+      "match_any": [
+        "winch"
+      ],
+      "exclude_any": [
+        "spare",
+        "replacement part"
+      ]
+    },
+    {
+      "root_slug": "camping-leisure-outdoors",
+      "group_slug": "winch-spares",
+      "label": "Winch Spares & Replacement Parts",
+      "order": 20,
+      "match_any": [
+        "winch"
+      ],
+      "require_any": [
+        "spare",
+        "replacement part",
+        "solenoid",
+        "remote",
+        "rope",
+        "cable",
+        "hook"
+      ]
+    },
+    {
+      "root_slug": "trailer-canopy",
+      "group_slug": "trailer-winch-applications",
+      "label": "Trailer-Use Winches & Accessories",
+      "order": 10,
+      "match_any": [
+        "winch",
+        "trailer"
+      ],
+      "note": "Only after application confirms trailer use; do not duplicate the same product in the camping/outdoors group."
+    }
+  ]
+}
