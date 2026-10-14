@@ -1,0 +1,161 @@
+name: Live Release Gates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/live-release-gates.yml"
+      - "HANDOVER.md"
+      - "VERSION.txt"
+      - "index.html"
+      - "index-new.html"
+      - "category.html"
+      - "checkout-v2.html"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-release-gates
+  cancel-in-progress: false
+
+jobs:
+  live-checks:
+    name: Public HTTPS, live navigation and safe checkout
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify live HTTPS, routes and deployed version marker
+        id: live
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.getwiredauto.co.za"
+          failed=0
+          for path in / /category.html /checkout-v2.html /terms-and-conditions.html /returns-refunds.html /assets/category-tree.json; do
+            safe="$(printf '%s' "$path" | tr '/.' '__')"
+            code="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --connect-timeout 10 --max-time 45 -o "/tmp/live-$safe" -w '%{http_code}' "$base$path")"
+            printf 'LIVE_HTTP %s %s\n' "$path" "$code"
+            if [ "$code" != "200" ]; then echo "FAIL: $path returned $code"; failed=1; fi
+          done
+          grep -Eiq "Get Wired AutoWorx" /tmp/live-__
+          jq -e 'type == "array" or type == "object"' /tmp/live-__assets__category-tree_json >/dev/null || { echo "FAIL: category tree is not valid JSON"; failed=1; }
+          if [ -s VERSION.txt ]; then
+            remote_code="$(curl --retry 1 --retry-all-errors --retry-delay 1 -sS -L --connect-timeout 10 --max-time 30 -o /tmp/live-version -w '%{http_code}' "$base/VERSION.txt" || true)"
+            if [ "$remote_code" = "200" ] && cmp -s VERSION.txt /tmp/live-version; then
+              echo "DEPLOYED_VERSION_MATCH=true"
+              echo "deployed_version_match=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "DEPLOYED_VERSION_MATCH=false (live marker missing or differs from repository VERSION.txt)"
+              echo "deployed_version_match=false" >> "$GITHUB_OUTPUT"
+              failed=1
+            fi
+          else
+            echo "DEPLOYED_VERSION_MATCH=unknown (repository VERSION.txt missing)"
+            echo "deployed_version_match=unknown" >> "$GITHUB_OUTPUT"
+            failed=1
+          fi
+          echo "LIVE_HTTP_CHECK_FAILED=$failed"
+          test "$failed" -eq 0
+
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Test live category navigation on desktop and mobile
+        shell: bash
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              for (const viewport of [{width:1365,height:900,label:'desktop'},{width:390,height:844,label:'mobile'}]) {
+                const page = await browser.newPage({viewport:{width:viewport.width,height:viewport.height}});
+                page.on('pageerror', e => console.log('PAGE_ERROR '+viewport.label+': '+e.message));
+                const response = await page.goto('https://www.getwiredauto.co.za/category.html',{waitUntil:'domcontentloaded',timeout:45000});
+                if (!response || response.status() !== 200) throw new Error(viewport.label+': category page HTTP failure');
+                await page.waitForFunction(() => {const g=document.querySelector('#grid');return !!g && (g.dataset.error || g.innerText.trim() !== 'Loading categories…')},null,{timeout:45000});
+                const err=await page.locator('#grid').getAttribute('data-error');
+                if (err) throw new Error(viewport.label+': category grid error '+err);
+                const roots=await page.locator('#grid .card').count();
+                if (roots < 1) throw new Error(viewport.label+': no main category cards rendered');
+                const names=await page.locator('#grid .card h2').allTextContents();
+                if (!names.some(n=>/Auto Electrical/i.test(n))) throw new Error(viewport.label+': Auto Electrical category missing');
+                await page.locator('#grid .card').first().click();
+                await page.waitForTimeout(300);
+                if ((await page.locator('#grid .card').count()) < 1) throw new Error(viewport.label+': category click did not render options');
+                console.log('LIVE_CATEGORY_NAV_PASS '+viewport.label+' roots='+roots);
+                await page.close();
+              }
+            } finally { await browser.close(); }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+
+      - name: Test live checkout UI without sending a real order
+        shell: bash
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              for (const viewport of [{width:1365,height:900,label:'desktop'},{width:390,height:844,label:'mobile'}]) {
+                const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height}});
+                await context.addInitScript(()=>localStorage.setItem('gw_cart',JSON.stringify([{id:'00000000-0000-0000-0000-000000000001',qty:1}])));
+                const page=await context.newPage();
+                let intercepted=false;
+                await page.route('**/rest/v1/products*',route=>{
+                  const req=route.request();
+                  const headers={'access-control-allow-origin':'*','access-control-allow-methods':'GET, OPTIONS','access-control-allow-headers':'apikey,authorization,content-type,prefer,range'};
+                  if(req.method()==='OPTIONS') return route.fulfill({status:204,headers,body:''});
+                  return route.fulfill({status:200,contentType:'application/json',headers,body:JSON.stringify([{id:'00000000-0000-0000-0000-000000000001',name:'Safe Browser Test Item',public_sku:'GW-TEST0001',price:100,active:true,weight_kg:0.5,specifications:{price_status:'VERIFIED_PRICE'}}])});
+                });
+                await page.route('**/functions/v1/store-checkout*',route=>{
+                  if(route.request().method()==='OPTIONS') return route.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'apikey,authorization,content-type'},body:''});
+                  intercepted=true;
+                  console.log('SAFE_TEST_ORDER_INTERCEPTED '+viewport.label+'; no order sent');
+                  return route.fulfill({status:503,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify({error:'SAFE_TEST_BLOCKED: live order submission intentionally intercepted'})});
+                });
+                const response=await page.goto('https://www.getwiredauto.co.za/checkout-v2.html',{waitUntil:'domcontentloaded',timeout:45000});
+                if(!response||response.status()!==200) throw new Error(viewport.label+': checkout page HTTP failure');
+                await page.locator('#checkout').waitFor({state:'visible',timeout:30000});
+                await page.locator('#name').fill('Safe Browser Test');
+                await page.locator('#phone').fill('0700000000');
+                await page.locator('#fulfilment').selectOption('pickup');
+                await page.locator('#form button[type="submit"]').click();
+                await page.waitForFunction(()=>document.querySelector('#msg')?.textContent.includes('SAFE_TEST_BLOCKED'),null,{timeout:15000});
+                if(!intercepted) throw new Error(viewport.label+': order interception did not run');
+                const methods=await page.locator('#payment option').allTextContents();
+                console.log('LIVE_CHECKOUT_UI_PASS '+viewport.label+' payment_methods='+JSON.stringify(methods)+' order_submission=BLOCKED');
+                await context.close();
+              }
+            } finally { await browser.close(); }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+
+      - name: Record payment readiness as a separate release gate
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Live release gate result"
+            echo "- Live domain: see HTTPS/route step."
+            echo "- Desktop/mobile browser checks: see Playwright steps."
+            echo "- Real order submission: intercepted in browser test; no real order should be created."
+            if grep -RiqE 'payfast|pay.?just.?now' checkout-v2.html supabase/functions/store-checkout/index.ts; then
+              echo "- PayFast/PayJustNow code references found; merchant activation, server-side secret configuration, signed callbacks and sandbox/live acceptance remain independently required."
+            else
+              echo "- **PAYMENT READINESS NOT CONFIRMED:** checkout source has no PayFast/PayJustNow integration. Direct EFT is the only configured checkout method."
+            fi
+            echo "- A successful browser workflow does not by itself approve a production release."
+          } >> "$GITHUB_STEP_SUMMARY"
