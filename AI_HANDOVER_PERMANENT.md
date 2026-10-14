@@ -1836,3 +1836,10 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Fresh baseline and manual review queue remain available at:
   - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/FRESH_ACTIVE_SKU_CATEGORY_BASELINE_2026-10-14.csv
   - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/CURRENT_CATEGORY_REVIEW_QUEUE_2026-10-14.csv
+
+### 2026-10-14 11:05 SAST — Conservative category routing draft created
+
+- Created `CATEGORY_REVIEW_QUEUE_CANDIDATE_ROUTING_2026-10-14.csv` for all **198 unique exact-SKU manual-review rows**. It proposes only **18 candidate destinations** (17 high-confidence candidates and 1 medium-confidence rod-holder candidate requiring application confirmation) and holds **180 rows** for manual review, including 32 explicit mechanical/scope holds.
+- The router is intentionally conservative: ambiguous lighting, generic/mixed-use titles, incomplete names and source/title conflicts remain held. It avoids false matches such as treating a wall anchor plug as a marine anchor or assigning a generic connector to Auto Electrical. The file is proposal-only; no product/category rows were changed.
+- Category mapping review document updated on audit branch: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_MAPPING_REVIEW_2026-10-09.md
+- Candidate routing export: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/CATEGORY_REVIEW_QUEUE_CANDIDATE_ROUTING_2026-10-14.csv
