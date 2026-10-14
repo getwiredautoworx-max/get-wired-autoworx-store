@@ -155,3 +155,18 @@ Continue visual verification from printed page 24 of the June Buyer’s Guide an
 
 ## Immediate next action
 Inspect printed pages 29–32, then perform exact SKU joins against the crosswalk and subsequent buyer’s guides. The remaining work is more than page transcription: it includes source-price reconciliation, deduplication, category mapping and storefront QA.
+
+
+## Progress made 2026-10-14 — June guide pages 29–32 completed
+- Visually inspected printed pages 29–32, completing the page-image pass across the full 32-page June Buyer’s Guide. This closes the visual coverage checkpoint only; it does not close the catalogue reconciliation or price audit.
+- Page 29: Locks & Padlocks, Garden Tools, Toolboxes, and Special Discounted Price/Stickers. Visible examples: 180305, 180402, 180403, 364, 220101, 360102, H5-007-50, T10-002, T10-012L, S9-RS100R, S9-RS100S, S9-RS100W, S9-RS101B, S9-RS101R, S9-RS102BR, S9-RS102SS and S9-RS103BB.
+- Page 30: Special Discounted Price stickers, Water Sports, Tappet Covers. Visible examples: S9-RS103BR, S9-RS103SS, S9-RS104B, SFPD3-05, SF-IBB110, SFIK9PVC-01, SF-2003, RFA106-D, IMF-KI01, TC-BM01, TC-BM06, TC-BM08, TC-BM09, TC-BM10, TC-FD01, TC-HN01, TC-KI01, TC-MB01 and TC-OP04. Promotion items and prices are not current by default.
+- Page 31: Ignition Barrels and Switches, Hand Winches. Visible ignition codes: IB-AE80, IB-IZD, IB-IZD-M, IB-RN50, IB-SR3, IB-TOY01, IB-VIGO, IB-VIGO-M, IB-W123, I-LNT02, IG-E25, IG-HN04, IG-MAN1, IG-MS01, IG-NT01, IG-TOY4, IG-H-W3, IGS-NL01, IGS-NT01 and IBS-Q. Winch examples WR-73-26, WR-75G-25B, WT-75G-H, WR-70-30A, FJ04S, FHP-S2 and FHP-71.
+- Page 32: Spanners and tool specials. Visible codes include 200103, 192302, 192314, 192402, 192404, T3-002-12, T3-002-14, CVS6, DF26MM, DF27MM, CVR20, CVR22 and 190403. Printed price tables on this page give specific tool SKU/description/price pairs (including E11MM, E18MM, E19MM, E22MM, E27MM and CV20MM, CV23MM, CV25MM, CV28MM, CV29MM, CV30MM); reconcile these directly to the page image rather than OCR guesses.
+- Printed guide footer says prices valid while stocks last, offer ends 30 June 2026, prices exclude VAT, trade stores only, parts are suitable replacement parts for indicated vehicles, and prices are estimates subject to raw-material/logistics/supply-chain changes. June pricing is therefore historical and cannot be promoted as current pricing without later exact-SKU confirmation.
+- No live store/database writes, imports, deployments or Axxess uploads performed.
+
+## June page coverage checkpoint
+- Original June guide pages 1–32 have now been visually inspected across the prior checkpoint and this continuation.
+- Still required: verify every row in the 115-row crosswalk/470-row OCR staging against page evidence; fix OCR; reconcile exact descriptions and supplier costs; deduplicate against the 126-row unresolved-price queue; match newer guides/promotions; then validate categories and storefront behaviour in staging. Page viewing alone must not be reported as successful SKU/price reconciliation.
+- Immediate next action: run exact-SKU crosswalk reconciliation starting with the June OCR staging and page evidence, recording PASS / CORRECTED / UNREADABLE / NOT FOUND and the supporting printed page. Keep all data staged only.
