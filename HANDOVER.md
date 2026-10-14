@@ -2403,3 +2403,10 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Live Playwright passed category navigation at 1365px desktop and 390px mobile, with 9 root categories observed in each. Live checkout UI passed in both viewports using a mocked product API; both order submissions were intercepted and no real order was sent. Payment selector exposed only Direct EFT.
 - Still open: PayFast/PayJustNow integration and merchant readiness; exact June OCR correction application and complete SKU/description/cost reconciliation; September/October exact-SKU pricing joins; image/category validation; and final full release approval. The live test only verifies the listed static files and tested flows, not every asset, database rule, or payment-provider settlement.
 - No production catalogue, Supabase rows, Axxess hosting files, DNS, or payment configuration changed. Release remains HOLD.
+
+
+## CONTINUATION LOG — 2026-10-14 — JUNE/SEPTEMBER JOIN BASELINE MEASURED
+
+- Created `catalogue-audits/JUNE_SEPTEMBER_JOIN_AUDIT_2026-10-14.md` from the local staging files. Before applying the visual correction ledger, only 82 of 470 June OCR SKU strings exactly match the 800-row September staging CSV; 388 remain unmatched and punctuation-only normalization found no extra matches. This is a baseline, not the final corrected match count.
+- The September staging CSV has 800 rows; 791 have numeric cost and price, and all 791 prices are VAT-only (`cost_price × 1.15`). Zero match the required customer price formula `cost_price × 1.15 × 1.35`. Do not import the September CSV's `price` field as final customer pricing. The report includes one arithmetic example and next-step instructions.
+- The new June OCR correction ledger still needs applying to a separate staging copy before recomputing the join. No live catalogue, Supabase, Axxess, DNS, or payment changes were made.
