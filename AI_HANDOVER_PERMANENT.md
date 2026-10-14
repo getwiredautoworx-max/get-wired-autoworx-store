@@ -2117,3 +2117,32 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 4. Resolve the 86 placeholder/missing-known-WebP image exceptions by exact SKU/product identity; inspect the existing sync report before any write-producing image-sync action.
 5. Keep production catalogue and hosting protected; no Supabase/Axxess writes, Cloudflare deployment, or Netlify credits used.
 6. Existing live-gate evidence confirms HTTPS/routes, version marker, desktop/mobile category navigation, and checkout UI with real order submission blocked. It does not prove actual payment settlement, courier fulfilment, or full catalogue acceptance.
+
+
+## 2026-10-14 — verified event-driven controller trigger, fresh live QA, and image-gap diagnosis
+
+### Fresh live release gate
+- Re-ran the public live release workflow safely. Run `38559111166` completed successfully; all steps passed:
+  - HTTPS/routes and live `VERSION.txt` marker.
+  - Desktop and mobile category navigation.
+  - Desktop and mobile checkout UI using a mocked product and intercepted checkout endpoint. No real order was submitted.
+  - Payment readiness summary step.
+- Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38559111166
+- This confirms the current public domain/browser checks again. It does not prove payment settlement, supplier price validity, or fulfilment.
+
+### Controller trigger fix verified end-to-end
+- The newly added `Live Release Gates` completion trigger worked: controller run `38559120446` was triggered by `workflow_run` and completed successfully. Subsequent controller runs `38559165567` and `38559212408` also completed successfully after monitored workflows finished.
+- Downloaded checkpoint artifact `11891206906` from run `38559120446`. It includes `live-release-gates.yml` in its monitored list, with run `38559111166` reported in progress at checkpoint time. The controller is therefore proven event-triggered and its artifact publishing works after the monitor-list change.
+- The 15-minute scheduled fallback remains unverified: recent successful controller executions are event-triggered, and no new scheduled event has yet been observed. Keep the distinction explicit; do not claim the periodic schedule itself has passed.
+
+### Fresh catalogue image audit and measured exception list
+- Catalogue Image Audit run `38559112845` passed and uploaded artifact `11890777617`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38559112845
+- Audit totals: 4,187 active products; 4,093 public proxy references; 8 direct WebP references; 4,101 public-SKU WebP assets; 86 placeholder URLs; 0 invalid/mismatched public image references; 0 placeholder products with a corresponding public-SKU WebP; 86 placeholder products without a known public-SKU WebP; 800 internal source image files.
+- Updated `.github/workflows/catalogue-image-audit.yml` to include the exact `placeholder_skus`, `placeholder_products_with_webp_skus`, and `placeholder_products_without_known_webp_skus` arrays in its uploaded report. Commit: `1d732dada0abf67e1a16f81d128791894fb3a3c2`.
+- All 86 unresolved public SKUs have a recorded exact-SKU image-sync attempt at sync version 9. The existing report contains 29 `sku_not_in_search_results` and 57 `no_product_cards` outcomes. The latest sync log confirms source site connectivity HTTP 200 but `eligible: 0`, because all unresolved entries are still inside the seven-day cooldown after their 11 October attempt. Do not run another identical batch or bypass the cooldown blindly. No fuzzy matching is allowed.
+- Current next image task: build a staging-only evidence sheet mapping those 86 public SKUs to product names and stored supplier SKUs, then investigate exact source lookup gaps; only a controlled sync-version change should permit another exact-SKU pass after its purpose and side effects are reviewed. No production image/database write was made by the audit change.
+
+### Current payment status and release decision
+- Live checkout source contains only `Direct EFT / bank payment`. PayFast and PayJustNow are not available as checkout methods in the current source. Payment provider integration and merchant acceptance are a release blocker, not an owner-side checkbox that can be assumed complete.
+- Keep production release blocked until provider integration/acceptance is real and the remaining catalogue source evidence is resolved.
+- No Supabase catalogue mutation, Axxess upload, Cloudflare deployment, Netlify usage, or live payment configuration was performed in this continuation.
