@@ -375,3 +375,13 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - Keep PayFast and PayJustNow deferred as requested. Do not declare launch-ready until source reconciliation and required QA gates pass.
 
 **Release status remains HOLD.** Current live database integrity checks pass, and Live Release Gates #6 passed, but catalogue-source reconciliation is incomplete and payment-provider readiness is intentionally deferred. Continue staging-only; no final synchronization or Axxess upload without explicit review/approval.
+
+
+## 2026-10-14 16:20 SAST — September staging CSV recovery / release blocker
+
+- Repository handover checked against current default branch. The canonical September staging CSV is not present in the accessible Get Wired AutoWorx Library search/list results; the reconciliation workbook confirms that a corrected CSV was reported as available, but does not supply its filename or contents.
+- The older 1,109-row CSV is explicitly disallowed because it contained incorrect SKU/product/price pairings. Do not rename, reuse, or “repair” it by fuzzy matching.
+- Recovery path is now fixed: locate/materialize the original September Buyer’s Guide PDF and reconstruct a fresh staged CSV from the PDF as source of truth; validate each row by exact supplier SKU + description + printed price/page. Expected baseline from prior handover: 800 unique SKU records, 791 fixed-price products and 9 system-dependent/asterisk-price items. These are reconciliation targets, not yet reverified in this continuation.
+- If the PDF itself is unavailable in the Library, use the original supplier file from the existing project/reconciliation workspace or its previously uploaded conversation attachment. Do not invent records or prices. Continue the rest of the release work using the verified live baseline and independent QA while source reconstruction proceeds.
+- No production catalogue/database/hosting/DNS/payment changes made. No Axxess upload or deployment performed. PayFast/PayJustNow remain intentionally bypassed until the public live URL and required policy pages are available for provider review.
+- Next execution: recover the PDF bytes, extract/normalize September rows to a new staged CSV, validate counts/duplicate SKUs/asterisk rows, then exact-join to the live SKU list and produce KEEP/UPDATE/ADD/QUOTE/REVIEW delta. Continue handover updates on each material checkpoint; do not circle back to the missing-CSV search once PDF recovery succeeds.
