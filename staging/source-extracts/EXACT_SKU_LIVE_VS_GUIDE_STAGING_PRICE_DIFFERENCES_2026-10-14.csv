@@ -1,108 +1,508 @@
-product_id,sku,name,source_guide,source_page,source_category,source_subcategory,current_category,current_parent_category,guide_cost,guide_advertised,live_cost,live_price,formula_price,cost_delta_live_minus_guide,advertised_delta_live_minus_guide,review_status
-07df2175-cb19-4e6a-b48e-c42fe86c627e,C10-001,40Lt Camp Shower The Tyre) With Accessories,August Buyer's Guide,4,Accessories,4 ACCESSORIES,ACCESSORIES,Automotive Accessories,115.82,179.81,105.06,163.11,163.11,-10.76,-16.70,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-aa913944-5a26-4ac2-bec2-62d4aed9d210,H4-062,"12V LED Camping With 2200, 4.5M Rod Plug Stand And Remote",August Buyer's Guide,4,Accessories,4 ACCESSORIES,LIFESTYLE,Camping / Leisure / Outdoors,413.05,641.26,447.47,694.70,694.70,34.42,53.44,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-72af2cae-e49c-4f1b-b9b1-6cdde1c6a403,H4-066,Multi-Function Lantern 180Lumens 8pce White + 8pce Red ABS Stainless Steel 75X110mm,August Buyer's Guide,4,Accessories,4 ACCESSORIES,ACCESSORIES,Automotive Accessories,369.43,573.54,410.48,637.27,637.27,41.05,63.73,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-93fe132e-c942-4fb7-9107-3a5600c45bb2,A2-090B,Black 370X420mm Large 2.5M Bonnet Air Scoop,August Buyer's Guide,5,Accessories,4X4 AND OUTDOOR 5,Automotive Accessories,,205.48,319.01,189.53,294.25,294.25,-15.95,-24.76,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-2be2e6a4-7e2b-4d30-b01b-6ec71fd5022b,M601,Black L-Type Canopy With Lock & Keys,August Buyer's Guide,5,Accessories,4X4 AND OUTDOOR 5,Automotive Accessories,,74.42,115.54,61.80,95.94,95.94,-12.62,-19.60,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-bcd35315-de96-4ec8-addc-d94d054a29ea,A2-100-30GR,300mm Green LED Soft Stick-On Strip Lighting,August Buyer's Guide,6,Accessories,6 ACCESSORIES,ACCESSORIES,Automotive Accessories,44.15,68.54,45.44,70.55,70.55,1.29,2.01,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-753d2220-beb2-4253-81fd-99878eb3104d,EX911A,Aerial Adaptor Nissan,August Buyer's Guide,6,Car Audio,6 ACCESSORIES,Car Audio,,7.70,11.95,8.35,12.96,12.96,0.65,1.01,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-cb83a8b6-ebc4-449f-9e40-6672dede8379,G6-039R,For Gear Knob Universal Red/Black,August Buyer's Guide,7,Accessories,EXHAUST TAIL PIECES 7,Exhaust Tail Pieces,Spare Parts,63.24,98.18,68.51,106.36,106.36,5.27,8.18,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-1a41fd5d-b967-4698-9db8-ab029a7559fe,G6-040BL,Gear Knob Universal Wooden/Blue,August Buyer's Guide,7,Accessories,EXHAUST TAIL PIECES 7,Exhaust Tail Pieces,Spare Parts,69.03,107.17,76.70,119.08,119.08,7.67,11.91,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-2147c211-0e18-4033-96a3-8e262e274504,M7-MT02,Rubber Mats OEM Fit Fit Mitsubishi Triton 2017-,August Buyer's Guide,7,Parts,EXHAUST TAIL PIECES 7,Car Mats,Automotive Accessories,373.56,579.95,415.07,644.40,644.40,41.51,64.45,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-aa3f372f-7265-4a2e-b112-278978aa1e9b,IAWC-027B-MR,Steering Wheel Cover Black/Maroon Pu,August Buyer's Guide,8,Accessories,8 GEAR KNOBS,Gear Knobs,Automotive Accessories,38.58,59.90,42.87,66.56,66.56,4.29,6.66,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-e5a24c4f-ab33-4e88-87c8-e8e60ead8cad,W10-MIT01,4pce Windshield Set Mitsubishi Triton 16-,August Buyer's Guide,9,Parts,WINDSHIELD SETS 9,Automotive Accessories,,207.12,321.55,224.38,348.35,348.35,17.26,26.80,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-12463b5c-5b6a-4464-8477-17fe8b1aba55,F7-203,"147pce Assorted Panel Clips With Tools For GM, Ford, Honda, Chrysler, 1pce Remover Tools",August Buyer's Guide,12,Accessories,12 MIRRORS,PANEL CLIPS,Automotive Accessories,86.31,134.00,95.90,148.88,148.88,9.59,14.88,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-84c3c5da-a3d6-4b0f-99bc-fb4ec3cbd500,B2-012,12V Universal Relay Tester,August Buyer's Guide,13,Auto Electrical,PANEL CLIPS 13,RELAYS,Electrical,264.81,411.12,245.29,380.81,380.81,-19.52,-30.31,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-6aced19e-cf10-4aeb-89dd-a0255053e7b0,F7-AU01,160pce Assorted Panel Clips For Audi,August Buyer's Guide,13,Parts,PANEL CLIPS 13,PANEL CLIPS,Automotive Accessories,187.79,291.54,203.43,315.83,315.83,15.64,24.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-e0903215-4136-48c6-8943-573c565d9e15,F7-HN01,418pce Assorted Panel Clips For Honda,August Buyer's Guide,13,Parts,PANEL CLIPS 13,PANEL CLIPS,Automotive Accessories,187.16,290.57,207.96,322.86,322.86,20.80,32.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-f732ceab-d0bc-4d7e-acf8-d149227544f0,TRK01,Trunk Release Kit,August Buyer's Guide,13,Parts,PANEL CLIPS 13,Automotive Accessories,,168.61,261.77,187.34,290.85,290.85,18.73,29.08,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-c2f0e16a-9609-4852-871a-f9c963a9d2c1,L3-009R,Universal Right Hand Truck/Trailer Tail Lamp 12/24V,August Buyer's Guide,14,Lighting,14 ELECTRICAL SPARES,LAMPS,Lighting,158.82,246.57,176.47,273.97,273.97,17.65,27.40,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-604e6c89-ee8c-450a-9631-706500f47777,ND01,"Toyota 12V Relay Mazda RX7, Toyota, Lexus Multi Purpose",August Buyer's Guide,14,Auto Electrical,14 ELECTRICAL SPARES,RELAYS,Electrical,26.68,41.42,24.15,37.49,37.49,-2.53,-3.93,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-22003ea5-8856-46b0-a76b-404eb24a9bc6,SB474,"Starter Bendix Lucas, Toyota, Nissan 9",August Buyer's Guide,14,Auto Electrical,14 ELECTRICAL SPARES,ELECTRICAL SPARES,Electrical,107.13,166.32,119.03,184.79,184.79,11.90,18.47,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-89a1fa6b-3dea-4281-a3f4-3cd656fa666f,FB-002-100,Fuse Breaker 100Amp Gauge,August Buyer's Guide,18,Auto Electrical,18 FUSES,FUSES,Electrical,144.91,224.97,161.01,249.97,249.97,16.10,25.00,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-a57b7844-91ef-42f2-8150-58d733e98611,582ALED,Kit DC 2pce T20 Amber LED Wedge Globes,August Buyer's Guide,19,Lighting,GAUGES 19,LAMPS,Lighting,50.13,77.83,55.70,86.47,86.47,5.57,8.64,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-01379c3b-7895-4117-b60f-cbd21f24e27e,PY24W-LED,"Amber LED Bulb Py24W 12V-24V 7Watt For Audi, BMW 500Lm 18W/110Lm",August Buyer's Guide,19,Tools & Workshop,GAUGES 19,AUTOMOTIVE TOOLS,Tools & Workshop,114.71,178.09,127.45,197.87,197.87,12.74,19.78,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-93212300-d797-4ecd-a71d-8dfe1d5262ae,I1-091,"Ignition Coil Hyundia, Kia 4 Pin Picanto",August Buyer's Guide,21,Auto Electrical,FUEL PUMPS 21,ELECTRICAL SPARES,Electrical,281.81,437.51,313.12,486.12,486.12,31.31,48.61,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-0844d0b1-c7ea-4aee-93bf-66b3f84932ab,IG-MAN1,Honda Ignition For Man Trucks F2000,August Buyer's Guide,22,Parts,22 IGNITION SPARES,Spare Parts,,279.50,433.92,310.56,482.14,482.14,31.06,48.22,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-88803e6f-42eb-4ea5-9b4e-5e0bed0ca3ba,IGS-NT01,Ignition Switch Set Tiida 2 Door Barrels/T/Lid (Ignition Complete),August Buyer's Guide,23,Auto Electrical,IGNITION SPARES 23,SWITCHES,Electrical,534.71,830.14,594.12,922.37,922.37,59.41,92.23,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-ab8cb66f-b798-42d1-8ab5-cddb8bd0b9ae,RN-MF01,NV350 4pce Mud Flaps Renault Kwid Gen-1 2015-2020,August Buyer's Guide,24,Parts,24 SPARE PARTS,Exterior Accessories,Automotive Accessories,70.82,109.95,76.72,119.11,119.11,5.90,9.16,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-c7330873-5a5c-453a-a961-a3787874d865,T9-1070,Heater Pipe For Fiat Palio/Strada/Diablo Also Bravo And Siena,August Buyer's Guide,24,Parts,24 SPARE PARTS,THERMOSTATS & PIPES,Spare Parts,225.10,349.47,191.38,297.12,297.12,-33.72,-52.35,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-95ae8a60-d7d8-4042-91de-e8ded6a2bf56,T9-1083,Fiat Heater Pipe For BMW 1.6L E39 E38 X5 Z3 Z4,August Buyer's Guide,24,Parts,24 SPARE PARTS,THERMOSTATS & PIPES,Spare Parts,182.48,283.30,202.75,314.77,314.77,20.27,31.47,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-9e194a3b-bd59-4b16-aebe-953897d0dec3,BM19,25.40mm Brake Cylinder Aluminium Toyota Hiace,August Buyer's Guide,25,Parts,ENGINE COOLING 25,Brake Parts,Spare Parts,450.37,699.20,500.41,776.89,776.89,50.04,77.69,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-841a0a03-3146-4e98-b55b-0c0a3f9ed638,T1-109-50,"2""(50mm) Heavy Duty Scraper",August Buyer's Guide,28,Tools & Workshop,28 SOCKETS,Hand Tools,Tools & Workshop,12.31,19.11,10.56,16.39,16.39,-1.75,-2.72,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-46024800-ca6c-4b9b-9d12-f59963c33b35,T1-155,3 Jaw Pilot Bearing,August Buyer's Guide,28,Tools & Workshop,28 SOCKETS,Hand Tools,Tools & Workshop,291.71,452.88,237.71,369.04,369.04,-54.00,-83.84,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-b6808097-06d6-48d4-86b3-b23f530c3506,C10-030R,Folding Stool Red,Feb Buyer's Guide,4,Tools & Workshop,4 CAMPING,AUTOMOTIVE TOOLS,Tools & Workshop,173.23,268.94,179.68,278.95,278.95,6.45,10.01,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-d7b5bd45-6bd6-4c4b-b592-af2cff4b249d,TOY-001,Sliding Door Cable Hi-Ace,Feb Buyer's Guide,5,Car Audio,AERIAL 5,Car Audio,,23.89,37.09,23.54,36.55,36.55,-0.35,-0.54,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-dd862fa2-b053-4af5-8648-9bd7cc780717,CH-25,Super Dark Window Film Black,Feb Buyer's Guide,6,Parts,6 DOOR PARTS,Automotive Accessories,,33.40,51.85,33.74,52.38,52.38,0.34,0.53,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-6f0e1beb-e14b-474c-886c-64ec383961a0,CH-3622A,LED Strobe Lp Amber Magn.W/Plug 12-80V,Feb Buyer's Guide,8,Accessories,8 AUTOMOTIVE ACCESSORIES,AUTOMOTIVE ACCESSORIES,Automotive Accessories,318.20,494.01,251.50,390.45,390.45,-66.70,-103.56,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-be9a300c-8802-4e48-941f-7e7ee6ca500c,F7-002-6,Panel Clips 6-7mm,Feb Buyer's Guide,9,Parts,ADHESIVES AND SILICONES 9,PANEL CLIPS,Automotive Accessories,62.04,96.32,66.01,102.48,102.48,3.97,6.16,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-0c50c714-8240-4c70-b967-4ecd0189d136,F7-102-14B,Panel Clip Black 7mm,Feb Buyer's Guide,9,Parts,ADHESIVES AND SILICONES 9,PANEL CLIPS,Automotive Accessories,5.41,8.40,5.47,8.49,8.49,0.06,0.09,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-82963228-bad1-4d4c-9993-9a1593f7dedc,F7-104-14,Panel Clip Universal Wheather Strip Clip,Feb Buyer's Guide,9,Parts,ADHESIVES AND SILICONES 9,PANEL CLIPS,Automotive Accessories,4.34,6.74,4.39,6.82,6.82,0.05,0.08,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-ce24b9a2-ce87-4a37-a418-fdbe53f0dac0,C3-021,Noodle Wash Mitt,Feb Buyer's Guide,10,Parts,10 AUTOMOTIVE HARDWARE,Automotive Accessories,,25.98,40.33,23.91,37.12,37.12,-2.07,-3.21,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-ded6a857-dc01-42b2-a2db-aebdf332f2e9,F7-107-24,Panel Clips Toyota Wheather Strip Clips,Feb Buyer's Guide,10,Parts,10 AUTOMOTIVE HARDWARE,PANEL CLIPS,Automotive Accessories,5.03,7.81,5.22,8.10,8.10,0.19,0.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-b92bce69-2180-4aa0-ad21-59eb37e093f0,R1-023Y,LED Warning Lamp Yelllow 12-24V,Feb Buyer's Guide,15,Parts,IGNITION SPARES 15,LAMPS,Lighting,167.80,260.51,140.18,217.63,217.63,-27.62,-42.88,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-3af7daf7-6b07-46f8-a7a3-3ce03468c199,ND47,Relay Head Lamp Toyota 12V,Feb Buyer's Guide,16,Auto Electrical,16 SENSORS,RELAYS,Electrical,22.85,35.47,21.10,32.76,32.76,-1.75,-2.71,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-03c6d454-9134-49c9-9a3f-2dc67b5625eb,S5-26080,Sensor O/P/Switch Alfa Audi Brown Top,Feb Buyer's Guide,16,Auto Electrical,16 SENSORS,SWITCHES,Electrical,21.77,33.80,21.97,34.11,34.11,0.20,0.31,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-4c056adf-c2fb-4319-86d4-7daf66274166,S2-020R,Mini Rocker Switch Mini LED 12V,Feb Buyer's Guide,17,Auto Electrical,RELAYS 17,SWITCHES,Electrical,12.26,19.03,12.48,19.38,19.38,0.22,0.35,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-5a63655c-cb4e-48ef-b1ae-80108948691b,SS-COLT2,Signal Switch Colt LDV MK2 01-,Feb Buyer's Guide,17,Auto Electrical,RELAYS 17,SWITCHES,Electrical,241.44,374.84,250.43,388.79,388.79,8.99,13.95,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-df032746-bbd5-41e1-9639-d2d2ab0c4142,RSL250,Yellow Ring Terminal 10.5mm,Feb Buyer's Guide,21,Auto Electrical,TERMINALS 21,ELECTRICAL SPARES,Electrical,21.60,33.53,22.93,35.60,35.60,1.33,2.07,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-4047ebd3-889e-42fe-ae9b-c948d92f9790,S7-006-2,1.5 Tweeter Pair,Feb Buyer's Guide,23,Car Audio,CLUTCH MASTER CYLINDERS 23,Car Audio,,28.21,43.80,28.74,44.62,44.62,0.53,0.82,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-32e6c054-6912-4de2-a82c-23be1c0f611a,M-FC002,Locking Cap Mercedes Truck/Bus ID:80mm,Feb Buyer's Guide,25,Accessories,RADIATOR SPARES 25,Automotive Accessories,,112.80,175.12,103.98,161.43,161.43,-8.82,-13.69,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-2d75247d-36e5-4d02-90df-e9715e331a85,T923,Water Pump Outlet Frb.Crt.Escor,Feb Buyer's Guide,25,Accessories,RADIATOR SPARES 25,Automotive Accessories,,49.83,77.36,49.10,76.23,76.23,-0.73,-1.13,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-ce399862-4f38-4e5f-8b86-4d9f94b3ee03,T951,Thermostat Cover,Feb Buyer's Guide,25,Accessories,RADIATOR SPARES 25,Automotive Accessories,,60.71,94.25,62.97,97.76,97.76,2.26,3.51,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-de59cb26-7f2c-4d77-966f-8aedd0c45ecd,R3-CC75,Centre Cap 74.93mm Chrome,Feb Buyer's Guide,27,Parts,SPARE PARTS QUANTUM 27,Automotive Accessories,,93.47,145.11,92.11,143.00,143.00,-1.36,-2.11,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-6c5ad191-0795-4066-9e3c-bb211cde7aec,VGS3,Valve Grinding Stick Sizes,Feb Buyer's Guide,30,Parts,30 ACCESS EQUIPMENT,Tools & Workshop,,30.47,47.30,36.49,56.65,56.65,6.02,9.35,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-c1405e06-22ac-409d-b5a2-39673d508bed,RTD532,Ratchet Tie Down 5mx32mm Breaking Strength: 2500Lbs,Feb Buyer's Guide,36,Tools & Workshop,36 HAND TOOLS,Hand Tools,Tools & Workshop,93.41,145.02,99.37,154.27,154.27,5.96,9.25,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-c80d7bbf-c2c7-4ce7-8f06-299764e594cf,C10-101-200,Tent Peg Hook Type 4X200mm,July Buyer's Guide,7,Accessories,4X4 AND OUTDOOR 7,LIFESTYLE,Camping / Leisure / Outdoors,5.18,8.04,4.48,6.96,6.96,-0.70,-1.08,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-62f5b7b7-620b-4209-a328-b593a0adc4b7,JCH-20L,TUV/GS 20L Jerry Can Holder,July Buyer's Guide,8,Trailer & Canopy,8 TRAILER AND TOWING,Trailer & Canopy,,225.17,349.58,202.06,313.70,313.70,-23.11,-35.88,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-69c612bf-a608-4729-a34f-3876aab34327,S9-L,Red Learner Driver'S Sticker 240X240mm,July Buyer's Guide,9,Accessories,GENERAL ACCESSORIES 9,General Accessories,Automotive Accessories,11.69,18.15,8.25,12.81,12.81,-3.44,-5.34,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-b3598edd-25b0-45ad-a929-2438bebc0ed0,SL-906R-1SF,Solid Mast Aerial For Nissan 1 Tonner,July Buyer's Guide,10,Car Audio,10 GENERAL ACCESSORIES,Car Audio,,57.42,89.14,53.61,83.23,83.23,-3.81,-5.91,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-f6bcb7f9-a90e-4f45-8b12-54a44e0d27c1,WBR18-14,"14"" Rear Wiper Blade",July Buyer's Guide,10,Accessories,10 GENERAL ACCESSORIES,General Accessories,Automotive Accessories,26.55,41.22,23.89,37.09,37.09,-2.66,-4.13,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-2edf1d36-c289-43a1-a87c-8d490d850657,JTL-6105,"Handle Top Sliding Door NPR, For Toyota Hiace 84-On",July Buyer's Guide,12,Parts,12 CHEMICALS,DOOR PARTS,Spare Parts,14.58,22.64,11.87,18.43,18.43,-2.71,-4.21,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-a83d8ac4-d749-43dc-ad98-24a80b455cc2,E1-USB8P,"8 Port Super Fast Car Charger 3.1Amp Qc3.0 USB X4, Type-C X 4",July Buyer's Guide,18,Accessories,18 ELECTRICAL SPARES & ACCESSORIES,ELECTRICAL SPARES,Electrical,24.01,37.28,19.74,30.65,30.65,-4.27,-6.63,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-b28e7a7a-9828-4db5-ad96-ae8e8d282d96,PEK02LED,Electric Project Kit For School Kids Lighting Ports Circuit With 3 LED,July Buyer's Guide,18,Accessories,18 ELECTRICAL SPARES & ACCESSORIES,LAMPS,Lighting,22.45,34.85,19.19,29.79,29.79,-3.26,-5.06,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-6c88c1fe-d734-4965-8ac5-272791d22f18,T-GC001,Plug Grease Cap Toyota Y-Series 84-On Hilux YN-Series,July Buyer's Guide,24,Parts,24 SPARE PARTS,Spare Parts,,6.11,9.49,5.18,8.04,8.04,-0.93,-1.45,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-52cab11b-e8e2-426d-86cf-dde12ac921af,T-GC002,"Hiace Grease Cap All Toyota Hilux Venture, Stallion, 1.8Lt, 2.0Lt",July Buyer's Guide,24,Parts,24 SPARE PARTS,Spare Parts,,6.89,10.70,6.03,9.36,9.36,-0.86,-1.34,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-f8ac6ee7-89e5-45e7-877a-f1755dc24d26,5335-19.1FD,19mm 12X1.25mm Chrome With Flat Dome 19HD,July Buyer's Guide,26,Accessories,26 WHEEL ACCESSORIES,WHEEL ACCESSORIES,Automotive Accessories,5.81,9.02,5.41,8.40,8.40,-0.40,-0.62,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-1bcac31a-dfe1-4016-99aa-c66988b85d56,T1-186-12,12pce 9M Rod Drain Cleaner Set,July Buyer's Guide,30,Tools & Workshop,30 HAND TOOLS,Hand Tools,Tools & Workshop,335.37,520.66,309.26,480.13,480.13,-26.11,-40.53,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-08c0337c-24c1-4532-bbca-f55048e63000,233906B-R,"5"" Tachometer 0-11000Rpm Black With Shift Light",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,7.00,10.87,349.57,542.71,542.71,342.57,531.84,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-661bbbe6-b92b-4cd6-b644-e5b6c64054bc,2701SS,"Rim 2"" Silver/Silver Boost Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,269.46,418.34,269.55,418.48,418.48,0.09,0.14,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-f7e2b3db-81cb-4240-985b-48e575f0ee3e,27027SWL,"2"" Super White Oil Pressure Spook Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,601.70,934.14,650.47,1009.85,1009.85,48.77,75.71,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-0c4b6b82-a80a-402b-9344-cc2ae5f266c1,27091SWL,"2"" Super White Volt Gauge (Spook Gauge)",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,478.58,743.00,266.53,413.79,413.79,-212.05,-329.21,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-67e9788e-f034-4923-b603-a21087c1327b,2727SW,"2"" Oil Pressure Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,370.34,574.95,390.16,605.72,605.72,19.82,30.77,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-0aea29ca-bcdf-49c7-a19b-a8ac78ab5969,2747LED-R,"2"" Digital Oil Temperature Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,235.72,365.96,262.66,407.78,407.78,26.94,41.82,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-0ead42e7-0f25-4998-a30e-69751126ea82,2747SW,"2"" Oil Temperature Gauge Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,ELECTRICAL SPARES,Electrical,316.86,491.93,333.99,518.52,518.52,17.13,26.59,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-d6078422-12c2-45f7-95c4-7c109beccb1b,288X,Battery Post & Cleaner,March Buyer's Guide,6,Auto Electrical,6 GAUGES,BATTERY,Electrical,22.01,34.17,23.20,36.02,36.02,1.19,1.85,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-0fec096e-fe3a-41cc-a158-0830cf075f84,2DC,2pce 12V 35W Hid Globes Head & Spot Lamp,March Buyer's Guide,8,Lighting,8 AUTOMOTIVE ELECTRICAL,LAMPS,Lighting,237.62,368.91,256.89,398.82,398.82,19.27,29.91,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-ed96323c-3e0e-4069-bd48-1075ba3c5777,12TTS,12 Ton Heavy Duty Jack Trestle Stands Pair,March Buyer's Guide,12,Accessories,12 WHEEL ACCESSORIES,WHEEL ACCESSORIES,Automotive Accessories,1350.18,2096.15,1459.65,2266.11,2266.11,109.47,169.96,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-661fa919-d5b3-41f0-a025-f47cc507e975,3TAJB,3 Ton Bag Type Air,March Buyer's Guide,12,Accessories,12 WHEEL ACCESSORIES,WHEEL ACCESSORIES,Automotive Accessories,1344.66,2087.58,1416.59,2199.26,2199.26,71.93,111.68,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-e5df3811-3965-4d62-8ca8-7a8607e05808,CSS-009,Valve Cap Set With Key Ring Honda,March Buyer's Guide,30,Parts,30 SPECIAL,WHEEL ACCESSORIES,Automotive Accessories,32.97,51.19,34.07,52.89,52.89,1.10,1.70,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-d4ea45f3-bfa4-45f1-b6a9-e1100e6306d7,G6-041R,Gear Knob Universal Red,May Buyers Guide,3,Accessories,OUTDOOR 3,Gear Knobs,Automotive Accessories,69.77,108.32,68.13,105.77,105.77,-1.64,-2.55,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-80e5ac81-f8e1-4ba4-8d90-f76cc340e8b6,G6-043BL,Gear Knob Universal Silver/ Blue,May Buyers Guide,3,Accessories,OUTDOOR 3,Gear Knobs,Automotive Accessories,82.22,127.65,86.55,134.37,134.37,4.33,6.72,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-71aae548-8791-4796-97cc-53acef6f78d3,H4-070,Super Bright LED With USB Type-C Charging Cable,May Buyers Guide,3,Parts,OUTDOOR 3,Automotive Accessories,,253.76,393.96,303.21,470.73,470.73,49.45,76.77,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-96cf93aa-f878-49ff-baed-c97422bf2e8a,F7-107-9,10pce Panel Clips Grille Nissan Grey,May Buyers Guide,4,Accessories,4 ACCESSORIES,PANEL CLIPS,Automotive Accessories,7.07,10.98,7.44,11.55,11.55,0.37,0.57,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-da82f927-d9fd-4253-a8c3-9900cfe16d89,FC0202,"For Window Winder For Ford Cortina, 4, 5, Escort 1, 2, MK3",May Buyers Guide,4,Accessories,4 ACCESSORIES,ACCESSORIES,Automotive Accessories,47.28,73.40,51.52,79.98,79.98,4.24,6.58,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-006ad23b-b752-4932-b4dd-9165134691cc,F7-104-20,Clips 10pce Panel Clips Trim Universal Grey,May Buyers Guide,5,Parts,PANEL CLIPS 5,PANEL CLIPS,Automotive Accessories,6.06,9.41,6.70,10.40,10.40,0.64,0.99,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-ccf5e0d1-388f-4bf9-bdf9-28ac2d3e8887,A2-021,Heat Cigarette Lighter With Clamp,May Buyers Guide,7,Accessories,MIRRORS 7,MIRRORS,Spare Parts,17.23,26.75,16.69,25.91,25.91,-0.54,-0.84,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-20d0bbe3-48e5-43ea-9efc-cf0b528f4e11,G1-002B,Black Gauge Dash Holes,May Buyers Guide,8,Tools & Workshop,8 ELECTRICAL SPARES,AUTOMOTIVE TOOLS,Tools & Workshop,77.25,119.93,87.31,135.55,135.55,10.06,15.62,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-7637c017-616c-404a-aa3a-7cf9409d8c9b,G1034,10pce Double Contact Globes Ryan 12V 21/5W Offset,May Buyers Guide,9,Lighting,FUSES 9,LAMPS,Lighting,23.09,35.85,26.59,41.28,41.28,3.50,5.43,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-99b71a7e-7e0c-4a47-8ae7-e01565558c8c,H755W-NB,2pce Halogen Globes 55W 12V 30% Brighter,May Buyers Guide,10,Lighting,10 GLOBES AND GLOBE HOLDERS,GLOBES AND GLOBE HOLDERS,Lighting,14.99,23.27,16.47,25.57,25.57,1.48,2.30,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-383b32a5-9c0d-4241-b3c4-b4a1a4687e54,HID-H11DC,HID Kit H11 Slimline Ballast,May Buyers Guide,10,Lighting,10 GLOBES AND GLOBE HOLDERS,GLOBES AND GLOBE HOLDERS,Lighting,407.42,632.52,428.86,665.81,665.81,21.44,33.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-9fbb5b6b-ec31-40fe-843e-ed354edc6d8d,BSB-2,Heavy Duty Snatch 20000Lbs,May Buyers Guide,11,Tools & Workshop,WINCHES AND SPARES 11,AUTOMOTIVE TOOLS,Tools & Workshop,463.54,719.65,483.96,751.35,751.35,20.42,31.70,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-a1e298f0-7b30-47d1-96ac-f94e5c8ced43,I1-029,"Ignition Coil Opel 1.6I, Corsa 4Pin",May Buyers Guide,15,Auto Electrical,IGNITION MODULES 15,ELECTRICAL SPARES,Electrical,528.43,820.39,542.33,841.97,841.97,13.90,21.58,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-f002b379-6843-42ca-9805-56e59e51a77f,I1-154,Ignition Coil Renault Landrover/- Duster/Sandero Ii 1.5 Captur /Clio IV /Grand Scenic III /Kangroo/ Megane III,May Buyers Guide,16,Auto Electrical,16 IGNITION COILS,ELECTRICAL SPARES,Electrical,299.98,465.72,318.78,494.91,494.91,18.80,29.19,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-169b24d3-ff8a-42b5-9348-5845c2345892,IG-TOY3-T,Ignition Switch Hi-Lux Vigo Transponder,May Buyers Guide,22,Auto Electrical,22 IGNITION SWITCHES,SWITCHES,Electrical,373.81,580.34,383.64,595.60,595.60,9.83,15.26,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-7a0b540b-e98d-4f8e-a908-184c368564fe,EC51,51mm Exhaust Quantum,May Buyers Guide,24,Parts,24 MISCELLANEOUS SPARES,Exhaust Tail Pieces,Spare Parts,15.25,23.68,17.35,26.94,26.94,2.10,3.26,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-08f127e6-1e28-4b6f-8400-14808466bf86,FJC10-8,8mmx10M Winch Cable,May Buyers Guide,25,Tools & Workshop,TRAILER 25,Winch Spares & Accessories,Camping / Leisure / Outdoors,467.28,725.45,472.03,732.83,732.83,4.75,7.38,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-24af013f-af54-4f87-807b-a74ce7d5acab,HL484-S,Farm Jack 48 Steel,May Buyers Guide,26,Tools & Workshop,26 AUTOMOTIVE TOOLS,AUTOMOTIVE TOOLS,Tools & Workshop,999.00,1550.95,1112.58,1727.28,1727.28,113.58,176.33,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-7a0f7462-9f5a-444e-b56b-df251840be2e,A10-048,Fuel Pump Removal X1/3 47 2.0D Diesel For All Chain Driven,May Buyers Guide,30,Marine Spares & Accessories,30 BOAT ACCESSORIES,AUTOMOTIVE TOOLS,Tools & Workshop,26.31,40.85,39.45,61.25,61.25,13.14,20.40,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-b76071cf-11e1-4ae1-aec9-e6c859ee14a3,A10-064,32pce Universal Caliper Wind Back Kit Includes Front And Rear,May Buyers Guide,30,Marine Spares & Accessories,30 BOAT ACCESSORIES,AUTOMOTIVE TOOLS,Tools & Workshop,598.44,929.08,888.87,1379.97,1379.97,290.43,450.89,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-011dd564-4ae6-4471-b1b7-eef8dd28e2b8,TW301,"Torque Wrench Heavy 60-340Nm 1/2"" Drive Type Lever Length",May Buyers Guide,30,Marine Spares & Accessories,30 BOAT ACCESSORIES,Spanners & Wrenches,Tools & Workshop,1353.24,2100.91,2082.40,3232.93,3232.93,729.16,1132.02,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-51eaad84-9607-4440-8e0e-40a08e892dbb,A10-122,Crankshaft Pulley Tool Kit Ford Ranger Ecoblue,May Buyers Guide,31,Tools & Workshop,A10-066 A10-087 N51/2/3/4 N43/N53/N54,AUTOMOTIVE TOOLS,Tools & Workshop,150.65,233.88,179.16,278.15,278.15,28.51,44.27,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-7993ea4b-706a-4768-8663-2f123c70aa91,TTK-FT03,"Timing Tool Kit Fiat, Iveco, Daily, Citroen (06-12), Peugeot Boxer (06-12), 2.2D HDI-4HM/4HV",May Buyers Guide,31,Tools & Workshop,A10-066 A10-087 N51/2/3/4 N43/N53/N54,AUTOMOTIVE TOOLS,Tools & Workshop,818.75,1271.11,1240.53,1925.92,1925.92,421.78,654.81,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-3191d6e1-92dc-4ce2-b614-aba07d79a873,HP16-L,15.87mm Hitch Pin Use To Lock Shank,September Buyer's Guide,5,Accessories,TRAILER & TOWING,TRAILER & TOWING,Trailer & Canopy,186.58,289.67,191.49,297.29,297.29,4.91,7.62,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-cc4b1b17-e5ea-4bac-9f1a-fcddb650db82,F7-106-16,10pce 9/11.5mm Panel Clip Screw Saddles,September Buyer's Guide,9,Accessories,PANEL CLIPS,PANEL CLIPS,Automotive Accessories,8.95,13.89,9.18,14.25,14.25,0.23,0.36,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-4dd640d7-4429-43fc-9528-28a0392c9e05,MA562BB,"29""(736mm) Chrome Aerial With Big Base",September Buyer's Guide,10,Accessories,AERIALS,Automotive Accessories,,60.54,93.99,62.14,96.47,96.47,1.60,2.48,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-cd1ccbc7-5794-4096-bead-2db128c49c9e,H15-LED-H,H15 LED Globes Cob 30W 12-24V 2600Lm,September Buyer's Guide,13,Accessories,GLOBES AND GLOBE HOLDERS,Lighting,Electrical,402.39,624.71,412.98,641.15,641.15,10.59,16.44,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-77fb716b-46d3-4697-aeae-d3de8139201f,GUT12,Universal Joint Toyota Hilux O:53.6mm D:26mm,September Buyer's Guide,21,Auto Spares,SUSPENSION,SUSPENSION,Spare Parts,64.77,100.56,66.48,103.21,103.21,1.71,2.65,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
-82e88fe5-0f98-44a6-a658-bcc786e95e4b,RT-EM02,Engine Mounting Lh Renault Triber Model 2020-,September Buyer's Guide,21,Auto Spares,SUSPENSION,SUSPENSION,Spare Parts,572.72,889.15,587.79,912.54,912.54,15.07,23.39,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change"
+product_id,sku,name,source_guide,source_page,source_category,source_subcategory,current_category,current_parent_category,guide_cost,guide_advertised,live_cost,live_price,formula_price,cost_delta_live_minus_guide,advertised_delta_live_minus_guide,review_status,october_guide_status,october_guide_page,october_printed_price_raw,october_printed_price_rands,october_guide_context,updated_reconciliation_status
+07df2175-cb19-4e6a-b48e-c42fe86c627e,C10-001,40Lt Camp Shower The Tyre) With Accessories,August Buyer's Guide,4,Accessories,4 ACCESSORIES,ACCESSORIES,Automotive Accessories,115.82,179.81,105.06,163.11,163.11,-10.76,-16.70,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,105.06,"40Lt Camp Shower Bag 
+With Accessories
+C10-001
+10506
+Pop Up Kiddies Tent 200X120X105cm ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+aa913944-5a26-4ac2-bec2-62d4aed9d210,H4-062,"12V LED Camping With 2200, 4.5M Rod Plug Stand And Remote",August Buyer's Guide,4,Accessories,4 ACCESSORIES,LIFESTYLE,Camping / Leisure / Outdoors,413.05,641.26,447.47,694.70,694.70,34.42,53.44,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,447.47,"Includes Rod Stand And 
+Remote Control
+H4-062
+44747
+Multi-Function Lantern ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+72af2cae-e49c-4f1b-b9b1-6cdde1c6a403,H4-066,Multi-Function Lantern 180Lumens 8pce White + 8pce Red ABS Stainless Steel 75X110mm,August Buyer's Guide,4,Accessories,4 ACCESSORIES,ACCESSORIES,Automotive Accessories,369.43,573.54,410.48,637.27,637.27,41.05,63.73,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,410.48,"White + 8pce Red Smd 
+Abs Stainless Steel
+H4-066
+41048
+Air Compressor With Tank ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+93fe132e-c942-4fb7-9107-3a5600c45bb2,A2-090B,Black 370X420mm Large 2.5M Bonnet Air Scoop,August Buyer's Guide,5,Accessories,4X4 AND OUTDOOR 5,Automotive Accessories,,205.48,319.01,189.53,294.25,294.25,-15.95,-24.76,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,5,,189.53,"370X420mm Large 
+Bonnet Air Scoop
+A2-090B
+18953
+Front Bumper Lip Black ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+2be2e6a4-7e2b-4d30-b01b-6ec71fd5022b,M601,Black L-Type Canopy With Lock & Keys,August Buyer's Guide,5,Accessories,4X4 AND OUTDOOR 5,Automotive Accessories,,74.42,115.54,61.80,95.94,95.94,-12.62,-19.60,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,5,,61.8,"L-Type Canopy Handle 
+With Lock & Keys
+M601
+6180
+97763",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+bcd35315-de96-4ec8-addc-d94d054a29ea,A2-100-30GR,300mm Green LED Soft Stick-On Strip Lighting,August Buyer's Guide,6,Accessories,6 ACCESSORIES,ACCESSORIES,Automotive Accessories,44.15,68.54,45.44,70.55,70.55,1.29,2.01,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,5,,45.44,"300mm Green LED Soft 
+Stick-On Strip Lighting
+A2-100-30GR
+4544
+4X4 AND OUTDOOR",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+753d2220-beb2-4253-81fd-99878eb3104d,EX911A,Aerial Adaptor Nissan,August Buyer's Guide,6,Car Audio,6 ACCESSORIES,Car Audio,,7.70,11.95,8.35,12.96,12.96,0.65,1.01,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,5,,8.35,"17203
+Aerial Adaptor Nissan 
+EX911A
+835
+Blue Rubber Aerial",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+cb83a8b6-ebc4-449f-9e40-6672dede8379,G6-039R,For Gear Knob Universal Red/Black,August Buyer's Guide,7,Accessories,EXHAUST TAIL PIECES 7,Exhaust Tail Pieces,Spare Parts,63.24,98.18,68.51,106.36,106.36,5.27,8.18,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,6,,68.51,"Gear Knob Universal 
+Red/Black
+G6-039R
+6851
+Gear Knob Universal Blue",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+1a41fd5d-b967-4698-9db8-ab029a7559fe,G6-040BL,Gear Knob Universal Wooden/Blue,August Buyer's Guide,7,Accessories,EXHAUST TAIL PIECES 7,Exhaust Tail Pieces,Spare Parts,69.03,107.17,76.70,119.08,119.08,7.67,11.91,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,6,,76.7,"Gear Knob Universal 
+Wooden/Blue
+G6-040BL
+7670
+Black/Blue Gear Knob",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+2147c211-0e18-4033-96a3-8e262e274504,M7-MT02,Rubber Mats OEM Fit Fit Mitsubishi Triton 2017-,August Buyer's Guide,7,Parts,EXHAUST TAIL PIECES 7,Car Mats,Automotive Accessories,373.56,579.95,415.07,644.40,644.40,41.51,64.45,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,7,,415.07,"Rubber Mats OEM Fit 
+Mitsubishi Triton 2017-
+M7-MT02
+41507
+4pce Carpet Car Mat Set ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+aa3f372f-7265-4a2e-b112-278978aa1e9b,IAWC-027B-MR,Steering Wheel Cover Black/Maroon Pu,August Buyer's Guide,8,Accessories,8 GEAR KNOBS,Gear Knobs,Automotive Accessories,38.58,59.90,42.87,66.56,66.56,4.29,6.66,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,7,,42.87,"Steering Wheel Cover 
+Black/Maroon Pu
+IAWC-027B-MR
+4287
+Steering Wheel Cover ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+e5a24c4f-ab33-4e88-87c8-e8e60ead8cad,W10-MIT01,4pce Windshield Set Mitsubishi Triton 16-,August Buyer's Guide,9,Parts,WINDSHIELD SETS 9,Automotive Accessories,,207.12,321.55,224.38,348.35,348.35,17.26,26.80,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,8,,224.38,"Mitsubishi Triton 16-, 
+1.5mm Thickness /Black
+W10-MIT01
+22438
+Window Film Black",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+12463b5c-5b6a-4464-8477-17fe8b1aba55,F7-203,"147pce Assorted Panel Clips With Tools For GM, Ford, Honda, Chrysler, 1pce Remover Tools",August Buyer's Guide,12,Accessories,12 MIRRORS,PANEL CLIPS,Automotive Accessories,86.31,134.00,95.90,148.88,148.88,9.59,14.88,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,95.9,"BMC, 1pce Remover 
+Tools
+F7-203
+9590
+160pce Assorted ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+84c3c5da-a3d6-4b0f-99bc-fb4ec3cbd500,B2-012,12V Universal Relay Tester,August Buyer's Guide,13,Auto Electrical,PANEL CLIPS 13,RELAYS,Electrical,264.81,411.12,245.29,380.81,380.81,-19.52,-30.31,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,245.29,"12V Universal Automotive 
+Relay Tester
+B2-012
+24529
+Skinny Type Funnel",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+6aced19e-cf10-4aeb-89dd-a0255053e7b0,F7-AU01,160pce Assorted Panel Clips For Audi,August Buyer's Guide,13,Parts,PANEL CLIPS 13,PANEL CLIPS,Automotive Accessories,187.79,291.54,203.43,315.83,315.83,15.64,24.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,203.43,"Panel Clips For 
+Audi
+F7-AU01
+20343
+418pce Assorted ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+e0903215-4136-48c6-8943-573c565d9e15,F7-HN01,418pce Assorted Panel Clips For Honda,August Buyer's Guide,13,Parts,PANEL CLIPS 13,PANEL CLIPS,Automotive Accessories,187.16,290.57,207.96,322.86,322.86,20.80,32.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,207.96,"Panel Clips For 
+Honda
+F7-HN01
+20796
+475pce Assorted ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+f732ceab-d0bc-4d7e-acf8-d149227544f0,TRK01,Trunk Release Kit,August Buyer's Guide,13,Parts,PANEL CLIPS 13,Automotive Accessories,,168.61,261.77,187.34,290.85,290.85,18.73,29.08,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,187.34,"1669
+Trunk Release Kit
+TRK01
+18734
+Battery Holddown Set ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+c2f0e16a-9609-4852-871a-f9c963a9d2c1,L3-009R,Universal Right Hand Truck/Trailer Tail Lamp 12/24V,August Buyer's Guide,14,Lighting,14 ELECTRICAL SPARES,LAMPS,Lighting,158.82,246.57,176.47,273.97,273.97,17.65,27.40,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,5,,176.47,"Truck/Trailer Tail Lamp 
+12/24V
+L3-009R
+17647
+Trailer Cover Rollers ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+604e6c89-ee8c-450a-9631-706500f47777,ND01,"Toyota 12V Relay Mazda RX7, Toyota, Lexus Multi Purpose",August Buyer's Guide,14,Auto Electrical,14 ELECTRICAL SPARES,RELAYS,Electrical,26.68,41.42,24.15,37.49,37.49,-2.53,-3.93,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,24.15,"RX7, Toyota, Lexus 4Pin 
+Multi Purpose
+ND01
+2415
+5Pin 12V Relay Head ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+22003ea5-8856-46b0-a76b-404eb24a9bc6,SB474,"Starter Bendix Lucas, Toyota, Nissan 9",August Buyer's Guide,14,Auto Electrical,14 ELECTRICAL SPARES,ELECTRICAL SPARES,Electrical,107.13,166.32,119.03,184.79,184.79,11.90,18.47,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,22,,119.03,"Starter Bendix Lucas, 
+Toyota, Nissan 9 Tooth
+SB474
+11903
+12V Regulator Jeep, ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+89a1fa6b-3dea-4281-a3f4-3cd656fa666f,FB-002-100,Fuse Breaker 100Amp Gauge,August Buyer's Guide,18,Auto Electrical,18 FUSES,FUSES,Electrical,144.91,224.97,161.01,249.97,249.97,16.10,25.00,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,161.01,"Fuse Breaker 100Amp 4-8 
+Gauge
+FB-002-100
+16101
+20Amp Female Fuse ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+a57b7844-91ef-42f2-8150-58d733e98611,582ALED,Kit DC 2pce T20 Amber LED Wedge Globes,August Buyer's Guide,19,Lighting,GAUGES 19,LAMPS,Lighting,50.13,77.83,55.70,86.47,86.47,5.57,8.64,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,55.7,"2pce T20 Amber LED 
+Wedge Globes
+582ALED
+5570
+H15 LED Globes Cob 30W ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+01379c3b-7895-4117-b60f-cbd21f24e27e,PY24W-LED,"Amber LED Bulb Py24W 12V-24V 7Watt For Audi, BMW 500Lm 18W/110Lm",August Buyer's Guide,19,Tools & Workshop,GAUGES 19,AUTOMOTIVE TOOLS,Tools & Workshop,114.71,178.09,127.45,197.87,197.87,12.74,19.78,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,127.45,"12V-24V 7Watt For Audi, 
+BMW 500Lm 18W/110Lm
+PY24W-LED
+12745
+2pce T20 Amber LED ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+93212300-d797-4ecd-a71d-8dfe1d5262ae,I1-091,"Ignition Coil Hyundia, Kia 4 Pin Picanto",August Buyer's Guide,21,Auto Electrical,FUEL PUMPS 21,ELECTRICAL SPARES,Electrical,281.81,437.51,313.12,486.12,486.12,31.31,48.61,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,23,,313.12,"Ignition Coil Hyundia, Kia 
+4 Pin Picanto
+I1-091
+31312
+Ignition Coil Opel Astra ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+0844d0b1-c7ea-4aee-93bf-66b3f84932ab,IG-MAN1,Honda Ignition For Man Trucks F2000,August Buyer's Guide,22,Parts,22 IGNITION SPARES,Spare Parts,,279.50,433.92,310.56,482.14,482.14,31.06,48.22,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,23,,310.56,"Ignition For Man Trucks 
+F2000
+IG-MAN1
+31056
+Ignition Barrel With Keys ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+88803e6f-42eb-4ea5-9b4e-5e0bed0ca3ba,IGS-NT01,Ignition Switch Set Tiida 2 Door Barrels/T/Lid (Ignition Complete),August Buyer's Guide,23,Auto Electrical,IGNITION SPARES 23,SWITCHES,Electrical,534.71,830.14,594.12,922.37,922.37,59.41,92.23,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,23,,594.12,"Barrels/T/Lid Bar
+(Ignition Complete)
+IGS-NT01
+59412
+Ignition Switch EE90/92 ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+ab8cb66f-b798-42d1-8ab5-cddb8bd0b9ae,RN-MF01,NV350 4pce Mud Flaps Renault Kwid Gen-1 2015-2020,August Buyer's Guide,24,Parts,24 SPARE PARTS,Exterior Accessories,Automotive Accessories,70.82,109.95,76.72,119.11,119.11,5.90,9.16,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,26,,76.72,"4pce Mud Flaps Renault 
+Kwid Gen-1 2015-2020
+RN-MF01
+7672
+Accelerator Cable Suzuki ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+c7330873-5a5c-453a-a961-a3787874d865,T9-1070,Heater Pipe For Fiat Palio/Strada/Diablo Also Bravo And Siena,August Buyer's Guide,24,Parts,24 SPARE PARTS,THERMOSTATS & PIPES,Spare Parts,225.10,349.47,191.38,297.12,297.12,-33.72,-52.35,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",,,,,,
+95ae8a60-d7d8-4042-91de-e8ded6a2bf56,T9-1083,Fiat Heater Pipe For BMW 1.6L E39 E38 X5 Z3 Z4,August Buyer's Guide,24,Parts,24 SPARE PARTS,THERMOSTATS & PIPES,Spare Parts,182.48,283.30,202.75,314.77,314.77,20.27,31.47,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,28,,202.75,"Heater Pipe For BMW E46 
+E39 E38 X5 Z3 Z4
+T9-1083
+20275
+Heater Pipe E3 82-85",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+9e194a3b-bd59-4b16-aebe-953897d0dec3,BM19,25.40mm Brake Cylinder Aluminium Toyota Hiace,August Buyer's Guide,25,Parts,ENGINE COOLING 25,Brake Parts,Spare Parts,450.37,699.20,500.41,776.89,776.89,50.04,77.69,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,27,,500.41,"Cylinder Aluminium 
+Toyota Hiace
+BM19
+50041
+Brake Master ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+841a0a03-3146-4e98-b55b-0c0a3f9ed638,T1-109-50,"2""(50mm) Heavy Duty Scraper",August Buyer's Guide,28,Tools & Workshop,28 SOCKETS,Hand Tools,Tools & Workshop,12.31,19.11,10.56,16.39,16.39,-1.75,-2.72,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,31,,10.56,"2""(50mm) Heavy Duty 
+Scraper
+T1-109-50
+1056
+D.I.Y 12Inch Tin Scissors ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+46024800-ca6c-4b9b-9d12-f59963c33b35,T1-155,3 Jaw Pilot Bearing,August Buyer's Guide,28,Tools & Workshop,28 SOCKETS,Hand Tools,Tools & Workshop,291.71,452.88,237.71,369.04,369.04,-54.00,-83.84,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,237.71,"6904
+3 Jaw Pilot Bearing Puller
+T1-155
+23771
+Radiator And Cap Pump ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+b6808097-06d6-48d4-86b3-b23f530c3506,C10-030R,Folding Stool Red,Feb Buyer's Guide,4,Tools & Workshop,4 CAMPING,AUTOMOTIVE TOOLS,Tools & Workshop,173.23,268.94,179.68,278.95,278.95,6.45,10.01,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,179.68,"Load 200Kg 
+Height:6cm-45cm
+C10-030R
+17968
+11pce Picnic Set",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+d7b5bd45-6bd6-4c4b-b592-af2cff4b249d,TOY-001,Sliding Door Cable Hi-Ace,Feb Buyer's Guide,5,Car Audio,AERIAL 5,Car Audio,,23.89,37.09,23.54,36.55,36.55,-0.35,-0.54,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,26,,23.54,"Sliding Door Cable 
+Toyota Hiace
+TOY-001
+2354
+Bonnet Shock Set Ford ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+dd862fa2-b053-4af5-8648-9bd7cc780717,CH-25,Super Dark Window Film Black,Feb Buyer's Guide,6,Parts,6 DOOR PARTS,Automotive Accessories,,33.40,51.85,33.74,52.38,52.38,0.34,0.53,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,8,,33.74,"Window Film Black
+25% 50X300cm
+CH-25
+3374
+2Lt Shield Concentrated ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+6f0e1beb-e14b-474c-886c-64ec383961a0,CH-3622A,LED Strobe Lp Amber Magn.W/Plug 12-80V,Feb Buyer's Guide,8,Accessories,8 AUTOMOTIVE ACCESSORIES,AUTOMOTIVE ACCESSORIES,Automotive Accessories,318.20,494.01,251.50,390.45,390.45,-66.70,-103.56,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,251.5,"With Magnetic Base & 
+Plug 12-80V
+CH-3622A
+25150
+Yellow LED Warning ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+be9a300c-8802-4e48-941f-7e7ee6ca500c,F7-002-6,Panel Clips 6-7mm,Feb Buyer's Guide,9,Parts,ADHESIVES AND SILICONES 9,PANEL CLIPS,Automotive Accessories,62.04,96.32,66.01,102.48,102.48,3.97,6.16,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,66.01,"733
+50pce 6-7mm Panel Clips
+F7-002-6
+6601
+50pce 9mm Panel Clips ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+0c50c714-8240-4c70-b967-4ecd0189d136,F7-102-14B,Panel Clip Black 7mm,Feb Buyer's Guide,9,Parts,ADHESIVES AND SILICONES 9,PANEL CLIPS,Automotive Accessories,5.41,8.40,5.47,8.49,8.49,0.06,0.09,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,9,,5.47,"10pce 7mm Panel Clips 
+Black
+F7-102-14B
+547
+10pce Panel Clips Toyota",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+82963228-bad1-4d4c-9993-9a1593f7dedc,F7-104-14,Panel Clip Universal Wheather Strip Clip,Feb Buyer's Guide,9,Parts,ADHESIVES AND SILICONES 9,PANEL CLIPS,Automotive Accessories,4.34,6.74,4.39,6.82,6.82,0.05,0.08,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,4.39,"Universal Weather Strip 
+Clip
+F7-104-14
+439
+10pce 6-8mm Panel Clips ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+ce24b9a2-ce87-4a37-a418-fdbe53f0dac0,C3-021,Noodle Wash Mitt,Feb Buyer's Guide,10,Parts,10 AUTOMOTIVE HARDWARE,Automotive Accessories,,25.98,40.33,23.91,37.12,37.12,-2.07,-3.21,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,8,,23.91,"4384
+Blue Noodle Wash Mitt
+C3-021
+2391
+95ml All Purpose 3-In-1 ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+ded6a857-dc01-42b2-a2db-aebdf332f2e9,F7-107-24,Panel Clips Toyota Wheather Strip Clips,Feb Buyer's Guide,10,Parts,10 AUTOMOTIVE HARDWARE,PANEL CLIPS,Automotive Accessories,5.03,7.81,5.22,8.10,8.10,0.19,0.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,5.22,"10pce Panel Clips Toyota 
+Weather Strip Clips
+F7-107-24
+522
+10pce Panel Clips Golf ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+b92bce69-2180-4aa0-ad21-59eb37e093f0,R1-023Y,LED Warning Lamp Yelllow 12-24V,Feb Buyer's Guide,15,Parts,IGNITION SPARES 15,LAMPS,Lighting,167.80,260.51,140.18,217.63,217.63,-27.62,-42.88,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,140.18,"Lamp 12-24V
+18Functions
+R1-023Y
+14018
+8pce Strobe Warning ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+3af7daf7-6b07-46f8-a7a3-3ce03468c199,ND47,Relay Head Lamp Toyota 12V,Feb Buyer's Guide,16,Auto Electrical,16 SENSORS,RELAYS,Electrical,22.85,35.47,21.10,32.76,32.76,-1.75,-2.71,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,21.1,"5Pin 12V Relay Head 
+Lamp Toyota
+ND47
+2110
+4Pin 12V Relay Toyota ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+03c6d454-9134-49c9-9a3f-2dc67b5625eb,S5-26080,Sensor O/P/Switch Alfa Audi Brown Top,Feb Buyer's Guide,16,Auto Electrical,16 SENSORS,SWITCHES,Electrical,21.77,33.80,21.97,34.11,34.11,0.20,0.31,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,22,,21.97,"Oil Pressure Switch Alfa, 
+Audi, VW Brown Top
+S5-26080
+2197
+Reverse Light Switch ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+4c056adf-c2fb-4319-86d4-7daf66274166,S2-020R,Mini Rocker Switch Mini LED 12V,Feb Buyer's Guide,17,Auto Electrical,RELAYS 17,SWITCHES,Electrical,12.26,19.03,12.48,19.38,19.38,0.22,0.35,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,22,,12.48,"12V Mini Rocker Switch 
+With Red LED
+S2-020R
+1248
+Camshaft Sensor Ertiga ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+5a63655c-cb4e-48ef-b1ae-80108948691b,SS-COLT2,Signal Switch Colt LDV MK2 01-,Feb Buyer's Guide,17,Auto Electrical,RELAYS 17,SWITCHES,Electrical,241.44,374.84,250.43,388.79,388.79,8.99,13.95,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,250.43,"Signal Switch Mitsubishi 
+Colt LDV Mk2 01-
+SS-COLT2
+25043
+Signal Switch With Fog ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+df032746-bbd5-41e1-9639-d2d2ab0c4142,RSL250,Yellow Ring Terminal 10.5mm,Feb Buyer's Guide,21,Auto Electrical,TERMINALS 21,ELECTRICAL SPARES,Electrical,21.60,33.53,22.93,35.60,35.60,1.33,2.07,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,22,,22.93,"10pce 10.5mm Yellow 
+Ring Terminals
+RSL250
+2293
+100pce 15Amp Blue ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+4047ebd3-889e-42fe-ae9b-c948d92f9790,S7-006-2,1.5 Tweeter Pair,Feb Buyer's Guide,23,Car Audio,CLUTCH MASTER CYLINDERS 23,Car Audio,,28.21,43.80,28.74,44.62,44.62,0.53,0.82,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,28.74,"20711
+1.5""(38cm) Tweeter Pair
+S7-006-2
+2874
+Wiper Motor Nissan 1400 ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+32e6c054-6912-4de2-a82c-23be1c0f611a,M-FC002,Locking Cap Mercedes Truck/Bus ID:80mm,Feb Buyer's Guide,25,Accessories,RADIATOR SPARES 25,Automotive Accessories,,112.80,175.12,103.98,161.43,161.43,-8.82,-13.69,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,25,,103.98,"Lockable Fuel Cap 
+Mercedes Truck & Bus
+M-FC002
+10398
+Lockable Fuel Cap Golf ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+2d75247d-36e5-4d02-90df-e9715e331a85,T923,Water Pump Outlet Frb.Crt.Escor,Feb Buyer's Guide,25,Accessories,RADIATOR SPARES 25,Automotive Accessories,,49.83,77.36,49.10,76.23,76.23,-0.73,-1.13,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,29,,49.1,"Water Pump Outlet Ford 
+Escort, Cortina
+T923
+4910
+Water Pump Outlet Ford ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+ce399862-4f38-4e5f-8b86-4d9f94b3ee03,T951,Thermostat Cover,Feb Buyer's Guide,25,Accessories,RADIATOR SPARES 25,Automotive Accessories,,60.71,94.25,62.97,97.76,97.76,2.26,3.51,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,28,,62.97,"Thermostat Cover Toyota 
+2E All
+T951
+6297
+Thermostat Cover ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+de59cb26-7f2c-4d77-966f-8aedd0c45ecd,R3-CC75,Centre Cap 74.93mm Chrome,Feb Buyer's Guide,27,Parts,SPARE PARTS QUANTUM 27,Automotive Accessories,,93.47,145.11,92.11,143.00,143.00,-1.36,-2.11,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,9,,92.11,"74.93mm Chrome
+Centre Cap
+R3-CC75
+9211
+6x50mm Manifold Stud ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+6c5ad191-0795-4066-9e3c-bb211cde7aec,VGS3,Valve Grinding Stick Sizes,Feb Buyer's Guide,30,Parts,30 ACCESS EQUIPMENT,Tools & Workshop,,30.47,47.30,36.49,56.65,56.65,6.02,9.35,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,36.49,"270mm Valve Grinding Stick 
+With Valve Grinding Rubbers
+VGS3
+3649
+4""(100mm) 2 Leg Bearing ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+c1405e06-22ac-409d-b5a2-39673d508bed,RTD532,Ratchet Tie Down 5mx32mm Breaking Strength: 2500Lbs,Feb Buyer's Guide,36,Tools & Workshop,36 HAND TOOLS,Hand Tools,Tools & Workshop,93.41,145.02,99.37,154.27,154.27,5.96,9.25,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,99.37,"2500Lb(1133Kg)
+Ratchet Tie Down
+RTD532
+9937
+4pce Rubber Baggage Straps",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+c80d7bbf-c2c7-4ce7-8f06-299764e594cf,C10-101-200,Tent Peg Hook Type 4X200mm,July Buyer's Guide,7,Accessories,4X4 AND OUTDOOR 7,LIFESTYLE,Camping / Leisure / Outdoors,5.18,8.04,4.48,6.96,6.96,-0.70,-1.08,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,4.48,"Tent Peg Hook Type 
+4X200mm
+C10-101-200
+448
+18Kg Blue Gazebo Size: ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+62f5b7b7-620b-4209-a328-b593a0adc4b7,JCH-20L,TUV/GS 20L Jerry Can Holder,July Buyer's Guide,8,Trailer & Canopy,8 TRAILER AND TOWING,Trailer & Canopy,,225.17,349.58,202.06,313.70,313.70,-23.11,-35.88,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,202.06,"48396
+20L Jerry Can Holder
+JCH-20L
+20206
+F1 Gaming Seat Set For ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+69c612bf-a608-4729-a34f-3876aab34327,S9-L,Red Learner Driver'S Sticker 240X240mm,July Buyer's Guide,9,Accessories,GENERAL ACCESSORIES 9,General Accessories,Automotive Accessories,11.69,18.15,8.25,12.81,12.81,-3.44,-5.34,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,8,,8.25,"Red Learner Driver's ""L"" 
+Sticker 240X240mm
+S9-L
+825
+51mm Exhaust Clamp",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+b3598edd-25b0-45ad-a929-2438bebc0ed0,SL-906R-1SF,Solid Mast Aerial For Nissan 1 Tonner,July Buyer's Guide,10,Car Audio,10 GENERAL ACCESSORIES,Car Audio,,57.42,89.14,53.61,83.23,83.23,-3.81,-5.91,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,5,,53.61,"Solid Mast Aerial For 
+Nissan 1 Tonner
+SL-906R-1SF
+5361
+Blank Key For AS-105,109",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+f6bcb7f9-a90e-4f45-8b12-54a44e0d27c1,WBR18-14,"14"" Rear Wiper Blade",July Buyer's Guide,10,Accessories,10 GENERAL ACCESSORIES,General Accessories,Automotive Accessories,26.55,41.22,23.89,37.09,37.09,-2.66,-4.13,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,8,,23.89,"WB23ES-3
+14"" Rear Wiper Blade VW
+WBR18-14
+2389
+4pce Windshield Set VW ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+2edf1d36-c289-43a1-a87c-8d490d850657,JTL-6105,"Handle Top Sliding Door NPR, For Toyota Hiace 84-On",July Buyer's Guide,12,Parts,12 CHEMICALS,DOOR PARTS,Spare Parts,14.58,22.64,11.87,18.43,18.43,-2.71,-4.21,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,11.87,"Top Sliding Door Bracket 
+For Toyota Hiace 84-On
+JTL-6105
+1187
+Sliding Door Stopper ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+a83d8ac4-d749-43dc-ad98-24a80b455cc2,E1-USB8P,"8 Port Super Fast Car Charger 3.1Amp Qc3.0 USB X4, Type-C X 4",July Buyer's Guide,18,Accessories,18 ELECTRICAL SPARES & ACCESSORIES,ELECTRICAL SPARES,Electrical,24.01,37.28,19.74,30.65,30.65,-4.27,-6.63,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,7,,19.74,"Charger 3.1Amp Qc3.0 
+Usb X4, Type-C X 4 Ports
+E1-USB8P
+1974
+Black Steering Wheel ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+b28e7a7a-9828-4db5-ad96-ae8e8d282d96,PEK02LED,Electric Project Kit For School Kids Lighting Ports Circuit With 3 LED,July Buyer's Guide,18,Accessories,18 ELECTRICAL SPARES & ACCESSORIES,LAMPS,Lighting,22.45,34.85,19.19,29.79,29.79,-3.26,-5.06,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,19.19,"Electric Project Kit For School Kids 
+Lighting Circuit With 3 LED Globes
+PEK02LED
+1919
+Electric Project Kit For School Kids ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+6c88c1fe-d734-4965-8ac5-272791d22f18,T-GC001,Plug Grease Cap Toyota Y-Series 84-On Hilux YN-Series,July Buyer's Guide,24,Parts,24 SPARE PARTS,Spare Parts,,6.11,9.49,5.18,8.04,8.04,-0.93,-1.45,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,26,,5.18,"Y-Series 84-On Hilux 
+YN-Series
+T-GC001
+518
+Grease Cap All Toyota ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+52cab11b-e8e2-426d-86cf-dde12ac921af,T-GC002,"Hiace Grease Cap All Toyota Hilux Venture, Stallion, 1.8Lt, 2.0Lt",July Buyer's Guide,24,Parts,24 SPARE PARTS,Spare Parts,,6.89,10.70,6.03,9.36,9.36,-0.86,-1.34,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,26,,6.03,"Venture, Stallion, 1.8Lt, 
+2.0Lt
+T-GC002
+603
+RH Rear Bumper Retainer ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+f8ac6ee7-89e5-45e7-877a-f1755dc24d26,5335-19.1FD,19mm 12X1.25mm Chrome With Flat Dome 19HD,July Buyer's Guide,26,Accessories,26 WHEEL ACCESSORIES,WHEEL ACCESSORIES,Automotive Accessories,5.81,9.02,5.41,8.40,8.40,-0.40,-0.62,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,9,,5.41,"12X1.25mm Chrome Nut 
+With Flat Dome 19HD
+5335-19.1FD
+541
+Wheel Stud Long Navara ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+1bcac31a-dfe1-4016-99aa-c66988b85d56,T1-186-12,12pce 9M Rod Drain Cleaner Set,July Buyer's Guide,30,Tools & Workshop,30 HAND TOOLS,Hand Tools,Tools & Workshop,335.37,520.66,309.26,480.13,480.13,-26.11,-40.53,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,32,,309.26,"12pce 9M Rod Drain 
+Cleaner Set
+T1-186-12
+30926
+300Amp Earth Clamp",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+08c0337c-24c1-4532-bbca-f55048e63000,233906B-R,"5"" Tachometer 0-11000Rpm Black With Shift Light",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,7.00,10.87,349.57,542.71,542.71,342.57,531.84,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,349.57,"0-11000Rpm Black 
+With Shift Light
+233906B-R
+34957
+2"" Super White Volt ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+661bbbe6-b92b-4cd6-b644-e5b6c64054bc,2701SS,"Rim 2"" Silver/Silver Boost Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,269.46,418.34,269.55,418.48,418.48,0.09,0.14,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,269.55,"2"" Silver/Silver Boost 
+Gauge
+2701SS
+26955
+2"" Digital Boost Gauge ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+f7e2b3db-81cb-4240-985b-48e575f0ee3e,27027SWL,"2"" Super White Oil Pressure Spook Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,601.70,934.14,650.47,1009.85,1009.85,48.77,75.71,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,650.47,"2"" Super White Oil 
+Pressure Spook Gauge
+27027SWL
+65047
+2"" Oil Temperature ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+0c4b6b82-a80a-402b-9344-cc2ae5f266c1,27091SWL,"2"" Super White Volt Gauge (Spook Gauge)",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,478.58,743.00,266.53,413.79,413.79,-212.05,-329.21,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,266.53,"2"" Super White Volt 
+Gauge (Spook Gauge)
+27091SWL
+26653
+Silver Shift Light With ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+67e9788e-f034-4923-b603-a21087c1327b,2727SW,"2"" Oil Pressure Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,370.34,574.95,390.16,605.72,605.72,19.82,30.77,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,390.16,"8731
+2"" Oil Pressure Gauge
+2727SW
+39016
+2"" Super White Oil ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+0aea29ca-bcdf-49c7-a19b-a8ac78ab5969,2747LED-R,"2"" Digital Oil Temperature Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,Trailer & Canopy,,235.72,365.96,262.66,407.78,407.78,26.94,41.82,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,262.66,"2"" Digital Oil Temperature 
+Gauge
+2747LED-R
+26266
+5"" Tachometer ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+0ead42e7-0f25-4998-a30e-69751126ea82,2747SW,"2"" Oil Temperature Gauge Gauge",March Buyer's Guide,5,Trailer & Canopy,TRAILER AND TOWING 5,ELECTRICAL SPARES,Electrical,316.86,491.93,333.99,518.52,518.52,17.13,26.59,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,333.99,"2"" Oil Temperature 
+Gauge
+2747SW
+33399
+2"" Digital Oil Temperature ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+d6078422-12c2-45f7-95c4-7c109beccb1b,288X,Battery Post & Cleaner,March Buyer's Guide,6,Auto Electrical,6 GAUGES,BATTERY,Electrical,22.01,34.17,23.20,36.02,36.02,1.19,1.85,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,23.2,"Battery Post & Terminal 
+Cleaner
+288X
+2320
+2pce Battery Acid ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+0fec096e-fe3a-41cc-a158-0830cf075f84,2DC,2pce 12V 35W Hid Globes Head & Spot Lamp,March Buyer's Guide,8,Lighting,8 AUTOMOTIVE ELECTRICAL,LAMPS,Lighting,237.62,368.91,256.89,398.82,398.82,19.27,29.91,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,256.89,"Globes Head & Spot 
+Lamp
+2DC
+25689
+12V 51W Quartz ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+ed96323c-3e0e-4069-bd48-1075ba3c5777,12TTS,12 Ton Heavy Duty Jack Trestle Stands Pair,March Buyer's Guide,12,Accessories,12 WHEEL ACCESSORIES,WHEEL ACCESSORIES,Automotive Accessories,1350.18,2096.15,1459.65,2266.11,2266.11,109.47,169.96,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,1459.65,"12 Ton Heavy Duty 
+Trestle Stands Pair
+12TTS
+145965
+3 Ton Bag Type Air Jack",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+661fa919-d5b3-41f0-a025-f47cc507e975,3TAJB,3 Ton Bag Type Air,March Buyer's Guide,12,Accessories,12 WHEEL ACCESSORIES,WHEEL ACCESSORIES,Automotive Accessories,1344.66,2087.58,1416.59,2199.26,2199.26,71.93,111.68,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,1416.59,"145965
+3 Ton Bag Type Air Jack
+3TAJB
+141659
+Plug Insert 4pce Only",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+e5df3811-3965-4d62-8ca8-7a8607e05808,CSS-009,Valve Cap Set With Key Ring Honda,March Buyer's Guide,30,Parts,30 SPECIAL,WHEEL ACCESSORIES,Automotive Accessories,32.97,51.19,34.07,52.89,52.89,1.10,1.70,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,9,,34.07,"Valve Cap Set With Key 
+Ring Honda
+CSS-009
+3407
+Plastic Heavy Duty Wheel ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+d4ea45f3-bfa4-45f1-b6a9-e1100e6306d7,G6-041R,Gear Knob Universal Red,May Buyers Guide,3,Accessories,OUTDOOR 3,Gear Knobs,Automotive Accessories,69.77,108.32,68.13,105.77,105.77,-1.64,-2.55,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,6,,68.13,"75121
+Gear Knob Universal Red
+G6-041R
+6813
+Gear Knob Universal Blue",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+80e5ac81-f8e1-4ba4-8d90-f76cc340e8b6,G6-043BL,Gear Knob Universal Silver/ Blue,May Buyers Guide,3,Accessories,OUTDOOR 3,Gear Knobs,Automotive Accessories,82.22,127.65,86.55,134.37,134.37,4.33,6.72,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,6,,86.55,"Gear Knob Universal 
+Silver/ Blue
+G6-043BL
+8655
+Gear Knob Universal ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+71aae548-8791-4796-97cc-53acef6f78d3,H4-070,Super Bright LED With USB Type-C Charging Cable,May Buyers Guide,3,Parts,OUTDOOR 3,Automotive Accessories,,253.76,393.96,303.21,470.73,470.73,49.45,76.77,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,303.21,"With Usb Type-C 
+Charging Cable
+H4-070
+30321
+12V LED Camping Light ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+96cf93aa-f878-49ff-baed-c97422bf2e8a,F7-107-9,10pce Panel Clips Grille Nissan Grey,May Buyers Guide,4,Accessories,4 ACCESSORIES,PANEL CLIPS,Automotive Accessories,7.07,10.98,7.44,11.55,11.55,0.37,0.57,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,7.44,"10pce Panel Clips Grille 
+Nissan Grey
+F7-107-9
+744
+10pce Panel Clips Toyota ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+da82f927-d9fd-4253-a8c3-9900cfe16d89,FC0202,"For Window Winder For Ford Cortina, 4, 5, Escort 1, 2, MK3",May Buyers Guide,4,Accessories,4 ACCESSORIES,ACCESSORIES,Automotive Accessories,47.28,73.40,51.52,79.98,79.98,4.24,6.58,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,51.52,"For Ford Cortina, MK111, 
+4, 5, Escort 1, 2, MK3
+FC0202
+5152
+Grey Window Winder ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+006ad23b-b752-4932-b4dd-9165134691cc,F7-104-20,Clips 10pce Panel Clips Trim Universal Grey,May Buyers Guide,5,Parts,PANEL CLIPS 5,PANEL CLIPS,Automotive Accessories,6.06,9.41,6.70,10.40,10.40,0.64,0.99,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,6.7,"10pce Panel Clips Interior 
+Trim Universal Grey
+F7-104-20
+670
+10pce 9/11.5mm Panel ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+ccf5e0d1-388f-4bf9-bdf9-28ac2d3e8887,A2-021,Heat Cigarette Lighter With Clamp,May Buyers Guide,7,Accessories,MIRRORS 7,MIRRORS,Spare Parts,17.23,26.75,16.69,25.91,25.91,-0.54,-0.84,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,10,,16.69,"Cigarette Lighter Socket 
+With Clamp
+A2-021
+1669
+Trunk Release Kit",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+20d0bbe3-48e5-43ea-9efc-cf0b528f4e11,G1-002B,Black Gauge Dash Holes,May Buyers Guide,8,Tools & Workshop,8 ELECTRICAL SPARES,AUTOMOTIVE TOOLS,Tools & Workshop,77.25,119.93,87.31,135.55,135.55,10.06,15.62,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,24,,87.31,"Black Gauge Dash
+Pod 2 Holes
+G1-002B
+8731
+2"" Oil Pressure Gauge",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+7637c017-616c-404a-aa3a-7cf9409d8c9b,G1034,10pce Double Contact Globes Ryan 12V 21/5W Offset,May Buyers Guide,9,Lighting,FUSES 9,LAMPS,Lighting,23.09,35.85,26.59,41.28,41.28,3.50,5.43,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,26.59,"O
+set
+G1034
+2659
+Amber LED Bulb Py24W ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+99b71a7e-7e0c-4a47-8ae7-e01565558c8c,H755W-NB,2pce Halogen Globes 55W 12V 30% Brighter,May Buyers Guide,10,Lighting,10 GLOBES AND GLOBE HOLDERS,GLOBES AND GLOBE HOLDERS,Lighting,14.99,23.27,16.47,25.57,25.57,1.48,2.30,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,16.47,"12V Quartz H7 55W 30% 
+Brighter
+H755W-NB
+1647
+634",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+383b32a5-9c0d-4241-b3c4-b4a1a4687e54,HID-H11DC,HID Kit H11 Slimline Ballast,May Buyers Guide,10,Lighting,10 GLOBES AND GLOBE HOLDERS,GLOBES AND GLOBE HOLDERS,Lighting,407.42,632.52,428.86,665.81,665.81,21.44,33.29,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,11,,428.86,"HID Kit H11 Slimline 
+Ballast
+HID-H11DC
+42886
+Single Contact Globes ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+9fbb5b6b-ec31-40fe-843e-ed354edc6d8d,BSB-2,Heavy Duty Snatch 20000Lbs,May Buyers Guide,11,Tools & Workshop,WINCHES AND SPARES 11,AUTOMOTIVE TOOLS,Tools & Workshop,463.54,719.65,483.96,751.35,751.35,20.42,31.70,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,4,,483.96,"Heavy Duty Snatch Block 
+20000Lbs
+BSB-2
+48396
+20L Jerry Can Holder",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+a1e298f0-7b30-47d1-96ac-f94e5c8ced43,I1-029,"Ignition Coil Opel 1.6I, Corsa 4Pin",May Buyers Guide,15,Auto Electrical,IGNITION MODULES 15,ELECTRICAL SPARES,Electrical,528.43,820.39,542.33,841.97,841.97,13.90,21.58,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,23,,542.33,"Ignition Coil Opel Astra 
+1.6I, Corsa 4Pin
+I1-029
+54233
+Ignition Coil Opel/Chevrolet/",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+f002b379-6843-42ca-9805-56e59e51a77f,I1-154,Ignition Coil Renault Landrover/- Duster/Sandero Ii 1.5 Captur /Clio IV /Grand Scenic III /Kangroo/ Megane III,May Buyers Guide,16,Auto Electrical,16 IGNITION COILS,ELECTRICAL SPARES,Electrical,299.98,465.72,318.78,494.91,494.91,18.80,29.19,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,23,,318.78,"Scenic III /Kangroo/ 
+Megane III
+I1-154
+31878
+Ignition Coil Hyundia, Kia ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+169b24d3-ff8a-42b5-9348-5845c2345892,IG-TOY3-T,Ignition Switch Hi-Lux Vigo Transponder,May Buyers Guide,22,Auto Electrical,22 IGNITION SWITCHES,SWITCHES,Electrical,373.81,580.34,383.64,595.60,595.60,9.83,15.26,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,23,,383.64,"Ignition Switch Hi-Lux 
+Vigo Transponder
+IG-TOY3-T
+38364
+Ignition Dmax 2003-",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+7a0b540b-e98d-4f8e-a908-184c368564fe,EC51,51mm Exhaust Quantum,May Buyers Guide,24,Parts,24 MISCELLANEOUS SPARES,Exhaust Tail Pieces,Spare Parts,15.25,23.68,17.35,26.94,26.94,2.10,3.26,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,8,,17.35,"825
+51mm Exhaust Clamp
+EC51
+1735
+Number Plate Holder ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+08f127e6-1e28-4b6f-8400-14808466bf86,FJC10-8,8mmx10M Winch Cable,May Buyers Guide,25,Tools & Workshop,TRAILER 25,Winch Spares & Accessories,Camping / Leisure / Outdoors,467.28,725.45,472.03,732.83,732.83,4.75,7.38,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,5,,472.03,"3605
+8mmx10M Winch Cable
+FJC10-8
+47203
+Universal Right Hand ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+24af013f-af54-4f87-807b-a74ce7d5acab,HL484-S,Farm Jack 48 Steel,May Buyers Guide,26,Tools & Workshop,26 AUTOMOTIVE TOOLS,AUTOMOTIVE TOOLS,Tools & Workshop,999.00,1550.95,1112.58,1727.28,1727.28,113.58,176.33,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,1112.58,"Farm Jack 48 
+Steel Base
+HL484-S
+111258
+Steel ATV Ramp 363Kg ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+7a0f7462-9f5a-444e-b56b-df251840be2e,A10-048,Fuel Pump Removal X1/3 47 2.0D Diesel For All Chain Driven,May Buyers Guide,30,Marine Spares & Accessories,30 BOAT ACCESSORIES,AUTOMOTIVE TOOLS,Tools & Workshop,26.31,40.85,39.45,61.25,61.25,13.14,20.40,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,39.45,"BMW 1/3/5 For All Chain 
+Driven Engines
+A10-048
+3945
+Bush Remover Tool Set ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+b76071cf-11e1-4ae1-aec9-e6c859ee14a3,A10-064,32pce Universal Caliper Wind Back Kit Includes Front And Rear,May Buyers Guide,30,Marine Spares & Accessories,30 BOAT ACCESSORIES,AUTOMOTIVE TOOLS,Tools & Workshop,598.44,929.08,888.87,1379.97,1379.97,290.43,450.89,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,888.87,"Wind Back Kit Includes 
+Front And Rear
+A10-064
+88887
+2pce Ball Joint Removal ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+011dd564-4ae6-4471-b1b7-eef8dd28e2b8,TW301,"Torque Wrench Heavy 60-340Nm 1/2"" Drive Type Lever Length",May Buyers Guide,30,Marine Spares & Accessories,30 BOAT ACCESSORIES,Spanners & Wrenches,Tools & Workshop,1353.24,2100.91,2082.40,3232.93,3232.93,729.16,1132.02,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,2082.4,"Drive Click Type Lever 
+Length 545mm
+TW301
+208240
+270mm Valve Grinding Stick ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+51eaad84-9607-4440-8e0e-40a08e892dbb,A10-122,Crankshaft Pulley Tool Kit Ford Ranger Ecoblue,May Buyers Guide,31,Tools & Workshop,A10-066 A10-087 N51/2/3/4 N43/N53/N54,AUTOMOTIVE TOOLS,Tools & Workshop,150.65,233.88,179.16,278.15,278.15,28.51,44.27,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,179.16,"Crankshaft Pulley Tool Kit 
+Ford Ranger Ecoblue
+A10-122
+17916
+12V Universal Automotive ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+7993ea4b-706a-4768-8663-2f123c70aa91,TTK-FT03,"Timing Tool Kit Fiat, Iveco, Daily, Citroen (06-12), Peugeot Boxer (06-12), 2.2D HDI-4HM/4HV",May Buyers Guide,31,Tools & Workshop,A10-066 A10-087 N51/2/3/4 N43/N53/N54,AUTOMOTIVE TOOLS,Tools & Workshop,818.75,1271.11,1240.53,1925.92,1925.92,421.78,654.81,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",Candidate match,30,,1240.53,"Iveco, Daily, Citro￾en(06-12), Peugeot Boxer 
+(06-12)
+TTK-FT03
+124053
+Timing Tool Kit For ",CANDIDATE: exact code and printed price appear in October guide; compare product description and live cost before clearing this review.
+3191d6e1-92dc-4ce2-b614-aba07d79a873,HP16-L,15.87mm Hitch Pin Use To Lock Shank,September Buyer's Guide,5,Accessories,TRAILER & TOWING,TRAILER & TOWING,Trailer & Canopy,186.58,289.67,191.49,297.29,297.29,4.91,7.62,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",VERIFIED,5,19149,191.49,15.87mm Hitch Pin Use To Lock Shank | HP16-L | R191.49 excl VAT,VERIFIED: exact SKU and item description found in October 2026 guide; printed cost R191.49 matches live cost R191.49. Current live formula price R297.29 is correct; no update needed.
+cc4b1b17-e5ea-4bac-9f1a-fcddb650db82,F7-106-16,10pce 9/11.5mm Panel Clip Screw Saddles,September Buyer's Guide,9,Accessories,PANEL CLIPS,PANEL CLIPS,Automotive Accessories,8.95,13.89,9.18,14.25,14.25,0.23,0.36,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",VERIFIED,10,918,9.18,10pce 9/11.5mm Panel Clip Screw Saddles | F7-106-16 | R9.18 excl VAT,VERIFIED: exact SKU and item description found in October 2026 guide; printed cost R9.18 matches live cost R9.18. Current live formula price R14.25 is correct; no update needed.
+4dd640d7-4429-43fc-9528-28a0392c9e05,MA562BB,"29""(736mm) Chrome Aerial With Big Base",September Buyer's Guide,10,Accessories,AERIALS,Automotive Accessories,,60.54,93.99,62.14,96.47,96.47,1.60,2.48,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",VERIFIED,5,6214,62.14,29-inch Chrome Aerial With Big Base | MA562BB | R62.14 excl VAT,VERIFIED: exact SKU and item description found in October 2026 guide; printed cost R62.14 matches live cost R62.14. Current live formula price R96.47 is correct; no update needed.
+cd1ccbc7-5794-4096-bead-2db128c49c9e,H15-LED-H,H15 LED Globes Cob 30W 12-24V 2600Lm,September Buyer's Guide,13,Accessories,GLOBES AND GLOBE HOLDERS,Lighting,Electrical,402.39,624.71,412.98,641.15,641.15,10.59,16.44,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",VERIFIED,11,41298,412.98,H15 LED Globes COB 30W 12-24V 2600Lm | H15-LED-H | R412.98 excl VAT,VERIFIED: exact SKU and item description found in October 2026 guide; printed cost R412.98 matches live cost R412.98. Current live formula price R641.15 is correct; no update needed.
+77fb716b-46d3-4697-aeae-d3de8139201f,GUT12,Universal Joint Toyota Hilux O:53.6mm D:26mm,September Buyer's Guide,21,Auto Spares,SUSPENSION,SUSPENSION,Spare Parts,64.77,100.56,66.48,103.21,103.21,1.71,2.65,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",VERIFIED,25,6648,66.48,Universal Joint Toyota Hilux O:53.6mm D:26mm | GUT12 | R66.48 excl VAT,VERIFIED: exact SKU and item description found in October 2026 guide; printed cost R66.48 matches live cost R66.48. Current live formula price R103.21 is correct; no update needed. Mechanical suspension/store-scope review remains separate.
+82e88fe5-0f98-44a6-a658-bcc786e95e4b,RT-EM02,Engine Mounting Lh Renault Triber Model 2020-,September Buyer's Guide,21,Auto Spares,SUSPENSION,SUSPENSION,Spare Parts,572.72,889.15,587.79,912.54,912.54,15.07,23.39,"REVIEW — exact SKU matches guide-staging row, but live cost/price differs; verify newest source guide/page before any price change",VERIFIED,27,58779,587.79,Engine Mounting LH Renault Triber Model 2020- | RT-EM02 | R587.79 excl VAT,VERIFIED: exact SKU and item description found in October 2026 guide; printed cost R587.79 matches live cost R587.79. Current live formula price R912.54 is correct; no update needed. Mechanical scope review remains separate.
