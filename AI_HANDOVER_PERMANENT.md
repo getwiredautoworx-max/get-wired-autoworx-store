@@ -1961,3 +1961,13 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Post-merge validation is not yet complete: latest Pages run #1059 (`38543018094`) is still in progress at last check, and no controller run after this merge/event has yet been observed. Next: recheck Actions; confirm a controller run triggered by a monitored workflow completion or the 15-minute schedule; verify syntax/job success and the `background-task-checkpoint-*` artifact. Do not claim the new cadence is fully validated until this succeeds.
 - Current architecture is event-driven plus periodic fallback, not a continuously running process. Scheduled GitHub Actions jobs can be delayed; automatic restart/repair is not implemented.
 - No catalogue data, prices, categories, stock, Supabase, Axxess, Cloudflare, or Netlify were changed by this monitoring update.
+
+
+## 2026-10-14 — Bounded automatic retry implementation proposal
+
+- Added a bounded retry controller implementation on branch `automation/bounded-safe-retries` (not yet merged at time of this note). Controller retries only failed jobs for allowlisted QA/audit/packaging workflows: `catalogue-image-audit.yml`, `public-sku-exposure-audit.yml`, `store-production-qa.yml`, `storefront-smoke.yml`, and `prepare-axxess-package.yml`.
+- Retry guardrails: only `failure` or `timed_out`; only if last update is within six hours; one retry maximum (two total attempts); report retry request and outcome in the checkpoint. Permission changes `actions: read` to `actions: write` for the controller, retaining `contents: read`.
+- Explicit exclusions: ASC image-sync workflow (writes product image assets/reports), category snapshot workflow (writes a published snapshot), Cloudflare deployment and any production deployment. No product/price/category/stock/database writes are added to controller.
+- Important limitation: retries can recover transient runner/network failures; they cannot repair deterministic code failures, resolve ambiguous catalogue evidence, obtain missing supplier data, or perform owner-only approval. These remain queued and visible.
+- Validation required after merge: compile controller Python; inspect resulting YAML; trigger a manual controller run; confirm successful checkpoint artifact; deliberately do not induce a production change. Confirm one eligible failed run would be bounded by `run_attempt` and age rules.
+- Current store-build tasks and source-evidence blockers remain unchanged. No live store, Supabase, Axxess, Cloudflare, or Netlify changes were made by this implementation branch.
