@@ -106,3 +106,8 @@ Eleven more crosswalk records were reviewed against original source page images;
 - May p.3-4 contains separate OUTDOOR, SAFETY, ACCESSORIES, CHEMICALS, DOOR SPARES and PANEL CLIPS headings; do not interpret the whole spread as a single Accessories section.
 - August and September p.4 confirm **ACCESSORIES**; February p.8 confirms **QUANTUM ACCESSORIES**; February p.9 confirms **ADHESIVES AND SILICONES**; June and September p.10 confirm **AERIALS**.
 - Current crosswalk status after this batch: **21/115 rows have page-image findings recorded; 94 remain pending**. There are now zero entries left in the former `Needs review` status, but 94 other rows still need source-page review. A page-image heading finding does not authorize moving products: item-level category scope must still be validated by exact SKU and product function.
+
+
+### Correction — MIRRORS heading (2026-10-14)
+
+A direct reinspection of the May 2026 p.7 page image shows **MIRRORS is printed as a standalone section heading at the top of the page**. The earlier statement in this audit that MIRRORS was not a standalone heading was a visual misread and is superseded. The crosswalk row was corrected in commit `fe163813b591b3cbbefec09e9db50287997d0de3`. Keep the page-image finding as confirmed; product-level category decisions remain separate.
