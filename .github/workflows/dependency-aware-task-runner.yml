@@ -9,6 +9,14 @@ on:
         default: false
   schedule:
     - cron: "*/30 * * * *"
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/automation/task-runner.py"
+      - "tests/test_task_runner.py"
+      - ".github/workflows/dependency-aware-task-runner.yml"
+      - "assets/store-category-hierarchy.json"
+      - "assets/product-grouping-rules.json"
   push:
     branches: [automation/dependency-aware-runner]
     paths:
