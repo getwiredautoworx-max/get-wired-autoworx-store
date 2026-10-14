@@ -71,3 +71,13 @@ Immediate next action: continue visual verification from printed page 11 of the 
 - Treat OCR/transcribed codes as candidates until each row is checked against the exact visual label and description; visually similar characters and small print can cause errors. Printed June prices are historical, not verified current supplier costs. Asterisked “as per system” items remain price/availability confirmation candidates.
 - No live store/database changes, imports, uploads, or deployments performed.
 - Next action: visually inspect printed page 14 onward and continue recording page evidence; keep all reconciliation staged.
+
+
+## Progress made 2026-10-14 — June guide pages 14–16
+- Visually inspected printed pages 14–16. Page 14 completes Starter Kits & Regulators and begins Fuel Pumps; page 15 continues Fuel Pumps, then Fan Blades; page 16 is a Hoteche display page with product codes pictured rather than a normal SKU/price grid.
+- Page 14 regulator/solenoid examples: VR1002, VR1008, VR1013, VR1023, VR1029, VR1035, VR1061, VR1063, VR1072, VR1073, VR1075, VR1081, VR1083, VR1099, VR1103, ST2025. Fuel-pump examples: F1-005, F1-015, F1-016, F1-017, F1-027, F1-027W, F1-032, F1-035, F1-043, F1-049, F1-053, F1-062, F1-068, F1-074.
+- Page 15 fuel-pump examples: F1-075, F1-089, F1-096, F1-108, F1-115, F1-116, F1-117, F1-118, F1-119, UC-J10HC, F1-001-E, F1-042-E. Fan-blade/viscous-clutch examples: F9-001-5, F9-001-5P, F9-001-22, F9-001-25, F9-001-27, F9-001-29, F9-001-66, F9-001-75, F9-002-6, F9-002-13, F9-002-15, F9-002-51, F9-002-70 and F9-002-81.
+- Page 16 Hoteche display page shows codes including 101320, 140711, 110901, 140717, 100146, 100240, 100142, 312006, 312003, 310819, 313002, 310911, 312007, 311100, 511021, 501081, 631002, 530109, 530108, 540103, 500223, 500312, 602002, 284271, 280110, 280175, 621002, 495012, 495013, 705001, A830047-1 and A830048-1. These codes need exact product/price mapping from an authoritative supplier price source; do not infer costs from display graphics.
+- All listed codes are visual candidates, not completed exact SKU/cost reconciliation. June guide pricing remains historical and must be checked against later guides/current supplier costs before becoming a live price.
+- No live store/database changes, imports, uploads, or deployments performed.
+- Next action: continue with printed page 17 onward; maintain staged-only reconciliation.
