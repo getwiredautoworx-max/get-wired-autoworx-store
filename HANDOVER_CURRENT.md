@@ -194,3 +194,13 @@ Inspect printed pages 29–32, then perform exact SKU joins against the crosswal
 - June guide visual page coverage: completed for pages 1–32; exact row-level crosswalk verification: not complete.
 - Catalogue reconciliation, source-price joins, deduplication, category mapping validation and storefront/mobile QA: still outstanding.
 - Next task is to use the generated audit-branch OCR/text files and June crosswalk to verify SKU + description + price against page evidence, marking each row with a page-specific status. Do not promote the OCR staging file directly into the live catalogue.
+
+
+## Staged visual cross-check artifact — June pages 29–32
+- Created `staging/source-extracts/june-visual-crosscheck-pages29-32.csv` on `audit/buyer-guide-extraction` (commit `5130fe81436fa8f526c0d6beb9755c7776cb21e4`), containing 33 selected page/code cross-check rows. This is deliberately a partial evidence ledger, not an import file and not the complete June crosswalk.
+- Confirmed several OCR character-confusion cases for manual correction/review: page 30 OCR `SF-SO002` vs visually read `SF-5002` (high-resolution confirmation still required); tappet-cover codes `TC-BM01` and `TC-BM09` where OCR substituted O for zero; page 31 `IB-TOY01`, `IGS-NL01` and `IGS-NT01` where OCR substituted O for zero. These are not to be bulk-corrected without source image/SKU cross-check.
+- Table prices visible on June page 32 include E11MM R6.54, E18MM R12.54, CV20MM R18.31 and CV30MM R70.80, all printed excluding VAT and tied to a guide whose offer ended 30 June 2026. Do not use these as current costs without later exact-SKU evidence.
+- The cross-check marks code sightings separately from table-row observations; no status in this file means the product is approved for import or its price is current.
+
+## Next action after page coverage
+Extend the visual cross-check to pages 1–28 and reconcile all 470 June OCR staging rows against the full crosswalk, not just selected visible codes. Resolve uncertain characters from original page images, attach page evidence, merge/deduplicate the 126 unresolved-price rows, then join later guides and map categories. Keep all changes on audit/staging branches until review and approval.
