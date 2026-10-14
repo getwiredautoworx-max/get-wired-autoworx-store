@@ -2056,3 +2056,11 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - The staged page-code list has plausible code matches for these areas, including CS-3856 / CS-3858 / 621-10 on p.13; VR-series regulator codes and F1-series fuel-pump codes on p.14; F1-075 / F1-089 / F1-096 / F1-115 / F1-116 / F1-117 / F1-118 / F1-001-E / F1-042-E and F9-series fan-blade codes on p.15. This is a targeted visual cross-check, not a declaration that every listed row is verified.
 - Several OCR strings are visibly ambiguous and must not be used to overwrite source SKUs without image confirmation. The printed headings show adjacent source categories may span page breaks; page labels and source-heading assignments must reflect the printed guide, not only the PDF viewer index.
 - No prices or product data were changed. June prices remain historical only; the final selling-price ledger must use exact supplier codes and the applicable later-guide confirmation rule. Continue with pages 16–23 in small batches, then finish June pp.24–32 and reconcile unresolved code/cost rows.
+
+
+## CONTINUATION LOG — 2026-10-14 — JUNE PAGES 16–20 REVIEWED
+
+- Reviewed June PDF pages 16–20 in a bounded batch. Pages 16–17 are the Hoteche display/range section; page 18 begins Door Parts; page 19 continues Door Parts and begins Automotive Spares; page 20 is Brake Spares & Cylinders.
+- This source sequence is important for taxonomy: door handles, window regulators/winders and vehicle-specific door parts should not be blindly mixed into generic electrical parts; air filters and induction parts need application evidence; brake/cylinder items should map to the relevant approved store taxonomy while preserving ASC’s printed source headings as provenance.
+- Staged code samples on these pages include Q-/QI- door-part codes, DHFL/DHFR/DHIL/DHIR codes, A3-series air-filter/induction codes, and brake codes such as A-2191, A3350, AF749 and AF994. OCR alone is not sufficient to correct look-alike characters; image check and exact supplier-code comparison remain required.
+- No prices, SKU values, taxonomy assignments or live data were changed. Continue with pages 21–29 next (tools, trimming kits and hardware), then special discounted pages 30–32. Maintain June as historical evidence only and use later guides for current-price confirmation.
