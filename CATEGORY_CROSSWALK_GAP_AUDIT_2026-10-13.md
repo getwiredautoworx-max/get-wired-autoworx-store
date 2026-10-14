@@ -123,3 +123,14 @@ A direct reinspection of the May 2026 p.7 page image shows **MIRRORS is printed 
 - March p.12 and May p.26 confirm AUTOMOTIVE TOOLS, but February p.30 and May pp.27-29 remain pending for the full crosswalk reference set. February p.9 confirms AUTOMOTIVE HARDWARE, but February p.10 remains pending.
 - The crosswalk now has page-image findings recorded for **34 of 115 rows**; **81 rows have no page-image finding yet**. Some of the 34 findings are explicitly partial/alias findings and still have uninspected cited pages. There are zero rows left in the former `Needs review` status, but page-image verification is not complete.
 - Crosswalk latest update: `2f362dfe9cb4a749aef48740d43d8fffadb6d455`; subsequent March Automotive Accessories row update: `b4f694483d92f186ae9d101be28686badad131e9`. Keep printed heading, TOC/aggregate label, and product-level category decision as three separate fields.
+
+## 2026-10-14 further source-page verification
+
+- February p.10 confirms **AUTOMOTIVE HARDWARE** and **CHEMICALS LUBRICANTS AND OILS**; p.21 shows distinct **TERMINALS**, **TOGGLE SWITCH**, **WARNING LIGHTS**, **RADIATOR FANS**, **ELECTRICAL-QUANTUM**, **GASKETS** and **GAUGES** sections. “Automotive Gaskets” and “Automotive Gauges” are aggregate/TOC variants; printed headings are GASKETS and GAUGES.
+- February p.30 confirms **AUTOMOTIVE TOOLS**; March p.12 and May p.26 also confirm this heading. May pp.27-29 remain pending for the full Automotive Tools reference range.
+- June p.20 confirms **BRAKE SPARES & CYLINDERS**.
+- February p.4 and August p.4 confirm **CAMPING**. March p.13 confirms **CUTTING TOOLS**.
+- May pp.4-7 show separate ACCESSORIES, CHEMICALS, DOOR SPARES, PANEL CLIPS, MIRRORS and ELECTRICAL SPARES sections; “Auto Spares” is not a single printed heading across that range. February pp.23-26 similarly contain distinct section headings rather than one uniform Automotive Spare Parts heading.
+- February p.23 shows **DOOR PARTS**, **SOUND**, **AIR FILTERS** and **CLUTCH MASTER CYLINDERS** as distinct headings. These should not be merged into a single broad heading when mapping actual SKUs.
+- Updated crosswalk now records page-image findings for **42/115 rows**, with **73 rows having no page-image finding yet**. Of the 42 rows with findings, 17 are explicitly partial, aggregate-label or heading-variant findings; some source pages within those rows remain pending. Former `Needs review` queue remains empty, but the full crosswalk is not complete.
+- Latest crosswalk commit: `926bf528f00c65ed082f7a92a6129940be86f667`.
