@@ -2287,3 +2287,13 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - No June-to-126-unresolved-price deduplication, September/October exact-SKU join, promotion eligibility join, vehicle-catalogue join, browser/mobile test, live database write, Axxess upload, or deployment was performed in this step.
 - Immediate blocker: retrieve the exact June source PDF and the existing 33-row cross-check CSV from the audit branch/workspace, then compare each staged row to the actual printed page. For later-guide joins, retrieve the corresponding September/October staging extracts and the 126-row unresolved queue. Continue staging-only; do not alter production.
 - Status: CONTROL AUDIT CREATED; FULL RECONCILIATION STILL BLOCKED/INCOMPLETE. No completion claim.
+
+
+## CONTINUATION LOG — 2026-10-14 — EXACT-CODE CROSS-GUIDE TRIAGE
+
+- Scanned all 470 June staged SKU strings against the available October Buyer's Guide PDF text. Found 31 exact-token occurrences; 7 occur on lines with price-formatted text, but multi-column layout means none is accepted as a verified June cost or price without visual row confirmation.
+- Normalized alphanumeric joins to the corrected February–August audit found two historical candidate matches only: `2791SWLR.` → candidate `2791SWL-R` (March p.6, R194.60 historical cost) and `WPIF30AMPC.` → candidate `WPIF30AMPC` (August p.18, R36.69 historical cost). Both remain REVIEW; historical cost is not assumed to be June cost.
+- No normalized overlap found between the June 470 and the 126-row unresolved-price queue. 437 June rows have neither an October token hit nor a normalized historical candidate.
+- Created local full-row control file `June_470_Row_Cross_Guide_Reconciliation_2026-10-14.csv`; all 470 remain ineligible for production import. No OCR characters, source descriptions or June costs were invented.
+- Original June PDF and 33-row cross-check CSV were not accessible in the active file set for this step, so full visual verification is still blocked. September extract unavailable; promotion/vehicle-code joins and storefront/mobile testing not yet performed. No production write or deployment.
+- Status: CROSS-GUIDE TRIAGE COMPLETE; FULL RECONCILIATION NOT RESOLVED.
