@@ -1843,3 +1843,10 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - The router is intentionally conservative: ambiguous lighting, generic/mixed-use titles, incomplete names and source/title conflicts remain held. It avoids false matches such as treating a wall anchor plug as a marine anchor or assigning a generic connector to Auto Electrical. The file is proposal-only; no product/category rows were changed.
 - Category mapping review document updated on audit branch: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_MAPPING_REVIEW_2026-10-09.md
 - Candidate routing export: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/CATEGORY_REVIEW_QUEUE_CANDIDATE_ROUTING_2026-10-14.csv
+
+### 2026-10-14 11:35 SAST — October price and title verification completed
+
+- All **107/107** exact-SKU rows in the October price-difference report have now been visually checked against the original October 2026 guide. The 19 source pages containing these rows were reviewed; each exact SKU and item description matches the live row, and the printed October cost equals live `cost_price`.
+- **107/107 selling prices remain formula-correct**. No price write, product update or catalogue import is required by this audit.
+- Latest report commit `9957adf28d92387c6853fd565a992e6de70a2447`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/EXACT_SKU_LIVE_VS_GUIDE_STAGING_PRICE_DIFFERENCES_2026-10-14.csv
+- The candidate category-routing draft remains read-only: 18 proposed destinations and 180 manual holds across the 198-SKU queue. No live category/product/price/stock changes.
