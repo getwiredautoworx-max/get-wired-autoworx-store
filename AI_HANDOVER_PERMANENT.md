@@ -1916,3 +1916,14 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - No live store changes were made. Existing main branch was not modified by this proposed automation change.
 - Next actions: inspect PR #12 checks/diff; merge only after checks pass; manually dispatch the new workflow; inspect `BACKGROUND_TASK_STATUS.md` and `background-task-status.json` artifacts; then separately design bounded task-specific execution workers for catalogue-source reconciliation and image gap remediation.
 - Background task status: PR open, not merged; schedule not active on default branch yet. Do not report continuous automation as active until merge and a successful checkpoint artifact are confirmed.
+
+
+## 2026-10-14 — Background controller activation update
+
+- PR #12 has now been merged to main by squash merge. Merge commit: `8e15e5d28cc012904c3e79b5d2a9fb8dd9614f45`.
+- Controller files are now on main: `.github/workflows/background-task-controller.yml`, `scripts/background_task_controller.py`, and `automation/task-queue.json`.
+- Scheduled interval: every six hours at minute 23 UTC; manual dispatch is also configured. Each run is designed to upload JSON + Markdown checkpoint artifacts with 90-day retention.
+- Controller is intentionally read-only for catalogue and production data. It monitors latest runs for the existing image sync, image audit, category snapshot, production QA, storefront smoke, Axxess package, and Cloudflare deployment workflows. It does not itself execute manual source-page review, retry jobs, modify the permanent handover, or deploy the store.
+- Activation status: merged to main. First successful workflow run and checkpoint artifact are NOT yet verified in this handover update. Do not claim it is fully operational until a run and artifact are confirmed.
+- Next: open GitHub Actions → Background Task Controller and select Run workflow to perform the first validation. Confirm syntax step passes, monitoring API calls succeed, and the checkpoint artifact contains current run statuses. If no run-dispatch option appears, wait for the next scheduled UTC run and inspect the artifact.
+- Store catalogue/live Axxess state remains unchanged by this controller change. Existing source-evidence holds remain: 16 provisional category candidates, 2 held candidates, and 181 of 198 queue rows still held from routing; 86 image sync records remain unresolved from the last reviewed report.
