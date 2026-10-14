@@ -134,3 +134,7 @@ A direct reinspection of the May 2026 p.7 page image shows **MIRRORS is printed 
 - February p.23 shows **DOOR PARTS**, **SOUND**, **AIR FILTERS** and **CLUTCH MASTER CYLINDERS** as distinct headings. These should not be merged into a single broad heading when mapping actual SKUs.
 - Updated crosswalk now records page-image findings for **42/115 rows**, with **73 rows having no page-image finding yet**. Of the 42 rows with findings, 17 are explicitly partial, aggregate-label or heading-variant findings; some source pages within those rows remain pending. Former `Needs review` queue remains empty, but the full crosswalk is not complete.
 - Latest crosswalk commit: `926bf528f00c65ed082f7a92a6129940be86f667`.
+
+## 2026-10-14 latest crosswalk count reconciliation
+
+The current CSV's `visual_verification_status` field has **59 new page-image findings recorded**, **8 rows marked as verified in the earlier visual-QA pass**, and **48 rows still awaiting page-image verification** (47 explicitly pending plus one not visually verified in this step). Of the 59 new findings, **25 rows remain partial, aggregate-label or heading-variant findings**; the exact cited page range is not fully closed for all of them. Do not use the earlier interim counts of 34 or 42 as current.
