@@ -150,3 +150,10 @@ Production untouched.
 - The page-31 `IB-TOYO1` worksheet candidate is also flagged against the source image code `IB-TOY01`.
 - These are audit findings, not an authorized production import. Apply corrections to the working catalogue only after reviewing the evidence and retaining source traceability.
 - **QA state remains PASS:** Store Production QA #203 and Storefront Smoke Test #669 succeeded; run links are recorded above. Catalogue source reconciliation remains incomplete for the rest of the 470 rows.
+
+
+## 2026-10-14 follow-up — source coverage gaps found on pages 3–4
+- Visually inspected original printed pages 3–5 and compared selected codes to the entire 470-row worksheet.
+- Added 24 source-only page-3/page-4 rows to the audit cross-check (79 rows total; latest audit-branch commit `bdc24fd5fbddacb9386d59f8a5f55a0d5a385187`). These are source items that do not appear anywhere in the current 470-row staging worksheet, including page-3 codes `SC818`, `C7-004`, `CJC10L`, `CJC5L`, `JCSFIX`, and multiple page-4 Panel Clips codes `F7-103-7`, `F7-107-13`, `F7-106-1`, `F7-106-2`, `F7-106-6`, `F7-106-9`, `F7-106-16`, `F7-106-19`, `F7-102-3`, `F7-002-4`, `F7-102-9`, `F7-102-14G`, `F7-102-17`, `F7-102-20`, `F7-102-28`, `F7-102-32`, `F7-104-4`, `F7-104-10`, and `F7-104-24`.
+- This is direct evidence the current staging worksheet is not a complete transcription of every product shown on those source pages. Do not treat the 470-row worksheet as a complete June guide catalogue until coverage is reconciled.
+- New priority: reconcile source-page item coverage against the staging worksheet across all printed pages, separately from SKU glyph verification and current-price verification. Any missing products should be added to an audit exception queue, not automatically imported into production.
