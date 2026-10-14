@@ -1,0 +1,126 @@
+name: Storefront Read-Only Browser Smoke QA
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: storefront-readonly-browser-smoke
+  cancel-in-progress: false
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install isolated Playwright runner
+        run: |
+          mkdir -p "$RUNNER_TEMP/storefront-qa"
+          cd "$RUNNER_TEMP/storefront-qa"
+          npm init -y
+          npm install --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run read-only desktop and mobile smoke checks
+        env:
+          STORE_URL: https://www.getwiredauto.co.za/
+          QA_OUT: ${{ github.workspace }}/qa-evidence
+        run: |
+          mkdir -p "$QA_OUT"
+          cat > "$RUNNER_TEMP/storefront-qa/smoke.cjs" <<'NODE'
+          const { chromium, devices } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          const base = process.env.STORE_URL;
+          const out = process.env.QA_OUT;
+          const report = {
+            runId: process.env.GITHUB_RUN_ID || 'local',
+            commit: process.env.GITHUB_SHA || 'unknown',
+            url: base,
+            startedAt: new Date().toISOString(),
+            checks: [],
+            consoleErrors: [],
+            pageErrors: [],
+            failedRequests: [],
+          };
+          const add = (id, status, details) => report.checks.push({ id, status, details });
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const desktop = await browser.newPage({ viewport: { width: 1365, height: 900 } });
+              desktop.on('console', m => { if (m.type() === 'error') report.consoleErrors.push(m.text()); });
+              desktop.on('pageerror', e => report.pageErrors.push(String(e)));
+              desktop.on('requestfailed', r => report.failedRequests.push({ url: r.url(), error: r.failure()?.errorText || 'request failed' }));
+              let response;
+              try {
+                response = await desktop.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
+                add('DESKTOP_HTTP', response && response.status() < 400 ? 'PASS' : 'FAIL',
+                  { status: response?.status() ?? null, finalUrl: desktop.url() });
+                add('HTTPS_CANONICAL', desktop.url().startsWith('https://') ? 'PASS' : 'FAIL', { finalUrl: desktop.url() });
+                const title = await desktop.title().catch(() => '');
+                const bodyText = await desktop.locator('body').innerText({ timeout: 10000 }).catch(() => '');
+                add('PAGE_CONTENT', title.trim() && bodyText.trim().length > 30 ? 'PASS' : 'FAIL',
+                  { title, bodyTextLength: bodyText.trim().length });
+                await desktop.screenshot({ path: path.join(out, 'desktop-home.png'), fullPage: true }).catch(() => {});
+                const internalLinks = await desktop.locator('a[href]').evaluateAll((els, origin) =>
+                  els.map(a => a.href).filter(h => h.startsWith(origin)).slice(0, 20), new URL(base).origin);
+                add('INTERNAL_LINKS_PRESENT', internalLinks.length ? 'PASS' : 'BLOCKED', { sampledCount: internalLinks.length });
+                report.sampledInternalLinks = internalLinks;
+              } catch (e) {
+                add('DESKTOP_NAVIGATION', 'FAIL', { error: String(e) });
+              }
+
+              try {
+                const mobile = await browser.newPage({ ...devices['iPhone 13'] });
+                mobile.on('pageerror', e => report.pageErrors.push('mobile: ' + String(e)));
+                const mr = await mobile.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
+                const dimensions = await mobile.evaluate(() => ({
+                  viewportWidth: document.documentElement.clientWidth,
+                  documentWidth: document.documentElement.scrollWidth,
+                  bodyWidth: document.body?.scrollWidth || 0,
+                  title: document.title
+                }));
+                add('MOBILE_HTTP', mr && mr.status() < 400 ? 'PASS' : 'FAIL', { status: mr?.status() ?? null });
+                add('MOBILE_NO_HORIZONTAL_OVERFLOW',
+                  dimensions.documentWidth <= dimensions.viewportWidth + 2 ? 'PASS' : 'FAIL', dimensions);
+                await mobile.screenshot({ path: path.join(out, 'mobile-home.png'), fullPage: true }).catch(() => {});
+                await mobile.close();
+              } catch (e) {
+                add('MOBILE_NAVIGATION', 'FAIL', { error: String(e) });
+              }
+            } finally {
+              await browser.close();
+            }
+            report.finishedAt = new Date().toISOString();
+            report.summary = {
+              pass: report.checks.filter(x => x.status === 'PASS').length,
+              fail: report.checks.filter(x => x.status === 'FAIL').length,
+              blocked: report.checks.filter(x => x.status === 'BLOCKED').length,
+              consoleErrorCount: report.consoleErrors.length,
+              pageErrorCount: report.pageErrors.length,
+              failedRequestCount: report.failedRequests.length
+            };
+            fs.writeFileSync(path.join(out, 'smoke-report.json'), JSON.stringify(report, null, 2));
+            console.log(JSON.stringify(report, null, 2));
+            if (report.summary.fail > 0 || !report.checks.some(x => x.id === 'DESKTOP_HTTP' && x.status === 'PASS')) process.exitCode = 1;
+          })().catch(e => { console.error(e); process.exit(2); });
+          NODE
+          node "$RUNNER_TEMP/storefront-qa/smoke.cjs"
+
+      - name: Upload QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-smoke-evidence-${{ github.run_id }}
+          path: qa-evidence/
+          if-no-files-found: warn
+          retention-days: 14
