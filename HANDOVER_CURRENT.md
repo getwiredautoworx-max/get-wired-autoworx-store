@@ -133,3 +133,12 @@ Continue visual verification from printed page 19 through page 32, then reconcil
 
 ## Immediate next action
 Continue visual verification from printed page 24 of the June Buyer’s Guide and work through page 32. After visual verification, reconcile rows to the OCR/crosswalk and later guide sources; code-only transcription does not close the price/category audit.
+
+
+## Progress made 2026-10-14 — June guide pages 26–28
+- Visually inspected printed pages 26–28. Page 26 continues Hand Tools; page 27 continues Hand Tools; page 28 completes Hand Tools, then shows Measuring Tools and Locks & Padlocks.
+- Page 26 visible examples: 456066, 383125, C13-025-300, HCSS32W-10, HCSS72W-10, A831101, A830050E, A834004, A831402, A831409, A832027E, A832311, 550710, 601004, 210205, 210901, 220403, T1-011-5, 284115, 284220, 120101, P5-208-8, 101002-C, P5-047-9P, 100146, 130203, 130206, 140606, 120106, 100912, 101501, 120105, 100501, 110601 and P7-001-1.5.
+- Page 27 hand-tool examples: P7-013-6, P7-016-3, P7-017-4, 260067, 260069, 260072, 300114, 270330, 261012, 601011, 259001, 786C, T683, P812161-TP0.8, P812161-TP1.0, 455005, T14-015B, T15-007-T10, T15-007-T20, T15-007-T27, 242515, 251001, 251002, 251004, 251008, 251037, 630610, 240815, 240825, 1096050, 251006, 770401 and 770402.
+- Page 28 hand-pump examples: 822 and 891AG. Measuring-tool examples: 282004, 282202, 282401, 282501, 282516, 283305, 283502, 283511, 283521, 284271, 284902, 284904, 284905 and 285144. Locks/padlocks examples: 180821, 180004, 180005, 180101, 180114, 180202, 180203 and 180304.
+- Code lists are selected visual candidates only; check exact SKU, description, unit/pack size and price against the source image and newer authoritative pricing before staging as verified. No live store/database changes, imports, uploads or deployments performed.
+- Next action: continue from printed page 29, where the guide moves into the final hardware and special-discounted sections.
