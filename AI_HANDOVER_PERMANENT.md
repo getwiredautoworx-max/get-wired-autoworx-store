@@ -1824,3 +1824,15 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Browser acceptance #12 status rechecked: `completed` / `success`. Staging-only, no production deployment, category writes, product imports, price writes, stock changes, DNS/hosting changes or live orders.
 - Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
 - Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
+
+### 2026-10-14 10:55 SAST — First-pass category-heading classification finalized
+
+- Current crosswalk status is **115/115 rows classified**: **74 visually verified** and **41 visually reviewed** (aggregate/TOC aliases, label variants, promotional banners, brand/product-feature pages or mixed-heading ranges). No rows remain in OCR-recovered, needs-review or explicit page-image-pending status. Long ranges for broad labels were sampled, not every product page inspected; each row states this limitation where relevant.
+- Two cited-page mismatches remain flagged and must not be used as store categories until corrected: **IGNITION BARRELS AND SWITCHES** cites June p.31, whose image shows HAND WINCHES / SPECIAL DISCOUNTED PRICE; **WATER SPORTS** cites June p.30, whose image shows TAPPET COVERS / SPECIAL DISCOUNTED PRICE. May p.20 is headed IGNITION SWITCHES, not IGNITION BARRELS AND SWITCHES.
+- October price reconciliation remains: **107/107 printed October costs equal live cost_price**, 13 item descriptions individually verified, 94 rows have high source-title overlap and require a quick identity spot-check. No live price writes indicated.
+- Latest browser acceptance #12 remains completed/successful. No production deploy/import, live category/product/price/stock writes, DNS/hosting changes or live order were performed.
+- Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
+- Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
+- Fresh baseline and manual review queue remain available at:
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/FRESH_ACTIVE_SKU_CATEGORY_BASELINE_2026-10-14.csv
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/CURRENT_CATEGORY_REVIEW_QUEUE_2026-10-14.csv
