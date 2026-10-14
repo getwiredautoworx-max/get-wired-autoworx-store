@@ -39,7 +39,7 @@ jobs:
           set -euo pipefail
           base="https://www.getwiredauto.co.za"
           failed=0
-          for path in / /category.html /checkout-v2.html /terms-and-conditions.html /returns-refunds.html /assets/category-tree.json; do
+          for path in / /index.html /index-new.html /category.html /checkout-v2.html /terms-and-conditions.html /returns-refunds.html /assets/category-tree.json; do
             if [ "$path" = "/" ]; then safe="home"; else safe="${path#/}"; safe="${safe//\//_}"; safe="${safe//./_}"; fi
             code="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --connect-timeout 10 --max-time 45 -o "/tmp/live-$safe" -w '%{http_code}' "$base$path")"
             printf 'LIVE_HTTP %s %s\n' "$path" "$code"
@@ -50,18 +50,28 @@ jobs:
           if [ -s VERSION.txt ]; then
             remote_code="$(curl --retry 1 --retry-all-errors --retry-delay 1 -sS -L --connect-timeout 10 --max-time 30 -o /tmp/live-version -w '%{http_code}' "$base/VERSION.txt" || true)"
             if [ "$remote_code" = "200" ] && cmp -s VERSION.txt /tmp/live-version; then
-              echo "DEPLOYED_VERSION_MATCH=true"
-              echo "deployed_version_match=true" >> "$GITHUB_OUTPUT"
+              echo "LEGACY_VERSION_MARKER_MATCH=true (marker equality is not a commit identity)"
+              echo "legacy_version_marker_match=true" >> "$GITHUB_OUTPUT"
             else
-              echo "DEPLOYED_VERSION_MATCH=false (live marker missing or differs from repository VERSION.txt)"
-              echo "deployed_version_match=false" >> "$GITHUB_OUTPUT"
-              failed=1
+              echo "LEGACY_VERSION_MARKER_MATCH=false (live marker missing or differs from repository VERSION.txt)"
+              echo "legacy_version_marker_match=false" >> "$GITHUB_OUTPUT"
             fi
           else
-            echo "DEPLOYED_VERSION_MATCH=unknown (repository VERSION.txt missing)"
-            echo "deployed_version_match=unknown" >> "$GITHUB_OUTPUT"
-            failed=1
+            echo "LEGACY_VERSION_MARKER_MATCH=unknown (repository VERSION.txt missing)"
+            echo "legacy_version_marker_match=unknown" >> "$GITHUB_OUTPUT"
           fi
+          source_match=true
+          for spec in "index.html:/tmp/live-index_html" "index-new.html:/tmp/live-index-new_html" "category.html:/tmp/live-category_html" "checkout-v2.html:/tmp/live-checkout-v2_html" "assets/category-tree.json:/tmp/live-assets_category-tree_json"; do
+            local_file="${spec%%:*}"
+            remote_file="${spec#*:}"
+            if [ -s "$remote_file" ] && cmp -s "$local_file" "$remote_file"; then
+              echo "LIVE_SOURCE_HASH_MATCH=true $local_file"
+            else
+              echo "LIVE_SOURCE_HASH_MATCH=false $local_file"
+              source_match=false
+            fi
+          done
+          echo "source_match=$source_match" >> "$GITHUB_OUTPUT"
           echo "LIVE_HTTP_CHECK_FAILED=$failed"
           test "$failed" -eq 0
 
@@ -71,6 +81,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Test live category navigation on desktop and mobile
+        id: navigation
         shell: bash
         run: |
           node <<'NODE'
@@ -101,6 +112,7 @@ jobs:
           NODE
 
       - name: Test live checkout UI without sending a real order
+        id: checkout
         shell: bash
         run: |
           node <<'NODE'
@@ -149,6 +161,7 @@ jobs:
           {
             echo "## Live release gate result"
             echo "- Live domain: see HTTPS/route step."
+            echo "- Live static source hashes must match repository files; the legacy VERSION.txt text is not a commit identifier."
             echo "- Desktop/mobile browser checks: see Playwright steps."
             echo "- Real order submission: intercepted in browser test; no real order should be created."
             if grep -RiqE 'payfast|pay.?just.?now' checkout-v2.html supabase/functions/store-checkout/index.ts; then
@@ -158,3 +171,7 @@ jobs:
             fi
             echo "- A successful browser workflow does not by itself approve a production release."
           } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ steps.live.outputs.source_match }}" != "true" ]; then
+            echo "RELEASE_GATE_BLOCKED: live storefront files do not exactly match the repository source."
+            exit 1
+          fi
