@@ -1971,3 +1971,15 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Important limitation: retries can recover transient runner/network failures; they cannot repair deterministic code failures, resolve ambiguous catalogue evidence, obtain missing supplier data, or perform owner-only approval. These remain queued and visible.
 - Validation required after merge: compile controller Python; inspect resulting YAML; trigger a manual controller run; confirm successful checkpoint artifact; deliberately do not induce a production change. Confirm one eligible failed run would be bounded by `run_attempt` and age rules.
 - Current store-build tasks and source-evidence blockers remain unchanged. No live store, Supabase, Axxess, Cloudflare, or Netlify changes were made by this implementation branch.
+
+
+## 2026-10-14 — Bounded background recovery merged
+
+- PR #14 merged successfully by squash. Merge commit: `67eef40441c23f30b4fd52c5c4efb77f291ce96e`. PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/14
+- Controller now has `actions: write` and a bounded retry policy for selected QA/audit/package workflows only: Catalogue Image Audit, Public SKU Exposure Audit, Store Production QA, Storefront Smoke Test, Prepare Axxess upload package.
+- Retry conditions: latest run completed with `failure` or `timed_out`, updated within six hours, and `run_attempt` below 2. Only failed jobs are rerun; at most one retry per run. The checkpoint records retry decisions and errors.
+- Explicitly excluded from automatic retry: ASC Exact-SKU Image Sync (commits images/reports), Refresh Category Snapshot (writes published category snapshot), Cloudflare Pages deployment, and all production deployments. No product/price/category/stock database writes were added.
+- Current validation status: code and workflow were fetched from main after merge, but the controller has not yet run on the new revision at the time of this checkpoint. Latest Pages build run #1061 (`38543996184`) was still in progress. The controller run and checkpoint artifact must be inspected after a monitored workflow completes or the next 15-minute schedule fires. Do not claim automatic retry behavior validated until the controller job and artifact succeed.
+- Background execution is now scheduled/event-triggered with bounded retries; it is not a permanently resident worker. GitHub may delay scheduled runs. Retries can recover transient failures, not fix deterministic code defects or resolve catalogue evidence holds.
+- Unresolved owner-evidence blockers remain: verify 16 provisional category routes against original source-page images; keep 6007-13 and 02-09 held until evidence resolves them; inspect image-sync exceptions before any manual sync retry. Production remains protected.
+- No Axxess upload, Supabase mutation, Cloudflare deployment, or Netlify spend initiated by this change.
