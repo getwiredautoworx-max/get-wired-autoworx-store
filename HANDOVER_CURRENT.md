@@ -329,3 +329,24 @@ Continue exact source/image review and fix the six original mapping exceptions o
 - Nine quote-only SKUs remain unpriced and excluded. Across the entire 800-row candidate: 0 import-eligible; 0 current supplier price confirmations; 0 verified image paths in the recovered payload.
 - Updated files in the working container: `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_STAGING_2026-10-14.csv`, `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_AUDIT_2026-10-14.txt`, and `/mnt/data/Get_Wired_AutoWorx_800_Staging_Recovery_Pack_2026-10-14.zip`. Library storage limit still blocks the large CSV/ZIP upload; the text audit from the earlier recovery checkpoint is in Library. Generated CSV/ZIP files are not committed to GitHub.
 - No production changes, SQL execution, deployment, DNS change or payment-setting change. Release hold remains in force.
+
+
+## AUTOMATION CONFIGURATION VERIFIED — 2026-10-14 20:00 SAST
+
+Read the repository's current workflow definitions and `automation/task-queue.json`; this supersedes the earlier wording that automation configuration itself was unverified.
+
+### Configured schedules and actual scope
+- `asc-sku-image-sync-bounded.yml`: scheduled every 10 minutes; one bounded batch of up to 40 products per run. It reads active products with missing/placeholder images using the Supabase publishable key, searches the public supplier site for exact supplier-SKU matches, validates image bytes, and saves local WebP assets plus `image-sync/asc_image_sync_report.json`. Inspection of `scripts/asc_image_sync_bounded.py` found no Supabase POST/PATCH/PUT/DELETE; this workflow's script does not directly write product rows to the database. The workflow may commit verified image assets/report to the repository if its commit step succeeds. It does not prove supplier permission to republish images; usage rights remain a separate gate.
+- `background-task-controller.yml`: scheduled every 15 minutes and also event-triggered when monitored workflows complete. It builds a checkpoint from recent workflow results and the task queue. It may request at most one retry for recent failures in an allowlist of QA/audit/packaging workflows; image-sync writes, category writes and production deployments are explicitly excluded from automatic retry. It does not edit product/price/category/stock/image database rows or deploy production.
+- `store-task-monitor.yml`: scheduled daily at 06:45 UTC (08:45 South Africa time), read-only. It records latest workflow status and checks for three expected source-evidence files in the `audit/buyer-guide-extraction` ref.
+- `catalogue-image-audit.yml`: scheduled daily at 02:17 UTC and also triggered by relevant changes/successful image-sync workflow completion.
+- `live-release-gates.yml`: scheduled every six hours and on manual dispatch or relevant storefront/version changes. This checks public live behavior; it is not a catalogue approval or deployment authorization.
+- `automation/task-queue.json` explicitly sets source reconciliation and category-review tasks to `automatic: false`; supplier/source-page evidence still requires manual review. Storefront QA and checkpoint generation are marked automated.
+
+### What is and is not verified
+- **Verified:** schedules, trigger conditions, retry limits, workflow scopes, and the task queue are present on the current `main` branch. The 15-minute controller is configured, not a continuously running worker; it runs on scheduled/event invocations.
+- **Not verified in this session:** the latest actual run IDs/conclusions or whether Actions schedules are currently executing successfully. The GitHub connector exposed workflow files but rejected the workflow-runs API URL; do not claim current run success until the monitor artifact or run page is inspected.
+- **No manual workflow dispatch or rerun was issued in this session.** Avoid duplicate work while schedules are configured; inspect their latest artifacts before changing automation.
+
+### Owner accountability update
+The project does have scheduled automation for bounded exact-SKU image retrieval, monitoring/checkpointing and QA gates. It does **not** automatically complete supplier price confirmation, image usage rights, source-page reconciliation, the six original mapping exceptions, Axxess DNS/SSL or controlled release. Those remain staged/manual or provider-dependent. No production data, DNS, payment settings or deployment changed during this automation inspection.
