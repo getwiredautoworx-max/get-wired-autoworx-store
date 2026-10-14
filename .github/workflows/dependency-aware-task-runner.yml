@@ -1,0 +1,73 @@
+name: Dependency-aware staging task runner
+on:
+  workflow_dispatch:
+    inputs:
+      reset_state:
+        description: Clear prior task statuses and retry counters
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    - cron: "*/30 * * * *"
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/automation/task-runner.py"
+      - "tests/test_task_runner.py"
+      - ".github/workflows/dependency-aware-task-runner.yml"
+      - "assets/store-category-hierarchy.json"
+      - "assets/product-grouping-rules.json"
+  push:
+    branches: [automation/dependency-aware-runner]
+    paths:
+      - "scripts/automation/task-runner.py"
+      - "tests/test_task_runner.py"
+      - ".github/workflows/dependency-aware-task-runner.yml"
+      - "assets/store-category-hierarchy.json"
+      - "assets/product-grouping-rules.json"
+permissions:
+  contents: read
+concurrency:
+  group: dependency-aware-staging-runner
+  cancel-in-progress: false
+jobs:
+  run-staging-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore prior state
+        uses: actions/cache/restore@v4
+        with:
+          path: task-runner-state.json
+          key: task-runner-state-${{ github.run_id }}
+          restore-keys: |
+            task-runner-state-
+      - name: Syntax and regression tests
+        run: |
+          python3 -m py_compile scripts/automation/task-runner.py scripts/background_task_controller.py tests/test_task_runner.py
+          python3 -m unittest discover -s tests -p "test_task_runner.py" -v
+      - name: Run bounded checks
+        env:
+          TASK_RUNNER_STATE: task-runner-state.json
+          RESET_STATE: ${{ inputs.reset_state }}
+        run: |
+          if [ "$RESET_STATE" = "true" ]; then
+            python3 scripts/automation/task-runner.py --reset
+          else
+            python3 scripts/automation/task-runner.py
+          fi
+      - name: Save state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: task-runner-state.json
+          key: task-runner-state-${{ github.run_id }}
+      - name: Upload auditable report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: task-runner-report-${{ github.run_id }}
+          path: task-runner-state.json
+          if-no-files-found: warn
+          retention-days: 30

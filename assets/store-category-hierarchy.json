@@ -1,0 +1,1715 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-13",
+  "status": "STAGING_TAXONOMY_ONLY_NOT_APPROVED_FOR_PRODUCT_IMPORT",
+  "source_crosswalk": "staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv",
+  "live_catalogue_enabled": false,
+  "notes": [
+    "Hierarchy derived from the current ASC source-heading crosswalk; reviewable proposal, not final product-level approval.",
+    "Do not display or import legacy catalogue products using these headings.",
+    "Headings mapped to review/conflict/promotion destinations are excluded from customer-facing category buttons until manually reconciled.",
+    "Preserve exact source heading variants and guide/page references for auditability."
+  ],
+  "roots": [
+    {
+      "slug": "auto-electrical-spares",
+      "label": "Auto Electrical Spares",
+      "icon": "⚡",
+      "subcategories": [
+        {
+          "slug": "auto-electrical",
+          "label": "Auto Electrical",
+          "source_heading_variants": [
+            "Auto Electrical",
+            "AUTO ELECTRICAL"
+          ],
+          "source_references": [
+            "May 2026 p.7-10",
+            "August 2026 p.13-15;18-23"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading and SKU identity."
+          ]
+        },
+        {
+          "slug": "automotive-electrical",
+          "label": "Automotive Electrical",
+          "source_heading_variants": [
+            "Automotive Electrical",
+            "AUTOMOTIVE ELECTRICAL"
+          ],
+          "source_references": [
+            "February 2026 p.10-21; March 2026 p.5-8",
+            "July 2026 p.13-15;18-22"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Keep source category separate from store root; SKU/description verification required. | SKU/description verification required.",
+            "Split contents listing spans two page ranges"
+          ]
+        },
+        {
+          "slug": "automotive-gauges",
+          "label": "Automotive Gauges",
+          "source_heading_variants": [
+            "Automotive Gauges"
+          ],
+          "source_references": [
+            "February 2026 p.21"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify electrical/vehicle application per SKU."
+          ]
+        },
+        {
+          "slug": "battery",
+          "label": "BATTERY",
+          "source_heading_variants": [
+            "BATTERY"
+          ],
+          "source_references": [
+            "September 2026 p.11"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": []
+        },
+        {
+          "slug": "battery-accessories",
+          "label": "BATTERY ACCESSORIES",
+          "source_heading_variants": [
+            "BATTERY ACCESSORIES"
+          ],
+          "source_references": [
+            "June 2026 p.11; June 2026 p.10-11"
+          ],
+          "source_statuses": [
+            "OCR recovered"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve distinct source heading | Preserve source heading."
+          ]
+        },
+        {
+          "slug": "booster-cables",
+          "label": "BOOSTER CABLES",
+          "source_heading_variants": [
+            "BOOSTER CABLES"
+          ],
+          "source_references": [
+            "May 2026 p.18"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Check exact products; retain source heading."
+          ]
+        },
+        {
+          "slug": "electrical-accessories",
+          "label": "ELECTRICAL ACCESSORIES",
+          "source_heading_variants": [
+            "ELECTRICAL ACCESSORIES"
+          ],
+          "source_references": [
+            "June 2026 p.9; June 2026 p.8-9"
+          ],
+          "source_statuses": [
+            "OCR recovered"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve distinct source heading | Preserve distinct source heading."
+          ]
+        },
+        {
+          "slug": "electrical-spares",
+          "label": "ELECTRICAL SPARES",
+          "source_heading_variants": [
+            "ELECTRICAL SPARES"
+          ],
+          "source_references": [
+            "September 2026 p.11-15; May 2026 p.8"
+          ],
+          "source_statuses": [
+            "Text extracted; Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading and match by exact SKU."
+          ]
+        },
+        {
+          "slug": "fuses",
+          "label": "FUSES",
+          "source_heading_variants": [
+            "FUSES"
+          ],
+          "source_references": [
+            "February 2026 p.14; May 2026 p.9"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve as a specialist electrical subcategory. | Preserve as specialist electrical subcategory."
+          ]
+        },
+        {
+          "slug": "gauges",
+          "label": "GAUGES",
+          "source_heading_variants": [
+            "GAUGES"
+          ],
+          "source_references": [
+            "March 2026 p.5-6"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify exact product and vehicle application."
+          ]
+        },
+        {
+          "slug": "globes",
+          "label": "GLOBES",
+          "source_heading_variants": [
+            "GLOBES"
+          ],
+          "source_references": [
+            "February 2026 p.12; March 2026 p.8"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Store source heading and map verified lighting/electrical items. | Preserve source heading."
+          ]
+        },
+        {
+          "slug": "globes-and-globe-holders",
+          "label": "GLOBES & GLOBE HOLDERS",
+          "source_heading_variants": [
+            "GLOBES & GLOBE HOLDERS"
+          ],
+          "source_references": [
+            "June 2026 p.13"
+          ],
+          "source_statuses": [
+            "OCR recovered"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve distinct source heading Store-root normalized; verify each lighting SKU and application. | Match lighting products by exact SKU/application."
+          ]
+        },
+        {
+          "slug": "ignition-barrels-and-switches",
+          "label": "IGNITION BARRELS AND SWITCHES",
+          "source_heading_variants": [
+            "IGNITION BARRELS AND SWITCHES"
+          ],
+          "source_references": [
+            "June 2026 p.31"
+          ],
+          "source_statuses": [
+            "OCR recovered; image checked; OCR recovered from improved OCR addendum"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "Preserve ignition switch/relay taxonomy pending item mapping | Some ignition switches may fit Auto Electrical Spares or Vehicle Security; use exact SKU/application."
+          ]
+        },
+        {
+          "slug": "ignition-coils",
+          "label": "IGNITION COILS",
+          "source_heading_variants": [
+            "IGNITION COILS"
+          ],
+          "source_references": [
+            "May 2026 p.15"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify item code and electrical function."
+          ]
+        },
+        {
+          "slug": "ignition-spares",
+          "label": "Ignition Spares",
+          "source_heading_variants": [
+            "Ignition Spares"
+          ],
+          "source_references": [
+            "May 2026 p.14-17"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify exact SKU and whether component is electrical."
+          ]
+        },
+        {
+          "slug": "relays",
+          "label": "RELAYS",
+          "source_heading_variants": [
+            "RELAYS"
+          ],
+          "source_references": [
+            "June 2026 p.12"
+          ],
+          "source_statuses": [
+            "OCR recovered"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve specialist electrical subcategory."
+          ]
+        },
+        {
+          "slug": "starter-kits-and-regulators",
+          "label": "STARTER KITS & REGULATORS",
+          "source_heading_variants": [
+            "STARTER KITS & REGULATORS"
+          ],
+          "source_references": [
+            "June 2026 p.14; June 2026 p.13-14"
+          ],
+          "source_statuses": [
+            "OCR recovered"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve distinct source heading | Preserve source heading; validate product identity by SKU."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vehicle-security",
+      "label": "Vehicle Security",
+      "icon": "🔒",
+      "subcategories": [
+        {
+          "slug": "security",
+          "label": "Security",
+          "source_heading_variants": [
+            "Security",
+            "SECURITY"
+          ],
+          "source_references": [
+            "March 2026 p.28",
+            "February 2026 p.36; March 2026 p.28"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify actual vehicle-security purpose before mapping.",
+            "Verify the products on the page before final mapping. | Matches TOC page; retain source category."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "car-audio-entertainment",
+      "label": "Car Audio & Entertainment",
+      "icon": "🔊",
+      "subcategories": [
+        {
+          "slug": "aerial",
+          "label": "AERIAL",
+          "source_heading_variants": [
+            "AERIAL"
+          ],
+          "source_references": [
+            "February 2026 p.5"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source singular label; verify whether section is vehicle-audio aerials or broader antennas."
+          ]
+        },
+        {
+          "slug": "aerials",
+          "label": "AERIALS",
+          "source_heading_variants": [
+            "AERIALS"
+          ],
+          "source_references": [
+            "June 2026 p.10; September 2026 p.10"
+          ],
+          "source_statuses": [
+            "OCR recovered; Text extracted"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve distinct source heading | Check whether all products are vehicle-audio aerials."
+          ]
+        },
+        {
+          "slug": "automotive-sound",
+          "label": "Automotive Sound",
+          "source_heading_variants": [
+            "Automotive Sound"
+          ],
+          "source_references": [
+            "February 2026 p.23"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify product type and exact SKU."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "automotive-accessories",
+      "label": "Automotive Accessories",
+      "icon": "🚘",
+      "subcategories": [
+        {
+          "slug": "accessories",
+          "label": "Accessories",
+          "source_heading_variants": [
+            "Accessories",
+            "ACCESSORIES"
+          ],
+          "source_references": [
+            "February 2026 p.5-8; May 2026 p.3-4",
+            "August 2026 p.4; September 2026 p.4"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Broad source section; preserve source label and map individual SKUs. | Broad source heading; preserve exact source category."
+          ]
+        },
+        {
+          "slug": "accessories-quantum",
+          "label": "Accessories-Quantum",
+          "source_heading_variants": [
+            "Accessories-Quantum"
+          ],
+          "source_references": [
+            "February 2026 p.8"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve Quantum distinction in source taxonomy; do not assume every item is equivalent to non-Quantum products."
+          ]
+        },
+        {
+          "slug": "auto-accessories",
+          "label": "AUTO ACCESSORIES",
+          "source_heading_variants": [
+            "AUTO ACCESSORIES"
+          ],
+          "source_references": [
+            "August 2026 p.5-13; September 2026 p.5-8"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": []
+        },
+        {
+          "slug": "automotive-accessories",
+          "label": "Automotive Accessories",
+          "source_heading_variants": [
+            "Automotive Accessories",
+            "AUTOMOTIVE ACCESSORIES"
+          ],
+          "source_references": [
+            "March 2026 p.4",
+            "February 2026 p.6-8"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading.",
+            "Preserve this page heading separately from TOC label Accessories."
+          ]
+        },
+        {
+          "slug": "automotive-wheel-accessories",
+          "label": "Automotive Wheel Accessories",
+          "source_heading_variants": [
+            "Automotive Wheel Accessories"
+          ],
+          "source_references": [
+            "February 2026 p.27-29"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Review individual products for accessories vs mechanical parts."
+          ]
+        },
+        {
+          "slug": "fuel-caps",
+          "label": "Fuel Caps",
+          "source_heading_variants": [
+            "Fuel Caps"
+          ],
+          "source_references": [
+            "May 2026 p.12"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify exact vehicle application."
+          ]
+        },
+        {
+          "slug": "general-accessories",
+          "label": "GENERAL ACCESSORIES",
+          "source_heading_variants": [
+            "GENERAL ACCESSORIES"
+          ],
+          "source_references": [
+            "June 2026 p.6-8; July 2026 p.8-12; June 2026 p.5-8"
+          ],
+          "source_statuses": [
+            "OCR recovered; Text extracted"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading pending detailed SKU mapping | Broad heading; classify individual SKUs by application."
+          ]
+        },
+        {
+          "slug": "mirrors",
+          "label": "MIRRORS",
+          "source_heading_variants": [
+            "MIRRORS"
+          ],
+          "source_references": [
+            "May 2026 p.7"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify vehicle application and exact SKU."
+          ]
+        },
+        {
+          "slug": "new-car-mat-sets",
+          "label": "NEW CAR MAT SETS",
+          "source_heading_variants": [
+            "NEW CAR MAT SETS"
+          ],
+          "source_references": [
+            "August 2026 p.16-17"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": []
+        },
+        {
+          "slug": "panel-clips",
+          "label": "PANEL CLIPS",
+          "source_heading_variants": [
+            "PANEL CLIPS"
+          ],
+          "source_references": [
+            "June 2026 p.4-5; May 2026 p.5-6"
+          ],
+          "source_statuses": [
+            "OCR recovered; Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Keep clips together as requested | Keep all clips together as requested; preserve source heading. | Keep clips and fasteners together."
+          ]
+        },
+        {
+          "slug": "stickers",
+          "label": "STICKERS",
+          "source_heading_variants": [
+            "STICKERS"
+          ],
+          "source_references": [
+            "June 2026 p.29–30"
+          ],
+          "source_statuses": [
+            "OCR recovered; image checked"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "Marked special discounted price in June guide; not current pricing"
+          ]
+        },
+        {
+          "slug": "stickers-special-discounted-price",
+          "label": "STICKERS (SPECIAL DISCOUNTED PRICE)",
+          "source_heading_variants": [
+            "STICKERS (SPECIAL DISCOUNTED PRICE)"
+          ],
+          "source_references": [
+            "June 2026 p.29-30"
+          ],
+          "source_statuses": [
+            "OCR recovered"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified in this step"
+          ],
+          "mapping_notes": [
+            "Promotion label is not a permanent category; June promotional prices are expired."
+          ]
+        },
+        {
+          "slug": "wheel-accessories",
+          "label": "Wheel Accessories",
+          "source_heading_variants": [
+            "Wheel Accessories",
+            "WHEEL ACCESSORIES"
+          ],
+          "source_references": [
+            "March 2026 p.12",
+            "July 2026 p.25-27; August 2026 p.26; September 2026 p.22-23; June 2026 p.8"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Text extracted; OCR recovered"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Review product function at SKU level.",
+            "June page-heading occurrence; retain other guide references."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "marine-spares-accessories",
+      "label": "Marine Spares & Accessories",
+      "icon": "⚓",
+      "subcategories": [
+        {
+          "slug": "boat-accessories",
+          "label": "Boat Accessories",
+          "source_heading_variants": [
+            "Boat Accessories",
+            "BOAT ACCESSORIES"
+          ],
+          "source_references": [
+            "May 2026 p.20-30",
+            "August 2026 p.31; September 2026 p.31"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "TOC page range overlaps due to multi-column layout; verify actual pages before product-level mapping."
+          ]
+        },
+        {
+          "slug": "rigging",
+          "label": "Rigging",
+          "source_heading_variants": [
+            "Rigging"
+          ],
+          "source_references": [
+            "March 2026 p.29"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Verify marine use per item; retain original heading."
+          ]
+        },
+        {
+          "slug": "water-sports",
+          "label": "WATER SPORTS",
+          "source_heading_variants": [
+            "WATER SPORTS"
+          ],
+          "source_references": [
+            "June 2026 p.30"
+          ],
+          "source_statuses": [
+            "OCR recovered; image checked; OCR recovered from improved OCR addendum"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "Parent mapping proposed; includes kayaks, SUP board and paddles | Includes paddles, SUP and kayaks; verify each item."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "tools-hardware-consumables",
+      "label": "Tools, Hardware & Consumables",
+      "icon": "🛠️",
+      "subcategories": [
+        {
+          "slug": "abrasives",
+          "label": "Abrasives",
+          "source_heading_variants": [
+            "Abrasives",
+            "ABRASIVES"
+          ],
+          "source_references": [
+            "March 2026 p.13",
+            "June 2026 p.24; August 2026 p.30-31; May 2026 p.26; June 2026 p.23-24"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR recovered; Text extracted; Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading.",
+            "Preserve source heading | Preserve source heading. | June occurrence; retain references to May/August etc."
+          ]
+        },
+        {
+          "slug": "adhesives-and-silicones",
+          "label": "Adhesives and Silicones",
+          "source_heading_variants": [
+            "Adhesives and Silicones"
+          ],
+          "source_references": [
+            "February 2026 p.9"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Consumable classification; verify individual products."
+          ]
+        },
+        {
+          "slug": "auto-tools",
+          "label": "AUTO TOOLS",
+          "source_heading_variants": [
+            "AUTO TOOLS"
+          ],
+          "source_references": [
+            "August 2026 p.26-27; September 2026 p.23"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": []
+        },
+        {
+          "slug": "automotive-hardware",
+          "label": "Automotive Hardware",
+          "source_heading_variants": [
+            "Automotive Hardware"
+          ],
+          "source_references": [
+            "February 2026 p.9-10"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Use item function, not source heading alone."
+          ]
+        },
+        {
+          "slug": "automotive-tools",
+          "label": "Automotive Tools",
+          "source_heading_variants": [
+            "Automotive Tools",
+            "AUTOMOTIVE TOOLS"
+          ],
+          "source_references": [
+            "February 2026 p.30; March 2026 p.12; May 2026 p.26-29",
+            "June 2026 p.21-22; July 2026 p.28"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR recovered; Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Retain tool subtype for navigation. | Retain tool subtype. | Preserve source heading.",
+            "Preserve source heading | Keep tool products together."
+          ]
+        },
+        {
+          "slug": "chemicals",
+          "label": "Chemicals",
+          "source_heading_variants": [
+            "Chemicals",
+            "CHEMICALS"
+          ],
+          "source_references": [
+            "May 2026 p.4",
+            "March 2026 p.31"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR/text heading candidate; manual page check"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Review individual items and intended use.",
+            "Extracted text reads 'CHMICALS'; likely OCR/text layout noise, confirm against original page."
+          ]
+        },
+        {
+          "slug": "chemicals-lubricants-and-oils",
+          "label": "Chemicals Lubricants and Oils",
+          "source_heading_variants": [
+            "Chemicals Lubricants and Oils"
+          ],
+          "source_references": [
+            "February 2026 p.10"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve exact source heading; confirm store scope and product safety/fitment."
+          ]
+        },
+        {
+          "slug": "consumables",
+          "label": "Consumables",
+          "source_heading_variants": [
+            "Consumables",
+            "CONSUMABLES"
+          ],
+          "source_references": [
+            "March 2026 p.27",
+            "June 2026 p.25; August 2026 p.30; September 2026 p.30-31; June 2026 p.24-25"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR recovered; Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Broad source heading; preserve and map individual SKUs.",
+            "Preserve source heading | Broad heading; classify individual SKUs."
+          ]
+        },
+        {
+          "slug": "cutting-tools",
+          "label": "Cutting Tools",
+          "source_heading_variants": [
+            "Cutting Tools",
+            "CUTTING TOOLS"
+          ],
+          "source_references": [
+            "March 2026 p.13",
+            "June 2026 p.24; March 2026 p.22; June 2026 p.24-25"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR recovered; section heading seen in page OCR; Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading.",
+            "Preserve source heading; map exact products during SKU ledger | TOC lists Cutting Tools on p.13; this additional heading may indicate another occurrence and requires page-image check. | Preserve source heading."
+          ]
+        },
+        {
+          "slug": "drilling-tools",
+          "label": "DRILLING TOOLS",
+          "source_heading_variants": [
+            "DRILLING TOOLS"
+          ],
+          "source_references": [
+            "June 2026 p.25"
+          ],
+          "source_statuses": [
+            "OCR recovered; section heading seen in page OCR"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading; includes drill bits and related accessories | Preserve tool subtype."
+          ]
+        },
+        {
+          "slug": "garden-tools",
+          "label": "Garden Tools",
+          "source_heading_variants": [
+            "Garden Tools"
+          ],
+          "source_references": [
+            "March 2026 p.24-25"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Store root to be reviewed against owner navigation preference; don't force into camping."
+          ]
+        },
+        {
+          "slug": "hand-tools",
+          "label": "Hand Tools",
+          "source_heading_variants": [
+            "Hand Tools",
+            "HAND TOOLS"
+          ],
+          "source_references": [
+            "March 2026 p.14-17;20-24",
+            "June 2026 p.26-28; August 2026 p.27-30; June 2026 p.25-28"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR recovered; Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Two separate page ranges in contents; preserve both.",
+            "Preserve source heading | Includes tool families; SPANNERS are separately identified on p.32."
+          ]
+        },
+        {
+          "slug": "hardware",
+          "label": "Hardware",
+          "source_heading_variants": [
+            "Hardware",
+            "HARDWARE"
+          ],
+          "source_references": [
+            "February 2026 p.31-36",
+            "July 2026 p.28-32; September 2026 p.24"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Broad source heading; retain source hierarchy and verify each SKU."
+          ]
+        },
+        {
+          "slug": "hoteche",
+          "label": "HOTECHE",
+          "source_heading_variants": [
+            "HOTECHE"
+          ],
+          "source_references": [
+            "June 2026 p.16-17"
+          ],
+          "source_statuses": [
+            "OCR recovered"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Brand/section heading; confirm products during SKU mapping"
+          ]
+        },
+        {
+          "slug": "hoteche-tools",
+          "label": "HOTECHE TOOLS",
+          "source_heading_variants": [
+            "HOTECHE TOOLS"
+          ],
+          "source_references": [
+            "July 2026 p.16-17"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": []
+        },
+        {
+          "slug": "knives",
+          "label": "KNIVES",
+          "source_heading_variants": [
+            "KNIVES"
+          ],
+          "source_references": [
+            "September 2026 p.4"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading; owner to confirm parent if needed"
+          ]
+        },
+        {
+          "slug": "laser-distance-meter-and-digital-torque-wrench",
+          "label": "Laser Distance Meter & Digital Torque Wrench",
+          "source_heading_variants": [
+            "Laser Distance Meter & Digital Torque Wrench"
+          ],
+          "source_references": [
+            "March 2026 p.18-19"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve exact source heading in source field."
+          ]
+        },
+        {
+          "slug": "locks-and-padlocks",
+          "label": "LOCKS & PADLOCKS",
+          "source_heading_variants": [
+            "LOCKS & PADLOCKS"
+          ],
+          "source_references": [
+            "June 2026 p.29; June 2026 p.28–29; June 2026 p.28-29"
+          ],
+          "source_statuses": [
+            "OCR recovered; image checked; page 29 visually checked"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "June pages 29–32 improved OCR addendum; SKU/price validation still required | Section starts near printed page 28/29 boundary; verify exact start page | Review any vehicle-security products individually."
+          ]
+        },
+        {
+          "slug": "measuring-tools",
+          "label": "Measuring Tools",
+          "source_heading_variants": [
+            "Measuring Tools",
+            "MEASURING TOOLS"
+          ],
+          "source_references": [
+            "March 2026 p.25-26",
+            "June 2026 p.28"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR recovered; section heading seen in page OCR"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading.",
+            "Preserve source heading; keep distinct subcategory | Preserve tool subtype."
+          ]
+        },
+        {
+          "slug": "padlocks",
+          "label": "PADLOCKS",
+          "source_heading_variants": [
+            "PADLOCKS"
+          ],
+          "source_references": [
+            "August 2026 p.31"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve explicit source section"
+          ]
+        },
+        {
+          "slug": "portable-compressors",
+          "label": "PORTABLE COMPRESSORS",
+          "source_heading_variants": [
+            "PORTABLE COMPRESSORS"
+          ],
+          "source_references": [
+            "September 2026 p.32"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Confirm whether tools or camping based on individual products"
+          ]
+        },
+        {
+          "slug": "sockets",
+          "label": "SOCKETS",
+          "source_heading_variants": [
+            "SOCKETS"
+          ],
+          "source_references": [
+            "March 2026 p.24"
+          ],
+          "source_statuses": [
+            "Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Needs review"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve as tool subtype; confirm printed heading."
+          ]
+        },
+        {
+          "slug": "spanners",
+          "label": "SPANNERS",
+          "source_heading_variants": [
+            "SPANNERS"
+          ],
+          "source_references": [
+            "June 2026 p.32"
+          ],
+          "source_statuses": [
+            "OCR recovered; image checked; OCR recovered from improved OCR addendum"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "Keep spanners/wrenches together; printed table provides explicit prices for 11 SKUs | Group all spanners together; June guide says offer ends 30 June 2026 and prices exclude VAT."
+          ]
+        },
+        {
+          "slug": "toolboxes",
+          "label": "TOOLBOXES",
+          "source_heading_variants": [
+            "TOOLBOXES"
+          ],
+          "source_references": [
+            "June 2026 p.29"
+          ],
+          "source_statuses": [
+            "OCR recovered; image checked"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "Keep distinct from hand tools | Keep separate from hand tools as subcategory."
+          ]
+        },
+        {
+          "slug": "welding",
+          "label": "Welding",
+          "source_heading_variants": [
+            "Welding"
+          ],
+          "source_references": [
+            "March 2026 p.26"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Check each item and store scope."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "camping-leisure-outdoors",
+      "label": "Camping, Leisure & Outdoors",
+      "icon": "🏕️",
+      "subcategories": [
+        {
+          "slug": "4x4-outdoor",
+          "label": "4X4 & OUTDOOR",
+          "source_heading_variants": [
+            "4X4 & OUTDOOR",
+            "4x4 and Outdoor",
+            "4X4 OUTDOOR"
+          ],
+          "source_references": [
+            "June 2026 p.3",
+            "February 2026 p.4; March 2026 p.4",
+            "August 2026 p.4-5; September 2026 p.4-5"
+          ],
+          "source_statuses": [
+            "OCR recovered",
+            "TOC extracted; mapping provisional",
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "OCR recovered",
+            "TOC/text extracted",
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Page heading recovered from June PDF OCR Store-root normalized: vehicle-mounted 4x4 items may map to Automotive Accessories after SKU review. | Separate vehicle-mounted items to Automotive Accessories only after SKU/application review.",
+            "Keep source heading; review item-by-item for vehicle-mounted vs outdoor use. | Separate outdoor leisure goods from vehicle-mounted accessories by SKU."
+          ]
+        },
+        {
+          "slug": "4x4-and-camping",
+          "label": "4X4 AND CAMPING",
+          "source_heading_variants": [
+            "4X4 AND CAMPING"
+          ],
+          "source_references": [
+            "July 2026 p.7"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Map to approved top-level category after SKU-level review"
+          ]
+        },
+        {
+          "slug": "atv-winches-and-wheel-caps",
+          "label": "ATV WINCHES & WHEEL CAPS",
+          "source_heading_variants": [
+            "ATV WINCHES & WHEEL CAPS"
+          ],
+          "source_references": [
+            "September 2026 p.16-17"
+          ],
+          "source_statuses": [
+            "Text extracted"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Keep winches and winch spares grouped; wheel caps may need separate mapping Store-root normalized: vehicle-mounted 4x4 items may map to Automotive Accessories after SKU review."
+          ]
+        },
+        {
+          "slug": "camping",
+          "label": "CAMPING",
+          "source_heading_variants": [
+            "CAMPING"
+          ],
+          "source_references": [
+            "August 2026 p.4; February 2026 p.4"
+          ],
+          "source_statuses": [
+            "Text extracted; Page heading candidate; text extraction"
+          ],
+          "evidence_statuses": [
+            "Text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Printed page heading; verify against page image before final taxonomy."
+          ]
+        },
+        {
+          "slug": "garden-tools",
+          "label": "GARDEN TOOLS",
+          "source_heading_variants": [
+            "GARDEN TOOLS"
+          ],
+          "source_references": [
+            "August 2026 p.4; June 2026 p.29"
+          ],
+          "source_statuses": [
+            "Text extracted; OCR recovered; image checked"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "Parent mapping proposed; confirm against owner taxonomy | Preserve source heading."
+          ]
+        },
+        {
+          "slug": "hand-winches",
+          "label": "HAND WINCHES",
+          "source_heading_variants": [
+            "HAND WINCHES"
+          ],
+          "source_references": [
+            "June 2026 p.31"
+          ],
+          "source_statuses": [
+            "OCR recovered; image checked"
+          ],
+          "evidence_statuses": [
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Verified in prior visual QA record"
+          ],
+          "mapping_notes": [
+            "Group winches with winch spares as requested; review trailer/camping use cases Store-root normalized: vehicle-mounted 4x4 items may map to Automotive Accessories after SKU review."
+          ]
+        },
+        {
+          "slug": "lifestyle",
+          "label": "Lifestyle",
+          "source_heading_variants": [
+            "Lifestyle",
+            "LIFESTYLE"
+          ],
+          "source_references": [
+            "March 2026 p.27",
+            "June 2026 p.3-4; August 2026 p.4; September 2026 p.4"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional",
+            "OCR recovered; Text extracted"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted",
+            "OCR recovered"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Keep caravan-accessory owner mapping under Camping, Leisure & Outdoors.",
+            "Includes caravan covers and camping/leisure products; Caravan accessories mapping approved by owner | Includes caravan covers and leisure items; Caravan Accessories maps here per owner."
+          ]
+        },
+        {
+          "slug": "outdoor",
+          "label": "Outdoor",
+          "source_heading_variants": [
+            "Outdoor"
+          ],
+          "source_references": [
+            "May 2026 p.3"
+          ],
+          "source_statuses": [
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve source heading; classify individual products."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "trailer-canopy",
+      "label": "Trailer & Canopy",
+      "icon": "🚚",
+      "subcategories": [
+        {
+          "slug": "trailer-and-towing",
+          "label": "TRAILER & TOWING",
+          "source_heading_variants": [
+            "TRAILER & TOWING",
+            "Trailer And Towing",
+            "TRAILER AND TOWING"
+          ],
+          "source_references": [
+            "September 2026 p.5",
+            "March 2026 p.4-5",
+            "July 2026 p.7"
+          ],
+          "source_statuses": [
+            "Text extracted",
+            "TOC extracted; mapping provisional"
+          ],
+          "evidence_statuses": [
+            "Text extracted",
+            "TOC/text extracted"
+          ],
+          "visual_verification_statuses": [
+            "Not visually verified; page-image QA pending"
+          ],
+          "mapping_notes": [
+            "Preserve original wording and page range.",
+            "Keep separate from camping pending owner taxonomy"
+          ]
+        }
+      ]
+    }
+  ]
+}

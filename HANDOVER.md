@@ -2297,3 +2297,16 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Created local full-row control file `June_470_Row_Cross_Guide_Reconciliation_2026-10-14.csv`; all 470 remain ineligible for production import. No OCR characters, source descriptions or June costs were invented.
 - Original June PDF and 33-row cross-check CSV were not accessible in the active file set for this step, so full visual verification is still blocked. September extract unavailable; promotion/vehicle-code joins and storefront/mobile testing not yet performed. No production write or deployment.
 - Status: CROSS-GUIDE TRIAGE COMPLETE; FULL RECONCILIATION NOT RESOLVED.
+
+
+## CONTINUATION LOG — 2026-10-14 — DEPENDENCY-AWARE RUNNER SCAFFOLD ADDED ON ISOLATED BRANCH
+
+- Created isolated branch `automation/dependency-aware-runner`; no changes to `main`, production storefront, Supabase, Axxess, DNS, payments, or live catalogue.
+- Added `.github/workflows/dependency-aware-task-runner.yml` with manual and 30-minute scheduled triggers, concurrency protection, best-effort cache restore/save for runner state, and a 30-day JSON report artifact.
+- Added `scripts/automation/task-runner.py` with an explicit dependency graph, per-run bounded retries (maximum two attempts per failed deterministic check), timestamped task/event status, dependency blocking, and explicit approval holds. It has no deployment or product-import handlers.
+- Added `scripts/automation/README.md` documenting safety limits and operation.
+- Initial graph: repo safety -> staging taxonomy check; repo safety -> controller discovery; taxonomy -> source-page QA and browser QA (approval holds); all release prerequisites -> release (approval hold).
+- Critical validation is still pending: the canonical existing controller entry point has not been identified; the runner's allowlisted discovery task will fail safely if it cannot find one. The taxonomy validator expects 8 roots and 17 proposed rules; its schema assumptions must be checked against the actual JSON before claiming a pass.
+- Automation limitation: Actions is event/schedule driven, not a permanently running worker. Cache restoration is best-effort, not a transactional state database; runner timing is not guaranteed. A runner execution and its report must be inspected before calling it demonstrated.
+- Next: inspect the first workflow run and logs; correct any schema or workflow errors on this branch only; identify and validate the real controller entry point; then add regression tests for dependency ordering, bounded retries, resume behavior, approval stops and report output. Do not merge or deploy until the runner tests pass and the owner approves.
+- Status: IMPLEMENTATION SCAFFOLD COMMITTED TO ISOLATED BRANCH; NOT YET VALIDATED END-TO-END; live catalogue untouched.
