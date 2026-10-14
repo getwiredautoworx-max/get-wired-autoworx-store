@@ -2080,3 +2080,12 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 
 ### Change impact
 - This checkpoint records verified results and remaining gates only. No live catalogue/database, hosting, payment configuration, Cloudflare, or Netlify changes were made.
+
+
+## 2026-10-14 — controller cadence recheck after live-gate checkpoint
+
+- Re-queried the latest 100 repository workflow runs after the live-gate/handover commit. The latest visible `Background Task Controller` run is still `38548827752` at `2026-10-14T10:20:03Z`, event `workflow_run`, conclusion `success`. No newer controller execution appears in that run list, despite the main-branch workflow declaring a 15-minute schedule.
+- Therefore, current controller code has successful earlier event-triggered executions, but the advertised 15-minute fallback cadence is not currently evidenced as operating. Treat periodic monitoring as unverified/degraded until a new scheduled run is observed. Do not claim it continuously monitors or automatically restarts tasks right now.
+- The connected GitHub tools available in this session permit repository/file and run inspection but do not expose a workflow-dispatch action. No artificial commit was created just to force a controller run, and no production change was made.
+- Next controller check: inspect Actions UI/workflow enabled status and repository Actions settings if needed; then manually dispatch `Background Task Controller` from GitHub Actions (or restore a verified schedule trigger) and inspect the checkpoint artifact. This is an operational validation blocker, not a catalogue release approval.
+- Live release-gate pass remains valid for run `38557658248`; PayFast/PayJustNow and source-evidence blockers remain open.
