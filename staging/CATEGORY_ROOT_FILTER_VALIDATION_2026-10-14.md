@@ -19,3 +19,13 @@
 3. Confirm no empty root card and search/category links work.
 4. Keep all 565 legacy-root products out of root navigation until per-row category decisions are approved; additionally prevent out-of-scope products from surfacing in general product search if owner approves that catalogue exclusion.
 5. Do not merge/deploy this branch before row-level product disposition and image/price gates are signed off.
+
+
+## Automated branch browser QA result
+- GitHub Actions run: 38625347515 — SUCCESS.
+- Candidate SHA tested: 4d6733cd5bd47f8d5ce9a8c33091a8de2d54ff37.
+- Desktop: `CATEGORY_CANDIDATE_PASS desktop roots=8 all_root_links=8`.
+- Mobile: `CATEGORY_CANDIDATE_PASS mobile roots=8 all_root_links=8`.
+- The test opened the local candidate page at both viewports, asserted exactly the eight approved root labels, asserted the legacy Spare Parts root is absent, clicked all eight root cards, verified routes remained category/products paths, and found no browser page errors.
+- This is a branch-local static-browser test against the repository category snapshot; it is not a test of the live Axxess deployment and does not approve the 565 products for sale.
+- Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38625347515
