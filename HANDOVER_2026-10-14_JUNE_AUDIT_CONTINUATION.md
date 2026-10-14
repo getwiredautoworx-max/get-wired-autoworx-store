@@ -178,3 +178,10 @@ Production untouched.
 - Added `staging/source-extracts/june-source-coverage-audit-pages09-11.csv` to the audit branch (66 source coverage exceptions; commit `22be83be8cdb954bfd47d4723b9f57795387721e`).
 - Missing-source examples include gauge SKUs on page 9 (`2727SS`, `2791SS`, `2771SW`, `27001SW`, `6204BB`, `6205BB`, `6208WB`, `6161SB`, `OWOT-R`, `G1-5026`); aerial and battery accessory codes on page 10 (`SL-127`, `EX908-24`, `SL-119-2M`, `A1-006B`, `EA017`, `B3-002`, `B3-008`); and battery/fuse/heat-shrink codes on page 11 (`B3-009`, `PN06N`, `PN06P`, `JC500AMP`, `QC175`, `C5-013-2G`, `MF-SET`, `FH-001`, `WENG10AMP`).
 - Continue keeping missing items in audit-only queues; source visibility does not verify current supplier cost, stock, product application, or a clean image.
+
+
+## 2026-10-14 follow-up — page 12–14 source coverage audit
+- Visually inspected printed pages 12–14 and compared source-visible items against the 470-row staging worksheet.
+- Added `staging/source-extracts/june-source-coverage-audit-pages12-14.csv` (44 source coverage exceptions; audit branch commit `8199091e9e6fc55242cb76323187723f40f28d3f`).
+- Missing-source examples include fuse/relay codes on page 12 (`F3-004-7.5`, `MPF10AMPC`, `WPF3AMP`, `FL30`, `FL50`, `ND89`, `ND105`, `F4-002`); globe/starter-kit codes on page 13 (`286D-10`, `339-10`, `582ALED`, `H170W24V`, `1DS-8000`, `041SK`, `223SK`); and regulator/fuel-pump codes on page 14 (`VR1021`, `VR1029`, `ST2025`, `F1-005`, `F1-016`, `F1-035`, `F1-049`).
+- The source-coverage exception queue is now available for printed pages 3–5, 6–8, 9–11 and 12–14, in separate audit-only files. This is a partial source coverage audit, not a fully reconciled catalogue.
