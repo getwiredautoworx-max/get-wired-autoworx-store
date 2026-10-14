@@ -1,0 +1,34 @@
+printed_page,source_section,visual_sku,ocr_candidate,visual_status,notes
+29,Locks & Padlocks,180305,180305,VISUALLY_CONFIRMED_CODE_ONLY,50mm heavy duty iron padlock with 3-piece keys; price not reconciled to current supplier cost
+29,Locks & Padlocks,180402,180402,VISUALLY_CONFIRMED_CODE_ONLY,Rectangular brass padlock 70x18x48mm; historical June price only
+29,Locks & Padlocks,180403,180403,VISUALLY_CONFIRMED_CODE_ONLY,Rectangular brass padlock 80x18x52mm; historical June price only
+29,Locks & Padlocks,364,364,VISUALLY_CONFIRMED_CODE_ONLY,38mm Tri-Link iron padlock; confirm supplier code format before import
+29,Garden Tools,220101,220101,VISUALLY_CONFIRMED_CODE_ONLY,600g axe with wooden handle
+29,Garden Tools,360102,360102,VISUALLY_CONFIRMED_CODE_ONLY,350mm garden hand trowel
+29,Garden Tools,H5-007-50,H5-007-50,VISUALLY_CONFIRMED_CODE_ONLY,13mm x 50m heavy duty garden hose
+29,Toolboxes,T10-002,T10-002,VISUALLY_CONFIRMED_CODE_ONLY,410x200x210mm toolbox with five trays
+29,Toolboxes,T10-012L,T10-012L,VISUALLY_CONFIRMED_CODE_ONLY,Plastic box with lid and 18 compartments
+29,Special Discounted Price / Stickers,S9-RS100R,S9-RS100R,VISUALLY_CONFIRMED_CODE_ONLY,Racing strips red 20cm x 4.5m; promotional price is historical
+30,Special Discounted Price / Stickers,S9-RS103BR,S9-RS103BR,VISUALLY_CONFIRMED_CODE_ONLY,Racing strips black/red 20cm x 4.5m; promotional price is historical
+30,Water Sports,SF-5002,SF-SO002,OCR_CORRECTION_REQUIRED,Paddles 160cm; visual page appears SF-5002, OCR confuses 5/O and 0/O; verify high-resolution source before accepting
+30,Water Sports,SF-IBB110,SF-IBB110,VISUALLY_CONFIRMED_CODE_ONLY,Inflatable SUP board 150kg; promotion terms/pricing historical
+30,Water Sports,SFIK9PVC-01,SFIK9PVC-01,VISUALLY_CONFIRMED_CODE_ONLY,Adult inflatable kayak 275x76cm with two oars; historical promotional listing
+30,Tappet Covers,TC-BM01,TC-BMO1,VISUAL_CORRECTION_REQUIRED,Visual code uses zero in BM01; OCR substituted letter O; confirm exact source code before import
+30,Tappet Covers,TC-BM06,TC-BM06,VISUALLY_CONFIRMED_CODE_ONLY,BMW M52 tappet cover including gasket and screws
+30,Tappet Covers,TC-BM08,TC-BM08,VISUALLY_CONFIRMED_CODE_ONLY,N46 tappet cover; historical promotional price
+30,Tappet Covers,TC-BM09,TC-BMO9,VISUAL_CORRECTION_REQUIRED,Visual code uses zero in BM09; OCR substituted letter O; confirm exact source code before import
+30,Tappet Covers,TC-BM10,TC-BM10,VISUALLY_CONFIRMED_CODE_ONLY,BMW B58 tappet cover; historical promotional price
+31,Ignition Barrels & Switches,IB-TOY01,IB-TOYO1,VISUAL_CORRECTION_REQUIRED,Visual code uses zero in TOY01; OCR substituted letter O
+31,Ignition Barrels & Switches,IB-VIGO-M,IB-VIGO-M,VISUALLY_CONFIRMED_CODE_ONLY,Toyota Vigo 2005 ignition barrel; historical promotional price
+31,Ignition Barrels & Switches,IB-W123,IB-W123,VISUALLY_CONFIRMED_CODE_ONLY,Mercedes-Benz W123 ignition barrel with keys
+31,Ignition Barrels & Switches,IL-NT02,IL-NT02,VISUALLY_CONFIRMED_CODE_ONLY,Isuzu/Nissan truck ignition loom; verify description/code from source image
+31,Ignition Barrels & Switches,IGS-NL01,IGS-NLO1,VISUAL_CORRECTION_REQUIRED,Visual code uses zero in NL01; OCR substituted letter O
+31,Ignition Barrels & Switches,IGS-NT01,IGS-NTO1,VISUAL_CORRECTION_REQUIRED,Visual code uses zero in NT01; OCR substituted letter O
+31,Hand Winches,WR-73-26,WR-73-26,VISUALLY_CONFIRMED_CODE_ONLY,2600lb hand winch with hand brake; historical promotional price
+31,Hand Winches,WR-75G-25B,WR-75G-25B,VISUALLY_CONFIRMED_CODE_ONLY,2500lb hand winch with brake and belt; historical promotional price
+32,Spanners,192302,192302,VISUALLY_CONFIRMED_CODE_ONLY,Combination spanner; printed June price excludes VAT and is not automatically current cost
+32,Spanners,192314,192314,VISUALLY_CONFIRMED_CODE_ONLY,21mm fixed ratchet combination spanner; printed June price excludes VAT
+32,Spanners,E11MM,E11MM,VISUALLY_CONFIRMED_TABLE_ROW,11mm chrome combination spanner; printed table price 6.54 excl. VAT, historical
+32,Spanners,E18MM,E18MM,VISUALLY_CONFIRMED_TABLE_ROW,18mm chrome combination spanner; printed table price 12.54 excl. VAT, historical
+32,Spanners,CV20MM,CV20MM,VISUALLY_CONFIRMED_TABLE_ROW,20mm chrome vanadium combination spanner; printed table price 18.31 excl. VAT, historical
+32,Spanners,CV30MM,CV30MM,VISUALLY_CONFIRMED_TABLE_ROW,30mm chrome vanadium combination spanner; printed table price 70.80 excl. VAT, historical
