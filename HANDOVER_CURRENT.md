@@ -513,3 +513,13 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 2. Obtain current supplier price confirmation for the 38 live price holds and any other rows selected for publication.
 3. Confirm rights to use/crop ASC images before public upload; if rights are not confirmed, obtain permitted product images.
 4. Run final review gates only after evidence is complete; do not import or deploy on the strength of historical guide data alone.
+
+
+## 2026-10-14 — Storefront category crosswalk built (review-only)
+
+- Built `/mnt/data/Get_Wired_AutoWorx_800_Category_Crosswalk_REVIEW_ONLY_2026-10-14.csv` with all 800 exact-SKU rows, original guide page, source category/subcategory, current SQL slug, and a proposed normalized storefront top-level category.
+- Proposed review-only normalization: 412 `automotive-accessories` → Automotive Accessories; 242 `tools-workshop` → Tools, Hardware & Consumables; 103 `electrical`/`lighting` → Auto Electrical Spares; 38 `car-audio` → Car Audio & Entertainment; 5 `marine-spares-accessories` → Marine Spares & Accessories.
+- Only 417 rows use a slug already matching an intended storefront slug (`automotive-accessories` or `marine-spares-accessories`); 383 require slug normalization. This is a proposed crosswalk, not a passed category QA: every row still requires source subcategory/product-family review and all 800 remain `Import_Eligible=false`.
+- Source image work produced internal QA crops from September guide pages 16, 26, 28, 29 and 32. Exact model panels were identified for two winches and two named compressors; 34 other held SKUs only have shared size-family imagery. Do not use the grouped images as exact SKU/size images. Publication rights are not verified; ASC's guide states unauthorized use is prohibited.
+- Review-only artifacts now available: 38-SKU exact review CSV, 38-SKU source-image crosswalk CSV, 800-row read-only SQL audit CSV, 800-row formula-corrected review-only CSV, 800-row category crosswalk CSV, and internal source-image evidence ZIP. None is an import file.
+- Release remains **HOLD**. Current September prices expired 30 September 2026; supplier price confirmation, image rights, exact images or approved family-image policy, and row-level category validation remain prerequisites. No live changes made.
