@@ -2089,3 +2089,31 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - The connected GitHub tools available in this session permit repository/file and run inspection but do not expose a workflow-dispatch action. No artificial commit was created just to force a controller run, and no production change was made.
 - Next controller check: inspect Actions UI/workflow enabled status and repository Actions settings if needed; then manually dispatch `Background Task Controller` from GitHub Actions (or restore a verified schedule trigger) and inspect the checkpoint artifact. This is an operational validation blocker, not a catalogue release approval.
 - Live release-gate pass remains valid for run `38557658248`; PayFast/PayJustNow and source-evidence blockers remain open.
+
+
+## 2026-10-14 — continuation: controller checkpoint inspected and monitor coverage improved
+
+### Controller execution and artifact evidence
+- Re-ran the existing background-controller job `115801493320` from workflow run `38548827752` using GitHub's job re-run action. The new attempt completed successfully; job `115834382162` passed syntax validation, checkpoint generation, and artifact publication.
+- Downloaded and opened artifact `11890812189` (`background-task-checkpoint-25`), generated `2026-10-14T11:45:18Z`. It reports `attention_required`, 0 monitoring/API errors, and one old non-success result: Cloudflare deployment run `37912001486` from 9 October, deliberately excluded from retries. Seven monitored QA/audit/package/image workflows report success, but their timestamps are not all fresh enough to certify current release readiness.
+- The checkpoint confirms the queue still holds catalogue source reconciliation at `blocked_manual_evidence`, category review as pending, and image gaps as needs-review. No catalogue data was changed.
+
+### Safe controller-monitor coverage fix
+- Added `Live Release Gates` to the `workflow_run` completion triggers in `.github/workflows/background-task-controller.yml`, so a completed live release-gate test can trigger a checkpoint.
+- Added `live-release-gates.yml` to `scripts/background_task_controller.py`'s monitored workflow list, so future checkpoints report the live domain/browser-gate status alongside existing QA/audit/package workflows.
+- Commits: `c791de6197ba8caf33ff9bb3e926766dfdedd876` (controller trigger) and `1f8c8129e2f3b3b85c200afdc1b1c7544072cd03` (monitor list).
+- Re-ran the prior successful Live Release Gates job `115831090744` to generate a fresh safe live-browser check and test the new completion trigger. The run was in progress at last observation; verify the rerun and subsequent controller run before declaring this event path validated.
+- The re-run is safe: its checkout step intercepts the test order submission; no real order is sent.
+
+### Payment integration finding
+- Inspected live checkout source `checkout-v2.html`: the only payment option is `direct_eft` (Direct EFT / bank payment). No PayFast or PayJustNow option is present in that checkout UI.
+- PayFast/PayJustNow readiness is therefore **not achieved in the current live checkout UI**. Merchant approval or external provider accounts cannot be inferred from the website tests. Do not mark either provider as ready or submit the site as fully integrated until an implementation and provider-side acceptance test exist.
+- No payment configuration or checkout code was changed in this continuation.
+
+### Remaining release blockers and next actions
+1. Verify the safe rerun of Live Release Gates, then confirm it triggers a fresh controller run and checkpoint artifact.
+2. Keep the 470-row June guide reconciliation incomplete until source evidence and current supplier prices are separately dispositioned. The 33-row pages 29–32 cross-check is partial; ambiguous OCR variants remain held.
+3. Review the 16 provisional category candidates and the two held codes (`6007-13`, `02-09`) against the original source-page images before routing.
+4. Resolve the 86 placeholder/missing-known-WebP image exceptions by exact SKU/product identity; inspect the existing sync report before any write-producing image-sync action.
+5. Keep production catalogue and hosting protected; no Supabase/Axxess writes, Cloudflare deployment, or Netlify credits used.
+6. Existing live-gate evidence confirms HTTPS/routes, version marker, desktop/mobile category navigation, and checkout UI with real order submission blocked. It does not prove actual payment settlement, courier fulfilment, or full catalogue acceptance.
