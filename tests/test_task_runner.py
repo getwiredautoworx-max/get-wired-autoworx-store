@@ -62,6 +62,16 @@ class RunnerTests(unittest.TestCase):
         finally:
             runner.TASKS = original_tasks
 
+
+    def test_existing_controller_syntax_and_retry_policy(self):
+        ok, detail = runner.check({"id":"controller_presence"})
+        self.assertTrue(ok, detail)
+        controller = (runner.ROOT / "scripts/background_task_controller.py").read_text()
+        allow_section = controller.split("AUTO_RETRY_ALLOWLIST", 1)[1].split("}", 1)[0]
+        self.assertNotIn("cloudflare-pages-deploy.yml", allow_section)
+        self.assertNotIn("asc-sku-image-sync-bounded.yml", allow_section)
+        self.assertNotIn("refresh-category-snapshot.yml", allow_section)
+
     def test_approval_tasks_are_held_not_executed(self):
         approvals = [t for t in runner.TASKS if t["kind"] == "approval"]
         self.assertTrue(approvals)
