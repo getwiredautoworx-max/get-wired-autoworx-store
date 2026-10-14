@@ -2264,3 +2264,15 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Consequently, June special-price values are expired historical evidence as of the current project date and must NOT be imported or displayed as current consumer selling prices. Normal June prices are also historical and need the owner’s later-guide SKU confirmation/current supplier price rule before any pricing action. Keep promo values separate from standard cost rows.
 - June guide section-level review now spans printed pages 3–32. The work is not complete at product-row level: 470 June OCR staging records still need exact SKU/code, source page and cost verification; source headings must be mapped against the approved category tree; and 106 crosswalk rows remain pending visual verification. No data was imported or modified.
 - Next action: switch from broad section review to a controlled row-level audit. Use each staging row’s printed source page, visually confirm exact code and source cost, mark each row VERIFIED / OCR-CORRECTION / PRICE-SYSTEM / UNRESOLVED, then join exact SKUs to August/September/October guide records. Do not estimate or publish unverified prices. Browser/mobile navigation remains untested.
+
+
+## CONTINUATION LOG — 2026-10-14 — SOURCE HEADING MAPPING RULES
+
+- June source taxonomy review is complete at section-heading level (printed pp.3–32); row-level code/cost review is still pending. Use the following as mapping rules, not blanket assignments:
+  - Panel Clips → Automotive Accessories, preserving vehicle/application detail; keep all clips grouped regardless of source tab.
+  - Battery Accessories, Electrical Spares, Fuses, Relays, Globes/Globe Holders, Starter Kits/Regulators, Ignition and Fuel Pumps → Auto Electrical Spares where the actual product is electrical/engine-electrical; preserve distinct subcategory names.
+  - Lifestyle and genuine camping/water-sports/outdoor items → Camping, Leisure & Outdoors; 4x4 accessory products should be assigned by actual use/application, not only by the guide’s “4x4 & Outdoor” heading.
+  - Marine and towing/trailer products → Marine Spares & Accessories or Trailer & Canopy according to the actual application; multi-application products need explicit fitment evidence.
+  - Automotive Tools, Timing Kits, Abrasives, Cutting Tools, Consumables, Hand Tools, Measuring Tools, Locks/Padlocks, Garden Tools and Toolboxes → Tools, Hardware & Consumables where appropriate, retaining source subcategory.
+  - Generic headings such as Accessories, Spare Parts, Hardware and Special Discounted Price are too broad to determine a product’s final root category by themselves. Use exact SKU/product description and application evidence; ambiguous mechanical/brake parts remain REVIEW/QUOTE until an approved destination category is defensible.
+- Never create new store root categories just because a source guide has a heading. The approved eight roots remain unchanged. The exact SKU is the only safe join key for duplicate listings/pricing across guides; descriptions and OCR text are supporting evidence, not substitutes for SKU identity.
