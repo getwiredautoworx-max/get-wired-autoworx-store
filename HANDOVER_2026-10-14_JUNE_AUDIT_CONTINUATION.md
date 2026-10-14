@@ -67,3 +67,11 @@ Production untouched.
 - No live catalogue import, Supabase write, Axxess upload, or store source deployment was performed during this continuation.
 - Next gate: perform a row-level source-image comparison of all 470 staged records; recover each item's real description and printed cost where present, use QUOTE_REQUIRED only when valid item but no reliable current cost, and preserve unresolved OCR as REVIEW. Then create a delta/control ledger with measured outcomes and run the two configured QA workflows before considering the one final controlled release.
 - ETA: the 470-row source reconciliation is still not complete; no defensible completion date yet. Live testing is technically a separate gate and can be run before the catalogue is imported, but a GitHub Pages build must not be represented as live browser/checkout testing.
+
+
+## 2026-10-14 execution note — live QA gate
+- Inspected the existing `.github/workflows/storefront-smoke.yml` and `.github/workflows/store-production-qa.yml`. Both have `workflow_dispatch` enabled and contain the relevant mobile/category navigation and live-domain/catalogue checks.
+- The latest Actions run retrieved after the prior handover update was a GitHub Pages build for commit `2b59490b4a79e34e38b3a08748f96a581c0aae2f`, and it completed successfully. It does not execute the storefront smoke or production QA jobs; therefore it is not a live-test pass.
+- Attempted to open the live domain and policy/category URLs using the available web preview; that preview returned “URL is not accessible via this tool.” This is not proof that the site is down, and it is not a pass. An authenticated external HTTP/Playwright result is still needed.
+- No workflow-dispatch action is exposed by the connected GitHub tools in this session. To avoid creating a dummy code/workflow commit that triggers additional builds, do not manufacture a run. The two workflows can be started from the repository’s GitHub Actions UI using **Storefront Smoke Test → Run workflow** and **Store Production QA → Run workflow**. Record actual job outcomes before declaring live testing passed.
+- Catalogue gate remains blocked on source-page verification of the 470 June rows; the recovered workbook is the source of truth for the staging row list. Keep live catalogue unchanged.
