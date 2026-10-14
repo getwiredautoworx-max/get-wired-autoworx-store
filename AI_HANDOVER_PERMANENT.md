@@ -2015,3 +2015,14 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - The latest bounded image-sync run `38539164888` exposes no artifact through the first-page artifact API, so the exact per-SKU exception ledger still needs locating from its run logs or the repo's existing sync/audit reports. Do not rerun the sync blindly.
 - Current next image task: retrieve the exact 86 public SKUs/product IDs from the audit/sync reports, compare against existing 800 source images and supplier SKU matches, and classify each as exact match / no source image / ambiguous match / stale placeholder. Only apply exact, verified matches in a separate staged batch; do not use fuzzy image matches.
 - No product image URLs or catalogue rows were modified during this artifact inspection.
+
+
+## 2026-10-14 — dependency-aware runner report inspected
+
+- Retrieved and opened the actual ZIP artifact for runner workflow run #27 (run ID `38548727027`, artifact ID `11886125569`) from branch `automation/dependency-aware-runner`, commit `970ea43e7e2694f708678482409615509a4204bd`.
+- Reported task states: `repo_safety` passed; `staging_taxonomy` passed (8 root categories and 17 proposed rules; this is structural validation, not product-level approval); `controller_presence` passed (syntax/retry policy check only); `catalogue_source_qa` blocked_approval; `browser_qa` blocked_approval; `release` blocked_dependency because catalogue source QA and browser QA are not passed.
+- Runner policy in the report says retries are restricted to allowlisted QA/audit/packaging work, with at most one retry within six hours. API token/permissions and live runtime outcomes remain separately monitored.
+- The runner did not write to production or deploy. A green workflow means the runner's checks completed, not that blocked catalogue evidence, browser QA, or release is resolved.
+- Resume/persistence note: the report contains accumulated task events across multiple timestamps and the current state file is published as an artifact. This supports state accumulation within the artifact history, but does not by itself prove cache restoration across independent scheduled runs; perform a two-run state-resume comparison before declaring that requirement verified.
+- Current blocker remains source evidence for catalogue QA and the real browser/storefront QA evidence. Keep release blocked and production catalogue untouched until those dependencies pass. No Cloudflare/Netlify credits used.
+- Next execution order: (1) verify cross-run state restore by comparing the next runner artifact with this report; (2) inspect the exact source images / SKU evidence needed to clear catalogue holds without guessing; (3) execute actual browser QA against staging and separately verify Axxess live behaviour; (4) update this handover again with measured results before any release action.
