@@ -2393,3 +2393,13 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Clarification: Live Release Gates run #3 verified six public routes (all HTTP 200), successful TLS through curl, and successful desktop/mobile category + safe checkout browser checks. It also found that live `VERSION.txt` equals the repository's `VERSION.txt`, whose content is the legacy text `2026-09-15 product details`. That text is not a commit hash and **does not by itself prove the deployed source version**.
 - Added exact byte-for-byte comparisons of the live `index.html`, `index-new.html`, `category.html`, `checkout-v2.html`, and `assets/category-tree.json` against repository source to the live gate. A mismatch will now block the gate after browser tests complete. The next workflow run must establish these source hashes before claiming the live deployment is current.
 - PayFast/PayJustNow remain not integrated/confirmed; only Direct EFT appears in live checkout. Catalogue evidence and current price reconciliation remain unresolved. No live catalogue, database, hosting or payment settings were changed.
+
+
+## CONTINUATION LOG — 2026-10-14 — LIVE SOURCE HASH GATE PASSED
+
+- Live Release Gates run #6 completed successfully: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38559111166
+- All eight public URLs tested returned HTTP 200: `/`, `/index.html`, `/index-new.html`, `/category.html`, `/checkout-v2.html`, `/terms-and-conditions.html`, `/returns-refunds.html`, and `/assets/category-tree.json`. Curl completed with normal TLS certificate verification.
+- Exact byte comparisons passed for live versus repository `index.html`, `index-new.html`, `category.html`, `checkout-v2.html`, and `assets/category-tree.json`. This confirms those five critical static files match the current repository copies. The legacy `VERSION.txt` marker also matches, but remains descriptive text rather than a commit hash.
+- Live Playwright passed category navigation at 1365px desktop and 390px mobile, with 9 root categories observed in each. Live checkout UI passed in both viewports using a mocked product API; both order submissions were intercepted and no real order was sent. Payment selector exposed only Direct EFT.
+- Still open: PayFast/PayJustNow integration and merchant readiness; exact June OCR correction application and complete SKU/description/cost reconciliation; September/October exact-SKU pricing joins; image/category validation; and final full release approval. The live test only verifies the listed static files and tested flows, not every asset, database rule, or payment-provider settlement.
+- No production catalogue, Supabase rows, Axxess hosting files, DNS, or payment configuration changed. Release remains HOLD.
