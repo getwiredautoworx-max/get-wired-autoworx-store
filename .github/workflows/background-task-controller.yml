@@ -21,6 +21,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate controller syntax
+        run: python -m py_compile scripts/background_task_controller.py
+
       - name: Build task checkpoint from queue and recent workflow results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
