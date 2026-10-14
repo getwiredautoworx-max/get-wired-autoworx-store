@@ -14,3 +14,11 @@ Date: 2026-10-14 (South Africa)
 - Store is not yet declared ready for live testing. Workflow creation is not the same as a successful test.
 - Existing evidence: 107 October price-difference rows were previously reported source-verified; 198 category review rows were found in guide OCR but are not approved; 470 June OCR rows still need full exact-SKU/page/cost reconciliation.
 - Next owner-safe action: verify an actual GitHub Actions run and restore exact audit-branch source evidence. Keep production protected.
+
+
+## Verification follow-up — 2026-10-14
+
+- Confirmed the Playwright workflow file exists on main; its cron is daily at 06:30 UTC and manual dispatch is configured. No run conclusion or artifact is yet verified, so QA remains NOT RUN/UNVERIFIED.
+- Both scheduled automations are enabled, but the automation service still reports `next_run_time=null` for each despite the daily DTSTART configuration. Last recorded monitor run: 2026-10-14T12:30:46Z; reconciliation: 2026-10-13T18:25:09Z. Future execution and immediate-run completion remain unverified.
+- Attempted to fetch the expected price/category audit CSVs on main and the three listed audit branches; those exact path/ref combinations returned 404. Do not reconstruct row data from memory or assume the files are gone everywhere; locate the actual branch paths/tree or regenerate from original source evidence.
+- The current handover was successfully updated in commit `9e90cfb30264e3fc10ae2151e7532d7009ac4d60`. Release remains HOLD; no production/deployment/hosting/payment/catalogue changes or Cloudflare/Netlify credits used.
