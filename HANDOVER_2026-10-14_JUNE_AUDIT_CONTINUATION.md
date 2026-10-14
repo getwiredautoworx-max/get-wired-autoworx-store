@@ -192,3 +192,10 @@ Production untouched.
 - Added `staging/source-extracts/june-source-coverage-audit-page15.csv` with 13 source items absent from staging; latest audit-branch commit for the correctly scoped file is `eb941d80ade4e25deaf8492cdf2cdc2c8013d985`.
 - Missing examples include fuel-pump codes `F1-108`, `F1-119`, `UC-JC10HC`, `F1-042`, and fan-blade/viscous-clutch codes `F9-TY02AC`, `F9-001-5`, `F9-001-28`, `F9-001-66`, `F9-001-75`, `F9-002-15`, `F9-002-51`, `F9-002-70`, `F9-002-81`.
 - Page 16–17 remain classified as Hoteche promotional/display material rather than normal priced product pages; page 18 source-image review is still to be completed.
+
+
+## 2026-10-14 follow-up — page 18 SKU visual reconciliation
+- Inspected printed page 18 and compared it with the worksheet's page-18 rows. Added `staging/source-extracts/june-visual-crosscheck-page18.csv` (20 visual findings; audit branch commit `e218d21a23209b5d3e6929c2dbe1eb14155b744c`).
+- Confirmed multiple letter-O/zero confusions in Quantum sliding-door parts, Suzuki door handles, and window-winder codes (e.g. `Q-BDSO1` vs source `Q-BDS01`; `DHFL-SEO1` vs `DHFL-SE01`; `M-WRHO2` vs `M-WRH02`).
+- Flagged a stronger row-mapping mismatch: worksheet candidate `DHIR-SBO1` does not match the source item shown as `DHIR-NP200B`; do not auto-correct without reviewing the complete product row.
+- Page 18 visual review establishes SKU-code findings only; descriptions, current costs, category mapping and image approval remain separate checks.
