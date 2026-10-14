@@ -21,3 +21,14 @@ Next: add a reviewed copy of the required staging JSON files to the runner branc
 - Further fixes committed: actual hierarchy/grouping keys (`roots`/`groups`), retry-per-run with cumulative accounting, testable CLI argument parsing, controller syntax/policy check, and dependency-aware approval status so release cannot appear ready while upstream approvals are blocked.
 - A new run for latest dependency-status fix is pending verification. The schedule will not be active from the default branch until the draft PR is approved/merged; do not merge without owner review.
 - Still blocked: catalogue original-page visual verification, exact-SKU/price reconciliation, browser/mobile QA, and live controller API token/permissions outcome verification. No production, Supabase, Axxess, payment or live catalogue changes.
+
+
+## Latest final validation — 2026-10-14 10:17 UTC
+
+- Latest workflow run for the dependency-status fix completed successfully: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38548438163
+- Syntax/regression tests: PASS. Bounded runner execution: PASS. State cache save: PASS. JSON report artifact upload: PASS.
+- Report artifact: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38548438163/artifacts/11885940538 (expires 2026-11-13).
+- Verified task states in the latest log: `repo_safety=passed`, `staging_taxonomy=passed` (8 roots / 17 proposed rules), `controller_presence=passed` (source syntax and safe retry allowlist verified), `catalogue_source_qa=blocked_approval`, `browser_qa=blocked_approval`, `release=blocked_dependency`. This is the intended safe stop, not a failed run.
+- Prior-run state cache restore was observed in run 38548278162; state timestamps/attempt totals persisted into later invocations.
+- The draft PR remains unmerged. The scheduled 30-minute workflow is therefore not yet enabled on the default branch; branch-triggered runs are proven. Do not merge without owner review.
+- Controller runtime token/permission and its own scheduled monitor artifacts remain a separate operational check. Catalogue visual evidence, exact-SKU/price reconciliation and storefront browser/mobile QA remain held for evidence; production catalogue is untouched.
