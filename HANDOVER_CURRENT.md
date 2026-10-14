@@ -418,3 +418,13 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - Guardrail reinforced: preserve original source page and card coordinates; assign SKU only from the code printed on the same card; read price from the same card's price glyphs, not adjacent numeric SKU tokens or duplicated PDF text-layer fragments; map category from the printed section heading. Where image, SKU, price, or category cannot be read unambiguously, mark REVIEW and do not alter the live product.
 - No production database/catalogue writes, image changes, category moves, imports, hosting changes, DNS/payment changes, deployment, or Axxess upload performed.
 - **Release remains HOLD.** The source reconciliation defect is not resolved. Next work must rebuild row extraction using page-image/card-region association, validate all 800 expected rows including 9 system-priced entries, then exact-join SKU to the 4,187 live SKU set and produce a review-only delta. Never promote the current candidate CSV to import-ready.
+
+
+## CONTINUATION LOG — 2026-10-14 — SEPTEMBER IMAGE-ASSET GATE RECHECK
+
+- Verified the recovered artifact `September_Reconciliation_Recovery_Summary_2026-10-14.json`: it is explicitly a reconstruction from the verified full-inventory workbook, **not** the original corrected September candidate CSV.
+- Measured state: 800 rows / 800 unique SKUs / 0 duplicate SKU rows / 791 priced rows / 9 unpriced quote-only rows. Image paths present: **0/800**; missing: **800/800**; import-blocked: **800/800**.
+- This is not safe to repair by guessing image paths or borrowing images from nearby SKUs. Exact-SKU image matching remains mandatory. The nine asterisked rows remain quote-only and are not assigned prices.
+- No valid original September corrected candidate CSV or its image-asset directory was identified in the available Library search. The June correction ledger cannot be applied meaningfully to this reconstructed September inventory without first obtaining the proper source candidate and ensuring each correction target is unique. No before/after join result is claimed.
+- Status: **BLOCKED — source candidate and image assets not located in current search; no import or production update permitted.** This segment did not alter Supabase products, Axxess files, DNS, payment settings or deployment.
+- Next: inspect repository staging paths for the actual September candidate, June correction ledger, and image assets; if absent, construct a new review-only candidate from original September PDF page/card regions and the supplied source images. Record row-level SKU, image, price, description and category evidence, and leave ambiguous rows blocked. Continue independent release gates without repeating completed baseline counts.
