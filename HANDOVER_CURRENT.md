@@ -89,3 +89,49 @@ ETAs below are work estimates after required evidence/access arrives, not promis
 - Use deterministic prefix-family mapping where the supplier SKU convention supports it; record the prefix rule, source heading and exceptions. Apply it across the complete candidate dataset, not only to flagged samples. Do not use the previous 34/94/42 counts as blockers requiring manual category invention; they are work-queue signals that should be resolved by this mapping method.
 - Status discipline: category mapping can be resolved in staging from guide headings/prefix/product family without supplier price or image permission. Price confirmation and image rights are separate launch gates; never conflate them with category validation. Do not change production taxonomy or publish products during staging review.
 - Required next category output: a revised 800-row mapping with (a) approved top-level category candidate, (b) source subcategory retained, (c) proposed storefront subcategory, (d) SKU-prefix rule where supported, (e) confidence/reason, and (f) explicit exception only where the evidence conflicts. Temporary subcategories are acceptable and should reduce unresolved-category count instead of keeping ordinary product families on HOLD.
+
+
+## OWNER CHECKPOINT — EXACT TASKS TO REACH LIVE-TESTING READINESS (2026-10-14)
+
+This section records the latest owner-facing release plan. “Ready for live testing” means the approved/staged catalogue and the live Axxess site pass controlled functional smoke tests; it does not mean public customer launch or payment-provider approval. Do not describe the store as test-ready until the applicable exit criteria below are evidenced.
+
+### P0 — Catalogue and data integrity gates
+
+1. **Repair and validate the 800-row candidate.** Reconcile every expected SKU to its correct product description, historical source/page and cost; resolve extraction/join errors; prove 800/800 unique expected SKUs or explicitly account for each excluded row. Apply the required review-price formula `round(cost_ex_vat * 1.15 * 1.35, 2)` only as a calculation, not as proof of current supplier pricing. Keep the nine quote-only SKUs (M501WCC, A1-002, A1-003, MA330, MA342, MA342/2, N-FC001, WP25, N-CP002) blank/quote-only and excluded from sale. Prevent any unpriced row from becoming active at zero. Never execute the unsafe September SQL. Exit evidence: row-level reconciliation report, formula audit, explicit exclusions and no unexplained SKU/cost associations. Estimate: 1–2 focused sessions once source discrepancies are resolved.
+
+2. **Produce the revised full 800-row category mapping.** Use Buyers Guide source category/subcategory as primary evidence; description/application and meaningful first 3–5 SKU characters are cross-checks. Map each valid item to one of the eight approved top-level categories and create sensible staging subcategories where necessary; preserve original source headings. Group families correctly (Aerials; Clips; Spanners; Winches/Winch Spares; Switches/Relays; trailer/canopy; mechanical vehicle spares). Document only real evidence conflicts as exceptions. All rows stay staging-only and import-ineligible until other gates pass. Exit evidence: revised CSV with source heading/page, proposed top-level and subcategory, prefix rule where supported, confidence/reason, and explicit exceptions. Estimate: 2–4 focused sessions for row-level validation. **Status at checkpoint: required output not yet generated.**
+
+3. **Verify images and usage rights.** Match each selected candidate product to an exact SKU/model image using positive evidence; replace incorrect/missing images with authorized supplier assets or exclude affected items from the test catalogue. Obtain permission for any ASC/supplier-guide image before publication. Do not publish QA crops or inferred filename matches. Exit evidence: image-to-SKU crosswalk and rights/asset source record; every test-catalogue product has a verified image or is explicitly excluded. Known: 30/38 price-held SKUs appear in the unmatched-image queue; the other eight are not automatically verified. The September 800-row candidate has no verified image paths yet. Estimate: 1–3 sessions for matching after assets/indexes are accessible; third-party rights response time unknown.
+
+4. **Resolve the 38 live price-scaling defects.** Request and reconcile current written supplier cost/availability/validity for each exact SKU. Do not change live prices using expired September values. Exit evidence: per-SKU decision backed by current cost and formula, or an explicit HOLD/exclusion. Estimate: 1 session to reconcile responses after receipt; supplier response time unknown.
+
+### P1 — Site, data delta and test evidence
+
+5. **Verify Axxess DNS/SSL/canonical behaviour.** Test root and www domain variants, valid SSL, intended canonical redirect and preservation of MX/SPF/DKIM. Owner has contacted Axxess; do not change DNS blindly while awaiting their response. Exit evidence: timestamped checks of both URLs and email DNS. Estimate: 30–60 minutes after provider changes/propagation if no new issue occurs. Status: waiting on Axxess.
+
+6. **Run complete controlled storefront and checkout QA.** Test desktop/mobile navigation, all eight categories/subcategories, search, product details/images, cart/quantities/totals, delivery and pickup, required checkout fields, policy links and error handling. No real paid order and no payment setting changes. Record pass/fail and retest critical fixes. Prior release-gate workflow 38559111166 passed its specified narrower tests, but does not prove this full-catalogue/Axxess test complete. Estimate: 1 focused session after candidate and domain are stable.
+
+7. **Reconcile staged candidate against live baseline.** The last verified baseline is 4,187 active products/SKUs. Produce a per-SKU KEEP/UPDATE/ADD/QUOTE/HOLD ledger, detect duplicates and unintended deletions/overwrites, review each proposed price/category/image change, and prepare backup plus rollback. Exit evidence: reviewed delta with no unexplained changes. Estimate: 1–2 sessions after reliable catalogue/evidence is available.
+
+8. **Single controlled release and post-upload verification.** Only after applicable P0/P1 criteria pass: record approved build/data version; package the approved changes once; perform one controlled Axxess upload with rollback checkpoint; verify deployed version, root/www, routes, mobile, catalogue sample, cart and checkout; record test evidence and update this handover. No production bulk write or deployment is authorized before the gate passes. Estimate: 1 focused session after all gates pass.
+
+### Deferred, not part of this live-testing gate
+
+- PayFast and PayJustNow approval/payment verification remain deferred per owner instruction. Required before claiming online payments are production-ready, not a reason to perform real payment tests now.
+- Cloudflare/GitHub/Supabase mirror synchronization should be batched with the final release only where needed and when access/token blockers are resolved. Avoid repeated builds and credit use.
+- Successful release-gate/monitoring workflows must not be rerun without a relevant code change or failure.
+
+### Readiness status and planning estimate
+
+**NOT READY FOR LIVE TESTING OF THE RECONCILED CATALOGUE. CUSTOMER LAUNCH HOLD.** The earlier workflow success covers only its recorded test scope. The 800-row category mapping is still to be generated; catalogue associations, exact-SKU image evidence/rights, current pricing for 38 held SKUs, Axxess DNS/SSL and full QA remain open to the extent recorded above. Planning estimate remains 6–10 focused work sessions after required source/evidence is accessible, plus external supplier/Axxess response and propagation time. This is not a calendar launch promise.
+
+### Immediate execution order (no circular reruns)
+
+1. Generate the revised 800-row staging category mapping using the permanent owner directive; record actual resulting category counts and true exceptions.
+2. Continue exact-SKU/source/cost reconciliation and produce an evidence-backed candidate; never execute the unsafe September SQL.
+3. Continue image crosswalk and supplier rights request; keep unverified items out of any test catalogue.
+4. Obtain current supplier prices for the 38 held SKUs or mark each held.
+5. Continue independent staging work while Axxess/supplier replies are pending.
+6. Once applicable gates pass, perform the controlled QA and one-batch release; update this handover with measured results and commit references.
+
+No production catalogue write, unsafe SQL execution, deployment/upload, DNS change, or payment-setting change was performed by this handover update.
