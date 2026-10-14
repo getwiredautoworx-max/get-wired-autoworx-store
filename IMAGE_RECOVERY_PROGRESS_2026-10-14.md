@@ -3,18 +3,26 @@
 ## Owner instruction
 The owner manages supplier relationships. Do not contact, interview, or ask the owner to contact suppliers as part of this workflow. Continue independent recovery and reconciliation using existing project files and assets. Supplier contact/confirmation is the owner's responsibility.
 
-## Evidence recovered
-- Located the existing `Get_Wired_AutoWorx_VERIFIED_SKU_PICTURE_CATALOGUE_UPDATE_53.pdf` in the project library.
-- The PDF contains 53 embedded product images and 53 SKU/description records. Extracted the 53 image files and created a SKU-named review-only package plus manifest:
-  - `Get_Wired_AutoWorx_53_Recovered_Catalogue_Images_REVIEW_ONLY.zip`
-  - `Get_Wired_AutoWorx_53_Image_Recovery_Manifest_REVIEW_ONLY.csv`
-- The extracted images are recovery candidates from the existing catalogue PDF. They are not automatically approved for publication: image-to-product visual QA and usage rights remain separate gates.
-- This recovery does not establish paths for the other 747 rows in the reconstructed 800-row candidate, and does not restore the missing original September corrected CSV/image folder.
-- Status remains: September candidate image paths verified 0/800; all 800 rows remain import-ineligible. No production database writes, imports, deployments, Axxess uploads, DNS changes, or supplier communications were made.
+## Material recovery result
+- Located `Get_Wired_AutoWorx_ILLUSTRATED_PRODUCT_CATALOGUE_VERIFIED_2026-09-19.pdf`, containing 4,186 SKU-matched product tiles.
+- Parsed the 800 unique September candidate SKUs from the archived SQL payload in read-only mode; SQL was not executed.
+- Matched exact SKU labels and extracted their paired image tiles: **791/800 exact SKU images recovered**. The nine unmatched SKUs are the unpriced/quote-only items: `M501WCC`, `A1-002`, `A1-003`, `MA330`, `MA342`, `MA342/2`, `N-FC001`, `WP25`, and `N-CP002`. No image was guessed for them.
+- Crosswalk check: 791/791 recovered rows have candidate names matching the illustrated catalogue titles after normalization; zero duplicate SKU mappings.
+- 16 recovered images are flagged for low-resolution review; 775 pass the initial dimension threshold but still need visual QA.
 
-## Next execution sequence
-1. Visually compare each of the 53 extracted images against its SKU/description record and correct any order/pairing mismatch before marking it verified.
-2. Search existing repository/library/source catalogue assets for additional exact-SKU images and filenames; build an inventory of available files and exact identifier matches.
-3. Generate an 800-row image crosswalk with statuses `EXACT_MATCH_REVIEW`, `MISSING_ASSET`, `VISUAL_MISMATCH`, and `RIGHTS_UNCONFIRMED`. Never count a filename guess as verified.
-4. Keep non-matching rows excluded from the candidate import; do not fabricate images or assign generic images to exact products.
-5. Preserve the single controlled release workflow; no live sync until all applicable gates pass.
+## Recovery deliverables
+- `Get_Wired_AutoWorx_September_791_Exact_SKU_Image_Recovery_REVIEW_ONLY.zip` — 791 images in `images/<exact-SKU>.<extension>` paths.
+- `Get_Wired_AutoWorx_September_800_Image_Crosswalk_2026-10-14.csv` — all 800 SKUs with source page, recovered path, dimensions, title match and status.
+- `Get_Wired_AutoWorx_September_Image_Recovery_Summary_2026-10-14.json` — counts and exception list.
+
+## Separate gates / no production changes
+- Usage rights remain unconfirmed for all 791 recovered supplier-catalogue images. Do not publish until rights are confirmed or authorized replacements are used. Owner controls supplier contact; do not contact suppliers or ask the owner to contact them.
+- All recovered images still require visual QA; 16 low-resolution assets need special attention.
+- All 800 rows remain import-ineligible. The nine unpriced SKUs must remain quote-only/inactive. Price, category, data-integrity, checkout, rights and deployment gates are separate.
+- No production writes, SQL execution, imports, deployment, Axxess upload, DNS change, or payment setting change was made.
+
+## Next work, in parallel
+1. Inspect whether existing source-guide assets can improve the 16 low-resolution images, without substituting grouped imagery for size-specific products.
+2. Create/review a visual QA contact sheet; flag blanks, mismatches, text/branding and unusable crops.
+3. Continue category and row-integrity QA concurrently.
+4. Preserve the single controlled release workflow; sync only after all gates pass.
