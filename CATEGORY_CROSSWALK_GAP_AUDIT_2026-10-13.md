@@ -138,3 +138,15 @@ A direct reinspection of the May 2026 p.7 page image shows **MIRRORS is printed 
 ## 2026-10-14 latest crosswalk count reconciliation
 
 The current CSV's `visual_verification_status` field has **59 new page-image findings recorded**, **8 rows marked as verified in the earlier visual-QA pass**, and **48 rows still awaiting page-image verification** (47 explicitly pending plus one not visually verified in this step). Of the 59 new findings, **25 rows remain partial, aggregate-label or heading-variant findings**; the exact cited page range is not fully closed for all of them. Do not use the earlier interim counts of 34 or 42 as current.
+
+## 2026-10-14 October price-candidate image verification
+
+The October exact-SKU price-difference report was expanded with live product names, extracted October title context and a text-overlap review screen. A visual review of October pp.4, 11, 23, 26 and 29 resolved the six low/medium-context rows:
+- RTD532 — page 4, R99.37
+- G1034 — page 11, R26.59
+- H755W-NB — page 11, R16.47
+- IG-MAN1 — page 23, R310.56
+- TOY-001 — page 26, R23.54
+- T923 — page 29, R49.10
+
+Each exact SKU, item description and printed amount matches the live product's cost price; live selling price remains formula-correct. The report now has **107/107 October printed prices equal to live cost**, with **13 item descriptions individually verified** (the previous seven plus these six) and **94 rows with high title-text overlap** that still need quick identity spot-checking. This is a review report only; no price writes were made. Latest report commit `53117f2feefb1ca2b6b3ca509847984c6f3a1447`.
