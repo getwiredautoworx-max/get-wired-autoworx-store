@@ -1792,3 +1792,10 @@ Status: IN PROGRESS. Latest handover was read before other work. The normal file
 ### 2026-10-14 latest crosswalk QA count reconciliation
 
 The current crosswalk file reports **59 new page-image findings recorded**, **8 rows previously verified in the earlier visual-QA pass**, and **48 rows still awaiting page-image verification**. Of the 59 new findings, **25 remain partial/aggregate-label/heading-variant findings** with some cited pages still pending. Use these latest counts instead of interim 34/42-row counts in earlier checkpoint notes.
+
+### 2026-10-14 09:35 SAST — October exact-SKU price verification extended
+
+- Expanded the 107-row report with live product names, October source title context and a title-overlap review screen. Original October pages 4, 11, 23, 26 and 29 were inspected to resolve six previously low/medium context candidates: RTD532 (R99.37), G1034 (R26.59), H755W-NB (R16.47), IG-MAN1 (R310.56), TOY-001 (R23.54) and T923 (R49.10). Exact code, item description and printed amount match each live cost.
+- **107/107 October guide printed prices equal the live cost price**. **13 rows have individually verified item descriptions** (the earlier seven plus these six); **94 rows have high source-title text overlap** and still require a quick identity spot-check. All 107 live selling prices remain formula-correct; no price updates are indicated by this comparison.
+- Latest price report commit `53117f2feefb1ca2b6b3ca509847984c6f3a1447`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/EXACT_SKU_LIVE_VS_GUIDE_STAGING_PRICE_DIFFERENCES_2026-10-14.csv
+- Latest source-heading QA: 59 new page-image findings recorded, 8 prior verified, 47 explicitly pending, and 1 not visually verified in this step. 25 of the 59 new findings are partial/aggregate-label/heading-variant records; don't count those as fully closed. No production changes occurred.
