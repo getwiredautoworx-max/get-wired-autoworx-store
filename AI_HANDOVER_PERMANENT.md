@@ -1767,3 +1767,8 @@ Status: IN PROGRESS. Latest handover was read before other work. The normal file
 - The review queue's current distribution is led by Tools & Workshop > AUTOMOTIVE TOOLS (39), root-level Automotive Accessories (33), Tools & Workshop > Cutting Tools (20), root-level Tools & Workshop (16), Electrical > Lighting > Spotlights (10), and root-level Spare Parts (10). The queue also contains items under mechanical/mixed branches (automotive hoses, air filters, suspension, brake parts, mirrors, fuel pumps/oil filter, thermostats/pipes, cylinders); retain manual review and do not automatically move them into approved electrical/accessory roots.
 - All 198 review-queue rows passed the live selling-price formula check. This does **not** resolve their category decisions; no category/product rows were changed.
 - The fresh baseline supersedes the 13 October snapshot for current mapping work. Older category counts in prior review notes are historical and must not be reused as current counts. Use the new baseline and review-queue CSV for the next SKU-by-SKU reconciliation.
+
+
+### Correction — MIRRORS source heading reinspection (2026-10-14)
+
+- Correction to the earlier 08:45 note: direct reinspection of the May 2026 p.7 image shows **MIRRORS is a printed standalone heading** at the top of that page. The earlier contrary statement was a visual misread. The audit branch crosswalk was corrected in commit `fe163813b591b3cbbefec09e9db50287997d0de3`, and the gap-audit correction is recorded in commit `ebde94c4078f94995bf4dd0bc692b806c6ada079`.
