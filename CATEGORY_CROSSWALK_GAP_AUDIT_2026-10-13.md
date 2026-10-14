@@ -92,3 +92,17 @@ Ten records in the prior `evidence_status=Needs review` queue were checked again
 - May p.18 confirms BOOSTER CABLES and prints JC200AMP at R100.99 excl. VAT and JC400AMP at R168.73 excl. VAT. These are printed guide prices, not supplier cost prices; no live price was changed.
 - Source crosswalk evidence and visual-verification statuses now record these findings. This resolves the priority evidence-status queue only; it does not finish the remaining page-image QA, resolve all 115 unique heading rows, or authorize category/product writes.
 - Visual QA surfaced important mapping caution: February p.6 includes exhaust tail pieces inside the broader AUTOMOTIVE ACCESSORIES section, so the source section heading alone is not proof that each item belongs in the approved storefront. March p.24 has SOCKETS and GARDEN TOOLS as separate printed sections on the same page. Continue classifying actual products by exact SKU/function rather than copying a page-wide label.
+
+
+## 2026-10-14 additional page-image QA batch
+
+Eleven more crosswalk records were reviewed against original source page images; crosswalk commit `370ab341f2a0285ac83ae675f2999c7696ddb307`.
+
+- June p.3 confirms **4X4 & OUTDOOR**.
+- July p.7 is printed **4X4 AND OUTDOOR**, not “4X4 AND CAMPING”; the latter is an alias/extraction discrepancy.
+- February p.4 is printed **CAMPING**, while March p.4 is printed **4X4 AND OUTDOOR**; record this as a source-to-source heading difference, not a single heading on both pages.
+- August and September p.5 confirm **4X4 OUTDOOR**; their p.4 is **ACCESSORIES**.
+- March p.13 confirms **ABRASIVES**; May p.26, June p.24, and August pp.30-31 confirm the same section. Adjacent CUTTING TOOLS, CONSUMABLES, PADLOCKS and BOAT ACCESSORIES are distinct headings.
+- May p.3-4 contains separate OUTDOOR, SAFETY, ACCESSORIES, CHEMICALS, DOOR SPARES and PANEL CLIPS headings; do not interpret the whole spread as a single Accessories section.
+- August and September p.4 confirm **ACCESSORIES**; February p.8 confirms **QUANTUM ACCESSORIES**; February p.9 confirms **ADHESIVES AND SILICONES**; June and September p.10 confirm **AERIALS**.
+- Current crosswalk status after this batch: **21/115 rows have page-image findings recorded; 94 remain pending**. There are now zero entries left in the former `Needs review` status, but 94 other rows still need source-page review. A page-image heading finding does not authorize moving products: item-level category scope must still be validated by exact SKU and product function.
