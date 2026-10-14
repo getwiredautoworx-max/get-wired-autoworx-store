@@ -592,3 +592,14 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 - **Completed:** live read-only category-tree recount; exact enumeration of all 565 outside-root products; per-row proposed destination/disposition ledger; latest desktop/mobile HTTPS/navigation/checkout UI release gate run; exact checked-source comparison; rollback notes.
 - **Not completed / still blocks release:** final approval of 404 quarantined category assignments (321 out of stated product scope, 83 ambiguous); remove the 9th root in the staged storefront candidate; verify category product counts and 8-root navigation after correction; full September 800-row image identity/description/price/rights validation; PayFast/PayJustNow (deferred); actual current deployment parity beyond the five checked source files.
 - No production category/product/price/image/stock/payment/DNS/hosting changes were made. No real order or payment was submitted.
+
+
+## STAGED EIGHT-ROOT CATEGORY FIX — 2026-10-14
+
+- Created isolated branch `qa/category-root-fix-2026-10-14` from the current main line; this is not merged or deployed.
+- Updated `category.html` on that branch to remove only the legacy `Spare Parts` item from the hard-coded root list. Static check of the committed branch file passes: **8 roots exactly**, no `Spare Parts` root entry, and all eight intended labels remain (Auto Electrical, Vehicle Security, Car Audio, Accessories, Marine Spares & Accessories, Tools/Hardware/Consumables, Camping/Leisure/Outdoors, Trailer & Canopy).
+- Candidate code commit: `ccf519b6c5608101b4b85790f679eeedaa867635`; validation note commit: `72001715dff6cd6109e2b6a144a6858d69ec10ea`. QA report: `staging/CATEGORY_ROOT_FILTER_VALIDATION_2026-10-14.md` on branch.
+- The root filter change affects storefront navigation only; it does not reassign or delete any product. The 565 legacy-root products remain enumerated in the CSV. The 321 out-of-scope mechanical products and 83 scope/manual-review products must remain quarantined pending approved product handling; the 161 candidate mappings also require row-level confirmation before any database move.
+- Branch is **not merged, not uploaded to Axxess and not deployed**. No production changes made. Before considering merge/sync, browser-test all 8 roots on desktop/mobile and ensure category/product routes function; this session only proves static ROOTS-list count, not browser rendering of the staged branch.
+- Latest main-branch live release gate remains run `38624500758` SUCCESS at candidate commit `e2f783d76c367ae7523f31afee4f8cd8e76a819a`. The staged branch is a later unmerged candidate and has not been run through a branch-specific browser test. Main live gate still passes with 9 roots because main has not been changed.
+- Current rollback: delete branch `qa/category-root-fix-2026-10-14` or revert its two commits; no database rollback required.
