@@ -310,3 +310,13 @@ This is meaningful staging reconciliation progress, not customer-ready pricing. 
 
 ### Next action
 Continue exact source/image review and fix the six original mapping exceptions only if their original identities can be recovered; otherwise track the reconstructed New Arrivals decisions as separate, provenance-labelled corrections. Build the image-to-SKU crosswalk and prepare current supplier price confirmations. Keep release held until current prices, images/rights, category gates, Axxess DNS/SSL, full QA, live delta and rollback pass.
+
+
+## CORRECTION / LATEST STAGING ARTIFACT STATE — 2026-10-14 19:45 SAST
+
+- The recovered mapping CSV was updated after cross-checking the 4,186-row historical catalogue. STUD1005 is now placed under Automotive Accessories > Wheel Accessories because adjacent STUD10xx wheel-stud source records explicitly use WHEEL ACCESSORIES. SFDP1-015-080-31 now has a provisional staging placement under Marine Spares & Accessories > Water Pumps based on the SF product-family and adjacent Seaflo pump records; its marine/RV application still requires confirmation before product approval.
+- New Arrivals rows: 17/17 now have a staging category proposal. This does not mean the original six low-confidence flags were recovered byte-for-byte or that product approvals passed. Source/application confirmation notes remain on selected families.
+- Updated recovery audit: `/mnt/data/Get_Wired_AutoWorx_800_Recovery_Audit_2026-10-14.txt`. Updated exact cost join artifacts: `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_STAGING_2026-10-14.csv` and `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_AUDIT_2026-10-14.txt`.
+- Created combined local pack `/mnt/data/Get_Wired_AutoWorx_800_Staging_Recovery_Pack_2026-10-14.zip` containing the recovered mapping, recovery audit, exact historical cost join CSV and cost audit report. The files exist in the current working container; Library storage limit prevented CSV/ZIP persistence, and these generated data files are not committed to GitHub. Do not claim otherwise.
+- Verified core counts remain 800 rows / 800 unique SKUs / 0 import-eligible; exact historical join 791/800, 791/791 description matches, 791/791 source-page matches, 38/38 historical hold-register cost matches, 753 historical source costs requiring scale normalization, 791 archived candidate prices VAT-only, and 9 quote-only rows kept excluded. All 800 lack image paths in the recovered payload.
+- Customer launch and reconciled-catalogue live testing remain on hold. No production writes, SQL execution, deployment, Axxess upload, DNS change or payment-setting change.
