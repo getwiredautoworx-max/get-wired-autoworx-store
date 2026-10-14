@@ -49,7 +49,7 @@ class RunnerTests(unittest.TestCase):
                 runner.STATE = Path(td) / "state.json"
                 with mock.patch.object(runner, "check", side_effect=[(False,"transient"),(False,"still down"),(True,"recovered")]) as check:
                     with contextlib.redirect_stdout(io.StringIO()):
-                        self.assertEqual(runner.main(), 1)
+                        self.assertEqual(runner.main([]), 1)
                     state1 = json.loads(runner.STATE.read_text())
                     self.assertEqual(state1["tasks"]["synthetic_check"]["status"], "failed")
                     self.assertEqual(state1["tasks"]["synthetic_check"]["attempts"], 2)
