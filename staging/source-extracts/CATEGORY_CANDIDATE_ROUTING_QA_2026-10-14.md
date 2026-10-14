@@ -38,6 +38,6 @@ This is a validation checkpoint for the 18 proposed routes in `CATEGORY_REVIEW_Q
 ## Next action (avoid repeated first-pass work)
 
 1. Locate the exact original guide rows for the 16 provisional items and correct each source page/subcategory field where the current metadata conflicts with the title.
-2. Resolve the two source-crosswalk page-reference mismatches separately: `IGNITION BARRELS AND SWITCHES` (June p.31 currently points to HAND WINCHES / SPECIAL DISCOUNTED PRICE) and `WATER SPORTS` (June p.30 currently points to TAPPET COVERS / SPECIAL DISCOUNTED PRICE). Do not infer replacement pages from nearby page numbers.
-3. Rebuild the candidate routing export once from the corrected evidence; keep the remaining 180 queue rows held unless item-level evidence supports a destination.
+2. **Resolved 2026-10-14:** the two previously flagged crosswalk entries are not wrong-page references. June p.31 contains IGNITION BARRELS AND SWITCHES in its upper section and HAND WINCHES lower down; June p.30 contains WATER SPORTS in the middle, with STICKERS above and TAPPET COVERS below. The crosswalk was corrected to record both as mixed-heading pages, not mismatches. Commit: `a8bad930bbe7bfda24f8490de971c8e669bd1af4`.
+3. Rebuild the candidate routing export once from corrected item-level evidence; keep the remaining 180 queue rows held unless item-level evidence supports a destination.
 4. Only after review, run category integrity and storefront acceptance checks. Do not deploy during this audit.
