@@ -2309,3 +2309,10 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Release decision: HOLD. Do not publish or import while any required dependency is unverified or failing.
 - Next execution order (do not loop/rebuild unnecessarily): (1) inspect the exact runner/controller workflow and latest run/job logs through a supported GitHub Actions read path; (2) correct only reproducible runner defects on a non-production branch and prove resume, bounded retry, durable result recording, dependency gating, and human-approval stop behavior in consecutive runs; (3) obtain original buyer-guide page-image evidence and close the source crosswalk pending rows; (4) reconcile exact SKUs/prices/fitment/images and preserve unmatched rows as HOLD/QUOTE/REVIEW; (5) execute browser/mobile navigation and full checkout smoke QA on a safe preview and separately verify the actual intended live domain/deployment; (6) update this handover with actual run IDs, commits, pass/fail evidence, blockers, and ETA before considering the single consolidated release.
 - Status: RUNNER PERSISTENCE REPORTED PASS; FULL RUNNER ACCEPTANCE = NOT YET EVIDENCED HERE; CATALOGUE EVIDENCE = BLOCKED; FULL BROWSER QA = NOT RUN/NOT VERIFIED; LIVE SITE = NOT VERIFIED; RELEASE = HOLD.
+
+
+## CONTINUATION LOG — 2026-10-14 — PUBLIC URL CHECK ATTEMPT
+
+- Attempted read-only fetches of `https://www.getwiredauto.co.za/` and `https://get-wired-autoworx-store.pages.dev/` using the available web verification route. Both returned “URL is not accessible via this tool”. This result is inconclusive: it does not prove either URL is down, nor does it establish successful live reachability.
+- Therefore the canonical domain, HTTPS response, deployed commit, product/category rendering, cart and checkout remain NOT VERIFIED from this session. Do not mark the live-site gate passed on the basis of these failed fetch attempts.
+- No DNS/hosting changes, deployments, workflow reruns, production data changes, or paid Cloudflare/Netlify operations were performed. Release remains HOLD pending a supported external/browser verification path and the required source evidence + browser QA.
