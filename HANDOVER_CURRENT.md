@@ -452,3 +452,14 @@ Times below are focused work estimates, not elapsed supplier waiting time. Begin
 
 ### Immediate next action
 Materialize the already-located corrected CSV from Library, inspect the source rows and assets, and start the row-level crosswalk now. Do not ask the owner to upload an artifact already present in Library. Update this handover after each material batch with exact counts, output paths, commit ID and remaining blockers.
+
+
+## EXECUTION RESULT — SOURCE CSV MATERIALIZED AND INSPECTED (2026-10-14)
+
+- The original named corrected CSV was recovered from the Library and materialized to `/mnt/data/files/September_Buyers_Guide_VALIDATED_STAGING_CORRECTED.csv` (256,272 bytes). This corrects the earlier assumption that the source was unavailable. Do not request re-upload.
+- File-level check: exactly 800 data rows and 800 unique `sku` values; 791 rows have `price` and `cost_price`, 9 are blank/unpriced; `image_url` is blank on all 800 rows. `id`, `category_id`, `subcategory_id`, `created_at` and `updated_at` are blank across all 800 rows. Source guide/page/category/subcategory are embedded in `specifications`.
+- Sample inspection confirms a severe unit/price defect: e.g. SKU `SFBP2-G1500-13A` has `source_price_ex_vat` string `48079`, `cost_price` 48079.0, and `price` 55290.85; that numeric amount is not normalized to the guide's Rand value. The file must remain quarantined and must not be imported or used as customer-facing pricing.
+- SKU uniqueness passes (800/800). Image mapping fails for the entire file as supplied (0/800 image URLs). This does not prove there are no matching images elsewhere in assets; it means this CSV alone provides no image paths.
+- Work completed in this pass: permanent handover checklist updated and committed as `b587cee133de1bca065ae00b3f906190980dea6e`. Handover now contains nine tasks, pass conditions, per-task effort estimates, a 3–4 hour internal work target, supplier-dependency caveat, and required numeric checkpoint reporting.
+- Still not resolved: exact SKU-to-image mapping; the 31 description-review row decisions; individual decisions for nine unpriced/unmatched candidates; current supplier prices; image-use/editing permissions; full row-level category validation; staged checkout/release evidence. No production writes, SQL execution, deployment, Axxess upload, DNS or payment settings changed.
+- Next immediate action: compare the corrected CSV's 800 exact SKUs and embedded source pages to available image archives/manifest and source PDF, generate an evidence-backed image crosswalk and 31-row description disposition. Continue internal work while supplier confirmations are pending; rows without current price/rights evidence stay excluded.
