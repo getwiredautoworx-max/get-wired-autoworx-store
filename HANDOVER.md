@@ -2367,3 +2367,13 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Latest completed live-gate run remains #2 and failed before browser testing due to the prior category-tree temp-file naming bug; its logs confirm all six public routes returned HTTP 200 and live `VERSION.txt` exactly matched the repository `VERSION.txt`. This is not a completed browser QA pass.
 - This handover change intentionally requests a fresh workflow run under the current corrected code. Monitor [Live Release Gates](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/live-release-gates.yml) and record the new run ID and each browser step result.
 - Payment readiness remains NOT CONFIRMED: only Direct EFT appears in the checked-in checkout. No production data, catalogue, Axxess files, DNS or payment settings were changed.
+
+
+## CONTINUATION LOG — 2026-10-14 — LIVE GATE RUN #3 PASSED
+
+- Live Release Gates run #3 succeeded: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38557580316
+- Live HTTPS/route checks passed with normal certificate verification: `/`, `/category.html`, `/checkout-v2.html`, `/terms-and-conditions.html`, `/returns-refunds.html`, and `/assets/category-tree.json` all returned HTTP 200. The live `VERSION.txt` exactly matched the repository `VERSION.txt` (`DEPLOYED_VERSION_MATCH=true`).
+- Playwright browser checks passed against the live domain at desktop (1365px) and mobile (390px): category navigation rendered 9 root categories in each viewport and category selection rendered options. Checkout UI loaded in both viewports using a mocked product response; the order endpoint was intercepted before network submission. No real order was sent. Observed payment options: `Direct EFT / bank payment` only.
+- Payment gate remains NOT CONFIRMED for PayFast and PayJustNow because they are not integrated in the checked-in checkout; merchant account status cannot be established by browser tests. Catalogue source evidence/SKU-cost reconciliation/image-category mapping remain release gates.
+- Updated the workflow trigger to avoid running a costly live browser suite on documentation-only handover edits. It remains scheduled every six hours, manually dispatchable, and triggered by relevant workflow/version/storefront source changes. No production catalogue, Supabase, Axxess hosting, DNS or payment settings were changed.
+- Release decision: HOLD pending payment provider work/merchant verification and catalogue evidence gates.
