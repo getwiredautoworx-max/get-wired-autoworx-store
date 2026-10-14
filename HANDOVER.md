@@ -2514,3 +2514,13 @@ Canonical tracking rule: remove a checklist item only after its completion is su
 - June correction ledger is present at `catalogue-audits/JUNE_GUIDE_OCR_CORRECTIONS_2026-10-14.csv` (96 ledger rows). June OCR staging costs are blank in the audit workbook's staging sheet; ledger corrections alone cannot establish valid current prices. Do not carry historic June costs forward.
 - No live database, catalogue, hosting, payment, DNS or production deployment changes were made. No checklist item involving image validation, approved category mapping, original September-source recovery, June after-join, checkout, or monitoring recovery may be removed.
 - Next safe execution: recover original source files from the exact owner-upload location or repository artifact; otherwise keep all candidate records staged. Resolve images only from matching supplier SKU/source page evidence. Run a read-only live SKU join only when the source SKU list and access path are available; then continue category and checkout gates.
+
+
+## READ-ONLY LIVE DATABASE CHECK — 2026-10-14
+Supabase project `ojytykqpvonxvepprgbh`, table `public.products`; query was SELECT-only.
+- Active products: 4,187
+- Active products with blank/missing image_url: 0
+- Active products with missing/non-positive cost_price: 0
+- Active products with non-positive price: 0
+- Active products with missing category_id: 0
+- Interpretation: structural presence checks pass for the current live catalogue. They do not establish that image contents depict the correct SKU, that categories are semantically correct, or that September candidate changes are reconciled. No writes were performed.
