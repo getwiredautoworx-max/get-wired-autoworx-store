@@ -627,3 +627,10 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 - Immediate safe resolution path: keep any product with unverified image identity/rights or stale price out of the saleable release candidate; use only exact-SKU image assets whose provenance/permission is documented, or owner-created/licensed replacement imagery; request supplier confirmation for the 38 flagged SKUs and selected launch SKUs. Supplier confirmation and image rights cannot be honestly self-certified from historical files.
 - No supplier message was sent because the available evidence does not identify a usable supplier email/contact channel, and no supplier response was found in the available records. No live database, price, image, category, payment, DNS, hosting, or deployment changes were made in this evidence pass.
 - Status: catalogue evidence gate remains HOLD. This is a documented recovery and cross-match, not a claim that the external price/rights blockers are resolved.
+
+
+## SUPPLIER CONTACT RECOVERED — 2026-10-14
+
+- Found official ASC contact details from the supplier's public contact page: Sales sales@accessoriesspares.co.za; Durban trade counter (031) 581-8400; address 17 Travertine Crescent, Briardene, Durban North, 4051. Official source: https://accessoriesspares.co.za/contact/
+- Supplier site states trade pricing / monthly Buyers Guide pricing is available to approved resellers through its secure area; the published terms prohibit commercial use of website content without express prior written consent. Official source: https://accessoriesspares.co.za/refund_returns-2/
+- This supplies a valid contact channel for the existing 38-SKU request register and a rights-permission request. No email-sending connector is available in this session, so no email has been sent and no supplier reply is claimed. Next owner action is to send the prepared request to sales@accessoriesspares.co.za (or call the trade counter), asking for current exact-SKU costs/availability and explicit written image-use/edit permissions. Keep the register blank until written response is received.
