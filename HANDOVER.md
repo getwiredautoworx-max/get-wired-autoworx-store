@@ -2344,3 +2344,11 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - The workflow separately reports payment readiness. The checked-in checkout offers Direct EFT only; PayFast/PayJustNow merchant readiness is not established by code inspection and remains a release gate. No provider credentials are added.
 - These tests are read-only against the public storefront; browser checkout mocks the product API and blocks the order function. No production catalogue, Supabase data, Axxess hosting, DNS, payment settings, or deployment were changed by this change.
 - Status at checkpoint creation: awaiting workflow execution on merge; no claim that live checks have passed. Release remains HOLD until run results are reviewed, deployed version matches, payment providers are properly integrated/approved/tested if required, and catalogue evidence gates are complete.
+
+
+## CONTINUATION LOG — 2026-10-14 — LIVE GATE FIRST RUN AND HARNESS FIX
+
+- The first network-enabled live-gate run (run #1, commit `faa6b088fee8654fad20fe890d276bd9fd7e131b`) reached `https://www.getwiredauto.co.za` successfully: homepage, `/category.html`, `/checkout-v2.html`, Terms, Returns/Refunds, and `/assets/category-tree.json` all returned HTTP 200 using curl with normal TLS certificate verification. This is positive live-domain/HTTPS route evidence.
+- That run then failed inside the test harness before Playwright because the script expected the homepage response at the wrong temporary filename (`/tmp/live-__` instead of `/tmp/live-_`). Therefore desktop/mobile browser tests and the deployed-version comparison were skipped; the run is not a full QA pass.
+- Fixing the temporary homepage filename in `.github/workflows/live-release-gates.yml` and re-running the full workflow is the immediate next action. Version match remains unverified until that run completes.
+- PayFast/PayJustNow remain unconfirmed; the source inspection shows checkout exposes Direct EFT only. Catalogue reconciliation remains a separate unresolved release gate. No production data, hosting files, DNS, or payment configuration was changed.
