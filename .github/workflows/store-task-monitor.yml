@@ -45,10 +45,11 @@ jobs:
               'staging/source-extracts/CATEGORY_QUEUE_EXACT_SKU_SOURCE_OCR_CROSSCHECK_2026-10-14.csv',
               'staging/source-extracts/CATEGORY_REVIEW_CANDIDATE_SUGGESTIONS_2026-10-14.csv'
             ];
+            const evidenceRef = 'audit/buyer-guide-extraction';
             const evidence = [];
             for (const path of expectedEvidence) {
               try {
-                const r = await github.rest.repos.getContent({ ...repo, path, ref: context.ref.replace('refs/heads/','') });
+                const r = await github.rest.repos.getContent({ ...repo, path, ref: evidenceRef });
                 evidence.push({ path, found: true, type: r.data.type, sha: r.data.sha });
               } catch (e) {
                 evidence.push({ path, found: false, status: e.status || null });
@@ -61,6 +62,7 @@ jobs:
               monitor_commit: context.sha,
               note: 'Read-only scheduled monitor; does not change production data or restart/deploy workflows.',
               latest_workflow_runs: [...latest.values()],
+              expected_evidence_ref: evidenceRef,
               expected_source_evidence: evidence,
               missing_expected_evidence_count: evidence.filter(x => !x.found).length
             };
