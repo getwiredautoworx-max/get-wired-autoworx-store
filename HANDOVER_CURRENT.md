@@ -281,3 +281,11 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 2. Process the recovered June PDF in smaller page batches with OCR and compare all 470 SKU/page entries; record candidate matches only until source image confirms exact SKU, description and printed price.
 3. Locate the source file for the 198 category queue and the 107-row October price audit; if absent, regenerate from the authoritative product export and guide/page evidence, with row counts and hashes recorded. No automatic category moves or live writes.
 4. Keep release HOLD until source evidence and real QA results are complete.
+
+
+## Follow-up — scheduled read-only monitoring fallback — 2026-10-14
+
+- Added `.github/workflows/store-task-monitor.yml` in commit `a9d81f6d50507190f676cd8f74d442e8852e46f6`. It is scheduled daily at 06:45 UTC and supports manual dispatch; it reads recent GitHub Actions workflow status and checks the three expected 2026-10-14 source-evidence paths, then uploads JSON/Markdown evidence. Permissions are read-only for Actions and contents. It cannot read ChatGPT automation internals, restart production jobs, or replace a permanently running worker.
+- This is the practical fallback for observable scheduled GitHub workflow monitoring while the ChatGPT automation API continues returning `next_run_time=null`. First execution is NOT YET VERIFIED; do not report it as operational until a run ID, conclusion and artifact are inspected. The two ChatGPT immediate-run requests were accepted, but neither completion nor future scheduling is confirmed.
+- Recovered the authoritative June PDF and audit workbook from Library; their exact names and the 470-row worksheet findings are recorded in the preceding section. The source inputs are available again, but the row-level reconciliation is still incomplete. A full 32-page OCR attempt exceeded the execution window and produced no verified row results.
+- Task 4 remains partly blocked: the expected 198-row category queue and 107-row October status CSV were not found in the checked GitHub paths or Library search. Next use the recovered workbook/source PDF plus authoritative current product export to regenerate evidence tables with row counts and source references; do not mark OCR guesses as approved and do not move products automatically.
