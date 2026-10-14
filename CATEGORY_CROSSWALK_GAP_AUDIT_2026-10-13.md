@@ -150,3 +150,9 @@ The October exact-SKU price-difference report was expanded with live product nam
 - T923 — page 29, R49.10
 
 Each exact SKU, item description and printed amount matches the live product's cost price; live selling price remains formula-correct. The report now has **107/107 October printed prices equal to live cost**, with **13 item descriptions individually verified** (the previous seven plus these six) and **94 rows with high title-text overlap** that still need quick identity spot-checking. This is a review report only; no price writes were made. Latest report commit `53117f2feefb1ca2b6b3ca509847984c6f3a1447`.
+
+## 2026-10-14 latest source-page QA count and additional findings
+
+- Additional page images confirm March p.7 **AUTOMOTIVE ELECTRICAL**, June p.19 **AUTOMOTIVE SPARES** (July p.22 instead shows SWITCHES and SPARE PARTS), March p.27 **CONSUMABLES**, June p.25 **DRILLING TOOLS**, May p.3 **OUTDOOR**, August p.31 **PADLOCKS**, May pp.5-6 **PANEL CLIPS**, and sampled **LIFESTYLE** headings.
+- Current crosswalk counts after this batch: **67 rows with new page-image findings**, **8 rows verified in prior visual QA**, **39 explicitly pending**, and **1 not visually verified in this step**. **29 rows are partial/aggregate/heading-variant findings**; cited pages noted as pending are not closed. The former `Needs review` queue remains empty.
+- Latest crosswalk commit: `f68c2d93da155bf6edee1b194b28ca79fa3d0ed8`.
