@@ -247,3 +247,7 @@ Extend the visual cross-check to pages 1–28 and reconcile all 470 June OCR sta
 - No browser/device test execution was available in this tool step; canonical domain/HTTPS, current deployed version, navigation, cart and checkout still need real-browser evidence. Previous URL retrieval failures remain inconclusive, not passes or confirmed outages.
 - No live deployment, Axxess upload, production catalogue/database changes, payment configuration changes, DNS changes, or Cloudflare/Netlify credit use performed.
 - Next precise action: verify the actual result of the pending monitoring run through available execution evidence; investigate the null next_run_time scheduling issue; execute QA_RUNBOOK.md against the current Axxess-served URL in a real browser/mobile device and attach evidence; keep payment provider gates blocked during the temporary workaround.
+
+
+## Latest continuation pointer — 2026-10-14
+See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: both schedules were re-armed but `next_run_time` remains null; the read-only Playwright workflow was added but has not yet run; live URL retrieval was inconclusive; source CSVs were not found on the default branch. No production changes were made. Do not mark QA passed until a real workflow run and its evidence are inspected.
