@@ -14,6 +14,7 @@ on:
       - Storefront Smoke Test
       - Prepare Axxess upload package
       - Public URL HTTP Verification
+      - Live Release Gates
       - pages build and deployment
     types:
       - completed
