@@ -156,3 +156,11 @@ Each exact SKU, item description and printed amount matches the live product's c
 - Additional page images confirm March p.7 **AUTOMOTIVE ELECTRICAL**, June p.19 **AUTOMOTIVE SPARES** (July p.22 instead shows SWITCHES and SPARE PARTS), March p.27 **CONSUMABLES**, June p.25 **DRILLING TOOLS**, May p.3 **OUTDOOR**, August p.31 **PADLOCKS**, May pp.5-6 **PANEL CLIPS**, and sampled **LIFESTYLE** headings.
 - Current crosswalk counts after this batch: **67 rows with new page-image findings**, **8 rows verified in prior visual QA**, **39 explicitly pending**, and **1 not visually verified in this step**. **29 rows are partial/aggregate/heading-variant findings**; cited pages noted as pending are not closed. The former `Needs review` queue remains empty.
 - Latest crosswalk commit: `f68c2d93da155bf6edee1b194b28ca79fa3d0ed8`.
+
+## 2026-10-14 all-row first-pass source evidence checkpoint
+
+- Every one of the **115 crosswalk rows** now has either a new original-page-image finding (**107 rows**) or an earlier visual-QA record (**8 rows**); there are **0 rows left without any page-image finding/status**.
+- **46 rows are still partial/aggregate-label/heading-variant findings** because cited page ranges contain mixed headings, promotional/brand features, or additional pages that have not yet been checked. These rows are not considered fully closed; continue page-range verification and preserve their caveats.
+- New findings include June p.6 GENERAL ACCESSORIES; March p.14 HAND TOOLS; February p.36 mixed HAND TOOLS/SECURITY/STRAPS & TIE DOWNS; July p.31 SPANNERS/ADHESIVES AND SILICONES/CONSUMABLES; May pp.16-17 IGNITION COILS; August p.16 CARPET CAR MAT SETS; March p.8 SPARE PARTS; March/May p.30 SPECIAL DISCOUNTED PRICE promotional banners; and August p.32 SUPER SAVE promotional banner.
+- The latest source evidence does not justify copying TOC labels, brand names, or promotional banners into permanent store categories. Keep those as aliases, product features or promotional tags; category assignment remains exact-SKU and item-function based.
+- Latest crosswalk commit: `3489749f5a2c867343741b840eca75d64bb660aa`.
