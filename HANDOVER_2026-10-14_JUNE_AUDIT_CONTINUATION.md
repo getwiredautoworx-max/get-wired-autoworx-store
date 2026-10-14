@@ -142,3 +142,11 @@ Production untouched.
 - This resolves the prior **live QA execution blocker**. It does not establish that all 470 June source records are correct or that current supplier costs are available.
 - No catalogue rows were promoted and no Supabase/Axxess/Cloudflare production writes were performed.
 - Audit branch page-image cross-check remains at 50 rows after the page-32 pass. Continue source reconciliation for the remaining June staging rows, keep glyph ambiguity and unpriced items quarantined, and do not treat historical brochure prices as current supplier costs.
+
+
+## 2026-10-14 follow-up — confirmed worksheet SKU mismatches
+- Extended the audit-branch visual cross-check from 50 to 55 rows; latest commit `a705e7a574e5535e3ee996d17e3ae28e9c4be231`.
+- Added explicit worksheet-vs-source mismatches for tappet cover SKUs on printed page 30: `TC-BMO09` → source image `TC-BM09`, `TC-KIO1` → `TC-KI01`, `TC-FDO1` → `TC-FD01`, `TC-HNO1` → `TC-HN01`, and `TC-MBO1` → `TC-MB01`. The source image supports zeros in these codes; do not bulk-replace other O/0 glyphs without visual evidence.
+- The page-31 `IB-TOYO1` worksheet candidate is also flagged against the source image code `IB-TOY01`.
+- These are audit findings, not an authorized production import. Apply corrections to the working catalogue only after reviewing the evidence and retaining source traceability.
+- **QA state remains PASS:** Store Production QA #203 and Storefront Smoke Test #669 succeeded; run links are recorded above. Catalogue source reconciliation remains incomplete for the rest of the 470 rows.
