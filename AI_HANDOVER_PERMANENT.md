@@ -2038,3 +2038,11 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Current task states remain: `repo_safety` passed; `staging_taxonomy` passed structurally only; `controller_presence` passed by syntax/policy check; `catalogue_source_qa` blocked_approval; `browser_qa` blocked_approval; `release` blocked_dependency. The dependency runner is not yet authorized to clear evidence or browser approvals by itself.
 - No production catalogue writes, deployment, Axxess upload, Cloudflare use, or Netlify use occurred in this checkpoint.
 - Next execution order: inspect and validate the existing staged source evidence/crosswalk and the browser QA workflow/logs; determine which tasks can be advanced without human approval; keep release held until both required QA dependencies have genuine passing evidence.
+
+
+## 2026-10-14 — staging smoke log inspected after state-resume verification
+
+- Inspected job logs for Storefront Smoke Test run `38548727139` (job `115801156684`). The job concluded success and ended with explicit marker `STOREFRONT_SMOKE_PASS`.
+- Scope qualification: this is the repository's automated smoke test on the pull-request merge checkout, not a manual mobile checkout/payment test and not a live Axxess-domain verification. Do not use it alone to clear the broader `browser_qa` approval hold.
+- Runner cross-run cache restore is now verified from the logs of runs `38548584667` and `38548727027`; the latter restored the former's cache and passed all five runner unit tests.
+- Remaining release blockers: catalogue source evidence and end-to-end browser QA, including a separate live Axxess check. No production catalogue or hosting changes were made.
