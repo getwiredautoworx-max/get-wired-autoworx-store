@@ -164,3 +164,9 @@ Each exact SKU, item description and printed amount matches the live product's c
 - New findings include June p.6 GENERAL ACCESSORIES; March p.14 HAND TOOLS; February p.36 mixed HAND TOOLS/SECURITY/STRAPS & TIE DOWNS; July p.31 SPANNERS/ADHESIVES AND SILICONES/CONSUMABLES; May pp.16-17 IGNITION COILS; August p.16 CARPET CAR MAT SETS; March p.8 SPARE PARTS; March/May p.30 SPECIAL DISCOUNTED PRICE promotional banners; and August p.32 SUPER SAVE promotional banner.
 - The latest source evidence does not justify copying TOC labels, brand names, or promotional banners into permanent store categories. Keep those as aliases, product features or promotional tags; category assignment remains exact-SKU and item-function based.
 - Latest crosswalk commit: `3489749f5a2c867343741b840eca75d64bb660aa`.
+
+## 2026-10-14 final first-pass heading classification checkpoint
+
+- All **115/115 crosswalk rows** now have a visual classification recorded: **74 visually verified headings** and **41 visually reviewed alias/aggregate/promotion/product-feature findings**. There are no rows left in `OCR recovered`, `Needs review`, or explicit page-image-pending status.
+- Two OCR-derived labels do **not** appear on their cited June page images: `IGNITION BARRELS AND SWITCHES` on June p.31 (the page is HAND WINCHES / SPECIAL DISCOUNTED PRICE) and `WATER SPORTS` on June p.30 (the page is TAPPET COVERS / SPECIAL DISCOUNTED PRICE). Both remain flagged as source-reference/OCR discrepancies; do not use either as a store category until the correct source page is found or the row is corrected/removed.
+- The classification of every heading is now recorded, but some broad source ranges were sampled rather than every product page being reviewed. The crosswalk explicitly distinguishes exact printed headings, aliases/TOC groupings, brand/product features and promotional banners.
