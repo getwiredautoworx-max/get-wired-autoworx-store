@@ -32,3 +32,20 @@ printed_page,source_section,visual_sku,ocr_candidate,visual_status,notes
 32,Spanners,E18MM,E18MM,VISUALLY_CONFIRMED_TABLE_ROW,18mm chrome combination spanner; printed table price 12.54 excl. VAT, historical
 32,Spanners,CV20MM,CV20MM,VISUALLY_CONFIRMED_TABLE_ROW,20mm chrome vanadium combination spanner; printed table price 18.31 excl. VAT, historical
 32,Spanners,CV30MM,CV30MM,VISUALLY_CONFIRMED_TABLE_ROW,30mm chrome vanadium combination spanner; printed table price 70.80 excl. VAT, historical
+32,Spanners,200103,200103,VISUALLY_CONFIRMED_CODE_ONLY,"1/2-inch drive ratchet with quick release; historical June price, not current cost"
+32,Spanners,192402,192402,VISUALLY_CONFIRMED_CODE_ONLY,9mm flexible ratchet combination spanner; historical June price
+32,Spanners,192404,192404,VISUALLY_CONFIRMED_CODE_ONLY,11mm flexible ratchet combination spanner; historical June price
+32,Spanners,T3-002-12,T3-002-12,VISUALLY_CONFIRMED_CODE_ONLY,1/2-inch drive chrome vanadium ratchet; historical June price
+32,Spanners,T3-002-14,T3-002-14,VISUALLY_CONFIRMED_CODE_ONLY,1/4-inch drive chrome vanadium ratchet; historical June price
+32,Spanners,CV56,CVS6,VISUAL_REVIEW_REQUIRED,"Chrome vanadium combination spanner set; visual glyph in code is ambiguous at current image resolution, do not normalize automatically"
+32,Spanners,DF26MM,DF26MM,VISUALLY_CONFIRMED_CODE_ONLY,26mm combination spanner; historical June price
+32,Spanners,DF27MM,DF27MM,VISUALLY_CONFIRMED_CODE_ONLY,27mm combination spanner; historical June price
+32,Spanners,CVR20,CVR20,VISUALLY_CONFIRMED_CODE_ONLY,20mm chrome vanadium ratchet spanner; historical June price
+32,Spanners,CVR22,CVR20,VISUAL_CORRECTION_REQUIRED,22mm chrome vanadium ratchet spanner; staging candidate CVR20 conflicts with printed CVR22
+32,Spanners,E19MM,E19MM,VISUALLY_CONFIRMED_TABLE_ROW,"19mm chrome combination spanner; printed table price 12.57 excl. VAT, historical"
+32,Spanners,E22MM,E22MM,VISUALLY_CONFIRMED_TABLE_ROW,"22mm chrome combination spanner; printed table price 17.10 excl. VAT, historical"
+32,Spanners,E27MM,E27MM,VISUALLY_CONFIRMED_TABLE_ROW,"27mm chrome combination spanner; printed table price 36.89 excl. VAT, historical"
+32,Spanners,CV23MM,CV23MM,SOURCE_ITEM_NOT_IN_STAGING,20mm row is in staging; this printed 23mm table SKU is absent from page-32 staging rows; historical price 32.13 excl. VAT
+32,Spanners,CV25MM,CV25MM,SOURCE_ITEM_NOT_IN_STAGING,Printed 25mm table SKU absent from page-32 staging rows; historical price 29.41 excl. VAT
+32,Spanners,CV28MM,CV28MM,SOURCE_ITEM_NOT_IN_STAGING,Printed 28mm table SKU absent from page-32 staging rows; historical price 43.46 excl. VAT
+32,Spanners,CV29MM,CV29MM,SOURCE_ITEM_NOT_IN_STAGING,Printed 29mm table SKU absent from page-32 staging rows; historical price 54.82 excl. VAT
