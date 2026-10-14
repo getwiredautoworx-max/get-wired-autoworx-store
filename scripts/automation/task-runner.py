@@ -39,9 +39,19 @@ def check(task):
   if isinstance(h,dict) and h.get("live_catalogue_enabled",False): return False,"Refusing: live catalogue flag is enabled."
   return True,"Staging JSON valid: 8 roots and 17 proposed rules; not product-level approval."
  if task["id"] == "controller_presence":
-  paths=["scripts/automation/controller.py","scripts/automation/controller.js","scripts/task-controller.py","scripts/task-controller.js",".github/scripts/controller.py",".github/scripts/controller.js"]
-  found=[p for p in paths if (ROOT/p).is_file()]
-  return (True,"Controller candidate(s): "+", ".join(found)) if found else (False,"No known controller entry point found; identify the canonical controller before validation.")
+  keywords=("controller","task-runner","task_runner","automation")
+  excluded={".git","node_modules","vendor","dist","build"}
+  found=[]
+  for base, dirs, files in os.walk(ROOT):
+   dirs[:]=[d for d in dirs if d not in excluded and not d.startswith(".cache")]
+   for name in files:
+    rel=(Path(base)/name).relative_to(ROOT)
+    if name.lower().endswith((".py",".js",".ts",".yml",".yaml")) and any(k in name.lower() for k in keywords):
+     found.append(str(rel))
+  found=sorted(set(found))
+  # Exclude this runner and its workflow/docs; identify independent controller candidates.
+  candidates=[p for p in found if p != "scripts/automation/task-runner.py" and "dependency-aware-task-runner.yml" not in p and "VALIDATION-CHECKPOINT" not in p and not p.endswith("README.md")]
+  return (True,"Controller candidate(s) requiring manual identity verification: "+", ".join(candidates)) if candidates else (False,"No separate controller entry point discovered; inspect repository workflow/controller architecture before validation.")
  return False,"No handler implemented."
 def main():
  ap=argparse.ArgumentParser(); ap.add_argument("--reset",action="store_true"); args=ap.parse_args()
