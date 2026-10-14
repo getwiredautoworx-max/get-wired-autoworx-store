@@ -1788,3 +1788,7 @@ Status: IN PROGRESS. Latest handover was read before other work. The normal file
 - May pp.4-7 and February pp.23-26 contain multiple distinct sections; broad “Auto Spares” / “Automotive Spare Parts” labels should not be used as automatic category mappings. Exact printed headings, exact SKU and actual item function remain separate.
 - Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
 - Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
+
+### 2026-10-14 latest crosswalk QA count reconciliation
+
+The current crosswalk file reports **59 new page-image findings recorded**, **8 rows previously verified in the earlier visual-QA pass**, and **48 rows still awaiting page-image verification**. Of the 59 new findings, **25 remain partial/aggregate-label/heading-variant findings** with some cited pages still pending. Use these latest counts instead of interim 34/42-row counts in earlier checkpoint notes.
