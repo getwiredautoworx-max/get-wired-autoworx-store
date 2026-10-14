@@ -1951,3 +1951,13 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Safety boundary unchanged: read-only `contents: read` and `actions: read`; no automatic production writes or deployments. The controller still does not perform automatic task repair/restarts; recovery remains a separate future change that must be task-specific, bounded, and safe.
 - Required validation after merge: verify the YAML/workflow parses, manually dispatch a run, confirm successful checkpoint artifact, and confirm event-triggered run on a monitored workflow completion. Until those checks pass on main, the enhanced schedule is a proposal and the active main schedule remains every six hours.
 - No live store, Supabase, Axxess, Cloudflare or Netlify changes were made.
+
+
+## 2026-10-14 — Responsive monitoring schedule merged to main
+
+- PR #13 merged successfully by squash. Merge commit: `c0ae9f1f0a5d643ceffb03312a77d6b1626db9f2`. PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/13
+- Verified main workflow now uses a 15-minute schedule (`*/15 * * * *`) plus `workflow_run` completion triggers for the selected audit, QA, storefront smoke, Axxess-package, public URL, and Pages workflows, and retains manual dispatch. Workflow file: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/.github/workflows/background-task-controller.yml
+- Permissions remain read-only for repository contents and Actions. The change does not add auto-retries, production writes, or deployments.
+- Post-merge validation is not yet complete: latest Pages run #1059 (`38543018094`) is still in progress at last check, and no controller run after this merge/event has yet been observed. Next: recheck Actions; confirm a controller run triggered by a monitored workflow completion or the 15-minute schedule; verify syntax/job success and the `background-task-checkpoint-*` artifact. Do not claim the new cadence is fully validated until this succeeds.
+- Current architecture is event-driven plus periodic fallback, not a continuously running process. Scheduled GitHub Actions jobs can be delayed; automatic restart/repair is not implemented.
+- No catalogue data, prices, categories, stock, Supabase, Axxess, Cloudflare, or Netlify were changed by this monitoring update.
