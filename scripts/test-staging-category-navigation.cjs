@@ -49,7 +49,31 @@ const { pathToFileURL } = require('url');
  await page.screenshot({path:'artifacts/category-grid-desktop-1280.png',fullPage:false});
  const desktop=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth}));
  if(desktop.document>desktop.viewport) throw new Error('Horizontal overflow at 1280px: '+JSON.stringify(desktop));
+ // Repeat the complete category navigation journey at desktop width; mobile coverage above is not a substitute.
+ let desktopSubcategories=0;
+ for(let i=0;i<8;i++){
+  await page.locator('#categoryGrid [data-gw-root-index="'+i+'"]').click();
+  await page.waitForSelector('#categoryGrid [data-gw-subcategory-index]');
+  const heading=(await page.locator('#categoryGrid h3').innerText()).trim();
+  if(!heading.toLowerCase().startsWith(expected[i].toLowerCase())) throw new Error('Desktop wrong root heading at '+i+': '+heading);
+  const subs=page.locator('#categoryGrid [data-gw-subcategory-index]');
+  const n=await subs.count();
+  desktopSubcategories+=n;
+  for(let k=0;k<n;k++){
+   await page.locator('#categoryGrid [data-gw-subcategory-root="'+i+'"][data-gw-subcategory-index="'+k+'"]').click();
+   await page.waitForSelector('#categoryGrid [data-gw-back-subcategories]');
+   await page.locator('#categoryGrid [data-gw-back-subcategories]').click();
+   await page.waitForSelector('#categoryGrid [data-gw-subcategory-index]');
+  }
+  await page.locator('#categoryGrid [data-gw-back-roots]').click();
+  await page.waitForSelector('#categoryGrid [data-gw-root-index]');
+ }
+ if(desktopSubcategories!==71) throw new Error('Desktop expected 71 subcategories, got '+desktopSubcategories);
+ // Check visible image elements for actual load failures without falsely failing off-screen lazy-loaded images.
+ const imageAudit=await page.evaluate(()=>[...document.querySelectorAll('img')].filter(el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&r.bottom>=0&&r.top<=innerHeight}).map(el=>({src:el.currentSrc||el.src,alt:el.alt||'',loaded:el.complete&&el.naturalWidth>0})).filter(x=>!x.loaded));
+ if(imageAudit.length) throw new Error('Visible image load failures: '+JSON.stringify(imageAudit.slice(0,10)));
+ if(errors.length) throw new Error('Browser runtime errors: '+errors.join(' | '));
  const initialUi=await page.evaluate(()=>({mobileBuyBarHidden:document.getElementById('mobileBuyBar')?.hidden,productModalOpen:document.getElementById('productModal')?.classList.contains('open')}));
- console.log(JSON.stringify({status:'PASS',roots:rootCount,subcategories:totalSubcategories,subcategoriesChecked:'all subcategories individually opened and returned',mobile:width,desktop,initialUi,browserErrors:errors.length},null,2));
+ console.log(JSON.stringify({status:'PASS',roots:rootCount,subcategories:totalSubcategories,desktopSubcategories,subcategoriesChecked:'all subcategories individually opened and returned at mobile and desktop widths',mobile:width,desktop,imageAudit:{visibleBrokenImages:0},initialUi,browserErrors:errors.length},null,2));
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
