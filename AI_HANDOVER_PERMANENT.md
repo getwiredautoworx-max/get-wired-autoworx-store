@@ -2006,3 +2006,12 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 3. Inspect full contents of image audit artifact and latest image-sync exception ledger; do not rerun image sync blindly.
 4. Run or obtain fresh Storefront Smoke Test and Store Production QA outcomes after the controller is validated; then verify Axxess live-domain behaviour separately. Existing passing runs are not proof of Axxess checkout acceptance.
 5. Keep all catalogue/category changes staged; no live database writes, Axxess uploads, or production changes were made in this continuation.
+
+
+## 2026-10-14 — image audit artifact opened and measured
+
+- Downloaded and inspected `catalogue-image-audit` artifact from run #280 (`38541293000`, artifact `11882292315`). The artifact reports: 4,187 active products; 4,093 public proxy image references; 8 direct public WebP references; 86 placeholder image URLs; 4,101 public SKU WebP assets; 0 placeholder products with a WebP asset; 86 placeholder products without a known WebP asset; 0 invalid/mismatched public image references; 800 internal source image files.
+- This confirms the outstanding 86 are placeholder/missing-known-WebP exceptions, not malformed public references in the audit's tested set. Do not treat 4,101 assets as proof every product has a valid product-specific image because the 86 placeholders remain.
+- The latest bounded image-sync run `38539164888` exposes no artifact through the first-page artifact API, so the exact per-SKU exception ledger still needs locating from its run logs or the repo's existing sync/audit reports. Do not rerun the sync blindly.
+- Current next image task: retrieve the exact 86 public SKUs/product IDs from the audit/sync reports, compare against existing 800 source images and supplier SKU matches, and classify each as exact match / no source image / ambiguous match / stale placeholder. Only apply exact, verified matches in a separate staged batch; do not use fuzzy image matches.
+- No product image URLs or catalogue rows were modified during this artifact inspection.
