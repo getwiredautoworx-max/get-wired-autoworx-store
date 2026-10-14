@@ -1772,3 +1772,11 @@ Status: IN PROGRESS. Latest handover was read before other work. The normal file
 ### Correction — MIRRORS source heading reinspection (2026-10-14)
 
 - Correction to the earlier 08:45 note: direct reinspection of the May 2026 p.7 image shows **MIRRORS is a printed standalone heading** at the top of that page. The earlier contrary statement was a visual misread. The audit branch crosswalk was corrected in commit `fe163813b591b3cbbefec09e9db50287997d0de3`, and the gap-audit correction is recorded in commit `ebde94c4078f94995bf4dd0bc692b806c6ada079`.
+
+### 2026-10-14 09:05 SAST — Further source-heading review checkpoint
+
+- Added original-page findings for the winch/auto accessory, electrical, brake/clutch, door parts, sound, Quantum spares, wheel accessories, window spares and tools headings. The crosswalk explicitly records where the source heading differs from a TOC/aggregate label and where some cited pages remain uninspected.
+- The latest gap audit records **34/115 crosswalk rows with page-image findings and 81 with no page-image finding yet**. Some reviewed rows have partial coverage of their full page range; do not equate “finding recorded” with every cited page being verified. Former `Needs review` queue is empty, but overall page-image QA is still incomplete.
+- Critical scope note: source guide pages frequently mix different sections (e.g. HAND TOOLS, HOSES, BRAKE PARTS on February p.22; CLUTCH MASTER CYLINDERS, DOOR PARTS, SOUND and AIR FILTERS on February p.23). Use the actual printed section heading plus exact SKU/product function, not an inferred broad TOC label, for category decisions.
+- Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
+- Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
