@@ -80,8 +80,11 @@ def main(argv=None):
  for t in TASKS:
   i=t["id"]; old=s["tasks"].get(i,{})
   if t["kind"]=="approval":
-   s["tasks"][i]={"status":"blocked_approval","attempts":old.get("attempts",0),"updated_at":stamp(),"detail":"Human evidence/approval required; held safely."}
-   s["events"].append({"at":stamp(),"task":i,"status":"blocked_approval"})
+   unmet=[d for d in t["needs"] if s["tasks"].get(d,{}).get("status")!="passed"]
+   status="blocked_dependency" if unmet else "blocked_approval"
+   detail=("Dependencies not passed: "+", ".join(unmet)) if unmet else "Human evidence/approval required; held safely."
+   s["tasks"][i]={"status":status,"attempts":old.get("attempts",0),"updated_at":stamp(),"detail":detail}
+   s["events"].append({"at":stamp(),"task":i,"status":status,"detail":detail})
    continue
   if old.get("status")=="passed": continue
   if any(s["tasks"].get(d,{}).get("status")!="passed" for d in t["needs"]):
