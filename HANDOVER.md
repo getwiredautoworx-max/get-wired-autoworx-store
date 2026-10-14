@@ -2209,3 +2209,16 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Next: continue source-page-by-page review across all relevant June headings, then compare exact supplier codes against the staged source ledger and later guides. Use exact SKU/code only for product joins; preserve price status/date rules and keep asterisk/system-priced entries in quote/review until verified. After June, perform exact-SKU deltas against September and October sources, then vehicle catalogue application mapping. Do not import anything or alter live data until the evidence ledger is complete.
 - Navigation status remains source-inspected only: root/subcategory/back handlers exist, but real browser/mobile tap testing is still NOT RUN. Keep staging-only and do not deploy production to force a test.
 - No application code, live product data, Supabase records, Axxess files, DNS, payment settings, checkout, or production deployment changed during this pass.
+
+
+## CONTINUATION LOG — 2026-10-14 — JUNE SAMPLE CODE CROSS-CHECK
+
+- Compared the June OCR staging sheet’s source-page assignments against the actual June PDF page images for printed pages 3–5 and 11–12.
+- Visually legible examples confirmed on the original source images include:
+  - Printed page 3: C10-035, CB-008, C10-027, C7-016, A833511, M501, AX005, HB400, DRO17, BC530, TT235Z, RALTT235Z, LT-6251T-R, C10-029-C, B7-007B, B7-007BL, CO09-L and CO09-S.
+  - Printed page 4: B7-008G, B7-008GY, B7-009, 6007-11-NL, 6007-20-450, 6007-21 and D9-FR2207; the page also continues the Panel Clips section.
+  - Printed page 5: Panel Clips continues; visible general-accessory codes include SW351C, A2-SS01-T8 and several A2-series parts (OCR spellings require exact visual check before changing any SKU).
+  - Printed pages 11–12: source sections show battery accessories, fuses and relays, with multiple supplier codes; OCR variants must be checked against the page image, not silently normalized.
+- Important: this is a small evidence sample, not a full audit. Some staging rows have OCR-uncertain spellings (for example A2-series strings and relay codes), and page images must remain authoritative. No SKU, cost, product, category or price was modified in the staging workbook during this pass.
+- A full-document automated OCR pass exceeded the execution window and was interrupted; it produced no complete document-wide verification result. Continue in bounded page batches and use image review for uncertain code characters rather than accepting OCR output as verified.
+- Handover links remain the operational source of truth. Browser/mobile route testing is still NOT RUN; source-level handler inspection must not be reported as a successful device test. No production or live data was changed.
