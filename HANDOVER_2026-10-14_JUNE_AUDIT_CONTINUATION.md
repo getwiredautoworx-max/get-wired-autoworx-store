@@ -112,3 +112,17 @@ Production untouched.
 - Production storefront QA: not run / no verified result.
 - Production catalogue writes: none.
 - Handover updated; no production deployment triggered.
+
+
+## 2026-10-14 follow-up — additional source-image review
+- Retrieved and visually inspected the original June PDF page images for printed pages 16, 17, and 29–32.
+- Printed pages 16–17 are Hoteche display-promotion material, not normal priced product-list pages. Page 17 advertises a loan display stand subject to an R18,000 qualifying purchase and notes only five stands are available; its one staging token `7UEHYRAE` is not supported by the page image as a product SKU. Keep it quarantined and do not import it.
+- The absence of page-16 product rows in the priced June staging sheet is therefore not automatically a missing priced catalogue page. Page 16 shows Hoteche display merchandise and codes but no individual prices; these require a separate supplier price source before becoming sellable rows.
+- Extended `staging/source-extracts/june-visual-crosscheck-pages29-32.csv` on branch `audit/buyer-guide-extraction` from 33 to 50 data rows, adding 17 page-32 visual audit entries. Commit: `eb7d09fc01a59a8547539301c897a60854ca6162`.
+- Page-32 source image shows the staging candidate `CVR20` does not match the printed 22mm ratchet spanner code `CVR22`; flagged for correction, not silently overwritten. The combination-spanner table also includes `CV23MM`, `CV25MM`, `CV28MM`, and `CV29MM`, which are absent from the page-32 staging rows. These omissions are now explicit in the visual cross-check.
+- Page-32 visual code for the chrome vanadium set remains ambiguous at this image resolution (`CV56` vs OCR candidate `CVS6`); retained as review-only.
+### Status after this pass
+- Source-image checks have materially advanced for printed pages 16–17 and 29–32, but this is not full verification of all 470 staging rows.
+- Known source/staging mismatch and missing page-32 items are documented in the audit branch; source CSV is audit-only and not a production import.
+- Current supplier costs, full 470-row SKU/description/category mapping, duplicate detection across the complete catalogue, and live storefront QA remain incomplete.
+- No live-store, Supabase, Axxess, Cloudflare, or production catalogue writes were performed.
