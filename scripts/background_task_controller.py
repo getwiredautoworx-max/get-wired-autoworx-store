@@ -24,6 +24,7 @@ WORKFLOWS = [
     "storefront-smoke.yml",
     "prepare-axxess-package.yml",
     "cloudflare-pages-deploy.yml",
+    "live-release-gates.yml",
 ]
 # Only deterministic, read-only QA/audit or artifact packaging workflows may
 # receive one automatic retry. Never retry image sync, category writes, or deploy.
