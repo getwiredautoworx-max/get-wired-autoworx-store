@@ -285,3 +285,28 @@ If the current source artifacts remain accessible, two focused hours can reasona
 4. Continue exact-SKU image matching and rights checks, supplier current-cost requests, and independent Axxess QA.
 5. Commit each actual result and update the handover after the batch; release only when gates pass.
 
+
+
+## EXECUTION UPDATE — EXACT 800-ROW COST JOIN COMPLETED (2026-10-14 19:40 SAST)
+
+### Concrete result
+- Parsed the historical 4,186-row catalogue SQL as read-only source data and joined it against all 800 rows in the archived 800-row candidate. The 4,186-row SQL was not executed.
+- Exact SKU joins: **791/800**. The remaining **9/800** are the established quote-only SKUs (M501WCC, A1-002, A1-003, MA330, MA342, MA342/2, N-FC001, WP25, N-CP002).
+- On the 791 joined rows, **791/791 product descriptions match exactly** and **791/791 source page numbers match exactly** between the archived candidate and the 4,186-row historical reference.
+- The 38-SKU price-hold register was also joined: **38/38 exact SKUs match the 800-row candidate**, and the candidate costs match the register's historical September costs for all 38.
+- **753 rows** in the archived JSON payload have cost values 100x the historical Rand costs in the 4,186-row reference. The other **38** belong to the separate 38-SKU hold list and their costs match that hold register; the older 4,186-row SQL stores these 38 at approximately 1/100 scale, so use the dedicated hold register as the historical source for this subset. This confirms a mixed-scale data defect and is not authorization to update production.
+- Archived selling-price values are VAT-only (`cost × 1.15`) on **791/791** matched rows; the required customer-price calculation is `round(cost_ex_vat * 1.15 * 1.35, 2)`. Historical September prices expired 2026-09-30, so computed outputs remain non-current mathematical candidates only.
+- Generated `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_STAGING_2026-10-14.csv` and `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_AUDIT_2026-10-14.txt`. The CSV contains exact join status, source descriptions/pages/headings, chosen historical cost source, scale action, formula status, quote-only status, and false import/current-price/image-rights gates for every row.
+- Validation: 800 rows; 800 unique SKUs; 791 exact matches; 9 quote-only no-match rows; 0 description mismatches among matched rows; 0 source-page mismatches; 38/38 held costs match the separate hold register; 0/800 import-eligible.
+
+### Required interpretation / release hold
+This is meaningful staging reconciliation progress, not customer-ready pricing. The 753 scale corrections and 38 historical cost matches are derived from expired guide evidence; current supplier price confirmation remains required for all 791 priced rows selected for any release. The 38 flagged products remain held until supplier confirmation. The nine quote-only SKUs must remain blank and excluded from sale. All 800 still lack verified image paths in the archived payload; image permission and exact SKU-to-image checks remain open. The missing original revised mapping CSV has not been recovered, so the reconstructed mapping remains labelled as such and the six original low-confidence row IDs cannot be claimed resolved exactly. No production write, SQL execution, deployment, Axxess upload, DNS change or payment setting change occurred.
+
+### Artifacts
+- Reconstructed 800-row staging mapping: `/mnt/data/Get_Wired_AutoWorx_800_Mapping_RECOVERED_STAGING_2026-10-14.csv` (800 unique rows; all staging-only).
+- Exact historical SKU/cost reconciliation: `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_STAGING_2026-10-14.csv`.
+- Exact join audit: `/mnt/data/Get_Wired_AutoWorx_800_RECONCILED_HISTORICAL_COST_AUDIT_2026-10-14.txt`.
+- Library storage limit blocked persistence of the 492 KB CSV and its ZIP. The exact files are present in the current working container; do not claim they are committed to GitHub or persisted in Library.
+
+### Next action
+Continue exact source/image review and fix the six original mapping exceptions only if their original identities can be recovered; otherwise track the reconstructed New Arrivals decisions as separate, provenance-labelled corrections. Build the image-to-SKU crosswalk and prepare current supplier price confirmations. Keep release held until current prices, images/rights, category gates, Axxess DNS/SSL, full QA, live delta and rollback pass.
