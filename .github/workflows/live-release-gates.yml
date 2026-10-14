@@ -13,7 +13,6 @@ on:
       - "index-new.html"
       - "category.html"
       - "checkout-v2.html"
-      - "HANDOVER_CURRENT.md"
       - "staging/CATEGORY_OUTSIDE_HIERARCHY_CANDIDATES_2026-10-14.csv"
 
 permissions:
