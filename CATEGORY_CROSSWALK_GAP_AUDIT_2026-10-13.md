@@ -81,3 +81,14 @@ Reconcile the current source-heading crosswalk and the proposed customer-facing 
 
 ## Current decision
 The source taxonomy and proposed store hierarchy are usable as a **staging review framework**, not as an import-ready final mapping. The key blockers are page-image verification and item/SKU-level resolution of the 24 review/conflict/promotion headings. No live database rows were changed.
+
+
+## 2026-10-14 priority page-image QA update
+
+Ten records in the prior `evidence_status=Needs review` queue were checked against original Library PDF page images and their crosswalk rows were updated in commit `046ba8cd1fc391e97f83d4c556b5d6940f58b951`.
+
+- **Nine printed section headings confirmed:** AERIAL (February p.5); AUTOMOTIVE ACCESSORIES (February pp.6–8); FUSES (February p.14 and May p.9); GAUGES (March pp.5–6); GLOBES (February p.12 and March p.8); IGNITION COILS (May p.15); SECURITY (February p.36 and March p.28); SOCKETS (March p.24); BOOSTER CABLES (May p.18).
+- **One heading candidate disproved as a standalone heading:** MIRRORS (May p.7). The printed page heading is AUTOMOTIVE ACCESSORIES; mirror products appear within that section. Do not treat “MIRRORS” as a separate printed section heading on that page. Mirror products still require item/SKU classification.
+- May p.18 confirms BOOSTER CABLES and prints JC200AMP at R100.99 excl. VAT and JC400AMP at R168.73 excl. VAT. These are printed guide prices, not supplier cost prices; no live price was changed.
+- Source crosswalk evidence and visual-verification statuses now record these findings. This resolves the priority evidence-status queue only; it does not finish the remaining page-image QA, resolve all 115 unique heading rows, or authorize category/product writes.
+- Visual QA surfaced important mapping caution: February p.6 includes exhaust tail pieces inside the broader AUTOMOTIVE ACCESSORIES section, so the source section heading alone is not proof that each item belongs in the approved storefront. March p.24 has SOCKETS and GARDEN TOOLS as separate printed sections on the same page. Continue classifying actual products by exact SKU/function rather than copying a page-wide label.
