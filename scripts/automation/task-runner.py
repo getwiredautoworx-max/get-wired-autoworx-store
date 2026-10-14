@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Safe dependency-aware runner for staging-only store checks."""
+"""Safe dependency-aware runner for staging-only store checks.
+
+All persistent work is bounded and recorded; approval-required tasks never auto-advance.
+"""
 import argparse, json, os, sys
 from datetime import datetime, timezone
 from pathlib import Path
