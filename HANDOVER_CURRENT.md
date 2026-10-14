@@ -529,3 +529,19 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 - Candidate picture-code comparison: **6 exact SKU intersections / 53 candidate labels**, with 47 excluded from the September source on exact-key mismatch.
 - September image mapping remains **0 fully verified / 800** because no selected image has yet passed the combined exact SKU + visual identity + usage-rights gate.
 - All prior holds remain. No production writes or deployments were made.
+
+
+## LIVE CATEGORY TREE RECHECK — READ-ONLY SQL, 2026-10-14
+
+- Fresh read-only query against Supabase `ojytykqpvonxvepprgbh` reports 4,187 active products total.
+- Current recursive category tree counts: Alarms & Security 2; Automotive Accessories 874; Camping / Leisure / Outdoors 84; Car Audio 46; Electrical 1,149; Marine Spares & Accessories 57; Tools & Workshop 1,321; Trailer & Canopy 89; and legacy root `Spare Parts` 565. These sum to 4,187.
+- Important correction to earlier category audit: the earlier figure of 3,211 outside approved roots is stale. On current live data, **3,622 active products are inside the eight intended category trees and 565 are outside**, all under the legacy `Spare Parts` root. Do not continue reporting 3,211 as the current outside count.
+- The eight category trees have duplicate/inconsistent root nodes and child naming, but the live root counts above show all eight trees currently have active products. This differs from the older Oct 9 report, which described some roots as empty/inactive. Current live SQL takes precedence for this checkpoint.
+- `Spare Parts` descendants include categories such as Air Filters (25), Automotive Hoses (10), Brake Parts (41), Clutch Master Cylinders (11), Cylinders (17), Door Parts (51), Exhaust Tail Pieces (42), Fuel Pumps & Oil Filter (13), Mirrors (58), Suspension (47), Thermostats & Pipes (45), Wipers (44), Radiator Caps & Bottles (25), and other legacy categories. Some fit the eight approved storefront categories; others are mechanical categories outside the stated Auto Electrical/Accessories scope. Do not bulk-attach the entire legacy tree.
+- Next action: produce a row-level export of every one of the 565 outside products with current category, SKU, product name, public SKU, description, current image URL, proposed destination and explicit disposition (`CANDIDATE_MAP` vs `QUARANTINE/MANUAL_REVIEW`). Do not write category changes to production without owner-approved map and validation.
+
+## DEPLOYMENT / RELEASE GATE STATUS
+- Previously recorded successful live-gate run `38603936196` is against code commit `1cd8734980063bd3a5bc1cae2f5ac713a33ee446`, not the current handover/documentation commit. The latest repository change is documentation-only; however, exact deployed-source parity still has not been proven.
+- Available GitHub tool actions do not currently expose a start/dispatch action for a new full workflow run; read-only API fetch can inspect existing runs, but cannot by itself rerun the release gate. Do not claim a new run occurred. Immediate alternative: invoke a documented repo workflow through GitHub Actions UI/authorized dispatch, then record run ID and exact candidate SHA. Existing historical pass remains partial evidence, not a current-version release pass.
+- Rollback evidence required: record last-known-good deployed commit, backup/ZIP artifact checksum, database migration/write status (none during this pass), and exact route/category/checkout smoke test result for the release candidate.
+- This pass used read-only Supabase queries only; no production category, product, image, price, stock, payment, DNS, hosting or deployment data was changed.
