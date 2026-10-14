@@ -89,3 +89,26 @@ Production untouched.
 - No live store/Supabase/Axxess/Cloudflare/catalogue production writes were made.
 - Immediate next actions: source-image review all 470 rows (including page-16 coverage and sparse page 17); populate source-backed description/cost only where visible; categorize confirmed rows according to ASC plus approved owner mapping; set ambiguous codes to REVIEW and valid items without confirmed current costs to QUOTE_REQUIRED; then run the two QA workflows and verify actual outcomes.
 - ETA remains evidence-dependent. The structural check is complete; source-image verification of 470 rows and actual GitHub QA runs remain unfinished. Do not state a date until throughput and exception rate are measured.
+
+
+## 2026-10-14 follow-up — blocker triage
+### Confirmed
+- Re-read the recovered audit workbook and measured the June staging worksheet: 470 data rows, 470 nonblank case-insensitive-unique SKU strings, 470 placeholder descriptions, 470 generic staging category/subcategory assignments, 470 unverified statuses, zero populated cost/final price fields, and zero stock quantities.
+- Page assignments are present for printed/source pages 3–15 and 17–32; page 16 has no assigned records and page 17 has one. This is a mandatory page-coverage review item, not proof of a missing catalogue page.
+- Source workbook and source OCR remain available; no restart or re-upload is needed.
+### Blockers that cannot safely be cleared by inference
+1. **Source verification:** SKU text and product description must be matched to the original page image. OCR text alone is not reliable enough to approve suspected glyph differences or infer costs.
+2. **Current cost / selling price:** the June worksheet has no cost values. Historical catalogue prices are not automatically current supplier costs; no retail price can be calculated until an approved current cost is sourced.
+3. **Live QA execution:** actual workflow dispatch is unavailable through the connected GitHub action surface in this session. Existing workflows were reviewed but not run; Pages build success is not a substitute.
+4. **Live domain reachability:** direct checks from this execution environment failed at DNS resolution. This is inconclusive; it cannot be converted into either a production failure or a pass without a second network vantage point.
+### Immediate safe disposition
+- All 470 June staging rows remain quarantined as unverified; no row is promoted to active products.
+- Do not replace the live catalogue or overwrite current supplier costs.
+- A human with GitHub Actions UI access must trigger the existing `Storefront Smoke Test` and `Store Production QA` workflows, then capture the actual run results. This is a permission/tool boundary, not a reason to create dummy commits.
+- Page-image review is still required to clear the 470 source records. The recovered workbook is the working source; only source-backed values should be entered.
+### Completion status
+- Structural row-level checks: complete.
+- SKU/description/category/price source reconciliation: incomplete.
+- Production storefront QA: not run / no verified result.
+- Production catalogue writes: none.
+- Handover updated; no production deployment triggered.
