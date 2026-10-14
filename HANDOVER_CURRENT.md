@@ -73,3 +73,8 @@ ETAs below are work estimates after required evidence/access arrives, not promis
 
 ## Safety / release status
 **RELEASE HOLD — NOT READY FOR CUSTOMER LAUNCH.** No SQL was executed, no production product/price/category/image changes were made, and no deployment/upload was performed in this pass.
+
+## Additional deliverable — supplier confirmation request register (2026-10-14)
+- Created /mnt/data/Get_Wired_AutoWorx_Supplier_Price_and_Image_Permission_Request_38_SKUs_2026-10-14.csv with 38 exact-SKU rows.
+- Each row includes the product description, historical September source page/cost and validity warning, plus blank fields for current supplier cost, stock availability, effective/expiry dates, exact SKU/description confirmation, image-use permission, permission to crop/edit/watermark, approved image file/URL, supplier response date and contact reference.
+- This is a ready-to-send request register, not supplier confirmation. It has not been sent externally because no supplier contact/channel was provided in this workflow. Supplier reply and image rights remain outstanding.
