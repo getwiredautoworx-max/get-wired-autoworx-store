@@ -49,3 +49,8 @@ printed_page,source_section,visual_sku,ocr_candidate,visual_status,notes
 32,Spanners,CV25MM,CV25MM,SOURCE_ITEM_NOT_IN_STAGING,Printed 25mm table SKU absent from page-32 staging rows; historical price 29.41 excl. VAT
 32,Spanners,CV28MM,CV28MM,SOURCE_ITEM_NOT_IN_STAGING,Printed 28mm table SKU absent from page-32 staging rows; historical price 43.46 excl. VAT
 32,Spanners,CV29MM,CV29MM,SOURCE_ITEM_NOT_IN_STAGING,Printed 29mm table SKU absent from page-32 staging rows; historical price 54.82 excl. VAT
+30,Tappet Covers,TC-BM09,TC-BMO09,STAGING_SKU_MISMATCH,Original page image supports TC-BM09; worksheet row 435 contains TC-BMO09 (extra O). Keep source-backed code and record correction in staging only after review.
+30,Tappet Covers,TC-KI01,TC-KIO1,STAGING_SKU_MISMATCH,Original page image supports TC-KI01; worksheet row 436 contains letter O where code uses zero.
+30,Tappet Covers,TC-FD01,TC-FDO1,STAGING_SKU_MISMATCH,Original page image supports TC-FD01; worksheet row 437 contains letter O where code uses zero.
+30,Tappet Covers,TC-HN01,TC-HNO1,STAGING_SKU_MISMATCH,Original page image supports TC-HN01; worksheet row 438 contains letter O where code uses zero.
+30,Tappet Covers,TC-MB01,TC-MBO1,STAGING_SKU_MISMATCH,Original page image supports TC-MB01; worksheet row 439 contains letter O where code uses zero.
