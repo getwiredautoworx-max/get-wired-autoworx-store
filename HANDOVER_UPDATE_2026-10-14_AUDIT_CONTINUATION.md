@@ -49,3 +49,10 @@ Do not delete, merge, reorder, weaken, reinterpret, or silently edit the eight l
 
 ## Continuation rule
 Continue from the existing audit branch and records. Do not restart the catalogue, rebuild the site, or deploy while reconciliation remains unresolved.
+
+## Follow-up finding — 2026-10-14, CSV sample inspection
+- Inspected the first rows of `EXACT_SKU_LIVE_VS_GUIDE_STAGING_PRICE_DIFFERENCES_2026-10-14.csv`. At least the sampled rows `C10-001` and `H4-062` have an old `review_status` saying price differences require review, while `updated_reconciliation_status` says the October original page image was visually checked, the printed cost matches the live cost, the selling price remains formula-correct, and no live write is needed.
+- This is a **status-field inconsistency in the sampled rows**, not proof that the whole CSV is inconsistent. Downstream reports must prioritize the newest evidence/status field and these records should be excluded from any price-change batch unless a new contradiction is found.
+- The category queue sample also includes obviously conflicting examples (e.g. rubber reducers and concertina hoses routed to “Cylinders” because of guide page/category OCR context). They remain review candidates and must not be auto-moved solely from these CSV labels.
+- The June pages 29–32 visual cross-check sample explicitly marks its rows `VISUALLY_CONFIRMED_CODE_ONLY`; this confirms the code/description only and does **not** confirm current cost or price. Historical promotional prices remain historical, not current price authority.
+- Next bounded task: reconcile the stale review labels against `updated_reconciliation_status` systematically, then report exact row counts by effective status before any price edits. Do not edit production data.
