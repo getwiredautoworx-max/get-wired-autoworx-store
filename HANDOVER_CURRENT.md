@@ -457,3 +457,24 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - Targeted branch checks confirmed the `audit/buyer-guide-extraction` branch exists and the June page-32 visual transcription CSV is present. The attempted September candidate/summary paths are not present at the guessed locations in that branch; the extraction workflow run has no retained artifacts. Do not claim the corrected September CSV or a verified image map was recovered.
 - Next practical sequence: inspect the 38-row price hold queue and the 800-product SQL as read-only artifacts; build a separate exact-SKU review list for affected live products; then continue source-card/image matching using the actual Library image assets. Do not change live price/image/category data until each affected SKU has a verified supplier source and the correct image association.
 - No live product/database changes, import, DNS/payment changes, Axxess upload or deployment performed. Release remains **HOLD**.
+
+
+## 2026-10-14 — Read-only audit of 38 live price holds and 800-product SQL
+
+### Completed inspection (no SQL executed)
+- Parsed `Get_Wired_AutoWorx_38_LIVE_PRICE_SCALING_DEFECTS_HOLD.csv`: exactly 38 distinct SKU hold rows. Every row says hold off sale and obtain current supplier price confirmation; do not deploy the September source price without confirmation.
+- Parsed the embedded 800-row data payload from `Get_Wired_AutoWorx_800_PRODUCT_IMPORT-1.sql` as text/JSON only. 800 rows and 800 unique SKUs. Matched all 38 held SKUs to the candidate SQL by exact SKU (38/38); candidate cost values match the hold's normalized source cost for 38/38, but this is not proof the September supplier prices are current.
+- **Pricing formula defect confirmed:** required final price is cost × 1.15 × 1.35. The SQL candidate's 791 priced rows use cost × 1.15 only (VAT added, 35% markup omitted); 0/800 rows pass the required formula. For the 38 held SKUs, 0/38 SQL selling prices match the hold's proposed final price.
+- **Nine quote-only rows are unsafe in the SQL:** `M501WCC, A1-002, A1-003, MA330, MA342, MA342/2, N-FC001, WP25, N-CP002` have missing costs/prices, yet the SQL uses `coalesce(selling_price, 0)` and sets `active=true`. Do not run this SQL. These must remain quotation-only/inactive until supplier price and release treatment are explicitly resolved.
+- The SQL candidate has 800 rows, but its category slug distribution is 412 automotive-accessories, 242 tools-workshop, 70 electrical, 38 car-audio, 33 lighting and only 5 marine-spares-accessories. Source labels/subcategories include Accessories, Auto Spares, Auto Tools, Hardware and many distinct subcategories; these slug assignments need row-level taxonomy validation before import.
+- Exact-SKU review files created in the active workspace:
+  - `/mnt/data/Get_Wired_AutoWorx_38_SKU_Exact_Review_2026-10-14.csv` — 38 held SKUs, hold values, SQL values, formula checks and explicit supplier/image/category verification columns.
+  - `/mnt/data/Get_Wired_AutoWorx_800_SQL_ReadOnly_Audit_2026-10-14.csv` — all 800 candidate rows with formula, source-cost, category and image-review flags.
+- Image check: the existing clean illustrated catalogue explicitly marks at least the two winch SKUs `EWV4500` and `ROMA13XP` as `IMAGE NOT AVAILABLE / No verified SKU-matched catalogue image located`. The unmatched-image verification workbook remains pending; the supplier-number-named image assets cannot be assigned to SKUs solely because files exist. Keep image mapping unverified until a source image or exact visual evidence ties it to the SKU.
+- No production SQL execution, Supabase write, live product change, Axxess upload, DNS/payment change or deployment occurred. **Release remains HOLD.** The SQL candidate is unsafe to execute due to omitted markup, nine zero-price/active quote-only rows, category mapping concerns, and unverified images.
+
+### Next execution order
+1. Correct a review-only copy of the 800-row candidate so the 791 priced rows calculate `round(cost × 1.15 × 1.35, 2)`; never alter or execute the production database from this file.
+2. Keep the nine unpriced rows out of sale/import until source policy is resolved.
+3. Review category/subcategory mapping and exact-SKU images against source catalogue page/card evidence; start with the 38 live price holds, but do not publish September price without current supplier confirmation.
+4. Only after the review gates pass, prepare a separately reviewed import candidate and batch final sync/deployment.
