@@ -378,3 +378,27 @@ The project does have scheduled automation for bounded exact-SKU image retrieval
 - Working effort estimate from this checkpoint: source/exception recovery 20–40 minutes; historical cost/formula row audit 20–40 minutes; initial exact-SKU image pass 30–60 minutes; staging/checkout smoke checks 30–45 minutes; release record and rollback/version evidence 15–30 minutes. These are estimates, not a promised launch time. Work can overlap. Supplier confirmations, image rights and hosting-provider dependencies are external and have no reliable ETA until responses arrive.
 - Customer-test readiness ETA: not responsibly fixed yet. A best-case internal target is one focused 2–3 hour session for the remaining internally actionable staging and QA work if the required source/image artifacts are accessible. This does not include waiting for supplier confirmations or external hosting issues, and does not guarantee the release gates pass.
 - No current supplier price confirmation, image rights, verified image paths or import eligibility is inferred from this schedule. Release remains HOLD until evidence proves each gate. No production write, deploy, DNS or payment changes authorized by this ETA note.
+
+
+## RELEASE BLOCKER EXECUTION UPDATE — 2026-10-14 20:45 SAST
+
+Status remains **HOLD — NOT IMPORT-ELIGIBLE**. This is an evidence-based hold, not permission to stop staging work.
+
+### Artifacts located
+- A library ZIP named `Get_Wired_AutoWorx_VERIFIED_SKU_IMAGES_53.zip` and a companion `Get_Wired_AutoWorx_VERIFIED_SKU_PICTURE_CATALOGUE_UPDATE_53.pdf` exist. Scope is 53 verified-SKU image candidates only; do not assume they cover all 800 rows or that they prove republishing rights.
+- `Get_Wired_AutoWorx_Supplier_Price_and_Image_Permission_Request_38_SKUs_2026-10-14.csv` exists. The 38 records are awaiting supplier responses for current cost/availability, exact SKU-description confirmation, image use and editing/watermark permissions. No response has been evidenced yet.
+- The September recovery search has also recorded an 800-row reconstructed CSV with no image paths (791 priced / 9 unpriced). It is not a substitute for the original corrected September staging CSV.
+
+### Required handling — no guessed associations
+1. Extract the 53-image ZIP in staging and inventory each filename, dimensions and any embedded SKU/reference. Join by exact supplier SKU only; flag any filename/code conflict. Do not assign by visual resemblance or product-description similarity alone.
+2. Add image paths to a *copy* of the September staging CSV only where the image-to-SKU link is exact and image rights are documented. Keep unmatched rows blank and blocked.
+3. Resolve the 31 description-review rows against the original September Buyer’s Guide page and exact SKU. Preserve source wording and record source page; no silent rewrite or fuzzy matching.
+4. Keep all 9 unmatched/unpriced SKU rows excluded from sale/import until each is exact-code matched and receives a current supplier price or is explicitly moved to quote-only.
+5. Recalculate the 791 priced rows from verified current supplier cost excl. VAT using `cost × 1.15 × 1.35`; do not treat September costs as current after the guide's 30 September validity date. Preserve rounding method and record old/new values and source evidence.
+6. Record image-use permission separately from image identity. Catalogue presence or prior inclusion in a generated catalogue is not proof of rights. The 38-SKU supplier request tracker remains pending.
+7. Run staged CSV checks: 800 expected distinct SKUs; no duplicate supplier SKUs; zero saleable rows with missing/wrong image, unresolved description, stale/unverified cost, invalid category, or unapproved image rights. Rows not passing remain REVIEW/QUOTE, never auto-promoted.
+
+### Execution boundary and owner input
+- No production data, checkout, payment settings, DNS or hosting deployment was changed.
+- The available evidence does not yet establish that the ZIP contains the missing images for all 800 products, nor does it establish image-use permission or current supplier prices. Do not claim these blockers are resolved until file-level checks and written supplier evidence exist.
+- If the owner can provide only one missing input, request the original September corrected staging CSV and its matching image folder/archive; do not ask them to re-send artifacts already present in the library.
