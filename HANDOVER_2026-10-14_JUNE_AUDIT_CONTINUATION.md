@@ -36,3 +36,11 @@ Production untouched.
 - Original page: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/June%20Buyer's%20Guide%20(1).pdf
 - Direct raw/download endpoint to try if the preview control is unavailable: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/raw/refs/heads/main/June%20Buyer's%20Guide%20(1).pdf
 - Audit remains staged and production untouched. This preview issue does not invalidate the existing OCR transcript or the 33-row audit CSV, but ambiguous SKU corrections still require visual source confirmation.
+
+
+## 2026-10-14 confirmation: source PDF opens
+- User confirmed the June Buyer's Guide PDF opened perfectly after using the download/open workaround.
+- Treat the original PDF as accessible for continued audit work; no replacement or re-upload is needed.
+- Preview issue is closed as a user-side access issue. Keep the original source path and blob SHA unchanged.
+- Continue the existing 470-row June audit and 33-row pages 29–32 cross-check; do not restart. OCR remains candidate evidence where exact glyphs are ambiguous.
+- Current status: PDF access resolved; full SKU/current-price reconciliation, deduplication, and category validation remain outstanding. Production/storefront/Supabase/Axxess remain untouched.
