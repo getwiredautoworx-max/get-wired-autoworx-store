@@ -56,10 +56,12 @@ jobs:
             else
               echo "DEPLOYED_VERSION_MATCH=false (live marker missing or differs from repository VERSION.txt)"
               echo "deployed_version_match=false" >> "$GITHUB_OUTPUT"
+              failed=1
             fi
           else
             echo "DEPLOYED_VERSION_MATCH=unknown (repository VERSION.txt missing)"
             echo "deployed_version_match=unknown" >> "$GITHUB_OUTPUT"
+            failed=1
           fi
           echo "LIVE_HTTP_CHECK_FAILED=$failed"
           test "$failed" -eq 0
