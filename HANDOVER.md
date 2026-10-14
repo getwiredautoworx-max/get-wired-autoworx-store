@@ -2316,3 +2316,14 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - Attempted read-only fetches of `https://www.getwiredauto.co.za/` and `https://get-wired-autoworx-store.pages.dev/` using the available web verification route. Both returned “URL is not accessible via this tool”. This result is inconclusive: it does not prove either URL is down, nor does it establish successful live reachability.
 - Therefore the canonical domain, HTTPS response, deployed commit, product/category rendering, cart and checkout remain NOT VERIFIED from this session. Do not mark the live-site gate passed on the basis of these failed fetch attempts.
 - No DNS/hosting changes, deployments, workflow reruns, production data changes, or paid Cloudflare/Netlify operations were performed. Release remains HOLD pending a supported external/browser verification path and the required source evidence + browser QA.
+
+
+## CONTINUATION LOG — 2026-10-14 13:13 SAST — HANDOVER WRITE SAFETY BLOCK RECOVERY
+
+- Reconciled the latest checkpoint against the canonical `main/HANDOVER.md` before writing. The previous attempted update was blocked by a repository safety check; it was NOT saved, and no commit was claimed.
+- Safe recovery path: preserve the protected default branch, create a dedicated checkpoint branch from `main`, update only `HANDOVER.md` on that branch, and submit a reviewable pull request rather than retrying a direct protected-branch write.
+- Current verified release decision remains HOLD. Runner state persistence across consecutive executions was reported verified, but it is a scheduled GitHub Actions workflow, not a permanently running worker. Full runner acceptance evidence is not yet recorded here.
+- Outstanding gates remain: original catalogue/page-image evidence and SKU/cost reconciliation; crosswalk visual verification (latest checkpoint reports 106 rows pending); exact-SKU image audit (latest recorded 86 placeholders and 8 image connections requiring attention); full browser/mobile navigation and checkout QA; live canonical-domain/deployed-commit verification; and PayFast/PayJustNow readiness.
+- No product imports, Supabase production mutations, Axxess uploads, DNS/payment changes, Cloudflare/Netlify deployments, or paid hosting operations were performed as part of this checkpoint. Do not interpret a handover-document update as release approval.
+- Next execution order: confirm the checkpoint branch and PR exist; review and merge only through the repository's approved protection process; then continue with the earliest evidence-backed release dependency without repeating completed checks. Record real run IDs, test outcomes, and blockers; never infer success from a blocked write or inaccessible URL.
+- Status: CHECKPOINT PREPARED FOR REVIEW; HANDOVER MAIN-BRANCH UPDATE NOT YET MERGED; RELEASE HOLD.
