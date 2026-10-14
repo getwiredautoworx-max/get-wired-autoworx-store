@@ -344,3 +344,11 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - Critical printed terms on page 32: special prices valid while stocks last; offer ends 30 June 2026; prices exclude VAT; prices are estimates and may vary with raw-material, logistics and supply-chain conditions. Therefore June special-discount prices are historical and must not be used as current live supplier costs or selling prices without newer exact-SKU confirmation.
 - June guide page-image coverage is now complete. Remaining catalogue work is row-level reconciliation: validate each staged SKU against the source image, restore its exact description/category and printed June price where legible, retain source page, and join to newer supplier evidence for any current price. No product row has been approved solely because its SKU string matched.
 - OCR text and rendered page checkpoints are saved in the current analysis workspace only; the durable handover contains the transcription summary and counts. No production database/catalogue changes, Axxess uploads, deployment, DNS/payment changes, or Cloudflare/Netlify credit use occurred.
+
+
+## Durable page-level source extract — June printed page 32
+
+- Created `staging/source-extracts/JUNE_PAGE_32_VISUAL_TRANSCRIPTION_2026-10-14.csv` on branch `audit/buyer-guide-extraction`, latest update commit `82cdbf16ecdb0fdb8cd543ae3baa84a4cfbf8e1d`.
+- The CSV contains 24 selected visually transcribed SKU/description/printed-price rows from printed page 32, plus source guide/page, explicit historical-price context, exact-string staging-match flag, and a “VISUAL TRANSCRIPTION ONLY” approval guard.
+- The page 32 footer explicitly states prices exclude VAT, prices are estimates, and the special offer ended 30 June 2026 / was valid while stocks lasted. These values are historical printed prices, not verified current supplier costs and not authorization to alter live prices.
+- The extract is staging evidence only. Its existence does not complete or approve the remaining 470 June rows. Continue using the same evidence schema for other pages only after exact visual reading; never fill unknown costs or treat a guide price as supplier cost by assumption.
