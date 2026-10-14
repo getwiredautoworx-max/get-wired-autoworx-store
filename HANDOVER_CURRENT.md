@@ -320,3 +320,14 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 3. Use the recovered 107-row price report as a verified closed queue; do not rewrite those live prices. Keep all 198 category rows manual-review only.
 4. Continue exact-SKU image/source joins in staging. Do not auto-move categories, import data, write Supabase, upload to Axxess, deploy, change DNS/payment settings, or spend Cloudflare/Netlify credits.
 5. Release remains HOLD until browser/mobile QA, canonical live-domain/HTTPS/build identity, checkout/delivery fee, and PayFast/PayJustNow provider-side evidence are genuinely verified.
+
+
+## Continuation update — 2026-10-14 — June pages 26–28 and candidate SKU joins
+
+- Rendered and visually inspected printed pages 26, 27 and 28 of the original June Buyer’s Guide; a small OCR pass completed for these pages, but OCR output remains noisy and is not approval evidence.
+- Printed page 26 is Hand Tools. Selected readable code examples include 456066, 383215, C13-0025-300, C13-0025-500, A831402, A831409, A832027F, 550710, 120106, 100501, 120105, 100912, 101501, 110601 and P7-001-1.5.
+- Printed page 27 continues Hand Tools. Selected readable examples include P7-013-6, P7-016-3, P7-017-4, 260067, 260069, 260072, 300114, 270330, 261012, 601011, 259001, 455005, T14-015B, T15-007-110, T15-007-20, T15-007-27, 242515, 251001, 251002, 251004, 251008, 251037, 630610, 240815, 1096050, 251006, 770401 and 770402.
+- Printed page 28 covers Hand Tools, Measuring Tools and Locks & Padlocks. Selected readable examples include 891AG, 2021, 282004, 282202, 282401, 282501, 282516, 283305, 283502, 283510, 284901, 284902, 284904, 284905, 285144, 180821, 180004, 180005, 180101, 180114, 180202, 180203 and 180304.
+- A candidate-code comparison against the 470-row June staging sheet found exact SKU-string matches for 21 of 85 selected page 26–28 candidates (page 26: 6/29, page 27: 11/33, page 28: 4/23). This is a limited sample of readable codes, not a full-page count. Matches still retain placeholder descriptions and `June OCR — SKU/cost requires verification`; do not mark verified based on SKU presence alone.
+- For printed pages 23–25, the comparable selected-code pass found 36 exact SKU-string matches among 82 selected candidates (page 23: 8/23, page 24: 12/28, page 25: 16/31). These counts are triage only; descriptions, costs and exact page associations still need visual row-by-row confirmation.
+- Next: continue from printed page 29, then reconcile matched rows’ exact SKU, description and printed price against source image before updating any staged status. Do not write production data or upload to Axxess.
