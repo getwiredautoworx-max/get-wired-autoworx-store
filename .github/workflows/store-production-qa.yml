@@ -134,3 +134,5 @@ jobs:
             echo "ERROR: private supplier-cost or server-secret reference exposed in public source"
             exit 1
           fi
+
+# Audit trigger: 2026-10-14 — execute existing read-only production QA checks without changing test behavior.
