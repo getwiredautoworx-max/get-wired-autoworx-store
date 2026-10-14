@@ -44,3 +44,15 @@ Production untouched.
 - Preview issue is closed as a user-side access issue. Keep the original source path and blob SHA unchanged.
 - Continue the existing 470-row June audit and 33-row pages 29–32 cross-check; do not restart. OCR remains candidate evidence where exact glyphs are ambiguous.
 - Current status: PDF access resolved; full SKU/current-price reconciliation, deduplication, and category validation remain outstanding. Production/storefront/Supabase/Axxess remain untouched.
+
+
+## 2026-10-14 continuation checkpoint — measured staging inventory
+- Re-read existing audit-branch files; no catalogue restart or production write performed.
+- June OCR QA index: 32 pages represented; 996 SKU-like OCR token candidates and 39 price-like candidates recorded across those page extracts. These are OCR candidate counts, not unique products or verified prices.
+- June pages 29–32 visual cross-check: 33 data rows, still a partial manual cross-check, not the full June audit.
+- Current category review queue: 198 rows in the existing CSV; these require the existing review workflow and must not be assumed to be June-only.
+- The file `EXACT_SKU_LIVE_VS_GUIDE_STAGING_PRICE_DIFFERENCES_2026-10-14.csv` contains 107 rows; its current status text says all 107 were verified against October page image/current live cost and formula price, with no live write needed. These records cover February, March, May, July, August and September guides, not the June 470-row queue; keep the workstreams separate.
+- The full 470-row June audit was not found as a standalone named CSV in the recursive audit-branch tree listing during this check. Do not claim that it has been processed. Continue from existing records/commits and locate the exact source artifact through its commit history/workflow outputs rather than recreating it.
+- ETA to catalogue-safe live testing: the live storefront smoke test can be run independently now because catalogue staging changes have not been deployed; however, full June-catalogue acceptance testing should only be scheduled after the 470-row source reconciliation has a measured disposition for every row (verified, corrected, duplicate, unmatched, quote-only/review) and no unresolved price/SKU ambiguity is marked approved. A defensible calendar ETA for that full gate is not yet available from current measured evidence. Do not give a false completion date.
+- Next actions: locate the 470-row audit artifact/commit; reconcile rows against existing June page OCR and images; record verified counts and unresolved exceptions; validate category crosswalk; then run staging acceptance and a read-only live smoke test before any production sync.
+- Production status: untouched; no Supabase/Axxess/Cloudflare writes or storefront deploy performed.
