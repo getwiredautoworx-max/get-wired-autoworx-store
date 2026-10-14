@@ -393,3 +393,10 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - The corrected September staging CSV still was not found in the accessible Library inventory. Do not keep searching in circles: reconstruct from this recovered original PDF and treat PDF page imagery as authority.
 - PDF contents page confirms source sections and page ranges; printed page 3 includes identifiable supplier codes such as STUD1005, 560102, NO-001-24V-NB, SFBP2-G1100-13A, SFBP2-G1500-13A, SFCBS-275-201, SFCBS-300-202, SFDP1-015-080-31, T39B/T39CH/T39G/T53B/T53CH/T53G/T54B/T54CH/T54G. Text extraction contains price typography that needs structured row/page-image validation before it is safe to treat as costs.
 - Next action has changed from locating the CSV to building a new evidence-backed staging file from the recovered PDF, validating the expected 800 unique SKU / 791 fixed-price / 9 system-priced baseline, then exact-joining live SKUs. No live data, hosting, DNS, payment settings, or deployment changed.
+
+
+## 2026-10-14 16:24 SAST — September PDF extraction checkpoint
+
+- Generated a local review-only candidate inventory from the recovered September PDF text: 1,076 page/token occurrences across the 32-page guide, representing 1,046 distinct candidate tokens. File: `/mnt/data/September_Guide_SKU_Candidates_REVIEW.csv`.
+- This is an extraction aid only, NOT the corrected 800-row staging CSV and NOT import-ready: it intentionally has no inferred prices, and includes false positives (page-range references, dimensions, and non-SKU tokens). Every candidate must be verified against the source page image and supplier code/description pairing. Do not use this file for live changes.
+- Original PDF dependency is recovered; missing CSV is no longer a hard stop. Remaining September gate is row-level reconstruction and visual validation of 800 records, including 791 fixed-price and 9 system-priced rows, followed by exact live-SKU join. No live catalogue/database/hosting/DNS/payment changes.
