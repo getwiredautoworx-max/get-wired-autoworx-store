@@ -2359,3 +2359,11 @@ This clarification supersedes any earlier ambiguous wording about June/July item
 - The second live-gate run again confirmed all six canonical-domain URLs returned HTTP 200 and confirmed `DEPLOYED_VERSION_MATCH=true` by byte-comparing live `VERSION.txt` with the repository marker.
 - It then stopped in the route-check script because the category-tree temporary filename was derived incorrectly. The second harness defect is being fixed by normalizing URL paths to stable names (`home`, `category_html`, `assets_category-tree_json`) before assertions. Playwright steps have not yet run; do not mark full browser QA complete.
 - Current positive evidence: canonical domain routes return HTTP 200 and the public `VERSION.txt` matches repository `VERSION.txt` at the time of run #2. Remaining gates: successful browser navigation/checkout tests, payment provider readiness/integration, and catalogue evidence/reconciliation. Production remains protected.
+
+
+## CONTINUATION LOG — 2026-10-14 — LIVE GATE RETEST REQUESTED
+
+- Corrected route artifact mapping is now merged in PR #20 (commit `74ad5f3ca72775c18e2713127efde5804bd3803a`). Stable names are `home`, `category_html`, `checkout-v2_html`, `terms-and-conditions_html`, `returns-refunds_html`, and `assets_category-tree_json`.
+- Latest completed live-gate run remains #2 and failed before browser testing due to the prior category-tree temp-file naming bug; its logs confirm all six public routes returned HTTP 200 and live `VERSION.txt` exactly matched the repository `VERSION.txt`. This is not a completed browser QA pass.
+- This handover change intentionally requests a fresh workflow run under the current corrected code. Monitor [Live Release Gates](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/live-release-gates.yml) and record the new run ID and each browser step result.
+- Payment readiness remains NOT CONFIRMED: only Direct EFT appears in the checked-in checkout. No production data, catalogue, Axxess files, DNS or payment settings were changed.
