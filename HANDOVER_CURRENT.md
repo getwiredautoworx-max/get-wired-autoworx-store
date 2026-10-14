@@ -174,3 +174,27 @@ Owner reiterated that readiness must be evidence-based and requested execution t
 4. Reconcile supplier responses for the 38 held price SKUs; hold any without current evidence.
 5. Continue Axxess-independent QA and prepare the staged-to-live change ledger/rollback plan.
 6. After external dependencies and applicable exit criteria pass, perform controlled QA and a single release; record the deployed version and post-upload smoke-test evidence.
+
+
+## OWNER CONTINUATION CHECKPOINT — 2026-10-14 18:55 SAST
+
+Owner requested continuation, six-row exception resolution and handover update. Preserve the release hold and do not perform the controlled release until gates pass.
+
+### Work performed in this continuation
+- Re-read the current main-branch handover and searched the available Library artifacts for the staging category map and row-level evidence.
+- Confirmed the revised 800-row category mapping CSV is referenced as a local staging artifact but is not present at the expected path in the current execution workspace and is not committed at the repository root. Therefore the exact six low-confidence row IDs/SKUs could not be safely enumerated from the authoritative mapping file in this pass. Do not fabricate six SKU identities or claim the six exceptions are resolved.
+- Recovered illustrated catalogue source evidence for products formerly grouped under Accessories / New Arrivals. The following identities support family-level category decisions once the exact candidate row is confirmed:
+  - SFBP2-G1100-13A and SFBP2-G1500-13A: Seaflo 24V automatic bilge pumps — Marine Spares & Accessories, marine pump subcategory.
+  - SFCBS-275-201 and SFCBS-300-202: battery isolator switches — electrical switching/battery isolation products; final top-level placement depends on recorded product application, with marine placement only where supported.
+  - SFDP1-015-080-31: 12V high-pressure water pump — Marine Spares & Accessories only if source application confirms marine use; otherwise application review.
+  - NO-001-24V-NB: universal 24V radiator fan — Auto Electrical Spares if vehicle cooling/electrical application is confirmed; do not classify from SKU alone.
+  - 560102: 115mm Velcro pad — Tools, Hardware & Consumables / consumables, subject to exact source wording.
+  - STUD1005, T39B, T39CH, T39G, T53B, T53CH, T53G, T54B, T54CH and T54G: wheel stud / wheel nut covers — Automotive Accessories / wheel hardware, preserving fitment.
+- These are evidence-backed family examples, not proof they are the six low-confidence rows. Do not use historic advertised prices as current prices; the September offer expired 2026-09-30.
+- No database write, SQL execution, deployment, Axxess upload, DNS change, or payment-setting change was made.
+
+### Immediate blocker / next action
+Recover Get_Wired_AutoWorx_800_Category_Mapping_REVISED_STAGING_2026-10-14.csv from the prior execution artifact or regenerate it from the authoritative 800-row source workbook. Filter exactly the six low-confidence/exception rows under New Arrivals; use each exact SKU, full description, source page and family evidence to set the staging subcategory and rationale. Preserve source heading and keep Import_Eligible=False. Then validate all 800 rows and commit the corrected staging CSV plus evidence summary. Do not mark any row approved merely because its category is plausible.
+
+### Release decision (unchanged)
+**RELEASE HOLD — NOT READY FOR LIVE TESTING OF THE RECONCILED CATALOGUE.** No exact deployed version is recorded because no controlled release has been authorized or performed and catalogue gates have not passed. Record a deployment version only after an approved package is deployed and post-upload smoke tests pass. PayFast/PayJustNow remain deferred as instructed.
