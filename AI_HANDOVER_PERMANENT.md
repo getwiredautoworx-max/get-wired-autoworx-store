@@ -1780,3 +1780,11 @@ Status: IN PROGRESS. Latest handover was read before other work. The normal file
 - Critical scope note: source guide pages frequently mix different sections (e.g. HAND TOOLS, HOSES, BRAKE PARTS on February p.22; CLUTCH MASTER CYLINDERS, DOOR PARTS, SOUND and AIR FILTERS on February p.23). Use the actual printed section heading plus exact SKU/product function, not an inferred broad TOC label, for category decisions.
 - Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
 - Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
+
+### 2026-10-14 09:18 SAST — Additional original-page QA checkpoint
+
+- The crosswalk now records page-image findings for **42/115 rows**; **73 rows have no page-image finding yet**. **17 rows are partial/aggregate-label/heading-variant findings**, so some cited pages remain uninspected even where a finding exists. The prior “Needs review” status queue is empty, but source-heading verification is not complete.
+- Newly checked: February p.10 AUTOMOTIVE HARDWARE and CHEMICALS LUBRICANTS AND OILS; February p.21 GASKETS and GAUGES (printed headings, not “Automotive Gaskets/Gauges”); February p.30, March p.12 and May p.26 AUTOMOTIVE TOOLS; June p.20 BRAKE SPARES & CYLINDERS; February/August p.4 CAMPING; March p.13 CUTTING TOOLS.
+- May pp.4-7 and February pp.23-26 contain multiple distinct sections; broad “Auto Spares” / “Automotive Spare Parts” labels should not be used as automatic category mappings. Exact printed headings, exact SKU and actual item function remain separate.
+- Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
+- Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
