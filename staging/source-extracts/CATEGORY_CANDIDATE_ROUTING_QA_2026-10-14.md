@@ -20,8 +20,8 @@ This is a validation checkpoint for the 18 proposed routes in `CATEGORY_REVIEW_Q
 | NA540B | 100pce 5X40mm Grey Nylon Anchor Plug | Tools, Hardware & Consumables > Fasteners & Hardware | Provisional — likely fit | Confirm wall/anchor plug product row on May p.32; page metadata is a mixed code list, not a reliable heading. |
 | NA860 | 10pce 8X60mm Grey Nylon Anchor Plug | Tools, Hardware & Consumables > Fasteners & Hardware | Provisional — likely fit | Same check as NA540B; do not confuse a wall plug with marine anchoring equipment. |
 | 6007-13 | Rod Fishing Rod Holder Mount Rubber Suction Mount | Marine Spares & Accessories > Rigging & Fittings | **HOLD — application confirmation required** | Candidate confidence is medium. Confirm marine use and mounting/application before routing. March p.31 SPECIAL is a promotion label. |
-| 02-09 | Turbo Golf 1 Mirror Base | Automotive Accessories > Mirrors | Provisional — likely fit | Confirm exact vehicle fitment and August p.32 item row; SUPERSAVE is a promotion label. |
-| 017SK | Starter Kit Lucas 2M100 | Auto Electrical Spares > Charging & Starting | **HOLD — exact function confirmation required** | “Starter kit” is ambiguous without the original item row; September p.15 REGULATORS does not itself establish the product's function. |
+| 02-09 | Turbo Golf 1 Mirror Base | Automotive Accessories > Mirrors | **HOLD — duplicate SKU/source-context conflict** | Exact SKU occurs in two August guide contexts: p.20 fuel-pump text and p.32 mirror-base text. Resolve against original page images and SKU identity before routing. |
+| 017SK | Starter Kit Lucas 2M100 | Auto Electrical Spares > Charging & Starting | Provisional — exact product name corroborated | Exact SKU/title appears in both March and September guide OCR; September places it in the REGULATORS section. Confirm the item image/technical function before final subcategory approval. |
 | CVR22 | 22mm Chrome Bar Ratchet Spanner | Tools, Hardware & Consumables > Spanners & Wrenches | Provisional — likely fit | Confirm exact item on August p.32; SUPERSAVE is a promotion label. |
 | 10212 | Sensor Intake Manifold Beetle, Pressor Renault/Micra/Juke/Qashqai | Auto Electrical Spares > Sensors | Provisional — likely fit | Confirm the sensor type and exact item row; August p.20 SPOTLIGHTS conflicts with the product title and cannot validate this route. |
 | Q-OLS01 | Oil Level Sensor For Toyota Quantum 05-14 | Auto Electrical Spares > Sensors | Provisional — likely fit | Confirm exact item row; August p.20 SPOTLIGHTS conflicts with the product title. |
@@ -32,12 +32,12 @@ This is a validation checkpoint for the 18 proposed routes in `CATEGORY_REVIEW_Q
 - 18 proposals reviewed.
 - 16 remain provisional pending exact source-row/context checks.
 - 2 explicitly held for product-function/application confirmation: `6007-13` and `017SK`.
-- No proposal is promoted to production-approved status by this report.
+- No proposal is promoted to production-approved status by this report. The source OCR confirms the exact item names for the remaining proposals, but OCR adjacency alone is not sufficient to approve a route; original page images remain the final check.
 - No live product, category, price, stock, checkout, or deployment setting was changed.
 
 ## Next action (avoid repeated first-pass work)
 
-1. Locate the exact original guide rows for the 16 provisional items and correct each source page/subcategory field where the current metadata conflicts with the title.
+1. Locate the original page images for the 16 provisional items and confirm the visual row/heading boundaries; use the exact-SKU OCR crosscheck as a locator, not as final approval. `017SK` has the same title in March and September guide OCR and is provisional, not held.
 2. **Resolved 2026-10-14:** the two previously flagged crosswalk entries are not wrong-page references. June p.31 contains IGNITION BARRELS AND SWITCHES in its upper section and HAND WINCHES lower down; June p.30 contains WATER SPORTS in the middle, with STICKERS above and TAPPET COVERS below. The crosswalk was corrected to record both as mixed-heading pages, not mismatches. Commit: `a8bad930bbe7bfda24f8490de971c8e669bd1af4`.
 3. Rebuild the candidate routing export once from corrected item-level evidence; keep the remaining 180 queue rows held unless item-level evidence supports a destination.
 4. Only after review, run category integrity and storefront acceptance checks. Do not deploy during this audit.
