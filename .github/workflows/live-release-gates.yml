@@ -46,7 +46,7 @@ jobs:
             printf 'LIVE_HTTP %s %s\n' "$path" "$code"
             if [ "$code" != "200" ]; then echo "FAIL: $path returned $code"; failed=1; fi
           done
-          grep -Eiq "Get Wired AutoWorx" /tmp/live-__
+          grep -Eiq "Get Wired AutoWorx" /tmp/live-_
           jq -e 'type == "array" or type == "object"' /tmp/live-__assets__category-tree_json >/dev/null || { echo "FAIL: category tree is not valid JSON"; failed=1; }
           if [ -s VERSION.txt ]; then
             remote_code="$(curl --retry 1 --retry-all-errors --retry-delay 1 -sS -L --connect-timeout 10 --max-time 30 -o /tmp/live-version -w '%{http_code}' "$base/VERSION.txt" || true)"
