@@ -32,8 +32,8 @@ def check(task):
   if missing: return False,"Missing staging files: "+", ".join(missing)
   try: h=json.loads(hp.read_text()); r=json.loads(rp.read_text())
   except Exception as e: return False,"Invalid JSON: "+str(e)
-  roots=h.get("categories",h.get("roots",[])) if isinstance(h,dict) else h
-  rules=r.get("rules",r) if isinstance(r,dict) else r
+  roots=h.get("roots",h.get("categories",[])) if isinstance(h,dict) else h
+  rules=r.get("groups",r.get("rules",[])) if isinstance(r,dict) else r
   if not isinstance(roots,list) or len(roots)!=8: return False,"Expected 8 staged root categories."
   if not isinstance(rules,list) or len(rules)!=17: return False,"Expected 17 proposed grouping rules."
   if isinstance(h,dict) and h.get("live_catalogue_enabled",False): return False,"Refusing: live catalogue flag is enabled."
@@ -56,11 +56,13 @@ def main():
   if old.get("status")=="passed": continue
   if any(s["tasks"].get(d,{}).get("status")!="passed" for d in t["needs"]):
    s["tasks"][i]={"status":"blocked_dependency","attempts":old.get("attempts",0),"updated_at":stamp(),"detail":"Dependencies have not passed."}; continue
-  n=old.get("attempts",0); ok=False; detail="attempt limit reached"
-  while n<MAX_ATTEMPTS and not ok: n+=1; ok,detail=check(t)
+  attempts_this_run=0; ok=False; detail="attempt limit reached"
+  while attempts_this_run<MAX_ATTEMPTS and not ok:
+   attempts_this_run+=1; ok,detail=check(t)
+  total_attempts=old.get("total_attempts",old.get("attempts",0))+attempts_this_run
   status="passed" if ok else "failed"
-  s["tasks"][i]={"status":status,"attempts":n,"updated_at":stamp(),"detail":detail}
-  s["events"].append({"at":stamp(),"task":i,"status":status,"attempts":n,"detail":detail})
+  s["tasks"][i]={"status":status,"attempts":attempts_this_run,"total_attempts":total_attempts,"updated_at":stamp(),"detail":detail}
+  s["events"].append({"at":stamp(),"task":i,"status":status,"attempts_this_run":attempts_this_run,"total_attempts":total_attempts,"detail":detail})
  s["updated_at"]=stamp(); STATE.parent.mkdir(parents=True,exist_ok=True); STATE.write_text(json.dumps(s,indent=2)+"\n")
  print(json.dumps(s,indent=2))
  return 0 if all(s["tasks"].get(t["id"],{}).get("status") in ("passed","blocked_approval","blocked_dependency") for t in TASKS) else 1
