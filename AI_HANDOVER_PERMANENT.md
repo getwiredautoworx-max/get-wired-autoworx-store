@@ -2026,3 +2026,15 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Resume/persistence note: the report contains accumulated task events across multiple timestamps and the current state file is published as an artifact. This supports state accumulation within the artifact history, but does not by itself prove cache restoration across independent scheduled runs; perform a two-run state-resume comparison before declaring that requirement verified.
 - Current blocker remains source evidence for catalogue QA and the real browser/storefront QA evidence. Keep release blocked and production catalogue untouched until those dependencies pass. No Cloudflare/Netlify credits used.
 - Next execution order: (1) verify cross-run state restore by comparing the next runner artifact with this report; (2) inspect the exact source images / SKU evidence needed to clear catalogue holds without guessing; (3) execute actual browser QA against staging and separately verify Axxess live behaviour; (4) update this handover again with measured results before any release action.
+
+
+## 2026-10-14 — cross-run runner state restoration verified from logs
+
+- Inspected job logs for runner executions `38548584667` and `38548727027`.
+- Run `38548584667` restored cache key `task-runner-state-38548438163`, then emitted state timestamp `2026-10-14T10:18:09.229337+00:00` and saved cache key `task-runner-state-38548584667`.
+- Subsequent run `38548727027` explicitly logged `Cache hit for restore-key: task-runner-state-38548584667`, restored the 1,041-byte state file successfully, then emitted newer timestamp `2026-10-14T10:19:27.451721+00:00` and saved its own cache key.
+- This is direct log evidence that the workflow restored state from the immediately preceding runner execution and continued it across separate jobs. The 5 unit tests also passed on run `38548727027`.
+- Persistent state is verified for this consecutive-run pair; it is not a guarantee of a permanently running worker. The runner remains scheduled GitHub Actions work, and approval-blocked tasks remain blocked.
+- Current task states remain: `repo_safety` passed; `staging_taxonomy` passed structurally only; `controller_presence` passed by syntax/policy check; `catalogue_source_qa` blocked_approval; `browser_qa` blocked_approval; `release` blocked_dependency. The dependency runner is not yet authorized to clear evidence or browser approvals by itself.
+- No production catalogue writes, deployment, Axxess upload, Cloudflare use, or Netlify use occurred in this checkpoint.
+- Next execution order: inspect and validate the existing staged source evidence/crosswalk and the browser QA workflow/logs; determine which tasks can be advanced without human approval; keep release held until both required QA dependencies have genuine passing evidence.
