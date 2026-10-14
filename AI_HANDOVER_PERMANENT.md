@@ -2046,3 +2046,37 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Scope qualification: this is the repository's automated smoke test on the pull-request merge checkout, not a manual mobile checkout/payment test and not a live Axxess-domain verification. Do not use it alone to clear the broader `browser_qa` approval hold.
 - Runner cross-run cache restore is now verified from the logs of runs `38548584667` and `38548727027`; the latter restored the former's cache and passed all five runner unit tests.
 - Remaining release blockers: catalogue source evidence and end-to-end browser QA, including a separate live Axxess check. No production catalogue or hosting changes were made.
+
+
+## 2026-10-14 — live release-gate verification and current continuation
+
+### Verified live website / browser results
+- Inspected GitHub Actions run `38557658248` (workflow `Live Release Gates`, commit `fbb19e56eb4c7cd56616a1a034739e0b31108700`). Its job `Public HTTPS, live navigation and safe checkout` completed successfully at `2026-10-14T11:36:38Z`.
+- Successful steps explicitly included:
+  - Public HTTPS checks for `https://www.getwiredauto.co.za/`, `/category.html`, `/checkout-v2.html`, `/terms-and-conditions.html`, `/returns-refunds.html`, and `/assets/category-tree.json`.
+  - Repository/live `VERSION.txt` comparison.
+  - Playwright Chromium category navigation at desktop (1365×900) and mobile (390×844).
+  - Checkout UI exercise at both viewport sizes using a test cart and mocked product response. The checkout endpoint was intercepted and returned a deliberate safe-test response; no real order was submitted.
+- Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38557658248
+- Qualification: this is verified automated testing of the public `www` domain and browser UI, not a real payment, courier fulfilment, live order, or manual Axxess DirectAdmin test. Do not conflate these separate checks.
+- A subsequent run `38557776512` followed a documentation-only commit; check its individual job steps before counting it as a new live browser test. The meaningful live test evidence recorded here is run `38557658248`.
+
+### Payment gate
+- Payment-provider readiness remains unconfirmed. The live browser test deliberately blocks actual order submission and does not prove PayFast or PayJustNow merchant activation, signed callbacks, secret configuration, or successful sandbox/live settlement.
+- Do not tell the owner to represent either provider as live/ready until the integration and provider-side acceptance are verified. Keep production release on hold for payment readiness.
+
+### Background task controller / runner
+- Earlier handover entries correctly record successful cross-run state restoration for runner executions `38548584667` and `38548727027`, including restored cache key `task-runner-state-38548584667` and five passing unit tests.
+- The main branch background controller uses a 15-minute schedule plus workflow-completion triggers and has bounded retries for an allowlist of QA/audit/package workflows. This remains scheduled/event-driven work, not a permanently resident process. It cannot resolve ambiguous source evidence or owner approval holds.
+- Do not infer controller auto-retry validation solely from a green live-release workflow. For a current validation claim, inspect a post-merge controller run and its checkpoint artifact directly.
+
+### Remaining release blockers / next execution order
+1. Continue source-page evidence reconciliation using the original June Buyer's Guide page images, prioritizing existing page 18 and pages 29–32 cross-checks; keep ambiguous OCR glyphs and unverified current supplier prices on hold.
+2. Resolve the 86 known placeholder/missing-known-WebP exceptions by exact SKU/product ID against the existing source-image set; inspect the sync exception ledger first and do not run image sync blindly or use fuzzy matches.
+3. Inspect the current controller run/checkpoint artifact and confirm bounded-retry behavior only from its actual logs/artifact.
+4. Keep catalogue changes staged. Do not write product/category/price/stock rows to production or upload to Axxess as part of this checkpoint.
+5. Before release, separately verify PayFast/PayJustNow integration and provider acceptance. No real order or payment was sent in the successful browser test.
+6. Preserve the workflow preference: build/edit in Axxess first where applicable, then one final synchronized update; do not spend Cloudflare or Netlify credits before final testing.
+
+### Change impact
+- This checkpoint records verified results and remaining gates only. No live catalogue/database, hosting, payment configuration, Cloudflare, or Netlify changes were made.
