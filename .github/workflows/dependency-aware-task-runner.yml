@@ -21,6 +21,7 @@ on:
     branches: [automation/dependency-aware-runner]
     paths:
       - "scripts/automation/task-runner.py"
+      - "tests/test_task_runner.py"
       - ".github/workflows/dependency-aware-task-runner.yml"
       - "assets/store-category-hierarchy.json"
       - "assets/product-grouping-rules.json"
