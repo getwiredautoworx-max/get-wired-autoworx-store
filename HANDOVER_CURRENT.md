@@ -120,3 +120,16 @@ Continue visual verification from printed page 19 through page 32, then reconcil
 - Page 25 consumables examples: F7-008-18, F7-008-20, F7-008-013, F7-008-2, H5-006-16, H5-012-10. Drilling tool examples: 560162, 520108, 520305, 530103, 530125, T2-021-SL7, 510111, G840593, 300801, 500213; the visible drill-bit table shows 500308, 500309, 500310, 500314 and 500316. Hand-tool examples: 424305, 424503, T1-065-150, T1-109-75, T1-167, 290452, 290604, 290606, 290740 and 300302.
 - These are selected visual transcriptions, not completed full SKU/description/cost verification. Prices from this historical guide must not be promoted to current live supplier costs without exact-SKU checking against later sources. No live writes, imports, uploads or deployments performed.
 - Next action: continue with printed page 26 and the remaining pages.
+
+
+## Progress made 2026-10-14 — June guide pages 19–23
+- Visually inspected printed pages 19–23. Selected codes below are evidence of page inspection, not complete price-row verification.
+- Page 19 continues Door Parts and begins Automotive Spares. Visible door/window codes: S-WRH03, T-WR002R, T-WR003L and VW-WRH02. Automotive spares examples include A3-003BCABL, A3-003GR, A3-023BL, A3-030CH, A3-032BL, A3-021B, A3-021Y, A3-011BL, T-CBP01, CL-1260, SV-8345, AF-002, AF-010, CF-001, LP, FF-006, GF-239/240, JT-215, AF-004, BS-302, BS-T9, BS-T9B, SC-SB01, SE-CVB01, 335-4 and 98013.
+- Page 20 is Brake Spares & Cylinders. Visible examples: AF871, Q-RWC0, 18314, A-2191, A3350, AF532, AF749, AF994, AH1071, AH8137, AH8154, AH8891, B10-2700L, B10-547L, B10-578R, B10-BSK01, T-BSE01, N-CP001, BH1961, BH1968, BH1985, T-BP001, BM01, BM17, BM12, CM04, CM29, CM32, CM33, CS01, CS05, CS14, CM20 and HL-WC01.
+- Pages 21–22 are Automotive Tools; page 22 also begins Engine Timing Kits. Tool examples: 284804, A10-003, A10-008, A10-014, A10-018, A10-021, A10-026, A10-028, A10-031-4, A10-036, A10-040, A10-047, A10-048, A10-052, A10-056, A10-058, A10-061, A10-062, A10-068, A10-081, A10-084, A10-086, A10-089, A10-095, A10-100, A10-120, LF101, OR604, SFOCS-008-3, T-192, TL24, TPS16X200, TPS21X200, TW200 and TW301. Engine timing kit examples include TTK-MB05, TTK-W10, TTK-BM02B, TTK-BM04-2, TTK-BM11, TTK-BM15, TTK-BM22, TTK-MN01 and TTK-FT02.
+- Page 23 continues Engine Timing Kits and starts Abrasives. Timing kit examples: TTK-FD02, TTK-FD05, TTK-FD07, TTK-MB04-2, TTK-MN02, TTK-OP03, TTK-OP04, TTK-PE02, TTK-PE03-UG, TTK-W02, TTK-W16 and TTK-W17. Abrasive examples: A8-009-200, A8-012-65, 590222, 590503, A8-005-75, A8-005-125, A8-013-75, A8-016-100, A8-016-150, A8-016-75, A8-FD115120, A8-FD11560SS, A8-FW804060-80, 550155 and A8-WP400-10P.
+- Continue to treat all June printed prices as historical unless validated against a current guide or supplier price list by exact SKU. Confirm ambiguous characters and exact descriptions against the image and crosswalk before classification.
+- No live database writes, catalogue imports, deployment or Axxess upload performed.
+
+## Immediate next action
+Continue visual verification from printed page 24 of the June Buyer’s Guide and work through page 32. After visual verification, reconcile rows to the OCR/crosswalk and later guide sources; code-only transcription does not close the price/category audit.
