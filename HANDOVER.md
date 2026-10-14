@@ -1,3 +1,13 @@
+## CONTINUATION LOG — 2026-10-14 — CORRECTION LEDGER INVENTORY VERIFIED
+
+- Continued from the prior release checkpoint without repeating the live-site tests or touching production. Read the committed June–September join audit and fetched the exact correction ledger from the repository.
+- Verified the correction ledger is a 96-row CSV with 91 `CORRECT_SKU` entries, 3 `CORRECT_SOURCE_PAGE` entries, and 2 `REMOVE_NON_PRODUCT_ROW` entries. Each row marks prices as historical/not for live use or explicitly not a product. This is a measurable input inventory; it does not prove the corrections have already been applied to the workbook or that the SKU join has improved.
+- Located and materialized the original audit workbook from the user's Library for programmatic follow-through. The workbook is the source file; preserve it unchanged and create a separate staging copy before applying corrections. The next run must apply the ledger by staging SKU and validate each target is unique, then recompute exact-SKU joins against the September 800-row candidate file and emit row-level accepted/unmatched/conflict results. Do not overwrite the original workbook or promote staging results to production.
+- Release gate remains HOLD. Payment integration/merchant approval is unconfirmed, scheduled recovery is not newly proven in this execution, and the live domain could not be independently rechecked through the available web viewer. No production catalogue, Supabase, Axxess, DNS, checkout or payment changes occurred.
+- Next execution must avoid re-counting the same baseline: perform the actual staging-copy transformation and recompute the join, or record the specific file-access blocker if the September candidate CSV cannot be obtained. Do not label this reconciliation complete until the corrected output and numeric before/after join results exist.
+
+---
+
 ## CONTINUATION LOG — 2026-10-14 — RELEASE-GATE RECHECK AND NEXT ACTIONS
 
 - Re-read the current canonical `HANDOVER.md` from `main` before continuing. The latest recorded evidence remains: Live Release Gates run #6 passed the listed HTTPS/TLS, URL-status, five-file byte-comparison, desktop/mobile category-navigation, and mocked-checkout checks. Those checks do not prove payment-provider readiness or catalogue correctness.
