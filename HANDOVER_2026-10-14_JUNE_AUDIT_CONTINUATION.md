@@ -163,3 +163,11 @@ Production untouched.
 - Continued source-image coverage review on printed page 5 and added 24 additional page-5 SKU exceptions to the audit-branch cross-check. Total cross-check now 103 rows; latest audit-branch commit `779d5799402e89871e5e32b0e74e31c99eb848d3`.
 - Missing-from-staging examples include Panel Clips `F7-107-18`, `F7-107-21`, `F7-107-22`, `F7-107-24`, `F7-107-26`, `F7-107-31`, `F7-107-35`, `F7-107-38`, `HS-6148B`, `F7-OP01`, `F7-W01`, `F7-200`, `F7-201`, `F7-202`; and General Accessories codes `SC184-12V`, `A2-061A`, `CSBRL`, `PE-650M`, `603W`, `1710WP`, `1740WP`, `A2-FF01`, `A2-FF02`, `A2-FBLO01B`.
 - Page-5 image evidence further confirms the current 470-row worksheet is a partial product selection rather than a complete transcription of the source page. The remaining page-by-page coverage check must continue before the June guide can be called reconciled.
+
+
+## 2026-10-14 follow-up — page 6–8 source coverage audit
+- Visually inspected original printed pages 6–8 and compared a set of source codes against all 470 staging SKUs.
+- Created `staging/source-extracts/june-source-coverage-audit-pages06-08.csv` on `audit/buyer-guide-extraction`, commit `51551d75352ea21e532312e857103bf0290ca6f6`, with 40 page-specific source coverage exceptions.
+- The exceptions include source-visible General Accessories, Wheel Accessories and Electrical Accessories codes absent from the 470-row worksheet. Examples include page-6 `A5-108B`, `A2-100-30GR`, `A2-100-5C`, `A2-102`, `D9-USL001`; page-7 `D9-TF2101`, `HA-FTC02`, `D9-FR1515W`, `D9-FR2224`; page-8 `157107`, `CSS-001`, `PEK04`, `A2-023D`, `CL01-M`, `SCL014`.
+- Audit files are now split by scope: pages 29–32 visual code review; pages 3–5 source coverage exceptions; pages 6–8 source coverage exceptions.
+- These exception files document missing source items; they do not automatically add or approve them for sale. Current costs, descriptions/application, image, category, and supplier availability must be verified before active import.
