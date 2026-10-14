@@ -2146,3 +2146,12 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Live checkout source contains only `Direct EFT / bank payment`. PayFast and PayJustNow are not available as checkout methods in the current source. Payment provider integration and merchant acceptance are a release blocker, not an owner-side checkbox that can be assumed complete.
 - Keep production release blocked until provider integration/acceptance is real and the remaining catalogue source evidence is resolved.
 - No Supabase catalogue mutation, Axxess upload, Cloudflare deployment, Netlify usage, or live payment configuration was performed in this continuation.
+
+
+## 2026-10-14 — image exception product identity lookup (read-only)
+
+- Queried the existing active-product rows in Supabase using a read-only SELECT limited to records whose image URL is `/assets/product-placeholder.svg`. The result aligns with the 86-SKU audit list and exposes each record's existing public SKU, supplier SKU, and product name for staging review only.
+- No product rows were inserted, updated, or deleted. The lookup is identity evidence, not proof that a supplier image exists or that a proposed image is correct.
+- Current sync exception evidence remains: 29 SKUs returned `sku_not_in_search_results`; 57 returned `no_product_cards`. All 86 were last attempted at sync version 9 on 11 October and remain within the configured seven-day retry cooldown as of this checkpoint. The last bounded run contacted the ASC source successfully (HTTP 200) but correctly skipped the whole batch (`eligible: 0`).
+- Do not bypass cooldown or use fuzzy/name-only matching. Next valid resolution is to inspect exact supplier-SKU lookup results for the 86 identities and the 800 existing source images; only exact, independently verified image matches can be published. Any sync-version change must be a deliberate bounded pass and must not write Supabase product rows.
+- Current release gate remains on hold: fresh public HTTPS/desktop/mobile/category/checkout UI run `38559111166` passed; the event-driven controller and checkpoint artifact were verified; provider checkout remains Direct EFT only; June source reconciliation and 86 image gaps remain unresolved. Periodic schedule execution has not yet been proven.
