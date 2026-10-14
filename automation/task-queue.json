@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "live_store_mutations": "prohibited_by_controller",
+    "production_deploy": "only_after_explicit_approval_and_passing_qa",
+    "retry_limit": 2,
+    "checkpoint_after_each_run": true,
+    "never_invent_sku_price_or_source_evidence": true
+  },
+  "tasks": [
+    {
+      "id": "catalogue-source-reconciliation",
+      "priority": 1,
+      "status": "blocked_manual_evidence",
+      "description": "Reconcile buyer-guide SKUs and prices against original source pages; keep uncertain identities and prices on hold.",
+      "next_action": "Verify each provisional route against the original catalogue page image and source heading; save evidence before changing status.",
+      "automatic": false
+    },
+    {
+      "id": "category-review-queue",
+      "priority": 2,
+      "status": "pending",
+      "description": "Resolve the held and provisional category routing rows in the audit branch; do not route held rows without evidence.",
+      "next_action": "Review 16 provisional candidates and resolve holds 6007-13 and 02-09 using original page context.",
+      "automatic": false
+    },
+    {
+      "id": "catalogue-image-gaps",
+      "priority": 3,
+      "status": "needs_review",
+      "description": "Review exact-SKU image sync exceptions and recover only eligible records.",
+      "next_action": "Inspect latest image audit artifact and sync rules before retrying; do not blindly rerun bounded sync.",
+      "automatic": false
+    },
+    {
+      "id": "storefront-qa",
+      "priority": 4,
+      "status": "scheduled_checks_exist",
+      "description": "Monitor current production QA and storefront smoke workflow results; production remains protected.",
+      "next_action": "Review failed or stale QA runs and repair in audit branch before any release.",
+      "automatic": true
+    },
+    {
+      "id": "handover-checkpoint",
+      "priority": 5,
+      "status": "required_each_run",
+      "description": "Produce an artifact checkpoint with latest workflow results, unresolved tasks, blockers, and next actions.",
+      "next_action": "Controller creates background-task-status.json and BACKGROUND_TASK_STATUS.md as workflow artifacts.",
+      "automatic": true
+    }
+  ]
+}
