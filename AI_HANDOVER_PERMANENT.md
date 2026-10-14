@@ -1727,3 +1727,12 @@ Status: IN PROGRESS. Latest handover was read before other work. The normal file
 - The July–September candidate-code cross-guide CSV contains false-positive-looking tokens (e.g. page-number/range strings and short tokens such as `T10`, `Z350`, `M12X1`) and explicitly marks all candidates as provisional. Do not use that candidate CSV by itself to change price/status; require a full exact SKU/part-code match plus product identity and source-page price evidence.
 - No product/category/price write, import, deployment, merge, or catalogue reset occurred. The current live formula/integrity checkpoint from the previous entry remains read-only evidence only.
 - Acceptance run #12 was still running at the last status query (job step 6); no pass/fail conclusion is available yet. Continue checking the real run result before marking desktop/image QA complete.
+
+
+### 2026-10-14 08:25 SAST — Staging Category Navigation Chromium Acceptance #12 PASS
+
+- GitHub Actions run `38521429939`, job `115711774827`, commit `14c16fa76f0e3c2c58596ff69608edc18e0b5578`: **SUCCESS**. Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38521429939
+- All workflow steps completed successfully, including `scripts/test-staging-category-navigation.cjs` and artifact upload.
+- This run repeats the full navigation journey across all **8 roots and 71 subcategories at mobile 390×844 and desktop 1280×900**, checking each subcategory can be opened and returned from. It also checks horizontal overflow/off-screen layout at mobile and horizontal overflow at desktop, captures mobile/desktop screenshots, checks visible images for load failures, and checks browser page errors.
+- Result is acceptance of the tested **staging source** only; it does not verify the live Axxess deployment or all product-card images on every product page. Artifact `staging-category-visual-qa` (ID `11874495111`, 1,216,579 bytes) is available until **2026-10-21 06:24 UTC**.
+- No merge, deployment, production database write, product import, price update, stock change, order, payment, DNS, or hosting change was performed. Keep the staging branch intact and continue with original-page category verification and fresh exact-SKU reconciliation before considering release.
