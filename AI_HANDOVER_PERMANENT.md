@@ -1806,3 +1806,12 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Additional confirmed page headings: March p.7 AUTOMOTIVE ELECTRICAL; June p.19 AUTOMOTIVE SPARES (July p.22 uses separate SWITCHES and SPARE PARTS headings); March p.27 CONSUMABLES; June p.25 DRILLING TOOLS; May p.3 OUTDOOR; August p.31 PADLOCKS; May pp.5-6 PANEL CLIPS; sampled LIFESTYLE headings.
 - Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
 - Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
+
+### 2026-10-14 10:12 SAST — First-pass evidence coverage across all 115 crosswalk rows
+
+- Every one of the **115 crosswalk rows** now has either a new original-page-image finding (**107 rows**) or an earlier visual-QA record (**8 rows**); **zero rows lack any page-image finding/status**.
+- **46 rows remain partial/aggregate-label/heading-variant findings** because their full cited ranges include mixed headings, promotional/brand feature pages or additional pages not yet checked. They are not marked fully closed; continue reviewing the remaining page ranges and preserve caveats.
+- New examples: June p.6 GENERAL ACCESSORIES; March p.14 HAND TOOLS; February p.36 mixed HAND TOOLS/SECURITY/STRAPS & TIE DOWNS; July p.31 SPANNERS/ADHESIVES AND SILICONES/CONSUMABLES; May pp.16-17 IGNITION COILS; August p.16 CARPET CAR MAT SETS; March p.8 SPARE PARTS; March/May p.30 SPECIAL DISCOUNTED PRICE banners; August p.32 SUPER SAVE banner.
+- Keep source TOC labels, actual printed headings, brand feature pages, promotion banners and item-level category decisions separate. No live products/categories/prices were changed.
+- Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
+- Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
