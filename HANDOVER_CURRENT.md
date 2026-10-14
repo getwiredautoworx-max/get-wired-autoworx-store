@@ -603,3 +603,15 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 - Branch is **not merged, not uploaded to Axxess and not deployed**. No production changes made. Before considering merge/sync, browser-test all 8 roots on desktop/mobile and ensure category/product routes function; this session only proves static ROOTS-list count, not browser rendering of the staged branch.
 - Latest main-branch live release gate remains run `38624500758` SUCCESS at candidate commit `e2f783d76c367ae7523f31afee4f8cd8e76a819a`. The staged branch is a later unmerged candidate and has not been run through a branch-specific browser test. Main live gate still passes with 9 roots because main has not been changed.
 - Current rollback: delete branch `qa/category-root-fix-2026-10-14` or revert its two commits; no database rollback required.
+
+
+## BRANCH-LOCAL BROWSER QA PASSED — EIGHT ROOTS (2026-10-14)
+
+- Isolated candidate branch `qa/category-root-fix-2026-10-14` now has automated browser QA workflow `.github/workflows/category-root-candidate-qa.yml`.
+- Branch-local GitHub Actions run `38625347515` SUCCESS: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38625347515
+- Candidate commit tested: `4d6733cd5bd47f8d5ce9a8c33091a8de2d54ff37`. Desktop and mobile both logged `CATEGORY_CANDIDATE_PASS ... roots=8 all_root_links=8`. Test asserted all eight approved root labels, no Spare Parts root, clicked all eight cards, checked expected category/products routes and found no browser page errors.
+- Updated branch report `staging/CATEGORY_ROOT_FILTER_VALIDATION_2026-10-14.md` with run evidence; report update commit: `6dc82c53be93f3f1fa94b31ddd25b9ca6a4cf51d`.
+- This resolves the root-card-count defect in the **staged candidate**. Main/live remains at 9 roots and has not been changed. Do not merge/deploy until the 565 product dispositions and full catalogue image/price/rights gates are accepted.
+- Current outstanding category work is now explicit and row-level: 565 products enumerated; 161 candidates for mapping; 321 mechanical/out-of-scope rows to keep excluded; 83 ambiguous/scope-review rows to keep blocked. This is a complete exception inventory and safe quarantine plan, not a fully approved database remap.
+- Latest main live release gate: run `38624500758` SUCCESS at ledger commit `e2f783d76c367ae7523f31afee4f8cd8e76a819a`; it confirms production root cards still 9, all checked source files match repo, desktop/mobile checkout UI passes in safe mode, and only Direct EFT is configured. Latest branch-only browser QA passes 8 roots but is not deployed.
+- No production product/category/price/image/stock/payment/DNS/Axxess writes occurred. Rollback for the candidate is branch deletion/revert only.
