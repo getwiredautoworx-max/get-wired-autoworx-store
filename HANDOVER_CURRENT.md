@@ -61,3 +61,13 @@ Continue visually from printed page 8 of the June Buyer’s Guide; capture page 
 - No live store/database changes, uploads or deployment performed. Next action: continue from printed page 11.
 
 Immediate next action: continue visual verification from printed page 11 of the June Buyer’s Guide; keep all catalogue changes staged.
+
+
+## Progress made 2026-10-14 — June guide pages 11–13
+- Visually inspected printed pages 11, 12 and 13 of the original scanned June Buyer’s Guide. This is a selected-code transcription, not complete line-by-line price validation.
+- Page 11: Battery Accessories continue, then Fuses begin. Visible battery SKU/code examples: B3-009, PN06N, PN06P, BBC600AMP, JC200AMP, JC500AMP, I1-1000W, C175, RSL1001, RSL1000, RSL1002B, RSL235B, RK4000, RK6500, C5-013-800, C5-014-21, and heat-shrink family C5-013-2G/2R/3G/3.5R/6BL/6G/8R/10G/10B/12BL/12W. Fuses visible: MF-SET, R3-43, F3-002, FH-001, FB-002-60, FB-002-100, F3-520-2, F3-520-10, F3-630-10, WENG10AMP.
+- Page 12: Fuses continue, followed by Relays. Visible fuse codes include F3-004-7.5, F3-004-10, F3-004-15, F3-004-30, F3-004-40, F3-010-15, MPF110AMPC, WPFI3AMP, WPFI30AMPC, FL30, FL50, FLS-20. Relay examples include CS-114013, CS-114014, ND68, ND73, ND83, ND89, ND97, ND105, ND41-24, ND42-24, ND49, F4-002, F4-006, ND59, FK3170, F4-004 and RY228.
+- Page 13: Globes & Globe Holders followed by Starter Kits & Regulators. Visible globe codes include CS-3856, CS-3858, 286D-10, 339-10, 581-10, 581-24-10, 62T-10, 334BP, 334-10, 633-10, 284-10, 502BP, 501-16A-10, 502-10, 592-10, 582ALED, AE-H8LED, H170W24V, 9006-CBL-H, 1DS-8000, 3DS, 2DC, 2DS, H4-H43G, GH-9005. Starter/regulator examples include 041SK, 047SK, 062SK, 223SK, 27370-16010/35060, A7-TBH06, Q-SB01, SB474, SB543, SB583 and SB585.
+- Treat OCR/transcribed codes as candidates until each row is checked against the exact visual label and description; visually similar characters and small print can cause errors. Printed June prices are historical, not verified current supplier costs. Asterisked “as per system” items remain price/availability confirmation candidates.
+- No live store/database changes, imports, uploads, or deployments performed.
+- Next action: visually inspect printed page 14 onward and continue recording page evidence; keep all reconciliation staged.
