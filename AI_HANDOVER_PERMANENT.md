@@ -1815,3 +1815,12 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Keep source TOC labels, actual printed headings, brand feature pages, promotion banners and item-level category decisions separate. No live products/categories/prices were changed.
 - Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
 - Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
+
+### 2026-10-14 10:35 SAST — First-pass classification recorded for all crosswalk headings
+
+- All **115/115 crosswalk rows** now have a visual classification: **74 visually verified headings** and **41 visually reviewed alias/aggregate/promotion/product-feature findings**. No rows remain in `OCR recovered`, `Needs review`, or explicit page-image-pending status.
+- Two OCR-derived rows remain source-reference discrepancies and must not be treated as store categories: `IGNITION BARRELS AND SWITCHES` cites June p.31, but that image shows HAND WINCHES / SPECIAL DISCOUNTED PRICE; `WATER SPORTS` cites June p.30, but that image shows TAPPET COVERS / SPECIAL DISCOUNTED PRICE. The correct source pages must be located or these rows corrected/removed.
+- Some long source ranges were sampled rather than every page individually reviewed; this is explicitly noted in the crosswalk. Exact printed headings, aliases/TOC labels, brand feature pages and promotion banners are separate classifications.
+- Browser acceptance #12 status rechecked: `completed` / `success`. Staging-only, no production deployment, category writes, product imports, price writes, stock changes, DNS/hosting changes or live orders.
+- Latest crosswalk: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/ASC_SOURCE_CATEGORY_CROSSWALK_2026-10-13.csv
+- Latest gap audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/CATEGORY_CROSSWALK_GAP_AUDIT_2026-10-13.md
