@@ -2039,3 +2039,12 @@ This rule applies to every subsequent task and must not be removed unless the ow
 - Important: this is a small evidence sample, not a full audit. Some staging rows have OCR-uncertain spellings (for example A2-series strings and relay codes), and page images must remain authoritative. No SKU, cost, product, category or price was modified in the staging workbook during this pass.
 - A full-document automated OCR pass exceeded the execution window and was interrupted; it produced no complete document-wide verification result. Continue in bounded page batches and use image review for uncertain code characters rather than accepting OCR output as verified.
 - Handover links remain the operational source of truth. Browser/mobile route testing is still NOT RUN; source-level handler inspection must not be reported as a successful device test. No production or live data was changed.
+
+
+## CONTINUATION LOG — 2026-10-14 — JUNE PAGES 6–10 REVIEWED
+
+- Continued bounded page review of June Buyer’s Guide printed pages 6–10 using the original PDF and OCR as a locating aid.
+- Confirmed visible printed-section sequence: General Accessories continues on pp.6–8; Electrical Accessories and gauges appear on p.9; Aerials appear on p.10. This supports mapping source products into store categories/subcategories, not importing the guide’s layout headings as new root categories.
+- Code OCR from these pages is not consistently reliable: characters such as O/0, I/1, S/5 and missing hyphens are visibly prone to confusion. The existing staging rows for these pages include likely OCR variants (examples include D9-series exterior accessories, aerial codes, and CSS-series wheel-cap codes). Do not auto-correct from OCR text alone; verify the exact source image and, where possible, a later guide or supplier code.
+- The current page batch was limited to source taxonomy and a sample code check. It did not certify all SKUs, calculate price deltas, or clear the 106 pending crosswalk rows. No workbook or source-ledger data was altered.
+- Continue with small page batches. Priority should be: verify staged source codes against image; record exact printed page; validate descriptions and prices only where legible; cross-check repeated SKUs against August/September/October; then build exact-SKU KEEP / UPDATE / ADD / QUOTE / REVIEW decisions. Keep quote/system-price records out of fixed-price imports.
