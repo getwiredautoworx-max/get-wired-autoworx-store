@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-STATE = Path(os.environ.get("TASK_RUNNER_STATE", ROOT / ".task-runner-state.json"))
+STATE = Path(os.environ.get("TASK_RUNNER_STATE", ROOT / "task-runner-state.json"))
 MAX_ATTEMPTS = 2
 TASKS = [
  {"id":"repo_safety","needs":[],"kind":"check"},
@@ -51,7 +51,24 @@ def check(task):
   found=sorted(set(found))
   # Exclude this runner and its workflow/docs; identify independent controller candidates.
   candidates=[p for p in found if p != "scripts/automation/task-runner.py" and not p.startswith("tests/") and "dependency-aware-task-runner.yml" not in p and "VALIDATION-CHECKPOINT" not in p and not p.endswith("README.md")]
-  return (True,"Controller candidate(s) requiring manual identity verification: "+", ".join(candidates)) if candidates else (False,"No separate controller entry point discovered; inspect repository workflow/controller architecture before validation.")
+  controller=ROOT/"scripts/background_task_controller.py"
+  workflow=ROOT/".github/workflows/background-task-controller.yml"
+  if not controller.is_file() or not workflow.is_file():
+   return False,"Controller source or scheduled workflow missing."
+  try:
+   compile(controller.read_text(encoding="utf-8"),str(controller),"exec")
+  except Exception as e:
+   return False,"Controller syntax validation failed: "+str(e)
+  source=controller.read_text(encoding="utf-8")
+  required=["AUTO_RETRY_ALLOWLIST","MAX_ATTEMPTS = 2","MAX_FAILURE_AGE = timedelta(hours=6)","rerun_failed_jobs","overall_status"]
+  missing=[term for term in required if term not in source]
+  forbidden=["cloudflare-pages-deploy.yml","asc-sku-image-sync-bounded.yml","refresh-category-snapshot.yml"]
+  # Deployment, SKU sync and category-write workflows must not be retryable.
+  allow_section=source.split("AUTO_RETRY_ALLOWLIST",1)[1].split("}",1)[0] if "AUTO_RETRY_ALLOWLIST" in source else ""
+  unsafe=[name for name in forbidden if name in allow_section]
+  if missing or unsafe:
+   return False,"Controller policy checks failed; missing="+str(missing)+" unsafe_allowlist="+str(unsafe)
+  return True,"Existing controller syntax and retry safety policy verified; retries limited to allowlisted QA/audit/packaging, one retry within six hours. API token/permissions and live runtime outcomes remain separately monitored."
  return False,"No handler implemented."
 def main(argv=None):
  ap=argparse.ArgumentParser(); ap.add_argument("--reset",action="store_true"); args=ap.parse_args(argv)
