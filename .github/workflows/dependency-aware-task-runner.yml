@@ -34,6 +34,10 @@ jobs:
           key: task-runner-state-${{ github.run_id }}
           restore-keys: |
             task-runner-state-
+      - name: Syntax and regression tests
+        run: |
+          python3 -m py_compile scripts/automation/task-runner.py tests/test_task_runner.py
+          python3 -m unittest discover -s tests -p "test_task_runner.py" -v
       - name: Run bounded checks
         env:
           TASK_RUNNER_STATE: .task-runner-state.json
