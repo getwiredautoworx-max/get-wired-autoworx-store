@@ -256,3 +256,17 @@ Read-only category notes:
 - Existing category-tree JSON was refreshed after those exact-SKU fixes. No broad restructuring has been performed.
 - Next: prepare SKU-level mapping output and exception list from active products/categories; report ambiguous/mechanical-scope products separately. Do not delete categories, update products.category_id, or build/upload an Axxess release before mapping review.
 - ETA: tree and mapping rules drafted; SKU-level mapping audit is next. No Axxess upload initiated.
+
+## 2026-10-14 read-only baseline and conservative candidate-routing draft
+
+This section supersedes earlier category counts for current-state decisions; the earlier values remain historical audit points.
+
+- Fresh active SKU baseline: **4,187 rows / 4,187 unique active SKUs**, each with a live category path and source-guide staging match. Snapshot: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/FRESH_ACTIVE_SKU_CATEGORY_BASELINE_2026-10-14.csv
+- Current manual category-review queue: **198 unique exact-SKU rows**, exported with current live product, category path, source guide/page, source heading/subcategory and current price fields. Export: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/CURRENT_CATEGORY_REVIEW_QUEUE_2026-10-14.csv
+- Created conservative candidate routing draft: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/audit/buyer-guide-extraction/staging/source-extracts/CATEGORY_REVIEW_QUEUE_CANDIDATE_ROUTING_2026-10-14.csv
+  - 198 rows total.
+  - **18 candidate destinations** only: 17 high-confidence text-based candidates and 1 medium-confidence marine/rod-holder candidate requiring application confirmation.
+  - **180 rows held for manual review**, including 32 explicit mechanical/scope holds. Other held rows have ambiguous lighting, generic/mixed-use titles, incomplete names or source/title conflicts.
+  - This is a conservative *proposal only*. It does not authorize moving categories, changing root IDs, editing product records, or importing anything. Keep the exact source SKU, guide/page and source category intact.
+- The candidate router deliberately does not assign generic “connector”, “12V”, “anchor”, “lamp”, “pump”, “filter”, “cylinder” or “parts” wording to a root without product-function evidence. This avoids the prior failure mode of forcing mechanical items into Auto Electrical Spares or treating wall anchor plugs as marine anchors.
+- All 198 review-queue rows pass the current live selling-price formula check; category decisions remain unresolved until owner review. No production writes were made.
