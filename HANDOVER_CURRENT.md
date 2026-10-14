@@ -111,3 +111,12 @@ Continue visual verification from printed page 19 through page 32, then reconcil
 - Page 22 automotive-tool examples: A10-095, A10-100, A10-120, LF101, OR604, SFOCS-008-3, T-192, TL24, TPS16X200, TPS21X200, TW200 and TW301. Engine timing kit examples: TTK-MB05, TTK-W10, TTK-BM02B, TTK-BM04-2, TTK-BM11, TTK-BM15, TTK-BM22, TTK-MN01 and TTK-FT02.
 - These are selected visible codes, not a complete row-level SKU/description/price reconciliation. Confirm each exact code and application from the page and validate costs against a current authoritative guide before using as live pricing. No live writes, imports, uploads or deployment performed.
 - Next action: continue visual inspection from printed page 23.
+
+
+## Progress made 2026-10-14 — June guide pages 23–25
+- Visually inspected printed pages 23–25. Page 23 continues Engine Timing Kits and begins Abrasives; page 24 continues Abrasives, then Cutting Tools and Consumables; page 25 continues Consumables, then Drilling Tools and Hand Tools.
+- Page 23 timing-kit examples: TTK-FD02, TTK-FD05, TTK-FD07, TTK-MB04-2, TTK-MN02, TTK-OP03, TTK-OP04, TTK-PE02, TTK-PE03-UG, TTK-W02, TTK-W16 and TTK-W17. Abrasive examples: A8-009-200, A8-012-65, 590222, 590503, A8-005-75, A8-005-125, A8-013-75, A8-016-100, A8-016-150, A8-016-75, A8-FD115120, A8-FD11560SS, A8-FW80406-80, 550155 and A8-WP400-10P.
+- Page 24 abrasive/cutting examples: A8-WP600-10P, 0100F, A8-001-115, A8-0255, 331101, 310911, 311215, 325010, A8-SCD115 and 570203. Consumables examples: A2-053-22, C5-036B, C5-036B-10, C5-036S, C5-036S-10, PVC-BL, PVC-Y, CT25-100, CT25-100B, CT25-120B, CT36-120B, CT36-180B, NA540B, NA660, NA8100B, 161002, 161003, 171038 and F7-010-14.
+- Page 25 consumables examples: F7-008-18, F7-008-20, F7-008-013, F7-008-2, H5-006-16, H5-012-10. Drilling tool examples: 560162, 520108, 520305, 530103, 530125, T2-021-SL7, 510111, G840593, 300801, 500213; the visible drill-bit table shows 500308, 500309, 500310, 500314 and 500316. Hand-tool examples: 424305, 424503, T1-065-150, T1-109-75, T1-167, 290452, 290604, 290606, 290740 and 300302.
+- These are selected visual transcriptions, not completed full SKU/description/cost verification. Prices from this historical guide must not be promoted to current live supplier costs without exact-SKU checking against later sources. No live writes, imports, uploads or deployments performed.
+- Next action: continue with printed page 26 and the remaining pages.
