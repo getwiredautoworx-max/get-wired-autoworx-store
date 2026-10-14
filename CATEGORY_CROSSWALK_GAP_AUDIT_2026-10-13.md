@@ -177,3 +177,9 @@ Each exact SKU, item description and printed amount matches the live product's c
 - The classification is complete at the *heading identity / alias* level. Long ranges for broad labels are sampled rather than every product page inspected; those limitations are stated in each row. Do not interpret this as item-by-item category approval.
 - **Two cited-page mismatches remain flagged**: IGNITION BARRELS AND SWITCHES cites June p.31, but the page image shows HAND WINCHES / SPECIAL DISCOUNTED PRICE; WATER SPORTS cites June p.30, but the page image shows TAPPET COVERS / SPECIAL DISCOUNTED PRICE. Neither label may be used as a store category without finding a correct source page or correcting/removing the row.
 - Original page images also show May p.20 is headed IGNITION SWITCHES, confirming the June p.31 ignition-barrels reference is not supported by that cited page. No confirmed WATER SPORTS heading was found on the cited June p.30 image.
+
+## 2026-10-14 October price verification completed
+
+- All **107/107** exact-SKU price rows have now been checked against original October 2026 page images. The 19 October guide pages containing these rows were reviewed; the exact SKU and item description are visually confirmed, and each printed October cost matches the live `cost_price`.
+- The 107/107 current selling prices remain formula-correct. No price write or catalogue import is needed from this audit.
+- Latest report commit: `9957adf28d92387c6853fd565a992e6de70a2447`.
