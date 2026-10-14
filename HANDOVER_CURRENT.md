@@ -352,3 +352,26 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - The CSV contains 24 selected visually transcribed SKU/description/printed-price rows from printed page 32, plus source guide/page, explicit historical-price context, exact-string staging-match flag, and a “VISUAL TRANSCRIPTION ONLY” approval guard.
 - The page 32 footer explicitly states prices exclude VAT, prices are estimates, and the special offer ended 30 June 2026 / was valid while stocks lasted. These values are historical printed prices, not verified current supplier costs and not authorization to alter live prices.
 - The extract is staging evidence only. Its existence does not complete or approve the remaining 470 June rows. Continue using the same evidence schema for other pages only after exact visual reading; never fill unknown costs or treat a guide price as supplier cost by assumption.
+
+
+## Execution checkpoint — 2026-10-14, continued session
+
+### Six execution orders — results recorded
+
+1. **June source-page review:** visually inspected printed pages 30–32 of the original June Buyer’s Guide. Page 30 includes special-discount stickers, water-sports items and tappet covers; page 31 includes ignition barrels/switches and hand winches; page 32 includes ratchets and spanners. The guide footer explicitly says prices were valid while stocks lasted, the offer ended 30 June 2026, and prices exclude VAT. These June promotional prices are historical and must not be imported as current supplier costs.
+2. **Live database safety check:** ran a read-only SQL aggregate against `public.products`. Result: 4,187 active products; 4,187 distinct active SKUs; 0 active products with missing/non-positive cost; 0 invalid prices; 0 missing images; 0 price-formula mismatches using `round(cost_price * 1.15 * 1.35, 2)`. No database rows were changed.
+3. **September candidate and correction ledger:** the original September Buyer’s Guide PDF is present in the Library, but the exact corrected staging CSV and the referenced 96-row June correction ledger were not surfaced by the current indexed searches. Do not substitute the old 1,109-row CSV or infer pairings from descriptions. This remains a hard blocker to a trustworthy exact-SKU delta.
+4. **Release QA:** GitHub Actions Live Release Gates run #6 (run ID 38559111166) completed successfully. Its job steps report success for live HTTPS/routes/deployed-version checks, desktop/mobile category navigation, checkout UI without a real order, and separate payment-readiness reporting. This does not mean payment providers are approved or that the store is released.
+5. **Monitoring/controller:** Background Task Controller runs #27 (38559165567) and #28 (38559212408) both completed successfully. Both published checkpoint artifacts. The controller is event-triggered plus a 15-minute schedule, performs monitoring and at most one retry for allowlisted QA/audit/packaging failures, and explicitly excludes production deployments and live data writes. This is bounded scheduled automation, not a permanently running worker. The persistent task queue still lists catalogue reconciliation as blocked on manual source evidence and category review as pending.
+6. **Handover and release protection:** this checkpoint records the new evidence. No catalogue import, Supabase write, Axxess upload, payment-setting change or production deployment was performed.
+
+### Remaining blockers / next exact actions
+
+- Locate/materialize the correct September staging CSV and June correction ledger; validate row counts and headers before any join.
+- Continue June visual verification and exact row matching; selected code sightings alone are not verification of description/cost.
+- Build a deduplicated exact-SKU join against live products, then classify KEEP / UPDATE / ADD / QUOTE / REVIEW with source page evidence. Keep all unmatched or uncertain rows held.
+- Complete October guide/promotion and Suzuki/Renault-Dacia exact-code joins; promotions remain separate from normal supplier costs.
+- Recheck the public live domain from an independent HTTP/browser run. The GitHub Pages build/deploy run is not proof that Axxess is updated.
+- Keep PayFast and PayJustNow deferred as requested. Do not declare launch-ready until source reconciliation and required QA gates pass.
+
+**Release status remains HOLD.** Current live database integrity checks pass, and Live Release Gates #6 passed, but catalogue-source reconciliation is incomplete and payment-provider readiness is intentionally deferred. Continue staging-only; no final synchronization or Axxess upload without explicit review/approval.
