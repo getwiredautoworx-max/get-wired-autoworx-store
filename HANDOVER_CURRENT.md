@@ -289,3 +289,34 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 - This is the practical fallback for observable scheduled GitHub workflow monitoring while the ChatGPT automation API continues returning `next_run_time=null`. First execution is NOT YET VERIFIED; do not report it as operational until a run ID, conclusion and artifact are inspected. The two ChatGPT immediate-run requests were accepted, but neither completion nor future scheduling is confirmed.
 - Recovered the authoritative June PDF and audit workbook from Library; their exact names and the 470-row worksheet findings are recorded in the preceding section. The source inputs are available again, but the row-level reconciliation is still incomplete. A full 32-page OCR attempt exceeded the execution window and produced no verified row results.
 - Task 4 remains partly blocked: the expected 198-row category queue and 107-row October status CSV were not found in the checked GitHub paths or Library search. Next use the recovered workbook/source PDF plus authoritative current product export to regenerate evidence tables with row counts and source references; do not mark OCR guesses as approved and do not move products automatically.
+
+
+## Continuation update — 2026-10-14 — source recovery and OCR checkpoint
+
+### Background monitor
+- Verified that the read-only scheduled monitor workflow exists in the default branch. Original workflow commit: `a9d81f6d50507190f676cd8f74d442e8852e46f6`.
+- Found and fixed an important evidence-path mismatch: the price/category evidence CSVs are on `audit/buyer-guide-extraction`, not the default branch. The monitor previously checked the triggering branch and would incorrectly report these files missing on a main-branch run.
+- Updated `.github/workflows/store-task-monitor.yml` to check the audit branch explicitly and include the evidence ref in its report. Update commit: `f6dfe67a05aa4bfa0cb12ed9e47979bf15f9962f`.
+- Workflow execution and artifact are still unverified; no run ID/conclusion is available from the currently exposed GitHub Actions tools in this step. The scheduled monitor is bounded/scheduled, not a permanent worker, and does not restart jobs or change production.
+
+### Source evidence recovered
+- Located all three previously missing source exports on `audit/buyer-guide-extraction`:
+  - `staging/source-extracts/PRICE_RECONCILIATION_EFFECTIVE_STATUS_2026-10-14.csv` — blob `fb61c9b7419a2f056324919c108bb59c42c860d7`.
+  - `staging/source-extracts/CATEGORY_QUEUE_EXACT_SKU_SOURCE_OCR_CROSSCHECK_2026-10-14.csv` — blob `dde5b3aa553cbcdf4e0aee9b43e99c1b28050884`.
+  - `staging/source-extracts/CATEGORY_REVIEW_CANDIDATE_SUGGESTIONS_2026-10-14.csv` — blob `2bdf8f9dd731ccd9180e920f7f98e385c0ec1822`.
+- Parsed the price status CSV with CSV-aware parsing: 107 data rows, all 107 have exact-SKU + item-description + October printed-price visual verification, all 107 formula checks PASS, and all 107 effective statuses say the October evidence supersedes older guide-cost differences; no price write is indicated for this queue.
+- Confirmed the category OCR cross-check and category suggestion exports each contain 198 data rows. Exact-SKU OCR presence is triage evidence only; original page visual confirmation and manual category decision remain required. No products were moved or imported.
+
+### June Buyer’s Guide — visual checkpoint, printed pages 23–25
+- Rendered the original scanned PDF pages 23–25 and inspected the page images. A small OCR batch completed for PDF pages 23–25, but OCR text quality is noisy and is not used as approval evidence.
+- Printed page 23 covers Engine Timing Kits and Abrasives. Visually readable timing-kit examples include TTK-FD02, TTK-FD05, TTK-FD07, TTK-MB04-2, TTK-MN02, TTK-OP03, TTK-OP04, TTK-PE02, TTK-PE03-UG, TTK-W02, TTK-W16 and TTK-W17. Abrasive examples include A8-009-200, A8-012-65, A8-005-75, A8-005-125, A8-013-75, A8-016-100, A8-016-150, A8-016-75, A8-FD115120, A8-FD11560SS and A8-WP400-10P.
+- Printed page 24 continues Abrasives, then Cutting Tools and Consumables. Readable examples include 0100F, A8-001-115, A8-025, 331101, 310911, 311125, 325010, A8-SCD115, 570203, A2-053-22, C5-036B, C5-036B-10, C5-036S, C5-036S-10, PVC-BL, PVC-Y, CT25-100, CT25-100B, CT25-120B, CT36-120B, CT36-180B, NA540B, NA660, NA8100B, 161002, 161003, 171038 and F7-010-14.
+- Printed page 25 continues Consumables, then Drilling Tools and Hand Tools. Readable examples include F7-008-18, F7-008-20, F7-008-013, F7-008-2, H5-006-16, H5-012-10, 560162, 521008, 520305, 510013, 530125, T2-021-SL7, 510111, G840593, 300801, 500213, 500308, 500309, 500310, 500314, 500316, 424305, 424503, T1-065-150, T1-109-75, T1-167, 290452, 290604, 290606, 290740 and 300302.
+- These are selected visual transcriptions only, not a full row-by-row reconciliation. No June prices or product descriptions have been approved from OCR. Match each SKU against the 470-row staging sheet and retain source page evidence before changing any row status.
+
+### Guardrails / next execution order
+1. Confirm a real monitor workflow run and inspect its report/artifact when run visibility is available.
+2. Continue June visual reconciliation from printed page 26; use original page image over OCR for exact SKU/description/price.
+3. Use the recovered 107-row price report as a verified closed queue; do not rewrite those live prices. Keep all 198 category rows manual-review only.
+4. Continue exact-SKU image/source joins in staging. Do not auto-move categories, import data, write Supabase, upload to Axxess, deploy, change DNS/payment settings, or spend Cloudflare/Netlify credits.
+5. Release remains HOLD until browser/mobile QA, canonical live-domain/HTTPS/build identity, checkout/delivery fee, and PayFast/PayJustNow provider-side evidence are genuinely verified.
