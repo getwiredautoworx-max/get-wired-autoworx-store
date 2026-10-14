@@ -89,3 +89,16 @@ Immediate next action: continue visual verification from printed page 11 of the 
 - Page 19 continues Door Parts then starts Automotive Spares. Door-part examples: S-WRH03, T-WR002R, T-WR003L, V-WRH02. Automotive Spares examples: A3-003BCABL, A3-003GR, A3-023BL, A3-030CH, A3-032BL, A3-021B, A3-021Y, A3-011BL, T-CBP01, CL-1260, SV-8345, AF-002, AF-010, CF-001, LP, FF-006, GF-239/240, JT-215, AF-004, BS-302, BS-T9, BS-T9B, SC-SB01, SE-CVB01, 335-4 and 98013.
 - As before, transcribed codes require exact row matching before price, description or application is marked verified. Printed June prices are not automatically current costs. No live store/database changes, imports, uploads or deployments performed.
 - Next action: continue printed page 20 onward; preserve staged-only workflow.
+
+
+## Progress made 2026-10-14 — June guide pages 14–18
+- Visually inspected printed pages 14–18 of the original June Buyer’s Guide. These are selected-code transcriptions, not complete item-by-item price verification.
+- Page 14 (Starter Kits & Regulators, then Fuel Pumps): visible regulator/solenoid codes VR1002, VR1008, VR1013, VR1023, VR1029, VR1035, VR1061, VR1063, VR1072, VR1073, VR1075, VR1081, VR1083, VR1099, VR1103 and ST2025. Fuel pump examples: F1-005, F1-015, F1-016, F1-017, F1-027, F1-027W, F1-032, F1-035, F1-043, F1-049, F1-053, F1-062, F1-068 and F1-074.
+- Page 15 (Fuel Pumps, then Fan Blades): fuel pump codes F1-075, F1-089, F1-096, F1-108, F1-115, F1-116, F1-117, F1-118, F1-119, UC-J10HC, F1-001-E and F1-042. Fan blade / viscous clutch examples F9-TY02AC, F9-001-5, F9-001-22, F9-001-25, F9-001-27, F9-001-29, F9-001-54, F9-001-66, F9-001-75, F9-002-6, F9-002-13, F9-002-15, F9-002-51, F9-002-70 and F9-002-81.
+- Pages 16–17 (Hoteche display promotion): page 16 examples 101320, 140711, 110901, 140717, 312006, 312003, 310819, 100146, 100240, 100142, 313002, 310911, 312007, 311100, 511021, 501081, 631002, 530109, 530108, 540103, 500223, 500312, 602002, 280110, 280175, 284271, 621002, 495012, 495013, 705001 and A830047-1/A830048-1. Page 17 states a Hoteche display stand loan promotion for purchases of R18,000 or more; only 5 stands available; stand is display-only and remains property of Accessories Spares Centre. Confirm current eligibility before offering.
+- Page 18 (Door Parts): visible codes JTL-6106, Q-SDC02, Q-SDH03, Q-BDS01, Q-BDSC02, Q-FDC02, Q-LR01, Q-SDL01, Q-SDS02, Q-FSDL02, VIC-AC072, VIC-AC108T, DHFL-NP200, DHFL-SE01, DHFL-SS01, DHFR-SB01, DHFR-SB02, DHFR-SS01, DHI-2HAC2CB, DHI-NP200B, DHIL-SB01, DHIL-YHG, DHIR-HAC2, DHIR-NP200B, DHIR-SB01, DHRL-SE01, DHRR-SE01, KOA1069SBL, KOA1081B, M-WRH02, N-WRH01, N-WRH02 and O-WRH02.
+- Important: June printed prices are historical; asterisked “as per system” items require supplier confirmation. Code sightings alone do not verify the exact SKU/description/cost/source page or current price.
+- No live database writes, imports, deployments or Axxess uploads performed.
+
+## Immediate next action
+Continue visual verification from printed page 19 through page 32, then reconcile each item against the staged crosswalk and later guides. Do not mark rows verified from code-only sightings; require exact SKU, description, source price/cost, page and later-guide status where applicable.
