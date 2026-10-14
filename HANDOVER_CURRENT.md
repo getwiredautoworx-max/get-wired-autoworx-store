@@ -491,3 +491,28 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 6. **Final version/release checks (30–45 min):** rerun `Live Release Gates` on the exact release candidate; capture commit SHA, static source match, HTTPS/routes, category desktop/mobile, checkout desktop/mobile, test order interception and rollback artifact. Only after catalogue evidence passes may the owner consider the single controlled sync.
 
 **Release decision remains HOLD.** The UI-level smoke tests are useful partial passes; they do not satisfy product-level category, image identity, current-price, rights, or full catalogue release gates. No production catalogue, price, category, image, payment, DNS, hosting or database writes were performed during this checkpoint.
+
+
+## FOLLOW-UP SOURCE AUDIT — CROSS-GUIDE WORKBOOK (2026-10-14)
+
+- Materialized and inspected `Get_Wired_AutoWorx_Buyers_Guides_Audit_June_August_2026.xlsx` from Library. It contains many source-guide category sheets plus `June Buyer - June OCR staging` (470 rows) and `PRICE CHECK` (3,400 data rows). It is not a clean authoritative September image mapping or a validated current-price feed.
+- Additional price-scale contamination found in the cross-guide workbook: examples include a cost value of `3844` with formula-derived final price `5967.81`, and `T-WR001R` cost `1155669911` with final price `1794177536.83`. These values indicate inconsistent/incorrect number parsing in portions of the workbook. Do not copy prices from this workbook to production. Reconcile each price to the printed page/card and preserve the raw OCR value alongside normalized Rand value.
+- The workbook includes numerous duplicated/legacy category tabs and OCR-staging sheets. Its existence does not supply the exact 31 description-review decisions. Recover that list from earlier artifacts/history or regenerate a row-by-row exception list from source-page evidence; do not claim 31/31 resolved without the actual records.
+- GitHub binary fetch of the 9.3 MB watermarked product-image ZIP was rejected by the repository fetch tool as too large/unsupported; this session's direct internet DNS is unavailable. The ZIP remains in the public repository, and its contents still need to be inspected using a file-download path that supports binary assets. This is a tool-access limitation, not evidence that the archive is missing.
+- Work completed since prior handover: recovered and inspected the source workbook; downloaded and inspected the retained image-audit artifact; retrieved exact browser-test log evidence; documented category-tree discrepancy and payment state. Handover commit before this note: `e8b5ded011ddf347eca6a433e64f1a4772d88b11`.
+
+### Updated QA scorecard (evidence-only)
+- SKU uniqueness in September CSV: **800/800 PASS**.
+- September CSV image URLs: **0/800 populated — FAIL**.
+- September CSV category/subcategory IDs: **0/800 populated — FAIL**.
+- September CSV price formula: **0/791 match required formula**; all priced rows currently use VAT-only calculation — FAIL.
+- Exact visual SKU-to-image identity for September records: **not yet verified; 0/800 evidenced from this CSV**.
+- Description review: **0/31 evidenced closed in the available exception list**; treat all 31 as open until row-level dispositions are written.
+- Quote-only SKU list: **9/9 identified from September source evidence; remain quote-only unless later verified supplier evidence changes their status**.
+- Current supplier prices confirmed: **not evidenced for all 791 proposed saleable records**.
+- Image use/edit rights: **not evidenced as a complete row-level register**.
+- Existing live category navigation smoke test: **PASS on desktop and mobile on commit `1cd8734980063bd3a5bc1cae2f5ac713a33ee446`**, but taxonomy coverage **FAIL/HOLD** (9 visible roots versus 8 agreed; 3,211 active products historically outside approved category trees).
+- Existing safe checkout UI smoke test: **PASS desktop/mobile**, but real order intentionally intercepted; only Direct EFT was configured in that run; no payment provider test.
+- Current exact deployment version / current source hash comparison: **NOT RECHECKED after latest documentation commits**. Re-run the existing CI release gate on the exact candidate before live-test approval.
+
+**Release remains HOLD.** No production data, image, price, category, payment, DNS or hosting changes were made. The blockers that require evidence rather than guesswork remain: exact image identity, the 31 row decisions, current supplier prices, rights evidence, category tree coverage, and current deployment verification.
