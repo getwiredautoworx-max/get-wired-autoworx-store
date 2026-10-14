@@ -171,3 +171,10 @@ Production untouched.
 - The exceptions include source-visible General Accessories, Wheel Accessories and Electrical Accessories codes absent from the 470-row worksheet. Examples include page-6 `A5-108B`, `A2-100-30GR`, `A2-100-5C`, `A2-102`, `D9-USL001`; page-7 `D9-TF2101`, `HA-FTC02`, `D9-FR1515W`, `D9-FR2224`; page-8 `157107`, `CSS-001`, `PEK04`, `A2-023D`, `CL01-M`, `SCL014`.
 - Audit files are now split by scope: pages 29–32 visual code review; pages 3–5 source coverage exceptions; pages 6–8 source coverage exceptions.
 - These exception files document missing source items; they do not automatically add or approve them for sale. Current costs, descriptions/application, image, category, and supplier availability must be verified before active import.
+
+
+## 2026-10-14 follow-up — page 9–11 source coverage audit
+- Visually inspected printed pages 9–11 and compared selected source-visible SKUs against the complete 470-row staging worksheet.
+- Added `staging/source-extracts/june-source-coverage-audit-pages09-11.csv` to the audit branch (66 source coverage exceptions; commit `22be83be8cdb954bfd47d4723b9f57795387721e`).
+- Missing-source examples include gauge SKUs on page 9 (`2727SS`, `2791SS`, `2771SW`, `27001SW`, `6204BB`, `6205BB`, `6208WB`, `6161SB`, `OWOT-R`, `G1-5026`); aerial and battery accessory codes on page 10 (`SL-127`, `EX908-24`, `SL-119-2M`, `A1-006B`, `EA017`, `B3-002`, `B3-008`); and battery/fuse/heat-shrink codes on page 11 (`B3-009`, `PN06N`, `PN06P`, `JC500AMP`, `QC175`, `C5-013-2G`, `MF-SET`, `FH-001`, `WENG10AMP`).
+- Continue keeping missing items in audit-only queues; source visibility does not verify current supplier cost, stock, product application, or a clean image.
