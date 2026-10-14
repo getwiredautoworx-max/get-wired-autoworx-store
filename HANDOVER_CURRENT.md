@@ -50,3 +50,14 @@ Date: 2026-10-14 (South Africa)
 
 ## Immediate next action
 Continue visually from printed page 8 of the June Buyer’s Guide; capture page evidence and crosswalk matches. Keep all changes staged; no live import or deployment.
+
+
+## Progress made 2026-10-14 — June guide pages 8–10
+- Visually inspected printed pages 8, 9 and 10.
+- Page 8 completes General Accessories, then begins Wheel Accessories and Electrical Accessories. Visible examples include 15362, 15710JB, C3-027-4, RCON1-B, W1285, MGB, C3-016, C3-028, A2-RP8R, G1-008, CSS-001, CSS-002, CSS-003, CSS-004, CSS-014, CSS-019, CSS-026, CSS-029, CSS-030, CSS-032, JD-001, PEK04, S1-135LED, A2-023D, E1-USB7, E1-USB8, E1-USB5, E1-CRV, CLO1-M, SCL011-S and SCL014.
+- Page 9 continues Electrical Accessories and starts Gauges. Visible examples include SCL015, E1-CS2, SC-306SS, YF2002, 01006GR, E1-721-S, E1-722-T, K154C, K141C, G1-OS02, 2727SS, 2791SS, 2771SW, 60543SW, 27001SW, 27027SWL, 27091SWL, 2791SW-R, 2791SWL-R, 2727LED-R, 27911ED-R, 6116BL, 6204BB, 6205BB, 6208BB, 6161SB, 6164SB, 6169SB, OWOT-R, 8371 and G1-5026. Check OCR carefully where characters are visually similar.
+- Page 10 begins Aerials and Battery Accessories. Visible examples include SL-127, EX908-24, SL-119-2M, MA333BN, SL-RFR01, A1-006B, AB508, EA017, MA522, MA559R, MA562BB, MA596/2, MA600, MA648, S-5407S, SL-627, SL-772, SL-772B, SL-939R, SL-OP01, SL-TY02, SL-TY03, 288X, O1-010, HM-231, B3-002 and B3-008.
+- These are page-image transcriptions of selected visible codes, not a full item-by-item price audit. Printed prices remain historical until verified against current supplier cost and newer guide by exact SKU.
+- No live store/database changes, uploads or deployment performed. Next action: continue from printed page 11.
+
+Immediate next action: continue visual verification from printed page 11 of the June Buyer’s Guide; keep all catalogue changes staged.
