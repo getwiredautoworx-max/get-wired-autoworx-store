@@ -478,3 +478,13 @@ See `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` for the five-order update: bot
 2. Keep the nine unpriced rows out of sale/import until source policy is resolved.
 3. Review category/subcategory mapping and exact-SKU images against source catalogue page/card evidence; start with the 38 live price holds, but do not publish September price without current supplier confirmation.
 4. Only after the review gates pass, prepare a separately reviewed import candidate and batch final sync/deployment.
+
+
+## 2026-10-14 — Exact-SKU image queue cross-check for 38 held SKUs
+
+- Cross-checked all 38 price-hold SKUs against `Get_Wired_AutoWorx_UNMATCHED_IMAGE_VERIFICATION.xlsx` by exact SKU.
+- **30/38** held SKUs are explicitly listed in the 225-row unmatched-image queue, with verification status still `PENDING YOUR VERIFICATION` and no verified image source/file recorded. This includes both ATV winches, all 12 listed socket sizes and several drill bits/spanners.
+- The other **8/38** do not appear in that unmatched queue: `500332, 510108, 510109, SCR32MM, CVOS27MM, CVOS30MM, LEOPARD, LION`. Absence from an unmatched queue is not proof that an image is correct; these eight remain image-unverified pending a positive exact-SKU image-index/source check.
+- The clean illustrated catalogue page 104 was visually inspected. Both `EWV4500` and `ROMA13XP` show explicit `IMAGE NOT AVAILABLE / No verified SKU-matched catalogue image located` placeholders. No image was assigned based on appearance alone.
+- Updated review CSV `Get_Wired_AutoWorx_38_SKU_Exact_Review_2026-10-14.csv` now records the unmatched-queue cross-check and the distinction between listed vs not listed; all 38 remain held. Full 800-row read-only audit is `Get_Wired_AutoWorx_800_SQL_ReadOnly_Audit_2026-10-14.csv`.
+- Next: inspect the image-index source for the eight not in the unmatched queue, then create a review-only corrected-price candidate (791 rows formula-corrected, nine quote-only rows excluded/inactive) and a separate category/image verification queue. Do not execute SQL or publish product changes.
