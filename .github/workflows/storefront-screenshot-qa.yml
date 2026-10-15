@@ -63,18 +63,27 @@ jobs:
               });
               const errors = [];
               page.on('pageerror', error => errors.push(error.message));
-              await page.goto('http://127.0.0.1:8765/index-new.html', {
+              await page.goto('http://127.0.0.1:8765/store.html', {
                 waitUntil: 'domcontentloaded', timeout: 30000
               });
-              await page.evaluate(() => { document.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; }); });
-              await page.waitForTimeout(7000);
+              const storeFrame = await (async () => {
+                for (let attempt = 0; attempt < 60; attempt++) {
+                  const found = page.frames().find(f => /index-new\\.html/.test(f.url()));
+                  if (found) return found;
+                  await page.waitForTimeout(250);
+                }
+                throw new Error('Storefront iframe did not load from store.html');
+              })();
+              await storeFrame.waitForFunction(() => document.querySelectorAll('.catBtn').length >= 8 && document.querySelectorAll('.product').length >= 8, null, { timeout: 30000 });
+              await storeFrame.evaluate(() => { document.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; }); });
+              await storeFrame.waitForTimeout(5000);
               await page.screenshot({
-                path: 'screenshot-artifacts/storefront-' + target.name + '.png',
-                fullPage: true,
+                path: 'screenshot-artifacts/storefront-' + target.name + '-viewport.png',
+                fullPage: false,
                 animations: 'disabled',
                 timeout: 30000
               });
-              const metrics = await page.evaluate(() => ({
+              const metrics = await storeFrame.evaluate(() => ({
                 title: document.title,
                 viewportWidth: document.documentElement.clientWidth,
                 documentWidth: document.documentElement.scrollWidth,
@@ -87,7 +96,15 @@ jobs:
                 heroVisible: !!document.querySelector('.heroCard, .hero, .heroSection'),
                 horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
               }));
-              results.push({ viewport: target.name, ...metrics, pageErrors: errors });
+              const contentHeight = await storeFrame.evaluate(() => Math.max(document.documentElement.scrollHeight, document.body.scrollHeight));
+              await page.locator('#store').evaluate((el, height) => { el.style.height = height + 'px'; document.body.style.height = height + 'px'; }, contentHeight);
+              await page.screenshot({
+                path: 'screenshot-artifacts/storefront-' + target.name + '.png',
+                fullPage: true,
+                animations: 'disabled',
+                timeout: 30000
+              });
+              results.push({ viewport: target.name, ...metrics, iframeContentHeight: contentHeight, pageErrors: errors });
               await page.close();
             }
             fs.writeFileSync('screenshot-artifacts/qa-report.json', JSON.stringify(results, null, 2));
