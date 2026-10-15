@@ -24,20 +24,49 @@ const requiredHeaders = [
 
 function parseCsv(text) {
   const rows = [];
-  let row = [], cell = '', quoted = false;
+  let row = [], cell = '', quoted = false, afterQuote = false;
   for (let i = 0; i < text.length; i++) {
     const ch = text[i];
     if (quoted) {
-      if (ch === '"' && text[i + 1] === '"') { cell += '"'; i++; }
-      else if (ch === '"') quoted = false;
-      else cell += ch;
-    } else if (ch === '"' && cell.length === 0) quoted = true;
-    else if (ch === ',') { row.push(cell); cell = ''; }
-    else if (ch === '\n') { row.push(cell.replace(/\r$/, '')); rows.push(row); row = []; cell = ''; }
-    else cell += ch;
+      if (ch === '"' && text[i + 1] === '"') {
+        cell += '"';
+        i++;
+      } else if (ch === '"') {
+        quoted = false;
+        afterQuote = true;
+      } else {
+        cell += ch;
+      }
+      continue;
+    }
+    if (afterQuote) {
+      if (ch === ',') {
+        row.push(cell); cell = ''; afterQuote = false;
+      } else if (ch === '\n' || ch === '\r') {
+        if (ch === '\r' && text[i + 1] === '\n') i++;
+        row.push(cell); rows.push(row); row = []; cell = ''; afterQuote = false;
+      } else {
+        throw new Error('Unexpected character after closing CSV quote at character ' + (i + 1));
+      }
+      continue;
+    }
+    if (ch === '"') {
+      if (cell.length !== 0) throw new Error('Unexpected quote inside unquoted CSV field at character ' + (i + 1));
+      quoted = true;
+    } else if (ch === ',') {
+      row.push(cell); cell = '';
+    } else if (ch === '\n' || ch === '\r') {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(cell); rows.push(row); row = []; cell = '';
+    } else {
+      cell += ch;
+    }
   }
   if (quoted) throw new Error('CSV ends inside a quoted field');
-  if (cell.length || row.length) { row.push(cell.replace(/\r$/, '')); rows.push(row); }
+  if (cell.length || row.length || afterQuote) {
+    row.push(cell);
+    rows.push(row);
+  }
   return rows.filter(r => !(r.length === 1 && r[0] === ''));
 }
 
@@ -45,10 +74,22 @@ function loadCsv(file) {
   const rows = parseCsv(fs.readFileSync(path.join(root, file), 'utf8'));
   if (!rows.length) throw new Error(file + ': empty CSV');
   const headers = rows[0];
+  if (headers.some(h => !h.trim())) throw new Error(file + ': blank header');
+  if (new Set(headers).size !== headers.length) throw new Error(file + ': duplicate header');
   return rows.slice(1).map((cells, i) => {
     if (cells.length !== headers.length) throw new Error(file + ': row ' + (i + 2) + ' has ' + cells.length + ' columns; expected ' + headers.length);
     return { rowNumber: i + 2, data: Object.fromEntries(headers.map((h, j) => [h, cells[j]])) };
   });
+}
+
+function validIsoDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(value + 'T00:00:00.000Z');
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
+
+function validMoney(value) {
+  return /^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/.test(value);
 }
 
 function validate(record, source, seen) {
@@ -67,6 +108,9 @@ function validate(record, source, seen) {
   for (const h of ['quote_only', 'is_active']) {
     if (!['true', 'false'].includes(d[h])) errors.push(at + ': ' + h + ' must be true or false');
   }
+  for (const h of ['supplier_cost_ex_vat', 'customer_price']) {
+    if (d[h] !== '' && !validMoney(d[h])) errors.push(at + ': ' + h + ' must be a non-negative amount with at most two decimal places');
+  }
   const cost = d.supplier_cost_ex_vat === '' ? null : Number(d.supplier_cost_ex_vat);
   const price = d.customer_price === '' ? null : Number(d.customer_price);
   if (cost !== null && (!Number.isFinite(cost) || cost < 0)) errors.push(at + ': supplier_cost_ex_vat must be blank or a non-negative number');
@@ -76,10 +120,13 @@ function validate(record, source, seen) {
     if (d.review_status !== 'Approved') errors.push(at + ': active products must be Approved');
     if (!(cost > 0) || !(price > 0)) errors.push(at + ': active products require positive cost and customer price');
     if (cost > 0 && price > 0) {
-      const expected = Math.round((cost * 1.15 * 1.35 + Number.EPSILON) * 100) / 100;
-      if (Math.abs(expected - price) > 0.01) errors.push(at + ': customer_price does not match round(cost_ex_vat * 1.15 * 1.35, 2); expected ' + expected.toFixed(2));
+      const expectedCents = Math.round((cost * 1.15 * 1.35 + Number.EPSILON) * 100);
+      const actualCents = Math.round(price * 100);
+      if (expectedCents !== actualCents) {
+        errors.push(at + ': customer_price does not match round(cost_ex_vat * 1.15 * 1.35, 2); expected ' + (expectedCents / 100).toFixed(2));
+      }
     }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(d.supplier_price_effective_date) || Number.isNaN(Date.parse(d.supplier_price_effective_date))) errors.push(at + ': active products require an effective date');
+    if (!validIsoDate(d.supplier_price_effective_date)) errors.push(at + ': active products require a real ISO date (YYYY-MM-DD)');
     if (!d.supplier_confirmation_ref.trim()) errors.push(at + ': active products require supplier confirmation reference');
     if (!['Granted', 'Not required'].includes(d.image_permission_status)) errors.push(at + ': active products require cleared image permission');
     if (!d.image_evidence_ref.trim()) errors.push(at + ': active products require image evidence reference');
@@ -113,22 +160,22 @@ function main() {
     return;
   }
 
-  let correctlyRejected = 0;
   const negativeFailures = [];
   for (const r of invalidRows) {
     const errors = validate(r, 'invalid_rows_examples.csv', null);
-    if (errors.length) correctlyRejected++;
-    else negativeFailures.push('invalid_rows_examples.csv:row ' + r.rowNumber + ' unexpectedly passed');
+    if (!errors.length) negativeFailures.push('invalid_rows_examples.csv:row ' + r.rowNumber + ' unexpectedly passed');
   }
-  if (negativeFailures.length || correctlyRejected !== invalidRows.length) {
+  if (negativeFailures.length) {
     console.error('NEGATIVE TEST FAILED:');
     negativeFailures.forEach(e => console.error(' - ' + e));
     process.exitCode = 1;
     return;
   }
   console.log('PASS: ' + validRows.length + ' synthetic valid row(s) passed.');
-  console.log('PASS: ' + correctlyRejected + ' intentionally invalid row(s) were rejected.');
-  console.log('PASS: required columns, approved categories, SKU pattern, uniqueness, pricing formula, quote-only and active-publication gates checked.');
+  console.log('PASS: ' + invalidRows.length + ' intentionally invalid row(s) were rejected.');
+  console.log('PASS: strict CSV structure, required columns, approved categories, SKU pattern, uniqueness, exact-cent pricing, real ISO dates, quote-only and active-publication gates checked.');
   console.log('NOTE: synthetic fixture evidence is not supplier evidence or authorization to publish real products.');
 }
-main();
+
+if (require.main === module) main();
+module.exports = { parseCsv, validIsoDate, validate };
