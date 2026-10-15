@@ -1528,3 +1528,23 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - PayFast/PayJustNow remain deferred per instruction. No production Supabase writes, DNS/SSL changes, payment settings changes, or Axxess deployment were performed.
 - QA-only trigger PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/43. It exists to run the screenshot and package workflows against the exact candidate; do not merge it into main. Main-based PR #41 is separate and does not contain the full staged visual design.
 - The source candidate branch remains divergent from main. Respect the requested Axxess-first, one-final-sync workflow; do not sync the staged source into main/Cloudflare/Supabase until the Axxess version is approved and the final batch sync is ready.
+
+
+## EXECUTION CHECKPOINT — PACKAGE RE-RETRIEVED AND REVALIDATED — 2026-10-15 20:15 SAST
+
+### Verified in this session
+- Re-downloaded the exact GitHub Actions artifact `11996609185` (workflow run `38783784643`) to `/mnt/data/Get-Wired-AutoWorx-Axxess-Upload.zip`.
+- Outer GitHub artifact ZIP SHA-256: `99a1e1c2fe05df5db1e72e779412f91570267497ec9fe5d8a90902e5bc4ec6ed`. It contains the expected nested deployment ZIP.
+- Actual upload ZIP: `axxess-storefront-upload.zip`; SHA-256: `eb2340ea6f5498a39e6249aa1bf6c29e6f2854e3e6853cf0cf9065ddd45f178f`; size approximately 106 MiB; 4,122 archive entries; 4,101 WebP product images. `unzip -t` passes with no errors.
+- Confirmed all required pages are present in the actual nested upload ZIP: `index.html`, `store.html`, `index-new.html`, `product.html`, `products.html`, `checkout.html`, `checkout-v2.html`, `category.html`, `returns-refunds.html`, `terms-and-conditions.html`; `UPLOAD-INSTRUCTIONS.txt` is also present.
+- The prior recorded desktop/mobile screenshot QA for this candidate is run `38783784518`; its scope and the known minor cart-badge visual issue remain as recorded above.
+
+### Deployment status — do not misreport
+- **The package artifact is verified and ready to hand off for Axxess upload. It has NOT been uploaded to Axxess.** This session has no authenticated DirectAdmin/Axxess upload action or owner hosting credentials available; no live `public_html` backup or modification was performed.
+- Immediate deployment procedure: in Axxess DirectAdmin, back up the existing `public_html`; upload the nested `axxess-storefront-upload.zip` (not the outer GitHub artifact wrapper); extract into the `public_html` root; preserve the existing `admin.html` and unrelated host files; then smoke-test all nine routes listed in `UPLOAD-INSTRUCTIONS.txt`. Do not overwrite the live site blindly.
+- No production Supabase writes, DNS/SSL changes, payment configuration changes, or production upload were made in this session. PayFast/PayJustNow remain deferred per the existing owner instruction.
+- Release remains **HOLD** until the actual Axxess deployment and live smoke tests are evidenced. Catalogue price/image/category approval gates documented above remain separate and unresolved; this verified ZIP is a deployable storefront package, not approval to publish the held 800-row catalogue or to claim customer-launch readiness.
+
+### Current artifact retrieval
+- GitHub workflow artifact ID: `11996609185`; workflow run: `38783784643`.
+- The artifact was re-downloaded and integrity-tested in this session; do not rebuild again unless the source/package changes or a test fails.
