@@ -1,0 +1,34 @@
+name: Approved Eight-Category Root Test
+
+on:
+  push:
+    branches:
+      - fix/approved-eight-category-roots
+    paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'category-navigation.js'
+      - 'assets/category-tree.json'
+      - 'scripts/test-approved-category-roots.js'
+      - '.github/workflows/approved-category-roots.yml'
+  pull_request:
+    paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'category-navigation.js'
+      - 'assets/category-tree.json'
+      - 'scripts/test-approved-category-roots.js'
+      - '.github/workflows/approved-category-roots.yml'
+permissions:
+  contents: read
+jobs:
+  taxonomy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Assert approved eight-root taxonomy and preserved nested 4x4
+        run: node scripts/test-approved-category-roots.js
