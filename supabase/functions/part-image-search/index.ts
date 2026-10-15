@@ -2,9 +2,6 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { hmacClientHash, isAllowedOrigin, MAX_REQUEST_BODY_BYTES, readJsonLimited, validateImagePayload } from "./validation.ts";
 
-const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
-const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY") || "";
-const MODEL = Deno.env.get("OPENAI_VISION_MODEL") || "gpt-4.1-mini";
 const ALLOWED_ORIGINS = new Set([
   "https://getwiredauto.co.za",
   "https://www.getwiredauto.co.za",
@@ -28,7 +25,14 @@ const clean = (v: unknown, max = 160) => String(v ?? "").replace(/[<>\u0000-\u00
 const tokens = (s: string) => [...new Set(s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").match(/[a-z0-9]{3,}/g) || [])]
   .filter(t => !["the", "and", "for", "with", "from", "part", "vehicle", "automotive", "possibly", "likely"].includes(t));
 
-Deno.serve(async (req: Request) => {
+export function createHandler(deps: { envGet?: (name: string) => string | undefined; createClient?: (...args: any[]) => any; fetch?: typeof fetch } = {}) {
+  return async (req: Request) => {
+  const envGet = deps.envGet || ((name: string) => Deno.env.get(name));
+  const createDb = deps.createClient || createClient;
+  const fetchImpl = deps.fetch || fetch;
+  const SUPABASE_URL = envGet("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
+  const OPENAI_API_KEY = envGet("OPENAI_API_KEY") || "";
+  const MODEL = envGet("OPENAI_VISION_MODEL") || "gpt-4.1-mini";
   const requestOrigin = req.headers.get("origin") || "";
   const origin = isAllowedOrigin(requestOrigin, ALLOWED_ORIGINS) ? requestOrigin : "";
   if (req.method === "OPTIONS") {
@@ -48,14 +52,14 @@ Deno.serve(async (req: Request) => {
 
   const ip = req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip") ||
     req.headers.get("x-forwarded-for")?.split(",").map(v => v.trim()).filter(Boolean).at(-1) || "unknown";
-  const secretEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
-  let serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+  const secretEnv = envGet("SUPABASE_SECRET_KEYS");
+  let serviceKey = envGet("SUPABASE_SERVICE_ROLE_KEY") || "";
   if (!serviceKey && secretEnv) {
     try { serviceKey = JSON.parse(secretEnv).default || ""; }
     catch { console.error("Picture-search service credential configuration is invalid"); }
   }
   if (!serviceKey) return json({ error: "Picture search is temporarily unavailable. Please use Request a Part." }, 503, origin);
-  const db = createClient(SUPABASE_URL, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
+  const db = createDb(SUPABASE_URL, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
 
   try {
     const clientHash = await hmacClientHash(ip, serviceKey);
@@ -96,7 +100,7 @@ Deno.serve(async (req: Request) => {
     if (!imageCheck.ok) return json({ error: imageCheck.error }, imageCheck.status, origin);
 
     const visionPrompt = `Identify the visible automotive/electrical/accessory/marine/tool part in this photo for a South African parts shop. Do not guess an exact vehicle fitment from appearance alone. Read visible labels or numbers if legible. Return JSON only with this shape: {"part_name":"short likely generic name","part_type":"category","keywords":["specific searchable terms"],"visible_text":["readable brand or part number"],"vehicle_hint":"only if clearly supported, otherwise empty","confidence":"high|medium|low","notes":"brief uncertainty or useful distinguishing detail"}. If unclear, say so and suggest what extra angle or measurement is needed. Never invent a part number.`;
-    const aiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    const aiResponse = await fetchImpl("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: { "authorization": "Bearer " + OPENAI_API_KEY, "content-type": "application/json" },
       body: JSON.stringify({
@@ -181,4 +185,7 @@ Deno.serve(async (req: Request) => {
     console.error("part-image-search failed", error instanceof Error ? error.message : String(error));
     return json({ error: "Picture search failed unexpectedly. Please try again or use Request a Part." }, 500, origin);
   }
-});
+  };
+}
+
+if (import.meta.main) Deno.serve(createHandler());
