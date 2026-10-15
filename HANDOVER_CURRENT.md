@@ -1180,3 +1180,12 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Exact result: 38/38 rows remain “WAITING FOR SUPPLIER RESPONSE”; 0 current supplier costs filled, 0 stock confirmations filled, and 0 image-use permissions filled. All September guide values expired 2026-09-30 and must remain historical-only.
 - SKU list remains in the existing register; no second tracker was created. No supplier response or permission is evidenced, and no public price/image should be updated based on this register alone.
 - External dependency: an authorized owner must send the request to the supplier and record the written response/contact reference. This is a genuine blocker that cannot be resolved by code changes alone.
+
+
+## CATEGORY CANDIDATE RECHECK — 2026-10-15
+
+- Inspected legacy branch `qa/category-root-fix-2026-10-14` and its workflow note. Its browser test passed at the time (run 38625347515), but the branch is 61 commits behind current main and must not be merged as-is.
+- The branch's eight hard-coded root IDs resolve to these live DB roots: Electrical (1,149 active products), Alarms & Security (2), Car Audio (46), Automotive Accessories (874), Marine Spares & Accessories (57), Tools & Workshop (1,321), Camping / Leisure / Outdoors (84), Trailer & Canopy (89). Combined, these account for 3,622 active products.
+- The remaining 565 active products are still under the separate `Spare Parts` root, hidden from root navigation by that old UI candidate but still active in the database and potentially discoverable through general product search. They must not be silently reassigned; use source evidence and owner scope to decide their disposition.
+- The candidate labels are not exact matches for the owner's approved names (e.g. “Auto Electrical”, “Car Audio”, “Accessories”, “Tools / Hardware / Consumables”, “Camping / Leisure / Outdoors”). These exact-label and 565-product search exposure issues were posted to issue #29.
+- No category mapping or production change was made. The category issue remains staging-only until an evidence-backed mapping and navigation/search test passes.
