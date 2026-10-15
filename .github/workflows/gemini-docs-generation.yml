@@ -36,7 +36,7 @@ jobs:
           git config user.email "gemini-code-agent[bot]@users.noreply.github.com"
           BRANCH="${{ github.event.inputs.branch_name }}"
           if git ls-remote --exit-code --heads origin "$BRANCH"; then
-            echo "Branch $BRANCH exists on remote. Checking out..."
+            echo "Branch $BRANCH exists on remote. Fetching and checking out..."
             git fetch origin "$BRANCH"
             git checkout "$BRANCH"
           else
@@ -53,11 +53,11 @@ jobs:
       - name: Commit and Push Changes
         run: |
           BRANCH="${{ github.event.inputs.branch_name }}"
-          git add -A
+          git add -A docs/ README.md
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "docs: commit complete Priority 1-4 documentation and schema pack"
+            git commit -m "docs: force-commit all 18 Priority 1-4 documentation and schema files"
             git push origin "$BRANCH"
           fi
 
