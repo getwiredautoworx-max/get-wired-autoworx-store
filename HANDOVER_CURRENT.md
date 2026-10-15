@@ -1294,3 +1294,9 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 
 ### CI correction — 2026-10-15 (after run 718)
 - Storefront Smoke Test run 718 / ID `38733078647` has now completed **FAILURE** on PR #32. The failure is the same stale exact-text assertion expecting `Auto Electrical`; the branch's approved label is `Auto Electrical Spares`. Root test run 5 and public SKU audit run 258 remain green. A second direct PR comment asks Gemini to update the smoke assertion and rerun it. PR #32 is not green until that exact workflow passes.
+
+
+### Read-only live catalogue formula recheck — 2026-10-15
+- Queried current `public.products` read-only. Results: 4,198 total rows; 4,187 active rows; 4,187 distinct active public SKUs; 0 active rows with missing/non-positive cost; 0 with missing/non-positive price; 0 with missing image_url; 0 active price values differing from `round(cost_price × 1.15 × 1.35, 2)`; 0 active rows missing the legacy SKU field.
+- This means the current live database's stored price-vs-cost formula audit passes. It does **not** close the separate 38-SKU supplier-evidence hold: those SKUs were flagged by historical source/pricing reconciliation and still require current supplier confirmation before any price edits or re-publication decision. Do not call them current formula mismatches based on this query.
+- No data was changed; read-only SQL only.
