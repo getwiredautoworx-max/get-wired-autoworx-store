@@ -402,6 +402,132 @@ pointer-events:none}
  .product button{font-size:9px}
 }
 
+
+/* 2026-10-15 compact automotive storefront redesign — presentation-only overrides.
+   Keeps existing catalogue, search, product detail, cart and checkout logic intact. */
+:root{--bg:#050505;--panel:#0d0d12;--blue:#00aaff;--red:#ff0033;--white:#fff;--muted:#b8c1cc;--line:#1a2a44}
+body{background:#050505;color:#fff}
+.top{height:auto;min-height:28px;background:linear-gradient(90deg,#cc0000 0%,#0044cc 100%);border:0;padding:6px 12px;font-size:11px;font-weight:800;gap:8px}
+.header{background:#080808;border-bottom:1px solid #1a1a1a}
+.head{min-height:72px;gap:14px;padding:8px 16px}
+.hamb{width:28px;font-size:23px;cursor:pointer}
+.logo{height:48px;width:min(260px,32vw)}
+.search{max-width:none}
+.search input{background:#121212;border:1px solid #00c3ff;border-radius:22px;padding:11px 16px 11px 18px;font-size:13px;box-shadow:0 0 10px rgba(0,195,255,.12)}
+.cart{font-size:23px}
+.badge{background:#ff0033}
+.nav{background:#080808;border-bottom:1px solid #1a1a1a}
+.navin{gap:22px;padding:9px 20px;font-size:12px}
+.nav a:hover,.nav a:focus{color:#00c3ff}
+.hero{margin-top:10px;padding:0 15px}
+.heroCard{min-height:190px;border:1px solid #0077ff;border-radius:10px;background:linear-gradient(110deg,rgba(0,0,0,.94),rgba(2,10,28,.83)),linear-gradient(135deg,#020a1c,#061b33);box-shadow:none}
+.heroText{padding:18px 20px;max-width:760px}
+.heroText .since{padding:4px 10px;margin:3px 0 7px;font-size:10px;border-radius:4px}
+.heroTagline{font-size:12px;font-weight:800;color:#00c3ff;margin-bottom:7px}
+.heroText h1{font-size:clamp(20px,2.7vw,32px);line-height:1.08;margin:0 0 7px}
+.heroText p{font-size:12px;line-height:1.4;margin:0 0 9px;max-width:650px;color:#d0d0d0}
+.heroBtns{gap:8px}
+.btn{padding:9px 13px;border-radius:6px;font-size:11px}
+.ratingbox{right:12px;top:12px;padding:7px 10px;border-radius:7px}
+.ratingbox strong{font-size:18px}
+.ratingbox small{font-size:9px}
+.features{margin:10px auto;padding:0 15px;gap:7px;grid-template-columns:repeat(4,minmax(0,1fr))}
+.feature{padding:9px 6px;background:#0b0f19;border-color:#1c2838;border-radius:7px;font-size:11px}
+.feature span{font-size:10px}
+.section{margin-top:20px;padding:0 15px}
+.sectionTitle{margin-bottom:10px;align-items:center}
+.sectionTitle h2{font-size:15px;letter-spacing:.4px;text-transform:uppercase}
+.sectionTitle h2:before{width:4px;height:16px;margin-right:7px;vertical-align:-3px}
+.sectionTitle a{font-size:10px;text-decoration:none;font-weight:800}
+.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.catWrap{background:linear-gradient(145deg,#101018,#0b0b10);border:1px solid #1a2a44;border-radius:8px;box-shadow:inset 0 0 8px rgba(0,119,255,.08)}
+.catBtn{min-height:76px;padding:10px 9px;gap:8px}
+.catBtn b{font-size:12px;line-height:1.2}
+.catBtn i{font-size:21px;flex:0 0 auto}
+.children{padding:0 9px 8px}
+.child{font-size:11px;padding:8px 3px}
+.shopControls{gap:6px;margin-bottom:10px}
+.shopControls select,.shopControls button{padding:8px 9px;font-size:11px;border-radius:6px}
+.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.product{background:#fff;color:#111;border:1px solid #e3e5e8;border-radius:8px;padding:9px;min-width:0;box-shadow:0 4px 10px rgba(0,0,0,.28)}
+.prodImg{height:120px;background:#fff;border-radius:6px}
+.prodImg img{max-height:116px}
+.product h3{font-size:12px;line-height:1.25;color:#222;margin:8px 0 5px}
+.product .sku{font-size:10px;color:#606a75}
+.price{font-size:14px;color:#050505;margin-top:7px}
+.stockBadge{font-size:10px}
+.product button,.detailActions button{background:#ff0033;color:#fff;border-radius:5px;padding:8px;font-size:11px}
+.product button:hover,.detailActions button:hover{background:#d9002b}
+.servicesList{grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.service{padding:9px 6px;background:#0b0f19;border-color:#1c2838;font-size:11px}
+.vehicleFinder{border-radius:9px;background:#0b0f19;border-color:#1c2838;padding:13px}
+.vehicleFields select{padding:10px}
+.cartPanel{top:105px}
+.footer{margin-top:24px;padding:22px 15px 75px}
+.foot{gap:14px;padding-top:18px;font-size:12px}
+.mobileNav{background:#08080c;border-top:1px solid #1a1a24;padding:7px 3px calc(7px + env(safe-area-inset-bottom))}
+.mobileNav a{font-size:10px;color:#aaa;min-width:0}
+.mobileNav b{font-size:19px;color:currentColor}
+.mobileNav a:focus,.mobileNav a:hover{color:#ff2244}
+@media(max-width:900px){
+ .top{display:flex;font-size:9px;line-height:1.2}
+ .head{min-height:112px;height:112px;padding:8px 12px;align-items:flex-start;gap:10px}
+ .hamb{padding-top:8px}
+ .logo{height:42px;width:calc(100vw - 150px);max-width:240px;margin-top:5px}
+ .search{position:absolute;left:12px;right:12px;top:62px;max-width:none}
+ .search input{width:100%;padding:10px 14px;font-size:12px}
+ .header{height:112px}
+ .cart{position:absolute;right:15px;top:13px;font-size:21px}
+ .nav{display:none}
+ .hero{margin-top:9px;padding:0 10px}
+ .heroCard{min-height:180px}
+ .heroText{padding:14px 13px}
+ .heroText h1{font-size:clamp(19px,5vw,27px);max-width:76%}
+ .heroText p{font-size:11px;max-width:74%}
+ .heroTagline{font-size:11px;max-width:76%}
+ .ratingbox{right:8px;top:8px;transform:none;padding:5px 7px}
+ .ratingbox strong{font-size:15px}
+ .ratingbox small{font-size:8px}
+ .heroBtns .btn{padding:8px 10px;font-size:10px}
+ .features{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 10px}
+ .section{padding:0 10px;margin-top:17px}
+ .cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .catBtn{min-height:74px;padding:8px 6px;align-items:center}
+ .catBtn b{font-size:10px}
+ .catBtn i{font-size:18px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .prodImg{height:112px}
+ .servicesList{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vehicleFields{grid-template-columns:1fr}
+ .cartPanel{top:118px;max-height:calc(100vh - 205px)}
+ .footer{padding:20px 10px 85px}
+ .foot{grid-template-columns:1fr 1fr}
+ .detail{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ .top{padding:5px 7px;font-size:8px}
+ .top>div:first-child{max-width:73%}
+ .top>div:last-child{white-space:nowrap}
+ .head{gap:7px}
+ .logo{width:calc(100vw - 132px);height:39px}
+ .heroCard{min-height:190px}
+ .heroText{padding:13px 10px}
+ .heroText h1{font-size:19px;max-width:78%}
+ .heroText p{font-size:10px;max-width:76%}
+ .heroTagline{font-size:10px}
+ .ratingbox{padding:4px 5px}
+ .ratingbox strong{font-size:13px}
+ .ratingbox small{font-size:7px}
+ .cats{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .catBtn{min-height:70px;padding:8px}
+ .catBtn b{font-size:11px}
+ .products{gap:6px}
+ .product{padding:7px}
+ .prodImg{height:100px}
+ .product h3{font-size:11px}
+ .price{font-size:13px}
+ .shopControls .resultCount{width:100%;margin-left:0}
+}
 </style></head><body><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><button class="btn secondary partAction" type="button" onclick="openPartSearch()">PART SEARCH</button><button class="btn secondary partAction primaryAction" type="button" onclick="openPartRequest()">REQUEST A PART</button><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
 <div class="sectionTitle"><h2>FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Vehicle-specific catalogue search</span></div>
 <div class="vehicleFinder">
