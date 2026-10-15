@@ -727,3 +727,26 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - [ ] No fabricated evidence, secrets, production data changes, deployment or payment/DNS changes.
 - [ ] Remaining owner decisions and supplier evidence needs listed.
 - [ ] Release status remains HOLD unless separately approved by evidence.
+
+
+## 2026-10-15 — Gemini raw-file access troubleshooting checkpoint
+
+### Completed in this conversation
+- Retrieved the actual UTF-8 contents of `HANDOVER_CURRENT.md` and `GEMINI_EXECUTION_BRIEF.md` through the GitHub repository file interface. Both files were found on the `main` branch; the retrieval succeeded from ChatGPT's connected GitHub access.
+- Confirmed the file paths and generated direct raw-text URLs for Gemini:
+  - https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/HANDOVER_CURRENT.md
+  - https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/GEMINI_EXECUTION_BRIEF.md
+- Supplied the owner with copyable links and a complete instruction to Gemini: retrieve the raw files, use a supported alternate retrieval method if needed, report precise access/permission errors rather than pretending to have read them, and then begin the authorized documentation/data-contract work.
+- The instruction reiterates Gemini's assigned priorities (knowledge-base pack, catalogue schema and validation, repository/workflow/API documentation, README/runbook), separate branch and reviewable PR requirement, and factual completion report.
+- No Gemini response, branch, commit or pull request has been verified in this conversation. Do not count Gemini's tasks as started or complete until there is concrete evidence (branch/PR/commit and changed-file/check results).
+
+### Interpretation / next actions
+1. Ask Gemini to attempt both raw URLs and confirm the filenames and key section headings it actually read. If it fails, capture the exact error and use that to distinguish URL retrieval from repository access/permission failure.
+2. If Gemini can read the files, have it execute the existing brief in priority order on a separate branch and submit a reviewable PR; review evidence before accepting the work.
+3. ChatGPT's successful retrieval proves these files are accessible through the connected GitHub integration available here, but does not prove Gemini has equivalent credentials, tools, or permissions.
+4. Continue to avoid duplicate successful QA runs and avoid production writes, SQL execution, deployment/Axxess upload, DNS changes, and payment-setting changes. Preserve the single-batch final-sync preference.
+5. Release remains **HOLD**. This troubleshooting checkpoint does not resolve catalogue evidence, supplier price confirmations, image identity/permission, Axxess DNS/SSL, or payment-provider approval gates.
+
+### Change evidence
+- Base file fetched from `main`; prior blob SHA: `e73fc452aa87cd4fa4a172ab24da81ecda23ccf5`.
+- This update records the raw-link troubleshooting and instruction provided in the conversation. It does not claim any Gemini-side execution or production change.
