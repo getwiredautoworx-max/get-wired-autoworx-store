@@ -57,7 +57,7 @@
       style.id='gw-category-presentation';
       style.textContent=`
         /* Approved homepage design: exactly three columns at every viewport width.
-           Nine active root categories therefore form a 3 x 3 image-led button grid. */
+           Eight approved root categories form an image-led button grid; 4x4 remains nested under Camping / Leisure / Outdoors. */
         #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px}
         #categoryGrid .catWrap{min-width:0;height:100%}
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
