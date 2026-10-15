@@ -1381,3 +1381,16 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 ### Action taken / next step
 - Requested PR author/Gemini to reconcile PR #37 with latest `main` without overwriting main's changes, remove harmless duplicate workflow path entries if convenient, and rerun package, public-SKU audit, and smoke workflows on the new exact head.
 - Release remains HOLD. No merge, production upload, SQL/database write, DNS/SSL change, or payment setting change was made. The final Axxess upload must use a verified artifact built from the reviewed main commit after all release gates and owner approval; preserve `admin.html` and back up `public_html` first.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-15 17:34 SAST (visual screenshot artifact inspected)
+
+### Visual QA solution recovered and used
+- Located and downloaded existing GitHub Actions artifact `staging-category-visual-qa`, artifact ID `11835246761`, from Staging Category Navigation Chromium Acceptance run #11 / run ID `38440567696`. Artifact contained four PNGs: home and category-grid captures at 1280px desktop and 390px mobile. This resolves the prior tooling gap for inspecting actual rendered screenshots for that specific staging commit; it does not prove the current PR #36 head or live Axxess appearance.
+- Inspected all four images directly. Desktop at 1280px is legible and the eight approved category cards are arranged in three columns (last row contains two cards). Mobile at 390px shows the two-column category grid, but the fixed bottom navigation overlaps/crops the final category row at the viewport edge in the captured grid screenshot. The current test must scroll the final row fully into view and assert it is not obscured by the fixed navigation; add sufficient bottom content padding or adjust the navigation/layout if the overlap reproduces.
+- Visual impression: the desktop hero and category sections are readable, while the mobile hero/buttons are tightly packed and wrap WhatsApp to a second line. This is a review observation, not an assertion that all responsive requirements are met.
+- The artifact commit was `3e25147ebb774001c9c5265f336c77751dbd4ee6` on `audit/buyer-guide-extraction`, not the current PR #36 head. Therefore this is a concrete historical screenshot finding requiring a fresh capture against the current branch before it can be considered closed.
+
+### Coordination
+- Added a review request on PR #36 to capture the current head, test the last category row against the fixed bottom navigation, extend desktop acceptance to exercise all eight roots and their subcategories, check product/category image load failures, and attach fresh desktop/mobile screenshots. Do not merge PR #36 until its branch is reconciled with current main and the relevant CI passes.
+- Release remains HOLD. No production upload, database write, DNS/SSL change, or payment setting change was performed.
