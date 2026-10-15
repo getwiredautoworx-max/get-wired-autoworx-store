@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: Get Wired AutoWorx Store API
+  version: 0.1.0-proposed
+  description: |
+    PROPOSED CONTRACT ONLY. This specification does not assert that these endpoints
+    exist or are deployed. Do not implement or call against production until reviewed
+    and explicitly approved. Public responses must never expose supplier costs,
+    supplier SKUs, credentials, unpublished products, or internal review notes.
+servers:
+  - url: https://www.getwiredauto.co.za
+    description: Intended public origin; endpoint paths below are proposed only.
+tags:
+  - name: Products
+  - name: Categories
+paths:
+  /api/v1/products:
+    get:
+      tags: [Products]
+      summary: List published products
+      description: Proposed read-only endpoint. Return only active, approved, priced products whose price evidence and image usage permissions have cleared review.
+      operationId: listPublicProducts
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Auto Electrical Spares
+              - Vehicle Security
+              - Car Audio & Entertainment
+              - Automotive Accessories
+              - Marine Spares & Accessories
+              - Tools, Hardware & Consumables
+              - Camping, Leisure & Outdoors
+              - Trailer & Canopy
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 120
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 24
+      responses:
+        '200':
+          description: Public product list
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, page, page_size, total]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PublicProduct'
+                  page:
+                    type: integer
+                  page_size:
+                    type: integer
+                  total:
+                    type: integer
+        '400':
+          description: Invalid query parameters
+        '429':
+          description: Rate limit exceeded
+  /api/v1/products/{public_sku}:
+    get:
+      tags: [Products]
+      summary: Get a single published product
+      operationId: getPublicProduct
+      parameters:
+        - name: public_sku
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^GW-[A-Z0-9]{8}$'
+      responses:
+        '200':
+          description: Public product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicProduct'
+        '404':
+          description: Product is not published or does not exist
+  /api/v1/categories:
+    get:
+      tags: [Categories]
+      summary: List approved storefront categories
+      operationId: listCategories
+      responses:
+        '200':
+          description: Approved category names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - Auto Electrical Spares
+                    - Vehicle Security
+                    - Car Audio & Entertainment
+                    - Automotive Accessories
+                    - Marine Spares & Accessories
+                    - Tools, Hardware & Consumables
+                    - Camping, Leisure & Outdoors
+                    - Trailer & Canopy
+components:
+  schemas:
+    PublicProduct:
+      type: object
+      additionalProperties: false
+      required: [public_sku, product_name, storefront_category, customer_price, currency]
+      properties:
+        public_sku:
+          type: string
+          pattern: '^GW-[A-Z0-9]{8}$'
+        product_name:
+          type: string
+        description:
+          type: string
+        vehicle_application:
+          type: string
+          nullable: true
+        storefront_category:
+          type: string
+        subcategory:
+          type: string
+          nullable: true
+        customer_price:
+          type: number
+          exclusiveMinimum: 0
+        currency:
+          type: string
+          enum: [ZAR]
+        image_url:
+          type: string
+          format: uri
+          nullable: true
+        availability_label:
+          type: string
+          enum: [Contact to confirm, Available subject to confirmation]

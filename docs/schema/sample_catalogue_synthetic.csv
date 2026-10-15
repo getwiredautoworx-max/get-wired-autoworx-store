@@ -1,0 +1,3 @@
+supplier_sku,public_sku,product_name,storefront_category,supplier_cost_ex_vat,customer_price,quote_only,is_active,review_status,supplier_price_effective_date,supplier_confirmation_ref,image_permission_status,image_evidence_ref,vehicle_application,subcategory,review_reason
+SYN-AMP-101,GW-SYNAMP01,Synthetic Amplifier,Car Audio & Entertainment,1000.00,1552.50,false,false,Pending,2026-10-01,SYNTHETIC-ONLY,Granted,SYNTHETIC-ONLY,Generic test fitment,Amplifiers,Synthetic fixture only — publication-ineligible
+SYN-QUOTE-01,GW-SYNQTE01,Synthetic Unpriced Harness,Auto Electrical Spares,,,true,false,Hold,,,Unknown,,Vehicle fitment to be confirmed,Wiring,Quote-only fixture must remain inactive and unpriced

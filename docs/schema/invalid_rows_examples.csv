@@ -1,0 +1,5 @@
+supplier_sku,public_sku,product_name,storefront_category,supplier_cost_ex_vat,customer_price,quote_only,is_active,review_status,supplier_price_effective_date,supplier_confirmation_ref,image_permission_status,image_evidence_ref,vehicle_application,subcategory,review_reason
+SYN-BADSKU,GW-123,Invalid SKU Example,Auto Electrical Spares,100.00,155.25,false,true,Approved,2026-10-01,SYNTHETIC-ONLY,Granted,SYNTHETIC-ONLY,Synthetic,Test,Invalid public SKU pattern
+SYN-QUOTE-ACTIVE,GW-SYNQTA01,Quote Only Active Example,Auto Electrical Spares,,,true,true,Hold,,,Unknown,,Synthetic,Test,Quote-only row cannot be active
+SYN-WRONG-CAT,GW-SYNWCT01,Wrong Category Example,Unapproved Category,100.00,155.25,false,true,Approved,2026-10-01,SYNTHETIC-ONLY,Granted,SYNTHETIC-ONLY,Synthetic,Test,Category must be in approved list
+SYN-BAD-PRICE,GW-SYNBPR01,Bad Formula Example,Car Audio & Entertainment,100.00,99.00,false,true,Approved,2026-10-01,SYNTHETIC-ONLY,Granted,SYNTHETIC-ONLY,Synthetic,Test,Customer price formula mismatch
