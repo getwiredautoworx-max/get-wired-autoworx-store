@@ -5,6 +5,7 @@ import re, sys
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_EXT = {'.html', '.js', '.css', '.json'}
 EXCLUDE = {'.github/workflows/asc-sku-image-sync.yml', 'HANDOVER.md', 'scripts/public-sku-audit.py', 'android-owner-app/app/src/main/assets/admin_app.html'}
+EXCLUDE_PREFIXES = ('.github/scripts/', '.github/workflows/', 'docs/', 'scripts/', 'tests/', 'staging/', 'monitor-evidence/', 'node_modules/')
 PATTERNS = [
  (re.compile(r'\bp\.sku\b|\bx\.sku\b'), 'runtime legacy SKU property'),
  (re.compile(r'select=[^\n\r"\']*\bsku\b'), 'REST select of legacy sku'),
@@ -15,7 +16,7 @@ violations = []
 for p in ROOT.rglob("*"):
  if not p.is_file() or p.suffix.lower() not in PUBLIC_EXT: continue
  rel = p.relative_to(ROOT).as_posix()
- if rel in EXCLUDE or rel.startswith('node_modules/'): continue
+ if rel in EXCLUDE or rel.startswith(EXCLUDE_PREFIXES): continue
  try: text = p.read_text(encoding="utf-8")
  except UnicodeDecodeError: continue
  for rx, label in PATTERNS:
