@@ -1344,3 +1344,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - **Status at handover update:** workflow added; run result/artifact still must be retrieved and reviewed. Screenshot capture is not yet counted as successful, and the visual design is not signed off until the actual images are inspected. Any external product/data requests in the page are read-only; the workflow does not submit checkout/orders.
 - Existing latest checks on commit `e4f63a8b3e4f3ea2f311f2e8d41282b804f68ff6`: Public SKU Exposure Audit #261 **SUCCESS** (run `38747016203`); Storefront Smoke Test #726 **SUCCESS** (run `38747016334`).
 - Do not merge the redesign or deploy it live based only on screenshot generation. Preserve the draft/review gate and use actual screenshots to decide visual corrections.
+
+
+### Screenshot QA branch and CI update — 2026-10-15
+
+- Draft PR #36: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/36. Keep separate from redesign PR #35; it adds only the screenshot QA workflow and handover documentation.
+- On the PR head `7fcce1b942b20e84ed300a59aaff3e05a8b9f3ca`, Public SKU Exposure Audit #262 (run `38747896727`) **SUCCESS** and Storefront Smoke Test #727 (run `38747896968`) **SUCCESS**.
+- Screenshot workflow source is committed, but its specific run/artifact has not yet been retrievable through the current workflow-run connector (which exposes only pull-request-triggered runs). Therefore this does not yet count as completed screenshot review; inspect the workflow run and download its artifact from GitHub Actions when available.
+- PR #35 redesign remains unmerged and should remain behind the visual review gate. No live deployment or production changes.
