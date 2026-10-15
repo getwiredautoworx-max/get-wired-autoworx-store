@@ -69,7 +69,7 @@ jobs:
           cat > axxess-upload/UPLOAD-INSTRUCTIONS.txt <<'EOF'
           GET WIRED AUTOWORX — AXXESS DIRECTADMIN DEPLOYMENT
           
-          This package contains the storefront runtime files and 2,196 local WebP product-image files.
+          This package contains the storefront runtime files and local WebP product images. The exact image count is recorded below.
           Before extraction, make a backup archive of the existing public_html contents in DirectAdmin File Manager.
           Upload this ZIP to public_html, select it, and use Extract. Extract into public_html (not into a nested folder).
           Confirm the existing admin.html is preserved; it is intentionally not included in this package.
@@ -77,6 +77,10 @@ jobs:
           After extraction, test /, /store.html, /product.html, /products.html, /category.html, /checkout.html, /checkout-v2.html, /returns-refunds.html, and /terms-and-conditions.html.
           The store uses Supabase remotely; this package does not move the database or secrets.
           EOF
+          image_count=$(find axxess-upload/assets/products_webp -type f -name '*.webp' | wc -l | tr -d ' ')
+          printf '\nIncluded local WebP image count: %s\n' "$image_count" >> axxess-upload/UPLOAD-INSTRUCTIONS.txt
+          echo "Included local WebP image count: $image_count"
+          test "$image_count" -gt 0
           for required in index.html store.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html product-details.js category-navigation.js; do
             test -f "axxess-upload/$required" || { echo "Missing required package file: $required"; exit 1; }
           done
