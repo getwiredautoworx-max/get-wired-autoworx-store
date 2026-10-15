@@ -1,4 +1,6 @@
 import { createHandler } from './index.ts';
+function assert(value: unknown, message = 'assertion failed'): asserts value { if (!value) throw new Error(message); }
+function assertEquals(actual: unknown, expected: unknown, message = 'values differ'): void { if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(message + ': expected ' + JSON.stringify(expected) + ', got ' + JSON.stringify(actual)); }
 
 const ORIGIN = 'https://www.getwiredauto.co.za';
 const JPEG = btoa(String.fromCharCode(0xff, 0xd8, 0xff, 0xe0, 0, 0, 0, 0, 0, 0, 0, 0));
