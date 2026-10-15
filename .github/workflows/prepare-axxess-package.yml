@@ -5,6 +5,7 @@ on:
   push:
     branches: [main]
     paths:
+      - '.github/workflows/prepare-axxess-package.yml'
       - 'index.html'
       - 'store.html'
       - 'index-new.html'
