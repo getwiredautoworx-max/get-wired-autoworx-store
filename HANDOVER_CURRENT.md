@@ -1130,3 +1130,35 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Current deployed-source inspection confirms the function reads `Deno.env.get("OPENAI_API_KEY")` and returns HTTP 503 before image processing when the value is absent. It also requires `SUPABASE_SERVICE_ROLE_KEY` or `SUPABASE_SECRET_KEYS` for catalogue matching. The connected Supabase tools do not expose secret values or provide a safe secret-presence check, and this runtime could not reach the function endpoint for an HTTP smoke test. Therefore the owner-reported key creation is recorded, but **secret configured / successful recognition remains UNVERIFIED**.
 - Exact remaining secret action if not already done: in Supabase Dashboard for project `ojytykqpvonxvepprgbh`, open Edge Functions → Secrets (direct URL: https://supabase.com/dashboard/project/ojytykqpvonxvepprgbh/functions/secrets), add name `OPENAI_API_KEY`, paste the already-created OpenAI API key as its value, and save. Never send the key in chat or commit it. No function redeploy is needed for a secret-only change. Afterward test a safe clear part photo, ambiguous/non-part photo, invalid MIME/oversize input and catalogue fallback. Before paid public use, address durable rate limiting/challenge and spend alerts.
 - Live endpoint test attempt from this execution environment was blocked by DNS/network resolution before reaching Supabase; no HTTP response was observed. Do not claim the credential works until a real endpoint test succeeds.
+
+
+## CHATGPT EXECUTION CHECKPOINT — 2026-10-15 11:00 SAST
+
+### Verified code review and corrective work
+- Independently reviewed PR #28 (`feature/docs-schema-pack`, head `02c01dc7acdbb91d45e0d70f59ff5b856cb76d63`; 19 files). Its initial synthetic CI passed, but the validator accepted malformed CSV quote placement/trailing characters, could tolerate a one-cent price mismatch, and could accept impossible calendar dates.
+- Opened follow-up draft PR #31: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/31
+  - Branch: `fix/catalogue-validator-strict-csv`
+  - Head SHA: `7942beefb277d856cac9464c6a0b56d789f880fd`
+  - Targets `feature/docs-schema-pack` intentionally; do not merge it directly into main.
+  - Changes: strict CSV quote handling; blank/duplicate header checks; strict real ISO-date validation; non-negative money format capped at two decimal places; exact-cent formula comparison; dedicated edge-case tests for CRLF, escaped quotes, malformed quoting, invalid dates, duplicate IDs, and one-cent mismatches.
+  - Catalogue Schema Validation run 38724025040 succeeded, including the new “Test strict CSV parsing and price/date edge cases” step. Public SKU Exposure Audit run 38724025045 also succeeded. Evidence: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38724025040 and https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38724025045
+  - PR #28 received a REQUEST_CHANGES review until this fix is incorporated and revalidated. PR #31 remains a draft; no merge/deploy occurred.
+- This validates synthetic fixtures only; it does not validate or approve real catalogue rows.
+
+### Read-only Supabase audit — 2026-10-15
+- Project `ojytykqpvonxvepprgbh`; read-only queries only, no production data/schema writes.
+- `public.products`: 4,198 total rows, 4,187 active; 4,187 distinct active supplier SKUs and public SKUs. Query found zero active rows with non-positive price, blank public SKU, or blank `image_url`. This does not clear the separate 38 historical price-scaling flags or 800-row September candidate.
+- `public.categories`: 58 active root rows, 57 distinct root names; only 4 active root rows have a name exactly matching any of the eight approved storefront category names. This confirms root taxonomy reconciliation is required, but it is not authorization to change production. Evidence posted to issue #29: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/29
+- Security advisor reports `admin_list_orders` and `admin_update_order` are SECURITY DEFINER and executable by authenticated users. Read-only inspection confirms both functions explicitly require `auth.uid()` and an enabled row in `public.veyron_admin_users`; do not revoke/change grants without a full role/access review. Advisor also reports leaked-password protection disabled; owner/admin configuration review remains outstanding.
+- Performance advisor returned three unindexed-FK notices and 53 unused-index notices. These are informational follow-up items; no index changes made.
+
+### AI picture-search verification
+- Supabase Management API confirms `part-image-search` is ACTIVE, version 2, `verify_jwt=false`. Source requires `OPENAI_API_KEY` and a Supabase service/secret key for catalogue matching.
+- A read-only query of the current 24-hour function-edge log window returned no invocation records for this function. Therefore neither presence of the OpenAI secret nor successful image-to-catalogue matching is verified by available evidence. Do not claim operational.
+- Code review confirms CORS/origin filtering and an in-memory per-instance IP counter are not durable abuse controls; a request without an Origin header is not rejected by current source. Paid public inference remains blocked until durable shared rate limiting or challenge, spend controls, reviewed origins and positive/negative end-to-end tests are in place. Findings posted to issue #30: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/30
+- No secret values were read, exposed, or committed. No Edge Function redeploy or secret mutation performed.
+
+### Current decision and next steps
+- Customer launch remains HOLD. No production SQL/data write, category change, price change, deployment, Axxess upload, DNS change, payment-setting change or production function deployment was performed.
+- Next: review PR #31's full test evidence and have its changes incorporated into PR #28; coordinate root-category staging reconciliation with issue #29; keep picture-search disabled for paid public use until issue #30 security and end-to-end gates pass; continue exact-SKU image/rights and 38-SKU current-price evidence work.
+- Do not report the category, AI picture search, catalogue or live release gates as resolved based solely on synthetic CI or metadata.
