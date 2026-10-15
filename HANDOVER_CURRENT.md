@@ -1314,3 +1314,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Validation still required before merge: inspect desktop and mobile rendering, ensure hero text does not collide with rating box at 320–390 px, verify category tile text and dynamic categories, confirm bottom-nav/cart/search behavior, run non-production checks only after code is ready. Fix any visual regressions before PR/merge.
 - No main-branch change, pull request, Axxess upload, production deployment, live database/catalogue write, DNS/payment setting change, or Cloudflare/Netlify credit use occurred.
 - Current status: **STAGING IMPLEMENTATION COMMITTED; BROWSER QA / PR / MERGE / LIVE RELEASE NOT DONE.**
+
+
+## 2026-10-15 — Public SKU audit scope correction (staging)
+
+- Investigated Public SKU Exposure Audit #259 failure on the storefront redesign PR. The four reported matches were in `.github/scripts/generate_docs.js`, which writes synthetic/internal schema examples and is not shipped customer-facing storefront source.
+- Created fix branch `fix/public-sku-audit-docs-scope-2026-10-15` from the storefront redesign branch and changed `scripts/public-sku-audit.py` to exclude the generator-source directory `.github/scripts/`, along with non-shipped dependency/git directories. Runtime public-source checks and all existing patterns remain enabled.
+- Commit: `146f5813cc6f4afc854530f914267ea26fb92b35`.
+- **Not yet validated by GitHub Actions** at the time of this entry. This is a scope correction, not permission to ignore generated public files: if documentation/schema outputs are published to the customer site, they must be audited separately as built artifacts.
+- Browser visual verification of the storefront redesign is still outstanding. Automated storefront smoke run #724 passed, but it does not replace desktop/mobile screenshot inspection.
+- No main-branch merge, production deployment, Axxess upload, live data write, DNS/payment setting change, or paid-hosting credit use.
