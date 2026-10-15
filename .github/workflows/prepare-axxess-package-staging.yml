@@ -1,0 +1,100 @@
+name: Prepare Axxess package (staging candidate)
+
+on:
+  push:
+    branches:
+      - qa/desktop-mobile-screenshots-2026-10-15
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out candidate
+        uses: actions/checkout@v4
+
+      - name: Verify required storefront files and entry points
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            index.html store.html index-new.html product.html checkout-v2.html
+            category.html returns-refunds.html product-details.js category-navigation.js
+            TERMS_AND_CONDITIONS.md assets/gw-logo.png assets/product-image-fallback.js
+            assets/category-cleanup.js assets/progressive-store-enhancements.js
+            assets/product-placeholder.svg assets/category-tree.json
+          )
+          for f in "${required[@]}"; do
+            test -s "$f" || { echo "MISSING_OR_EMPTY: $f"; exit 1; }
+          done
+          grep -Eqi 'url\(store\.html\)|url=store\.html|href=["'\''"]store\.html' index.html
+          grep -Eq 'index-new\.html' store.html
+          test -d assets/products_webp
+          image_count=$(find assets/products_webp -type f -iname '*.webp' | wc -l)
+          echo "WebP images found: $image_count"
+          test "$image_count" -ge 2000
+          echo "Required files and storefront entry-point chain passed."
+
+      - name: Assemble root-level upload ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf axxess-upload axxess-storefront-upload.zip
+          mkdir -p axxess-upload/assets
+          cp index.html store.html index-new.html product.html checkout-v2.html category.html returns-refunds.html product-details.js category-navigation.js TERMS_AND_CONDITIONS.md axxess-upload/
+          cp assets/gw-logo.png assets/product-image-fallback.js assets/category-cleanup.js assets/progressive-store-enhancements.js assets/product-placeholder.svg assets/category-tree.json axxess-upload/assets/
+          cp -a assets/products_webp axxess-upload/assets/
+          cat > axxess-upload/UPLOAD-INSTRUCTIONS.txt <<'EOF'
+          GET WIRED AUTOWORX — AXXESS DIRECTADMIN DEPLOYMENT PACKAGE
+          
+          Candidate package generated from the reviewed staging branch, not main.
+          Before extraction, create a backup archive of existing public_html in DirectAdmin.
+          Upload this ZIP to public_html and extract directly into public_html, not a nested folder.
+          This package intentionally excludes admin.html, checkout.html, cgi-bin, hosting configuration, repository docs, secrets, and database files. Preserve all existing unrelated files.
+          The root index.html redirects to store.html; store.html embeds index-new.html.
+          After extraction verify /, /store.html, /product.html, /category.html, /checkout-v2.html, and /returns-refunds.html.
+          This package does not deploy database changes, AI image search credentials, payment settings, or DNS/SSL changes.
+          EOF
+          find axxess-upload -type f | sort > /tmp/package-files.txt
+          file_count=$(wc -l < /tmp/package-files.txt)
+          image_count=$(find axxess-upload/assets/products_webp -type f -iname '*.webp' | wc -l)
+          (cd axxess-upload && zip -qr ../axxess-storefront-upload.zip .)
+          unzip -t axxess-storefront-upload.zip
+          unzip -Z1 axxess-storefront-upload.zip > /tmp/zip-files.txt
+          grep -Fxq 'index.html' /tmp/zip-files.txt
+          grep -Fxq 'store.html' /tmp/zip-files.txt
+          grep -Fxq 'index-new.html' /tmp/zip-files.txt
+          grep -Fxq 'assets/category-tree.json' /tmp/zip-files.txt
+          if grep -q '^axxess-upload/' /tmp/zip-files.txt; then echo "ERROR: ZIP contains an unwanted nested folder"; exit 1; fi
+          if grep -Eqi '(^|/)(admin\.html|\.env|service_role|secrets?)(/|$)' /tmp/zip-files.txt; then echo "ERROR: forbidden admin/secret-like path in package"; exit 1; fi
+          {
+            echo "Get Wired AutoWorx — Axxess candidate package QA"
+            echo "Commit: $GITHUB_SHA"
+            echo "Branch/ref: $GITHUB_REF"
+            echo "ZIP: axxess-storefront-upload.zip"
+            echo "Files in payload: $file_count"
+            echo "Local WebP images: $image_count"
+            echo "ZIP SHA-256:"
+            sha256sum axxess-storefront-upload.zip
+            echo "Required entry chain: index.html -> store.html -> index-new.html"
+            echo "Archive integrity: PASS"
+            echo "Root-level extraction: PASS"
+            echo "Production/Axxess upload performed: NO"
+          } | tee axxess-package-report.txt
+
+      - name: Upload candidate ZIP and report
+        uses: actions/upload-artifact@v4
+        with:
+          name: axxess-storefront-upload-ready
+          path: |
+            axxess-storefront-upload.zip
+            axxess-package-report.txt
+          if-no-files-found: error
+          retention-days: 14
