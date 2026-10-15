@@ -5,11 +5,13 @@ on:
       - feature/docs-schema-pack
     paths:
       - 'docs/schema/**'
+      - 'docs/knowledge-base/**'
       - 'docs/architecture/PROPOSED_API_SPEC.openapi.yaml'
       - '.github/workflows/catalogue-schema-validation.yml'
   pull_request:
     paths:
       - 'docs/schema/**'
+      - 'docs/knowledge-base/**'
       - 'docs/architecture/PROPOSED_API_SPEC.openapi.yaml'
       - '.github/workflows/catalogue-schema-validation.yml'
 permissions:
@@ -23,6 +25,29 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Check required documentation pack
+        run: |
+          set -euo pipefail
+          for path in \
+            docs/knowledge-base/01-store-identity-and-scope.md \
+            docs/knowledge-base/02-storefront-categories.md \
+            docs/knowledge-base/03-checkout-and-delivery.md \
+            docs/knowledge-base/04-returns-and-warranty.md \
+            docs/knowledge-base/05-product-inquiries-and-escalation.md \
+            docs/knowledge-base/06-faqs-and-safe-response-rules.md \
+            docs/knowledge-base/07-privacy-contact-payments.md \
+            docs/knowledge-base/08-source-of-truth-register.md \
+            docs/schema/catalogue-item.schema.json \
+            docs/schema/FIELD_DICTIONARY.md \
+            docs/schema/sample_catalogue_synthetic.csv \
+            docs/schema/invalid_rows_examples.csv \
+            docs/schema/validate_catalogue.js \
+            docs/architecture/PROPOSED_API_SPEC.openapi.yaml
+          do
+            test -s "$path" || { echo "Missing required file: $path"; exit 1; }
+          done
+          grep -q 'PROPOSED CONTRACT ONLY' docs/architecture/PROPOSED_API_SPEC.openapi.yaml
+          echo "PASS: required documentation/schema/API proposal files exist."
       - name: Validate JSON Schema syntax
         run: node -e "JSON.parse(require('node:fs').readFileSync('docs/schema/catalogue-item.schema.json','utf8')); console.log('JSON Schema parses as valid JSON')"
       - name: Validate synthetic CSV and negative cases
