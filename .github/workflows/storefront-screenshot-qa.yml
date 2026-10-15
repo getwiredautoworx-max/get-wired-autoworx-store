@@ -68,7 +68,7 @@ jobs:
               });
               const storeFrame = await (async () => {
                 for (let attempt = 0; attempt < 60; attempt++) {
-                  const found = page.frames().find(f => /index-new\\.html/.test(f.url()));
+                  const found = page.frames().find(f => /index-new\.html/.test(f.url()));
                   if (found) return found;
                   await page.waitForTimeout(250);
                 }
