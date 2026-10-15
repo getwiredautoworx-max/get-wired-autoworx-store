@@ -1,12 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-// Ensure all target directories exist explicitly
+// 1. Ensure target directories exist
 const dirs = [
   'docs/knowledge-base',
   'docs/schema',
   'docs/architecture'
 ];
+
 dirs.forEach(d => {
   const fullPath = path.join(process.cwd(), d);
   if (!fs.existsSync(fullPath)) {
@@ -18,8 +19,9 @@ dirs.forEach(d => {
 console.log('Generating complete Priority 1-4 documentation pack for PR #28...');
 
 // ==========================================
-// 1. KNOWLEDGE BASE & POLICY PACK
+// KNOWLEDGE BASE (9 Files)
 // ==========================================
+
 fs.writeFileSync('docs/knowledge-base/README.md', `# Get Wired AutoWorx — Support & Knowledge Base Pack
 
 Welcome to the internal and support policy documentation for Get Wired AutoWorx.
@@ -144,8 +146,9 @@ fs.writeFileSync('docs/knowledge-base/08-source-of-truth-register.md', `# 08. So
 `);
 
 // ==========================================
-// 2. SCHEMA & VALIDATION PACK
+// SCHEMA & VALIDATION PACK (5 Files)
 // ==========================================
+
 const jsonSchemaContent = {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://getwiredauto.co.za/schemas/catalogue-item.v1.json",
@@ -185,7 +188,7 @@ BAD-001,GW-123,Invalid SKU Length,Auto Electrical Spares,100.00,155.25,false,tru
 BAD-002,GW-BADPRICE,Zero Cost Activated,Vehicle Security,0.00,0.00,false,true,Approved,Cost and price cannot be zero; must be quote_only
 `);
 
-// Validator Script
+// Validator script
 fs.writeFileSync('docs/schema/validate_catalogue.js', `const fs = require('fs');
 console.log('--- Catalogue Schema Validation Run ---');
 const csvContent = fs.readFileSync('docs/schema/sample_catalogue_synthetic.csv', 'utf8');
@@ -218,17 +221,18 @@ if (errors === 0) {
 }
 `);
 
-// Run validator during generation
+// Run validator during execution
 require('./docs/schema/validate_catalogue.js');
 
 // ==========================================
-// 3. ARCHITECTURE & PROPOSED API
+// ARCHITECTURE & PROPOSED API (2 Files)
 // ==========================================
+
 fs.writeFileSync('docs/architecture/REPOSITORY_OVERVIEW.md', `# Repository Architecture & Workflows
 - **Storefront:** Next.js / React application.
 - **Database & Auth:** Supabase (PostgreSQL, Row Level Security).
 - **Deployment Platform:** Webserver / Axxess Hosting.
-- **CI/CD:** GitHub Actions (Ephemereal runners).
+- **CI/CD:** GitHub Actions (Ephemeral runners).
 `);
 
 fs.writeFileSync('docs/architecture/PROPOSED_API_SPEC.openapi.yaml', `openapi: 3.0.3
@@ -245,8 +249,9 @@ paths:
 `);
 
 // ==========================================
-// 4. OPERATOR RUNBOOK & README
+// OPERATOR RUNBOOK & README (2 Files)
 // ==========================================
+
 fs.writeFileSync('docs/OPERATOR_RUNBOOK.md', `# Get Wired AutoWorx — Operator Runbook
 - **Live Store:** https://www.getwiredauto.co.za/
 - **Status:** RELEASE HOLD IN FORCE
@@ -262,4 +267,5 @@ fs.writeFileSync('README.md', `# Get Wired AutoWorx Storefront
 - [Catalogue Schema](docs/schema/FIELD_DICTIONARY.md)
 `);
 
-console.log('✓ All 18 files successfully generated and written.');
+console.log('✓ All 18 documentation and schema files written successfully.');
+    
