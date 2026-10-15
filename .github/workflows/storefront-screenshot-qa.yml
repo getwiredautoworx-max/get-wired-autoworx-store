@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - qa/desktop-mobile-screenshots-2026-10-15
+  pull_request:
+    branches: [qa/desktop-mobile-screenshots-2026-10-15]
+    paths:
+      - 'index-new.html'
+      - 'store.html'
+      - 'staging/trigger-axxess-package-build.md'
   workflow_dispatch:
 
 permissions:
