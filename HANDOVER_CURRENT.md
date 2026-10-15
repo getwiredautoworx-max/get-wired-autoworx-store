@@ -1240,3 +1240,31 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 4. Keep catalogue, supplier pricing, image rights, AI search, root-category reconciliation, Axxess DNS/SSL and payment-provider gates visible. Do not represent any as resolved without evidence.
 
 **Status remains RELEASE HOLD.** This checkpoint records current repository state and task coordination only; it does not authorize production release.
+
+
+## 2026-10-15 — resumed execution: docs/schema and taxonomy branch
+
+### PR #28 — documentation/schema acceptance work
+- Updated `docs/OPERATOR_RUNBOOK.md` with explicit release gates, safe release sequence, rollback, monitoring/escalation and evidence-record template.
+- Updated `docs/architecture/REPOSITORY_OVERVIEW.md` to correct the inaccurate Next.js description: the default `index.html` is a static redirect to `store.html`; Axxess is the primary host; Cloudflare/Netlify are mirrors/previews, not the production host.
+- Integrated the strict CSV validator implementation on `feature/docs-schema-pack`: malformed quote rejection, blank/duplicate header checks, exact-cent pricing, two-decimal monetary values, and real ISO calendar dates.
+- Added explicit JSON Schema draft-2020-12 validation of synthetic fixtures using Ajv, an index consistency test for all eight knowledge-base pages, expanded reason-based negative tests, and changed synthetic catalogue fixtures to inactive/unapproved so they cannot be mistaken for publishable rows.
+- Confirmed passing checks on commit `78925c45dee01727819685fd97bf20a023c37639`: Catalogue Schema Validation run 32 / ID `38728969386`; Public SKU Exposure Audit run 255 / ID `38728969431`; Storefront Smoke Test run 712 / ID `38728969210`. Relevant CI results: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38728969386
+- PR #28 remains OPEN and GitHub currently reports `mergeable=false`; do not merge or deploy. PR #31 remains OPEN, targeting the feature branch at an older base SHA and GitHub reports `mergeable=false`. A coordination comment was posted on both PRs: reconcile against the current feature branch, do not merge #31 directly to main, and avoid duplicate/stale changes.
+
+### PR #32 — eight-category root fix (staging/code-only)
+- Branch `fix/approved-eight-category-roots`; current head `ffd3f8f87f41911db96b309c7191d660bfac2b4d`; PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/32
+- Homepage `HOME_CATEGORY_IDS` now lists exactly the eight approved root IDs. 4x4 remains available as a nested category under Camping / Leisure / Outdoors; its category ID and product assignments are preserved.
+- `category.html` root list was aligned to the same eight approved labels and IDs; generic Spare Parts is removed only from the root selector. No Supabase category/product row, ID, or assignment was changed. Read-only live snapshot: 242 category rows total, 66 roots, 176 children, 4,198 product rows; 136 active products are assigned directly to the generic Spare Parts root and require scope/discoverability review before release.
+- Added `scripts/test-approved-category-roots.js` and `.github/workflows/approved-category-roots.yml`. Approved Eight-Category Root Test run 4 / ID `38730346759` PASSED. Public SKU Exposure Audit run 257 / ID `38730346865` PASSED after excluding internal generator/workflow/docs paths from customer-facing scanning.
+- Existing Storefront Smoke Test run 715 / ID `38730346774` still FAILED on the stale assertion requiring the exact label `Auto Electrical`, while the approved customer-facing label is now `Auto Electrical Spares`. A PR #32 comment asks Gemini to update this test assertion and rerun the smoke test. Earlier run 714 also failed for the same assertion. Do not call the overall PR green until this stale test is corrected and a new run passes.
+- PR #32 is OPEN, currently mergeable; no production deployment or database write was performed. The root acceptance test is passing but does not replace desktop/mobile browser QA or the product-scope decision for the 136 Spare Parts assignments.
+
+### AI picture-search verified state
+- Supabase reports `part-image-search` ACTIVE, version 2. The source requires server-side `OPENAI_API_KEY` and returns 503 when absent; no successful vision request has been evidenced in this session.
+- Updated `supabase/functions/part-image-search/README.md` on main to version 2 and to clarify that secret presence, a customer-facing pre-submit photo disclosure, durable/shared rate limiting, provider spend controls, and successful end-to-end tests are separate gates. The endpoint currently has `verify_jwt=false` and an in-memory rate limiter; this is not sufficient durable abuse protection for paid public inference.
+- Issue #30 remains the dedicated security task. Do not enable paid public inference, apply production SQL, configure secrets, or deploy until the issue's acceptance tests and owner-approved gate are complete. The connected environment could not perform an outbound endpoint smoke test, and the Supabase log query returned a fetch error; do not infer success or failure from those unavailable checks.
+
+### Current release boundary
+- Release remains **HOLD**. No production Supabase data write, production SQL, Axxess upload, DNS/SSL change, payment configuration change, or production deployment was performed during this block.
+- Remaining non-circular work: Gemini to fix the stale smoke assertion on PR #32 and reconcile PR #31 with the current PR #28 feature head; ChatGPT to independently verify resulting CI/diffs; continue AI endpoint durable-abuse-control design and live root/category regression evidence. Supplier-confirmed current prices, exact-SKU image evidence/rights, and Axxess DNS/SSL response remain external gates.
