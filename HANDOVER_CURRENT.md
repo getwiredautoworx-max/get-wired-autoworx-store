@@ -839,3 +839,21 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Current action: preserve PR #28 as **OPEN — REVIEW REQUIRED**. Do not merge or deploy. Reconcile the exact PR head SHA, changed-file inventory and workflow run associated with that head; verify all expected paths and inspect validator contents/results. If the latest workflow really committed all files, refresh the PR diff/head and re-fetch the paths from the exact head SHA before acceptance.
 - No production database writes, SQL, deployment, Axxess upload, DNS changes, payment-setting changes, or merge were performed during this reconciliation. Customer launch remains **HOLD**; the PR does not clear supplier price confirmations, exact-SKU image evidence/rights, the 800-row candidate, 38 flagged live prices, Axxess DNS/SSL, or full storefront/checkout release gates.
 - Coordination: Gemini's assigned next task is to resolve the PR evidence discrepancy and provide the exact full head commit SHA, run URL/ID, changed-file inventory and check output. ChatGPT will independently review the actual files and update this handover only against verifiable GitHub evidence. Avoid repeated live QA runs without a new code change or failure.
+
+
+## 2026-10-15 — Independent store work continued while Gemini reconciles PR #28
+
+### Recovered staging taxonomy proposal (review-only)
+- Searched the available Library artifacts rather than asking the owner to re-upload files. Found and materialized the archived `Get_Wired_AutoWorx_800_PRODUCT_IMPORT-1(1).sql` as a read-only source. The SQL was inspected as text only and was NOT executed.
+- Generated `/mnt/data/Get_Wired_AutoWorx_800_Proposed_Taxonomy_Review_ONLY_2026-10-15.csv` from its 800-row JSON payload. It preserves each row's SKU, description, original source category/subcategory/page, and recovered candidate slug; adds a proposed storefront top-level category/subcategory, confidence/reason, and explicit category/image-rights/current-price hold fields.
+- Structural result: 800 rows, 800 unique SKUs, 0 duplicate SKUs. Proposed top-level distribution: Automotive Accessories 355; Tools, Hardware & Consumables 259; Auto Electrical Spares 145; Car Audio & Entertainment 32; Trailer & Canopy 5; Marine Spares & Accessories 4. Confidence: 302 medium and 498 low. The low-confidence rows remain proposals, not approvals.
+- Seventeen rows retain the promotional source subcategory “New Arrivals”; the proposal does not treat it as a valid taxonomy. Nine zero/blank-cost rows remain quote-only/unpriced. All 800 rows are marked staging proposal only, image unverified, image rights unverified, and held from import/release.
+- Critical limitation: this is a deterministic first-pass proposal based on recovered payload names/source metadata and candidate slugs, not page-by-page visual/source verification. No supplier current price was confirmed and no image permission was established. Do not import it or use its prices for publication. It reduces the work to a structured review file but does not close the 800-row release gate.
+- Source evidence: Library artifact `Get_Wired_AutoWorx_800_PRODUCT_IMPORT-1(1).sql` (read-only; unsafe SQL must never be executed) and `September_Reconciliation_Recovery_Summary_2026-10-14.json`. Output CSV was created in the working container at the path above.
+- No production database write, SQL execution, Axxess upload, deployment, DNS/payment change, or PR merge occurred. Customer launch remains **HOLD**.
+
+### Next independent actions
+1. Use the new 800-row review-only mapping as a triage aid and prioritize the low-confidence rows and any source-heading/product-description conflicts for evidence review; do not mark category approval from heuristics alone.
+2. Continue exact-SKU image recovery from available indexed assets; keep the separate permission gate intact.
+3. Keep the 38-SKU current supplier cost/availability request register as WAITING FOR SUPPLIER RESPONSE unless written replies are actually received.
+4. In parallel, Gemini must resolve PR #28 head SHA/file-list discrepancy. Avoid duplicate live QA and do not disturb production.
