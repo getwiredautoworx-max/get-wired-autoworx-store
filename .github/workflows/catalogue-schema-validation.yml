@@ -42,6 +42,9 @@ jobs:
             docs/schema/sample_catalogue_synthetic.csv \
             docs/schema/invalid_rows_examples.csv \
             docs/schema/validate_catalogue.js \
+            docs/schema/test_validate_catalogue.js \
+            docs/schema/validate_schema_fixtures.js \
+            scripts/check-doc-index.js \
             docs/architecture/PROPOSED_API_SPEC.openapi.yaml
           do
             test -s "$path" || { echo "Missing required file: $path"; exit 1; }
