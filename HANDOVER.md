@@ -2701,3 +2701,12 @@ Owner asked for a direct list of exactly what is needed from their side. Request
 - Missing original corrected September CSV/source-image folder remains an unresolved artifact-location issue; this batch does not claim to recover that exact file.
 - Category review remains read-only. The existing `staging/CATEGORY_OUTSIDE_HIERARCHY_CANDIDATES_2026-10-14.csv` is a candidate/quarantine inventory, not authorization to reclassify or write product rows. Held code review still needs original June guide pages and exact taxonomy evidence.
 - No Supabase data writes, Axxess upload, DNS/payment changes, or deployment occurred. Release remains **HOLD** pending pricing/current supplier confirmation, category review, and image rights.
+
+
+## 2026-10-15 — live store URL surfaced in GitHub
+
+- Created repository `README.md` with the live store link: https://www.getwiredauto.co.za/ and a direct link to this handover. Commit: `adca144ab92d4e4479d85887bfbaab4a5740a1b4`.
+- Library search for the original corrected September staging CSV/image folder returned the February–August corrected-price CSV and a September recovery summary, but did **not** locate the original September corrected CSV or its image folder. The summary explicitly says the 800-row reconstruction is not the original candidate CSV, has 800 missing image paths, and all 800 rows remain import-blocked.
+- No category assignment was changed: codes `6007-13` and `02-09` still lack enough source-page context. June-guide pages 4–6 were already visually inspected in the prior checkpoint; repeated exact-code searches in the indexed June text did not establish a safe classification.
+- No production data, Axxess upload, DNS, payment configuration, or deployment changed. Release remains **HOLD**.
+- Next: inspect the June/August audit workbook's OCR staging rows for the held codes and compare those rows with source-page images; continue locating the original September artifacts without treating the reconstruction as the original.
