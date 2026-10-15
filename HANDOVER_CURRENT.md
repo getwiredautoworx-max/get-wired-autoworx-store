@@ -1300,3 +1300,27 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Queried current `public.products` read-only. Results: 4,198 total rows; 4,187 active rows; 4,187 distinct active public SKUs; 0 active rows with missing/non-positive cost; 0 with missing/non-positive price; 0 with missing image_url; 0 active price values differing from `round(cost_price × 1.15 × 1.35, 2)`; 0 active rows missing the legacy SKU field.
 - This means the current live database's stored price-vs-cost formula audit passes. It does **not** close the separate 38-SKU supplier-evidence hold: those SKUs were flagged by historical source/pricing reconciliation and still require current supplier confirmation before any price edits or re-publication decision. Do not call them current formula mismatches based on this query.
 - No data was changed; read-only SQL only.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-15 17:05 SAST (GitHub CI / PR reconciliation)
+
+### Independently verified live repository state
+- Repository: https://github.com/getwiredautoworx-max/get-wired-autoworx-store
+- PR #28, “documentation/schema pack”: OPEN, unmerged, base `main`, head `feature/docs-schema-pack`, head commit `78925c45dee01727819685fd97bf20a023c37639`. GitHub currently reports it mergeable.
+- PR #28 head commit workflow runs verified COMPLETED / SUCCESS: Public SKU Exposure Audit run #255 (run ID 38728969431), Catalogue Schema Validation run #32 (run ID 38728969386), and Storefront Smoke Test run #712 (run ID 38728969210). These are branch CI results, not production deployment or full Axxess visual QA.
+- PR #31, “Harden catalogue CSV validation”: OPEN, unmerged, base `feature/docs-schema-pack`, head `fix/catalogue-validator-strict-csv`, head commit `7942beefb277d856cac9464c6a0b56d789f880fd`. GitHub reports it not mergeable; it diverged from PR #28's head (PR #28 head is 13 commits ahead and 3 commits behind relative to PR #31 head).
+- Compared PR #31's head to PR #28's current branch and independently fetched `docs/schema/test_validate_catalogue.js` and `docs/schema/validate_catalogue.js` from `feature/docs-schema-pack`. The strict CSV parser and edge-case test file are already present on PR #28's branch. Its schema validation workflow and public-SKU audit are passing on that exact head. Therefore do NOT try to merge PR #31 as-is or duplicate its changes; keep it open pending a final diff/CI review or close it after confirming no unique changes remain.
+- The previously noted Public SKU Exposure Audit blocker is NOT currently failing on PR #28's head: run #255 completed successfully. This is a verified status change, not a claim that every possible audit configuration is resolved.
+
+### Release and Axxess status unchanged
+- No merge to `main`, production write, SQL execution, Axxess upload, DNS/SSL modification, or payment configuration change was performed in this checkpoint.
+- Axxess remains the primary host and upload remains gated on complete repository/package review and the owner’s single-batch release workflow. CI passing on a PR does not by itself certify the complete store ZIP, rendered desktop/mobile appearance, root/www DNS/SSL, or checkout against the live Axxess host.
+- Catalogue evidence blockers remain as recorded above: current supplier confirmation for 38 held SKUs, 800-row source/cost reconciliation, exact-SKU image verification and image rights, reviewed 4,187-SKU delta/rollback ledger, and Axxess root/www DNS/SSL confirmation. PayFast/PayJustNow remain deferred.
+
+### Next concrete actions
+1. Review PR #28's complete changed-file list and diff against `main`; verify no generated secrets, unsafe SQL, production data, supplier identifiers exposed in customer-facing code, or unrelated changes.
+2. Review PR #31's three-file diff against the current PR #28 branch and document any genuinely unique change. Do not merge the stale/diverged PR #31 directly; if its changes are fully represented and PR #28 checks stay green, close it as superseded only after confirming the complete diff.
+3. Verify the exact Axxess package source from the reviewed branch, build it once, inspect its archive contents and run package-level route/assets checks. Do not upload until release gates pass and the consolidated single-upload plan is ready.
+4. Continue non-external staging work while waiting for supplier and Axxess responses. Update this handover with exact results after each material change.
+
+**Checkpoint decision: RELEASE HOLD remains.** CI is green for PR #28's current head; this resolves the immediate automated audit concern for that branch but does not clear catalogue, asset-rights, DNS/SSL, full live QA, or release-authorization gates.
