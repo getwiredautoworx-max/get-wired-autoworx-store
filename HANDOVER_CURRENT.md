@@ -1365,3 +1365,19 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Verified inner package SHA-256: `b84c189c8967967ba85e969636322406f782fd5980532ae59e0e7bf22ca1b5da`.
 - Re-tested the inner ZIP locally: no compressed-data errors; 4,101 `.webp` product-image files; 4,120 regular files plus ZIP directory entries; required route pages all present (`index.html`, `store.html`, `product.html`, `products.html`, `checkout.html`, `checkout-v2.html`, `category.html`, `returns-refunds.html`, `terms-and-conditions.html`).
 - The archive deliberately does not contain `admin.html`; Axxess upload instructions require preserving the currently installed admin page and unrelated hosting files. This artifact is a review-branch candidate until the owner-approved release workflow is followed.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-15 17:30 SAST (PR #37 independent review)
+
+### Fresh GitHub verification
+- PR #37 remains OPEN and unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/37. Current head is `e36df1f50eb761382dbbfeb61c019fc3052970a1`.
+- Independent compare against current `main` reports the branch is DIVERGED: 6 commits ahead and 2 commits behind; GitHub's latest PR response says `mergeable=false`. This supersedes the earlier handover statement that it was mergeable. Do not merge until reconciled with current main and fresh CI passes.
+- The PR diff is limited to three files: `.github/workflows/prepare-axxess-package.yml` (+43/-5), `index-new.html` (+1/-1), and `scripts/public-sku-audit.py` (+1/-1).
+- Workflow review confirms it packages all nine required HTML routes plus runtime JS/assets, checks required files before ZIP creation and required route entries after creation, validates ZIP integrity, dynamically records the WebP count, and explicitly preserves the installed `admin.html` by not including it. Minor cleanup opportunity: `terms-and-conditions.html`, `products.html`, and `checkout.html` appear duplicated in the push path filter; this is harmless but can be tidied during reconciliation if the workflow diff is already being revised.
+- The targeted audit exclusion is only for `.github/scripts/generate_docs.js`; the rest of the public source scan remains active. The `index-new.html` change points to the rendered customer-facing `terms-and-conditions.html`, not raw Markdown.
+- Verified job details from run IDs: package run 38759329011 passed; public SKU audit run 38759328972 passed; storefront smoke run 38759329102 passed. These results belong to the PR head and are not production-site visual or live checkout tests.
+- Reconfirmed candidate inner ZIP SHA-256: `b84c189c8967967ba85e969636322406f782fd5980532ae59e0e7bf22ca1b5da`; 4,120 regular files, 4,101 WebP images, all required route pages present. It is still a review-branch artifact, not an approved main-branch artifact.
+
+### Action taken / next step
+- Requested PR author/Gemini to reconcile PR #37 with latest `main` without overwriting main's changes, remove harmless duplicate workflow path entries if convenient, and rerun package, public-SKU audit, and smoke workflows on the new exact head.
+- Release remains HOLD. No merge, production upload, SQL/database write, DNS/SSL change, or payment setting change was made. The final Axxess upload must use a verified artifact built from the reviewed main commit after all release gates and owner approval; preserve `admin.html` and back up `public_html` first.
