@@ -1,4 +1,5 @@
-import { assertEquals, assert } from 'jsr:@std/assert@1';
+function assert(value: unknown, message = 'assertion failed'): asserts value { if (!value) throw new Error(message); }
+function assertEquals(actual: unknown, expected: unknown, message = 'values differ'): void { if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(message + ': expected ' + JSON.stringify(expected) + ', got ' + JSON.stringify(actual)); }
 import { hmacClientHash, isAllowedOrigin, MAX_IMAGE_BYTES, readJsonLimited, validateImagePayload } from './validation.ts';
 
 const allowed = new Set(['https://www.getwiredauto.co.za', 'https://getwiredauto.co.za']);
