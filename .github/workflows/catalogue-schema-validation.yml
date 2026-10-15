@@ -48,7 +48,9 @@ jobs:
           done
           grep -q 'PROPOSED CONTRACT ONLY' docs/architecture/PROPOSED_API_SPEC.openapi.yaml
           echo "PASS: required documentation/schema/API proposal files exist."
-      - name: Validate JSON Schema syntax
-        run: node -e "JSON.parse(require('node:fs').readFileSync('docs/schema/catalogue-item.schema.json','utf8')); console.log('JSON Schema parses as valid JSON')"
+      - name: Install isolated JSON Schema test dependencies
+        run: npm install --no-save --no-package-lock ajv@8 ajv-formats@3
+      - name: Validate synthetic rows against JSON Schema draft 2020-12
+        run: node docs/schema/validate_schema_fixtures.js
       - name: Validate synthetic CSV and negative cases
         run: node docs/schema/validate_catalogue.js
