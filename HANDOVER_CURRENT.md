@@ -1300,3 +1300,17 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Queried current `public.products` read-only. Results: 4,198 total rows; 4,187 active rows; 4,187 distinct active public SKUs; 0 active rows with missing/non-positive cost; 0 with missing/non-positive price; 0 with missing image_url; 0 active price values differing from `round(cost_price × 1.15 × 1.35, 2)`; 0 active rows missing the legacy SKU field.
 - This means the current live database's stored price-vs-cost formula audit passes. It does **not** close the separate 38-SKU supplier-evidence hold: those SKUs were flagged by historical source/pricing reconciliation and still require current supplier confirmation before any price edits or re-publication decision. Do not call them current formula mismatches based on this query.
 - No data was changed; read-only SQL only.
+
+
+## 2026-10-15 — Owner storefront design direction captured (staging only)
+
+- Owner supplied a new HTML storefront reference and stated they are unhappy with the existing format/style. Treat this as the new visual direction for review; do not deploy to Axxess or replace the live storefront without the normal staged verification and final owner-authorized release.
+- Created branch `feature/storefront-compact-redesign-2026-10-15` from main.
+- Updated only the presentation CSS in `index-new.html` with a compact mobile-first visual pass. Commit: `30211ffd445234661cb0cbec6de98e538c0b0b59`.
+- Intended styling changes: compact gradient announcement ticker; shorter header and search area; smaller hero; dark/red/electric-blue theme; compact 3-column category layout on desktop/tablet and 2 columns on narrow phones; lighter product cards using existing product data/images; reduced section spacing; improved mobile bottom navigation and safe-area padding.
+- Existing Supabase-backed product/category loading, exact-SKU product content, search, cart, detail modal, and checkout logic were left in place; this is a CSS-only first pass and is not yet browser-verified.
+- Corrected trust-claim direction: do not add the reference's unsupported “46 reviews” or “6 month warranty”; current verified 4.7/5 rating presentation may remain without an invented review count. Sample product names/prices from the supplied snippet must not be hardcoded as live stock/prices.
+- Category structure remains locked to the eight approved store roots. The supplied 12 service shortcuts are not a replacement for approved catalogue categories. Category image tiles and the Part Search / Request a Part popups remain follow-up design/functional work; no AI image-search feature is claimed operational by this CSS pass.
+- Validation still required before merge: inspect desktop and mobile rendering, ensure hero text does not collide with rating box at 320–390 px, verify category tile text and dynamic categories, confirm bottom-nav/cart/search behavior, run non-production checks only after code is ready. Fix any visual regressions before PR/merge.
+- No main-branch change, pull request, Axxess upload, production deployment, live database/catalogue write, DNS/payment setting change, or Cloudflare/Netlify credit use occurred.
+- Current status: **STAGING IMPLEMENTATION COMMITTED; BROWSER QA / PR / MERGE / LIVE RELEASE NOT DONE.**
