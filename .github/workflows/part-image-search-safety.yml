@@ -27,7 +27,7 @@ jobs:
       - name: Type-check Edge Function
         run: deno check supabase/functions/part-image-search/index.ts
       - name: Test request and image validation helpers
-        run: deno test supabase/functions/part-image-search/validation_test.ts
+        run: deno test supabase/functions/part-image-search/validation_test.ts supabase/functions/part-image-search/handler_test.ts
       - name: Assert migration fails closed behind service-role RPC
         run: |
           grep -q 'security definer' supabase/migrations/20261015120000_part_image_search_rate_limit.sql
