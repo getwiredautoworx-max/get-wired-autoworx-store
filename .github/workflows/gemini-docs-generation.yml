@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Branch name to create'
+        description: 'Branch name to create or update'
         required: true
         default: 'feature/docs-schema-pack'
       pr_title:
@@ -22,38 +22,57 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Create Feature Branch
+      - name: Checkout or Create Feature Branch
         run: |
           git config user.name "gemini-code-agent[bot]"
           git config user.email "gemini-code-agent[bot]@users.noreply.github.com"
-          git checkout -b ${{ github.event.inputs.branch_name }}
+          BRANCH="${{ github.event.inputs.branch_name }}"
+          if git ls-remote --exit-code --heads origin "$BRANCH"; then
+            echo "Branch $BRANCH exists on remote. Checking out..."
+            git fetch origin "$BRANCH"
+            git checkout "$BRANCH"
+          else
+            echo "Creating new branch $BRANCH..."
+            git checkout -b "$BRANCH"
+          fi
 
       - name: Execute Gemini Generator Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          npm install @google/genai
           node .github/scripts/generate_docs.js
 
       - name: Commit and Push Changes
         run: |
+          BRANCH="${{ github.event.inputs.branch_name }}"
           git add docs/ README.md
-          git commit -m "docs: add Knowledge Base, Schema, Architecture, and Runbook pack"
-          git push origin ${{ github.event.inputs.branch_name }} --force
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "docs: complete missing policy, schema, validator, architecture, and runbook docs"
+            git push origin "$BRANCH"
+          fi
 
-      - name: Create Pull Request
+      - name: Ensure Pull Request Exists
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr create \
-            --title "${{ github.event.inputs.pr_title }}" \
-            --body "Automated documentation and catalogue schema pack generated via Gemini API. Requires human / ChatGPT review. Release hold remains active." \
-            --head ${{ github.event.inputs.branch_name }} \
-            --base main
-            
+          BRANCH="${{ github.event.inputs.branch_name }}"
+          if gh pr list --head "$BRANCH" --state open | grep -q "$BRANCH"; then
+            echo "Pull request already open for $BRANCH."
+          else
+            gh pr create \
+              --title "${{ github.event.inputs.pr_title }}" \
+              --body "Automated documentation and catalogue schema pack generated via Gemini API. Requires human / ChatGPT review. Release hold remains active." \
+              --head "$BRANCH" \
+              --base main
+          fi
+          
