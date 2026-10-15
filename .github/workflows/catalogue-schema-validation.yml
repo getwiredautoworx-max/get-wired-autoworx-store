@@ -52,3 +52,5 @@ jobs:
         run: node -e "JSON.parse(require('node:fs').readFileSync('docs/schema/catalogue-item.schema.json','utf8')); console.log('JSON Schema parses as valid JSON')"
       - name: Validate synthetic CSV and negative cases
         run: node docs/schema/validate_catalogue.js
+      - name: Test strict CSV parsing and price/date edge cases
+        run: node docs/schema/test_validate_catalogue.js
