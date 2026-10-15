@@ -1025,3 +1025,14 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 2. **Gemini lane B:** address issue #29 in a separate branch/PR; investigate the category generator and UI source before proposing mappings; do not alter live category rows.
 3. **ChatGPT lane:** maintain handover, independently verify submitted diffs/CI, and continue repository-only audits that need no owner credentials or live mutation.
 4. **Store launch remains HOLD.** Category roots, catalogue source/price/image evidence, current supplier confirmations, image rights, AI provider activation, and full live checkout/payment readiness remain separate release gates.
+
+
+## 2026-10-15 12:12 SAST — checkout fee documentation reconciled (documentation-only)
+
+- Cross-checked the live-source candidate `checkout-v2.html`, latest order-function migration `supabase/migrations/20261013070000_create_store_order_v2.sql`, `DEPLOYMENT_NOTE.md`, and `CHECKOUT_PAYMENT_DELIVERY.md`.
+- Current implemented packaging fee is **R35.00 per item/quantity**: checkout displays/calculates R35; the 13 October v2 order function sets `v_packaging := v_item_count * 35.00`; deployment notes call R35 current and supersede older R25 notes.
+- Found stale documentation claiming R25 in `CHECKOUT_PAYMENT_DELIVERY.md`, including its 4 October section. Corrected the document on main and explicitly marked that section historical/superseded.
+- Documentation commit: `5c7676d3c1d30b1b83cfca93618d72781af574e3`.
+- Link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/CHECKOUT_PAYMENT_DELIVERY.md
+- This was a documentation-only change. No SQL executed, no Supabase production write, no checkout code change, no order or payment made, no deployment/Axxess upload performed.
+- Current checkout rules to preserve: packaging R35/item quantity; pickup delivery fee R0.00; courier/PAXI delivery quoted separately and quote required before delivery submission. PayFast/PayJustNow remain deferred until owner/provider readiness.
