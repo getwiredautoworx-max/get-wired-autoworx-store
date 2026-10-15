@@ -778,3 +778,20 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Overall project completion percentage is **not established** by an evidence-backed denominator. Do not invent a percentage from the number of automation tasks or successful workflows. Report status by workstream and count only verified completed artifacts/checks.
 - Current remaining critical workstreams: (1) finish source-evidenced category/subcategory review, including the 198-row review queue; (2) repair and validate the separate 800-row September candidate or exclude unverified rows; (3) obtain current supplier cost/availability confirmation for the 38 flagged live SKUs and any launch candidates; (4) verify exact SKU/model image associations and image rights or exclude/replace assets; (5) reconcile staged changes against the 4,187-SKU live baseline with a KEEP/UPDATE/ADD/QUOTE/HOLD delta and rollback; (6) resolve Axxess root/www DNS and SSL with email DNS preserved; (7) complete full desktop/mobile storefront and checkout smoke tests; (8) only after gates pass, perform the owner-authorized single-batch Axxess-first release. PayFast/PayJustNow remain deferred.
 - No production data, SQL, DNS, payment settings, deployment or Axxess upload was changed during this status review. Release remains **HOLD**.
+
+
+## 2026-10-15 — Gemini documentation-pack transfer workaround
+
+- Owner reports they cannot upload files because of current data-analysis limitations. Do not keep asking the owner to upload a ZIP as the only path forward.
+- The previously described Gemini Priority 1–4 documentation pack has not been found in the repository or the available conversation/library artifacts. No branch, commit or PR containing that pack is verified. Do not represent it as committed or completed.
+- Next transfer method: have Gemini print the files as plain text directly in its reply, divided into small, clearly labelled batches to avoid output limits. Owner can copy each batch from Gemini and paste it into ChatGPT. No file upload is required.
+- Required batch order:
+  1. File manifest plus all docs/knowledge-base/ files.
+  2. All docs/schema/ files, including versioned JSON Schema, field dictionary, synthetic valid/invalid examples and validation rules.
+  3. All docs/architecture/ files, including implementation-vs-proposal labels and repository/workflow/API evidence.
+  4. docs/OPERATOR_RUNBOOK.md and the complete updated README.md.
+  5. Exact validation commands/results and any remaining owner decisions.
+- Every file must be presented as FILE: relative/path followed by a fenced code block containing the complete file contents. Do not use ellipses, summaries, placeholders, or omit files. If one response is too long, stop only at a file boundary and label the next batch number.
+- Once the owner pastes the batches here, ChatGPT will inspect the actual contents, create feature/docs-schema-pack from current main, commit the supplied documentation to that branch, verify the changed files and SHA, open a review PR against main, and add the actual branch/PR/commit/check details to this handover. Do not merge the PR or deploy.
+- If the owner prefers not to transfer Gemini's authored text, ChatGPT may draft an equivalent pack from the current repository and handover, but it must be labelled ChatGPT-authored rather than falsely attributed to Gemini.
+- No production data, SQL, DNS, payment settings, Axxess upload, deployment or merge is authorized by this note. Release remains HOLD.
