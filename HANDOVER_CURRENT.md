@@ -634,3 +634,15 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 - Found official ASC contact details from the supplier's public contact page: Sales sales@accessoriesspares.co.za; Durban trade counter (031) 581-8400; address 17 Travertine Crescent, Briardene, Durban North, 4051. Official source: https://accessoriesspares.co.za/contact/
 - Supplier site states trade pricing / monthly Buyers Guide pricing is available to approved resellers through its secure area; the published terms prohibit commercial use of website content without express prior written consent. Official source: https://accessoriesspares.co.za/refund_returns-2/
 - This supplies a valid contact channel for the existing 38-SKU request register and a rights-permission request. No email-sending connector is available in this session, so no email has been sent and no supplier reply is claimed. Next owner action is to send the prepared request to sales@accessoriesspares.co.za (or call the trade counter), asking for current exact-SKU costs/availability and explicit written image-use/edit permissions. Keep the register blank until written response is received.
+
+
+## GEMINI HANDOFF — DOCUMENTATION AND DATA-CONTRACT WORK (2026-10-15)
+
+- Added [GEMINI_EXECUTION_BRIEF.md](GEMINI_EXECUTION_BRIEF.md) with the agreed division of work, four prioritized deliverables, acceptance criteria and strict production-safety rules.
+- Gemini should read this checkpoint and the full chronological HANDOVER.md before starting. Start with the knowledge-base/policy pack, then the replacement-catalogue schema/field dictionary and synthetic examples, then repository/API/workflow documentation, and finally README/operator-runbook improvements.
+- Gemini work must be on a separate branch with a reviewable PR/patch. Do not merge to main, deploy, upload to Axxess, run SQL, mutate Supabase production data, alter DNS, or change payment settings. Do not change storefront behavior during this documentation task.
+- Preserve the eight approved top-level categories and the required customer-price formula: current verified supplier cost excluding VAT × 1.15 × 1.35, rounded to cents. Historical prices are not current-price evidence. Unpriced/quote-only items must never become active at zero.
+- Exact SKU/model evidence and documented usage rights are separate image gates. Do not state supplier permission, current price, product compatibility, payment-provider readiness, or release readiness without evidence.
+- Current checkout evidence reports Direct EFT only; PayFast and PayJustNow remain deferred/unconfirmed. GitHub package generation does not automatically deploy to Axxess. Scheduled workflows are not a continuously resident daemon.
+- Expected Gemini completion report: branch name, PR URL, commit SHA, changed files, validation run/results, unresolved questions, and owner decisions needed. Do not claim work is complete until the repository contains the artifacts and links.
+- This handoff is documentation/task authorization only. It does not change the release decision: **HOLD**. No production write or deployment is authorized by this addition.
