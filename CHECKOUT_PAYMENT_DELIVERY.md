@@ -1,6 +1,6 @@
 # Checkout / Payment / Delivery Workflow
 
-Updated: 2026-09-16
+Updated: 2026-10-15
 
 ## Customer checkout
 - `store.html` wraps the approved `index-new.html` storefront and exposes a checkout button whenever the browser cart contains items.
@@ -8,7 +8,7 @@ Updated: 2026-09-16
 - The injected storefront checkout enhancement in `assets/store-enhancements.js` now uses the validated `manual_payment` RPC value; this matches `public.create_store_order` and removes the previously detected `manual_confirmation` mismatch.
 - Customer details: name, phone, email, fulfilment, address, province, postal code and notes.
 - Fulfilment: door delivery/courier, locker/pickup point, or pickup from Get Wired AutoWorx in the current `checkout-v2.html` flow.
-- Customer-facing checkout policy: packaging is R25.00 per item. There is no standard nationwide fixed delivery charge. Delivery is quoted separately where applicable; pickup has R0.00 delivery charge.
+- Customer-facing checkout policy: packaging is R35.00 per item/quantity (current implemented rule). There is no standard nationwide fixed delivery charge. Delivery is quoted separately where applicable; pickup has R0.00 delivery charge.
 - Delivery provider wording: Courier Guy or PEP PAXI.
 - Payment methods supported by the current order workflow: EFT / bank payment, manual payment arrangement, and cash on pickup.
 - Card details are never collected by the storefront.
@@ -35,8 +35,8 @@ Updated: 2026-09-16
 ## Delivery integration boundary
 - Customer checkout records delivery versus pickup and delivery address information.
 - Delivery fee must be confirmed by an available courier/PAXI quotation; the storefront never treats delivery as free unless the customer selects pickup.
-- Active checkout-v2 requires a courier/PAXI quotation to be selected before delivery orders can be submitted. Packaging is calculated server-side at R25.00 per item/quantity. Pickup has R0.00 delivery charge.
-- The authoritative `public.create_store_order` function no longer enforces the old R15 rule. It accepts a verified non-negative courier delivery fee (or R0 for pickup) and calculates packaging server-side at R25.00 per item.
+- Active checkout-v2 requires a courier/PAXI quotation to be selected before delivery orders can be submitted. Packaging is calculated server-side at R35.00 per item/quantity. Pickup has R0.00 delivery charge.
+- The authoritative `public.create_store_order` function no longer enforces the old R15 rule. It accepts a verified non-negative courier delivery fee (or R0 for pickup) and calculates packaging server-side at R35.00 per item.
 - Courier Guy / PEP PAXI are the stated delivery channels.
 - Automated delivery pricing, provider integration, tracking/reference handling and order-to-delivery linkage remain final-phase work.
 
@@ -57,13 +57,13 @@ Updated: 2026-09-16
 4. Final deployment only after the above are approved.
 
 
-## COMMERCIAL FEE UPDATE — 4 OCTOBER 2026
+## HISTORICAL COMMERCIAL FEE NOTE — 4 OCTOBER 2026 (SUPERSEDED)
 - [x] Removed the old nationwide R15 delivery-charge enforcement from `public.create_store_order`.
 - [x] Added `orders.packaging_fee`.
-- [x] Server calculates packaging at **R25.00 × total item quantity**; browser-supplied packaging is not trusted.
+- Historical note only: this entry recorded R25.00 × total item quantity on 4 October. It is superseded by the later implemented R35.00 rule documented below; do not use it as current pricing evidence.
 - [x] Checkout displays packaging separately from courier delivery.
 - [x] Delivery remains a separate courier quote where applicable; pickup has no delivery charge.
-- [x] `checkout.html` and `checkout-v2.html` updated to remove R15 wording and show R25-per-item packaging.
+- Historical note only: checkout was subsequently changed; the current `checkout-v2.html` and latest order-function migration use R35.00 per item/quantity.
 
 
 ## 2026-10-08 — CURRENT COMMERCIAL CHECKOUT RULES RECONCILED
@@ -72,3 +72,10 @@ Updated: 2026-09-16
 - [x] Current approved packaging charge is **R35.00 per item**; pickup is **R0.00**; delivery is charged according to the selected courier/PAXI quotation and is subject to quotation.
 - [x] Current `checkout-v2.html` source was re-read and confirmed to display/calculate R35 packaging, require a delivery quotation before delivery submission, and allow free pickup.
 - [x] No customer order or product data was changed during this reconciliation.
+
+
+## 2026-10-15 — Current rule cross-check
+- Current customer-facing source `checkout-v2.html` displays and calculates R35.00 per item/quantity.
+- Latest versioned order-function migration inspected: `supabase/migrations/20261013070000_create_store_order_v2.sql`; it calculates `v_packaging := v_item_count * 35.00` and includes packaging in the total.
+- `DEPLOYMENT_NOTE.md` also identifies R35.00 as the current implemented rule and explicitly supersedes older R25.00 notes.
+- Therefore, R25.00 statements retained above are historical only, not the current fee. Pickup remains R0.00 delivery fee; delivery requires a confirmed quote. This was a documentation-only reconciliation: no SQL executed and no production orders/data changed.
