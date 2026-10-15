@@ -1410,3 +1410,23 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - PR #36 remains open/unmerged and unmergeable; fresh compare reports 23 commits ahead and 6 behind main. Fresh visual/interaction test output on the current PR head has not been verified in this checkpoint.
 - The earlier screenshot finding remains: historical 390px category-grid capture shows fixed bottom navigation overlapping/cropping the final category row. It requires a fresh run on current PR head and a regression assertion.
 - No merge, Axxess upload, production database write, DNS/SSL change, or payment-provider setting change was performed.
+
+
+
+## CONTINUATION CHECKPOINT — 2026-10-15 (latest release-gate refresh)
+
+### Current source-of-truth comparison
+- Current main SHA: `90a4172cf4e65e0515631dde936fc7356f0979f9`.
+- PR #37 https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/37 remains OPEN/unmerged; current GitHub metadata reports `mergeable=false`. Fresh compare against current main says DIVERGED: 6 commits ahead, 5 behind. Earlier successful CI and ZIP verification belong to old head `e36df1f50eb761382dbbfeb61c019fc3052970a1`; they must be rerun on the reconciled head.
+- PR #36 https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/36 remains OPEN, DRAFT, and unmerged; current metadata reports `mergeable=false`. Fresh compare says DIVERGED: 23 commits ahead, 7 behind. The PR description mentions later QA/package runs, but the exact current head's fresh screenshot artifacts have not yet been independently retrieved and inspected in this checkpoint.
+- These compare counts supersede older counts in earlier checkpoint entries.
+
+### Actions taken to unblock
+- Posted a new direct GitHub comment to PR #37 requesting reconciliation against current main without overwriting main changes, then fresh package creation + archive integrity/required-route checks + public-SKU audit + storefront smoke test on the exact new head. Comment ID: 6196000728.
+- Posted a new direct GitHub comment to PR #36 requesting reconciliation against current main, a fresh Playwright screenshot run at 1440px/390px/320px with PNGs and JSON report, explicit final-category-row vs fixed-bottom-nav verification, all category/subcategory interactions, no console/page errors or horizontal overflow, and image-load failure reporting. Comment ID: 6196001483.
+- PR #36 remains a draft because product/category image text/watermarks and 86 active products without an exact local image remain unresolved content/source blockers. AI picture-search has not been verified end-to-end. A package passing CI does not clear these content or live-hosting gates.
+
+### Release decision and immediate sequence
+- Release remains HOLD. Do not merge either diverged branch or upload a branch artifact to Axxess. No production upload, SQL/database write, DNS/SSL change, or payment-provider configuration change was made.
+- Next: reconcile PR #37 first (small, three-file package fix), rerun all three release-related checks on its new head, review the resulting diff and artifact; separately reconcile PR #36 and inspect fresh screenshot artifacts. Then produce a main-based, release-approved Axxess package and perform live checks only with owner-controlled upload/approval.
+- Existing owner APK remains separate from the storefront release: Build #48 URL https://github.com/getwiredautoworx-max/get-wired-autoworx-owner-apk-validation/actions/runs/37658519204. Its CI jobs passed, but the actual-phone install/validation is still pending.
