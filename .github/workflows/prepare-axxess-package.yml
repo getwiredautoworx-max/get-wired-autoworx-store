@@ -25,6 +25,11 @@ on:
       - 'assets/product-placeholder.svg'
       - 'assets/category-tree.json'
       - 'assets/products_webp/**'
+  pull_request:
+    branches: [qa/desktop-mobile-screenshots-2026-10-15]
+    paths:
+      - '.github/workflows/prepare-axxess-package.yml'
+      - 'staging/trigger-axxess-package-build.md'
   workflow_dispatch:
 permissions:
   contents: read
