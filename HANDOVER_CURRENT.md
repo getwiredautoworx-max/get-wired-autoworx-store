@@ -1162,3 +1162,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Customer launch remains HOLD. No production SQL/data write, category change, price change, deployment, Axxess upload, DNS change, payment-setting change or production function deployment was performed.
 - Next: review PR #31's full test evidence and have its changes incorporated into PR #28; coordinate root-category staging reconciliation with issue #29; keep picture-search disabled for paid public use until issue #30 security and end-to-end gates pass; continue exact-SKU image/rights and 38-SKU current-price evidence work.
 - Do not report the category, AI picture search, catalogue or live release gates as resolved based solely on synthetic CI or metadata.
+
+
+## LIVE CATEGORY TREE AND FORMULA RECHECK — 2026-10-15 11:05 SAST
+
+### Additional read-only findings
+- Rechecked all active product rows using the stored `cost_price` and `price` fields. Results: 0 active rows with missing/non-positive cost; 0 full-formula mismatches against `round(cost_price * 1.15 * 1.35, 2)`; 0 active duplicate supplier SKU rows; 0 active duplicate public SKU rows; 0 active blank supplier SKUs. This confirms the currently stored formula is internally consistent, but does not clear the separate 38 source-matched historical price-scaling flags, which still need current supplier confirmation.
+- Recursive category-tree counts by active product-bearing roots were added to issue #29. The 4,187 active products currently sit under nine active root trees: Electrical 1,149; Spare Parts 565; Car Audio 46; Automotive Accessories 874; Alarms & Security 2; Marine Spares & Accessories 57; Tools & Workshop 1,321; Camping / Leisure / Outdoors 84; Trailer & Canopy 89. The duplicate Automotive Accessories root slug `catalogue-automotive-accessories` has 0 active products. These are current assignments only, not approved new mappings.
+- External browser inspection could not load the root/www domain in this tool, so this is **not** evidence that either domain is down. DNS/SSL must be verified with an appropriate direct check or Axxess response; no DNS change made.
+- Evidence and mapping warnings have been recorded on issue #29: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/29
+- PR #31 CI succeeded on schema run 38724025040 and public-SKU audit run 38724025045. It remains draft/open and depends on PR #28's feature branch. No merge/deploy made.
