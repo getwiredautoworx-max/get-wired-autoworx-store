@@ -33,7 +33,7 @@ assert.equal(new Set(homepageIds).size, 8, 'homepage root IDs must be unique');
 assert.deepEqual(homepageIds, approvedIds, 'homepage root IDs must match approved order');
 assert(homepage.includes("'182423ec-ea46-43e4-bbe3-b8857b5a1583':'4x4 Outdoor'"), '4x4 label must remain available for nested category display');
 assert(!homepageIds.includes('182423ec-ea46-43e4-bbe3-b8857b5a1583'), '4x4 must not be a ninth root');
-const rootMatch = categoryPage.match(/const ROOTS=\[([^\]]+(?:\][^;]*)?)\];/);
+const rootMatch = categoryPage.match(/const ROOTS=\[([\s\S]*?)\];/);
 assert(rootMatch, 'category page ROOTS list must exist');
 const pairs = [...rootMatch[1].matchAll(/\['([^']+)','([^']+)'\]/g)].map(m => ({ label: m[1], id: m[2] }));
 assert.equal(pairs.length, 8, 'category landing page must expose exactly eight roots');
