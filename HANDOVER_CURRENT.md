@@ -1324,3 +1324,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 4. Continue non-external staging work while waiting for supplier and Axxess responses. Update this handover with exact results after each material change.
 
 **Checkpoint decision: RELEASE HOLD remains.** CI is green for PR #28's current head; this resolves the immediate automated audit concern for that branch but does not clear catalogue, asset-rights, DNS/SSL, full live QA, or release-authorization gates.
+
+
+### PR #28 independent diff screening — 2026-10-15 17:08 SAST
+- Enumerated the full PR #28 changed-file list and retrieved its complete patch set: 22 changed files (21 newly added in the PR patch view; one existing audit script modified).
+- Pattern screening of the full patch found zero matches for common hard-coded API/private-key credential patterns and zero matches for destructive SQL or direct products-table write statements. This is a targeted static screen, not a secret scanner or full security audit.
+- The supplier-SKU term appears in internal schema/docs and the audit implementation as expected. The updated public-SKU audit excludes repository-internal prefixes including `.github/`, `docs/`, and `scripts/` to avoid treating documentation-generation/audit source as customer-facing storefront code; the runtime/public audit itself passed on PR #28 head (run #255). This scope must remain explicit: the audit does not prove that internal docs contain no supplier identifiers, and internal data must not be deployed to public paths.
+- The documentation index checker is a small deterministic Node script verifying the eight required knowledge-base files exist and are listed in the README. The PR introduces documentation/schema/validation assets and no production catalogue payload or deployment action in its changed-file list.
+- Review remains conditional: no merge approved or performed. Confirm workflow coverage and final changed-file diff before merge; PR #28 is still a documentation/schema contribution, not a verified Axxess upload package or launch approval.
