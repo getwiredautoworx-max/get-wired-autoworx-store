@@ -21,6 +21,11 @@ const toValue = (key, value) => {
 let failures = 0;
 for (let i = 0; i < cells.length; i++) {
   const row = Object.fromEntries(headers.map((key, j) => [key, toValue(key, cells[i][j])]));
+  if (row.is_active === true || row.review_status === 'Approved') {
+    failures++;
+    console.error('Synthetic fixture row ' + (i + 2) + ' is publication-eligible; fixtures must remain inactive and unapproved.');
+    continue;
+  }
   if (!validateSchema(row)) {
     failures++;
     console.error('JSON Schema rejected sample row ' + (i + 2) + ':');
