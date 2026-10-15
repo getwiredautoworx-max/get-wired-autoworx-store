@@ -1573,3 +1573,44 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Updated `.github/workflows/prepare-axxess-package.yml` PR path filters so changes to root `index.html` and `store.html` trigger a fresh testable Axxess package. Commit: `172d371bc934129370b7f859b2b47d2581cfffa8`.
 - Important limitation: this is client-side canonical redirection, not a server-level 301. It takes effect only once the updated entry files are served at the apex hostname. It cannot change DNS or remove the old www deployment. For a clean permanent result, the www DNS/hosting mapping must point to the current Axxess deployment and the apex should use a server-side 301 where supported. Do not overwrite an existing Axxess `.htaccess` without inspecting it first.
 - Latest changes are isolated to the existing draft PR #44; production/main and Axxess have not been changed. Keep the current build testable through the PR's smoke-test and package workflows; do not call the live-domain issue resolved until both hosts are tested after the routing change.
+
+## 2026-10-15 — Domain version mismatch / handover checkpoint
+
+### Owner's exact intended result
+- `https://www.getwiredauto.co.za` must serve the newest approved Get Wired AutoWorx storefront.
+- `https://getwiredauto.co.za` must permanently redirect to the matching `https://www.getwiredauto.co.za` URL, preserving path/query/hash where applicable.
+- The old storefront must no longer be served on `www`.
+
+### Current observed state (owner-reported)
+- `https://www.getwiredauto.co.za` currently serves the OLD store.
+- `https://getwiredauto.co.za` currently serves the NEWEST store, but this is the non-canonical URL.
+- This is a host-routing/DNS/origin mismatch, not merely a front-end redirect problem. Redirecting apex to www before www points at the new store would send customers to the old store and is therefore unsafe.
+
+### Repository changes already present on design branch
+- Branch: `design/exact-category-mockup-2026-10-15`.
+- Draft PR #44: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/44
+- `index.html` and `store.html` include client-side apex-to-www redirect logic. This alone cannot replace the old version served by a separate www origin and is not a substitute for server-side 301.
+- `CNAME` in main contains `www.getwiredauto.co.za`; this is a GitHub Pages configuration artifact and does not by itself prove that www DNS points to the current Axxess installation.
+- Latest automated branch checks recorded as successful: storefront smoke test https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38799627851 ; Axxess package build https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38799627857.
+- Latest successful package is a build artifact only; it has NOT been uploaded to Axxess or verified as the live www website.
+
+### Required fix sequence — DO NOT REVERSE ORDER
+1. In Axxess/domain DNS management, identify the active DNS zone and current apex + www records. Capture current values before editing.
+2. Confirm which origin/docroot serves the newest store on apex and which origin/docroot serves the old store on www. Do not guess from the GitHub CNAME file.
+3. Point `www` to the same intended Axxess origin/docroot that serves the newest store. Remove conflicting www A/AAAA/CNAME records only after the correct target is confirmed. Ensure TLS/SSL certificate covers both apex and www.
+4. Verify `https://www.getwiredauto.co.za` serves the newest store on desktop and mobile, including product/category assets and checkout UI.
+5. ONLY after step 4 passes, configure apex `getwiredauto.co.za` to return a server-side HTTP 301/308 to `https://www.getwiredauto.co.za`, preserving path and query. Prefer hosting-panel redirect or the existing server rules. If editing `.htaccess`, inspect and preserve all existing rules and make a backup first. Candidate Apache rule (not yet applied):
+   ```apache
+   RewriteEngine On
+   RewriteCond %{HTTP_HOST} ^getwiredauto\.co\.za$ [NC]
+   RewriteRule ^(.*)$ https://www.getwiredauto.co.za/$1 [R=301,L,NE]
+   ```
+6. Verify with fresh requests/browser tests: www serves newest store; apex responds with redirect to the matching www path; no redirect loop; HTTPS certificate valid; no old content on either host. Record status codes and test timestamps.
+
+### State at checkpoint
+- No DNS records changed.
+- No Axxess production files or `.htaccess` changed.
+- No old files deleted.
+- Domain fix remains BLOCKED on confirming/editing live Axxess DNS/origin mapping and then validating both URLs.
+- The user expects each task to leave a directly testable store and expects concise factual progress; do not claim a live fix until tested.
+
