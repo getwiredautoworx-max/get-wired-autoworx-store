@@ -1189,3 +1189,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - The remaining 565 active products are still under the separate `Spare Parts` root, hidden from root navigation by that old UI candidate but still active in the database and potentially discoverable through general product search. They must not be silently reassigned; use source evidence and owner scope to decide their disposition.
 - The candidate labels are not exact matches for the owner's approved names (e.g. “Auto Electrical”, “Car Audio”, “Accessories”, “Tools / Hardware / Consumables”, “Camping / Leisure / Outdoors”). These exact-label and 565-product search exposure issues were posted to issue #29.
 - No category mapping or production change was made. The category issue remains staging-only until an evidence-backed mapping and navigation/search test passes.
+
+
+## LEGACY SPARE-PARTS CANDIDATE RECONCILIATION — 2026-10-15
+
+- Parsed the existing read-only `staging/CATEGORY_OUTSIDE_HIERARCHY_CANDIDATES_2026-10-14.csv` from legacy branch `qa/category-root-fix-2026-10-14`: 565 rows, all marked NOT_APPROVED.
+- Existing candidate dispositions: 161 CANDIDATE_MAP (153 proposed Automotive Accessories, 6 Auto Electrical Spares, 1 Camping, 1 Tools); 321 QUARANTINE_OUT_OF_SCOPE; 83 QUARANTINE_UNTIL_OWNER_SCOPE_DECISION. These are proposals only, not production actions.
+- Largest source families include mirrors 58, door parts 51, suspension 47, thermostats/pipes 45, wipers 44, exhaust tail pieces 42, brake parts 41, air filters 25, radiator caps/bottles 25, cylinders 17, fuel pumps/oil filter 13, clutch master cylinders 11, and automotive hoses 10.
+- The current owner scope is not clear enough to automatically include mechanical parts. Do not remap, deactivate, or publish these 565 records without an approved row-level decision; especially preserve the 83 owner-scope exceptions. Detailed counts and warnings posted to issue #29.
