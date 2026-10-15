@@ -1363,3 +1363,32 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Current Axxess package workflow run `38756311187` **SUCCESS** on the same commit. Artifact `axxess-storefront-upload-ready`, ID `11983712163`, includes root-level `axxess-storefront-upload.zip` and report. Payload report says 4,118 files, 4,101 local WebP images, valid ZIP/root-level extraction, SHA-256 `31ad0a0de483272d678f47c81dc59eb410b01ff61bbdb410a31857bcf9f63b02`. This is a **candidate**, not release-approved, because the visual defects above remain.
 - Storefront Smoke Test `38756322866` **SUCCESS** and Public SKU Exposure Audit `38756322801` **SUCCESS** on the same commit.
 - No Axxess upload, live database write, DNS/payment change, or production deployment has been performed. Keep PR #35 and #36 unmerged until visual blockers are corrected and package/tests rerun.
+
+
+## 2026-10-15 — Repository/package verification and Axxess preparation
+
+### Staging candidate package — structurally verified
+
+- Candidate branch: `qa/desktop-mobile-screenshots-2026-10-15`; package build source commit `7443ca8080052bc757b9016c9928f76db0a17075`.
+- Staging Axxess package workflow run #25 / ID `38759542027`: **SUCCESS**. Artifact `axxess-storefront-upload-ready`, ID `11984443789`, expires 2026-10-29 15:21 UTC.
+- Inner ZIP SHA-256: `1f78329315ece0a8e4c5d0d196bef0de7da1f07ac40fa41fd6798885c7146b51`.
+- Verified archive integrity, root-level extraction (no unwanted `axxess-upload/` wrapper directory), 4,118 payload files including 4,101 local WebP images, and required runtime files: `index.html`, `store.html`, `index-new.html`, `product.html`, `checkout-v2.html`, `category.html`, `returns-refunds.html`, `product-details.js`, `category-navigation.js`, and `assets/category-tree.json`.
+- Independently scanned local `src`/`href`/`poster` references across all seven HTML entry files in the extracted package: **0 missing local references**. Root routing verified as `index.html → store.html → index-new.html`.
+- `admin.html`, existing `checkout.html`, `cgi-bin`, hosting configuration, database files, secrets, repository documentation and unrelated files are intentionally not packaged; preserve existing Axxess `public_html` contents and take a backup before any future extraction.
+- Candidate package is downloaded to the working environment for verification only. It has **not** been uploaded to Axxess.
+
+### Actual wrapper-based desktop/mobile browser QA
+
+- Playwright screenshot workflow run #17 / ID `38759542056`: **SUCCESS**. Artifact `storefront-desktop-mobile-screenshots`, ID `11984019215`, expires 2026-10-29 15:22 UTC.
+- QA renders the real `store.html` wrapper and its `index-new.html` iframe, rather than bypassing wrapper-loaded scripts. It captures viewport and full-page images at desktop 1440px, mobile 390px, and small mobile 320px.
+- Latest report: no JavaScript page errors and no horizontal document overflow at any of the three viewport widths; 64 category/subcategory buttons and 8 specials product cards were rendered. All eight sampled product images loaded from exact local WebP paths in each viewport.
+- CSS corrections on staging reduce the desktop hero, normalize category image tile dimensions, move mobile filter controls below the logo/search area, and separate the hero from the search/rating elements. These are staging changes only.
+- Visual inspection still shows embedded text/watermarks/catalogue graphics in several product/category images, and the image mapping itself needs the existing SKU-level audit. Browser success is not evidence that all image content is clean or correctly matched.
+
+### Release blockers and authorization boundary
+
+- Last known live catalogue image coverage: 4,101/4,187 active products (86 remain without an exact verified local image). Do not invent or substitute a visually similar image.
+- The existing September 800-row candidate and 38-SKU supplier price/image-rights hold remain separate evidence gates. The package contains the current storefront runtime and existing image set; it does not resolve these supplier/data/rights issues.
+- AI picture search is not claimed end-to-end operational; a UI and endpoint call do not prove provider credentials and successful production vision requests.
+- **Release status: PACKAGE PREPARED; CUSTOMER RELEASE HOLD.** Owner's prior constraint remains in force: verify source data before any Axxess upload. Do not overwrite `public_html`, merge the redesign PRs, deploy production, or change DNS/payment/database settings without the required source validation and release authorization.
+- The handover-only commit that follows this note will automatically trigger another staging package build. Its build report is the authoritative checksum/source commit for the refreshed artifact; runtime payload is unchanged by the handover edit.
