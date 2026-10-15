@@ -1,6 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
-import { hmacClientHash, isAllowedOrigin, readJsonLimited, validateImagePayload } from "./validation.ts";
+import { hmacClientHash, isAllowedOrigin, MAX_REQUEST_BODY_BYTES, readJsonLimited, validateImagePayload } from "./validation.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
 const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY") || "";
@@ -11,7 +11,6 @@ const ALLOWED_ORIGINS = new Set([
   "https://get-wired-autoworx-store.netlify.app",
   "https://get-wired-autoworx-store.pages.dev"
 ]);
-const rate = new Map<string, { count: number; reset: number }>();
 const json = (body: unknown, status = 200, origin = "", extraHeaders: Record<string, string> = {}) => new Response(JSON.stringify(body), {
   status,
   headers: {
@@ -45,7 +44,7 @@ Deno.serve(async (req: Request) => {
   if (req.method !== "POST") return json({ error: "Method not allowed." }, 405, origin);
 
   const contentLength = Number(req.headers.get("content-length") || 0);
-  if (contentLength > 5_800_000) return json({ error: "Request body is too large." }, 413, origin);
+  if (contentLength > MAX_REQUEST_BODY_BYTES) return json({ error: "Request body is too large." }, 413, origin);
 
   const ip = req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip") ||
     req.headers.get("x-forwarded-for")?.split(",").map(v => v.trim()).filter(Boolean).at(-1) || "unknown";
