@@ -1430,3 +1430,16 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Release remains HOLD. Do not merge either diverged branch or upload a branch artifact to Axxess. No production upload, SQL/database write, DNS/SSL change, or payment-provider configuration change was made.
 - Next: reconcile PR #37 first (small, three-file package fix), rerun all three release-related checks on its new head, review the resulting diff and artifact; separately reconcile PR #36 and inspect fresh screenshot artifacts. Then produce a main-based, release-approved Axxess package and perform live checks only with owner-controlled upload/approval.
 - Existing owner APK remains separate from the storefront release: Build #48 URL https://github.com/getwiredautoworx-max/get-wired-autoworx-owner-apk-validation/actions/runs/37658519204. Its CI jobs passed, but the actual-phone install/validation is still pending.
+
+
+## AXXESS ZIP RELEASE CHECKPOINT — 2026-10-15 17:17 SAST
+
+- Package workflow fixed so changes to `.github/workflows/prepare-axxess-package.yml` trigger the workflow; this was necessary because the earlier push path filter excluded the workflow file itself.
+- Current main commit: `6e5011c80c2299a38b004c5225f7ade9c025c74f`.
+- Main-branch workflow run succeeded: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38767375791
+- Artifact: `axxess-storefront-upload`, ID `11990237195`, size 110,913,540 bytes, expiry 2026-10-29 16:15 UTC. GitHub artifact SHA-256: `7a3c467d3bc38a52703c1abb3515e0f7f468f3a1f764167bcef7f43264526753`.
+- Downloaded the exact artifact and extracted the inner deployment ZIP, `Get-Wired-AutoWorx-Axxess-Upload.zip`. Both outer artifact archive and inner deployment ZIP pass `unzip -t` with no errors. Inner ZIP SHA-256: `46c701f1c30657fa4f8fb65ff037cbed45d04e1caeacbb87773f45fb41f5570f`.
+- Inner ZIP has all 9 required customer pages (index, store, product, products, checkout, checkout-v2, category, returns/refunds, terms-and-conditions) and 4,101 WebP product images. `admin.html` is intentionally excluded; preserve the installed file.
+- User-facing ZIP is available at the conversation download path `/mnt/data/Get-Wired-AutoWorx-Axxess-Upload.zip`.
+- Axxess deployment remains owner-controlled: before replacement, back up `public_html` in DirectAdmin, check available disk space, upload this ZIP, extract into the document root (not nested), and verify `admin.html` remains. No Axxess files were changed by this workflow.
+- Package CI and archive integrity are confirmed; live Axxess post-upload smoke tests have not been run. Catalogue launch blockers elsewhere in this handover remain unchanged.
