@@ -1036,3 +1036,35 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/CHECKOUT_PAYMENT_DELIVERY.md
 - This was a documentation-only change. No SQL executed, no Supabase production write, no checkout code change, no order or payment made, no deployment/Axxess upload performed.
 - Current checkout rules to preserve: packaging R35/item quantity; pickup delivery fee R0.00; courier/PAXI delivery quoted separately and quote required before delivery submission. PayFast/PayJustNow remain deferred until owner/provider readiness.
+
+
+## 2026-10-15 — AI picture-search blocker corrected and narrowed
+
+### Actual live deployment state (verified directly against Supabase)
+- Project: `ojytykqpvonxvepprgbh` (`eu-west-1`), project status `ACTIVE_HEALTHY`.
+- Function `part-image-search` is **already deployed and ACTIVE at version 1**, function ID `33ba0b75-eb4d-42e4-b123-b70b85ddb0d4`; `verify_jwt=false`; entrypoint `index.ts`.
+- Therefore the previous handover wording "function is undeployed" was inaccurate. Correct state: **deployed, but successful AI recognition has not been verified; the source returns HTTP 503 when `OPENAI_API_KEY` is absent.**
+- The available Supabase connection can inspect/deploy functions but does not expose a secret-write action. I did not attempt to obtain, invent, or expose an API key. I cannot confirm the actual secret value/status via the available tool surface; the owner reports the provider credential is not configured.
+- Storefront already calls `/functions/v1/part-image-search` and has error fallback to Request a Part.
+
+### Work completed now
+1. Corrected `supabase/functions/part-image-search/README.md` to reflect the verified active deployment, exact secret setup path, no-redeploy behavior after adding secrets, and public endpoint abuse-protection concern. Commit: `49953c457d976b90c7312b44854b10f20d93212e`.
+   - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/supabase/functions/part-image-search/README.md
+2. Corrected storefront upload guidance from 5MB to 4MB per image to match endpoint validation. Commit: `46ecf3cd52fabe3e120e20e34d54a8e84ae7ab3a`.
+   - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/index-new.html
+3. Opened Issue #30 to harden paid inference before public activation: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/30
+   - Requires durable shared rate limiting or an edge challenge before OpenAI calls; in-memory Map/CORS alone are not sufficient abuse controls.
+   - Also requires request-size/MIME checks and mocked tests for errors and success. No production SQL or deployment was performed.
+
+### Exact remaining owner action — credential (never paste into chat/GitHub)
+1. Create/use a dedicated OpenAI API key: https://platform.openai.com/api-keys. API usage is billed separately from a ChatGPT subscription; configure available usage alerts/spend controls.
+2. Open Supabase secrets directly: https://supabase.com/dashboard/project/ojytykqpvonxvepprgbh/functions/secrets
+3. Add secret name `OPENAI_API_KEY`, paste the key as the value, and save. Do not send the key to ChatGPT or Gemini and do not commit it.
+4. Do not make the endpoint publicly usable for paid inference until Issue #30's abuse protection is reviewed. Supabase docs say newly set Edge Function secrets are available immediately, so redeploy is not needed merely to add the secret.
+5. After the owner confirms the secret is saved and abuse controls are ready, run a controlled image test (clear part photo), then ambiguous/non-part photo, oversized/unsupported upload, no-match case, and inspect function logs. Verify returned candidate SKUs and ensure no product/price/inventory changes.
+
+### Current status
+- Code deployment: **ACTIVE**.
+- AI recognition: **NOT VERIFIED / credential-gated**.
+- Public paid inference: **HOLD pending secure secret configuration and durable abuse protection**.
+- No API key read, created, or changed; no production SQL, product/order write, new deployment, Axxess upload, DNS/SSL/payment-setting change, or real payment occurred in this pass.
