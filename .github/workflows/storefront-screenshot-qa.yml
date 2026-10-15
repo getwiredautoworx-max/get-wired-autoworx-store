@@ -1,0 +1,125 @@
+name: Storefront Desktop and Mobile Screenshot QA
+
+on:
+  push:
+    branches:
+      - qa/desktop-mobile-screenshots-2026-10-15
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  screenshot-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out staging branch
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Serve the staging storefront
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/storefront-server.log 2>&1 &
+          echo $! > /tmp/storefront-server.pid
+          for i in $(seq 1 30); do
+            if curl --silent --fail http://127.0.0.1:8765/index-new.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/storefront-server.log
+          exit 1
+
+      - name: Capture desktop and mobile layouts
+        id: screenshots
+        run: |
+          mkdir -p screenshot-artifacts
+          cat > .storefront-screenshot-qa.cjs <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const results = [];
+            for (const target of [
+              { name: 'desktop', width: 1440, height: 1000 },
+              { name: 'mobile', width: 390, height: 844 },
+              { name: 'small-mobile', width: 320, height: 740 },
+            ]) {
+              const page = await browser.newPage({
+                viewport: { width: target.width, height: target.height },
+                deviceScaleFactor: 1,
+                isMobile: target.name === 'mobile',
+                hasTouch: target.name === 'mobile',
+              });
+              const errors = [];
+              page.on('pageerror', error => errors.push(error.message));
+              await page.goto('http://127.0.0.1:8765/store.html', {
+                waitUntil: 'domcontentloaded', timeout: 30000
+              });
+              const storeFrame = await (async () => {
+                for (let attempt = 0; attempt < 60; attempt++) {
+                  const found = page.frames().find(f => /index-new\.html/.test(f.url()));
+                  if (found) return found;
+                  await page.waitForTimeout(250);
+                }
+                throw new Error('Storefront iframe did not load from store.html');
+              })();
+              await storeFrame.waitForFunction(() => document.querySelectorAll('.catBtn').length >= 8 && document.querySelectorAll('.product').length >= 8, null, { timeout: 30000 });
+              await storeFrame.evaluate(() => { document.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; }); });
+              await storeFrame.waitForTimeout(5000);
+              await page.screenshot({
+                path: 'screenshot-artifacts/storefront-' + target.name + '-viewport.png',
+                fullPage: false,
+                animations: 'disabled',
+                timeout: 30000
+              });
+              const metrics = await storeFrame.evaluate(() => ({
+                title: document.title,
+                viewportWidth: document.documentElement.clientWidth,
+                documentWidth: document.documentElement.scrollWidth,
+                pageHeight: document.documentElement.scrollHeight,
+                categoryTiles: document.querySelectorAll('.catBtn').length,
+                productCards: document.querySelectorAll('.product').length,
+                productImages: Array.from(document.querySelectorAll('.product .prodImg img')).slice(0, 8).map(img => ({ alt: img.alt, complete: img.complete, naturalWidth: img.naturalWidth, src: (img.currentSrc || img.src).slice(0, 180) })),
+                heroHeight: Math.round(document.querySelector('.heroCard')?.getBoundingClientRect().height || 0),
+                overflowElements: Array.from(document.querySelectorAll('body *')).map(el => ({ tag: el.tagName, id: el.id || '', className: typeof el.className === 'string' ? el.className : '', left: Math.round(el.getBoundingClientRect().left), right: Math.round(el.getBoundingClientRect().right), width: Math.round(el.getBoundingClientRect().width) })).filter(el => el.width > 0 && (el.left < -1 || el.right > document.documentElement.clientWidth + 1)).slice(0, 12),
+                heroVisible: !!document.querySelector('.heroCard, .hero, .heroSection'),
+                horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
+              }));
+              const contentHeight = await storeFrame.evaluate(() => Math.max(document.documentElement.scrollHeight, document.body.scrollHeight));
+              await page.locator('#store').evaluate((el, height) => { el.style.height = height + 'px'; document.body.style.height = height + 'px'; }, contentHeight);
+              await page.screenshot({
+                path: 'screenshot-artifacts/storefront-' + target.name + '.png',
+                fullPage: true,
+                animations: 'disabled',
+                timeout: 30000
+              });
+              results.push({ viewport: target.name, ...metrics, iframeContentHeight: contentHeight, pageErrors: errors });
+              await page.close();
+            }
+            fs.writeFileSync('screenshot-artifacts/qa-report.json', JSON.stringify(results, null, 2));
+            await browser.close();
+            console.log(JSON.stringify(results, null, 2));
+            if (results.some(r => !r.title || r.horizontalOverflow || r.pageErrors.length)) process.exit(1);
+          })().catch(error => { console.error(error); process.exit(1); });
+          EOF
+          node .storefront-screenshot-qa.cjs
+
+      - name: Upload screenshots and QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-desktop-mobile-screenshots
+          path: screenshot-artifacts/
+          if-no-files-found: warn
+          retention-days: 14

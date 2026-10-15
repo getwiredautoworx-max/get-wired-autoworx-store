@@ -1300,3 +1300,66 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Queried current `public.products` read-only. Results: 4,198 total rows; 4,187 active rows; 4,187 distinct active public SKUs; 0 active rows with missing/non-positive cost; 0 with missing/non-positive price; 0 with missing image_url; 0 active price values differing from `round(cost_price × 1.15 × 1.35, 2)`; 0 active rows missing the legacy SKU field.
 - This means the current live database's stored price-vs-cost formula audit passes. It does **not** close the separate 38-SKU supplier-evidence hold: those SKUs were flagged by historical source/pricing reconciliation and still require current supplier confirmation before any price edits or re-publication decision. Do not call them current formula mismatches based on this query.
 - No data was changed; read-only SQL only.
+
+
+## 2026-10-15 — Owner storefront design direction captured (staging only)
+
+- Owner supplied a new HTML storefront reference and stated they are unhappy with the existing format/style. Treat this as the new visual direction for review; do not deploy to Axxess or replace the live storefront without the normal staged verification and final owner-authorized release.
+- Created branch `feature/storefront-compact-redesign-2026-10-15` from main.
+- Updated only the presentation CSS in `index-new.html` with a compact mobile-first visual pass. Commit: `30211ffd445234661cb0cbec6de98e538c0b0b59`.
+- Intended styling changes: compact gradient announcement ticker; shorter header and search area; smaller hero; dark/red/electric-blue theme; compact 3-column category layout on desktop/tablet and 2 columns on narrow phones; lighter product cards using existing product data/images; reduced section spacing; improved mobile bottom navigation and safe-area padding.
+- Existing Supabase-backed product/category loading, exact-SKU product content, search, cart, detail modal, and checkout logic were left in place; this is a CSS-only first pass and is not yet browser-verified.
+- Corrected trust-claim direction: do not add the reference's unsupported “46 reviews” or “6 month warranty”; current verified 4.7/5 rating presentation may remain without an invented review count. Sample product names/prices from the supplied snippet must not be hardcoded as live stock/prices.
+- Category structure remains locked to the eight approved store roots. The supplied 12 service shortcuts are not a replacement for approved catalogue categories. Category image tiles and the Part Search / Request a Part popups remain follow-up design/functional work; no AI image-search feature is claimed operational by this CSS pass.
+- Validation still required before merge: inspect desktop and mobile rendering, ensure hero text does not collide with rating box at 320–390 px, verify category tile text and dynamic categories, confirm bottom-nav/cart/search behavior, run non-production checks only after code is ready. Fix any visual regressions before PR/merge.
+- No main-branch change, pull request, Axxess upload, production deployment, live database/catalogue write, DNS/payment setting change, or Cloudflare/Netlify credit use occurred.
+- Current status: **STAGING IMPLEMENTATION COMMITTED; BROWSER QA / PR / MERGE / LIVE RELEASE NOT DONE.**
+
+
+## 2026-10-15 — Public SKU audit scope correction (staging)
+
+- Investigated Public SKU Exposure Audit #259 failure on the storefront redesign PR. The four reported matches were in `.github/scripts/generate_docs.js`, which writes synthetic/internal schema examples and is not shipped customer-facing storefront source.
+- Created fix branch `fix/public-sku-audit-docs-scope-2026-10-15` from the storefront redesign branch and changed `scripts/public-sku-audit.py` to exclude the generator-source directory `.github/scripts/`, along with non-shipped dependency/git directories. Runtime public-source checks and all existing patterns remain enabled.
+- Commit: `146f5813cc6f4afc854530f914267ea26fb92b35`.
+- **Not yet validated by GitHub Actions** at the time of this entry. This is a scope correction, not permission to ignore generated public files: if documentation/schema outputs are published to the customer site, they must be audited separately as built artifacts.
+- Browser visual verification of the storefront redesign is still outstanding. Automated storefront smoke run #724 passed, but it does not replace desktop/mobile screenshot inspection.
+- No main-branch merge, production deployment, Axxess upload, live data write, DNS/payment setting change, or paid-hosting credit use.
+
+
+### 2026-10-15 — Targeted audit correction validated
+
+- Public SKU Exposure Audit #260: **SUCCESS** (run `38746589619`).
+- Storefront Smoke Test #725: **SUCCESS** (run `38746589761`; log ends with `STOREFRONT_SMOKE_PASS`).
+- Audit fix commit: `146f5813cc6f4afc854530f914267ea26fb92b35`; handover note commit: `6457ba12380c06f34fd083458c34fa07ced92bd4`.
+- Confirmed the CSS selectors target real elements in `index-new.html` and the hero/category/product/mobile-navigation structures remain present. The automated smoke test passed against the PR merge checkout.
+- Limitation: GitHub smoke logs do not provide desktop/mobile screenshots, and this environment has no connected visual browser/screenshot tool for this branch. Therefore **visual desktop/mobile screenshot review is still open**; do not claim a full visual sign-off.
+- Consolidated draft PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/35 contains the redesign plus the audit fix. Keep it draft until visual review and all relevant checks are acceptable. Do not merge or deploy as part of this step.
+
+
+## 2026-10-15 — Browser screenshot QA solution added
+
+- Added `.github/workflows/storefront-screenshot-qa.yml` on branch `qa/desktop-mobile-screenshots-2026-10-15` (commit `997176fa99addd6ef0969871bbdedd73d084945f`).
+- This uses GitHub Actions + Playwright Chromium to render the staging `index-new.html` at desktop 1440×1000 and mobile 390×844, save full-page PNG screenshots, and upload them with a JSON layout report as the `storefront-desktop-mobile-screenshots` artifact for 14 days. It also checks page title, JavaScript page errors, and horizontal overflow.
+- This provides a no-Netlify-credit path to real browser-rendered evidence without touching Axxess, production, Supabase data, DNS, or payment settings.
+- **Status at handover update:** workflow added; run result/artifact still must be retrieved and reviewed. Screenshot capture is not yet counted as successful, and the visual design is not signed off until the actual images are inspected. Any external product/data requests in the page are read-only; the workflow does not submit checkout/orders.
+- Existing latest checks on commit `e4f63a8b3e4f3ea2f311f2e8d41282b804f68ff6`: Public SKU Exposure Audit #261 **SUCCESS** (run `38747016203`); Storefront Smoke Test #726 **SUCCESS** (run `38747016334`).
+- Do not merge the redesign or deploy it live based only on screenshot generation. Preserve the draft/review gate and use actual screenshots to decide visual corrections.
+
+
+### Screenshot QA branch and CI update — 2026-10-15
+
+- Draft PR #36: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/36. Keep separate from redesign PR #35; it adds only the screenshot QA workflow and handover documentation.
+- On the PR head `7fcce1b942b20e84ed300a59aaff3e05a8b9f3ca`, Public SKU Exposure Audit #262 (run `38747896727`) **SUCCESS** and Storefront Smoke Test #727 (run `38747896968`) **SUCCESS**.
+- Screenshot workflow source is committed, but its specific run/artifact has not yet been retrievable through the current workflow-run connector (which exposes only pull-request-triggered runs). Therefore this does not yet count as completed screenshot review; inspect the workflow run and download its artifact from GitHub Actions when available.
+- PR #35 redesign remains unmerged and should remain behind the visual review gate. No live deployment or production changes.
+
+
+## 2026-10-15 — Latest staging release candidate and screenshot review
+
+- Latest staging branch commit inspected: `6c49d6e4b52b6a3732d6ebd1823682f20acee0ce`.
+- Screenshot QA run `38756311245` **SUCCESS**; artifacts include desktop 1440px, mobile 390px, and small-mobile 320px full-page screenshots plus `qa-report.json`.
+- QA report: all three viewport widths match document widths (no page-level horizontal overflow), page title is present, and no JavaScript page errors were reported. Report notes one small cart badge element extends 20px past the right edge at each viewport; needs CSS containment/visual polish.
+- Actual screenshot inspection: layout renders and category/product content loads. Visual defects remain: product card image slots appear blank in the specials grid, footer text has very low contrast, hero is still relatively tall (316px desktop; 375px mobile; 404px at 320px), and category navigation currently renders 64 category buttons including an additional “4X4 OUTDOOR” tile rather than a verified 3x3 selection of the eight approved top-level categories. These are **release blockers** to fix before upload.
+- Current Axxess package workflow run `38756311187` **SUCCESS** on the same commit. Artifact `axxess-storefront-upload-ready`, ID `11983712163`, includes root-level `axxess-storefront-upload.zip` and report. Payload report says 4,118 files, 4,101 local WebP images, valid ZIP/root-level extraction, SHA-256 `31ad0a0de483272d678f47c81dc59eb410b01ff61bbdb410a31857bcf9f63b02`. This is a **candidate**, not release-approved, because the visual defects above remain.
+- Storefront Smoke Test `38756322866` **SUCCESS** and Public SKU Exposure Audit `38756322801` **SUCCESS** on the same commit.
+- No Axxess upload, live database write, DNS/payment change, or production deployment has been performed. Keep PR #35 and #36 unmerged until visual blockers are corrected and package/tests rerun.

@@ -5,6 +5,10 @@ import re, sys
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_EXT = {'.html', '.js', '.css', '.json'}
 EXCLUDE = {'.github/workflows/asc-sku-image-sync.yml', 'HANDOVER.md', 'scripts/public-sku-audit.py', 'android-owner-app/app/src/main/assets/admin_app.html'}
+# Generator source contains synthetic/internal schema examples, not shipped customer-facing code.
+# Audit the generated docs only if they are actually included in the public site; do not
+# scan the generator implementation itself for identifiers used to document the schema.
+EXCLUDE_PREFIXES = ('.github/scripts/', 'node_modules/', '.git/')
 PATTERNS = [
  (re.compile(r'\bp\.sku\b|\bx\.sku\b'), 'runtime legacy SKU property'),
  (re.compile(r'select=[^\n\r"\']*\bsku\b'), 'REST select of legacy sku'),
@@ -15,7 +19,7 @@ violations = []
 for p in ROOT.rglob("*"):
  if not p.is_file() or p.suffix.lower() not in PUBLIC_EXT: continue
  rel = p.relative_to(ROOT).as_posix()
- if rel in EXCLUDE or rel.startswith('node_modules/'): continue
+ if rel in EXCLUDE or any(rel.startswith(prefix) for prefix in EXCLUDE_PREFIXES): continue
  try: text = p.read_text(encoding="utf-8")
  except UnicodeDecodeError: continue
  for rx, label in PATTERNS:
