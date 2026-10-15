@@ -1,16 +1,24 @@
 const fs = require('fs');
 const path = require('path');
 
-// 1. Create target directories
-const dirs = ['docs/knowledge-base', 'docs/schema', 'docs/architecture'];
+// Ensure target directories exist explicitly
+const dirs = [
+  'docs/knowledge-base',
+  'docs/schema',
+  'docs/architecture'
+];
+
 dirs.forEach(d => {
   const fullPath = path.join(process.cwd(), d);
-  if (!fs.existsSync(fullPath)) fs.mkdirSync(fullPath, { recursive: true });
+  if (!fs.existsSync(fullPath)) {
+    fs.mkdirSync(fullPath, { recursive: true });
+    console.log(`Created directory: ${d}`);
+  }
 });
 
 console.log('Generating complete Priority 1-4 documentation pack...');
 
-// 2. Knowledge Base Pack (9 Files)
+// 1. Knowledge Base Pack (9 Files)
 fs.writeFileSync('docs/knowledge-base/README.md', `# Get Wired AutoWorx — Support & Knowledge Base Pack\n\n- 01-store-identity-and-scope.md\n- 02-storefront-categories.md\n- 03-checkout-and-delivery.md\n- 04-returns-and-warranty.md\n- 05-product-inquiries-and-escalation.md\n- 06-faqs-and-safe-response-rules.md\n- 07-privacy-contact-payments.md\n- 08-source-of-truth-register.md\n`);
 fs.writeFileSync('docs/knowledge-base/01-store-identity-and-scope.md', `# 01. Store Identity & Scope\n\n- **Trading Name:** Get Wired AutoWorx\n- **Tagline:** "Your 1 Stop Automotive shopping experience."\n- **Speciality:** Sound & Security • Auto Electrical\n- **Domain:** https://www.getwiredauto.co.za/\n`);
 fs.writeFileSync('docs/knowledge-base/02-storefront-categories.md', `# 02. Approved Storefront Categories\n\n1. Auto Electrical Spares\n2. Vehicle Security\n3. Car Audio & Entertainment\n4. Automotive Accessories\n5. Marine Spares & Accessories\n6. Tools, Hardware & Consumables\n7. Camping, Leisure & Outdoors\n8. Trailer & Canopy\n`);
@@ -21,7 +29,7 @@ fs.writeFileSync('docs/knowledge-base/06-faqs-and-safe-response-rules.md', `# 06
 fs.writeFileSync('docs/knowledge-base/07-privacy-contact-payments.md', `# 07. Privacy & Payments Register\n\nDirect EFT is CONFIRMED. PayFast and PayJustNow are DEFERRED.\n`);
 fs.writeFileSync('docs/knowledge-base/08-source-of-truth-register.md', `# 08. Source-of-Truth Policy Register\n\nLists confirmed, unverified, and owner-confirmation-needed items.\n`);
 
-// 3. Schema & Validation Pack (5 Files)
+// 2. Schema & Validation Pack (5 Files)
 const jsonSchema = {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://getwiredauto.co.za/schemas/catalogue-item.v1.json",
@@ -65,11 +73,11 @@ else process.exit(1);
 
 require('./docs/schema/validate_catalogue.js');
 
-// 4. Architecture Pack (2 Files)
+// 3. Architecture Pack (2 Files)
 fs.writeFileSync('docs/architecture/REPOSITORY_OVERVIEW.md', `# Repository Architecture\n\nNext.js storefront with Supabase backend and GitHub Actions automation.\n`);
 fs.writeFileSync('docs/architecture/PROPOSED_API_SPEC.openapi.yaml', `openapi: 3.0.3\ninfo:\n  title: Get Wired AutoWorx Catalogue API (Proposed)\n  version: 1.0.0-proposed\npaths:\n  /api/v1/products:\n    get:\n      summary: List active public products [PROPOSED / NOT IMPLEMENTED]\n`);
 
-// 5. Operator Runbook & README (2 Files)
+// 4. Operator Runbook & README (2 Files)
 fs.writeFileSync('docs/OPERATOR_RUNBOOK.md', `# Operator Runbook\n\nLive Store: https://www.getwiredauto.co.za/\nStatus: RELEASE HOLD ACTIVE\nValidator: node docs/schema/validate_catalogue.js\n`);
 fs.writeFileSync('README.md', `# Get Wired AutoWorx Storefront\n\nStatus: RELEASE HOLD ACTIVE\n\n- [Handover](HANDOVER_CURRENT.md)\n- [Runbook](docs/OPERATOR_RUNBOOK.md)\n- [Knowledge Base](docs/knowledge-base/README.md)\n- [Catalogue Schema](docs/schema/FIELD_DICTIONARY.md)\n`);
 
