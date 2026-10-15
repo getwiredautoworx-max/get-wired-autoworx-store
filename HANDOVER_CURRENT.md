@@ -1548,3 +1548,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 ### Current artifact retrieval
 - GitHub workflow artifact ID: `11996609185`; workflow run: `38783784643`.
 - The artifact was re-downloaded and integrity-tested in this session; do not rebuild again unless the source/package changes or a test fails.
+
+
+## 2026-10-15 — Supplied category mockup implementation branch
+- User's reference image was located in Library: **Automotive and Outdoor Essentials Catalogue.png** (3×3 image-led category layout, dark navy/red category cards on a light canvas, five image thumbnails per category, compact hero/banner).
+- Created branch `design/exact-category-mockup-2026-10-15` from main commit `c8cdadcc37b23e2e9f3d29469f0bad7f386f39ee` and updated `index-new.html` in commit `243f2d0a0b100ee8b21eb29c56f3e6ea0dd97c62`.
+- Changes: light page background, reduced hero height, white/light feature panels, dark navy category cards with red CTA, 3-column desktop grid, image-led subcategory thumbnails using product images from the matching category tree, responsive 2-column/mobile layouts, preserved the existing nine-category ID mapping including 4x4 Outdoor.
+- Automated source sanity checks: doctype=PASS; styleClosed=PASS; referenceCss=PASS; heroCompact=PASS; threeByThreeGrid=PASS; subcategoryImages=PASS; nineCategoryIds=const HOME_CATEGORY_IDS=['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79','182423ec-ea46-43e4-bbe3-b8857b5a1583']; mobileRules=PASS.
+- **Not yet production/live:** no Axxess upload or live visual check performed; no main-branch merge. Next gate is render/browser QA at desktop and mobile widths, then package generation and one protected Axxess update. Preserve `admin.html`, existing backups and unrelated host files. Do not claim this design is live until verified.
