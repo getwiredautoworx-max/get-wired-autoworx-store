@@ -1,5 +1,6 @@
 name: Prepare Axxess upload package
 # Release verification trigger: rebuild the storefront artifact from the current main branch.
+# Package run requested 2026-10-15: verify current-main ZIP before Axxess handoff.
 on:
   push:
     branches: [main]
