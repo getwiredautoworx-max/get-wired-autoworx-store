@@ -76,6 +76,7 @@ jobs:
               })();
               await storeFrame.waitForFunction(() => document.querySelectorAll('.catBtn').length >= 8 && document.querySelectorAll('.product').length >= 8, null, { timeout: 30000 });
               await storeFrame.evaluate(() => { document.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; }); });
+              await storeFrame.addStyleTag({ content: '.prodImg{content-visibility:visible!important;contain-intrinsic-size:auto!important}.prodImg img{visibility:visible!important;opacity:1!important}' });
               await storeFrame.waitForTimeout(5000);
               await page.screenshot({
                 path: 'screenshot-artifacts/storefront-' + target.name + '-viewport.png',
