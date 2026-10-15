@@ -11,3 +11,7 @@ The live store is hosted through Axxess. Catalogue recovery and replacement-cata
 ## Handover
 
 Read the current execution log and release blockers in [HANDOVER.md](HANDOVER.md).
+
+## Gemini task handoff
+
+Read [GEMINI_EXECUTION_BRIEF.md](GEMINI_EXECUTION_BRIEF.md) for the prioritized tasks, expected deliverables, and production-safety rules. The handoff is also recorded in [HANDOVER_CURRENT.md](HANDOVER_CURRENT.md).
