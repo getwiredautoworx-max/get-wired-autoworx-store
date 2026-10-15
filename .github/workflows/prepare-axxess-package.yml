@@ -11,9 +11,14 @@ on:
       - 'checkout-v2.html'
       - 'category.html'
       - 'returns-refunds.html'
+      - 'terms-and-conditions.html'
+      - 'products.html'
+      - 'checkout.html'
       - 'product-details.js'
       - 'category-navigation.js'
-      - 'TERMS_AND_CONDITIONS.md'
+      - 'terms-and-conditions.html'
+      - 'products.html'
+      - 'checkout.html'
       - 'assets/gw-logo.png'
       - 'assets/product-image-fallback.js'
       - 'assets/category-cleanup.js'
@@ -21,6 +26,29 @@ on:
       - 'assets/product-placeholder.svg'
       - 'assets/category-tree.json'
       - 'assets/products_webp/**'
+      - '.github/workflows/prepare-axxess-package.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'store.html'
+      - 'index-new.html'
+      - 'product.html'
+      - 'products.html'
+      - 'checkout.html'
+      - 'checkout-v2.html'
+      - 'category.html'
+      - 'returns-refunds.html'
+      - 'terms-and-conditions.html'
+      - 'product-details.js'
+      - 'category-navigation.js'
+      - 'assets/gw-logo.png'
+      - 'assets/product-image-fallback.js'
+      - 'assets/category-cleanup.js'
+      - 'assets/progressive-store-enhancements.js'
+      - 'assets/product-placeholder.svg'
+      - 'assets/category-tree.json'
+      - 'assets/products_webp/**'
+      - '.github/workflows/prepare-axxess-package.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -35,24 +63,34 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p axxess-upload/assets
-          cp index.html store.html index-new.html product.html checkout-v2.html category.html returns-refunds.html product-details.js category-navigation.js TERMS_AND_CONDITIONS.md axxess-upload/
+          cp index.html store.html index-new.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html product-details.js category-navigation.js axxess-upload/
           cp assets/gw-logo.png assets/product-image-fallback.js assets/category-cleanup.js assets/progressive-store-enhancements.js assets/product-placeholder.svg assets/category-tree.json axxess-upload/assets/
           cp -a assets/products_webp axxess-upload/assets/
           cat > axxess-upload/UPLOAD-INSTRUCTIONS.txt <<'EOF'
           GET WIRED AUTOWORX — AXXESS DIRECTADMIN DEPLOYMENT
           
-          This package contains the storefront runtime files and 2,196 local WebP product-image files.
+          This package contains the storefront runtime files and local WebP product images. The exact image count is recorded below.
           Before extraction, make a backup archive of the existing public_html contents in DirectAdmin File Manager.
           Upload this ZIP to public_html, select it, and use Extract. Extract into public_html (not into a nested folder).
           Confirm the existing admin.html is preserved; it is intentionally not included in this package.
-          Do not upload repository documentation, GitHub workflows, database files, or source archives.
-          After extraction, test /, /store.html, /product.html, /category.html, /checkout-v2.html, and /returns-refunds.html.
+          Do not upload repository documentation, GitHub workflows, database files, or source archives. TERMS_AND_CONDITIONS.md is documentation only; the customer-facing terms-and-conditions.html page is included.
+          After extraction, test /, /store.html, /product.html, /products.html, /category.html, /checkout.html, /checkout-v2.html, /returns-refunds.html, and /terms-and-conditions.html.
           The store uses Supabase remotely; this package does not move the database or secrets.
           EOF
+          image_count=$(find axxess-upload/assets/products_webp -type f -name '*.webp' | wc -l | tr -d ' ')
+          printf '\nIncluded local WebP image count: %s\n' "$image_count" >> axxess-upload/UPLOAD-INSTRUCTIONS.txt
+          echo "Included local WebP image count: $image_count"
+          test "$image_count" -gt 0
+          for required in index.html store.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html product-details.js category-navigation.js; do
+            test -f "axxess-upload/$required" || { echo "Missing required package file: $required"; exit 1; }
+          done
           find axxess-upload -type f | wc -l
           du -sh axxess-upload
           (cd axxess-upload && zip -qr ../axxess-storefront-upload.zip .)
           unzip -t axxess-storefront-upload.zip
+          for required in index.html store.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html; do
+            unzip -Z1 axxess-storefront-upload.zip | grep -Fxq "$required" || { echo "ZIP missing required page: $required"; exit 1; }
+          done
       - name: Upload deployment ZIP
         uses: actions/upload-artifact@v4
         with:
