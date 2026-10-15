@@ -959,3 +959,40 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Storefront Smoke Test: **PASS** — https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38714978132
 - This confirms these CI checks passed for the PR candidate at that SHA. It does not prove the live Axxess deployment, DNS/SSL, payment-provider approval, supplier pricing, image rights, or catalogue import eligibility.
 - PR #28 remains OPEN — REVIEW REQUIRED; customer launch remains **HOLD**. Next reviewer action: inspect the 19-file diff for semantic accuracy and approve/merge only through the normal review gate. No production deployment or data changes were performed.
+
+
+## 2026-10-15 11:49 SAST — PR #28 independently re-verified and semantic review
+
+### Current verified GitHub state
+- Repository: https://github.com/getwiredautoworx-max/get-wired-autoworx-store
+- PR #28: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/28
+- State: OPEN, NOT MERGED; head `02c01dc7acdbb91d45e0d70f59ff5b856cb76d63`; base `main` at `8b9542fb7d48466dae13321b3b9955012e72e218`.
+- Actual changed-file inventory: 19 files, 762 additions, 21 deletions. Files enumerated directly from GitHub: workflow; operator runbook; proposed OpenAPI; repository overview; knowledge-base pages 01–08 plus README; field dictionary; schema JSON; invalid and synthetic CSV fixtures; validator JS; public SKU audit script.
+- Exact-head checks returned successful conclusions for Catalogue Schema Validation, Public SKU Exposure Audit, and Storefront Smoke Test. Handover's recorded run URLs are:
+  - Schema: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38714978307
+  - Public SKU audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38714978154
+  - Storefront smoke: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38714978132
+- This resolves the earlier seven-file/missing-validator discrepancy: current PR head now contains the 19 listed paths, including the previously missing schema, validator, invalid fixture and proposed API spec. Do not reuse the earlier stale `adf02f7...` assessment.
+
+### Independent semantic review — changes still requested
+- `docs/OPERATOR_RUNBOOK.md` is only a title, store URL and HOLD status; it lacks actionable release gates, rollback, monitoring, incident escalation and verification steps.
+- `docs/architecture/REPOSITORY_OVERVIEW.md` is only a one-line architecture claim; it lacks verified entry points, data flow, build/deploy targets, and source links. Confirm the stated Next.js/Supabase architecture against the actual repository before expanding it.
+- `docs/schema/validate_catalogue.js` performs useful hand-written CSV checks and rejects the four current negative fixtures, but the workflow only parses the JSON Schema as JSON; it does not execute a JSON Schema validator against fixture rows. Avoid describing this as full JSON Schema validation.
+- Validation gap: date validation uses a date-shaped regex plus `Date.parse`, which can accept normalized invalid calendar dates; add strict calendar-date validation and targeted negative fixtures.
+- Negative fixture coverage currently includes invalid public SKU, active quote-only row, invalid category, and incorrect price formula. Add explicit tests for duplicate supplier/public SKUs, malformed/missing columns, blank required identifiers, zero/negative cost and price, invalid boolean/status/date, missing supplier confirmation, uncleared image rights, and absent image evidence. Make the expected-failure harness verify each intended reason, not merely that each row has any error.
+- Synthetic fixture uses placeholder evidence values and is explicitly synthetic; ensure no workflow or importer can mistake it for production-approved catalogue evidence.
+- Formal review outcome: request changes; do not merge yet. The three successful CI checks are real evidence for this exact candidate, but do not clear launch gates.
+
+### Gemini next tasks — existing PR only, no duplicate branch/PR
+1. Upgrade the runbook and repository overview to operationally useful, repository-verified documents with direct links and no unsupported architecture claims.
+2. Strengthen strict date validation and add focused negative cases for every validation gap listed above.
+3. Either add a real JSON Schema validator dependency and run it against parsed fixture records, or accurately rename/document the current checks as custom CSV/business-rule validation; do not call JSON parsing alone schema validation.
+4. Add a test that checks README/index links point to files that exist; keep all eight policy pages and the API proposal indexed consistently.
+5. Keep synthetic fixtures visibly synthetic and publication-ineligible; document the boundary between schema tests and supplier/rights evidence.
+6. Push to the existing `feature/docs-schema-pack` branch. Report the new full head SHA, complete changed-file list, exact workflow URLs/IDs and command output. Append results to this handover without rewriting prior history.
+
+### ChatGPT actions and store status
+- Re-fetched the current PR metadata, paginated changed-file inventory, exact-head workflow conclusions, schema, validator, both fixtures, runbook, architecture overview, audit script and workflow directly from GitHub.
+- Formal review requested on PR #28; no merge performed.
+- No production SQL/data write, deployment, Axxess upload, DNS/SSL change, payment-setting change or customer payment was performed.
+- Store launch remains **HOLD**. The 800-row catalogue remains review-only/import-ineligible; nine rows remain quote-only; 38 live price exceptions still require current supplier confirmation; exact-SKU image matches and image-use rights remain unresolved; Axxess DNS/SSL and full storefront/checkout release gates remain outstanding.
