@@ -646,3 +646,84 @@ Materialize the already-located corrected CSV from Library, inspect the source r
 - Current checkout evidence reports Direct EFT only; PayFast and PayJustNow remain deferred/unconfirmed. GitHub package generation does not automatically deploy to Axxess. Scheduled workflows are not a continuously resident daemon.
 - Expected Gemini completion report: branch name, PR URL, commit SHA, changed files, validation run/results, unresolved questions, and owner decisions needed. Do not claim work is complete until the repository contains the artifacts and links.
 - This handoff is documentation/task authorization only. It does not change the release decision: **HOLD**. No production write or deployment is authorized by this addition.
+
+
+## OWNER INSTRUCTIONS, PERMANENT HANDOVER RULES, AND GEMINI RESPONSIBILITIES — ADDENDUM (2026-10-15)
+
+This addendum consolidates the owner's recurring instructions and the explicit division of responsibilities. It supplements, and does not erase or supersede, evidence and decisions recorded earlier in this handover. If a historical note conflicts with a newer verified result, retain the history and add a dated correction with evidence.
+
+### A. Owner's operating instructions — apply to every continuation
+
+1. **Read before acting.** At the start of each session or resumed task, read this current checkpoint, the relevant latest entries in HANDOVER.md, and any referenced source/artifact needed for the next action. Continue from the newest verified state; do not restart from an old plan.
+2. **Execute, do not merely narrate.** Perform the next safe, useful action with available tools. Report concrete outputs, exact counts, IDs, links, commit hashes, pass/fail results, and genuine blockers. Avoid vague progress updates and repeated explanations.
+3. **No circular or duplicate work.** Do not rerun successful checks, repeat searches, re-create files, rebuild, re-upload, re-deploy, or re-notify unless a code/source change, new evidence, or actual failure makes it necessary. Check existing evidence and workflow runs first.
+4. **Work in parallel where independent.** Advance independent, low-risk tasks concurrently where tooling supports it; track dependencies so one blocked item does not stall unrelated work. Do not imply tasks are running in the background unless an actual scheduled workflow/run confirms it.
+5. **Build in Axxess first.** Axxess is the primary hosting and build priority. Make and validate changes in the safest applicable staging/work area first; only after approval and all gates pass should a single controlled final synchronization be planned across GitHub, Supabase SQL/data, and other related services. Do not make repeated uploads or cross-service changes during investigation.
+6. **Preserve working functionality and design.** Keep the current store format and functioning header, search, cart, product details and checkout unless a specific approved fix requires a change. Prioritize correct categories, subcategories, product discovery, and exact product identity. Do not create an unrelated replacement storefront or unnecessary redesign.
+7. **Maintain the approved eight top-level storefront categories.** Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. Preserve original ASC source category/subcategory and source-page evidence separately from the customer-facing taxonomy. Do not add a ninth root or make unsupported assignments.
+8. **Catalogue integrity comes before speed.** Never guess a SKU, product description, compatibility, image identity, category, supplier price, stock status, or permission. Exact SKU/model evidence is required for image association; exact identity is not the same as permission to republish, crop, edit or watermark an image.
+9. **Pricing rules.** Use current, verified supplier cost excluding VAT; customer price = round(cost ex VAT × 1.15 × 1.35, 2). Do not treat arithmetic as proof the source cost is current. Historical/expired guide prices must not be presented as current without supplier confirmation. Keep supplier SKU/cost internal; use the public GW-XXXXXXXX SKU format.
+10. **Unpriced and uncertain products stay held.** Never coerce blank prices to zero, activate unpriced items, or run the unsafe archived September SQL. The nine quote-only SKUs recorded in this handover remain excluded from automatic publication until properly priced and verified. Keep the 800-row candidate and the 38 live price-scaling defects subject to their recorded evidence gates.
+11. **Do not sacrifice customer safety or trust.** Do not promise compatibility, delivery times, stock, warranty coverage, payment methods, refunds or supplier permission unless supported by approved evidence. Flag contradictory policies for owner confirmation instead of silently deciding them.
+12. **Payment controls.** PayFast and PayJustNow remain deferred/unconfirmed until merchant approval, secure credentials, actual integration, server-side secret handling, callback verification and sandbox success/failure/cancel/replay tests are evidenced. Never ask the owner to paste credentials into chat or commit secrets. Current recorded checkout evidence says Direct EFT only.
+13. **Protect production.** No production catalogue/Supabase writes, SQL execution, live deployment, Axxess upload, DNS/SSL changes, or payment-setting changes as part of research, documentation or staging reconciliation. These require a verified plan, appropriate owner approval, backup/rollback details and a controlled release window.
+14. **Release evidence is mandatory.** A release record must identify exact commit/build/archive checksum, backup location, deployment time, QA results, smoke tests and tested rollback method. A successful GitHub workflow only proves that workflow job passed; it does not prove catalogue correctness, supplier permission, payment settlement, fulfillment, or business readiness.
+15. **Automations must be described accurately.** Scheduled or event-triggered workflows are not continuous resident agents. Report the actual run IDs, timestamps, artifact names, queue states, and whether a workflow merely audited/packaged or actually changed data. Do not retry a workflow if the controller deliberately excludes that task or the retry would duplicate a completed action.
+16. **Update handover after material work.** Append a dated entry with task, evidence/source, before/after counts where applicable, artifact paths/links, commit/run IDs, validations and failures, what changed and did not change, release impact, remaining blockers, owner input needed, and the next distinct action. Never remove unresolved blockers or rewrite a hold as passed without evidence.
+17. **State limitations plainly.** If a file, external account, supplier reply, browser test or integration cannot be accessed, name the exact missing input and the next actionable step. Do not claim a task was executed by Gemini, another assistant, or a background job without a verifiable branch, commit, PR, run, or artifact.
+18. **Owner-facing updates must be practical.** Give results first, then the next action and realistic ETA only when dependencies permit. Ask the owner only for decisions, approvals, supplier responses or files that cannot be recovered with available tools. The owner has asked for execution and immediate results, not repeated requests to re-upload artifacts before checking the repository/library.
+19. **Avoid wasting limited credits/resources.** Do not trigger unnecessary builds, deploys, broad rechecks, repeated uploads, or cross-service syncs. Prefer one reviewed batch and one controlled final synchronization after staging is accepted.
+20. **Keep the release decision honest.** Current release status remains **HOLD** until catalogue price/currentness, category mapping, image association and rights, and final QA gates are satisfied. Payment readiness is a separate gate and remains deferred/unconfirmed.
+
+### B. Gemini responsibilities — clear work ownership
+
+Gemini is responsible for producing the following reviewable artifacts; ChatGPT's coordination does not count as completion on Gemini's behalf.
+
+**G1 — Knowledge-base and policy pack (first priority)**
+- Create `docs/knowledge-base/` with an index and modular Markdown documents for store identity/scope, categories, product/vehicle compatibility questions, ordering/checkout, delivery/pickup, quote-only and special orders, returns/refunds, warranty/electrical-installation evidence, privacy/contact and escalation.
+- Separate approved customer-facing language from internal operating notes.
+- Include a source-of-truth register with statuses such as CONFIRMED, OWNER CONFIRMATION NEEDED, and UNVERIFIED.
+- Do not invent legal rights, courier prices, delivery promises, warranty commitments, supplier permission, current stock or payment options. Flag ambiguous/contradictory policy language for owner review.
+
+**G2 — Replacement catalogue data contract**
+- Draft a versioned JSON Schema or equivalent, field dictionary, synthetic sample CSV/JSON, invalid-row examples and a validation checklist/script if feasible.
+- Include supplier/public SKU separation; description/application; storefront and source taxonomy; source guide/page/version; current supplier cost/effective/expiry/confirmation reference; derived customer price; image identity/source/hash and separate rights flags; availability, quote-only, active/publish eligibility, review status/reason/reviewer/timestamp and audit trail.
+- Enforce the pricing, exact-SKU, no-blank-as-zero, no-activation-while-unpriced, image-rights and source-taxonomy-preservation rules in section A.
+- Clearly mark all sample inventory as synthetic, not real store stock.
+
+**G3 — Repository, workflow and API documentation**
+- Inspect the current repository before documenting it. Identify actual entry points and data flow, category/navigation implementation, build/package workflow, controller/monitoring workflow, current checkout behavior and tests.
+- State explicitly that a generated Axxess ZIP artifact does not automatically upload/deploy to Axxess.
+- Distinguish implemented interfaces from proposals. If an OpenAPI file is useful, mark every unimplemented endpoint as proposed and do not suggest credentials or integration exist.
+- Explain workflow triggers, artifacts, retries and the difference between job success and release/business readiness.
+
+**G4 — README and operator runbook**
+- Add concise project overview, live URL, staging/production boundary, current HOLD state, safe validation instructions, supplier/owner evidence requirements, rollback checklist and links to HANDOVER.md, HANDOVER_CURRENT.md and this Gemini brief.
+- Preserve the existing chronological history. Do not replace it with a short summary.
+
+**G5 — Validation and handoff**
+- Work on a separate branch; open a reviewable PR or provide an explicit patch. Do not merge to main.
+- Run relevant formatting/schema/documentation checks that do not touch production; record exact commands and results. Do not repeat successful live QA just to create activity.
+- Return a factual report containing branch, PR URL, commit SHA, files changed, checks run and pass/fail, unresolved questions, owner decisions required, and confirmation that no production writes/deployment occurred.
+- Keep this handover current by proposing a concise dated note or PR summary of the work; do not claim to have changed this main-branch handover unless a verifiable commit exists.
+
+### C. ChatGPT coordination responsibilities
+
+- Read current handover and existing artifacts before each continuation.
+- Coordinate the task queue, track dependencies and blocker states, and avoid duplicate work.
+- Review Gemini's proposed/committed artifacts against these rules, the eight-category taxonomy, privacy/security requirements and the current evidence gates.
+- Continue independent safe recovery/reconciliation tasks when useful; do not claim Gemini has performed work until branch/PR/commit evidence exists.
+- Record material results in the handover and distinguish confirmed facts, candidate findings, assumptions, and owner/supplier dependencies.
+- Keep the store release held unless all required gates are evidenced and the owner-authorized release process is followed.
+
+### D. Acceptance checklist for Gemini's handoff
+
+- [ ] Knowledge-base pack and source/status register created.
+- [ ] Versioned catalogue schema, field dictionary, synthetic examples and validation rules created.
+- [ ] Repository/workflow/API documentation checked against actual code.
+- [ ] README/runbook updated with correct staging/production boundaries.
+- [ ] Work isolated on a separate branch and submitted as a reviewable PR/patch.
+- [ ] Checks and results recorded, with actual commit SHA and PR URL.
+- [ ] No fabricated evidence, secrets, production data changes, deployment or payment/DNS changes.
+- [ ] Remaining owner decisions and supplier evidence needs listed.
+- [ ] Release status remains HOLD unless separately approved by evidence.
