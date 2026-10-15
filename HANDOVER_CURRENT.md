@@ -1215,3 +1215,28 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Existing catalogue gates remain unchanged: all 800 September candidate rows held; 791 prices lack current supplier confirmation; nine quote-only rows must not be activated at zero; 38 flagged live SKUs require current price evidence; image use rights are unconfirmed; root category tree requires evidence-based reconciliation; Axxess DNS/SSL confirmation remains outstanding.
 - Immediate non-circular next work: (1) finish PR #28 changed-file/runbook/schema acceptance review and coordinate incorporation of #31; (2) continue staging-only visual design work against the 2026-10-15 reference screenshot, without touching production; (3) maintain category, price, image-rights and AI picture-search gates; (4) only request owner action for supplier outreach/confirmation, secret dashboard confirmation if absent, or genuine business-scope decisions.
 - Customer release remains **HOLD**. Do not deploy, merge, or write production data without the applicable review and authorization.
+
+
+## 2026-10-15 13:43 SAST — continued GitHub/Gemini reconciliation
+
+### Live repository checks (read-only)
+- Confirmed repository access remains writable by the connected GitHub integration; default branch is `main`. Central handover was read from `main` before this update.
+- PR #28, “docs: Add Knowledge Base, Schema, and Runbook Pack,” is OPEN, not merged, non-draft, and mergeable; base `main`; head `feature/docs-schema-pack`; current head SHA `78925c45dee01727819685fd97bf20a023c37639`; 22 changed files, 1,022 additions, 21 deletions. Link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/28
+- PR #31, “Harden catalogue CSV validation,” is OPEN, not merged, non-draft; it targets `feature/docs-schema-pack` from `fix/catalogue-validator-strict-csv`; head SHA `7942beefb277d856cac9464c6a0b56d789f880fd`; 3 changed files, 114 additions, 19 deletions. Link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/31
+- **New coordination finding:** PR #31 records base SHA `02c01dc7acdbb91d45e0d70f59ff5b856cb76d63`, while PR #28 currently reports head SHA `78925c45dee01727819685fd97bf20a023c37639`. Do not assume the strict-validator patch is included in the current PR #28 head. Gemini must reconcile the branch relationship, ensure PR #31's three-file patch is incorporated exactly once into the current docs branch, and run the combined CI there. Do not merge #31 to `main` independently.
+- PR #31's patch adds strict CSV quote handling, rejects blank/duplicate headers, validates real calendar dates and money precision, compares calculated prices at exact cents, and adds edge-case tests. These are useful safeguards, but successful synthetic tests do not validate or approve the real 800-row catalogue.
+- The PR #28 documentation review found the runbook explicitly keeps release HOLD, marks the API spec as proposed only, and warns against production mutations and secret disclosure. Continue full changed-file review and CI verification before merge; no merge was performed in this checkpoint.
+- Cloudflare's PR #31 preview bot reported a failed preview build for commit `7942bee` (build ID `bbdedafc-9abd-4205-906d-a620ef19c3c1`). This is a preview/mirror build, not evidence of an Axxess production failure. Do not spend credits investigating unless the mirror is required for the final batch release.
+
+### Still owner-/supplier-dependent
+- The supplier request register remains unanswered: 0/38 current supplier costs, 0/38 stock confirmations, and 0/38 image-use permissions are recorded. An authorized owner must send the request and log the written response; no code-only action can manufacture this evidence.
+- AI picture-search remains unverified for end-to-end provider authentication and safe matching. Never paste a secret into GitHub, handover, or chat. If `OPENAI_API_KEY` has not already been set, it must be configured directly in Supabase Dashboard → Edge Functions → Secrets for project `ojytykqpvonxvepprgbh`, then the function must pass positive and negative end-to-end tests plus abuse-control review. Do not claim operational before evidence.
+- Axxess DNS/SSL response, current supplier prices, image permissions, and owner scope for the 565 legacy Spare Parts products remain outstanding. No production SQL/data change, DNS/SSL mutation, Axxess upload, payment-setting change, or production deployment was performed here.
+
+### Next bounded work (avoid repeating green checks)
+1. Gemini: reconcile PR #31 into the current PR #28 branch and run combined CI once; report exact branch/head SHA, changed files, workflow run IDs, and any failures in a PR comment and this handover.
+2. ChatGPT: independently review the resulting diff and CI evidence; do not merge or deploy until all applicable safety gates are passed.
+3. Continue staging-only work toward the owner's 2026-10-15 visual reference: smaller/less cluttered banner, brighter background with UI accents, consistent page styling, 3×3 category-button layout with category/subcategory imagery, and Part Search / Request a Part popups. Do not change the live Axxess site until the staged design is reviewed and approved.
+4. Keep catalogue, supplier pricing, image rights, AI search, root-category reconciliation, Axxess DNS/SSL and payment-provider gates visible. Do not represent any as resolved without evidence.
+
+**Status remains RELEASE HOLD.** This checkpoint records current repository state and task coordination only; it does not authorize production release.
