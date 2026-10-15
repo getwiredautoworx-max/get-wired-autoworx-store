@@ -2710,3 +2710,11 @@ Owner asked for a direct list of exactly what is needed from their side. Request
 - No category assignment was changed: codes `6007-13` and `02-09` still lack enough source-page context. June-guide pages 4–6 were already visually inspected in the prior checkpoint; repeated exact-code searches in the indexed June text did not establish a safe classification.
 - No production data, Axxess upload, DNS, payment configuration, or deployment changed. Release remains **HOLD**.
 - Next: inspect the June/August audit workbook's OCR staging rows for the held codes and compare those rows with source-page images; continue locating the original September artifacts without treating the reconstruction as the original.
+
+
+## 2026-10-15 — held category codes: audit workbook evidence located
+
+- Exact-code search of the Library audit workbook found **6007-13** in the March Buyer’s Guide audit sheet as “Rod Fishing Rod Holder Mount Rubber Suction Mount”, source page 31, recorded under legacy `Parts / SPECIAL`. The numeric cost fields in that historical workbook are visibly malformed/scaled (e.g. cost `51792`), so this is description/category context only—not valid pricing evidence. Do not assign a new approved root automatically from the legacy `Parts` label.
+- Exact-code search found **02-09** in the August Buyer’s Guide audit sheet as “Turbo Golf 1 Mirror Base”, source page 32, legacy `Accessories / SUPERSAVE`. The historical cost field is also malformed/scaled (`440000`), so do not reuse it as current cost. This provides a concrete source-page lead for visual verification and a likely accessory taxonomy review, but is not final category approval.
+- The June OCR staging sheet contains nearby codes `6007-11-NL` and `6007-21` on printed page 4, but does not establish that either is the same product as `6007-13`. Keep exact SKU identity strict; do not merge similar numeric codes.
+- These findings narrow the manual-evidence blocker but do not clear it: inspect the original March page 31 and August page 32 images before final category decisions, then verify supplier cost against current approved guide data. No product rows changed; no production writes or deployment.
