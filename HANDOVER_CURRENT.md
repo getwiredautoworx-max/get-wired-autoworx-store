@@ -996,3 +996,32 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Formal review requested on PR #28; no merge performed.
 - No production SQL/data write, deployment, Axxess upload, DNS/SSL change, payment-setting change or customer payment was performed.
 - Store launch remains **HOLD**. The 800-row catalogue remains review-only/import-ineligible; nine rows remain quote-only; 38 live price exceptions still require current supplier confirmation; exact-SKU image matches and image-use rights remain unresolved; Axxess DNS/SSL and full storefront/checkout release gates remain outstanding.
+
+
+## 2026-10-15 12:05 SAST — independent storefront audit and parallel task queued
+
+### Current PR #28 status
+- Re-checked PR #28: still OPEN and NOT MERGED.
+- Latest known candidate head: `02c01dc7acdbb91d45e0d70f59ff5b856cb76d63`.
+- Its 19 changed paths and three successful checks are recorded above. Review requests remain: operational runbook/architecture detail, real JSON Schema validation or accurate naming, strict calendar-date validation, stronger targeted negative cases, and link consistency.
+- Gemini should continue the existing PR #28 branch for documentation/schema fixes; do not create a duplicate PR.
+
+### New independently verified category hierarchy defect
+- Fetched `assets/category-tree.json` directly from `main`. Its `generated_at` value is `2026-10-11T09:56:20Z`; it contains 165 active category records and 58 active records with no parent ID.
+- The 58 root-level records include numerous catalogue placeholders with zero direct active products (examples: Catalogue Aerials, Catalogue Spanners, Catalogue Relays). The existing release-gate record separately reported 9 visible root cards while the approved customer-facing hierarchy has eight roots.
+- This confirms a mismatch between internal/legacy category rows and the intended customer-facing hierarchy. It does NOT authorize deleting category rows, reassigning live products, or making production Supabase writes.
+- Created issue #29 with a concrete, independent Gemini work package: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/29
+- Required eight customer-facing roots remain: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy.
+- Acceptance requires a before/after root inventory, deterministic root/link test, desktop/mobile CI evidence, rationale for each mapping, exact head SHA, and no production writes/deployment.
+
+### Other current source checks / owner dependency
+- `store.html` and `index.html` were inspected from main. `index.html` redirects to `store.html`; a repository string check does not replace live browser verification.
+- `supabase/functions/part-image-search/README.md` confirms AI picture search source is committed but the function is NOT deployed / recognition is NOT live. Activation requires an authorised server-side `OPENAI_API_KEY`; do not put a key in source or pretend this blocker is resolved. Before activation, disclosure that the chosen photo is sent to the AI provider, provider spend limits, durable rate limiting, CORS, and ambiguous/non-part photo tests must be addressed.
+- Existing `QA_RUNBOOK.md` explicitly marks itself a test plan/template, not a completed test report. Continue to record actual URL/build/device/browser/evidence for every live QA claim.
+- No production category or product rows were changed; no SQL executed; no Axxess upload, deployment, DNS/SSL/payment setting change, or real order/payment was performed in this pass.
+
+### Immediate parallel execution
+1. **Gemini lane A:** finish PR #28 review changes on existing `feature/docs-schema-pack` and report exact SHA + full CI evidence.
+2. **Gemini lane B:** address issue #29 in a separate branch/PR; investigate the category generator and UI source before proposing mappings; do not alter live category rows.
+3. **ChatGPT lane:** maintain handover, independently verify submitted diffs/CI, and continue repository-only audits that need no owner credentials or live mutation.
+4. **Store launch remains HOLD.** Category roots, catalogue source/price/image evidence, current supplier confirmations, image rights, AI provider activation, and full live checkout/payment readiness remain separate release gates.
