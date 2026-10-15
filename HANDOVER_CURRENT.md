@@ -1324,3 +1324,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - **Not yet validated by GitHub Actions** at the time of this entry. This is a scope correction, not permission to ignore generated public files: if documentation/schema outputs are published to the customer site, they must be audited separately as built artifacts.
 - Browser visual verification of the storefront redesign is still outstanding. Automated storefront smoke run #724 passed, but it does not replace desktop/mobile screenshot inspection.
 - No main-branch merge, production deployment, Axxess upload, live data write, DNS/payment setting change, or paid-hosting credit use.
+
+
+### 2026-10-15 — Targeted audit correction validated
+
+- Public SKU Exposure Audit #260: **SUCCESS** (run `38746589619`).
+- Storefront Smoke Test #725: **SUCCESS** (run `38746589761`; log ends with `STOREFRONT_SMOKE_PASS`).
+- Audit fix commit: `146f5813cc6f4afc854530f914267ea26fb92b35`; handover note commit: `6457ba12380c06f34fd083458c34fa07ced92bd4`.
+- Confirmed the CSS selectors target real elements in `index-new.html` and the hero/category/product/mobile-navigation structures remain present. The automated smoke test passed against the PR merge checkout.
+- Limitation: GitHub smoke logs do not provide desktop/mobile screenshots, and this environment has no connected visual browser/screenshot tool for this branch. Therefore **visual desktop/mobile screenshot review is still open**; do not claim a full visual sign-off.
+- Consolidated draft PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/35 contains the redesign plus the audit fix. Keep it draft until visual review and all relevant checks are acceptable. Do not merge or deploy as part of this step.
