@@ -1,0 +1,29 @@
+name: Catalogue Schema Validation
+on:
+  push:
+    branches:
+      - feature/docs-schema-pack
+    paths:
+      - 'docs/schema/**'
+      - 'docs/architecture/PROPOSED_API_SPEC.openapi.yaml'
+      - '.github/workflows/catalogue-schema-validation.yml'
+  pull_request:
+    paths:
+      - 'docs/schema/**'
+      - 'docs/architecture/PROPOSED_API_SPEC.openapi.yaml'
+      - '.github/workflows/catalogue-schema-validation.yml'
+permissions:
+  contents: read
+jobs:
+  validate-synthetic-catalogue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate JSON Schema syntax
+        run: node -e "JSON.parse(require('node:fs').readFileSync('docs/schema/catalogue-item.schema.json','utf8')); console.log('JSON Schema parses as valid JSON')"
+      - name: Validate synthetic CSV and negative cases
+        run: node docs/schema/validate_catalogue.js
