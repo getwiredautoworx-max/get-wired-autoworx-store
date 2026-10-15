@@ -1142,7 +1142,7 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
   - Targets `feature/docs-schema-pack` intentionally; do not merge it directly into main.
   - Changes: strict CSV quote handling; blank/duplicate header checks; strict real ISO-date validation; non-negative money format capped at two decimal places; exact-cent formula comparison; dedicated edge-case tests for CRLF, escaped quotes, malformed quoting, invalid dates, duplicate IDs, and one-cent mismatches.
   - Catalogue Schema Validation run 38724025040 succeeded, including the new “Test strict CSV parsing and price/date edge cases” step. Public SKU Exposure Audit run 38724025045 also succeeded. Evidence: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38724025040 and https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38724025045
-  - PR #28 received a REQUEST_CHANGES review until this fix is incorporated and revalidated. PR #31 remains a draft; no merge/deploy occurred.
+  - PR #28 received a REQUEST_CHANGES review until this fix is incorporated and revalidated. PR #31 was subsequently marked ready for review; it remains open and targets feature/docs-schema-pack. No merge/deploy occurred.
 - This validates synthetic fixtures only; it does not validate or approve real catalogue rows.
 
 ### Read-only Supabase audit — 2026-10-15
