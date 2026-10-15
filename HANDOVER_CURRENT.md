@@ -1268,3 +1268,25 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 ### Current release boundary
 - Release remains **HOLD**. No production Supabase data write, production SQL, Axxess upload, DNS/SSL change, payment configuration change, or production deployment was performed during this block.
 - Remaining non-circular work: Gemini to fix the stale smoke assertion on PR #32 and reconcile PR #31 with the current PR #28 feature head; ChatGPT to independently verify resulting CI/diffs; continue AI endpoint durable-abuse-control design and live root/category regression evidence. Supplier-confirmed current prices, exact-SKU image evidence/rights, and Axxess DNS/SSL response remain external gates.
+
+
+## 2026-10-15 — AI picture-search hardening and category CI reconciliation
+
+### PR #33 — shared abuse controls for picture search
+- Branch: `fix/part-image-search-durable-limit`; PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/33; head `a3193b643a31fc0a801bd06428caf32274b944a4`.
+- Staged migration `supabase/migrations/20261015120000_part_image_search_rate_limit.sql` defines a private rate-limit table and atomic, service-role-only RPC with a bounded window and stale-row cleanup. It has **not** been applied to production or any live database.
+- Function branch now requires an allowlisted Origin (including rejecting requests with no Origin), checks request-body limits, validates decoded image size and JPEG/PNG/WebP magic bytes, uses HMAC-hashed client identifiers with the server-side service key, and calls the shared RPC before any paid OpenAI request. It fails closed with 503 if the limiter or server credential is unavailable; 429 includes `Retry-After`.
+- Passing CI: Part Image Search Safety Checks run 3 / ID `38732481336` (Deno type-check, helper tests, and migration privilege assertions); Storefront Smoke Test run 717 / ID `38732481263` passed.
+- Remaining acceptance work is explicitly open: endpoint-level mocked tests for missing key/no upstream call, shared limit exhaustion, mocked successful vision response, provider 429/5xx, ambiguous/non-part images and no-match behavior; staging migration concurrency/grant review; confirmation of proxy IP header semantics; secure secret-presence and provider-spend verification. No function deployment or SQL execution was performed. Issue #30 now links to PR #33 and asks Gemini to independently review and add the remaining mocked endpoint tests.
+
+### PR #32 — category-root CI reconciliation
+- Branch head advanced to `56a153868a9c0ceaf8ed35cce0b71f2c99c7f451`; GitHub now reports PR #32 mergeable after the audit script was reconciled with current main while excluding internal generator/workflow/documentation paths from customer-facing scans.
+- Approved Eight-Category Root Test run 5 / ID `38733078757` PASSED. Public SKU Exposure Audit run 258 / ID `38733078695` PASSED.
+- Storefront Smoke Test run 718 was still in progress at this handover write; previous run 715 failed because the existing workflow hard-codes exact label `Auto Electrical`, while the approved new display label is `Auto Electrical Spares`. The change request is recorded in the PR #32 discussion for Gemini. Do not call PR #32 fully green until a new smoke run passes.
+- Root acceptance is code/static test evidence only. The 136 active products directly assigned to generic Spare Parts remain a discoverability/scope risk. No product/category assignments or production rows changed.
+
+### Documentation / branch coordination
+- Main picture-search README was corrected to state the deployed function is version 2, the storefront markup already contains a photo-provider disclosure, and desktop/mobile disclosure visibility still needs browser QA. Commit: `fdcfa51f4300ce107b4d2f50fb8946710d9aaca2`.
+- PR #28 remains open with `mergeable=false`; main vs feature branch is diverged and the changed-file set includes an audit script also modified on main. A comment asks Gemini to reconcile with current main without overwriting main changes, preserve PR #31's dependency, and rerun CI on the exact new head.
+- PR #31 remains open, stale/dependent and not to be merged directly into main. PR #32 and PR #33 are also open; none has been merged or deployed.
+- Release stays **HOLD**. No production SQL/migration, Supabase data write, Axxess upload, DNS/SSL change, payment-setting change, or production deployment occurred during this work.
