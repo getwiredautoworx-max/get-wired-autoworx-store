@@ -26,6 +26,7 @@ on:
       - 'assets/product-placeholder.svg'
       - 'assets/category-tree.json'
       - 'assets/products_webp/**'
+      - '.github/workflows/prepare-axxess-package.yml'
   workflow_dispatch:
 permissions:
   contents: read
