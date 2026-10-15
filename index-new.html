@@ -299,6 +299,109 @@ body{background:linear-gradient(180deg,#fff 0%,#f1f5f9 62%,#eaf0f6 100%);color:#
 @media(max-width:900px){.heroCard{min-height:270px}.heroText{padding:22px 18px}.heroText h1{font-size:clamp(24px,5vw,32px)}}
 @media(max-width:480px){.heroCard{min-height:315px}.heroText{padding:92px 16px 18px}.heroText h1{font-size:25px}.ratingbox{transform:scale(.75);right:10px;top:10px}}
 
+
+/* Reference-inspired mobile storefront layout: neon automotive retail, compact hero, four-column category tiles */
+:root{--bg:#02050b;--panel:#050d18;--blue:#08a9ff;--red:#ff1638;--line:#087fc8;--white:#f7f9ff;--muted:#aebed0}
+body{background:#02050b;color:#f7f9ff}
+.top{display:none}
+.header{height:auto;background:rgba(1,5,12,.98);border-bottom:1px solid #087fc8}
+.head{min-height:82px;padding:7px 16px;gap:13px}
+.hamb{color:#fff;font-size:29px;flex:0 0 34px;width:34px}
+.logo{height:68px;width:min(58vw,390px)}
+.head .search{position:absolute;left:18px;right:18px;top:88px;max-width:none;margin:0;z-index:3}
+.head .search input{height:45px;padding:10px 18px;border:2px solid #078ee5;background:#030913;font-size:14px}
+.header{padding-bottom:57px}
+.cart{font-size:25px;flex:0 0 auto}
+.nav{display:none}
+.hero,.section{margin-top:12px;padding-left:14px;padding-right:14px}
+.hero{margin-top:0;padding:0}
+.heroCard{min-height:0;height:clamp(390px,70vw,560px);border:0;border-radius:0;background:
+radial-gradient(ellipse at 50% 62%,rgba(0,133,255,.27),transparent 47%),
+linear-gradient(180deg,rgba(1,5,14,.15),rgba(1,5,14,.30) 42%,rgba(1,5,14,.95) 100%),
+linear-gradient(135deg,#031021 0%,#06284b 36%,#030811 75%,#17040b 100%);
+box-shadow:none}
+.heroCard:before{content:"";position:absolute;inset:0;background:
+linear-gradient(135deg,transparent 0 7%,rgba(0,145,255,.8) 7.3%,transparent 8.4% 11%,rgba(255,20,55,.8) 11.3%,transparent 12.4%),
+linear-gradient(145deg,transparent 0 79%,rgba(0,150,255,.5) 79.3%,transparent 80.3% 83%,rgba(255,20,55,.7) 83.3%,transparent 84.2%);
+pointer-events:none}
+.heroCard:after{content:"CARS  •  BAKKIES  •  TAXIS  •  BUSES  •  TRUCKS  •  TRAILERS  •  BOATS";position:absolute;left:7%;right:7%;bottom:16px;padding:12px 10px;border:2px solid #ffd21f;border-radius:9px;background:rgba(0,0,0,.86);color:#fff;font-size:clamp(11px,2.8vw,17px);font-weight:900;text-align:center;letter-spacing:.2px;text-shadow:0 1px #000}
+.heroText{position:absolute;inset:0;max-width:none;padding:90px 18px 82px;text-align:center;display:flex;align-items:center;flex-direction:column;justify-content:center}
+.heroText .heroTagline{font-size:clamp(10px,2.5vw,14px);font-weight:900;font-style:italic;text-transform:uppercase;color:#fff;border-bottom:2px solid #ff173b;padding:4px 8px;margin-bottom:8px}
+.heroText h1{font-size:clamp(25px,6vw,42px);line-height:1.03;margin:8px 0;text-shadow:0 3px 12px #000}
+.heroText p{font-size:13px;line-height:1.35;margin:5px auto 9px;max-width:530px}
+.since{padding:5px 22px;margin:6px 0;background:#ff173b;letter-spacing:2px;clip-path:polygon(0 0,100% 0,94% 100%,6% 100%)}
+.heroBtns{justify-content:center;gap:7px}
+.heroBtns .btn{padding:9px 12px;font-size:11px}
+.ratingbox{top:12px;right:12px;padding:6px 10px;border:2px solid #087fc8;border-radius:8px;background:rgba(0,0,0,.84)}
+.ratingbox strong{font-size:22px;color:#ffdc31}
+.ratingbox small{font-size:9px;font-weight:900}
+.features{margin:0 auto;padding:12px 10px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;background:#030811;border-bottom:1px solid #10446b}
+.feature{padding:8px 4px;border:0;border-right:1px solid #17435f;border-radius:0;background:transparent;font-size:10px}
+.feature b{font-size:9px;line-height:1.2}
+.feature span{font-size:9px;line-height:1.2;display:block;margin-top:3px}
+#approved-services{display:none}
+.sectionTitle{align-items:center;margin-bottom:9px}
+.sectionTitle h2{font-size:clamp(16px,4vw,22px);font-style:italic;font-weight:900}
+.sectionTitle h2:before{width:7px;height:25px;transform:skew(-20deg);margin-right:9px}
+.sectionTitle a{font-weight:900;font-size:12px}
+.cats{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.catWrap{min-width:0;border:1px solid #0589e6;border-radius:10px;background:linear-gradient(145deg,#09192c,#030811);box-shadow:inset 0 0 15px rgba(0,134,255,.08);position:relative}
+.catBtn{min-height:112px;padding:7px 5px;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:5px;text-align:left}
+.catBtn b{font-size:clamp(9px,2.35vw,13px);line-height:1.08;font-weight:900;text-transform:uppercase;overflow-wrap:anywhere}
+.catBtn i{position:absolute;right:6px;top:38%;font-size:20px;line-height:1;color:#fff;text-shadow:0 0 8px #08a9ff}
+.catWrap:before{content:"";position:absolute;left:12%;right:12%;top:9px;height:54px;border-radius:50%;background:radial-gradient(circle,rgba(0,142,255,.28),rgba(255,20,55,.12) 45%,transparent 72%);pointer-events:none}
+.children{padding:0 7px 6px}
+.child{font-size:11px;padding:8px 2px}
+#vehicleFinder{margin-top:15px}
+.vehicleFinder{padding:12px;border-radius:10px}
+.vehicleIntro span{font-size:12px}
+.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.product{padding:6px;min-width:0;min-height:0;border-radius:9px;background:#f8fafc;color:#101820;border:1px solid #ccd7e2}
+.prodImg{height:clamp(58px,18vw,115px);background:#fff}
+.prodImg img{max-height:100%;max-width:100%}
+.product h3{font-size:clamp(9px,2.3vw,12px);line-height:1.15;margin:7px 0 4px;color:#15202c}
+.product .sku{display:none}
+.price{font-size:clamp(11px,2.7vw,15px);margin-top:5px;color:#101820}
+.stockBadge{font-size:9px}
+.product button{font-size:10px;min-height:28px;padding:5px 3px;margin-top:6px;background:#ed102b;color:#fff}
+.servicesList{grid-template-columns:repeat(2,1fr)}
+.service{padding:9px;font-size:12px}
+.footer{margin-top:18px;padding:16px 14px 88px}
+.foot{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:14px;font-size:12px}
+.mobileNav{display:flex;position:fixed;z-index:80;bottom:0;left:0;right:0;justify-content:space-around;background:rgba(2,5,11,.98);border-top:1px solid #174b70;padding:8px 2px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.45)}
+.mobileNav a{flex:1;color:#f4f7fb;font-size:10px;font-weight:700;text-align:center}
+.mobileNav b{font-size:23px;line-height:1.2;color:#fff}
+.mobileNav a:first-child,.mobileNav a.active{color:#ff173b}
+.mobileNav a:first-child b,.mobileNav a.active b{color:#ff173b}
+.cartPanel{top:150px}
+.modalBox{border-radius:12px}
+@media(min-width:701px){
+ .header{padding-bottom:0}
+ .head .search{position:static;max-width:500px;margin-left:auto}
+ .heroCard{height:490px;border:1px solid #15557e;border-radius:0 0 12px 12px}
+ .heroText{align-items:flex-start;text-align:left;padding:55px 5%}
+ .heroText .heroTagline{align-self:flex-start}
+ .heroBtns{justify-content:flex-start}
+ .cats{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .section{margin-top:13px}
+ .products{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .product{overflow:hidden}
+ .product h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:24px}
+ .stockBadge{display:none}
+ .detail{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+ .head{gap:7px;padding-left:10px;padding-right:10px}
+ .logo{width:calc(100vw - 126px);height:60px}
+ .cats{gap:5px}
+ .catBtn{min-height:98px;padding:6px 4px}
+ .catBtn b{font-size:9px}
+ .products{gap:5px}
+ .product button{font-size:9px}
+}
+
 </style></head><body><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><button class="btn secondary partAction" type="button" onclick="openPartSearch()">PART SEARCH</button><button class="btn secondary partAction primaryAction" type="button" onclick="openPartRequest()">REQUEST A PART</button><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
 <div class="sectionTitle"><h2>FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Vehicle-specific catalogue search</span></div>
 <div class="vehicleFinder">
