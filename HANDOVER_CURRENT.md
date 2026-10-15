@@ -1394,3 +1394,19 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 ### Coordination
 - Added a review request on PR #36 to capture the current head, test the last category row against the fixed bottom navigation, extend desktop acceptance to exercise all eight roots and their subcategories, check product/category image load failures, and attach fresh desktop/mobile screenshots. Do not merge PR #36 until its branch is reconciled with current main and the relevant CI passes.
 - Release remains HOLD. No production upload, database write, DNS/SSL change, or payment setting change was performed.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-15 17:38 SAST (Owner APK + live PR refresh)
+
+### Owner APK independently verified
+- Dedicated repository: https://github.com/getwiredautoworx-max/get-wired-autoworx-owner-apk-validation
+- Build #48 workflow: https://github.com/getwiredautoworx-max/get-wired-autoworx-owner-apk-validation/actions/runs/37658519204
+- Artifact `get-wired-owner-debug` (ID `11499667368`) and `get-wired-owner-signed-release` (ID `11500252099`) are present and not expired at the time of verification.
+- All three jobs passed: debug APK build/checksum/artifact upload; signed-release APK build, signature verification, checksum and artifact upload; Android emulator build and smoke test. The signed release uses a temporary CI signing key, so it is not equivalent to a stable owner-approved production signing identity. Owner still needs to download/install on the actual phone and confirm behavior; don't call phone validation complete.
+- Direct owner download instructions were supplied in chat: open run #48, scroll to Artifacts, download ZIP and extract the APK.
+
+### Current PR state refresh
+- PR #37 remains open/unmerged. GitHub PR metadata now says mergeable=true, but fresh branch compare still reports diverged: 6 commits ahead and 4 behind main. Treat as HOLD until reconciliation and current CI; mergeability metadata alone is not enough.
+- PR #36 remains open/unmerged and unmergeable; fresh compare reports 23 commits ahead and 6 behind main. Fresh visual/interaction test output on the current PR head has not been verified in this checkpoint.
+- The earlier screenshot finding remains: historical 390px category-grid capture shows fixed bottom navigation overlapping/cropping the final category row. It requires a fresh run on current PR head and a regression assertion.
+- No merge, Axxess upload, production database write, DNS/SSL change, or payment-provider setting change was performed.
