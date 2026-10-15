@@ -1334,3 +1334,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Confirmed the CSS selectors target real elements in `index-new.html` and the hero/category/product/mobile-navigation structures remain present. The automated smoke test passed against the PR merge checkout.
 - Limitation: GitHub smoke logs do not provide desktop/mobile screenshots, and this environment has no connected visual browser/screenshot tool for this branch. Therefore **visual desktop/mobile screenshot review is still open**; do not claim a full visual sign-off.
 - Consolidated draft PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/35 contains the redesign plus the audit fix. Keep it draft until visual review and all relevant checks are acceptable. Do not merge or deploy as part of this step.
+
+
+## 2026-10-15 — Browser screenshot QA solution added
+
+- Added `.github/workflows/storefront-screenshot-qa.yml` on branch `qa/desktop-mobile-screenshots-2026-10-15` (commit `997176fa99addd6ef0969871bbdedd73d084945f`).
+- This uses GitHub Actions + Playwright Chromium to render the staging `index-new.html` at desktop 1440×1000 and mobile 390×844, save full-page PNG screenshots, and upload them with a JSON layout report as the `storefront-desktop-mobile-screenshots` artifact for 14 days. It also checks page title, JavaScript page errors, and horizontal overflow.
+- This provides a no-Netlify-credit path to real browser-rendered evidence without touching Axxess, production, Supabase data, DNS, or payment settings.
+- **Status at handover update:** workflow added; run result/artifact still must be retrieved and reviewed. Screenshot capture is not yet counted as successful, and the visual design is not signed off until the actual images are inspected. Any external product/data requests in the page are read-only; the workflow does not submit checkout/orders.
+- Existing latest checks on commit `e4f63a8b3e4f3ea2f311f2e8d41282b804f68ff6`: Public SKU Exposure Audit #261 **SUCCESS** (run `38747016203`); Storefront Smoke Test #726 **SUCCESS** (run `38747016334`).
+- Do not merge the redesign or deploy it live based only on screenshot generation. Preserve the draft/review gate and use actual screenshots to decide visual corrections.
