@@ -1292,5 +1292,5 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Release stays **HOLD**. No production SQL/migration, Supabase data write, Axxess upload, DNS/SSL change, payment-setting change, or production deployment occurred during this work.
 
 
-### CI correction — 2026-10-15 14:xx SAST
+### CI correction — 2026-10-15 (after run 718)
 - Storefront Smoke Test run 718 / ID `38733078647` has now completed **FAILURE** on PR #32. The failure is the same stale exact-text assertion expecting `Auto Electrical`; the branch's approved label is `Auto Electrical Spares`. Root test run 5 and public SKU audit run 258 remain green. A second direct PR comment asks Gemini to update the smoke assertion and rerun it. PR #32 is not green until that exact workflow passes.
