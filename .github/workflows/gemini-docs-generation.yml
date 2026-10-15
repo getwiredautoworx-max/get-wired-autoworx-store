@@ -60,6 +60,7 @@ jobs:
             git commit -m "docs: complete missing policy, schema, validator, architecture, and runbook docs"
             git push origin "$BRANCH"
           fi
+git add -A
 
       - name: Ensure Pull Request Exists
         env:
