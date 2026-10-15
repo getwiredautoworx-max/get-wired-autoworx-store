@@ -32,7 +32,7 @@ The function reads the project-managed `SUPABASE_URL` and `SUPABASE_SECRET_KEYS`
 - Confirm Edge Function CORS origins match the final production domain.
 - Confirm the Supabase project has the required secret-key environment value and the function can read the active catalogue.
 - Test at least one clear photo, a low-quality/ambiguous photo, a non-part image, an image over the size limit, and a product with no catalogue match.
-- Show a clear customer-facing notice before upload: the selected photo is sent to OpenAI for analysis; do not upload personal/sensitive content; results are suggestions only. The storefront currently needs an explicit pre-submit disclosure verified in the UI. The function does not persist the image; normal service-provider processing/retention terms may apply.
+- The current storefront markup includes a notice before the photo input stating the photo is sent to the AI provider and results are suggestions only. Verify its visibility/readability on mobile and desktop in browser QA; advise customers not to upload personal or sensitive content. The function does not persist the image; normal service-provider processing/retention terms may apply.
 - Treat results as suggestions only; never promise fitment or stock based on image recognition alone.
 
 ## How it works
