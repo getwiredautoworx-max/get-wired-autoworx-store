@@ -1358,3 +1358,10 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 2. If accepted, merge the package fix into `main` and let the now-correct push trigger create the official main-branch artifact; compare its contents/hash and run the same required-page and ZIP checks.
 3. Owner-controlled action is then needed to download the ~111 MB artifact and upload/extract it in Axxess DirectAdmin after making a `public_html` backup. No passwords or tokens should be shared in chat.
 4. Complete live Axxess smoke tests and update the handover with observed results, not assumptions.
+
+
+### Artifact materialization / final ZIP integrity check — 2026-10-15 17:25 SAST
+- Downloaded the successful PR #37 GitHub Actions artifact (artifact ID 11984797728) into the working session and extracted the inner deployment ZIP from GitHub's outer artifact wrapper. The user-facing upload package is the INNER `axxess-storefront-upload.zip`, not the outer Actions artifact archive.
+- Verified inner package SHA-256: `b84c189c8967967ba85e969636322406f782fd5980532ae59e0e7bf22ca1b5da`.
+- Re-tested the inner ZIP locally: no compressed-data errors; 4,101 `.webp` product-image files; 4,120 regular files plus ZIP directory entries; required route pages all present (`index.html`, `store.html`, `product.html`, `products.html`, `checkout.html`, `checkout-v2.html`, `category.html`, `returns-refunds.html`, `terms-and-conditions.html`).
+- The archive deliberately does not contain `admin.html`; Axxess upload instructions require preserving the currently installed admin page and unrelated hosting files. This artifact is a review-branch candidate until the owner-approved release workflow is followed.
