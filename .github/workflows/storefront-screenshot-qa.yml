@@ -53,7 +53,7 @@ jobs:
             for (const target of [
               { name: 'desktop', width: 1440, height: 1000 },
               { name: 'mobile', width: 390, height: 844 },
-      { name: 'small-mobile', width: 320, height: 740 },
+              { name: 'small-mobile', width: 320, height: 740 },
             ]) {
               const page = await browser.newPage({
                 viewport: { width: target.width, height: target.height },
@@ -80,8 +80,8 @@ jobs:
                 pageHeight: document.documentElement.scrollHeight,
                 categoryTiles: document.querySelectorAll('.catBtn').length,
                 productCards: document.querySelectorAll('.product').length,
-      heroHeight: Math.round(document.querySelector('.heroCard')?.getBoundingClientRect().height || 0),
-      overflowElements: Array.from(document.querySelectorAll('body *')).map(el => ({ tag: el.tagName, id: el.id || '', className: typeof el.className === 'string' ? el.className : '', left: Math.round(el.getBoundingClientRect().left), right: Math.round(el.getBoundingClientRect().right), width: Math.round(el.getBoundingClientRect().width) })).filter(el => el.width > 0 && (el.left < -1 || el.right > document.documentElement.clientWidth + 1)).slice(0, 12),
+                heroHeight: Math.round(document.querySelector('.heroCard')?.getBoundingClientRect().height || 0),
+                overflowElements: Array.from(document.querySelectorAll('body *')).map(el => ({ tag: el.tagName, id: el.id || '', className: typeof el.className === 'string' ? el.className : '', left: Math.round(el.getBoundingClientRect().left), right: Math.round(el.getBoundingClientRect().right), width: Math.round(el.getBoundingClientRect().width) })).filter(el => el.width > 0 && (el.left < -1 || el.right > document.documentElement.clientWidth + 1)).slice(0, 12),
                 heroVisible: !!document.querySelector('.heroCard, .hero, .heroSection'),
                 horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
               }));
