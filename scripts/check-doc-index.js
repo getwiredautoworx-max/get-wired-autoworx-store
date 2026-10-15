@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const root = path.resolve(__dirname, '..', '..');
+const root = path.resolve(__dirname, '..');
 const indexPath = path.join(root, 'docs/knowledge-base/README.md');
 const index = fs.readFileSync(indexPath, 'utf8');
 const required = [
