@@ -750,3 +750,19 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 ### Change evidence
 - Base file fetched from `main`; prior blob SHA: `e73fc452aa87cd4fa4a172ab24da81ecda23ccf5`.
 - This update records the raw-link troubleshooting and instruction provided in the conversation. It does not claim any Gemini-side execution or production change.
+
+
+## 2026-10-15 — Gemini URL fetch error recorded
+
+- Owner reported Gemini error: `URL_FETCH_STATUS_MISC_ERROR` when trying to fetch the provided source links.
+- This error is not enough to establish whether the cause is the URL-fetch service, network access, redirect handling, or repository permissions. Do not infer that files are missing.
+- ChatGPT's connected GitHub interface had successfully fetched both `HANDOVER_CURRENT.md` and `GEMINI_EXECUTION_BRIEF.md`; this does not establish that Gemini has equivalent access.
+- Avoid repeatedly retrying the same fetch path. Fallback sequence:
+  1. Try the GitHub file page in Gemini's supported browsing/connected-repository tool rather than its URL-fetch mechanism.
+  2. Try GitHub's contents API endpoints (the response is JSON/base64, not plain Markdown):
+     - https://api.github.com/repos/getwiredautoworx-max/get-wired-autoworx-store/contents/HANDOVER_CURRENT.md?ref=main
+     - https://api.github.com/repos/getwiredautoworx-max/get-wired-autoworx-store/contents/GEMINI_EXECUTION_BRIEF.md?ref=main
+  3. If Gemini cannot access external URLs, download the two raw Markdown files in the browser and attach/upload them to Gemini, or paste their contents directly.
+  4. Ask Gemini to state exactly which fallback it tried and provide the exact resulting error. Do not let it claim to have read either document without confirming content.
+- Next execution gate: once both documents are actually available to Gemini, proceed with the existing brief on a separate branch and submit a reviewable PR. No deployment, production data writes, SQL, DNS/payment changes, or merge to main.
+- No Gemini-side branch, commit, PR, or completed task has been verified as of this note. Release remains **HOLD**.
