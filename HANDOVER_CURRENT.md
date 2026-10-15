@@ -1352,3 +1352,14 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - On the PR head `7fcce1b942b20e84ed300a59aaff3e05a8b9f3ca`, Public SKU Exposure Audit #262 (run `38747896727`) **SUCCESS** and Storefront Smoke Test #727 (run `38747896968`) **SUCCESS**.
 - Screenshot workflow source is committed, but its specific run/artifact has not yet been retrievable through the current workflow-run connector (which exposes only pull-request-triggered runs). Therefore this does not yet count as completed screenshot review; inspect the workflow run and download its artifact from GitHub Actions when available.
 - PR #35 redesign remains unmerged and should remain behind the visual review gate. No live deployment or production changes.
+
+
+## 2026-10-15 — Latest staging release candidate and screenshot review
+
+- Latest staging branch commit inspected: `6c49d6e4b52b6a3732d6ebd1823682f20acee0ce`.
+- Screenshot QA run `38756311245` **SUCCESS**; artifacts include desktop 1440px, mobile 390px, and small-mobile 320px full-page screenshots plus `qa-report.json`.
+- QA report: all three viewport widths match document widths (no page-level horizontal overflow), page title is present, and no JavaScript page errors were reported. Report notes one small cart badge element extends 20px past the right edge at each viewport; needs CSS containment/visual polish.
+- Actual screenshot inspection: layout renders and category/product content loads. Visual defects remain: product card image slots appear blank in the specials grid, footer text has very low contrast, hero is still relatively tall (316px desktop; 375px mobile; 404px at 320px), and category navigation currently renders 64 category buttons including an additional “4X4 OUTDOOR” tile rather than a verified 3x3 selection of the eight approved top-level categories. These are **release blockers** to fix before upload.
+- Current Axxess package workflow run `38756311187` **SUCCESS** on the same commit. Artifact `axxess-storefront-upload-ready`, ID `11983712163`, includes root-level `axxess-storefront-upload.zip` and report. Payload report says 4,118 files, 4,101 local WebP images, valid ZIP/root-level extraction, SHA-256 `31ad0a0de483272d678f47c81dc59eb410b01ff61bbdb410a31857bcf9f63b02`. This is a **candidate**, not release-approved, because the visual defects above remain.
+- Storefront Smoke Test `38756322866` **SUCCESS** and Public SKU Exposure Audit `38756322801` **SUCCESS** on the same commit.
+- No Axxess upload, live database write, DNS/payment change, or production deployment has been performed. Keep PR #35 and #36 unmerged until visual blockers are corrected and package/tests rerun.
