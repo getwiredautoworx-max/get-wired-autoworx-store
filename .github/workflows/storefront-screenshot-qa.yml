@@ -44,7 +44,7 @@ jobs:
         id: screenshots
         run: |
           mkdir -p screenshot-artifacts
-          cat > /tmp/storefront-screenshot-qa.cjs <<'EOF'
+          cat > .storefront-screenshot-qa.cjs <<'EOF'
           const { chromium } = require('playwright');
           const fs = require('fs');
           (async () => {
@@ -91,7 +91,7 @@ jobs:
             if (results.some(r => !r.title || r.horizontalOverflow || r.pageErrors.length)) process.exit(1);
           })().catch(error => { console.error(error); process.exit(1); });
           EOF
-          node /tmp/storefront-screenshot-qa.cjs
+          node .storefront-screenshot-qa.cjs
 
       - name: Upload screenshots and QA report
         if: always()
