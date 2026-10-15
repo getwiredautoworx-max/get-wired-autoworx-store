@@ -1332,3 +1332,29 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - The supplier-SKU term appears in internal schema/docs and the audit implementation as expected. The updated public-SKU audit excludes repository-internal prefixes including `.github/`, `docs/`, and `scripts/` to avoid treating documentation-generation/audit source as customer-facing storefront code; the runtime/public audit itself passed on PR #28 head (run #255). This scope must remain explicit: the audit does not prove that internal docs contain no supplier identifiers, and internal data must not be deployed to public paths.
 - The documentation index checker is a small deterministic Node script verifying the eight required knowledge-base files exist and are listed in the README. The PR introduces documentation/schema/validation assets and no production catalogue payload or deployment action in its changed-file list.
 - Review remains conditional: no merge approved or performed. Confirm workflow coverage and final changed-file diff before merge; PR #28 is still a documentation/schema contribution, not a verified Axxess upload package or launch approval.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-15 17:22 SAST (Axxess package + audit fix)
+
+### Axxess package completeness defect found and corrected on a review branch
+- The original package workflow omitted `products.html` even though `product.html` links to it, omitted `terms-and-conditions.html`, and copied `TERMS_AND_CONDITIONS.md` (raw Markdown) instead of the customer-facing rendered HTML page. It also omitted `checkout.html`, a legacy redirect to `checkout-v2.html`.
+- Created PR #37: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/37 (branch `fix/axxess-package-completeness`). It adds the missing linked pages to the package, changes the `index-new.html` Terms & Conditions link to `terms-and-conditions.html`, adds package preflight/ZIP-entry assertions, runs package creation on pull requests, and reports the actual local WebP image count dynamically.
+- The public-SKU audit initially failed on PR #37 because the repository's internal generator `.github/scripts/generate_docs.js` contains schema field names such as `supplier_sku`; these are generator source, not customer-facing runtime. Fixed this narrowly in `scripts/public-sku-audit.py` by excluding only that exact internal generator path. Other files remain scanned; did not broadly exclude the whole `.github/` tree.
+
+### Verified CI for PR #37 head `e36df1f50eb761382dbbfeb61c019fc3052970a1`
+- Public SKU Exposure Audit run #278 (ID 38759328972): SUCCESS after the targeted exclusion.
+- Prepare Axxess upload package run #40 (ID 38759329011): SUCCESS. Required pages were checked for existence before ZIP creation and for entries inside the ZIP; `unzip -t` reported no compressed-data errors.
+- Storefront Smoke Test run #743 (ID 38759329102): SUCCESS. The workflow's verified-price checkout gate and local storefront smoke test passed. This remains local CI evidence, not Axxess live-site QA.
+- Build artifact: `axxess-storefront-upload`, artifact ID 11984797728, size 110,911,459 bytes, SHA-256 `3aff680fa31c3f520362de19e1ed542f6d4476e84d976a87f1909938cbcaccec`, expires 2026-10-29 15:19:55 UTC. Run link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38759329011
+- Package contains 4,120 files total, including 4,101 local WebP product images (the previous hard-coded claim of 2,196 was incorrect and has been replaced by a dynamically reported count). Uncompressed package size is approximately 116 MiB; the GitHub artifact is approximately 110.9 MB. Confirm upload limits/device bandwidth before transfer; Axxess account's previously recorded storage headroom should be rechecked before extraction.
+
+### Current release decision
+- PR #37 is OPEN and mergeable, not merged. No Axxess upload, production deployment, SQL/database write, DNS/SSL change, or payment-setting change was performed.
+- The PR artifact is a verified package candidate from the review branch, not yet the approved main-branch release artifact. Do not call it a completed production deployment. Before final upload, retain a backup of `public_html`, preserve `admin.html`, confirm the current hosting disk headroom, extract at the document root, and run live tests for `/`, `/store.html`, `/product.html`, `/products.html`, `/category.html`, `/checkout.html`, `/checkout-v2.html`, `/returns-refunds.html`, and `/terms-and-conditions.html`.
+- The separate catalogue/source blockers remain unchanged: current supplier prices for 38 held SKUs, 800-row SKU/cost/source reconciliation, exact-SKU image verification and image rights, reviewed 4,187-SKU delta/rollback ledger, and Axxess root/www DNS/SSL. PayFast/PayJustNow remain deferred. Customer launch remains HOLD.
+
+### Next actions
+1. Independently review PR #37's final three-file diff and artifact metadata; do not merge it or upload without the approved release sequence.
+2. If accepted, merge the package fix into `main` and let the now-correct push trigger create the official main-branch artifact; compare its contents/hash and run the same required-page and ZIP checks.
+3. Owner-controlled action is then needed to download the ~111 MB artifact and upload/extract it in Axxess DirectAdmin after making a `public_html` backup. No passwords or tokens should be shared in chat.
+4. Complete live Axxess smoke tests and update the handover with observed results, not assumptions.
