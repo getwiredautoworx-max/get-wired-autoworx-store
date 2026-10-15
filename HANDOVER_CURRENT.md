@@ -1068,3 +1068,14 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - AI recognition: **NOT VERIFIED / credential-gated**.
 - Public paid inference: **HOLD pending secure secret configuration and durable abuse protection**.
 - No API key read, created, or changed; no production SQL, product/order write, new deployment, Axxess upload, DNS/SSL/payment-setting change, or real payment occurred in this pass.
+
+
+## 2026-10-15 — OpenAI key creation checkpoint
+
+- Owner reports the OpenAI secret key has been **created**. Creation is not confirmation that it has been saved in Supabase.
+- Next owner action: save the key directly as secret name `OPENAI_API_KEY` at https://supabase.com/dashboard/project/ojytykqpvonxvepprgbh/functions/secrets. Never paste the key into chat, GitHub, Gemini, or handover files.
+- OpenAI key management: https://platform.openai.com/api-keys
+- The deployed `part-image-search` function remains ACTIVE, but successful AI recognition is unverified. Adding the secret alone does not require redeployment.
+- After the owner confirms `SAVED`, first use a validation-only request with an unsupported MIME type to check that the function no longer returns the missing-key 503. This should stop before any paid vision call and does not prove image recognition works.
+- Public paid inference remains **HOLD** until issue #30's durable shared rate-limiting/edge-challenge and validation/test requirements are reviewed: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/30
+- No key value was accessed or recorded; no deployment, production data/SQL change, Axxess upload, DNS/SSL change, or payment change was performed.
