@@ -17,9 +17,20 @@
     "review_status"
   ],
   "properties": {
-    "supplier_sku": { "type": "string", "minLength": 1, "pattern": "\\S" },
-    "public_sku": { "type": "string", "pattern": "^GW-[A-Z0-9]{8}$" },
-    "product_name": { "type": "string", "minLength": 2, "pattern": "\\S" },
+    "supplier_sku": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "public_sku": {
+      "type": "string",
+      "pattern": "^GW-[A-Z0-9]{8}$"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 2,
+      "pattern": "\\S"
+    },
     "storefront_category": {
       "type": "string",
       "enum": [
@@ -33,38 +44,151 @@
         "Trailer & Canopy"
       ]
     },
-    "supplier_cost_ex_vat": { "type": ["number", "null"], "minimum": 0 },
-    "customer_price": { "type": ["number", "null"], "minimum": 0 },
-    "quote_only": { "type": "boolean" },
-    "is_active": { "type": "boolean" },
-    "review_status": { "type": "string", "enum": ["Approved", "Pending", "Rejected", "Hold"] },
-    "supplier_price_effective_date": { "type": ["string", "null"], "format": "date" },
-    "supplier_confirmation_ref": { "type": ["string", "null"] },
-    "image_permission_status": { "type": "string", "enum": ["Granted", "Not required", "Pending", "Denied", "Unknown"] },
-    "image_evidence_ref": { "type": ["string", "null"] },
-    "vehicle_application": { "type": ["string", "null"] },
-    "subcategory": { "type": ["string", "null"] },
-    "review_reason": { "type": ["string", "null"] }
+    "supplier_cost_ex_vat": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "customer_price": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "quote_only": {
+      "type": "boolean"
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Pending",
+        "Rejected",
+        "Hold"
+      ]
+    },
+    "supplier_price_effective_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "supplier_confirmation_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "image_permission_status": {
+      "type": "string",
+      "enum": [
+        "Granted",
+        "Not required",
+        "Pending",
+        "Denied",
+        "Unknown"
+      ]
+    },
+    "image_evidence_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "vehicle_application": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subcategory": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
   },
   "allOf": [
     {
-      "if": { "properties": { "quote_only": { "const": true } }, "required": ["quote_only"] },
+      "if": {
+        "properties": {
+          "quote_only": {
+            "const": true
+          }
+        },
+        "required": [
+          "quote_only"
+        ]
+      },
       "then": {
-        "properties": { "is_active": { "const": false } }
+        "properties": {
+          "is_active": {
+            "const": false
+          },
+          "customer_price": {
+            "const": null
+          }
+        }
       }
     },
     {
-      "if": { "properties": { "is_active": { "const": true } }, "required": ["is_active"] },
+      "if": {
+        "properties": {
+          "is_active": {
+            "const": true
+          }
+        },
+        "required": [
+          "is_active"
+        ]
+      },
       "then": {
         "properties": {
-          "quote_only": { "const": false },
-          "supplier_cost_ex_vat": { "type": "number", "exclusiveMinimum": 0 },
-          "customer_price": { "type": "number", "exclusiveMinimum": 0 },
-          "review_status": { "const": "Approved" },
-          "supplier_price_effective_date": { "type": "string", "format": "date" },
-          "supplier_confirmation_ref": { "type": "string", "minLength": 1 },
-          "image_permission_status": { "enum": ["Granted", "Not required"] },
-          "image_evidence_ref": { "type": "string", "minLength": 1 }
+          "quote_only": {
+            "const": false
+          },
+          "supplier_cost_ex_vat": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "customer_price": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "review_status": {
+            "const": "Approved"
+          },
+          "supplier_price_effective_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "supplier_confirmation_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image_permission_status": {
+            "enum": [
+              "Granted",
+              "Not required"
+            ]
+          },
+          "image_evidence_ref": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }
