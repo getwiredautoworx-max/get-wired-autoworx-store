@@ -1172,3 +1172,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - External browser inspection could not load the root/www domain in this tool, so this is **not** evidence that either domain is down. DNS/SSL must be verified with an appropriate direct check or Axxess response; no DNS change made.
 - Evidence and mapping warnings have been recorded on issue #29: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/29
 - PR #31 CI succeeded on schema run 38724025040 and public-SKU audit run 38724025045. It remains draft/open and depends on PR #28's feature branch. No merge/deploy made.
+
+
+## SUPPLIER EVIDENCE RECHECK — 2026-10-15
+
+- Recovered the existing Library artifact `Get_Wired_AutoWorx_Supplier_Price_and_Image_Permission_Request_38_SKUs_2026-10-14.csv` and inspected all rows programmatically.
+- Exact result: 38/38 rows remain “WAITING FOR SUPPLIER RESPONSE”; 0 current supplier costs filled, 0 stock confirmations filled, and 0 image-use permissions filled. All September guide values expired 2026-09-30 and must remain historical-only.
+- SKU list remains in the existing register; no second tracker was created. No supplier response or permission is evidenced, and no public price/image should be updated based on this register alone.
+- External dependency: an authorized owner must send the request to the supplier and record the written response/contact reference. This is a genuine blocker that cannot be resolved by code changes alone.
