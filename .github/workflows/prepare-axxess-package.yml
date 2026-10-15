@@ -27,6 +27,28 @@ on:
       - 'assets/category-tree.json'
       - 'assets/products_webp/**'
       - '.github/workflows/prepare-axxess-package.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'store.html'
+      - 'index-new.html'
+      - 'product.html'
+      - 'products.html'
+      - 'checkout.html'
+      - 'checkout-v2.html'
+      - 'category.html'
+      - 'returns-refunds.html'
+      - 'terms-and-conditions.html'
+      - 'product-details.js'
+      - 'category-navigation.js'
+      - 'assets/gw-logo.png'
+      - 'assets/product-image-fallback.js'
+      - 'assets/category-cleanup.js'
+      - 'assets/progressive-store-enhancements.js'
+      - 'assets/product-placeholder.svg'
+      - 'assets/category-tree.json'
+      - 'assets/products_webp/**'
+      - '.github/workflows/prepare-axxess-package.yml'
   workflow_dispatch:
 permissions:
   contents: read
