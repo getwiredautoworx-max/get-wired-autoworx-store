@@ -689,3 +689,22 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Next: query products in bounded batches with their current category and source metadata, then create a complete SKU-level candidate map and explicit ambiguity report. Do not move products or toggle root active flags during export/review.
 - [ ] Compare the live data against the generated `assets/category-tree.json` and storefront hard-coded root IDs; only then prepare a controlled code/data change.
 - [x] No database writes or product/category mutations occurred in these recounts; no deployment/upload triggered.
+
+
+## CONTINUATION UPDATE — 2026-10-16 (GitHub staging only)
+
+### Verified completed
+- Corrected Axxess package workflow committed as `a7bca3313d6a627cb4babfb45810ef44945c115b`. Package run #36 succeeded: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38930623179
+- Screenshot QA run #30 succeeded on the same candidate: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38930623116
+- Fresh package artifact ID `12058238797`, generated 2026-10-16, expires 2026-10-30. Its report verifies 4,121 payload files, 4,101 local WebP product images, required customer-facing routes included, archive integrity and root-level extraction. Inner ZIP SHA-256: `eb75c7e5960ce28a7babbdcb8c19f5edce8bc9002421645769336bf615cfb9f3`. It has NOT been uploaded to Axxess.
+- Screenshot QA report checked at desktop 1440px, mobile 390px and small mobile 320px: no horizontal document overflow and no page errors at those viewports; eight sampled product images loaded per viewport. QA still flags a small badge element extending beyond the viewport edge (desktop/mobile), so this is not full visual sign-off.
+- QA screenshots show the current bright-background storefront, 3-column desktop category layout, 8 product cards, but the hero remains too tall for the requested compact style. The screenshot captures existing content; automated smoke tests do not prove payment gateways, catalog mapping quality, or full checkout success.
+
+### Latest staging change
+- Commit `f580c662bd3b45fd3f04c99b67c524ec36a76f43` on `qa/desktop-mobile-screenshots-2026-10-15`: added responsive CSS to reduce hero height and tighten title, buttons, and rating block while preserving existing storefront logic. This is a staging-only change; its new screenshot/package workflows must complete and the updated screenshot must be inspected before further design sign-off.
+- Next action: check Actions triggered by `f580c662bd3b45fd3f04c99b67c524ec36a76f43`, inspect the new desktop/mobile screenshots and QA report, fix any remaining overflow/badge issue, then compare the actual rendered layout against the user's reference mockup. Do not deploy to Axxess until the user approves the build.
+
+### Release discipline reaffirmed
+- Build and test in GitHub staging; keep the live Axxess site untouched until explicit user approval.
+- Do not call a package production-ready solely because packaging or screenshot workflows pass. Payment gateways, actual staging preview access, category/product mapping, policies, and checkout need separate verification.
+- After material progress, update this handover. Keep the 8 permanent rules above unchanged.
