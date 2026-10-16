@@ -25,8 +25,9 @@ jobs:
         run: |
           set -euo pipefail
           required=(
-            index.html store.html index-new.html product.html checkout-v2.html
-            category.html returns-refunds.html product-details.js category-navigation.js
+            index.html store.html index-new.html product.html products.html
+            checkout.html checkout-v2.html category.html returns-refunds.html
+            terms-and-conditions.html product-details.js category-navigation.js
             TERMS_AND_CONDITIONS.md assets/gw-logo.png assets/product-image-fallback.js
             assets/category-cleanup.js assets/progressive-store-enhancements.js
             assets/product-placeholder.svg assets/category-tree.json
@@ -48,18 +49,18 @@ jobs:
           set -euo pipefail
           rm -rf axxess-upload axxess-storefront-upload.zip
           mkdir -p axxess-upload/assets
-          cp index.html store.html index-new.html product.html checkout-v2.html category.html returns-refunds.html product-details.js category-navigation.js TERMS_AND_CONDITIONS.md axxess-upload/
+          cp index.html store.html index-new.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html product-details.js category-navigation.js TERMS_AND_CONDITIONS.md axxess-upload/
           cp assets/gw-logo.png assets/product-image-fallback.js assets/category-cleanup.js assets/progressive-store-enhancements.js assets/product-placeholder.svg assets/category-tree.json axxess-upload/assets/
           cp -a assets/products_webp axxess-upload/assets/
           cat > axxess-upload/UPLOAD-INSTRUCTIONS.txt <<'EOF'
           GET WIRED AUTOWORX — AXXESS DIRECTADMIN DEPLOYMENT PACKAGE
-          
+
           Candidate package generated from the reviewed staging branch, not main.
           Before extraction, create a backup archive of existing public_html in DirectAdmin.
           Upload this ZIP to public_html and extract directly into public_html, not a nested folder.
-          This package intentionally excludes admin.html, checkout.html, cgi-bin, hosting configuration, repository docs, secrets, and database files. Preserve all existing unrelated files.
+          This package intentionally excludes admin.html, cgi-bin, hosting configuration, repository docs, secrets, and database files. Preserve all existing unrelated files.
           The root index.html redirects to store.html; store.html embeds index-new.html.
-          After extraction verify /, /store.html, /product.html, /category.html, /checkout-v2.html, and /returns-refunds.html.
+          Required root pages: /, /store.html, /index-new.html, /product.html, /products.html, /checkout.html, /checkout-v2.html, /category.html, /returns-refunds.html, and /terms-and-conditions.html.
           This package does not deploy database changes, AI image search credentials, payment settings, or DNS/SSL changes.
           EOF
           find axxess-upload -type f | sort > /tmp/package-files.txt
@@ -68,10 +69,9 @@ jobs:
           (cd axxess-upload && zip -qr ../axxess-storefront-upload.zip .)
           unzip -t axxess-storefront-upload.zip
           unzip -Z1 axxess-storefront-upload.zip > /tmp/zip-files.txt
-          grep -Fxq 'index.html' /tmp/zip-files.txt
-          grep -Fxq 'store.html' /tmp/zip-files.txt
-          grep -Fxq 'index-new.html' /tmp/zip-files.txt
-          grep -Fxq 'assets/category-tree.json' /tmp/zip-files.txt
+          for f in index.html store.html index-new.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html UPLOAD-INSTRUCTIONS.txt assets/category-tree.json; do
+            grep -Fxq "$f" /tmp/zip-files.txt || { echo "MISSING_FROM_ZIP: $f"; exit 1; }
+          done
           if grep -q '^axxess-upload/' /tmp/zip-files.txt; then echo "ERROR: ZIP contains an unwanted nested folder"; exit 1; fi
           if grep -Eqi '(^|/)(admin\.html|\.env|service_role|secrets?)(/|$)' /tmp/zip-files.txt; then echo "ERROR: forbidden admin/secret-like path in package"; exit 1; fi
           {
@@ -84,6 +84,7 @@ jobs:
             echo "ZIP SHA-256:"
             sha256sum axxess-storefront-upload.zip
             echo "Required entry chain: index.html -> store.html -> index-new.html"
+            echo "Required routes included: PASS"
             echo "Archive integrity: PASS"
             echo "Root-level extraction: PASS"
             echo "Production/Axxess upload performed: NO"
