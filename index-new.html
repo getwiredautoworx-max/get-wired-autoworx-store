@@ -620,6 +620,70 @@ body{background:#050505;color:#fff}
  #gwSavedToggle{position:absolute!important;right:10px!important;top:108px!important;margin:0!important;padding:5px 6px!important;font-size:9px!important;white-space:nowrap}
  .hero{margin-top:36px!important}
 }
+
+/* 2026-10-16 owner-directed reference alignment: clean light storefront, compact hero,
+   three-column desktop category grid; retain existing store interactions. */
+:root{--bg:#eef3f8;--panel:#fff;--blue:#087fe0;--red:#e31b32;--white:#152b40;--muted:#60758a;--line:#d3e0ea}
+html,body{background:#eef3f8!important;color:#152b40!important}
+.top{background:#102b45!important;color:#fff!important;border:0!important}
+.header{background:rgba(255,255,255,.98)!important;border-bottom:1px solid #d5e0ea!important}
+.logo{filter:none!important}
+.search input{background:#f7fafd!important;color:#17324a!important;border-color:#168ee8!important;box-shadow:none!important}
+.nav{background:#102b45!important;border-color:#173e5d!important}
+.nav a{color:#fff!important}
+.hero{margin-top:12px!important}
+.heroCard{min-height:250px!important;border:1px solid #c9dce9!important;border-radius:14px!important;background:linear-gradient(100deg,rgba(255,255,255,.97),rgba(245,249,253,.9))!important;box-shadow:0 8px 24px rgba(23,55,83,.10)!important}
+.heroText{padding:24px 28px!important;max-width:760px!important}
+.heroText h1{font-size:clamp(26px,3vw,40px)!important;color:#152b40!important;text-shadow:none!important}
+.heroText p{color:#42576b!important}
+.since{background:#e31b32!important;border:0!important}
+.ratingbox{background:#fff!important;border:1px solid #d3e0ea!important;box-shadow:0 4px 14px rgba(23,55,83,.1)!important}
+.features{margin-top:12px!important}
+.feature,.service,.product{background:#fff!important;border-color:#d3e0ea!important;box-shadow:0 5px 18px rgba(23,55,83,.07)!important}
+.sectionTitle h2{color:#17324a!important;text-shadow:none!important}
+.cats{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+.catWrap{background:#fff!important;border:1px solid #d3e0ea!important;box-shadow:0 7px 20px rgba(23,55,83,.09)!important;border-radius:12px!important}
+.catImage{background:#f1f5f9!important;border-bottom:1px solid #dce7ef!important;height:140px!important}
+.catImage img{object-fit:contain!important;mix-blend-mode:multiply}
+.catContent{padding:12px 13px!important}
+.catContent b{font-size:15px!important;color:#17324a!important}
+.catContent small{color:#71869a!important}
+.children{background:#f8fbfd!important;border-color:#d8e4ed!important}
+.child{color:#29465f!important;border-color:#dce7ef!important}
+.products{gap:14px!important}
+.prodImg,.detailImg{background:#f3f7fa!important}
+.shopControls select,.shopControls button{background:#fff!important;color:#17324a!important;border-color:#b9cfdf!important}
+.cartPanel,.modalBox{background:#fff!important;color:#162c41!important;border-color:#168ee8!important}
+.cartRow{border-color:#d8e4ed!important}
+.closeCart,.modalClose{color:#17324a!important}
+.infoBlock,.miniProduct,.vehicleFinder,.sourcePart{background:#f7fafc!important;border-color:#d7e3ec!important;color:#17324a!important}
+.vehicleFields select,.sourceGrid select,.sourceGrid input,.sourceGrid textarea{background:#fff!important;color:#17324a!important;border-color:#b9cfdf!important}
+.footer{background:#eef3f8!important;border-top:1px solid #d5e0ea!important;color:#536b80!important}
+.mobileNav{background:#fff!important;border-top:1px solid #c9dce9!important}
+.mobileNav a{color:#17324a!important}
+.mobileNav a b{color:#087fe0!important}
+.mobileBuyBar{background:#fff!important;border-color:#b8d4e8!important}
+@media(max-width:900px){
+ .heroCard{min-height:245px!important}
+ .heroText{padding:22px 18px!important}
+ .heroText h1{font-size:clamp(25px,5vw,34px)!important}
+ .cats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .catImage{height:120px!important}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .product h3,.product .name{font-size:13px!important}
+ .product .price{font-size:16px!important}
+ .product button{font-size:12px!important}
+}
+@media(max-width:480px){
+ .heroCard{min-height:255px!important;border-radius:10px!important}
+ .heroText{padding:78px 14px 16px!important}
+ .heroText h1{font-size:25px!important}
+ .heroText p{font-size:13px!important}
+ .catImage{height:105px!important}
+ .catContent{padding:9px!important}
+ .catContent b{font-size:12px!important}
+ .sectionTitle h2{font-size:16px!important}
+}
 </style>
 <style id="gw-storefront-quality-pass">
 /* Staging visual quality pass: brighter, cleaner retail layout; preserve existing functionality. */
