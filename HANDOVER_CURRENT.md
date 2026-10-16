@@ -1639,3 +1639,31 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 
 ### Status at handover
 **LIVE DOMAIN BLOCKED — NXDOMAIN reported for apex and www.** Immediate next step is to inspect registered nameserver delegation and authoritative DNS evidence. After DNS is restored, separately fix the undersized `index-new.html` deployment and validate the actual live storefront. Keep the owner-facing response concise and factual; never claim resolution without live verification.
+
+
+## EXECUTION CHECKPOINT — WINDOWS 7 USB TETHERING DATA DIAGNOSIS — 2026-10-16
+
+### User setup and goal
+- User is using a Windows 7 Service Pack 1 PC, Google Chrome, and USB tethering from an Android phone.
+- User reports mobile data usage is high but does not know when/which app consumes it.
+- Goal: diagnose the traffic source and reduce mobile-data use without installing diagnostic software or wasting data. The PC is being used to continue Get Wired AutoWorx store work.
+
+### Guidance already given
+1. Open Resource Monitor with **Win + R → `resmon` → Enter**, then select the **Network** tab.
+2. Inspect **Processes with Network Activity** and **Network Activity**; note process names and Send/Receive/Total bytes per second. Observe with Chrome closed and tethering active for about 3 minutes, then compare with Chrome open and one simple page loaded for about 3 minutes.
+3. Chrome-specific checks: close unused tabs; inspect Chrome Task Manager with **Shift + Esc** if supported; review extensions at `chrome://extensions/`; do not download a new browser installer over mobile data.
+4. Windows Update was suggested to be paused/temporarily set to “Never check for updates” while diagnosing; note Windows 7 is unsupported by ordinary security updates, so this should not be presented as a permanent security solution.
+5. BITS was identified as a possible background download service, but the user was explicitly told **not to disable it yet**; first inspect traffic and current service settings. BITS can be required by Windows/other software.
+6. Close unneeded sync/streaming/download apps. No changes to Windows services or PC settings have been confirmed as performed.
+
+### Exact resume point
+- Ask user to perform Resource Monitor check and send a screenshot of the **Network** tab, or type the process names shown under **Processes with Network Activity**.
+- Use the evidence to identify the next specific process/app to investigate. Do not assume `svchost.exe`, Chrome, or another process is the culprit based only on its name; `resmon` shows current traffic, not historical total usage.
+- If traffic persists with Chrome closed, investigate Windows services and other background apps. If it rises with Chrome open, inspect tabs/extensions and page activity.
+- Do not recommend extra diagnostic downloads until built-in checks are exhausted. Do not blindly disable services.
+
+### Store project context
+- This is a separate troubleshooting thread and does **not** resolve the existing Get Wired AutoWorx production blocker.
+- Store handover checkpoint remains: both `https://www.getwiredauto.co.za` and `https://getwiredauto.co.za` were reported as `DNS_PROBE_FINISHED_NXDOMAIN`. The next store action is to obtain registered nameservers from Axxess domain management and compare against the active DNS provider; no blind DNS edits.
+- No DNS, SSL, Axxess production files, Supabase, payment settings, or Windows service changes were made by this checkpoint.
+- Continue to use Axxess as the primary hosting workflow; do not trigger redundant builds or repeat large ZIP downloads without a verified need.
