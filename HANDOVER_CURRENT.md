@@ -1548,3 +1548,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 ### Current artifact retrieval
 - GitHub workflow artifact ID: `11996609185`; workflow run: `38783784643`.
 - The artifact was re-downloaded and integrity-tested in this session; do not rebuild again unless the source/package changes or a test fails.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-16 10:48 SAST — reference-layout correction staged
+
+- Owner reports the previously verified Axxess ZIP has now been uploaded. The earlier handover's “NOT UPLOADED” statement is historical; live upload success and current deployed files still require live route/version checks. The web lookup tool could not access either `https://getwiredauto.co.za` or `https://www.getwiredauto.co.za` in this session, so no live pass is claimed.
+- Inspected `index-new.html` on `qa/desktop-mobile-screenshots-2026-10-15`. Found a concrete cascade conflict: an earlier bright-theme block existed but the later 2026-10-15 CSS reset the page to near-black, and forced the category grid to four columns on mobile. The body did not activate a bright-theme class. This explains why the staged design could diverge from the requested brighter/compact reference.
+- Applied a staging-only CSS override in commit `c592c1d3c5f8383d04af252d371a2a593d00bdc8` on branch `qa/desktop-mobile-screenshots-2026-10-15`. It restores a light background and white cards with blue/red accents, reduces desktop hero height to 250px, sets the desktop category grid to three columns, and uses two columns on mobile. Existing category loader and page scripts were retained.
+- Post-commit source assertions passed: bright background, compact hero, desktop 3-column category grid, mobile 2-column category grid, category loader, request/part-search text checks, closing style/script tags. These are static source checks only—not browser screenshot QA or proof the change is on Axxess.
+- **Not done:** no Axxess/DirectAdmin file transfer, no live-site changes, no Supabase/SQL/catalogue writes, no DNS/SSL changes, no payment changes, and no merge to main. No fresh screenshot QA has yet been run on this exact commit. Do not upload this branch/package until desktop/mobile screenshots and interaction regression tests pass and the owner-approved visual match is confirmed.
+- Next action: run desktop/mobile screenshot QA against exact commit `c592c1d3c5f8383d04af252d371a2a593d00bdc8`; inspect the actual rendered result against the supplied reference; then package once from the approved candidate. Preserve the existing Axxess installation and current `public_html` backup/rollback state.
