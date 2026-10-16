@@ -1614,3 +1614,28 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Domain fix remains BLOCKED on confirming/editing live Axxess DNS/origin mapping and then validating both URLs.
 - The user expects each task to leave a directly testable store and expects concise factual progress; do not claim a live fix until tested.
 
+
+
+## EXECUTION CHECKPOINT — DOMAIN NXDOMAIN / RESUME HERE — 2026-10-16
+
+### Owner-reported current failure
+- Owner reports both `https://www.getwiredauto.co.za` and `https://getwiredauto.co.za` return browser error `DNS_PROBE_FINISHED_NXDOMAIN` (“site can’t be reached”).
+- This means the browser's DNS lookup failed; it does **not** by itself establish whether the cause is registrar status, delegation/nameservers, authoritative DNS records, DNSSEC, or a resolver/cache issue. Do not label this a storefront-code defect.
+- Previously owner-supplied DNS zone values were: apex A `getwiredauto.co.za → 156.155.252.98`; www CNAME `www.getwiredauto.co.za → getwiredauto.co.za`; TTLs 14400 and 3600 respectively. The owner previously reported Google DNS showing this CNAME chain and A record. These are historical observations, not a fresh confirmation of current public DNS after the latest NXDOMAIN report.
+- Previous Axxess DirectAdmin SSL screen showed a valid certificate for apex/mail/ftp and `www` listed under a pending certificate; owner pressed “Provision now” and received “Certificate provisioning triggered successfully.” That message confirmed initiation only, not certificate issuance.
+- Axxess domain list showed `getwiredauto.co.za` as the default hosted domain. No domain-pointer/alias option was visible in the owner's screenshots. Email-related DNS records should be preserved.
+
+### Next action — resume at DNS delegation, do not repeat uploads
+1. Owner to provide a screenshot or exact text of the domain's **registered nameservers** in the Axxess client/domain management area (registrar/delegation settings), not only the DNS zone records inside DirectAdmin.
+2. Compare registered nameservers against the nameservers assigned by the active DNS provider; then query authoritative NS/SOA/A/CNAME and DNSSEC/DS status. If delegation is incorrect, correct it only to provider-confirmed nameservers. If delegation is correct, diagnose authoritative records/DNSSEC and propagation from evidence. Do not guess nameservers or make blind DNS edits.
+3. Once both names resolve, verify HTTPS certificate issuance for apex and www, then confirm which Axxess document root/origin each hostname serves. Only after www serves the newest approved store should apex be configured for a server-side permanent redirect to www. Do not create the redirect first.
+4. Preserve MX/SPF/DKIM/DMARC and all unrelated records. Do not delete/recreate the zone, alter storefront files, rebuild/re-upload a ZIP, or change Supabase/payments to troubleshoot NXDOMAIN.
+
+### Store package/file finding retained separately
+- Earlier Axxess File Manager inspection showed `public_html/index-new.html` was only **9 bytes** (modified 2026-10-07), while `store.html` was about **3.24 KB** (modified 2026-10-15). The approved branch's `index-new.html` was approximately 98,331 characters. This is a separate likely deployment-file defect, but it cannot explain a DNS NXDOMAIN response and must be addressed only after DNS resolution is restored.
+- Existing successful package build run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38799627857 ; artifact ID `12002594503`, artifact name `axxess-storefront-upload`, SHA-256 `37a27160db56154c836607dbd12b3b6ce3ed012ca6c317a3f6139c25eeafaca1`, created 2026-10-15 20:09 UTC, expires 2026-10-29 20:09 UTC. It is a build artifact, **not evidence of Axxess upload**. Reuse only after confirming it is still the intended package/source version; do not trigger redundant builds.
+- Existing draft PR #44: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/44
+- Handover update does not mean DNS or production was changed. No DNS, SSL, Axxess files, database, or payment settings were changed by this checkpoint.
+
+### Status at handover
+**LIVE DOMAIN BLOCKED — NXDOMAIN reported for apex and www.** Immediate next step is to inspect registered nameserver delegation and authoritative DNS evidence. After DNS is restored, separately fix the undersized `index-new.html` deployment and validate the actual live storefront. Keep the owner-facing response concise and factual; never claim resolution without live verification.
