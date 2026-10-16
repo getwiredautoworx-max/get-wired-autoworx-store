@@ -30,6 +30,8 @@ on:
     paths:
       - '.github/workflows/prepare-axxess-package.yml'
       - 'index-new.html'
+      - 'index.html'
+      - 'store.html'
       - 'staging/trigger-axxess-package-build.md'
   workflow_dispatch:
 permissions:

@@ -1548,3 +1548,122 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 ### Current artifact retrieval
 - GitHub workflow artifact ID: `11996609185`; workflow run: `38783784643`.
 - The artifact was re-downloaded and integrity-tested in this session; do not rebuild again unless the source/package changes or a test fails.
+
+
+## 2026-10-15 — Supplied category mockup implementation branch
+- User's reference image was located in Library: **Automotive and Outdoor Essentials Catalogue.png** (3×3 image-led category layout, dark navy/red category cards on a light canvas, five image thumbnails per category, compact hero/banner).
+- Created branch `design/exact-category-mockup-2026-10-15` from main commit `c8cdadcc37b23e2e9f3d29469f0bad7f386f39ee` and updated `index-new.html` in commit `243f2d0a0b100ee8b21eb29c56f3e6ea0dd97c62`.
+- Changes: light page background, reduced hero height, white/light feature panels, dark navy category cards with red CTA, 3-column desktop grid, image-led subcategory thumbnails using product images from the matching category tree, responsive 2-column/mobile layouts, preserved the existing nine-category ID mapping including 4x4 Outdoor.
+- Automated source sanity checks: doctype=PASS; styleClosed=PASS; referenceCss=PASS; heroCompact=PASS; threeByThreeGrid=PASS; subcategoryImages=PASS; nineCategoryIds=const HOME_CATEGORY_IDS=['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79','182423ec-ea46-43e4-bbe3-b8857b5a1583']; mobileRules=PASS.
+- **Not yet production/live:** no Axxess upload or live visual check performed; no main-branch merge. Next gate is render/browser QA at desktop and mobile widths, then package generation and one protected Axxess update. Preserve `admin.html`, existing backups and unrelated host files. Do not claim this design is live until verified.
+
+
+## 2026-10-15 — Reference-layout mobile correction and package revalidation
+- Continued the existing draft PR #44 (https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/44); did not create a second build branch or touch production.
+- Found a conflicting final mobile CSS override: at widths up to 560px it forced the homepage category grid to one column, despite the intended responsive two-column mobile layout. Corrected only that final override in `index-new.html` to use two equal columns with a 10px gap. Commit: `9bf3686744016e47b54cf647ad21164aea70c438`.
+- Re-ran the existing GitHub Actions validation on the corrected commit. Storefront Smoke Test run #750 (`38798689752`) completed SUCCESS; it runs Playwright at 390×844 and exercises embedded homepage category rendering, standalone category navigation, and verified-price checkout gates. Public SKU Exposure Audit run `38798689248` completed SUCCESS.
+- Rebuilt the Axxess artifact from the same corrected commit: Prepare Axxess upload package run `38798689149` completed SUCCESS. Artifact ID `12003880888`, archive size 110,921,584 bytes, SHA-256 `d45734b575caac154969952c09cecf55d07ca43fe6e5c4d1a40d706770e6cb00`, expires 2026-10-29. This artifact is newer than the earlier mockup package and must be the only package considered for the eventual controlled upload.
+- Remaining release gates: no desktop screenshot/render evidence is attached to this smoke run; it is not a pixel-by-pixel visual sign-off against the supplied reference. My current direct connection attempts could not resolve `www.getwiredauto.co.za` or `getwiredauto.co.za`, so current live Axxess files/routes cannot be established from this execution. This DNS lookup failure in the tool environment is not proof the public domain is down.
+- No merge, Axxess upload, production database change, DNS change, or payment setting change was made. Preserve existing `admin.html`, `cgi-bin/`, backups and unrelated host files. Continue with desktop/mobile visual comparison and exact live-host verification before one controlled deployment; do not ask the owner to create another ZIP.
+
+
+## 2026-10-15 — Canonical www URL routing added to the test branch
+- Owner requirement: `https://www.getwiredauto.co.za` must be the sole storefront URL; requests to `https://getwiredauto.co.za` should redirect to the matching www URL, retaining the requested path, query and hash. The older www version must be retired by moving the www hostname to the current Axxess storefront; this cannot be accomplished by a GitHub-only commit if DNS/hosting currently sends www to another server.
+- Added an early canonical-host redirect script to root `index.html` and `store.html` on `design/exact-category-mockup-2026-10-15`. The apex-host visitor is sent to `https://www.getwiredauto.co.za` with the same path/query/hash. Commits: `4ee5789c2d5074bcc752f70161a1401a73e3e0c7` and `5942fd13d804285f223742009170d1b5e0ecf653`.
+- Updated `.github/workflows/prepare-axxess-package.yml` PR path filters so changes to root `index.html` and `store.html` trigger a fresh testable Axxess package. Commit: `172d371bc934129370b7f859b2b47d2581cfffa8`.
+- Important limitation: this is client-side canonical redirection, not a server-level 301. It takes effect only once the updated entry files are served at the apex hostname. It cannot change DNS or remove the old www deployment. For a clean permanent result, the www DNS/hosting mapping must point to the current Axxess deployment and the apex should use a server-side 301 where supported. Do not overwrite an existing Axxess `.htaccess` without inspecting it first.
+- Latest changes are isolated to the existing draft PR #44; production/main and Axxess have not been changed. Keep the current build testable through the PR's smoke-test and package workflows; do not call the live-domain issue resolved until both hosts are tested after the routing change.
+
+## 2026-10-15 — Domain version mismatch / handover checkpoint
+
+### Owner's exact intended result
+- `https://www.getwiredauto.co.za` must serve the newest approved Get Wired AutoWorx storefront.
+- `https://getwiredauto.co.za` must permanently redirect to the matching `https://www.getwiredauto.co.za` URL, preserving path/query/hash where applicable.
+- The old storefront must no longer be served on `www`.
+
+### Current observed state (owner-reported)
+- `https://www.getwiredauto.co.za` currently serves the OLD store.
+- `https://getwiredauto.co.za` currently serves the NEWEST store, but this is the non-canonical URL.
+- This is a host-routing/DNS/origin mismatch, not merely a front-end redirect problem. Redirecting apex to www before www points at the new store would send customers to the old store and is therefore unsafe.
+
+### Repository changes already present on design branch
+- Branch: `design/exact-category-mockup-2026-10-15`.
+- Draft PR #44: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/44
+- `index.html` and `store.html` include client-side apex-to-www redirect logic. This alone cannot replace the old version served by a separate www origin and is not a substitute for server-side 301.
+- `CNAME` in main contains `www.getwiredauto.co.za`; this is a GitHub Pages configuration artifact and does not by itself prove that www DNS points to the current Axxess installation.
+- Latest automated branch checks recorded as successful: storefront smoke test https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38799627851 ; Axxess package build https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38799627857.
+- Latest successful package is a build artifact only; it has NOT been uploaded to Axxess or verified as the live www website.
+
+### Required fix sequence — DO NOT REVERSE ORDER
+1. In Axxess/domain DNS management, identify the active DNS zone and current apex + www records. Capture current values before editing.
+2. Confirm which origin/docroot serves the newest store on apex and which origin/docroot serves the old store on www. Do not guess from the GitHub CNAME file.
+3. Point `www` to the same intended Axxess origin/docroot that serves the newest store. Remove conflicting www A/AAAA/CNAME records only after the correct target is confirmed. Ensure TLS/SSL certificate covers both apex and www.
+4. Verify `https://www.getwiredauto.co.za` serves the newest store on desktop and mobile, including product/category assets and checkout UI.
+5. ONLY after step 4 passes, configure apex `getwiredauto.co.za` to return a server-side HTTP 301/308 to `https://www.getwiredauto.co.za`, preserving path and query. Prefer hosting-panel redirect or the existing server rules. If editing `.htaccess`, inspect and preserve all existing rules and make a backup first. Candidate Apache rule (not yet applied):
+   ```apache
+   RewriteEngine On
+   RewriteCond %{HTTP_HOST} ^getwiredauto\.co\.za$ [NC]
+   RewriteRule ^(.*)$ https://www.getwiredauto.co.za/$1 [R=301,L,NE]
+   ```
+6. Verify with fresh requests/browser tests: www serves newest store; apex responds with redirect to the matching www path; no redirect loop; HTTPS certificate valid; no old content on either host. Record status codes and test timestamps.
+
+### State at checkpoint
+- No DNS records changed.
+- No Axxess production files or `.htaccess` changed.
+- No old files deleted.
+- Domain fix remains BLOCKED on confirming/editing live Axxess DNS/origin mapping and then validating both URLs.
+- The user expects each task to leave a directly testable store and expects concise factual progress; do not claim a live fix until tested.
+
+
+
+## EXECUTION CHECKPOINT — DOMAIN NXDOMAIN / RESUME HERE — 2026-10-16
+
+### Owner-reported current failure
+- Owner reports both `https://www.getwiredauto.co.za` and `https://getwiredauto.co.za` return browser error `DNS_PROBE_FINISHED_NXDOMAIN` (“site can’t be reached”).
+- This means the browser's DNS lookup failed; it does **not** by itself establish whether the cause is registrar status, delegation/nameservers, authoritative DNS records, DNSSEC, or a resolver/cache issue. Do not label this a storefront-code defect.
+- Previously owner-supplied DNS zone values were: apex A `getwiredauto.co.za → 156.155.252.98`; www CNAME `www.getwiredauto.co.za → getwiredauto.co.za`; TTLs 14400 and 3600 respectively. The owner previously reported Google DNS showing this CNAME chain and A record. These are historical observations, not a fresh confirmation of current public DNS after the latest NXDOMAIN report.
+- Previous Axxess DirectAdmin SSL screen showed a valid certificate for apex/mail/ftp and `www` listed under a pending certificate; owner pressed “Provision now” and received “Certificate provisioning triggered successfully.” That message confirmed initiation only, not certificate issuance.
+- Axxess domain list showed `getwiredauto.co.za` as the default hosted domain. No domain-pointer/alias option was visible in the owner's screenshots. Email-related DNS records should be preserved.
+
+### Next action — resume at DNS delegation, do not repeat uploads
+1. Owner to provide a screenshot or exact text of the domain's **registered nameservers** in the Axxess client/domain management area (registrar/delegation settings), not only the DNS zone records inside DirectAdmin.
+2. Compare registered nameservers against the nameservers assigned by the active DNS provider; then query authoritative NS/SOA/A/CNAME and DNSSEC/DS status. If delegation is incorrect, correct it only to provider-confirmed nameservers. If delegation is correct, diagnose authoritative records/DNSSEC and propagation from evidence. Do not guess nameservers or make blind DNS edits.
+3. Once both names resolve, verify HTTPS certificate issuance for apex and www, then confirm which Axxess document root/origin each hostname serves. Only after www serves the newest approved store should apex be configured for a server-side permanent redirect to www. Do not create the redirect first.
+4. Preserve MX/SPF/DKIM/DMARC and all unrelated records. Do not delete/recreate the zone, alter storefront files, rebuild/re-upload a ZIP, or change Supabase/payments to troubleshoot NXDOMAIN.
+
+### Store package/file finding retained separately
+- Earlier Axxess File Manager inspection showed `public_html/index-new.html` was only **9 bytes** (modified 2026-10-07), while `store.html` was about **3.24 KB** (modified 2026-10-15). The approved branch's `index-new.html` was approximately 98,331 characters. This is a separate likely deployment-file defect, but it cannot explain a DNS NXDOMAIN response and must be addressed only after DNS resolution is restored.
+- Existing successful package build run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38799627857 ; artifact ID `12002594503`, artifact name `axxess-storefront-upload`, SHA-256 `37a27160db56154c836607dbd12b3b6ce3ed012ca6c317a3f6139c25eeafaca1`, created 2026-10-15 20:09 UTC, expires 2026-10-29 20:09 UTC. It is a build artifact, **not evidence of Axxess upload**. Reuse only after confirming it is still the intended package/source version; do not trigger redundant builds.
+- Existing draft PR #44: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/44
+- Handover update does not mean DNS or production was changed. No DNS, SSL, Axxess files, database, or payment settings were changed by this checkpoint.
+
+### Status at handover
+**LIVE DOMAIN BLOCKED — NXDOMAIN reported for apex and www.** Immediate next step is to inspect registered nameserver delegation and authoritative DNS evidence. After DNS is restored, separately fix the undersized `index-new.html` deployment and validate the actual live storefront. Keep the owner-facing response concise and factual; never claim resolution without live verification.
+
+
+## EXECUTION CHECKPOINT — WINDOWS 7 USB TETHERING DATA DIAGNOSIS — 2026-10-16
+
+### User setup and goal
+- User is using a Windows 7 Service Pack 1 PC, Google Chrome, and USB tethering from an Android phone.
+- User reports mobile data usage is high but does not know when/which app consumes it.
+- Goal: diagnose the traffic source and reduce mobile-data use without installing diagnostic software or wasting data. The PC is being used to continue Get Wired AutoWorx store work.
+
+### Guidance already given
+1. Open Resource Monitor with **Win + R → `resmon` → Enter**, then select the **Network** tab.
+2. Inspect **Processes with Network Activity** and **Network Activity**; note process names and Send/Receive/Total bytes per second. Observe with Chrome closed and tethering active for about 3 minutes, then compare with Chrome open and one simple page loaded for about 3 minutes.
+3. Chrome-specific checks: close unused tabs; inspect Chrome Task Manager with **Shift + Esc** if supported; review extensions at `chrome://extensions/`; do not download a new browser installer over mobile data.
+4. Windows Update was suggested to be paused/temporarily set to “Never check for updates” while diagnosing; note Windows 7 is unsupported by ordinary security updates, so this should not be presented as a permanent security solution.
+5. BITS was identified as a possible background download service, but the user was explicitly told **not to disable it yet**; first inspect traffic and current service settings. BITS can be required by Windows/other software.
+6. Close unneeded sync/streaming/download apps. No changes to Windows services or PC settings have been confirmed as performed.
+
+### Exact resume point
+- Ask user to perform Resource Monitor check and send a screenshot of the **Network** tab, or type the process names shown under **Processes with Network Activity**.
+- Use the evidence to identify the next specific process/app to investigate. Do not assume `svchost.exe`, Chrome, or another process is the culprit based only on its name; `resmon` shows current traffic, not historical total usage.
+- If traffic persists with Chrome closed, investigate Windows services and other background apps. If it rises with Chrome open, inspect tabs/extensions and page activity.
+- Do not recommend extra diagnostic downloads until built-in checks are exhausted. Do not blindly disable services.
+
+### Store project context
+- This is a separate troubleshooting thread and does **not** resolve the existing Get Wired AutoWorx production blocker.
+- Store handover checkpoint remains: both `https://www.getwiredauto.co.za` and `https://getwiredauto.co.za` were reported as `DNS_PROBE_FINISHED_NXDOMAIN`. The next store action is to obtain registered nameservers from Axxess domain management and compare against the active DNS provider; no blind DNS edits.
+- No DNS, SSL, Axxess production files, Supabase, payment settings, or Windows service changes were made by this checkpoint.
+- Continue to use Axxess as the primary hosting workflow; do not trigger redundant builds or repeat large ZIP downloads without a verified need.
