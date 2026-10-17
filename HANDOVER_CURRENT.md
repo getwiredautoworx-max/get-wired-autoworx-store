@@ -1403,3 +1403,17 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - CI workflow run #1 / ID `39016615414` was observed in progress immediately after PR creation. Do not mark tests passed until its final conclusion is retrieved.
 - No production data changed; no products were deactivated; no live Axxess files, storefront, checkout, DNS or payment settings were changed.
 - Next: inspect the CI result, fix any actual failures, then obtain current store inventory and ASC catalogue exports and run the audit. Review the generated patch SKU by SKU. Do not execute the patch automatically or delete product rows.
+
+
+## 2026-10-17 — ASC exact-SKU spot reconciliation (review patch created)
+
+- CI test workflow run #1, ID `39016615414`, completed SUCCESS; synthetic test confirms exact-SKU matching, discontinued vs temporary-stockout handling, and no database writes.
+- A read-only SQL cross-check of exact supplier SKUs surfaced in current ASC public search results found four active store products that match supplier listings explicitly labelled discontinued / will discontinue:
+  - `F1-035` / `GW-D655BEE8` — 12V Electric Fuel Fiat Pressure:3 Bar; ASC title says WILL DISCONTINUE.
+  - `F1-055` / `GW-4A5095DD` — 12V Electric Fuel BMW Pressure:3.5; ASC title says DISCONTINUED NOT VIABLE.
+  - `F9-001-56` / `GW-A16BA2A4` — 410mm Fan Blade Canter 3.5R 97-; ASC title says DISCONTINUED NOT VIABLE.
+  - `T3-8CS` / `GW-CDF8245E` — Tube Plug 8pce Spanner Set Steel; ASC title says DISCONTINUED.
+- Staged review CSV: `staging/asc-cleanup-review-2026-10-17.csv`. Each row includes store SKU, public SKU, store price/stock, supplier listing title/status, evidence URL, and proposed action.
+- Important conflict: supplier pages showed nonzero inventory for these discontinued-labelled products (15, 15, 3 and 113 respectively, according to the search snapshots). Therefore the CSV flags `DEACTIVATE_AFTER_REVIEW`, not an automatic deactivation; supplier should confirm these exact codes before active flags change.
+- PR #49: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/49 remains open and unmerged; it contains the audit script, unit test, CI workflow, documentation, review CSV, and this checkpoint. No Supabase write, product deactivation, Axxess upload, or live-site change has been performed.
+- Full cleanup is not yet complete: the four exact matches are a verified spot sample from public ASC search results, not an exhaustive export-to-export comparison. Next requirement is current full store inventory and current ASC catalogue exports; run the script, review all exact-SKU matches, then prepare one controlled deactivation patch only after supplier status confirmation.
