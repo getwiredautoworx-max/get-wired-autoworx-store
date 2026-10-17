@@ -172,7 +172,7 @@ def main():
         writer.writerows(matches)
     summary = {
         "store_active_rows_read": len(store_rows),
-        "supplier_status_candidate_rows_read": len(asc_rows),
+        "supplier_catalogue_rows_read": len(asc_rows),
         "exact_sku_review_matches": len(matches),
         "discontinued_review_matches": sum(r["recommended_action"] == "DEACTIVATE_AFTER_REVIEW" for r in matches),
         "stockout_review_matches": sum(r["recommended_action"] == "REVIEW_TEMPORARY_STOCKOUT" for r in matches),
