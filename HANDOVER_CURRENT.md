@@ -1491,3 +1491,10 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Added `scripts/test_generate_asc_deactivation_sql.py`; test workflow runs the original CSV audit tests, exact-SKU comparison tests, and SQL generator tests. Workflow run `39018006807` completed SUCCESS after adding the new suite; latest run `39018017608` was still running at this checkpoint.
 - Comparison summary now reports total supplier status candidate SKUs, exact matched/unmatched SKU counts, and review rows. The comparison workflow now reads the full supplier catalogue CSV so it can detect duplicate supplier SKUs even when one duplicate row itself is not flagged.
 - The full optimized crawl `39017755062` is still in progress; it uses the globally paced parallel SKU enrichment. After it completes successfully, update `.github/workflows/asc-compare-store.yml` to point at that run, trigger reconciliation, then use the generated review artifact to finalize the staged CSV and proposed SQL patch. No production writes have been made.
+
+
+## 2026-10-17 — Reconciliation trial and safe SQL default
+
+- Full-catalogue-input reconciliation trial `39017880420` SUCCESS read 4,187 active store rows and 36 supplier rows from the one-page artifact. It found 3 supplier status-candidate SKUs, 1 exact active-store match (`TR414C`), and 2 candidate SKUs not currently present among active store SKUs. The review output correctly recommends `REVIEW_TEMPORARY_STOCKOUT` for the matched tyre-stem item.
+- Comparison workflow now emits both `asc_store_review_patch.csv` and `asc-deactivation-review.sql` in the artifact. The SQL generator was hardened after that trial to default to `ROLLBACK`; it requires manual replacement with `COMMIT` only after supplier/owner verification. Latest test workflow runs on commits `da69ff1ebfe2a2b6f50869ebb0efa316ca0defb5` and later passed SUCCESS after the rollback assertions were corrected.
+- Full optimized catalogue run `39017755062` remained in progress at this checkpoint; the serial predecessor `39017530629` is cancelled. No production changes.
