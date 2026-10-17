@@ -61,8 +61,9 @@ def main():
         ])
     lines.extend([
         f"-- Proposed deactivations: {len(eligible)}",
-        "-- Inspect the affected row count before committing. Remove BEGIN/COMMIT decisions only after owner approval.",
-        "COMMIT;",
+        "-- Default is ROLLBACK. Review every affected row count; replace ROLLBACK with COMMIT only after owner approval.",
+        "-- COMMIT; -- Uncomment only after supplier verification and owner approval.",
+        "ROLLBACK;",
         "",
     ])
     Path(args.output).write_text("\n".join(lines), encoding="utf-8")
