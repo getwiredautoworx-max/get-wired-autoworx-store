@@ -1638,3 +1638,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Browser/package release evidence remains as recorded above: latest candidate commit `feed73568aa527c79fadf97a7731c4c870677822`; browser QA #4 and screenshot QA #40 succeeded; package #71 succeeded and the downloaded ZIP passed integrity/required-file checks. Handover update for those results is commit `caa22b8756b938578ffdb7fe0d3f588b22fc1f8a`.
 - **Production remains untouched:** no order, payment, supplier request, Supabase write, payment setting change, merge, or Axxess upload.
 - Next work: keep the approved ZIP staged; the remaining concrete launch gates are owner visual approval, provider/merchant activation and verified checkout integration, and manual supplier/catalogue image cleanup and rights/price reconciliation. Do not add pretend payment options or use test orders in the live database.
+
+
+## 2026-10-17 — Android APK bootstrap status (separate from storefront release)
+
+- Owner requested continued execution and mandatory handover updates after each material change.
+- Created an isolated Expo Android project under `android-app/`; left the existing root storefront entry point and Axxess deployment untouched. Added app config for package `com.getwired.autoworx`, dark UI, INTERNET/ACCESS_NETWORK_STATE, cleartext traffic; EAS preview profile with `android.buildType: apk`; Expo/React Native/WebView dependencies; cyan/green dark metallic theme constants; NeonCard; and a starter WebView screen loading https://www.getwiredauto.co.za/.
+- Added root workflow `.github/workflows/android-build.yml` for manual dispatch or Android-app changes. Latest workflow commit: `d2dc501631eed958f6bc132d8e14030a52411076`. Detailed file/commit ledger is in HANDOVER.md (commit `2370b791f827f6a9816cdadaf72e7d29e0f089c8`).
+- **Status: NOT BUILT / NOT VERIFIED.** EAS project ID is not linked in `android-app/app.json`; presence of GitHub secret `EXPO_TOKEN` is unverified. These are the current external-account blockers. Do not claim an APK artifact or successful workflow run.
+- Next: from the repository's `android-app/` directory, run `npm install`, `npx eas-cli login`, `npx eas-cli init`; commit the real EAS project ID; add Expo token privately as GitHub Actions secret `EXPO_TOKEN`; run https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/android-build.yml; inspect actual build result; then install/test on Hisense M72 Pro. Never paste tokens into chat or commit secrets.
+- No production storefront, Axxess, Supabase, DNS, catalogue, checkout, or payment settings were changed. Existing customer-store release hold and evidence gates remain unchanged.
