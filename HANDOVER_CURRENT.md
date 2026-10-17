@@ -1978,3 +1978,18 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - PR #54 latest head: `fe73dc828c606c50813fee72d06fdc9d809b9ac8`. Exact-head browser report remains unverified through the connected Actions query.
 - PR #53 latest head: `0115db1d10e160359c32eff3abac1ad9c80c4b86`. Exact-head schema CI result remains unverified through the connected Actions query.
 - No production SQL, Supabase mutation, product deactivation, Axxess upload, DNS change or payment-setting change was performed.
+
+
+## RECONCILIATION ADDENDUM — 2026-10-17 — PR #48 SQL HARDENED
+
+- Updated the original PR #48 branch, not just the consolidated review branch:
+  - PR #48: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/48
+  - Latest head: `d265f29f4b82c9147bb55addf2cd4bc6c7bbb43f`
+  - SQL commit: `0b6e695e96b441209350919d0b04266266073193`
+  - Documentation commit: `d265f29f4b82c9147bb55addf2cd4bc6c7bbb43f`
+- Replaced the unsafe fixed five-SKU deactivation behavior with the same guarded SQL tested in PR #51. All five candidate rows default to `freshly_verified=false` and `owner_approved=false`; `APPLY_CLEANUP=true` alone cannot deactivate any product. Only an exact-SKU row with fresh verification, explicit owner approval, and status `DISCONTINUED` can qualify. The script never changes local stock.
+- Added a superseding reconciliation note to the PR #48 audit document: F1-035 is an inventory hold; F9-001-56 and T3-8CS have conflicting claims; WG-007 requires written supplier confirmation despite the earlier snapshot's discontinuation note. The earlier page table is now clearly historical evidence, not current availability proof.
+- The same SQL contents passed the 3 new safety tests as part of PR #51 workflow run #85 (run ID `39020733657`); full ASC suite passed 8/8. PR #48 itself remains open/draft and the SQL has not been executed.
+- PR #53 has been retargeted back to `feature/docs-schema-pack` to preserve the intended review context for PRs #28/#31. Its latest head is `0115db1d10e160359c32eff3abac1ad9c80c4b86`; no terminal schema CI result is available from the connected Actions query.
+- PR #54 latest UI head remains `fe73dc828c606c50813fee72d06fdc9d809b9ac8`; browser workflow/report still not retrievable via the connected Actions query. Do not mark browser acceptance complete.
+- Axxess remains untouched. No database SQL was run and no products were deactivated.
