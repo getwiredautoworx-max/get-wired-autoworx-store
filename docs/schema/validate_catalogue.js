@@ -14,6 +14,8 @@ const categories = new Set([
 ]);
 const statuses = new Set(['Approved', 'Pending', 'Rejected', 'Hold']);
 const permissionStatuses = new Set(['Granted', 'Not required', 'Pending', 'Denied', 'Unknown']);
+// Explicit project quote-only supplier SKUs: never allow a customer price or public activation.
+const QUOTE_ONLY_BLOCKLIST = new Set(['M501WCC', 'A1-002', 'A1-003', 'MA330', 'MA342', 'MA342/2', 'N-FC001', 'WP25', 'N-CP002']);
 const requiredHeaders = [
   'supplier_sku', 'public_sku', 'product_name', 'storefront_category',
   'supplier_cost_ex_vat', 'customer_price', 'quote_only', 'is_active',
@@ -134,6 +136,11 @@ function validate(record, source, seen) {
   if (d.quote_only === 'true') {
     if (d.is_active === 'true') errors.push(at + ': quote-only rows must remain inactive');
     if (price !== null) errors.push(at + ': quote-only customer_price must be blank');
+  }
+  if (QUOTE_ONLY_BLOCKLIST.has(d.supplier_sku.trim().toUpperCase())) {
+    if (d.quote_only !== 'true') errors.push(at + ': supplier SKU is on the quote-only blocklist and must be quote_only=true');
+    if (d.is_active !== 'false') errors.push(at + ': supplier SKU is on the quote-only blocklist and must remain inactive');
+    if (price !== null) errors.push(at + ': supplier SKU is on the quote-only blocklist and customer_price must be blank');
   }
   if (seen) {
     for (const h of ['supplier_sku', 'public_sku']) {
