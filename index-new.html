@@ -368,7 +368,8 @@ pointer-events:none}
 .service{padding:9px;font-size:12px}
 .footer{margin-top:18px;padding:16px 14px 88px}
 .foot{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:14px;font-size:12px}
-.mobileNav{display:flex;position:fixed;z-index:80;bottom:0;left:0;right:0;justify-content:space-around;background:rgba(2,5,11,.98);border-top:1px solid #174b70;padding:8px 2px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.45)}
+.mobileNav{display:none;position:fixed;z-index:80;bottom:0;left:0;right:0;justify-content:space-around;background:rgba(2,5,11,.98);border-top:1px solid #174b70;padding:8px 2px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.45)}
+@media(max-width:900px){.mobileNav{display:flex}}
 .mobileNav a{flex:1;color:#f4f7fb;font-size:10px;font-weight:700;text-align:center}
 .mobileNav b{font-size:23px;line-height:1.2;color:#fff}
 .mobileNav a:first-child,.mobileNav a.active{color:#ff173b}
