@@ -1498,3 +1498,10 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Full-catalogue-input reconciliation trial `39017880420` SUCCESS read 4,187 active store rows and 36 supplier rows from the one-page artifact. It found 3 supplier status-candidate SKUs, 1 exact active-store match (`TR414C`), and 2 candidate SKUs not currently present among active store SKUs. The review output correctly recommends `REVIEW_TEMPORARY_STOCKOUT` for the matched tyre-stem item.
 - Comparison workflow now emits both `asc_store_review_patch.csv` and `asc-deactivation-review.sql` in the artifact. The SQL generator was hardened after that trial to default to `ROLLBACK`; it requires manual replacement with `COMMIT` only after supplier/owner verification. Latest test workflow runs on commits `da69ff1ebfe2a2b6f50869ebb0efa316ca0defb5` and later passed SUCCESS after the rollback assertions were corrected.
 - Full optimized catalogue run `39017755062` remained in progress at this checkpoint; the serial predecessor `39017530629` is cancelled. No production changes.
+
+
+## 2026-10-17 — Full-crawl performance adjustment
+
+- The first full crawl `39017755062` had remained in progress for several minutes without completing; to reduce the risk of hitting the 60-minute timeout, increased bounded SKU-detail concurrency from 6 to 10 while preserving the global minimum 0.8-second request start spacing and 12-second detail timeout.
+- Started optimized full crawl `39018245685` with the updated script. A GitHub REST cancellation request for the prior six-worker crawl returned HTTP 202; its status had not yet transitioned from `in_progress` at the time of this note, so both run states must be checked before assuming cancellation completed.
+- Latest audit/reconciliation/SQL-generator unit tests passed. Production Supabase and Axxess remain unchanged.
