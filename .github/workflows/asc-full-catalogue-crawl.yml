@@ -18,6 +18,7 @@ on:
       - ".github/workflows/asc-full-catalogue-crawl.yml"
 permissions:
   contents: read
+  actions: write
 jobs:
   crawl:
     runs-on: ubuntu-latest
@@ -27,13 +28,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Cancel superseded slow serial crawl
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: gh run cancel 39017530629 --repo "$GH_REPOSITORY" || true
       - name: Install read-only crawler dependencies
         run: python -m pip install --disable-pip-version-check requests beautifulsoup4
       - name: Crawl public ASC catalogue respectfully
         run: >-
           python scripts/crawl_asc_catalogue.py
           --output-dir asc-catalogue-output
-          --max-pages "${{ inputs.max_pages || '1' }}"
+          --max-pages "${{ inputs.max_pages || '0' }}"
           --delay "${{ inputs.delay_seconds || '1.0' }}"
       - name: Upload catalogue CSV and crawl report
         if: always() && hashFiles('asc-catalogue-output/crawl_summary.json') != ''
