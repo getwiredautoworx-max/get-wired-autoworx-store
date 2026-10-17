@@ -2872,3 +2872,12 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 2. Determine why the product-image endpoint requests are incomplete in the QA environment and rerun screenshot QA after a concrete fix; distinguish staging network/environment failures from actual production image failures.
 3. Obtain/export the staging product-image inventory and build the exact-SKU plus licence-evidence manifest. Do not approve any individual replacement without both gates.
 4. Keep all changes on review branches and update this handover with observed results. No Axxess upload or production sync until visual approval and release gates are satisfied.
+
+
+## CONTINUATION LOG — 2026-10-17 14:04 SAST — STAGING CATEGORY TILE CONTRAST PATCH
+
+- Based on manual review of browser QA artifact #36, committed a narrowly scoped CSS override to `index-new.html` on review branch `review/staging-ui-verification-fixes-current`: commit `3745ef21c6ffe6908ac0f482bf7537b8f7271f37`.
+- The patch explicitly styles the original category icon artwork, brightens its background, and enforces readable dark text on white category content panels at desktop and mobile widths. It changes no product image, SKU, price, category ID, checkout behaviour, or production configuration.
+- Exact-head workflow lookup has not yet returned runs for commit `3745ef21c6ffe6908ac0f482bf7537b8f7271f37`; therefore the contrast patch is committed but NOT yet browser-validated. Do not claim the visual defect is fixed until a fresh artifact for this exact commit is reviewed at 1440px, 390px and 320px.
+- Product-image requests in QA #36 were incomplete at screenshot time. Investigate with the next browser report whether this is an expected unauthenticated/staging network limitation or a real image delivery failure; do not call images approved or broken solely from an incomplete capture.
+- Latest handover main update before this entry: `fcfd06e0a89cb184f45e6319de297f177ba2b0f0`. Production remains untouched; PR #54 remains draft/unmerged; release HOLD remains in force.
