@@ -1,0 +1,50 @@
+name: ASC to store read-only reconciliation
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Completed ASC crawl workflow run ID"
+        required: true
+        default: "39017530629"
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download completed ASC crawl artifact
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.source_run_id }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          artifacts_json=$(curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/$GH_REPOSITORY/actions/runs/$RUN_ID/artifacts")
+          artifact_id=$(printf '%s' "$artifacts_json" | jq -r --arg name "asc-catalogue-readonly-$RUN_ID" '.artifacts[] | select(.name == $name and .expired == false) | .id' | head -n 1)
+          test -n "$artifact_id" && test "$artifact_id" != "null" || { echo "Completed ASC crawl artifact not found for run $RUN_ID" >&2; exit 2; }
+          curl -fLsS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/$GH_REPOSITORY/actions/artifacts/$artifact_id/zip" -o /tmp/asc-catalogue.zip
+          mkdir -p source-artifact
+          unzip -q /tmp/asc-catalogue.zip -d source-artifact
+          test -s source-artifact/asc_catalogue_status_candidates.csv
+          cat source-artifact/crawl_summary.json
+      - name: Install read-only comparison dependency
+        run: python -m pip install --disable-pip-version-check requests
+      - name: Exact-SKU match supplier candidates to active store products
+        run: >-
+          python scripts/compare_asc_store_readonly.py
+          --asc source-artifact/asc_catalogue_status_candidates.csv
+          --html-config index-new.html
+          --output-dir asc-store-reconciliation
+      - name: Upload review patch and summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: asc-store-reconciliation-${{ github.run_id }}
+          path: asc-store-reconciliation/
+          retention-days: 7
