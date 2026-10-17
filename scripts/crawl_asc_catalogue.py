@@ -75,7 +75,7 @@ def parse_products(html, page_url):
 
 def detail_sku(session, url):
     """Resolve SKUs omitted from listing cards by checking flagged product detail pages only."""
-    response = session.get(url, timeout=30)
+    response = session.get(url, timeout=12)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
     sku_node = soup.select_one(".product_meta .sku, span.sku, .sku_wrapper .sku")
