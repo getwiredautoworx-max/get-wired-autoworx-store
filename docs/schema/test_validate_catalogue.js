@@ -43,4 +43,9 @@ assert(validate({ rowNumber: 3, data: { ...valid, public_sku: 'GW-SYNAMP01' } },
   public_sku: new Set(['GW-SYNAMP01'])
 }).some(e => e.includes('duplicate public_sku')));
 
+const blockedSkuErrors = validate({ rowNumber: 4, data: { ...valid, supplier_sku: 'M501WCC' } }, 'test', null);
+assert(blockedSkuErrors.some(e => e.includes('quote-only blocklist') && e.includes('quote_only=true')));
+assert(blockedSkuErrors.some(e => e.includes('quote-only blocklist') && e.includes('remain inactive')));
+assert(blockedSkuErrors.some(e => e.includes('quote-only blocklist') && e.includes('customer_price must be blank')));
+
 console.log('PASS: strict CSV quoting, CRLF, escaped quotes, date validity, cent-exact formula, decimal precision, and duplicate identifiers.');
