@@ -1,0 +1,40 @@
+name: Android APK Build
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'android-app/**'
+    branches: [main]
+
+jobs:
+  build-apk:
+    name: Build preview APK with Expo EAS
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android-app
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: android-app/package-lock.json
+      - name: Install dependencies
+        run: |
+          npm install
+          npx expo install --fix
+          npm install --save-exact react-native-webview
+      - name: Validate Expo configuration
+        run: npx expo config --type public
+      - name: Setup EAS CLI
+        run: npm install --global eas-cli
+      - name: Build Android APK
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          test -n "$EXPO_TOKEN" || (echo "Missing EXPO_TOKEN repository secret" && exit 1)
+          eas build --platform android --profile preview --non-interactive --wait
