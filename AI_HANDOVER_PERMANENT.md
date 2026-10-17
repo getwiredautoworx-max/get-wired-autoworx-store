@@ -2171,3 +2171,24 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - The newest verified `Prepare Axxess upload package` artifact on `main` found in the current 100-run scan is run 47: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38782856546 .
 - Artifact `axxess-storefront-upload`, ID `11996577624`, direct ZIP endpoint https://api.github.com/repos/getwiredautoworx-max/get-wired-autoworx-store/actions/artifacts/11996577624/zip ; created 2026-10-15 18:06:40 UTC; size 110,904,506 bytes; SHA-256 `d33875c112044354619b86d4068ce442e94de4b2eb1b2c61134e9e71faa8f7aa`; expires 2026-10-29 18:06:37 UTC. Source commit: `1d3205339209d03805f45d614cf329f2abd8a6f9`.
 - Use this main-branch artifact in preference to the newer QA-branch artifacts when a main-branch package is required. Still back up Axxess `public_html` and verify the package layout before replacement; artifact existence is not proof that the currently live host matches this build.
+
+
+
+## 2026-10-17 — OWNER-DIRECTED DARK THEME / RESPONSIVE REPAIR (16:xx SAST)
+
+### Work performed on review branch only
+- Branch: `review/staging-ui-verification-fixes-current`
+- UI repair commit: `d93f440b1e348819809ef6c7d5d47150107042d0`
+- Browser-QA assertion correction commit: `e3b734e16f02f3b84ae6f16c96adf3d59f472120`
+- Restored the dark navy/black storefront theme with red/blue accents by removing the conflicting `brightTheme` body class and applying cohesive dark category-card styling.
+- Reworked responsive header/search flow so the search input sits in its own full-width row on mobile rather than absolutely overlapping the header or filters.
+- Reduced the mobile hero height, constrained the logo/cart badge, fixed responsive filter/product grids, added small-screen sizing, and disabled the fixed mobile purchase bar on the homepage to prevent unintended content overlap.
+- Updated Playwright image QA so a browser canvas cross-origin SecurityError from Supabase image URLs is not falsely classified as a broken image. It still requires a decoded image with positive natural dimensions and a visible rendered box; pixel-variation checks remain active when canvas access is permitted.
+
+### Verification status
+- These changes have been committed to the review branch and should trigger the existing GitHub Actions browser QA.
+- The previous exact-head QA run `39037468764` failed because the test tried to read cross-origin image pixels via canvas, not because the browser reported broken product images. Its report recorded naturalWidth 1200 and rendered product images, but visual identity/right-to-use is a separate unresolved review.
+- The current CSS repair is NOT yet accepted. Await fresh Actions results and inspect screenshots at 1440px, 390px and 320px. Confirm no overflow, header/search overlap, cart badge clipping, mobile nav collision, or unexpected blank space; test category, Part Search, Request a Part, cart and checkout interactions.
+- PR #54 remains draft/review-only. Do not merge, deploy to Axxess, mutate production Supabase, or spend Cloudflare/Netlify deployment credits before screenshot acceptance.
+- Staging preview previously reported by PR bot: https://f2ca3349.get-wired-autoworx-store.pages.dev — not independently verified in this session; do not describe as approved until opened and checked against fresh screenshots.
+- Next action: check Actions runs for the newest branch head; retrieve the QA report and screenshots; correct only concrete failures; update this handover after each verified milestone.
