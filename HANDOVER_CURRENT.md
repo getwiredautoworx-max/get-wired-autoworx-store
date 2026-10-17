@@ -2048,3 +2048,21 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - The connected Netlify tool list has no Agent Runner create/list/show action. The owner's approval for three Gemini tasks remains recorded, but no task IDs can be truthfully reported and no Gemini tasks are confirmed running. Do not install/use an unauthenticated workaround or trigger extra builds.
 - Current review state: PR #48 draft; PR #51 draft (ASC suite 8/8 passed); PR #53 draft (schema CI not verified); PR #54 draft (successful preview exists, exact browser report not verified). PR #52 is closed as superseded by current-main PR #54.
 - Release hold remains. Next required evidence is the exact-head Playwright report/screenshots and the exact-head schema test output. Supplier-status changes still require a current live exact-SKU check and owner approval.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-17 — PR #46 exact-head QA and package verified
+
+- Re-read the complete current handover before continuing. All work below is staging-only; no production Axxess files, live Supabase rows/schema, DNS/SSL, payment settings, or real orders were changed.
+- Reconciled PR #46's exact current head: `979c8c3ddaac9ec9d2e7b679353d5bcf25acb7c9` on `ci/verify-axxess-package-2026-10-17`. PR #46 remains open and unmerged. The prior concern that checks only existed for an older commit is now resolved by fresh exact-head runs:
+  - Browser QA run #15 / ID `39011067220`: SUCCESS. Job ID `117333525299`; report had no failed assertions, no uncaught page errors, no console errors, and HTTP 200 for the homepage and eight customer-facing routes: store, product, products, checkout, checkout-v2, category, returns/refunds, and terms. Part Search / Request a Part / cart / checkout navigation checks passed. Fitment checks passed: Vehicle Security, Car Audio & Entertainment, Tools, Hardware & Consumables, and Camping, Leisure & Outdoors suppress the vehicle block and fitment action; Auto Electrical Spares retains both. The single PAXI map `ERR_ABORTED` was caused by intentional route navigation during the test, not a page/HTTP failure. Report and screenshots artifact ID `12092841705`, expires 2026-10-31; digest `sha256:e66ffa93b5a35f8c9bf06ac9105cc3932ae5731d5813af3479a46364b909754f`.
+  - Package workflow run #83 / ID `39011067171`: SUCCESS. Artifact ID `12092932385`, named `axxess-storefront-upload`, expires 2026-10-31; artifact digest `sha256:c11fb0973aad0ebe3c4d2fa5e5492ca9fd409ab46bcdfd6f7c83ed26db016c2f`.
+  - Desktop/mobile screenshot QA run #51 / ID `39011067173`: SUCCESS. This provides fresh screenshot-workflow evidence for the same PR head.
+  - Public SKU Exposure Audit run #314 / ID `39011067208`: SUCCESS.
+- Exact-head evidence links:
+  - PR #46: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/46
+  - Browser QA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39011067220
+  - Package: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39011067171
+  - Screenshot QA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39011067173
+  - SKU audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39011067208
+- Resolution achieved in this continuation: the exact-head staging validation gap is closed, and the four requested fitment-exempt categories are covered by passing assertions on the latest PR head. No production deployment is implied by CI success. Do not merge/deploy until owner visual approval and the independent supplier/catalogue/image-rights, payment-provider, and domain/hosting release gates are addressed. PayFast/PayJustNow remain deferred; the current checkout has not been certified for live gateway payments.
+- Next action: retain PR #46 open/unmerged and preserve its exact-head artifacts; proceed with independent staging review tasks without touching the live store. Update this handover again after the next material verified change.
