@@ -110,6 +110,7 @@ try {
           fitmentAction: /NOT SURE IT FITS\? GET FITMENT ADVICE/i.test(detail)
         };
       });
+    });
   report.fitmentCategoryResults = fitmentCategoryResults;
   const exemptFitmentChecks = (fitmentCategoryResults || []).filter(x => x.exempt);
   const vehicleSpecificChecks = (fitmentCategoryResults || []).filter(x => !x.exempt);
