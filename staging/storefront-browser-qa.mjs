@@ -238,7 +238,7 @@ try {
   await page.locator('.cart').click();
   await page.locator('#cartPanel a.checkoutNow').click();
   await page.waitForLoadState('domcontentloaded');
-  check('checkout_link_navigates', new URL(page.url()).pathname.endsWith('/checkout-v2.html'), 'landed at ' + page.url());
+  check('checkout_link_navigates', ['/checkout-v2.html','/checkout-v2'].includes(new URL(page.url()).pathname.replace(/\\/$/, '')), 'landed at ' + page.url());
 
   const routeResults = [];
   for (const route of ['store.html','product.html','products.html','checkout.html','checkout-v2.html','category.html','returns-refunds.html','terms-and-conditions.html']) {
