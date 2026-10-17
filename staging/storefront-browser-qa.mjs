@@ -45,7 +45,8 @@ try {
       categoryButtons: document.querySelectorAll('#categoryGrid .catBtn').length,
       productCards: document.querySelectorAll('.product').length,
       heroWidth: document.querySelector('.heroCard')?.getBoundingClientRect().width ?? null,
-      images: [...document.images].map(i => ({ src: i.currentSrc || i.src, complete: i.complete, naturalWidth: i.naturalWidth }))
+      images: [...document.images].map(i => ({ src: i.currentSrc || i.src, complete: i.complete, naturalWidth: i.naturalWidth })),
+      overflowingElements: [...document.querySelectorAll('body *')].map(el => { const r = el.getBoundingClientRect(); return { tag: el.tagName, id: el.id || '', className: typeof el.className === 'string' ? el.className.slice(0,100) : '', left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width), text: (el.innerText || '').slice(0,50) }; }).filter(el => el.right > innerWidth + 1 || el.left < -1).slice(0,30)
     }));
     metrics.width = width;
     metrics.horizontalOverflow = metrics.documentWidth > width || metrics.bodyWidth > width;
