@@ -1,4 +1,5 @@
 name: ASC to store read-only reconciliation
+# The push-triggered run currently validates against a completed small trial; full run ID is set after the exhaustive crawl finishes.
 on:
   workflow_dispatch:
     inputs:
