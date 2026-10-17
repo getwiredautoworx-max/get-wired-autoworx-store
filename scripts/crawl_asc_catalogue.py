@@ -184,7 +184,7 @@ def main():
         except Exception as exc:
             return index, "", {"url": row["product_url"], "error": f"{type(exc).__name__}: {exc}"}
 
-    with ThreadPoolExecutor(max_workers=6) as executor:
+    with ThreadPoolExecutor(max_workers=10) as executor:
         for index, sku, error in executor.map(resolve_candidate, pending):
             rows[index]["supplier_sku"] = sku
             rows[index]["sku_source"] = "product_detail" if sku else ("detail_fetch_failed" if error else "unresolved")
