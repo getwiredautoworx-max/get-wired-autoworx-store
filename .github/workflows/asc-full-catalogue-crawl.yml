@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       max_pages:
-        description: "Pages to crawl (0 = all supplier pages)"
+        description: "Pages to crawl (0 = all supplier pages; push-triggered safety trial uses 1)"
         required: true
         default: "0"
         type: string
