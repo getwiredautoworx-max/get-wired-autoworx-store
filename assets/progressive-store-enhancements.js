@@ -46,6 +46,14 @@ function install(frame){
     }
   }
 
+  function requiresVehicleFitment(card){
+    const p=(d.defaultView.gwProducts||[]).find(x=>String(x.id)===String(card.dataset.id));
+    if(!p)return true;
+    const excludedRoots=new Set(["8e93d917-8fcc-4427-b364-cdad244f263f","5ab55c53-eee3-41ce-ad48-04ad6df85181","77297c18-67f6-452e-8918-c55d2ef6231a","af2f8625-4f42-45e6-9f21-d571d7415893"]);
+    const cats=d.defaultView.gwCategories||[];let id=p.category_id;const seen=new Set();
+    while(id&&!seen.has(id)){seen.add(id);if(excludedRoots.has(id))return false;const c=cats.find(x=>x.id===id);id=c&&c.parent_id||null;}
+    return true;
+  }
   function enrich(){d.querySelectorAll('.product').forEach(card=>{
     if(card.dataset.gwEnhanced)return;card.dataset.gwEnhanced='1';
     const txt=(card.textContent||'').trim();
@@ -56,10 +64,10 @@ function install(frame){
     else if(/low stock/i.test(txt))stock.classList.add('low'),stock.textContent='LOW STOCK';
     else stock.textContent='CHECK STOCK';
     card.appendChild(stock);
-    if(!card.querySelector('.gwFitment')){
+    if(!card.querySelector('.gwFitment')&&requiresVehicleFitment(card)){
       const f=d.createElement('div');f.className='gwFitment';f.textContent='Vehicle fitment: verify application with Get Wired AutoWorx before ordering.';card.appendChild(f);
     }
-    if(!card.querySelector('.gwWA')){const a=d.createElement('a');a.className='gwWA';a.target='_blank';a.rel='noopener';a.textContent='WHATSAPP ABOUT THIS PRODUCT';a.href=WA+'?text='+encodeURIComponent(`Hi Get Wired AutoWorx, I am enquiring about ${name}${sku?' (SKU '+sku+')':''}. Please confirm availability, price and vehicle fitment.`);card.appendChild(a)}
+    if(!card.querySelector('.gwWA')){const a=d.createElement('a');a.className='gwWA';a.target='_blank';a.rel='noopener';a.textContent='WHATSAPP ABOUT THIS PRODUCT';a.href=WA+'?text='+encodeURIComponent(`Hi Get Wired AutoWorx, I am enquiring about ${name}${sku?' (SKU '+sku+')':''}. Please confirm availability, price${requiresVehicleFitment(card)?' and vehicle fitment':''}.`);card.appendChild(a)}
     if(sku&&!card.querySelector('.gwTools')){
       const tools=d.createElement('div');tools.className='gwTools';const b=d.createElement('button');b.className='gwCopy';b.textContent='COPY SKU';b.onclick=async()=>{try{await navigator.clipboard.writeText(sku);b.textContent='SKU COPIED';setTimeout(()=>b.textContent='COPY SKU',1200)}catch(e){b.textContent=sku}};tools.appendChild(b);card.appendChild(tools);
     }
