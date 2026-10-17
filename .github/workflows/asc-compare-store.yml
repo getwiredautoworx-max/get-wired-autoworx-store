@@ -46,6 +46,11 @@ jobs:
           --asc source-artifact/asc_catalogue_all.csv
           --html-config index-new.html
           --output-dir asc-store-reconciliation
+      - name: Generate guarded review-only SQL deactivation patch
+        run: >-
+          python scripts/generate_asc_deactivation_sql.py
+          --review-csv asc-store-reconciliation/asc_store_review_patch.csv
+          --output asc-store-reconciliation/asc-deactivation-review.sql
       - name: Upload review patch and summary
         uses: actions/upload-artifact@v4
         with:
