@@ -36,3 +36,15 @@ The workflow `ASC to store read-only reconciliation` downloads a completed crawl
 - Run the reconciliation against the successful full-crawl artifact; check exact-SKU match counts and inspect `asc_store_review_patch.csv`.
 - `DEACTIVATE_AFTER_REVIEW` is a proposal for explicit discontinued/not-viable labels; `REVIEW_TEMPORARY_STOCKOUT` is not proof of discontinuation. Verify supplier orderability when supplier stock counts conflict with status text.
 - No automated deactivation/deletion is permitted by either script. A separate owner-approved patch is required for any production write.
+
+
+## Review-only SQL patch generator
+
+After the full reconciliation artifact has been inspected, create a proposed SQL patch with:
+
+```bash
+python scripts/generate_asc_deactivation_sql.py --review-csv asc_store_review_patch.csv --output asc-deactivation-review.sql
+python -m unittest scripts/test_generate_asc_deactivation_sql.py -v
+```
+
+The generator emits guarded `UPDATE public.products SET active=false ... WHERE sku=... AND active=true` statements only for rows marked `DEACTIVATE_AFTER_REVIEW` and currently active. It excludes stockout-only and duplicate-SKU rows. It does not connect to Supabase or execute the generated SQL. The output still requires owner/supplier review before any database write.
