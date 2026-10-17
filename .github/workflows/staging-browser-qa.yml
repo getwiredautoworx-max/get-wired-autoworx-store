@@ -56,7 +56,7 @@ jobs:
           exit 1
       - name: Run desktop, mobile and interaction checks against deployed Cloudflare preview
         env:
-          STOREFRONT_BASE_URL: https://711c01ad.get-wired-autoworx-store.pages.dev/index-new.html
+          STOREFRONT_BASE_URL: https://17ddea0e.get-wired-autoworx-store.pages.dev/index-new.html
         run: node staging/storefront-browser-qa.mjs
       - name: Upload screenshots and QA report
         if: always()
