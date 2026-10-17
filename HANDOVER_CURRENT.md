@@ -1392,3 +1392,128 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - AI picture search is not claimed end-to-end operational; a UI and endpoint call do not prove provider credentials and successful production vision requests.
 - **Release status: PACKAGE PREPARED; CUSTOMER RELEASE HOLD.** Owner's prior constraint remains in force: verify source data before any Axxess upload. Do not overwrite `public_html`, merge the redesign PRs, deploy production, or change DNS/payment/database settings without the required source validation and release authorization.
 - The handover-only commit that follows this note will automatically trigger another staging package build. Its build report is the authoritative checksum/source commit for the refreshed artifact; runtime payload is unchanged by the handover edit.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-17 — ASC cleanup audit utility staged
+
+- Created PR #49: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/49 on branch `audit/asc-catalogue-cleanup`, based on the existing staging QA branch. It adds `scripts/asc_catalogue_cleanup_audit.py`, a synthetic unit test, a CI workflow, and `docs/ASC_CATALOGUE_CLEANUP_AUDIT.md`.
+- Utility is read-only and local CSV-only: exact supplier SKU joins; explicit supplier discontinued/will-discontinue/not-viable text produces `DEACTIVATE_AFTER_REVIEW`; supplier out-of-stock/zero stock without discontinued text produces `REVIEW_TEMPORARY_STOCKOUT`; duplicate supplier SKU rows are held for manual review; fuzzy matches are excluded. It has no Supabase client or database write capability.
+- Read-only Supabase schema/data audit: 4,187 active products; 0 active products with zero `stock_quantity`; 0 active products with searched discontinued/out-of-stock/not-viable text across name, description and specifications. This does not establish supplier catalogue status; current store and ASC CSV exports still need exact-SKU reconciliation.
+- Public ASC search results confirm the supplier site has products marked discontinued/not viable and out of stock, sometimes with nonzero stock counts; status text therefore takes precedence over stock number for discontinued candidates, while stockouts remain manual review.
+- CI workflow run #1 / ID `39016615414` was observed in progress immediately after PR creation. Do not mark tests passed until its final conclusion is retrieved.
+- No production data changed; no products were deactivated; no live Axxess files, storefront, checkout, DNS or payment settings were changed.
+- Next: inspect the CI result, fix any actual failures, then obtain current store inventory and ASC catalogue exports and run the audit. Review the generated patch SKU by SKU. Do not execute the patch automatically or delete product rows.
+
+
+## 2026-10-17 — ASC exact-SKU spot reconciliation (review patch created)
+
+- CI test workflow run #1, ID `39016615414`, completed SUCCESS; synthetic test confirms exact-SKU matching, discontinued vs temporary-stockout handling, and no database writes.
+- A read-only SQL cross-check of exact supplier SKUs surfaced in current ASC public search results found four active store products that match supplier listings explicitly labelled discontinued / will discontinue:
+  - `F1-035` / `GW-D655BEE8` — 12V Electric Fuel Fiat Pressure:3 Bar; ASC title says WILL DISCONTINUE.
+  - `F1-055` / `GW-4A5095DD` — 12V Electric Fuel BMW Pressure:3.5; ASC title says DISCONTINUED NOT VIABLE.
+  - `F9-001-56` / `GW-A16BA2A4` — 410mm Fan Blade Canter 3.5R 97-; ASC title says DISCONTINUED NOT VIABLE.
+  - `T3-8CS` / `GW-CDF8245E` — Tube Plug 8pce Spanner Set Steel; ASC title says DISCONTINUED.
+- Staged review CSV: `staging/asc-cleanup-review-2026-10-17.csv`. Each row includes store SKU, public SKU, store price/stock, supplier listing title/status, evidence URL, and proposed action.
+- Important conflict: supplier pages showed nonzero inventory for these discontinued-labelled products (15, 15, 3 and 113 respectively, according to the search snapshots). Therefore the CSV flags `DEACTIVATE_AFTER_REVIEW`, not an automatic deactivation; supplier should confirm these exact codes before active flags change.
+- PR #49: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/49 remains open and unmerged; it contains the audit script, unit test, CI workflow, documentation, review CSV, and this checkpoint. No Supabase write, product deactivation, Axxess upload, or live-site change has been performed.
+- Full cleanup is not yet complete: the four exact matches are a verified spot sample from public ASC search results, not an exhaustive export-to-export comparison. Next requirement is current full store inventory and current ASC catalogue exports; run the script, review all exact-SKU matches, then prepare one controlled deactivation patch only after supplier status confirmation.
+
+
+## 2026-10-17 — ASC audit test hardening checkpoint
+
+- Hardened the CSV audit utility: removed a duplicated alternative in the out-of-stock matcher; the matcher still distinguishes explicit discontinued text from temporary stockout.
+- Expanded the synthetic unit test to include duplicate supplier SKUs and assert they are held as `MANUAL_REVIEW` instead of generating an automated deactivation.
+- The first test run after editing the test file failed because the generated test content had malformed line breaks. This was corrected in subsequent commits; the latest workflow runs for head `91ba7d5acc3768b7287d5bf4abfa2eb678b9ddb5` completed SUCCESS (runs `39016869708` and `39016867473`). The duplicate-SKU manual-review assertion is now covered by passing CI.
+- The audit PR remains review-only and unmerged. No production database records, Axxess files, or live website settings have been changed.
+
+
+## 2026-10-17 — Additional exact-SKU spot check
+
+- Queried the live store database read-only for further supplier codes visible in ASC catalogue results, including F1-007, F1-042, F1-088, SG-21TB, FF-024, T15-011-33, and other sample codes. Of the additional codes checked, no additional matching store product rows were returned; T3-5CS was present but its ASC listing was not marked discontinued in the reviewed result.
+- This confirms the current four-row CSV remains the exact-match review sample, not a complete cleanup list. ASC publicly shows a catalogue of roughly 12,000 products and multiple discontinued labels across categories, so full coverage still requires a machine-readable supplier catalogue export and full store-SKU comparison.
+- PR #49 is still intentionally unmerged: latest handover-only commit has no status check attached yet; code/test commits have successful Actions runs. No production changes.
+
+
+## 2026-10-17 — Expanded ASC exact-SKU review sample to five
+
+- Continued searching ASC public product listings and found another exact store match: supplier SKU TOY-001, listing title SLIDING DOOR CABLE HI-ACE DISCONTINUED NOT VIABLE. The ASC page showed 68 units in stock, while the store has the item active with store stock 5 and public SKU GW-91267FC5. This conflict means review/confirmation is required before deactivation.
+- Added TOY-001 to `staging/asc-cleanup-review-2026-10-17.csv`. The review sample now has five exact SKU matches with explicit discontinued/will-discontinue wording. Other visible codes on the checked pages (including F1-007, F1-042, F1-088, SG-21TB, FF-024, YG0610X5, Q-SDC01, and Q-SDC03) did not match a store row in the read-only SKU query.
+- Evidence page: https://accessoriesspares.co.za/shop/page/915/?layout=grid&per_page=10. Supplier stock is not proof the item is still orderable because the title explicitly says discontinued/not viable; verify with ASC before changing product active flags.
+- Full catalogue reconciliation is still outstanding because we do not yet have a complete machine-readable supplier export and full store inventory CSV to compare exhaustively. No production records or Axxess files changed.
+
+
+## 2026-10-17 — Expanded ASC exact-SKU review sample to seven
+
+- Further public ASC search checks found two additional exact SKU matches against active store rows:
+  - `191302` / `GW-31169E51` — store item `200mm Adjustable Wrench`; ASC listing title says `ADJUSTABLE WRENCH 200MM 2 COLOR HANDLE DISCONTINUED NOT VIABLE` and showed 1 supplier unit.
+  - `AES-1115-16B` / `GW-7CABCBE7` — store item `65mm Metal Adjustable Door Switch`; ASC title says `DOOR SWITCH ADJUSTABLE METAL 65MM DISCONTINUED BY MAKER`. Public search snapshots showed supplier stock counts that differed (52 vs 80), so this requires live supplier confirmation.
+- Added both rows to `staging/asc-cleanup-review-2026-10-17.csv`. There are now seven exact-SKU active store candidates with explicit discontinued/will-discontinue status, all set to `DEACTIVATE_AFTER_REVIEW`, never automatic deletion. Supplier inventory still appears alongside some discontinued titles, so verify with ASC before changing any active flags.
+- Additional checked codes such as `YG0301`, `OR-116-27`, `Q-SDC01`, `Q-SDC03`, and `A3-034BL45` had no matching product rows in the read-only store query.
+- Public evidence: https://accessoriesspares.co.za/shop/page/25/ and https://accessoriesspares.co.za/product-category/automotive/page/69/. Full 12k-product reconciliation remains outstanding; no production changes.
+
+
+## 2026-10-17 — Full ASC crawler implementation and trial
+
+- Added `scripts/crawl_asc_catalogue.py`, a read-only public catalogue crawler. It checks ASC robots.txt before crawling, requests pages at a minimum 0.8-second interval, retries page errors, extracts exact supplier SKU/title/stock/status flags/product URLs, writes full-catalogue and status-candidate CSVs, and reports whether coverage is complete. It makes no store or supplier writes.
+- Added `.github/workflows/asc-full-catalogue-crawl.yml` to run the crawler in GitHub Actions and upload the CSVs/report as a 7-day artifact. The workflow is intentionally manual-capable and the initial push test is capped at three pages; do not start the full crawl until the parser's first-page and pagination behavior are confirmed.
+- First trial run failed before any catalogue request because the YAML input expression was escaped incorrectly. Corrected the workflow expressions and triggered a new trial at commit `4912188bc9bb3be2be36262700a5706bb3517a18`; run `39017224530` was still crawling when this checkpoint was written. Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39017224530.
+- Once the trial succeeds, inspect its summary/artifact; if the page count and extracted SKU coverage are valid, switch the crawl to full pagination and process the supplier CSV against a read-only export/query of store SKUs. Do not deactivate products based on status flags alone when supplier stock contradicts them.
+
+
+## 2026-10-17 — ASC crawler trial findings
+
+- The first three-page trial proved the public shop can be crawled from GitHub Actions, robots.txt permits the shop URL, and pagination is discoverable: ASC reports 12,002 products and the parser computes 334 pages at 36 cards/page.
+- Trial output: 108 product cards parsed across 3 pages, 91 unique listing SKUs, 17 status candidates, zero failed listing pages. The trial was marked incomplete as intended because it was capped at 3/334 pages; the workflow's nonzero exit reflected that partial status, not a failed page fetch. Artifact ID `12095327352` was downloaded and inspected.
+- Inspection showed a key data gap: many out-of-stock/status candidate cards omit SKU in listing HTML. Updated the crawler to fetch product detail pages only for flagged candidates missing a listing SKU, record the SKU resolution source, and return success for an intentionally capped trial while preserving `complete=false`. Trial reruns are underway; confirm enrichment coverage before enabling the full 334-page crawl.
+
+
+## 2026-10-17 — Exact SKU cross-check from first ASC crawl pages
+
+- The enriched three-page crawl parsed 108 products and resolved SKUs for all 17 flagged/stockout candidates by fetching only those candidates' product detail pages. Crawl summary: ASC total 12,002; 334 pages expected; 3/334 intentionally crawled; 17/17 candidate SKUs resolved; zero failed listing/detail requests. Artifact `12095292850`, run `39017314345`.
+- A read-only exact-SKU query against Supabase matched seven of those supplier stockout candidates to active store products: `TR414C` (100pce 38mm Chrome Tyre Stems), `200203` (1/2 Driver Ratchet), `200401` (1/4 Drive Torque Wrench), `200423` (1/2 Drive Torque Wrench), `EWX12000S-SR` (12000lb synthetic-rope winch), `H-W057` (10pce Allen Key Set), and `H4P43T60/55W-NB` (12V IQ Globe 30% Brighter). Supplier currently reports out of stock; store rows are active and show positive local quantities (5 for six rows; 21 for the globe). These are marked `REVIEW_TEMPORARY_STOCKOUT`, not discontinued.
+- Added those seven exact matches to `staging/asc-cleanup-review-2026-10-17.csv`, alongside the seven discontinued/will-discontinue exact matches from earlier public-page searches. The CSV now contains 14 review candidates total. This is a partial-page reconciliation, not the complete catalogue result.
+- Current crawler trial code resolves SKU only for flagged candidates missing a listing SKU and records resolution source; detail-page timeout was bounded at 12 seconds. CI tests passed on the prior commit; trial reruns on newer commits are in progress. Do not start full 334-page crawl until a latest three-page run confirms the revised script and artifact shape.
+- No product active flags, stock quantities, prices, or Axxess files were changed.
+
+
+## 2026-10-17 — Automated store comparison validated
+
+- Added `scripts/compare_asc_store_readonly.py`. It reads only the existing public Supabase connection from `index-new.html`, queries active `public.products` through read-only REST GETs in pages, and requests only `sku`, `public_sku`, `name`, `active`, `stock_quantity`, and `price`. It never requests supplier cost and never writes to Supabase.
+- Added `scripts/test_compare_asc_store_readonly.py`; test workflow now installs the read-only REST client and runs both unit suites. Latest test workflow run `39017707141` SUCCESS.
+- Added `.github/workflows/asc-compare-store.yml`, which downloads a completed crawl artifact from a specified run, compares flagged supplier candidates to active store products by exact normalized SKU, and uploads a review-only CSV/summary artifact.
+- Comparison workflow trial run `39017814564` SUCCESS. It read all 4,187 active store products and compared the one-page supplier trial (3 candidates), finding one exact stockout match: `TR414C` / `GW-C1911AF1` / `100pce 38mm Chrome Tyre Stems`, supplier out of stock while store row remains active with stock 5. The generated recommendation is `REVIEW_TEMPORARY_STOCKOUT`; zero DB writes and no supplier-cost fields requested.
+- Full optimized crawl run `39017755062` is in progress; it uses globally paced (minimum 0.8 sec) SKU detail lookups with bounded concurrency and a 60-minute timeout. The earlier serial crawl `39017530629` was successfully cancelled to avoid unnecessary duplicate load. After the full crawl completes, update the compare workflow's source run ID to the successful full crawl run, trigger the exact-SKU reconciliation, inspect its artifact, then update the review CSV with the complete matched candidate set.
+
+
+## 2026-10-17 — Cleanup patch generation added
+
+- Added `scripts/generate_asc_deactivation_sql.py`, which converts only active `DEACTIVATE_AFTER_REVIEW` rows from the reconciliation CSV into guarded `UPDATE public.products SET active=false ... WHERE sku=... AND active=true` statements. It excludes temporary-stockout and duplicate/manual-review rows. It writes a SQL file only; it never connects to or writes to Supabase.
+- Added `scripts/test_generate_asc_deactivation_sql.py`; test workflow runs the original CSV audit tests, exact-SKU comparison tests, and SQL generator tests. Workflow run `39018006807` completed SUCCESS after adding the new suite; latest run `39018017608` was still running at this checkpoint.
+- Comparison summary now reports total supplier status candidate SKUs, exact matched/unmatched SKU counts, and review rows. The comparison workflow now reads the full supplier catalogue CSV so it can detect duplicate supplier SKUs even when one duplicate row itself is not flagged.
+- The full optimized crawl `39017755062` is still in progress; it uses the globally paced parallel SKU enrichment. After it completes successfully, update `.github/workflows/asc-compare-store.yml` to point at that run, trigger reconciliation, then use the generated review artifact to finalize the staged CSV and proposed SQL patch. No production writes have been made.
+
+
+## 2026-10-17 — Reconciliation trial and safe SQL default
+
+- Full-catalogue-input reconciliation trial `39017880420` SUCCESS read 4,187 active store rows and 36 supplier rows from the one-page artifact. It found 3 supplier status-candidate SKUs, 1 exact active-store match (`TR414C`), and 2 candidate SKUs not currently present among active store SKUs. The review output correctly recommends `REVIEW_TEMPORARY_STOCKOUT` for the matched tyre-stem item.
+- Comparison workflow now emits both `asc_store_review_patch.csv` and `asc-deactivation-review.sql` in the artifact. The SQL generator was hardened after that trial to default to `ROLLBACK`; it requires manual replacement with `COMMIT` only after supplier/owner verification. Latest test workflow runs on commits `da69ff1ebfe2a2b6f50869ebb0efa316ca0defb5` and later passed SUCCESS after the rollback assertions were corrected.
+- Full optimized catalogue run `39017755062` remained in progress at this checkpoint; the serial predecessor `39017530629` is cancelled. No production changes.
+
+
+## 2026-10-17 — Full-crawl performance adjustment
+
+- The first full crawl `39017755062` had remained in progress for several minutes without completing; to reduce the risk of hitting the 60-minute timeout, increased bounded SKU-detail concurrency from 6 to 10 while preserving the global minimum 0.8-second request start spacing and 12-second detail timeout.
+- Started optimized full crawl `39018245685` with the updated script. A GitHub REST cancellation request for the prior six-worker crawl returned HTTP 202; its status had not yet transitioned from `in_progress` at the time of this note, so both run states must be checked before assuming cancellation completed.
+- Latest audit/reconciliation/SQL-generator unit tests passed. Production Supabase and Axxess remain unchanged.
+
+
+## 2026-10-17 — Revalidated 14 known spot-check matches
+
+- Re-ran a read-only Supabase query for the 14 previously recorded exact supplier-SKU matches. All 14 still exist and are active; six have store stock 5 and the 12V IQ globe has store stock 21 among the seven supplier-stockout candidates, while the seven discontinued-labelled candidates also show active local quantities. This confirms the local positive stock is a store-side placeholder/count and must not be assumed to reflect supplier availability.
+- No rows were modified. The full-catalogue result is still required before calling the review exhaustive.
+
+
+## 2026-10-17 — Rollback-default SQL artifact verified
+
+- Latest comparison workflow run `39018404977` SUCCESS produced `asc_store_review_patch.csv`, `reconciliation_summary.json`, and `asc-deactivation-review.sql` in artifact `12095468885`. The trial summary matched one of three status-candidate SKUs to the active store (`TR414C` stockout); the SQL proposal had zero deactivations and ends with `ROLLBACK` by default. This verifies the workflow does not apply changes.
+- The next comparison must use the successful full-crawl run ID, not the small trial ID `39017684138`.
