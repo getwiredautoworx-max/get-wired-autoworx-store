@@ -43,7 +43,7 @@ jobs:
       - name: Exact-SKU match supplier candidates to active store products
         run: >-
           python scripts/compare_asc_store_readonly.py
-          --asc source-artifact/asc_catalogue_status_candidates.csv
+          --asc source-artifact/asc_catalogue_all.csv
           --html-config index-new.html
           --output-dir asc-store-reconciliation
       - name: Upload review patch and summary
