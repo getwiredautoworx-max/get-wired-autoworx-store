@@ -1957,3 +1957,12 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 
 ### Release decision
 **RELEASE HOLD — AXXESS LIVE STORE UNTOUCHED.** One targeted ASC unit suite passed; current UI browser QA and schema CI terminal results remain unverified. No production SQL, deactivation, DNS, payment or Axxess deployment was performed.
+
+
+## REVIEW GATE ADDENDUM — 2026-10-17 — LATEST HEADS / EXTRA UI ASSERTIONS
+
+- PR #54 latest head is now `fe73dc828c606c50813fee72d06fdc9d809b9ac8` on `review/staging-ui-verification-fixes-current`. The Playwright script now explicitly asserts (1) exactly the eight approved homepage root IDs, (2) 4x4 appears under Camping rather than as a ninth homepage root, and (3) the vehicle finder heading/copy explicitly marks it optional and mentions car audio and vehicle security among non-fitment categories.
+- The browser workflow on that review branch includes a push trigger for this branch and writes screenshots plus a JSON report to the `staging-browser-qa-*` artifact. A run ID/artifact has **not been retrievable through the connected Actions query**, so these new assertions are not yet recorded as passed.
+- PR #53 latest head remains `0115db1d10e160359c32eff3abac1ad9c80c4b86`, currently targeting `main` for consolidated review of the schema pack, strict CSV fixes and quote-only blocklist. The workflow includes a push trigger for its review branch; no terminal CI result is visible through the connected Actions query.
+- Do not treat workflow definitions, a commit existing, or a successful unrelated run as proof that these exact candidate checks passed. Use the exact branch-head report/logs when accessible.
+- Release remains HOLD; no live changes made.
