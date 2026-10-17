@@ -25,3 +25,12 @@
 
 ## Release status
 **HOLD — not customer-launch-ready.** This update records verified status and does not authorize a production change.
+
+
+## Immediate fix applied — 2026-10-17 09:06 UTC
+- Root cause found: the crawl workflow included a push-triggered step that explicitly cancelled previously hard-coded crawl run IDs. This made the long crawl vulnerable to being interrupted by subsequent workflow edits.
+- Removed that cancellation step from `.github/workflows/asc-full-catalogue-crawl.yml` and narrowed missing-SKU detail-page enrichment in `scripts/crawl_asc_catalogue.py` to explicit discontinuation-text candidates only. Ordinary out-of-stock candidates no longer trigger a detail request each, which reduces request volume while keeping stockout items review-only.
+- Added progress logging every 10 pages.
+- Fix commit: `c6b8f9a741f174daf53048e8366e6b962c3795cd` (workflow) includes prior script commit `3a0f97dd0bfddad4c6d06fb992afdf59a1b0a003`.
+- A new full crawl automatically started: [run 39019868237](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39019868237). At the time of this update it is `in_progress`; no exhaustive results are yet verified. Do not claim resolved until the artifact reports `complete=true`, zero failed listing pages and a sensible unique-SKU count.
+- No store product has been deactivated and no production service was changed.
