@@ -36,6 +36,14 @@ jobs:
     steps:
       - name: Checkout candidate
         uses: actions/checkout@v4
+      - name: Record exact tested revision
+        run: |
+          echo "Tested commit: $(git rev-parse HEAD)"
+          echo "Workflow event: $GITHUB_EVENT_NAME"
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]; then
+            echo "Checked-out commit does not match triggering commit" >&2
+            exit 1
+          fi
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
