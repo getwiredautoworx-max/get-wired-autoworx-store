@@ -2917,3 +2917,12 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 1. Add/execute wrapper-level browser verification through `store.html` and confirm the local exact-SKU WebP fallback actually renders in the customer entry flow at desktop and mobile widths.
 2. Obtain the staging product inventory export and build a per-product image match/rights manifest; replace only verified exact items and use a neutral placeholder when identity or rights are not established.
 3. Continue visual review of all customer-facing routes, then request owner acceptance before any Axxess upload.
+
+
+## CONTINUATION LOG — 2026-10-17 14:32 SAST — ADDED CUSTOMER-WRAPPER IMAGE FALLBACK ASSERTION
+
+- Extended `staging/storefront-browser-qa.mjs` on PR #54 review branch to open the actual `store.html` customer entry, inspect its `#store` iframe, wait for the wrapper-installed image fallback, and assert eight top-level category roots plus a rendered exact-SKU local WebP product image. This targets the mismatch identified in QA #38/#39, where direct `index-new.html` testing bypassed the wrapper.
+- First test commit `bd4db7dc78b583030b62c968b095363fe4075b1f` had an over-escaped WebP URL regex; corrected immediately in follow-up commit `90e008af2e4bd4ed787c43bb0357696a73937bb7`. The current PR #54 head reported by GitHub is `90e008af2e4bd4ed787c43bb0357696a73937bb7`.
+- Exact-head workflow lookup did not yet return new runs for this test addition at last poll. Treat the wrapper test as added but NOT validated until the relevant Actions run completes and its artifact/report is inspected. If the assertion fails, inspect the reported image URL/naturalWidth to distinguish missing local asset from iframe fallback timing or selector issues.
+- Previous category CTA CSS patch `8b3e47aca4cedf7b2888686460ce44dd0a33dc8d` remains verified by QA #39: 36/36 assertions passed, no console/page errors or horizontal overflow at 1440/390/320. Smoke #777, SKU audit #333 and package #100 passed for the prior exact head.
+- Production remains untouched; no Axxess upload, Supabase write, catalogue import, DNS/payment change, PR merge or live deployment. PR #54 remains draft/unmerged; release HOLD remains in force.
