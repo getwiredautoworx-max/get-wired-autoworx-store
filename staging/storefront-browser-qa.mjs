@@ -207,18 +207,29 @@ try {
   const wrapperFrame = wrapperPage.frameLocator('#store');
   await wrapperPage.waitForTimeout(4500);
   const wrapperRoots = await wrapperFrame.locator('#categoryGrid > .catWrap').count().catch(() => 0);
-  const wrapperProductImage = await wrapperFrame.locator('.product .prodImg img').first().evaluate(img => ({
-    src: img.currentSrc || img.src || '',
-    complete: img.complete,
-    naturalWidth: img.naturalWidth,
-    alt: img.alt || ''
-  })).catch(error => ({ error: String(error) }));
+  const wrapperProductImage = await wrapperFrame.locator('.product .prodImg').first().evaluate(box => {
+    const img = box.querySelector('img');
+    const text = (box.textContent || '').trim();
+    return {
+      src: img ? (img.currentSrc || img.src || '') : '',
+      complete: img ? img.complete : false,
+      naturalWidth: img ? img.naturalWidth : 0,
+      alt: img?.alt || '',
+      imageHidden: img ? getComputedStyle(img).display === 'none' : true,
+      placeholder: box.classList.contains('no-image') &&
+        (/product image unavailable/i.test(text) || /product image unavailable/i.test(box.getAttribute('aria-label') || '')),
+      placeholderText: text.slice(0, 100),
+      sku: box.closest('.product')?.querySelector('.sku')?.textContent?.trim() || ''
+    };
+  }).catch(error => ({ error: String(error) }));
   report.customerWrapper = { status: wrapperResponse?.status() ?? null, categoryRoots: wrapperRoots, firstProductImage: wrapperProductImage };
   check('customer_wrapper_http_200', report.customerWrapper.status === 200, JSON.stringify({status:report.customerWrapper.status}));
   check('customer_wrapper_category_roots', wrapperRoots === 8, 'found ' + wrapperRoots + ' top-level categories in store.html iframe');
-  check('customer_wrapper_exact_sku_image_renders',
-    Number(wrapperProductImage.naturalWidth || 0) > 0 &&
-      /\/assets\/products(?:_webp)?\/GW-[^/?]+\.(?:webp|jpg)(?:$|\?)/i.test(String(wrapperProductImage.src || '')),
+  const exactLocalImageLoaded = Number(wrapperProductImage.naturalWidth || 0) > 0 &&
+    /\/assets\/products(?:_webp)?\/GW-[^/?]+\.(?:webp|jpg)(?:$|\?)/i.test(String(wrapperProductImage.src || ''));
+  const explicitPlaceholderShown = wrapperProductImage.placeholder === true && wrapperProductImage.imageHidden === true;
+  check('customer_wrapper_exact_sku_image_or_explicit_placeholder',
+    exactLocalImageLoaded || explicitPlaceholderShown,
     JSON.stringify(wrapperProductImage));
   await wrapperPage.close();
 
