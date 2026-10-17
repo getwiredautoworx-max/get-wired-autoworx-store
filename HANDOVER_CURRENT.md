@@ -1927,3 +1927,12 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Immediate workflow lookup for that commit returned no run yet. Therefore the trigger correction is committed but browser QA is NOT verified; do not claim the storefront is ready or provide the stale Cloudflare preview as current.
 - Current PR #54 remains review-only/draft; no merge, Axxess upload, production Supabase mutation, real payment, supplier dispatch, courier booking, or Cloudflare/Netlify deployment was performed.
 - Next work is execution, not another plan: obtain a fresh exact-head QA artifact; inspect screenshots/report for mockup fidelity and core interactions; fix concrete failures and repeat relevant tests. Only provide a staging URL after its exact commit is verified. Maintain the owner’s requirement to protect production until approval.
+
+
+## 2026-10-17 — Approved mockup visual correction (15:43 UTC / 17:43 SAST)
+- Owner reiterated that delivery responsibility is ours and expects a directly testable staging storefront, not status updates.
+- Inspected artifact from browser QA run 39044613027 (commit 9e57297e59a63b331c1612462151768488c1a89b). Automated tests passed at 1440px, 390px and 320px, but the captured screenshot still showed the dark theme and blank-looking specials/product image panels. Passing automation alone was therefore not sufficient for visual acceptance.
+- Corrected `index-new.html` on this review branch to activate the existing approved light-canvas mockup styles and force product image boxes/images to render visibly. Commit: 3ad6c1cc8c45cab02aef720f6ba8b5c9ddf9d2fa.
+- Updated `staging/storefront-browser-qa.mjs` to assert the approved light mockup instead of the stale dark-theme assumption. Commit: 271b9523c48708481b3a00719187e209e7828931.
+- Exact-head browser QA runs are in progress: 39046282393 (UI fix commit) and 39046309448 (QA assertion commit). Do not claim these pass until the run reports and screenshot artifact are inspected.
+- Production Axxess remains untouched. PR #54 remains draft/review-only; no merge or production deploy.
