@@ -1,0 +1,63 @@
+name: Staging storefront browser QA
+on:
+  pull_request:
+    branches: [qa/desktop-mobile-screenshots-2026-10-15]
+    paths:
+      - '.github/workflows/staging-browser-qa.yml'
+      - '.github/workflows/prepare-axxess-package.yml'
+      - 'index.html'
+      - 'index-new.html'
+      - 'product-details.js'
+      - 'assets/**'
+      - 'staging/storefront-browser-qa.mjs'
+  push:
+    branches: [qa/desktop-mobile-screenshots-2026-10-15]
+    paths:
+      - '.github/workflows/staging-browser-qa.yml'
+      - '.github/workflows/prepare-axxess-package.yml'
+      - 'index.html'
+      - 'index-new.html'
+      - 'product-details.js'
+      - 'assets/**'
+      - 'staging/storefront-browser-qa.mjs'
+permissions:
+  contents: read
+concurrency:
+  group: staging-browser-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser test runner
+        run: |
+          npm init -y
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Serve candidate package files
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/storefront-http.log 2>&1 &
+          echo $! > /tmp/storefront-http.pid
+          for i in $(seq 1 20); do
+            if curl --silent --fail http://127.0.0.1:4173/index.html > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/storefront-http.log
+          exit 1
+      - name: Run desktop, mobile and interaction checks
+        run: node staging/storefront-browser-qa.mjs
+      - name: Upload screenshots and QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-browser-qa-${{ github.run_number }}
+          path: qa-output/
+          if-no-files-found: warn
+          retention-days: 14
