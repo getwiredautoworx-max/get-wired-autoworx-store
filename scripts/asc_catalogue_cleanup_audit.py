@@ -10,7 +10,8 @@ import re
 import sys
 from pathlib import Path
 
-DISCONTINUED = re.compile(r"\b(?:will\s+discontinue|will-discontinue|discontinued|discontinue\s+not\s+viable|not\s+viable)\b", re.I)
+WILL_DISCONTINUE = re.compile(r"\b(?:will\s+discontinue|will-discontinue|will\s+be\s+discontinued)\b", re.I)
+DISCONTINUED = re.compile(r"\b(?:discontinued|discontinue\s+not\s+viable|not\s+viable|discontinued\s+by\s+maker)\b", re.I)
 OUT_OF_STOCK = re.compile(r"\b(?:out\s+of\s+stock|sold\s+out)\b", re.I)
 ZERO_STOCK = re.compile(r"^\s*0+(?:\.0+)?\s*$")
 
@@ -77,11 +78,15 @@ def main():
         status = first(asc, af, "status", "stock status", "availability")
         stock = first(asc, af, "stock", "stock quantity", "quantity", "qty", "inventory")
         evidence = " ".join([asc_name, status, stock])
+        will_discontinue = bool(WILL_DISCONTINUE.search(evidence))
         is_discontinued = bool(DISCONTINUED.search(evidence))
         is_oos = bool(OUT_OF_STOCK.search(evidence)) or bool(ZERO_STOCK.fullmatch(stock))
-        if is_discontinued:
+        if will_discontinue:
+            action = "INVENTORY_HOLD_PENDING_CONFIRMATION"
+            reason = "Exact SKU match; supplier says WILL DISCONTINUE. Hold replenishment and confirm current orderability; do not automatically unpublish."
+        elif is_discontinued:
             action = "DEACTIVATE_AFTER_REVIEW"
-            reason = "Exact SKU match; supplier title/status explicitly indicates discontinued or will discontinue."
+            reason = "Exact SKU match; supplier explicitly marks the item discontinued/not viable. Human review and fresh supplier evidence are required before deactivation."
         elif is_oos:
             action = "REVIEW_TEMPORARY_STOCKOUT"
             reason = "Exact SKU match; supplier currently shows out of stock/zero. Do not treat as discontinued without confirmation."
