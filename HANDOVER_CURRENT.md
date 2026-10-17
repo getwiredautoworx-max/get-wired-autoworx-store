@@ -1511,3 +1511,9 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 
 - Re-ran a read-only Supabase query for the 14 previously recorded exact supplier-SKU matches. All 14 still exist and are active; six have store stock 5 and the 12V IQ globe has store stock 21 among the seven supplier-stockout candidates, while the seven discontinued-labelled candidates also show active local quantities. This confirms the local positive stock is a store-side placeholder/count and must not be assumed to reflect supplier availability.
 - No rows were modified. The full-catalogue result is still required before calling the review exhaustive.
+
+
+## 2026-10-17 — Rollback-default SQL artifact verified
+
+- Latest comparison workflow run `39018404977` SUCCESS produced `asc_store_review_patch.csv`, `reconciliation_summary.json`, and `asc-deactivation-review.sql` in artifact `12095468885`. The trial summary matched one of three status-candidate SKUs to the active store (`TR414C` stockout); the SQL proposal had zero deactivations and ends with `ROLLBACK` by default. This verifies the workflow does not apply changes.
+- The next comparison must use the successful full-crawl run ID, not the small trial ID `39017684138`.
