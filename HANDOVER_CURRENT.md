@@ -1966,3 +1966,15 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - PR #53 latest head remains `0115db1d10e160359c32eff3abac1ad9c80c4b86`, currently targeting `main` for consolidated review of the schema pack, strict CSV fixes and quote-only blocklist. The workflow includes a push trigger for its review branch; no terminal CI result is visible through the connected Actions query.
 - Do not treat workflow definitions, a commit existing, or a successful unrelated run as proof that these exact candidate checks passed. Use the exact branch-head report/logs when accessible.
 - Release remains HOLD; no live changes made.
+
+
+## VERIFIED UPDATE — 2026-10-17 — ASC SAFETY PATCH TESTS PASSED
+
+- PR #51 current head: `1a8170fc24d89b35301d2f9389eee1d2c99e958c` — https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/51
+- Latest workflow run #85: **39020733657 — SUCCESS** — https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39020733657
+- The full ASC audit test workflow ran **8 tests, all OK**. In addition to the existing five audit/crawler/reconciliation tests, the three new SQL safety tests passed: checked-in candidate flags are not authorized for write, only freshly verified + owner-approved confirmed-discontinued rows can qualify, and local stock is never rewritten.
+- Corrected review SQL is now included at `supabase/review/asc-discontinued-cleanup-2026-10-17.sql` in the review branch. All five candidate rows have `freshly_verified=false` and `owner_approved=false`; even `APPLY_CLEANUP=true` alone cannot deactivate any row. The SQL was not executed.
+- The current report explicitly treats F9-001-56 and T3-8CS as conflicting claims, F1-035 as an inventory hold rather than immediate deactivation, and WG-007 as unknown pending written supplier confirmation. AES-1115-16B is only a potential deactivation candidate after fresh exact-SKU verification and owner approval.
+- PR #54 latest head: `fe73dc828c606c50813fee72d06fdc9d809b9ac8`. Exact-head browser report remains unverified through the connected Actions query.
+- PR #53 latest head: `0115db1d10e160359c32eff3abac1ad9c80c4b86`. Exact-head schema CI result remains unverified through the connected Actions query.
+- No production SQL, Supabase mutation, product deactivation, Axxess upload, DNS change or payment-setting change was performed.
