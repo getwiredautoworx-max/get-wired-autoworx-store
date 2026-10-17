@@ -1425,3 +1425,10 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Expanded the synthetic unit test to include duplicate supplier SKUs and assert they are held as `MANUAL_REVIEW` instead of generating an automated deactivation.
 - The first test run after editing the test file failed because the generated test content had malformed line breaks. This was corrected in subsequent commits; the latest workflow runs for head `91ba7d5acc3768b7287d5bf4abfa2eb678b9ddb5` completed SUCCESS (runs `39016869708` and `39016867473`). The duplicate-SKU manual-review assertion is now covered by passing CI.
 - The audit PR remains review-only and unmerged. No production database records, Axxess files, or live website settings have been changed.
+
+
+## 2026-10-17 — Additional exact-SKU spot check
+
+- Queried the live store database read-only for further supplier codes visible in ASC catalogue results, including F1-007, F1-042, F1-088, SG-21TB, FF-024, T15-011-33, and other sample codes. Of the additional codes checked, no additional matching store product rows were returned; T3-5CS was present but its ASC listing was not marked discontinued in the reviewed result.
+- This confirms the current four-row CSV remains the exact-match review sample, not a complete cleanup list. ASC publicly shows a catalogue of roughly 12,000 products and multiple discontinued labels across categories, so full coverage still requires a machine-readable supplier catalogue export and full store-SKU comparison.
+- PR #49 is still intentionally unmerged: latest handover-only commit has no status check attached yet; code/test commits have successful Actions runs. No production changes.
