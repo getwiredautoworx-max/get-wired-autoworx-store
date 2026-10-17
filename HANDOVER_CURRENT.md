@@ -1917,3 +1917,13 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 
 ### Release decision
 **RELEASE HOLD — AXXESS LIVE STORE UNTOUCHED.** Review branches and draft PRs exist, but browser/schema/ASC test outcomes are not yet all verified for their exact heads.
+
+
+## 2026-10-17 continuation — staging QA trigger repair (owner directive)
+
+- Owner reiterated that the required outcome is a working storefront ready for owner live testing, not further plans or notifications. Keep working on implementation and update the handover after material changes.
+- Investigated the staging browser QA workflow. Its push trigger only named qa/desktop-mobile-screenshots-2026-10-15, not the active review branch review/staging-ui-verification-fixes-current. This was a concrete coverage gap: direct pushes to the active review branch would not trigger this workflow.
+- Fixed .github/workflows/staging-browser-qa.yml on the review branch to include review/staging-ui-verification-fixes-current in the push branch filters. Commit: 9e57297e59a63b331c1612462151768488c1a89b.
+- Immediate workflow lookup for that commit returned no run yet. Therefore the trigger correction is committed but browser QA is NOT verified; do not claim the storefront is ready or provide the stale Cloudflare preview as current.
+- Current PR #54 remains review-only/draft; no merge, Axxess upload, production Supabase mutation, real payment, supplier dispatch, courier booking, or Cloudflare/Netlify deployment was performed.
+- Next work is execution, not another plan: obtain a fresh exact-head QA artifact; inspect screenshots/report for mockup fidelity and core interactions; fix concrete failures and repeat relevant tests. Only provide a staging URL after its exact commit is verified. Maintain the owner’s requirement to protect production until approval.
