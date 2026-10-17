@@ -27,4 +27,4 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run safe matching tests
-        run: python -m unittest scripts/test_asc_catalogue_cleanup_audit.py -v
+        run: python -m unittest scripts/test_asc_catalogue_cleanup_audit.py scripts/test_compare_asc_store_readonly.py -v
