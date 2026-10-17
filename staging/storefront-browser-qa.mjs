@@ -78,6 +78,31 @@ try {
   report.categoryCardsAfterLoad = await page.locator('#categoryGrid .catWrap').count();
   check('category_tiles_populated', report.categoryCardsAfterLoad >= 1, 'found ' + report.categoryCardsAfterLoad + ' category tiles after waiting for catalogue load');
 
+  const rootCategoryIds = await page.locator('#categoryGrid > .catWrap').evaluateAll(nodes => nodes.map(node => node.getAttribute('data-filter')));
+  const expectedRootCategoryIds = [
+    '6cc56033-b0a9-4f25-b207-aeeb341a1c47',
+    '8e93d917-8fcc-4427-b364-cdad244f263f',
+    '5ab55c53-eee3-41ce-ad48-04ad6df85181',
+    '87982093-7d81-4f2e-a8e2-e20cdeef30d8',
+    '38b382c1-6ee0-4b3c-86ad-399094bc40cc',
+    '77297c18-67f6-452e-8918-c55d2ef6231a',
+    'af2f8625-4f42-45e6-9f21-d571d7415893',
+    '63a71fd9-df45-43f0-b61d-ad622daa9d79'
+  ];
+  check('exactly_eight_approved_home_roots',
+    rootCategoryIds.length === 8 && expectedRootCategoryIds.every(id => rootCategoryIds.includes(id)),
+    JSON.stringify(rootCategoryIds));
+  check('4x4_is_nested_under_camping_not_a_home_root',
+    rootCategoryIds.includes('182423ec-ea46-43e4-bbe3-b8857b5a1583') === false &&
+      await page.locator('#categoryGrid > .catWrap[data-filter="af2f8625-4f42-45e6-9f21-d571d7415893"] .children button[data-filter="182423ec-ea46-43e4-bbe3-b8857b5a1583"]').count() === 1,
+    '4x4 should appear as a child of Camping, Leisure & Outdoors');
+  const finderHeading = (await page.locator('#vehicleFinder h2').innerText()).trim();
+  const finderIntro = await page.locator('#vehicleFinder .vehicleIntro').innerText();
+  check('vehicle_finder_explicitly_optional',
+    finderHeading.startsWith('OPTIONAL:') && /not required to browse or request/i.test(finderIntro) &&
+      /car audio/i.test(finderIntro) && /vehicle security/i.test(finderIntro),
+    finderHeading + ' | ' + finderIntro);
+
   const fitmentCategoryResults = await page.evaluate(() => {
       const roots = [
         { label: 'Vehicle Security', id: '8e93d917-8fcc-4427-b364-cdad244f263f', exempt: true },
