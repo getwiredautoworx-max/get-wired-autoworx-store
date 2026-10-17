@@ -162,6 +162,28 @@ try {
     check('route_' + route.replace(/[^a-z0-9]+/gi, '_') + '_http_200', routeResult.status === 200 && routeResult.title.length > 0, JSON.stringify(routeResult));
   }
   report.customerRoutes = routeResults;
+  // Verify the actual customer entry wrapper, including its iframe-installed exact-SKU local image fallback.
+  const wrapperPage = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+  wrapperPage.on('console', msg => { if (msg.type() === 'error') report.consoleErrors.push('[store-wrapper] ' + msg.text()); });
+  wrapperPage.on('pageerror', error => report.pageErrors.push('[store-wrapper] ' + String(error)));
+  const wrapperResponse = await wrapperPage.goto(new URL('store.html', base).toString(), { waitUntil: 'domcontentloaded', timeout: 30000 });
+  const wrapperFrame = wrapperPage.frameLocator('#store');
+  await wrapperPage.waitForTimeout(4500);
+  const wrapperRoots = await wrapperFrame.locator('#categoryGrid > .catWrap').count().catch(() => 0);
+  const wrapperProductImage = await wrapperFrame.locator('.product .prodImg img').first().evaluate(img => ({
+    src: img.currentSrc || img.src || '',
+    complete: img.complete,
+    naturalWidth: img.naturalWidth,
+    alt: img.alt || ''
+  })).catch(error => ({ error: String(error) }));
+  report.customerWrapper = { status: wrapperResponse?.status() ?? null, categoryRoots: wrapperRoots, firstProductImage: wrapperProductImage };
+  check('customer_wrapper_http_200', report.customerWrapper.status === 200, JSON.stringify({status:report.customerWrapper.status}));
+  check('customer_wrapper_category_roots', wrapperRoots === 8, 'found ' + wrapperRoots + ' top-level categories in store.html iframe');
+  check('customer_wrapper_exact_sku_image_renders',
+    Number(wrapperProductImage.naturalWidth || 0) > 0 && /\\/assets\\/products_webp\\/GW-[A-Z0-9]{8}\\.webp(?:$|\\?)/i.test(wrapperProductImage.src || ''),
+    JSON.stringify(wrapperProductImage));
+  await wrapperPage.close();
+
   check('no_uncaught_page_errors', report.pageErrors.length === 0, report.pageErrors.slice(0, 5).join(' | '));
   report.finishedAt = new Date().toISOString();
   report.failures = failures;
