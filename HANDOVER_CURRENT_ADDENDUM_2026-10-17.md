@@ -27,3 +27,11 @@ Record the exact SKU/model and application; compare physical shape, dimensions, 
 - Image replacement remains **BLOCKED** pending access to the actual crosswalk/assets and rights-cleared replacement evidence.
 - Crosswalk/image inventory review: one focused session after the correct files are accessible. Rights review depends on evidence for each asset; no honest completion date can be given in advance.
 - No Axxess upload, merge, production SQL/data write, DNS/payment change, or Cloudflare/Netlify credit use was performed.
+
+
+## Visual QA artifact reinspection — acceptance correction
+
+- Downloaded and inspected browser QA artifact `staging-browser-qa-31` (artifact ID `12097437510`, SHA-256 `f5af40bdef86a08cf5020be333203062daa147ec36a110f386c78372f668fe07`). The saved screenshots show an excessively tall category section with very narrow subcategory cards and large empty areas. This is a visual-quality concern even though the automated checks passed.
+- The artifact report was produced against the older commit `d76617cf57c764f91d9e95f354c9981695f0ee6a`. The current review branch's `index-new.html` has a different blob SHA (`63321c6d1ce50137eea704ed324910999c2f739d`) and uses symbol/emoji category art. Therefore run #31 screenshots are **not current-head visual acceptance evidence** and must not be presented as proof that the latest branch's rendered design is acceptable.
+- The report's “broken images” metric counts only images that are both complete and have zero natural width. The saved metrics contain many incomplete/zero-width image entries (likely unloaded or failed requests); those were not classified as broken by that check. Image loading QA must explicitly distinguish lazy/unrequested images from failed image requests and should verify visible images after scrolling/loading.
+- Corrected status: **current review-branch visual QA is pending**, and the previously saved screenshots are rejected as visual acceptance evidence. No production change was made. Next action is a fresh browser run on the actual current PR head, with screenshots captured in the initial page state plus an explicit visual category-layout assertion and a visible-image load/error audit.
