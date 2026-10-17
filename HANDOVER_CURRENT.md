@@ -1696,3 +1696,56 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 - GitHub Actions secret creation: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/settings/secrets/actions/new
 
 **Verified state at pause:** Android project/config/theme/NeonCard and workflow files are committed. Expo project ID has not been linked/verified; GitHub `EXPO_TOKEN` presence is unverified; no EAS build result or downloadable APK has been verified; no Hisense M72 Pro installation test has been completed. The app currently wraps the HTTPS storefront in a WebView; it is not a fully native shopping app. No Axxess, production storefront, Supabase, DNS, catalogue or payment configuration was changed by this workstream. Keep all these statuses open until evidence is collected.
+
+
+## COORDINATOR UPDATE — 2026-10-17 — CURRENT TASK MONITORING
+
+### Repository evidence checked
+- Re-read `HANDOVER_CURRENT.md` and `GEMINI_EXECUTION_BRIEF.md` before continuing.
+- Reviewed the current repository pull-request search results for PRs #49, #48, #47, #46, #45, #44, and earlier relevant QA PRs.
+- This is a documentation/monitoring update only. No storefront deployment, Axxess upload, production database write, SQL execution, DNS change, or payment-setting change was performed.
+
+### Current concurrent workstreams and evidence status
+1. **ASC catalogue cleanup — PR #49**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/49
+   - PR description says a read-only crawler/reconciliation pipeline is being added, with exact normalized supplier-SKU matching, review-only CSV actions, and SQL generation defaulting to ROLLBACK.
+   - PR explicitly says the full crawl/reconciliation is still running and spot-check CSV is not exhaustive until the crawl summary reports `complete=true` and the reconciliation artifact is reviewed.
+   - Current status: IN PROGRESS / NOT ACCEPTED. Do not deactivate products based on this incomplete crawl.
+2. **ASC discontinued candidates — PR #48**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/48
+   - PR description reports a read-only baseline of 4,187 active products, no active local-stock values <= 0, and five exact-SKU supplier discontinuation candidates: AES-1115-16B, F1-035, F9-001-56, T3-8CS, WG-007.
+   - The same PR says the supplier stock-sync table is empty and prior ASC verification rows date to 2026-09-16; this is explicitly a targeted sample, not a full crawl.
+   - Status: REVIEW ONLY. The five candidates require fresh supplier evidence before any deactivation.
+3. **Storefront mockup — PR #44**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/44
+   - Candidate describes a bright/light layout, compact hero, navy/red image-led cards and responsive category grid in `index-new.html`.
+   - PR description says all nine homepage categories are present, including 4x4. This may conflict with the current approved eight-root taxonomy; verify the exact rendered candidate against the permanent eight-root rule before acceptance.
+   - Status: BROWSER QA NOT VERIFIED in the PR summary; do not merge or deploy on source-level evidence alone.
+4. **Optional vehicle finder — PR #47**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/47
+   - Source-level exact-string checks are reported as passed. Desktop/mobile browser QA is explicitly still outstanding.
+   - Status: BROWSER QA REQUIRED; no merge/deployment.
+5. **Axxess package verification — PR #46**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/46
+   - Package-integrity workflow trigger only. A successful package check would not prove rendered visual/interaction QA or authorize deployment.
+   - Status: SEPARATE PACKAGE GATE; do not deploy based on this alone.
+6. **Prior QA evidence — PR #36**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/36
+   - Its description records an earlier Playwright run #17 with no page errors or document-wide horizontal overflow at its tested viewports and eight sampled WebP images loaded; package workflow run #25 succeeded at commit `7443ca8080052bc757b9016c9928f76db0a17075`.
+   - This is historical evidence for that earlier candidate, not proof that PR #44/#47's current head passes. It also notes watermarks/catalogue text, 86 active products lacking an exact local image, and unresolved price/image-rights holds.
+   - Do not rerun the older successful suite unless current changes or a failure require it.
+
+### Actual test outcomes versus outstanding tests
+- Confirmed from PR descriptions: PR #47 source-level exact-string checks passed; PR #49 automated full crawl is described as still running; PR #36 records earlier QA/package results for its own prior candidate.
+- Not verified in this monitoring pass: current head commit SHAs, latest Actions run IDs/statuses for each open PR, completion of PR #49 crawl, actual browser screenshots for PR #44/#47, current Axxess DNS/SSL behavior, or live storefront interactions.
+- Do not turn a PR description or an earlier run into a claim that the current candidate has passed. Record current SHA, run ID, artifact/screenshot links, viewport and pass/fail evidence when available.
+
+### Gemini delegation status
+- Three independent Gemini task briefs were prepared for: (1) ASC cleanup evidence/tests, (2) actual desktop/mobile browser QA for PR #44/#47, and (3) catalogue schema/validator safety review.
+- These briefs have not yet been confirmed as launched by a remote Gemini agent. Netlify Agent Runner requires a separate explicit confirmation before starting billable remote tasks; do not claim agent tasks are running until task IDs are returned.
+- Avoid Netlify/Cloudflare builds for these checks; use existing GitHub PR/Actions and browser artifacts where possible to conserve credits.
+
+### Immediate next actions
+1. Check PR #49's latest branch head and Actions/artifacts; wait for `complete=true`, inspect crawl completeness and exact-SKU evidence, and verify all candidate actions remain review-only.
+2. Run or inspect browser QA against the exact PR #44 and #47 head commits at 1440px, 390px and 320px. Capture screenshots and interaction outcomes; validate the eight-root rule and nested 4x4 placement.
+3. Review PR #48/#49 generated CSV/SQL for exact matching, safe handling of temporary stockouts, rollback-by-default behavior, and no production writes.
+4. Check PR #28/#31 schema/validator tests and review results without assuming they are merged.
+5. Keep Axxess as the primary host. Do not upload until visual QA, catalogue safety gates, current-price/image-rights gates, DNS/SSL checks, backup and rollback evidence are all accepted.
+6. Append actual SHA/run IDs/artifact links and pass/fail results here as tasks finish; keep the release on HOLD until the gates are met.
+
+### Release decision
+**RELEASE HOLD — NO PRODUCTION CHANGES AUTHORIZED.** Current monitoring confirms useful candidate work and historical test evidence, but does not establish that the present storefront candidate or full supplier crawl has passed the next release gate.
