@@ -55,3 +55,11 @@ Date: 2026-10-17 (SAST)
 - New exact-head workflow run IDs queued at checkpoint: browser QA #45 `39032537225`; smoke test #783 `39032537235`; package #106 `39032537229`; public SKU audit #339 `39032537232`. Pending until actual conclusions and browser artifact are inspected.
 - The fallback runtime was not changed. The product with a missing local asset should show the explicit placeholder if both exact-SKU files fail; if the new run finds that it does not, fix that concrete runtime defect on the review branch and retest.
 - Release remains HOLD; production and Axxess are unchanged.
+
+
+## Runtime fallback defect found and patched — 2026-10-17
+- Browser QA #45 / run `39032537225` failed the intended wrapper assertion for `GW-BACFDE14`: image request remained incomplete (`complete=false`, `naturalWidth=0`), was not hidden, and no placeholder appeared after the test's 4.5-second wrapper wait. This is a concrete unresolved runtime issue, not merely a QA assertion mismatch.
+- Patched `assets/product-image-fallback.js` on the review branch (commit `1a65ba4008357576ae86a05dc0cca649d57247df`): image load/error listeners are attached with `addEventListener`, each exact-SKU WebP/JPG attempt has a 6.5-second timeout, completed zero-width images immediately advance, and exhaustion of both exact-SKU paths renders the neutral accessible placeholder. The implementation still never substitutes another product's image.
+- The earlier #45 direct-page viewport audit reported nine loaded images and zero unresolved images at each width (1440/390/320); wrapper image fallback failed, so overall browser QA correctly failed. Smoke test, package assembly, and public SKU exposure audit for commit `efa4edabd2c322944f4e9d42f82c9a31c1a186f6` passed.
+- New exact-head verification for runtime patch commit `1a65ba4008357576ae86a05dc0cca649d57247df`: browser QA #46 / run `39032922649`; smoke test #784 / `39032922655`; package #107 / `39032922632`; public SKU audit #340 / `39032922618`. Status at checkpoint: running; conclusions/artifacts must be inspected before marking resolved.
+- Production Axxess and production data remain unchanged; PR #54 stays unmerged. Image rights/physical identity remain a separate content-review gate even if fallback tests pass.
