@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Polite, read-only crawler for the public ASC WooCommerce catalogue."""
 from __future__ import annotations
-import argparse, csv, json, math, re, sys, time
+import argparse, csv, json, math, re, sys, time, threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.parse import urljoin
 from urllib.robotparser import RobotFileParser
@@ -73,9 +74,28 @@ def parse_products(html, page_url):
             total = int_commas(match.group(3))
     return products, total
 
-def detail_sku(session, url):
+class RateLimiter:
+    """Space request start times across workers; concurrency only hides network latency."""
+    def __init__(self, interval):
+        self.interval = interval
+        self.lock = threading.Lock()
+        self.next_start = 0.0
+
+    def wait(self):
+        with self.lock:
+            now = time.monotonic()
+            pause = max(0.0, self.next_start - now)
+            self.next_start = max(now, self.next_start) + self.interval
+        if pause:
+            time.sleep(pause)
+
+
+def detail_sku(url, limiter, user_agent):
     """Resolve SKUs omitted from listing cards by checking flagged product detail pages only."""
-    response = session.get(url, timeout=12)
+    limiter.wait()
+    with requests.Session() as session:
+        session.headers.update({"User-Agent": user_agent, "Accept": "text/html,application/xhtml+xml"})
+        response = session.get(url, timeout=12)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
     sku_node = soup.select_one(".product_meta .sku, span.sku, .sku_wrapper .sku")
@@ -147,18 +167,29 @@ def main():
                 print(f"page={page} attempt={attempt+1}: {type(exc).__name__}: {exc}", file=sys.stderr, flush=True)
         if not got:
             failures.append({"page": str(page), "url": url, "error": "all retries failed"})
-    # Resolve missing SKUs only for status candidates; avoid thousands of unnecessary detail-page requests.
+    # Resolve missing SKUs only for status candidates. Requests are globally spaced, with
+    # bounded concurrency to avoid making each slow detail page add its full latency serially.
     enrich_failures = []
-    for row in rows:
-        is_candidate = bool(row["supplier_status_flags"]) or row["stock_status"] == "OUT_OF_STOCK" or row["stock_quantity"] == 0
-        if is_candidate and not row["supplier_sku"] and row["product_url"]:
-            try:
-                time.sleep(delay)
-                row["supplier_sku"] = detail_sku(session, row["product_url"])
-                row["sku_source"] = "product_detail" if row["supplier_sku"] else "unresolved"
-            except Exception as exc:
-                row["sku_source"] = "detail_fetch_failed"
-                enrich_failures.append({"url": row["product_url"], "error": f"{type(exc).__name__}: {exc}"})
+    limiter = RateLimiter(delay)
+    pending = [
+        (index, row) for index, row in enumerate(rows)
+        if (bool(row["supplier_status_flags"]) or row["stock_status"] == "OUT_OF_STOCK" or row["stock_quantity"] == 0)
+        and not row["supplier_sku"] and row["product_url"]
+    ]
+
+    def resolve_candidate(item):
+        index, row = item
+        try:
+            return index, detail_sku(row["product_url"], limiter, USER_AGENT), None
+        except Exception as exc:
+            return index, "", {"url": row["product_url"], "error": f"{type(exc).__name__}: {exc}"}
+
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        for index, sku, error in executor.map(resolve_candidate, pending):
+            rows[index]["supplier_sku"] = sku
+            rows[index]["sku_source"] = "product_detail" if sku else ("detail_fetch_failed" if error else "unresolved")
+            if error:
+                enrich_failures.append(error)
     write_csv(out_dir / "asc_catalogue_all.csv", rows)
     candidates = [r for r in rows if r["supplier_status_flags"] or r["stock_status"] == "OUT_OF_STOCK" or r["stock_quantity"] == 0]
     write_csv(out_dir / "asc_catalogue_status_candidates.csv", candidates)
