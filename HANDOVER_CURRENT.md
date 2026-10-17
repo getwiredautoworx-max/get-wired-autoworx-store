@@ -1936,3 +1936,10 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Updated `staging/storefront-browser-qa.mjs` to assert the approved light mockup instead of the stale dark-theme assumption. Commit: 271b9523c48708481b3a00719187e209e7828931.
 - Exact-head browser QA runs are in progress: 39046282393 (UI fix commit) and 39046309448 (QA assertion commit). Do not claim these pass until the run reports and screenshot artifact are inspected.
 - Production Axxess remains untouched. PR #54 remains draft/review-only; no merge or production deploy.
+
+
+### Light mockup cascade follow-up — 2026-10-17 15:47 UTC
+- The first light-theme QA run correctly failed: legacy later CSS rules were overriding the light body background. Screenshot showed white category/product cards but the surrounding canvas and feature strip remained dark. This was a genuine visual mismatch, not a test false positive.
+- Added a final body-level cascade override so the actual canvas and shared surfaces use the approved light palette; commit 8a2ba108d783fa8935960a69f35f1ac528676120.
+- Tightened browser QA to assert the computed light canvas and white category/product surfaces, not merely the presence of a CSS class; commit bbee4c9878f2c8b05a602a425fbfedcfe889b425.
+- Exact-head QA for these latest changes is now required. The previous run failed only the canvas assertion; route, category, image-decode, overflow and modal/cart checks passed. Product image visual identity/right-to-use remains a separate issue: screenshots show source-image markings/text in several product thumbnails, which must not be mistaken for acceptable final imagery.
