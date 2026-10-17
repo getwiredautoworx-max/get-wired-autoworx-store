@@ -2175,3 +2175,14 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Existing recovery set inspection: one focused session after the ZIP/CSV is accessible in the current runtime or as a GitHub artifact.
 - Rights-cleared alternative matching: dependent on exact affected SKU list and available authorized assets; no honest fixed ETA until the inventory is inspected.
 - PR #54 remains **NOT VISUALLY ACCEPTED / RELEASE HOLD**. Production remains unchanged.
+
+
+## 2026-10-17 source inspection — category tiles / PR #54
+
+- Inspected `index-new.html` on review branch `review/staging-ui-verification-fixes-current` (blob SHA `63321c6d1ce50137eea704ed324910999c2f739d`).
+- Static source assertions confirmed exactly **8** `HOME_CATEGORY_IDS`; the 4x4 Outdoor ID is not a root and is explicitly added to Camping, Leisure & Outdoors children. This source-level check passed; it is not a substitute for browser/visual QA.
+- The current category tiles call `categoryArt(c)` and render emoji/symbol art (⚡, 🔒, ♫, etc.), not manufacturer/product images. This avoids incorrectly borrowing an arbitrary product image for a category tile, but does not yet meet the owner's preference for approved visual assets.
+- No product-specific image substitution is safe to make from the current evidence: the 791 exact-SKU catalogue image recovery set remains internal QA-only with unresolved publication rights; the 16 low-resolution assets remain flagged. A generic replacement would also fail the owner's exact item/shape/size/colour/application rule.
+- Decision: do not make an unverified image swap. The safe next change is to create a staging-only image review register for each category/product visual, with exact source SKU/model and application plus asset provenance/licence. Replace only where identity and rights are both documented; otherwise keep the current neutral category art/placeholder.
+- Validation still required: actual screenshots and interactions for PR #54 at 1440px, 390px and 320px. Latest observed local smoke workflow run 39020679122 passed but has no artifact and does not prove the requested visual sizes.
+- No storefront code change was made in this inspection. Production remains unchanged; no Axxess upload, merge, Supabase write, SQL execution, DNS/payment change, or Cloudflare/Netlify credit use.
