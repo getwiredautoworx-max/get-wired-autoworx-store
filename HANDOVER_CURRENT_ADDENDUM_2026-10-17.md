@@ -43,3 +43,10 @@ Record the exact SKU/model and application; compare physical shape, dimensions, 
 - Built and visually inspected an internal contact sheet. The images visibly carry ASC / Accessories Spares Centre watermarks. The ZIP/manifest contains no licence, rights-holder authorisation, permission record, or permitted-edit terms. “Verified” in the filename/manifest is not evidence of publication rights.
 - Decision: **reject all 53 as replacement assets for public use unless explicit reuse permission is later documented**. Do not crop, erase or obscure the watermark to try to make them usable. SKU-named files are a useful internal identity-review lead only; each still needs product/application/physical-feature confirmation, and the CSV contains some source category assignments that conflict with product descriptions (for example, a fuel-pump description appears under a globes subcategory), so do not trust its category field without reconciliation.
 - This inspection improved the evidence base but does not resolve the image replacement task. Newly accepted public-use replacements remain **0**. The 53 watermarked images remain internal QA evidence only; no image was uploaded or published.
+
+
+## Deliverable — 53-SKU image rights review register
+
+- Generated `Get_Wired_AutoWorx_53_SKU_Image_Rights_Review_Register_2026-10-17.csv` with 53 rows, image filename and pixel dimensions, SKU/product/category details from the ZIP manifest, visible ASC watermark status, exact-identity/application review status, rights/licence evidence field, edit/crop permission field, and public-use decision.
+- All 53 rows are marked **HOLD — do not publish** because the archive contains no licence/permission evidence and the images visibly carry ASC watermarks. Exact SKU filenames are recorded as a lead, not accepted as sufficient physical-match evidence.
+- The register is a review aid, not an import file and not a permission request. No supplier was contacted; no image was altered or published.
