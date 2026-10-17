@@ -2926,3 +2926,17 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Exact-head workflow lookup did not yet return new runs for this test addition at last poll. Treat the wrapper test as added but NOT validated until the relevant Actions run completes and its artifact/report is inspected. If the assertion fails, inspect the reported image URL/naturalWidth to distinguish missing local asset from iframe fallback timing or selector issues.
 - Previous category CTA CSS patch `8b3e47aca4cedf7b2888686460ce44dd0a33dc8d` remains verified by QA #39: 36/36 assertions passed, no console/page errors or horizontal overflow at 1440/390/320. Smoke #777, SKU audit #333 and package #100 passed for the prior exact head.
 - Production remains untouched; no Axxess upload, Supabase write, catalogue import, DNS/payment change, PR merge or live deployment. PR #54 remains draft/unmerged; release HOLD remains in force.
+
+
+## CONTINUATION LOG — 2026-10-17 — CUSTOMER-WRAPPER IMAGE QA FOUND A REAL STAGING BLOCKER
+
+- Rechecked Actions for PR #54 head `90e008af2e4bd4ed787c43bb0357696a73937bb7`. Storefront smoke #779, public SKU exposure audit #335, and Axxess package preparation #102 completed SUCCESS; package is an artifact only and was not uploaded. Wrapper-aware browser QA #41 FAILED, so the previous “wrapper assertion awaiting validation” is now resolved as a confirmed staging failure, not a pass.
+- QA #41 opened `store.html`, found HTTP 200 and all 8 category roots, but the first product image did not load. The exact reported image URL was `/assets/products_webp/GW-BACFDE14.webp`, with `complete=false` and `naturalWidth=0`. Failing check: `customer_wrapper_exact_sku_image_renders`. The report alone does not establish whether the specific asset is absent, incorrectly served, or delayed by wrapper/fallback timing; inspect the asset path and HTTP response before changing code.
+- The fallback script intentionally tries the exact public SKU WebP only and then hides the image if that exact asset fails. Do not substitute a similar item or manufacture a product photo. Next action: verify whether `assets/products_webp/GW-BACFDE14.webp` exists on the candidate branch and whether it is served with HTTP 200; inspect the product card's SKU and fallback timing. Fix the underlying asset/path/timing issue on the review branch only, then rerun browser QA and inspect the artifact.
+- Current relevant Actions: QA #41 run `39031387536` FAILED; smoke #779 run `39031387654` SUCCESS; public SKU audit #335 run `39031387584` SUCCESS; package prep #102 run `39031387537` SUCCESS. Artifact: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39031387536/artifacts/12100656510.
+- Release remains HOLD. PR #54 remains draft/unmerged. No Axxess upload, live deployment, Supabase production write, catalogue import, DNS/payment change or production mutation occurred.
+
+### Immediate next actions
+1. Inspect the exact WebP asset and request status for `GW-BACFDE14`; distinguish missing asset from fallback timing/URL errors.
+2. Fix only the verified root cause on the review branch and rerun wrapper-level QA until the exact-SKU image check passes; preserve a neutral placeholder when no verified image exists.
+3. Update this handover with the exact changed files, commit, workflow run IDs, and artifact evidence. Keep the live Axxess store untouched until owner acceptance.
