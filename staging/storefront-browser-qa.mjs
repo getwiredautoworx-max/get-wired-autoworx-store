@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 
-const base = process.env.STOREFRONT_BASE_URL || 'http://127.0.0.1:4173/index.html';
+const base = process.env.STOREFRONT_BASE_URL || 'http://127.0.0.1:4173/index-new.html';
 const outDir = 'qa-output';
 fs.mkdirSync(outDir, { recursive: true });
 const report = { base, startedAt: new Date().toISOString(), viewports: [], checks: {}, consoleErrors: [], pageErrors: [], failedRequests: [], httpResponses: [] };
