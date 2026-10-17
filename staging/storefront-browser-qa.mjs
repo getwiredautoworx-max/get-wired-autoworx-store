@@ -111,6 +111,7 @@ try {
         };
       });
     });
+  await page.locator('#productModal').evaluate(el => el.classList.remove('open'));
   report.fitmentCategoryResults = fitmentCategoryResults;
   const exemptFitmentChecks = (fitmentCategoryResults || []).filter(x => x.exempt);
   const vehicleSpecificChecks = (fitmentCategoryResults || []).filter(x => !x.exempt);
