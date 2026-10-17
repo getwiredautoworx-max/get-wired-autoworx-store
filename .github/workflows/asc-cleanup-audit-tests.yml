@@ -5,6 +5,10 @@ on:
     paths:
       - 'scripts/asc_catalogue_cleanup_audit.py'
       - 'scripts/test_asc_catalogue_cleanup_audit.py'
+      - 'scripts/compare_asc_store_readonly.py'
+      - 'scripts/test_compare_asc_store_readonly.py'
+      - 'scripts/compare_asc_store_readonly.py'
+      - 'scripts/test_compare_asc_store_readonly.py'
       - 'docs/ASC_CATALOGUE_CLEANUP_AUDIT.md'
   push:
     branches: [audit/asc-catalogue-cleanup]
