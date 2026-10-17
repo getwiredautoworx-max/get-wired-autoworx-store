@@ -87,6 +87,7 @@ ORDER BY c.supplier_sku;
     ON upper(trim(psc.supplier_sku)) = upper(trim(c.supplier_sku))
   LEFT JOIN public.products p ON p.id = psc.product_id
   ORDER BY c.supplier_sku;
+  COMMIT;
 \else
   ROLLBACK;
 \endif
