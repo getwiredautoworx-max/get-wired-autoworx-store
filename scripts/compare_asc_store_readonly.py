@@ -170,10 +170,22 @@ def main():
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         writer.writerows(matches)
+    store_skus = {norm(row.get("sku")) for row in store_rows if row.get("active") is True and norm(row.get("sku"))}
+    supplier_candidate_skus = {
+        norm(row.get("supplier_sku") or row.get("sku"))
+        for row in asc_rows
+        if norm(row.get("supplier_sku") or row.get("sku"))
+        and (row.get("supplier_status_flags") or row.get("stock_status") == "OUT_OF_STOCK" or str(row.get("stock_quantity", "")).strip() == "0")
+    }
+    matched_candidate_skus = supplier_candidate_skus & store_skus
     summary = {
         "store_active_rows_read": len(store_rows),
         "supplier_catalogue_rows_read": len(asc_rows),
-        "exact_sku_review_matches": len(matches),
+        "supplier_status_candidate_skus": len(supplier_candidate_skus),
+        "supplier_status_candidate_skus_matched": len(matched_candidate_skus),
+        "supplier_status_candidate_skus_unmatched": len(supplier_candidate_skus - store_skus),
+        "exact_sku_review_rows": len(matches),
+        "exact_sku_review_matches": len({r["supplier_sku"] for r in matches}),
         "discontinued_review_matches": sum(r["recommended_action"] == "DEACTIVATE_AFTER_REVIEW" for r in matches),
         "stockout_review_matches": sum(r["recommended_action"] == "REVIEW_TEMPORARY_STOCKOUT" for r in matches),
         "manual_review_duplicates": sum(r["recommended_action"] == "MANUAL_REVIEW" for r in matches),
