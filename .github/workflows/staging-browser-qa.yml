@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - qa/desktop-mobile-screenshots-2026-10-15
+      - review/staging-ui-verification-fixes-current
     paths:
       - '.github/workflows/staging-browser-qa.yml'
       - '.github/workflows/prepare-axxess-package.yml'
