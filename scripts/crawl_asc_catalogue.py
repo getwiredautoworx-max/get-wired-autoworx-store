@@ -15,7 +15,7 @@ SKU_RE = re.compile(r"\bSKU\s*:\s*([A-Z0-9][A-Z0-9._/-]{1,40})\b", re.I)
 STOCK_RE = re.compile(r"\b(\d[\d,]*)\s+in\s+stock\b", re.I)
 STOCK_LABEL_RE = re.compile(r"\bStock\s*:\s*(\d[\d,]*)\b", re.I)
 STATUS_PATTERNS = [
-    ("DISCONTINUED", re.compile(r"\bdiscontinu(?:ed|e|ing)\b", re.I)),
+    ("DISCONTINUED_OR_DISCONTINUING", re.compile(r"\bdiscontinu(?:ed|e|ing)\b", re.I)),
     ("WILL_DISCONTINUE", re.compile(r"\bwill\s+discontinu(?:e|ed|ing)\b", re.I)),
     ("NOT_VIABLE", re.compile(r"\bnot\s+viable\b", re.I)),
     ("OUT_OF_STOCK", re.compile(r"\bout\s+of\s+stock\b|\bsold\s+out\b", re.I)),
@@ -72,6 +72,21 @@ def parse_products(html, page_url):
         if match:
             total = int_commas(match.group(3))
     return products, total
+
+def detail_sku(session, url):
+    """Resolve SKUs omitted from listing cards by checking flagged product detail pages only."""
+    response = session.get(url, timeout=30)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+    sku_node = soup.select_one(".product_meta .sku, span.sku, .sku_wrapper .sku")
+    if sku_node:
+        value = sku_node.get_text(" ", strip=True).strip()
+        if value and value.lower() not in {"n/a", "na", "—", "-"}:
+            return value
+    text = " ".join(soup.get_text(" ", strip=True).split())
+    match = re.search(r"\bSKU\s*:\s*([A-Z0-9][A-Z0-9._/-]{1,40})\b", text, re.I)
+    return match.group(1).strip() if match else ""
+
 
 def write_csv(path, rows):
     fields = ["supplier_sku", "title", "stock_status", "stock_quantity", "supplier_status_flags", "product_url", "category_labels", "source_page"]
@@ -132,6 +147,18 @@ def main():
                 print(f"page={page} attempt={attempt+1}: {type(exc).__name__}: {exc}", file=sys.stderr, flush=True)
         if not got:
             failures.append({"page": str(page), "url": url, "error": "all retries failed"})
+    # Resolve missing SKUs only for status candidates; avoid thousands of unnecessary detail-page requests.
+    enrich_failures = []
+    for row in rows:
+        is_candidate = bool(row["supplier_status_flags"]) or row["stock_status"] == "OUT_OF_STOCK" or row["stock_quantity"] == 0
+        if is_candidate and not row["supplier_sku"] and row["product_url"]:
+            try:
+                time.sleep(delay)
+                row["supplier_sku"] = detail_sku(session, row["product_url"])
+                row["sku_source"] = "product_detail" if row["supplier_sku"] else "unresolved"
+            except Exception as exc:
+                row["sku_source"] = "detail_fetch_failed"
+                enrich_failures.append({"url": row["product_url"], "error": f"{type(exc).__name__}: {exc}"})
     write_csv(out_dir / "asc_catalogue_all.csv", rows)
     candidates = [r for r in rows if r["supplier_status_flags"] or r["stock_status"] == "OUT_OF_STOCK" or r["stock_quantity"] == 0]
     write_csv(out_dir / "asc_catalogue_status_candidates.csv", candidates)
@@ -140,12 +167,18 @@ def main():
         "pages_attempted": pages_to_fetch, "rows_parsed": len(rows),
         "rows_with_supplier_sku": sum(bool(r["supplier_sku"]) for r in rows),
         "unique_supplier_skus": len({r["supplier_sku"] for r in rows if r["supplier_sku"]}),
-        "status_candidates": len(candidates), "failed_pages": failures,
-        "complete": pages_to_fetch == pages_needed and not failures and len(rows) >= total,
+        "status_candidates": len(candidates), "candidate_skus_resolved_on_detail_pages": sum(r.get("sku_source") == "product_detail" for r in candidates),
+        "candidate_skus_unresolved": sum(not r["supplier_sku"] for r in candidates),
+        "detail_fetch_failures": enrich_failures, "failed_pages": failures,
+        "complete": pages_to_fetch == pages_needed and not failures and not enrich_failures and len(rows) >= total,
         "robots_policy_checked": True, "read_only": True,
     }
     (out_dir / "crawl_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2), flush=True)
+    if failures or enrich_failures:
+        return 5
+    if args.max_pages > 0 and pages_to_fetch < pages_needed:
+        return 0  # An explicitly capped trial is successful but correctly marked incomplete.
     return 0 if summary["complete"] else 5
 
 if __name__ == "__main__":
