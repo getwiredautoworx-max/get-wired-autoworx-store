@@ -1993,3 +1993,16 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - PR #53 has been retargeted back to `feature/docs-schema-pack` to preserve the intended review context for PRs #28/#31. Its latest head is `0115db1d10e160359c32eff3abac1ad9c80c4b86`; no terminal schema CI result is available from the connected Actions query.
 - PR #54 latest UI head remains `fe73dc828c606c50813fee72d06fdc9d809b9ac8`; browser workflow/report still not retrievable via the connected Actions query. Do not mark browser acceptance complete.
 - Axxess remains untouched. No database SQL was run and no products were deactivated.
+
+
+## SUPPLIER EVIDENCE CHECK — 2026-10-17 — INDEXED SNAPSHOTS ONLY
+
+A fresh web search returned public ASC indexed snippets, but direct opens of the five product/category pages failed with cache misses/timeouts. Therefore these are **indexed snapshots, not a successful live-page recheck**.
+
+- AES-1115-16B: indexed ASC result labels it “DISCONTINUED BY MAKER” and shows 52 in stock; another older result showed 80 in stock. This supports a discontinued label historically but demonstrates stock-count variance.
+- F1-035: indexed ASC result labels it “WILL DISCONTINUE” and shows 15 in stock. Treat as a replenishment/inventory hold, not immediate unpublishing.
+- F9-001-56: indexed ASC result labels it “DISCONTINUED NOT VIABLE” and shows 3 in stock. This conflicts with the owner-submitted temporary-stockout claim; manual review remains mandatory.
+- T3-8CS: indexed ASC result labels it “DISCONTINUED” and shows 113 in stock. This conflicts with the owner-submitted active/backorder claim; manual review remains mandatory.
+- WG-007: indexed ASC result labels it “SUPPLIER WILL DISCONTINUE CONFIRMED” and shows 111 in stock. This conflicts with the owner-submitted HTTP 404/missing-listing claim; written supplier confirmation is required.
+
+Sources are linked from the PR #48 audit document and include ASC page results. Because direct page fetch failed and indexed snapshots have different crawl ages, none of these snippets is considered current live verification. No status action is authorized from this search alone.
