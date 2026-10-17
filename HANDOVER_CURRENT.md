@@ -1869,3 +1869,51 @@ The owner supplied the following status summary for tracking:
 
 ### Release decision and next action
 **RELEASE HOLD — the four items above remain open; do not claim 100% verified release readiness or perform live deployment, production SQL/data writes, DNS/payment changes, or image publication on the strength of this status summary alone.** Continue independent staging/review work without repeating successful workflows unnecessarily. Update this checkpoint with evidence links and actual outcomes as each blocker closes.
+
+
+## COORDINATOR UPDATE — 2026-10-17 — REVIEW BRANCH RECONCILIATION IN PROGRESS
+
+### Owner instruction
+Continue implementation in isolated review branches, run checks, keep Axxess untouched, and record actual outcomes here. No merges or production actions are authorized by this update.
+
+### Review branches and draft PRs created
+1. **ASC status audit and conservative cleanup**
+   - Branch: `review/asc-discontinued-audit-fix`
+   - PR #51: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/51
+   - Commits: script fix `a460857b09170c6de1315273c424923224a1088e`; regression test `092fb3ec0c56c44259b83f8fc5233b9c8c64b9fa`; reconciled CSV `8105efbf6dadb3504074635dbe7852715572a7b1`.
+   - Changed actual repository paths `scripts/asc_catalogue_cleanup_audit.py`, `scripts/test_asc_catalogue_cleanup_audit.py`, and added `data/reports/asc_status_audit_2026_10.csv`.
+   - Safety correction: `WILL DISCONTINUE` now yields `INVENTORY_HOLD_PENDING_CONFIRMATION`, not deactivation. Confirmed discontinued/not-viable still yields `DEACTIVATE_AFTER_REVIEW`, never automatic execution.
+   - Reconciliation treats F9-001-56 and T3-8CS as conflicting evidence because the owner-submitted audit says temporary out of stock while the earlier staging report describes discontinued/not-viable. WG-007 remains manual review; HTTP 404 alone is not proof of discontinuation. No production action is authorized.
+   - Workflow run `39019804724` (ASC cleanup audit script tests) was **in progress** at last check; result not yet verified.
+
+2. **Storefront UI / vehicle finder**
+   - Branch: `review/staging-ui-verification-fixes`
+   - PR #52: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/52
+   - Commit: `8bdcf6e9b64eac0dd80ad11ac939a3268da74809`.
+   - Changed actual path `index-new.html`. Finder heading/copy now clearly says vehicle selection is optional and lists non-fitment categories. Home root IDs are restricted to eight approved top-level categories. Existing 4x4 Outdoor is shown as a virtual child of Camping, Leisure & Outdoors for storefront presentation and included in that card's count/filter; database `parent_id` is not changed.
+   - **Risk / acceptance gate:** this is only a UI grouping workaround. Confirm the real category parent relationship and product counts from current category data before accepting. Do not silently change the database taxonomy.
+   - No workflow run was returned for this exact head at the last check. Browser evidence for this exact SHA is still outstanding.
+
+3. **Catalogue contract / quote-only blocklist**
+   - Branch: `review/catalogue-data-contract-reconciled`
+   - PR #53: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/53
+   - Commits: validator `6182f3cc92421def75c2bba977e094fcab29f715`; tests `02aa110ca7a8fb271c96978d3c9b066c182802e7`; field dictionary `0b27d925915960f712102fe68589f19d9e3200bc`.
+   - Changed actual paths `docs/schema/validate_catalogue.js`, `docs/schema/test_validate_catalogue.js`, and `docs/schema/FIELD_DICTIONARY.md`.
+   - Adds an enforced quote-only list: `M501WCC`, `A1-002`, `A1-003`, `MA330`, `MA342`, `MA342/2`, `N-FC001`, `WP25`, `N-CP002`. Any listed supplier SKU must be quote-only, inactive, and have blank customer price, regardless of submitted flags.
+   - No workflow run was returned for this exact head at the last check; schema test outcome remains pending.
+
+### Branch / repository constraints
+- The project currently uses static HTML for the storefront and `docs/schema` plus Python audit scripts. The proposed React paths in the user-supplied artifact (`src/components/...`, `src/schema/...`) do not match the actual repository structure, so edits were made in the actual source paths rather than creating misleading unused components.
+- These PRs are draft review candidates. Do not merge to `main`, execute generated SQL, modify Supabase, upload to Axxess, change DNS, or alter payment settings until the checks and owner review pass.
+- No Gemini Agent Runner task IDs have been created; the connected Netlify tools still do not expose the documented Agent Runner CLI action.
+
+### Next actions
+1. Poll PR #51 run `39019804724`; correct any failures and rerun only if required.
+2. Verify workflow triggers for PR #52 and #53. If no exact-head checks start, use the repository's supported Actions path; do not substitute unrelated historic results.
+3. Obtain exact-head desktop/mobile screenshots and interaction results for PR #52 at 1440px, 390px, and 320px; verify the compact hero against the supplied reference and check 4x4 category counts.
+4. Inspect full ASC crawl/reconciliation output before making any supplier-status conclusion; reconcile against fresh exact-SKU source evidence.
+5. Verify the quote-only guardrail using CI output and ensure the nine SKUs remain unpublished/unpriced in the candidate contract.
+6. Update this handover with terminal run IDs, logs/artifact links and actual pass/fail outcomes. Keep release HOLD.
+
+### Release decision
+**RELEASE HOLD — AXXESS LIVE STORE UNTOUCHED.** Review branches and draft PRs exist, but browser/schema/ASC test outcomes are not yet all verified for their exact heads.
