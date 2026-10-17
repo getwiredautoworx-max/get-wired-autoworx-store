@@ -15,7 +15,6 @@ on:
   push:
     branches: [audit/asc-catalogue-cleanup]
     paths:
-      - "scripts/crawl_asc_catalogue.py"
       - ".github/workflows/asc-full-catalogue-crawl.yml"
 permissions:
   contents: read
@@ -34,7 +33,7 @@ jobs:
         run: >-
           python scripts/crawl_asc_catalogue.py
           --output-dir asc-catalogue-output
-          --max-pages "${{ inputs.max_pages || '0' }}"
+          --max-pages "${{ inputs.max_pages || '1' }}"
           --delay "${{ inputs.delay_seconds || '1.0' }}"
       - name: Upload catalogue CSV and crawl report
         if: always() && hashFiles('asc-catalogue-output/crawl_summary.json') != ''
