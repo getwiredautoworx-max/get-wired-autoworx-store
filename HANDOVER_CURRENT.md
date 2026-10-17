@@ -1450,3 +1450,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Added both rows to `staging/asc-cleanup-review-2026-10-17.csv`. There are now seven exact-SKU active store candidates with explicit discontinued/will-discontinue status, all set to `DEACTIVATE_AFTER_REVIEW`, never automatic deletion. Supplier inventory still appears alongside some discontinued titles, so verify with ASC before changing any active flags.
 - Additional checked codes such as `YG0301`, `OR-116-27`, `Q-SDC01`, `Q-SDC03`, and `A3-034BL45` had no matching product rows in the read-only store query.
 - Public evidence: https://accessoriesspares.co.za/shop/page/25/ and https://accessoriesspares.co.za/product-category/automotive/page/69/. Full 12k-product reconciliation remains outstanding; no production changes.
+
+
+## 2026-10-17 — Full ASC crawler implementation and trial
+
+- Added `scripts/crawl_asc_catalogue.py`, a read-only public catalogue crawler. It checks ASC robots.txt before crawling, requests pages at a minimum 0.8-second interval, retries page errors, extracts exact supplier SKU/title/stock/status flags/product URLs, writes full-catalogue and status-candidate CSVs, and reports whether coverage is complete. It makes no store or supplier writes.
+- Added `.github/workflows/asc-full-catalogue-crawl.yml` to run the crawler in GitHub Actions and upload the CSVs/report as a 7-day artifact. The workflow is intentionally manual-capable and the initial push test is capped at three pages; do not start the full crawl until the parser's first-page and pagination behavior are confirmed.
+- First trial run failed before any catalogue request because the YAML input expression was escaped incorrectly. Corrected the workflow expressions and triggered a new trial at commit `4912188bc9bb3be2be36262700a5706bb3517a18`; run `39017224530` was still crawling when this checkpoint was written. Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39017224530.
+- Once the trial succeeds, inspect its summary/artifact; if the page count and extracted SKU coverage are valid, switch the crawl to full pagination and process the supplier CSV against a read-only export/query of store SKUs. Do not deactivate products based on status flags alone when supplier stock contradicts them.
