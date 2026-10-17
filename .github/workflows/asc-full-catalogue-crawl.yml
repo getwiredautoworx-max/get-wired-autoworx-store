@@ -34,12 +34,12 @@ jobs:
         run: >-
           python scripts/crawl_asc_catalogue.py
           --output-dir asc-catalogue-output
-          --max-pages "$\{{ inputs.max_pages || '3' }}"
-          --delay "$\{{ inputs.delay_seconds || '1.0' }}"
+          --max-pages "${{ inputs.max_pages || '3' }}"
+          --delay "${{ inputs.delay_seconds || '1.0' }}"
       - name: Upload catalogue CSV and crawl report
         if: always() && hashFiles('asc-catalogue-output/crawl_summary.json') != ''
         uses: actions/upload-artifact@v4
         with:
-          name: asc-catalogue-readonly-$\{{ github.run_id }}
+          name: asc-catalogue-readonly-${{ github.run_id }}
           path: asc-catalogue-output/
           retention-days: 7
