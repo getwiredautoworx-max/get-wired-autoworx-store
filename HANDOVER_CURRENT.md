@@ -2237,3 +2237,27 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - PR #54: still draft and not merged; release hold remains.
 - Desktop navigation fix: committed to review branch, pending fresh browser verification.
 - Product-image rendering/content: **NOT RESOLVED**; visual image gate fails pending payload inspection and stronger image assertions.
+
+
+## 2026-10-17 continuation — browse-readiness and stronger image QA (14:52 SAST)
+
+### Work performed
+- Inspected artifact `staging-browser-qa-47` screenshots directly. The current candidate screenshot showed the fixed bottom navigation overlapping desktop category cards and blank/flat product image tiles; the previous QA assertions incorrectly passed these visual defects.
+- Committed a staging-only CSS correction to hide the mobile bottom bar above 900px and retain it on smaller viewports: `4f2e419f3bee3d1bfd0d543d5f6eba5c217d55cb`.
+- Strengthened `staging/storefront-browser-qa.mjs` on the PR #54 branch to sample decoded image pixels (where canvas access is allowed), fail on near-uniform or unreadable product images, and assert mobile-bottom-nav visibility at each viewport.
+- Latest review branch head: `b8639efb88f6c2cc3201a6ac8728526bee3648b8`; PR #54 remains open/draft. Connected workflow-run lookup has not yet returned a run for this head, so these changes are not verified by a new browser artifact.
+- The only known Cloudflare preview URL in PR metadata is `https://f2ca3349.get-wired-autoworx-store.pages.dev`, which is tied to an older commit `fe73dc828c606c50813fee72d06fdc9d809b9ac8`; it must not be represented as a current preview of `b8639ef`. The production domain/Axxess website remains untouched.
+- The browser artifact reported product endpoint responses with naturalWidth 1200, but screenshot image regions appeared blank. This is not proof the actual response is blank; it may be transparent/flat artwork, an overlay, or CSS rendering. The new pixel test should separate these cases. If cross-origin canvas read is blocked, report the sample as unreadable and investigate endpoint/CORS rather than guessing.
+- No Axxess upload, PR merge, production SQL/write, DNS/payment change, or Netlify/Cloudflare credit use was made.
+
+### Browse readiness
+- Production store remains browseable at `https://www.getwiredauto.co.za` based on the previously confirmed deployment, but it does not include the latest review-branch fixes.
+- A current, exact-head staging preview is **not yet verified**. Do not send the old Cloudflare preview as though it contains the latest code.
+- Immediate next action: obtain a successful exact-head staging browser run and its artifact; resolve the image pixel/visibility result and confirm desktop/mobile nav. Then update PR #54 with the exact current preview URL if the Cloudflare PR integration supplies one. Do not publish to Axxess before owner review.
+
+### Status
+- Browseable production URL: existing live version only.
+- Current review-branch preview URL: not verified.
+- Product image rendering: unresolved.
+- Desktop navigation fix: committed, verification pending.
+- Release: held; production untouched.
