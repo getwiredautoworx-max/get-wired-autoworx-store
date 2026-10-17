@@ -160,7 +160,7 @@ def main():
                     raise ValueError("no product cards parsed")
                 rows.extend(page_rows)
                 got = True
-                if page % 25 == 0 or page == pages_to_fetch:
+                if page % 10 == 0 or page == pages_to_fetch:
                     print(f"Progress page {page}/{pages_to_fetch}; rows={len(rows)}; unique SKUs={len({x['supplier_sku'] for x in rows if x['supplier_sku']})}", flush=True)
                 break
             except Exception as exc:
@@ -173,7 +173,7 @@ def main():
     limiter = RateLimiter(delay)
     pending = [
         (index, row) for index, row in enumerate(rows)
-        if (bool(row["supplier_status_flags"]) or row["stock_status"] == "OUT_OF_STOCK" or row["stock_quantity"] == 0)
+        if bool(row["supplier_status_flags"])
         and not row["supplier_sku"] and row["product_url"]
     ]
 
