@@ -1917,3 +1917,43 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 
 ### Release decision
 **RELEASE HOLD — AXXESS LIVE STORE UNTOUCHED.** Review branches and draft PRs exist, but browser/schema/ASC test outcomes are not yet all verified for their exact heads.
+
+
+## COORDINATOR UPDATE — 2026-10-17 — REVIEW CI RESULTS AND CURRENT RELEASE GATES
+
+### ASC audit branch — regression fixed and tests passed
+- PR #51: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/51
+- Current branch head: `44a30169a86c5c3720be256f12f46dccf0ca568e`
+- Workflow run #82: **39019936067 — SUCCESS**. Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39019936067
+- The first run #81 (39019804724) failed because the test still expected two exact matches after adding the F1-035 fixture. The test was corrected to expect three; the next run passed.
+- Actual successful log: 5 tests ran, all OK: exact-SKU discontinuation/OOS/duplicate behavior, duplicate-SKU manual review, exact-SKU store reconciliation, SQL generator review-only behavior, and crawler parser SKU/stock/discontinued extraction.
+- The updated audit logic now distinguishes `WILL DISCONTINUE` from confirmed discontinued/not-viable and emits an inventory hold for the former.
+- The five-row reconciliation file remains a review artifact, not live supplier verification. F9-001-56 and T3-8CS have conflicting historical/owner-submitted status claims; WG-007 still needs written supplier confirmation. No production product actions are authorized.
+
+### UI review branch — current-main reconciliation
+- Superseded stale PR #52 was closed without merging: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/52
+- Current PR #54: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/54
+- Branch: `review/staging-ui-verification-fixes-current`
+- Current branch head after adding the staging browser QA workflow and runner: `737ec0e6c97551fa8ee2660a3bf1dbcac13aa526`
+- The candidate starts from current main and applies the reference-mockup CSS, optional vehicle-finder copy, eight homepage roots, and 4x4 display grouping under Camping/Leisure. The 4x4 mapping is presentation-only; actual database parent/category relationships remain unchanged.
+- Added exact-candidate Playwright workflow and test script from the repository's existing staging QA implementation. The workflow definition is on the review branch and includes a push trigger for this branch.
+- **No browser run ID/report has been retrievable from the connected GitHub Actions query for this exact head yet.** Do not claim the screenshots, category interactions, fitment prompts, or responsive behavior passed. The 1440px/390px/320px browser gate remains open.
+
+### Catalogue contract branch — quote-only enforcement
+- PR #53: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/53
+- Branch: `review/catalogue-data-contract-reconciled`
+- Current head: `0115db1d10e160359c32eff3abac1ad9c80c4b86`
+- Added validator and synthetic test enforcement for the nine quote-only supplier SKUs (M501WCC, A1-002, A1-003, MA330, MA342, MA342/2, N-FC001, WP25, N-CP002): every listed SKU must have `quote_only=true`, `is_active=false`, and blank `customer_price`. The field dictionary documents the same contract.
+- Schema validation workflow includes a push trigger for this review branch. **No run ID or terminal CI result has been retrieved for this exact head yet.** Do not mark schema CI as passed until its output is inspected.
+- PR #53 is based on `feature/docs-schema-pack` so the existing strict CSV/date/price validation work remains part of the review context; no merge was performed.
+
+### Current actions and blockers
+1. PR #51 cleanup unit suite passed (5/5). This does not establish full ASC crawl completion or current status for all supplier listings.
+2. Inspect the exact-head Playwright run/artifact for PR #54 once available; fix any failed UI interactions, missing fitment exemptions, category counts or viewport overflow before acceptance.
+3. Inspect the exact-head schema validator run for PR #53; verify each quote-only blocklist negative assertion fails as expected and the valid synthetic fixtures pass.
+4. Confirm the live supplier listing/orderability for AES-1115-16B, F1-035, F9-001-56 and T3-8CS; obtain supplier confirmation for WG-007. Keep the action ledger review-only.
+5. Continue to use supported Agent Runner CLI only when available; Gemini tasks are authorized but no task IDs have been issued because the connected tools do not expose the documented create/list/show CLI.
+6. Keep all PRs unmerged until exact test evidence and owner review are complete.
+
+### Release decision
+**RELEASE HOLD — AXXESS LIVE STORE UNTOUCHED.** One targeted ASC unit suite passed; current UI browser QA and schema CI terminal results remain unverified. No production SQL, deactivation, DNS, payment or Axxess deployment was performed.
