@@ -2237,3 +2237,11 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 
 ### Next action
 - Query Actions for the newest branch head and retrieve the fresh browser-QA job/report/artifacts. If failures remain, fix the underlying issue on this review branch, commit, rerun, and append the evidence/results here. Production remains untouched.
+
+
+## Follow-up — 2026-10-17: CSS cascade correction after owner challenge
+- Additional storefront CSS correction committed to `index-new.html`: `0337b94fb39ed4134c4645b16909bec9b44cf95d`.
+- Root cause found in stylesheet: legacy light-theme declarations used `!important` (including the page background, category cards and mobile two-column grid), so later dark-theme rules without `!important` could lose in the CSS cascade. This could make the displayed design diverge from the requested dark reference despite the apparent later dark-theme patch.
+- Added a final, higher-priority dark-theme override for page/header/nav/trust strips/category cards/products/footer and a compact four-column mobile category grid at widths up to 560px, with smaller labels and images below 380px.
+- Verification remains pending: Actions API still shows browser-QA run `39039778551` only for old SHA `e3b734e16f02f3b84ae6f16c96adf3d59f472120`; no browser-QA run is recorded for current candidate SHA `0337b94fb39ed4134c4645b16909bec9b44cf95d` or the preceding follow-up commits. Do not represent the CSS correction as tested or staging as ready.
+- Next required action: find a way to execute browser QA against this exact candidate SHA, or resolve the repository Actions trigger/permissions so the PR workflow runs for the latest commit. Record screenshots and test report. Do not merge or publish to Axxess before successful verification and owner acceptance.
