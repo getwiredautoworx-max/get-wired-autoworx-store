@@ -2118,3 +2118,38 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - **PR #53 schema-validation gate is now verified.** Catalogue Schema Validation run ID `39020512112` succeeded on exact head `0115db1d10e160359c32eff3abac1ad9c80c4b86`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39020512112. Log confirms required schema/documentation files exist; JSON Schema parses; two synthetic valid rows pass; four intentionally invalid rows are rejected; strict CSV quoting/CRLF/escaped quotes, date validity, cent-exact price formula, decimal precision and duplicate identifiers all pass. These are synthetic contract tests, not supplier evidence or authorization to publish products.
 - Release hold remains. The successful package is a review artifact only and has **not** been uploaded to Axxess. PR #54 must remain open/unmerged pending the owner’s visual acceptance of the supplied screenshots and outstanding catalogue/product-image correctness and rights checks, current supplier-status verification, AI picture-search end-to-end credential/response test, payment-provider approval, and live-host/domain checks. PR #51 supplier cleanup remains review-only: no SQL executed and no products deactivated; conflicting supplier evidence still needs manual confirmation.
 - Next: retain review-only workflow, present the screenshot artifact for owner visual review, continue resolving independent release gates, and update this handover again after the next material verified change. Do not merge or deploy without the established release approval.
+
+
+## 2026-10-17 continuation — image accuracy / staging release gate
+
+### Owner instruction
+- Owner reiterated: continue store building and **always update the handover file** after work. Keep updates factual, with verified status, changed files/links, blockers, next action and ETA where evidence permits.
+- Continue staging-first. Do not modify the live Axxess storefront, run production catalogue SQL, write production Supabase data, change DNS/payment settings, or spend Cloudflare/Netlify credits as part of this review.
+
+### Latest repository review
+- Reviewed `AI_HANDOVER_PERMANENT.md` and `HANDOVER_CURRENT.md`.
+- Open staging review: PR #54, “Review current-main mockup alignment, optional vehicle finder and 8-root categories”: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/54
+- PR #54 targets a review branch based on current main and includes compact/light-canvas homepage styling, eight approved root categories, 4x4 Outdoor nested under Camping, Leisure & Outdoors, optional vehicle finder for non-fitment categories, and staging Playwright assertions.
+- The PR body explicitly states the preview deployment alone is not visual acceptance; exact-head Playwright evidence and screenshots/interactions at 1440px, 390px and 320px remain a release gate.
+- Current handover evidence says the catalogue baseline is 4,187 active products, but that does not verify the correctness of every displayed product image.
+- Current image reconciliation policy requires positive exact-SKU/model evidence and a separate rights/permission record. URL presence or a plausible-looking image is not proof of identity. Supplier catalogue imagery must not be published without permission.
+- The repository review did not yield a verified, rights-cleared alternative image set in this continuation. No product/category image was replaced and no image work is to be described as complete.
+- The prior request for aftermarket/OEM-equivalent manufacturer images is interpreted as: same physical item and application must be verified first; permission/licence must be evidenced separately; if either condition fails, retain the current staged placeholder/hold the item rather than guess.
+
+### Status at this checkpoint
+- Storefront code: review only; PR #54 remains unaccepted pending actual rendered visual/interaction evidence.
+- Image matching: BLOCKED on a concrete image-to-SKU/model crosswalk and documented usage rights for replacement assets.
+- Visual QA: NOT PASSED for exact PR #54 head; do not treat an earlier workflow result or a preview URL as acceptance.
+- Production: unchanged. No Axxess upload, merge, Supabase production write, SQL execution, DNS/payment change, or deployment performed.
+
+### Next actions (continue without circular reruns)
+1. Inspect the exact PR #54 head files and available staging artifacts/screenshots before making any build changes.
+2. Inventory unsuitable/missing image cases with exact product/SKU/model, required physical features (shape, dimensions, colour, connector/mounting points) and application.
+3. Find replacement manufacturer assets only where the asset source and reuse permission are documented. Record image URL/source, model/SKU evidence, permission basis and decision. Reject uncertain matches.
+4. Apply only verified image mapping changes on a review branch, then run the targeted image/category checks and Playwright at 1440px, 390px and 320px. Capture screenshots and console/network failures. Avoid repeated builds unless code changes or a concrete test failure requires one.
+5. Update this handover again with changed paths, commit/PR, test results, counts of accepted/rejected/unresolved images and next blocker. Keep production untouched until owner approval and all release gates pass.
+
+### ETA
+- Exact-head inspection and image inventory: 1 focused session once PR files/artifacts are accessible.
+- Verified replacements and rights checks: cannot responsibly estimate until the affected SKU/model list and licensed assets are available; third-party permission timing is unknown.
+- Visual retest: one focused session after a stable candidate and valid image mapping exist.
