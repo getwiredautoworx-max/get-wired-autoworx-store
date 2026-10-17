@@ -1749,3 +1749,34 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 
 ### Release decision
 **RELEASE HOLD — NO PRODUCTION CHANGES AUTHORIZED.** Current monitoring confirms useful candidate work and historical test evidence, but does not establish that the present storefront candidate or full supplier crawl has passed the next release gate.
+
+
+## COORDINATOR UPDATE — 2026-10-17 — GEMINI RUN APPROVAL AND EXECUTION BLOCKER
+
+### Owner authorization
+- Owner explicitly authorized launching the three prepared Gemini tasks concurrently and accepted possible Netlify credit usage.
+- Task briefs: ASC supplier cleanup evidence/tests; browser QA for PR #44/#47; catalogue schema/validator safety review.
+
+### Launch status — NOT STARTED
+- Checked the currently available connected Netlify tool actions. They expose project/deploy/settings/observability operations but do not expose the documented `netlify agents:create`, `netlify agents:list`, or `netlify agents:show` CLI surfaces.
+- The documented Agent Runner workflow requires those CLI commands and task IDs for subsequent polling. No supported task-creation action is available in the current connected tools, so no Gemini run IDs can truthfully be recorded and no remote tasks have been confirmed as launched.
+- Do not attempt undocumented Netlify API endpoints, inspect local auth tokens, or work around the missing supported action. Next action: use a supported Netlify CLI session with authenticated CLI and target project `get-wired-autoworx-store`, run the three approved `netlify agents:create --agent gemini --project get-wired-autoworx-store --json` tasks separately, record each returned task ID, and poll with `netlify agents:show <task-id> --json` until terminal status. Agent runs are asynchronous; do not claim completion based on task creation.
+- Credit caution: user authorized potential credit usage, but only for the requested agent runs. Do not trigger site deploys/builds as a side effect.
+
+### Latest PR description review (not a live browser/test run)
+- PR #49 says full crawl/reconciliation remains in progress and requires `complete=true` before the artifact is exhaustive. No such completion artifact was confirmed during this pass.
+- PR #48 reports five exact-SKU candidates and a historical baseline, but also says the stock-sync table is empty and supplier verification rows are dated 2026-09-16. Treat as historical targeted findings; re-verify supplier pages before any action.
+- PR #47 says source-level exact-string checks passed; its own description says desktop/mobile browser QA has not yet run.
+- PR #44 is explicitly a draft for render/browser QA, not merged or deployed. It describes nine homepage categories; verify this against the approved eight-root taxonomy and existing 4x4 placement rule before acceptance.
+- PR #46 is package-validation-only and is not evidence of rendered page/interaction success.
+- No new browser test was run in this pass. No new Actions run IDs, latest head SHAs, screenshot artifacts or crawl completion evidence were verified.
+
+### Next actions
+1. Start the three Gemini tasks through the documented Netlify CLI once available; record task IDs, status and output links.
+2. In parallel, continue GitHub-only review of current PR heads and existing Actions/artifacts without triggering Netlify/Cloudflare builds.
+3. Require current browser screenshots and interaction test evidence at 1440px, 390px and 320px for the exact candidate head.
+4. Require the ASC crawl summary to show `complete=true`; inspect the full reconciliation artifact and keep proposed actions review-only.
+5. Append verified task IDs, current commit SHAs, workflow run IDs, artifacts and actual pass/fail results to this handover.
+
+### Release decision
+**RELEASE HOLD — AXXESS REMAINS PRIMARY HOST.** No live upload, deployment, SQL execution, product deactivation, DNS update or payment-setting change was made in this pass.
