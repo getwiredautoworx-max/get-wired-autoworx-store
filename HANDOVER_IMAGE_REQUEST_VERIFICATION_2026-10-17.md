@@ -34,3 +34,15 @@ Date: 2026-10-17 (SAST)
 - **Important qualification:** the report records 72 image elements at each viewport, of which 28 / 25 / 11 respectively were `complete:false` or had `naturalWidth:0`. This can include lazy-loaded/offscreen images, and the workflow currently does not distinguish “not requested yet” from “request failed and fallback shown”. Therefore the successful run proves the browser suite passed its current assertions, but does **not** prove every image request is resolved or that every fallback is visibly rendered. No HTTP failed request was listed in the report's general failure list; the image assertions need to be strengthened to scroll/request images and explicitly classify final loaded vs placeholder state.
 - Exact-SKU request URLs were observed for loaded product cards, but no visual comparison was made to prove physical item identity, dimensions, colour, application or usage rights. Those remain separate unresolved content gates.
 - Next concrete action: update the staging browser QA test so it scrolls product cards into view (or disables lazy loading for the test), waits for image settlement, and asserts each image is either `naturalWidth > 0` or the explicit accessible “Product image unavailable” placeholder; record failed image URLs/SKUs distinctly. Then run one fresh exact-head workflow and inspect the artifact. Keep PR #54 draft/unmerged and production untouched until this stronger assertion and owner visual review pass.
+
+
+## QA assertion correction committed — 2026-10-17
+- Updated `staging/storefront-browser-qa.mjs` on the review branch to force lazy images to eager loading for the audit, wait for load/error settlement (up to eight seconds per image), and classify each image as loaded, explicit placeholder, failed or unsettled.
+- The new per-viewport assertion requires every image to be positively loaded (`naturalWidth > 0`) or to have the explicit accessible “Product image unavailable” placeholder; unresolved URLs are included in failure detail. This is a test-quality improvement, not proof that the application runtime itself has been fixed.
+- Commit: `9508800ac084c7c64f65e0bd5c3ee65027c628b5`; changed path: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/review/staging-ui-verification-fixes-current/staging/storefront-browser-qa.mjs
+- Exact-head workflow runs started:
+  - Browser QA #44 / run `39032371060`: in progress.
+  - Storefront Smoke Test #782 / run `39032371083`: in progress.
+  - Prepare Axxess package #105 / run `39032371210`: in progress (review artifact only).
+  - Public SKU Exposure Audit #338 / run `39032370978`: in progress.
+- No product/runtime image mapping was changed. No Axxess upload, merge, production database change, DNS/payment change, or Cloudflare/Netlify credit use. PR #54 remains review-only and release remains HOLD until the new browser report is inspected and visual/content/rights gates are satisfied.
