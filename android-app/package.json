@@ -1,0 +1,11 @@
+{
+  "name": "get-wired-autoworx-android",
+  "version": "1.0.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "build": "eas build --platform android --profile preview"
+  }
+}
