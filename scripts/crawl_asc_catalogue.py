@@ -89,7 +89,7 @@ def detail_sku(session, url):
 
 
 def write_csv(path, rows):
-    fields = ["supplier_sku", "title", "stock_status", "stock_quantity", "supplier_status_flags", "product_url", "category_labels", "source_page"]
+    fields = ["supplier_sku", "sku_source", "title", "stock_status", "stock_quantity", "supplier_status_flags", "product_url", "category_labels", "source_page"]
     with path.open("w", newline="", encoding="utf-8-sig") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
