@@ -1392,3 +1392,14 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - AI picture search is not claimed end-to-end operational; a UI and endpoint call do not prove provider credentials and successful production vision requests.
 - **Release status: PACKAGE PREPARED; CUSTOMER RELEASE HOLD.** Owner's prior constraint remains in force: verify source data before any Axxess upload. Do not overwrite `public_html`, merge the redesign PRs, deploy production, or change DNS/payment/database settings without the required source validation and release authorization.
 - The handover-only commit that follows this note will automatically trigger another staging package build. Its build report is the authoritative checksum/source commit for the refreshed artifact; runtime payload is unchanged by the handover edit.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-17 — ASC cleanup audit utility staged
+
+- Created PR #49: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/49 on branch `audit/asc-catalogue-cleanup`, based on the existing staging QA branch. It adds `scripts/asc_catalogue_cleanup_audit.py`, a synthetic unit test, a CI workflow, and `docs/ASC_CATALOGUE_CLEANUP_AUDIT.md`.
+- Utility is read-only and local CSV-only: exact supplier SKU joins; explicit supplier discontinued/will-discontinue/not-viable text produces `DEACTIVATE_AFTER_REVIEW`; supplier out-of-stock/zero stock without discontinued text produces `REVIEW_TEMPORARY_STOCKOUT`; duplicate supplier SKU rows are held for manual review; fuzzy matches are excluded. It has no Supabase client or database write capability.
+- Read-only Supabase schema/data audit: 4,187 active products; 0 active products with zero `stock_quantity`; 0 active products with searched discontinued/out-of-stock/not-viable text across name, description and specifications. This does not establish supplier catalogue status; current store and ASC CSV exports still need exact-SKU reconciliation.
+- Public ASC search results confirm the supplier site has products marked discontinued/not viable and out of stock, sometimes with nonzero stock counts; status text therefore takes precedence over stock number for discontinued candidates, while stockouts remain manual review.
+- CI workflow run #1 / ID `39016615414` was observed in progress immediately after PR creation. Do not mark tests passed until its final conclusion is retrieved.
+- No production data changed; no products were deactivated; no live Axxess files, storefront, checkout, DNS or payment settings were changed.
+- Next: inspect the CI result, fix any actual failures, then obtain current store inventory and ASC catalogue exports and run the audit. Review the generated patch SKU by SKU. Do not execute the patch automatically or delete product rows.
