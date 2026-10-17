@@ -1,13 +1,9 @@
 name: Staging storefront browser QA
 on:
   push:
-    branches: [review/staging-ui-verification-fixes-current]
-    paths:
-      - '.github/workflows/staging-browser-qa.yml'
-      - 'index-new.html'
-      - 'staging/storefront-browser-qa.mjs'
-  pull_request:
-    branches: [qa/desktop-mobile-screenshots-2026-10-15]
+    branches:
+      - review/staging-ui-verification-fixes-current
+      - qa/desktop-mobile-screenshots-2026-10-15
     paths:
       - '.github/workflows/staging-browser-qa.yml'
       - '.github/workflows/prepare-axxess-package.yml'
@@ -16,7 +12,7 @@ on:
       - 'product-details.js'
       - 'assets/**'
       - 'staging/storefront-browser-qa.mjs'
-  push:
+  pull_request:
     branches: [qa/desktop-mobile-screenshots-2026-10-15]
     paths:
       - '.github/workflows/staging-browser-qa.yml'
