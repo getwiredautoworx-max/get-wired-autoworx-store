@@ -1,6 +1,7 @@
 name: Prepare Axxess upload package
 # Release verification trigger: rebuild the storefront artifact from the current main branch.
 # Package run requested 2026-10-15: verify current-main ZIP before Axxess handoff.
+# PR validation: run this same package-integrity gate against the staging homepage candidate before any production upload.
 on:
   push:
     branches: [main, qa/desktop-mobile-screenshots-2026-10-15]
