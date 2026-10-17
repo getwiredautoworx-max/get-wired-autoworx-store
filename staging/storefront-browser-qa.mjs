@@ -75,6 +75,21 @@ try {
   await page.locator('#closeCart').click();
   check('cart_closes', await page.locator('#cartPanel.open').count() === 0, 'cart panel should close');
 
+  await page.locator('.cart').click();
+  await page.locator('#cartPanel a.checkoutNow').click();
+  await page.waitForLoadState('domcontentloaded');
+  check('checkout_link_navigates', new URL(page.url()).pathname.endsWith('/checkout-v2.html'), 'landed at ' + page.url());
+  check('checkout_v2_http_200', await page.locator('body').count() === 1 && await page.title().length > 0, 'checkout page rendered with a title');
+
+  const routeResults = [];
+  for (const route of ['store.html','product.html','products.html','checkout.html','checkout-v2.html','category.html','returns-refunds.html','terms-and-conditions.html']) {
+    const routeResponse = await page.goto(new URL(route, base).toString(), { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(350);
+    const routeResult = { route, status: routeResponse?.status() ?? null, title: await page.title() };
+    routeResults.push(routeResult);
+    check('route_' + route.replace(/[^a-z0-9]+/gi, '_') + '_http_200', routeResult.status === 200 && routeResult.title.length > 0, JSON.stringify(routeResult));
+  }
+  report.customerRoutes = routeResults;
   report.categoryCardsAfterLoad = await page.locator('#categoryGrid .catWrap').count();
   check('category_tiles_populated', report.categoryCardsAfterLoad >= 1, 'found ' + report.categoryCardsAfterLoad + ' category tiles after waiting for catalogue load');
   check('no_uncaught_page_errors', report.pageErrors.length === 0, report.pageErrors.slice(0, 5).join(' | '));
