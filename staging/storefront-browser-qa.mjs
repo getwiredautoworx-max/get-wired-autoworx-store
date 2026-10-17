@@ -115,7 +115,7 @@ try {
       'unresolved=' + metrics.unresolvedImages.length + ', failed=' + metrics.failedImages.length +
       ', unsettled=' + metrics.unsettledImages.length + ', placeholders=' + metrics.placeholderImages.length +
       ', URLs=' + metrics.unresolvedImages.slice(0, 10).map(i => i.src).join(' | '));
-    const productImages = metrics.images.filter(i => /product-image\\?sku=|\\/assets\\/products(?:_webp)?\\//i.test(i.src));
+    const productImages = metrics.images.filter(i => /product-image\?sku=|\/assets\/products(?:_webp)?\//i.test(i.src));
     const visuallyBlank = productImages.filter(i => !i.placeholder && i.pixelAudit?.readable &&
       (i.pixelAudit.variance < 18 || i.pixelAudit.sampledColors < 8));
     const unreadable = productImages.filter(i => !i.placeholder && !i.pixelAudit?.readable);
