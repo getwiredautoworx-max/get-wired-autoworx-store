@@ -17,7 +17,7 @@ jobs:
           GH_REPOSITORY: ${{ github.repository }}
         run: |
           set -euo pipefail
-          code=$(curl -sS -o /tmp/cancel-response.json -w '%{http_code}' -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/$GH_REPOSITORY/actions/runs/39017530629/cancel")
+          code=$(curl -sS -o /tmp/cancel-response.json -w '%{http_code}' -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/$GH_REPOSITORY/actions/runs/39017755062/cancel")
           cat /tmp/cancel-response.json
           echo "GitHub cancellation HTTP status: $code"
           test "$code" = "202" || test "$code" = "409"
