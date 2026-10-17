@@ -1,9 +1,8 @@
 /*
  * Get Wired AutoWorx exact-SKU product-image fallback.
- *
- * Priority: exact SKU WebP image sourced from ASC website cross-reference,
- * then the existing exact SKU JPG asset. Never substitutes a visually similar
- * product.
+ * Try the exact public SKU WebP first, then the exact public SKU JPG.
+ * Never substitutes a visually similar product. Missing assets become a clear
+ * neutral placeholder instead of a broken/blank image slot.
  */
 (function () {
   'use strict';
@@ -17,7 +16,7 @@
   function localUrls(sku) {
     if (!sku) return [];
     var e = encodeURIComponent(sku);
-    return ['/assets/products_webp/' + e + '.webp'];
+    return ['/assets/products_webp/' + e + '.webp', '/assets/products/' + e + '.jpg'];
   }
 
   function isPlaceholder(src) {
@@ -45,7 +44,9 @@
               var box = img.closest('.prodImg, .detailImg');
               if (box) {
                 box.classList.add('no-image');
-                box.textContent = 'Image not available';
+                box.textContent = 'Product image unavailable';
+                box.setAttribute('role', 'img');
+                box.setAttribute('aria-label', 'Product image unavailable for SKU ' + sku);
               }
             }
             return;
