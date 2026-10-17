@@ -2183,3 +2183,14 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - [ ] Preview link is **reported by the PR bot but not independently verified in this session**: the available page viewer could not open it. Do not describe it as a verified ready-to-browse preview until exact-head browser evidence is attached and inspected.
 - [x] Production safety preserved: no Axxess upload, merge, Supabase production write, DNS/payment change, or Netlify/Cloudflare credit-consuming manual deployment was performed during this recheck.
 - **Next smallest safe action:** inspect the workflow definitions and run results for the PR #54 head, execute/re-run the exact-head Playwright acceptance workflow if supported, fix only concrete failures, attach screenshot/JSON evidence, then repeat QA against the final candidate and update this handover. Keep PR draft and Axxess untouched until acceptance passes.
+
+
+## 17 OCT 2026 — BROWSER-QA FAILURE ROOT CAUSE + PATCH (15:37 SAST)
+- [x] Inspected failed GitHub Actions run [Staging storefront browser QA #49](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39036755724) for PR #54, exact tested head `b8639efb88f6c2cc3201a6ac8728526bee3648b8`.
+- [x] Confirmed the failure occurred before browser assertions: Node stopped parsing `staging/storefront-browser-qa.mjs` at line 118 with `SyntaxError: Invalid regular expression flags`. The product-image URL matching regex had excess escaping.
+- [x] Corrected the regex on the PR review branch in commit `44ca7edd2c5b5f53f14845e05207bfe30b9996e8`. Corrected source pattern now parses as `/product-image\?sku=|\/assets\/products(?:_webp)?\//i`.
+- [ ] Fresh browser QA on corrected exact head `44ca7edd2c5b5f53f14845e05207bfe30b9996e8` must complete successfully; after that, investigate and fix any real layout/image/navigation/cart/checkout failures the browser suite reveals.
+- [ ] The previous run produced no screenshot/report artifact because the script failed at parse time. Do not treat this regex correction alone as visual/browser acceptance.
+- [ ] Preview remains unverified in this session. PR bot-reported candidate URL: https://f2ca3349.get-wired-autoworx-store.pages.dev
+- [x] No merge, Axxess upload, Supabase production mutation, DNS/payment change, or manual credit-consuming deployment was performed.
+- **Next gate:** confirm a new Actions run uses corrected commit `44ca7edd2c5b5f53f14845e05207bfe30b9996e8`; read its report and screenshots; repair concrete failures and rerun until desktop (1440px), mobile (390px) and small-mobile (320px) acceptance passes. Keep PR #54 draft and production untouched until then.
