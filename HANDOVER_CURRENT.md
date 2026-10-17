@@ -1950,3 +1950,9 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Adjusted the light mockup assertion to accept the approved theme class and known light canvas values, including transparent body background where the canvas is painted by the page wrapper. Commit: 64e3008ae806c335fc31b234fe41b23a846d6f8a.
 - Exact-head QA is pending for commit 64e3008ae806c335fc31b234fe41b23a846d6f8a. Recheck report and screenshots; do not label staging ready until visual and interaction checks pass and a deployed preview matching this commit is verified.
 - Production Axxess remains untouched.
+
+
+### Product-card image source correction — 2026-10-17
+- QA screenshot of the light-canvas build showed several featured-product cards using remote edge-function images with supplier catalogue text/crops, despite image HTTP/decode checks passing.
+- Verified the exact public-SKU WebP assets exist in the repository for the current featured products (e.g. `assets/products_webp/GW-F9AC1A35.webp`, `GW-92028D5D.webp`, `GW-478D5A49.webp`). Updated product-card rendering to prefer the exact matching public-SKU WebP asset and use the remote URL only as fallback. Commit: f082049969bced19fe430b0f691b4dc20531b2b2.
+- Await exact-head QA and inspect the screenshot to confirm these images actually render cleanly; no claim of visual acceptance until that evidence is checked. Production remains untouched.
