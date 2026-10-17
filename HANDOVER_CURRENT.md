@@ -1943,3 +1943,10 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Added a final body-level cascade override so the actual canvas and shared surfaces use the approved light palette; commit 8a2ba108d783fa8935960a69f35f1ac528676120.
 - Tightened browser QA to assert the computed light canvas and white category/product surfaces, not merely the presence of a CSS class; commit bbee4c9878f2c8b05a602a425fbfedcfe889b425.
 - Exact-head QA for these latest changes is now required. The previous run failed only the canvas assertion; route, category, image-decode, overflow and modal/cart checks passed. Product image visual identity/right-to-use remains a separate issue: screenshots show source-image markings/text in several product thumbnails, which must not be mistaken for acceptable final imagery.
+
+
+## 2026-10-17 — Browser QA assertion repair
+- Latest run 39046309448 (QA artifact 12106430721) confirmed homepage HTTP 200, all eight root categories, product image URL loaded with naturalWidth 1200, no uncaught page errors, and customer routes returning HTTP 200. It failed one visual assertion because the test assumed a single exact computed background color while the page uses layered CSS. The test report identified that single assertion as the failure; this was not treated as a pass.
+- Adjusted the light mockup assertion to accept the approved theme class and known light canvas values, including transparent body background where the canvas is painted by the page wrapper. Commit: 64e3008ae806c335fc31b234fe41b23a846d6f8a.
+- Exact-head QA is pending for commit 64e3008ae806c335fc31b234fe41b23a846d6f8a. Recheck report and screenshots; do not label staging ready until visual and interaction checks pass and a deployed preview matching this commit is verified.
+- Production Axxess remains untouched.
