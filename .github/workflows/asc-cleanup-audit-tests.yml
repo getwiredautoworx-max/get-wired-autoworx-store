@@ -1,0 +1,40 @@
+name: ASC cleanup audit script tests
+on:
+  pull_request:
+    branches: [qa/desktop-mobile-screenshots-2026-10-15]
+    paths:
+      - 'scripts/asc_catalogue_cleanup_audit.py'
+      - 'scripts/test_asc_catalogue_cleanup_audit.py'
+      - 'scripts/compare_asc_store_readonly.py'
+      - 'scripts/test_compare_asc_store_readonly.py'
+      - 'scripts/generate_asc_deactivation_sql.py'
+      - 'scripts/test_generate_asc_deactivation_sql.py'
+      - 'scripts/crawl_asc_catalogue.py'
+      - 'scripts/test_crawl_asc_catalogue.py'
+      - 'docs/ASC_CATALOGUE_CLEANUP_AUDIT.md'
+  push:
+    branches: [audit/asc-catalogue-cleanup]
+    paths:
+      - 'scripts/asc_catalogue_cleanup_audit.py'
+      - 'scripts/test_asc_catalogue_cleanup_audit.py'
+      - 'scripts/compare_asc_store_readonly.py'
+      - 'scripts/test_compare_asc_store_readonly.py'
+      - 'scripts/generate_asc_deactivation_sql.py'
+      - 'scripts/test_generate_asc_deactivation_sql.py'
+      - 'scripts/crawl_asc_catalogue.py'
+      - 'scripts/test_crawl_asc_catalogue.py'
+      - 'docs/ASC_CATALOGUE_CLEANUP_AUDIT.md'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install read-only REST client
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Run safe matching tests
+        run: python -m unittest scripts/test_asc_catalogue_cleanup_audit.py scripts/test_compare_asc_store_readonly.py scripts/test_generate_asc_deactivation_sql.py scripts/test_crawl_asc_catalogue.py -v
