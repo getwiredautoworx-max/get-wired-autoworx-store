@@ -1780,3 +1780,63 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 
 ### Release decision
 **RELEASE HOLD — AXXESS REMAINS PRIMARY HOST.** No live upload, deployment, SQL execution, product deactivation, DNS update or payment-setting change was made in this pass.
+
+
+## COORDINATOR UPDATE — 2026-10-17 — VERIFIED GITHUB WORKFLOW EVIDENCE
+
+### Current PR heads and workflow runs inspected
+The following are exact head SHAs returned by GitHub PR metadata at this check. Workflow statuses below are completed results; they are not proof of live Axxess behaviour.
+
+- **PR #44** (draft design candidate): head `7980cbc372cb9f9de9263f6e7480c8ce815e4144`, branch `design/exact-category-mockup-2026-10-15`, base `main`.
+  - Run `38871813571` Storefront Smoke Test — SUCCESS.
+  - Run `38871813588` Prepare Axxess upload package — SUCCESS.
+  - Run `38871813668` Public SKU Exposure Audit — SUCCESS.
+  - This is source/package/smoke evidence only for this head. The separate latest browser screenshot QA run inspected below used PR #46's head, not this PR #44 head; therefore PR #44 itself still needs its own rendered browser evidence.
+- **PR #47** (draft optional vehicle finder): head `37b376f399f1dec7559e6fe444c0527d146af8e5`, branch `fix/optional-vehicle-finder-non-fitment-categories`, base `main`.
+  - Run `39011019534` Storefront Smoke Test — SUCCESS. Log contains `STOREFRONT_SMOKE_PASS`.
+  - Run `39011019439` Prepare Axxess upload package — SUCCESS.
+  - Run `39011019444` Public SKU Exposure Audit — SUCCESS.
+  - Browser QA has not been shown to run against this exact PR #47 head; do not treat the smoke test as a substitute.
+- **PR #48** (draft supplier candidate review): head `d6253e49a04943a4a5c292bec12deb35be64f997`, branch `audit/asc-discontinued-stock-cleanup-2026-10-17`, base `main`.
+  - No PR-triggered workflow runs were returned for this head at this check.
+- **PR #49** (ASC read-only cleanup pipeline): head `abe49a50bfc3268d28db1a5c921c58b6d1b9a444`, branch `audit/asc-catalogue-cleanup`, base `qa/desktop-mobile-screenshots-2026-10-15`.
+  - Run `39018451764` ASC cleanup audit script tests — SUCCESS.
+  - Exact unit test output: 5 tests ran, all OK: exact-SKU discontinued/OOS/duplicate flags; duplicate SKU manual review; exact-SKU discontinued vs stockout classification; SQL generator only emits active discontinued rows; crawler parser extracts SKU/stock/discontinued flags.
+  - No crawl completion summary/artifact was present in the workflow artifact listing for this run. The full crawl still cannot be marked complete based on these unit tests.
+- **PR #46** (package-validation trigger; head `979c8c3ddaac9ec9d2e7b679353d5bcf25acb7c9`, branch `ci/verify-axxess-package-2026-10-17`, base `qa/desktop-mobile-screenshots-2026-10-15`):
+  - Run `39011067220` Staging storefront browser QA — SUCCESS. Job output reports zero failures and 200 responses for the tested customer routes including store, product, products, checkout, checkout-v2, category, returns/refunds and terms. Category finder output reports vehicle selection exempt for Car Audio & Entertainment, Tools/Hardware/Consumables and Camping/Leisure/Outdoors, while Auto Electrical Spares remains vehicle-gated.
+  - Browser QA artifact: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39011067220/artifacts/12092841705
+  - Run `39011067173` Storefront Desktop and Mobile Screenshot QA — SUCCESS. Output for small-mobile viewport 320px reports documentWidth 320, no overflow elements, horizontalOverflow=false, and pageErrors=[]. Eight sampled product images were loaded successfully in the displayed sample. Screenshot artifact: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39011067173/artifacts/12092682231
+  - These checks were run for PR #46's staging base/candidate context, not the exact head of PR #44 or PR #47. They are useful evidence for that candidate only. The screenshot job reports a hero height of 424px at 320px width; confirm this is acceptable against the requested compact-hero reference during visual review.
+- **PR #28** (documentation/schema pack): head `78925c45dee01727819685fd97bf20a023c37639`.
+  - Run `38728969386` Catalogue Schema Validation — SUCCESS. Job steps show synthetic JSON Schema, knowledge-base link, CSV negative-case, strict CSV parsing and price/date edge-case checks completed successfully.
+  - Run `38728969431` Public SKU Exposure Audit — SUCCESS; run `38728969210` Storefront Smoke Test — SUCCESS.
+- **PR #31** (strict CSV validation): head `7942beefb277d856cac9464c6a0b56d789f880fd`.
+  - Run `38724025040` Catalogue Schema Validation — SUCCESS, including JSON Schema syntax, synthetic CSV/negative cases, strict CSV parsing and price/date edge cases.
+  - Run `38724025045` Public SKU Exposure Audit — SUCCESS.
+
+### Evidence links
+- PR #44: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/44
+- PR #47: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/47
+- PR #48: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/48
+- PR #49: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/49
+- PR #46: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/46
+- PR #28: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/28
+- PR #31: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/31
+
+### Remaining blockers after this check
+1. Gemini tasks remain **authorized but not launched** because the connected Netlify tools do not expose the documented Agent Runner create/list/show CLI commands. Do not claim tasks are running; use supported authenticated Netlify CLI and record returned task IDs when available.
+2. PR #44 and PR #47 need current browser evidence against their exact head SHAs, even though their source/package/smoke checks passed.
+3. PR #49's unit tests passed, but the real full crawl/reconciliation is not verified complete; require `complete=true` plus reviewable output.
+4. The 3x3 reference must be reconciled with the permanent eight approved top-level categories and 4x4 placement without silently changing taxonomy.
+5. No live Axxess deployment, DNS/SSL verification, checkout/payment provider live test, production SQL or product deactivation has been performed as part of this monitoring pass.
+
+### Next actions
+- Use the artifact links above to inspect the screenshots and machine-readable QA report before making any design acceptance decision.
+- Run browser QA against exact PR #44 and PR #47 head SHAs using existing GitHub Actions where available; avoid Netlify/Cloudflare builds.
+- Poll/check PR #49's crawl artifact/completion marker and inspect proposed CSV/SQL in review-only mode.
+- Launch approved Gemini tasks via supported CLI when available and update this file with task IDs and terminal outcomes.
+- Preserve release HOLD and Axxess as primary host until visual, catalogue, pricing/image-rights and release/rollback gates are accepted.
+
+### Release decision
+**RELEASE HOLD — NO PRODUCTION CHANGES AUTHORIZED.** Several GitHub checks have passed and artifacts exist, but they do not yet prove the exact proposed PR #44/#47 candidate is approved or the supplier crawl is complete.
