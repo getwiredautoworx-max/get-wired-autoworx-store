@@ -2,7 +2,6 @@ name: Staging storefront browser QA
 on:
   push:
     branches:
-      - review/staging-ui-verification-fixes-current
       - qa/desktop-mobile-screenshots-2026-10-15
     paths:
       - '.github/workflows/staging-browser-qa.yml'
