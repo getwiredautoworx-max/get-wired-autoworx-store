@@ -1440,3 +1440,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Added TOY-001 to `staging/asc-cleanup-review-2026-10-17.csv`. The review sample now has five exact SKU matches with explicit discontinued/will-discontinue wording. Other visible codes on the checked pages (including F1-007, F1-042, F1-088, SG-21TB, FF-024, YG0610X5, Q-SDC01, and Q-SDC03) did not match a store row in the read-only SKU query.
 - Evidence page: https://accessoriesspares.co.za/shop/page/915/?layout=grid&per_page=10. Supplier stock is not proof the item is still orderable because the title explicitly says discontinued/not viable; verify with ASC before changing product active flags.
 - Full catalogue reconciliation is still outstanding because we do not yet have a complete machine-readable supplier export and full store inventory CSV to compare exhaustively. No production records or Axxess files changed.
+
+
+## 2026-10-17 — Expanded ASC exact-SKU review sample to seven
+
+- Further public ASC search checks found two additional exact SKU matches against active store rows:
+  - `191302` / `GW-31169E51` — store item `200mm Adjustable Wrench`; ASC listing title says `ADJUSTABLE WRENCH 200MM 2 COLOR HANDLE DISCONTINUED NOT VIABLE` and showed 1 supplier unit.
+  - `AES-1115-16B` / `GW-7CABCBE7` — store item `65mm Metal Adjustable Door Switch`; ASC title says `DOOR SWITCH ADJUSTABLE METAL 65MM DISCONTINUED BY MAKER`. Public search snapshots showed supplier stock counts that differed (52 vs 80), so this requires live supplier confirmation.
+- Added both rows to `staging/asc-cleanup-review-2026-10-17.csv`. There are now seven exact-SKU active store candidates with explicit discontinued/will-discontinue status, all set to `DEACTIVATE_AFTER_REVIEW`, never automatic deletion. Supplier inventory still appears alongside some discontinued titles, so verify with ASC before changing any active flags.
+- Additional checked codes such as `YG0301`, `OR-116-27`, `Q-SDC01`, `Q-SDC03`, and `A3-034BL45` had no matching product rows in the read-only store query.
+- Public evidence: https://accessoriesspares.co.za/shop/page/25/ and https://accessoriesspares.co.za/product-category/automotive/page/69/. Full 12k-product reconciliation remains outstanding; no production changes.
