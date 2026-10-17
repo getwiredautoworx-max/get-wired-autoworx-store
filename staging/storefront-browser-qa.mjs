@@ -250,6 +250,9 @@ try {
     check('route_' + route.replace(/[^a-z0-9]+/gi, '_') + '_http_200', routeResult.status === 200 && routeResult.title.length > 0, JSON.stringify(routeResult));
   }
   report.customerRoutes = routeResults;
+  check('paxi_locator_frame_allowed_by_csp',
+    !report.consoleErrors.some(message => /Framing.*map\\.paxi\\.co\\.za.*Content Security Policy/i.test(message)),
+    JSON.stringify(report.consoleErrors.filter(message => /map\\.paxi\\.co\\.za|Content Security Policy/i.test(message))));
   // Verify the actual customer entry wrapper, including its iframe-installed exact-SKU local image fallback.
   const wrapperPage = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
   wrapperPage.on('console', msg => { if (msg.type() === 'error') report.consoleErrors.push('[store-wrapper] ' + msg.text()); });
