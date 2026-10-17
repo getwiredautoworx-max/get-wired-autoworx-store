@@ -557,6 +557,45 @@ body{background:radial-gradient(ellipse at 50% 0%,#10263b 0,#080d16 42%,#05080e 
  .heroText h1{font-size:21px}
  .heroText p{font-size:11px}
 }
+
+/* Final owner-reference override: dark storefront wins over legacy light-theme !important rules. */
+body{background:radial-gradient(ellipse at 50% 0%,#10263b 0,#080d16 42%,#05080e 100%)!important;color:#f5f8fc!important}
+.header,.header .head,.top{background:#03070d!important;color:#f5f8fc!important;border-color:#174363!important}
+.nav{background:#071426!important;border-color:#ff2438!important}
+.sectionTitle h2{color:#f5f8fc!important}
+.sectionTitle a{color:#ff5362!important}
+.features .feature,.service{background:#0b1624!important;color:#e8f2fc!important;border-color:#174363!important}
+.catWrap{background:linear-gradient(145deg,#101b2b,#080f19)!important;border:1px solid #167db6!important;box-shadow:0 5px 18px #0005!important}
+.catBtn{background:transparent!important;color:#f5f8fc!important}
+.catImage{display:block!important;background:#0b1725!important}
+.catImage img{object-fit:contain!important}
+.catContent{background:linear-gradient(110deg,#0a2342,#102f55)!important}
+.catContent b{color:#f5f8fc!important}
+.catContent small{color:#c1d2e3!important}
+.catContent i{color:#19b6ff!important;background:transparent!important}
+.children{background:#07111e!important;border-color:#174363!important}
+.child{background:#0c1928!important;color:#e0eaf4!important;border-color:#15364e!important}
+.products .product,.product{background:#0b1220!important;border-color:#174363!important;color:#f5f8fc!important}
+.product h3,.product p,.product small{color:#e5edf6!important}
+.prodImg{background:#08111d!important}
+.footer,.foot{background:#05080e!important;color:#aab7c8!important;border-color:#174363!important}
+@media(max-width:560px){
+ .cats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+ .catImage{height:62px!important}
+ .catContent{display:flex!important;padding:7px 5px!important;gap:4px!important;min-height:72px!important}
+ .catContent b{font-size:10px!important;line-height:1.15!important;overflow-wrap:anywhere}
+ .catContent small{font-size:9px!important}
+ .catContent i{font-size:9px!important;padding:0!important;margin:0!important}
+ .catBtn{gap:0!important}
+}
+@media(max-width:380px){
+ .cats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important}
+ .catImage{height:48px!important}
+ .catContent{padding:5px 3px!important;min-height:68px!important}
+ .catContent b{font-size:9px!important}
+ .catContent small{font-size:8px!important}
+}
+
 </style><style id="category-art-contrast-fix">
 /* Staging-only: make original category icon artwork and labels legible on the bright storefront. */
 .brightTheme #categoryGrid .catWrap{background:#fff!important;border:1px solid #d5e2ec!important;overflow:hidden}
