@@ -26,7 +26,7 @@ class DeactivationSqlGeneratorTest(unittest.TestCase):
             self.assertIn("WHERE sku = 'F1-035' AND active = true", sql)
             self.assertNotIn("TR414C", sql)
             self.assertNotIn("WHERE sku = 'OLD'", sql)
-            self.assertIn("Proposed deactivations: 1", result.stdout)
+            self.assertIn("ROLLBACK;", sql)\n            self.assertIn("-- COMMIT;", sql)\n            self.assertIn("Proposed deactivations: 1", result.stdout)
             self.assertIn("no database connection or writes", result.stdout.lower())
 
 
