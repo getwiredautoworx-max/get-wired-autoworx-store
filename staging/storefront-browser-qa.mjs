@@ -78,7 +78,7 @@ try {
   report.categoryCardsAfterLoad = await page.locator('#categoryGrid .catWrap').count();
   check('category_tiles_populated', report.categoryCardsAfterLoad >= 1, 'found ' + report.categoryCardsAfterLoad + ' category tiles after waiting for catalogue load');
 
-  const storefrontFrame = page.frames().find(frame => /index-new\\.html/.test(frame.url()));
+  const storefrontFrame = page.frames().find(frame => /index-new\.html/.test(frame.url()));
   let fitmentCategoryResults = null;
   if (storefrontFrame) {
     fitmentCategoryResults = await storefrontFrame.evaluate(() => {
