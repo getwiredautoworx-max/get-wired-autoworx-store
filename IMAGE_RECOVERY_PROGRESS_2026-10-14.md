@@ -26,3 +26,11 @@ The owner manages supplier relationships. Do not contact, interview, or ask the 
 2. Create/review a visual QA contact sheet; flag blanks, mismatches, text/branding and unusable crops.
 3. Continue category and row-integrity QA concurrently.
 4. Preserve the single controlled release workflow; sync only after all gates pass.
+
+
+## 2026-10-17 follow-up — accessible catalogue source cross-check
+
+- Read-only inspection of Library file `store_catalogue_step1_final.csv`: 1,109 rows, 954 distinct SKU values (155 rows beyond the distinct-SKU count), and all rows are marked `STAGING - category to be confirmed`.
+- The file has no image URL/path, model, dimensions, colour, application, asset provenance or rights fields. It is not a valid image-to-SKU crosswalk; reconcile its duplicate SKU rows before using it as an authoritative item list.
+- No rights-cleared aftermarket/OEM-equivalent image set was evidenced by this source. Newly accepted replacement images in this checkpoint: 0. The existing 791 recovered September supplier-catalogue images remain internal QA only until exact physical/application match and reuse rights are separately verified.
+- No images or storefront code were changed. Production remains untouched. See main handover addendum: `HANDOVER_CURRENT_ADDENDUM_2026-10-17.md`.
