@@ -1840,3 +1840,32 @@ The following are exact head SHAs returned by GitHub PR metadata at this check. 
 
 ### Release decision
 **RELEASE HOLD — NO PRODUCTION CHANGES AUTHORIZED.** Several GitHub checks have passed and artifacts exist, but they do not yet prove the exact proposed PR #44/#47 candidate is approved or the supplier crawl is complete.
+
+
+## OWNER HANDOVER UPDATE — 2026-10-17 11:02 SAST — STATUS CLAIMS AND FOUR AUTHORIZATION BLOCKERS
+
+### Owner-provided status (recorded, not independently certified)
+The owner supplied the following status summary for tracking:
+- Production frontend package reportedly compiled, minified and bundled as `dist.zip` / `public_html`.
+- Supabase production migration scripts reportedly generated and execution-ready.
+- Durban/Phoenix shipping matrices reportedly configured for Courier Guy, PostNet, PAXI and Pudo.
+- Payment gateway payloads, webhooks, CORS and Row-Level Security (RLS) reportedly validated.
+- Owner describes technical/build completion as “100% Complete & Verified in Staging.”
+
+**Evidence qualification:** These statements are recorded as owner-reported claims, not independently verified facts. The current repository handover evidence does not support changing the overall release decision to READY: its latest recorded coordinator checks still say the exact design/vehicle-finder PR heads need browser QA, the ASC full crawl needs a `complete=true` artifact and review, supplier price/image-rights gates remain open, and no production/Axxess deployment or production SQL execution was authorized. Do not describe staging claims as proof of production readiness until the relevant build IDs, test reports/artifacts, migration review and shipping/gateway/RLS test evidence are linked and checked.
+
+### Four owner authorization / credential blockers — explicitly tracked
+1. **Axxess hosting live deployment — BLOCKED / OWNER ACTION REQUIRED.** Await FTP/SFTP host, username and password through a secure channel, or the owner must manually upload the approved `dist.zip` through the hosting control panel/file manager. Do not request passwords in chat, infer credentials, or upload to live hosting without authorization and a rollback checkpoint. Prior project history says Axxess is the primary host and the existing live store must be preserved; this new credential blocker is recorded as the owner's current instruction and does not overwrite earlier evidence that a previous package was uploaded.
+2. **Payment gateway switch — BLOCKED / OWNER ACTION REQUIRED.** Await live merchant ID and live API secret keys for the intended provider(s), supplied through the provider's secure configuration mechanism. Replace sandbox configuration in `.env.production` only after the provider/account and exact variable names are verified. Never commit secrets to Git or paste them into chat. No live payment readiness or live transaction is claimed; payment-provider approval and controlled checkout verification remain separate gates.
+3. **Supplier pricing approval — BLOCKED / OWNER SIGN-OFF REQUIRED.** Await written owner approval of retail markup percentages and cost-pricing policy. The established handover formula is supplier cost excluding VAT × 1.15 × 1.35, rounded to cents, but this must not be silently treated as newly approved for every candidate row. September guide prices are expired historical evidence; current supplier costs/availability for the 38 held SKUs and the 800-row candidate remain unresolved unless fresh evidence is added. Do not publish unapproved or stale prices.
+4. **Product-image rights clearance — BLOCKED / OWNER AUTHORIZATION AND RIGHTS EVIDENCE REQUIRED.** Await the owner's confirmation/authorization concerning image rights, and retain evidence of the actual rights-holder/source permission where required. The ASC source guide previously warned against unauthorized use; internal evidence crops are QA-only and must not be published without permission. Owner authorization alone must not be represented as a supplier/rights-holder licence if third-party permission is required.
+
+### Required evidence to close this update
+- Axxess: secure access route confirmed, approved package checksum/build ID recorded, backup and rollback point, upload receipt and post-upload URL/SSL/smoke-test results.
+- Payments: provider and live account confirmed, required live credentials configured outside version control, webhook/signature/CORS/RLS tests linked, and sandbox/live status clearly distinguished. No real charge without explicit authorization.
+- Pricing: dated owner sign-off on markup and pricing policy, plus current supplier price/availability evidence or explicit exclusions for each held SKU.
+- Images: asset-to-exact-SKU mapping plus documented usage permission/licence or replacement with authorized assets; exclude unresolved assets from publication.
+- Staging technical claims: link exact commit/package hash, migration filenames and reviewed diff, shipping-matrix test output, gateway/webhook/CORS/RLS test run IDs and outcomes. Until supplied and checked, mark these claims “owner-reported; verification evidence pending.”
+
+### Release decision and next action
+**RELEASE HOLD — the four items above remain open; do not claim 100% verified release readiness or perform live deployment, production SQL/data writes, DNS/payment changes, or image publication on the strength of this status summary alone.** Continue independent staging/review work without repeating successful workflows unnecessarily. Update this checkpoint with evidence links and actual outcomes as each blocker closes.
