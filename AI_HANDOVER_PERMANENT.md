@@ -2312,3 +2312,13 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - A new QA run #78 was triggered by that commit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39047480663
 - Current status at handover update: run #78 was in progress. Do not mark exact-head QA complete until run #78 finishes successfully and its tested revision is confirmed.
 - Production safety: Axxess production remains untouched. Do not merge or deploy on the basis of a QA workflow-only commit; still require visual screenshot review and storefront interaction verification.
+
+
+## LATEST STAGING QA STATUS — 2026-10-17 (RUN #79)
+- Verified run #79 completed with conclusion `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39047610339
+- Exact tested revision: `6f6e9319a37e0573483ad923410e26cc480d0d22`. PR #56 head matched this SHA when run #79 completed.
+- Passed steps include `Record exact tested revision`, `Serve candidate package files`, `Run desktop, mobile and interaction checks`, and `Upload screenshots and QA report`.
+- Revision mismatch mitigation is now in the workflow: push-triggered QA records the checked-out commit and fails if it differs from `GITHUB_SHA`.
+- Handover file updated after verifying run #79. This documentation-only update does not match the workflow's watched paths, so it does not trigger another storefront QA run.
+- Remaining release gates: inspect the uploaded screenshots/report against the user's approved light mockup and confirm actual product-image appearance and the customer journey; confirm the accessible staging preview URL if the user needs to browse it. Automated checks passing does not by itself mean the user has approved the design.
+- Safety: Axxess production remains untouched. No merge or production deployment authorized by this QA result alone.
