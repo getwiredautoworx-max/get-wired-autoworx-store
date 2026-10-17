@@ -1417,3 +1417,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Important conflict: supplier pages showed nonzero inventory for these discontinued-labelled products (15, 15, 3 and 113 respectively, according to the search snapshots). Therefore the CSV flags `DEACTIVATE_AFTER_REVIEW`, not an automatic deactivation; supplier should confirm these exact codes before active flags change.
 - PR #49: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/49 remains open and unmerged; it contains the audit script, unit test, CI workflow, documentation, review CSV, and this checkpoint. No Supabase write, product deactivation, Axxess upload, or live-site change has been performed.
 - Full cleanup is not yet complete: the four exact matches are a verified spot sample from public ASC search results, not an exhaustive export-to-export comparison. Next requirement is current full store inventory and current ASC catalogue exports; run the script, review all exact-SKU matches, then prepare one controlled deactivation patch only after supplier status confirmation.
+
+
+## 2026-10-17 — ASC audit test hardening checkpoint
+
+- Hardened the CSV audit utility: removed a duplicated alternative in the out-of-stock matcher; the matcher still distinguishes explicit discontinued text from temporary stockout.
+- Expanded the synthetic unit test to include duplicate supplier SKUs and assert they are held as `MANUAL_REVIEW` instead of generating an automated deactivation.
+- The first test run after editing the test file failed because the generated test content had malformed line breaks. This was corrected in subsequent commits; the latest workflow runs for head `91ba7d5acc3768b7287d5bf4abfa2eb678b9ddb5` were still in progress at this checkpoint. Do not call the new test pass until the latest run finishes successfully.
+- The audit PR remains review-only and unmerged. No production database records, Axxess files, or live website settings have been changed.
