@@ -2199,3 +2199,41 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Corrected the browser assertion to check for the dark theme and constrained mobile search width to the actual header content box (including the 320px breakpoint).
 - Follow-up commits: `4285635b268d0cbf08862b81585c79c8931208fe` (mobile search width), `3ec364d1eee1fe9a74e7fb49afd8a96eb604750e` (dark-theme QA assertion).
 - These corrections are not yet accepted until a fresh exact-head browser QA completes. Keep PR #54 draft and live Axxess untouched.
+
+
+## Handover update — 2026-10-17 (latest session)
+
+### Owner instruction / priority
+- The owner's explicit priority remains: match the approved storefront mockup exactly; no unapproved visual deviation is acceptable. Continue to solve concrete defects, update this handover at each material milestone, and keep production Axxess untouched until the owner reviews and approves the staging result.
+- Do not send unsolicited progress notifications. Report meaningful verified outcomes and blockers in the handover/conversation.
+
+### Latest changes on review branch
+- Repository: `getwiredautoworx-max/get-wired-autoworx-store`
+- Branch: `review/staging-ui-verification-fixes-current`
+- Review PR: #54 (OPEN, DRAFT; not merged).
+- UI dark-theme/mobile repair: `d93f440b1e348819809ef6c7d5d47150107042d0`.
+- Image QA cross-origin handling: `e3b734e16f02f3b84ae6f16c96adf3d59f472120`.
+- Mobile search width follow-up: `4285635b268d0cbf08862b81585c79c8931208fe`.
+- Dark-theme QA assertion follow-up: `3ec364d1eee1fe9a74e7fb49afd8a96eb604750e`.
+- Handover update commit: `9f429ca19e61e5fc16a904b66428a7d0a427c7b8`.
+- Changes restore dark navy/black styling with red/blue accents; improve mobile header/search, hero, category cards, product/filter grids and bottom navigation spacing; prevent a false product-image failure when cross-origin canvas pixel reads are blocked; change QA expectation from obsolete `brightTheme` to dark-theme styling; and constrain search width within the mobile header.
+
+### Evidence from latest completed Actions run
+- Storefront Smoke Test: PASS at run `39039778644`.
+- Prepare Axxess upload package: PASS at run `39039778629` (package creation only; no upload to production).
+- Public SKU Exposure Audit: PASS at run `39039778604`.
+- Browser QA run `39039778551` FAILED on the prior head `e3b734e16f02f3b84ae6f16c96adf3f59f472120` (before the two newest follow-up corrections). It reported `bright_theme_activated` failing because the body no longer had `brightTheme`, plus horizontal overflow where body width was 408px at a 390px viewport and 338px at a 320px viewport. The overflow report identified the search field/container extending 18px past the viewport.
+- The same run recorded homepage/product image decoded (sample naturalWidth 1200), 8 product cards, 63 category cards/buttons, and tested routes including product, products, checkout, checkout-v2, category, returns/refunds and terms-and-conditions returning HTTP 200. This is not proof that all UI interactions work or that image identity/licensing is approved.
+- GitHub Actions API had not yet exposed a fresh QA run for the latest PR head `9f429ca19e61e5fc16a904b66428a7d0a427c7b8` at handover time. Do not report the updated QA as passed.
+
+### Outstanding gates — must complete before declaring staging ready
+1. Obtain a fresh browser QA run against the latest exact PR head; inspect its full report and artifacts/screenshots.
+2. If Actions did not trigger after the latest commit, diagnose workflow trigger/permissions and rerun the relevant browser QA job using the GitHub Actions connection if permitted.
+3. Confirm actual dark theme and close visual match to the owner's target mockup at desktop 1440px, mobile 390px and small mobile 320px. Verify no horizontal overflow, header/search overlap, cart badge clipping, nav collision or unwanted blank space.
+4. Exercise category/subcategory navigation, Part Search and Request a Part popups, search, product cards/details, cart quantity/remove/checkout, and checkout form validations. Record evidence, not assumptions.
+5. Review product image correctness and usage rights separately; a successful HTTP/decode check is not visual identity or rights clearance.
+6. Inspect the accessible staging preview against the actual rendered screenshots. The previously mentioned preview `https://f2ca3349.get-wired-autoworx-store.pages.dev` has not been independently verified against this newest build.
+7. Keep PR #54 draft and do not merge, publish to Axxess, mutate production Supabase, or spend Netlify/Cloudflare deployment credits until QA passes and the owner approves the visual result.
+
+### Next action
+- Query Actions for the newest branch head and retrieve the fresh browser-QA job/report/artifacts. If failures remain, fix the underlying issue on this review branch, commit, rerun, and append the evidence/results here. Production remains untouched.
