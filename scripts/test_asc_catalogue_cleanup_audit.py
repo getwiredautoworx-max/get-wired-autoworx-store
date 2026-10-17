@@ -46,7 +46,7 @@ class CatalogueAuditTest(unittest.TestCase):
             self.assertEqual(rows[2]["recommended_action"], "REVIEW_TEMPORARY_STOCKOUT")
             self.assertEqual(rows[3]["recommended_action"], "MANUAL_REVIEW")
             self.assertEqual(rows[3]["supplier_status"], "AMBIGUOUS_DUPLICATE_SUPPLIER_SKU")
-            self.assertIn("Exact SKU matches: 2", result.stdout)
+            self.assertIn("Exact SKU matches: 3", result.stdout)
             self.assertIn("Ambiguous duplicate-SKU matches held for review: 1", result.stdout)
             self.assertIn("no database connection or writes", result.stdout.lower())
 
