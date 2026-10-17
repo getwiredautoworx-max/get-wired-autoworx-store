@@ -36,6 +36,36 @@ try {
   for (const [width, height] of [[1440,1000],[390,844],[320,700]]) {
     await page.setViewportSize({ width, height });
     await page.waitForTimeout(400);
+    // Force lazy images to request and wait for each request to settle before taking
+    // measurements. This prevents off-screen lazy images being misreported as healthy.
+    const imageAudit = await page.evaluate(async () => {
+      const imgs = [...document.images];
+      imgs.forEach(img => { img.loading = 'eager'; });
+      await Promise.all(imgs.map(img => {
+        if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+        return new Promise(resolve => {
+          let settled = false;
+          const finish = () => { if (!settled) { settled = true; resolve(); } };
+          img.addEventListener('load', finish, { once: true });
+          img.addEventListener('error', finish, { once: true });
+          setTimeout(finish, 8000);
+        });
+      }));
+      return imgs.map(img => {
+        const box = img.closest('.prodImg, .detailImg, [role="img"]');
+        const placeholderText = (box?.textContent || '').trim();
+        const placeholder = Boolean(box && (box.classList.contains('no-image') ||
+          /product image unavailable/i.test(placeholderText) ||
+          /product image unavailable/i.test(box.getAttribute('aria-label') || '')));
+        return {
+          src: img.currentSrc || img.src,
+          complete: img.complete,
+          naturalWidth: img.naturalWidth,
+          placeholder,
+          placeholderText: placeholder ? placeholderText.slice(0, 100) : ''
+        };
+      });
+    });
     const metrics = await page.evaluate(() => ({
       viewportWidth: innerWidth,
       documentWidth: document.documentElement.scrollWidth,
@@ -45,14 +75,21 @@ try {
       categoryButtons: document.querySelectorAll('#categoryGrid .catBtn').length,
       productCards: document.querySelectorAll('.product').length,
       heroWidth: document.querySelector('.heroCard')?.getBoundingClientRect().width ?? null,
-      images: [...document.images].map(i => ({ src: i.currentSrc || i.src, complete: i.complete, naturalWidth: i.naturalWidth })),
       overflowingElements: [...document.querySelectorAll('body *')].map(el => { const r = el.getBoundingClientRect(); return { tag: el.tagName, id: el.id || '', className: typeof el.className === 'string' ? el.className.slice(0,100) : '', left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width), text: (el.innerText || '').slice(0,50) }; }).filter(el => el.right > innerWidth + 1 || el.left < -1).slice(0,30)
     }));
+    metrics.images = imageAudit;
     metrics.width = width;
     metrics.horizontalOverflow = metrics.documentWidth > width || metrics.bodyWidth > width;
-    metrics.loadedImages = metrics.images.filter(i => i.complete && i.naturalWidth > 0).length;
-    metrics.brokenImages = metrics.images.filter(i => i.complete && i.naturalWidth === 0).length;
+    metrics.loadedImages = metrics.images.filter(i => i.naturalWidth > 0).length;
+    metrics.placeholderImages = metrics.images.filter(i => i.placeholder).length;
+    metrics.failedImages = metrics.images.filter(i => !i.placeholder && i.complete && i.naturalWidth === 0);
+    metrics.unsettledImages = metrics.images.filter(i => !i.placeholder && !i.complete);
+    metrics.unresolvedImages = metrics.images.filter(i => !i.placeholder && !(i.complete && i.naturalWidth > 0));
     report.viewports.push(metrics);
+    check('all_images_loaded_or_placeholder_' + width, metrics.unresolvedImages.length === 0,
+      'unresolved=' + metrics.unresolvedImages.length + ', failed=' + metrics.failedImages.length +
+      ', unsettled=' + metrics.unsettledImages.length + ', placeholders=' + metrics.placeholderImages.length +
+      ', URLs=' + metrics.unresolvedImages.slice(0, 10).map(i => i.src).join(' | '));
     await page.screenshot({ path: outDir + '/homepage-' + width + '.png', fullPage: true });
     check('no_horizontal_overflow_' + width, !metrics.horizontalOverflow, 'viewport=' + width + ', document=' + metrics.documentWidth + ', body=' + metrics.bodyWidth);
   }
