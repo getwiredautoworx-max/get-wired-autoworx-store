@@ -9,6 +9,8 @@ on:
       - 'scripts/test_compare_asc_store_readonly.py'
       - 'scripts/generate_asc_deactivation_sql.py'
       - 'scripts/test_generate_asc_deactivation_sql.py'
+      - 'scripts/crawl_asc_catalogue.py'
+      - 'scripts/test_crawl_asc_catalogue.py'
       - 'scripts/compare_asc_store_readonly.py'
       - 'scripts/test_compare_asc_store_readonly.py'
       - 'docs/ASC_CATALOGUE_CLEANUP_AUDIT.md'
@@ -29,6 +31,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install read-only REST client
-        run: python -m pip install --disable-pip-version-check requests
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
       - name: Run safe matching tests
-        run: python -m unittest scripts/test_asc_catalogue_cleanup_audit.py scripts/test_compare_asc_store_readonly.py scripts/test_generate_asc_deactivation_sql.py -v
+        run: python -m unittest scripts/test_asc_catalogue_cleanup_audit.py scripts/test_compare_asc_store_readonly.py scripts/test_generate_asc_deactivation_sql.py scripts/test_crawl_asc_catalogue.py -v
