@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 DISCONTINUED = re.compile(r"\b(?:will\s+discontinue|will-discontinue|discontinued|discontinue\s+not\s+viable|not\s+viable)\b", re.I)
-OUT_OF_STOCK = re.compile(r"\b(?:out\s+of\s+stock|out\s+of\s+stock|sold\s+out)\b", re.I)
+OUT_OF_STOCK = re.compile(r"\b(?:out\s+of\s+stock|sold\s+out)\b", re.I)
 ZERO_STOCK = re.compile(r"^\s*0+(?:\.0+)?\s*$")
 
 
