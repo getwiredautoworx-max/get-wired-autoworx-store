@@ -2303,3 +2303,12 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Latest responsive screenshot run `39044495957` passed on source `623a5f9996dcd0dfac1b265c32ce4258aca25d41`. Reported hero heights: 280px desktop, 220px mobile, 215px small-mobile; 63 category tiles, 8 product cards, no horizontal overflow, no page errors. Screenshots were inspected; the mobile establishment badge no longer overlaps the Google-rating badge and all hero actions are visible.
 - Latest QA runner commit: `c3a0d3a4c1ed649c95af21a69b5328e08156b08c`. The workflow now checks the actual deployed preview rather than localhost and explicitly tests the PAXI frame policy. The checkout assertion accepts Cloudflare Pages clean URLs (`/checkout-v2`) as well as `.html` routes.
 - Production safety remains unchanged: no Axxess upload, no DNS change, no live Supabase data change, no payment setting change, and no merge of PR #54/#56. Staging is available for owner visual review at the URL above. Do not claim production-ready until the owner approves the mockup match and the supplier-image watermark/licensing review is complete; several representative images still show supplier watermark text and must not be treated as rights-cleared.
+
+
+## STAGING QA REVISION-MISMATCH CORRECTION — 2026-10-17
+- Root cause: QA run #77 (run ID 39047023986) succeeded on commit `f082049969bced19fe430b0f691b4dc20531b2b2`, while PR #56 reported head `7eb9667adbb88667cfd538fe79b5cbba890a19d4`. Therefore, run #77 did not prove the then-current PR head passed.
+- Corrective action: updated `.github/workflows/staging-browser-qa.yml` on `review/staging-ui-verification-fixes-current` to log the checked-out commit and assert that push-triggered QA checks out the exact triggering commit.
+- Workflow correction commit: `66e4597fa1ca26aa2463d84348984406927c5ce7`.
+- A new QA run #78 was triggered by that commit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39047480663
+- Current status at handover update: run #78 was in progress. Do not mark exact-head QA complete until run #78 finishes successfully and its tested revision is confirmed.
+- Production safety: Axxess production remains untouched. Do not merge or deploy on the basis of a QA workflow-only commit; still require visual screenshot review and storefront interaction verification.
