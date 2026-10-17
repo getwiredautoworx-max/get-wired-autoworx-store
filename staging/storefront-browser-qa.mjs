@@ -78,10 +78,7 @@ try {
   report.categoryCardsAfterLoad = await page.locator('#categoryGrid .catWrap').count();
   check('category_tiles_populated', report.categoryCardsAfterLoad >= 1, 'found ' + report.categoryCardsAfterLoad + ' category tiles after waiting for catalogue load');
 
-  const storefrontFrame = page.frames().find(frame => /index-new\.html/.test(frame.url()));
-  let fitmentCategoryResults = null;
-  if (storefrontFrame) {
-    fitmentCategoryResults = await storefrontFrame.evaluate(() => {
+  const fitmentCategoryResults = await page.evaluate(() => {
       const roots = [
         { label: 'Vehicle Security', id: '8e93d917-8fcc-4427-b364-cdad244f263f', exempt: true },
         { label: 'Car Audio & Entertainment', id: '5ab55c53-eee3-41ce-ad48-04ad6df85181', exempt: true },
@@ -113,8 +110,6 @@ try {
           fitmentAction: /NOT SURE IT FITS\? GET FITMENT ADVICE/i.test(detail)
         };
       });
-    });
-  }
   report.fitmentCategoryResults = fitmentCategoryResults;
   const exemptFitmentChecks = (fitmentCategoryResults || []).filter(x => x.exempt);
   const vehicleSpecificChecks = (fitmentCategoryResults || []).filter(x => !x.exempt);
