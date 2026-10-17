@@ -207,7 +207,12 @@ try {
   const wrapperFrame = wrapperPage.frameLocator('#store');
   await wrapperPage.waitForTimeout(4500);
   const wrapperRoots = await wrapperFrame.locator('#categoryGrid > .catWrap').count().catch(() => 0);
-  const wrapperProductImage = await wrapperFrame.locator('.product .prodImg').first().evaluate(box => {
+  const wrapperFirstProductBox = wrapperFrame.locator('.product .prodImg').first();
+  await wrapperFirstProductBox.scrollIntoViewIfNeeded().catch(() => {});
+  await wrapperFirstProductBox.locator('img').evaluate(img => { img.loading = 'eager'; }).catch(() => {});
+  // Allow the exact-SKU WebP, JPG fallback, and timeout-to-placeholder path to settle.
+  await wrapperPage.waitForTimeout(14000);
+  const wrapperProductImage = await wrapperFirstProductBox.evaluate(box => {
     const img = box.querySelector('img');
     const text = (box.textContent || '').trim();
     return {
