@@ -1432,3 +1432,11 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - Queried the live store database read-only for further supplier codes visible in ASC catalogue results, including F1-007, F1-042, F1-088, SG-21TB, FF-024, T15-011-33, and other sample codes. Of the additional codes checked, no additional matching store product rows were returned; T3-5CS was present but its ASC listing was not marked discontinued in the reviewed result.
 - This confirms the current four-row CSV remains the exact-match review sample, not a complete cleanup list. ASC publicly shows a catalogue of roughly 12,000 products and multiple discontinued labels across categories, so full coverage still requires a machine-readable supplier catalogue export and full store-SKU comparison.
 - PR #49 is still intentionally unmerged: latest handover-only commit has no status check attached yet; code/test commits have successful Actions runs. No production changes.
+
+
+## 2026-10-17 — Expanded ASC exact-SKU review sample to five
+
+- Continued searching ASC public product listings and found another exact store match: supplier SKU TOY-001, listing title SLIDING DOOR CABLE HI-ACE DISCONTINUED NOT VIABLE. The ASC page showed 68 units in stock, while the store has the item active with store stock 5 and public SKU GW-91267FC5. This conflict means review/confirmation is required before deactivation.
+- Added TOY-001 to `staging/asc-cleanup-review-2026-10-17.csv`. The review sample now has five exact SKU matches with explicit discontinued/will-discontinue wording. Other visible codes on the checked pages (including F1-007, F1-042, F1-088, SG-21TB, FF-024, YG0610X5, Q-SDC01, and Q-SDC03) did not match a store row in the read-only SKU query.
+- Evidence page: https://accessoriesspares.co.za/shop/page/915/?layout=grid&per_page=10. Supplier stock is not proof the item is still orderable because the title explicitly says discontinued/not viable; verify with ASC before changing product active flags.
+- Full catalogue reconciliation is still outstanding because we do not yet have a complete machine-readable supplier export and full store inventory CSV to compare exhaustively. No production records or Axxess files changed.
