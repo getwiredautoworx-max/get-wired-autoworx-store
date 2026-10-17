@@ -32,6 +32,7 @@ The multipliers represent 15% VAT and a 35% markup applied after VAT, as current
 - Active requires `is_active=true`, `quote_only=false`, `review_status=Approved`, positive supplier cost and customer price, a matching price calculation, current supplier evidence, and cleared image permission/evidence.
 - Quote-only requires `quote_only=true`, `is_active=false`, and blank `customer_price`.
 - Reject duplicate supplier SKUs and duplicate public SKUs.
+- The explicit supplier-SKU blocklist `M501WCC`, `A1-002`, `A1-003`, `MA330`, `MA342`, `MA342/2`, `N-FC001`, `WP25`, and `N-CP002 must always remain quote-only, inactive, and without a customer-facing price; the validator enforces this independently of the row's declared flags.
 - Reject unknown categories and invalid public SKU formats.
 - Do not expose `supplier_sku`, `supplier_cost_ex_vat`, confirmation references, internal review reasons, or secrets to public clients.
 - Passing the synthetic validator is a data-shape check only. It does not approve real products or replace supplier confirmation, fitment review, image-rights review, consumer-policy review, or release QA.
