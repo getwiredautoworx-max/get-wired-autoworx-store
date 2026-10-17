@@ -2186,3 +2186,29 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Decision: do not make an unverified image swap. The safe next change is to create a staging-only image review register for each category/product visual, with exact source SKU/model and application plus asset provenance/licence. Replace only where identity and rights are both documented; otherwise keep the current neutral category art/placeholder.
 - Validation still required: actual screenshots and interactions for PR #54 at 1440px, 390px and 320px. Latest observed local smoke workflow run 39020679122 passed but has no artifact and does not prove the requested visual sizes.
 - No storefront code change was made in this inspection. Production remains unchanged; no Axxess upload, merge, Supabase write, SQL execution, DNS/payment change, or Cloudflare/Netlify credit use.
+
+
+## 2026-10-17 continuation — handover read and image/browser QA investigation (14:41 SAST)
+
+### Verified repository state
+- Read the current default-branch `HANDOVER_CURRENT.md` and reviewed open draft PR #54: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/54
+- PR #54 is open, draft, not merged, and not visually accepted. Its current head reported by GitHub is `56d58364640dbb7da5d5813cb6065fffcfa82b9c`; do not rely on earlier `fe73dc...` test results as exact-head acceptance.
+- Confirmed changed files include `.github/workflows/staging-browser-qa.yml`, `staging/storefront-browser-qa.mjs`, `assets/product-image-fallback.js`, and `docs/PRODUCT_IMAGE_REPLACEMENT_AUDIT.md`, plus the storefront and recovery notes.
+- Read the staging browser QA workflow and test script. It is designed to capture `qa-output/` screenshots/report and checks HTTP status, bright-theme activation, key controls/routes, image load failures, console/page errors, and desktop/mobile widths 1440, 390 and 320. A fresh successful artifact for the current PR head has not been verified in this pass; do not call the visual gate passed.
+- Read the product image replacement audit. It correctly separates exact SKU/model identity from commercial-use permission and requires a neutral placeholder/hold when either cannot be proven. Category-level artwork must not be mistaken for verified product imagery.
+
+### Findings / no unsafe change
+- The image-replacement audit is policy/checklist only; it approves no individual image. Existing 791 recovered September catalogue tiles remain internal QA evidence with publication rights unresolved; 16 still require low-resolution review.
+- No exact-match, rights-cleared manufacturer replacement asset was established in this pass. Therefore no product image was swapped and no product was assigned a guessed image.
+- No Axxess upload, merge, production Supabase write/SQL, DNS or payment setting change was made. No Cloudflare/Netlify credits were used.
+
+### Next concrete action
+1. Run or retrieve the configured staging browser QA for the exact current PR #54 head and inspect the generated screenshots plus JSON report, including failed image requests and explicit placeholder rendering.
+2. If the workflow is not triggered for PR #54 because its path/branch filters exclude the review branch, correct the workflow trigger in the review branch only, then run once. Avoid reruns without a specific trigger/failure.
+3. Use the report to create an exact SKU/model image exception list. Only accept replacements with documented exact part/application evidence and commercial reuse rights; otherwise keep the placeholder and flag the item.
+4. Commit the evidence and this handover update on the review branch or default handover as appropriate; keep PR #54 draft and production untouched until exact-head screenshots and interaction checks pass and the owner approves.
+
+### Status
+- Exact-head browser visual QA: NOT VERIFIED / release gate remains open.
+- Product image replacement and rights: BLOCKED pending item-level evidence and authorized assets.
+- Production: unchanged.
