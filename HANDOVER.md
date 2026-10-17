@@ -2940,3 +2940,17 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 1. Inspect the exact WebP asset and request status for `GW-BACFDE14`; distinguish missing asset from fallback timing/URL errors.
 2. Fix only the verified root cause on the review branch and rerun wrapper-level QA until the exact-SKU image check passes; preserve a neutral placeholder when no verified image exists.
 3. Update this handover with the exact changed files, commit, workflow run IDs, and artifact evidence. Keep the live Axxess store untouched until owner acceptance.
+
+
+## CONTINUATION LOG — 2026-10-17 — EXACT-SKU IMAGE FALLBACK HARDENED; VALIDATION PENDING
+
+- Investigated wrapper QA #41 failure. The wrapper image `GW-BACFDE14.webp` returned `complete=false` and `naturalWidth=0`; GitHub code search did not locate that exact SKU, and this connector does not expose directory-tree listing or asset HTTP status. Therefore the exact asset's presence/absence remains unproven; do not claim a missing file as confirmed.
+- Identified a concrete fallback implementation gap: `assets/product-image-fallback.js` comment claimed a WebP-then-JPG fallback, but `localUrls()` actually returned only the WebP URL. Updated the review branch at commit `50f3f898543c501c8faff44b148f4a23580771c7` to try the exact same public SKU's WebP and then exact-SKU JPG, and to show an accessible neutral “Product image unavailable” state when neither exists. No similar-item substitutions were introduced.
+- Updated wrapper QA assertion in `staging/storefront-browser-qa.mjs` at commit `c8232c882f037f99861992fb04fc0f6b0543c00f` so it accepts a rendered exact-SKU WebP or JPG. This verifies identity-preserving fallback, not just a file extension.
+- Exact-head Actions lookup returned no runs for the newest commit at the time of this update. A local asset HTTP check was also unavailable because the execution environment could not resolve external hostnames. Consequently, these code changes are committed on the review branch but NOT yet validated by a passing wrapper QA run. Do not mark this blocker resolved until a fresh workflow proves an exact-SKU image renders, or confirms a deliberate neutral placeholder for an absent asset without a broken image.
+- Handover updated on main; this does not deploy or change the live site. PR #54 remains draft/unmerged, release HOLD remains in force. No Axxess upload, Supabase production write, catalogue import, DNS/payment change, or live deployment occurred.
+
+### Next validation steps
+1. Confirm PR #54 includes the latest review branch head and that Actions triggers on the updated head; inspect QA report and image request status.
+2. If the exact SKU WebP and JPG both fail, check whether the product asset exists under another exact SKU filename using a repository tree/asset manifest. Correct only a proven SKU-to-asset mapping; otherwise retain the explicit neutral placeholder and mark that product image as pending manual source/rights review.
+3. Run wrapper QA at desktop and mobile widths, inspect all product image failures, and update this handover only with the actual run IDs/results. Keep release HOLD until the remaining catalogue, payment, visual and owner-approval gates pass.
