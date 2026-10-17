@@ -251,8 +251,8 @@ try {
   }
   report.customerRoutes = routeResults;
   check('paxi_locator_frame_allowed_by_csp',
-    !report.consoleErrors.some(message => /Framing.*map\\.paxi\\.co\\.za.*Content Security Policy/i.test(message)),
-    JSON.stringify(report.consoleErrors.filter(message => /map\\.paxi\\.co\\.za|Content Security Policy/i.test(message))));
+    !report.consoleErrors.some(message => message.includes('map.paxi.co.za') && message.includes('Content Security Policy')),
+    JSON.stringify(report.consoleErrors.filter(message => message.includes('map.paxi.co.za') || message.includes('Content Security Policy'))));
   // Verify the actual customer entry wrapper, including its iframe-installed exact-SKU local image fallback.
   const wrapperPage = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
   wrapperPage.on('console', msg => { if (msg.type() === 'error') report.consoleErrors.push('[store-wrapper] ' + msg.text()); });
