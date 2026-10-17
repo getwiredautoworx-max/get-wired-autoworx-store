@@ -1,0 +1,24 @@
+# ASC catalogue cleanup audit — review-only workflow
+
+## Purpose
+Cross-reference an owner-exported store inventory CSV against a current Accessories Spares Centre (ASC) catalogue CSV and create a review patch for exact supplier-SKU matches whose supplier title/status indicates discontinuation or out-of-stock status.
+
+## Run
+```bash
+python3 scripts/asc_catalogue_cleanup_audit.py --store store-products.csv --asc asc-catalogue.csv --output asc-cleanup-review.csv
+python3 -m unittest scripts/test_asc_catalogue_cleanup_audit.py
+``
+
+Store export should include `supplier_sku` (preferred), `public_sku`, `name`, `active`, and `stock_quantity`. The script also accepts `sku` as a fallback, but only use that if it is the supplier's exact SKU, not the generated public SKU. ASC export should include `SKU` and a product `Name` or `Title`, and preferably `Stock status` and/or `Stock`.
+
+## Action rules
+- Exact SKU plus explicit discontinued / will-discontinue / not-viable text → `DEACTIVATE_AFTER_REVIEW`.
+- Exact SKU plus out-of-stock/zero supplier quantity without explicit discontinued text → `REVIEW_TEMPORARY_STOCKOUT`; not auto-deactivated because supplier stockouts can be temporary.
+- Duplicate ASC rows for one SKU → `MANUAL_REVIEW`.
+- Fuzzy name matches and unmatched SKUs are excluded. Never infer an SKU match from a similar description.
+
+## Safety boundary
+This is a local CSV patch generator only. It has no Supabase client, credentials, network calls, or database write code. Review the generated CSV and verify each supplier listing before any approved database change. It does not delete product rows; approved actions should normally set `active=false` to preserve order/audit references.
+
+## Current evidence / limitation
+A read-only Supabase audit on 2026-10-17 found 4,187 active products, zero active products with `stock_quantity=0`, and zero active product names/descriptions/specifications containing the searched discontinued/out-of-stock/not-viable indicators. That does not prove supplier status is clean: ASC's public catalogue itself contains discontinued and out-of-stock examples. The current store export and current supplier catalogue export must be matched by supplier SKU to identify overlaps. Do not claim the cleanup has completed until the CSV audit output has been reviewed.
