@@ -2006,3 +2006,14 @@ A fresh web search returned public ASC indexed snippets, but direct opens of the
 - WG-007: indexed ASC result labels it “SUPPLIER WILL DISCONTINUE CONFIRMED” and shows 111 in stock. This conflicts with the owner-submitted HTTP 404/missing-listing claim; written supplier confirmation is required.
 
 Sources are linked from the PR #48 audit document and include ASC page results. Because direct page fetch failed and indexed snapshots have different crawl ages, none of these snippets is considered current live verification. No status action is authorized from this search alone.
+
+
+## UI PREVIEW DEPLOYMENT OBSERVATION — 2026-10-17
+
+- PR #54's automatic Cloudflare Pages PR bot reports a successful preview for latest UI commit `fe73dc828c606c50813fee72d06fdc9d809b9ac8`:
+  - Preview URL: https://f2ca3349.get-wired-autoworx-store.pages.dev
+  - Branch preview URL: https://review-staging-ui-verificati-hog1.get-wired-autoworx-store.pages.dev
+  - Bot comment: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/54#issuecomment-6232158674
+- The same bot comment records failed automatic preview builds for earlier candidate commits `15a3273`, `6173202`, and `737ec0e`, followed by the successful latest `fe73dc8` preview. These were automatic PR integrations, not manually requested production deployments.
+- The available page viewer could not open either preview URL, so this is deployment-status evidence only, not rendered/browser acceptance. The Playwright workflow's exact report/artifact is still not accessible through the connected Actions query.
+- Credit protection: stop making further code pushes to PR #54 unless a real QA failure requires a correction; use the existing successful preview and available report first. No production Axxess upload was made.
