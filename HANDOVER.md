@@ -2778,3 +2778,21 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 - GitHub Actions secret creation: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/settings/secrets/actions/new
 
 **Verified state at pause:** Android project/config/theme/NeonCard and workflow files are committed. Expo project ID has not been linked/verified; GitHub `EXPO_TOKEN` presence is unverified; no EAS build result or downloadable APK has been verified; no Hisense M72 Pro installation test has been completed. The app currently wraps the HTTPS storefront in a WebView; it is not a fully native shopping app. No Axxess, production storefront, Supabase, DNS, catalogue or payment configuration was changed by this workstream. Keep all these statuses open until evidence is collected.
+
+
+## ASC CATALOGUE CLEANUP AUDIT — 2026-10-17 (review branch only)
+
+- User requested cross-reference of the store inventory against the public Accessories Spares Centre catalogue for explicit “WILL DISCONTINUE”, “DISCONTINUED”, and zero/out-of-stock flags, with a cleanup patch/script.
+- Read-only Supabase audit of project `ojytykqpvonxvepprgbh`: 4,187 active products; zero active store products with local `stock_quantity <= 0`; zero active products whose own name/description contain a discontinuation marker. `public.supplier_stock` has 0 rows and `gw_private.supplier_catalog_items` has 0 rows, so there is no complete current supplier-stock feed available to join automatically. The existing 36 `asc_stock_verification` rows were last checked 2026-09-16 and are not a complete live snapshot.
+- Public ASC pages surfaced five exact supplier-SKU matches currently active in the store, each with explicit discontinuation text (pages showed positive ASC stock, which does not remove the discontinuation flag): AES-1115-16B / GW-7CABCBE7; F1-035 / GW-D655BEE8; F9-001-56 / GW-A16BA2A4; T3-8CS / GW-CDF8245E; WG-007 / GW-B7FA9084. Full names, source URLs and observed stock text are in `docs/asc-discontinued-stock-cleanup-2026-10-17.md`.
+- Created review branch `audit/asc-discontinued-stock-cleanup-2026-10-17`; no merge to main and no production DB mutation.
+- Deliverables:
+  - `docs/asc-discontinued-stock-cleanup-2026-10-17.md`: findings, evidence links, limitations and exact candidate matches.
+  - `supabase/review/asc-discontinued-cleanup-2026-10-17.sql`: explicit-SKU soft-deactivation patch; preview-only by default and only runs UPDATE if psql variable `APPLY_CLEANUP=true` is deliberately supplied.
+  - `scripts/asc_cleanup_from_export.py`: standard-library CSV generator to flag discontinuation markers and zero/OOS statuses from a fresh ASC export, writing JSON and a review-only SQL preview. It does not connect to or mutate Supabase.
+- The five candidate products have not been deactivated. This is intentional: user requested generation of a patch/script, and current public pages are indexed/crawled evidence rather than a supplier API feed. Verify each live ASC page immediately before applying. Out-of-stock-only products should be rechecked because availability can be temporary.
+- Preserve historical product rows; soft deactivate rather than delete to avoid breaking order/quote/vehicle references. Do not set store stock quantity to zero because the current local quantity field is not a synchronized ASC stock ledger.
+- Next: validate script against a sample export; inspect generated preview and candidate joins; recheck live pages; then owner reviews/applies the SQL patch in a controlled transaction. Do not claim the full 12,000+ ASC catalogue has been scanned.
+
+
+- Review PR opened (draft, unmerged): https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/48. Candidate cleanup remains review-only; do not merge or execute the SQL until the owner approves after current supplier status is rechecked.
