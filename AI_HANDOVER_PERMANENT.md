@@ -2171,3 +2171,38 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - The newest verified `Prepare Axxess upload package` artifact on `main` found in the current 100-run scan is run 47: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/38782856546 .
 - Artifact `axxess-storefront-upload`, ID `11996577624`, direct ZIP endpoint https://api.github.com/repos/getwiredautoworx-max/get-wired-autoworx-store/actions/artifacts/11996577624/zip ; created 2026-10-15 18:06:40 UTC; size 110,904,506 bytes; SHA-256 `d33875c112044354619b86d4068ce442e94de4b2eb1b2c61134e9e71faa8f7aa`; expires 2026-10-29 18:06:37 UTC. Source commit: `1d3205339209d03805f45d614cf329f2abd8a6f9`.
 - Use this main-branch artifact in preference to the newer QA-branch artifacts when a main-branch package is required. Still back up Axxess `public_html` and verify the package layout before replacement; artifact existence is not proof that the currently live host matches this build.
+
+
+## 2026-10-16 14:40 SAST — scheduled monitor task start and results
+- **Start recorded:** Read this permanent handover, latest existing `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md`, `HANDOVER_CURRENT.md`, and run logs `handover-runs/2026-10-15-1835-release-package-verification.md` / `handover-runs/2026-10-15-1840-live-mismatch-and-apk.md`. No `HANDOVER_CHECKPOINT_*.md` existed on main at start. No live store, catalogue, database, DNS, payment, hosting, or credential changes were made.
+- **Main observed:** `2992d46922a18789a605e7d40c268240d00ad822`.
+
+### Verified Actions runs
+- Read-only Task Monitor #2 PASS: run `38896731216`, attempt 1, main `2992d469...`; artifact `12043219811`; missing expected evidence files 0.
+- Background Task Controller #297 PASS: run `38893011847`, attempt 1, main `2992d469...`; artifact `12042930641` reports `attention_required`, 3 completed runs needing attention, 0 in progress, 0 retries, 0 API errors.
+- Staging Category Navigation Chromium Acceptance #12 PASS: run `38521429939`, attempt 1, branch `audit/buyer-guide-extraction`, commit `14c16fa76f0e3c2c58596ff69608edc18e0b5578`, artifact `11874495111`.
+- Buyer-guide extraction PASS: run `38525300051`, attempt 1, audit branch commit `999c715872d6b07d98c559605739283f38dbcd88`; extraction/OCR and audit-branch commit steps passed.
+- ASC Exact-SKU Image Sync (Bounded) #57 PASS: run `38871435676`, attempt 1, commit `c8cdadcc37b23e2e9f3d29469f0bad7f386f39ee`; 86 missing-image targets, 0 eligible, diagnostic batch 0. No images changed; respect cooldown.
+- Storefront Smoke Test #757 PASS: run `38871813571`, attempt 1, branch `design/exact-category-mockup-2026-10-15`, commit `7980cbc372cb9f9de9263f6e7480c8ce815e4144`.
+- Storefront screenshot QA #29 PASS: run `38876481887`, attempt 1, QA branch commit `c592c1d3c5f8383d04af252d371a2a593d00bdc8`, artifact `12035706818`; 1440/390/320px, 8 sampled product images loaded, no horizontal document overflow or JS errors. Hero heights 380/409/424px; cart badge protrudes 20px past its parent.
+- Axxess package build #61 PASS: run `38876482038`, attempt 1, QA branch commit `c592c1d3c5f8383d04af252d371a2a593d00bdc8`, artifact `12036225131`. QA-branch package, not current-main package; no upload initiated.
+- Storefront Read-Only Browser Smoke QA #2 FAIL: run `38895541348`, attempt 1, main `2992d469...`. HTTP routes and mobile width pass, but body-text assertion sees 8 characters because `store.html` wraps `index-new.html` in `iframe#store`; test must inspect the iframe. Not rerun against live site.
+- Live Release Gates #22 FAIL: run `38892914384`, attempt 1, main `2992d469...`. Checked routes HTTP 200; `index-new.html` is the sole mismatch among five hashed files. Desktop/mobile category navigation passes with 9 displayed roots. Checkout UI passes but only Direct EFT/bank payment is configured; PayFast/PayJustNow readiness unconfirmed. No rerun of production gate.
+- Store Production QA #207 FAIL on attempt 2: run `38781731522`, main commit `6e7b3a62cd656a99aee4b8c28df339be23d690d5`. Source/domain/delivery/catalogue checks passed; security-boundary scan failed on synthetic schema examples in `.github/scripts/generate_docs.js:51-52` containing `supplier_cost_ex_vat`. No production-QA rerun.
+- GitHub Pages build/deployment #1279 PASS: existing run `38876500041`, main `2992d469...`; not triggered by this monitor.
+- Cloudflare Pages production deploy #311 historical FAIL: run `37912001486`, attempt 1, commit `d3e272a99a2958634d3f13d4770a21306d7d66e4`; excluded from automatic retry. No Cloudflare/Netlify credits used.
+
+### Catalogue and category status — staging only
+- October price queue: 107/107 rows have original-page evidence that printed cost matches live cost and selling price matches the established formula; no price writes indicated.
+- Category queue: 198 manual-review rows remain. All 198 SKUs appear in expected guide OCR (193 one-page matches, 5 multi-page matches); OCR presence is not approval. Eleven keyword suggestions were suppressed where OCR headings support the current leaf. All remaining suggestions require original-page/source evidence; never auto-move products.
+- The three expected October source-evidence CSVs are present on `audit/buyer-guide-extraction`; monitor reports 0 missing.
+- Main category snapshot has a zero-product `4X4 Outdoor` root and a `4X4 OUTDOOR` child under `Camping / Leisure / Outdoors` with 16 direct active products. The QA screenshot candidate displays the child as a ninth homepage card. Preserve the eight approved roots; surface 4x4 under Camping/Leisure/Outdoors without moving product rows.
+- No unresolved safe staging failure was found that warranted a rerun: latest category acceptance and buyer-guide extraction pass; older staging failures are superseded. Current failures target live/production checks or deployment and were not rerun.
+
+### Release posture and next precise actions
+1. Keep Axxess unchanged until the live `index-new.html` is compared with the owner-approved candidate; the mismatch against main is not permission to overwrite live files.
+2. In the Axxess-first workflow, reconcile the eight-root/4x4-child presentation and review hero height against the reference; then run visual/category QA on that exact candidate.
+3. Fix the read-only smoke test to wait for and inspect `iframe#store` content, with staging/QA validation before a main update.
+4. Review all 198 category candidates against original page images and retain evidence. Do not restart the catalogue or write prices/categories/products.
+5. Keep PayFast/PayJustNow unconfirmed until integration, merchant activation, server-side secrets, signed callbacks, and acceptance are verified.
+6. Only after Axxess approval, perform one coordinated GitHub/Supabase/hosting sync. Do not use Cloudflare/Netlify credits before final testing.
