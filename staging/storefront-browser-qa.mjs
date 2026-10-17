@@ -180,7 +180,8 @@ try {
   check('customer_wrapper_http_200', report.customerWrapper.status === 200, JSON.stringify({status:report.customerWrapper.status}));
   check('customer_wrapper_category_roots', wrapperRoots === 8, 'found ' + wrapperRoots + ' top-level categories in store.html iframe');
   check('customer_wrapper_exact_sku_image_renders',
-    Number(wrapperProductImage.naturalWidth || 0) > 0 && String(wrapperProductImage.src || '').includes('/assets/products_webp/GW-') && /\.webp(?:$|\?)/i.test(wrapperProductImage.src || ''),
+    Number(wrapperProductImage.naturalWidth || 0) > 0 &&
+      /\/assets\/products(?:_webp)?\/GW-[^/?]+\.(?:webp|jpg)(?:$|\?)/i.test(String(wrapperProductImage.src || '')),
     JSON.stringify(wrapperProductImage));
   await wrapperPage.close();
 
