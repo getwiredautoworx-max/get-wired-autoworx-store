@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 
 BASE = "https://accessoriesspares.co.za"
 SHOP = f"{BASE}/shop/"
-USER_AGENT = "GetWiredAutoWorxCatalogueAudit/1.0 (read-only; contact via store owner)"
+USER_AGENT = "GetWiredAutoWorxCatalogueAudit/1.0.1 (read-only; contact via store owner)"
 SKU_RE = re.compile(r"\bSKU\s*:\s*([A-Z0-9][A-Z0-9._/-]{1,40})\b", re.I)
 STOCK_RE = re.compile(r"\b(\d[\d,]*)\s+in\s+stock\b", re.I)
 STOCK_LABEL_RE = re.compile(r"\bStock\s*:\s*(\d[\d,]*)\b", re.I)
