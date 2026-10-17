@@ -78,6 +78,53 @@ try {
   report.categoryCardsAfterLoad = await page.locator('#categoryGrid .catWrap').count();
   check('category_tiles_populated', report.categoryCardsAfterLoad >= 1, 'found ' + report.categoryCardsAfterLoad + ' category tiles after waiting for catalogue load');
 
+  const storefrontFrame = page.frames().find(frame => /index-new\\.html/.test(frame.url()));
+  let fitmentCategoryResults = null;
+  if (storefrontFrame) {
+    fitmentCategoryResults = await storefrontFrame.evaluate(() => {
+      const roots = [
+        { label: 'Vehicle Security', id: '8e93d917-8fcc-4427-b364-cdad244f263f', exempt: true },
+        { label: 'Car Audio & Entertainment', id: '5ab55c53-eee3-41ce-ad48-04ad6df85181', exempt: true },
+        { label: 'Tools, Hardware & Consumables', id: '77297c18-67f6-452e-8918-c55d2ef6231a', exempt: true },
+        { label: 'Camping, Leisure & Outdoors', id: 'af2f8625-4f42-45e6-9f21-d571d7415893', exempt: true },
+        { label: 'Auto Electrical Spares', id: '6cc56033-b0a9-4f25-b207-aeeb341a1c47', exempt: false }
+      ];
+      const categories = window.gwCategories || [];
+      const products = window.gwProducts || [];
+      function rootId(id) {
+        const seen = new Set();
+        while (id && !seen.has(id)) {
+          seen.add(id);
+          const c = categories.find(x => x.id === id);
+          if (!c || !c.parent_id) return id;
+          id = c.parent_id;
+        }
+        return id;
+      }
+      return roots.map(root => {
+        const product = products.find(p => rootId(p.category_id) === root.id);
+        if (!product) return { ...root, available: false };
+        window.gwOpenProduct(product);
+        const detail = document.querySelector('#detailContent')?.innerText || '';
+        return {
+          ...root,
+          available: true,
+          vehicleBlock: /VEHICLE \/ APPLICATION INFORMATION/i.test(detail),
+          fitmentAction: /NOT SURE IT FITS\? GET FITMENT ADVICE/i.test(detail)
+        };
+      });
+    });
+  }
+  report.fitmentCategoryResults = fitmentCategoryResults;
+  const exemptFitmentChecks = (fitmentCategoryResults || []).filter(x => x.exempt);
+  const vehicleSpecificChecks = (fitmentCategoryResults || []).filter(x => !x.exempt);
+  check('fitment_prompts_removed_for_non_vehicle_categories',
+    exemptFitmentChecks.length === 4 && exemptFitmentChecks.every(x => x.available && !x.vehicleBlock && !x.fitmentAction),
+    JSON.stringify(exemptFitmentChecks));
+  check('fitment_guidance_retained_for_vehicle_spares',
+    vehicleSpecificChecks.length === 1 && vehicleSpecificChecks.every(x => x.available && x.vehicleBlock && x.fitmentAction),
+    JSON.stringify(vehicleSpecificChecks));
+
   await page.locator('.cart').click();
   await page.locator('#cartPanel a.checkoutNow').click();
   await page.waitForLoadState('domcontentloaded');
