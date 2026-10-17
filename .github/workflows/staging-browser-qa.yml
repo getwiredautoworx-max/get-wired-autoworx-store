@@ -40,6 +40,7 @@ jobs:
         run: |
           echo "Tested commit: $(git rev-parse HEAD)"
           echo "Workflow event: $GITHUB_EVENT_NAME"
+          echo "QA revision check: push runs must match the triggering commit SHA"
           if [ "$GITHUB_EVENT_NAME" = "push" ] && [ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]; then
             echo "Checked-out commit does not match triggering commit" >&2
             exit 1
