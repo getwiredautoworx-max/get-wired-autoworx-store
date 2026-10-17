@@ -2212,3 +2212,28 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Exact-head browser visual QA: NOT VERIFIED / release gate remains open.
 - Product image replacement and rights: BLOCKED pending item-level evidence and authorized assets.
 - Production: unchanged.
+
+
+## 2026-10-17 continuation — inspected QA artifact and corrected desktop navigation (14:45 SAST)
+
+### Exact-head browser QA artifact inspected
+- Retrieved workflow run **39033057189**, run #47, for exact PR #54 head `56d58364640dbb7da5d5813cb6065fffcfa82b9c`. Job completed successfully; artifact **12101361097** (`staging-browser-qa-47`) contains desktop 1440px, mobile 390px, small-mobile 320px screenshots and `report.json`. Artifact expires 2026-10-31.
+- Automated report passed its coded checks: HTTP 200; bright theme; Part Search and Request a Part controls; cart open/close; checkout and policy routes; 8 approved homepage roots; 4x4 nested under Camping; vehicle-fitment exemptions; no horizontal document overflow; no uncaught page errors; and 0 failed/unsettled image requests in the three viewport reports.
+- Visual inspection of `homepage-1440.png` found a genuine defect missed by the automated assertions: the fixed mobile bottom navigation was visible across the desktop screenshot and obscured category cards. The screenshot also shows the eight sampled product-card image areas visually blank even though the image requests report successful 1200px-wide responses. Therefore image validation cannot rely on HTTP status or naturalWidth alone; the rendered pixels/content must be checked.
+- One request to the third-party PAXI map URL was aborted; no page/console errors or HTTP 4xx/5xx responses were recorded. The cart badge protrudes beyond the viewport edge in all three screenshots, though document-level horizontal overflow is false.
+
+### Staging-only correction made
+- Edited `index-new.html` on review branch `review/staging-ui-verification-fixes-current` to hide `.mobileNav` by default and display it only at viewport widths <=900px.
+- Commit: `4f2e419f3bee3d1bfd0d543d5f6eba5c217d55cb`.
+- This is a review-branch change only. No Axxess upload, merge, production database write, SQL execution, DNS/payment change, or Cloudflare/Netlify credit use.
+- A new browser-QA run for this fix was not yet returned by the connected workflow query at checkpoint time. Do not mark the correction verified until a fresh artifact confirms desktop navigation hidden and mobile navigation visible.
+
+### Remaining image issue — still open
+- The visual screenshot contradicts the browser test's simple successful-image metric: the eight product image areas look blank. This is a confirmed visual QA failure even though requests have nonzero naturalWidth.
+- Next: inspect the actual decoded image pixels / image endpoint payload for the sampled SKUs and compare with the SKU descriptions; update QA to detect blank/near-uniform images and require visible product content or the explicit neutral placeholder. Do not assign replacement images based only on response size.
+- No aftermarket/OEM-equivalent image is accepted unless exact part/model/application and commercial-use rights are independently documented. The 791 recovered supplier-guide images remain internal QA-only; 16 remain low-resolution review flags and publication rights remain unconfirmed.
+
+### Status
+- PR #54: still draft and not merged; release hold remains.
+- Desktop navigation fix: committed to review branch, pending fresh browser verification.
+- Product-image rendering/content: **NOT RESOLVED**; visual image gate fails pending payload inspection and stronger image assertions.
