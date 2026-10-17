@@ -2892,3 +2892,13 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - For the category image requirement, no SKU-level replacement is approved. The homepage uses original category icon artwork, which is a safe category-navigation visual, not a substitute for individual product photos. Exact SKU/part/application match and documented commercial image rights remain required for product images.
 - Exact-head runs triggered for `8b3e47aca4cedf7b2888686460ce44dd0a33dc8d`: browser QA #39 (run `39031249227`), storefront smoke test #777 (`39031249190`), public SKU exposure audit #333 (`39031249215`), package preparation #100 (`39031249236`) were queued at last check. Monitor these; no production release is authorized by a successful package build.
 - Production remains untouched. No Axxess upload, Supabase write, catalogue import, DNS/payment changes, PR merge or live deployment performed. PR #54 remains draft/unmerged and release HOLD remains in force.
+
+
+## CONTINUATION LOG — 2026-10-17 14:20 SAST — FOLLOW-UP CHECK STATUS
+
+- Exact-head public SKU exposure audit #333 (run `39031249215`) completed SUCCESS.
+- Exact-head Axxess package preparation #100 (run `39031249236`) completed SUCCESS; artifact creation only, not a deployment.
+- Storefront smoke test #777 (run `39031249190`) completed SUCCESS, including the verified-price checkout gate and local storefront smoke test. This does not validate visual category styling or live payment-provider approval.
+- Browser QA #39 (run `39031249227`) has completed browser installation and local server setup, but the desktop/mobile/interaction step remains `in_progress` at last poll and no artifact has been published yet. The CSS CTA patch at `8b3e47aca4cedf7b2888686460ce44dd0a33dc8d` therefore remains visually unverified. Continue monitoring; if the run times out/fails, inspect its report/logs and fix the actual cause before retrying.
+- QA #38's blank product tiles are from a direct `index-new.html` test URL, whereas the actual customer entry `index.html` redirects to `store.html`, which wraps `index-new.html` in an iframe and installs the exact-SKU local WebP fallback script. Smoke test #777 passed its local exact-SKU image fallback test. This makes the blank remote-image screenshot a likely test-path difference, not enough evidence to claim the live site has broken images. Add a wrapper-path image assertion or separately verify the customer entry flow; do not alter image data or replace products based on QA #38 alone.
+- Handover is current on `main`; no Axxess upload, Supabase production write, PR merge or live deployment has occurred. PR #54 remains draft/unmerged; release HOLD remains in effect.
