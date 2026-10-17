@@ -2192,3 +2192,10 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - PR #54 remains draft/review-only. Do not merge, deploy to Axxess, mutate production Supabase, or spend Cloudflare/Netlify deployment credits before screenshot acceptance.
 - Staging preview previously reported by PR bot: https://f2ca3349.get-wired-autoworx-store.pages.dev — not independently verified in this session; do not describe as approved until opened and checked against fresh screenshots.
 - Next action: check Actions runs for the newest branch head; retrieve the QA report and screenshots; correct only concrete failures; update this handover after each verified milestone.
+
+
+### Follow-up QA correction — 2026-10-17
+- First rerun after the dark-theme repair confirmed product images decoded/rendered and all tested routes returned HTTP 200; the test still failed on two known stale assumptions: it required `brightTheme` despite the owner's explicit dark-theme instruction, and the full-width mobile search was 18px wider than the viewport because its flex basis ignored header padding.
+- Corrected the browser assertion to check for the dark theme and constrained mobile search width to the actual header content box (including the 320px breakpoint).
+- Follow-up commits: `4285635b268d0cbf08862b81585c79c8931208fe` (mobile search width), `3ec364d1eee1fe9a74e7fb49afd8a96eb604750e` (dark-theme QA assertion).
+- These corrections are not yet accepted until a fresh exact-head browser QA completes. Keep PR #54 draft and live Axxess untouched.
