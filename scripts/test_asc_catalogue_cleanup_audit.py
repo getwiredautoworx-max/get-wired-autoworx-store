@@ -35,10 +35,10 @@ class CatalogueAuditTest(unittest.TestCase):
             )
             with out.open(newline="", encoding="utf-8") as handle:
                 rows = list(csv.DictReader(handle))
-            self.assertEqual(len(rows), 2)
+            self.assertEqual(len(rows), 3)
             self.assertEqual(rows[0]["recommended_action"], "DEACTIVATE_AFTER_REVIEW")
-            self.assertEqual(rows[1]["recommended_action"], "REVIEW_TEMPORARY_STOCKOUT")
-            self.assertIn("Exact SKU matches: 2", result.stdout)
+            self.assertEqual(rows[1]["recommended_action"], "REVIEW_TEMPORARY_STOCKOUT")\n            self.assertEqual(rows[2]["recommended_action"], "MANUAL_REVIEW")\n            self.assertEqual(rows[2]["supplier_status"], "AMBIGUOUS_DUPLICATE_SUPPLIER_SKU")
+            self.assertIn("Exact SKU matches: 2", result.stdout)\n            self.assertIn("Ambiguous duplicate-SKU matches held for review: 1", result.stdout)
             self.assertIn("no database connection or writes", result.stdout.lower())
 
 
