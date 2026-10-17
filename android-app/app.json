@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Get Wired AutoWorx",
+    "slug": "get-wired-autoworx",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "scheme": "getwiredautoworx",
+    "android": {
+      "package": "com.getwired.autoworx",
+      "versionCode": 1,
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
+      ],
+      "usesCleartextTraffic": true
+    },
+    "extra": {
+      "eas": {}
+    }
+  }
+}
