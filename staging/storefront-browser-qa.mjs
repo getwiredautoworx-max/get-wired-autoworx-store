@@ -25,7 +25,8 @@ try {
   report.title = await page.title();
   report.bodyClass = await page.locator('body').getAttribute('class');
   check('homepage_http_200', report.status === 200, 'HTTP ' + report.status);
-  check('approved_light_mockup_activated', await page.locator('body').evaluate(el => { const c = getComputedStyle(el).backgroundColor; return el.classList.contains('brightTheme') && (c === 'rgb(238, 243, 248)' || c === 'rgb(255, 255, 255)' || c.includes('238, 243, 248')); }), 'body class=' + report.bodyClass);
+  check('approved_light_mockup_activated', await page.locator('body').evaluate(el => { const c = getComputedStyle(el).backgroundColor; return el.classList.contains('brightTheme') && c === 'rgb(243, 246, 250)'; }), 'body class=' + report.bodyClass + ', background=' + await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor));
+  check('light_category_and_product_surfaces', await page.evaluate(() => { const cat=document.querySelector('.catWrap'), product=document.querySelector('.product'); return Boolean(cat && product && getComputedStyle(cat).backgroundColor === 'rgb(255, 255, 255)' && getComputedStyle(product).backgroundColor === 'rgb(255, 255, 255)'); }), 'category and product cards must use light surfaces');
   check('hero_present', await page.locator('.heroCard').count() > 0, 'heroCard element exists');
   check('category_grid_exists', await page.locator('#categoryGrid').count() === 1, 'expected #categoryGrid');
   check('part_search_control', await page.getByRole('button', { name: 'PART SEARCH' }).count() === 1, 'expected one Part Search button');
