@@ -2261,3 +2261,34 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Product image rendering: unresolved.
 - Desktop navigation fix: committed, verification pending.
 - Release: held; production untouched.
+
+
+## PERMANENT OWNER DIRECTIVE — STOREFRONT MUST MATCH APPROVED MOCKUP (2026-10-17)
+
+**MAIN PRIORITY: make the staging storefront match the owner's approved mockup as closely and faithfully as possible. Any avoidable design deviation is unacceptable. Do not treat this as a secondary QA task. Execute changes, then test the result. Stop sending routine progress notifications; report only a meaningful completed result, a genuine owner-only decision, or a hard external blocker.**
+
+### Non-negotiable visual acceptance requirements
+- Use the approved Get Wired AutoWorx mockup as the visual source of truth. Inspect the actual mockup asset(s) and compare staging against them; do not substitute an invented redesign or rely on verbal descriptions alone.
+- Restore the branded Get Wired background and matching mockup button treatment: the correct GW/GET WIRED AUTOWORX branding, dark automotive background, red/blue/white accent palette, button shapes, fills, borders, typography and spacing as shown in the reference. Do not leave generic/default buttons where the mockup shows branded buttons.
+- Keep the storefront visually coherent across every customer-facing page and route. Preserve the approved logo, brand copy, header/search/cart structure, product browsing, footer and working functions while correcting visual differences.
+- Show the eight approved top-level categories in the agreed 3-column × 3-row homepage arrangement where viewport permits, with 4x4 Outdoor nested under Camping, Leisure & Outdoors—not as a ninth top-level category. Category and subcategory hierarchy must be intuitive and collapsed until tapped/clicked.
+- Use suitable category imagery. Product cards must have readable titles/details/prices and show the verified exact product image or a clear, deliberate neutral placeholder. Never use a merely similar, AI-invented or unlicensed product image; exact item identity and usage rights must be supported.
+- Keep the banner smaller and less cluttered than the rejected oversized version. Maintain clear contrast, consistent card/button styles and appropriate whitespace.
+- Mobile: no overlapping filters, clipped badges, misplaced product controls, horizontal overflow, or navigation covering page content. Desktop: mobile bottom navigation must not appear; desktop navigation must be visible and correctly spaced.
+- Part Search and Request a Part must open their intended popups. Preserve search, cart, category navigation and checkout behaviour.
+
+### Required execution method and release gate
+1. Locate and inspect the actual approved mockup file(s), then inspect current staging source and screenshots. Create a concrete visual-difference checklist from the reference.
+2. Make the required CSS/HTML/component changes directly on the review/staging branch. Do not stop after describing problems or writing a plan.
+3. Run the relevant browser tests and inspect screenshots at desktop 1440px, mobile 390px and small mobile 320px. Test every customer-facing page and core navigation interaction. Fix failures and rerun the affected checks until the evidence passes.
+4. Compare staging screenshots against the reference and correct remaining visual deviations. Automated assertions alone are not owner-grade visual acceptance.
+5. Provide a current preview URL only if it is verified to show the exact tested commit. Never pass off a stale preview as current.
+6. Keep production Axxess untouched until the owner approves the staging appearance. After approval, follow the established one-batch final synchronization/release workflow; do not deploy or upload as part of this directive without approval.
+7. Update this handover after material changes with exact files, branch/commit, test run IDs and observed results, outstanding defects and blockers. Do not claim completion without evidence. Do not waste time repeating successful tests unless a change or failure requires it.
+
+### Current starting point recorded 2026-10-17
+- Review branch previously recorded as `review/staging-ui-verification-fixes-current`; latest handover entry reports head `b8639efb88f6c2cc3201a6ac8728526bee3648b8`, PR #54 open/draft.
+- Existing preview URL known from an older commit is stale and must not be represented as current. Exact-head staging preview is not yet verified.
+- Product image rendering/visual pixel verification remains unresolved; product images must be exact-match or deliberately replaced with neutral placeholders.
+- No Axxess upload or production mutation is authorized until owner visual approval.
+- **Priority order is now: mockup fidelity and storefront visual correction first; then exact-head browser verification and current preview; then other release gates.** This supersedes any workflow that treats further checking without implementing the requested design changes as sufficient progress.
