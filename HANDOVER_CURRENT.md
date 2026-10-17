@@ -1392,3 +1392,13 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - AI picture search is not claimed end-to-end operational; a UI and endpoint call do not prove provider credentials and successful production vision requests.
 - **Release status: PACKAGE PREPARED; CUSTOMER RELEASE HOLD.** Owner's prior constraint remains in force: verify source data before any Axxess upload. Do not overwrite `public_html`, merge the redesign PRs, deploy production, or change DNS/payment/database settings without the required source validation and release authorization.
 - The handover-only commit that follows this note will automatically trigger another staging package build. Its build report is the authoritative checksum/source commit for the refreshed artifact; runtime payload is unchanged by the handover edit.
+
+
+## 2026-10-17 — Category-aware vehicle-fitment prompts (staging PR #46)
+
+- Implemented on staging branch `ci/verify-axxess-package-2026-10-17`; pull request remains open/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/46.
+- Removed vehicle verification / fitment prompts from **Tools, Hardware & Consumables** (including workshop tools and consumables), **Camping, Leisure & Outdoors**, **Car Audio & Entertainment**, and **Vehicle Security**, including their nested subcategories.
+- For these categories the product detail view no longer displays the vehicle/application information block or “NOT SURE IT FITS? GET FITMENT ADVICE” action; product cards no longer show vehicle “Fits:” labels; homepage product enrichment no longer injects a generic fitment warning; WhatsApp prompts no longer request vehicle fitment.
+- Fitment guidance remains for other categories where vehicle/application compatibility can matter. Category membership is determined by walking the product's category ancestry to the approved root IDs; unknown category mappings default to retaining fitment guidance rather than silently suppressing it.
+- Code changes are limited to staging branch files `index.html`, `index-new.html`, and `assets/progressive-store-enhancements.js`. No Supabase data/schema, payment settings, DNS, Axxess `public_html`, or live deployment was changed.
+- Validation status at handover update: source-level replacement checks passed. Awaiting GitHub Actions package/browser QA on the updated PR head before declaring the behavior fully tested.
