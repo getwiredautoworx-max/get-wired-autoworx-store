@@ -42,3 +42,16 @@ All five exact supplier SKUs matched one active product in the store database. A
 - “Out of stock” may be temporary; this patch is focused on explicit discontinuation labels. Use the generator to review zero/out-of-stock statuses from a fresh supplier export before deciding whether to deactivate.
 - Never delete product rows: order/quote/vehicle records may reference them. Soft deactivation preserves historical references.
 - Never infer a supplier SKU from product-name similarity. Exact supplier SKU match is required.
+
+
+## Superseding reconciliation note — 2026-10-17
+
+The status table above records the earlier public indexed-page snapshot and must not be treated as current verified supplier orderability. A later owner-submitted audit reports conflicting classifications for several candidates. Until every listing is rechecked by exact SKU on the current ASC portal:
+
+- **AES-1115-16B:** potential confirmed-discontinued candidate, but the current orderability/stock evidence must be refreshed before deactivation.
+- **F1-035:** `WILL DISCONTINUE` means inventory/replenishment hold pending supplier confirmation, not immediate unpublishing.
+- **F9-001-56:** conflict between a temporary-stockout report and the earlier discontinued/not-viable snapshot; manual review only.
+- **T3-8CS:** conflict between an active/backorder report and the earlier discontinued snapshot; manual review only.
+- **WG-007:** owner-submitted report says the listing returns HTTP 404, while the earlier snapshot reported a discontinuation note. HTTP 404 alone does not establish status; obtain written supplier confirmation.
+
+The SQL patch was hardened so every candidate has `freshly_verified=false` and `owner_approved=false` by default. Even if `APPLY_CLEANUP=true` is supplied, only a row explicitly rechecked by exact SKU and approved by the owner can qualify, and only when the status is confirmed `DISCONTINUED`. `WILL_DISCONTINUE`, conflicts, stockouts and unknown/missing listings are excluded. Local stock is never overwritten. The SQL has not been executed.
