@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/docs-schema-pack
+      - review/catalogue-data-contract-reconciled
     paths:
       - 'docs/schema/**'
       - 'docs/knowledge-base/**'
