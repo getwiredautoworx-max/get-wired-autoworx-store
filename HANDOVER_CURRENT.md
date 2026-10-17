@@ -1505,3 +1505,9 @@ Gemini is responsible for producing the following reviewable artifacts; ChatGPT'
 - The first full crawl `39017755062` had remained in progress for several minutes without completing; to reduce the risk of hitting the 60-minute timeout, increased bounded SKU-detail concurrency from 6 to 10 while preserving the global minimum 0.8-second request start spacing and 12-second detail timeout.
 - Started optimized full crawl `39018245685` with the updated script. A GitHub REST cancellation request for the prior six-worker crawl returned HTTP 202; its status had not yet transitioned from `in_progress` at the time of this note, so both run states must be checked before assuming cancellation completed.
 - Latest audit/reconciliation/SQL-generator unit tests passed. Production Supabase and Axxess remain unchanged.
+
+
+## 2026-10-17 — Revalidated 14 known spot-check matches
+
+- Re-ran a read-only Supabase query for the 14 previously recorded exact supplier-SKU matches. All 14 still exist and are active; six have store stock 5 and the 12V IQ globe has store stock 21 among the seven supplier-stockout candidates, while the seven discontinued-labelled candidates also show active local quantities. This confirms the local positive stock is a store-side placeholder/count and must not be assumed to reflect supplier availability.
+- No rows were modified. The full-catalogue result is still required before calling the review exhaustive.
