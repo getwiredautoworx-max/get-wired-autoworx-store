@@ -47,4 +47,4 @@ python scripts/generate_asc_deactivation_sql.py --review-csv asc_store_review_pa
 python -m unittest scripts/test_generate_asc_deactivation_sql.py -v
 ```
 
-The generator emits guarded `UPDATE public.products SET active=false ... WHERE sku=... AND active=true` statements only for rows marked `DEACTIVATE_AFTER_REVIEW` and currently active. It excludes stockout-only and duplicate-SKU rows. It does not connect to Supabase or execute the generated SQL. The output still requires owner/supplier review before any database write.
+The generator emits guarded `UPDATE public.products SET active=false ... WHERE sku=... AND active=true` statements only for rows marked `DEACTIVATE_AFTER_REVIEW` and currently active. It excludes stockout-only and duplicate-SKU rows. The generated transaction ends in `ROLLBACK` by default; change it to `COMMIT` only after supplier/owner review. The generator itself does not connect to Supabase or execute SQL.
