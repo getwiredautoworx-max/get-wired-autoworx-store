@@ -2793,3 +2793,6 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 - The five candidate products have not been deactivated. This is intentional: user requested generation of a patch/script, and current public pages are indexed/crawled evidence rather than a supplier API feed. Verify each live ASC page immediately before applying. Out-of-stock-only products should be rechecked because availability can be temporary.
 - Preserve historical product rows; soft deactivate rather than delete to avoid breaking order/quote/vehicle references. Do not set store stock quantity to zero because the current local quantity field is not a synchronized ASC stock ledger.
 - Next: validate script against a sample export; inspect generated preview and candidate joins; recheck live pages; then owner reviews/applies the SQL patch in a controlled transaction. Do not claim the full 12,000+ ASC catalogue has been scanned.
+
+
+- Review PR opened (draft, unmerged): https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/48. Candidate cleanup remains review-only; do not merge or execute the SQL until the owner approves after current supplier status is rechecked.
