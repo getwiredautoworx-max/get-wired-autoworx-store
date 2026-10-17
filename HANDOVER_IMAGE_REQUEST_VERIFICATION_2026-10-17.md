@@ -46,3 +46,12 @@ Date: 2026-10-17 (SAST)
   - Prepare Axxess package #105 / run `39032371210`: in progress (review artifact only).
   - Public SKU Exposure Audit #338 / run `39032370978`: in progress.
 - No product/runtime image mapping was changed. No Axxess upload, merge, production database change, DNS/payment change, or Cloudflare/Netlify credit use. PR #54 remains review-only and release remains HOLD until the new browser report is inspected and visual/content/rights gates are satisfied.
+
+
+## Targeted assertion failure and correction
+- First strengthened browser run #44 / ID `39032371060` correctly exposed a real test mismatch: the customer wrapper's first exact-SKU local image had not loaded after 4.5 seconds (`GW-BACFDE14`, `/assets/products_webp/GW-BACFDE14.webp`, `naturalWidth=0`). The image test failed instead of assuming success. The three direct-page viewport audits classified all nine sampled visible image elements as loaded, with zero unresolved images; the wrapper assertion was the failing check. The PAXI map request `ERR_ABORTED` was recorded during navigation and is not the image failure.
+- Corrected the wrapper assertion so success requires either (a) a positively loaded exact-SKU local WebP/JPG with positive natural dimensions, or (b) the explicit safe “Product image unavailable” placeholder with the failed image hidden. It no longer rejects the intended placeholder or accepts an unresolved blank image.
+- Fix commit: `efa4edabd2c322944f4e9d42f82c9a31c1a186f6`; path: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/review/staging-ui-verification-fixes-current/staging/storefront-browser-qa.mjs
+- New exact-head workflow run IDs queued at checkpoint: browser QA #45 `39032537225`; smoke test #783 `39032537235`; package #106 `39032537229`; public SKU audit #339 `39032537232`. Pending until actual conclusions and browser artifact are inspected.
+- The fallback runtime was not changed. The product with a missing local asset should show the explicit placeholder if both exact-SKU files fail; if the new run finds that it does not, fix that concrete runtime defect on the review branch and retest.
+- Release remains HOLD; production and Axxess are unchanged.
