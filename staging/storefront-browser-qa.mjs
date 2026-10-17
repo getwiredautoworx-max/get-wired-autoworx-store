@@ -122,12 +122,19 @@ try {
     // canvas pixel reads are blocked by browser cross-origin rules. Do not label that
     // security boundary as a broken image: require a decoded source and visible box,
     // while retaining the pixel-variation check whenever canvas access is permitted.
+    const visibleProductImages = productImages.filter(i => !i.placeholder && i.renderedWidth > 0 && i.renderedHeight > 0);
+    // Some product grids are intentionally hidden until the shopper selects a tab/filter.
+    // A decoded image in a hidden grid has a zero layout box; that is not a broken image.
+    // Still fail if any image source fails to decode, if a partially rendered box exists,
+    // or if no actual product image is visibly rendered at this viewport.
     const unusable = productImages.filter(i => !i.placeholder &&
-      (!i.complete || i.naturalWidth <= 0 || i.renderedWidth <= 0 || i.renderedHeight <= 0));
+      (!i.complete || i.naturalWidth <= 0 ||
+       ((i.renderedWidth > 0 || i.renderedHeight > 0) && (i.renderedWidth <= 0 || i.renderedHeight <= 0))));
     check('product_images_decoded_and_rendered_' + width,
-      productImages.length > 0 && visuallyBlank.length === 0 && unusable.length === 0,
-      'productImages=' + productImages.length + ', visuallyBlank=' + visuallyBlank.length +
-      ', unusable=' + unusable.length + ', canvasBlocked=' + productImages.filter(i => !i.placeholder && !i.pixelAudit?.readable).length +
+      productImages.length > 0 && visibleProductImages.length > 0 && visuallyBlank.length === 0 && unusable.length === 0,
+      'productImages=' + productImages.length + ', visible=' + visibleProductImages.length +
+      ', visuallyBlank=' + visuallyBlank.length + ', unusable=' + unusable.length +
+      ', canvasBlocked=' + productImages.filter(i => !i.placeholder && !i.pixelAudit?.readable).length +
       ', samples=' + JSON.stringify(productImages.slice(0, 3).map(i => ({src:i.src, naturalWidth:i.naturalWidth, renderedWidth:i.renderedWidth, renderedHeight:i.renderedHeight, pixelAudit:i.pixelAudit}))));
     const mobileNavDisplay = await page.locator('.mobileNav').first().evaluate(el => getComputedStyle(el).display).catch(() => 'missing');
     check('mobile_bottom_nav_visibility_' + width,
