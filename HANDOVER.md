@@ -2730,3 +2730,27 @@ Owner asked for a direct list of exactly what is needed from their side. Request
 - Current status: configuration and component files are committed, but no Android build has been run or verified in this execution. The Expo project is not linked: `android-app/app.json` currently has no `expo.extra.eas.projectId`. GitHub repository secret `EXPO_TOKEN` is also not verified. Those account-level requirements block a successful non-interactive EAS build until configured. Do not claim an APK exists yet.
 - Immediate next actions: in `android-app/`, run `npm install`, `npx eas-cli login`, and `npx eas-cli init`; commit the real project ID generated in app.json. Add a privately generated Expo access token as repository secret `EXPO_TOKEN` in GitHub Settings → Secrets and variables → Actions. Then run the workflow at https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/android-build.yml and inspect the actual job result/EAS build. Do not paste tokens into chat or commit secrets.
 - After a successful build, install the APK on the Hisense M72 Pro and verify launch, store loading, scrolling/navigation, network behavior, back handling, and display scaling. Device verification remains pending. Keep this Android bootstrap separate from the Axxess live storefront and existing catalogue/payment release gates. No Axxess, Supabase, DNS, payment, or live storefront deployment changes were made.
+
+
+## ANDROID APK — OWNER STEP-BY-STEP CHECKLIST (2026-10-17)
+
+Current status remains NOT BUILT until a real EAS build run and APK are inspected. Do not mark a step complete from instructions alone.
+
+1. On a computer, install Node.js LTS (https://nodejs.org/en/download/) and clone the repo if needed:
+   `git clone https://github.com/getwiredautoworx-max/get-wired-autoworx-store.git`
+2. In a terminal:
+   `cd get-wired-autoworx-store/android-app`
+   `npm install`
+   `npx eas-cli login`
+   `npx eas-cli init`
+   Sign in to the owner's Expo account and create/select the EAS project. Confirm a real `expo.extra.eas.projectId` appears in android-app/app.json. Commit and push that generated config to main; never invent the ID.
+3. Create an Expo access token in the Expo account's Access Tokens settings (open https://expo.dev/ and navigate Account Settings → Access Tokens). Keep the token private.
+4. In GitHub, open https://github.com/getwiredautoworx-max/get-wired-autoworx-store/settings/secrets/actions/new and create repository Actions secret named exactly `EXPO_TOKEN`; paste the token as its value and save. Never commit or paste the token into chat.
+5. Open https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/android-build.yml, choose Run workflow on branch `main`, then start it. Inspect each job/step. A successful run must show the EAS build completed; a failed run must be diagnosed from the actual failing log, not assumed.
+6. The workflow invokes EAS and does not upload the APK as a GitHub Actions artifact. Open the EAS build URL printed in the successful workflow log, or find the project under https://expo.dev/. Download the Android APK from that build's page. Confirm the package is `com.getwired.autoworx` and the build type is APK.
+7. Transfer/download the APK to the Hisense M72 Pro, open it from Downloads/Files, and accept Android's “install unknown apps” permission for the app used to open the APK if prompted. Install and test launch, network loading of https://www.getwiredauto.co.za, navigation/back behaviour, and no crash. Record OS/Android version, build ID, result and defects. Do not call device testing passed until the owner has actually installed and tested it.
+8. This is currently a WebView wrapper around the live HTTPS storefront, not a separately implemented native catalogue/cart. Testing the wrapper does not certify payment readiness or change the storefront release hold.
+
+Direct files: app config https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/android-app/app.json ; EAS profile https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/android-app/eas.json ; workflow https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/.github/workflows/android-build.yml .
+
+No Expo project link, GitHub secret, EAS build, APK download, or physical-device test has been completed/verified by this checklist update. Production/Axxess/Supabase/payment settings remain untouched.
