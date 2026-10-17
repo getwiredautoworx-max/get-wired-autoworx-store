@@ -2153,3 +2153,25 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Exact-head inspection and image inventory: 1 focused session once PR files/artifacts are accessible.
 - Verified replacements and rights checks: cannot responsibly estimate until the affected SKU/model list and licensed assets are available; third-party permission timing is unknown.
 - Visual retest: one focused session after a stable candidate and valid image mapping exist.
+
+
+## 2026-10-17 follow-up — recovered image set and Actions evidence
+
+- Located and read `IMAGE_RECOVERY_PROGRESS_2026-10-14.md`. Existing internal review assets report **791/800 exact-SKU image tiles recovered** from the illustrated September catalogue; crosswalk reports 791/791 normalized title matches and zero duplicate SKU mappings. The remaining nine are quote-only/unpriced SKUs: M501WCC, A1-002, A1-003, MA330, MA342, MA342/2, N-FC001, WP25, N-CP002.
+- Of the 791 recovered tiles, **16 are flagged for low-resolution review** and 775 passed only the initial dimension threshold; all still require visual QA. This is a source-matching/review set, not a permission-cleared replacement set.
+- **Rights gate remains open for all 791 supplier-catalogue images.** They must not be published unless reuse permission is documented or an independently authorized replacement is used. Do not contact suppliers as part of this workflow; supplier relationship/contact remains owner-managed per the image recovery handover.
+- The 800-row candidate remains import-ineligible. No image was assigned to a different SKU and no catalogue image was published or changed during this continuation.
+- Checked workflow runs attached to PR #54 head commit `fe73dc828c606c50813fee72d06fdc9d809b9ac8`: Public SKU Exposure Audit run **39020679120** passed; Prepare Axxess upload package run **39020679115** passed and created artifact `axxess-storefront-upload`; Storefront Smoke Test run **39020679122** passed. The smoke run has **no uploaded artifacts**, and its steps show a local storefront smoke test—not screenshots for the exact 1440px/390px/320px visual acceptance gate. Thus the workflow successes do not close the PR #54 visual acceptance blocker.
+- No Cloudflare or Netlify credits used. No Axxess upload, merge, production SQL/data write, DNS or payment setting change was made. The Axxess package artifact is review evidence only; do not upload it until all gates pass and the owner approves.
+
+### Updated image task sequence
+1. Retrieve/inspect the existing review ZIP and CSV crosswalk from the accessible project file/artifact location; inspect contact sheets for the 16 low-resolution flags and spot-check exact-SKU/title identity on the rest.
+2. Mark the existing catalogue crops **internal QA only**. Build a separate candidate register for authorized manufacturer/aftermarket equivalents; record the source URL/licence or written permission and compare physical details/application before acceptance.
+3. Where no exact rights-cleared replacement is found, keep the item on the safe placeholder/hold; do not substitute a generic family image.
+4. Re-run only the relevant image and exact-head visual tests after an actual candidate change; collect screenshots and console/network evidence at 1440px, 390px and 320px.
+5. Record actual accepted/rejected/unresolved counts and the commit/PR in this handover before considering release.
+
+### ETA / blocker
+- Existing recovery set inspection: one focused session after the ZIP/CSV is accessible in the current runtime or as a GitHub artifact.
+- Rights-cleared alternative matching: dependent on exact affected SKU list and available authorized assets; no honest fixed ETA until the inventory is inspected.
+- PR #54 remains **NOT VISUALLY ACCEPTED / RELEASE HOLD**. Production remains unchanged.
