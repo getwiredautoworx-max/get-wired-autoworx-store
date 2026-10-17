@@ -596,6 +596,23 @@ body{background:radial-gradient(ellipse at 50% 0%,#10263b 0,#080d16 42%,#05080e 
  .catContent small{font-size:8px!important}
 }
 
+
+/* 2026-10-17 staging visual correction: light, compact, responsive storefront */
+:root{--bg:#f4f7fb;--panel:#ffffff;--blue:#0879bd;--red:#d7192d;--white:#172536;--muted:#526579;--line:#d8e2ed}
+html,body{background:#f4f7fb!important;color:#172536!important}
+body{background:#f4f7fb!important}
+header,.site-header,.main-header,.topbar{background:#fff!important;color:#172536!important;box-shadow:0 2px 12px rgba(22,45,70,.08)}
+section,.card,.product-card,.category-card,.category-tile,.panel,.modal-content{background:#fff!important;color:#172536}
+.hero{min-height:0!important;padding:22px 18px!important;margin:12px auto!important;border-radius:16px!important;background:linear-gradient(110deg,#fff 0%,#eaf4fb 100%)!important;color:#172536!important}
+.hero h1{font-size:clamp(1.55rem,3vw,2.5rem)!important;line-height:1.12!important;margin:.2em 0 .45em!important;color:#102d46!important}
+.hero p{font-size:1rem!important;line-height:1.5!important;color:#42576a!important;max-width:700px}
+.hero img{max-height:180px!important;object-fit:contain!important}
+.category-grid,.categories-grid,.category-tiles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+.category-card img,.category-tile img,.category-grid img,.categories-grid img{width:100%;aspect-ratio:4/3;object-fit:contain!important;background:#f7f9fc!important;padding:8px!important}
+.product-card img{object-fit:contain!important;background:#f7f9fc!important;padding:8px!important}
+button,.btn,.button{min-height:42px;border-radius:8px!important;font-weight:700}
+@media(max-width:640px){main{padding-left:12px!important;padding-right:12px!important}.hero{padding:16px 14px!important;margin:8px 0 14px!important}.hero h1{font-size:1.55rem!important}.hero p{font-size:.93rem!important}.category-grid,.categories-grid,.category-tiles{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.category-card,.category-tile{min-width:0!important}.category-card h3,.category-tile h3{font-size:.92rem!important;overflow-wrap:anywhere}.mobile-nav,.bottom-nav,.mobile-bottom-nav{position:fixed!important;left:0;right:0;bottom:0;z-index:1000;background:#fff!important;box-shadow:0 -3px 16px rgba(22,45,70,.14);padding-bottom:env(safe-area-inset-bottom)!important}body{padding-bottom:76px!important}}
+@media(max-width:360px){.category-grid,.categories-grid,.category-tiles{gap:7px!important}.category-card,.category-tile{padding:8px!important}.category-card img,.category-tile img{padding:4px!important}}
 </style><style id="category-art-contrast-fix">
 /* Staging-only: make original category icon artwork and labels legible on the bright storefront. */
 .brightTheme #categoryGrid .catWrap{background:#fff!important;border:1px solid #d5e2ec!important;overflow:hidden}
