@@ -63,3 +63,11 @@ Date: 2026-10-17 (SAST)
 - The earlier #45 direct-page viewport audit reported nine loaded images and zero unresolved images at each width (1440/390/320); wrapper image fallback failed, so overall browser QA correctly failed. Smoke test, package assembly, and public SKU exposure audit for commit `efa4edabd2c322944f4e9d42f82c9a31c1a186f6` passed.
 - New exact-head verification for runtime patch commit `1a65ba4008357576ae86a05dc0cca649d57247df`: browser QA #46 / run `39032922649`; smoke test #784 / `39032922655`; package #107 / `39032922632`; public SKU audit #340 / `39032922618`. Status at checkpoint: running; conclusions/artifacts must be inspected before marking resolved.
 - Production Axxess and production data remain unchanged; PR #54 stays unmerged. Image rights/physical identity remain a separate content-review gate even if fallback tests pass.
+
+
+## Latest QA diagnosis — wrapper lazy-loading timing
+- Browser QA #46 / run `39032922649` again failed the wrapper image check on `GW-BACFDE14` after 4.5 seconds. The report still showed `complete=false`, `naturalWidth=0`, no placeholder. The timeout-to-placeholder implementation uses 6.5 seconds per candidate and the wrapper image is lazy-loaded, so this test wait was too short and did not force the image into view. The failure does not yet prove the runtime fallback patch is ineffective.
+- Updated the browser test to scroll the first customer-wrapper product image into view, set its loading mode to eager, and allow 14 seconds for WebP/JPG/placeholder settlement before asserting the final state.
+- Test commit: `56d58364640dbb7da5d5813cb6065fffcfa82b9c`; path: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/review/staging-ui-verification-fixes-current/staging/storefront-browser-qa.mjs
+- New exact-head runs queued/in progress: browser QA #47 `39033057189`; smoke test #785 `39033057191`; package #108 `39033057186`; SKU audit #341 `39033057255`.
+- Await the #47 report. If wrapper still fails after scrolling and full settlement wait, inspect image fallback initialization/DOM behavior and correct the runtime implementation. Do not mark image fallback resolved until the report proves exact image or explicit placeholder.
