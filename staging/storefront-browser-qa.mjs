@@ -57,10 +57,35 @@ try {
         const placeholder = Boolean(box && (box.classList.contains('no-image') ||
           /product image unavailable/i.test(placeholderText) ||
           /product image unavailable/i.test(box.getAttribute('aria-label') || '')));
+        let pixelAudit = { readable: false, variance: null, sampledColors: 0, reason: 'no-image' };
+        if (img.complete && img.naturalWidth > 0) {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32; canvas.height = 32;
+            const ctx = canvas.getContext('2d', { willReadFrequently: true });
+            ctx.drawImage(img, 0, 0, 32, 32);
+            const data = ctx.getImageData(0, 0, 32, 32).data;
+            const colors = new Set();
+            let sum = 0, sumSq = 0, count = 0;
+            for (let y = 2; y < 30; y += 3) for (let x = 2; x < 30; x += 3) {
+              const k = (y * 32 + x) * 4;
+              const lum = 0.2126 * data[k] + 0.7152 * data[k + 1] + 0.0722 * data[k + 2];
+              colors.add(data[k] + ',' + data[k + 1] + ',' + data[k + 2]);
+              sum += lum; sumSq += lum * lum; count++;
+            }
+            const mean = sum / count;
+            pixelAudit = { readable: true, variance: Math.max(0, sumSq / count - mean * mean), sampledColors: colors.size, reason: 'decoded-pixel-sample' };
+          } catch (error) {
+            pixelAudit = { readable: false, variance: null, sampledColors: 0, reason: String(error).slice(0, 120) };
+          }
+        }
         return {
           src: img.currentSrc || img.src,
           complete: img.complete,
           naturalWidth: img.naturalWidth,
+          renderedWidth: Math.round(img.getBoundingClientRect().width),
+          renderedHeight: Math.round(img.getBoundingClientRect().height),
+          pixelAudit,
           placeholder,
           placeholderText: placeholder ? placeholderText.slice(0, 100) : ''
         };
@@ -90,6 +115,18 @@ try {
       'unresolved=' + metrics.unresolvedImages.length + ', failed=' + metrics.failedImages.length +
       ', unsettled=' + metrics.unsettledImages.length + ', placeholders=' + metrics.placeholderImages.length +
       ', URLs=' + metrics.unresolvedImages.slice(0, 10).map(i => i.src).join(' | '));
+    const productImages = metrics.images.filter(i => /product-image\\?sku=|\\/assets\\/products(?:_webp)?\\//i.test(i.src));
+    const visuallyBlank = productImages.filter(i => !i.placeholder && i.pixelAudit?.readable &&
+      (i.pixelAudit.variance < 18 || i.pixelAudit.sampledColors < 8));
+    const unreadable = productImages.filter(i => !i.placeholder && !i.pixelAudit?.readable);
+    check('product_images_have_visible_pixel_variation_' + width,
+      productImages.length > 0 && visuallyBlank.length === 0 && unreadable.length === 0,
+      'productImages=' + productImages.length + ', visuallyBlank=' + visuallyBlank.length +
+      ', unreadable=' + unreadable.length + ', samples=' + JSON.stringify(productImages.slice(0, 3).map(i => ({src:i.src, pixelAudit:i.pixelAudit}))));
+    const mobileNavDisplay = await page.locator('.mobileNav').first().evaluate(el => getComputedStyle(el).display).catch(() => 'missing');
+    check('mobile_bottom_nav_visibility_' + width,
+      width <= 900 ? mobileNavDisplay !== 'none' : mobileNavDisplay === 'none',
+      'display=' + mobileNavDisplay);
     await page.screenshot({ path: outDir + '/homepage-' + width + '.png', fullPage: true });
     check('no_horizontal_overflow_' + width, !metrics.horizontalOverflow, 'viewport=' + width + ', document=' + metrics.documentWidth + ', body=' + metrics.bodyWidth);
   }
