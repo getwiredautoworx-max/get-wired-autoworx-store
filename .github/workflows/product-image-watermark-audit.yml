@@ -1,0 +1,37 @@
+name: Product Image Watermark Audit
+
+on:
+  pull_request:
+    paths:
+      - 'assets/products_webp/**'
+      - 'assets/product-image-quality.js'
+      - 'scripts/audit-product-image-watermarks.py'
+      - '.github/workflows/product-image-watermark-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install OCR engine and Python libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+          python -m pip install --upgrade pip
+          python -m pip install Pillow pytesseract
+      - name: Scan public-SKU WebP images for embedded supplier/catalogue marks
+        run: python scripts/audit-product-image-watermarks.py
+      - name: Upload image-quality report even when candidates are found
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-image-watermark-audit
+          path: artifacts/product-image-watermark-audit.json
+          if-no-files-found: warn
+          retention-days: 7
