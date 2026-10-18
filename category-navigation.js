@@ -68,8 +68,7 @@
       d.querySelectorAll('#categoryGrid .catWrap').forEach(w=>{
         const label=w.querySelector('.catContent b')?.textContent?.trim()||w.querySelector('.catBtn b')?.textContent?.trim()||'';
         const img=w.querySelector('.catImage img');if(!img)return;
-        if(!img.dataset.gwCategoryIllustration){img.dataset.gwCategoryOriginal=img.getAttribute('src')||'';img.dataset.gwCategoryIllustration='1';}
-        img.src=categoryIllustration(label);img.alt=label+' category illustration';img.style.objectFit='cover';
+        if(!img.dataset.gwCategoryIllustration){img.dataset.gwCategoryOriginal=img.getAttribute('src')||'';img.dataset.gwCategoryIllustration='1';img.src=categoryIllustration(label);img.alt=label+' category illustration';img.style.objectFit='cover';}
       });
     }catch(err){console.warn('GW category illustrations:',err);}
   }
