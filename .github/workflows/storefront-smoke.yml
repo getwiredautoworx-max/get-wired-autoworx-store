@@ -48,6 +48,14 @@ jobs:
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
           echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
+      - name: Upload desktop/mobile screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-visual-qa-${{ github.run_number }}
+          path: artifacts/*.png
+          if-no-files-found: warn
+          retention-days: 7
       - name: Run local storefront smoke test
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/store-http.log 2>&1 &
@@ -72,6 +80,23 @@ jobs:
               const diag = await frame.locator('body').innerText().catch(()=>'<frame unavailable>');
               throw new Error('Category grid did not render within 60s. Frame text: '+diag.slice(0,1000));
             }
+            // Capture and assert the exact homepage candidate at desktop and two mobile widths.
+            const fs = require('node:fs');
+            fs.mkdirSync('artifacts', {recursive:true});
+            const rootCount = await frame.locator('#categoryGrid > .catWrap').count();
+            if (rootCount !== 8) throw new Error('Homepage must render exactly 8 top-level category tiles; got '+rootCount);
+            const imageCheck = await frame.locator('#categoryGrid > .catWrap .catImage img').evaluateAll(imgs => imgs.map(img => ({alt:img.alt,src:img.getAttribute('src'),loaded:img.complete && img.naturalWidth > 0})));
+            if (imageCheck.length !== 8) throw new Error('Expected 8 category illustration elements; got '+imageCheck.length);
+            if (imageCheck.some(img => !img.src || !img.src.includes('assets/category-images/'))) throw new Error('A root tile does not use its explicit category illustration: '+JSON.stringify(imageCheck));
+            await frame.locator('#categoryGrid > .catWrap .catImage img').evaluateAll(imgs => Promise.all(imgs.map(img => img.decode().catch(()=>{}))));
+            for (const width of [390,320,1440]) {
+              await page.setViewportSize({width,height:900});
+              await page.waitForTimeout(250);
+              const overflow = await frame.locator('html').evaluate(el => ({scroll:el.scrollWidth,client:el.clientWidth}));
+              if (overflow.scroll > overflow.client + 2) throw new Error('Homepage horizontal overflow at '+width+'px: '+JSON.stringify(overflow));
+              await page.screenshot({path:'artifacts/homepage-'+width+'.png',fullPage:true});
+            }
+            console.log('CATEGORY_ARTWORK_PASS: '+JSON.stringify({rootCount,imageCheck}));
             // Exercise the standalone category-navigation route as well as the embedded homepage.
             const categoryPage = await browser.newPage({viewport:{width:390,height:844}});
             categoryPage.on('console', m => console.log('[category-browser:'+m.type()+'] '+m.text()));
