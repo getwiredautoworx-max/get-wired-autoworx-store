@@ -829,8 +829,10 @@ html,body{background:#f3f6fa!important;color:#172b3d!important}
 .cats#categoryGrid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;align-items:stretch!important}
 #categoryGrid>.catWrap{min-width:0!important;overflow:hidden!important;border:1px solid #d5e0e9!important;border-radius:10px!important;background:#fff!important;box-shadow:0 3px 12px rgba(25,55,80,.06)!important}
 #categoryGrid>.catWrap .catBtn{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;min-width:0!important;height:100%!important;padding:0!important;background:#fff!important;color:#173650!important}
-#categoryGrid>.catWrap .catImage{display:block!important;width:100%!important;height:clamp(72px,10vw,128px)!important;background:#f3f7fa!important;overflow:hidden!important}
-#categoryGrid>.catWrap .catImage img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;mix-blend-mode:normal!important}
+#categoryGrid>.catWrap .catImage{display:none!important}
+#categoryGrid>.catWrap .catArt{display:grid!important;place-items:center!important;flex:0 0 auto!important;width:100%!important;height:clamp(72px,10vw,128px)!important;border:0!important;border-radius:0!important;background:linear-gradient(135deg,#e8f2fa,#d4e7f5)!important;color:#0c5687!important;overflow:hidden!important}
+#categoryGrid>.catWrap .catArt>span{font-size:clamp(28px,4vw,48px)!important;line-height:1!important}
+#categoryGrid>.catWrap .catImage img{display:none!important}
 #categoryGrid>.catWrap .catContent{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:5px!important;padding:10px!important;background:#fff!important}
 #categoryGrid>.catWrap .catContent b{color:#173650!important;font-size:14px!important;line-height:1.2!important;overflow-wrap:anywhere!important}
 #categoryGrid>.catWrap .catContent small{color:#60778b!important;font-size:11px!important}
@@ -867,7 +869,9 @@ body{padding-bottom:0!important}
  .feature span{font-size:9px!important}
  .section{padding:0 10px!important;margin-top:16px!important}
  .cats#categoryGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
- #categoryGrid>.catWrap .catImage{height:clamp(54px,19vw,82px)!important}
+ #categoryGrid>.catWrap .catImage{display:none!important}
+ #categoryGrid>.catWrap .catArt{height:clamp(48px,16vw,68px)!important}
+ #categoryGrid>.catWrap .catArt>span{font-size:clamp(23px,7vw,34px)!important}
  #categoryGrid>.catWrap .catContent{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:4px!important;padding:7px 5px!important}
  #categoryGrid>.catWrap .catContent b{font-size:clamp(9px,2.6vw,12px)!important;line-height:1.18!important}
  #categoryGrid>.catWrap .catContent small{font-size:9px!important}
@@ -889,6 +893,8 @@ body{padding-bottom:0!important}
  .head{padding:6px 8px!important;gap:5px 7px!important}
  .cats#categoryGrid{gap:5px!important}
  #categoryGrid>.catWrap .catContent{padding:6px 4px!important}
+ #categoryGrid>.catWrap .catArt{height:46px!important}
+ #categoryGrid>.catWrap .catArt>span{font-size:23px!important}
  #categoryGrid>.catWrap .catContent b{font-size:9px!important}
  #categoryGrid>.catWrap .catContent small{font-size:8px!important}
  .heroText h1{font-size:22px!important}
