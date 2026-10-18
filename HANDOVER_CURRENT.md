@@ -2462,3 +2462,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - New exact-commit smoke run queued: run ID `39099810328` (run #840). It was still in progress at the last check; inspect the result, screenshots and any further failure before marking the grid verified.
 - JavaScript syntax checks passed again for all four external storefront scripts, all four inline scripts in `index-new.html`, and the inline script in `store.html`. All nine SVG paths exist. These static checks do not replace browser visual acceptance.
 - Current branch remains staging-only and the draft PR remains unmerged. Do not deploy to Axxess production until the actual screenshots and remaining checks pass.
+
+
+## 2026-10-18 — Consistent exact-SKU product imagery
+
+- Changed homepage product cards, product-detail modal, related-product tiles, and AI-match suggestions to use the same local exact-public-SKU WebP path used by the standalone product listing/detail pages.
+- This removes the live product-image Edge Function URL from those visual slots, avoiding the unpredictable remote supplier-image response as the storefront thumbnail source. If the exact local image is missing or fails, the UI uses the explicit branded unavailable-image asset.
+- This gives a deterministic image path and preserves the clean fallback. It does not grant rights to publish the 53 ASC-watermarked assets identified in the separate image-rights register; those remain held pending permission/approval and must not be edited to erase supplier marks.
+- Run the responsive smoke and package-integrity checks against this latest image-source change.
