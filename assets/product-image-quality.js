@@ -14,7 +14,14 @@
     'GW-F6672DED',
     'GW-F60D9CE9',
     'GW-F69F8DA1',
-    'GW-F6461F7B'
+    'GW-F6461F7B',
+    'GW-0DF03EDA',
+    'GW-22007776',
+    'GW-983B5305',
+    'GW-51511F87',
+    'GW-F0B21128',
+    'GW-99207D13',
+    'GW-D2AEB63B'
   ]);
   window.gwProductImageNeedsReview = function (sku) {
     return HOLD.has(String(sku || '').trim().toUpperCase());
