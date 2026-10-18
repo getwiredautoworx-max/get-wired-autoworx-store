@@ -14,7 +14,7 @@
     return ['/assets/products_webp/' + safe + '.webp', '/assets/products/' + safe + '.jpg'];
   }
   function isPlaceholder(src) {
-    return !src || /placeholder|no-image|no_image|default-product|gw-logo\.png/i.test(String(src));
+    return !src || /placeholder|no-image|no_image|image-unavailable|default-product|gw-logo\.png/i.test(String(src));
   }
   function showPlaceholder(box, title, sku) {
     if (!box) return;
