@@ -48,14 +48,6 @@ jobs:
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
           echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
-      - name: Upload desktop/mobile screenshot evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: storefront-visual-qa-${{ github.run_number }}
-          path: artifacts/*.png
-          if-no-files-found: warn
-          retention-days: 7
       - name: Run local storefront smoke test
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/store-http.log 2>&1 &
@@ -327,5 +319,13 @@ jobs:
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
+      - name: Upload desktop/mobile screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-visual-qa-${{ github.run_number }}
+          path: artifacts/*.png
+          if-no-files-found: warn
+          retention-days: 7
 
 # Audit trigger: 2026-10-14 — execute the existing smoke checks without changing test behavior.
