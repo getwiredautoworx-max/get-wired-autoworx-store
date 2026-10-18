@@ -3034,3 +3034,10 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Latest exact-head browser QA run #89 is pending for commit eb64fb6a1ad65d6af43743937f029732ad9924fb: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096476154 . Do not rely on older run #87 for the new hero changes.
 - Product image rendering is restored, but source images still show baked-in supplier/catalogue text or watermarks in the inspected samples. Category cards now use clean icon placeholders rather than unverified supplier thumbnails. The store is not visually accepted until product image assets are cleaned or deliberately replaced with neutral placeholders and fresh screenshots are inspected.
 - No production changes; PR #54 remains draft/unmerged; Axxess/Supabase production/DNS/payment settings/live deployment remain untouched.
+
+
+## CONTINUATION LOG — 2026-10-18 — HERO ASSERTION SCOPE CORRECTION
+
+- Code review caught a test-harness issue before accepting the new hero fix: the CTA visibility assertion referenced the viewport variable before entering the viewport loop. Moved that assertion inside the 1440/390/320 loop in staging/storefront-browser-qa.mjs commit b741050a644d820b9e87e23e7fb116057c26bed6.
+- The run for the previous test head was cancelled by the workflow concurrency policy. Latest exact-head run #90 is pending for commit b741050a644d820b9e87e23e7fb116057c26bed6: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096508526 . Do not use older runs as evidence for the hero CTA assertion.
+- Source commit e104272b9087d9239bcee24fd31d6604b365d8e5 contains the hero sizing/rating-box/contrast correction. Await latest run #90, inspect the report and all three screenshots, and keep PR #54 draft until visual review passes. No production changes.
