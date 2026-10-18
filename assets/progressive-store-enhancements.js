@@ -56,11 +56,10 @@ function install(frame){
     else if(/low stock/i.test(txt))stock.classList.add('low'),stock.textContent='LOW STOCK';
     else stock.textContent='CHECK STOCK';
     card.appendChild(stock);
-    if(!card.querySelector('.gwFitment')){
-      const f=d.createElement('div');f.className='gwFitment';f.textContent='Vehicle fitment: verify application with Get Wired AutoWorx before ordering.';card.appendChild(f);
-    }
-    if(!card.querySelector('.gwWA')){const a=d.createElement('a');a.className='gwWA';a.target='_blank';a.rel='noopener';a.textContent='WHATSAPP ABOUT THIS PRODUCT';a.href=WA+'?text='+encodeURIComponent(`Hi Get Wired AutoWorx, I am enquiring about ${name}${sku?' (SKU '+sku+')':''}. Please confirm availability, price and vehicle fitment.`);card.appendChild(a)}
-    if(sku&&!card.querySelector('.gwTools')){
+    // Vehicle compatibility prompt is added only for vehicle-specific products by the dedicated fitment flow.
+    
+    if(!card.querySelector('.gwWA')){const a=d.createElement('a');a.className='gwWA';a.target='_blank';a.rel='noopener';a.textContent='WHATSAPP ABOUT THIS PRODUCT';a.href=WA+'?text='+encodeURIComponent(`Hi Get Wired AutoWorx, I am enquiring about ${name}${sku?' (SKU '+sku+')':''}. Please confirm availability, current price and product details.`);card.appendChild(a)}
+    if(false && sku&&!card.querySelector('.gwTools')){ // SKU copy utility intentionally disabled on customer-facing cards.
       const tools=d.createElement('div');tools.className='gwTools';const b=d.createElement('button');b.className='gwCopy';b.textContent='COPY SKU';b.onclick=async()=>{try{await navigator.clipboard.writeText(sku);b.textContent='SKU COPIED';setTimeout(()=>b.textContent='COPY SKU',1200)}catch(e){b.textContent=sku}};tools.appendChild(b);card.appendChild(tools);
     }
   })}
