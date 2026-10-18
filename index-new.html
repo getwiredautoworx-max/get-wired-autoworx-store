@@ -428,6 +428,56 @@ pointer-events:none}
   .catContent{padding:11px}
   .catContent b{font-size:13px}
 }
+
+/* 2026-10-18: mobile screenshot recovery — final overrides must win over legacy media rules. */
+@media(max-width:700px){
+  html,body{max-width:100%;overflow-x:hidden}
+  .header{height:auto;min-height:0;position:relative;padding-bottom:0}
+  .head{min-height:92px;height:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;gap:10px;padding:10px 14px 14px}
+  .hamb{display:none}
+  .logo{grid-column:1;grid-row:1;width:100%;max-width:100%;height:76px;object-fit:contain}
+  .cart{grid-column:2;grid-row:1;font-size:27px;align-self:center}
+  .search{position:static;grid-column:1 / -1;grid-row:2;width:100%;max-width:none;margin:0;min-width:0}
+  .search input{display:block;width:100%;min-width:0;height:46px;padding:11px 15px;font-size:15px}
+  .hero{margin-top:12px}
+  .heroCard{min-height:0}
+  .heroText{padding:82px 16px 20px}
+  .heroText h1{font-size:clamp(23px,6.5vw,30px);line-height:1.08}
+  .heroText p{font-size:14px;line-height:1.45}
+  .ratingbox{right:10px;top:10px;transform:scale(.68);transform-origin:top right}
+  .features{margin:12px auto;gap:8px}
+  .section{margin-top:24px}
+  .sectionTitle{align-items:flex-start;gap:8px;flex-wrap:wrap}
+  .sectionTitle h2{font-size:20px}
+  .cats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}
+  .catWrap{min-width:0}
+  .catImage{height:112px!important}
+  .catContent{grid-template-columns:minmax(0,1fr) auto;gap:4px 6px;padding:10px!important}
+  .catContent b{font-size:13px!important;line-height:1.25;overflow-wrap:anywhere}
+  .catContent small{font-size:11px}
+  .catContent i{grid-column:2;grid-row:1 / span 2}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+  .product{min-width:0;padding:9px}
+  .prodImg{height:120px}
+  .product h3{font-size:13px;overflow-wrap:anywhere}
+  .shopControls{align-items:stretch}
+  .shopControls .resultCount{width:100%;margin-left:0}
+  .mobileNav{padding:7px 2px calc(7px + env(safe-area-inset-bottom));min-height:62px}
+  .mobileNav a{flex:1;min-width:0;font-size:10px;white-space:normal}
+  .mobileBuyBar{display:none!important}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .modal{padding:8px}
+  .modalBox{padding:14px;max-height:calc(100dvh - 16px)}
+  .detail{grid-template-columns:minmax(0,1fr);gap:12px}
+  .detailImg{min-height:180px}
+  .vehicleFinder,.sourcePart{padding:12px}
+}
+@media(max-width:359px){
+  .cats{grid-template-columns:minmax(0,1fr)!important}
+  .features{grid-template-columns:1fr 1fr}
+  .logo{height:66px}
+  .heroText{padding-top:74px}
+}
 </style></head><body><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><button class="btn secondary partAction" type="button" onclick="openPartSearch()">PART SEARCH</button><button class="btn secondary partAction primaryAction" type="button" onclick="openPartRequest()">REQUEST A PART</button><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
 <div class="sectionTitle"><h2>FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Vehicle-specific catalogue search</span></div>
 <div class="vehicleFinder">
