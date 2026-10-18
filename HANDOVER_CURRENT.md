@@ -2345,3 +2345,27 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Product image identity/rights: OPEN.
 - Category-root consistency: OPEN (#29).
 - Release: HOLD; no production deployment.
+
+
+## 2026-10-18 immediate repair pass — responsive layout consolidation
+
+### Change made
+- Commit on review branch `review/staging-ui-verification-fixes-current`: `82182c4a8ca370070ab54b058425de8793878b7f`.
+- Added a final, explicit CSS override to `index-new.html` to win against contradictory legacy style blocks. It restores the documented light/clean mockup canvas with navy/red accents; compacts the hero and keeps all four calls to action within it; moves mobile header into a predictable two-row grid with search on its own row; constrains the cart badge; makes category tiles a three-column grid at desktop and mobile; ensures category image boxes render; switches mobile product cards and shop filters to stable two-column layouts; keeps the mobile navigation fixed and adds content clearance; hides the overlapping mobile purchase bar; and sets cart/request overlays above the page.
+- This is a staging-only CSS change; no Axxess production files, database data, DNS, payments, or live deployment were changed.
+
+### Verification / limitations
+- The change is committed on the review branch and is eligible to trigger `.github/workflows/staging-browser-qa.yml` on push because `index-new.html` is in its path filter.
+- The GitHub workflow-run connector returned no run for this push SHA; it only reports pull-request-triggered runs. Therefore an automated run ID, screenshots, and passing assertions are NOT yet verified. Do not mark QA passed based on commit success.
+- The new CSS intentionally consolidates conflicting layout declarations; it does not by itself verify image identity, SKU correctness, pop-up submission backend behavior, or all checkout/payment flows.
+
+### Next action
+1. Open the updated staging preview associated with this commit and inspect at 1440px, 390px and 320px.
+2. Retrieve the actual push-triggered Actions run/artifact in GitHub UI/API, or run the committed Playwright test against this exact SHA in an authorized runner. Check category count/3-column geometry, image decoding and placeholders, console/network errors, modal behavior, search/filter wrapping, cart, and checkout.
+3. Fix any evidence-backed remaining failures, then update this handover with exact test run and screenshot links. Keep PR unmerged and Axxess production untouched until visual acceptance.
+
+### Current status
+- CSS layout consolidation: COMMITTED TO REVIEW BRANCH.
+- Exact-commit browser QA: PENDING VERIFIABLE RUN.
+- Visual acceptance and product-image identity: OPEN.
+- Release decision: HOLD.
