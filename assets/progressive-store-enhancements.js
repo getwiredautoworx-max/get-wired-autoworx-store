@@ -15,7 +15,6 @@ function install(frame){
     .gwWA{display:block!important;background:#168b4b!important;color:#fff!important;text-align:center;text-decoration:none;padding:9px;border-radius:7px;margin-top:7px;font-weight:800}
     .gwTools{display:flex;gap:7px;margin-top:7px}.gwCopy{flex:1;background:#07111e;border:1px solid #17618b;color:#dff3ff;border-radius:7px;padding:8px;font-weight:700;cursor:pointer}
     .gwTrust{margin:12px 20px 0;padding:12px;border:1px solid #12456c;border-radius:10px;background:#06111e;color:#cfe1f2;font-size:12px;text-align:center}
-    .gwFitment{margin-top:8px;padding:9px;border:1px dashed #17618b;border-radius:7px;color:#aab7c8;font-size:11px;line-height:1.4}
     .gwRecentStrip{margin-top:14px;padding:11px;border:1px solid #12456c;border-radius:10px;background:#06111e}
     .gwRecentTitle{font-size:12px;font-weight:800;color:#dff3ff;margin-bottom:8px}
     .gwRecentItems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
@@ -47,6 +46,8 @@ function install(frame){
   }
 
   function enrich(){d.querySelectorAll('.product').forEach(card=>{
+    // Remove legacy blanket fitment warnings left by older cached/embedded markup.
+    card.querySelectorAll('.gwFitment').forEach(el=>el.remove());
     if(card.dataset.gwEnhanced)return;card.dataset.gwEnhanced='1';
     const txt=(card.textContent||'').trim();
     const sku=(card.querySelector('.sku')?.textContent||'').replace(/^\s*(SKU|Part Number)\s*[:#-]?\s*/i,'').trim();
