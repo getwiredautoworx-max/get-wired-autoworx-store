@@ -6,15 +6,15 @@
   'use strict';
   function skuFrom(scope) {
     var node = scope && scope.querySelector ? scope.querySelector('.sku') : null;
-    return node ? (node.textContent || '').trim().replace(/^SKU:\\s*/i, '').trim() : '';
+    return node ? (node.textContent || '').trim().replace(/^SKU:\s*/i, '').trim() : '';
   }
   function localUrls(sku) {
     if (!sku) return [];
     var safe = encodeURIComponent(sku);
-    return ['/assets/products_webp/' + safe + '.webp', '/assets/products_jpg/' + safe + '.jpg'];
+    return ['/assets/products_webp/' + safe + '.webp', '/assets/products/' + safe + '.jpg'];
   }
   function isPlaceholder(src) {
-    return !src || /placeholder|no-image|no_image|default-product|gw-logo\\.png/i.test(String(src));
+    return !src || /placeholder|no-image|no_image|default-product|gw-logo\.png/i.test(String(src));
   }
   function showPlaceholder(box, title, sku) {
     if (!box) return;
