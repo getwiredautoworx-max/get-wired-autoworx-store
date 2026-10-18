@@ -61,8 +61,8 @@
         #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px}
         #categoryGrid .catWrap{min-width:0;height:100%}
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
-        #categoryGrid .catImage{display:block;width:100%;height:clamp(76px,11vw,140px);overflow:hidden}
-        #categoryGrid .catImage img{display:block;width:100%;height:100%;object-fit:contain}
+        #categoryGrid .catImage{display:block!important;visibility:visible!important;width:100%;height:clamp(76px,11vw,140px);min-height:76px;overflow:hidden;flex:0 0 auto}
+        #categoryGrid .catImage img{display:block!important;visibility:visible!important;width:100%;height:100%;min-height:76px;object-fit:contain}
         #categoryGrid .catContent{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:6px;padding:10px}
         #categoryGrid .catContent b{overflow-wrap:anywhere;line-height:1.25}
         #categoryGrid .catContent small{font-size:12px}
