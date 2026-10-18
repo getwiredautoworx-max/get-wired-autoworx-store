@@ -57,7 +57,7 @@
       style.id='gw-category-presentation';
       style.textContent=`
         /* Approved homepage design: exactly three columns at every viewport width.
-           Eight approved root categories form the 3-column image-led button grid. */
+           Nine approved root categories form the requested 3-column by 3-row image-led button grid. */
         #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px}
         #categoryGrid .catWrap{min-width:0;height:100%}
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
