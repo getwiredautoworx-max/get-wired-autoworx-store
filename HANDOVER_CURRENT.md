@@ -2393,3 +2393,10 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 
 - Corrected the root-image selector after the prior test counted 63 nested images rather than the eight top-level category illustrations.
 - Added a workflow-only trigger-comment update so the next smoke run is created after the selector correction. Do not rely on run #803: its log belongs to the earlier workflow version and failed on the old selector.
+
+
+## 2026-10-18 — SVG parsing defect found and corrected
+
+- The responsive smoke run exposed four category SVGs falling back to the unavailable-image graphic. Root cause: unescaped ampersands in SVG XML `aria-label` attributes for Car Audio, Marine, Tools, and Camping caused the SVG documents to fail parsing.
+- Escaped the ampersands in all four affected SVG labels. The other four category illustrations were loading successfully.
+- Rerun browser smoke after this exact correction; verify all eight image elements load and capture current screenshots before claiming the category artwork issue is resolved.
