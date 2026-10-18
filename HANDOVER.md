@@ -2985,3 +2985,17 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Product image rendering/visual pixel verification remains unresolved; product images must be exact-match or deliberately replaced with neutral placeholders.
 - No Axxess upload or production mutation is authorized until owner visual approval.
 - **Priority order is now: mockup fidelity and storefront visual correction first; then exact-head browser verification and current preview; then other release gates.** This supersedes any workflow that treats further checking without implementing the requested design changes as sufficient progress.
+
+
+## CONTINUATION LOG — 2026-10-18 — STAGING THEME / QA ASSERTION RECONCILIATION
+
+- Continued from the canonical handover and reviewed PR #54 and its current review branch. Production remains untouched.
+- Found a concrete contradiction: `index-new.html` still activated `brightTheme` and the browser QA expected white category/product surfaces, while the permanent owner directive specifies the approved dark automotive mockup (dark navy/black background, red/blue/white accents).
+- Updated review branch `review/staging-ui-verification-fixes-current` only:
+  - `index-new.html` commit `fcb4d0f0f561f855efb91ce285f12284694ca30a` removes the `brightTheme` body class and adds a final dark-theme override for the background, hero, category/product surfaces, buttons, and responsive category grid.
+  - `staging/storefront-browser-qa.mjs` commit `9e0e2cb4e74ba1e82e0852948bdbba3a4fb3764d` changes the stale light-theme assertion to a dark-theme assertion.
+  - `staging/storefront-browser-qa.mjs` commit `1d9a4715363de87f9b8bee8e4c08bd9afbbfae01` changes the stale white-surface assertion to check dark category/product surfaces.
+- The review branch files were fetched again after the updates; the index file contains the new dark override and the body no longer has `brightTheme`. PR #54 remains open/draft.
+- Verification limitation: no new exact-head browser run, screenshots, or artifact have been retrieved yet. The connected commit-run query returns no runs for the latest review commits and is documented to filter to PR-triggered runs only; this is not proof that no Actions run exists. Do not claim the theme or responsive layout passed visual QA until the actual latest-head report/screenshots are inspected.
+- Remaining visual gates: verify desktop 1440px, mobile 390px and small mobile 320px; confirm category-card images/labels are appropriate and not blank, no horizontal overflow, no mobile-nav overlap, Part Search and Request a Part popups, category filtering, cart and checkout routes. Exact product image identity/rights remain a separate gate.
+- No merge, Axxess upload, Supabase production write, DNS/payment change, or live deployment was performed. Release status remains HOLD. Continue with the latest-head browser workflow/artifact retrieval; fix only evidence-backed failures, then update this handover with actual run IDs and outcomes.
