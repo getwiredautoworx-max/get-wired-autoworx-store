@@ -25,8 +25,8 @@ try {
   report.title = await page.title();
   report.bodyClass = await page.locator('body').getAttribute('class');
   check('homepage_http_200', report.status === 200, 'HTTP ' + report.status);
-  check('approved_bright_mockup_activated', await page.locator('body').evaluate(el => { const c = getComputedStyle(el); return el.classList.contains('brightTheme') && c.backgroundColor === 'rgb(238, 243, 248)'; }), 'body class=' + report.bodyClass + ', background=' + await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor));
-  check('light_category_and_product_surfaces', await page.evaluate(() => { const cat=document.querySelector('.catWrap'), product=document.querySelector('.product'); if(!cat||!product)return false; const cc=getComputedStyle(cat), pc=getComputedStyle(product); return cc.backgroundColor === 'rgb(255, 255, 255)' && pc.backgroundColor === 'rgb(255, 255, 255)'; }), 'category and product cards should use the approved light surfaces');
+  check('approved_dark_mockup_activated', await page.locator('body').evaluate(el => { const c = getComputedStyle(el); const rgb = c.backgroundColor; return !el.classList.contains('brightTheme') && (c.backgroundImage.includes('radial-gradient') || rgb === 'rgb(2, 6, 13)' || rgb === 'rgb(5, 8, 14)'); }), 'body class=' + report.bodyClass + ', background=' + await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor));
+  check('dark_category_and_product_surfaces', await page.evaluate(() => { const cat=document.querySelector('.catWrap'), product=document.querySelector('.product'); if(!cat||!product)return false; const cc=getComputedStyle(cat), pc=getComputedStyle(product); return (cc.backgroundImage.includes('linear-gradient') || cc.backgroundColor === 'rgb(11, 18, 32)') && pc.backgroundColor === 'rgb(11, 18, 32)'; }), 'category cards should use the dark branded surface and product cards should be dark navy');
   check('hero_present', await page.locator('.heroCard').count() > 0, 'heroCard element exists');
 
   check('category_grid_exists', await page.locator('#categoryGrid').count() === 1, 'expected #categoryGrid');
