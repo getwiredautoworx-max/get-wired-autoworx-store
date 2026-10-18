@@ -55,7 +55,8 @@ try {
       return imgs.map(img => {
         const box = img.closest('.prodImg, .detailImg, [role="img"]');
         const placeholderText = (box?.textContent || '').trim();
-        const placeholder = Boolean(box && (box.classList.contains('no-image') ||
+        const hasImageSource = Boolean(img.currentSrc || img.src);
+        const placeholder = Boolean(box && !hasImageSource && (box.classList.contains('no-image') ||
           /product image unavailable/i.test(placeholderText) ||
           /product image unavailable/i.test(box.getAttribute('aria-label') || '')));
         let pixelAudit = { readable: false, variance: null, sampledColors: 0, reason: 'no-image' };
