@@ -1,0 +1,36 @@
+name: Part Image Search Safety Checks
+
+on:
+  push:
+    branches:
+      - fix/part-image-search-durable-limit
+    paths:
+      - 'supabase/functions/part-image-search/**'
+      - 'supabase/migrations/*part_image_search_rate_limit.sql'
+      - '.github/workflows/part-image-search-safety.yml'
+  pull_request:
+    paths:
+      - 'supabase/functions/part-image-search/**'
+      - 'supabase/migrations/*part_image_search_rate_limit.sql'
+      - '.github/workflows/part-image-search-safety.yml'
+permissions:
+  contents: read
+jobs:
+  safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check Edge Function
+        run: deno check supabase/functions/part-image-search/index.ts
+      - name: Test request and image validation helpers
+        run: deno test supabase/functions/part-image-search/validation_test.ts supabase/functions/part-image-search/handler_test.ts
+      - name: Assert migration fails closed behind service-role RPC
+        run: |
+          grep -q 'security definer' supabase/migrations/20261015120000_part_image_search_rate_limit.sql
+          grep -q 'revoke all on function public.consume_part_image_search_rate_limit(text, integer, integer) from public, anon, authenticated' supabase/migrations/20261015120000_part_image_search_rate_limit.sql
+          grep -q 'grant execute on function public.consume_part_image_search_rate_limit(text, integer, integer) to service_role' supabase/migrations/20261015120000_part_image_search_rate_limit.sql
+          echo 'PASS: limiter RPC is security-definer and not executable by anon/authenticated.'

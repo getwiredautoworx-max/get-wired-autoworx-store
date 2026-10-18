@@ -1,17 +1,14 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { hmacClientHash, isAllowedOrigin, MAX_REQUEST_BODY_BYTES, readJsonLimited, validateImagePayload } from "./validation.ts";
 
-const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
-const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY") || "";
-const MODEL = Deno.env.get("OPENAI_VISION_MODEL") || "gpt-4.1-mini";
 const ALLOWED_ORIGINS = new Set([
   "https://getwiredauto.co.za",
   "https://www.getwiredauto.co.za",
   "https://get-wired-autoworx-store.netlify.app",
   "https://get-wired-autoworx-store.pages.dev"
 ]);
-const rate = new Map<string, { count: number; reset: number }>();
-const json = (body: unknown, status = 200, origin = "") => new Response(JSON.stringify(body), {
+const json = (body: unknown, status = 200, origin = "", extraHeaders: Record<string, string> = {}) => new Response(JSON.stringify(body), {
   status,
   headers: {
     "content-type": "application/json; charset=utf-8",
@@ -20,43 +17,90 @@ const json = (body: unknown, status = 200, origin = "") => new Response(JSON.str
     "access-control-allow-headers": "authorization, apikey, content-type, x-client-info",
     "access-control-allow-methods": "POST, OPTIONS",
     "vary": "Origin",
-    "x-content-type-options": "nosniff"
+    "x-content-type-options": "nosniff",
+    ...extraHeaders
   }
 });
 const clean = (v: unknown, max = 160) => String(v ?? "").replace(/[<>\u0000-\u001f]/g, " ").trim().slice(0, max);
 const tokens = (s: string) => [...new Set(s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").match(/[a-z0-9]{3,}/g) || [])]
   .filter(t => !["the", "and", "for", "with", "from", "part", "vehicle", "automotive", "possibly", "likely"].includes(t));
 
-Deno.serve(async (req: Request) => {
+export function createHandler(deps: { envGet?: (name: string) => string | undefined; createClient?: (...args: any[]) => any; fetch?: typeof fetch } = {}) {
+  return async (req: Request) => {
+  const envGet = deps.envGet || ((name: string) => Deno.env.get(name));
+  const createDb = deps.createClient || createClient;
+  const fetchImpl = deps.fetch || fetch;
+  const SUPABASE_URL = envGet("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
+  const OPENAI_API_KEY = envGet("OPENAI_API_KEY") || "";
+  const MODEL = envGet("OPENAI_VISION_MODEL") || "gpt-4.1-mini";
   const requestOrigin = req.headers.get("origin") || "";
-  const origin = ALLOWED_ORIGINS.has(requestOrigin) ? requestOrigin : "https://www.getwiredauto.co.za";
-  if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: {
-    "access-control-allow-origin": origin,
-    "access-control-allow-headers": "authorization, apikey, content-type, x-client-info",
-    "access-control-allow-methods": "POST, OPTIONS",
-    "vary": "Origin"
-  }});
+  const origin = isAllowedOrigin(requestOrigin, ALLOWED_ORIGINS) ? requestOrigin : "";
+  if (req.method === "OPTIONS") {
+    if (!origin) return new Response(null, { status: 403 });
+    return new Response(null, { status: 204, headers: {
+      "access-control-allow-origin": origin,
+      "access-control-allow-headers": "authorization, apikey, content-type, x-client-info",
+      "access-control-allow-methods": "POST, OPTIONS",
+      "vary": "Origin"
+    }});
+  }
+  if (!origin) return json({ error: "Origin not allowed." }, 403, "");
   if (req.method !== "POST") return json({ error: "Method not allowed." }, 405, origin);
-  if (requestOrigin && !ALLOWED_ORIGINS.has(requestOrigin)) return json({ error: "Origin not allowed." }, 403, origin);
 
-  const ip = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  const now = Date.now();
-  const current = rate.get(ip);
-  if (current && current.reset > now && current.count >= 8) return json({ error: "Picture-search limit reached. Please try again in a minute or use Request a Part." }, 429, origin);
-  rate.set(ip, !current || current.reset <= now ? { count: 1, reset: now + 60_000 } : { count: current.count + 1, reset: current.reset });
-  if (rate.size > 5000) for (const [key, value] of rate) if (value.reset <= now) rate.delete(key);
+  const contentLength = Number(req.headers.get("content-length") || 0);
+  if (contentLength > MAX_REQUEST_BODY_BYTES) return json({ error: "Request body is too large." }, 413, origin);
 
-  if (!OPENAI_API_KEY) return json({ error: "AI picture search is not configured yet. The store administrator must add the OPENAI_API_KEY secret before this feature can run. You can still use Request a Part." }, 503, origin);
+  const ip = req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip") ||
+    req.headers.get("x-forwarded-for")?.split(",").map(v => v.trim()).filter(Boolean).at(-1) || "unknown";
+  const secretEnv = envGet("SUPABASE_SECRET_KEYS");
+  let serviceKey = envGet("SUPABASE_SERVICE_ROLE_KEY") || "";
+  if (!serviceKey && secretEnv) {
+    try { serviceKey = JSON.parse(secretEnv).default || ""; }
+    catch { console.error("Picture-search service credential configuration is invalid"); }
+  }
+  if (!serviceKey) return json({ error: "Picture search is temporarily unavailable. Please use Request a Part." }, 503, origin);
+  const db = createDb(SUPABASE_URL, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
 
   try {
-    const body = await req.json();
+    const clientHash = await hmacClientHash(ip, serviceKey);
+    const { data: limitRows, error: limitError } = await db.rpc("consume_part_image_search_rate_limit", {
+      p_client_hash: clientHash,
+      p_limit: 8,
+      p_window_seconds: 60
+    });
+    if (limitError) {
+      console.error("Picture-search shared rate limiter unavailable", limitError.code || "RPC_ERROR");
+      return json({ error: "Picture search is temporarily unavailable. Please use Request a Part." }, 503, origin);
+    }
+    const limit = Array.isArray(limitRows) ? limitRows[0] : limitRows;
+    if (!limit || typeof limit.allowed !== "boolean") {
+      console.error("Picture-search shared rate limiter returned an invalid response");
+      return json({ error: "Picture search is temporarily unavailable. Please use Request a Part." }, 503, origin);
+    }
+    if (!limit.allowed) return json(
+      { error: "Picture-search limit reached. Please try again in a minute or use Request a Part." },
+      429,
+      origin,
+      { "retry-after": String(limit.retry_after_seconds || 60) }
+    );
+
+    if (!OPENAI_API_KEY) return json({ error: "AI picture search is not configured yet. The store administrator must add the OPENAI_API_KEY secret before this feature can run. You can still use Request a Part." }, 503, origin);
+
+    let body: any;
+    try { body = await readJsonLimited(req); }
+    catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      if (message === "BODY_TOO_LARGE") return json({ error: "Request body is too large. Use a photo under 4 MB." }, 413, origin);
+      if (message === "EMPTY_BODY" || message === "INVALID_JSON") return json({ error: "Send a valid JSON image request." }, 400, origin);
+      throw error;
+    }
     const base64 = String(body?.image_base64 || "");
     const mime = String(body?.mime_type || "");
-    if (!["image/jpeg", "image/png", "image/webp"].includes(mime)) return json({ error: "Upload a JPG, PNG or WebP photo." }, 400, origin);
-    if (!base64 || base64.length > 5_600_000 || !/^[A-Za-z0-9+/]+={0,2}$/.test(base64)) return json({ error: "Image is empty or too large. Use a photo under 4 MB." }, 400, origin);
+    const imageCheck = validateImagePayload(base64, mime);
+    if (!imageCheck.ok) return json({ error: imageCheck.error }, imageCheck.status, origin);
 
     const visionPrompt = `Identify the visible automotive/electrical/accessory/marine/tool part in this photo for a South African parts shop. Do not guess an exact vehicle fitment from appearance alone. Read visible labels or numbers if legible. Return JSON only with this shape: {"part_name":"short likely generic name","part_type":"category","keywords":["specific searchable terms"],"visible_text":["readable brand or part number"],"vehicle_hint":"only if clearly supported, otherwise empty","confidence":"high|medium|low","notes":"brief uncertainty or useful distinguishing detail"}. If unclear, say so and suggest what extra angle or measurement is needed. Never invent a part number.`;
-    const aiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    const aiResponse = await fetchImpl("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: { "authorization": "Bearer " + OPENAI_API_KEY, "content-type": "application/json" },
       body: JSON.stringify({
@@ -95,13 +139,6 @@ Deno.serve(async (req: Request) => {
       notes: clean(identification.notes, 240)
     };
 
-    const secretEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
-    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || (secretEnv ? (JSON.parse(secretEnv).default || "") : "");
-    if (!serviceKey) {
-      console.error("Supabase secret key missing for catalogue matching");
-      return json({ error: "Catalogue matching is not configured yet. Please use Request a Part." }, 503, origin);
-    }
-    const db = createClient(SUPABASE_URL, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
     let products: any[] = [];
     for (let offset = 0; offset < 5000; offset += 1000) {
       const { data: batch, error } = await db.from("products")
@@ -148,4 +185,7 @@ Deno.serve(async (req: Request) => {
     console.error("part-image-search failed", error instanceof Error ? error.message : String(error));
     return json({ error: "Picture search failed unexpectedly. Please try again or use Request a Part." }, 500, origin);
   }
-});
+  };
+}
+
+if (import.meta.main) Deno.serve(createHandler());
