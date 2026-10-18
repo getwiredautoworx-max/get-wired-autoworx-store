@@ -2349,3 +2349,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Verification limitations: no screenshot/browser runner was available through the currently exposed GitHub tools in this pass. Do not claim visual QA passed. Must inspect at 1440px, 390px, and 320px; confirm image paths load from the actual staging deployment and check overflow/card crop.
 - Product image quality remains a separate unresolved gate: existing loaded catalogue-marked or wrong-item product photos cannot be detected reliably by the fallback guard alone. Such items need a verified rights-cleared replacement or the branded unavailable placeholder. No Axxess production upload, production database change, DNS change, or payment setting change was made.
 - Owner instruction: always update this handover after every material change.
+
+
+## 2026-10-18 — Product-image fallback correction
+
+- Updated the product-card renderer so missing image URLs and failed image requests use `assets/product-image-unavailable.svg`, a clear branded placeholder that does not pretend the GW logo is the product or silently substitute a different item.
+- Added the referenced SVG asset to the same review branch.
+- This resolves the *missing/broken image fallback presentation* at source level, provided the candidate HTML and asset are served together. It does not automatically identify supplier catalogue markings embedded in an otherwise loading photo; those require asset-by-asset visual review and replacement with rights-cleared images.
+- No production upload or data change. Browser QA is still required against the exact candidate before this is accepted.
