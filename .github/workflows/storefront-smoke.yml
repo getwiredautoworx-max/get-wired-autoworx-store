@@ -10,6 +10,8 @@ on:
       - '**/*.css'
       - 'assets/**'
       - 'supabase/functions/**'
+      - 'scripts/audit-product-image-watermarks.py'
+      - 'HANDOVER_CURRENT.md'
       - '.github/workflows/storefront-smoke.yml'
   pull_request:
     branches: [main]
@@ -19,6 +21,8 @@ on:
       - '**/*.css'
       - 'assets/**'
       - 'supabase/functions/**'
+      - 'scripts/audit-product-image-watermarks.py'
+      - 'HANDOVER_CURRENT.md'
       - '.github/workflows/storefront-smoke.yml'
   workflow_dispatch:
 
