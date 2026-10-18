@@ -1,26 +1,21 @@
-/*
- * Get Wired AutoWorx product-image guard.
- * Preserve existing images unless they fail; never replace a working image
- * merely because a local exact-SKU variant may exist. Missing/broken assets
- * get a branded placeholder instead of a misleading neighbouring product.
+/* Get Wired AutoWorx product-image guard.
+ * Preserve working images. For missing/broken images, try exact-SKU WebP then
+ * exact-SKU JPEG; never substitute an unrelated neighbouring product.
  */
 (function () {
   'use strict';
-
   function skuFrom(scope) {
     var node = scope && scope.querySelector ? scope.querySelector('.sku') : null;
-    return node ? (node.textContent || '').trim().replace(/^SKU:\s*/i, '').trim() : '';
+    return node ? (node.textContent || '').trim().replace(/^SKU:\\s*/i, '').trim() : '';
   }
-
   function localUrls(sku) {
-    return sku ? ['/assets/products_webp/' + encodeURIComponent(sku) + '.webp'] : [];
+    if (!sku) return [];
+    var safe = encodeURIComponent(sku);
+    return ['/assets/products_webp/' + safe + '.webp', '/assets/products_jpg/' + safe + '.jpg'];
   }
-
   function isPlaceholder(src) {
-    var s = String(src || '').toLowerCase();
-    return !s || /placeholder|no-image|no_image|default-product|gw-logo\.png/.test(s);
+    return !src || /placeholder|no-image|no_image|default-product|gw-logo\\.png/i.test(String(src));
   }
-
   function showPlaceholder(box, title, sku) {
     if (!box) return;
     box.querySelectorAll('img').forEach(function (img) { img.onerror = null; img.remove(); });
@@ -41,14 +36,22 @@
     note.style.cssText = 'font:11px Arial,sans-serif;color:#536b80;overflow-wrap:anywhere';
     wrap.appendChild(mark); wrap.appendChild(label); wrap.appendChild(note); box.appendChild(wrap);
   }
-
+  function setExactSkuImage(img, box, title, sku) {
+    var urls = localUrls(sku), index = 0;
+    if (!urls.length) { showPlaceholder(box, title, sku); return; }
+    img.onerror = function () {
+      index += 1;
+      if (index < urls.length) { img.src = urls[index]; return; }
+      img.onerror = null;
+      showPlaceholder(box, title, sku);
+    };
+    img.src = urls[index];
+  }
   function install(frame) {
     if (!frame) return;
-
     function patch(doc) {
       if (!doc || doc.__gwImageFallbackInstalled) return;
       doc.__gwImageFallbackInstalled = true;
-
       function patchScope(scope) {
         if (!scope) return;
         var box = scope.querySelector('.prodImg, .detailImg');
@@ -58,51 +61,35 @@
         var titleNode = scope.querySelector('h3,h2');
         var title = titleNode ? titleNode.textContent.trim() : '';
         var img = box.querySelector('img');
-
         if (!img) {
-          var local = localUrls(sku)[0];
-          if (!local) { showPlaceholder(box, title, sku); return; }
           img = doc.createElement('img');
-          img.alt = title || ('Product image for SKU ' + sku);
+          img.alt = title || (sku ? 'Product image for SKU ' + sku : 'Product image unavailable');
           img.loading = 'lazy';
-          img.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain';
+          img.style.cssText = 'max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain';
           box.appendChild(img);
-          img.onerror = function () { showPlaceholder(box, title, sku); };
-          img.src = local;
+          setExactSkuImage(img, box, title, sku);
           return;
         }
-
-        // Keep a currently loaded image. Only try the exact-SKU local image
-        // when the current source is explicitly a placeholder or has failed.
         if (img.complete && img.naturalWidth > 0 && !isPlaceholder(img.currentSrc || img.src)) return;
         var original = img.getAttribute('src') || '';
         if (!isPlaceholder(original) && !img.complete) {
           img.addEventListener('error', function onError() {
             img.removeEventListener('error', onError);
-            var local = localUrls(sku)[0];
-            if (!local) { showPlaceholder(box, title, sku); return; }
-            img.onerror = function () { showPlaceholder(box, title, sku); };
-            img.src = local;
+            setExactSkuImage(img, box, title, sku);
           }, { once: true });
           return;
         }
-        var exact = localUrls(sku)[0];
-        if (!exact) { showPlaceholder(box, title, sku); return; }
-        img.onerror = function () { showPlaceholder(box, title, sku); };
-        img.src = exact;
+        setExactSkuImage(img, box, title, sku);
       }
-
       function scan() { doc.querySelectorAll('.product, .detail').forEach(patchScope); }
       scan();
       if (doc.body && typeof MutationObserver !== 'undefined') {
         new MutationObserver(scan).observe(doc.body, { childList: true, subtree: true });
       }
     }
-
     function ready() { try { patch(frame.contentDocument || frame.contentWindow.document); } catch (e) {} }
     frame.addEventListener('load', ready);
     if (frame.contentDocument && frame.contentDocument.readyState === 'complete') ready();
   }
-
   window.installGetWiredProductImageFallback = install;
 })();
