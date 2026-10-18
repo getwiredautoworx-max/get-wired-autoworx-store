@@ -58,7 +58,7 @@ try {
         const box = img.closest('.prodImg, .detailImg, [role="img"]');
         const placeholderText = (box?.textContent || '').trim();
         const hasImageSource = Boolean(img.currentSrc || img.src);
-        const placeholder = Boolean(box && !hasImageSource && (box.classList.contains('no-image') ||
+        const placeholder = Boolean(box && (box.classList.contains('no-image') ||
           /product image unavailable/i.test(placeholderText) ||
           /product image unavailable/i.test(box.getAttribute('aria-label') || '')));
         let pixelAudit = { readable: false, variance: null, sampledColors: 0, reason: 'no-image' };
@@ -119,14 +119,14 @@ try {
       'unresolved=' + metrics.unresolvedImages.length + ', failed=' + metrics.failedImages.length +
       ', unsettled=' + metrics.unsettledImages.length + ', placeholders=' + metrics.placeholderImages.length +
       ', URLs=' + metrics.unresolvedImages.slice(0, 10).map(i => i.src).join(' | '));
-    const productImages = metrics.images.filter(i => /product-image\?sku=|\/assets\/products(?:_webp)?\//i.test(i.src));
+    const productImages = metrics.images.filter(i => /product-image-pending\.svg|product-image\?sku=|\/assets\/products(?:_webp)?\//i.test(i.src));
     const visuallyBlank = productImages.filter(i => !i.placeholder && i.pixelAudit?.readable &&
       (i.pixelAudit.variance < 18 || i.pixelAudit.sampledColors < 8));
     // Supabase Edge Function images may be correctly decoded and visibly rendered but
     // canvas pixel reads are blocked by browser cross-origin rules. Do not label that
     // security boundary as a broken image: require a decoded source and visible box,
     // while retaining the pixel-variation check whenever canvas access is permitted.
-    const visibleProductImages = productImages.filter(i => !i.placeholder && i.renderedWidth > 0 && i.renderedHeight > 0);
+    const visibleProductImages = productImages.filter(i => i.renderedWidth > 0 && i.renderedHeight > 0);
     // Some product grids are intentionally hidden until the shopper selects a tab/filter.
     // A decoded image in a hidden grid has a zero layout box; that is not a broken image.
     // Still fail if any image source fails to decode, if a partially rendered box exists,
@@ -140,6 +140,12 @@ try {
       ', visuallyBlank=' + visuallyBlank.length + ', unusable=' + unusable.length +
       ', canvasBlocked=' + productImages.filter(i => !i.placeholder && !i.pixelAudit?.readable).length +
       ', samples=' + JSON.stringify(productImages.slice(0, 3).map(i => ({src:i.src, naturalWidth:i.naturalWidth, renderedWidth:i.renderedWidth, renderedHeight:i.renderedHeight, pixelAudit:i.pixelAudit}))));
+    check('unverified_product_images_use_neutral_placeholders_' + width,
+      await page.evaluate(() => {
+        const cards = [...document.querySelectorAll('.product')];
+        return cards.length > 0 && cards.every(card => card.querySelector('.prodImg.no-image img')?.getAttribute('src') === 'assets/product-image-pending.svg');
+      }),
+      'all rendered catalogue cards must use neutral placeholders until exact product image and usage permission are verified');
     const mobileNavDisplay = await page.locator('.mobileNav').first().evaluate(el => getComputedStyle(el).display).catch(() => 'missing');
     check('mobile_bottom_nav_visibility_' + width,
       width <= 900 ? mobileNavDisplay !== 'none' : mobileNavDisplay === 'none',
