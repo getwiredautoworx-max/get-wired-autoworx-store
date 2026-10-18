@@ -2484,3 +2484,9 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Mobile patch evidence: Storefront Smoke Test run 39138677601 succeeded on commit `30e11771ce0124d2f375048c90d7a57817bb86cf`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138677601. This is a local Playwright smoke test, not proof of visual layout correctness. No screenshot/scroll-width evidence for 1440px, 390px, and 320px was found in this check; keep mobile visual QA open until those are captured and reviewed.
 - Pages build/deployment run 39138836221 succeeded for `main` commit `a365b7a3a1687b93228f5a4385fd3d03d2355937`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138836221. This is distinct from the failed custom preview workflow.
 - No production deploy, Axxess upload, DNS change, production catalogue/database write, or payment configuration change was made. Release remains **HOLD**.
+
+
+### Deployment naming correction — verified from the latest Actions job
+- GitHub Actions run `39139637391` (https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39139637391) is the repository's dynamic **GitHub Pages** workflow: its jobs explicitly run `Build with Jekyll` and `Deploy to GitHub Pages`. The build and report jobs passed; deploy was still in progress at inspection.
+- Do not cite this GitHub Pages workflow as proof of a Cloudflare Pages or Cloudflare Worker deployment. These are separate targets.
+- Latest Cloudflare-specific review-preview attempt remains failed at the credential preflight, with the two required Actions secrets absent/unavailable. The repository has no Worker script/config/workflow; the known failed log is for a Pages command.
