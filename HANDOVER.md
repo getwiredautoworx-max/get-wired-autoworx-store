@@ -3007,3 +3007,10 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Current PR #54 head is 35f4799246a73269f7b5f756261d703221e6c579; still draft and unmerged.
 - Exact-head GitHub Actions browser QA run #83 (39096048403) is pending: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096048403 . No screenshot artifact or completed result is available yet. The earlier run for commit 1d9a4715363de87f9b8bee8e4c08bd9afbbfae01 is not the latest source revision and must not be used as acceptance evidence.
 - No production changes. Next: inspect the completed run for exact SHA 35f4799246a73269f7b5f756261d703221e6c579, retrieve screenshots/report, fix concrete failures only, and keep PR draft until the desktop/mobile visual review is acceptable.
+
+
+## CONTINUATION LOG — 2026-10-18 — CATEGORY ART LAYOUT CORRECTION
+
+- Further source inspection showed the dark theme override had not restored layout sizing for `.catArt` and `.catBtn`; category artwork could remain inline and the image-led cards could collapse or misalign. Corrected this in review-branch commit 8b8647061a0c4bfeb6d9a95e03e991abdb905423: category buttons are full-width block cards; category art has explicit desktop/mobile dimensions; any image fills the art area with contained sizing; icon fallback remains legible.
+- New exact-head browser QA run #85 is in progress for commit 8b8647061a0c4bfeb6d9a95e03e991abdb905423: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096136852 . Previous runs for older heads were cancelled by the workflow's concurrency rule and are not acceptance evidence.
+- PR #54 remains draft/unmerged. No Axxess, Supabase production, DNS, payment or live deployment changes. The next action is to inspect run #85 and its screenshots/report when complete; do not merge until exact-head checks and visual review pass.
