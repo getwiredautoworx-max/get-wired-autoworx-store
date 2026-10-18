@@ -425,6 +425,17 @@ pointer-events:none}
 .brightTheme .catContent i{color:#087fce!important;text-shadow:none!important}
 .brightTheme .heroText .heroTagline{color:#17324a!important;text-shadow:none!important}
 
+
+/* Final desktop category and contrast corrections based on the 1440px screenshot. */
+.catWrap:before{display:none!important;content:none!important}
+#categoryGrid .catBtn .catContent i{position:static!important;top:auto!important;right:auto!important;align-self:flex-start!important;margin-top:5px!important;font-size:11px!important;line-height:1.1!important;color:#087fce!important;text-shadow:none!important}
+.heroText .heroTagline{color:#17324a!important;text-shadow:none!important}
+.heroText p{color:#17324a!important}
+.heroText h1{text-shadow:none!important}
+@media(min-width:701px){
+ .heroCard{height:310px!important}
+ .heroText{padding:24px 4% 34px!important}
+}
 /* Screenshot-driven layout correction: separate header search from hero, remove overlays, keep category artwork unobscured. */
 @media(min-width:701px){
  .header{height:auto!important;padding-bottom:0!important}
