@@ -2364,3 +2364,13 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Changed the category-art error handler to use the explicit unavailable-image artwork rather than the business logo if an illustration asset fails to load. This prevents the logo from being misrepresented as category artwork.
 - Draft PR #57 now contains the source changes and has triggered the repository's storefront smoke, Axxess package-integrity, and public-SKU audit workflows. The last observed results were in progress for smoke/package and success for the public-SKU audit; those runs apply to the prior PR head and must be checked again for the current head.
 - No Axxess deployment, production database mutation, payment-provider setting, or DNS change was made.
+
+
+## 2026-10-18 — Resolve first QA failures and enforce eight roots
+
+- First PR smoke run failed at the product-image fallback test because the test only accepted a locally present exact-SKU WebP and rejected the intended clean unavailable-image state. Updated the assertion to accept either a loaded exact-SKU WebP or the branded unavailable state, while continuing to reject the supplier-image proxy.
+- Corrected escaped regular expressions in `assets/product-image-fallback.js` so the guard actually recognizes the GW logo as a placeholder and recognizes SKU prefixes.
+- Found a separate live-source mismatch: `category.html` still exposed generic Spare Parts as a ninth root and used older short labels. Replaced that root list with the same eight approved IDs and labels used by the homepage. Root categories no longer disappear from that navigation solely because the current active-product count is zero.
+- Extended `.github/workflows/storefront-smoke.yml` to assert exactly eight homepage root tiles, verify explicit category-image paths, test horizontal overflow at 390/320/1440px, capture screenshots at those widths, and upload them as a short-retention QA artifact.
+- Latest source changes are on draft PR #57. Package integrity and public-SKU audit passed for the earlier PR head; the first smoke test failed for the fallback-test mismatch above. The revised smoke workflow must finish successfully against the updated PR head before the source-level QA gate is accepted.
+- Still not resolved by code alone: visually inspect any existing product photo that loads successfully but contains catalogue text/watermarks or depicts the wrong part. The runtime cannot safely infer image correctness from a URL. No production deployment or database change.
