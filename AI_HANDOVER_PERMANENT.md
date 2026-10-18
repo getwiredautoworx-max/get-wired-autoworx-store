@@ -2194,3 +2194,14 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - [ ] Preview remains unverified in this session. PR bot-reported candidate URL: https://f2ca3349.get-wired-autoworx-store.pages.dev
 - [x] No merge, Axxess upload, Supabase production mutation, DNS/payment change, or manual credit-consuming deployment was performed.
 - **Next gate:** confirm a new Actions run uses corrected commit `44ca7edd2c5b5f53f14845e05207bfe30b9996e8`; read its report and screenshots; repair concrete failures and rerun until desktop (1440px), mobile (390px) and small-mobile (320px) acceptance passes. Keep PR #54 draft and production untouched until then.
+
+
+## 2026-10-18 15:23 SAST — TASK START (mobile storefront visual defect)
+
+- Read `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and latest discoverable `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` before work. Search found no root-level `HANDOVER_CHECKPOINT_*.md`; an older monitor log exists under `handover-runs/`.
+- Owner reports the page itself looks very wrong on the Hisense Android phone even though Windows Chrome preview looks fine. Prioritize mobile-first visual correction; do not treat desktop preview as mobile acceptance.
+- Initial source diagnosis: `assets/category-cleanup.js` reads `.catBtn i` as the category product count, while current `index-new.html` uses that element for the SHOP arrow. It can hide populated categories and replace the grid with a fallback. `store.html` embeds `index-new.html` in `iframe#store`, so tests must inspect the iframe content and actual mobile viewport.
+- Task started on isolated branch `fix/mobile-storefront-2026-10-18` based on current `main`; no production changes, live data writes, Axxess upload, production workflow rerun, or Cloudflare/Netlify deployment requested or performed.
+- In progress: correct category count selection; inspect mobile layout rules and nested wrapper navigation; monitor relevant current Actions evidence; run only safe staging checks if available; append outcomes and next action here after each material result.
+- Guardrails: preserve the eight approved roots and pricing/catalogue rules; no automatic product moves; no production reruns or release-credit use without explicit owner approval.
+- Start status: in progress; no visual fix claimed yet.
