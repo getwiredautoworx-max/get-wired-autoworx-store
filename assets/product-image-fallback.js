@@ -9,7 +9,7 @@
 
   function skuFrom(scope) {
     var node = scope && scope.querySelector ? scope.querySelector('.sku') : null;
-    return node ? (node.textContent || '').trim().replace(/^SKU:\\s*/i, '').trim() : '';
+    return node ? (node.textContent || '').trim().replace(/^SKU:\s*/i, '').trim() : '';
   }
 
   function localUrls(sku) {
@@ -18,7 +18,7 @@
 
   function isPlaceholder(src) {
     var s = String(src || '').toLowerCase();
-    return !s || /placeholder|no-image|no_image|default-product|gw-logo\\.png/.test(s);
+    return !s || /placeholder|no-image|no_image|default-product|gw-logo\.png/.test(s);
   }
 
   function showPlaceholder(box, title, sku) {
