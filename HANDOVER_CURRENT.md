@@ -2426,3 +2426,9 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 
 - The 320px overflow report identified the header search field (right edge 328px) and cart badge (right edge 329px). Added a strict 100vw header bound and narrower search positioning for widths at or below 380px, plus an in-bounds cart badge.
 - Updated the browser QA logger to emit the full page-error stack for the remaining “Invalid or unexpected token” message. The next run should establish whether it is from a script URL or inline source rather than leaving it as an unexplained warning.
+
+
+## 2026-10-18 — Reapply eight-root homepage fix on latest branch head
+
+- Rechecked the exact current branch source and discovered the homepage root list had regressed to nine IDs even though an earlier commit had reduced it to eight. Reapplied the eight-root list directly to the latest file revision while preserving the newer CSS and image fallback corrections.
+- This demonstrates why acceptance must be tied to the exact branch head rather than an earlier passing check. The next smoke run must assert eight direct homepage roots and use the latest screenshots.
