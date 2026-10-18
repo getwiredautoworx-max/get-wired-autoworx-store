@@ -3041,3 +3041,12 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Code review caught a test-harness issue before accepting the new hero fix: the CTA visibility assertion referenced the viewport variable before entering the viewport loop. Moved that assertion inside the 1440/390/320 loop in staging/storefront-browser-qa.mjs commit b741050a644d820b9e87e23e7fb116057c26bed6.
 - The run for the previous test head was cancelled by the workflow concurrency policy. Latest exact-head run #90 is pending for commit b741050a644d820b9e87e23e7fb116057c26bed6: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096508526 . Do not use older runs as evidence for the hero CTA assertion.
 - Source commit e104272b9087d9239bcee24fd31d6604b365d8e5 contains the hero sizing/rating-box/contrast correction. Await latest run #90, inspect the report and all three screenshots, and keep PR #54 draft until visual review passes. No production changes.
+
+
+## CONTINUATION LOG — 2026-10-18 — HERO FLOW ROOT CAUSE
+
+- Latest browser run #90 failed only the new hero CTA visibility assertion at 1440px and 320px. Screenshot/code inspection found a legacy `.heroText{position:absolute;inset:0}` rule surviving later padding-only overrides; this fixed-position content clipped the CTA row inside the compact hero.
+- Corrected in staging index-new.html commit e410876ee89daf0f35e2cc75b7f65afd772a117b: hero text returns to normal relative flow, hero height is auto, and content can expand enough to keep the four actions visible. This is a targeted CSS-only staging change.
+- Latest exact-head browser QA run #92 is pending for commit e410876ee89daf0f35e2cc75b7f65afd772a117b: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096664114 . Older run #90 is a confirmed failure and is not acceptance evidence.
+- Continue inspecting the newest report/screenshots. Product source images still contain visible text/watermarks; category tiles currently use clean icon placeholders pending curated category imagery. Do not mark visual acceptance complete until these image issues and hero layout are reviewed.
+- No production changes; PR #54 remains draft/unmerged.
