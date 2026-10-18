@@ -20,6 +20,13 @@ Owner supplied a real Android phone screenshot of the Cloudflare Pages preview o
 - category-navigation.js has category card presentation logic; category artwork/navigation must be verified separately after the responsive fix.
 - Cloudflare Pages success is not visual QA evidence. Separate Wrangler Worker preview failure remains a separate deployment issue.
 
+## Implementation checkpoint — 2026-10-18
+
+- Confirmed the actual homepage chain: `index.html` redirects to `store.html`; `store.html` embeds `index-new.html` in an iframe. This resolves the earlier uncertainty about which page controls the visible homepage.
+- Created isolated branch `fix/mobile-layout-2026-10-18` from `main`; no production branch or hosting/DNS/payment settings changed.
+- Applied a consolidated mobile CSS override in `index-new.html`: normal-flow compact hero, readable tagline, 2×2 hero actions, three-column category grid with constrained artwork, one bottom navigation (mobile purchase bar hidden), and safe-area-aware spacing. Adjusted the wrapper checkout float to stay within the viewport.
+- **Not yet accepted:** no fresh browser screenshots or automated test results exist for this branch yet. The patch is implementation progress, not proof of visual success. Must test 320px, 390px, 430px and 1440px and inspect images/navigation.
+
 ## Required implementation
 1. Identify and confirm the exact HTML entry point deployed by the Pages project; do not assume index-new.html is served as the homepage.
 2. Replace conflicting mobile hero rules with one consolidated responsive rule set. Remove the artificial 108px top padding at <=390px; use normal document flow, compact spacing, readable tagline contrast, and no overlap.
