@@ -86,7 +86,7 @@ jobs:
             for (const width of [390,320,1440]) {
               await page.setViewportSize({width,height:900});
               await page.waitForTimeout(250);
-              const layout = await frame.evaluate(() => {
+              const layout = await frame.locator('html').evaluate(() => {
                 const rect = el => { if(!el) return null; const r=el.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; };
                 const search=rect(document.querySelector('.head .search')), hero=rect(document.querySelector('.hero'));
                 const buttons=[...document.querySelectorAll('.heroBtns .btn')].map(rect);
