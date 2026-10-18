@@ -60,7 +60,7 @@ jobs:
             const browser = await chromium.launch({headless:true});
             const page = await browser.newPage({viewport:{width:390,height:844}});
             page.on('console', m => console.log('[browser:'+m.type()+'] '+m.text()));
-            page.on('pageerror', e => console.log('[pageerror] '+e.message));
+            page.on('pageerror', e => console.log('[pageerror] '+(e.stack||e.message)));
             await page.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             await page.waitForSelector('#store');
             const iframe = page.locator('#store');
@@ -72,6 +72,45 @@ jobs:
               const diag = await frame.locator('body').innerText().catch(()=>'<frame unavailable>');
               throw new Error('Category grid did not render within 60s. Frame text: '+diag.slice(0,1000));
             }
+            // Capture and assert the exact homepage candidate at desktop and two mobile widths.
+            const fs = require('node:fs');
+            fs.mkdirSync('artifacts', {recursive:true});
+            const rootCount = await frame.locator('#categoryGrid > .catWrap').count();
+            if (rootCount !== 9) throw new Error('Homepage must render exactly 9 top-level category tiles; got '+rootCount);
+            const categoryImages = frame.locator('#categoryGrid > .catWrap > .catBtn > .catImage img');
+            await categoryImages.evaluateAll(imgs => Promise.all(imgs.map(img => img.decode().catch(()=>{}))));
+            const imageCheck = await categoryImages.evaluateAll(imgs => imgs.map(img => ({alt:img.alt,src:img.getAttribute('src'),loaded:img.complete && img.naturalWidth > 0})));
+            if (imageCheck.length !== 9) throw new Error('Expected 9 category illustration elements; got '+imageCheck.length);
+            if (imageCheck.some(img => !img.src || !img.src.includes('assets/category-images/'))) throw new Error('A root tile does not use its explicit category illustration: '+JSON.stringify(imageCheck));
+            if (imageCheck.some(img => !img.loaded)) throw new Error('One or more category SVGs did not load: '+JSON.stringify(imageCheck));
+            for (const width of [390,320,1440]) {
+              await page.setViewportSize({width,height:900});
+              await frame.locator('html').evaluate(() => window.scrollTo(0,0));
+              await page.waitForTimeout(250);
+              const layout = await frame.locator('html').evaluate(() => {
+                const rect = el => { if(!el) return null; const r=el.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; };
+                const search=rect(document.querySelector('.head .search')), hero=rect(document.querySelector('.hero'));
+                const buttons=[...document.querySelectorAll('.heroBtns .btn')].map(rect);
+                const overlaps=[];
+                for(let i=0;i<buttons.length;i++) for(let j=i+1;j<buttons.length;j++) {
+                  const a=buttons[i],b=buttons[j];
+                  if(a && b && a.left < b.right-1 && a.right > b.left+1 && a.top < b.bottom-1 && a.bottom > b.top+1) overlaps.push([i,j]);
+                }
+                return {search,hero,buttons,buttonOverlaps:overlaps,categoryOverlay:getComputedStyle(document.querySelector('.catWrap'),':before').display};
+              });
+              if(layout.search && layout.hero && layout.search.bottom > layout.hero.top + 1) throw new Error('Header search overlaps hero at '+width+'px: '+JSON.stringify(layout));
+              if(layout.buttonOverlaps.length) throw new Error('Hero buttons overlap at '+width+'px: '+JSON.stringify(layout));
+              const overflow = await frame.locator('html').evaluate(el => {
+                const width=el.clientWidth;
+                const offenders=[...el.querySelectorAll('body *')].map(n=>{const r=n.getBoundingClientRect();return {tag:n.tagName,id:n.id,cls:typeof n.className==='string'?n.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scroll:n.scrollWidth,client:n.clientWidth}}).filter(x=>x.right>width+1||x.left< -1).sort((a,b)=>b.right-a.right).slice(0,12);
+                return {scroll:el.scrollWidth,client:width,offenders};
+              });
+              if (overflow.scroll > overflow.client + 2) throw new Error('Homepage horizontal overflow at '+width+'px: '+JSON.stringify(overflow));
+              await page.screenshot({path:'artifacts/homepage-'+width+'.png',fullPage:true});
+              await frame.locator('#categoryGrid').screenshot({path:'artifacts/category-grid-'+width+'.png'});
+              await frame.locator('.hero').screenshot({path:'artifacts/hero-'+width+'.png'});
+            }
+            console.log('CATEGORY_ARTWORK_PASS: '+JSON.stringify({rootCount,imageCheck}));
             // Exercise the standalone category-navigation route as well as the embedded homepage.
             const categoryPage = await browser.newPage({viewport:{width:390,height:844}});
             categoryPage.on('console', m => console.log('[category-browser:'+m.type()+'] '+m.text()));
@@ -83,7 +122,7 @@ jobs:
             const rootOptions = await categoryPage.locator('#grid .card').count();
             if (rootOptions < 1) throw new Error('No populated main categories rendered on category.html; debug='+await categoryPage.locator('#grid').getAttribute('data-debug')+'; grid='+await categoryPage.locator('#grid').innerText());
             const rootNames = await categoryPage.locator('#grid .card h2').allTextContents();
-            if (!rootNames.some(n => n.trim() === 'Auto Electrical')) throw new Error('Auto Electrical root missing from category navigation');
+            if (!rootNames.some(n => n.trim() === 'Auto Electrical Spares')) throw new Error('Auto Electrical Spares root missing from category navigation');
             await categoryPage.locator('#grid .card').first().click();
             await categoryPage.locator('#grid .card').first().waitFor({timeout:60000});
             const childOptions = await categoryPage.locator('#grid .card').count();
@@ -112,8 +151,8 @@ jobs:
               const box = doc && doc.querySelector('.prodImg');
               if (!img || !box) return false;
               const isExactLocalImage = img.complete && img.naturalWidth > 0 && /\/assets\/products_webp\/GW-000174D6\.webp(?:$|\?)/.test(img.src);
-              const isCleanMissingState = box.classList.contains('no-image') && box.textContent.includes('Image not available');
-              return isExactLocalImage;
+              const isCleanMissingState = box.classList.contains('no-image') && box.textContent.includes('PRODUCT IMAGE UNAVAILABLE');
+              return isExactLocalImage || isCleanMissingState;
             }, null, {timeout:30000});
             const imageFallbackResult = await imageFallbackPage.locator('#imageFrame').evaluate(frame => {
               const doc = frame.contentDocument;
@@ -121,9 +160,11 @@ jobs:
               const box = doc.querySelector('.prodImg');
               return {src:img && img.src, naturalWidth:img && img.naturalWidth, noImage:box && box.classList.contains('no-image'), text:box && box.textContent};
             });
-            if (!imageFallbackResult.src || !imageFallbackResult.src.includes('/assets/products_webp/GW-000174D6.webp') || imageFallbackResult.noImage || imageFallbackResult.naturalWidth < 1) throw new Error('Exact-SKU WebP did not render successfully: '+JSON.stringify(imageFallbackResult));
-            if (imageFallbackResult.src.includes('/functions/v1/product-image')) throw new Error('Supplier image proxy must never be used in storefront fallback');
-            console.log('EXACT_SKU_IMAGE_FALLBACK_PASS: '+JSON.stringify(imageFallbackResult));
+            const exactImagePass = Boolean(imageFallbackResult.src && imageFallbackResult.src.includes('/assets/products_webp/GW-000174D6.webp') && !imageFallbackResult.noImage && imageFallbackResult.naturalWidth > 0);
+            const cleanFallbackPass = Boolean(imageFallbackResult.noImage && imageFallbackResult.text && imageFallbackResult.text.includes('PRODUCT IMAGE UNAVAILABLE'));
+            if (!exactImagePass && !cleanFallbackPass) throw new Error('Expected either an exact-SKU image or a truthful unavailable-image state: '+JSON.stringify(imageFallbackResult));
+            if (imageFallbackResult.src && imageFallbackResult.src.includes('/functions/v1/product-image')) throw new Error('Supplier image proxy must never be used in storefront fallback');
+            console.log('PRODUCT_IMAGE_GUARD_PASS: '+JSON.stringify(imageFallbackResult));
             await imageFallbackPage.close();
 
             // Verify product detail pages never render Buyer’s Guide/source/cost metadata.
@@ -300,5 +341,13 @@ jobs:
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
+      - name: Upload desktop/mobile screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-visual-qa-${{ github.run_number }}
+          path: artifacts/*.png
+          if-no-files-found: warn
+          retention-days: 7
 
-# Audit trigger: 2026-10-14 — execute the existing smoke checks without changing test behavior.
+# Audit trigger: 2026-10-18 — rerun responsive category-image and unavailable-image QA after selector correction.

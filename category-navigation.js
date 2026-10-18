@@ -57,12 +57,12 @@
       style.id='gw-category-presentation';
       style.textContent=`
         /* Approved homepage design: exactly three columns at every viewport width.
-           Nine active root categories therefore form a 3 x 3 image-led button grid. */
+           Nine approved root categories form the requested 3-column by 3-row image-led button grid. */
         #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px}
         #categoryGrid .catWrap{min-width:0;height:100%}
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
-        #categoryGrid .catImage{display:block;width:100%;height:clamp(76px,11vw,140px);overflow:hidden}
-        #categoryGrid .catImage img{display:block;width:100%;height:100%;object-fit:contain}
+        #categoryGrid .catImage{display:block!important;visibility:visible!important;width:100%;height:clamp(76px,11vw,140px);min-height:76px;overflow:hidden;flex:0 0 auto}
+        #categoryGrid .catImage img{display:block!important;visibility:visible!important;width:100%;height:100%;min-height:76px;object-fit:contain}
         #categoryGrid .catContent{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:6px;padding:10px}
         #categoryGrid .catContent b{overflow-wrap:anywhere;line-height:1.25}
         #categoryGrid .catContent small{font-size:12px}
@@ -70,7 +70,11 @@
         #categoryGrid .children{grid-column:1/-1}
         #categoryGrid .children{display:none;max-width:100%;padding:10px 8px 12px;overflow:hidden}
         #categoryGrid .catWrap.open .children{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-        #categoryGrid .children>.catWrap{flex:0 0 190px;min-width:0;max-width:220px;align-self:stretch;scroll-snap-align:start}\n        #categoryGrid .children>.catWrap .catBtn{min-height:78px;padding:10px}\n        #categoryGrid .children>.catWrap .catImage{height:92px;display:block;overflow:hidden}\n        #categoryGrid .children>.catWrap .catImage img{width:100%;height:100%;object-fit:contain}\n        #categoryGrid .children .child{flex:0 0 auto;min-width:150px;max-width:210px;min-height:46px;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #28658c;border-radius:9px;background:#071728;scroll-snap-align:start}
+        #categoryGrid .children>.catWrap{flex:0 0 190px;min-width:0;max-width:220px;align-self:stretch;scroll-snap-align:start}
+        #categoryGrid .children>.catWrap .catBtn{min-height:78px;padding:10px}
+        #categoryGrid .children>.catWrap .catImage{height:92px;display:block;overflow:hidden}
+        #categoryGrid .children>.catWrap .catImage img{width:100%;height:100%;object-fit:contain}
+        #categoryGrid .children .child{flex:0 0 auto;min-width:150px;max-width:210px;min-height:46px;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #28658c;border-radius:9px;background:#071728;scroll-snap-align:start}
         #categoryGrid .children .child span{white-space:nowrap}
         @media(max-width:700px){
           #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
@@ -79,7 +83,9 @@
           #categoryGrid .catContent b{font-size:clamp(10px,2.8vw,12px);line-height:1.2}
           #categoryGrid .catContent small{font-size:10px}
           #categoryGrid .catContent i{font-size:13px}
-          #categoryGrid .children>.catWrap{flex-basis:150px}\n          #categoryGrid .children>.catWrap .catImage{height:78px}\n          #categoryGrid .children .child{min-width:138px;font-size:12px}
+          #categoryGrid .children>.catWrap{flex-basis:150px}
+          #categoryGrid .children>.catWrap .catImage{height:78px}
+          #categoryGrid .children .child{min-width:138px;font-size:12px}
         }
         @media(max-width:360px){
           #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
@@ -87,7 +93,9 @@
           #categoryGrid .catContent b{font-size:10px}
         }
       `;
-      d.head.appendChild(style);
+      const styleTarget=d.head||d.documentElement;
+      if(!styleTarget)return;
+      styleTarget.appendChild(style);
     }catch(err){console.warn('GW category presentation:',err);}
   }
   function install(frame){

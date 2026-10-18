@@ -4,7 +4,10 @@
       const frame=document.getElementById('store');
       const d=frame && frame.contentDocument;
       if(!d) return;
+      const grid=d.getElementById('categoryGrid');
       d.querySelectorAll('.catWrap').forEach(function(card){
+        // Preserve every approved homepage root tile, including categories whose catalogue count is currently zero.
+        if(grid && card.parentElement===grid){card.style.display='';return;}
         const txt=(card.innerText||'').trim();
         const countEl=card.querySelector('.catBtn i');
         const count=countEl?parseInt((countEl.textContent||'').replace(/[^0-9]/g,''),10):NaN;
@@ -13,7 +16,6 @@
         const hasProducts=Number.isFinite(count)?count>0:(children>0 && childCounts.some(n=>n>0));
         if(!hasProducts && !/SHOP BY CATEGORY/i.test(txt)) card.style.display='none';
       });
-      const grid=d.getElementById('categoryGrid');
       if(grid){
         const visible=[...grid.querySelectorAll('.catWrap')].filter(x=>getComputedStyle(x).display!=='none');
         if(visible.length===0){ grid.innerHTML='<div class="searchStatus">Categories are being updated. Please use Search or WhatsApp us.</div>'; }

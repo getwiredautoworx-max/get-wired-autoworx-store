@@ -2316,3 +2316,166 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - For every blocked check, use the closest available alternative to produce evidence (for example, workflow artifact/screenshot, direct route/image response inspection, or local/static test); label the limits honestly. Do not call an inaccessible or stale preview verified.
 - Keep Axxess production, Supabase production data, DNS, checkout payment settings, supplier dispatch and real orders untouched without the required approval. Do not promote uncertain catalogue/image/pricing records simply to make the storefront look populated.
 - Status at this checkpoint: **visual acceptance and exact-head QA still open; release hold remains**. This checkpoint documents the owner directive and latest observed PR metadata; it does not claim the storefront is complete.
+
+
+## 2026-10-18 — Staging image-rendering repair checkpoint
+
+- Owner's latest confirmed defect diagnosis: homepage category renderer was using text-symbol artwork while CSS explicitly hid `.catImage`. A passing bright-theme test did not prove the requested image-led category layout.
+- Created review branch `fix/category-product-image-rendering-2026-10-18`; no changes were made to Axxess production.
+- Commit `73159ad979042809340308eeb327c62e7d0ac85b`: `category-navigation.js` now forces existing category image containers and their images to remain visible, including at mobile widths, overriding a hidden-state CSS rule. This only restores images if the underlying rendered markup has actual image elements; browser inspection is still required to confirm all eight category tiles have suitable category-specific assets.
+- Commit `86186f93eb7964c40f2b05a9ce700c207a6f08fd`: `assets/product-image-fallback.js` now preserves an already-loaded image instead of replacing it merely because an exact-SKU local path exists. If no image loads, it shows a branded GW “PRODUCT IMAGE UNAVAILABLE” placeholder with the SKU rather than a blank image box or a similar-looking substitute.
+- Verification status: source edits committed on review branch only. No browser run, screenshot inspection, or visual pass at 1440px, 390px, and 320px has yet been recorded for these new commits. Do not mark the image defects resolved until that inspection is complete.
+- Known limitation: this change does not establish that existing working product images are free of catalogue markings, nor does it provide new rights-cleared category image assets. Any unsuitable existing catalogue artwork must be replaced only with a verified, authorized asset; otherwise use a clearly labelled placeholder.
+- Next actions: inspect actual iframe DOM and screenshots at 1440px/390px/320px; verify eight category tiles form the requested 3×3 grid with images; audit visible product cards for cropped catalogue text/markings and confirm broken/missing images show the branded placeholder; fix any remaining issues and rerun browser QA against this exact branch head. Production remains untouched.
+
+
+## 2026-10-18 — Continued source audit (after image guard commits)
+
+- Owner instruction reaffirmed: always update `HANDOVER_CURRENT.md` after material work. This checkpoint is being recorded on the same review branch; no production deployment or Axxess upload.
+- Further inspection of `index-new.html` confirms the category renderer (`catNode`) chooses a product's `image_url` as the category tile image, then falls back to `assets/gw-logo.png`. This is not a true category-specific image map and can put a product photo or catalogue-marked thumbnail on a category tile. The previous CSS visibility change alone does not fix that underlying data/selection defect.
+- The category grid is populated from `HOME_CATEGORY_IDS` filtered by `categoryProductCount(c.id)>0`; therefore the source currently does not guarantee all eight requested root categories render. The eight-category/3-column acceptance criterion still requires verifying the configured IDs and empty-category behaviour against actual catalogue data.
+- Existing product fallback now avoids replacing a successfully loaded source image, but it cannot tell whether a loaded image has catalogue markings or shows the wrong physical item. That remains a manual/automated visual audit requirement; the guard must not be represented as an image identity/rights verification.
+- New verified work this pass: inspected the live source of category image selection and identified a second root cause beyond CSS visibility. No browser screenshots or responsive visual pass have been run for the new branch commits; CI status lookup returned no checks for the handover commit, and no PR-triggered workflow runs were returned for that commit. Treat visual QA as NOT YET VERIFIED.
+- Next implementation requirement: replace product-image-derived category art with an explicit, stable category-image mapping for the eight approved categories; if an authorized category asset is unavailable, show a clearly branded category-specific placeholder (not a random product or supplier catalogue image). Ensure category rendering does not silently omit an approved category solely because its product count is zero; show the tile with a truthful count/status if needed. Then audit product-card image rendering and test 1440px, 390px and 320px screenshots on the exact branch head.
+- Release status unchanged: staging-only review branch; production untouched; visual defects remain open until screenshot evidence is inspected.
+
+
+## 2026-10-18 — Explicit category artwork implementation
+
+- Added eight original, clean, locally stored SVG category illustrations under `assets/category-images/`: Auto Electrical Spares, Vehicle Security, Car Audio & Entertainment, Automotive Accessories, Marine Spares & Accessories, Tools/Hardware/Consumables, Camping/Leisure/Outdoors, and Trailer & Canopy. The artwork is branded in the store's blue/red palette and does not use supplier catalogue crops.
+- Updated `index-new.html` to use a stable category-ID-to-artwork map instead of selecting a random product thumbnail for the category tile. The homepage now uses exactly the eight approved top-level category IDs; 4x4 Outdoor is not a ninth root tile and remains part of the Camping/Leisure/Outdoors category plan.
+- Updated category rendering so approved active root categories remain visible even when their current product count is zero; the tile reports the real count rather than being silently omitted. This supports the requested eight tiles and a 3-column grid, but the actual rendered grid still needs browser screenshot confirmation.
+- New artwork tree commit: `de0e5fd38bf7f28b22a79f48b62e71b1799344d6`. The review branch was advanced to include it.
+- Verification limitations: no screenshot/browser runner was available through the currently exposed GitHub tools in this pass. Do not claim visual QA passed. Must inspect at 1440px, 390px, and 320px; confirm image paths load from the actual staging deployment and check overflow/card crop.
+- Product image quality remains a separate unresolved gate: existing loaded catalogue-marked or wrong-item product photos cannot be detected reliably by the fallback guard alone. Such items need a verified rights-cleared replacement or the branded unavailable placeholder. No Axxess production upload, production database change, DNS change, or payment setting change was made.
+- Owner instruction: always update this handover after every material change.
+
+
+## 2026-10-18 — Product-image fallback correction
+
+- Updated the product-card renderer so missing image URLs and failed image requests use `assets/product-image-unavailable.svg`, a clear branded placeholder that does not pretend the GW logo is the product or silently substitute a different item.
+- Added the referenced SVG asset to the same review branch.
+- This resolves the *missing/broken image fallback presentation* at source level, provided the candidate HTML and asset are served together. It does not automatically identify supplier catalogue markings embedded in an otherwise loading photo; those require asset-by-asset visual review and replacement with rights-cleared images.
+- No production upload or data change. Browser QA is still required against the exact candidate before this is accepted.
+
+
+## 2026-10-18 — Category illustration failure behavior
+
+- Changed the category-art error handler to use the explicit unavailable-image artwork rather than the business logo if an illustration asset fails to load. This prevents the logo from being misrepresented as category artwork.
+- Draft PR #57 now contains the source changes and has triggered the repository's storefront smoke, Axxess package-integrity, and public-SKU audit workflows. The last observed results were in progress for smoke/package and success for the public-SKU audit; those runs apply to the prior PR head and must be checked again for the current head.
+- No Axxess deployment, production database mutation, payment-provider setting, or DNS change was made.
+
+
+## 2026-10-18 — Resolve first QA failures and enforce eight roots
+
+- First PR smoke run failed at the product-image fallback test because the test only accepted a locally present exact-SKU WebP and rejected the intended clean unavailable-image state. Updated the assertion to accept either a loaded exact-SKU WebP or the branded unavailable state, while continuing to reject the supplier-image proxy.
+- Corrected escaped regular expressions in `assets/product-image-fallback.js` so the guard actually recognizes the GW logo as a placeholder and recognizes SKU prefixes.
+- Found a separate live-source mismatch: `category.html` still exposed generic Spare Parts as a ninth root and used older short labels. Replaced that root list with the same eight approved IDs and labels used by the homepage. Root categories no longer disappear from that navigation solely because the current active-product count is zero.
+- Extended `.github/workflows/storefront-smoke.yml` to assert exactly eight homepage root tiles, verify explicit category-image paths, test horizontal overflow at 390/320/1440px, capture screenshots at those widths, and upload them as a short-retention QA artifact.
+- Latest source changes are on draft PR #57. Package integrity and public-SKU audit passed for the earlier PR head; the first smoke test failed for the fallback-test mismatch above. The revised smoke workflow must finish successfully against the updated PR head before the source-level QA gate is accepted.
+- Still not resolved by code alone: visually inspect any existing product photo that loads successfully but contains catalogue text/watermarks or depicts the wrong part. The runtime cannot safely infer image correctness from a URL. No production deployment or database change.
+
+
+## 2026-10-18 — QA artifact sequencing correction
+
+- Corrected the smoke workflow order so screenshot artifact upload runs **after** the browser test creates the 390px, 320px and 1440px screenshots. This avoids an empty artifact caused by placing the upload step before the test.
+- Latest workflow source includes eight-root assertions, explicit image-path checks, responsive overflow checks, and a product-image guard test that accepts either a real exact-SKU local image or a clearly labelled unavailable state.
+- QA is still in progress: the older run #799 failed before these final workflow changes were included. Do not treat it as the current-head result. Await a fresh run and inspect its logs/artifacts.
+
+
+## 2026-10-18 — Responsive QA selector correction
+
+- The first screenshot-enabled smoke run correctly caught a test-selector issue: the image query included nested subcategory cards (63 descendants) instead of the eight top-level cards. Updated the selectors to target only direct root-card image elements. This was a QA assertion defect, not a 63-tile homepage render.
+- Screenshot artifact upload now executes after the test step. Await the next smoke run after the selector correction; prior failure must not be represented as a pass.
+
+
+## 2026-10-18 — Fresh responsive QA rerun requested
+
+- Corrected the root-image selector after the prior test counted 63 nested images rather than the eight top-level category illustrations.
+- Added a workflow-only trigger-comment update so the next smoke run is created after the selector correction. Do not rely on run #803: its log belongs to the earlier workflow version and failed on the old selector.
+
+
+## 2026-10-18 — SVG parsing defect found and corrected
+
+- The responsive smoke run exposed four category SVGs falling back to the unavailable-image graphic. Root cause: unescaped ampersands in SVG XML `aria-label` attributes for Car Audio, Marine, Tools, and Camping caused the SVG documents to fail parsing.
+- Escaped the ampersands in all four affected SVG labels. The other four category illustrations were loading successfully.
+- Rerun browser smoke after this exact correction; verify all eight image elements load and capture current screenshots before claiming the category artwork issue is resolved.
+
+
+## 2026-10-18 — Final two category asset/runtime defects
+
+- The latest smoke run found the remaining Trailer & Canopy SVG had the same unescaped-ampersand XML issue. Escaped it; all eight category SVG accessibility labels are now XML-safe.
+- Browser logs also showed the category-navigation bridge trying to append CSS when the embedded document had no `head` node yet. Added a guarded target (`head` or `documentElement`) and corrected its outdated nine-root comment to eight.
+- Fresh smoke run required against these exact latest source changes. Do not call visual QA complete until its logs and screenshot artifact are reviewed.
+
+
+## 2026-10-18 — Mobile/initial-state layout correction
+
+- Reviewed the responsive screenshot artifact from failed run #812. The storefront's `hidden` attribute was being overridden by explicit `.shopControls{display:flex}` and `.mobileBuyBar{display:flex}` CSS, causing inactive filter controls and the purchase bar to appear before they should.
+- Added an explicit hidden-state override for both components. This should keep the shop controls hidden until products are ready and keep the fixed Add to Cart / Buy Now bar hidden until a product is selected.
+- The screenshot run also exposed 8px horizontal overflow at 320px. It must be rechecked after the hidden-state fix; if it remains, use the new screenshot/report to identify the overflowing element.
+
+
+## 2026-10-18 — 320px overflow diagnostic
+
+- After the hidden-state fix, the next responsive smoke run still measured 328px document width at a 320px viewport. Added a compact DOM-offender report to the smoke failure so the next run identifies the exact elements extending beyond the viewport rather than requiring guesswork.
+- The category artwork assets now load in the last artifact; the remaining test gate is layout overflow and the separate browser syntax-error page report.
+
+
+## 2026-10-18 — Small-screen header and syntax diagnostics
+
+- The 320px overflow report identified the header search field (right edge 328px) and cart badge (right edge 329px). Added a strict 100vw header bound and narrower search positioning for widths at or below 380px, plus an in-bounds cart badge.
+- Updated the browser QA logger to emit the full page-error stack for the remaining “Invalid or unexpected token” message. The next run should establish whether it is from a script URL or inline source rather than leaving it as an unexplained warning.
+
+
+## 2026-10-18 — Reapply eight-root homepage fix on latest branch head
+
+- Rechecked the exact current branch source and discovered the homepage root list had regressed to nine IDs even though an earlier commit had reduced it to eight. Reapplied the eight-root list directly to the latest file revision while preserving the newer CSS and image fallback corrections.
+- This demonstrates why acceptance must be tied to the exact branch head rather than an earlier passing check. The next smoke run must assert eight direct homepage roots and use the latest screenshots.
+
+
+## 2026-10-18 — Category rendering and product-image recovery hardening
+
+- **Corrected the intended homepage grid:** the approved layout is nine category tiles in a 3-column by 3-row grid. The 4x4 Outdoor tile has been restored as the ninth tile and given its own illustration. Earlier notes in this checkpoint that said to suppress 4x4 Outdoor as a root tile were incorrect and are superseded by this correction.
+- **Category artwork:** nine separate branded SVG illustrations are present in `assets/category-images/`; all nine paths were fetched successfully from the review branch. The five labels containing ampersands now use a single XML entity escape (`&amp;`), not a double-escaped entity.
+- **Category rendering:** `index-new.html` now has nine category IDs and a nine-entry category artwork map. `assets/category-cleanup.js` now preserves direct children of `#categoryGrid` even when the current product count is zero, so the cleanup loop cannot silently remove an approved root tile. Nested empty categories can still be hidden.
+- **Navigation syntax:** corrected literal escaped newline sequences in `category-navigation.js` that were outside the CSS template literal and could invalidate the script. The responsive style injection now uses a guarded `head`/document-element target and the comment reflects the nine-tile grid.
+- **Broken product images:** `assets/product-image-fallback.js` now keeps already-loaded images, tries exact public-SKU `assets/products_webp/{SKU}.webp` and then `assets/products/{SKU}.jpg` for missing/broken/placeholder images, and shows a branded unavailable state rather than a neighbouring product if both exact-SKU assets fail. It is loaded by `store.html`.
+- **Source syntax checks:** parsed the four external JS files (`category-navigation.js`, `assets/product-image-fallback.js`, `assets/category-cleanup.js`, `assets/progressive-store-enhancements.js`) successfully. Parsed all four inline scripts in `index-new.html` and the inline script in `store.html` successfully. Confirmed nine category IDs and fetched all nine SVG assets.
+- **Still not verified:** these checks do not execute the storefront in a browser. The read-only Playwright run must confirm the actual live/staging page, all nine tile images, tile click-through, desktop layout, mobile layout and horizontal overflow at 320px. The current browser smoke workflow is scheduled/manual-dispatch, and no run from this exact branch has yet been inspected.
+- **Product-photo content defect:** the guard can detect failed/placeholder images, not detect catalogue text or prove that an otherwise-loading photo depicts the right part. Do not claim all catalogue-marked thumbnails are cleaned until an image-by-image audit and verified replacement assets are completed. Keep this as an explicit visual QA gate.
+- **Production safety:** no Axxess upload, production database mutation, DNS change, payment change, Cloudflare deployment or Netlify deployment was made.
+
+
+## 2026-10-18 — Screenshot-driven layout polish
+
+- Inspected the successful responsive screenshot artifact from run #832. Confirmed all eight category SVGs load and the smoke suite passed, but screenshots exposed additional mockup mismatches: the hero was still too tall, the mobile nav was visible on desktop, category SHOP labels and hero tagline had poor contrast, and the progressive enhancement filters/SAVED control were cluttering the header.
+- Moved the progressive search filters and saved-products control into the All Products section rather than the header.
+- Reduced the hero to 340px on desktop and 320–360px on mobile, improved bright-theme text contrast, and explicitly hid the mobile navigation on desktop.
+- These latest screenshot-driven edits need a fresh screenshot/overflow run. Run #832 proves the earlier source passed the eight-category image, category navigation, exact-SKU fallback, price/checkout and responsive overflow smoke checks; it does not validate these newer visual adjustments.
+
+
+## 2026-10-18 — Smoke-test expectation aligned with the approved 3×3 layout
+
+- The first Playwright smoke run reached the homepage and failed at the test assertion because the test expected eight root tiles while the approved 3×3 layout renders nine, including 4x4 Outdoor. This was a stale test expectation, not a storefront runtime error.
+- Updated `.github/workflows/storefront-smoke.yml` to assert exactly nine root tiles and nine category-illustration images.
+- New exact-commit smoke run queued: run ID `39099810328` (run #840). It was still in progress at the last check; inspect the result, screenshots and any further failure before marking the grid verified.
+- JavaScript syntax checks passed again for all four external storefront scripts, all four inline scripts in `index-new.html`, and the inline script in `store.html`. All nine SVG paths exist. These static checks do not replace browser visual acceptance.
+- Current branch remains staging-only and the draft PR remains unmerged. Do not deploy to Axxess production until the actual screenshots and remaining checks pass.
+
+
+## 2026-10-18 — Consistent exact-SKU product imagery
+
+- Changed homepage product cards, product-detail modal, related-product tiles, and AI-match suggestions to use the same local exact-public-SKU WebP path used by the standalone product listing/detail pages.
+- This removes the live product-image Edge Function URL from those visual slots, avoiding the unpredictable remote supplier-image response as the storefront thumbnail source. If the exact local image is missing or fails, the UI uses the explicit branded unavailable-image asset.
+- This gives a deterministic image path and preserves the clean fallback. It does not grant rights to publish the 53 ASC-watermarked assets identified in the separate image-rights register; those remain held pending permission/approval and must not be edited to erase supplier marks.
+- Run the responsive smoke and package-integrity checks against this latest image-source change.
+
+
+## 2026-10-18 — Screenshot-led hero/header/category polish
+
+- Inspected actual Playwright screenshots from run #840 (artifact `storefront-visual-qa-840`) at 1440px, 390px and 320px. The screenshots revealed real visual defects despite the earlier test reaching the category assertions: the search field overlapped the hero/rating area, the decorative vehicle strip collided with hero buttons at 320px, the category tiles had a pink radial overlay across the artwork, and the SHOP label was positioned over the category image.
+- Updated the end of `index-new.html` with responsive overrides: desktop header search is back in normal header flow; mobile header is an explicit two-row grid with search beneath logo/cart; hero is shorter; the overlapping vehicle strip is removed; mobile hero actions wrap without intended overlap; category pseudo-overlay is removed; category SHOP text is placed in the content area; SVGs render without blend mode.
+- Strengthened `.github/workflows/storefront-smoke.yml`: it now waits for each category SVG to decode and asserts all nine are loaded; at 390px, 320px and 1440px it checks that the header search does not overlap the hero and that hero buttons do not overlap, in addition to horizontal-overflow checks and screenshots.
+- New exact-head smoke run #845 / ID `39100206229` is in progress. It must be inspected; do not claim the CSS fix passed until the run and new screenshots are reviewed.
+- Static syntax parsing remains passed before this latest CSS-only addition; recheck after current edits. No production deployment or Axxess upload.
