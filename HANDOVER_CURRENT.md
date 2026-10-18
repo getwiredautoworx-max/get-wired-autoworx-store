@@ -1956,3 +1956,10 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - QA screenshot of the light-canvas build showed several featured-product cards using remote edge-function images with supplier catalogue text/crops, despite image HTTP/decode checks passing.
 - Verified the exact public-SKU WebP assets exist in the repository for the current featured products (e.g. `assets/products_webp/GW-F9AC1A35.webp`, `GW-92028D5D.webp`, `GW-478D5A49.webp`). Updated product-card rendering to prefer the exact matching public-SKU WebP asset and use the remote URL only as fallback. Commit: f082049969bced19fe430b0f691b4dc20531b2b2.
 - Await exact-head QA and inspect the screenshot to confirm these images actually render cleanly; no claim of visual acceptance until that evidence is checked. Production remains untouched.
+
+
+## 2026-10-18 — Blanket vehicle-fitment warning cleanup
+- Rechecked `assets/progressive-store-enhancements.js` on `review/staging-ui-verification-fixes-current`. The current product-card flow no longer creates the blanket “Vehicle fitment: verify application…” warning; vehicle verification remains conditional in the product-detail modal when product data indicates a make/model/year or a non-generic application.
+- Removed the now-unused `.gwFitment` styling and added defensive cleanup that removes stale `.gwFitment` nodes from product cards, covering legacy markup that may remain in cached/embedded page content.
+- Commit: `8ad4f81298a23a68d51ebbadd7d6e152233198a6`.
+- This source fix is committed on the review branch. It is not a claim of live-browser verification: confirm the Cloudflare preview deploys this exact commit and check a generic tool/consumable has no vehicle warning while a vehicle-specific product still prompts for fitment. Main/live Axxess remains untouched; do not merge or upload until owner acceptance.
