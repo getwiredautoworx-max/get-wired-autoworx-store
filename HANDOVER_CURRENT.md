@@ -2453,3 +2453,12 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Moved the progressive search filters and saved-products control into the All Products section rather than the header.
 - Reduced the hero to 340px on desktop and 320–360px on mobile, improved bright-theme text contrast, and explicitly hid the mobile navigation on desktop.
 - These latest screenshot-driven edits need a fresh screenshot/overflow run. Run #832 proves the earlier source passed the eight-category image, category navigation, exact-SKU fallback, price/checkout and responsive overflow smoke checks; it does not validate these newer visual adjustments.
+
+
+## 2026-10-18 — Smoke-test expectation aligned with the approved 3×3 layout
+
+- The first Playwright smoke run reached the homepage and failed at the test assertion because the test expected eight root tiles while the approved 3×3 layout renders nine, including 4x4 Outdoor. This was a stale test expectation, not a storefront runtime error.
+- Updated `.github/workflows/storefront-smoke.yml` to assert exactly nine root tiles and nine category-illustration images.
+- New exact-commit smoke run queued: run ID `39099810328` (run #840). It was still in progress at the last check; inspect the result, screenshots and any further failure before marking the grid verified.
+- JavaScript syntax checks passed again for all four external storefront scripts, all four inline scripts in `index-new.html`, and the inline script in `store.html`. All nine SVG paths exist. These static checks do not replace browser visual acceptance.
+- Current branch remains staging-only and the draft PR remains unmerged. Do not deploy to Axxess production until the actual screenshots and remaining checks pass.
