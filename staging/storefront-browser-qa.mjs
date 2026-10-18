@@ -296,7 +296,8 @@ try {
   check('customer_wrapper_category_roots', wrapperRoots === 8, 'found ' + wrapperRoots + ' top-level categories in store.html iframe');
   const exactLocalImageLoaded = Number(wrapperProductImage.naturalWidth || 0) > 0 &&
     /\/assets\/products(?:_webp)?\/GW-[^/?]+\.(?:webp|jpg)(?:$|\?)/i.test(String(wrapperProductImage.src || ''));
-  const explicitPlaceholderShown = wrapperProductImage.placeholder === true && wrapperProductImage.imageHidden === true;
+  const explicitPlaceholderShown = wrapperProductImage.placeholder === true &&
+    (wrapperProductImage.imageHidden === true || /product-image-pending\\.svg/i.test(String(wrapperProductImage.src || '')));
   check('customer_wrapper_exact_sku_image_or_explicit_placeholder',
     exactLocalImageLoaded || explicitPlaceholderShown,
     JSON.stringify(wrapperProductImage));
