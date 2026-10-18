@@ -2470,3 +2470,12 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - This removes the live product-image Edge Function URL from those visual slots, avoiding the unpredictable remote supplier-image response as the storefront thumbnail source. If the exact local image is missing or fails, the UI uses the explicit branded unavailable-image asset.
 - This gives a deterministic image path and preserves the clean fallback. It does not grant rights to publish the 53 ASC-watermarked assets identified in the separate image-rights register; those remain held pending permission/approval and must not be edited to erase supplier marks.
 - Run the responsive smoke and package-integrity checks against this latest image-source change.
+
+
+## 2026-10-18 — Screenshot-led hero/header/category polish
+
+- Inspected actual Playwright screenshots from run #840 (artifact `storefront-visual-qa-840`) at 1440px, 390px and 320px. The screenshots revealed real visual defects despite the earlier test reaching the category assertions: the search field overlapped the hero/rating area, the decorative vehicle strip collided with hero buttons at 320px, the category tiles had a pink radial overlay across the artwork, and the SHOP label was positioned over the category image.
+- Updated the end of `index-new.html` with responsive overrides: desktop header search is back in normal header flow; mobile header is an explicit two-row grid with search beneath logo/cart; hero is shorter; the overlapping vehicle strip is removed; mobile hero actions wrap without intended overlap; category pseudo-overlay is removed; category SHOP text is placed in the content area; SVGs render without blend mode.
+- Strengthened `.github/workflows/storefront-smoke.yml`: it now waits for each category SVG to decode and asserts all nine are loaded; at 390px, 320px and 1440px it checks that the header search does not overlap the hero and that hero buttons do not overlap, in addition to horizontal-overflow checks and screenshots.
+- New exact-head smoke run #845 / ID `39100206229` is in progress. It must be inspected; do not claim the CSS fix passed until the run and new screenshots are reviewed.
+- Static syntax parsing remains passed before this latest CSS-only addition; recheck after current edits. No production deployment or Axxess upload.
