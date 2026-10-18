@@ -2999,3 +2999,11 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Verification limitation: no new exact-head browser run, screenshots, or artifact have been retrieved yet. The connected commit-run query returns no runs for the latest review commits and is documented to filter to PR-triggered runs only; this is not proof that no Actions run exists. Do not claim the theme or responsive layout passed visual QA until the actual latest-head report/screenshots are inspected.
 - Remaining visual gates: verify desktop 1440px, mobile 390px and small mobile 320px; confirm category-card images/labels are appropriate and not blank, no horizontal overflow, no mobile-nav overlap, Part Search and Request a Part popups, category filtering, cart and checkout routes. Exact product image identity/rights remain a separate gate.
 - No merge, Axxess upload, Supabase production write, DNS/payment change, or live deployment was performed. Release status remains HOLD. Continue with the latest-head browser workflow/artifact retrieval; fix only evidence-backed failures, then update this handover with actual run IDs and outcomes.
+
+
+## CONTINUATION LOG — 2026-10-18 — DARK SECTION CASCADE GUARD
+
+- Follow-up inspection of the review branch found the earlier global light-theme rules also applied white backgrounds to ordinary HTML section elements even after the brightTheme body class was removed. Corrected the final staging override in index-new.html with commit 35f4799246a73269f7b5f756261d703221e6c579: content sections are transparent over the dark canvas and the footer is explicitly dark.
+- Current PR #54 head is 35f4799246a73269f7b5f756261d703221e6c579; still draft and unmerged.
+- Exact-head GitHub Actions browser QA run #83 (39096048403) is pending: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096048403 . No screenshot artifact or completed result is available yet. The earlier run for commit 1d9a4715363de87f9b8bee8e4c08bd9afbbfae01 is not the latest source revision and must not be used as acceptance evidence.
+- No production changes. Next: inspect the completed run for exact SHA 35f4799246a73269f7b5f756261d703221e6c579, retrieve screenshots/report, fix concrete failures only, and keep PR draft until the desktop/mobile visual review is acceptable.
