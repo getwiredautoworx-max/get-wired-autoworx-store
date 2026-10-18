@@ -2357,3 +2357,10 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Added the referenced SVG asset to the same review branch.
 - This resolves the *missing/broken image fallback presentation* at source level, provided the candidate HTML and asset are served together. It does not automatically identify supplier catalogue markings embedded in an otherwise loading photo; those require asset-by-asset visual review and replacement with rights-cleared images.
 - No production upload or data change. Browser QA is still required against the exact candidate before this is accepted.
+
+
+## 2026-10-18 — Category illustration failure behavior
+
+- Changed the category-art error handler to use the explicit unavailable-image artwork rather than the business logo if an illustration asset fails to load. This prevents the logo from being misrepresented as category artwork.
+- Draft PR #57 now contains the source changes and has triggered the repository's storefront smoke, Axxess package-integrity, and public-SKU audit workflows. The last observed results were in progress for smoke/package and success for the public-SKU audit; those runs apply to the prior PR head and must be checked again for the current head.
+- No Axxess deployment, production database mutation, payment-provider setting, or DNS change was made.
