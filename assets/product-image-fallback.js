@@ -61,6 +61,11 @@
         var titleNode = scope.querySelector('h3,h2');
         var title = titleNode ? titleNode.textContent.trim() : '';
         var img = box.querySelector('img');
+        var qualityWindow = doc.defaultView;
+        if (img && qualityWindow && typeof qualityWindow.gwProductImageNeedsReview === 'function' && qualityWindow.gwProductImageNeedsReview(sku)) {
+          showPlaceholder(box, title, sku);
+          return;
+        }
         if (!img) {
           img = doc.createElement('img');
           img.alt = title || (sku ? 'Product image for SKU ' + sku : 'Product image unavailable');
