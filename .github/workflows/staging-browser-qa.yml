@@ -1,4 +1,5 @@
 name: Staging storefront browser QA
+# QA revision marker: validate neutral image placeholders and current storefront source
 on:
   push:
     branches:
