@@ -2377,3 +2377,14 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Important limitation: current repository `assets/` root contains the business logo and generic product placeholder, but no dedicated category photo assets. The current category renderer uses icon artwork, not verified category photography. Actual photographic category assets are still required to fully satisfy the owner's image-led tile request; do not represent the icon tiles as genuine product photos.
 - The prior Cloudflare deployment bot confirmed commit `82182c4` at preview `https://7581f720.get-wired-autoworx-store.pages.dev`. The newest commit `f4f1864` must receive its own deployment and screenshot verification before it can be treated as the latest validated preview.
 - Current status remains: layout CSS committed to review branch; visual QA and photographic category assets not verified; release HOLD; Axxess production untouched.
+
+## 2026-10-18 — conditional vehicle verification and product-card cleanup
+
+- Owner rule clarified: products whose name, description, application, or compatibility data identifies a vehicle make/model or model-year range must prompt customers to verify fitment before ordering. General-purpose tools, hardware, clips and consumables must not get a blanket vehicle warning.
+- Review-branch changes in `assets/progressive-store-enhancements.js`:
+  - Commit `34c8488404c17f49d57304735af1385137e39114` removed the universal fitment warning and removed the customer-facing “Copy SKU” card utility. The utility had been added as a convenience, but the owner does not want it shown beneath products.
+  - Commit `93c49edb38fef940eae0e13e6004b9fc34ed0a8d` added a conditional vehicle-compatibility prompt in the product detail modal, including a WhatsApp verification action that asks the customer to provide make, model, year and engine.
+  - Commit `9b77c609a5b5b64a9ca7109f99684aca63c1418a` corrected the conditional detector after source inspection.
+- Detection uses product name, description, compatible-vehicle/application/specification fields and recognized vehicle makes/model-year patterns. This is a conservative client-side heuristic; verify representative product examples in staging and adjust if it misses genuine vehicle-specific items or flags generic products.
+- The old `.gwCopy` CSS remains unused styling only; no “COPY SKU” text or SKU-button creation logic remains in the enhancement script.
+- QA/release: these commits are on `review/staging-ui-verification-fixes-current`; no claim is made that the deployed preview has incorporated them until the exact-head Cloudflare deployment and browser test are verified. PR #54 remains unmerged and Axxess production must remain untouched.
