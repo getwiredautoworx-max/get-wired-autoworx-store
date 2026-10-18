@@ -2438,3 +2438,39 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Important evidence limit: the smoke run published no artifacts/screenshots, and its success does not establish that it checked 1440px, 390px and 320px geometry. Do not claim the mobile screenshot issue is fully resolved yet.
 - Handover-only main commit `8201edd52246e4fc53255eebff8d7dfd9c45222f` triggered a main Pages workflow run `39138762363`; it was still in progress at last check. That main deploy does not deploy the separate mobile-fix branch.
 - Next action: obtain a browser run with explicit viewport assertions/screenshots against the preview built from SHA `30e11771ce0124d2f375048c90d7a57817bb86cf`; if no accessible runner/artifact path exists, record that blocker rather than treating generic smoke success as visual acceptance. Worker runtime logs remain required to close the separate Worker failure.
+
+
+## 2026-10-18 — Worker/preview log diagnosis and live catalogue audit
+
+### Deployment failure: exact log evidence and correction attempted
+- Inspected failed GitHub Actions run **39108450342** (https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39108450342), job **117619254700**.
+- The log proves this is a **Cloudflare Pages preview deploy**, not a Cloudflare Worker deploy: command was `wrangler pages deploy . --project-name=get-wired-autoworx-store --branch=review-staging-ui-verification-fixes-current`.
+- Exact failure: Wrangler exited because `CLOUDFLARE_API_TOKEN` was not set in the non-interactive runner. It was not a CPU/runtime/dependency error.
+- The workflow already referenced `secrets.CLOUDFLARE_API_TOKEN` and `secrets.CLOUDFLARE_ACCOUNT_ID`, but those values were empty/unavailable to that run. I committed a targeted workflow change on `review/staging-ui-verification-fixes-current`, commit `42d839965a8beb0a58ec3df9ac90b6305d5f2788`, adding explicit environment variables and a credential preflight that fails with a clear error without exposing values.
+- Verification run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39139279623. The preflight correctly failed and proved both secret values are not available to the workflow; deploy step was skipped. This is a useful diagnosis, but **the preview deployment is still blocked** until a repository owner configures valid Actions secrets `CLOUDFLARE_API_TOKEN` (with Pages deploy permission) and `CLOUDFLARE_ACCOUNT_ID`. I cannot create or retrieve secrets through the available GitHub connection and will not fabricate them.
+- Repository tree/config has no separate Cloudflare Worker entry point or Worker deploy workflow; root `wrangler.toml` is Pages-only. Therefore there is no Worker runtime failure to fix in this repository based on the current evidence. If an independent Worker service is intended, its script/config and failing run URL are not present here. Do not conflate its status with Pages preview.
+- Owner action required for preview deploy: add the two Actions secrets in GitHub repository Settings → Secrets and variables → Actions. Never commit credentials to the repository.
+
+### Read-only production catalogue validation — 2026-10-18
+- Ran SELECT-only checks against Supabase project `ojytykqpvonxvepprgbh`; no production rows were modified.
+- Active products: **4,187**.
+- Active products missing selling price: **0**.
+- Active products with blank name: **0**.
+- Active products missing category ID: **0**.
+- Active products mapped to missing/inactive category: **0**.
+- Active products with invalid/missing public SKU: **0**.
+- Duplicate supplier SKU groups: **0**.
+- Active price formula mismatches (cost × 1.15 × 1.35, tolerance R0.02): **0**.
+- Active products using placeholder image `/assets/product-placeholder.svg`: **86** (2.1% of active catalogue). The other 4,101 products have known proxy/direct WebP references according to the catalogue image audit.
+- Latest available Catalogue Image Audit run `39133174207` passed structural mapping checks and HTTP smoke tests (four proxy samples and one public WebP sample returned HTTP 200), but its own report shows **86 placeholders without a known exact-SKU WebP asset**, **0 invalid/mismatched public image references**, and 800 internal supplier-keyed source image files. A green audit therefore does not mean all product images exist or that every image has been visually matched.
+- Bounded ASC image sync run `39132979800` checked 29 eligible placeholder candidates and matched **0**. Outcomes: 19 `no_product_cards`, 10 `sku_not_in_search_results`. ASC site connectivity was HTTP 200; these outcomes do not establish product discontinuation, only that this automated exact-SKU/name search did not locate a verified image.
+- Created a source-of-truth blocker list with all 86 active placeholder products (public SKU, internal supplier SKU, name, current image reference, audit status): `audits/catalogue-image-blockers-2026-10-18.csv`, commit `8ff5d7f7ad6d4d4ef81d1d704a8b243fdde613c2`. This is an audit file only; no database rows were changed.
+- Do not auto-fill images from approximate name matches, unverified Google results, or the existing 800 supplier-keyed assets (some may contain supplier catalogue markings). Each replacement must be an exact product/fitment match and be visually checked.
+
+### Release gates / current state
+- Preview deploy: **BLOCKED by missing/unavailable GitHub Actions Cloudflare secrets**; explicit preflight now diagnoses this immediately.
+- Independent Worker: **NOT CONFIGURED/NOT FOUND in this repository**; cannot call it resolved until its actual service/config/run is identified. The available failing run was Pages, not Worker.
+- Catalogue fields/pricing/category relationships: SELECT-only checks passed for the counts above.
+- Catalogue imagery: **NOT PASSED** — 86 placeholders remain; exact-match image acquisition did not find matches for 29 attempted candidates.
+- Mobile visual QA: smoke test passed for mobile CSS commit `30e11771ce0124d2f375048c90d7a57817bb86cf`, but no screenshot artifacts exist for explicit 1440px/390px/320px validation.
+- Release remains **HOLD**. No Axxess upload, DNS changes, payment changes, or production catalogue edits were made.
