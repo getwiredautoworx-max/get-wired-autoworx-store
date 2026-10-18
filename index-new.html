@@ -424,6 +424,55 @@ pointer-events:none}
 .brightTheme .catContent small{color:#61798e!important}
 .brightTheme .catContent i{color:#087fce!important;text-shadow:none!important}
 .brightTheme .heroText .heroTagline{color:#17324a!important;text-shadow:none!important}
+
+/* Screenshot-driven layout correction: separate header search from hero, remove overlays, keep category artwork unobscured. */
+@media(min-width:701px){
+ .header{height:auto!important;padding-bottom:0!important}
+ .head{display:flex!important;min-height:82px!important;padding:7px 16px!important;gap:13px!important}
+ .head .search{position:static!important;left:auto!important;right:auto!important;top:auto!important;z-index:auto!important;max-width:500px!important;margin-left:auto!important;flex:1 1 420px!important}
+ .heroCard{height:290px!important;min-height:0!important}
+ .heroText{padding:20px 4%!important;justify-content:center!important;align-items:flex-start!important;text-align:left!important}
+ .heroText .heroTagline{align-self:flex-start!important}
+ .heroCard:after{display:none!important;content:none!important}
+}
+@media(max-width:700px){
+ .header{height:auto!important;padding-bottom:0!important;overflow:visible!important}
+ .head{position:relative!important;display:grid!important;grid-template-columns:34px minmax(0,1fr) 40px!important;grid-template-rows:62px 44px!important;gap:5px 8px!important;padding:6px 10px!important;min-height:0!important}
+ .hamb{grid-column:1;grid-row:1;align-self:center;width:34px!important;flex:0 0 34px!important}
+ .logo{grid-column:2;grid-row:1;width:100%!important;max-width:250px!important;height:56px!important;justify-self:center;align-self:center}
+ .cart{grid-column:3;grid-row:1;align-self:center;justify-self:end;font-size:24px!important}
+ .head .search{position:static!important;grid-column:1/-1!important;grid-row:2!important;left:auto!important;right:auto!important;top:auto!important;width:100%!important;max-width:none!important;margin:0!important;z-index:auto!important}
+ .head .search input{height:42px!important;box-sizing:border-box!important;width:100%!important;padding:8px 14px!important;font-size:13px!important}
+ .hero{margin-top:0!important;padding:0!important}
+ .heroCard{height:270px!important;min-height:0!important}
+ .heroText{position:absolute!important;inset:0!important;padding:38px 10px 10px!important;justify-content:center!important;align-items:center!important;text-align:center!important;gap:2px!important}
+ .heroText .since{margin:0 0 3px!important;padding:4px 18px!important;font-size:11px!important}
+ .heroText .heroTagline{align-self:center!important;font-size:clamp(9px,2.6vw,12px)!important;margin:0 0 3px!important;padding:3px 5px!important}
+ .heroText h1{font-size:clamp(20px,5.6vw,27px)!important;line-height:1.02!important;margin:4px 0!important}
+ .heroText p{font-size:11px!important;line-height:1.25!important;margin:3px auto 5px!important;max-width:360px!important}
+ .heroBtns{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;gap:6px!important;max-width:100%!important}
+ .heroBtns .btn{padding:8px 9px!important;font-size:10px!important;white-space:nowrap!important}
+ .heroCard:after{display:none!important;content:none!important}
+ .ratingbox{top:6px!important;right:7px!important;transform:scale(.62)!important;transform-origin:top right!important}
+ .catWrap:before{display:none!important;content:none!important}
+ #categoryGrid .catBtn .catContent i{position:static!important;top:auto!important;right:auto!important;align-self:flex-start!important;margin-top:5px!important;font-size:10px!important;line-height:1.1!important;color:#087fce!important;text-shadow:none!important}
+ #categoryGrid .catImage{background:#f2f7fb!important}
+ #categoryGrid .catImage img{mix-blend-mode:normal!important;object-fit:contain!important}
+ body{padding-bottom:76px!important}
+}
+@media(max-width:360px){
+ .head{grid-template-columns:30px minmax(0,1fr) 34px!important;grid-template-rows:56px 42px!important;gap:4px 6px!important;padding:5px 8px!important}
+ .hamb{width:30px!important;flex-basis:30px!important;font-size:25px!important}
+ .logo{height:49px!important}
+ .cart{font-size:22px!important}
+ .head .search input{height:40px!important;font-size:12px!important;padding:7px 11px!important}
+ .heroCard{height:278px!important}
+ .heroText{padding:36px 7px 8px!important}
+ .heroText h1{font-size:20px!important}
+ .heroText p{font-size:10px!important;max-width:300px!important}
+ .heroBtns .btn{padding:7px 8px!important;font-size:9px!important}
+ .ratingbox{transform:scale(.56)!important}
+}
 </style></head><body><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><button class="btn secondary partAction" type="button" onclick="openPartSearch()">PART SEARCH</button><button class="btn secondary partAction primaryAction" type="button" onclick="openPartRequest()">REQUEST A PART</button><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
 <div class="sectionTitle"><h2>FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Vehicle-specific catalogue search</span></div>
 <div class="vehicleFinder">
