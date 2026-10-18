@@ -59,9 +59,7 @@ function install(frame){
     // Vehicle compatibility prompt is added only for vehicle-specific products by the dedicated fitment flow.
     
     if(!card.querySelector('.gwWA')){const a=d.createElement('a');a.className='gwWA';a.target='_blank';a.rel='noopener';a.textContent='WHATSAPP ABOUT THIS PRODUCT';a.href=WA+'?text='+encodeURIComponent(`Hi Get Wired AutoWorx, I am enquiring about ${name}${sku?' (SKU '+sku+')':''}. Please confirm availability, current price and product details.`);card.appendChild(a)}
-    if(false && sku&&!card.querySelector('.gwTools')){ // SKU copy utility intentionally disabled on customer-facing cards.
-      const tools=d.createElement('div');tools.className='gwTools';const b=d.createElement('button');b.className='gwCopy';b.textContent='COPY SKU';b.onclick=async()=>{try{await navigator.clipboard.writeText(sku);b.textContent='SKU COPIED';setTimeout(()=>b.textContent='COPY SKU',1200)}catch(e){b.textContent=sku}};tools.appendChild(b);card.appendChild(tools);
-    }
+
   })}
   const obs=new MutationObserver(enrich);obs.observe(d.body,{childList:true,subtree:true});enrich();
   // Install catalogue search/tools only after the search UI and product modal exist.
@@ -126,6 +124,28 @@ function install(frame){
       const title=detail.querySelector('h2')?.textContent?.trim();if(!title)return;
       const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
       const p=all.find(x=>x.name===title);if(!p)return;
+      // Ask for vehicle compatibility confirmation only when product data indicates a specific make/model/application.
+      const fitmentText=[p.name,p.description,p.compatible_vehicles,p.vehicle_application,p.application,p.specifications,p.slug].filter(Boolean).join(' ').toLowerCase();
+      const makes=['toyota','nissan','isuzu','ford','volkswagen','vw','mazda','honda','hyundai','kia','renault','suzuki','mitsubishi','mercedes','bmw','audi','volvo','iveco','man ','scania','daf ','tata','mahindra','jeep','land rover','range rover','chevrolet','opel','peugeot','citroen','fiat','subaru','lexus','jaguar','proton','perodua','daihatsu','ssangyong','fuso','hino','kia'];
+      const compat=String(p.compatible_vehicles||p.vehicle_application||p.application||'').trim().toLowerCase();
+      const hasSpecificMake=makes.some(make=>new RegExp('(^|[^a-z])'+make.trim().replace(/[.*+?^${}()|[\]\\]/g,'\\      const actions=detail.querySelector('.detailActions');if(!actions||actions.querySelector('.gwWishlist'))return;
+      const b=d.createElement('button');b.className='gwWishlist';b.textContent='♡ SAVE PRODUCT';b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
+')+'([^a-z]|$)').test(fitmentText));
+      const hasModelYear=/\\b(19[7-9]\\d|20[0-3]\\d)\\s*(?:-|to|\\/|–)\\s*(?:(?:19|20)\\d{2}|onwards?|present)?\\b/i.test(fitmentText);
+      const hasFitment=!!compat&&!/^(universal|all vehicles|all makes|n\\/?a|none|not specified|generic)$/i.test(compat);
+      const needsVehicleCheck=hasSpecificMake||hasModelYear||hasFitment||/\\b(for|fits|fitment|application)\\s+(?:the\\s+)?(?:toyota|nissan|isuzu|ford|vw|volkswagen|mazda|honda|hyundai|kia|renault|suzuki|mitsubishi|mercedes|bmw|audi|volvo|iveco|scania|jeep|land rover|chevrolet|opel|peugeot|fiat|subaru|lexus|jaguar)\\b/i.test(fitmentText);
+      let verify=detail.querySelector('.gwVehicleVerify');
+      if(needsVehicleCheck){
+        if(!verify){
+          verify=d.createElement('div');verify.className='gwVehicleVerify';
+          verify.style.cssText='margin:12px 0;padding:12px;border:1px solid #d99b20;border-radius:8px;background:#fff8e7;color:#3d2b05;font-size:13px;line-height:1.45';
+          const msg=d.createElement('div');msg.innerHTML='<strong>Vehicle compatibility check required</strong><br>Before ordering, confirm your vehicle make, model, year and engine with Get Wired AutoWorx.';
+          const link=d.createElement('a');link.className='gwWA';link.textContent='VERIFY VEHICLE FITMENT ON WHATSAPP';link.target='_blank';link.rel='noopener';
+          link.href=WA+'?text='+encodeURIComponent('Hi Get Wired AutoWorx, please verify compatibility before I order. Product: '+(p.name||'')+(p.public_sku?' (SKU '+p.public_sku+')':'')+'. My vehicle make, model, year and engine: ');
+          verify.appendChild(msg);verify.appendChild(link);
+          const actionsAnchor=detail.querySelector('.detailActions');if(actionsAnchor)detail.insertBefore(verify,actionsAnchor);else detail.appendChild(verify);
+        }
+      }else if(verify){verify.remove();}
       const actions=detail.querySelector('.detailActions');if(!actions||actions.querySelector('.gwWishlist'))return;
       const b=d.createElement('button');b.className='gwWishlist';b.textContent='♡ SAVE PRODUCT';b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
       b.onclick=()=>{let w=[];try{w=JSON.parse(localStorage.getItem('gw_wishlist')||'[]')}catch(e){};if(!w.includes(p.id))w.push(p.id);localStorage.setItem('gw_wishlist',JSON.stringify(w));b.textContent='♥ SAVED';const t=d.getElementById('gwSavedToggle');if(t)t.textContent='♥ SAVED ('+w.length+')';};
