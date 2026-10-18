@@ -3,7 +3,7 @@ name: Storefront Smoke Test
 
 on:
   push:
-    branches: [main, release/verified-price-checkout-2026-10-13, fix/current-main-price-gate-2026-10-13]
+    branches: [main, release/verified-price-checkout-2026-10-13, fix/current-main-price-gate-2026-10-13, fix/category-product-image-rendering-2026-10-18]
     paths:
       - '**/*.html'
       - '**/*.js'
