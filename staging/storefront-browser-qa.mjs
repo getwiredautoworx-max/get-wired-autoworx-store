@@ -28,7 +28,7 @@ try {
   check('approved_dark_mockup_activated', await page.locator('body').evaluate(el => { const c = getComputedStyle(el); const rgb = c.backgroundColor; return !el.classList.contains('brightTheme') && (c.backgroundImage.includes('radial-gradient') || rgb === 'rgb(2, 6, 13)' || rgb === 'rgb(5, 8, 14)'); }), 'body class=' + report.bodyClass + ', background=' + await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor));
   check('dark_category_and_product_surfaces', await page.evaluate(() => { const cat=document.querySelector('.catWrap'), product=document.querySelector('.product'); if(!cat||!product)return false; const cc=getComputedStyle(cat), pc=getComputedStyle(product); return (cc.backgroundImage.includes('linear-gradient') || cc.backgroundColor === 'rgb(11, 18, 32)') && pc.backgroundColor === 'rgb(11, 18, 32)'; }), 'category cards should use the dark branded surface and product cards should be dark navy');
   check('hero_present', await page.locator('.heroCard').count() > 0, 'heroCard element exists');
-  check('hero_ctas_visible_and_unclipped_' + width, await page.evaluate(() => { const hero=document.querySelector('.heroCard'); if(!hero)return false; const hb=hero.getBoundingClientRect(); const bs=[...hero.querySelectorAll('.heroBtns .btn')]; return bs.length===4 && bs.every(b=>{const r=b.getBoundingClientRect();return r.width>0&&r.height>0&&r.top>=hb.top-1&&r.bottom<=hb.bottom+1;}); }), 'all four hero buttons must fit within the compact hero at this viewport');
+
   check('category_grid_exists', await page.locator('#categoryGrid').count() === 1, 'expected #categoryGrid');
   check('part_search_control', await page.getByRole('button', { name: 'PART SEARCH' }).count() === 1, 'expected one Part Search button');
   check('request_part_control', await page.getByRole('button', { name: 'REQUEST A PART' }).count() === 1, 'expected one Request a Part button');
@@ -38,6 +38,7 @@ try {
   for (const [width, height] of [[1440,1000],[390,844],[320,700]]) {
     await page.setViewportSize({ width, height });
     await page.waitForTimeout(400);
+    check('hero_ctas_visible_and_unclipped_' + width, await page.evaluate(() => { const hero=document.querySelector('.heroCard'); if(!hero)return false; const hb=hero.getBoundingClientRect(); const bs=[...hero.querySelectorAll('.heroBtns .btn')]; return bs.length===4 && bs.every(b=>{const r=b.getBoundingClientRect();return r.width>0&&r.height>0&&r.top>=hb.top-1&&r.bottom<=hb.bottom+1;}); }), 'all four hero buttons must fit within the compact hero at this viewport');
     // Force lazy images to request and wait for each request to settle before taking
     // measurements. This prevents off-screen lazy images being misreported as healthy.
     const imageAudit = await page.evaluate(async () => {
