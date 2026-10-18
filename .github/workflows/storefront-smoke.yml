@@ -328,4 +328,4 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
-# Audit trigger: 2026-10-14 — execute the existing smoke checks without changing test behavior.
+# Audit trigger: 2026-10-18 — rerun responsive category-image and unavailable-image QA after selector correction.
