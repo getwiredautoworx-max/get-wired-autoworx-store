@@ -85,6 +85,7 @@ jobs:
             if (imageCheck.some(img => !img.loaded)) throw new Error('One or more category SVGs did not load: '+JSON.stringify(imageCheck));
             for (const width of [390,320,1440]) {
               await page.setViewportSize({width,height:900});
+              await frame.locator('html').evaluate(() => window.scrollTo(0,0));
               await page.waitForTimeout(250);
               const layout = await frame.locator('html').evaluate(() => {
                 const rect = el => { if(!el) return null; const r=el.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; };
