@@ -2228,3 +2228,12 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - A draft PR was necessary to invoke the existing preview automation; Cloudflare attempted a build, but failed. No successful preview exists for this head yet. GitHub Pages is not a fallback: repository handover records `has_pages: false` and the staging Pages workflow was removed from the validation path.
 - Next action: inspect the failed Cloudflare build log in an authenticated Cloudflare dashboard or obtain its error output from an authorized operator; fix only the demonstrated configuration/build error, then wait for the PR preview bot to report a successful URL. Keep PR #58 draft, unmerged, and Axxess untouched. Exact-head mobile browser verification remains pending.
 - Status: preview generation attempted; **not resolved** because Cloudflare build failed and no staging URL was produced. Do not call the mobile fix visually verified.
+
+
+## 2026-10-18 — CLOUDFLARE PREVIEW RECOVERY (PR #58)
+
+- Owner supplied the Cloudflare build log. Confirmed failure cause: Cloudflare's configured deploy command runs `npx wrangler preview`, but `wrangler.toml` had no `[previews]` block. Wrangler's own error explicitly requires that block and says it may be empty.
+- Applied the smallest configuration correction on the isolated PR branch `fix/mobile-storefront-2026-10-18`: appended an empty `[previews]` block to `wrangler.toml`. Commit: `047c22f892c966ec504a0dddb940586950bd5ce7`. No production settings or live hosting changed.
+- Independently confirmed Cloudflare Pages PR bot reported a successful preview for prior PR head `07fcc5805653d48d002635c27d91f11971d72cab`: `https://d718becb.get-wired-autoworx-store.pages.dev`; branch preview `https://fix-mobile-storefront-2026-1.get-wired-autoworx-store.pages.dev`. This is a genuine bot-reported staging URL for that prior head, not yet evidence that the new Wrangler-config commit is deployed.
+- Next gate: check PR #58's newest preview-bot result after commit `047c22f892c966ec504a0dddb940586950bd5ce7`; use the URL attached to that exact head if successful. Verify the URL loads and run desktop/mobile browser checks at 1440px, 390px and 320px, including iframe content, categories/navigation, image correctness, console/network errors and fixed controls. Keep PR draft/unmerged; no Axxess upload, DNS/payment change, or production deployment.
+- Status: root cause identified and minimal config patch committed; prior-head staging preview exists; exact-new-head deployment and mobile visual acceptance remain pending.
