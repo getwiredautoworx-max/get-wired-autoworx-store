@@ -2392,3 +2392,27 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Cloudflare PR bot subsequently reported the current review-branch head `9b77c609a5b5b64a9ca7109f99684aca63c1418a` as successfully deployed to preview `https://a58cdc5b.get-wired-autoworx-store.pages.dev`.
 - The preview deployment result proves the build/deploy completed, not that the customer-facing behavior has passed runtime browser QA. Open this exact URL to test the product modal: a product explicitly naming a vehicle make/model/application should show the verification prompt; a generic tool/consumable should not. Confirm no Copy SKU control appears on product cards.
 - Release remains HOLD pending direct visual and interaction QA. Do not merge PR #54 or upload to Axxess without passing checks and owner approval.
+
+## 2026-10-18 — targeted mobile/Worker unblock plan (owner request)
+
+### Current repository/deployment evidence
+- Latest main handover update before this entry: `ee18a9e401dce44c398f9575a7b726b10e2e8f4e` (2026-10-18 14:39:14Z), message: `docs: record mobile storefront visual QA failure and release gates`.
+- Latest identified mobile-fix branch head: `fix/mobile-storefront-2026-10-18` at `d3dd49cf6d562319419371ecb6e551944411d609`.
+- At that exact SHA, GitHub Actions reported the Storefront Smoke Test run `39136146749` and Axxess package preparation run `39136146773` successful. This is workflow success only; it does not override the owner's supplied phone screenshot showing the mobile layout remains visually broken. Visual QA at 1440px/390px/320px is still not proven.
+- Latest main Pages workflow run `39136963713` succeeded for main SHA `ee18a9e401dce44c398f9575a7b726b10e2e8f4e`. This is not evidence that the mobile branch head was deployed or that its Worker preview works.
+- Root `wrangler.toml` currently contains only `name = "get-wired-autoworx-store"`, `pages_build_output_dir = "."`, and `compatibility_date = "2026-10-06"`. It configures Cloudflare Pages output and does not declare a separate Worker entry point, bindings, or routes. Therefore the separate Worker preview failure must be diagnosed against the Worker-specific workflow/configuration and its actual runtime/build log; do not keep changing Pages CSS/config to fix a separate Worker deployment.
+- The repository has multiple overlapping QA/deployment workflows. Keep Pages build/deploy, Worker deploy/preview, and browser assertions as separate status lines. Do not treat any one successful run as end-to-end release evidence.
+
+### Immediate anti-loop decision
+1. **First unblock the customer-visible mobile CSS**, without rewriting the whole storefront or touching unrelated components. Use the exact failing screenshot and inspect only the category/header/hero/search/modal container selectors and all competing declarations that affect them. Make one small, isolated patch on `fix/mobile-storefront-2026-10-18` (or a fresh branch from its verified head if it has moved); do not copy the same override into another stylesheet. Requirements: 3-column category grid only where cards remain readable; at 390px and 320px ensure min-width:0, bounded image sizes, wrapped labels/actions, no fixed-width overflow, and no overlap. Preserve desktop behavior at 1440px.
+2. Add/repair an exact-commit browser test that records screenshots and checks document scroll width, category tile geometry, console/network errors, image decode, category/subcategory navigation, modal actions, search wrapping, cart and checkout. The existing smoke workflow's green status is insufficient without the actual assertions and screenshot artifacts. A test is not passed until its run URL, SHA, viewport dimensions and artifacts are recorded.
+3. **Worker track is independent**: retrieve the failed Worker preview workflow run and exact error logs; identify its own workflow file, entry point, bindings, environment variables and package/dependency versions. Compare against `wrangler.toml` and Pages workflow. Do not invent a cause from Pages success/failure alone. If no Worker-specific config/entry point exists, establish whether this is an obsolete/unnecessary Worker preview job or a genuinely required Worker service before changing routes.
+4. After the single mobile patch, rerun only affected exact-SHA browser QA and Pages preview; do not rerun successful catalogue/SKU/package workflows without changed inputs. Then update this file with exact commit, run links, screenshot evidence, and remaining blockers.
+
+### Current status / guardrails
+- Mobile presentation: **FAIL reported by owner screenshot; targeted CSS correction and exact viewport screenshots required**.
+- Pages build: **successful for main SHA only; mobile branch preview status must be checked separately**.
+- Separate Worker preview: **FAIL reported; root cause unverified because Worker-specific runtime log is not present in the repository handover evidence reviewed here**.
+- Product imagery/data accuracy: still separate launch blockers; do not claim resolved by layout CSS or smoke-test success.
+- Release status: **HOLD**. Continue GitHub/staging work only. Do not change Axxess, DNS, production Supabase, payment settings, or publish an unapproved package.
+- No source code was changed as part of this handover update. The only implementation change made by this action is this documented checkpoint.
