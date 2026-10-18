@@ -2316,3 +2316,32 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - For every blocked check, use the closest available alternative to produce evidence (for example, workflow artifact/screenshot, direct route/image response inspection, or local/static test); label the limits honestly. Do not call an inaccessible or stale preview verified.
 - Keep Axxess production, Supabase production data, DNS, checkout payment settings, supplier dispatch and real orders untouched without the required approval. Do not promote uncertain catalogue/image/pricing records simply to make the storefront look populated.
 - Status at this checkpoint: **visual acceptance and exact-head QA still open; release hold remains**. This checkpoint documents the owner directive and latest observed PR metadata; it does not claim the storefront is complete.
+
+
+## 2026-10-18 continuation — storefront review checkpoint (07:40 SAST)
+
+### Verified repository state
+- Re-read `HANDOVER_CURRENT.md` on `main` and inspected PR #54 metadata, the current `index-new.html`, `category-navigation.js`, and `staging/storefront-browser-qa.mjs`.
+- PR #54 remains OPEN, DRAFT, UNMERGED; branch `review/staging-ui-verification-fixes-current`; exact head observed: `8fe412e637567ba43326e7b5adb9df7a7f67be76`.
+- The PR bot posted a successful Cloudflare preview deployment for that exact head: `https://c8a9bccd.get-wired-autoworx-store.pages.dev` (branch preview: `https://review-staging-ui-verificati-hog1.get-wired-autoworx-store.pages.dev`). This confirms deployment, not visual acceptance or passing browser QA.
+- Querying pull-request-triggered Actions runs for that SHA returned no runs. Do not claim exact-head Playwright QA passed; obtain/inspect the matching QA artifact and screenshots before acceptance.
+- PR #54 changed-file inventory includes `.github/workflows/staging-browser-qa.yml`, `index-new.html`, `staging/storefront-browser-qa.mjs`, `assets/product-image-fallback.js`, `_headers`, and handover/image-audit documentation.
+
+### Defects / contradictions that remain to resolve
+- The current browser test contains stale assertions requiring `body.brightTheme`, a light body background, and white category/product cards. The latest permanent owner direction elsewhere in this handover has conflicting theme descriptions (light/brighter canvas versus dark navy with red/blue accents). Do not silently choose between contradictory visual specifications: compare the approved mockup asset and the actual preview, then align both implementation and assertions to that single reference.
+- Image QA still treats a cross-origin canvas read failure as unreadable rather than proof of a bad image, appropriately; however, successful decode/HTTP response does not prove that the pixels show the correct product or that publication rights exist. Continue exact-SKU/visible-content review and use deliberate neutral placeholders where unverified.
+- Category-root mapping remains a separate open task (#29); enforce exactly the eight approved customer-facing roots without deleting or reparenting production categories. 4x4 Outdoor belongs beneath Camping, Leisure & Outdoors.
+
+### Next executable steps
+1. Open the exact-head preview above and compare it with the actual approved mockup; capture/inspect 1440px, 390px and 320px views.
+2. Reconcile the theme/test contradiction against the mockup; test all eight root categories, nested 4x4 placement, category expansion, Part Search and Request a Part popups, search/cart/checkout routes, and desktop/mobile navigation.
+3. Run the browser QA against this exact SHA and inspect its report and screenshots. If workflow dispatch is unavailable, use a permitted exact-source runner; do not substitute a historical run.
+4. Fix only evidenced failures, then update this handover with the resulting commit SHA, run ID, artifact and screenshot findings.
+5. Keep PR #54 unmerged and Axxess production untouched until QA passes and the owner approves the appearance. No production data, payment, DNS/SSL, supplier dispatch, or hosting upload was changed in this checkpoint.
+
+### Status
+- Exact-head preview URL: available from PR bot; visual acceptance: NOT VERIFIED.
+- Exact-head browser QA: NOT VERIFIED (no matching PR-triggered run returned).
+- Product image identity/rights: OPEN.
+- Category-root consistency: OPEN (#29).
+- Release: HOLD; no production deployment.
