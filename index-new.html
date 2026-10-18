@@ -425,7 +425,7 @@ pointer-events:none}
 function catNode(c){
  const kids=children(c.id).filter(child=>categoryProductCount(child.id)>0),n=categoryProductCount(c.id),label=HOME_CATEGORY_LABELS[c.id]||c.name;
  const img=HOME_CATEGORY_ART[c.id]||'assets/category-images/auto-electrical-spares.svg';
- return `<div class="catWrap" data-filter="${c.id}"><button class="catBtn" data-filter="${c.id}"><span class="catImage"><img src="${esc(img)}" alt="${esc(label)} category illustration" loading="lazy" onerror="this.onerror=null;this.src='assets/gw-logo.png'"></span><span class="catContent"><b>${esc(label)}</b><small>${n} products</small><i>SHOP →</i></span></button><div class="children">${kids.map(catNode).join('')}${n?`<div class="child" data-filter="${c.id}">VIEW ${n} PRODUCTS<span>${n}</span></div>`:''}</div></div>`
+ return `<div class="catWrap" data-filter="${c.id}"><button class="catBtn" data-filter="${c.id}"><span class="catImage"><img src="${esc(img)}" alt="${esc(label)} category illustration" loading="lazy" onerror="this.onerror=null;this.src='assets/product-image-unavailable.svg'"></span><span class="catContent"><b>${esc(label)}</b><small>${n} products</small><i>SHOP →</i></span></button><div class="children">${kids.map(catNode).join('')}${n?`<div class="child" data-filter="${c.id}">VIEW ${n} PRODUCTS<span>${n}</span></div>`:''}</div></div>`
 }
 function renderCats(){
  const chosen=HOME_CATEGORY_IDS.map(id=>categories.find(c=>c.id===id&&c.active)).filter(Boolean);
