@@ -77,13 +77,28 @@ jobs:
             fs.mkdirSync('artifacts', {recursive:true});
             const rootCount = await frame.locator('#categoryGrid > .catWrap').count();
             if (rootCount !== 9) throw new Error('Homepage must render exactly 9 top-level category tiles; got '+rootCount);
-            const imageCheck = await frame.locator('#categoryGrid > .catWrap > .catBtn > .catImage img').evaluateAll(imgs => imgs.map(img => ({alt:img.alt,src:img.getAttribute('src'),loaded:img.complete && img.naturalWidth > 0})));
+            const categoryImages = frame.locator('#categoryGrid > .catWrap > .catBtn > .catImage img');
+            await categoryImages.evaluateAll(imgs => Promise.all(imgs.map(img => img.decode().catch(()=>{}))));
+            const imageCheck = await categoryImages.evaluateAll(imgs => imgs.map(img => ({alt:img.alt,src:img.getAttribute('src'),loaded:img.complete && img.naturalWidth > 0})));
             if (imageCheck.length !== 9) throw new Error('Expected 9 category illustration elements; got '+imageCheck.length);
             if (imageCheck.some(img => !img.src || !img.src.includes('assets/category-images/'))) throw new Error('A root tile does not use its explicit category illustration: '+JSON.stringify(imageCheck));
-            await frame.locator('#categoryGrid > .catWrap > .catBtn > .catImage img').evaluateAll(imgs => Promise.all(imgs.map(img => img.decode().catch(()=>{}))));
+            if (imageCheck.some(img => !img.loaded)) throw new Error('One or more category SVGs did not load: '+JSON.stringify(imageCheck));
             for (const width of [390,320,1440]) {
               await page.setViewportSize({width,height:900});
               await page.waitForTimeout(250);
+              const layout = await frame.evaluate(() => {
+                const rect = el => { if(!el) return null; const r=el.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; };
+                const search=rect(document.querySelector('.head .search')), hero=rect(document.querySelector('.hero'));
+                const buttons=[...document.querySelectorAll('.heroBtns .btn')].map(rect);
+                const overlaps=[];
+                for(let i=0;i<buttons.length;i++) for(let j=i+1;j<buttons.length;j++) {
+                  const a=buttons[i],b=buttons[j];
+                  if(a && b && a.left < b.right-1 && a.right > b.left+1 && a.top < b.bottom-1 && a.bottom > b.top+1) overlaps.push([i,j]);
+                }
+                return {search,hero,buttons,buttonOverlaps:overlaps,categoryOverlay:getComputedStyle(document.querySelector('.catWrap'),':before').display};
+              });
+              if(layout.search && layout.hero && layout.search.bottom > layout.hero.top + 1) throw new Error('Header search overlaps hero at '+width+'px: '+JSON.stringify(layout));
+              if(layout.buttonOverlaps.length) throw new Error('Hero buttons overlap at '+width+'px: '+JSON.stringify(layout));
               const overflow = await frame.locator('html').evaluate(el => {
                 const width=el.clientWidth;
                 const offenders=[...el.querySelectorAll('body *')].map(n=>{const r=n.getBoundingClientRect();return {tag:n.tagName,id:n.id,cls:typeof n.className==='string'?n.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scroll:n.scrollWidth,client:n.clientWidth}}).filter(x=>x.right>width+1||x.left< -1).sort((a,b)=>b.right-a.right).slice(0,12);
