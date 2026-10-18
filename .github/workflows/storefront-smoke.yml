@@ -76,9 +76,9 @@ jobs:
             const fs = require('node:fs');
             fs.mkdirSync('artifacts', {recursive:true});
             const rootCount = await frame.locator('#categoryGrid > .catWrap').count();
-            if (rootCount !== 8) throw new Error('Homepage must render exactly 8 top-level category tiles; got '+rootCount);
+            if (rootCount !== 9) throw new Error('Homepage must render exactly 9 top-level category tiles; got '+rootCount);
             const imageCheck = await frame.locator('#categoryGrid > .catWrap > .catBtn > .catImage img').evaluateAll(imgs => imgs.map(img => ({alt:img.alt,src:img.getAttribute('src'),loaded:img.complete && img.naturalWidth > 0})));
-            if (imageCheck.length !== 8) throw new Error('Expected 8 category illustration elements; got '+imageCheck.length);
+            if (imageCheck.length !== 9) throw new Error('Expected 9 category illustration elements; got '+imageCheck.length);
             if (imageCheck.some(img => !img.src || !img.src.includes('assets/category-images/'))) throw new Error('A root tile does not use its explicit category illustration: '+JSON.stringify(imageCheck));
             await frame.locator('#categoryGrid > .catWrap > .catBtn > .catImage img').evaluateAll(imgs => Promise.all(imgs.map(img => img.decode().catch(()=>{}))));
             for (const width of [390,320,1440]) {
