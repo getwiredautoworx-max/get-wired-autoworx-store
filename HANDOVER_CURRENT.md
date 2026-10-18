@@ -2400,3 +2400,10 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - The responsive smoke run exposed four category SVGs falling back to the unavailable-image graphic. Root cause: unescaped ampersands in SVG XML `aria-label` attributes for Car Audio, Marine, Tools, and Camping caused the SVG documents to fail parsing.
 - Escaped the ampersands in all four affected SVG labels. The other four category illustrations were loading successfully.
 - Rerun browser smoke after this exact correction; verify all eight image elements load and capture current screenshots before claiming the category artwork issue is resolved.
+
+
+## 2026-10-18 — Final two category asset/runtime defects
+
+- The latest smoke run found the remaining Trailer & Canopy SVG had the same unescaped-ampersand XML issue. Escaped it; all eight category SVG accessibility labels are now XML-safe.
+- Browser logs also showed the category-navigation bridge trying to append CSS when the embedded document had no `head` node yet. Added a guarded target (`head` or `documentElement`) and corrected its outdated nine-root comment to eight.
+- Fresh smoke run required against these exact latest source changes. Do not call visual QA complete until its logs and screenshot artifact are reviewed.
