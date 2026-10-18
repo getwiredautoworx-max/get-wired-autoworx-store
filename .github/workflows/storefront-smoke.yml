@@ -84,7 +84,11 @@ jobs:
             for (const width of [390,320,1440]) {
               await page.setViewportSize({width,height:900});
               await page.waitForTimeout(250);
-              const overflow = await frame.locator('html').evaluate(el => ({scroll:el.scrollWidth,client:el.clientWidth}));
+              const overflow = await frame.locator('html').evaluate(el => {
+                const width=el.clientWidth;
+                const offenders=[...el.querySelectorAll('body *')].map(n=>{const r=n.getBoundingClientRect();return {tag:n.tagName,id:n.id,cls:typeof n.className==='string'?n.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scroll:n.scrollWidth,client:n.clientWidth}}).filter(x=>x.right>width+1||x.left< -1).sort((a,b)=>b.right-a.right).slice(0,12);
+                return {scroll:el.scrollWidth,client:width,offenders};
+              });
               if (overflow.scroll > overflow.client + 2) throw new Error('Homepage horizontal overflow at '+width+'px: '+JSON.stringify(overflow));
               await page.screenshot({path:'artifacts/homepage-'+width+'.png',fullPage:true});
             }
