@@ -2194,3 +2194,62 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - [ ] Preview remains unverified in this session. PR bot-reported candidate URL: https://f2ca3349.get-wired-autoworx-store.pages.dev
 - [x] No merge, Axxess upload, Supabase production mutation, DNS/payment change, or manual credit-consuming deployment was performed.
 - **Next gate:** confirm a new Actions run uses corrected commit `44ca7edd2c5b5f53f14845e05207bfe30b9996e8`; read its report and screenshots; repair concrete failures and rerun until desktop (1440px), mobile (390px) and small-mobile (320px) acceptance passes. Keep PR #54 draft and production untouched until then.
+
+
+## 2026-10-18 15:23 SAST — TASK START (mobile storefront visual defect)
+
+- Read `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and latest discoverable `HANDOVER_UPDATE_2026-10-14_QA_AUTOMATION.md` before work. Search found no root-level `HANDOVER_CHECKPOINT_*.md`; an older monitor log exists under `handover-runs/`.
+- Owner reports the page itself looks very wrong on the Hisense Android phone even though Windows Chrome preview looks fine. Prioritize mobile-first visual correction; do not treat desktop preview as mobile acceptance.
+- Initial source diagnosis: `assets/category-cleanup.js` reads `.catBtn i` as the category product count, while current `index-new.html` uses that element for the SHOP arrow. It can hide populated categories and replace the grid with a fallback. `store.html` embeds `index-new.html` in `iframe#store`, so tests must inspect the iframe content and actual mobile viewport.
+- Task started on isolated branch `fix/mobile-storefront-2026-10-18` based on current `main`; no production changes, live data writes, Axxess upload, production workflow rerun, or Cloudflare/Netlify deployment requested or performed.
+- In progress: correct category count selection; inspect mobile layout rules and nested wrapper navigation; monitor relevant current Actions evidence; run only safe staging checks if available; append outcomes and next action here after each material result.
+- Guardrails: preserve the eight approved roots and pricing/catalogue rules; no automatic product moves; no production reruns or release-credit use without explicit owner approval.
+- Start status: in progress; no visual fix claimed yet.
+
+
+## 2026-10-18 15:23–15:26 SAST — MOBILE VISUAL FIX IN PROGRESS (not yet browser-verified)
+
+- Owner clarified the page itself looks very wrong on the Hisense Android phone. This run therefore prioritizes mobile visual quality rather than assuming desktop Chrome approval means mobile acceptance.
+- Source defect fixed on isolated branch `fix/mobile-storefront-2026-10-18`: `assets/category-cleanup.js` now reads the rendered category count from `.catContent small` (or `.catCount`) rather than mistaking the `.catBtn i` “SHOP →” control for a numeric count. Commit: `b51a5b43e904dccfa1566f4c3cda8da98bab0759`.
+- Mobile CSS correction added to `index-new.html`: at <=480px, category grid changes from one column to two, category tiles/images are compacted, labels wrap safely, hero height/padding are reduced, mobile nav spacing is tightened, and the floating buy bar is raised above the bottom navigation/safe-area. Commit: `c09ead524a4bce37ece54e69c0c3c58978d14f97`.
+- Current branch head after these changes: `c09ead524a4bce37ece54e69c0c3c58978d14f97`. Main was not changed. This is a source patch only; no browser screenshot or real-device acceptance has yet been run, so the visual fix is not marked complete.
+- Current Actions status inspected from actual latest-attempt job records: Browser QA run `39037468764`, job `117685158864`, completed failure; Storefront Smoke run `39037468756`, job `117410089379`, success; Category Chromium acceptance `38521429939`, job `115711774827`, success (older audit branch); buyer-guide extraction `38525300051`, job `115724141806`, success (older audit branch); ASC Image Sync `39034873788`, job `117402559036`, success (report says no eligible targets); Background Task Controller `39037544598`, job `117410297109`, success with prior attention_required checkpoint; Store Production QA `38781731522`, job `116583626683`, failure; Live Release Gates `39025671652`, job `117376052125`, failure; GitHub Pages `39038534514`, build/deploy/report jobs `117413281145`, `117413419260`, `117413419268`, success on prior main commit; Cloudflare production run `37912001486`, job `113759116397`, failure. No production run was rerun.
+- No staging workflow was dispatched because the connected tools do not expose a supported workflow-dispatch action. Opening a PR can automatically trigger Cloudflare/Netlify previews and consume credits, so no PR was opened without owner approval. No Axxess deployment, live data write, production deployment, DNS/payment change, or manual release-credit use occurred.
+- Next precise actions: (1) review the category root selection to ensure exactly the eight approved roots and 4x4 nested under Camping; (2) inspect the final mobile CSS cascade and test script behavior; (3) obtain owner-approved preview/test path that does not trigger unapproved paid deploys, then run real wrapper/iframe acceptance at 1440px, 390px and 320px and inspect screenshots on an Android device; (4) update this handover with actual pass/fail evidence before merge or release.
+
+
+## 2026-10-18 — MOBILE STAGING PREVIEW ATTEMPT (PR #58)
+
+- Owner explicitly requested the staging-preview blocker be resolved immediately.
+- Opened draft PR #58, https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/58, from `fix/mobile-storefront-2026-10-18` to `main`. It remains unmerged and draft; no production code was merged and Axxess/DNS/payment settings were untouched.
+- Exact PR head reported by GitHub: `2ad08df5cb3ffa719b92920b5f98364b58e2dd45` (4 commits, 3 files changed).
+- Cloudflare preview bot ran for this exact head but returned **Build: Failed** and supplied no deployment URL. Build details: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/aa380f63-f531-4153-9768-34c3d2cf47e1 . The authenticated Cloudflare build log was not accessible through the available tools, so the underlying build error is not yet identified; do not fabricate a preview URL or mark the build fixed.
+- PR-triggered GitHub Actions runs observed for this head: Storefront Smoke Test `39135049957` was in progress at last inspection; Public SKU Exposure Audit `39135050273` was in progress; Prepare Axxess upload package `39135049954` was in progress. The Axxess workflow run was automatically triggered by the PR head; do not upload its artifact to the live host. No run was manually dispatched or production workflow rerun.
+- A draft PR was necessary to invoke the existing preview automation; Cloudflare attempted a build, but failed. No successful preview exists for this head yet. GitHub Pages is not a fallback: repository handover records `has_pages: false` and the staging Pages workflow was removed from the validation path.
+- Next action: inspect the failed Cloudflare build log in an authenticated Cloudflare dashboard or obtain its error output from an authorized operator; fix only the demonstrated configuration/build error, then wait for the PR preview bot to report a successful URL. Keep PR #58 draft, unmerged, and Axxess untouched. Exact-head mobile browser verification remains pending.
+- Status: preview generation attempted; **not resolved** because Cloudflare build failed and no staging URL was produced. Do not call the mobile fix visually verified.
+
+
+## 2026-10-18 — CLOUDFLARE PREVIEW RECOVERY (PR #58)
+
+- Owner supplied the Cloudflare build log. Confirmed failure cause: Cloudflare's configured deploy command runs `npx wrangler preview`, but `wrangler.toml` had no `[previews]` block. Wrangler's own error explicitly requires that block and says it may be empty.
+- Applied the smallest configuration correction on the isolated PR branch `fix/mobile-storefront-2026-10-18`: appended an empty `[previews]` block to `wrangler.toml`. Commit: `047c22f892c966ec504a0dddb940586950bd5ce7`. No production settings or live hosting changed.
+- Independently confirmed Cloudflare Pages PR bot reported a successful preview for prior PR head `07fcc5805653d48d002635c27d91f11971d72cab`: `https://d718becb.get-wired-autoworx-store.pages.dev`; branch preview `https://fix-mobile-storefront-2026-1.get-wired-autoworx-store.pages.dev`. This is a genuine bot-reported staging URL for that prior head, not yet evidence that the new Wrangler-config commit is deployed.
+- Next gate: check PR #58's newest preview-bot result after commit `047c22f892c966ec504a0dddb940586950bd5ce7`; use the URL attached to that exact head if successful. Verify the URL loads and run desktop/mobile browser checks at 1440px, 390px and 320px, including iframe content, categories/navigation, image correctness, console/network errors and fixed controls. Keep PR draft/unmerged; no Axxess upload, DNS/payment change, or production deployment.
+- Status: root cause identified and minimal config patch committed; prior-head staging preview exists; exact-new-head deployment and mobile visual acceptance remain pending.
+
+
+## 2026-10-18 — STAGING URL RESTORED AFTER CONFIG PATCH
+
+- Cloudflare Pages PR bot confirms successful deployment for PR #58 head `2f1ed61bbdd6c36dccbb78772223081db7f5edc5`: preview `https://bc3292c3.get-wired-autoworx-store.pages.dev`; branch URL `https://fix-mobile-storefront-2026-1.get-wired-autoworx-store.pages.dev`. Bot's successful deployment record: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/58#issuecomment-6250960627 .
+- The same PR's separate Worker preview command was still reported in progress at last inspection after the `[previews]` fix; do not equate that with a failed Pages preview. Pages preview is now available and is the staging URL to use while checking the site.
+- This update itself will advance the PR head and can trigger another preview. After it lands, check the newest bot entry and use the URL matching that exact head. Storefront Smoke Test run `39135678011` was still in progress at last inspection; public SKU audit `39135678096` and Axxess package preparation `39135677937` completed successfully. Package preparation is not authorization to upload to Axxess.
+- No production merge/deploy, Axxess upload, DNS/payment changes, or live data writes were performed. Mobile browser/real-device acceptance remains outstanding; preview availability is not the same as visual sign-off.
+
+
+## 2026-10-18 — PHONE SCREENSHOT DEFECT AND MOBILE LAYOUT PATCH
+
+- Owner supplied an Android screenshot of staging. Confirmed severe layout defects: large unused vertical gaps, search field visually detached/overlapping other controls, category/shop controls appearing stacked/overlapped, product purchase bar showing over unrelated content, and the fixed bottom navigation consuming too much visual space. This is a real mobile acceptance failure; do not describe the store as ready for live testing.
+- Added a final, higher-priority narrow-screen CSS override to `index-new.html` on the isolated PR branch. It normalizes the mobile header into a compact logo/cart row plus full-width search row, forces two-column category/product grids where space allows (one column only on very narrow screens), compacts category artwork/cards, constrains overflow, removes the floating buy bar when no product-detail state is active, and gives modal/detail content a single-column mobile layout. Commit: `17a4fffa278598bd163ee5b6556b560e9cbc7429`.
+- This is a source-level correction based on the screenshot; it has not yet been validated in a new deployed preview or browser/device screenshot. Do not claim it resolved until the exact new head deploys and checks pass at 390px and 320px, with desktop 1440px regression check.
+- Keep PR #58 draft/unmerged and Axxess/production untouched. Next: verify Cloudflare Pages bot success for the new commit, open the matching preview, inspect rendered page and console/network errors; repair any further concrete visual defects and update this handover with actual results.

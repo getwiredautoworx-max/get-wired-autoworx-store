@@ -6,7 +6,7 @@
       if(!d) return;
       d.querySelectorAll('.catWrap').forEach(function(card){
         const txt=(card.innerText||'').trim();
-        const countEl=card.querySelector('.catBtn i');
+        const countEl=card.querySelector('.catContent small') || card.querySelector('.catCount') || null;
         const count=countEl?parseInt((countEl.textContent||'').replace(/[^0-9]/g,''),10):NaN;
         const children=card.querySelectorAll('.child').length;
         const childCounts=[...card.querySelectorAll('.child span')].map(x=>parseInt((x.textContent||'').replace(/[^0-9]/g,''),10)).filter(Number.isFinite);
