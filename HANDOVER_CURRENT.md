@@ -2369,3 +2369,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Exact-commit browser QA: PENDING VERIFIABLE RUN.
 - Visual acceptance and product-image identity: OPEN.
 - Release decision: HOLD.
+
+
+### Follow-up category-art correction — 2026-10-18
+- Additional review-branch commit: `f4f1864594aebb51c467d895f42f35af0eb97bf6`.
+- Corrected the consolidated layout override so it does not force an empty legacy `.catImage` container to display. It restores the existing category artwork tile (`.catArt`) at full card width and sizes it responsively for the three-column grid.
+- Important limitation: current repository `assets/` root contains the business logo and generic product placeholder, but no dedicated category photo assets. The current category renderer uses icon artwork, not verified category photography. Actual photographic category assets are still required to fully satisfy the owner's image-led tile request; do not represent the icon tiles as genuine product photos.
+- The prior Cloudflare deployment bot confirmed commit `82182c4` at preview `https://7581f720.get-wired-autoworx-store.pages.dev`. The newest commit `f4f1864` must receive its own deployment and screenshot verification before it can be treated as the latest validated preview.
+- Current status remains: layout CSS committed to review branch; visual QA and photographic category assets not verified; release HOLD; Axxess production untouched.
