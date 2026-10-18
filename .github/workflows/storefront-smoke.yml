@@ -60,7 +60,7 @@ jobs:
             const browser = await chromium.launch({headless:true});
             const page = await browser.newPage({viewport:{width:390,height:844}});
             page.on('console', m => console.log('[browser:'+m.type()+'] '+m.text()));
-            page.on('pageerror', e => console.log('[pageerror] '+e.message));
+            page.on('pageerror', e => console.log('[pageerror] '+(e.stack||e.message)));
             await page.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             await page.waitForSelector('#store');
             const iframe = page.locator('#store');
