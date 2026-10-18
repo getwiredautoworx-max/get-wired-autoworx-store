@@ -2416,3 +2416,16 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Product imagery/data accuracy: still separate launch blockers; do not claim resolved by layout CSS or smoke-test success.
 - Release status: **HOLD**. Continue GitHub/staging work only. Do not change Axxess, DNS, production Supabase, payment settings, or publish an unapproved package.
 - No source code was changed as part of this handover update. The only implementation change made by this action is this documented checkpoint.
+
+
+## 2026-10-18 — isolated mobile-grid patch committed; verification running
+
+- Implemented one targeted final CSS override in `index-new.html` on `fix/mobile-storefront-2026-10-18`, commit `30e11771ce0124d2f375048c90d7a57817bb86cf`.
+- Scope is limited to mobile widths at or below 700px: category and product grids use two bounded columns, cards/images/text are constrained to available width, labels/actions may wrap, and the 320px rules retain two columns with tighter spacing. Desktop CSS was not changed. This avoids the previous conflicting mobile rule that forced four product columns at widths up to 700px and the later single-column category rule below 360px.
+- Exact commit checks started automatically:
+  - Storefront Smoke Test: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138677601 — in progress at last check (Chromium installation; smoke assertions had not started yet).
+  - Axxess package assembly: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138677643 — successful package assembly/artifact only; no Axxess upload occurred.
+  - Public SKU exposure audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138677590 — successful.
+- This is a code correction, not proof of visual resolution. The 1440px, 390px and 320px rendered screenshots/scroll-width checks are still required before calling the mobile layout fixed.
+- Worker diagnosis remains separate: `wrangler.toml` only declares the Pages output directory and compatibility date; the repo tree has no Worker-specific entry-point/config/workflow. Do not change Pages configuration to guess at the separate Worker failure. Obtain the actual failed Worker preview job/runtime log and establish whether that Worker is required or an obsolete parallel preview.
+- Release remains HOLD; no Axxess production upload, DNS, Supabase production writes, or payment changes.
