@@ -3066,3 +3066,18 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Screenshot review confirms the dark automotive canvas, compact uncluttered hero, visible four hero CTAs, dark vehicle finder, readable service strip, and eight approved category roots. Hero CTA clipping is resolved in the current screenshot set.
 - Visual acceptance is still HOLD: category cards currently use clean icon placeholders because available category art was drawn from unverified supplier images; product cards still display baked-in text/watermarks on source images. These are visible quality defects, even though images load and automated route checks pass. Do not merge or deploy until image sources are cleaned/verified or deliberately replaced with appropriate neutral placeholders and the owner approves the visual result.
 - Latest source branch head is 9a612e145695020ae826fff188774fe9b3d25c97. PR #54 remains draft/unmerged. No Axxess upload, Supabase production write, DNS change, payment configuration, or live deployment occurred.
+
+
+## CONTINUATION LOG — 2026-10-18 — WORKERS BUILDS ROOT-CAUSE IDENTIFIED / DASHBOARD ACTION REQUIRED
+
+- Checked the current `main` repository files directly. Root `wrangler.toml` exists and contains:
+  ```toml
+  name = "get-wired-autoworx-store"
+  pages_build_output_dir = "."
+  compatibility_date = "2026-10-06"
+  ```
+  There is no root `package.json` or `wrangler.jsonc`. This is a Cloudflare Pages-style Wrangler configuration (`pages_build_output_dir`), not a Worker script configuration: it does not declare a Worker entry point (`main`) or an assets binding.
+- Cloudflare's current Workers Builds troubleshooting documentation identifies a missing Worker entry point/configuration as a build failure mode. Source: https://developers.cloudflare.com/workers/ci-cd/builds/troubleshoot/ . The separate Workers Builds integration is therefore attempting to deploy this static Pages repository as a Worker; the Pages deployment and Worker build are different pipelines.
+- Safe resolution is to disconnect/disable the unintended Workers Builds Git integration for service `get-wired-autoworx-store` in Cloudflare Dashboard > Workers & Pages > Workers > get-wired-autoworx-store > Settings > Build (or remove its connected Git repository), while retaining the existing Cloudflare Pages project and its manual GitHub Pages workflow. Do NOT add a fake Worker entry point or point a Worker at the whole repository: that would create a second deployment path and risk publishing repository files or changing Worker traffic.
+- This fix requires authenticated Cloudflare dashboard/API access. The available connected tools expose GitHub but no Cloudflare account-settings/build-integration mutation or authenticated Worker build logs. I have not claimed the dashboard integration is disabled, and I have not changed production or retried by pushing to `main`.
+- Pages build status and Worker build status must remain separate. Release stays HOLD until the Pages preview is verified at exact commit and storefront QA passes; no Axxess, DNS, production catalogue, payment, or Supabase change is authorized.
