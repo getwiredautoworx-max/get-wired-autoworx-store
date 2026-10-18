@@ -2407,3 +2407,10 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - The latest smoke run found the remaining Trailer & Canopy SVG had the same unescaped-ampersand XML issue. Escaped it; all eight category SVG accessibility labels are now XML-safe.
 - Browser logs also showed the category-navigation bridge trying to append CSS when the embedded document had no `head` node yet. Added a guarded target (`head` or `documentElement`) and corrected its outdated nine-root comment to eight.
 - Fresh smoke run required against these exact latest source changes. Do not call visual QA complete until its logs and screenshot artifact are reviewed.
+
+
+## 2026-10-18 — Mobile/initial-state layout correction
+
+- Reviewed the responsive screenshot artifact from failed run #812. The storefront's `hidden` attribute was being overridden by explicit `.shopControls{display:flex}` and `.mobileBuyBar{display:flex}` CSS, causing inactive filter controls and the purchase bar to appear before they should.
+- Added an explicit hidden-state override for both components. This should keep the shop controls hidden until products are ready and keep the fixed Add to Cart / Buy Now bar hidden until a product is selected.
+- The screenshot run also exposed 8px horizontal overflow at 320px. It must be rechecked after the hidden-state fix; if it remains, use the new screenshot/report to identify the overflowing element.
