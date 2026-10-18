@@ -764,6 +764,9 @@ html body .heroCard{min-height:230px!important;background:linear-gradient(120deg
 @media(max-width:700px){html body .heroCard{min-height:205px!important}html body .heroText{padding:20px!important}}
 @media(max-width:390px){html body .heroCard{min-height:195px!important}html body .heroText{padding:16px!important}}
 
+/* Prevent inherited absolute positioning from clipping the hero CTA row. */
+html body .heroCard{height:auto!important;overflow:hidden!important}
+html body .heroText{position:relative!important;inset:auto!important;height:auto!important;overflow:visible!important;display:block!important;align-items:initial!important;justify-content:initial!important;text-align:left!important}
 /* Hero and service-strip contrast/fit fixes from 1440/390/320 screenshot review. */
 html body .heroText{padding:18px 24px!important;max-width:720px!important}
 html body .heroText h1{font-size:36px!important;line-height:1!important;margin:0 0 8px!important}
