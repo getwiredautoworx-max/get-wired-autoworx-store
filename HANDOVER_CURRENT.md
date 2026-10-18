@@ -2445,3 +2445,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - **Still not verified:** these checks do not execute the storefront in a browser. The read-only Playwright run must confirm the actual live/staging page, all nine tile images, tile click-through, desktop layout, mobile layout and horizontal overflow at 320px. The current browser smoke workflow is scheduled/manual-dispatch, and no run from this exact branch has yet been inspected.
 - **Product-photo content defect:** the guard can detect failed/placeholder images, not detect catalogue text or prove that an otherwise-loading photo depicts the right part. Do not claim all catalogue-marked thumbnails are cleaned until an image-by-image audit and verified replacement assets are completed. Keep this as an explicit visual QA gate.
 - **Production safety:** no Axxess upload, production database mutation, DNS change, payment change, Cloudflare deployment or Netlify deployment was made.
+
+
+## 2026-10-18 — Screenshot-driven layout polish
+
+- Inspected the successful responsive screenshot artifact from run #832. Confirmed all eight category SVGs load and the smoke suite passed, but screenshots exposed additional mockup mismatches: the hero was still too tall, the mobile nav was visible on desktop, category SHOP labels and hero tagline had poor contrast, and the progressive enhancement filters/SAVED control were cluttering the header.
+- Moved the progressive search filters and saved-products control into the All Products section rather than the header.
+- Reduced the hero to 340px on desktop and 320–360px on mobile, improved bright-theme text contrast, and explicitly hid the mobile navigation on desktop.
+- These latest screenshot-driven edits need a fresh screenshot/overflow run. Run #832 proves the earlier source passed the eight-category image, category navigation, exact-SKU fallback, price/checkout and responsive overflow smoke checks; it does not validate these newer visual adjustments.
