@@ -2429,3 +2429,12 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - This is a code correction, not proof of visual resolution. The 1440px, 390px and 320px rendered screenshots/scroll-width checks are still required before calling the mobile layout fixed.
 - Worker diagnosis remains separate: `wrangler.toml` only declares the Pages output directory and compatibility date; the repo tree has no Worker-specific entry-point/config/workflow. Do not change Pages configuration to guess at the separate Worker failure. Obtain the actual failed Worker preview job/runtime log and establish whether that Worker is required or an obsolete parallel preview.
 - Release remains HOLD; no Axxess production upload, DNS, Supabase production writes, or payment changes.
+
+
+### Verification follow-up — 2026-10-18 15:04Z
+- Storefront Smoke Test for exact mobile patch SHA `30e11771ce0124d2f375048c90d7a57817bb86cf` completed successfully: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138677601. The log contains `STOREFRONT_SMOKE_PASS`.
+- Public SKU exposure audit also succeeded for the same SHA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138677590.
+- Axxess package assembly succeeded for the same SHA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39138677643. This assembled an artifact only; it was not uploaded to Axxess.
+- Important evidence limit: the smoke run published no artifacts/screenshots, and its success does not establish that it checked 1440px, 390px and 320px geometry. Do not claim the mobile screenshot issue is fully resolved yet.
+- Handover-only main commit `8201edd52246e4fc53255eebff8d7dfd9c45222f` triggered a main Pages workflow run `39138762363`; it was still in progress at last check. That main deploy does not deploy the separate mobile-fix branch.
+- Next action: obtain a browser run with explicit viewport assertions/screenshots against the preview built from SHA `30e11771ce0124d2f375048c90d7a57817bb86cf`; if no accessible runner/artifact path exists, record that blocker rather than treating generic smoke success as visual acceptance. Worker runtime logs remain required to close the separate Worker failure.
