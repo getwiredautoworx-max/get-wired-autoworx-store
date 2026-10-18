@@ -69,10 +69,10 @@ jobs:
           node <<'NODE'
           const fs = require('node:fs');
           const html = fs.readFileSync('index-new.html', 'utf8');
-          const scripts = [...html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)];
+          const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)];
           let checked = 0;
           for (const [index, match] of scripts.entries()) {
-            if (/\\bsrc\\s*=/.test(match[1])) continue;
+            if (/\bsrc\s*=/.test(match[1])) continue;
             try {
               new Function(match[2]);
               checked++;
