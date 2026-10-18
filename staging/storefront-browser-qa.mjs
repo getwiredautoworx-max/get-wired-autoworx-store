@@ -297,7 +297,7 @@ try {
   const exactLocalImageLoaded = Number(wrapperProductImage.naturalWidth || 0) > 0 &&
     /\/assets\/products(?:_webp)?\/GW-[^/?]+\.(?:webp|jpg)(?:$|\?)/i.test(String(wrapperProductImage.src || ''));
   const explicitPlaceholderShown = wrapperProductImage.placeholder === true &&
-    (wrapperProductImage.imageHidden === true || /product-image-pending\\.svg/i.test(String(wrapperProductImage.src || '')));
+    (wrapperProductImage.imageHidden === true || /product-image-pending\.svg/i.test(String(wrapperProductImage.src || '')));
   check('customer_wrapper_exact_sku_image_or_explicit_placeholder',
     exactLocalImageLoaded || explicitPlaceholderShown,
     JSON.stringify(wrapperProductImage));
