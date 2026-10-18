@@ -2414,3 +2414,9 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Reviewed the responsive screenshot artifact from failed run #812. The storefront's `hidden` attribute was being overridden by explicit `.shopControls{display:flex}` and `.mobileBuyBar{display:flex}` CSS, causing inactive filter controls and the purchase bar to appear before they should.
 - Added an explicit hidden-state override for both components. This should keep the shop controls hidden until products are ready and keep the fixed Add to Cart / Buy Now bar hidden until a product is selected.
 - The screenshot run also exposed 8px horizontal overflow at 320px. It must be rechecked after the hidden-state fix; if it remains, use the new screenshot/report to identify the overflowing element.
+
+
+## 2026-10-18 — 320px overflow diagnostic
+
+- After the hidden-state fix, the next responsive smoke run still measured 328px document width at a 320px viewport. Added a compact DOM-offender report to the smoke failure so the next run identifies the exact elements extending beyond the viewport rather than requiring guesswork.
+- The category artwork assets now load in the last artifact; the remaining test gate is layout overflow and the separate browser syntax-error page report.
