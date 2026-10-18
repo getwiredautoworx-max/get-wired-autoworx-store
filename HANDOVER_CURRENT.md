@@ -2420,3 +2420,9 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 
 - After the hidden-state fix, the next responsive smoke run still measured 328px document width at a 320px viewport. Added a compact DOM-offender report to the smoke failure so the next run identifies the exact elements extending beyond the viewport rather than requiring guesswork.
 - The category artwork assets now load in the last artifact; the remaining test gate is layout overflow and the separate browser syntax-error page report.
+
+
+## 2026-10-18 — Small-screen header and syntax diagnostics
+
+- The 320px overflow report identified the header search field (right edge 328px) and cart badge (right edge 329px). Added a strict 100vw header bound and narrower search positioning for widths at or below 380px, plus an in-bounds cart badge.
+- Updated the browser QA logger to emit the full page-error stack for the remaining “Invalid or unexpected token” message. The next run should establish whether it is from a script URL or inline source rather than leaving it as an unexplained warning.
