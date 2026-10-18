@@ -106,6 +106,8 @@ jobs:
               });
               if (overflow.scroll > overflow.client + 2) throw new Error('Homepage horizontal overflow at '+width+'px: '+JSON.stringify(overflow));
               await page.screenshot({path:'artifacts/homepage-'+width+'.png',fullPage:true});
+              await frame.locator('#categoryGrid').screenshot({path:'artifacts/category-grid-'+width+'.png'});
+              await frame.locator('.hero').screenshot({path:'artifacts/hero-'+width+'.png'});
             }
             console.log('CATEGORY_ARTWORK_PASS: '+JSON.stringify({rootCount,imageCheck}));
             // Exercise the standalone category-navigation route as well as the embedded homepage.
