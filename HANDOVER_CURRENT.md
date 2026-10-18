@@ -2381,3 +2381,9 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Corrected the smoke workflow order so screenshot artifact upload runs **after** the browser test creates the 390px, 320px and 1440px screenshots. This avoids an empty artifact caused by placing the upload step before the test.
 - Latest workflow source includes eight-root assertions, explicit image-path checks, responsive overflow checks, and a product-image guard test that accepts either a real exact-SKU local image or a clearly labelled unavailable state.
 - QA is still in progress: the older run #799 failed before these final workflow changes were included. Do not treat it as the current-head result. Await a fresh run and inspect its logs/artifacts.
+
+
+## 2026-10-18 — Responsive QA selector correction
+
+- The first screenshot-enabled smoke run correctly caught a test-selector issue: the image query included nested subcategory cards (63 descendants) instead of the eight top-level cards. Updated the selectors to target only direct root-card image elements. This was a QA assertion defect, not a 63-tile homepage render.
+- Screenshot artifact upload now executes after the test step. Await the next smoke run after the selector correction; prior failure must not be represented as a pass.
