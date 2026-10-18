@@ -64,6 +64,26 @@ jobs:
           done
           cat /tmp/storefront-http.log
           exit 1
+      - name: Validate inline JavaScript syntax before browser QA
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index-new.html', 'utf8');
+          const scripts = [...html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)];
+          let checked = 0;
+          for (const [index, match] of scripts.entries()) {
+            if (/\\bsrc\\s*=/.test(match[1])) continue;
+            try {
+              new Function(match[2]);
+              checked++;
+            } catch (error) {
+              console.error('Inline script #' + index + ' failed syntax validation: ' + error.message);
+              process.exitCode = 1;
+            }
+          }
+          if (!checked) throw new Error('No inline scripts were syntax-checked');
+          console.log('Inline scripts syntax-checked successfully: ' + checked);
+          NODE
       - name: Run desktop, mobile and interaction checks
         run: node staging/storefront-browser-qa.mjs
       - name: Upload screenshots and QA report
