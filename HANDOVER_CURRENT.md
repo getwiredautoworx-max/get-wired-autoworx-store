@@ -2374,3 +2374,10 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Extended `.github/workflows/storefront-smoke.yml` to assert exactly eight homepage root tiles, verify explicit category-image paths, test horizontal overflow at 390/320/1440px, capture screenshots at those widths, and upload them as a short-retention QA artifact.
 - Latest source changes are on draft PR #57. Package integrity and public-SKU audit passed for the earlier PR head; the first smoke test failed for the fallback-test mismatch above. The revised smoke workflow must finish successfully against the updated PR head before the source-level QA gate is accepted.
 - Still not resolved by code alone: visually inspect any existing product photo that loads successfully but contains catalogue text/watermarks or depicts the wrong part. The runtime cannot safely infer image correctness from a URL. No production deployment or database change.
+
+
+## 2026-10-18 — QA artifact sequencing correction
+
+- Corrected the smoke workflow order so screenshot artifact upload runs **after** the browser test creates the 390px, 320px and 1440px screenshots. This avoids an empty artifact caused by placing the upload step before the test.
+- Latest workflow source includes eight-root assertions, explicit image-path checks, responsive overflow checks, and a product-image guard test that accepts either a real exact-SKU local image or a clearly labelled unavailable state.
+- QA is still in progress: the older run #799 failed before these final workflow changes were included. Do not treat it as the current-head result. Await a fresh run and inspect its logs/artifacts.
