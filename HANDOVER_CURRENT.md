@@ -2387,3 +2387,9 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 
 - The first screenshot-enabled smoke run correctly caught a test-selector issue: the image query included nested subcategory cards (63 descendants) instead of the eight top-level cards. Updated the selectors to target only direct root-card image elements. This was a QA assertion defect, not a 63-tile homepage render.
 - Screenshot artifact upload now executes after the test step. Await the next smoke run after the selector correction; prior failure must not be represented as a pass.
+
+
+## 2026-10-18 — Fresh responsive QA rerun requested
+
+- Corrected the root-image selector after the prior test counted 63 nested images rather than the eight top-level category illustrations.
+- Added a workflow-only trigger-comment update so the next smoke run is created after the selector correction. Do not rely on run #803: its log belongs to the earlier workflow version and failed on the old selector.
