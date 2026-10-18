@@ -33,3 +33,12 @@ No owner input is required for the GitHub code correction itself. If Cloudflare'
 - Pages build: latest main run succeeded; branch preview not yet verified.
 - Worker preview: unresolved.
 - Live-test readiness: NO.
+
+
+## Follow-up verification — 2026-10-18 17:50 SAST
+- Branch head verified as `4f528d58e1779e6e35d69a246eb671486e941334`. The changed `index-new.html`, `store.html`, QA record, and handover file all exist on the isolated branch.
+- GitHub Actions query for `fix/mobile-layout-2026-10-18` returned zero workflow runs at the time checked. Do not claim a browser test or branch deployment has run.
+- Inspected `.github/workflows/cloudflare-pages-deploy.yml`: it is deliberately `workflow_dispatch`-only and its command explicitly deploys `--branch=main`. Do NOT run this workflow for this preview fix because it is a production-branch deployment path.
+- No connected Cloudflare dashboard/deployment-list tool is available in this session to fetch the actual branch preview URL or inspect the separate Worker build's authenticated logs. No preview URL has been guessed or claimed.
+- Safe next move: obtain a real branch-preview/deployment record from Cloudflare Pages Git integration, then run browser QA against that exact URL. For the Worker failure, the account owner may need to disconnect the unintended Worker Builds integration from this Pages repository in Cloudflare Dashboard (Workers & Pages → affected Worker → Settings/Builds & deployments) if the integration is indeed separate; first confirm the affected Worker/project and preserve Pages. This dashboard action has NOT been performed.
+- Status remains: mobile fix committed but visually unverified; Worker preview unresolved; release HOLD.
