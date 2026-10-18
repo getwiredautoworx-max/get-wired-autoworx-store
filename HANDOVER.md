@@ -3050,3 +3050,11 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Latest exact-head browser QA run #92 is pending for commit e410876ee89daf0f35e2cc75b7f65afd772a117b: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096664114 . Older run #90 is a confirmed failure and is not acceptance evidence.
 - Continue inspecting the newest report/screenshots. Product source images still contain visible text/watermarks; category tiles currently use clean icon placeholders pending curated category imagery. Do not mark visual acceptance complete until these image issues and hero layout are reviewed.
 - No production changes; PR #54 remains draft/unmerged.
+
+
+## CONTINUATION LOG — 2026-10-18 — CURRENT-HEAD THEME CHECK RECONCILIATION
+
+- Latest screenshot/QA run #93 exposed a repository-branch inconsistency rather than a styling failure: the branch head had reverted to the brightTheme body class and the QA script had reverted to light-theme assertions, despite the dark CSS override. This came from competing file updates on the same branch; subsequent updates were made sequentially and re-fetched to verify the final branch state.
+- Current review branch now verified: index-new.html blob 6e79752cedb2a20a3a6f5d910522d12759c4dc11 has no brightTheme body class, retains the dark-theme and hero-flow overrides, and uses category icon placeholders instead of unverified product thumbnails. staging/storefront-browser-qa.mjs blob e3bbf0c284432cd5a6da556aa5fe1e8d922f6a9b now checks the dark theme/surfaces and includes the hero CTA assertion inside the viewport loop.
+- Latest exact-head browser QA run #95 is pending for commit 9a612e145695020ae826fff188774fe9b3d25c97: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39096847217 . Do not rely on older run #93; it failed because the old QA assertion expected the bright theme.
+- Production remains untouched; PR #54 remains draft/unmerged. Wait for run #95, inspect report/screenshots, and continue only on concrete visual failures. Supplier text/watermarks on product images remain unresolved; category cards use clean icon placeholders until curated category assets are available.
