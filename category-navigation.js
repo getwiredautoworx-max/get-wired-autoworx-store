@@ -57,7 +57,7 @@
       style.id='gw-category-presentation';
       style.textContent=`
         /* Approved homepage design: exactly three columns at every viewport width.
-           Nine active root categories therefore form a 3 x 3 image-led button grid. */
+           Eight approved root categories form the 3-column image-led button grid. */
         #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px}
         #categoryGrid .catWrap{min-width:0;height:100%}
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
@@ -87,7 +87,7 @@
           #categoryGrid .catContent b{font-size:10px}
         }
       `;
-      d.head.appendChild(style);
+      const styleTarget=d.head||d.documentElement;\n      if(!styleTarget)return;\n      styleTarget.appendChild(style);
     }catch(err){console.warn('GW category presentation:',err);}
   }
   function install(frame){
