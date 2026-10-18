@@ -1,0 +1,44 @@
+name: Deploy review branch to Cloudflare Pages preview
+
+on:
+  push:
+    branches:
+      - review/staging-ui-verification-fixes-current
+    paths:
+      - '.github/workflows/cloudflare-staging-preview.yml'
+      - 'index.html'
+      - 'index-new.html'
+      - 'store.html'
+      - 'assets/**'
+      - 'category-navigation.js'
+      - 'category.html'
+      - 'product-details.js'
+      - 'checkout-v2.html'
+      - 'returns-refunds.html'
+      - 'terms-and-conditions.html'
+      - 'staging/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cloudflare-staging-preview
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    name: Deploy isolated review preview (not production)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout review branch
+        uses: actions/checkout@v4
+
+      - name: Deploy review branch to non-production Pages preview
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=get-wired-autoworx-store --branch=review-staging-ui-verification-fixes-current
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
