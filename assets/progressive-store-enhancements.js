@@ -128,12 +128,10 @@ function install(frame){
       const fitmentText=[p.name,p.description,p.compatible_vehicles,p.vehicle_application,p.application,p.specifications,p.slug].filter(Boolean).join(' ').toLowerCase();
       const makes=['toyota','nissan','isuzu','ford','volkswagen','vw','mazda','honda','hyundai','kia','renault','suzuki','mitsubishi','mercedes','bmw','audi','volvo','iveco','man ','scania','daf ','tata','mahindra','jeep','land rover','range rover','chevrolet','opel','peugeot','citroen','fiat','subaru','lexus','jaguar','proton','perodua','daihatsu','ssangyong','fuso','hino','kia'];
       const compat=String(p.compatible_vehicles||p.vehicle_application||p.application||'').trim().toLowerCase();
-      const hasSpecificMake=makes.some(make=>new RegExp('(^|[^a-z])'+make.trim().replace(/[.*+?^${}()|[\]\\]/g,'\\      const actions=detail.querySelector('.detailActions');if(!actions||actions.querySelector('.gwWishlist'))return;
-      const b=d.createElement('button');b.className='gwWishlist';b.textContent='♡ SAVE PRODUCT';b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
-')+'([^a-z]|$)').test(fitmentText));
-      const hasModelYear=/\\b(19[7-9]\\d|20[0-3]\\d)\\s*(?:-|to|\\/|–)\\s*(?:(?:19|20)\\d{2}|onwards?|present)?\\b/i.test(fitmentText);
-      const hasFitment=!!compat&&!/^(universal|all vehicles|all makes|n\\/?a|none|not specified|generic)$/i.test(compat);
-      const needsVehicleCheck=hasSpecificMake||hasModelYear||hasFitment||/\\b(for|fits|fitment|application)\\s+(?:the\\s+)?(?:toyota|nissan|isuzu|ford|vw|volkswagen|mazda|honda|hyundai|kia|renault|suzuki|mitsubishi|mercedes|bmw|audi|volvo|iveco|scania|jeep|land rover|chevrolet|opel|peugeot|fiat|subaru|lexus|jaguar)\\b/i.test(fitmentText);
+      const hasSpecificMake=makes.some(make=>fitmentText.includes(make.trim()));
+      const hasModelYear=/\b(19[7-9]\d|20[0-3]\d)\s*(?:-|to|\/|–)\s*(?:(?:19|20)\d{2}|onwards?|present)?\b/i.test(fitmentText);
+      const hasFitment=!!compat&&!/^(universal|all vehicles|all makes|n\/?a|none|not specified|generic)$/i.test(compat);
+      const needsVehicleCheck=hasSpecificMake||hasModelYear||hasFitment||/\b(for|fits|fitment|application)\s+(?:the\s+)?(?:toyota|nissan|isuzu|ford|vw|volkswagen|mazda|honda|hyundai|kia|renault|suzuki|mitsubishi|mercedes|bmw|audi|volvo|iveco|scania|jeep|land rover|chevrolet|opel|peugeot|fiat|subaru|lexus|jaguar)\b/i.test(fitmentText);
       let verify=detail.querySelector('.gwVehicleVerify');
       if(needsVehicleCheck){
         if(!verify){
