@@ -31,3 +31,13 @@ Date: 2026-10-19 20:00 SAST
 - Pages: previous preview success exists; current availability after the action not yet rechecked.
 - Worker blocker: mitigated per owner action, but final resolution not yet evidenced.
 - Store release: HOLD; PR #54 remains draft/unmerged. No production release is authorized.
+
+
+## Owner reported visual defect and corrective work — 2026-10-19 20:xx SAST
+- Owner opened the Pages preview and reported: **"The store opens but everything is overlapping each other."** Treat preview as reachable but visually broken; not accepted as resolved.
+- Source review found the storefront has many duplicated, contradictory responsive CSS patches in `index-new.html`; several mobile rules force four category columns at phone widths, and later overrides conflict with earlier header/hero/grid rules. This is a concrete candidate cause for cramped/overlapping phone layout.
+- Corrective CSS override committed to review branch only: `59ec8ac2e54193c351a52013d9e1a68064d66b6a`. It consolidates the final header, hero, category, and product-grid rules, uses two category columns and two product columns on mobile, and retains three category columns/four product columns on desktop.
+- Browser QA was strengthened on review branch in commit `51768071066662aad5440208ce2064f3da39572e` to explicitly test header overlaps, category-card overlaps, and responsive grid column counts at 1440px, 390px, and 320px.
+- QA run for the CSS commit was still in progress when checked: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299089080. It ran against commit `59ec8ac2`, before the additional QA assertion commit, so a new run for the latest branch commit is still required.
+- The Cloudflare Pages preview deployment workflow failed before deployment at the credential-validation step; the deploy step was skipped. Therefore the existing preview URL has **not** been updated with the CSS fix. Run details: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299088769. Do not claim the user's visible preview is fixed until a fresh preview deploy succeeds and the new preview is checked.
+- PR #54 remains draft/open/unmerged. Changes are on the review branch only; no production or Axxess changes.
