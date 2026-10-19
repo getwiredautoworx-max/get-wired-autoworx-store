@@ -900,6 +900,68 @@ body{padding-bottom:0!important}
  .heroText h1{font-size:22px!important}
  .heroBtns .btn{font-size:9px!important;padding:6px 4px!important}
 }
+
+/* 2026-10-19: authoritative responsive layout override.
+   Earlier emergency CSS patches contained conflicting mobile grid/header rules.
+   Keep this final block last so the storefront cannot inherit the cramped 4-column
+   category layout or overlapping header/hero rules at phone widths. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+#home,main,.hero,.section,.features{min-width:0;max-width:100%}
+@media(min-width:901px){
+  .head{display:flex;flex-wrap:nowrap;align-items:center;gap:18px}
+  .head .search{position:static;order:initial;flex:1 1 420px;width:auto;min-width:0;max-width:620px;margin-left:auto}
+  .header{height:auto}
+  #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+  .products{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:900px){
+  .header{height:auto!important;padding-bottom:0!important}
+  .head{height:auto!important;min-height:0!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px 10px!important;padding:8px 12px!important}
+  .hamb{flex:0 0 28px!important;width:28px!important}
+  .logo{flex:0 1 auto!important;width:min(230px,calc(100vw - 150px))!important;height:48px!important;max-width:100%!important;object-fit:contain}
+  .cart{margin-left:auto!important;flex:0 0 auto!important}
+  .head .search,.search{position:relative!important;left:auto!important;right:auto!important;top:auto!important;order:4!important;flex:0 0 100%!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0!important}
+  .search input{width:100%!important;min-width:0!important;height:42px;padding:9px 14px!important}
+  .nav{display:none!important}
+  .hero,.section{width:100%;padding-left:12px!important;padding-right:12px!important}
+  .heroCard{height:auto!important;min-height:0!important;overflow:hidden!important}
+  .ratingbox{position:relative!important;inset:auto!important;transform:none!important;display:flex!important;align-items:center!important;gap:6px!important;width:max-content!important;max-width:calc(100% - 20px)!important;margin:10px 10px 0 auto!important;padding:7px 9px!important}
+  .ratingbox strong{font-size:19px!important}
+  .heroText{position:relative!important;padding:12px 14px 16px!important;max-width:100%!important}
+  .heroText h1{font-size:clamp(23px,6vw,32px)!important;line-height:1.08!important;overflow-wrap:anywhere}
+  .heroText p{font-size:13px!important;line-height:1.4!important;max-width:100%!important}
+  .heroBtns{display:flex!important;flex-wrap:wrap!important;gap:7px!important}
+  .heroBtns .btn{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:40px;padding:9px 11px!important;font-size:12px!important;white-space:normal;text-align:center}
+  .features{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding-left:12px!important;padding-right:12px!important}
+  #categoryGrid.cats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:stretch}
+  #categoryGrid>.catWrap{min-width:0!important;width:100%;height:auto!important}
+  #categoryGrid>.catWrap .catBtn{width:100%!important;min-width:0!important;height:100%!important;min-height:0!important;gap:7px!important;padding:9px!important;overflow:hidden}
+  #categoryGrid>.catWrap .catImage,#categoryGrid>.catWrap .catArt{width:100%!important;max-width:100%!important;height:88px!important;flex:0 0 auto!important;object-fit:contain}
+  #categoryGrid>.catWrap .catContent{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:4px!important;min-width:0!important;width:100%!important;min-height:0!important;padding:5px 2px!important;overflow-wrap:anywhere}
+  #categoryGrid>.catWrap .catContent b{font-size:clamp(10px,2.7vw,13px)!important;line-height:1.2!important;white-space:normal!important;overflow-wrap:anywhere}
+  #categoryGrid>.catWrap .catContent small,#categoryGrid>.catWrap .catContent i{font-size:10px!important;line-height:1.2!important;white-space:normal!important}
+  #categoryGrid .children{max-width:100%;overflow-wrap:anywhere}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .product{min-width:0!important;width:100%;padding:8px!important;overflow:hidden!important}
+  .prodImg{width:100%;height:110px!important}
+  .product h3,.product p,.product .price{overflow-wrap:anywhere;word-break:normal}
+  .product h3{font-size:12px!important;line-height:1.25!important}
+  .product .price{font-size:14px!important}
+  .product button{width:100%;white-space:normal;overflow-wrap:anywhere;font-size:11px!important;padding:8px 5px!important}
+  .detail{grid-template-columns:minmax(0,1fr)!important}
+}
+@media(max-width:380px){
+  .head{gap:6px 7px!important;padding:7px 8px!important}
+  .logo{width:calc(100vw - 125px)!important;height:42px!important}
+  .heroText{padding:10px 10px 13px!important}
+  .heroText h1{font-size:22px!important}
+  .heroBtns .btn{font-size:10px!important;padding:8px 7px!important}
+  #categoryGrid.cats{gap:6px!important}
+  #categoryGrid>.catWrap .catImage,#categoryGrid>.catWrap .catArt{height:70px!important}
+  #categoryGrid>.catWrap .catBtn{padding:7px!important}
+  .products{gap:6px!important}
+  .product{padding:6px!important}
+}
 </style>
 </head><body class="brightTheme"><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><button class="btn secondary partAction" type="button" onclick="openPartSearch()">PART SEARCH</button><button class="btn secondary partAction primaryAction" type="button" onclick="openPartRequest()">REQUEST A PART</button><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
 <div class="sectionTitle"><h2>OPTIONAL: FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Optional for vehicle-specific parts only</span></div>
