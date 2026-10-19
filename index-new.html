@@ -410,9 +410,9 @@ pointer-events:none}
   .head{grid-template-columns:38px minmax(0,1fr) 70px;min-width:0;max-width:100%;padding-left:10px;padding-right:10px;gap:6px 8px}
   .logo{width:100%!important;min-width:0;max-width:100%;height:60px}
   .head .search{left:0!important;right:0!important;width:auto!important;max-width:none!important}
-  .mobileNav a{min-width:0;overflow:hidden;font-size:9px}
-  .mobileNav b{font-size:20px}
-  .mobileNav .badge{min-width:0;margin-left:0;padding:1px 3px;font-size:9px}
+  .mobileNav a{flex:1 1 0;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;gap:1px;padding:0 1px;font-size:9px}
+  .mobileNav b{display:block;font-size:20px;line-height:1.1}
+  .mobileNav .badge{position:absolute;top:0;right:2px;min-width:0;margin:0;padding:1px 3px;font-size:9px}
   .hero{padding-left:10px;padding-right:10px;margin-top:10px}
   .heroCard{height:auto!important;min-height:0!important;overflow:hidden;border-radius:12px}
   .heroText{position:relative!important;inset:auto!important;display:flex;align-items:center!important;justify-content:center;flex-direction:column;text-align:center!important;max-width:none!important;width:auto;padding:18px 14px!important;background:linear-gradient(180deg,rgba(2,6,13,.86),rgba(2,6,13,.72));}
