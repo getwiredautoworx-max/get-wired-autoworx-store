@@ -2802,3 +2802,10 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 ### Current release state
 - Store release remains **HOLD**. The review PR stays unmerged; production remains untouched.
 - Next execution: inspect Actions/browser QA results for the exact repair commit; fix only concrete remaining failures. Owner action is only the Cloudflare dashboard setting above if no genuine Worker dependency exists.
+
+
+### Follow-up — wrapper-level floating control correction (2026-10-19)
+- Inspected the actual wrapper page `store.html`, which embeds `index-new.html`. Found the wrapper-level WhatsApp anchor had class `.whatsapp-fab` but no CSS definition, leaving it unstyled, and the wrapper checkout button was positioned close to the iframe's fixed mobile navigation.
+- Added wrapper control styles in commit `3aab44ef1a0129a702ff56a829abd5f53e72c3f4`: desktop WhatsApp is now a styled floating control; the duplicate wrapper WhatsApp control is hidden on phones because the storefront already has WhatsApp in its own mobile navigation; checkout is positioned above the mobile navigation with safe-area spacing.
+- This supplements the main responsive hero/layout patch `068746ee7560d4811b0ebb52cdec74e59c796934`. Both commits are on the review branch only.
+- Verification remains pending: no browser screenshot/Playwright result for the final combined head has been retrieved yet. Do not claim the overlap issue fully resolved until exact-head QA and screenshots pass.
