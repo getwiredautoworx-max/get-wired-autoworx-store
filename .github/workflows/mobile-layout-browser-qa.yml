@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - fix/mobile-storefront-layout-2026-10-19
+    paths:
+      - 'index-new.html'
+      - 'store.html'
+      - 'category-navigation.js'
+      - 'assets/category-cleanup.js'
+      - 'assets/store-category-hierarchy.json'
+      - 'scripts/test-mobile-layout.cjs'
+      - '.github/workflows/mobile-layout-browser-qa.yml'
   pull_request:
     paths:
       - 'index-new.html'
