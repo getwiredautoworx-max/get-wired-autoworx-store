@@ -2586,3 +2586,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - No token was created or verified in this interaction; no GitHub secrets were added; no build was enabled or triggered; no Pages/Worker settings, Axxess hosting, DNS, production catalogue/database, or payment settings were changed.
 - Separate existing blocker remains: the Cloudflare Workers Builds integration previously failed on `npx wrangler preview` because the repo's root Wrangler configuration is Pages-oriented and no Worker entry point is verified. This API token step is for the manual Pages deployment workflow and does not by itself resolve the separate Worker build failure.
 - Status: **CREDENTIAL SETUP IN PROGRESS — NOT RESOLVED**. Store release remains **HOLD**. Do not claim deployment success until both secrets exist and the appropriate workflow has a successful run with a verified preview URL.
+
+
+## 2026-10-19 — Cloudflare token permission options confirmed by owner
+
+- Owner pasted the actual Cloudflare Account API token permission picker. Under the first `account` section, the `Pages` permission group is present and offers `Read` and `Edit`; this confirms that the intended least-privilege Pages permission is selectable.
+- Next instruction given: rename token to `Get Wired AutoWorx Pages Deploy`; select only `account → Pages → Edit`; leave all unrelated permission groups unselected. Leave token expiry/IP restrictions at defaults unless the account requires them. Review the summary before creating.
+- The token is not yet confirmed created. After creation, store its value directly as GitHub repository Actions secret `CLOUDFLARE_API_TOKEN`; never send it in chat or commit it. Add the actual Cloudflare Account ID separately as `CLOUDFLARE_ACCOUNT_ID`, using the dashboard/account details rather than guessing.
+- No token, GitHub secret, build trigger, Pages/Worker setting, Axxess, DNS, production data, or payment setting has been changed by this guidance. Separate Worker Builds issue remains unresolved; this Pages token will not by itself repair it. Store release remains **HOLD** until secrets and deployment evidence are verified.
