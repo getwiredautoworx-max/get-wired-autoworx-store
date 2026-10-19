@@ -41,3 +41,10 @@ Date: 2026-10-19 20:00 SAST
 - QA run for the CSS commit was still in progress when checked: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299089080. It ran against commit `59ec8ac2`, before the additional QA assertion commit, so a new run for the latest branch commit is still required.
 - The Cloudflare Pages preview deployment workflow failed before deployment at the credential-validation step; the deploy step was skipped. Therefore the existing preview URL has **not** been updated with the CSS fix. Run details: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299088769. Do not claim the user's visible preview is fixed until a fresh preview deploy succeeds and the new preview is checked.
 - PR #54 remains draft/open/unmerged. Changes are on the review branch only; no production or Axxess changes.
+
+
+## Latest verification runs — 2026-10-19 20:xx SAST
+- Latest branch commit is `51768071066662aad5440208ce2064f3da39572e`.
+- Responsive browser QA for this exact commit is queued/in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299231700.
+- Isolated Cloudflare Pages preview deployment for this exact commit is in progress at last check: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299231683. Earlier attempt failed because the workflow's credential-validation step failed; the actual Pages deploy step was skipped. Required repository Actions secrets are named `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`; values must be entered by the owner in GitHub settings and must never be sent in chat.
+- Status remains unresolved pending exact-commit browser QA and a successful fresh preview deploy. Do not merge or deploy to production.
