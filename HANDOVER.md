@@ -2778,3 +2778,27 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 - GitHub Actions secret creation: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/settings/secrets/actions/new
 
 **Verified state at pause:** Android project/config/theme/NeonCard and workflow files are committed. Expo project ID has not been linked/verified; GitHub `EXPO_TOKEN` presence is unverified; no EAS build result or downloadable APK has been verified; no Hisense M72 Pro installation test has been completed. The app currently wraps the HTTPS storefront in a WebView; it is not a fully native shopping app. No Axxess, production storefront, Supabase, DNS, catalogue or payment configuration was changed by this workstream. Keep all these statuses open until evidence is collected.
+
+
+## 2026-10-19 — Immediate overlap repair + Worker build resolution checkpoint (SAST)
+
+### Storefront overlap repair — code change committed, verification pending
+- Owner reported: “The store opens but everything is overlapping each other.”
+- Confirmed deployed homepage path in source: `index.html` redirects to `store.html`; `store.html` embeds `index-new.html` in an iframe. The actual layout source is therefore `index-new.html`.
+- Identified conflicting mobile hero rules in the long accumulated CSS cascade: fixed/clamped hero heights, absolutely positioned `.heroText`, multiple `.ratingbox` transforms/position overrides, and overlapping fixed bottom controls. This is a concrete source-level overlap cause, not a Cloudflare API token issue.
+- Added a final, scoped mobile override on branch `review/staging-ui-verification-fixes-current` in commit `068746ee7560d4811b0ebb52cdec74e59c796934`. It returns hero content to normal flow, makes the rating block participate in flow, gives hero actions a responsive 2-column grid (single column at <=359px), reserves space for the hero banner, constrains card/product grids, hides the duplicate fixed mobile purchase bar, accounts for safe-area padding, and prevents horizontal overflow.
+- Commit URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/commit/068746ee7560d4811b0ebb52cdec74e59c796934
+- No main-branch merge, production deployment, Axxess upload, DNS, Supabase, catalogue, checkout or payment configuration changes were made.
+- **Status: PATCH COMMITTED; not yet visually verified.** Required QA: exact commit screenshots and interactions at 1440px, 430px, 390px and 320px; assert no horizontal overflow, no overlap between hero text/actions/banner/rating, no duplicate bottom controls, and check categories, search, Part Search, Request a Part, cart and checkout. Do not mark ready until evidence passes.
+
+### Separate Cloudflare Workers build — exact root cause evidenced; dashboard action still required
+- Latest supplied Workers build log says command `npx wrangler deploy` fails with `Missing entry-point to Worker script or to assets directory`. The repository's `wrangler.toml` is Pages-configured (`pages_build_output_dir = "."`) and the storefront uses `wrangler pages deploy`; no Worker entry point was found.
+- This is a separate Workers Builds integration invoking a Worker deploy command against a static Pages repository. It is not fixed by creating a GitHub Actions API token and must not be “fixed” by inventing a Worker entry point or adding a speculative `[previews]` block.
+- Correct remote resolution: open the failed Worker service (not the separate Pages project) in Cloudflare Dashboard → Workers & Pages → `get-wired-autoworx-store` → Settings → Builds. If this is only a duplicate static-storefront Worker and has no required Worker route/domain/binding/consumer, disable/disconnect that Worker service's Git build integration; keep the separate Pages project and Pages previews untouched. If it is a required Worker, first identify its real entry point/purpose and configure its own valid Worker source and deploy command.
+- Known failed-build detail link: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/1a39ba8f-a8cf-4079-ba90-a7cb47bcde1f
+- Current tools do not provide Cloudflare dashboard write access or enough route/binding evidence to perform this remote setting change safely. **Status: BLOCKED ON OWNER DASHBOARD ACTION; not resolved.** Do not claim the Worker build is fixed until a fresh build succeeds or the unnecessary integration is confirmed disabled.
+- A custom GitHub Actions Pages deployment token is not needed to fix this Worker command mismatch. Do not create broad-scope account tokens for this purpose.
+
+### Current release state
+- Store release remains **HOLD**. The review PR stays unmerged; production remains untouched.
+- Next execution: inspect Actions/browser QA results for the exact repair commit; fix only concrete remaining failures. Owner action is only the Cloudflare dashboard setting above if no genuine Worker dependency exists.
