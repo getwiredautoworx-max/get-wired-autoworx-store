@@ -13,6 +13,12 @@ Date: 2026-10-19 20:00 SAST
   https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/1a39ba8f-a8cf-4079-ba90-a7cb47bcde1f
 - Connected GitHub comments do not show any new Cloudflare result after the owner reported disabling the build.
 
+## Follow-up verification — 2026-10-19 20:xx SAST
+- GitHub API confirms a separate GitHub Pages workflow run for the handover commit `71db71ecd6f43c9f243fa70cdad8de27f838fd15` completed successfully: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39298154778. Its job is explicitly named `Deploy to GitHub Pages`; this is **not proof** that Cloudflare Pages is live or that the separate Cloudflare Worker build is disabled.
+- Repository `wrangler.toml` remains Pages-configured (`pages_build_output_dir = "."`), and `.github/workflows/cloudflare-pages-deploy.yml` still uses `wrangler pages deploy`. These were read from `main`; neither was changed during verification.
+- Direct HTTP/preview checks could not be completed from the execution environment because outbound DNS resolution is unavailable there. Treat public preview availability as unverified, not as a confirmed outage.
+- PR #54 remains open, draft, and unmerged. No production deployment was initiated by this verification.
+
 ## Verification required
 1. Confirm the Cloudflare Workers build integration now shows disabled (owner report only at present).
 2. Confirm the separate Cloudflare Pages project and its GitHub Actions Pages deployment workflow remain enabled and unchanged.
