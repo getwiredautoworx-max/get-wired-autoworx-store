@@ -2636,3 +2636,12 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Next instruction: add repository Actions secret `CLOUDFLARE_ACCOUNT_ID` with value `43ab7b7bd3689458e2d0de39f6e897ca`, the account ID extracted from the owner-provided Cloudflare dashboard URL, only if this is the account containing the Pages project.
 - After that, inspect the workflow configuration and account/project settings before deliberately running a manual deployment test. Do not assume secret visibility can be inspected; GitHub masks secret values. Do not trigger builds until ready.
 - No build or deployment has been triggered in this step. Store release remains HOLD.
+
+
+## 2026-10-19 — Cloudflare Pages secrets owner-reported saved; workflow inspected
+
+- Owner confirms `CLOUDFLARE_API_TOKEN` saved in GitHub Actions secrets and then confirms `CLOUDFLARE_ACCOUNT_ID` saved.
+- Inspected `.github/workflows/cloudflare-pages-deploy.yml` (blob SHA `fc18166958920b2d96ee1647fb4b9b43e0c7adde`). Workflow is `workflow_dispatch` only and invokes `cloudflare/wrangler-action@v4` with command `pages deploy . --project-name=get-wired-autoworx-store --branch=main`. This is a Pages deployment from `main`, not a harmless build-only validation.
+- Inspected root `wrangler.toml` (blob SHA `5824eefc32e352d227f43ed657c2d796876c7e4c`): `name = "get-wired-autoworx-store"`, `pages_build_output_dir = "."`, compatibility date `2026-10-06`.
+- Safety gate: do not dispatch the deployment workflow while storefront overlap issue is unresolved / release remains HOLD, because it may update the Cloudflare Pages site. Next: run non-deploying static validation and inspect/fix layout in GitHub; preserve manual-only workflow until the owner explicitly approves a deployment test.
+- Secrets cannot be independently read or their values verified via this workflow inspection; statuses are owner-reported. No workflow run or deployment triggered in this step.
