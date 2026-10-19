@@ -2585,3 +2585,10 @@ This section supersedes older continuation notes below wherever they describe mo
 - **Still open:** requested high-quality photographic category artwork; verified replacement catalogue/product image/description/category/price evidence; full search/cart/checkout/policy flow QA; remaining release/security gates recorded elsewhere in this file. The empty-state subcategory navigation is deliberate safety behaviour while catalogue rows remain unverified.
 - **No further speculative Wrangler changes:** the static storefront Pages preview succeeded. Do not add Worker-only configuration to the Pages config. The owner has already performed the Worker build disable action.
 - **Next available work:** continue source-only/staging QA and catalogue evidence reconciliation without repeated layout rebuilds. Any task requiring supplier confirmation, image-use permission, account access, or owner approval must remain explicitly blocked rather than guessed.
+
+
+## 2026-10-19 — Staging taxonomy integrity fix
+- Read-only JSON validation found 8 approved roots and 71 subcategories, with one duplicate slug `garden-tools` used under both Tools, Hardware & Consumables and Camping, Leisure & Outdoors.
+- Fixed only the camping/outdoors slug to `camping-garden-tools`; supplier-facing label `GARDEN TOOLS`, source references, statuses and mapping notes are preserved.
+- Post-change validation confirms 71 subcategory slugs are unique. Taxonomy remains `STAGING_TAXONOMY_ONLY_NOT_APPROVED_FOR_PRODUCT_IMPORT` and `live_catalogue_enabled=false`. 63 subcategories remain explicitly not visually verified; no product import is approved.
+- Commit: `5a9fa5a96cdabe45091dac5614bb86a51ae6e490`. This is a staging-only data-integrity fix; no production data, prices, stock, product images, DNS, hosting or payment settings changed.
