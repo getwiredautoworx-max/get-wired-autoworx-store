@@ -2671,3 +2671,12 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Expected preview hostname after a successful run: https://layout-fix-preview.get-wired-autoworx-store.pages.dev . This URL is not yet verified; Cloudflare branch-deployment settings may affect availability.
 - No workflow run has been triggered by the assistant. Owner must tap **Run workflow** once on the workflow page, select branch `main` if asked, and confirm. Then inspect the run result and open the preview URL only after success.
 - Production deployment remains untouched; no Axxess, DNS, payment, or production data changes. The visual fix remains pending browser verification.
+
+
+## 2026-10-19 — Roll back worse mobile layout change
+
+- Owner reported that the storefront layout became worse and confirmed the earlier layout around 21:00 South Africa time was preferable.
+- Compared `6b7cf26b86fd4eaa1a88baad1c1d20efd2d5c9c8` (20:56 SAST checkpoint) with current `main`. The only storefront source file changed since that checkpoint was `index-new.html`, with the unverified mobile hero CSS override added in commit `6e25191068a3d44b3fd7e56f5b7262f8bf171aaf`. Other later commits were workflow/handover changes.
+- Restored `index-new.html` byte-for-byte to the 20:56 SAST checkpoint in commit `75e1e3d2da969f886b98c96e0ac2e390ed0f1f3a`. This removes the latest CSS override without reverting the workflow or handover history.
+- This is a GitHub source rollback only. No Cloudflare workflow was run and no live deployment occurred. It is not yet visually verified; do not claim the preview has changed until it is served from this restored commit.
+- Next: inspect the current preview/deployment state and compare against the 21:00 SAST appearance before making any more CSS edits. Release remains HOLD; do not deploy production.
