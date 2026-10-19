@@ -4,6 +4,8 @@ const path = require('node:path');
 const { chromium } = require('playwright');
 
 const root = process.cwd();
+const out = process.env.QA_OUT || path.join(root, 'qa-evidence');
+fs.mkdirSync(out, {recursive:true});
 const mime = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain'};
 const server = http.createServer((req,res) => {
   let pathname;
@@ -31,6 +33,7 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
       await frame.locator('.heroCard').waitFor({state:'visible',timeout:20000});
       await frame.locator('.heroBtns .btn').first().waitFor({state:'visible',timeout:15000});
       await page.waitForTimeout(700);
+      await page.screenshot({path:path.join(out, 'storefront-'+width+'.png'),fullPage:true}).catch(()=>{});
       const metrics = await frame.locator('body').evaluate(body => {
         const rect = s => { const e=document.querySelector(s); if(!e)return null; const r=e.getBoundingClientRect(); return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height}; };
         const buttons=[...document.querySelectorAll('.heroBtns .btn')].map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height}});
@@ -41,6 +44,8 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
         return {overflow,buttons,nav,hero,features,categories,buttonOverlapPairs:pairs,heroButtonsOutsideCard:buttons.some(b=>!hero||b.x<hero.x-1||b.right>hero.right+1||b.y<hero.y-1||b.bottom>hero.bottom+1),heroActionFeatureOverlap:intersects(buttons.reduce((u,b)=>!u||b.y>u.y?b:u,null),features)};
       });
       assert(metrics.overflow.document <= width+2 && metrics.overflow.body <= width+2, width+'px horizontal overflow: '+JSON.stringify(metrics.overflow));
+      const clipped = metrics.overflow.offenders.filter(e=>e.right>width+2||e.left < -2);
+      assert(clipped.length===0, width+'px elements extend outside viewport: '+JSON.stringify(clipped));
       assert(metrics.buttons.length===4, width+'px expected four hero actions; got '+metrics.buttons.length);
       assert(metrics.buttonOverlapPairs.length===0, width+'px hero buttons overlap: '+JSON.stringify(metrics.buttonOverlapPairs));
       assert(!metrics.heroButtonsOutsideCard, width+'px hero actions escape hero card');
