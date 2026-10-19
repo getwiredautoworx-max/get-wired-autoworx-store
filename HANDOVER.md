@@ -1,3 +1,13 @@
+## CONTINUATION LOG — 2026-10-19 — WORKERS ASSET EXCLUSION PATCH APPLIED
+
+- Owner requested immediate resolution. Inspected PR #54 branch `review/staging-ui-verification-fixes-current` directly. Confirmed the branch already had a minimal `.assetsignore` excluding `.git/` and `.git/**`, but the Cloudflare Workers build history still showed repeated failures. Official Cloudflare documentation confirms `.assetsignore` should follow gitignore-style patterns for Worker static assets; each asset still has a 25 MiB max. References: https://developers.cloudflare.com/workers/static-assets/ and https://developers.cloudflare.com/workers/platform/limits/.
+- Applied a narrow, low-risk hardening patch to `.assetsignore` on the review branch: explicitly root-anchored and unanchored `.git` / `.git/**` patterns, plus exclusions for `.github`, `node_modules`, and `.wrangler` build metadata. Commit: `d1c1cdd75e75ea05e9b633d2d7637e785ed113c2`. File: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/review/staging-ui-verification-fixes-current/.assetsignore
+- This patch addresses the specific 71.6 MiB Git-pack upload failure without changing storefront HTML, catalogue, pricing, database, Pages config, domain, Axxess, or checkout. It is on the review branch only.
+- Verification caveat: the connected GitHub comments API still shows the prior Workers failure for commit `b351201` and successful Pages preview for that same commit; it has not yet shown a new Workers build result for patch commit `d1c1cdd`. Thus the patch is committed but a successful Workers build is NOT yet proven. The exact latest private dashboard log remains inaccessible to connected tools, and no Cloudflare dashboard setting can be changed from this session.
+- Next: inspect the newest Workers build after commit `d1c1cdd`. If the pack file still uploads despite the explicit ignore patterns, stop retrying blind builds and correct the Workers dashboard deploy/asset directory or retire the duplicate Workers Builds integration only after verifying no route/domain/binding depends on it. The intended Pages preview remains separate and already succeeded on the prior head. Keep PR #54 draft and release HOLD.
+
+---
+
 ## CONTINUATION LOG — 2026-10-19 — LATEST WORKERS BUILD LINK RECONFIRMED
 
 - After recording the 2026-09-29 asset-size log, fetched PR #54's current Cloudflare bot comments. They show a newer separate Workers build failure on commit `b351201`, dated 2026-10-18 15:26:53 UTC. Exact newest visible failed Workers build: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/d37e7ca8-3fca-44b4-b433-9998ee41c94b
