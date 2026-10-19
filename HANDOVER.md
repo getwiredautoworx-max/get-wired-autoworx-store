@@ -1,3 +1,12 @@
+## CONTINUATION LOG — 2026-10-19 — LATEST WORKERS BUILD LINK RECONFIRMED
+
+- After recording the 2026-09-29 asset-size log, fetched PR #54's current Cloudflare bot comments. They show a newer separate Workers build failure on commit `b351201`, dated 2026-10-18 15:26:53 UTC. Exact newest visible failed Workers build: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/d37e7ca8-3fca-44b4-b433-9998ee41c94b
+- The same PR separately confirms the Pages preview succeeded for commit `b351201`: https://0dde3b14.get-wired-autoworx-store.pages.dev. This confirms the Pages preview and Workers service have different outcomes; it does not establish that the newest Workers failure has the same 71.6 MiB cause because its log has not been retrieved.
+- Next diagnostic must open the newest failed Workers build above and inspect its actual final error. Do not change Pages workflow or infer the September asset-size failure is still the current cause. Current `.assetsignore` already excludes Git internals. If newest error is still the packed Git asset, verify the Workers service checked out a revision containing that ignore file and that Wrangler honored it; otherwise follow the exact new error.
+- No Cloudflare dashboard settings were changed; the connected tools cannot access the Cloudflare build log content or modify that service. No successful Workers build is claimed. Release remains HOLD.
+
+---
+
 ## CONTINUATION LOG — 2026-10-19 18:58 SAST — WORKER ASSET SIZE LOG TRIAGE
 
 - Owner supplied the exact Cloudflare Workers build log dated 2026-09-29. The deploy command was `npx wrangler deploy`; Wrangler inferred a Static Worker with asset directory `.`, then tried to upload `.git/objects/pack/pack-ed4bd0bbad7b8368c5bc7e8c4e061a5eca34bf7a.pack` (71.6 MiB), exceeding the Workers static asset per-file limit of 25 MiB. This is a deterministic asset-filtering/configuration failure, not evidence that Cloudflare credits were exhausted.
