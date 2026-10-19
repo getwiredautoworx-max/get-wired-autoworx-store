@@ -99,6 +99,7 @@
       d.addEventListener('click',function(e){
         const btn=e.target.closest('.catBtn');
         if(!btn)return;
+        if(btn.dataset.gwRootIndex!==undefined||btn.dataset.gwSubcategoryRoot!==undefined)return;
         const label=btn.querySelector('b');
         if(!label)return;
         const name=label.textContent.trim();
