@@ -708,3 +708,19 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] After the setting is corrected, inspect the next build log and verify the existing Pages project separately. Do not claim resolved until a subsequent build succeeds or the unnecessary Worker build is demonstrably disabled.
 - [x] No source/configuration change, Cloudflare/Netlify credit usage, Cloudflare deployment, Pages-project change, DNS change, Axxess upload, or payment/data mutation was made during this diagnosis.
 - Status: **diagnosed; dashboard-only correction pending**. ETA after authorized dashboard access/action: approximately 5–10 minutes to verify the next result, subject to Cloudflare's build queue.
+
+
+## 2026-10-19 — WORKER PREVIEW ERROR CONFIRMED; RESOLUTION ACTION NARROWED
+
+- [x] Re-read the current master handover and the latest session handover before continuing.
+- [x] Inspected the current `wrangler.toml`: it contains `name = "get-wired-autoworx-store"`, `pages_build_output_dir = "."`, and `compatibility_date = "2026-10-06"`; it has no `[previews]` block.
+- [x] Confirmed the reported Cloudflare build fails on `npx wrangler preview` because Wrangler 4.151.1 reports that the configuration has no `[previews]` block.
+- [x] Confirmed `.github/workflows/cloudflare-pages-deploy.yml` invokes `wrangler pages deploy . --project-name=get-wired-autoworx-store --branch=main`; that workflow targets Pages and is not a Worker deploy.
+- [x] Confirmed no root `package.json` defines a Worker build/deploy entry point in the inspected repository state. The existing Wrangler config is static-Pages-style, not evidence of an implemented Worker.
+- [x] Root cause of the observed failing command is a mismatch between a separate Worker build integration (running `wrangler preview`) and the repository's static Pages configuration. This error does not establish that the Pages storefront is broken.
+- [x] Corrected next-action guidance: do not add a speculative `[previews]` block or trigger another Pages deployment. Since the storefront is separately served by Pages, disable/disconnect only the failed Worker build integration if it has no separate runtime purpose. If it is required for another purpose, identify its actual Worker entry point and intended role before editing source/configuration.
+- [ ] Remote Cloudflare dashboard action remains pending because the connected GitHub tools do not expose Cloudflare dashboard settings. Owner action: open https://dash.cloudflare.com/ → Workers & Pages → select the item with the `.workers.dev` hostname (not the `.pages.dev` Pages project) → Settings → Builds; disable/disconnect only that Worker build integration if unused. If no such control is available, provide a screenshot of that settings page with secrets hidden.
+- [ ] Verify the next build outcome or confirm the unnecessary Worker build integration is disabled. Do not mark the issue resolved before this verification.
+- [x] No source/configuration, production Pages project, DNS, Axxess hosting, payment, catalogue/database data, or secrets were changed. No Cloudflare or Netlify deployment/credit usage was triggered.
+- Status: **root cause of the logged error confirmed; dashboard-only resolution and verification pending**.
+- ETA after the correct dashboard setting is changed: approximately 5–10 minutes to verify the state, subject to Cloudflare queue/dashboard availability.
