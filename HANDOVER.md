@@ -1,3 +1,13 @@
+## CONTINUATION LOG — 2026-10-19 18:58 SAST — WORKER ASSET SIZE LOG TRIAGE
+
+- Owner supplied the exact Cloudflare Workers build log dated 2026-09-29. The deploy command was `npx wrangler deploy`; Wrangler inferred a Static Worker with asset directory `.`, then tried to upload `.git/objects/pack/pack-ed4bd0bbad7b8368c5bc7e8c4e061a5eca34bf7a.pack` (71.6 MiB), exceeding the Workers static asset per-file limit of 25 MiB. This is a deterministic asset-filtering/configuration failure, not evidence that Cloudflare credits were exhausted.
+- Inspected current `main`: root `.assetsignore` already contains `.git/` and `.git/**` (blob SHA `c54b521e8f633a396e137f78a0b6e2188b997f35`), while `wrangler.toml` is a Pages config (`pages_build_output_dir = "."`) rather than a Worker entry-point config. The supplied failure is historical and predates current `main`; do not assume it is still the latest failure or that a new build has passed.
+- Important separation: the store's intended static-site route is Cloudflare Pages; the failing log is from a Workers Builds service executing `wrangler deploy`. Do not change the working Pages workflow/config to repair a separate Worker service. If a fresh Worker build still uploads `.git`, confirm that service's checkout includes the current `.assetsignore` and Wrangler version/asset-ignore behavior. If the Worker is only a duplicate static storefront, verify no routes/domains/bindings depend on it before disabling its build integration. If it is required, give it a real Worker entry point/config instead of deploying the Pages-only `wrangler.toml`.
+- No Cloudflare dashboard action or fresh Worker build was available from the connected GitHub tools in this session; no successful resolution is claimed. No Axxess, DNS, Supabase, checkout, payment, or production changes occurred. Release remains HOLD.
+- Immediate next action: open the exact failing Workers service/build in the Cloudflare dashboard, check the newest build (not only this 2026-09-29 log), and retry only after confirming it checks out the current `main`. If newest failure remains the 71.6 MiB `.git` pack, adjust that Worker service's assets path/filter/config or retire the duplicate service only after route/binding verification. Then verify a new terminal-successful build. Preserve the successful Pages preview path.
+
+---
+
 ## CONTINUATION LOG — 2026-10-14 — CORRECTION LEDGER INVENTORY VERIFIED
 
 - Continued from the prior release checkpoint without repeating the live-site tests or touching production. Read the committed June–September join audit and fetched the exact correction ledger from the repository.
