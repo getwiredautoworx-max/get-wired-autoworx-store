@@ -143,7 +143,8 @@ def main():
     for i, row in enumerate(rows, 1):
         result = check_sku(row)
         results.append(result)
-        print(f"[{i}/{len(rows)}] {result['supplier_sku']}: {result['decision']}", flush=True)
+        summary = {k: result.get(k) for k in ('supplier_sku', 'decision', 'api_exact_sku_match', 'api_is_in_stock', 'api_stock_quantity', 'discontinuation_flag', 'out_of_stock_flag', 'page_stock_quantity', 'source_title', 'source_url', 'page_evidence_text', 'error')}
+        print(f'[{i}/{len(rows)}] ' + json.dumps(summary, ensure_ascii=False), flush=True)
         if i < len(rows):
             time.sleep(0.8)
     json_path = OUT / "asc-status-refresh.json"
