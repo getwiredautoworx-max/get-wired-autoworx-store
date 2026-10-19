@@ -2620,3 +2620,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Diagnosis: this is an individual-Worker-scoped permission, not confirmed Cloudflare Pages deployment access. Do not save/create this token for the Pages deploy workflow.
 - Next owner action: Cancel this token setup and return to the token template/custom permission selection. Required permission remains Account → Cloudflare Pages → Edit. If unavailable due account membership role or picker limitations, do not substitute a single-Worker permission; identify an account administrator or an authorized token-creation path.
 - No token creation, GitHub secret update, build trigger, deployment, DNS/Axxess change, or production modification is confirmed. Store/release remains HOLD.
+
+
+## 2026-10-19 — Correct Cloudflare Pages token permission located
+
+- Owner pasted the full Account API token permission picker. The `account` group explicitly lists `Pages` with `Read` and `Edit` choices.
+- Guidance given: select only **Pages → Edit** for the Pages deployment token; do not select Cloudchamber, individual Workers, or Zero Trust permissions. Leave other permissions unchanged.
+- Next: review token summary and create only if scope is limited to the intended Cloudflare account and Pages Edit. Copy token directly into GitHub Actions repository secret `CLOUDFLARE_API_TOKEN`; never paste token into chat. Add `CLOUDFLARE_ACCOUNT_ID` after verifying account ID belongs to the Pages project. Then verify workflow and secrets before any deliberate test run.
+- Current state: permission found, token creation and GitHub secrets are not yet confirmed. No build triggered or deployment/production change confirmed. Release remains HOLD.
