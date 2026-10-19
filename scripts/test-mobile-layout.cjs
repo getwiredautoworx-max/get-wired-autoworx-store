@@ -37,11 +37,13 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
       const metrics = await frame.locator('body').evaluate(body => {
         const rect = s => { const e=document.querySelector(s); if(!e)return null; const r=e.getBoundingClientRect(); return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height}; };
         const buttons=[...document.querySelectorAll('.heroBtns .btn')].map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height}});
-        const nav=rect('.mobileNav'), hero=rect('.heroCard'), features=rect('.features'), categories=rect('#categories');
+        const nav=rect('.mobileNav'), hero=rect('.heroCard'), header=rect('.header'), features=rect('.features'), categories=rect('#categories');
+        const h1=document.querySelector('.heroText h1'), p=document.querySelector('.heroText p'), buy=document.querySelector('.mobileBuyBar');
+        const heroH1Color=h1?getComputedStyle(h1).color:null, heroPColor=p?getComputedStyle(p).color:null, buyBarDisplay=buy?getComputedStyle(buy).display:'missing';
         const overflow = {viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,body:body.scrollWidth,offenders:[...document.querySelectorAll('body *')].map(e=>{const r=e.getBoundingClientRect();return {tag:e.tagName,cls:typeof e.className==='string'?e.className:'',id:e.id,right:Math.round(r.right),left:Math.round(r.left),width:Math.round(r.width),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth}}).filter(e=>e.right>document.documentElement.clientWidth+2||e.left < -2||e.scrollWidth>e.clientWidth+2).slice(0,25)};
         const pairs=[]; for(let i=0;i<buttons.length;i++)for(let j=i+1;j<buttons.length;j++){const a=buttons[i],b=buttons[j];if(a.x<b.right-1&&a.right>b.x+1&&a.y<b.bottom-1&&a.bottom>b.y+1)pairs.push([i,j]);}
         const intersects=(a,b)=>!!(a&&b&&a.x<b.right-1&&a.right>b.x+1&&a.y<b.bottom-1&&a.bottom>b.y+1);
-        return {overflow,buttons,nav,hero,features,categories,buttonOverlapPairs:pairs,heroButtonsOutsideCard:buttons.some(b=>!hero||b.x<hero.x-1||b.right>hero.right+1||b.y<hero.y-1||b.bottom>hero.bottom+1),heroActionFeatureOverlap:intersects(buttons.reduce((u,b)=>!u||b.y>u.y?b:u,null),features)};
+        return {overflow,buttons,nav,hero,header,features,categories,heroH1Color,heroPColor,buyBarDisplay,buttonOverlapPairs:pairs,heroButtonsOutsideCard:buttons.some(b=>!hero||b.x<hero.x-1||b.right>hero.right+1||b.y<hero.y-1||b.bottom>hero.bottom+1),heroActionFeatureOverlap:intersects(buttons.reduce((u,b)=>!u||b.y>u.y?b:u,null),features)};
       });
       assert(metrics.overflow.document <= width+2 && metrics.overflow.body <= width+2, width+'px horizontal overflow: '+JSON.stringify(metrics.overflow));
       const clipped = metrics.overflow.offenders.filter(e=>e.right>width+2||e.left < -2);
@@ -53,6 +55,11 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
       if(width<=430) {
         assert(metrics.buttons.every(b=>b.width>=100 && b.height>=40), width+'px touch targets too small: '+JSON.stringify(metrics.buttons));
         assert(metrics.nav && metrics.nav.right<=width+2, width+'px mobile navigation clipped');
+        assert(metrics.hero.y<=260, width+'px hero starts too far below header: '+JSON.stringify({header:metrics.header,hero:metrics.hero}));
+        assert(metrics.buyBarDisplay==='none', width+'px inactive mobile purchase bar is visible: '+metrics.buyBarDisplay);
+        assert(metrics.heroH1Color==='rgb(255, 255, 255)', width+'px hero heading lacks high contrast: '+metrics.heroH1Color);
+        assert(metrics.heroPColor==='rgb(243, 247, 251)', width+'px hero paragraph lacks high contrast: '+metrics.heroPColor);
+        assert(metrics.categories && metrics.categories.y<900, width+'px category section is pushed below the first screen: '+JSON.stringify(metrics.categories));
       }
       results.push({width,status:'PASS',...metrics,pageErrors});
       await page.close();
