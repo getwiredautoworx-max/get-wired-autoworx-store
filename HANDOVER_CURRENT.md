@@ -2645,3 +2645,10 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Inspected root `wrangler.toml` (blob SHA `5824eefc32e352d227f43ed657c2d796876c7e4c`): `name = "get-wired-autoworx-store"`, `pages_build_output_dir = "."`, compatibility date `2026-10-06`.
 - Safety gate: do not dispatch the deployment workflow while storefront overlap issue is unresolved / release remains HOLD, because it may update the Cloudflare Pages site. Next: run non-deploying static validation and inspect/fix layout in GitHub; preserve manual-only workflow until the owner explicitly approves a deployment test.
 - Secrets cannot be independently read or their values verified via this workflow inspection; statuses are owner-reported. No workflow run or deployment triggered in this step.
+
+
+## 2026-10-19 — Account ID reported saved; layout inspection
+- Owner confirms CLOUDFLARE_ACCOUNT_ID has been saved. Both deployment secrets are owner-reported saved; their values are not independently verified.
+- Inspected index.html, store.html, index-new.html, the Pages workflow, and wrangler.toml. Root index redirects to store.html; store.html embeds index-new.html in a full-viewport iframe and injects multiple enhancement scripts. index-new.html is about 92 KB with multiple successive inline CSS revisions; mobile products are configured as four columns below 700px, a potential cramped-layout issue, not yet proven as the reported overlap cause.
+- No storefront source change, workflow dispatch, or deployment occurred. Pages workflow remains manual-only and targets Pages project get-wired-autoworx-store on main, so do not run it while release is on HOLD.
+- Next: non-deploying responsive CSS review and validation; do not claim the overlap fixed until tested at mobile and desktop widths. Worker build integration and layout remain unresolved.
