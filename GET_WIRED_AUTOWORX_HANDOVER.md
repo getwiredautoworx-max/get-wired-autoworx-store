@@ -689,3 +689,22 @@ Start from this checkpoint. Do not restart the project, rebuild the storefront u
 - [ ] Next: query products in bounded batches with their current category and source metadata, then create a complete SKU-level candidate map and explicit ambiguity report. Do not move products or toggle root active flags during export/review.
 - [ ] Compare the live data against the generated `assets/category-tree.json` and storefront hard-coded root IDs; only then prepare a controlled code/data change.
 - [x] No database writes or product/category mutations occurred in these recounts; no deployment/upload triggered.
+
+
+## 2026-10-19 — CLOUDFLARE WORKER PREVIEW BUILD FAILURE DIAGNOSIS
+
+- [x] Read the current master handover and inspected the current repository Wrangler configuration before changing anything.
+- [x] Captured failure evidence from the Cloudflare build log dated 2026-10-18 15:25:56 UTC. The failing command is `npx wrangler preview`; Wrangler 4.151.1 exits because the configuration has no `[previews]` block.
+- [x] Verified the current repository `wrangler.toml` contains only:
+  ```toml
+  name = "get-wired-autoworx-store"
+  pages_build_output_dir = "."
+  compatibility_date = "2026-10-06"
+  ```
+  It configures static Pages output and does not define a Worker entry point. The repository root also has no `package.json` build/deploy script.
+- [x] Root cause isolated: Cloudflare's separate Worker build integration is executing `wrangler preview` against a static-Pages-style configuration. The error is a Worker preview configuration mismatch; it does not prove the storefront source/build is broken.
+- [x] Safe resolution identified: inspect the existing `Workers & Pages → get-wired-autoworx-store → Settings → Builds` integration. If the static storefront is served by the separate existing Pages project and this Worker has no runtime purpose, disable/disconnect only the unnecessary Worker build integration. Do not modify the separate Pages project. If the Worker is required, identify its actual Worker entry point/configuration before editing anything; do not add a speculative `[previews]` block merely to hide the first error.
+- [ ] External owner action required: Cloudflare dashboard configuration cannot be changed through the currently available GitHub connector. Open https://dash.cloudflare.com/ → Workers & Pages → select the entry named `get-wired-autoworx-store` that has the failing build → Settings → Builds. Confirm whether it is a Worker build integration separate from the Pages project, then disable/disconnect only that integration if it is not needed. If the dashboard does not expose that option, send a screenshot of the Builds settings page with secrets hidden.
+- [ ] After the setting is corrected, inspect the next build log and verify the existing Pages project separately. Do not claim resolved until a subsequent build succeeds or the unnecessary Worker build is demonstrably disabled.
+- [x] No source/configuration change, Cloudflare/Netlify credit usage, Cloudflare deployment, Pages-project change, DNS change, Axxess upload, or payment/data mutation was made during this diagnosis.
+- Status: **diagnosed; dashboard-only correction pending**. ETA after authorized dashboard access/action: approximately 5–10 minutes to verify the next result, subject to Cloudflare's build queue.
