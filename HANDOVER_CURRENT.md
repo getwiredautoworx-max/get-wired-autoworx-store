@@ -2661,3 +2661,13 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Committed a final mobile-only CSS override in `index-new.html` (commit `6e25191068a3d44b3fd7e56f5b7262f8bf171aaf`): hero content returns to normal document flow, rating box no longer overlays hero content, actions use a two-column grid with full-width touch targets, and a single column is used at widths up to 360px. Desktop styling is unchanged by the new media rule.
 - Static source edit is committed on `main`; no browser/device rendering test has yet confirmed the visual result. Cloudflare Pages deployment was NOT triggered; preview URL may continue showing the old deployed revision until a deliberate deployment is approved. Store release remains HOLD. No Axxess, DNS, payment, or production data changes.
 - Next: verify at 390px and 320px in an actual browser, then proceed with remaining layout QA. Do not call the issue fully verified until that visual check passes.
+
+
+## 2026-10-19 — Isolated Cloudflare Pages layout preview workflow added
+
+- Following the mobile hero CTA overlap hotfix, added `.github/workflows/cloudflare-layout-preview.yml` in commit `4adc972957a0cbb3198ba92c1e1d5aae5f83528d`.
+- This is a manual-only GitHub Actions workflow. It checks out `main` and deploys the current static files to Cloudflare Pages branch `layout-fix-preview`, not the production `main` branch. It uses the owner-reported repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+- Workflow page: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/cloudflare-layout-preview.yml
+- Expected preview hostname after a successful run: https://layout-fix-preview.get-wired-autoworx-store.pages.dev . This URL is not yet verified; Cloudflare branch-deployment settings may affect availability.
+- No workflow run has been triggered by the assistant. Owner must tap **Run workflow** once on the workflow page, select branch `main` if asked, and confirm. Then inspect the run result and open the preview URL only after success.
+- Production deployment remains untouched; no Axxess, DNS, payment, or production data changes. The visual fix remains pending browser verification.
