@@ -2652,3 +2652,12 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Inspected index.html, store.html, index-new.html, the Pages workflow, and wrangler.toml. Root index redirects to store.html; store.html embeds index-new.html in a full-viewport iframe and injects multiple enhancement scripts. index-new.html is about 92 KB with multiple successive inline CSS revisions; mobile products are configured as four columns below 700px, a potential cramped-layout issue, not yet proven as the reported overlap cause.
 - No storefront source change, workflow dispatch, or deployment occurred. Pages workflow remains manual-only and targets Pages project get-wired-autoworx-store on main, so do not run it while release is on HOLD.
 - Next: non-deploying responsive CSS review and validation; do not claim the overlap fixed until tested at mobile and desktop widths. Worker build integration and layout remain unresolved.
+
+
+## 2026-10-19 — Mobile hero buttons overlap hotfix committed (GitHub only)
+
+- Owner reported that Shop Now / Part Search / Request a Part and related hero buttons overlap in the store preview.
+- Inspected the final CSS in `index-new.html`: the hero content was absolutely positioned over a fixed/minimum-height card while the action buttons wrapped, so the content could collide on narrow screens. Earlier responsive rules also conflicted.
+- Committed a final mobile-only CSS override in `index-new.html` (commit `6e25191068a3d44b3fd7e56f5b7262f8bf171aaf`): hero content returns to normal document flow, rating box no longer overlays hero content, actions use a two-column grid with full-width touch targets, and a single column is used at widths up to 360px. Desktop styling is unchanged by the new media rule.
+- Static source edit is committed on `main`; no browser/device rendering test has yet confirmed the visual result. Cloudflare Pages deployment was NOT triggered; preview URL may continue showing the old deployed revision until a deliberate deployment is approved. Store release remains HOLD. No Axxess, DNS, payment, or production data changes.
+- Next: verify at 390px and 320px in an actual browser, then proceed with remaining layout QA. Do not call the issue fully verified until that visual check passes.
