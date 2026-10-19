@@ -2809,3 +2809,9 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 - Added wrapper control styles in commit `3aab44ef1a0129a702ff56a829abd5f53e72c3f4`: desktop WhatsApp is now a styled floating control; the duplicate wrapper WhatsApp control is hidden on phones because the storefront already has WhatsApp in its own mobile navigation; checkout is positioned above the mobile navigation with safe-area spacing.
 - This supplements the main responsive hero/layout patch `068746ee7560d4811b0ebb52cdec74e59c796934`. Both commits are on the review branch only.
 - Verification remains pending: no browser screenshot/Playwright result for the final combined head has been retrieved yet. Do not claim the overlap issue fully resolved until exact-head QA and screenshots pass.
+
+
+### Build-status check after fixes — 2026-10-19 20:xx SAST
+- Cloudflare bot comments on PR #54 show Pages build **in progress** for latest commit `e6c3d65`: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/2c923438-a316-4a5c-9fc1-a4bdc15cba8c
+- Separate Worker build also still **in progress** for commit `02a4e23`: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/2c227138-f74b-445e-898c-5b8c5a295b5d. This confirms the Worker Git build integration is still triggering; it has not yet been confirmed disabled.
+- Latest Pages deployment has not yet reported a preview URL/success in the connected PR comments. The final mobile fix is not yet screenshot-verified.
