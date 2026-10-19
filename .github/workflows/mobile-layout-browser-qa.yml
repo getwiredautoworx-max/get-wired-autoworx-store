@@ -3,7 +3,7 @@ name: Mobile Storefront Layout Browser QA
 on:
   push:
     branches:
-      - fix/mobile-storefront-layout-2026-10-19
+      - fix/mobile-storefront-layout-2026-10-19-v2
     paths:
       - 'index-new.html'
       - 'store.html'
