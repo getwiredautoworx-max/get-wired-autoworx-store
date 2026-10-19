@@ -48,3 +48,25 @@ Date: 2026-10-19 20:00 SAST
 - Responsive browser QA for this exact commit is queued/in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299231700.
 - Isolated Cloudflare Pages preview deployment for this exact commit is in progress at last check: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299231683. Earlier attempt failed because the workflow's credential-validation step failed; the actual Pages deploy step was skipped. Required repository Actions secrets are named `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`; values must be entered by the owner in GitHub settings and must never be sent in chat.
 - Status remains unresolved pending exact-commit browser QA and a successful fresh preview deploy. Do not merge or deploy to production.
+
+
+## Continuation update — 2026-10-19 22:xx SAST
+
+### Exact-commit browser QA result
+- Rechecked workflow run https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299231700 for review commit `51768071066662aad5440208ce2064f3da39572e`.
+- Job `browser-qa` is now **completed / success**. All listed steps succeeded, including inline JavaScript syntax validation and desktop/mobile/interaction checks; screenshots and QA report artifact `staging-browser-qa-118` exists (artifact ID `12210890505`, retained until 2026-11-02).
+- This is automated browser-test evidence for the reviewed branch, not proof that the owner's current preview URL has received the patch or that visual appearance has been manually accepted.
+
+### Preview deployment result
+- Rechecked workflow run https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39299231683. It is **completed / failure**.
+- Failing step: `Validate Cloudflare deployment credentials`; deployment step was skipped. This isolates the immediate blocker to missing/invalid credentials as checked by the workflow, before any Cloudflare Pages deploy attempt. Do not ask the owner to paste secrets into chat.
+- The production workflow on `main` is deliberately manual-only and deploys `main`; it is not the review-preview workflow and must not be triggered for this task.
+- Required GitHub Actions secret names are `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Owner-only action, if not already configured: GitHub repository → Settings → Secrets and variables → Actions; verify/create these two repository secrets with correct Cloudflare values. Token must have the minimum required Cloudflare Pages deployment permissions for the account/project. Never disclose secret values.
+- Do not use the production workflow as a workaround. After credentials are corrected, rerun only the isolated review-preview workflow for branch `review/staging-ui-verification-fixes-current`, then inspect the newly returned preview URL at desktop and mobile widths.
+
+### Current status / next action
+- Worker build integration: owner reports disabled; external dashboard state and Worker routes/dependencies remain unverified. Keep it disabled while confirming the independent Pages project remains separate.
+- CSS fix: browser QA PASS on exact reviewed commit `51768071066662aad5440208ce2064f3da39572e`; deployed-preview verification BLOCKED on Cloudflare credential validation.
+- PR #54 remains draft/open/unmerged; no merge, production deployment, Axxess upload, DNS, Supabase, catalogue, checkout or payment changes made.
+- Next concrete blocker is GitHub Actions Cloudflare preview credentials. Once owner-side credentials are correct, redeploy the review branch only and visually verify the returned preview. If the secrets already exist, inspect their names/scope and token permissions in GitHub/Cloudflare settings without revealing values.
+- Release remains HOLD until preview deployment and visual QA are confirmed.
