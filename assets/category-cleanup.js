@@ -5,7 +5,8 @@
       const d=frame && frame.contentDocument;
       if(!d) return;
       d.querySelectorAll('.catWrap').forEach(function(card){
-        const txt=(card.innerText||'').trim();
+        if(card.dataset.gwApprovedRoot==='true') return;
+      const txt=(card.innerText||'').trim();
         const countEl=card.querySelector('.catBtn i');
         const count=countEl?parseInt((countEl.textContent||'').replace(/[^0-9]/g,''),10):NaN;
         const children=card.querySelectorAll('.child').length;
