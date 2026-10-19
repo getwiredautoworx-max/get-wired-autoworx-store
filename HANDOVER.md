@@ -3066,3 +3066,18 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Screenshot review confirms the dark automotive canvas, compact uncluttered hero, visible four hero CTAs, dark vehicle finder, readable service strip, and eight approved category roots. Hero CTA clipping is resolved in the current screenshot set.
 - Visual acceptance is still HOLD: category cards currently use clean icon placeholders because available category art was drawn from unverified supplier images; product cards still display baked-in text/watermarks on source images. These are visible quality defects, even though images load and automated route checks pass. Do not merge or deploy until image sources are cleaned/verified or deliberately replaced with appropriate neutral placeholders and the owner approves the visual result.
 - Latest source branch head is 9a612e145695020ae826fff188774fe9b3d25c97. PR #54 remains draft/unmerged. No Axxess upload, Supabase production write, DNS change, payment configuration, or live deployment occurred.
+
+
+## CONTINUATION LOG — 2026-10-19 — RESUMED WORKER PREVIEW REMEDIATION
+
+- Resumed from the repository's current default-branch handover and checked the latest commits. Latest commit returned by GitHub is `b49cff3fb1c51c1e1caf76a5ac43fd46c977cee1` (`[asc-image-sync] Add bounded exact-SKU product images`, 2026-10-18 16:59 UTC); the prior documented Worker blocker checkpoint is `ca69a2a465f6b94a3216a586c2b553458b8f9eae`. The project is still not accepted for release.
+- Re-fetched the default-branch `wrangler.toml`; its entire current content is:
+  ```toml
+  name = "get-wired-autoworx-store"
+  pages_build_output_dir = "."
+  compatibility_date = "2026-10-06"
+  ```
+  This is Pages project configuration, not a deployable Worker entry-point configuration. The previously observed `npx wrangler preview` failure (missing `[previews]` block) is consistent with a Worker-preview command being applied to a Pages-configured repository/project. Do not blindly add a `[previews]` block: it is not a substitute for defining the correct Worker entry point or fixing the Cloudflare dashboard's build command/type.
+- A direct path check did not find the guessed root `package.json` or guessed workflow files `.github/workflows/wrangler-preview.yml`, `cloudflare-worker-preview.yml`, or `worker-preview.yml`; these guesses are not evidence that no workflow exists. The next step is to locate the actual workflow file and the exact Cloudflare Pages/Worker build configuration, then remove or correct the mismatched `npx wrangler preview` invocation at its source. Keep the Pages deployment path separate and preserve its existing successful evidence.
+- No source/configuration fix is claimed in this continuation: no successful Worker preview run or new log has yet been retrieved. This is a blocker diagnosis, not a resolution. The next execution must inspect repository workflow paths / PR #54 and the actual Cloudflare project build settings, make one targeted correction, trigger the appropriate preview, and verify a successful run on the exact resulting commit. If the Worker is genuinely unnecessary for this static storefront, remove the erroneous Worker preview requirement only after confirming no deployed Worker functionality depends on it; do not disable a real required Worker just to turn CI green.
+- Storefront acceptance remains HOLD. PR #54 remains draft/unmerged. Product image/source watermark and mockup-fidelity gates remain open as recorded above. No Axxess upload, production Supabase mutation, DNS/payment change, or live deployment occurred.
