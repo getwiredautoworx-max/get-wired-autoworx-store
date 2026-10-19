@@ -109,6 +109,40 @@ try {
     metrics.images = imageAudit;
     metrics.width = width;
     metrics.horizontalOverflow = metrics.documentWidth > width || metrics.bodyWidth > width;
+    metrics.layoutAudit = await page.evaluate(() => {
+      const columns = selector => {
+        const el = document.querySelector(selector);
+        if (!el) return 0;
+        const value = getComputedStyle(el).gridTemplateColumns;
+        return value && value !== 'none' ? value.split(' ').length : 0;
+      };
+      const rect = el => { const r = el.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; };
+      const intersects = (a,b) => a.left < b.right - 2 && a.right > b.left + 2 && a.top < b.bottom - 2 && a.bottom > b.top + 2;
+      const header = ['.head .hamb','.head .logo','.head .cart','.head .search']
+        .map(sel => ({selector:sel,el:document.querySelector(sel)})).filter(x=>x.el);
+      const headerOverlaps = [];
+      for (let i=0;i<header.length;i++) for (let j=i+1;j<header.length;j++) {
+        if (intersects(rect(header[i].el),rect(header[j].el))) headerOverlaps.push(header[i].selector+' overlaps '+header[j].selector);
+      }
+      const cards = [...document.querySelectorAll('#categoryGrid > .catWrap')].filter(el=>getComputedStyle(el).display!=='none').map(rect);
+      const categoryOverlaps = [];
+      for (let i=0;i<cards.length;i++) for (let j=i+1;j<cards.length;j++) {
+        if (intersects(cards[i],cards[j])) categoryOverlaps.push('category cards '+i+' and '+j);
+      }
+      return {
+        categoryColumns: columns('#categoryGrid'),
+        productColumns: columns('#productGrid') || columns('#productsGrid') || columns('.products'),
+        headerOverlaps, categoryOverlaps,
+        searchBox: document.querySelector('.head .search') ? rect(document.querySelector('.head .search')) : null,
+        logoBox: document.querySelector('.head .logo') ? rect(document.querySelector('.head .logo')) : null
+      };
+    });
+    check('no_header_element_overlap_' + width, metrics.layoutAudit.headerOverlaps.length === 0, JSON.stringify(metrics.layoutAudit.headerOverlaps));
+    check('no_category_card_overlap_' + width, metrics.layoutAudit.categoryOverlaps.length === 0, JSON.stringify(metrics.layoutAudit.categoryOverlaps));
+    if (width <= 900) check('responsive_category_grid_two_columns_' + width, metrics.layoutAudit.categoryColumns === 2, 'columns=' + metrics.layoutAudit.categoryColumns);
+    else check('desktop_category_grid_three_columns_' + width, metrics.layoutAudit.categoryColumns === 3, 'columns=' + metrics.layoutAudit.categoryColumns);
+    if (width <= 900) check('responsive_product_grid_two_columns_' + width, metrics.layoutAudit.productColumns === 2, 'columns=' + metrics.layoutAudit.productColumns);
+    else check('desktop_product_grid_four_columns_' + width, metrics.layoutAudit.productColumns === 4, 'columns=' + metrics.layoutAudit.productColumns);
     metrics.loadedImages = metrics.images.filter(i => i.naturalWidth > 0).length;
     metrics.placeholderImages = metrics.images.filter(i => i.placeholder).length;
     metrics.failedImages = metrics.images.filter(i => !i.placeholder && i.complete && i.naturalWidth === 0);
