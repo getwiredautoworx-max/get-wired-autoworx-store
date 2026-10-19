@@ -2628,3 +2628,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Guidance given: select only **Pages → Edit** for the Pages deployment token; do not select Cloudchamber, individual Workers, or Zero Trust permissions. Leave other permissions unchanged.
 - Next: review token summary and create only if scope is limited to the intended Cloudflare account and Pages Edit. Copy token directly into GitHub Actions repository secret `CLOUDFLARE_API_TOKEN`; never paste token into chat. Add `CLOUDFLARE_ACCOUNT_ID` after verifying account ID belongs to the Pages project. Then verify workflow and secrets before any deliberate test run.
 - Current state: permission found, token creation and GitHub secrets are not yet confirmed. No build triggered or deployment/production change confirmed. Release remains HOLD.
+
+
+## 2026-10-19 — Cloudflare Pages API token saved by owner
+
+- Owner reports that the Cloudflare API token has been saved in GitHub. Treat `CLOUDFLARE_API_TOKEN` as owner-reported, not independently verified by the assistant.
+- Next instruction: add repository Actions secret `CLOUDFLARE_ACCOUNT_ID` with value `43ab7b7bd3689458e2d0de39f6e897ca`, the account ID extracted from the owner-provided Cloudflare dashboard URL, only if this is the account containing the Pages project.
+- After that, inspect the workflow configuration and account/project settings before deliberately running a manual deployment test. Do not assume secret visibility can be inspected; GitHub masks secret values. Do not trigger builds until ready.
+- No build or deployment has been triggered in this step. Store release remains HOLD.
