@@ -2612,3 +2612,11 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Owner reports Pages is not visible/selectable in their current picker despite the earlier pasted listing showing a Pages row. Do not repeat the same selection instruction as though it were confirmed selectable. If the Account API token picker cannot expose it, use the Cloudflare-documented Edit Cloudflare Workers template → Use template route only if that template is available and review the exact permissions it preselects before creating; do not accept unrelated broad permissions blindly. Otherwise the account role/admin must resolve permission availability.
 - No token creation or GitHub secret creation has been confirmed. The account ID is evidenced by the supplied URL, but verify that this is the account hosting the Pages project before saving it. Never paste token value in chat.
 - No build triggered, deployment setting changed, Axxess/DNS/production data/payment changed. Pages token setup remains unresolved and store release remains HOLD.
+
+
+## 2026-10-19 — Cloudflare API token creation: wrong individual-Worker scope identified
+
+- Owner reports token creation screen for token name `little-sunset-c93d`; current permission policy displays `specified_worker`, “Select Workers…”, and individual Worker access levels (Metadata, Content, Editor, Admin).
+- Diagnosis: this is an individual-Worker-scoped permission, not confirmed Cloudflare Pages deployment access. Do not save/create this token for the Pages deploy workflow.
+- Next owner action: Cancel this token setup and return to the token template/custom permission selection. Required permission remains Account → Cloudflare Pages → Edit. If unavailable due account membership role or picker limitations, do not substitute a single-Worker permission; identify an account administrator or an authorized token-creation path.
+- No token creation, GitHub secret update, build trigger, deployment, DNS/Axxess change, or production modification is confirmed. Store/release remains HOLD.
