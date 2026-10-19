@@ -438,11 +438,11 @@ pointer-events:none}
   .mobileNav b{display:block;font-size:20px;line-height:1.1}
   .mobileNav .badge{position:absolute;top:0;right:2px;min-width:0;margin:0;padding:1px 3px;font-size:9px}
   .mobileBuyBar{max-width:100vw;box-sizing:border-box}
-  #categoryGrid .catBtn[data-gw-root-index]{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto!important;align-content:start;justify-items:center;gap:4px;padding:7px 4px!important;height:auto!important;min-height:100px!important;max-height:120px;text-align:center}
-  #categoryGrid .catBtn[data-gw-root-index] .catImage{width:28px!important;height:28px!important;min-height:28px!important;display:grid!important;place-items:center;background:#edf4f8;border-radius:9px}
+  #categoryGrid .catBtn[data-gw-root-index]{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:28px minmax(0,1fr)!important;align-content:start;justify-items:center;gap:4px;padding:7px 4px!important;width:100%;height:auto!important;min-height:100px!important;max-height:120px;text-align:center}
+  #categoryGrid .catBtn[data-gw-root-index] .catImage{grid-column:1!important;grid-row:1!important;position:static!important;width:28px!important;height:28px!important;min-height:28px!important;display:grid!important;place-items:center;background:#edf4f8;border-radius:9px}
   #categoryGrid .catBtn[data-gw-root-index] .catGlyph{font-size:18px;line-height:1}
-  #categoryGrid .catBtn[data-gw-root-index] .gwRootContent{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center;text-align:center;gap:3px;min-width:0}
-  #categoryGrid .catBtn[data-gw-root-index] .gwRootContent b{font-size:9px;line-height:1.15;text-align:center;overflow-wrap:anywhere}
+  #categoryGrid .catBtn[data-gw-root-index] .gwRootContent{grid-column:1!important;grid-row:2!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center;text-align:center;gap:3px;width:100%!important;max-width:100%!important;min-width:0;box-sizing:border-box}
+  #categoryGrid .catBtn[data-gw-root-index] .gwRootContent b{display:block;width:100%;max-width:100%;font-size:9px;line-height:1.15;text-align:center;overflow-wrap:normal;word-break:normal;hyphens:none}
   #categoryGrid .catBtn[data-gw-root-index] .gwRootContent small{display:none!important}
   .gw-category-level{grid-column:1/-1;min-width:0}
   .gw-category-back{margin:0 0 14px;padding:10px 16px;border:1px solid #087fe0;border-radius:9px;background:#07172a;color:#fff;cursor:pointer;font-weight:800}
