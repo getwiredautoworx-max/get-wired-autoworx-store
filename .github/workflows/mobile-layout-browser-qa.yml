@@ -1,6 +1,9 @@
 name: Mobile Storefront Layout Browser QA
 
 on:
+  push:
+    branches:
+      - fix/mobile-storefront-layout-2026-10-19
   pull_request:
     paths:
       - 'index-new.html'
