@@ -2278,3 +2278,27 @@ This section supersedes older QA statements above where they conflict.
 - Scope after task-start record: inspect active draft PRs and current GitHub Actions/background workflow states; identify safe non-stock store tasks that can progress without production/live data changes; prefer existing staging QA or a focused draft improvement. Do not repeat completed work.
 - Safety: no live catalogue/price/stock/category/active-flag writes, no production or deployment job retries, no merge, no Axxess/DNS/payment changes, and no release-credit use without explicit owner approval. Stock/discontinuation reconciliation is deferred pending supplier finalization.
 - Record actual workflow outcomes and next actions in the permanent handover immediately when verified. Monitoring is scheduled, not continuous.
+
+
+## 2026-10-20 15:27–15:31 SAST — continuation run 11 outcomes
+
+- **Task-start: SUCCESS.** The task-start entry above was appended to `AI_HANDOVER_PERMANENT.md` on `main` in commit `ac0b53c09444b0d299cc6559b628d3e183e9dc21`; resulting blob SHA was `5f87f7c71a3263f7e87e166c94f3f75b431673dd`.
+- **Owner instruction applied:** defer ASC stock/discontinuation reconciliation pending supplier finalization. No supplier audit, inventory cleanup, product stock update, or stock-patch work was performed in this run.
+
+### Background workflows / draft PR checks — outcome: STATUS CHECKED; one preview status conflict
+- PR #70 head `0d6893dc33e35c2086fff31a6b705aeeaaa6dd8c` remains OPEN/DRAFT and unmerged. Its responsive browser acceptance run `39429111752` completed SUCCESS; job `118649176462` completed SUCCESS. It checked the 320/360/390/768/1440 viewport matrix. Public SKU Exposure Audit `39429111750` also completed SUCCESS. These are staging/source checks, not owner visual approval.
+- **Important deployment discrepancy:** PR #70 discussion contains Cloudflare bot status for commit `0d6893d`: the Pages/Workers preview build `54971fc9-420a-4861-b9da-a66492fc2dbc` is FAILED, while a separate build `e6e8a1bc-a3a3-4319-be6f-969fe6c67f11` for commit `8e103a9` was reported IN PROGRESS at the comment's timestamp. The previously noted review URL must not be treated as freshly verified from these conflicting statuses. Cloudflare account logs are not available through the connected GitHub tools. Do not retry any Cloudflare/production deployment or trigger additional builds to resolve this; request the failed build's first error from Cloudflare dashboard if needed. The repository's `.github/workflows/cloudflare-pages-deploy.yml` is manual-only, but PR #70 has a separate preview workflow and Cloudflare bot integration.
+- PR #66 checkout policy links: both source checks completed SUCCESS (`39414621160`, `39414621628`). Still draft/unmerged; no live checkout or payment changes.
+- PR #67 owner catalogue management/APK source: manager safety checks `39421725025`, SKU exposure audit `39421725047`, storefront smoke test `39421725125` all completed SUCCESS. Still draft/unmerged. Edge Function not deployed; APK not distributed; Hisense M72 Pro device test still outstanding. No stock edits performed.
+- PR #68 live category navigation: source checks `39415362757` and SKU exposure audit `39415362782` both completed SUCCESS. Still draft/unmerged. Real browser navigation regression remains outstanding; no category/product writes.
+- Workflow-run discovery for the exact PR heads returned only the completed runs listed above; it did not provide a complete repository-wide live-run list or the newest background-controller checkpoint. Thus no claim is made that all background tasks are currently idle. Monitoring remains scheduled, not continuous. No queued/in-progress run was duplicated; no workflow was retried.
+
+### Next non-stock task
+- Prioritize a browser regression test for PR #68 against mocked category/product API responses, including root category links, subcategory drill-down, product counts, back navigation, and vehicle-finder exemptions, then validate on its exact head. Keep PR #68 draft and do not deploy/merge.
+- Separately, resolve PR #70 preview-build status only after the actual Cloudflare failure log is available; the browser suite's success does not prove the preview deployment is healthy. Preserve owner-approved baseline URL `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store` as reference.
+- PR #66 and #67 remain review-only until their stated owner/policy/edge-function gates are satisfied. Keep all supplier stock reconciliation paused.
+
+### Safety
+- No live catalogue, price, stock, category, active-flag, schema, checkout, payment, DNS or Axxess changes.
+- No merge or production deployment was initiated. No workflow retry was created and no deliberate release-credit use occurred in this run.
+- Next action is the PR #68 browser regression work; preserve all candidate branches and the current accepted storefront baseline.
