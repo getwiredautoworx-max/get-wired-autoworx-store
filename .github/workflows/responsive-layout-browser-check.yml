@@ -28,6 +28,8 @@ jobs:
         run: |
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
+      - name: Start local static preview server
+        run: python3 -m http.server 4173 --directory . >/tmp/layout-preview-server.log 2>&1 &
       - name: Run viewport layout checks with mocked catalogue responses
         shell: bash
         run: |
@@ -58,7 +60,8 @@ jobs:
             for (const width of [320,360,390,768,1440]) {
               const page=await browser.newPage({viewport:{width,height:900}});
               page.on('pageerror',e=>failures.push(width+'px JS: '+e.message));
-              await page.route('**/rest/v1/categories**',async route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(fixtures.categories)}));
+              await page.route('**/assets/category-tree.json',async route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({categories:fixtures.categories.map(c=>({...c,direct_active_products:c.id==='child-1'?2:0}))})}));
+          await page.route('**/rest/v1/categories**',async route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(fixtures.categories)}));
               await page.route('**/rest/v1/products**',async route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(fixtures.products)}));
               const isProducts=process.argv[2]==='products';
               const file=isProducts?'products.html?category=child-1':'category.html';
