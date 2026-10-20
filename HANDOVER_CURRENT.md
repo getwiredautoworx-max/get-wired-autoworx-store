@@ -190,3 +190,9 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Patched `products.html` so the fixed “CAN'T FIND IT? SOURCE A PART” control wraps and stays within the viewport at widths below 360px.
 - Refined `.github/workflows/responsive-layout-browser-check.yml` to serve the actual files over local HTTP and mock the static category snapshot as well as REST calls. Latest commit `2c2ab6cf798f5818f034e5cac4b0efe3e9e0d600`; new run `39423925431` is in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39423925431.
 - Do not report acceptance until the latest run passes. PR #69 is still draft/unmerged. No deployment, catalogue data changes, stock reconciliation, or supplier crawl.
+
+
+## 2026-10-20 — Second layout test run: overflow persists; fixture corrected
+- Browser run `39423925431` still failed at 320px: `products.html` reported document scroll width 325px. The earlier max-width-only override did not constrain the fixed source-part control sufficiently. The latest CSS fix now sets both left/right edges and auto width on `#gwSourcePartButton` below 360px; this must be retested.
+- The category page fixture was also too sparse to render visible root cards; the workflow now assigns nonzero mock counts to active root categories so it can test actual category card positions instead of passing with zero cards.
+- Latest commit `7187dd3beb1a854603fefedd6dab4f904e153029`. Awaiting/looking for the corresponding Actions run. PR #69 remains draft/unmerged and no preview deployment has been performed.
