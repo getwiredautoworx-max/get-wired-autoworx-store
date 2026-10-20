@@ -1,0 +1,41 @@
+name: Live category tree source checks
+on:
+  push:
+    branches:
+      - 'fix/live-category-tree-2026-10-20'
+    paths:
+      - 'category.html'
+      - '.github/workflows/live-category-tree-check.yml'
+  pull_request:
+    branches:
+      - 'recovery/approved-preview-index-new'
+    paths:
+      - 'category.html'
+      - '.github/workflows/live-category-tree-check.yml'
+permissions:
+  contents: read
+jobs:
+  category-source-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check category page script syntax and live-data behavior
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html = Path('category.html').read_text(encoding='utf-8')
+          scripts = re.findall(r'<script>(.*?)</script>', html, re.S)
+          assert scripts, 'No inline category script found'
+          Path('/tmp/category-inline.js').write_text(scripts[-1], encoding='utf-8')
+          assert "fetchAll('categories?" in html and "fetchAll('products?" in html
+          assert 'assets/category-tree.json' not in html, 'Category page still relies on a stale static snapshot'
+          root_block = re.search(r'const ROOTS=\[(.*?)\];', html, re.S)
+          assert root_block, 'Approved root category list missing'
+          labels = re.findall(r"\['([^']+)'", root_block.group(1))
+          expected = ['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy']
+          assert labels == expected, f'Unexpected root categories: {labels}'
+          print('PASS live categories/products are fetched; approved eight root categories are preserved')
+          PY
+          node --check /tmp/category-inline.js
