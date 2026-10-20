@@ -204,6 +204,53 @@ jobs:
                 throw new Error('Homepage product cards did not preserve any canonical per-product image endpoint URL');
               }
               await storePage.close();
+
+              const navPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+              await navPage.goto(base + '/category.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+              await navPage.locator('.card').filter({ hasText: 'Auto Electrical Spares' }).first().click();
+              await navPage.waitForURL(/category\.html\?id=/, { timeout: 45000 });
+              const leaf = navPage.locator('.card').filter({ hasText: 'ELECTRICAL SPARES' }).first();
+              const leafHref = await leaf.getAttribute('href');
+              if (!leafHref || !leafHref.includes('category.html?id=9cb78a57-342e-40fa-a4e4-a8f1fd40e6d2')) {
+                throw new Error('Expected populated ELECTRICAL SPARES subcategory link was not found: ' + leafHref);
+              }
+              await leaf.click();
+              await navPage.waitForURL(/products\.html\?category=/, { timeout: 45000 });
+              await navPage.locator('#grid article.card a[href^="product.html?id="]').first().waitFor({ timeout: 60000 });
+              const listingCountText = await navPage.locator('#count').innerText();
+              const listingCards = await navPage.locator('#grid article.card').count();
+              if (!listingCards || !Number.parseInt(listingCountText, 10) || Number.parseInt(listingCountText, 10) !== listingCards) {
+                throw new Error('Product listing count does not match rendered product cards: ' + JSON.stringify({ listingCountText, listingCards }));
+              }
+              const firstProductLink = navPage.locator('#grid article.card a[href^="product.html?id="]').first();
+              const productHref = await firstProductLink.getAttribute('href');
+              await firstProductLink.click();
+              await navPage.waitForURL(/product\.html\?id=/, { timeout: 45000 });
+              await navPage.locator('#root .product').waitFor({ timeout: 60000 });
+              const detailImage = navPage.locator('#root .hero img').first();
+              await detailImage.waitFor({ timeout: 45000 });
+              await detailImage.evaluate(img => { img.loading = 'eager'; });
+              const detailImageInfo = await detailImage.evaluate(async img => {
+                try { await img.decode(); } catch (e) {}
+                return { src: img.currentSrc || img.src, width: img.naturalWidth, height: img.naturalHeight };
+              });
+              const detailName = await navPage.locator('#root .name').innerText();
+              console.log(JSON.stringify({
+                navigation: 'root → subcategory → products → product detail',
+                rootUrl: base + '/category.html',
+                leafHref,
+                listingUrl: navPage.url(),
+                listingCountText,
+                listingCards,
+                productHref,
+                detailUrl: navPage.url(),
+                detailName,
+                detailImageInfo
+              }));
+              if (!detailName.trim() || detailImageInfo.width < 1 || detailImageInfo.height < 1) {
+                throw new Error('Product detail did not render a name and decoded image');
+              }
+              await navPage.close();
             } finally {
               await browser.close();
             }
