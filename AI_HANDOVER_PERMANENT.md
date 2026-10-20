@@ -2259,3 +2259,12 @@ This section supersedes older QA statements above where they conflict.
 - Do not apply the ASC patch without manual SKU/product identity and supplier-status confirmation.
 - No Axxess upload, DNS change, production Pages promotion, Supabase write/schema deployment, payment-provider activation, real order, or APK distribution without the appropriate explicit approval.
 - Customer launch remains HOLD until catalogue correctness, owner CRUD deployment/testing, checkout/policy links, payment readiness, and final owner acceptance are resolved.
+
+
+## 2026-10-20 15:05 SAST — reconciliation run 10 (task-start)
+
+- **Task status: IN PROGRESS.** Read the latest permanent handover on `main` before other project work. Starting from the authoritative 20 October override and protected catalogue/release gates.
+- Immediate append attempted using the current blob SHA `e7926f23cb7068f877d6ca6a3d70e537d7d14b0f`. No other project work was performed before this task-start write attempt.
+- Run scope: verify latest background workflow state; continue supplier-price evidence and the 38 scaling-defect triage; preserve the 107/107 October-verified rows, six October-source SKUs and nine asterisk-price quote-only/inactive rules; retain the 198-row manual category queue.
+- Safety boundaries: no live product/price/stock/category/active-flag writes, no deployment or release-credit use, no production job retry, no automatic category moves. Any generated reconciliation output remains `DO NOT IMPORT` until validated.
+- Next action: inspect the latest current handover and workflow state, then append each verified outcome immediately. Do not duplicate completed work or claim a retry until the resulting run/job status is confirmed.
