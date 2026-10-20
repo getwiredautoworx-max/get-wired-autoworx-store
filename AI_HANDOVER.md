@@ -142,3 +142,12 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Master handover outcome appended in commit `8aea51aae720bd6b64bfffadef213c5e89389a28`.
 - No source changes, merges, deployment retries, credit spend, live data/schema/catalogue/stock changes, Axxess/DNS/payment changes, or APK distribution. Customer launch remains HOLD; supplier reconciliation remains PAUSED.
 - Next: use a network-enabled browser to verify the existing immutable preview URL and category click-through; do not redeploy just to work around browser-access limitations.
+
+
+## OWNER-REPORTED PR #68 VISUAL/IMAGE FAILURE — 2026-10-20
+
+- Owner reports PR #68 preview has missing pictures and looks unlike the approved desktop storefront. Treat visual acceptance as FAILED / NOT ACCEPTED; do not rely on mocked navigation tests as evidence of visual correctness.
+- Read-only compare of approved baseline `1a76108c7415ade3bab07461ac27af16ce2fa8f8` with PR #68 head `47a634429783326cca9128770386046a3009a6fb` shows only workflow `.github/workflows/live-category-tree-check.yml` and `category.html` changed (3 commits ahead).
+- Source inspection confirms `category.html` renders generated inline SVG/emoji category illustrations via `artFor(label)`, not real category/product photography, and uses a separate light-theme styling override that visually diverges from the dark metallic/red-blue storefront. This explains the wrong category-card visuals/style. Exact product-list image failure is not yet diagnosed because live browser/network verification remains blocked.
+- Master handover record appended in commit `5769821cca990c3c0e8ef40a56410eb032f619a0`.
+- Next: inspect actual product-list image URL construction and asset paths; then make a narrowly scoped fix on the isolated PR #68 branch and validate real image requests and visual parity before any controlled preview deployment. Keep PR draft/unmerged; no deployment/credit spend or production/data changes without authorization. Customer launch HOLD; supplier reconciliation PAUSED.
