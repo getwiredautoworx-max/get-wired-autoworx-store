@@ -63,9 +63,11 @@ def parse_qty(value: str) -> float | None:
 
 def classify(status: str, qty: float | None) -> tuple[str, str]:
     s = re.sub(r"[\s_\-]+", " ", (status or "").casefold()).strip()
+    if any(term in s for term in ("not discontinued", "no longer discontinued", "discontinuation cancelled", "discontinuation canceled")):
+        return "REVIEW_STATUS", "Supplier text negates discontinuation; manual review required."
     if any(term in s for term in ("will discontinue", "discontinued", "discontinue", "end of line", "eol")):
         return "DEACTIVATE_CANDIDATE", "Supplier explicitly marks this item discontinued; require human review before deactivation."
-    if any(term in s for term in ("out of stock", "out-of-stock", "sold out", "unavailable")):
+    if any(term in s for term in ("out of stock", "sold out", "unavailable", "zero stock", "stock zero")):
         return "SET_STOCK_ZERO_CANDIDATE", "Supplier explicitly reports unavailable/out of stock; do not deactivate automatically."
     if qty == 0:
         return "SET_STOCK_ZERO_CANDIDATE", "Supplier quantity is explicitly zero; do not infer permanent discontinuation."
@@ -178,6 +180,7 @@ def self_test() -> int:
         {"SKU": "abc-2", "Status": "Out of Stock", "Quantity": "0", "Product Name": "Part B"},
         {"SKU": "ABC-3", "Status": "In Stock", "Quantity": "8", "Product Name": "Part C"},
         {"SKU": "ABC-4", "Status": "", "Quantity": "0", "Product Name": "Part D"},
+        {"SKU": "ABC-5", "Status": "Not discontinued", "Quantity": "4", "Product Name": "Part E"},
         {"SKU": "DUP-1", "Status": "Discontinued", "Quantity": "0"},
         {"SKU": "dup-1", "Status": "In Stock", "Quantity": "5"},
         {"SKU": "MISSING", "Status": "Discontinued", "Quantity": "0"},
@@ -187,6 +190,7 @@ def self_test() -> int:
         {"sku": "ABC-2", "public_sku": "GW-00000002", "name": "Part B", "active": "true", "stock_quantity": "5"},
         {"sku": "ABC-3", "public_sku": "GW-00000003", "name": "Part C", "active": "true", "stock_quantity": "5"},
         {"sku": "ABC-4", "public_sku": "GW-00000004", "name": "Part D", "active": "true", "stock_quantity": "5"},
+        {"sku": "ABC-5", "public_sku": "GW-00000005", "name": "Part E", "active": "true", "stock_quantity": "5"},
     ]
     rows, summary = reconcile(supplier, inventory, "2026-10-20")
     by_sku = {r["supplier_sku"].casefold(): r["decision"] for r in rows}
@@ -195,6 +199,7 @@ def self_test() -> int:
         "out_of_stock": by_sku.get("abc-2") == "SET_STOCK_ZERO_CANDIDATE",
         "available_no_change": by_sku.get("abc-3") == "NO_CHANGE",
         "zero_qty": by_sku.get("abc-4") == "SET_STOCK_ZERO_CANDIDATE",
+        "negated_discontinuation_not_deactivated": by_sku.get("abc-5") == "REVIEW_STATUS",
         "duplicate_supplier_blocked": sum(r["decision"] == "BLOCK_DUPLICATE_SUPPLIER_SKU" for r in rows) == 2,
         "unmatched_not_guessed": by_sku.get("missing") == "UNMATCHED_STORE_SKU",
         "no_writes_mode": summary["mode"] == "REVIEW_ONLY_NO_DATABASE_WRITES",
