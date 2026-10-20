@@ -183,3 +183,10 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - The first browser-test run `39423629800` failed before layout assertions because the temporary test script lived in `/tmp`, so Node could not resolve the repository-local Playwright package. This was a test-harness path issue, not a storefront layout failure. Logs: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39423629800.
 - Corrected the workflow to run the test script from the repository workspace and fixed the `file://` URL construction so the product category query is passed as a URL query rather than part of the filesystem path. Fix commit `473fd80056b9a51df8049a1d3be466e540afcd86`.
 - Rerun `39423752473` is currently in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39423752473. Its outcome must be checked before reporting browser validation. PR #69 remains draft/unmerged; no deployment was made.
+
+
+## 2026-10-20 — Narrow-phone overflow found and patched; layout test refined
+- The second responsive test run `39423752473` proved product cards remain two columns but found a real 5px horizontal overflow at 320px (`scrollWidth=325`). The test also exposed that the category page on the approved base uses `assets/category-tree.json`, so the initial mocked REST-only fixture did not render category cards. Logs: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39423752473.
+- Patched `products.html` so the fixed “CAN'T FIND IT? SOURCE A PART” control wraps and stays within the viewport at widths below 360px.
+- Refined `.github/workflows/responsive-layout-browser-check.yml` to serve the actual files over local HTTP and mock the static category snapshot as well as REST calls. Latest commit `2c2ab6cf798f5818f034e5cac4b0efe3e9e0d600`; new run `39423925431` is in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39423925431.
+- Do not report acceptance until the latest run passes. PR #69 is still draft/unmerged. No deployment, catalogue data changes, stock reconciliation, or supplier crawl.
