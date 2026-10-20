@@ -2525,3 +2525,11 @@ The owner rejected the prior visual result: cartoon category artwork, search not
 - Updated `index-new.html` with a final high-specificity CSS override: four assurance tiles are explicitly dark navy with white headings and pale supporting text; the ninth Find a Part tile is explicitly visible in the category grid, navy with blue border, and retains its existing `openPartSearch()` click action. Mobile sizing included.
 - Source update committed as `414723f899aebd48d02cc285fbc69649ddefaf10` on `fix/pr70-storefront-owner-feedback-2026-10-20` (PR #72, draft/unmerged).
 - **Verification status:** source markup confirms eight categories plus the ninth Find a Part tile and the existing click handler; CSS source fix committed. The new exact preview deployment and rendered desktop/mobile appearance still need confirmation before declaring visual success. Do not use a stale preview as evidence. Production/Axxess/DNS/payment/stock remain untouched; launch HOLD.
+
+
+## 2026-10-20 — Run 39 task start: restore visible dark-navy assurances and Search Category
+- Scope: continue on the owner-approved PR #70 baseline through draft PR #72 branch `fix/pr70-storefront-owner-feedback-2026-10-20`; address owner report that the four benefit/assurance tiles are too bright, the Search Category control has disappeared, and delivery/payment messaging needs to be more visible and comprehensive.
+- Current branch source head at task start: `414723f899aebd48d02cc285fbc69649ddefaf10` per the latest recorded checkpoint; re-check the actual branch head before editing.
+- Constraints: preserve category navigation and the same-size ninth FIND A PART tile; do not merge PRs, promote production, change Axxess/DNS/payment/live catalogue/stock/Supabase, or trigger another Cloudflare/Netlify deployment until local/non-deploying checks pass and the final-test deployment is explicitly appropriate. Keep customer launch HOLD.
+- Planned checks: inspect CSS/DOM selectors for the assurance tiles and Search Category, static syntax/source assertions, existing isolated interaction/responsive workflows without deployment triggers, then record exact head/check evidence and any preview URL only if its deployment is confirmed.
+- Status at start: user-visible styling/search regression reported; resolution not yet verified.
