@@ -2782,3 +2782,11 @@ This section supersedes older QA statements above where they conflict.
 - Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39490404565. Next: inspect iframe console/runtime/network requests and mock routes in `staging/pr72-storefront-interaction-qa.cjs`; fix the root cause before rerunning non-deploying QA. Do not trigger deployments or blind workflow retries.
 - Handover commits: `2d68f8fd35bc81a0902b597798ae3497ccda0681` and `abcd25fc14ee2c7c0a3906c8f1529a8c3357cfd7`.
 - PR #72 remains draft/unmerged, built from PR #70 baseline. Launch HOLD; no production/data/hosting/payment/supplier/APK changes.
+
+
+## 2026-10-20 — Run 34: reported category/subcategory/Specials outage
+- Owner reports the eight main categories, subcategories and Featured Specials no longer load.
+- Code inspection confirmed `index-new.html` tied categories and products to one `Promise.all()`, so a failure of either request prevented category rendering and left “Loading categories…” in place.
+- Mitigation patch committed to PR #72 branch `fix/pr70-storefront-owner-feedback-2026-10-20`: `09c519c001aa4897e9d8497c55aa3a4763d9e894`. It separates category/product failure handling, falls back to local `assets/category-tree.json` for categories, retries products with core fields if the full query fails, and avoids indefinite loading text. This is not yet validated and does not prove the actual Supabase failure cause is fixed.
+- Next: inspect diff, run non-deploying syntax and Playwright checks; verify the eight category tiles, child category navigation, and specials render with data. Only deploy a controlled review preview during final testing after non-deploying checks pass. No merge/production/Axxess/DNS/live data/payment/APK changes.
+- PR #72 remains draft/unmerged, PR #70 baseline retained, launch HOLD.
