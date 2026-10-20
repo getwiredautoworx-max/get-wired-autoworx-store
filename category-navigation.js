@@ -99,7 +99,6 @@
       if(!d || d.__gwCategoryBridge)return;
       d.__gwCategoryBridge=true;
       installCategoryPresentation(frame);
-      installCategoryIllustrations(frame);
       d.addEventListener('click',function(e){
         const tile=e.target.closest('.catBtn[data-filter], .child[data-filter]');
         if(!tile)return;
