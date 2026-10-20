@@ -492,3 +492,8 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Same browser run `39472625380` / job `118800335270` opened `/store.html` (HTTP 200), loaded homepage iframe, and verified first five product images retained canonical per-SKU image endpoint URLs and decoded at 1200x1200; observed image endpoint responses were HTTP 200.
 - PR #71 draft/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71. Cloudflare bot's latest immutable build status for workflow-only commit `13119c7` remains in progress, but branch alias browser checks pass against current category/product source.
 - Next: read-only audit category counts vs live active products, then test category → subcategory → product list → detail navigation in real browser. Launch HOLD; no production/data/hosting/payment changes.
+
+
+## Run 30 interim — navigation test timeout
+- Read-only category count audit: snapshot generated 2026-10-11 has 165 active categories; live DB has 242 total / 165 active. All 77 missing snapshot categories are inactive; all 165 active categories and direct counts match live data. Approved root totals match: Auto Electrical 1,149; Security 2; Car Audio 46; Accessories 874; Marine 57; Tools/Hardware/Consumables 1,321; Camping/Outdoors 84; Trailer/Canopy 89 (4,187 total direct products).
+- Workflow run `39473031585` passed image tests but timed out waiting for URL after clicking Auto Electrical root. Likely test synchronization issue; not yet evidence of broken link. Retry by registering waitForURL before click and logging exact href/current URL. No app/production/data changes.
