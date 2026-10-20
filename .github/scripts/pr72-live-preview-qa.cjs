@@ -4,10 +4,10 @@ const path = require('node:path');
 const BASE='https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev/';
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,deployedRevision:'e1133b7ada201fb3e20b8733156c3e2d7d14830a',deploymentAlias:'https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev',startedAt:new Date().toISOString(),checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],categoryImages:[],productImage:null,screenshots:[]};
+const report={base:BASE,deployedRevision:'4c484023967f1a9ef78639c3baa430db113d0ec8',deploymentAlias:'https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev',startedAt:new Date().toISOString(),checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
-function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()})})}
+function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
 (async()=>{
  const browser=await chromium.launch({headless:true});
  try{
@@ -25,6 +25,8 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   check('main_category_photos_load_and_are_distinct',photos.length===8&&photos.every(x=>x.loaded)&&new Set(photos.map(x=>x.src)).size===8,{photos});
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
+  await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
+  report.screenshots.push('homepage.png');
   check('specials_no_more_than_four',await frame.locator('#featuredGrid .product').count()<=4,{count:await frame.locator('#featuredGrid .product').count()});
   await frame.getByRole('button',{name:/CAN’T FIND A PART\? REQUEST IT/i}).click();
   check('request_part_dialog_opens',await frame.locator('#sourcePart.open').count()===1,{count:await frame.locator('#sourcePart.open').count()});
@@ -34,7 +36,12 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   await root.click();
   await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
   check('root_category_click_opens_individual_page',/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&new URL(page.url()).searchParams.get('id')===rootId,{url:page.url(),rootId});
-  await page.waitForTimeout(3500);
+  await page.waitForTimeout(1500);
+  await page.locator('.card img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
+  await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
+  report.subcategoryImages=await page.locator('.card img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth})));
+  const subcategoryUnique=new Set(report.subcategoryImages.map(x=>x.src)).size;
+  check('subcategory_photos_are_loaded_and_topic_specific',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
   const batterySubcategory=page.locator('.card[href^="category.html?id="]').filter({hasText:/BATTERY/i}).first();
@@ -85,6 +92,8 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   check('add_to_cart_button_visible',await page.locator('#add').isVisible(),{text:await page.locator('#add').innerText()});
   const q=page.locator('#queryPart');
   check('query_part_button_has_product_whatsapp_link',await q.isVisible()&&(await q.getAttribute('href')).startsWith('https://wa.me/'),{href:await q.getAttribute('href')});
+  check('product_page_has_no_floating_request_cta',await page.locator('.requestPartFloating').count()===0,{count:await page.locator('.requestPartFloating').count()});
+  check('product_detail_api_not_unauthorized',report.authErrors.length===0,{authErrors:report.authErrors});
   await page.screenshot({path:path.join(OUT,'product-detail.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('product-detail.png');
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
@@ -97,6 +106,8 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   check('mobile_no_horizontal_overflow',dimensions.scrollWidth<=dimensions.width+2,dimensions);
   await mobile.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('mobile-home.png');
+  const fontCspErrors=report.consoleErrors.filter(x=>x.includes('fonts.googleapis.com')&&x.includes('Content Security Policy'));
+  check('google_fonts_stylesheet_not_blocked_by_csp',fontCspErrors.length===0,{fontCspErrors});
   report.finishedAt=new Date().toISOString();
   report.summary={pass:report.checks.filter(x=>x.status==='PASS').length,fail:report.checks.filter(x=>x.status==='FAIL').length,consoleErrors:report.consoleErrors.length,pageErrors:report.pageErrors.length,failedRequests:report.failedRequests.length,badResponses:report.badResponses.length};
   fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
