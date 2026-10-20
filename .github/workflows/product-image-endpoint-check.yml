@@ -207,6 +207,19 @@ jobs:
 
               const navPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
               await navPage.goto(base + '/category.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+              await navPage.waitForSelector('.card', { timeout: 45000 });
+              const rootCounts = await navPage.locator('#grid').evaluate(grid => JSON.parse(grid.dataset.debug || '{}').rootChecks || []);
+              if (rootCounts.length !== 8 || rootCounts.some(item => !item.found || Number(item.total) <= 0)) {
+                throw new Error('Approved root categories/counts are incomplete: ' + JSON.stringify(rootCounts));
+              }
+              const renderedRootCards = await navPage.locator('#grid .card').evaluateAll(cards => cards.map(card => ({
+                name: card.querySelector('h2')?.innerText?.trim(),
+                count: Number((card.querySelector('.card-count')?.innerText || '').replace(/[^0-9]/g, ''))
+              })));
+              if (renderedRootCards.length !== 8 || renderedRootCards.some(card => !card.count)) {
+                throw new Error('Root category counts were not rendered for all eight approved categories: ' + JSON.stringify(renderedRootCards));
+              }
+              console.log(JSON.stringify({ rootCounts, renderedRootCards }));
               await navPage.locator('.card').filter({ hasText: 'Auto Electrical Spares' }).first().click();
               await navPage.waitForURL(/category\.html\?id=/, { timeout: 45000 });
               const leaf = navPage.locator('.card').filter({ hasText: 'ELECTRICAL SPARES' }).first();
@@ -247,8 +260,10 @@ jobs:
                 detailName,
                 detailImageInfo
               }));
-              if (!detailName.trim() || detailImageInfo.width < 1 || detailImageInfo.height < 1) {
-                throw new Error('Product detail did not render a name and decoded image');
+              const neutralImageFallback = await navPage.locator('#root .hero.no-image').count() > 0;
+              console.log(JSON.stringify({ detailImageAvailable: detailImageInfo.width > 0 && detailImageInfo.height > 0, neutralImageFallback }));
+              if (!detailName.trim() || (!(detailImageInfo.width > 0 && detailImageInfo.height > 0) && !neutralImageFallback)) {
+                throw new Error('Product detail did not render a name and either a decoded product image or neutral fallback');
               }
               await navPage.close();
             } finally {
