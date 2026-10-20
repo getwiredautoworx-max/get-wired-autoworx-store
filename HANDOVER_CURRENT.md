@@ -228,3 +228,10 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - These are non-production review URLs; no merge to `main` or production deploy was made. Owner can inspect the brighter homepage headline and category/subcategory photo cards here.
 - PR #70 remains draft/open/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/70. Backup branch `backup/store-before-banner-category-images-2026-10-20` preserves the pre-change snapshot.
 - Outstanding: browser acceptance workflow `39428589352` still fails the unrelated 320px products page overflow check (`scrollWidth=325`); category test fixture currently reports zero rendered cards, so that part of the test is not meaningful yet. Continue correcting the test/overflow before claiming responsive acceptance. Do not merge or promote until owner review and checks are complete.
+
+
+## 2026-10-20 — Found exact 320px overflow element and patched it
+- The corrected browser test now serves the actual category page over HTTP and renders eight category cards at 320, 360, 390, 768 and 1440px; category grid geometry and horizontal overflow pass at all five sizes. Run `39428812557` logs show the fixture issue is resolved and all category checks pass.
+- The same run identified the remaining 5px product-page overflow precisely: cart count badge `#badge`, positioned at x=303–325 on a 320px viewport. Patched the narrow-phone cart/button badge CSS in `products.html` to keep the count inside the button and viewport.
+- Current retest `39428982485` is in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39428982485. Do not mark responsive acceptance passed until this run completes successfully.
+- Preview workflow was updated to redeploy when `products.html` changes and serialize uploads. Latest preview deployment run `39428991147` is queued: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39428991147. The earlier deployed preview URL remains available for the banner/photo review until the latest deployment finishes.
