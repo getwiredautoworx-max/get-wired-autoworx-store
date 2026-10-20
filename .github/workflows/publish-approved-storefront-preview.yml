@@ -1,4 +1,4 @@
-name: Publish Approved Storefront Preview
+name: Publish Restored Main Storefront Preview
 on:
   push:
     branches:
@@ -13,13 +13,13 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish-approved-baseline:
-    name: Deploy locked approved source to isolated Pages preview
+    name: Deploy restored main source to isolated Pages preview
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout locked approved storefront source
+      - name: Checkout current restored main storefront source
         uses: actions/checkout@v4
         with:
-          ref: approved-storefront-baseline-2026-10-20
+          ref: main
       - name: Publish isolated Cloudflare Pages preview
         uses: cloudflare/wrangler-action@v3
         with:
