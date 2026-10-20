@@ -80,6 +80,20 @@ jobs:
                   await page.waitForTimeout(1000);
                   const detail=await page.evaluate(()=>({title:document.title,heading:document.querySelector('h1')?.innerText||document.querySelector('h2')?.innerText||'',body:(document.body?.innerText||'').slice(0,500)}));
                   report.productDetail=detail;
+                  const productId=new URL(first.href,report.base+'/products.html').searchParams.get('id');
+                  const productSource=require('fs').readFileSync('product.html','utf8');
+                  const apiConfig=productSource.match(/const U='([^']+)',K='([^']+)'/);
+                  if(apiConfig&&productId){
+                    const baseQuery='&id=eq.'+encodeURIComponent(productId)+'&active=eq.true&limit=1';
+                    for(const [label,fields] of [
+                      ['products-page-fields','id,name,public_sku,description,price,stock_quantity,image_url,specifications,active'],
+                      ['product-detail-fields','id,name,public_sku,description,price,stock_quantity,image_url,gallery_urls,compatible_vehicles,specifications,category_id,active']
+                    ]){
+                      const probe=await fetch(apiConfig[1]+'/rest/v1/products?select='+fields+baseQuery,{headers:{apikey:apiConfig[2],Authorization:'Bearer '+apiConfig[2],Accept:'application/json'}});
+                      const body=await probe.text();
+                      report.checks.push({id:'api-probe-'+label,status:probe.ok?'PASS':'FAIL',http:probe.status,bodyPreview:body.slice(0,300)});
+                    }
+                  }
                   report.checks.push({id:'product-detail-content',status:detail.heading||/SKU|Price|Product/i.test(detail.body)?'PASS':'REVIEW',detail});
                 } else report.checks.push({id:'product-detail-link',status:'REVIEW',detail:'No live product card with a product.html?id link was available'});
               }
