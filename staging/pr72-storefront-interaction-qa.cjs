@@ -26,11 +26,19 @@ const report={startedAt:new Date().toISOString(),checks:[],errors:[],screenshots
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)report.errors.push(name+': '+JSON.stringify(detail));};
 async function installMocks(page){
   await page.route('**/rest/v1/**',async route=>{
-    const u=new URL(route.request().url());
-    if(u.pathname.endsWith('/categories')) return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(categories.map(c=>({id:c.id,name:c.name,parent_id:c.parent_id,slug:c.slug,active:true})))});
-    if(u.pathname.endsWith('/products')) return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(products)});
-    if(u.pathname.endsWith('/vehicle_search_index')) return route.fulfill({status:200,contentType:'application/json',body:'[]'});
-    return route.fulfill({status:200,contentType:'application/json',body:'[]'});
+    const req=route.request(),u=new URL(req.url());
+    const cors={
+      'access-control-allow-origin':'*',
+      'access-control-allow-methods':'GET,HEAD,OPTIONS',
+      'access-control-allow-headers':'apikey,authorization,content-type,prefer,range,x-client-info',
+      'access-control-max-age':'86400'
+    };
+    if(req.method()==='OPTIONS') return route.fulfill({status:204,headers:cors,body:''});
+    const reply=body=>route.fulfill({status:200,headers:{...cors,'content-type':'application/json'},body:JSON.stringify(body)});
+    if(u.pathname.endsWith('/categories')) return reply(categories.map(c=>({id:c.id,name:c.name,parent_id:c.parent_id,slug:c.slug,active:true})));
+    if(u.pathname.endsWith('/products')) return reply(products);
+    if(u.pathname.endsWith('/vehicle_search_index')) return reply([]);
+    return reply([]);
   });
   await page.route('**/assets/category-tree.json',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(categorySnapshot)}));
   await page.route('**/functions/v1/product-image?**',route=>route.fulfill({status:404,contentType:'application/json',body:'{"error":"no fixture image"}'}));
