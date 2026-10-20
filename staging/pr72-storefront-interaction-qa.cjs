@@ -44,11 +44,11 @@ async function installMocks(page){
   page.on('console',m=>{if(m.type()==='error')report.errors.push('console: '+m.text())});
   await installMocks(page);
   const response=await page.goto('http://127.0.0.1:4173/store.html',{waitUntil:'domcontentloaded',timeout:45000});
-  await page.frameLocator('#store').locator('#categoryGrid .catBtn').first().waitFor({timeout:20000});
+  await page.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:20000});
   await page.waitForTimeout(800);
   const frame=page.frameLocator('#store');
-  const rootCount=await frame.locator('#categoryGrid .catBtn').count();
-  const rootImageData=await frame.locator('#categoryGrid .catBtn .catPhoto').evaluateAll(els=>els.map(e=>({src:e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0})));
+  const rootCount=await frame.locator('#categoryGrid > .catWrap > .catBtn').count();
+  const rootImageData=await frame.locator('#categoryGrid > .catWrap > .catBtn .catPhoto').evaluateAll(els=>els.map(e=>({src:e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0})));
   check('homepage_served',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
   check('eight_main_category_buttons',rootCount===8,{count:rootCount});
   check('category_photos_loaded_and_distinct',rootImageData.length===8&&rootImageData.every(x=>x.loaded)&&new Set(rootImageData.map(x=>x.src)).size===8,{images:rootImageData});
@@ -59,7 +59,7 @@ async function installMocks(page){
   const requestOpen=await frame.locator('#sourcePart.open').count();
   check('standalone_request_part_button_opens_dialog',requestOpen===1,{openDialogs:requestOpen});
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
-  const firstRoot=frame.locator('#categoryGrid .catBtn').first();
+  const firstRoot=frame.locator('#categoryGrid > .catWrap > .catBtn').first();
   const firstRootId=await firstRoot.getAttribute('data-filter');
   await firstRoot.click();
   await page.waitForURL(/category\.html\?id=/,{timeout:15000});
@@ -74,7 +74,7 @@ async function installMocks(page){
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
   await installMocks(mobile);
   await mobile.goto('http://127.0.0.1:4173/store.html',{waitUntil:'domcontentloaded',timeout:45000});
-  await mobile.frameLocator('#store').locator('#categoryGrid .catBtn').first().waitFor({timeout:20000});
+  await mobile.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:20000});
   const mobileMetrics=await mobile.frameLocator('#store').locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
   check('mobile_no_horizontal_overflow',mobileMetrics.scrollWidth<=mobileMetrics.width+2,mobileMetrics);
   await mobile.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true}).catch(()=>{});
