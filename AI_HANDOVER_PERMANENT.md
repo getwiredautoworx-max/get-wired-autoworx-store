@@ -2516,3 +2516,12 @@ The owner rejected the prior visual result: cartoon category artwork, search not
 - Review of Supabase/PostgREST request headers found the fixture's `Access-Control-Allow-Headers` list omitted `accept-profile` and `content-profile`, which PostgREST clients may include in preflight requests.
 - Follow-up commit `12be50fd96068629ba93a802d6462dca4f6841cc` adds both headers and records browser `requestfailed` diagnostics to the category-grid timeout message. This is the next item to validate; if it still fails, use the emitted failed-request/error details to fix the actual remaining mismatch rather than loosening the test.
 - Latest preview before this fixture-only update was `https://3c9e7b7e.get-wired-autoworx-store.pages.dev`; a new preview build and interaction QA for the latest source are required. Responsive layout and public SKU audit passed on the preceding source revision. Keep PR #72 draft/unmerged and release holds unchanged.
+
+
+## OWNER CORRECTION — 2026-10-20: Navy trust tiles and missing Find a Part category
+
+- Owner reported that the assurance tiles still appeared bright rather than navy and the search/find-a-part category tile had disappeared.
+- Root cause found in source cascade: later `body.brightTheme .feature` and `body.brightTheme #categoryGrid .findPartCategoryTile/.findPartCategoryBtn` rules used stronger selectors and forced white backgrounds, overriding earlier navy styles. The renderer still creates eight shop categories plus a ninth `FIND A PART` tile, so the restoration focuses on overriding the conflicting bright-theme CSS without removing category data/navigation.
+- Updated `index-new.html` with a final high-specificity CSS override: four assurance tiles are explicitly dark navy with white headings and pale supporting text; the ninth Find a Part tile is explicitly visible in the category grid, navy with blue border, and retains its existing `openPartSearch()` click action. Mobile sizing included.
+- Source update committed as `414723f899aebd48d02cc285fbc69649ddefaf10` on `fix/pr70-storefront-owner-feedback-2026-10-20` (PR #72, draft/unmerged).
+- **Verification status:** source markup confirms eight categories plus the ninth Find a Part tile and the existing click handler; CSS source fix committed. The new exact preview deployment and rendered desktop/mobile appearance still need confirmation before declaring visual success. Do not use a stale preview as evidence. Production/Axxess/DNS/payment/stock remain untouched; launch HOLD.
