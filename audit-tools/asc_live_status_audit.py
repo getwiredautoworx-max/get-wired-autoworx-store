@@ -210,13 +210,13 @@ def main():
     review_ready = [row for row in report if row["match_status"] == "MATCHED_CANDIDATE" and row["identity_review"] == "REVIEW_READY_NOT_APPROVED"]
     manual_review = [row for row in report if row["match_status"] == "MATCHED_CANDIDATE" and row["identity_review"] == "MANUAL_IDENTITY_REVIEW"]
     with sql_path.open("w", encoding="utf-8") as handle:
-        handle.write("-- GET WIRED AUTOWORX / ASC STATUS CLEANUP PATCH PROPOSAL\\n")
-        handle.write("-- Generated from read-only public ASC Store API + active store products.\\n")
-        handle.write("-- REVIEW ONLY: every UPDATE statement is commented out; nothing is applied.\\n")
-        handle.write(f"-- Exact-SKU matched candidates: {sum(1 for row in report if row['match_status'] == 'MATCHED_CANDIDATE')}; name review required: {len(manual_review)}; similarity screen passed but still needs approval: {len(review_ready)}.\\n")
-        handle.write("-- ASC stock_status/stock_quantity may be unavailable; verify supplier page before any update.\\n")
-        handle.write("-- Discontinued title: deactivate + zero stock. Out of stock: zero stock only, keep active for possible restock.\\n")
-        handle.write("-- WHERE guards exact product ID, supplier SKU, active state and the stock value observed at audit time.\\n\\n")
+        handle.write("-- GET WIRED AUTOWORX / ASC STATUS CLEANUP PATCH PROPOSAL\n")
+        handle.write("-- Generated from read-only public ASC Store API + active store products.\n")
+        handle.write("-- REVIEW ONLY: every UPDATE statement is commented out; nothing is applied.\n")
+        handle.write(f"-- Exact-SKU matched candidates: {sum(1 for row in report if row['match_status'] == 'MATCHED_CANDIDATE')}; name review required: {len(manual_review)}; similarity screen passed but still needs approval: {len(review_ready)}.\n")
+        handle.write("-- ASC stock_status/stock_quantity may be unavailable; verify supplier page before any update.\n")
+        handle.write("-- Discontinued title: deactivate + zero stock. Out of stock: zero stock only, keep active for possible restock.\n")
+        handle.write("-- WHERE guards exact product ID, supplier SKU, active state and the stock value observed at audit time.\n\n")
         for row in review_ready:
             pid = str(row["store_product_id"]).replace("'", "''")
             sku = str(row["supplier_sku"]).replace("'", "''")
@@ -230,8 +230,8 @@ def main():
                 statement = f"UPDATE public.products SET active = false, stock_quantity = 0, updated_at = now() WHERE id = '{pid}'::uuid AND sku = '{sku}' AND active IS TRUE AND stock_quantity = {observed_stock};"
             else:
                 statement = f"UPDATE public.products SET stock_quantity = 0, updated_at = now() WHERE id = '{pid}'::uuid AND sku = '{sku}' AND active IS TRUE AND stock_quantity = {observed_stock};"
-            handle.write(f"-- {row['proposed_action']} | {sku} | {row['store_public_sku']} | {row['store_name']}\\n")
-            handle.write("-- " + statement + "\\n")
+            handle.write(f"-- {row['proposed_action']} | {sku} | {row['store_public_sku']} | {row['store_name']}\n")
+            handle.write("-- " + statement + "\n")
 
     stock_snapshot = defaultdict(int)
     for row in report:
@@ -253,7 +253,7 @@ def main():
         "matching_rule": "exact normalized supplier SKU only; product-name similarity is a review guard, not an identity match",
         "warning": "No live changes are applied. Every candidate requires manual supplier-page/SKU verification and approval.",
     }
-    summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8")
+    summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print("ASC_STATUS_AUDIT_SUMMARY=" + json.dumps(summary, sort_keys=True))
     print("CSV_REPORT=" + str(csv_path))
     print("JSON_SUMMARY=" + str(summary_path))
