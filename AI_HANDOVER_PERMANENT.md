@@ -2357,3 +2357,10 @@ This section supersedes older QA statements above where they conflict.
 - **Desktop/mobile agent coordination:** no direct cross-session agent channel is available from this chat. Coordination can be made reliable through shared GitHub branches/PRs and `AI_HANDOVER_PERMANENT.md`: assign distinct files/tasks, commit evidence and test results, state the exact base/head SHA, and read the latest handover before edits. Avoid simultaneous writes to the same handover file; append sequentially using the latest blob SHA to prevent lost updates. The desktop agent must be instructed not to merge/deploy and to record its actions in the same handover. This mobile session cannot verify what the desktop agent is doing unless its changes appear in shared repository state.
 - No live data writes, schema changes, merges, deployment actions, workflow retries, Axxess/DNS/payment changes, or stock reconciliation occurred.
 - Next safe step: establish an explicitly non-deploying local/isolated browser-test runner (for example, run Playwright against the PR #68 source with mocked API responses in a local browser environment) and verify it cannot trigger Cloudflare hooks before running the required navigation matrix. If the only available route is a PR push or preview build, request owner approval before using it.
+
+
+## 2026-10-20 — HANDOVER PROTOCOL AMENDMENT
+
+- **Mandatory first step for every agent/session:** read both `AI_HANDOVER.md` and `AI_HANDOVER_PERMANENT.md` from the current default branch before any project work. Do not rely on prior chat summaries or claims that one file has already been read.
+- After task start, append dated task-start and verified outcome/blocker/next-action notes to `AI_HANDOVER_PERMANENT.md`. Preserve all existing content and the eight locked user rules. Use the latest blob SHA for sequential writes to prevent lost updates.
+- The `AI_HANDOVER.md` entry point was updated in commit `1cecc66a72bab2fea1a7956ce3379399048b1e37` to state this rule explicitly.
