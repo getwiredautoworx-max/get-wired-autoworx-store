@@ -50,16 +50,17 @@ jobs:
             const browser=await chromium.launch({headless:true});
             try {
               for (const target of targets) {
-                const entry={...target,checks:[],images:[],pageErrors:[],failedImageRequests:[],screenshots:[]};
+                const entry={...target,checks:[],images:[],pageErrors:[],failedImageRequests:[],apiResponses:[],failedApiRequests:[],screenshots:[]};
                 report.targets.push(entry);
                 const page=await browser.newPage({viewport:{width:1440,height:1000}});
                 page.on('pageerror',e=>entry.pageErrors.push(e.message));
-                page.on('requestfailed',req=>{if(req.resourceType()==='image')entry.failedImageRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});});
-                page.on('response',res=>{if(res.request().resourceType()==='image')entry.images.push({url:res.url(),status:res.status(),ok:res.ok()});});
+                page.on('requestfailed',req=>{if(req.resourceType()==='image')entry.failedImageRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});if(/supabase\\.co\\/rest\\/v1\\/(products|categories)/i.test(req.url()))entry.failedApiRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});});
+                page.on('response',res=>{if(res.request().resourceType()==='image')entry.images.push({url:res.url(),status:res.status(),ok:res.ok()});if(/supabase\\.co\\/rest\\/v1\\/(products|categories)/i.test(res.url()))entry.apiResponses.push({url:res.url(),status:res.status(),ok:res.ok()});});
                 try {
                   const response=await page.goto(target.url,{waitUntil:'domcontentloaded',timeout:18000});
                   entry.checks.push({id:'document-http',status:response&&response.status()<400?'PASS':'FAIL',http:response?.status()??null,finalUrl:page.url()});
-                  await page.waitForTimeout(1500);
+                  await page.waitForFunction(()=>{const g=document.querySelector('#categoryGrid');return !!g&&(!!g.querySelector('.catBtn')||!/Loading categories/i.test(g.textContent||''));},null,{timeout:45000}).catch(()=>{});
+                  await page.waitForTimeout(1000);
                   let frameInfo=null;
                   for (const frame of page.frames()) {
                     try {
@@ -67,14 +68,14 @@ jobs:
                         title:document.title,
                         url:location.href,
                         categoryGrid:!!document.querySelector('#categoryGrid'),
-                        categoryCards:document.querySelectorAll('#categoryGrid .catBtn[data-gw-root-index]').length,
-                        categoryButtons:[...document.querySelectorAll('#categoryGrid .catBtn[data-gw-root-index]')].map(b=>({
+                        categoryCards:document.querySelectorAll('#categoryGrid .catBtn').length,
+                        categoryButtons:[...document.querySelectorAll('#categoryGrid .catBtn')].map(b=>({
                           label:(b.innerText||'').replace(/\s+/g,' ').trim(),
                           image:b.querySelector('img')?{src:b.querySelector('img').currentSrc||b.querySelector('img').src,alt:b.querySelector('img').alt,complete:b.querySelector('img').complete,naturalWidth:b.querySelector('img').naturalWidth,naturalHeight:b.querySelector('img').naturalHeight,usesLogoFallback:/gw-logo\.png/i.test(b.querySelector('img').currentSrc||b.querySelector('img').src)}:null
                         })),
-                        allProductsLink:!!document.querySelector('#allProductsLink'),
+                        allProductsLink:!!document.querySelector('#allProductsLink, #shopAllLink'),
                         productGrid:!!document.querySelector('#allProductsGrid'),
-                        productCards:document.querySelectorAll('#allProductsGrid article.product').length
+                        productCards:document.querySelectorAll('#allProductsGrid article.product, #featuredGrid article.product').length
                       }));
                       if(info.categoryGrid||info.productGrid){frameInfo={frame,info};break;}
                     } catch {}
@@ -95,20 +96,20 @@ jobs:
                     entry.screenshots.push(target.label+'-category-grid.png');
                     if(info.categoryCards>0){
                       try{
-                        await frame.locator('#categoryGrid .catBtn[data-gw-root-index]').first().click({timeout:10000});
+                        await frame.locator('#categoryGrid .catBtn').first().click({timeout:10000});
                         await page.waitForTimeout(1500);
                         const after=await frame.evaluate(()=>({url:location.href,categoryButtons:document.querySelectorAll('#categoryGrid .catBtn').length,productCards:document.querySelectorAll('#allProductsGrid article.product').length,productGridVisible:!!document.querySelector('#allProductsGrid')}));
                         entry.checks.push({id:'category-click-response',status:after.categoryButtons>0||after.productCards>0?'PASS':'REVIEW',after});
                       }catch(e){entry.checks.push({id:'category-click-response',status:'FAIL',error:String(e)});}
                     }
                     try{
-                      await frame.evaluate(()=>{const a=document.querySelector('#allProductsLink');if(a)a.click();});
+                      await frame.evaluate(()=>{const a=document.querySelector('#allProductsLink, #shopAllLink');if(a)a.click();});
                       await page.waitForTimeout(2500);
-                      const products=await frame.evaluate(()=>[...document.querySelectorAll('#allProductsGrid article.product')].slice(0,3).map(p=>({name:p.querySelector('h3')?.innerText||'',sku:p.querySelector('.sku')?.innerText||'',hasImage:!!p.querySelector('img'),imageSrc:p.querySelector('img')?.currentSrc||p.querySelector('img')?.src||'',hasDetailsClick:!!p.querySelector('.prodImg')})));
+                      const products=await frame.evaluate(()=>[...document.querySelectorAll('#allProductsGrid article.product, #featuredGrid article.product')].slice(0,3).map(p=>({name:p.querySelector('h3')?.innerText||'',sku:p.querySelector('.sku')?.innerText||'',hasImage:!!p.querySelector('img'),imageSrc:p.querySelector('img')?.currentSrc||p.querySelector('img')?.src||'',hasDetailsClick:!!p.querySelector('.prodImg')})));
                       entry.productSample=products;
                       entry.checks.push({id:'live-product-cards',status:products.length?'PASS':'REVIEW',count:products.length,sample:products});
                       if(products.length){
-                        await frame.locator('#allProductsGrid article.product').first().locator('.prodImg').click({timeout:10000}).catch(async()=>frame.locator('#allProductsGrid article.product').first().click({timeout:10000}));
+                        await frame.locator('#allProductsGrid article.product, #featuredGrid article.product').first().locator('.prodImg').click({timeout:10000}).catch(async()=>frame.locator('#allProductsGrid article.product').first().click({timeout:10000}));
                         await page.waitForTimeout(500);
                         const detail=await frame.evaluate(()=>({modalVisible:!!document.querySelector('#productModal.show')||!!document.querySelector('#productModal[style*="display: block"]')||getComputedStyle(document.querySelector('#productModal')).display!=='none',heading:document.querySelector('#detailContent h2')?.innerText||'',detailText:(document.querySelector('#detailContent')?.innerText||'').slice(0,300)}));
                         entry.productDetail=detail;
@@ -119,7 +120,7 @@ jobs:
                 } catch(e) {
                   entry.checks.push({id:'navigation',status:'BLOCKED',error:String(e)});
                 }
-                entry.imageResponseSummary={imageResponses:entry.images.length,httpFailures:entry.images.filter(i=>!i.ok).length,requestFailures:entry.failedImageRequests.length};
+                entry.imageResponseSummary={imageResponses:entry.images.length,httpFailures:entry.images.filter(i=>!i.ok).length,requestFailures:entry.failedImageRequests.length,apiResponses:entry.apiResponses,failedApiRequests:entry.failedApiRequests};
                 await page.close();
               }
             } finally { await browser.close(); }
