@@ -2,7 +2,7 @@ name: Live category tree source checks
 on:
   push:
     branches:
-      - 'fix/live-category-tree-2026-10-20'
+      - 'test/pr68-isolated-playwright-2026-10-20'
     paths:
       - 'category.html'
       - '.github/workflows/live-category-tree-check.yml'
@@ -39,3 +39,138 @@ jobs:
           print('PASS live categories/products are fetched; approved eight root categories are preserved')
           PY
           node --check /tmp/category-inline.js
+
+
+  isolated-category-navigation-playwright:
+    name: Isolated PR68 category navigation Playwright
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright browser runner
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local-only static server
+        run: python3 -m http.server 4173 --bind 127.0.0.1 --directory . >/tmp/pr68-static-server.log 2>&1 &
+      - name: Run navigation and fitment-exemption browser regression with mocked Supabase
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/pr68
+          cat > .pr68-nav-check.cjs <<'JS'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          const ROOTS = [
+            ['Auto Electrical Spares','6cc56033-b0a9-4f25-b207-aeeb341a1c47'],
+            ['Vehicle Security','8e93d917-8fcc-4427-b364-cdad244f263f'],
+            ['Car Audio & Entertainment','5ab55c53-eee3-41ce-ad48-04ad6df85181'],
+            ['Automotive Accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],
+            ['Marine Spares & Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],
+            ['Tools, Hardware & Consumables','77297c18-67f6-452e-8918-c55d2ef6231a'],
+            ['Camping, Leisure & Outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],
+            ['Trailer & Canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']
+          ];
+          const categories = ROOTS.map(([name,id],i)=>({id,name,slug:'root-'+i,parent_id:null,active:true,sort_order:i+1}));
+          categories.push(
+            {id:'child-electrical',name:'Automotive Electrical Connectors and Wiring Accessories',slug:'electrical-connectors',parent_id:ROOTS[0][1],active:true,sort_order:1},
+            {id:'child-tools',name:'Workshop Tools',slug:'workshop-tools',parent_id:ROOTS[5][1],active:true,sort_order:1},
+            {id:'child-camping',name:'Camping Accessories',slug:'camping-accessories',parent_id:ROOTS[6][1],active:true,sort_order:1}
+          );
+          const product=(id,name,category_id,sku)=>({id,name,category_id,public_sku:sku,description:'Isolated test fixture',price:125,stock_quantity:5,image_url:'',gallery_urls:[],specifications:{price_status:'VERIFIED'},compatible_vehicles:[],featured:false,active:true});
+          const products=[
+            product('el-root','Electrical Test Product',ROOTS[0][1],'GW-TEST0001'),
+            product('el-1','Connector Kit Alpha','child-electrical','GW-TEST0002'),
+            product('el-2','Connector Kit Beta','child-electrical','GW-TEST0003'),
+            product('sec-1','Security Test Product',ROOTS[1][1],'GW-TEST0004'),
+            product('audio-1','Audio Test Product',ROOTS[2][1],'GW-TEST0005'),
+            product('acc-1','Accessory Test Product',ROOTS[3][1],'GW-TEST0006'),
+            product('marine-1','Marine Test Product',ROOTS[4][1],'GW-TEST0007'),
+            product('tool-1','Workshop Tool Test Product','child-tools','GW-TEST0008'),
+            product('camp-1','Camping Test Product','child-camping','GW-TEST0009'),
+            product('trailer-1','Trailer Test Product',ROOTS[7][1],'GW-TEST0010')
+          ];
+          const report={sourceHead:'47a634429783326cca9128770386046a3009a6fb',base:'recovery/approved-preview-index-new@712a805a1fe395bdb80f9344952016f136438a5f',mode:'local static server + mocked Supabase only',checks:[],failures:[]};
+          const check=(name,ok,details={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',...details});console.log((ok?'PASS ':'FAIL ')+name+' '+JSON.stringify(details));if(!ok)report.failures.push(name+': '+JSON.stringify(details));};
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            try {
+              const page=await browser.newPage({viewport:{width:1280,height:900}});
+              page.on('pageerror',e=>report.failures.push('category/product page JS error: '+e.message));
+              await page.route('**/rest/v1/**',async route=>{
+                const u=new URL(route.request().url());
+                if(u.pathname.endsWith('/categories')) return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(categories)});
+                if(u.pathname.endsWith('/products')){
+                  let rows=products;
+                  const filter=u.searchParams.get('category_id');
+                  if(filter&&filter.startsWith('eq.')) rows=rows.filter(p=>p.category_id===filter.slice(3));
+                  return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(rows)});
+                }
+                if(u.pathname.endsWith('/vehicle_search_index')) return route.fulfill({status:200,contentType:'application/json',body:'[]'});
+                return route.fulfill({status:200,contentType:'application/json',body:'[]'});
+              });
+              await page.goto('http://127.0.0.1:4173/category.html',{waitUntil:'domcontentloaded'});
+              await page.locator('#grid .card').first().waitFor();
+              const rootCount=await page.locator('#grid .card').count();
+              const visibleRoots=await page.locator('#count').innerText();
+              check('all eight approved root categories render',rootCount===8,{rootCount,visibleRoots});
+              const autoRoot=page.locator('#grid .card').filter({hasText:'Auto Electrical Spares'}).first();
+              check('root category displays recursive product count',await autoRoot.innerText().then(t=>/3 products/.test(t)),{cardText:await autoRoot.innerText()});
+              await autoRoot.click();
+              await page.waitForURL(/category\.html\?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47/);
+              check('root-category click opens selected category',await page.locator('#heading').innerText()==='Auto Electrical Spares',{url:page.url(),heading:await page.locator('#heading').innerText()});
+              const child=page.locator('#grid .card').filter({hasText:'Automotive Electrical Connectors and Wiring Accessories'}).first();
+              check('subcategory count is correct',await child.innerText().then(t=>/2 products/.test(t)),{cardText:await child.innerText()});
+              await child.click();
+              await page.waitForURL(/products\.html\?category=child-electrical/);
+              await page.locator('#grid .card').first().waitFor();
+              const productCountText=await page.locator('#count').innerText();
+              const productCards=await page.locator('#grid .card').count();
+              check('subcategory drill-down opens product list with correct count',productCountText==='2 products'&&productCards===2,{url:page.url(),productCountText,productCards});
+              await page.goBack({waitUntil:'domcontentloaded'});
+              await page.waitForURL(/category\.html\?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47/);
+              check('browser Back returns from product list to parent category',await page.locator('#heading').innerText()==='Auto Electrical Spares',{url:page.url(),heading:await page.locator('#heading').innerText()});
+              await page.goto('http://127.0.0.1:4173/index-new.html',{waitUntil:'domcontentloaded'});
+              await page.waitForFunction(()=>Array.isArray(window.gwProducts)&&typeof window.gwOpenProduct==='function',{timeout:10000});
+              const exemptions=[
+                ['Vehicle Security','8e93d917-8fcc-4427-b364-cdad244f263f'],
+                ['Car Audio & Entertainment','5ab55c53-eee3-41ce-ad48-04ad6df85181'],
+                ['Automotive Accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],
+                ['Marine Spares & Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],
+                ['Tools, Hardware & Consumables','77297c18-67f6-452e-8918-c55d2ef6231a'],
+                ['Camping, Leisure & Outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],
+                ['Trailer & Canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']
+              ];
+              const fitmentElectrical=await page.evaluate(rootId=>{
+                window.gwOpenProduct({id:'fitment-electrical',name:'Electrical Fitment Test',category_id:rootId,public_sku:'GW-FIT0001',description:'test',price:125,stock_quantity:5,specifications:{price_status:'VERIFIED'},compatible_vehicles:[]});
+                const t=document.querySelector('#detailContent').innerText;
+                return {info:t.includes('VEHICLE / APPLICATION INFORMATION'),button:!!document.querySelector('#detailContent .fitmentHelp')};
+              },ROOTS[0][1]);
+              check('auto-electrical products retain fitment guidance',fitmentElectrical.info&&fitmentElectrical.button,fitmentElectrical);
+              for(const [label,id] of exemptions){
+                const result=await page.evaluate(({id,label})=>{
+                  window.gwOpenProduct({id:'exempt-'+id,name:label+' Test Product',category_id:id,public_sku:'GW-EXEMPT',description:'test',price:125,stock_quantity:5,specifications:{price_status:'VERIFIED'},compatible_vehicles:[]});
+                  const t=document.querySelector('#detailContent').innerText;
+                  return {info:t.includes('VEHICLE / APPLICATION INFORMATION'),button:!!document.querySelector('#detailContent .fitmentHelp')};
+                },{id,label});
+                check('vehicle-fitment exemption: '+label,!result.info&&!result.button,result);
+              }
+              if(report.failures.length) await page.screenshot({path:'artifacts/pr68/failure.png',fullPage:true}).catch(()=>{});
+            } finally { await browser.close(); }
+            fs.writeFileSync('artifacts/pr68/test-report.json',JSON.stringify(report,null,2));
+            if(report.failures.length){console.error(report.failures.join('\n'));process.exit(1)}
+            console.log('PASS all isolated PR #68 navigation and fitment-exemption checks');
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          node ./.pr68-nav-check.cjs
+      - name: Upload isolated browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr68-isolated-playwright-evidence
+          path: artifacts/pr68/
+          if-no-files-found: warn
