@@ -2832,3 +2832,12 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 - Updated delivery copy to list Courier Guy, PEP PAXI, collection/pickup, locker/parcel delivery and delivery arranged on request. Wording does not guarantee every option for every order; availability/cost must be confirmed for the order.
 - Updated payment copy to direct customers to the payment methods actually displayed at checkout and state that full payment confirms the order. This does not claim unverified gateways are active or change payment integration.
 - Source edit was committed successfully. **Visual verification of the new commit and an updated preview URL are still pending**; do not call the change visually accepted until the exact new preview is checked on desktop and mobile. PR #72 remains draft/unmerged. No production deployment, Axxess/DNS, supplier stock, Supabase, payment configuration, or live catalogue change was performed. Release remains HOLD.
+
+
+## OWNER CORRECTION — 2026-10-20: Navy trust tiles and missing Find a Part category
+
+- Owner reported that the assurance tiles still appeared bright rather than navy and the search/find-a-part category tile had disappeared.
+- Root cause found in source cascade: later `body.brightTheme .feature` and `body.brightTheme #categoryGrid .findPartCategoryTile/.findPartCategoryBtn` rules used stronger selectors and forced white backgrounds, overriding earlier navy styles. The renderer still creates eight shop categories plus a ninth `FIND A PART` tile, so the restoration focuses on overriding the conflicting bright-theme CSS without removing category data/navigation.
+- Updated `index-new.html` with a final high-specificity CSS override: four assurance tiles are explicitly dark navy with white headings and pale supporting text; the ninth Find a Part tile is explicitly visible in the category grid, navy with blue border, and retains its existing `openPartSearch()` click action. Mobile sizing included.
+- Source update committed as `414723f899aebd48d02cc285fbc69649ddefaf10` on `fix/pr70-storefront-owner-feedback-2026-10-20` (PR #72, draft/unmerged).
+- **Verification status:** source markup confirms eight categories plus the ninth Find a Part tile and the existing click handler; CSS source fix committed. The new exact preview deployment and rendered desktop/mobile appearance still need confirmation before declaring visual success. Do not use a stale preview as evidence. Production/Axxess/DNS/payment/stock remain untouched; launch HOLD.
