@@ -2222,3 +2222,40 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Root cause remains NOT VERIFIED because the connected tools do not expose Cloudflare Worker build logs or deployment detail. No code, secrets, Cloudflare settings, DNS, production store, Supabase data, or Axxess files were changed in this continuation.
 - Next action is narrowly scoped: in Cloudflare Dashboard open Workers & Pages → the Worker entry `get-wired-autoworx-store` (hostname ending `.workers.dev`) → its latest failed deployment/build → copy the first error and failing step only. Do not share tokens or secrets. If the log shows a code/build configuration error, patch that exact cause in the existing GitHub project; if it shows missing/invalid credentials or account permissions, request only the specific owner action identified by the log. Then run a preview verification, not a production deployment.
 - Storefront/mobile QA and customer release remain HOLD. Do not claim the Worker is fixed until a successful Worker preview is independently verified. Avoid rerunning unrelated Pages builds as a substitute for Worker diagnosis.
+
+
+# AUTHORITATIVE OVERRIDE — 20 OCT 2026, AFTER OWNER ACCEPTED DESKTOP + MOBILE
+
+This section supersedes older QA statements above where they conflict.
+
+## Accepted storefront baseline
+- Owner explicitly confirms both desktop and mobile work on the current Pages preview.
+- Exact approved reference: https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
+- New deployment of the exact approved source tree: https://e245f05c.get-wired-autoworx-store.pages.dev/store (commit 712a805a1fe395bdb80f9344952016f136438a5f).
+- Keep the separate Cloudflare Worker build disabled; Pages success is not Worker success. No production/Axxess/DNS changes made.
+
+## Current draft work (all unmerged)
+- PR #65 — ASC read-only supplier stock/discontinuation audit and offline commented-patch generator: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/65
+- PR #66 — checkout direct links to Terms & Conditions and Returns & Refunds: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/66
+- PR #67 — owner stock/product and category/subcategory management UI plus version-controlled `veyron-admin` source: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/67
+- PR #68 — live category navigation based on the approved source branch: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/68
+
+## Supplier audit evidence (read-only; no product changes applied)
+- Successful first full audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39414748626
+- 12,006 ASC products scanned; 4,187 active store products read.
+- 526 exact-SKU active-store candidates: 158 supplier titles/descriptions explicitly indicated discontinued/end-of-line; 368 were classified out of stock by the public Store API; 2,092 candidate products were not present as active store SKUs.
+- Product identity review flags 152 matched candidates for manual review; 374 pass a conservative name-similarity screen but remain unapproved.
+- Store stock quantity was 5 for 525/526 matched products and 21 for one, suggesting placeholder/default stock rather than supplier-confirmed stock. The first report's supplier stock_status and stock_quantity fields were blank; an enhanced repeat scan timed out on the supplier site's public API. Full live scans are now manual-dispatch only to avoid repeated supplier requests.
+- Local review files created in the current conversation: `asc_cleanup_review_package_2026-10-20.zip` contains the 526-row review queue, a commented-out SQL patch proposal, summary JSON, and the raw audit artifact. The SQL statements are all comments and were not executed. No Supabase rows were changed.
+
+## Owner APK and catalogue administration
+- PR #67's Deno/static checks passed; Android 15 emulator build/install/launch passed: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39415638473
+- The first APK was about 319 MB due to bundling all storefront product images. Build workflow was corrected to keep the APK lightweight; test APK is about 24 KB and opens the hosted preview with a return-to-owner control.
+- The new catalogue UI requires the updated `veyron-admin` Edge Function source to be reviewed and separately approved/deployed. It is not deployed, no Supabase schema/data changed, and the APK has not been distributed. Hisense M72 Pro device testing remains outstanding.
+- PR #68 live-category source checks passed: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39415358544. It remains draft and not deployed.
+
+## Release gates / hard boundaries
+- Keep PRs #65–#68 draft/unmerged until their individual review/testing gates are satisfied.
+- Do not apply the ASC patch without manual SKU/product identity and supplier-status confirmation.
+- No Axxess upload, DNS change, production Pages promotion, Supabase write/schema deployment, payment-provider activation, real order, or APK distribution without the appropriate explicit approval.
+- Customer launch remains HOLD until catalogue correctness, owner CRUD deployment/testing, checkout/policy links, payment readiness, and final owner acceptance are resolved.
