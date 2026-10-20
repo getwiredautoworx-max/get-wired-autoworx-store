@@ -125,3 +125,9 @@ These eight rules are user-authoritative and must be copied into every new hando
 ## Continuation run 22 — 2026-10-20
 - Task started after reading all three handover files. Full task-start/outcome ledger is in `AI_HANDOVER_PERMANENT.md`.
 - Preliminary checks are read-only; no deploy, merge, production/live data, Axxess/DNS/payment, catalogue/stock, or APK change is authorized.
+
+
+## Continuation run 23 — 2026-10-20
+- Read all three handovers; rechecked existing GitHub Actions evidence read-only. Design source `f19e60c03b1aa6273989199cc24bec6c30842a4d`: SKU audit `39452408700` PASS, responsive acceptance `39452408814` PASS; existing preview deployment `39452404463` / job `118730382190` remains successful. No new deployment/retry.
+- Existing browser/network blocker remains: actual served content, remote image status/relevance, live counts/links, and the differing `fccc47b7` vs `ebe5ddb2` deployments are not reconciled. Do not redeploy just to compare them.
+- No app source, PR, production, live Supabase, catalogue/stock, Axxess/DNS/payment or APK changes. Customer launch HOLD; supplier reconciliation PAUSED. Next: verify existing URLs using a network-enabled real browser; preserve draft PRs and isolated test runner.
