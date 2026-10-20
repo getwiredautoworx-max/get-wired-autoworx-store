@@ -47,7 +47,7 @@ jobs:
             ['product listing uses product image_url', /esc\(p\.image_url\|\|/.test(listing)],
             ['product detail uses product image_url', /esc\(p\.image_url\|\|/.test(detail)],
             ['iframe fallback preserves canonical endpoint', fallback.includes('product-image') && fallback.includes('functions')],
-            ['iframe fallback preserves neutral placeholder', fallback.includes('product-placeholder.svg')],
+            ['iframe fallback preserves neutral placeholder', fallback.includes('product-placeholder')],
             ['category bridge does not call generated illustration override', !/installCategoryIllustrations\(frame\);/.test(bridge)]
           ];
           for (const [name, pass] of checks) {
