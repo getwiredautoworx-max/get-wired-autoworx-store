@@ -224,3 +224,9 @@ These eight rules are user-authoritative and must be copied into every new hando
 ## Navigation QA follow-up — Cloudflare clean URLs
 - Run `39473475379` failed because the test expected `category.html?id=`, but browser logs show the link correctly navigated to Cloudflare's clean URL `/category?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47`. This is a test regex mismatch, not a broken link.
 - Fix route assertions to accept clean and `.html` routes for category, products, and product detail, then rerun.
+
+
+## LATEST CHECKPOINT — 2026-10-20, continuation run 32
+- Owner reported PR #71 category tiles scroll to the all-products section instead of opening individual category/subcategory pages; PR #70 is the accepted baseline.
+- Fixed malformed JavaScript in `category-navigation.js` on PR #71 branch; commit `f9fc1e4f6204e25392d48c5e5f389b4edff105a2`. Parse check PASS. Category bridge now navigates same-tab to `category.html?id=<id>` and intercepts the homepage's in-page product-scroll click handler. Exact cause and verification limits are recorded in `AI_HANDOVER_PERMANENT.md`.
+- Browser end-to-end navigation is NOT YET RUN. Do not call the issue resolved until click-through confirms category → subcategory → product list → product detail and Back behavior. Do not manually trigger/retry Cloudflare/Netlify builds; inspect only existing checks. PR #71 stays draft/unmerged, production/launch HOLD.
