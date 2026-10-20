@@ -19,3 +19,7 @@ jobs:
         run: python -m py_compile audit-tools/asc_supplier_status_reconcile.py
       - name: Run reconciliation self-test (no network or database access)
         run: python audit-tools/asc_supplier_status_reconcile.py --self-test
+      - name: Run offline ASC review/patch self-test
+        run: python audit-tools/enrich_asc_status_report.py --self-test
+      - name: Syntax-check live audit script
+        run: python -m py_compile audit-tools/asc_live_status_audit.py
