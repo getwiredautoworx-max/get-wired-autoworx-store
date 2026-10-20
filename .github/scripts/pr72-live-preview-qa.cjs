@@ -4,7 +4,7 @@ const path = require('node:path');
 const BASE='https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev/';
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,startedAt:new Date().toISOString(),checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],categoryImages:[],productImage:null,screenshots:[]};
+const report={base:BASE,deployedRevision:'e1133b7ada201fb3e20b8733156c3e2d7d14830a',deploymentAlias:'https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev',startedAt:new Date().toISOString(),checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],categoryImages:[],productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
 function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()})})}
