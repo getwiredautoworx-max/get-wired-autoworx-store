@@ -33,3 +33,14 @@ No complete, current ASC stock/status feed was found in the available project co
 ## Automated live audit
 
 The separate `asc_live_status_audit.py` uses the public ASC WooCommerce Store API and the storefront's public Supabase publishable key, which is constrained by RLS to active public products. It reads but never writes either system. The GitHub Actions workflow runs on the related pull-request changes and publishes a CSV + JSON report artifact for seven days. The crawl is paginated, rate-limited, and bounded to 250 pages. If the public endpoint denies or limits access, the job fails safely rather than attempting login or bypassing restrictions.
+
+
+## Offline review queue and commented patch proposal
+
+After downloading `asc_live_status_audit.csv` from a successful live-audit artifact, run:
+
+    python audit-tools/enrich_asc_status_report.py --input reports/asc_live_status_audit.csv --out reports/asc_status_review_queue
+
+This creates a review CSV, summary JSON and a SQL proposal with every UPDATE commented out. It adds name-similarity review flags but never approves a change. Candidates flagged for manual identity review are excluded from the SQL proposal. Even entries that pass the similarity screen require manual SKU/product and current supplier-status confirmation.
+
+The full live ASC crawl is manually dispatched to avoid repeated supplier requests during ordinary PR commits. Pull requests run only the no-network self-tests; the live scan reads but never writes to either system.
