@@ -211,3 +211,11 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Homepage category cards and the category/subcategory drill-down in `category.html`: replaced emoji-only category art with category-matched photographic URLs for auto electrical, security/accessories, car audio, marine, workshop tools, camping/4x4 and trailer/canopy. Added fallback styling if a remote image fails.
 - Changes are isolated in draft PR #70, not merged or deployed. No catalogue/stock data, supplier activity, Axxess/DNS, payment, or production changes.
 - Visual/browser verification remains outstanding. The approved preview for reference is https://1fdda0ab.get-wired-autoworx-store.pages.dev/store. Cloudflare workflow is production-only/manual and must not be run to obtain an unapproved preview. Await CI/browser results and establish a verified non-production preview before owner approval.
+
+
+## 2026-10-20 — Isolated review-preview deployment added
+- Added `.github/workflows/cloudflare-pages-preview.yml` on the design branch only. It deploys only the design branch to Cloudflare Pages branch `review-70` (not `main`), for owner approval. It uses the existing Cloudflare repository secrets if available and does not modify the production deployment workflow.
+- Preview workflow run `39428593844` is in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39428593844. Do not share the expected URL as verified until deployment succeeds and the URL is checked.
+- Updated category image choices to use more appropriate car-audio and marine-equipment photos. Images are external Unsplash URLs with an onerror visual fallback; verify visual rendering on the deployed preview.
+- The responsive test for PR #70 still fails at 320px because `products.html` reports document scroll width 325px; this is a pre-existing/parallel layout issue and remains unresolved. Latest responsive run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39428589352. Do not mark responsive acceptance complete.
+- Backup branch remains `backup/store-before-banner-category-images-2026-10-20`; design PR #70 remains draft and unmerged. No production deployment, Axxess/DNS/payment changes, stock edits, or supplier activity.
