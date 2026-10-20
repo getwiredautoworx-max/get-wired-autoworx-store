@@ -2144,3 +2144,24 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Cloudflare Pages is a separate pipeline and did report a successful preview deployment for commit `44ef7d0`: https://67372272.get-wired-autoworx-store.pages.dev (branch preview https://review-staging-ui-verificati-hog1.get-wired-autoworx-store.pages.dev). This proves Pages deploy succeeded for that earlier handover commit; it does not prove the newest layout patch is visually correct.
 - Layout commits remain `068746ee7560d4811b0ebb52cdec74e59c796934` (`index-new.html`) and `3aab44ef1a0129a702ff56a829abd5f53e72c3f4` (`store.html`). The latest branch commit after handover refresh is not yet visually QA-verified. Next: inspect the newest Pages deployment/preview, run the existing Playwright browser QA against the exact latest commit at 1440/390/320 widths, and fix concrete failures only.
 - Apology/correction: prior response unnecessarily instructed the owner to repeat a dashboard action already completed. Do not repeat that instruction. Production/Axxess/DNS/payment configuration remains untouched; release remains HOLD until visual and interaction QA passes.
+
+
+## OWNER APPROVAL — 2026-10-20: canonical storefront layout established
+
+**Owner instruction:** “UPDATE THIS PREVIEW AS THE APPROVED LAYOUT GOING FORWARD. RECONCILE ALL STORE FILES TO THIS POINT. WE WILL CONTINUE BUILDING FROM THIS POINT FORWARD.”
+
+### Canonical baseline
+- Approved working branch: `recovery/approved-preview-index-new`.
+- PR #70 (“Brighten Get Wired branding and add category photography”) was marked ready and squash-merged following explicit owner approval. Merge commit: `39d4c77096e1460e131ebfaeff8672aaedcb93e7`.
+- Approved preview content commit: `f19e60c03b1aa6273989199cc24bec6c30842a4d`. Verified deployment from Cloudflare Pages bot comment: **https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store**. Branch alias: https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store. The fixed deployment URL corresponds to the approved content commit; the squash merge reconciles that same file change set into the approved working branch. Do not assume a fresh deployment exists for the squash commit.
+- Files reconciled by PR #70: `index-new.html` (homepage branding, category artwork/image source correction, Marine banner text), `category.html` (category drill-down artwork/layout), `products.html` (responsive product grid), plus isolated review and responsive-check workflow files. `store.html` remains the wrapper that loads `index-new.html`; it was not changed by PR #70 and should be preserved unless a future task proves a wrapper change necessary.
+- Responsive browser acceptance passed at 320, 360, 390, 768 and 1440px in the prior PR evidence; current local/static mocked run `39452408814` also passed. Public SKU Exposure Audit run `39452408700` passed. These are not live catalogue accuracy, image-load network, checkout, or release sign-offs.
+
+### Continue-from-here rules
+- Treat the merged recovery branch as the single canonical working baseline for future storefront code changes. Do not continue new design work from old branches or rebuild from scratch.
+- Before the next code task, compare all entry files/wrappers/assets/workflows against this baseline, preserve functioning behavior, and make changes on a fresh isolated branch from `recovery/approved-preview-index-new`.
+- Image mapping uses stable fixed Unsplash CDN photo IDs selected by category label. This improves failure behavior but does not verify exact product identity or image rights; do not use these as product-specific catalogue photos. Test actual image requests and visual relevance before claiming imagery fully verified.
+- The base branch's existing `store.html` wrapper loads `index-new.html` and injects shared product-image/category scripts. Preserve these integrations while reconciling files. Do not overwrite `store.html` with the full homepage document.
+- PR #70 is merged. Other PRs #67–69, #65–66 and unrelated branches remain separate; do not merge them as part of this approval. In particular, do not blindly reconcile the highly divergent `main` branch (compare showed 185 ahead / 227 behind) into the approved baseline. Review unrelated changes individually.
+- This is approval of the working layout, not production launch approval. Do not touch Axxess, DNS, production deployment, live Supabase/catalogue/stock, supplier systems, checkout/payment configuration or APK distribution without a separate task/release gate. Customer launch remains HOLD.
+- Next action: establish a fresh continuation branch from `recovery/approved-preview-index-new`; run file-link/asset checks plus category navigation and mocked responsive browser tests without deploying; then continue the next catalogue accuracy and stock/category management tasks from this baseline. Only deploy again when the next test checkpoint is ready.
