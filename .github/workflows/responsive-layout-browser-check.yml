@@ -39,15 +39,15 @@ jobs:
             const browser = await chromium.launch({headless:true});
             const fixtures = {
               categories: [
-                {id:'root-1',name:'Auto Electrical Spares',slug:'auto-electrical',parent_id:null,active:true,sort_order:1},
-                {id:'root-2',name:'Vehicle Security',slug:'vehicle-security',parent_id:null,active:true,sort_order:2},
-                {id:'root-3',name:'Car Audio & Entertainment',slug:'car-audio',parent_id:null,active:true,sort_order:3},
-                {id:'root-4',name:'Automotive Accessories',slug:'automotive-accessories',parent_id:null,active:true,sort_order:4},
-                {id:'root-5',name:'Marine Spares & Accessories',slug:'marine-spares',parent_id:null,active:true,sort_order:5},
-                {id:'root-6',name:'Tools, Hardware & Consumables',slug:'tools',parent_id:null,active:true,sort_order:6},
-                {id:'root-7',name:'Camping, Leisure & Outdoors',slug:'camping',parent_id:null,active:true,sort_order:7},
-                {id:'root-8',name:'Trailer & Canopy',slug:'trailer',parent_id:null,active:true,sort_order:8},
-                {id:'child-1',name:'Automotive Electrical Connectors and Wiring Accessories',slug:'electrical-connectors',parent_id:'root-1',active:true,sort_order:1}
+                {id:'6cc56033-b0a9-4f25-b207-aeeb341a1c47',name:'Auto Electrical Spares',slug:'auto-electrical',parent_id:null,active:true,sort_order:1},
+                {id:'8e93d917-8fcc-4427-b364-cdad244f263f',name:'Vehicle Security',slug:'vehicle-security',parent_id:null,active:true,sort_order:2},
+                {id:'5ab55c53-eee3-41ce-ad48-04ad6df85181',name:'Car Audio & Entertainment',slug:'car-audio',parent_id:null,active:true,sort_order:3},
+                {id:'87982093-7d81-4f2e-a8e2-e20cdeef30d8',name:'Automotive Accessories',slug:'automotive-accessories',parent_id:null,active:true,sort_order:4},
+                {id:'38b382c1-6ee0-4b3c-86ad-399094bc40cc',name:'Marine Spares & Accessories',slug:'marine-spares',parent_id:null,active:true,sort_order:5},
+                {id:'77297c18-67f6-452e-8918-c55d2ef6231a',name:'Tools, Hardware & Consumables',slug:'tools',parent_id:null,active:true,sort_order:6},
+                {id:'af2f8625-4f42-45e6-9f21-d571d7415893',name:'Camping, Leisure & Outdoors',slug:'camping',parent_id:null,active:true,sort_order:7},
+                {id:'63a71fd9-df45-43f0-b61d-ad622daa9d79',name:'Trailer & Canopy',slug:'trailer',parent_id:null,active:true,sort_order:8},
+                {id:'child-1',name:'Automotive Electrical Connectors and Wiring Accessories',slug:'electrical-connectors',parent_id:'6cc56033-b0a9-4f25-b207-aeeb341a1c47',active:true,sort_order:1}
               ],
               products: [
                 {id:'p1',category_id:'child-1',name:'Automotive Electrical Connector Kit with Long Descriptive Name',public_sku:'GW-TEST0001',description:'Connector kit',price:499,stock_quantity:4,image_url:'',active:true,price_status:'VERIFIED'},
