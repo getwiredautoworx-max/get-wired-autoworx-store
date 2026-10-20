@@ -2335,3 +2335,11 @@ This section supersedes older QA statements above where they conflict.
 ### Safety / next action
 - No deployment, build retry, merge, code change, Axxess/DNS/payment change, Supabase write/schema change, or live catalogue/stock/category/price/active-flag mutation was initiated.
 - Next: obtain the final state and first error (if failed) from the existing Cloudflare Pages build for current PR #70 head `89a0a11`, without starting a new deployment. Separately add/execute a browser regression for PR #68 only through a method confirmed not to trigger the preview bot; until then its browser-navigation gate remains open. Keep PR #68 and #70 draft/unmerged and launch HOLD.
+
+
+## 2026-10-20 15:48 SAST — continuation run 13 (task-start)
+
+- **Task status: IN PROGRESS.** Read the latest permanent handover on `main` first (blob SHA `bbee5bb3b40656ed00c803a7c09bb596eb742aac`).
+- Owner request: run PR #68 category-navigation browser regression only using a method confirmed not to trigger another Cloudflare preview deployment; keep PRs #68 and #70 draft and launch HOLD; preserve approved reference `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store`. Owner also asks whether desktop and mobile ChatGPT agents can coordinate.
+- First safety check: inspect available PR #68/#70 workflows and existing preview evidence before choosing a test method. Do not push commits or dispatch/redo workflows unless it is verified that the action cannot trigger the preview bot. No production/live data, deployment, merge, Axxess/DNS/payment changes, or stock reconciliation.
+- Record whether a no-deployment browser test is actually available; if not, leave the browser gate open rather than risk another deployment.
