@@ -2353,3 +2353,8 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - Continue all storefront work from `recovery/approved-preview-index-new`, create fresh isolated task branches from it, preserve working behavior, and do not rebuild. Do not blindly merge divergent `main` (185 ahead / 227 behind) or unrelated draft PRs #67–69, #65–66. Reconcile other changes individually after review.
 - Layout approval is not production/launch approval. No Axxess, DNS, production, live Supabase/catalogue/stock, supplier, checkout/payment or APK changes. Customer launch remains HOLD.
 - Next: create an isolated continuation branch from the approved baseline; run local asset/link checks, category navigation and mocked responsive tests without deploying; then proceed with catalogue accuracy and stock/category management. Deploy only at a later approved test checkpoint.
+
+
+## Continuation branch created — 2026-10-20
+- Fresh working branch: `work/approved-storefront-continuation-2026-10-20`, created from the owner-approved canonical branch `recovery/approved-preview-index-new` after PR #70 merge and handover reconciliation.
+- Use this isolated branch for upcoming catalogue/category management tasks. Do not deploy or merge until non-deploying checks pass and the next testing checkpoint is approved.
