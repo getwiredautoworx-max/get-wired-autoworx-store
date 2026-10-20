@@ -208,16 +208,20 @@ jobs:
               const navPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
               await navPage.goto(base + '/category.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
               await navPage.waitForSelector('.card', { timeout: 45000 });
-              const rootCounts = await navPage.locator('#grid').evaluate(grid => JSON.parse(grid.dataset.debug || '{}').rootChecks || []);
-              if (rootCounts.length !== 8 || rootCounts.some(item => !item.found || Number(item.total) <= 0)) {
-                throw new Error('Approved root categories/counts are incomplete: ' + JSON.stringify(rootCounts));
+              const rootDebug = await navPage.locator('#grid').evaluate(grid => JSON.parse(grid.dataset.debug || '{}'));
+              const rootCounts = rootDebug.rootChecks || [];
+              const rootRollup = rootCounts.reduce((sum, item) => sum + Number(item.total || 0), 0);
+              if (rootCounts.length !== 9 || rootCounts.some(item => !item.found || Number(item.total) <= 0) ||
+                  rootRollup !== Number(rootDebug.activeProducts)) {
+                throw new Error('Root categories do not expose all active products: ' + JSON.stringify({ rootCounts, rootRollup, activeProducts: rootDebug.activeProducts }));
               }
               const renderedRootCards = await navPage.locator('#grid .card').evaluateAll(cards => cards.map(card => ({
                 name: card.querySelector('h2')?.innerText?.trim(),
                 count: Number((card.querySelector('.card-count')?.innerText || '').replace(/[^0-9]/g, ''))
               })));
-              if (renderedRootCards.length !== 8 || renderedRootCards.some(card => !card.count)) {
-                throw new Error('Root category counts were not rendered for all eight approved categories: ' + JSON.stringify(renderedRootCards));
+              if (renderedRootCards.length !== 9 || renderedRootCards.some(card => !card.count) ||
+                  !renderedRootCards.some(card => card.name === 'Spare Parts' && card.count > 0)) {
+                throw new Error('Root category counts were not rendered for all nine categories including Spare Parts: ' + JSON.stringify(renderedRootCards));
               }
               console.log(JSON.stringify({ rootCounts, renderedRootCards }));
               const rootCard = navPage.locator('.card').filter({ hasText: 'Auto Electrical Spares' }).first();
