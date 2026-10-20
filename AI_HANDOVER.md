@@ -219,3 +219,8 @@ These eight rules are user-authoritative and must be copied into every new hando
 ## Run 30 discovery — active Spare Parts root omitted
 - Read-only audit confirms snapshot counts match all 165 live active categories; 77 missing DB categories are inactive. But category.html hard-codes only eight roots and omits active `Spare Parts` (ID `68e6ada2-ddf8-4327-844f-771d92db54bd`) with 565 active products across its children. Current root totals show only 3,622 of 4,187 active products.
 - Next: add existing live Spare Parts root as the ninth tile in draft PR #71 and make QA assert 9 root rollups sum to all 4,187 active products. No DB writes. Navigation browser run `39473475379` remains in progress; don't claim nav pass yet.
+
+
+## Navigation QA follow-up — Cloudflare clean URLs
+- Run `39473475379` failed because the test expected `category.html?id=`, but browser logs show the link correctly navigated to Cloudflare's clean URL `/category?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47`. This is a test regex mismatch, not a broken link.
+- Fix route assertions to accept clean and `.html` routes for category, products, and product detail, then rerun.
