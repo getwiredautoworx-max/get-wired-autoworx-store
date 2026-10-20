@@ -478,3 +478,10 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Image QA run `39472341504` / job `118799336872` PASS: two exact-SKU product image endpoint requests returned HTTP 200 image/webp; all eight curated category photo URLs returned HTTP 200 image/jpeg; all inline JS/source checks passed.
 - Real Playwright browser tested Cloudflare branch alias https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev: all 8 category images decoded with zero image HTTP errors at 1440px desktop (3-column grid) and 390px mobile (2-column grid). Responsive mock run `39472118767` and SKU audit `39472118766` PASS.
 - PR #71 remains draft/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71. Next: real-browser test homepage product images inside store iframe and confirm the fallback does not override canonical endpoint. Launch HOLD; no production/data/hosting/payment changes.
+
+
+## Run 28 follow-up — existing preview source parity
+- Compared Pages commit `6c76ed90404f4ca96a01c07485db63aab4fe0de9` with current PR #71 head `c0aefcc38993bf79d4f14fc337d79bcc57fb10fd`: head is one commit ahead and the only changed file is `.github/workflows/product-image-endpoint-check.yml`. No storefront HTML/JS/assets changed after the successful Pages deploy, so the existing preview application source matches the current PR's application source.
+- Preview for review: https://ba36f827.get-wired-autoworx-store.pages.dev/store (branch alias https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev/store). This resolves the source mismatch without a new deployment. Reachability and visual/image relevance still need owner/browser verification.
+- The explicit `.github/workflows/cloudflare-pages-deploy.yml` is manual-only and deploys `main`; do not dispatch it for PR preview testing.
+- Next: owner/browser visual review on desktop/mobile and live category/product click-through. No deployment/retry/merge or production/live-system changes; launch HOLD.
