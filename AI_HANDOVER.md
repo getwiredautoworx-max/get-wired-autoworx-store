@@ -8,7 +8,7 @@
 
 ## MANDATORY HANDOVER PROTOCOL — DO THIS EVERY SESSION
 
-1. **ALWAYS READ THE HANDOVER FIRST.** Before inspecting code, running checks, editing files, or delegating work, read the latest `AI_HANDOVER.md` and the relevant latest entries in `AI_HANDOVER_PERMANENT.md` from the repository's current default branch. Do not rely on a previous chat summary if repository state can be checked.
+1. **ALWAYS READ BOTH HANDOVER FILES FIRST.** Before inspecting code, running checks, editing files, or delegating work, read the latest `AI_HANDOVER.md` AND `AI_HANDOVER_PERMANENT.md` from the repository's current default branch. This rule applies even when a previous chat, agent, or summary says one was already read. Do not start project work until both files have been read.
 2. **ALWAYS RECORD TASK START.** Append a dated task-start note to `AI_HANDOVER_PERMANENT.md` before doing project work. State the scope, exact branch/commit/PR, constraints, and planned verification. Preserve existing content and user instructions.
 3. **ALWAYS UPDATE THE HANDOVER FOR THE NEXT AGENT.** After each material task success, failure, blocker, or scope change, append evidence and next steps to `AI_HANDOVER_PERMANENT.md`. At session end, record exact commit/head SHAs, checks and run IDs, what was and was not done, remaining gates, and the single safest next action. Do not mark “completed” unless evidence supports it.
 4. **Use sequential writes only.** Fetch the current file and latest blob SHA immediately before editing. Append without replacing earlier content; write using that latest SHA. Never let two agents write the same handover simultaneously. If another agent may be editing, coordinate and re-fetch before writing to prevent lost updates.
