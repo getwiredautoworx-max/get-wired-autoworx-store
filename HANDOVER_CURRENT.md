@@ -264,3 +264,11 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Responsive browser acceptance run `39432363293` also completed successfully for commit `fcde22aeb77c7fdcdf911cfd11b47343af5082b0`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39432363293. Review desktop and mobile appearance manually before approval.
 - Banner copy now reads “YOUR ONE STOP AUTOMOTIVE / MARINE / ONLINE STORE”; font treatment uses high-contrast white/red/yellow, Montserrat/Oswald, stronger text shadows, brighter rating badge and highlighted “SINCE 2012”.
 - Pre-edit backup: `backup/store-before-banner-copy-font-2026-10-20`. PR #70 remains draft/open/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/70. No production promotion, Axxess/DNS/payment changes, stock edits, or supplier activity. Launch remains HOLD pending owner visual approval and other release gates.
+
+
+
+## 2026-10-20 — Added requested “ACCESSORIES TO QUALITY PARTS” banner line; preview redeployed
+- Owner request completed in design branch commit `89a0a11f7bdb84a1d2ce8f55e18f27d12d0ca1ca`: added the exact copy “ACCESSORIES TO QUALITY PARTS” as a separate, highlighted line directly beneath “YOUR ONE STOP AUTOMOTIVE / MARINE / ONLINE STORE”. Styling is responsive for small screens.
+- Cloudflare Pages non-production review deployment run `39434222068` succeeded: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39434222068. Exact Wrangler URL: https://3553ad7f.get-wired-autoworx-store.pages.dev/store. Branch alias: https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store.
+- Responsive layout browser acceptance run `39434231320` succeeded for this commit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39434231320. Public SKU exposure audit `39434231203` also succeeded: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39434231203.
+- PR #70 remains draft/open/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/70. This is still a non-production review build. Owner visual approval is required; do not promote to production or change Axxess/DNS/payments. No stock edits or supplier activity.
