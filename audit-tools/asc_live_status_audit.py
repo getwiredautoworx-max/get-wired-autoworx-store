@@ -214,8 +214,6 @@ def self_test():
             assert "after 5 attempts" in str(exc)
         # API says two pages, but a short first page proves pagination was truncated.
         incomplete = FakeSession([
-            FakeResponse(payload=[{"sku": str(i)} for i in range(PER_PAGE)],
-                         headers={"content-type": "application/json", "X-WP-TotalPages": "2"}),
             FakeResponse(payload=[{"sku": "partial"}],
                          headers={"content-type": "application/json", "X-WP-TotalPages": "2"}),
         ])
