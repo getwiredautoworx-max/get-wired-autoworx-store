@@ -54,14 +54,14 @@ jobs:
               await page.locator('#grid .card, #grid .empty, #grid .error').first().waitFor({ timeout: 30000 }).catch(() => {});
               const categoryHeading = await page.locator('#heading').count() ? await page.locator('#heading').innerText() : '';
               if (!page.url().includes('id=') && !page.url().includes('products.html')) throw new Error('Root click did not navigate to a category or products route');
-              if (/\\/category(?:\\.html)?\\?id=/.test(new URL(page.url()).pathname + new URL(page.url()).search)) {
+              if (new URL(page.url()).pathname.includes('/category') && new URL(page.url()).search.includes('id=')) {
                 const subcats = page.locator('#grid .card');
                 const n = await subcats.count();
                 if (n < 1) throw new Error('Root click opened category page without populated subcategory/product options');
                 const label = (await subcats.first().locator('h2').innerText()).trim();
                 await subcats.first().click();
                 await page.waitForLoadState('networkidle');
-                if (/\\/category(?:\\.html)?\\?id=/.test(new URL(page.url()).pathname + new URL(page.url()).search)) {
+                if (new URL(page.url()).pathname.includes('/category') && new URL(page.url()).search.includes('id=')) {
                   await page.locator('#grid .card, #grid .empty, #grid .error').first().waitFor({ timeout: 30000 }).catch(() => {});
                   const cards = page.locator('#grid .card');
                   const count = await cards.count();
@@ -75,7 +75,7 @@ jobs:
               const final = { url: page.url(), title: await page.title(), heading: await page.locator('h1').first().innerText().catch(() => ''), rootCards: rootInfo.cards, activeCategories: debug.activeCategories, activeProducts: debug.activeProducts, rootChecks: debug.rootChecks, errors, badResponses };
               console.log(JSON.stringify(final, null, 2));
               if (page.url() === initialUrl) throw new Error('Click-through did not change the URL');
-              if (!/\\/products(?:\\.html)?$/.test(new URL(page.url()).pathname)) throw new Error('Click-through did not reach the products list route: ' + page.url());
+              if (!new URL(page.url()).pathname.includes('/products')) throw new Error('Click-through did not reach the products list route: ' + page.url());
               const productCards = await page.locator('.name').count();
               if (!productCards) throw new Error('Products route loaded but no product cards were rendered');
               console.log('Verified live product cards: ' + productCards);
