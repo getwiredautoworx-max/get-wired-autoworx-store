@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat > /tmp/layout-check.cjs <<'JS'
+          cat > .layout-check.cjs <<'JS'
           const { chromium } = require('playwright');
           const path = require('path');
           (async () => {
@@ -82,5 +82,5 @@ jobs:
             console.log('PASS responsive layout browser checks');
           })().catch(e=>{console.error(e);process.exit(1)});
           JS
-          node /tmp/layout-check.cjs categories
-          node /tmp/layout-check.cjs products
+          node ./.layout-check.cjs categories
+          node ./.layout-check.cjs products
