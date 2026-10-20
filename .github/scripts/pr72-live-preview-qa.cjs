@@ -42,7 +42,7 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   if(await child.count()){await child.click();await page.waitForURL(/(?:\/category(?:\.html)?\/?\?id=|\/products(?:\.html)?\/?\?category=)/,{timeout:20000});await page.waitForTimeout(1000)}
   else if(await direct.count()){await direct.click();await page.waitForURL(/\/products(?:\.html)?\/?\?category=/,{timeout:20000})}
   else throw new Error('The live root category has no populated subcategory or product-list link');
-  if(new URL(page.url()).pathname.endsWith('/category.html')) await page.waitForURL(/products\.html\?category=/,{timeout:20000});
+  if(/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(page.url()).pathname)) await page.waitForURL(/\/products(?:\.html)?\/?\?category=/,{timeout:20000});
   check('subcategory_to_product_listing',/(?:^|\/)products(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&!!new URL(page.url()).searchParams.get('category'),{url:page.url()});
   await page.locator('a[href^="product.html?id="]').first().waitFor({timeout:45000});
   await page.screenshot({path:path.join(OUT,'product-listing.png'),fullPage:true}).catch(()=>{});
