@@ -2707,3 +2707,13 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Keep the previously identified 20:56 SAST source checkpoint (commit `6b7cf26b86fd4eaa1a88baad1c1d20efd2d5c9c8`, `index-new.html` blob SHA `420279137007c8ee7252e5c0d471e99b3705375d`) as source evidence only; it does not override the owner's live working reference URL. Do not assume that the URL's served revision equals current `main`.
 - No storefront source, build, workflow, deployment, Axxess, DNS, payment, or catalogue changes are authorized merely to align versions. Only take a narrowly scoped action if a specific issue against the sole approved working version is demonstrated and the change can be safely validated without replacing or damaging that version.
 - Release/customer launch remains HOLD. This does not authorize changing or replacing the approved preview. Preserve this instruction in future handovers and do not ask the owner to choose between versions again.
+
+
+## 2026-10-20 — Approved storefront baseline locked for continued work
+
+- Created and verified dedicated Git branch `approved-storefront-baseline-2026-10-20`, anchored at commit `6b7cf26b86fd4eaa1a88baad1c1d20efd2d5c9c8`.
+- Verified `index-new.html` on that branch has blob SHA `420279137007c8ee7252e5c0d471e99b3705375d` and is 92,220 characters, matching the recorded 20:56 SAST source checkpoint.
+- Baseline branch link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/approved-storefront-baseline-2026-10-20
+- Sole owner-approved working reference URL remains https://1fdda0ab.get-wired-autoworx-store.pages.dev/store?utm_source=chatgpt.com. Treat that URL as the design/behavior authority; the Git branch is a source snapshot and must not be represented as proof that the URL currently serves that commit.
+- Going forward, disregard other storefront variants. Do not merge or overwrite this baseline branch, do not redesign it, and do not deploy it or production `main` without explicit owner approval. Continue only with scoped, evidence-based next steps that preserve the approved working version.
+- No storefront files, workflows, hosting, DNS, payment settings, catalogue, or production data were changed; no deployment was triggered. Release/customer launch remains HOLD.
