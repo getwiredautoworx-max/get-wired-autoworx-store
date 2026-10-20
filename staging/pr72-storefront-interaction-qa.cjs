@@ -44,7 +44,16 @@ async function installMocks(page){
   page.on('console',m=>{if(m.type()==='error')report.errors.push('console: '+m.text())});
   await installMocks(page);
   const response=await page.goto('http://127.0.0.1:4173/store.html',{waitUntil:'domcontentloaded',timeout:45000});
-  await page.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:20000});
+  await page.waitForFunction(() => {
+    const f=document.querySelector('#store');
+    const d=f && f.contentDocument;
+    const g=d && d.querySelector('#categoryGrid');
+    return !!g && g.querySelectorAll(':scope > .catWrap > .catBtn').length > 0;
+  }, {timeout:20000}).catch(async e => {
+    const diagnostic=await page.frameLocator('#store').locator('body').innerText().catch(()=> 'iframe body unavailable');
+    throw new Error('Category grid did not render. iframe diagnostic: '+diagnostic.slice(0,1400)+'; cause: '+e.message);
+  });
+  await page.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:5000});
   await page.waitForTimeout(800);
   const frame=page.frameLocator('#store');
   const rootCount=await frame.locator('#categoryGrid > .catWrap > .catBtn').count();
@@ -59,7 +68,9 @@ async function installMocks(page){
   const requestOpen=await frame.locator('#sourcePart.open').count();
   check('standalone_request_part_button_opens_dialog',requestOpen===1,{openDialogs:requestOpen});
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
-  await frame.getByRole('button',{name:/SEARCH THE STORE/i}).click();
+  const partSearchButton=frame.getByRole('button',{name:/PART SEARCH/i});
+  check('part_search_is_a_standalone_header_button',await partSearchButton.count()===1&&await partSearchButton.isVisible(),{count:await partSearchButton.count()});
+  await partSearchButton.click();
   const searchOpen=await frame.locator('#partSearchDialog.open').count();
   check('store_search_dialog_opens',searchOpen===1,{openDialogs:searchOpen});
   const searchInput=frame.locator('#partSearchQuery');
@@ -89,7 +100,16 @@ async function installMocks(page){
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
   await installMocks(mobile);
   await mobile.goto('http://127.0.0.1:4173/store.html',{waitUntil:'domcontentloaded',timeout:45000});
-  await mobile.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:20000});
+  await mobile.waitForFunction(() => {
+    const f=document.querySelector('#store');
+    const d=f && f.contentDocument;
+    const g=d && d.querySelector('#categoryGrid');
+    return !!g && g.querySelectorAll(':scope > .catWrap > .catBtn').length > 0;
+  }, {timeout:20000}).catch(async e => {
+    const diagnostic=await mobile.frameLocator('#store').locator('body').innerText().catch(()=> 'iframe body unavailable');
+    throw new Error('Mobile category grid did not render. iframe diagnostic: '+diagnostic.slice(0,1400)+'; cause: '+e.message);
+  });
+  await mobile.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:5000});
   const mobileMetrics=await mobile.frameLocator('#store').locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
   check('mobile_no_horizontal_overflow',mobileMetrics.scrollWidth<=mobileMetrics.width+2,mobileMetrics);
   await mobile.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true}).catch(()=>{});
