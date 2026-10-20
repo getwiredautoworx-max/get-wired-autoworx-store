@@ -2338,3 +2338,18 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 - New browser QA should trigger from the `index-new.html` change. Inspect the latest desktop, 390px and 320px screenshots before calling staging ready.
 - Image-asset remediation is not fully complete: existing supplier catalogue graphics/watermarks remain a known issue. Do not fabricate product-specific replacement imagery or replace an item without verifying exact identity, fitment, and image-use rights. Until verified assets exist, prefer a clean neutral placeholder over a misleading image where feasible.
 - Production remains untouched; no Cloudflare/Netlify credits used.
+
+
+## OWNER APPROVAL — 2026-10-20: canonical storefront layout established
+
+**Owner instruction:** “UPDATE THIS PREVIEW AS THE APPROVED LAYOUT GOING FORWARD. RECONCILE ALL STORE FILES TO THIS POINT. WE WILL CONTINUE BUILDING FROM THIS POINT FORWARD.”
+
+- Canonical working branch: `recovery/approved-preview-index-new`.
+- PR #70 was marked ready and squash-merged after the explicit owner approval. Merge commit: `39d4c77096e1460e131ebfaeff8672aaedcb93e7`.
+- Approved content commit: `f19e60c03b1aa6273989199cc24bec6c30842a4d`. Cloudflare Pages bot confirmed deployment URL https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store and branch alias https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store. These URLs are for the content commit; no fresh deployment for the squash commit is claimed.
+- PR #70 reconciled `index-new.html`, `category.html`, `products.html`, and isolated review/responsive-check workflow files. `store.html` is a wrapper that loads `index-new.html` and shared scripts; it was preserved and must not be replaced with the full homepage document.
+- Responsive browser acceptance passed at 320, 360, 390, 768, and 1440px in prior PR evidence. Run `39452408814` passed the mocked responsive layout check; SKU exposure audit `39452408700` passed. Neither is a sign-off for live catalogue accuracy, image rights, actual image requests, checkout, or launch readiness.
+- Category images use fixed Unsplash CDN IDs selected by category label. Actual network loading/relevance is still to be checked; never represent these as verified exact product images.
+- Continue all storefront work from `recovery/approved-preview-index-new`, create fresh isolated task branches from it, preserve working behavior, and do not rebuild. Do not blindly merge divergent `main` (185 ahead / 227 behind) or unrelated draft PRs #67–69, #65–66. Reconcile other changes individually after review.
+- Layout approval is not production/launch approval. No Axxess, DNS, production, live Supabase/catalogue/stock, supplier, checkout/payment or APK changes. Customer launch remains HOLD.
+- Next: create an isolated continuation branch from the approved baseline; run local asset/link checks, category navigation and mocked responsive tests without deploying; then proceed with catalogue accuracy and stock/category management. Deploy only at a later approved test checkpoint.
