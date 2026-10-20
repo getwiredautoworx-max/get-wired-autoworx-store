@@ -166,3 +166,9 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Source-level only; real image requests/relevance and desktop/mobile screenshot parity are NOT VERIFIED because a network-enabled browser is unavailable. Do not treat PR or deployment metadata as visual acceptance.
 - Product listings still use local exact-SKU WebP images (1,000 assets listed) and hide failed images into a neutral placeholder; database `image_url` is not used in `products.html`. Avoid unverified image substitutions.
 - No merge/deployment retry, production/Supabase/catalogue/stock, Axxess/DNS/payment, or APK changes. Launch HOLD; supplier reconciliation PAUSED. Next: check PR #71 existing CI/Pages metadata without retries, then perform real-browser image/visual tests before further image changes.
+
+
+## PR #71 preview verification update — 2026-10-20
+- Cloudflare Pages reports PR #71 preview successful: https://c7d3caf8.get-wired-autoworx-store.pages.dev/store (branch alias https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev).
+- Responsive mocked browser workflow `39470411410` / job `118792659688` and SKU audit `39470411513` passed. These do not verify live remote image requests or image relevance.
+- Available web retrieval cannot open preview `/store` or `/category.html`; real browser verification remains blocked, not failed. Next: inspect product image coverage and implement only a correctness-preserving fix. No merge/production/data/hosting/payment changes; launch HOLD.
