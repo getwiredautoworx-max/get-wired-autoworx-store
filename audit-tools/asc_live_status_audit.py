@@ -19,9 +19,11 @@ from pathlib import Path
 
 import requests
 
-ASC_BASE = os.environ.get("ASC_BASE", "https://accessoriesspares.co.za").rstrip("/")
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
+ASC_BASE = "https://accessoriesspares.co.za"
+# Public publishable key already used by the customer storefront. RLS restricts this
+# read to active public products; never replace it with a service-role/secret key.
+SUPABASE_URL = "https://ojytykqpvonxvepprgbh.supabase.co"
+SUPABASE_KEY = "sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w"
 PER_PAGE = 100
 MAX_PAGES = 250
 TIMEOUT = (5, 25)
@@ -62,8 +64,8 @@ def candidate_status(product):
     return "NO_CHANGE", "No explicit discontinued or out-of-stock signal in the public supplier response."
 
 def fetch_store_products(session):
-    if not SUPABASE_URL or not SUPABASE_KEY:
-        raise RuntimeError("SUPABASE_URL and SUPABASE_KEY environment variables are required.")
+    if SUPABASE_URL != "https://ojytykqpvonxvepprgbh.supabase.co" or not SUPABASE_KEY.startswith("sb_publishable_"):
+        raise RuntimeError("Audit must use the fixed project URL and a public publishable key only.")
     headers = {
         "apikey": SUPABASE_KEY,
         "Authorization": "Bearer " + SUPABASE_KEY,
