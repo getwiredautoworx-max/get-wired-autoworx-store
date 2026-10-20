@@ -65,10 +65,12 @@ async function installMocks(page){
   await page.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:5000});
   await page.waitForTimeout(800);
   const frame=page.frameLocator('#store');
-  const rootCount=await frame.locator('#categoryGrid > .catWrap > .catBtn').count();
+  const rootCount=await frame.locator('#categoryGrid > .catWrap > .catBtn:not(.findPartCategoryBtn)').count();
+  const findPartTileCount=await frame.locator('#categoryGrid > .findPartCategoryTile .findPartCategoryBtn').count();
   const rootImageData=await frame.locator('#categoryGrid > .catWrap > .catBtn .catPhoto').evaluateAll(els=>els.map(e=>({src:e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0})));
   check('homepage_served',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
   check('eight_main_category_buttons',rootCount===8,{count:rootCount});
+  check('same_size_find_a_part_tile',findPartTileCount===1,{count:findPartTileCount});
   check('category_photos_loaded_and_distinct',rootImageData.length===8&&rootImageData.every(x=>x.loaded)&&new Set(rootImageData.map(x=>x.src)).size===8,{images:rootImageData});
   const featuredCount=await frame.locator('#featuredGrid .product').count();
   check('specials_limited_to_four',featuredCount<=4,{count:featuredCount});
