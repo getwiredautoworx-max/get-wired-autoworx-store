@@ -177,6 +177,56 @@ def name_metrics(supplier_name, store_name):
     return ratio, overlap
 
 def self_test():
+    # Deterministic mocked network checks: no external requests or database access.
+    class FakeResponse:
+        def __init__(self, status=200, payload=None, headers=None):
+            self.status_code = status
+            self._payload = payload
+            self.headers = headers or {"content-type": "application/json"}
+        def raise_for_status(self):
+            if self.status_code >= 400:
+                raise requests.HTTPError(f"HTTP {self.status_code}")
+        def json(self):
+            return self._payload
+
+    class FakeSession:
+        def __init__(self, responses):
+            self.responses = list(responses)
+            self.calls = 0
+        def get(self, *args, **kwargs):
+            self.calls += 1
+            value = self.responses.pop(0)
+            if isinstance(value, Exception):
+                raise value
+            return value
+
+    original_sleep = time.sleep
+    time.sleep = lambda _seconds: None
+    try:
+        transient = FakeSession([requests.Timeout("temporary"), FakeResponse(payload=[])])
+        assert request_with_retry(transient, "https://example.invalid/test").json() == []
+        assert transient.calls == 2
+        exhausted = FakeSession([requests.Timeout("timeout") for _ in range(MAX_RETRIES + 1)])
+        try:
+            request_with_retry(exhausted, "https://example.invalid/test")
+            raise AssertionError("retry exhaustion should fail closed")
+        except RuntimeError as exc:
+            assert "after 5 attempts" in str(exc)
+        # API says two pages, but a short first page proves pagination was truncated.
+        incomplete = FakeSession([
+            FakeResponse(payload=[{"sku": str(i)} for i in range(PER_PAGE)],
+                         headers={"content-type": "application/json", "X-WP-TotalPages": "2"}),
+            FakeResponse(payload=[{"sku": "partial"}],
+                         headers={"content-type": "application/json", "X-WP-TotalPages": "2"}),
+        ])
+        try:
+            fetch_asc_products(incomplete)
+            raise AssertionError("incomplete pagination should fail closed")
+        except RuntimeError as exc:
+            assert "crawl incomplete" in str(exc)
+    finally:
+        time.sleep = original_sleep
+
     discontinued = {"name": "SPANNER SET DISCONTINUED", "description": "", "is_in_stock": True}
     out_of_stock = {"name": "SPANNER SET", "description": "", "is_in_stock": False}
     available = {"name": "SPANNER SET", "description": "", "is_in_stock": True}
