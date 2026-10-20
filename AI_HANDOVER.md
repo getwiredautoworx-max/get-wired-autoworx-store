@@ -151,3 +151,10 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Source inspection confirms `category.html` renders generated inline SVG/emoji category illustrations via `artFor(label)`, not real category/product photography, and uses a separate light-theme styling override that visually diverges from the dark metallic/red-blue storefront. This explains the wrong category-card visuals/style. Exact product-list image failure is not yet diagnosed because live browser/network verification remains blocked.
 - Master handover record appended in commit `5769821cca990c3c0e8ef40a56410eb032f619a0`.
 - Next: inspect actual product-list image URL construction and asset paths; then make a narrowly scoped fix on the isolated PR #68 branch and validate real image requests and visual parity before any controlled preview deployment. Keep PR draft/unmerged; no deployment/credit spend or production/data changes without authorization. Customer launch HOLD; supplier reconciliation PAUSED.
+
+
+## 2026-10-20 — Owner direction: close PR #68; continue from PR #70 baseline
+- PR #68 was closed (not merged) at owner direction. Verified state: closed, merged=false. No branch deletion and no deployment were performed.
+- PR #70 is already merged into `recovery/approved-preview-index-new`; approved layout/content commit `f19e60c03b1aa6273989199cc24bec6c30842a4d`, merge commit `39d4c77096e1460e131ebfaeff8672aaedcb93e7`.
+- Continue all storefront design/visual work from PR #70's approved baseline, not PR #68. Existing review URL: `https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store`; branch alias: `https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store`.
+- Required next work: inspect/fix real image URL loading and image relevance; verify actual browser requests and visual parity at desktop/mobile. Existing mocked responsive tests are not enough. Use the current preview first; do not redeploy unless a fix is ready for final verification and deployment is explicitly safe. Keep production/launch on HOLD; no Axxess/DNS, production Supabase/catalogue/stock, payment, or APK changes.
