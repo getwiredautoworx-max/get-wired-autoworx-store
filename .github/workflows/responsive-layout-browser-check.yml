@@ -1,0 +1,86 @@
+name: Responsive layout browser acceptance
+on:
+  pull_request:
+    branches:
+      - recovery/approved-preview-index-new
+    paths:
+      - 'category.html'
+      - 'products.html'
+      - '.github/workflows/responsive-layout-browser-check.yml'
+  push:
+    branches:
+      - layout/category-grid-mobile-polish-2026-10-20
+    paths:
+      - 'category.html'
+      - 'products.html'
+      - '.github/workflows/responsive-layout-browser-check.yml'
+permissions:
+  contents: read
+jobs:
+  responsive-browser-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run viewport layout checks with mocked catalogue responses
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/layout-check.cjs <<'JS'
+          const { chromium } = require('playwright');
+          const path = require('path');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const fixtures = {
+              categories: [
+                {id:'root-1',name:'Auto Electrical Spares',slug:'auto-electrical',parent_id:null,active:true,sort_order:1},
+                {id:'root-2',name:'Vehicle Security',slug:'vehicle-security',parent_id:null,active:true,sort_order:2},
+                {id:'root-3',name:'Car Audio & Entertainment',slug:'car-audio',parent_id:null,active:true,sort_order:3},
+                {id:'root-4',name:'Automotive Accessories',slug:'automotive-accessories',parent_id:null,active:true,sort_order:4},
+                {id:'root-5',name:'Marine Spares & Accessories',slug:'marine-spares',parent_id:null,active:true,sort_order:5},
+                {id:'root-6',name:'Tools, Hardware & Consumables',slug:'tools',parent_id:null,active:true,sort_order:6},
+                {id:'root-7',name:'Camping, Leisure & Outdoors',slug:'camping',parent_id:null,active:true,sort_order:7},
+                {id:'root-8',name:'Trailer & Canopy',slug:'trailer',parent_id:null,active:true,sort_order:8},
+                {id:'child-1',name:'Automotive Electrical Connectors and Wiring Accessories',slug:'electrical-connectors',parent_id:'root-1',active:true,sort_order:1}
+              ],
+              products: [
+                {id:'p1',category_id:'child-1',name:'Automotive Electrical Connector Kit with Long Descriptive Name',public_sku:'GW-TEST0001',description:'Connector kit',price:499,stock_quantity:4,image_url:'',active:true,price_status:'VERIFIED'},
+                {id:'p2',category_id:'child-1',name:'Electrical Spanner and Workshop Tool Set',public_sku:'GW-TEST0002',description:'Tool set',price:249,stock_quantity:2,image_url:'',active:true,price_status:'VERIFIED'}
+              ]
+            };
+            const failures=[];
+            for (const width of [320,360,390,768,1440]) {
+              const page=await browser.newPage({viewport:{width,height:900}});
+              page.on('pageerror',e=>failures.push(width+'px JS: '+e.message));
+              await page.route('**/rest/v1/categories**',async route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(fixtures.categories)}));
+              await page.route('**/rest/v1/products**',async route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(fixtures.products)}));
+              const isProducts=process.argv[2]==='products';
+              const file=isProducts?'products.html?category=child-1':'category.html';
+              await page.goto('file://'+path.resolve(file),{waitUntil:'domcontentloaded'});
+              await page.waitForTimeout(500);
+              const metrics=await page.evaluate(()=>{
+                const grid=document.querySelector('.grid');
+                const cards=[...document.querySelectorAll('.card')];
+                const rects=cards.slice(0,2).map(e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,right:r.right}});
+                return {innerWidth:innerWidth,scrollWidth:document.documentElement.scrollWidth,gridColumns:grid?getComputedStyle(grid).gridTemplateColumns:null,cardCount:cards.length,rects};
+              });
+              if(metrics.scrollWidth>width+1) failures.push(width+'px horizontal overflow: '+JSON.stringify(metrics));
+              if(isProducts && width<=700 && metrics.cardCount>=2 && Math.abs(metrics.rects[0].y-metrics.rects[1].y)>2) failures.push(width+'px products are not in two columns: '+JSON.stringify(metrics));
+              if(!isProducts && width<=700 && metrics.cardCount>=2 && Math.abs(metrics.rects[0].y-metrics.rects[1].y)>2) failures.push(width+'px categories are not in two columns: '+JSON.stringify(metrics));
+              if(width>=901 && !isProducts && metrics.cardCount>=3 && Math.abs(metrics.rects[0].y-metrics.rects[2].y)>2) failures.push(width+'px categories are not in three columns: '+JSON.stringify(metrics));
+              console.log((isProducts?'products':'categories')+' '+width+'px '+JSON.stringify(metrics));
+              await page.close();
+            }
+            await browser.close();
+            if(failures.length){console.error(failures.join('\n'));process.exit(1)}
+            console.log('PASS responsive layout browser checks');
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          node /tmp/layout-check.cjs categories
+          node /tmp/layout-check.cjs products
