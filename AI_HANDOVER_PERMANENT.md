@@ -2302,3 +2302,12 @@ This section supersedes older QA statements above where they conflict.
 - No live catalogue, price, stock, category, active-flag, schema, checkout, payment, DNS or Axxess changes.
 - No merge or production deployment was initiated. No workflow retry was created and no deliberate release-credit use occurred in this run.
 - Next action is the PR #68 browser regression work; preserve all candidate branches and the current accepted storefront baseline.
+
+
+## 2026-10-20 15:35 SAST — continuation run 12 (task-start)
+
+- **Task status: IN PROGRESS.** Read the current permanent handover on `main` before further work (blob SHA `2d68239215573e8378b9e2d09fa82aed7ff64c5f`).
+- Owner task: validate category-navigation experience and resolve the design preview's conflicting deployment status without triggering another deployment.
+- Plan: inspect PR #68 exact head and existing checks; run only already-existing read-only/source/browser checks where possible. For PR #70, reconcile existing Cloudflare bot messages and available GitHub checks/logs; do not start/retry any deployment or build.
+- Safety boundaries: keep draft PRs unmerged; no production/Pages deployment, no Axxess/DNS/payment changes, no Supabase writes/schema changes, no product/category/stock/price/active-flag writes, and no supplier stock reconciliation pending supplier finalization. Preserve owner-approved baseline `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store`.
+- Record evidence-based outcomes and any blocker in this permanent handover as soon as verified. Monitoring is scheduled, not continuous.
