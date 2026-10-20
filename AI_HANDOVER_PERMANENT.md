@@ -2716,3 +2716,10 @@ This section supersedes older QA statements above where they conflict.
 - Candidate branch alias used: https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev; category page: https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev/category.html. Cloudflare's immutable-deployment comment for workflow-only commit `13119c7` still reports build in progress, but Playwright confirmed the branch alias serves the current category-photo marker and current homepage product image code.
 - PR #71 remains draft/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71. No production Supabase/catalogue/stock writes, supplier reconciliation, Axxess/DNS/payment, production deployment, or APK changes. Launch HOLD.
 - Next task: read-only audit of category counts against the live active-product table and real-browser verification of category → subcategory → product listing → product detail links. Do not update catalogue data or stock.
+
+
+## 2026-10-20 — Continuation run 30 task start: category counts and navigation audit
+- Start after reading all three handovers. Product/category image network and real-browser checks pass on the branch preview; PR #71 remains draft/unmerged.
+- Scope: compare static category-tree snapshot counts against live active-product counts using read-only Supabase queries, then use Playwright against the branch alias to verify root category → subcategory → product list → product detail navigation and link targets.
+- Constraints: no writes to Supabase, categories, products, stock, or supplier data; no supplier reconciliation, merge, Axxess/DNS/payment/APK changes, or production deployment.
+- Plan: inspect category/product schema and snapshot IDs, compare counts by category ID and parent/descendant rollups, identify only evidenced mismatches, then run a real-browser navigation smoke test and update all handovers with exact results.
