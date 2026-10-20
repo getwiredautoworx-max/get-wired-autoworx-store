@@ -220,15 +220,23 @@ jobs:
                 throw new Error('Root category counts were not rendered for all eight approved categories: ' + JSON.stringify(renderedRootCards));
               }
               console.log(JSON.stringify({ rootCounts, renderedRootCards }));
-              await navPage.locator('.card').filter({ hasText: 'Auto Electrical Spares' }).first().click();
-              await navPage.waitForURL(/category\.html\?id=/, { timeout: 45000 });
+              const rootCard = navPage.locator('.card').filter({ hasText: 'Auto Electrical Spares' }).first();
+              const rootHref = await rootCard.getAttribute('href');
+              console.log(JSON.stringify({ rootHref, beforeRootClick: navPage.url() }));
+              await Promise.all([
+                navPage.waitForURL(/category\.html\?id=/, { timeout: 45000 }),
+                rootCard.click()
+              ]);
               const leaf = navPage.locator('.card').filter({ hasText: 'ELECTRICAL SPARES' }).first();
               const leafHref = await leaf.getAttribute('href');
               if (!leafHref || !leafHref.includes('category.html?id=9cb78a57-342e-40fa-a4e4-a8f1fd40e6d2')) {
                 throw new Error('Expected populated ELECTRICAL SPARES subcategory link was not found: ' + leafHref);
               }
-              await leaf.click();
-              await navPage.waitForURL(/products\.html\?category=/, { timeout: 45000 });
+              console.log(JSON.stringify({ leafHref, beforeLeafClick: navPage.url() }));
+              await Promise.all([
+                navPage.waitForURL(/products\.html\?category=/, { timeout: 45000 }),
+                leaf.click()
+              ]);
               await navPage.locator('#grid article.card a[href^="product.html?id="]').first().waitFor({ timeout: 60000 });
               const listingCountText = await navPage.locator('#count').innerText();
               const listingCards = await navPage.locator('#grid article.card').count();
@@ -237,8 +245,11 @@ jobs:
               }
               const firstProductLink = navPage.locator('#grid article.card a[href^="product.html?id="]').first();
               const productHref = await firstProductLink.getAttribute('href');
-              await firstProductLink.click();
-              await navPage.waitForURL(/product\.html\?id=/, { timeout: 45000 });
+              console.log(JSON.stringify({ productHref, beforeProductClick: navPage.url() }));
+              await Promise.all([
+                navPage.waitForURL(/product\.html\?id=/, { timeout: 45000 }),
+                firstProductLink.click()
+              ]);
               await navPage.locator('#root .product').waitFor({ timeout: 60000 });
               const detailImage = navPage.locator('#root .hero img').first();
               await detailImage.waitFor({ timeout: 45000 });
