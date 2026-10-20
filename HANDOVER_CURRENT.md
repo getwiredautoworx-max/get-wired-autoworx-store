@@ -507,3 +507,12 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 ## Navigation QA follow-up — Cloudflare clean URLs
 - Run `39473475379` failed because the test expected `category.html?id=`, but browser logs show the link correctly navigated to Cloudflare's clean URL `/category?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47`. This is a test regex mismatch, not a broken link.
 - Fix route assertions to accept clean and `.html` routes for category, products, and product detail, then rerun.
+
+
+## 2026-10-20 — Run 35: category/subcategory/Specials loading recovery (testing pending)
+- Owner requested continued work until a testable preview is available. PR #72 remains the isolated, draft/unmerged work branch; PR #70 remains the approved design baseline. No merge, production/Axxess/DNS/payment/stock/catalogue change was made.
+- Workflow evidence: interaction QA run 39490404565 failed in the browser test while the iframe showed “Loading categories…” and “Loading specials…”. Static script syntax checks passed in that run. This is a real unresolved runtime/data-loading failure, not a verified visual fix.
+- The first mitigation commit 09c519c001aa4897e9d8497c55aa3a4763d9e894 decoupled category and product request errors and added a local category snapshot fallback. It did not pass browser QA yet.
+- Follow-up commits on fix/pr70-storefront-owner-feedback-2026-10-20: 11f3001b5b594f2bb195075b62433752b97011fa removed product-count gating from the eight main category tiles and rendered subcategory choices even with zero counts; f19627bf876393ba6af8dbedc9ea066a61259f0e renders category hierarchy as soon as category data arrives rather than waiting for the product catalogue request; 7e2b55a6e7b6321ae1e138f17b63ef9543fc6b7f prevents the parent-page category-cleanup script from hiding the eight main tiles while product counts are loading/zero.
+- New checks triggered after the patches: PR 72 interaction QA run 39492800644 pending at last check; responsive browser run 39492800696 in progress; public SKU audit run 39492800647 completed success. SKU audit does not prove storefront behavior. No new preview deployment was started.
+- Next: inspect the completed interaction QA logs and report/artifacts; fix any remaining runtime cause and repeat non-deploying browser QA until category tiles, subcategories, Specials, image load, part-request/search dialogs, product detail and mobile layout pass. Only then perform one controlled preview deployment and verify the exact URL. Customer launch remains HOLD.
