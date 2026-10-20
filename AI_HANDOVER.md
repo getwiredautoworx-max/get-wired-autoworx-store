@@ -120,3 +120,8 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Attempted live HTTP reads of reference/review URLs; web retrieval cannot access them and container client failed DNS resolution before connection. This is an environment access blocker, not proof the sites are down. Therefore current served DOM/source fingerprint and actual remote image load/relevance remain OPEN.
 - Existing responsive mocked Playwright run `39452408814` PASS at 320/360/390/768/1440px; SKU audit `39452408700` PASS. No source changes, deployments/retries, Cloudflare/Netlify credits, merges, live data or production changes occurred.
 - Next action: use a network-enabled browser/runner that can open existing immutable preview URLs without triggering deployment; compare page fingerprint/assets with source commit `f19e60c...`, resolve whether `ebe5ddb2` is a separate older deployment, and check actual image response/relevance. Do not redeploy just to resolve this. Launch HOLD; supplier reconciliation PAUSED.
+
+
+## Continuation run 22 — 2026-10-20
+- Task started after reading all three handover files. Full task-start/outcome ledger is in `AI_HANDOVER_PERMANENT.md`.
+- Preliminary checks are read-only; no deploy, merge, production/live data, Axxess/DNS/payment, catalogue/stock, or APK change is authorized.
