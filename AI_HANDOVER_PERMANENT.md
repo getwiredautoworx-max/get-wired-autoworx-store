@@ -2364,3 +2364,11 @@ This section supersedes older QA statements above where they conflict.
 - **Mandatory first step for every agent/session:** read both `AI_HANDOVER.md` and `AI_HANDOVER_PERMANENT.md` from the current default branch before any project work. Do not rely on prior chat summaries or claims that one file has already been read.
 - After task start, append dated task-start and verified outcome/blocker/next-action notes to `AI_HANDOVER_PERMANENT.md`. Preserve all existing content and the eight locked user rules. Use the latest blob SHA for sequential writes to prevent lost updates.
 - The `AI_HANDOVER.md` entry point was updated in commit `1cecc66a72bab2fea1a7956ce3379399048b1e37` to state this rule explicitly.
+
+
+## 2026-10-20 16:xx SAST — continuation run 14 (task-start)
+
+- **Task status: IN PROGRESS.** Read both `AI_HANDOVER.md` and `AI_HANDOVER_PERMANENT.md` from current default branch before proceeding. Also read `HANDOVER_CURRENT.md` to reconcile the current storefront/design checkpoint.
+- **Scope:** continue the safest outstanding repository task without deploying: confirm current PR #68/#70 state and existing workflow evidence, then determine whether the required PR #68 category-navigation regression can be executed by an already available non-deploying method. Preserve the approved reference storefront `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store`.
+- **Constraints:** no Cloudflare/Netlify credits, no workflow dispatch/retry, no PR push that might trigger preview deployment, no merge, no production/Axxess/DNS/payment change, no Supabase write/schema change, and supplier stock reconciliation remains paused. Keep draft PRs unmerged and customer launch HOLD.
+- **Verification plan:** inspect current PR heads and only existing run results/log metadata; use a browser runner only if its execution is demonstrably isolated from deployment hooks. Append evidence and the next safe action after inspection.
