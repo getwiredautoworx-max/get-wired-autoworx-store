@@ -1,0 +1,34 @@
+name: Owner catalogue manager source checks
+on:
+  pull_request:
+    paths:
+      - 'supabase/functions/veyron-admin/**'
+      - 'android-owner-app/app/src/main/assets/admin_app.html'
+      - '.github/workflows/owner-catalogue-admin-check.yml'
+permissions:
+  contents: read
+jobs:
+  deno-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check veyron-admin Edge Function
+        run: deno check supabase/functions/veyron-admin/index.ts
+      - name: Static owner UI safety assertions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html = Path('android-owner-app/app/src/main/assets/admin_app.html').read_text(encoding='utf-8')
+          edge = Path('supabase/functions/veyron-admin/index.ts').read_text(encoding='utf-8')
+          assert 'Categories & Subcategories' in html
+          assert 'ownerSaveProduct' in html and 'ownerSaveCategory' in html
+          assert 'SUPABASE_SECRET_KEYS' not in html
+          assert 'if (!auth) return json({ ok: false, error: "Admin authorization required." }, 401);' in edge
+          assert 'b.action === "update_product"' in edge
+          assert 'b.action === "upsert_category"' in edge
+          assert 'Move/deactivate active products and child categories first' in edge
+          print('PASS owner UI and authenticated catalogue action assertions')
+          PY
