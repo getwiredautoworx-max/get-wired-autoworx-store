@@ -53,6 +53,8 @@ jobs:
             ['product detail uses product image_url', /esc\(p\.image_url\|\|/.test(detail)],
             ['iframe fallback preserves canonical endpoint', fallback.includes('product-image') && fallback.includes('functions')],
             ['iframe fallback preserves neutral placeholder', fallback.includes('product-placeholder')],
+            ['category bridge JavaScript parses', (()=>{try{new Function(bridge);return true;}catch(error){console.error('category-navigation.js syntax:',error.message);return false;}})()],
+            ['homepage category snapshot fallback keeps root tiles available', home.includes('categorySnapshotCategories.filter(c=>catIds.has(c.id))') && home.includes('.filter(Boolean);')],
             ['category bridge does not call generated illustration override', !/installCategoryIllustrations\(frame\);/.test(bridge)],
             ['security category uses key/remote photo', category.includes('photo-1693344150104-5ffb54127eff')],
             ['trailer category uses towing photo', category.includes('photo-1747711475650-b222ac557e58')],
@@ -136,6 +138,7 @@ jobs:
             const homeHtml = await homeResponse.text();
             const bridgeResponse = await fetch(base + '/category-navigation.js');
             const bridgeHtml = await bridgeResponse.text();
+            try { new Function(bridgeHtml); } catch (error) { throw new Error('category-navigation.js syntax error: ' + error.message); }
             if (categoryResponse.status !== 200 || homeResponse.status !== 200 || bridgeResponse.status !== 200 ||
                 !currentHtml.includes('photo-1747711475650-b222ac557e58') ||
                 !currentHtml.includes('photo-1693344150104-5ffb54127eff') ||
@@ -241,11 +244,22 @@ jobs:
               console.log(JSON.stringify({ rootCounts, renderedRootCards }));
               await navPage.goto(base + '/store.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
               const homeFrame = navPage.frameLocator('#store');
-              const homeRoot = homeFrame.locator('#categoryGrid > .catWrap > .catBtn').filter({ hasText: 'Auto Electrical Spares' }).first();
+              navPage.on('pageerror', error => console.log(JSON.stringify({ pageError: error.message })));
+              const categoryGrid = homeFrame.locator('#categoryGrid');
+              await categoryGrid.waitFor({ state: 'attached', timeout: 15000 });
+              const categoryGridState = await categoryGrid.evaluate(el => ({
+                childCount: el.children.length,
+                cardCount: el.querySelectorAll('.catBtn').length,
+                text: (el.innerText || '').slice(0, 300),
+                display: getComputedStyle(el).display,
+                html: el.innerHTML.slice(0, 600)
+              }));
+              console.log(JSON.stringify({ homepageCategoryGrid: categoryGridState }));
+              const homeRoot = homeFrame.locator('#categoryGrid .catBtn').filter({ hasText: 'Auto Electrical Spares' }).first();
               await homeRoot.waitFor({ timeout: 60000 });
               const homeRootHref = await homeRoot.getAttribute('href');
               const homeRootTarget = await homeRoot.getAttribute('target');
-              const homeRootTiles = await homeFrame.locator('#categoryGrid > .catWrap > .catBtn').count();
+              const homeRootTiles = await homeFrame.locator('#categoryGrid .catBtn').count();
               if (!homeRootHref || !homeRootHref.includes('6cc56033-b0a9-4f25-b207-aeeb341a1c47') || homeRootTarget !== '_top' || homeRootTiles !== 9) {
                 throw new Error('Homepage category links are not configured for separate-page navigation: ' + JSON.stringify({ homeRootHref, homeRootTarget, homeRootTiles }));
               }
@@ -313,7 +327,7 @@ jobs:
               await navPage.waitForURL(/\/category(?:\.html)?\?id=/, { timeout: 45000 });
               await navPage.goBack({ waitUntil: 'domcontentloaded', timeout: 45000 });
               await navPage.waitForURL(url => /\/store(?:\.html)?$/.test(new URL(url).pathname), { timeout: 45000 });
-              await navPage.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({ timeout: 45000 });
+              await navPage.frameLocator('#store').locator('#categoryGrid .catBtn').first().waitFor({ timeout: 45000 });
               console.log(JSON.stringify({ browserBack: 'product detail → product list → category page → store homepage', finalUrl: navPage.url() }));
               await navPage.close();
             } finally {

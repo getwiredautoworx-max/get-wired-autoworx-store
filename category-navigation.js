@@ -13,7 +13,7 @@
     lighting:'cfd3e001-9292-459f-b0e5-9502f160eb5c',
     'tools-workshop':'77297c18-67f6-452e-8918-c55d2ef6231a',
     'camping-outdoors':'af2f8625-4f42-45e6-9f21-d571d7415893',
-    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79','spare-parts':'68e6ada2-ddf8-4327-844f-771d92db54bd'',
+    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79','spare-parts':'68e6ada2-ddf8-4327-844f-771d92db54bd',
     '4x4-outdoor':'182423ec-ea46-43e4-bbe3-b8857b5a1583',
     'marine-spares':'38b382c1-6ee0-4b3c-86ad-399094bc40cc'
   };

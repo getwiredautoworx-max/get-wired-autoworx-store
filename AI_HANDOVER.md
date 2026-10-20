@@ -237,3 +237,9 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Added the existing active Spare Parts root (ID `68e6ada2-ddf8-4327-844f-771d92db54bd`) as the ninth tile, exposing 565 products omitted by the eight-root allowlist; nine root rollups cover all 4,187 active products. Read-only audit: all 165 active categories/counts match snapshot; 77 missing DB categories are inactive.
 - QA workflow uses a local static server and Playwright, not a Cloudflare/Netlify preview. It verifies homepage root click, category/subcategory → product list → detail, browser Back, product/category image loads, and root rollup totals. Static source checks pass; local browser run will confirm after this commit.
 - PR #71 remains draft/unmerged; launch HOLD. No production/catalogue/stock/supplier/Axxess/DNS/payment/APK changes. Do not merge; inspect the single local-browser QA run and avoid further preview deployments without owner approval.
+
+
+## 2026-10-20 — Run 31 local QA failure; correction prepared
+- Local browser run `39475575069` passed image delivery and all nine root counts (4,187 active products), but timed out because the homepage category tile was not visible in the local iframe. Navigation/back is not yet verified.
+- Fixed a malformed quote in the Spare Parts category bridge and added a parser check. Homepage category initialization now merges the active category-tree snapshot with live categories and keeps all nine root tiles visible; QA logs category-grid state/page errors.
+- No manual deployment or database writes. PR #71 remains draft/unmerged; launch HOLD. Run the local browser workflow once on this correction; if it fails, inspect diagnostics and get owner approval before further PR changes.
