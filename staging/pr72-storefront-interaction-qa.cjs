@@ -60,9 +60,9 @@ async function installMocks(page){
   check('standalone_request_part_button_opens_dialog',requestOpen===1,{openDialogs:requestOpen});
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
   await frame.getByRole('button',{name:/SEARCH THE STORE/i}).click();
-  const searchOpen=await frame.locator('#partSearchOverlay.open').count();
+  const searchOpen=await frame.locator('#partSearchDialog.open').count();
   check('store_search_dialog_opens',searchOpen===1,{openDialogs:searchOpen});
-  const searchInput=frame.locator('#partSearchInput');
+  const searchInput=frame.locator('#partSearchQuery');
   if(await searchInput.count()) await searchInput.fill('12V fuse regulator');
   await frame.getByRole('button',{name:/CAN’T FIND IT IN THE STORE\? REQUEST THIS PART/i}).click();
   await frame.locator('#sourcePart.open').waitFor({timeout:5000});
