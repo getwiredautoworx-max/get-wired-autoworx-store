@@ -98,8 +98,8 @@ async function ownerSaveCategory(){
  try{$('ownerCategoryMsg').textContent='Saving category…';await ownerAdminCall('',{action:'upsert_category',id,name,slug,parent_id:$('ownerCategoryParent').value||null,description:$('ownerCategoryDescription').value,sort_order:sort,active});$('ownerCategoryMsg').textContent='Category saved. Refreshing…';await ownerRefreshCatalogue();ownerNewCategory()}
  catch(e){$('ownerCategoryMsg').textContent='Category save blocked: '+e.message}
 }
-function openStoreTest(){location.href='file:///android_asset/store/store.html'}
-function openAdmin(){location.href='file:///android_asset/store/admin.html'}
+function openStoreTest(){if(window.AndroidBridge){AndroidBridge.openStorePreview();return}location.href='https://e245f05c.get-wired-autoworx-store.pages.dev/store'}
+function openAdmin(){if(window.AndroidBridge){AndroidBridge.openStoreAdmin();return}location.href='https://e245f05c.get-wired-autoworx-store.pages.dev/admin.html'}
 boot();
 </script>
 <script>
