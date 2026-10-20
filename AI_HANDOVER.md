@@ -214,3 +214,8 @@ These eight rules are user-authoritative and must be copied into every new hando
 ## Run 30 interim — navigation test timeout
 - Read-only category count audit: snapshot generated 2026-10-11 has 165 active categories; live DB has 242 total / 165 active. All 77 missing snapshot categories are inactive; all 165 active categories and direct counts match live data. Approved root totals match: Auto Electrical 1,149; Security 2; Car Audio 46; Accessories 874; Marine 57; Tools/Hardware/Consumables 1,321; Camping/Outdoors 84; Trailer/Canopy 89 (4,187 total direct products).
 - Workflow run `39473031585` passed image tests but timed out waiting for URL after clicking Auto Electrical root. Likely test synchronization issue; not yet evidence of broken link. Retry by registering waitForURL before click and logging exact href/current URL. No app/production/data changes.
+
+
+## Run 30 discovery — active Spare Parts root omitted
+- Read-only audit confirms snapshot counts match all 165 live active categories; 77 missing DB categories are inactive. But category.html hard-codes only eight roots and omits active `Spare Parts` (ID `68e6ada2-ddf8-4327-844f-771d92db54bd`) with 565 active products across its children. Current root totals show only 3,622 of 4,187 active products.
+- Next: add existing live Spare Parts root as the ninth tile in draft PR #71 and make QA assert 9 root rollups sum to all 4,187 active products. No DB writes. Navigation browser run `39473475379` remains in progress; don't claim nav pass yet.
