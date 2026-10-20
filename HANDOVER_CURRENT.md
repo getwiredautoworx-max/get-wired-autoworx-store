@@ -407,3 +407,7 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - PR #70 is now CLOSED/MERGED to `recovery/approved-preview-index-new` at merge commit `39d4c77096e1460e131ebfaeff8672aaedcb93e7`; its PR body says layout approval only, not production/launch approval. This continuation did not merge it.
 - PR #66/#67/#68 remain OPEN/DRAFT/UNMERGED at heads recorded in `AI_HANDOVER_PERMANENT.md`, run 19. Preserve PR #68 test branch and artifact. No code branches, production/live systems, Supabase data/schema, stock/catalogue, Axxess/DNS/payment, or APK were changed in this run. No new deployment or credits were used.
 - Next: continue non-overlapping release checks; coordinate before touching PR #67 due possible desktop-agent overlap. No Supabase deployment. Keep customer launch HOLD and supplier reconciliation PAUSED.
+
+
+### Run 19 additional read-only check — PR #66 policy links
+- Verified PR #66's checkout branch contains `checkout-v2.html` links to `terms-and-conditions.html` and `returns-refunds.html`; both target files exist on that branch and on `main` / `recovery/approved-preview-index-new`. Exact SHAs and limitation (not yet packaged/browser-tested) are in `AI_HANDOVER_PERMANENT.md`, run 19 follow-up. No order or live checkout was used.
