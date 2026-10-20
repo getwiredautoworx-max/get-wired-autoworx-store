@@ -100,3 +100,13 @@ These eight rules are user-authoritative and must be copied into every new hando
 
 ### Run 19 follow-up — checkout policy link target files
 - PR #66 source branch `fix/checkout-policy-links-2026-10-20` has both referenced files: `terms-and-conditions.html` (blob `802b3210b7a82938ce2c2ca5e6f6c87ddec19e75`) and `returns-refunds.html` (blob `48d92c06943ef9c99ef959c984f34750a6200801`). Checkout source with the links is blob `32b6f623a454fb7832146ace7addded054fe2a9d`. Both targets also exist on main and recovery baseline. This is source-level existence only; packaged/live browser verification remains for final testing.
+
+
+## LATEST VERIFIED CHECKPOINT — 2026-10-20, continuation run 20
+
+- All three handovers were read before project work. Task-start and detailed outcome are appended in `AI_HANDOVER_PERMANENT.md`; latest outcome commit `c1241b51335272a10686e4e9922a2778d6038473`. Current handover refreshed in commit `3c3f1f567a4842d775ecf342b72dacb226a1f6d3`.
+- PR #66 remains OPEN/DRAFT/UNMERGED at `e29b1f69d5fab7379dd38b344b171f630d60b67c`. Source checkout links point to existing root policy files, but exact served/package browser test is still NOT VERIFIED. Existing Pages preview `https://03b01bae.get-wired-autoworx-store.pages.dev` could not be opened by the web retrieval tool; do not infer outage from that limitation.
+- PR #67 remains OPEN/DRAFT/UNMERGED at `7c1cfae0821d1c4de5593c15fe60ea1264b3c93d`; likely CORS preflight issue and ignored audit insert errors remain. No source edits due potential desktop-agent overlap and Cloudflare preview trigger risk.
+- PR #68 remains OPEN/DRAFT/UNMERGED at `47a634429783326cca9128770386046a3009a6fb`; isolated mocked Playwright test remains PASS; preserve its test branch/artifact.
+- PR #70 is CLOSED/MERGED into `recovery/approved-preview-index-new` at `39d4c77096e1460e131ebfaeff8672aaedcb93e7`. Existing review deploy run `39452404463` succeeded for source `f19e60c03b1aa6273989199cc24bec6c30842a4d`, job `118730382190`. URLs with deployment IDs `fccc47b7` and `ebe5ddb2` remain distinct/unreconciled; do not claim identical served content or production approval.
+- No new deploy/retry, credits, source PR edit, merge, Supabase write/deploy, production/live data, catalogue/stock, Axxess/DNS/payment, or APK distribution. Customer launch HOLD; supplier reconciliation PAUSED. Next safest action: remain read-only until desktop-agent ownership is clear, then prepare an isolated PR #67 CORS/audit patch and mocked tests only if its branch/push is proven non-deploying.
