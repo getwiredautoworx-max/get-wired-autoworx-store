@@ -158,3 +158,11 @@ These eight rules are user-authoritative and must be copied into every new hando
 - PR #70 is already merged into `recovery/approved-preview-index-new`; approved layout/content commit `f19e60c03b1aa6273989199cc24bec6c30842a4d`, merge commit `39d4c77096e1460e131ebfaeff8672aaedcb93e7`.
 - Continue all storefront design/visual work from PR #70's approved baseline, not PR #68. Existing review URL: `https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store`; branch alias: `https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store`.
 - Required next work: inspect/fix real image URL loading and image relevance; verify actual browser requests and visual parity at desktop/mobile. Existing mocked responsive tests are not enough. Use the current preview first; do not redeploy unless a fix is ready for final verification and deployment is explicitly safe. Keep production/launch on HOLD; no Axxess/DNS, production Supabase/catalogue/stock, payment, or APK changes.
+
+
+## Latest checkpoint — 2026-10-20, continuation run 26
+- PR #68 remains retired/closed, not to be reopened. Work continued from the PR #70 approved recovery baseline.
+- Concrete source regressions found: root `category-navigation.js` forcibly replaced category photo sources with generated SVG/emoji illustrations; `category.html` applied a light-theme override. Isolated fix is in draft PR #71: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71.
+- Source-level only; real image requests/relevance and desktop/mobile screenshot parity are NOT VERIFIED because a network-enabled browser is unavailable. Do not treat PR or deployment metadata as visual acceptance.
+- Product listings still use local exact-SKU WebP images (1,000 assets listed) and hide failed images into a neutral placeholder; database `image_url` is not used in `products.html`. Avoid unverified image substitutions.
+- No merge/deployment retry, production/Supabase/catalogue/stock, Axxess/DNS/payment, or APK changes. Launch HOLD; supplier reconciliation PAUSED. Next: check PR #71 existing CI/Pages metadata without retries, then perform real-browser image/visual tests before further image changes.
