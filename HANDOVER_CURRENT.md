@@ -2327,3 +2327,10 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Fix commit `ba38f4cfb328c92305899be103cf9708209664e4`: the fixture now returns permissive CORS headers for mocked REST responses and a valid 204 preflight response, then returns the fixture JSON for GET calls.
 - The category cleanup code fix remains commit `5629b58fec32f8be8eb99100d8ff11da5d93c8a8`; the standalone part-search selector and diagnostic improvement remain `a2f4808c369eb87f0baadcac120723bd0834d0ce`.
 - New QA run after the CORS fixture correction is still required. Do not state acceptance until it passes and latest preview is checked. PR #72 remains draft/unmerged; no production/Axxess/DNS/payment/supplier/catalogue change.
+
+
+## Additional QA fixture correction — 2026-10-20
+- The next isolated interaction run still remained on “Loading categories…”, despite adding CORS handling. The failed run is 39490404565; this is a QA-harness failure, not proof of live-store failure.
+- Review of Supabase/PostgREST request headers found the fixture's `Access-Control-Allow-Headers` list omitted `accept-profile` and `content-profile`, which PostgREST clients may include in preflight requests.
+- Follow-up commit `12be50fd96068629ba93a802d6462dca4f6841cc` adds both headers and records browser `requestfailed` diagnostics to the category-grid timeout message. This is the next item to validate; if it still fails, use the emitted failed-request/error details to fix the actual remaining mismatch rather than loosening the test.
+- Latest preview before this fixture-only update was `https://3c9e7b7e.get-wired-autoworx-store.pages.dev`; a new preview build and interaction QA for the latest source are required. Responsive layout and public SKU audit passed on the preceding source revision. Keep PR #72 draft/unmerged and release holds unchanged.
