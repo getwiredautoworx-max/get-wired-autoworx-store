@@ -1,0 +1,21 @@
+name: ASC status reconciliation self-test
+on:
+  pull_request:
+    paths:
+      - 'audit-tools/**'
+      - '.github/workflows/asc-status-audit-self-test.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax check
+        run: python -m py_compile audit-tools/asc_supplier_status_reconcile.py
+      - name: Run reconciliation self-test (no network or database access)
+        run: python audit-tools/asc_supplier_status_reconcile.py --self-test
