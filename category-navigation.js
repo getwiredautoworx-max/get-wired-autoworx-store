@@ -13,7 +13,7 @@
     lighting:'cfd3e001-9292-459f-b0e5-9502f160eb5c',
     'tools-workshop':'77297c18-67f6-452e-8918-c55d2ef6231a',
     'camping-outdoors':'af2f8625-4f42-45e6-9f21-d571d7415893',
-    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79',
+    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79','spare-parts':'68e6ada2-ddf8-4327-844f-771d92db54bd'',
     '4x4-outdoor':'182423ec-ea46-43e4-bbe3-b8857b5a1583',
     'marine-spares':'38b382c1-6ee0-4b3c-86ad-399094bc40cc'
   };
@@ -27,6 +27,7 @@
     'TOOLS, HARDWARE & CONSUMABLES':'tools-workshop',
     'CAMPING, LEISURE & OUTDOORS':'camping-outdoors',
     'TRAILER & CANOPY':'trailer-canopy',
+    'SPARE PARTS':'spare-parts',
     '4X4 OUTDOOR':'4x4-outdoor',
     'CAR ALARMS & IMMOBILIZERS':'alarms-security',
     'CAR ALARMS & IMMOBILISERS':'alarms-security',
@@ -47,7 +48,7 @@
     const slug=ALIASES[key];
     const id=slug && CATEGORY_IDS[slug];
     if(!id)return;
-    window.location.href=BASE+'?id='+encodeURIComponent(id);
+    window.top.location.href=BASE+'?id='+encodeURIComponent(id);
   }
   function categoryIllustration(label){
     const key=clean(label);
