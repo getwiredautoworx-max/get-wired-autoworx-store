@@ -44,7 +44,8 @@
   function clean(s){return String(s||'').replace(/\s+/g,' ').trim().toUpperCase();}
   function openCategory(id){
     if(!id)return;
-    window.location.href=BASE+'?id='+encodeURIComponent(id);
+    // Root-absolute path is required because Cloudflare Pages may serve store.html at /store.
+    window.location.href=window.location.origin+'/'+BASE+'?id='+encodeURIComponent(id);
   }
     function installCategoryPresentation(frame){
     try{
@@ -97,8 +98,10 @@
     try{
       const d=frame.contentDocument;
       if(!d || d.__gwCategoryBridge)return;
-      d.__gwCategoryBridge=true;
-      installCategoryPresentation(frame);
+      // Presentation is optional: it must never prevent the navigation handler from attaching.
+      if(d.head){
+        try{installCategoryPresentation(frame)}catch(presentationError){console.warn('GW category presentation skipped:',presentationError);}
+      }
       d.addEventListener('click',function(e){
         const tile=e.target.closest('.catBtn[data-filter], .child[data-filter]');
         if(!tile)return;
@@ -108,6 +111,8 @@
         e.stopImmediatePropagation();
         openCategory(id);
       },true);
+      // Mark the document only after the click handler has successfully attached.
+      d.__gwCategoryBridge=true;
     }catch(err){console.warn('GW category bridge:',err);}
   }
   window.installGetWiredCategoryNavigation=function(frame){
