@@ -2743,3 +2743,8 @@ This section supersedes older QA statements above where they conflict.
 - Scope: add the existing live Spare Parts root as the ninth category tile in `category.html`, keeping the category tree and product data unchanged. Update the browser QA to require 9 root cards and verify their summed rollup count equals the active-product total in the snapshot.
 - Constraints: presentation-only source changes; no Supabase writes, no product/category mutation, no supplier reconciliation, no merge, no production deployment, no Axxess/DNS/payment/APK changes.
 - Plan: make the minimal allowlist change, update QA root-count assertions, run the real browser workflow, verify all 4,187 active products are reachable through the nine roots, then update handovers.
+
+
+## 2026-10-20 — Continuation run 30 follow-up: clean-URL redirect root cause confirmed
+- Browser logs prove the category link itself works: clicking the root card changed URL from `/category` to `/category?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47`. The test timed out only because it expected `category.html?id=`; Cloudflare Pages clean-URL behavior strips `.html`. This is a test assertion defect, not a storefront navigation failure.
+- Fix the smoke-test route regexes to accept both `/category?id=` and `/category.html?id=`, likewise `/products?category=` / `/products.html?category=` and `/product?id=` / `/product.html?id=`. Then rerun against the current preview branch alias.
