@@ -2214,3 +2214,32 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Owner says the “Find a Part”/part-search dialogue must be replaced or redirected to a clear standalone button customers can use to request a part that is not in the store. Do not treat an existing request button elsewhere as satisfying this. Make the part-request action obvious at the former search-dialog entry point and inside the search dialogue; it must open the existing request form and preserve user-entered part details where possible.
 - These specific failures were not adequately resolved in the previous PR #72 pass. The prior handover understated the state and must not be used to claim these items are complete.
 - Next action: correct the source files on the existing PR #72 branch, run non-deploying source/JavaScript checks and image-map audit, then update all three handover files with exact commit SHA, evidence, remaining browser checks and blockers. Keep PR #72 draft/unmerged and customer launch HOLD. No production deployment, Axxess/DNS/payment, supplier, or live stock/catalogue changes.
+
+
+## 2026-10-20 — PR #72 live-preview verification complete
+- Starting point remains the approved PR #70 baseline, recovery/approved-preview-index-new. PR #71 was not used as the base and remains separate. PR #72 is still draft/unmerged. Production/launch HOLD remains in place.
+- Final isolated Cloudflare Pages preview: https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev
+- Final preview deployment commit: 4c484023967f1a9ef78639c3baa430db113d0ec8. The deployed alias is a review-only Pages branch, not the production domain. The preview URL above now serves the updated source.
+- Live browser QA run 39483368511 PASSED 20/20 checks against the deployed preview. Reported console errors: 0; page errors: 0; failed requests: 0; HTTP responses >=400: 0. Artifact includes homepage, category page, product listing, product detail, mobile screenshot and report.
+- Verified in the real hosted preview:
+  - Eight main category tiles each load a distinct photo.
+  - Main category click opens its own category route; Cloudflare Pages clean URLs are /category?id=... (not necessarily category.html), and the test now accepts both forms.
+  - The electrical category page renders 12 subcategory/product-choice photo tiles; all images loaded and 7 distinct image URLs were used across them, including specific battery, fuse/relay, ignition, lighting and wiring/connector imagery.
+  - The separate “CAN’T FIND A PART? REQUEST IT” button opens the request dialog.
+  - Specials count is limited to four.
+  - Wrapper-level WhatsApp CTA, repeated product-card WhatsApp buttons, and product-page floating request CTA are removed.
+  - The individual product page loads a real product and picture, shows Product Description and Add to Cart, and its dedicated QUERY PART ON WHATSAPP link includes the product name/SKU.
+  - Mobile viewport 390px has no document-wide horizontal overflow.
+  - Google Fonts stylesheet is no longer blocked by Content-Security-Policy.
+- Root cause of the missing individual product page was identified: product.html used a Supabase publishable key with incorrect letter casing compared with the valid key used by the rest of the storefront. This caused a 401 on the product detail query, so the product data/description/Add to Cart never rendered. The key now matches the working catalogue pages. Live test verified no product REST 401 and the product image loaded at 1200px natural width.
+- Root cause of the earlier live navigation test failure was also clarified: Cloudflare Pages serves clean routes (e.g. /category?id=...) while the test expected only .html URLs. The live test was corrected to recognize clean routes. The bridge was additionally hardened so optional presentation CSS cannot prevent click-handler installation, and category routes use root-absolute paths.
+- Static/local QA: inline-script and navigation syntax checks passed; local mocked Playwright interaction QA passed 14/14; responsive layout check passed. Latest live-preview QA 20/20 supersedes the earlier failed diagnostic runs.
+- Final source fixes in this review branch:
+  - index-new.html: product-card/modal images use canonical image_url then exact-SKU Edge Function fallback and placeholder; featured specials capped at four; standalone request-part CTA; banner copy aligned to “SOUND & SECURITY • AUTO ELECTRICAL • SPARES & ACCESSORIES” plus supporting range line; distinct root category photos and specific electrical subcategory photo rules.
+  - category.html: topic-specific category/subcategory photo rules.
+  - category-navigation.js: robust same-tab category/subcategory route handling.
+  - product.html: valid Supabase key, exact-SKU image fallback, visible Product Description, Add to Cart/cart controls, dedicated product-specific WhatsApp query; no floating request button.
+  - store.html and assets/progressive-store-enhancements.js: removed wrapper-level WhatsApp and repeated WhatsApp product/fitment buttons.
+  - _headers: allowed fonts.googleapis.com in style-src to restore the intended storefront fonts.
+- No merge, production deployment, Axxess/DNS/payment change, live stock/catalogue write, supplier authorisation, or APK change was performed. Keep PR #72 draft/unmerged until the owner reviews the preview.
+- Next owner action: open the preview URL above and review desktop/mobile presentation. Do not merge or launch without owner approval.
