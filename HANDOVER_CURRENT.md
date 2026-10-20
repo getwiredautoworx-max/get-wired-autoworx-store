@@ -7,7 +7,7 @@ Updated: 2026-10-20 SAST
 - Owner explicitly directs that this exact approved source replaces the divergent recovery build; do not mix in, inherit, merge, or rebuild from other storefront variants.
 - The recovery branch `recovery/approved-preview-index-new` was reset successfully to the exact approved source commit so its tracked build tree matches that version, rather than keeping the partial restoration commits.
 - Keep historical Git commits for traceability; “remove other versions from the build” means exclude them from the active source tree, not erase repository history.
-- This is a source-selection/handover correction, **not proof of a newly deployed preview**. Do not claim the branch URL has refreshed or visually passed until a deployment/check is evidenced.
+- **Verified source reset:** Git ref update succeeded, moving `recovery/approved-preview-index-new` directly to `1a76108c7415ade3bab07461ac27af16ce2fa8f8`. `index-new.html` on that branch and at the approved commit has the same blob SHA `d274b0ffdaa0a1c45939933e308c4c65acb85554` (144,657 characters); `store.html` on the branch has approved blob SHA `9f0e26e34face9bf7abab42ac158a11f3be88643`. GitHub reported no workflow runs for the approved commit at verification time. This proves source selection/file parity for these checks, **not a newly deployed preview or visual pass**. Do not claim the branch URL has refreshed or visually passed until a deployment/check is evidenced.
 - Do not merge to `main`, change Axxess/DNS/production, or change payment/catalogue systems as part of this task. Existing production release HOLD remains in force.
 
 ## Owner-approved baseline (authoritative)
