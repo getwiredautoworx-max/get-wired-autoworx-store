@@ -1,3 +1,16 @@
+# Owner baseline decision — 2026-10-20
+
+**Owner direction:** The PR #72 owner-feedback preview is the updated standard for the storefront going forward. Use this build as the visual/functional baseline for subsequent work. Preserve its approved direction and make follow-up changes on the PR #72 work branch; do not restart from PR #68 or silently revert to an older design.
+
+- Canonical review preview: https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev
+- PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72
+- Working branch: `fix/pr70-storefront-owner-feedback-2026-10-20`
+- Keep PR #72 draft and unmerged until separately approved.
+- This decision approves the preview as the *working standard*, not as a production launch. Production/Axxess/DNS/payment changes, supplier-authorised stock changes, and launch remain on hold unless explicitly approved.
+- QA status remains evidence-bound: previously recorded PR checks are not to be described as freshly rerun unless a new run/browser verification is actually performed.
+
+---
+
 # PR #72 — CONTINUATION CHECKPOINT (2026-10-20, South Africa)
 
 ## Current working state
