@@ -235,3 +235,9 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - The same run identified the remaining 5px product-page overflow precisely: cart count badge `#badge`, positioned at x=303–325 on a 320px viewport. Patched the narrow-phone cart/button badge CSS in `products.html` to keep the count inside the button and viewport.
 - Current retest `39428982485` is in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39428982485. Do not mark responsive acceptance passed until this run completes successfully.
 - Preview workflow was updated to redeploy when `products.html` changes and serialize uploads. Latest preview deployment run `39428991147` is queued: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39428991147. The earlier deployed preview URL remains available for the banner/photo review until the latest deployment finishes.
+
+
+## 2026-10-20 — Cart badge adjustment iteration 2
+- The 320px browser run after the first badge adjustment still failed because increasing the cart button's right padding made the whole button extend to x=334. This was a regression introduced by that attempted fix; it has been corrected by restoring the original button padding and moving only the badge inside the button (`right:0`, reduced badge dimensions).
+- Latest code commit: `0d6893dc33e35c2086fff31a6b705aeeaaa6dd8c`. Await the next responsive browser run before calling the issue fixed.
+- Category browser checks are now meaningful and pass at 320/360/390/768/1440px with eight cards and no horizontal overflow. Product page must still pass at all widths.
