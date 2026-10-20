@@ -1,0 +1,92 @@
+name: Read-only Live Category Counts and Product Links QA
+
+on:
+  push:
+    branches:
+      - qa/live-category-navigation-isolated-2026-10-20
+    paths:
+      - '.github/workflows/live-category-product-links-qa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-category-product-links-qa
+  cancel-in-progress: true
+
+jobs:
+  live-category-product-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated Playwright
+        run: |
+          mkdir -p "$RUNNER_TEMP/gw-links-qa"
+          cd "$RUNNER_TEMP/gw-links-qa"
+          npm init -y
+          npm install --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Test live category counts and product detail links without writes
+        run: |
+          cat > "$RUNNER_TEMP/gw-links-qa/links.cjs" <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const report={base:'https://www.getwiredauto.co.za',safety:'read-only; no cart, order or mutation actions',checks:[],images:[],pageErrors:[]};
+            const page=await browser.newPage({viewport:{width:1365,height:900}});
+            page.on('pageerror',e=>report.pageErrors.push(e.message));
+            page.on('response',r=>{if(r.request().resourceType()==='image')report.images.push({url:r.url(),status:r.status(),ok:r.ok()})});
+            try{
+              let response=await page.goto(report.base+'/category.html',{waitUntil:'domcontentloaded',timeout:20000});
+              report.checks.push({id:'category-http',status:response&&response.status()===200?'PASS':'FAIL',http:response?.status()??null,finalUrl:page.url()});
+              await page.locator('#grid .card').first().waitFor({timeout:12000});
+              const root=await page.evaluate(()=>({heading:document.querySelector('#heading')?.innerText||'',count:document.querySelector('#count')?.innerText||'',cards:[...document.querySelectorAll('#grid .card')].map(a=>({text:a.innerText.trim(),href:a.getAttribute('href')})),debug:document.querySelector('#grid')?.dataset.debug||''}));
+              report.rootCategories=root;
+              report.checks.push({id:'category-root-cards',status:root.cards.length>=8?'PASS':'REVIEW',count:root.cards.length,expectedAtLeast:8,heading:root.heading,displayedCount:root.count});
+              let foundProductLink=null;
+              let visited=[];
+              for(let depth=0;depth<6;depth++){
+                const links=await page.locator('#grid .card').evaluateAll(as=>as.map(a=>({text:(a.innerText||'').trim(),href:a.getAttribute('href')})));
+                foundProductLink=links.find(a=>a.href&&a.href.startsWith('products.html?category='));
+                if(foundProductLink)break;
+                const next=links.find(a=>a.href&&a.href.startsWith('category.html?id='));
+                if(!next)break;
+                visited.push({depth,text:next.text,href:next.href});
+                await page.locator('#grid .card').filter({hasText:next.text.split('\n')[0]}).first().click({timeout:10000});
+                await page.waitForURL(/category\.html\?id=/,{timeout:10000});
+                await page.locator('#grid .card').first().waitFor({timeout:10000}).catch(()=>{});
+              }
+              report.categoryDrilldown=visited;
+              if(!foundProductLink) {
+                report.checks.push({id:'category-to-products-link',status:'REVIEW',detail:'No products.html?category link found after up to six category levels'});
+              } else {
+                report.checks.push({id:'category-to-products-link',status:'PASS',link:foundProductLink});
+                const productUrl=new URL(foundProductLink.href,report.base+'/category.html').href;
+                response=await page.goto(productUrl,{waitUntil:'domcontentloaded',timeout:20000});
+                report.checks.push({id:'products-page-http',status:response&&response.status()===200?'PASS':'FAIL',http:response?.status()??null,url:page.url()});
+                await page.locator('#grid').waitFor({timeout:12000});
+                await page.waitForFunction(()=>document.querySelector('#count')?.textContent.trim()!=='' && !/Loading/i.test(document.querySelector('#count')?.textContent||''),null,{timeout:12000}).catch(()=>{});
+                const productState=await page.evaluate(()=>({heading:document.querySelector('#heading')?.innerText||'',count:document.querySelector('#count')?.innerText||'',cards:[...document.querySelectorAll('#grid article.card')].slice(0,5).map(a=>({name:a.querySelector('.name')?.innerText||'',sku:a.querySelector('.sku')?.innerText||'',href:a.querySelector('a[href*="product.html?id="]')?.getAttribute('href')||'',image:a.querySelector('img')?{src:a.querySelector('img').currentSrc||a.querySelector('img').src,alt:a.querySelector('img').alt,complete:a.querySelector('img').complete,naturalWidth:a.querySelector('img').naturalWidth}:null})),empty:document.querySelector('#grid .empty')?.innerText||''}));
+                report.products=productState;
+                report.checks.push({id:'live-product-count-and-cards',status:productState.cards.length?'PASS':(productState.empty?'REVIEW':'FAIL'),count:productState.count,cards:productState.cards.length,empty:productState.empty});
+                const first=productState.cards.find(p=>p.href);
+                if(first){
+                  response=await page.goto(new URL(first.href,report.base+'/products.html').href,{waitUntil:'domcontentloaded',timeout:20000});
+                  report.checks.push({id:'product-detail-http',status:response&&response.status()===200?'PASS':'FAIL',http:response?.status()??null,url:page.url()});
+                  await page.waitForTimeout(1000);
+                  const detail=await page.evaluate(()=>({title:document.title,heading:document.querySelector('h1')?.innerText||document.querySelector('h2')?.innerText||'',body:(document.body?.innerText||'').slice(0,500)}));
+                  report.productDetail=detail;
+                  report.checks.push({id:'product-detail-content',status:detail.heading||/SKU|Price|Product/i.test(detail.body)?'PASS':'REVIEW',detail});
+                } else report.checks.push({id:'product-detail-link',status:'REVIEW',detail:'No live product card with a product.html?id link was available'});
+              }
+            }catch(e){report.checks.push({id:'runtime',status:'BLOCKED',error:String(e),url:page.url()})}
+            report.imageSummary={imageResponses:report.images.length,failed:report.images.filter(i=>!i.ok).length,productImageResponses:report.images.filter(i=>/products_webp|product-image/i.test(i.url)).length};
+            console.log(JSON.stringify(report,null,2));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(2)});
+          NODE
+          node "$RUNNER_TEMP/gw-links-qa/links.cjs"
