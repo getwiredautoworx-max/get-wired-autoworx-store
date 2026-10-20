@@ -29,8 +29,36 @@ SUPABASE_KEY = "sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w"
 PER_PAGE = 100
 MAX_PAGES = 250
 TIMEOUT = (5, 25)
+MAX_RETRIES = 4
+BACKOFF_BASE_SECONDS = 1.0
+REQUEST_PACING_SECONDS = 0.25
 OUT = Path(os.environ.get("ASC_AUDIT_OUT", "reports/asc_live_status_audit"))
 HEADERS = {"User-Agent": "GetWiredAutoWorx-ReadOnlySupplierStatusAudit/1.0", "Accept": "application/json"}
+
+def request_with_retry(session, url, *, headers=None, params=None):
+    """Bounded retry for transient network/HTTP failures; never returns partial data silently."""
+    last_error = None
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            response = session.get(url, headers=headers, params=params, timeout=TIMEOUT)
+            if response.status_code == 429 or 500 <= response.status_code <= 599:
+                retry_after = response.headers.get("Retry-After", "")
+                try:
+                    delay = min(8.0, max(0.0, float(retry_after)))
+                except ValueError:
+                    delay = min(8.0, BACKOFF_BASE_SECONDS * (2 ** attempt))
+                if attempt < MAX_RETRIES:
+                    time.sleep(delay)
+                    continue
+            response.raise_for_status()
+            return response
+        except (requests.Timeout, requests.ConnectionError, requests.HTTPError) as exc:
+            last_error = exc
+            if attempt >= MAX_RETRIES:
+                break
+            time.sleep(min(8.0, BACKOFF_BASE_SECONDS * (2 ** attempt)))
+    raise RuntimeError(f"Request failed after {MAX_RETRIES + 1} attempts: {url}: {last_error or 'transient HTTP error'}")
+
 
 def sku_key(value):
     return re.sub(r"\s+", "", str(value or "")).casefold()
@@ -79,9 +107,11 @@ def fetch_store_products(session):
             SUPABASE_URL + "/rest/v1/products?select=id,sku,public_sku,name,active,stock_quantity"
             "&active=eq.true&order=sku.asc&limit=1000&offset=" + str(offset)
         )
-        response = session.get(url, headers=headers, timeout=TIMEOUT)
-        response.raise_for_status()
-        batch = response.json()
+        response = request_with_retry(session, url, headers=headers)
+        try:
+            batch = response.json()
+        except ValueError as exc:
+            raise RuntimeError(f"Supabase product export returned invalid JSON at offset {offset}.") from exc
         if not isinstance(batch, list):
             raise RuntimeError("Supabase product export returned an unexpected response.")
         rows.extend(batch)
@@ -93,14 +123,19 @@ def fetch_store_products(session):
 def fetch_asc_products(session):
     rows = []
     total_pages = None
+    pages_read = 0
+    terminal_page_seen = False
     for page in range(1, MAX_PAGES + 1):
         url = f"{ASC_BASE}/wp-json/wc/store/v1/products?per_page={PER_PAGE}&page={page}"
-        response = session.get(url, headers=HEADERS, timeout=TIMEOUT)
-        response.raise_for_status()
+        response = request_with_retry(session, url, headers=HEADERS)
+        pages_read += 1
         content_type = response.headers.get("content-type", "").casefold()
         if "json" not in content_type:
             raise RuntimeError(f"ASC Store API returned non-JSON content on page {page}; stopping safely.")
-        batch = response.json()
+        try:
+            batch = response.json()
+        except ValueError as exc:
+            raise RuntimeError(f"ASC Store API returned invalid JSON on page {page}; crawl incomplete.") from exc
         if not isinstance(batch, list):
             raise RuntimeError(f"ASC Store API returned an unexpected payload on page {page}.")
         if page == 1:
@@ -109,15 +144,26 @@ def fetch_asc_products(session):
             except ValueError:
                 total_pages = None
         rows.extend(batch)
+        if total_pages is not None and page > total_pages:
+            raise RuntimeError(f"ASC pagination exceeded supplier-reported total_pages={total_pages}.")
+        if total_pages is not None and page == total_pages:
+            terminal_page_seen = True
+            break
         if not batch or len(batch) < PER_PAGE:
+            if total_pages is not None and page < total_pages:
+                raise RuntimeError(
+                    f"ASC crawl incomplete: page {page} returned {len(batch)} rows but API reports {total_pages} pages."
+                )
+            terminal_page_seen = True
             break
-        if total_pages is not None and page >= total_pages:
-            break
-        # Keep the public read-only crawl polite and bounded.
-        time.sleep(0.12)
+        time.sleep(REQUEST_PACING_SECONDS)
     else:
-        raise RuntimeError(f"ASC pagination exceeded safety limit of {MAX_PAGES} pages.")
-    return rows, total_pages
+        raise RuntimeError(f"ASC pagination exceeded safety limit of {MAX_PAGES} pages; crawl incomplete.")
+    if not terminal_page_seen:
+        raise RuntimeError("ASC crawl ended without a verified terminal page; no ledger or SQL proposal will be generated.")
+    if total_pages is not None and pages_read != total_pages:
+        raise RuntimeError(f"ASC crawl incomplete: read {pages_read} pages, API reported {total_pages}.")
+    return rows, total_pages, pages_read
 
 def normalize_name(value):
     value = html.unescape(clean_text(value)).casefold()
@@ -149,7 +195,7 @@ def main():
     session = requests.Session()
     session.headers.update(HEADERS)
     store_rows = fetch_store_products(session)
-    asc_rows, asc_pages = fetch_asc_products(session)
+    asc_rows, asc_pages, asc_pages_read = fetch_asc_products(session)
 
     store_by_sku = defaultdict(list)
     asc_by_sku = defaultdict(list)
@@ -242,6 +288,9 @@ def main():
         "source": ASC_BASE + "/wp-json/wc/store/v1/products",
         "asc_products_read": len(asc_rows),
         "asc_pages_reported": asc_pages,
+        "asc_pages_read": asc_pages_read,
+        "asc_crawl_complete": True,
+        "retry_policy": {"max_attempts_per_request": MAX_RETRIES + 1, "backoff": "bounded exponential, max 8 seconds", "timeout_seconds": list(TIMEOUT)},
         "active_store_products_read": len(store_rows),
         "candidate_rows": len(report),
         "matched_candidates": sum(1 for row in report if row["match_status"] == "MATCHED_CANDIDATE"),
