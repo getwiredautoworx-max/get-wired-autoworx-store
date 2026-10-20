@@ -59,7 +59,7 @@ jobs:
                 try {
                   const response=await page.goto(target.url,{waitUntil:'domcontentloaded',timeout:18000});
                   entry.checks.push({id:'document-http',status:response&&response.status()<400?'PASS':'FAIL',http:response?.status()??null,finalUrl:page.url()});
-                  await page.waitForFunction(()=>{const g=document.querySelector('#categoryGrid');return !!g&&(!!g.querySelector('.catBtn')||!/Loading categories/i.test(g.textContent||''));},null,{timeout:45000}).catch(()=>{});
+                  await page.waitForFunction(()=>{const g=document.querySelector('#categoryGrid');return !g||!!g.querySelector('.catBtn')||!/Loading categories/i.test(g.textContent||'');},null,{timeout:20000}).catch(()=>{});
                   await page.waitForTimeout(1000);
                   let frameInfo=null;
                   for (const frame of page.frames()) {
