@@ -2748,3 +2748,11 @@ This section supersedes older QA statements above where they conflict.
 ## 2026-10-20 — Continuation run 30 follow-up: clean-URL redirect root cause confirmed
 - Browser logs prove the category link itself works: clicking the root card changed URL from `/category` to `/category?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47`. The test timed out only because it expected `category.html?id=`; Cloudflare Pages clean-URL behavior strips `.html`. This is a test assertion defect, not a storefront navigation failure.
 - Fix the smoke-test route regexes to accept both `/category?id=` and `/category.html?id=`, likewise `/products?category=` / `/products.html?category=` and `/product?id=` / `/product.html?id=`. Then rerun against the current preview branch alias.
+
+
+## 2026-10-20 — Continuation run 32 task start: restore PR #70 category-page navigation
+- Owner feedback: PR #71 is not acceptable; selecting a category jumps down to a same-page list of all products in that category instead of opening the intended individual category/subcategory page. PR #70 is the accepted visual/interaction baseline.
+- Scope: compare PR #71 navigation source against the merged PR #70 baseline, isolate the exact regression, and prepare a minimal fix on a separate draft branch/PR or update PR #71 only if the fix can be narrowly verified.
+- Required behavior: root category click opens its category page; category page drills into subcategories; selecting a subcategory opens its own product listing; product selection opens product detail; browser Back returns to the previous level. Do not substitute same-page scrolling or a single all-products dump for page navigation.
+- Constraints: keep PR #71 draft/unmerged; do not merge, deploy/redeploy, spend Cloudflare/Netlify credits, change production/live data, alter Axxess/DNS/payment/APK, or perform supplier reconciliation. Approved PR #70 baseline and approved reference storefront remain unchanged.
+- Verification plan: inspect the actual hrefs and click handlers on both branches; run a non-deploying local/isolated browser test if available. Do not claim a live preview fix until an exact URL is actually verified. Record any preview build as final-phase work if it consumes hosting credits.
