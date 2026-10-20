@@ -1,0 +1,77 @@
+name: PR 72 Storefront Interaction QA
+on:
+  pull_request:
+    branches:
+      - recovery/approved-preview-index-new
+    paths:
+      - 'index-new.html'
+      - 'store.html'
+      - 'category-navigation.js'
+      - 'category.html'
+      - 'products.html'
+      - 'product.html'
+      - 'assets/category-tree.json'
+      - 'assets/products_webp/**'
+      - 'assets/progressive-store-enhancements.js'
+      - 'staging/pr72-storefront-interaction-qa.cjs'
+      - '.github/workflows/pr72-storefront-interaction-qa.yml'
+permissions:
+  contents: read
+concurrency:
+  group: pr72-storefront-interaction-qa-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  browser-interaction-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact PR revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install isolated Playwright runner
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Validate inline scripts and bridge syntax
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          for (const file of ['index-new.html','store.html','category.html','products.html','product.html']) {
+            const html = fs.readFileSync(file,'utf8');
+            let count = 0;
+            for (const [i,m] of [...html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)].entries()) {
+              if (/\\bsrc\\s*=/.test(m[1])) continue;
+              try { new Function(m[2]); count++; }
+              catch (e) { console.error(file+' inline script '+i+': '+e.message); process.exitCode=1; }
+            }
+            if (!count) throw new Error('No inline scripts validated in '+file);
+            console.log(file+': '+count+' inline scripts parsed');
+          }
+          for (const file of ['category-navigation.js','assets/progressive-store-enhancements.js']) {
+            new Function(fs.readFileSync(file,'utf8'));
+            console.log(file+': syntax PASS');
+          }
+          NODE
+      - name: Serve candidate branch locally
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/pr72-http.log 2>&1 &
+          echo $! > /tmp/pr72-http.pid
+          for i in $(seq 1 20); do curl --silent --fail http://127.0.0.1:4173/store.html >/dev/null && exit 0; sleep 1; done
+          cat /tmp/pr72-http.log
+          exit 1
+      - name: Run mocked category and product click-through tests
+        run: node staging/pr72-storefront-interaction-qa.cjs
+      - name: Upload screenshots and QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr72-storefront-interaction-qa-${{ github.run_number }}
+          path: qa-output/
+          if-no-files-found: warn
+          retention-days: 14
