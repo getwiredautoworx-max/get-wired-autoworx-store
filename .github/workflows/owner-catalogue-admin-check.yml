@@ -1,5 +1,12 @@
 name: Owner catalogue manager source checks
 on:
+  push:
+    branches:
+      - 'feature/owner-catalogue-management-2026-10-20'
+    paths:
+      - 'supabase/functions/veyron-admin/**'
+      - 'android-owner-app/app/src/main/assets/admin_app.html'
+      - '.github/workflows/owner-catalogue-admin-check.yml'
   pull_request:
     paths:
       - 'supabase/functions/veyron-admin/**'
