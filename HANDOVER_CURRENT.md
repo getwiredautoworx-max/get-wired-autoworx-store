@@ -196,3 +196,9 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Browser run `39423925431` still failed at 320px: `products.html` reported document scroll width 325px. The earlier max-width-only override did not constrain the fixed source-part control sufficiently. The latest CSS fix now sets both left/right edges and auto width on `#gwSourcePartButton` below 360px; this must be retested.
 - The category page fixture was also too sparse to render visible root cards; the workflow now assigns nonzero mock counts to active root categories so it can test actual category card positions instead of passing with zero cards.
 - Latest commit `7187dd3beb1a854603fefedd6dab4f904e153029`. Awaiting/looking for the corresponding Actions run. PR #69 remains draft/unmerged and no preview deployment has been performed.
+
+
+## 2026-10-20 — Latest responsive check run
+- Current layout branch head: `7187dd3beb1a854603fefedd6dab4f904e153029`; PR #69 remains draft/open/unmerged.
+- Responsive browser run `39424115890` is now running the updated 320px source-part button constraint and populated category-card fixtures: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39424115890. Last observed status: Playwright/Chromium installation in progress; no pass claim yet.
+- Current approved baseline for visual comparison: https://1fdda0ab.get-wired-autoworx-store.pages.dev/store. The new PR changes are not yet available at a verified deployed preview URL. Production Pages workflow remains manual-only; do not run it to main/production for this layout review.
