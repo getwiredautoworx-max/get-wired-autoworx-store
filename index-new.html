@@ -49,7 +49,7 @@ body{background:radial-gradient(ellipse at 50% 0,#071b31 0,#02060d 58%);color:#f
  .hamb{grid-column:1;grid-row:1;width:auto;font-size:29px}
  .logo{grid-column:2;grid-row:1;width:100%;height:60px;max-width:100%;object-fit:contain}
  .cart{grid-column:3;grid-row:1;justify-self:center;font-size:27px}
- .search{grid-column:1 / -1;grid-row:2;display:flex;width:100%;max-width:none;margin:0}
+ .search{grid-column:1 / -1;grid-row:2;display:flex;width:auto;min-width:0;max-width:100%;margin:0}
  .search input{padding:10px 15px;font-size:14px;height:44px}
  .header{position:sticky;top:0}
  .nav{display:none}
@@ -368,7 +368,8 @@ pointer-events:none}
 .service{padding:9px;font-size:12px}
 .footer{margin-top:18px;padding:16px 14px 88px}
 .foot{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:14px;font-size:12px}
-.mobileNav{display:flex;position:fixed;z-index:80;bottom:0;left:0;right:0;justify-content:space-around;background:rgba(2,5,11,.98);border-top:1px solid #174b70;padding:8px 2px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.45)}
+.mobileNav{display:none;position:fixed;z-index:80;bottom:0;left:0;right:0;justify-content:space-around;background:rgba(2,5,11,.98);border-top:1px solid #174b70;padding:8px 2px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.45)}
+@media(max-width:900px){.mobileNav{display:flex}}
 .mobileNav a{flex:1;color:#f4f7fb;font-size:10px;font-weight:700;text-align:center}
 .mobileNav b{font-size:23px;line-height:1.2;color:#fff}
 .mobileNav a:first-child,.mobileNav a.active{color:#ff173b}
@@ -394,7 +395,7 @@ pointer-events:none}
 }
 @media(max-width:380px){
  .head{gap:7px;padding-left:10px;padding-right:10px}
- .logo{width:calc(100vw - 126px);height:60px}
+ .logo{width:min(260px,calc(100vw - 164px));max-width:100%;height:60px}
  .cats{gap:5px}
  .catBtn{min-height:98px;padding:6px 4px}
  .catBtn b{font-size:9px}
@@ -402,81 +403,605 @@ pointer-events:none}
  .product button{font-size:9px}
 }
 
-/* 2026-10-19 responsive repair and staging-only root navigation. */
-@media (max-width:700px){
-  html,body{max-width:100%;overflow-x:hidden}
-  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
-  .header{height:150px!important;padding-bottom:0!important;overflow:visible}
-  .head{grid-template-columns:38px minmax(0,1fr) 70px;min-width:0;max-width:100%;padding-left:10px;padding-right:10px;gap:6px 8px;min-height:78px!important}
-  .logo{width:100%!important;min-width:0;max-width:100%;height:60px}
-  .head .search{left:0!important;right:0!important;top:25px!important;width:auto!important;max-width:none!important}
-  #gwSearchTools,#gwSavedToggle{display:none!important}
-  .mobileBuyBar[hidden]{display:none!important}
-  .hero{padding-left:10px;padding-right:10px;margin-top:10px}
-  .heroCard{height:auto!important;min-height:0!important;overflow:hidden;border-radius:12px}
-  .heroText{position:relative!important;inset:auto!important;display:flex;align-items:center!important;justify-content:center;flex-direction:column;text-align:center!important;max-width:none!important;width:auto;padding:6px 8px!important;background:linear-gradient(180deg,rgba(2,6,13,.86),rgba(2,6,13,.72))}
-  .ratingbox{position:static!important;transform:none!important;display:flex;align-items:center;justify-content:center;gap:7px;width:max-content;max-width:calc(100% - 20px);margin:10px auto 0!important;padding:7px 10px;box-sizing:border-box}
-  .heroText .since{margin:0 0 5px}
-  .heroText .heroTagline{align-self:center!important;max-width:100%;box-sizing:border-box;color:#fff!important;background:rgba(0,0,0,.48);border-bottom:2px solid #ff173b;padding:4px 6px;margin:0 0 4px;font-size:11px;line-height:1.2;overflow-wrap:anywhere}
-  .heroText h1{color:#fff!important;font-size:clamp(21px,5.8vw,28px)!important;line-height:1.02!important;margin:3px 0 5px!important;text-shadow:0 2px 8px #000!important}
-  .heroText p{color:#f3f7fb!important;font-size:10.5px!important;line-height:1.15!important;margin:2px auto 4px!important;max-width:42rem;text-shadow:0 1px 3px #000}
-  .heroBtns{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px!important;width:100%;max-width:420px;margin:3px auto 0}
-  .heroBtns .btn,.heroBtns button{display:flex;align-items:center;justify-content:center;min-width:0;width:100%;min-height:40px;box-sizing:border-box;padding:6px 5px!important;font-size:clamp(10px,2.9vw,12px)!important;line-height:1.2;text-align:center;white-space:normal;overflow-wrap:anywhere}
-  .features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin:4px 10px}
-  .feature{min-width:0;padding:4px 4px;font-size:8px}
-  .feature b,.feature span{font-size:8px;line-height:1.08}
-  .feature span{margin-top:3px}
-  #approved-services{margin-top:10px}
-  #approved-services .servicesList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
-  #approved-services .service{min-width:0;padding:8px;font-size:11px;overflow-wrap:anywhere}
-  #categories{scroll-margin-top:90px}
-  .section{min-width:0}
-  .cats{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px}
-  .catBtn{min-width:0;overflow:hidden}
-  .mobileNav{padding-bottom:calc(8px + env(safe-area-inset-bottom))}
-  .mobileNav a{flex:1 1 0;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;gap:1px;padding:0 1px;font-size:9px}
-  .mobileNav b{display:block;font-size:20px;line-height:1.1}
-  .mobileNav .badge{position:absolute;top:0;right:2px;min-width:0;margin:0;padding:1px 3px;font-size:9px}
-  .mobileBuyBar{max-width:100vw;box-sizing:border-box}
-  #categoryGrid .catBtn[data-gw-root-index]{display:block!important;position:relative!important;width:100%!important;height:108px!important;min-height:108px!important;max-height:108px!important;padding:0!important;text-align:center;overflow:hidden}
-  #categoryGrid .catBtn[data-gw-root-index] .catImage{position:absolute!important;top:7px!important;left:50%!important;transform:translateX(-50%)!important;width:28px!important;height:28px!important;min-height:28px!important;display:grid!important;place-items:center;background:#edf4f8;border-radius:9px}
-  #categoryGrid .catBtn[data-gw-root-index] .catGlyph{font-size:18px;line-height:1}
-  #categoryGrid .catBtn[data-gw-root-index] .gwRootContent{position:absolute!important;top:40px!important;left:4px!important;right:4px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start;text-align:center;gap:3px;width:auto!important;max-width:none!important;min-width:0;box-sizing:border-box}
-  #categoryGrid .catBtn[data-gw-root-index] .gwRootContent b{display:block;width:100%;max-width:100%;font-size:9px;line-height:1.15;text-align:center;overflow-wrap:normal;word-break:normal;hyphens:none}
-  #categoryGrid .catBtn[data-gw-root-index] .gwRootContent small{display:none!important}
-  .gw-category-level{grid-column:1/-1;min-width:0}
-  .gw-category-back{margin:0 0 14px;padding:10px 16px;border:1px solid #087fe0;border-radius:9px;background:#07172a;color:#fff;cursor:pointer;font-weight:800}
-  .gw-taxonomy-note{padding:14px;border:1px solid #245b7b;border-radius:10px;background:#07111e;color:#dceaf5;line-height:1.45}
-  .gw-subcategory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:360px){.heroText{padding:5px 7px!important}.heroText h1{font-size:21px!important}.heroBtns{gap:4px!important}.heroBtns .btn,.heroBtns button{padding:5px 4px!important}.features{gap:3px}.cats{gap:5px}}
-@media(min-width:701px){.mobileNav{display:none!important}}
-#categoryGrid .catBtn[data-gw-root-index]{display:grid!important;grid-template-columns:38px minmax(0,1fr)!important;align-items:center;gap:10px;padding:12px!important;min-height:86px;text-align:left;box-sizing:border-box}
-#categoryGrid .catBtn[data-gw-root-index] .catImage{width:38px!important;height:38px!important;min-height:38px!important;display:grid!important;place-items:center;background:#edf4f8;border-radius:9px;overflow:hidden}
-#categoryGrid .catBtn[data-gw-root-index] .catGlyph{font-size:22px;line-height:1}
-#categoryGrid .catBtn[data-gw-root-index] .gwRootContent{display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:0!important;min-width:0;max-width:100%;box-sizing:border-box}
-#categoryGrid .catBtn[data-gw-root-index] .gwRootContent b{font-size:13px;line-height:1.2;overflow-wrap:anywhere}
-#categoryGrid .catBtn[data-gw-root-index] .gwRootContent small{display:block;font-size:10px;line-height:1.2;color:#60788c}
-.gw-category-level{grid-column:1/-1;min-width:0}
-.gw-category-back{margin:0 0 14px;padding:10px 16px;border:1px solid #087fe0;border-radius:9px;background:#07172a;color:#fff;cursor:pointer;font-weight:800}
-.gw-taxonomy-note{padding:14px;border:1px solid #245b7b;border-radius:10px;background:#07111e;color:#dceaf5;line-height:1.45}
-.gw-subcategory-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 
-</style></head><body><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><button class="btn secondary partAction" type="button" onclick="openPartSearch()">PART SEARCH</button><button class="btn secondary partAction primaryAction" type="button" onclick="openPartRequest()">REQUEST A PART</button><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
-<div class="sectionTitle"><h2>FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Vehicle-specific catalogue search</span></div>
+/* Reference-mockup alignment: light canvas, compact banner, image-led category cards */
+body{background:#f3f6fa!important;color:#142337!important}
+.top{background:#071426!important;color:#fff!important}
+.header{background:rgba(255,255,255,.97)!important;border-bottom:1px solid #d7e0eb!important}
+.nav{background:#0a1c33!important;border-bottom:3px solid #ed1c2e!important}
+.nav a{color:#fff!important}
+.hero,.section{max-width:1500px}
+.heroCard{min-height:250px!important;border:0!important;border-radius:12px!important;background:linear-gradient(90deg,rgba(3,15,30,.9),rgba(3,15,30,.35)),url('assets/gw-logo.png') center/cover no-repeat!important;box-shadow:0 8px 24px rgba(12,31,54,.18)!important}
+.heroText{padding:24px 30px!important;max-width:760px!important}
+.heroText h1{font-size:clamp(27px,3vw,40px)!important;line-height:1.04!important;margin:4px 0 8px!important}
+.heroText p{font-size:14px!important;max-width:590px}
+.since{padding:6px 11px!important;margin:4px 0!important;font-size:11px}
+.heroBtns{gap:8px!important}.btn{padding:10px 14px!important;font-size:12px}
+.ratingbox{top:16px!important;right:16px!important;padding:8px 12px!important}.ratingbox strong{font-size:21px!important}
+.features{margin:12px auto!important}.feature{background:#fff!important;border-color:#dce4ed!important;color:#17263a!important;box-shadow:0 2px 8px rgba(15,40,65,.04)}
+.service{background:#fff!important;color:#1b2b40!important;border-color:#dce4ed!important}
+.section{margin-top:25px!important}.sectionTitle h2{color:#10243c!important;font-size:22px!important}.sectionTitle a{color:#d7192d!important}
+.cats{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;align-items:stretch}
+.catWrap{background:#0b2442!important;border:1px solid #173f67!important;border-radius:11px!important;overflow:hidden!important;box-shadow:0 4px 14px rgba(14,39,67,.12)!important;min-width:0}
+.catBtn{position:relative;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;padding:0!important;min-height:0!important;text-align:left!important;color:#fff!important}
+.catImage{display:block!important;height:145px!important;width:100%!important;overflow:hidden!important;background:#dce5ef!important}
+.catImage img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;max-width:none!important}
+.catContent{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important;padding:12px 14px!important;min-height:93px!important;background:linear-gradient(110deg,#0a2342,#102f55)!important}
+.catContent b{font-size:17px!important;line-height:1.2!important;color:#fff!important}
+.catContent small{font-size:12px!important;color:#d2dfed!important}
+.catContent i{font-style:normal!important;font-size:11px!important;font-weight:900!important;letter-spacing:.4px!important;color:#fff!important;background:#ed1c2e!important;border-radius:20px!important;padding:7px 10px!important;margin-top:3px!important}
+.catContent i span{margin-left:8px}
+.children{display:none!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important;padding:9px!important;background:#f7f9fc!important;border-top:1px solid #dbe4ee!important}
+.catWrap.open .children{display:grid!important}
+.child{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:5px!important;min-width:0!important;padding:0 0 7px!important;border:1px solid #d8e2ed!important;border-radius:6px!important;overflow:hidden!important;background:#fff!important;color:#162b44!important;text-align:left!important;font-size:10px!important;font-weight:800!important;cursor:pointer}
+.child img{display:block!important;width:100%!important;height:48px!important;object-fit:cover!important;background:#e7edf4!important}
+.child .childLabel{display:block!important;padding:0 4px!important;line-height:1.15!important;color:#17314f!important;overflow-wrap:anywhere}
+.child .childArrow{display:none!important}
+.childAll{grid-column:1/-1!important;flex-direction:row!important;justify-content:space-between!important;align-items:center!important;padding:9px 10px!important;background:#0b2442!important;color:#fff!important;border:0!important}
+.childAll span{display:inline!important;color:#ff3345!important}
+.products .product,.product{background:#fff!important;border-color:#dce4ed!important;color:#17263a!important}
+.prodImg{background:#f1f5f9!important}.product h3{color:#17263a!important}
+.vehicleFinder{background:#fff!important;border-color:#dce4ed!important;color:#17263a!important}.vehicleFields select{background:#fff!important;color:#17263a!important;border-color:#c8d4e2!important}
+.footer{color:#465970!important}.foot{border-color:#d6e0eb!important;color:#465970!important}
+@media(max-width:900px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.catImage{height:130px!important}.children{grid-template-columns:repeat(3,minmax(0,1fr))!important}.child img{height:56px!important}}
+@media(max-width:560px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.heroCard{min-height:220px!important}.heroText{padding:18px!important}.heroText h1{font-size:27px!important}.heroText p{font-size:13px!important}.ratingbox{top:10px!important;right:10px!important}.ratingbox small{font-size:9px!important}.catImage{height:160px!important}.children{grid-template-columns:repeat(5,minmax(0,1fr))!important;overflow-x:auto}.child img{height:42px!important}.child .childLabel{font-size:9px!important}}
+html,body{max-width:100%;overflow-x:clip}
+/* 2026-10-17 QA refinement: remove oversized logo wallpaper and prevent idle mobile purchase bar */
+.heroCard{background:linear-gradient(115deg,#f7fbff 0%,#e5eff8 70%,#d7e8f5 100%)!important;border:1px solid #b9d1e3!important;border-left:5px solid #e51d35!important;box-shadow:0 6px 18px rgba(17,48,78,.10)!important}
+.heroText h1{color:#102b45!important;text-shadow:none!important}
+.heroText h1 span{color:#e51d35!important}
+.heroText p{color:#42576b!important}
+.mobileBuyBar[hidden]{display:none!important}
+@media(max-width:560px){
+ .heroCard{min-height:190px!important;height:auto!important;background:linear-gradient(115deg,#f8fbfe,#e5eff8)!important}
+ .heroText{padding:42px 12px 12px!important}
+ .heroText h1{font-size:22px!important;line-height:1.02!important;margin:4px 0 6px!important}
+ .heroText p{display:none!important}
+ .heroTagline{font-size:11px!important;line-height:1.2!important;color:#42576b!important}
+ .since{font-size:10px!important;padding:4px 9px!important}
+ .heroBtns{gap:6px!important}
+ .heroBtns .btn{font-size:10px!important;padding:8px 9px!important}
+ .ratingbox{top:7px!important;right:7px!important;padding:4px 7px!important}
+ .ratingbox strong{font-size:16px!important}
+ .ratingbox small{font-size:8px!important}
+}
+
+/* Keep decorative vehicle ticker from colliding with hero copy/actions */
+.heroCard:after{display:none!important}
+
+/* Original, non-product-specific category artwork. Do not imply exact fitment or part identity. */
+.catBtn{gap:12px!important;justify-content:flex-start!important;background:#fff!important;color:#142337!important}
+.catImage{display:none!important}
+.catArt{flex:0 0 76px;width:76px;height:76px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#eaf3fb,#d6e7f7);border:1px solid #c5d8e8;color:#0d4774}
+.catArt>span{font-size:34px;font-weight:900;line-height:1}
+.catContent{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.catContent b{color:#142337!important;font-size:clamp(12px,1.1vw,16px)!important}
+.catContent small{color:#60748a!important}
+.catContent i{font-size:11px!important;color:#e51d35!important;font-weight:900}
+.catWrap{background:#fff!important;border:1px solid #d5e0eb!important;box-shadow:0 3px 10px rgba(15,40,65,.05)}
+.children{background:#f7f9fc!important;border-top:1px solid #dbe4ee!important}
+@media(max-width:560px){.catBtn{min-height:86px!important;padding:8px!important;gap:8px!important}.catArt{flex-basis:46px;width:46px;height:46px;border-radius:9px}.catArt>span{font-size:23px}.catContent b{font-size:10px!important}.catContent small{font-size:10px}.catContent i{font-size:9px!important}}
+/* Owner-directed storefront repair: restore the dark branded reference and prevent mobile header/search/nav collisions. */
+:root{--bg:#080b11;--panel:#0b1220;--blue:#00aaff;--red:#ff2438;--white:#f5f8fc;--muted:#aab7c8;--line:#174363}
+body{background:radial-gradient(ellipse at 50% 0%,#10263b 0,#080d16 42%,#05080e 100%);color:#f5f8fc}
+.top,.header,.nav{background:#03070d;color:#f5f8fc}
+.header{z-index:60}
+.search input{min-width:0}
+.catWrap{background:linear-gradient(145deg,#101b2b,#080f19);border:1px solid #167db6;border-radius:12px;box-shadow:0 5px 18px #0005}
+.catBtn{min-width:0;gap:8px}
+.catImage{display:block;height:112px;background:#0b1725;overflow:hidden}
+.catImage img{width:100%;height:100%;object-fit:contain}
+.catContent{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;padding:12px;align-items:center}
+.catContent b{font-size:14px;line-height:1.25;color:#f5f8fc}
+.catContent small{grid-column:1;color:#aab7c8}
+.catContent i{grid-column:2;grid-row:1 / span 2;color:#19b6ff;font-style:normal;font-size:12px;font-weight:900}
+.children{background:#07111e;border-top:1px solid #174363}
+.child{color:#e0eaf4;border-bottom-color:#15364e}
+.child span{color:#7cc9f4}
+.shopControls select,.shopControls button{max-width:100%;min-width:0}
+.cart{flex-shrink:0;padding-right:8px}
+.badge{right:0;top:-4px}
+.mobileBuyBar{display:none!important}
+@media(max-width:900px){
+ .head{height:auto;min-height:0;display:flex;flex-wrap:wrap;gap:8px 12px;padding:10px 14px}
+ .header{height:auto}
+ .hamb{width:30px;flex:0 0 30px;font-size:26px}
+ .logo{height:52px;width:min(230px,calc(100vw - 150px));flex:0 1 auto}
+ .cart{margin-left:auto}
+ .search{position:static;order:4;left:auto;right:auto;top:auto;max-width:100%;flex:0 0 calc(100% - 28px);width:auto;min-width:0;margin:0}
+ .search input{width:100%;padding:12px 16px;font-size:14px}
+ .hero{margin-top:12px}
+ .heroCard{min-height:250px}
+ .heroText{padding:24px 18px}
+ .heroText h1{font-size:28px}
+ .ratingbox{right:10px;top:10px;transform:scale(.72)}
+ .cats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .catImage{height:96px}
+ .catBtn{min-height:0}
+ .section{margin-top:24px}
+ .mobileNav{z-index:40;min-height:48px;padding:7px 4px calc(7px + env(safe-area-inset-bottom))}
+ body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+ .cartPanel{z-index:80;top:105px}
+}
+@media(max-width:480px){
+ .logo{height:46px;width:calc(100vw - 145px)}
+ .heroCard{min-height:235px}
+ .heroText{padding:18px 14px}
+ .heroText h1{font-size:23px}
+ .heroText p{font-size:12px;max-width:92%}
+ .since{font-size:11px;padding:6px 10px;margin:6px 0}
+ .heroBtns .btn{padding:10px 12px;font-size:12px}
+ .ratingbox{top:8px;right:6px;transform:scale(.62)}
+ .cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .catImage{height:82px}
+ .catContent{padding:10px}
+ .catContent b{font-size:12px}
+ .shopControls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .shopControls select,.shopControls button{width:100%;font-size:12px}
+ .shopControls .resultCount{grid-column:1/-1;margin-left:0}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .product{min-width:0;padding:8px}
+ .prodImg{height:110px}
+ .product h3{font-size:12px;overflow-wrap:anywhere}
+ .mobileNav a{font-size:10px}
+}
+@media(max-width:340px){
+ .head{gap:7px;padding:8px}
+ .search{flex-basis:calc(100% - 16px)}
+ .logo{width:calc(100vw - 125px);height:42px}
+ .hamb{width:24px;flex-basis:24px;font-size:22px}
+ .cats{gap:7px}
+ .catImage{height:70px}
+ .catContent{padding:8px}
+ .catContent b{font-size:11px}
+ .heroText h1{font-size:21px}
+ .heroText p{font-size:11px}
+}
+
+/* Final owner-reference override: dark storefront wins over legacy light-theme !important rules. */
+body{background:radial-gradient(ellipse at 50% 0%,#10263b 0,#080d16 42%,#05080e 100%)!important;color:#f5f8fc!important}
+.header,.header .head,.top{background:#03070d!important;color:#f5f8fc!important;border-color:#174363!important}
+.nav{background:#071426!important;border-color:#ff2438!important}
+.sectionTitle h2{color:#f5f8fc!important}
+.sectionTitle a{color:#ff5362!important}
+.features .feature,.service{background:#0b1624!important;color:#e8f2fc!important;border-color:#174363!important}
+.catWrap{background:linear-gradient(145deg,#101b2b,#080f19)!important;border:1px solid #167db6!important;box-shadow:0 5px 18px #0005!important}
+.catBtn{background:transparent!important;color:#f5f8fc!important}
+.catImage{display:block!important;background:#0b1725!important}
+.catImage img{object-fit:contain!important}
+.catContent{background:linear-gradient(110deg,#0a2342,#102f55)!important}
+.catContent b{color:#f5f8fc!important}
+.catContent small{color:#c1d2e3!important}
+.catContent i{color:#19b6ff!important;background:transparent!important}
+.children{background:#07111e!important;border-color:#174363!important}
+.child{background:#0c1928!important;color:#e0eaf4!important;border-color:#15364e!important}
+.products .product,.product{background:#0b1220!important;border-color:#174363!important;color:#f5f8fc!important}
+.product h3,.product p,.product small{color:#e5edf6!important}
+.prodImg{background:#08111d!important}
+.footer,.foot{background:#05080e!important;color:#aab7c8!important;border-color:#174363!important}
+@media(max-width:560px){
+ .cats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+ .catImage{height:62px!important}
+ .catContent{display:flex!important;padding:7px 5px!important;gap:4px!important;min-height:72px!important}
+ .catContent b{font-size:10px!important;line-height:1.15!important;overflow-wrap:anywhere}
+ .catContent small{font-size:9px!important}
+ .catContent i{font-size:9px!important;padding:0!important;margin:0!important}
+ .catBtn{gap:0!important}
+}
+@media(max-width:380px){
+ .cats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important}
+ .catImage{height:48px!important}
+ .catContent{padding:5px 3px!important;min-height:68px!important}
+ .catContent b{font-size:9px!important}
+ .catContent small{font-size:8px!important}
+}
+
+
+/* 2026-10-17 staging visual correction: light, compact, responsive storefront */
+:root{--bg:#f4f7fb;--panel:#ffffff;--blue:#0879bd;--red:#d7192d;--white:#172536;--muted:#526579;--line:#d8e2ed}
+html,body{background:#f4f7fb!important;color:#172536!important}
+body{background:#f4f7fb!important}
+header,.site-header,.main-header,.topbar{background:#fff!important;color:#172536!important;box-shadow:0 2px 12px rgba(22,45,70,.08)}
+section,.card,.product-card,.category-card,.category-tile,.panel,.modal-content{background:#fff!important;color:#172536}
+.hero{min-height:0!important;padding:22px 18px!important;margin:12px auto!important;border-radius:16px!important;background:linear-gradient(110deg,#fff 0%,#eaf4fb 100%)!important;color:#172536!important}
+.hero h1{font-size:clamp(1.55rem,3vw,2.5rem)!important;line-height:1.12!important;margin:.2em 0 .45em!important;color:#102d46!important}
+.hero p{font-size:1rem!important;line-height:1.5!important;color:#42576a!important;max-width:700px}
+.hero img{max-height:180px!important;object-fit:contain!important}
+.category-grid,.categories-grid,.category-tiles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+.category-card img,.category-tile img,.category-grid img,.categories-grid img{width:100%;aspect-ratio:4/3;object-fit:contain!important;background:#f7f9fc!important;padding:8px!important}
+.product-card img{object-fit:contain!important;background:#f7f9fc!important;padding:8px!important}
+button,.btn,.button{min-height:42px;border-radius:8px!important;font-weight:700}
+@media(max-width:640px){main{padding-left:12px!important;padding-right:12px!important}.hero{padding:16px 14px!important;margin:8px 0 14px!important}.hero h1{font-size:1.55rem!important}.hero p{font-size:.93rem!important}.category-grid,.categories-grid,.category-tiles{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.category-card,.category-tile{min-width:0!important}.category-card h3,.category-tile h3{font-size:.92rem!important;overflow-wrap:anywhere}.mobile-nav,.bottom-nav,.mobile-bottom-nav{position:fixed!important;left:0;right:0;bottom:0;z-index:1000;background:#fff!important;box-shadow:0 -3px 16px rgba(22,45,70,.14);padding-bottom:env(safe-area-inset-bottom)!important}body{padding-bottom:76px!important}}
+@media(max-width:360px){.category-grid,.categories-grid,.category-tiles{gap:7px!important}.category-card,.category-tile{padding:8px!important}.category-card img,.category-tile img{padding:4px!important}}
+</style><style id="category-art-contrast-fix">
+/* Staging-only: make original category icon artwork and labels legible on the bright storefront. */
+.brightTheme #categoryGrid .catWrap{background:#fff!important;border:1px solid #d5e2ec!important;overflow:hidden}
+.brightTheme #categoryGrid .catBtn{display:block!important;width:100%;padding:0!important;background:#fff!important;color:#152b40!important;text-align:left!important}
+.brightTheme #categoryGrid .catArt{display:flex!important;align-items:center;justify-content:center;width:100%;height:116px;background:linear-gradient(135deg,#eaf5fc,#d8eaf6);color:#075d91;overflow:hidden}
+.brightTheme #categoryGrid .catArt span{display:flex;align-items:center;justify-content:center;min-width:72px;min-height:72px;border-radius:18px;background:#fff;border:1px solid #c4ddec;color:#0877b7;font-size:42px;font-weight:800;line-height:1}
+.brightTheme #categoryGrid .catContent{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;padding:12px!important;background:#fff!important;color:#152b40!important}
+.brightTheme #categoryGrid .catContent b{color:#152b40!important;font-size:14px!important;line-height:1.25}
+.brightTheme #categoryGrid .catContent small{color:#60778b!important;font-size:12px}
+.brightTheme #categoryGrid .catContent i{color:#0877b7!important;font-style:normal;font-size:11px;font-weight:900}
+@media(max-width:700px){.brightTheme #categoryGrid .catArt{height:88px}.brightTheme #categoryGrid .catArt span{min-width:54px;min-height:54px;font-size:32px}}
+/* Correct inherited neon button styling on category-card SHOP labels. */
+.brightTheme #categoryGrid .catBtn i{position:static!important;inset:auto!important;display:inline-flex!important;align-items:center;justify-content:center;grid-column:2;grid-row:1 / span 2;align-self:center;min-width:0;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#0877b7!important;font-size:11px!important;line-height:1.2!important;font-style:normal!important;font-weight:900!important;text-shadow:none!important;white-space:nowrap}
+.brightTheme #categoryGrid .catBtn{position:relative}
+.brightTheme #categoryGrid .catContent{position:relative;z-index:1}
+</style><style id="gw-final-mockup-fixes">
+/* Final mockup alignment: search stays in header flow, hero is compact, category cards use real product images. */
+.head .search{position:static!important;left:auto!important;right:auto!important;top:auto!important;z-index:auto!important;max-width:620px!important;margin-left:auto!important;flex:1 1 340px!important;width:auto!important;min-width:0!important}
+.header{padding-bottom:0!important}
+.heroCard{height:auto!important;min-height:280px!important;border-radius:12px!important}
+.heroCard:before,.heroCard:after{display:none!important}
+.heroText{padding:30px 28px!important}
+.catArt{display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;width:100%!important;height:116px!important;flex:0 0 auto!important;box-sizing:border-box!important;background:#e8f2fa!important}
+.catBtn{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important}.catArt img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;padding:8px!important}.catContent{width:100%!important;box-sizing:border-box!important}.catBtn i{position:static!important;inset:auto!important;grid-column:1!important;grid-row:auto!important;align-self:flex-start!important;white-space:normal!important}#categoryGrid .catContent b{word-break:normal!important;overflow-wrap:normal!important;hyphens:auto!important}.heroCard>.ratingbox{position:absolute!important;top:8px!important;right:8px!important;left:auto!important;transform:none!important}
+.catContent b{word-break:normal!important;overflow-wrap:normal!important;hyphens:auto!important}
+@media(max-width:900px){
+ .head{height:auto!important;min-height:0!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px 12px!important;padding:10px 14px!important}
+ .head .search{order:4!important;flex:0 0 calc(100% - 28px)!important;width:calc(100% - 28px)!important;max-width:none!important;margin:0 auto!important}
+ .header{padding-bottom:0!important}
+ .heroCard{height:auto!important;min-height:230px!important;border-radius:10px!important}.heroCard>.ratingbox{top:8px!important;right:8px!important;left:auto!important;transform:none!important}
+ .heroText{padding:26px 16px 16px!important}
+ .heroText h1{font-size:clamp(21px,5.4vw,30px)!important;line-height:1.05!important}
+ .catArt{width:100%!important;height:76px!important}
+ .catArt img{padding:5px!important}
+}
+@media(max-width:560px){
+ .heroCard{min-height:220px!important}
+ .heroText{padding:38px 12px 12px!important}
+ .heroText h1{font-size:22px!important;line-height:1.04!important}
+ .heroText p{display:block!important;font-size:11px!important;line-height:1.25!important;max-width:100%!important}
+ .heroBtns{flex-wrap:wrap!important;gap:6px!important}
+ .heroBtns .btn{font-size:10px!important;padding:8px 9px!important}
+ .catContent b{font-size:10px!important;line-height:1.15!important;overflow-wrap:break-word!important}
+ .catContent small{font-size:9px!important;line-height:1.1!important}
+ .catContent i{font-size:9px!important}
+}
+.heroText{padding:20px 28px!important}
+.heroText h1{font-size:36px!important;line-height:1!important;margin:4px 0 8px!important}
+.heroText p{font-size:14px!important;line-height:1.25!important;margin:8px 0 10px!important}
+.heroTagline{font-size:12px!important;margin:0 0 8px!important;line-height:1.2!important}
+.heroBtns .btn{padding:8px 11px!important}
+.since{margin:0 0 6px!important}
+@media(max-width:560px){
+ .heroText{padding:38px 12px 10px!important}
+ .heroText h1{font-size:21px!important;line-height:1.02!important;margin:4px 0 6px!important}
+ .heroText p{font-size:10px!important;line-height:1.2!important;margin:5px 0 8px!important}
+ .heroTagline{max-width:165px!important;text-align:left!important;margin:0 0 8px!important}
+ .heroTagline{display:none!important}
+ .since{display:block!important;width:max-content!important;max-width:calc(100% - 145px)!important;margin-left:0!important;margin-right:auto!important;text-align:center!important}
+ .heroBtns .btn{font-size:9px!important;padding:7px 8px!important}
+ .heroCard>.ratingbox{top:8px!important;right:8px!important;left:auto!important;transform:scale(.82)!important;transform-origin:top right!important}
+}
+@media(max-width:380px){
+ .heroCard{min-height:215px!important}
+ .heroText{padding:38px 10px 10px!important}
+ .catArt{width:100%!important;height:48px!important}
+ .catContent{padding:5px 3px!important;min-height:68px!important}
+ .catContent b{font-size:9px!important;line-height:1.1!important}
+}
+
+/* Mockup acceptance fix: enforce the approved light canvas and ensure product images remain visible. */
+.brightTheme .prodImg{content-visibility:visible!important;contain:none!important;background:#f3f7fa!important}
+.brightTheme .prodImg img{display:block!important;visibility:visible!important;opacity:1!important;max-width:100%!important;max-height:100%!important;width:auto;height:auto;object-fit:contain!important}
+.brightTheme .product{background:#fff!important;color:#152b40!important;border:1px solid #d3e0ea!important;box-shadow:0 5px 18px rgba(23,55,83,.07)!important}
+.brightTheme .product h3{color:#152b40!important}
+.brightTheme .product .price{color:#087fe0!important}
+
+/* Final cascade guard: earlier legacy body rules override the mockup class unless the body element is targeted directly. */
+body.brightTheme{background:#f3f6fa!important;color:#172b3d!important}
+body.brightTheme main,body.brightTheme .section,body.brightTheme .features{background:transparent!important;color:#172b3d!important}
+body.brightTheme .feature,body.brightTheme .service,body.brightTheme .vehicleFinder,body.brightTheme .product{background:#fff!important;color:#172b3d!important;border-color:#d3e0ea!important;box-shadow:0 5px 18px rgba(23,55,83,.07)!important}
+body.brightTheme .sectionTitle h2,body.brightTheme .footer,body.brightTheme .product h3{color:#172b3d!important}
+body.brightTheme .sectionTitle .searchStatus,body.brightTheme .footer a{color:#526b82!important}
+body.brightTheme .features{padding-top:10px;padding-bottom:10px}
+</style><style id="owner-approved-dark-theme-override">
+/* Owner-approved dark automotive theme: final cascade overrides stale light-theme staging CSS. */
+:root{--bg:#080b11;--panel:#0b1220;--blue:#00aaff;--red:#ff2438;--white:#f5f8fc;--muted:#aab7c8;--line:#174363}
+html,body{background:#05080e!important;color:#f5f8fc!important}
+body{background:radial-gradient(ellipse at 50% 0%,#10263b 0,#080d16 42%,#05080e 100%)!important;color:#f5f8fc!important}
+header,.site-header,.main-header,.topbar,.top,.header{background:#03070d!important;color:#f5f8fc!important;border-color:#174363!important;box-shadow:none!important}
+.nav{background:#07111e!important;color:#f5f8fc!important;border-color:#174363!important}
+.nav a{color:#f5f8fc!important}
+.search input{background:#050d18!important;color:#f5f8fc!important;border-color:#087fe0!important}
+.hero{min-height:0!important;padding:0 20px!important;margin:18px auto 0!important;border-radius:0!important;background:transparent!important;color:#f5f8fc!important;box-shadow:none!important}
+.heroCard{min-height:260px!important;background:linear-gradient(90deg,rgba(0,8,18,.96),rgba(0,8,18,.55)),url('assets/gw-logo.png') center/cover no-repeat!important;border:1px solid #16557e!important;box-shadow:0 12px 36px rgba(0,0,0,.45)!important}
+.heroText h1,.hero h1{color:#f5f8fc!important}
+.heroText h1 span{color:#ff2438!important}
+.heroText p,.hero p{color:#d8e4ef!important}
+..section,.features,section{background:transparent!important;color:#f5f8fc!important}
+footer,.footer{background:#03070d!important;color:#f5f8fc!important}
+.footer a{color:#20b1ff!important}
+.sectionTitle h2{color:#f5f8fc!important}
+.feature,.service,.product,.product-card,.card,.panel,.modal-content{background:#0b1220!important;color:#f5f8fc!important;border:1px solid #174363!important;box-shadow:0 5px 18px rgba(0,0,0,.28)!important}
+.product h3,.product-card h3{color:#f5f8fc!important}
+.product .price{color:#20b1ff!important}
+.cats,#categoryGrid,.category-grid,.categories-grid,.category-tiles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+.catWrap,.category-card,.category-tile{background:linear-gradient(145deg,#101b2b,#080f19)!important;color:#f5f8fc!important;border:1px solid #167db6!important;border-radius:12px!important;box-shadow:0 5px 18px rgba(0,0,0,.3)!important;overflow:hidden}
+.catBtn{display:block!important;width:100%!important;min-width:0;padding:0!important;background:transparent!important;color:#f5f8fc!important;border:0!important;text-align:left!important}
+.catArt{display:flex!important;align-items:center;justify-content:center;width:100%;height:112px;background:#0b1725!important;color:#f5f8fc!important;overflow:hidden}
+.catArt img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;background:#0b1725!important}
+.catArt span{display:flex;align-items:center;justify-content:center;min-width:64px;min-height:64px;border-radius:14px;background:#102235!important;color:#20b1ff!important;border:1px solid #174363!important;font-size:38px;font-weight:800;line-height:1}
+.catContent{background:transparent!important;color:#f5f8fc!important}
+.catContent b{color:#f5f8fc!important}
+.catContent small{color:#aab7c8!important}
+.catContent i{color:#20b1ff!important}
+.children{background:#07111e!important;border-color:#174363!important}
+.child{color:#e0eaf4!important;border-color:#15364e!important}
+.child span{color:#7cc9f4!important}
+.shopControls select,.shopControls button{background:#050d18!important;color:#f5f8fc!important;border-color:#28658c!important}
+.btn.primary,.primary,.heroBtns .primaryAction{background:#d7192d!important;color:#fff!important;border-color:#ff2438!important}
+.btn.secondary,.secondary{background:#102b45!important;color:#fff!important;border-color:#168ee8!important}
+button,.btn,.button{border-radius:8px;font-weight:800}
+.mobileNav{background:#03070d!important;color:#f5f8fc!important;border-color:#174363!important}
+.mobileNav a{color:#f5f8fc!important}
+@media(max-width:700px){
+ .hero{padding:0 12px!important;margin:10px auto 0!important}
+ .heroCard{min-height:220px!important}
+ .heroText{padding:22px!important}
+ .heroText h1{font-size:clamp(25px,7vw,34px)!important}
+ .catArt{height:88px!important}
+ .catArt span{min-width:52px;min-height:52px;font-size:30px}
+ .cats,#categoryGrid,.category-grid,.categories-grid,.category-tiles{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+}
+@media(max-width:360px){
+ .heroCard{min-height:205px!important}
+ .heroText{padding:16px!important}
+ .cats,#categoryGrid,.category-grid,.categories-grid,.category-tiles{gap:7px!important}
+}
+</style><style id="owner-screenshot-defect-fixes">
+/* Exact-head screenshot correction: darken section/form surfaces, show product images, and remove the oversized logo backdrop. */
+html body .section,html body section.section,html body section.features{background:transparent!important;color:#f5f8fc!important}
+html body .features{background:transparent!important}
+html body .vehicleFinder{background:#0b1220!important;border:1px solid #167db6!important;color:#f5f8fc!important;box-shadow:0 5px 18px rgba(0,0,0,.3)!important}
+html body .vehicleIntro span{color:#aab7c8!important}
+html body .vehicleFields select{background:#050d18!important;color:#f5f8fc!important;border-color:#28658c!important}
+html body .prodImg{content-visibility:visible!important;contain:none!important;background:#0b1725!important;display:grid!important;place-items:center!important}
+html body .prodImg img{display:block!important;visibility:visible!important;opacity:1!important;max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important;object-fit:contain!important}
+html body .heroCard{min-height:230px!important;background:linear-gradient(120deg,#07111e 0%,#10263b 58%,#05080e 100%)!important;box-shadow:0 12px 36px rgba(0,0,0,.4)!important}
+@media(max-width:700px){html body .heroCard{min-height:205px!important}html body .heroText{padding:20px!important}}
+@media(max-width:390px){html body .heroCard{min-height:195px!important}html body .heroText{padding:16px!important}}
+
+/* Prevent inherited absolute positioning from clipping the hero CTA row. */
+html body .heroCard{height:auto!important;overflow:hidden!important}
+html body .heroText{position:relative!important;inset:auto!important;height:auto!important;overflow:visible!important;display:block!important;align-items:initial!important;justify-content:initial!important;text-align:left!important}
+/* Hero and service-strip contrast/fit fixes from 1440/390/320 screenshot review. */
+html body .heroText{padding:18px 24px!important;max-width:720px!important}
+html body .heroText h1{font-size:36px!important;line-height:1!important;margin:0 0 8px!important}
+html body .heroText p{font-size:14px!important;line-height:1.35!important;margin:8px 0 10px!important;max-width:650px!important}
+html body .heroTagline{font-size:11px!important;margin:0 0 5px!important}
+html body .since{margin:0 0 6px!important;padding:5px 10px!important}
+html body .ratingbox{top:10px!important;right:12px!important;transform:scale(.9)!important;transform-origin:top right!important}
+html body .feature b{color:#f5f8fc!important}
+html body .feature span{color:#aab7c8!important}
+html body .vehicleFields button{background:#102b45!important;color:#fff!important;border:1px solid #168ee8!important}
+html body .vehicleFields button:disabled{opacity:.62!important;background:#5c1724!important;color:#fff!important}
+html body .vehicleFields #vehicleClear{background:#102b45!important;color:#fff!important}
+@media(max-width:700px){
+ html body .heroCard{min-height:205px!important}
+ html body .ratingbox{position:static!important;display:flex!important;width:max-content!important;max-width:100%!important;margin:8px 8px 0 auto!important;transform:none!important;gap:6px!important}
+ html body .heroText{padding:10px 16px 14px!important}
+ html body .heroText h1{font-size:clamp(24px,6.5vw,30px)!important;line-height:1!important;margin:0 0 6px!important}
+ html body .heroText p{font-size:12px!important;line-height:1.3!important;margin:5px 0 8px!important}
+ html body .heroTagline{font-size:10px!important;margin:0 0 4px!important}
+ html body .heroBtns{gap:5px!important}
+ html body .heroBtns .btn{padding:7px 7px!important;font-size:9px!important;min-height:32px!important;line-height:1.1!important}
+}
+@media(max-width:390px){
+ html body .heroCard{min-height:225px!important}
+ html body .heroText{padding:8px 12px 12px!important}
+ html body .heroText h1{font-size:24px!important}
+ html body .heroText p{font-size:11px!important}
+ html body .heroBtns .btn{padding:7px 6px!important;font-size:9px!important}
+}
+</style>
+<style id="gw-2026-10-18-layout-repair">
+/* Consolidated last-in-cascade repair: light mockup, compact hero, no mobile collisions. */
+html,body{background:#f3f6fa!important;color:#172b3d!important}
+.top{background:#e8eef4!important;color:#31475a!important}
+.header,.head{background:#fff!important;color:#173650!important}
+.header{height:auto!important;min-height:0!important;z-index:60!important}
+.head{min-height:0!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px 14px!important;padding:10px 18px!important}
+.logo{height:64px!important;width:min(320px,34vw)!important;max-width:100%!important;object-fit:contain!important}
+.hamb{flex:0 0 34px!important;width:34px!important}
+.search{position:static!important;display:flex!important;flex:1 1 260px!important;min-width:0!important;width:auto!important;max-width:620px!important;margin:0 0 0 auto!important;order:0!important}
+.search input{width:100%!important;min-width:0!important;height:44px!important;padding:10px 15px!important;background:#f8fafc!important;color:#172b3d!important}
+.cart{flex:0 0 42px!important;margin-left:0!important;color:#173650!important;padding-right:8px!important}
+.badge{right:0!important;top:-3px!important}
+.nav{background:#12344f!important}
+.hero{margin:12px auto 0!important;padding:0 18px!important}
+.heroCard{min-height:0!important;display:flex!important;flex-direction:column!important;gap:0!important;border:1px solid #d5e0e9!important;border-left:5px solid #e21d2f!important;border-radius:12px!important;background:linear-gradient(112deg,#fff 0%,#edf5fb 100%)!important;box-shadow:0 6px 20px rgba(25,55,80,.08)!important}
+.heroText{padding:22px 24px!important;max-width:800px!important}
+.heroText h1{font-size:clamp(26px,3vw,38px)!important;line-height:1.08!important;margin:6px 0 8px!important;color:#12344f!important;text-shadow:none!important}
+.heroText h1 span{color:#e21d2f!important}
+.heroText p{font-size:15px!important;line-height:1.45!important;color:#40576a!important;margin:8px 0 12px!important;max-width:680px!important}
+.heroTagline{font-size:clamp(15px,1.7vw,20px)!important;color:#087fce!important;margin:0 0 8px!important}
+.since{margin:0 0 8px!important;padding:5px 10px!important;border-radius:4px!important;background:#e21d2f!important;color:#fff!important}
+.ratingbox{position:absolute!important;right:16px!important;top:14px!important;transform:none!important;background:#fff!important;color:#173650!important;border:1px solid #d5e0e9!important;box-shadow:0 3px 12px rgba(25,55,80,.1)!important;padding:8px 12px!important}
+.ratingbox strong{font-size:22px!important;color:#e0a900!important}
+.ratingbox small{color:#173650!important}
+.heroBtns{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+.heroBtns .btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:40px!important;padding:9px 13px!important;font-size:12px!important;line-height:1.2!important;white-space:normal!important}
+.features{margin:10px auto!important}
+.section{margin-top:22px!important}
+.cats#categoryGrid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;align-items:stretch!important}
+#categoryGrid>.catWrap{min-width:0!important;overflow:hidden!important;border:1px solid #d5e0e9!important;border-radius:10px!important;background:#fff!important;box-shadow:0 3px 12px rgba(25,55,80,.06)!important}
+#categoryGrid>.catWrap .catBtn{display:flex!important;flex-direction:column!important;align-items:stretch!important;width:100%!important;min-width:0!important;height:100%!important;padding:0!important;background:#fff!important;color:#173650!important}
+#categoryGrid>.catWrap .catImage{display:none!important}
+#categoryGrid>.catWrap .catArt{display:grid!important;place-items:center!important;flex:0 0 auto!important;width:100%!important;height:clamp(72px,10vw,128px)!important;border:0!important;border-radius:0!important;background:linear-gradient(135deg,#e8f2fa,#d4e7f5)!important;color:#0c5687!important;overflow:hidden!important}
+#categoryGrid>.catWrap .catArt>span{font-size:clamp(28px,4vw,48px)!important;line-height:1!important}
+#categoryGrid>.catWrap .catImage img{display:none!important}
+#categoryGrid>.catWrap .catContent{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:5px!important;padding:10px!important;background:#fff!important}
+#categoryGrid>.catWrap .catContent b{color:#173650!important;font-size:14px!important;line-height:1.2!important;overflow-wrap:anywhere!important}
+#categoryGrid>.catWrap .catContent small{color:#60778b!important;font-size:11px!important}
+#categoryGrid>.catWrap .catContent i{color:#087fce!important}
+.shopControls{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important}
+.shopControls select,.shopControls button{min-width:0!important;max-width:100%!important}
+.mobileNav{z-index:50!important}
+.mobileBuyBar{display:none!important}
+.cartPanel{z-index:90!important}
+#sourcePart{z-index:100!important}
+body{padding-bottom:0!important}
+@media(max-width:700px){
+ .head{display:grid!important;grid-template-columns:28px minmax(0,1fr) 42px!important;grid-template-rows:48px 42px!important;gap:6px 8px!important;padding:7px 10px!important}
+ .hamb{grid-column:1!important;grid-row:1!important;width:28px!important;flex-basis:28px!important}
+ .logo{grid-column:2!important;grid-row:1!important;width:100%!important;height:44px!important;max-width:100%!important}
+ .cart{grid-column:3!important;grid-row:1!important;justify-self:end!important}
+ .search{grid-column:1/-1!important;grid-row:2!important;display:flex!important;flex:initial!important;width:100%!important;max-width:100%!important;margin:0!important}
+ .search input{height:40px!important;font-size:14px!important;padding:8px 12px!important}
+ .hero{padding:0 10px!important;margin-top:8px!important}
+ .heroCard{min-height:0!important;border-radius:10px!important}
+ .ratingbox{position:static!important;display:flex!important;align-items:center!important;gap:6px!important;width:max-content!important;max-width:calc(100% - 20px)!important;margin:8px 10px 0 auto!important;padding:5px 8px!important}
+ .ratingbox strong{font-size:17px!important}
+ .ratingbox small{font-size:9px!important}
+ .heroText{padding:10px 12px 14px!important}
+ .heroText h1{font-size:clamp(22px,5.8vw,29px)!important;line-height:1.08!important;margin:5px 0!important}
+ .heroText p{font-size:12px!important;line-height:1.35!important;margin:6px 0 9px!important;max-width:100%!important}
+ .heroTagline{font-size:13px!important;max-width:100%!important;margin-bottom:6px!important}
+ .since{font-size:10px!important;padding:4px 7px!important}
+ .heroBtns{gap:6px!important}
+ .heroBtns .btn{flex:1 1 calc(50% - 6px)!important;min-width:0!important;min-height:36px!important;padding:7px 6px!important;font-size:10px!important;text-align:center!important}
+ .features{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;padding:8px 10px!important}
+ .feature{min-width:0!important;padding:8px 6px!important}
+ .feature b{font-size:10px!important;line-height:1.2!important}
+ .feature span{font-size:9px!important}
+ .section{padding:0 10px!important;margin-top:16px!important}
+ .cats#categoryGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+ #categoryGrid>.catWrap .catImage{display:none!important}
+ #categoryGrid>.catWrap .catArt{height:clamp(48px,16vw,68px)!important}
+ #categoryGrid>.catWrap .catArt>span{font-size:clamp(23px,7vw,34px)!important}
+ #categoryGrid>.catWrap .catContent{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:4px!important;padding:7px 5px!important}
+ #categoryGrid>.catWrap .catContent b{font-size:clamp(9px,2.6vw,12px)!important;line-height:1.18!important}
+ #categoryGrid>.catWrap .catContent small{font-size:9px!important}
+ #categoryGrid>.catWrap .catContent i{font-size:10px!important}
+ .shopControls{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}
+ .shopControls select,.shopControls button{width:100%!important;font-size:12px!important}
+ .shopControls .resultCount{grid-column:1/-1!important;margin-left:0!important}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ .product{min-width:0!important;padding:7px!important}
+ .prodImg{height:105px!important}
+ .product h3,.product .name{font-size:12px!important;overflow-wrap:anywhere!important}
+ .product .price{font-size:14px!important}
+ .mobileNav{display:flex!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;min-height:48px!important;padding:7px 3px calc(7px + env(safe-area-inset-bottom))!important;background:#102b45!important}
+ body{padding-bottom:calc(68px + env(safe-area-inset-bottom))!important}
+ .cartPanel{top:105px!important;max-height:calc(100dvh - 180px)!important}
+ #sourcePart{padding:8px!important}
+}
+@media(max-width:360px){
+ .head{padding:6px 8px!important;gap:5px 7px!important}
+ .cats#categoryGrid{gap:5px!important}
+ #categoryGrid>.catWrap .catContent{padding:6px 4px!important}
+ #categoryGrid>.catWrap .catArt{height:46px!important}
+ #categoryGrid>.catWrap .catArt>span{font-size:23px!important}
+ #categoryGrid>.catWrap .catContent b{font-size:9px!important}
+ #categoryGrid>.catWrap .catContent small{font-size:8px!important}
+ .heroText h1{font-size:22px!important}
+ .heroBtns .btn{font-size:9px!important;padding:6px 4px!important}
+}
+
+/* 2026-10-19: authoritative responsive layout override.
+   Earlier emergency CSS patches contained conflicting mobile grid/header rules.
+   Keep this final block last so the storefront cannot inherit the cramped 4-column
+   category layout or overlapping header/hero rules at phone widths. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+#home,main,.hero,.section,.features{min-width:0;max-width:100%}
+@media(min-width:901px){
+  .head{display:flex;flex-wrap:nowrap;align-items:center;gap:18px}
+  .head .search{position:static;order:initial;flex:1 1 420px;width:auto;min-width:0;max-width:620px;margin-left:auto}
+  .header{height:auto}
+  #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+  .products{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:900px){
+  .header{height:auto!important;padding-bottom:0!important}
+  .head{height:auto!important;min-height:0!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px 10px!important;padding:8px 12px!important}
+  .hamb{flex:0 0 28px!important;width:28px!important}
+  .logo{flex:0 1 auto!important;width:min(230px,calc(100vw - 150px))!important;height:48px!important;max-width:100%!important;object-fit:contain}
+  .cart{margin-left:auto!important;flex:0 0 auto!important}
+  .head .search,.search{position:relative!important;left:auto!important;right:auto!important;top:auto!important;order:4!important;flex:0 0 100%!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0!important}
+  .search input{width:100%!important;min-width:0!important;height:42px;padding:9px 14px!important}
+  .nav{display:none!important}
+  .hero,.section{width:100%;padding-left:12px!important;padding-right:12px!important}
+  .heroCard{height:auto!important;min-height:0!important;overflow:hidden!important}
+  .ratingbox{position:relative!important;inset:auto!important;transform:none!important;display:flex!important;align-items:center!important;gap:6px!important;width:max-content!important;max-width:calc(100% - 20px)!important;margin:10px 10px 0 auto!important;padding:7px 9px!important}
+  .ratingbox strong{font-size:19px!important}
+  .heroText{position:relative!important;padding:12px 14px 16px!important;max-width:100%!important}
+  .heroText h1{font-size:clamp(23px,6vw,32px)!important;line-height:1.08!important;overflow-wrap:anywhere}
+  .heroText p{font-size:13px!important;line-height:1.4!important;max-width:100%!important}
+  .heroBtns{display:flex!important;flex-wrap:wrap!important;gap:7px!important}
+  .heroBtns .btn{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:40px;padding:9px 11px!important;font-size:12px!important;white-space:normal;text-align:center}
+  .features{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding-left:12px!important;padding-right:12px!important}
+  #categoryGrid.cats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:stretch}
+  #categoryGrid>.catWrap{min-width:0!important;width:100%;height:auto!important}
+  #categoryGrid>.catWrap .catBtn{width:100%!important;min-width:0!important;height:100%!important;min-height:0!important;gap:7px!important;padding:9px!important;overflow:hidden}
+  #categoryGrid>.catWrap .catImage,#categoryGrid>.catWrap .catArt{width:100%!important;max-width:100%!important;height:88px!important;flex:0 0 auto!important;object-fit:contain}
+  #categoryGrid>.catWrap .catContent{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:4px!important;min-width:0!important;width:100%!important;min-height:0!important;padding:5px 2px!important;overflow-wrap:anywhere}
+  #categoryGrid>.catWrap .catContent b{font-size:clamp(10px,2.7vw,13px)!important;line-height:1.2!important;white-space:normal!important;overflow-wrap:anywhere}
+  #categoryGrid>.catWrap .catContent small,#categoryGrid>.catWrap .catContent i{font-size:10px!important;line-height:1.2!important;white-space:normal!important}
+  #categoryGrid .children{max-width:100%;overflow-wrap:anywhere}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .product{min-width:0!important;width:100%;padding:8px!important;overflow:hidden!important}
+  .prodImg{width:100%;height:110px!important}
+  .product h3,.product p,.product .price{overflow-wrap:anywhere;word-break:normal}
+  .product h3{font-size:12px!important;line-height:1.25!important}
+  .product .price{font-size:14px!important}
+  .product button{width:100%;white-space:normal;overflow-wrap:anywhere;font-size:11px!important;padding:8px 5px!important}
+  .detail{grid-template-columns:minmax(0,1fr)!important}
+}
+@media(max-width:380px){
+  .head{gap:6px 7px!important;padding:7px 8px!important}
+  .logo{width:calc(100vw - 125px)!important;height:42px!important}
+  .heroText{padding:10px 10px 13px!important}
+  .heroText h1{font-size:22px!important}
+  .heroBtns .btn{font-size:10px!important;padding:8px 7px!important}
+  #categoryGrid.cats{gap:6px!important}
+  #categoryGrid>.catWrap .catImage,#categoryGrid>.catWrap .catArt{height:70px!important}
+  #categoryGrid>.catWrap .catBtn{padding:7px!important}
+  .products{gap:6px!important}
+  .product{padding:6px!important}
+}
+
+/* 2026-10-19 emergency mobile overlap repair: one authoritative layout override */
+@media(max-width:700px){
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  .heroCard{height:auto!important;min-height:0!important;overflow:hidden!important}
+  .ratingbox{position:relative!important;top:auto!important;right:auto!important;transform:none!important;max-width:calc(100% - 24px);width:max-content;margin:10px auto 0!important}
+  .heroText{position:relative!important;inset:auto!important;max-width:100%!important;height:auto!important;padding:14px 16px 82px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;text-align:center!important}
+  .heroText h1{font-size:clamp(24px,6.2vw,34px)!important;line-height:1.08!important;margin:8px 0!important;overflow-wrap:anywhere}
+  .heroText p{max-width:100%!important;font-size:14px!important;line-height:1.4!important;margin:8px auto!important}
+  .heroText .heroTagline{max-width:100%!important;font-size:clamp(12px,3.4vw,16px)!important;line-height:1.3!important}
+  .heroBtns{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;width:100%!important;max-width:460px!important;margin-top:10px!important}
+  .heroBtns .btn{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;max-width:100%!important;min-width:0!important;min-height:44px!important;padding:9px 6px!important;font-size:clamp(10px,2.8vw,13px)!important;line-height:1.2!important;text-align:center!important;white-space:normal!important;overflow-wrap:anywhere!important}
+  .heroCard:after{left:4%!important;right:4%!important;bottom:8px!important;padding:9px 6px!important;font-size:clamp(9px,2.7vw,13px)!important;line-height:1.25!important;letter-spacing:0!important}
+  .cats,.products{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .catWrap,.catBtn,.product,.sectionTitle>*{min-width:0!important;max-width:100%!important}
+  .catBtn b,.product h3,.product button{overflow-wrap:anywhere!important;white-space:normal!important}
+  .mobileBuyBar,.mobileBuyBar[hidden]{display:none!important}
+  .mobileNav{left:0!important;right:0!important;bottom:0!important;z-index:100!important;padding-bottom:calc(8px + env(safe-area-inset-bottom))!important}
+  body{padding-bottom:calc(82px + env(safe-area-inset-bottom))!important}
+  .modal{padding:8px!important}
+  .modalBox{max-width:100%!important;max-height:calc(100dvh - 16px)!important;overflow:auto!important}
+}
+@media(max-width:359px){
+  .heroText{padding-left:12px!important;padding-right:12px!important}
+  .heroBtns{grid-template-columns:minmax(0,1fr)!important}
+  .cats,.products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+}
+</style>
+</head><body class="brightTheme"><div class="top"><div>CALL / WHATSAPP <b>074 4884 234</b> &nbsp; | &nbsp; 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban</div><div class="rating">★ Google Rating <b>4.7/5</b></div></div><header class="header"><div class="head"><div class="hamb">☰</div><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx logo"><div class="search"><input id="searchInput" placeholder="Search for products, brands, or part numbers..."></div><div class="cart">🛒<span class="badge">0</span></div></div></header><nav class="nav"><div class="navin"><a href="#home">HOME</a><a href="#categories">SHOP BY CATEGORY</a><a href="#featured">SPECIALS</a><a href="#services">SERVICES</a><a href="#contact">CONTACT US</a></div></nav><main id="home"><section class="hero"><div class="heroCard"><div class="ratingbox"><strong>4.7★</strong><small>GOOGLE RATING</small><small>★★★★★</small></div><div class="heroText"><div class="since">SINCE 2012</div><div class="heroTagline">Your 1 Stop Automotive shopping experience.</div><h1>QUALITY PARTS.<br><span>EXPERT SERVICE.</span><br>GET WIRED.</h1><p>Auto electrical spares, vehicle security, car audio, accessories and more — built around the needs of South African motorists.</p><div class="heroBtns"><a class="btn primary" href="#categories">SHOP NOW</a><button class="btn secondary partAction" type="button" onclick="openPartSearch()">PART SEARCH</button><button class="btn secondary partAction primaryAction" type="button" onclick="openPartRequest()">REQUEST A PART</button><a class="btn secondary" href="https://wa.me/27744884234">WHATSAPP US</a></div></div></div></section><section class="features" id="services"><div class="feature"><b>PRODUCT SPECIFIC WARRANTY</b><span>Warranty varies by product</span></div><div class="feature"><b>OEM QUALITY PARTS</b><span>Quality replacement products</span></div><div class="feature"><b>NATIONWIDE DELIVERY</b><span>Courier Guy or PEP PAXI</span></div><div class="feature"><b>FULL PAYMENT CONFIRMS ORDER</b><span>Secure ordering</span></div></section><section class="section" id="approved-services"><div class="sectionTitle"><h2>OUR SERVICES</h2></div><div class="servicesList"><div class="service">Auto Electrical Repairs</div><div class="service">Car Alarm</div><div class="service">Central Locking</div><div class="service">Car Audio</div><div class="service">Auto Electrical Spares & Accessories</div></div></section><section class="section" id="categories"><div class="sectionTitle"><h2>SHOP BY CATEGORY</h2><a id="allProductsLink">VIEW ALL →</a></div><div class="cats" id="categoryGrid"><div class="searchStatus">Loading categories…</div></div></section><section class="section" id="vehicleFinder">
+<div class="sectionTitle"><h2>OPTIONAL: FIND PARTS FOR YOUR VEHICLE</h2><span class="searchStatus">Optional for vehicle-specific parts only</span></div>
 <div class="vehicleFinder">
-<div class="vehicleIntro"><b>Find parts by vehicle</b><span>Choose the vehicle brand first, then the model. Product counts show how many confirmed catalogue mappings are available.</span></div>
+<div class="vehicleIntro"><b>Find parts by vehicle</b><span>Vehicle selection helps match vehicle-specific spares. It is not required to browse or request tools, workshop tools, camping and leisure goods, consumables, car audio, vehicle security, or general accessories.</span></div>
 <div class="vehicleFields">
 <label style="display:flex;flex-direction:column;gap:5px;flex:1"><small>VEHICLE BRAND / MAKE</small><select id="vehicleMake"><option value="">Select brand / make</option></select></label>
 <label style="display:flex;flex-direction:column;gap:5px;flex:1"><small>MODEL</small><select id="vehicleModel" disabled><option value="">Select model</option></select></label>
 <button id="vehicleSearch" class="primary" disabled>FIND PARTS</button><button id="vehicleClear" type="button">CLEAR</button>
 </div>
 <div id="vehicleStatus" class="searchStatus"></div>
-</div></section><section class="section" id="sourcePart" aria-label="Request a part dialog"><div class="sectionTitle"><div><h2>REQUEST A PART / SEARCH BY PICTURE</h2><span class="searchStatus">Upload a clear picture and tell us what you need.</span></div><button class="requestModalClose" type="button" onclick="closePartRequest()" aria-label="Close request dialog">CLOSE ×</button></div><div class="sourcePart"><div class="vehicleIntro"><b>Tell us what you need</b><span>Choose the vehicle and part type, describe the exact part, and upload up to 5 clear photos. We'll use the request to source availability and pricing from our supplier network.</span></div><form id="sourcePartForm"><div class="sourceGrid"><label>VEHICLE BRAND<select id="sourceBrand"><option value="">Select brand</option></select></label><label>MAKE<select id="sourceMake" disabled><option value="">Select make / model</option></select></label><label>MODEL / YEAR<select id="sourceModel" disabled><option value="">Select model / year</option></select></label><label>PART TYPE<select id="sourcePartType" required><option value="">Select part type</option><option>Auto Electrical</option><option>Sensor</option><option>Switch</option><option>Door</option><option>Lock / Barrel</option><option>Central Locking</option><option>Security / Alarm</option><option>Car Audio</option><option>Lighting</option><option>Starter / Alternator</option><option>Fuel System</option><option>Cooling / Fan</option><option>Trailer / Canopy</option><option>Marine</option><option>Accessories</option><option>Tools / Workshop</option><option>Other</option></select></label><label style="grid-column:1/-1">PART I NEED<input id="sourcePartNeeded" maxlength="200" placeholder="e.g. door barrel set" required></label><label style="grid-column:1/-1">ADDITIONAL DETAILS<textarea id="sourceNotes" maxlength="1000" placeholder="Optional: side, left/right, engine, body shape, part number, colour, etc."></textarea></label></div><div class="sourcePhotos"><b>UPLOAD UP TO 5 PHOTOS</b><small>Recommended: front, side and rear views. Clear photos help us identify the exact part. JPG, PNG or WebP, max 4MB each.</small><input id="sourcePhotos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div><button class="sourceSubmit" id="sourceSubmit" type="submit">SEND PART REQUEST</button><div id="sourceStatus" class="sourceStatus"></div></form></div></section><section class="section" id="featured"><div class="sectionTitle"><h2>SPECIALS</h2><a id="shopAllLink">VIEW ALL PRODUCTS →</a></div><div class="products" id="featuredGrid"><div class="searchStatus">Loading specials…</div></div></section><section class="section shopSection" id="shop"><div class="sectionTitle"><h2>ALL PRODUCTS</h2><span id="productCount" class="searchStatus"></span></div><div id="shopControls" class="shopControls" hidden><select id="sortProducts" aria-label="Sort products"><option value="relevance">Sort: Relevance</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="name">Name: A to Z</option><option value="stock">In Stock First</option></select><button type="button" data-stock-filter="all" class="active">All</button><button type="button" data-stock-filter="in">In Stock</button><span id="shopResultCount" class="resultCount"></span></div><div class="products" id="allProductsGrid"></div></section></main><footer class="footer" id="contact"><div class="foot"><div><b>GET WIRED AUTOWORX</b><br>Sound & Security • Auto Electrical<br>Best prices, best products, guaranteed.</div><div><b>CALL / WHATSAPP</b><br>074 4884 234<br>Pick up available</div><div><b>ADDRESS</b><br>29 Wattlebrook Crescent, Brookdale, Phoenix, Durban<br>Nationwide delivery via Courier Guy or PEP PAXI</div><div><b>Google Rating</b><br>4.7/5 ★★★★★</div><div><b>CUSTOMER INFORMATION</b><br><a href="returns-refunds.html">Returns & Refunds</a><br><a href="terms-and-conditions.html">Terms & Conditions</a></div></div></footer><div class="cartPanel" id="cartPanel"><button class="closeCart" id="closeCart">×</button><h2>YOUR CART</h2><div id="cartItems"></div><div class="cartTotal" id="cartTotal">Total: R0.00</div><a class="checkoutNow" href="checkout-v2.html">PROCEED TO CHECKOUT</a><p class="searchStatus">FULL PAYMENT CONFIRMS ORDER</p></div><div id="mobileBuyBar" class="mobileBuyBar" hidden><button class="mbCart" id="mbCart">ADD TO CART</button><button class="mbBuy" id="mbBuy">BUY NOW</button></div><div class="modal" id="productModal"><div class="modalBox"><button class="modalClose" id="modalClose">×</button><div id="detailContent"></div></div></div><nav class="mobileNav"><a href="#home"><b>⌂</b>Home</a><a href="#categories"><b>☰</b>Categories</a><a href="#featured"><b>★</b>Specials</a><a href="#" id="mobileCartLink"><b>🛒</b>Cart <span class="badge">0</span></a><a href="https://wa.me/27744884234"><b>◉</b>WhatsApp</a></nav><script>const SUPABASE_URL='https://ojytykqpvonxvepprgbh.supabase.co',SUPABASE_KEY='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w',headers={apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY};let products=[],categories=[],cart=JSON.parse(localStorage.getItem('gw_cart')||'[]');const money=v=>v==null?'Price on request':new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(v)),esc=v=>String(v??'').replace(/[&<>\"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[x])),text=v=>{if(!v)return'Not specified.';if(Array.isArray(v))return v.map(x=>typeof x==='string'?x:JSON.stringify(x)).join(', ');if(typeof v==='object')return Object.entries(v).map(([k,x])=>k+': '+(typeof x==='object'?JSON.stringify(x):x)).join(' • ');return String(v)};async function api(path){const r=await fetch(SUPABASE_URL+'/rest/v1/'+path,{headers});if(!r.ok)throw Error(await r.text());return r.json()}async function apiAll(path,pageSize=1000){let all=[],from=0;while(true){const r=await fetch(SUPABASE_URL+'/rest/v1/'+path,{headers:{...headers,Prefer:'count=exact',Range:from+'-'+(from+pageSize-1)}});if(!r.ok)throw Error(await r.text());const rows=await r.json();all=all.concat(rows);if(rows.length<pageSize)break;from+=pageSize}return all}function priceVerified(p){return Boolean(p&&Number(p.price)>0&&(!p.specifications||p.specifications.price_status!=='QUOTE_REQUIRED'))}function priceQuoteUrl(p){return 'https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, please confirm the current selling price and availability for '+p.name+' (SKU '+p.public_sku+').')}function card(p){const stock=Number(p.stock_quantity||0);const img=p.image_url?`<img src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='assets/gw-logo.png';this.classList.add('imgFallback')">`:'<img src="assets/gw-logo.png" alt="Get Wired AutoWorx" class="imgFallback">';const verified=priceVerified(p);const stockLabel=!verified?'Current price must be confirmed':(stock>0?(stock<=2?'Only '+stock+' left':'In stock'):'Stock to confirm');const fit=text(p.compatible_vehicles);const fitShort=fit&&fit!=='Not specified.'?fit.slice(0,120)+(fit.length>120?'…':''):'';const disabled='';return`<article class="product" data-id="${p.id}"><div class="prodImg">${img}</div><h3>${esc(p.name)}</h3><p class="sku">SKU: ${esc(p.public_sku)}</p>${fitShort?`<p class="sku">Fits: ${esc(fitShort)}</p>`:''}<div class="price">${verified?money(p.price):'Price on request'}</div><div class="stockBadge ${verified&&stock>0?'available':'confirm'}">${stockLabel}</div><button${disabled}>${!verified?'REQUEST PRICE':(stock>0?'ADD TO CART':'CHECK STOCK')}</button></article>`}let activeResults=[];let activeGrid='';let renderedCount=0;const RENDER_BATCH=60;function render(grid,list,append=false){activeResults=list;activeGrid=grid;if(!append)renderedCount=0;const el=document.getElementById(grid);if(!list.length){el.innerHTML='<div class="searchStatus">No products found.</div>';return}const end=Math.min(renderedCount+RENDER_BATCH,list.length);const html=list.slice(renderedCount,end).map(card).join('');el.innerHTML=append?el.innerHTML.replace(/<div class="loadMoreWrap">[\s\S]*?<\/div>$/,'')+html:html;renderedCount=end;if(renderedCount<list.length)el.insertAdjacentHTML('beforeend','<div class="loadMoreWrap"><button class="loadMore" data-load-more="1">LOAD MORE ('+(list.length-renderedCount)+' REMAINING)</button></div>')}function children(id){return categories.filter(c=>c.parent_id===id&&c.active)}function ids(id){let a=[id];children(id).forEach(c=>a=a.concat(ids(c.id)));return a}function categoryProductCount(id){return ids(id).reduce((total,cid)=>total+products.filter(p=>p.category_id===cid).length,0)}const HOME_CATEGORY_IDS=['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79','182423ec-ea46-43e4-bbe3-b8857b5a1583'];const HOME_CATEGORY_LABELS={'6cc56033-b0a9-4f25-b207-aeeb341a1c47':'Auto Electrical Spares','8e93d917-8fcc-4427-b364-cdad244f263f':'Vehicle Security','5ab55c53-eee3-41ce-ad48-04ad6df85181':'Car Audio & Entertainment','87982093-7d81-4f2e-a8e2-e20cdeef30d8':'Automotive Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc':'Marine Spares & Accessories','77297c18-67f6-452e-8918-c55d2ef6231a':'Tools, Hardware & Consumables','af2f8625-4f42-45e6-9f21-d571d7415893':'Camping, Leisure & Outdoors','63a71fd9-df45-43f0-b61d-ad622daa9d79':'Trailer & Canopy','182423ec-ea46-43e4-bbe3-b8857b5a1583':'4x4 Outdoor'};function catNode(c){const kids=children(c.id).filter(child=>categoryProductCount(child.id)>0),n=categoryProductCount(c.id),related=products.filter(p=>ids(c.id).includes(p.category_id)),hero=products.find(p=>p.category_id===c.id&&p.image_url&&p.image_url!='/assets/product-placeholder.svg')||related.find(p=>p.image_url&&p.image_url!='/assets/product-placeholder.svg')||products.find(p=>p.category_id===c.id)||related[0],img=hero?.image_url||'assets/gw-logo.png',label=HOME_CATEGORY_LABELS[c.id]||c.name;return`<div class="catWrap" data-filter="${c.id}"><button class="catBtn" data-filter="${c.id}"><span class="catImage"><img src="${esc(img)}" alt="${esc(label)}" loading="lazy" onerror="this.onerror=null;this.src='assets/gw-logo.png'"></span><span class="catContent"><b>${esc(label)}</b><small>${n} products</small><i>SHOP →</i></span></button><div class="children">${kids.map(catNode).join('')}${n?`<div class="child" data-filter="${c.id}">VIEW ${n} PRODUCTS<span>${n}</span></div>`:''}</div></div>`}let GW_STAGING_TAXONOMY_CACHE=null;
-async function loadStagingTaxonomy(){if(GW_STAGING_TAXONOMY_CACHE)return GW_STAGING_TAXONOMY_CACHE;const r=await fetch('assets/store-category-hierarchy.json',{cache:'no-store'});if(!r.ok)throw new Error('Staging category hierarchy unavailable');GW_STAGING_TAXONOMY_CACHE=await r.json();return GW_STAGING_TAXONOMY_CACHE}
-function renderCats(){const roots=[['Auto Electrical Spares','⚡'],['Vehicle Security','🔒'],['Car Audio & Entertainment','🔊'],['Automotive Accessories','🚘'],['Marine Spares & Accessories','⚓'],['Tools, Hardware & Consumables','🛠️'],['Camping, Leisure & Outdoors','🏕️'],['Trailer & Canopy','🚚']];document.getElementById('categoryGrid').innerHTML=roots.map(([label,glyph],i)=>'<div class="catWrap" data-gw-approved-root="true"><button class="catBtn" type="button" data-gw-root-index="'+i+'"><span class="catImage"><span class="catGlyph" aria-hidden="true">'+glyph+'</span></span><span class="gwRootContent"><b>'+esc(label)+'</b><small>Browse subcategories</small></span></button></div>').join('')}
-async function openGwCategoryLevel(rootIndex){const grid=document.getElementById('categoryGrid');try{const hierarchy=await loadStagingTaxonomy();const root=hierarchy.roots[rootIndex];if(!root)throw new Error('Approved category not found');grid.innerHTML='<div class="gw-category-level" style="grid-column:1/-1"><button type="button" class="gw-category-back" data-gw-back-roots="1">← All categories</button><h3>'+esc(root.label)+' — Subcategories</h3><p class="gw-taxonomy-note">Supplier category headings are still being checked. Product listings stay hidden until SKU, image, description and price verification is complete.</p><div class="cats gw-subcategory-grid">'+(root.subcategories||[]).map((sub,i)=>'<div class="catWrap"><button class="catBtn" type="button" data-gw-subcategory-root="'+rootIndex+'" data-gw-subcategory-index="'+i+'"><span class="gwRootContent"><b>'+esc(sub.label)+'</b><small>Browse this subcategory</small></span></button></div>').join('')+'</div></div>';grid.querySelector('[data-gw-back-roots]').addEventListener('click',renderCats);document.getElementById('categories').scrollIntoView({behavior:'smooth'});}catch(err){console.error(err);grid.innerHTML='<div class="searchStatus">Category headings could not be loaded. Please retry.</div>'}}
-async function openGwSubcategory(rootIndex,subcategoryIndex){const grid=document.getElementById('categoryGrid');try{const hierarchy=await loadStagingTaxonomy();const root=hierarchy.roots[rootIndex],sub=root&&root.subcategories[subcategoryIndex];if(!sub)throw new Error('Subcategory not found');grid.innerHTML='<div class="gw-category-level" style="grid-column:1/-1"><button type="button" class="gw-category-back" data-gw-back-subcategories="1">← '+esc(root.label)+'</button><h3>'+esc(sub.label)+'</h3><div class="gw-taxonomy-note"><b>Replacement catalogue verification in progress.</b><p>No legacy products are displayed here. Products will be listed after exact-SKU matches, relevant images, descriptions, category assignments and customer prices have been verified.</p></div></div>';grid.querySelector('[data-gw-back-subcategories]').addEventListener('click',()=>openGwCategoryLevel(rootIndex));document.getElementById('categories').scrollIntoView({behavior:'smooth'});}catch(err){console.error(err);grid.innerHTML='<div class="searchStatus">Subcategory could not be loaded. Please retry.</div>'}}let currentShopList=[];
+</div></section><section class="section" id="sourcePart" aria-label="Request a part dialog"><div class="sectionTitle"><div><h2>REQUEST A PART / SEARCH BY PICTURE</h2><span class="searchStatus">Upload a clear picture and tell us what you need.</span></div><button class="requestModalClose" type="button" onclick="closePartRequest()" aria-label="Close request dialog">CLOSE ×</button></div><div class="sourcePart"><div class="vehicleIntro"><b>Tell us what you need</b><span>Choose the vehicle and part type, describe the exact part, and upload up to 5 clear photos. We'll use the request to source availability and pricing from our supplier network.</span></div><form id="sourcePartForm"><div class="sourceGrid"><label>VEHICLE BRAND<select id="sourceBrand"><option value="">Select brand</option></select></label><label>MAKE<select id="sourceMake" disabled><option value="">Select make / model</option></select></label><label>MODEL / YEAR<select id="sourceModel" disabled><option value="">Select model / year</option></select></label><label>PART TYPE<select id="sourcePartType" required><option value="">Select part type</option><option>Auto Electrical</option><option>Sensor</option><option>Switch</option><option>Door</option><option>Lock / Barrel</option><option>Central Locking</option><option>Security / Alarm</option><option>Car Audio</option><option>Lighting</option><option>Starter / Alternator</option><option>Fuel System</option><option>Cooling / Fan</option><option>Trailer / Canopy</option><option>Marine</option><option>Accessories</option><option>Tools / Workshop</option><option>Other</option></select></label><label style="grid-column:1/-1">PART I NEED<input id="sourcePartNeeded" maxlength="200" placeholder="e.g. door barrel set" required></label><label style="grid-column:1/-1">ADDITIONAL DETAILS<textarea id="sourceNotes" maxlength="1000" placeholder="Optional: side, left/right, engine, body shape, part number, colour, etc."></textarea></label></div><div class="sourcePhotos"><b>UPLOAD UP TO 5 PHOTOS</b><small>Recommended: front, side and rear views. Clear photos help us identify the exact part. JPG, PNG or WebP, max 4MB each.</small><input id="sourcePhotos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div><button class="sourceSubmit" id="sourceSubmit" type="submit">SEND PART REQUEST</button><div id="sourceStatus" class="sourceStatus"></div></form></div></section><section class="section" id="featured"><div class="sectionTitle"><h2>SPECIALS</h2><a id="shopAllLink">VIEW ALL PRODUCTS →</a></div><div class="products" id="featuredGrid"><div class="searchStatus">Loading specials…</div></div></section><section class="section shopSection" id="shop"><div class="sectionTitle"><h2>ALL PRODUCTS</h2><span id="productCount" class="searchStatus"></span></div><div id="shopControls" class="shopControls" hidden><select id="sortProducts" aria-label="Sort products"><option value="relevance">Sort: Relevance</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="name">Name: A to Z</option><option value="stock">In Stock First</option></select><button type="button" data-stock-filter="all" class="active">All</button><button type="button" data-stock-filter="in">In Stock</button><span id="shopResultCount" class="resultCount"></span></div><div class="products" id="allProductsGrid"></div></section></main><footer class="footer" id="contact"><div class="foot"><div><b>GET WIRED AUTOWORX</b><br>Sound & Security • Auto Electrical<br>Best prices, best products, guaranteed.</div><div><b>CALL / WHATSAPP</b><br>074 4884 234<br>Pick up available</div><div><b>ADDRESS</b><br>29 Wattlebrook Crescent, Brookdale, Phoenix, Durban<br>Nationwide delivery via Courier Guy or PEP PAXI</div><div><b>Google Rating</b><br>4.7/5 ★★★★★</div><div><b>CUSTOMER INFORMATION</b><br><a href="returns-refunds.html">Returns & Refunds</a><br><a href="terms-and-conditions.html">Terms & Conditions</a></div></div></footer><div class="cartPanel" id="cartPanel"><button class="closeCart" id="closeCart">×</button><h2>YOUR CART</h2><div id="cartItems"></div><div class="cartTotal" id="cartTotal">Total: R0.00</div><a class="checkoutNow" href="checkout-v2.html">PROCEED TO CHECKOUT</a><p class="searchStatus">FULL PAYMENT CONFIRMS ORDER</p></div><div id="mobileBuyBar" class="mobileBuyBar" hidden><button class="mbCart" id="mbCart">ADD TO CART</button><button class="mbBuy" id="mbBuy">BUY NOW</button></div><div class="modal" id="productModal"><div class="modalBox"><button class="modalClose" id="modalClose">×</button><div id="detailContent"></div></div></div><nav class="mobileNav"><a href="#home"><b>⌂</b>Home</a><a href="#categories"><b>☰</b>Categories</a><a href="#featured"><b>★</b>Specials</a><a href="#" id="mobileCartLink"><b>🛒</b>Cart <span class="badge">0</span></a><a href="https://wa.me/27744884234"><b>◉</b>WhatsApp</a></nav><script>const SUPABASE_URL='https://ojytykqpvonxvepprgbh.supabase.co',SUPABASE_KEY='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w',headers={apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY};let products=[],categories=[],cart=JSON.parse(localStorage.getItem('gw_cart')||'[]');const money=v=>v==null?'Price on request':new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(v)),esc=v=>String(v??'').replace(/[&<>\"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[x])),text=v=>{if(!v)return'Not specified.';if(Array.isArray(v))return v.map(x=>typeof x==='string'?x:JSON.stringify(x)).join(', ');if(typeof v==='object')return Object.entries(v).map(([k,x])=>k+': '+(typeof x==='object'?JSON.stringify(x):x)).join(' • ');return String(v)};async function api(path){const r=await fetch(SUPABASE_URL+'/rest/v1/'+path,{headers});if(!r.ok)throw Error(await r.text());return r.json()}async function apiAll(path,pageSize=1000){let all=[],from=0;while(true){const r=await fetch(SUPABASE_URL+'/rest/v1/'+path,{headers:{...headers,Prefer:'count=exact',Range:from+'-'+(from+pageSize-1)}});if(!r.ok)throw Error(await r.text());const rows=await r.json();all=all.concat(rows);if(rows.length<pageSize)break;from+=pageSize}return all}function priceVerified(p){return Boolean(p&&Number(p.price)>0&&(!p.specifications||p.specifications.price_status!=='QUOTE_REQUIRED'))}function priceQuoteUrl(p){return 'https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, please confirm the current selling price and availability for '+p.name+' (SKU '+p.public_sku+').')}const PRODUCT_PLACEHOLDER='assets/product-image-pending.svg';function card(p){const stock=Number(p.stock_quantity||0);const img='<img src="'+PRODUCT_PLACEHOLDER+'" alt="Product image being verified" loading="lazy" class="productImagePlaceholder">';const verified=priceVerified(p);const stockLabel=!verified?'Current price must be confirmed':(stock>0?(stock<=2?'Only '+stock+' left':'In stock'):'Stock to confirm');const fit=text(p.compatible_vehicles);const fitShort=fit&&fit!=='Not specified.'?fit.slice(0,120)+(fit.length>120?'…':''):'';const disabled='';return`<article class="product" data-id="${p.id}"><div class="prodImg no-image" role="img" aria-label="Product image unavailable until exact model and usage permission are verified">${img}</div><h3>${esc(p.name)}</h3><p class="sku">SKU: ${esc(p.public_sku)}</p>${fitShort?`<p class="sku">Fits: ${esc(fitShort)}</p>`:''}<div class="price">${verified?money(p.price):'Price on request'}</div><div class="stockBadge ${verified&&stock>0?'available':'confirm'}">${stockLabel}</div><button${disabled}>${!verified?'REQUEST PRICE':(stock>0?'ADD TO CART':'CHECK STOCK')}</button></article>`}let activeResults=[];let activeGrid='';let renderedCount=0;const RENDER_BATCH=60;function render(grid,list,append=false){activeResults=list;activeGrid=grid;if(!append)renderedCount=0;const el=document.getElementById(grid);if(!list.length){el.innerHTML='<div class="searchStatus">No products found.</div>';return}const end=Math.min(renderedCount+RENDER_BATCH,list.length);const html=list.slice(renderedCount,end).map(card).join('');el.innerHTML=append?el.innerHTML.replace(/<div class="loadMoreWrap">[\s\S]*?<\/div>$/,'')+html:html;renderedCount=end;if(renderedCount<list.length)el.insertAdjacentHTML('beforeend','<div class="loadMoreWrap"><button class="loadMore" data-load-more="1">LOAD MORE ('+(list.length-renderedCount)+' REMAINING)</button></div>')}function children(id){return categories.filter(c=>c.parent_id===id&&c.active)}function ids(id){let a=[id];children(id).forEach(c=>a=a.concat(ids(c.id)));if(id==='af2f8625-4f42-45e6-9f21-d571d7415893'&&categories.some(c=>c.id==='182423ec-ea46-43e4-bbe3-b8857b5a1583'&&c.active))a=a.concat(ids('182423ec-ea46-43e4-bbe3-b8857b5a1583'));return [...new Set(a)]}function categoryProductCount(id){return ids(id).reduce((total,cid)=>total+products.filter(p=>p.category_id===cid).length,0)}const HOME_CATEGORY_IDS=['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79'];const HOME_CATEGORY_LABELS={'6cc56033-b0a9-4f25-b207-aeeb341a1c47':'Auto Electrical Spares','8e93d917-8fcc-4427-b364-cdad244f263f':'Vehicle Security','5ab55c53-eee3-41ce-ad48-04ad6df85181':'Car Audio & Entertainment','87982093-7d81-4f2e-a8e2-e20cdeef30d8':'Automotive Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc':'Marine Spares & Accessories','77297c18-67f6-452e-8918-c55d2ef6231a':'Tools, Hardware & Consumables','af2f8625-4f42-45e6-9f21-d571d7415893':'Camping, Leisure & Outdoors','63a71fd9-df45-43f0-b61d-ad622daa9d79':'Trailer & Canopy'};function homeChildren(id){const out=children(id);if(id==='af2f8625-4f42-45e6-9f21-d571d7415893'){const four=categories.find(c=>c.id==='182423ec-ea46-43e4-bbe3-b8857b5a1583'&&c.active);if(four&&!out.some(c=>c.id===four.id))out.push(four)}return out}function categoryArt(c){const label=HOME_CATEGORY_LABELS[c.id]||c.name;const art={'6cc56033-b0a9-4f25-b207-aeeb341a1c47':['⚡','Auto electrical'], '8e93d917-8fcc-4427-b364-cdad244f263f':['🔒','Vehicle security'],'5ab55c53-eee3-41ce-ad48-04ad6df85181':['♫','Car audio'],'87982093-7d81-4f2e-a8e2-e20cdeef30d8':['✦','Accessories'],'38b382c1-6ee0-4b3c-86ad-399094bc40cc':['⚓','Marine'],'77297c18-67f6-452e-8918-c55d2ef6231a':['🔧','Tools and hardware'],'af2f8625-4f42-45e6-9f21-d571d7415893':['⌁','Camping and outdoors'],'63a71fd9-df45-43f0-b61d-ad622daa9d79':['▰','Trailer and canopy'],'182423ec-ea46-43e4-bbe3-b8857b5a1583':['4×4','4x4 outdoor']};const item=art[c.id]||['⚙',label];return '<span class="catArt" aria-hidden="true"><span>'+item[0]+'</span></span>'}function catNode(c){const kids=homeChildren(c.id).filter(child=>categoryProductCount(child.id)>0),n=categoryProductCount(c.id),label=HOME_CATEGORY_LABELS[c.id]||c.name;return`<div class="catWrap" data-filter="${c.id}"><button class="catBtn" data-filter="${c.id}">${categoryArt(c)}<span class="catContent"><b>${esc(label)}</b><small>${n} products</small><i>SHOP →</i></span></button><div class="children">${kids.map(catNode).join('')}${n?`<div class="child" data-filter="${c.id}">VIEW ${n} PRODUCTS<span>${n}</span></div>`:''}</div></div>`}function renderCats(){const chosen=HOME_CATEGORY_IDS.map(id=>categories.find(c=>c.id===id&&c.active)).filter(c=>c&&categoryProductCount(c.id)>0);document.getElementById('categoryGrid').innerHTML=chosen.map(catNode).join('')}let currentShopList=[];
 let shopStockFilter='all';
 function applyShopControls(list,scroll=true){
  currentShopList=list.slice();
@@ -492,7 +1017,7 @@ function applyShopControls(list,scroll=true){
  render('allProductsGrid',out);
  if(scroll)document.getElementById('shop').scrollIntoView({behavior:'smooth'});
 }
-function show(list){document.getElementById('shop').classList.add('visible');shopStockFilter='all';document.querySelectorAll('[data-stock-filter]').forEach(b=>b.classList.toggle('active',b.dataset.stockFilter==='all'));applyShopControls(list,true)}function openProduct(p){const verified=priceVerified(p);const stock=Number(p.stock_quantity||0);const stockHtml=!verified?'<div class="detailStock confirm">Current selling price must be confirmed before purchase.</div>':stock>0?'<div class="detailStock available">'+(stock<=2?'Only '+stock+' left — order soon':'In stock')+'</div>':'<div class="detailStock confirm">Stock to confirm — contact us before ordering.</div>';const m=document.getElementById('productModal'),gallery=[p.image_url,...(Array.isArray(p.gallery_urls)?p.gallery_urls:(String(p.gallery_urls||'').split(',').map(x=>x.trim()).filter(Boolean)))].filter(Boolean).filter((x,i,a)=>a.indexOf(x)===i),img=gallery.length?`<img id="detailMainImg" src="${esc(gallery[0])}" alt="${esc(p.name)}" onerror="this.onerror=null;this.src='assets/gw-logo.png';this.classList.add('imgFallback')">`:'<img id="detailMainImg" src="assets/gw-logo.png" alt="Get Wired AutoWorx" class="imgFallback">',thumbs=gallery.length>1?'<div class="detailGallery">'+gallery.map((u,i)=>'<button class="detailThumb '+(i===0?'active':'')+'" data-gallery="'+esc(u)+'"><img src="'+esc(u)+'" alt=""></button>').join('')+'</div>':'',spec=p.specifications?`<div class="infoBlock"><b>SPECIFICATIONS</b><p>${esc(text(p.specifications))}</p></div>`:'',desc=p.description?`<div class="infoBlock"><b>PRODUCT INFORMATION</b><p>${esc(p.description)}</p></div>`:'',wa='https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, I am interested in '+p.name+' (SKU '+p.public_sku+'). '+(priceVerified(p)?'Price: '+money(p.price):'Please confirm the current selling price and availability.')),fitmentWa='https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, I need help confirming fitment for '+p.name+' (SKU '+p.public_sku+'). My vehicle is: ');const pWords=new Set(String(p.name||'').toLowerCase().split(/\\W+/).filter(w=>w.length>3));const pCompat=new Set((p.compatible_vehicles||[]).map(v=>String(v).toLowerCase()));const related=products.filter(x=>x.id!==p.id).map(x=>{const xWords=String(x.name||'').toLowerCase().split(/\\W+/).filter(w=>w.length>3);const shared=xWords.filter(w=>pWords.has(w)).length;const xCompat=new Set((x.compatible_vehicles||[]).map(v=>String(v).toLowerCase()));const fit=[...pCompat].filter(v=>xCompat.has(v)).length;const same=x.category_id===p.category_id;const score=shared*6+fit*8+(same?2:0)+(x.featured?1:0)+(Number(x.stock_quantity)>0?1:0);return{x,s:score}}).filter(x=>x.s>0).sort((a,b)=>b.s-a.s||String(a.x.name||'').localeCompare(String(b.x.name||''))).slice(0,3).map(({x})=>'<div class="miniProduct" data-related-id="'+x.id+'">'+(x.image_url?'<img src="'+esc(x.image_url)+'" alt="">':'')+'<b>'+esc(x.name)+'</b><div class="miniPrice">'+(priceVerified(x)?money(x.price):'Price on request')+'</div></div>').join('');document.getElementById('detailContent').innerHTML=`<div class="detail"><div><div class="detailImg">${img}</div>${thumbs}</div><div><h2>${esc(p.name)}</h2><div class="sku">SKU: ${esc(p.public_sku)}</div><div class="detailPrice">${verified?money(p.price):'Price on request'}</div>${stockHtml}<div class="infoBlock"><b>VEHICLE / APPLICATION INFORMATION</b><p>${esc(text(p.compatible_vehicles))}</p></div>${desc}${spec}<div class="infoBlock"><b>ORDER & DELIVERY</b><p>Pick up available. Nationwide delivery. Delivery is quoted separately based on parcel weight, size and destination. Packaging: R35.00 per item.</p></div>${related?'<div class="infoBlock"><b>RELATED PRODUCTS</b><div class="relatedProducts">'+related+'</div></div>':''}<div class="detailActions"><button id="detailAdd">${!verified?'REQUEST PRICE':(stock>0?'ADD TO CART':'CHECK STOCK')}</button><button id="detailBuy" ${stock>0&&verified?'':'disabled'}>${verified?'BUY NOW':'PRICE ON REQUEST'}</button><a href="${wa}" target="_blank" rel="noopener">WHATSAPP TO ORDER</a><a class="fitmentHelp" href="${fitmentWa}" target="_blank" rel="noopener">NOT SURE IT FITS? GET FITMENT ADVICE</a></div></div></div>`;document.querySelectorAll('.detailThumb').forEach(b=>b.onclick=()=>{const im=document.getElementById('detailMainImg');im.onerror=()=>{im.onerror=null;im.src='assets/gw-logo.png';im.classList.add('imgFallback')};im.src=b.dataset.gallery;document.querySelectorAll('.detailThumb').forEach(x=>x.classList.remove('active'));b.classList.add('active')});document.querySelectorAll('.miniProduct').forEach(b=>b.onclick=()=>{const x=products.find(z=>z.id===b.dataset.relatedId);if(x)openProduct(x)});document.getElementById('detailAdd').onclick=()=>{if(!verified){window.open(wa,'_blank','noopener');return}if(stock<=0){window.open(wa,'_blank','noopener');return}add(p.id);m.classList.remove('open');document.getElementById('mobileBuyBar').hidden=true};document.getElementById('detailBuy').onclick=()=>{if(!verified){window.open(wa,'_blank','noopener');return}if(stock<=0){window.open(wa,'_blank','noopener');return}add(p.id);m.classList.remove('open');document.getElementById('mobileBuyBar').hidden=true;document.getElementById('cartPanel').classList.add('open')};document.getElementById('mobileBuyBar').hidden=stock<=0||!verified;if(stock>0&&verified){document.getElementById('mbCart').onclick=()=>add(p.id);document.getElementById('mbBuy').onclick=()=>{add(p.id);m.classList.remove('open');document.getElementById('mobileBuyBar').hidden=true;document.getElementById('cartPanel').classList.add('open')}}m.classList.add('open')}function add(id){const p=products.find(x=>x.id===id);if(!p)return;if(!priceVerified(p)){window.open(priceQuoteUrl(p),'_blank','noopener');return}const stock=Number(p.stock_quantity||0);if(stock<=0)return;const h=cart.find(x=>x.id===id);if(h)h.qty=Math.min(stock,h.qty+1);else cart.push({id:p.id,name:p.name,public_sku:p.public_sku,price:Number(p.price),qty:1});localStorage.setItem('gw_cart',JSON.stringify(cart));cartRender();document.getElementById('cartPanel').classList.add('open')}function reconcileCart(){cart=cart.map(x=>{const p=products.find(y=>y.id===x.id);if(!p||Number(p.stock_quantity||0)<=0)return null;return{...x,name:p.name,public_sku:p.public_sku,price:Number(p.price),qty:Math.min(Math.max(1,Number(x.qty)||1),Number(p.stock_quantity))}}).filter(Boolean);localStorage.setItem('gw_cart',JSON.stringify(cart));}function cartRender(){let t=0;document.getElementById('cartItems').innerHTML=cart.length?cart.map((x,i)=>{const p=products.find(y=>y.id===x.id);const verified=priceVerified(p);if(verified)t+=x.price*x.qty;return`<div class="cartRow"><span><b>${esc(x.name)}</b><br><small>${esc(x.public_sku||'—')}</small><div class="qtyControls"><button data-cart-action="dec" data-cart-index="${i}" aria-label="Decrease quantity">−</button><span>${x.qty}</span><button data-cart-action="inc" data-cart-index="${i}" aria-label="Increase quantity">+</button><button class="removeItem" data-cart-action="remove" data-cart-index="${i}">REMOVE</button></div></span><b>${verified?money(x.price*x.qty):'Price on request'}</b></div>`}).join(''):'<p>Your cart is empty.</p>';document.getElementById('cartTotal').textContent=cart.some(x=>!priceVerified(products.find(y=>y.id===x.id)))?'Verified-price subtotal: '+money(t)+' · some items need a quote':'Total: '+money(t);document.querySelector('.badge').textContent=cart.reduce((n,x)=>n+x.qty,0)}function cartChange(i,a){const x=cart[i];if(!x)return;if(a==='inc'){const max=Number(products.find(p=>p.id===x.id)?.stock_quantity||0);if(max>0)x.qty=Math.min(max,x.qty+1)}else if(a==='dec')x.qty=Math.max(1,x.qty-1);else if(a==='remove')cart.splice(i,1);localStorage.setItem('gw_cart',JSON.stringify(cart));cartRender()}let vehicleIndex=[];
+function categoryRootId(id){const seen=new Set();while(id&&!seen.has(id)){seen.add(id);const c=categories.find(x=>x.id===id);if(!c||!c.parent_id)return id;id=c.parent_id}return id}function show(list){document.getElementById('shop').classList.add('visible');shopStockFilter='all';document.querySelectorAll('[data-stock-filter]').forEach(b=>b.classList.toggle('active',b.dataset.stockFilter==='all'));applyShopControls(list,true)}function openProduct(p){const fitmentRequired=categoryRootId(p.category_id)==='6cc56033-b0a9-4f25-b207-aeeb341a1c47';const verified=priceVerified(p);const stock=Number(p.stock_quantity||0);const stockHtml=!verified?'<div class="detailStock confirm">Current selling price must be confirmed before purchase.</div>':stock>0?'<div class="detailStock available">'+(stock<=2?'Only '+stock+' left — order soon':'In stock')+'</div>':'<div class="detailStock confirm">Stock to confirm — contact us before ordering.</div>';const m=document.getElementById('productModal'),gallery=[],img='<img id="detailMainImg" src="assets/product-image-pending.svg" alt="Product image being verified" class="imgFallback productImagePlaceholder">',thumbs='',spec=p.specifications?`<div class="infoBlock"><b>SPECIFICATIONS</b><p>${esc(text(p.specifications))}</p></div>`:'',desc=p.description?`<div class="infoBlock"><b>PRODUCT INFORMATION</b><p>${esc(p.description)}</p></div>`:'',wa='https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, I am interested in '+p.name+' (SKU '+p.public_sku+'). '+(priceVerified(p)?'Price: '+money(p.price):'Please confirm the current selling price and availability.')),fitmentWa='https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, I need help confirming fitment for '+p.name+' (SKU '+p.public_sku+'). My vehicle is: ');const pWords=new Set(String(p.name||'').toLowerCase().split(/\\W+/).filter(w=>w.length>3));const pCompat=new Set((p.compatible_vehicles||[]).map(v=>String(v).toLowerCase()));const related=products.filter(x=>x.id!==p.id).map(x=>{const xWords=String(x.name||'').toLowerCase().split(/\\W+/).filter(w=>w.length>3);const shared=xWords.filter(w=>pWords.has(w)).length;const xCompat=new Set((x.compatible_vehicles||[]).map(v=>String(v).toLowerCase()));const fit=[...pCompat].filter(v=>xCompat.has(v)).length;const same=x.category_id===p.category_id;const score=shared*6+fit*8+(same?2:0)+(x.featured?1:0)+(Number(x.stock_quantity)>0?1:0);return{x,s:score}}).filter(x=>x.s>0).sort((a,b)=>b.s-a.s||String(a.x.name||'').localeCompare(String(b.x.name||''))).slice(0,3).map(({x})=>'<div class="miniProduct" data-related-id="'+x.id+'"><img src="assets/product-image-pending.svg" alt="Product image being verified" class="productImagePlaceholder"><b>'+esc(x.name)+'</b><div class="miniPrice">'+(priceVerified(x)?money(x.price):'Price on request')+'</div></div>').join('');document.getElementById('detailContent').innerHTML=`<div class="detail"><div><div class="detailImg">${img}</div>${thumbs}</div><div><h2>${esc(p.name)}</h2><div class="sku">SKU: ${esc(p.public_sku)}</div><div class="detailPrice">${verified?money(p.price):'Price on request'}</div>${stockHtml}${fitmentRequired?'<div class="infoBlock"><b>VEHICLE / APPLICATION INFORMATION</b><p>'+esc(text(p.compatible_vehicles))+'</p></div>':''}${desc}${spec}<div class="infoBlock"><b>ORDER & DELIVERY</b><p>Pick up available. Nationwide delivery. Delivery is quoted separately based on parcel weight, size and destination. Packaging: R35.00 per item.</p></div>${related?'<div class="infoBlock"><b>RELATED PRODUCTS</b><div class="relatedProducts">'+related+'</div></div>':''}<div class="detailActions"><button id="detailAdd">${!verified?'REQUEST PRICE':(stock>0?'ADD TO CART':'CHECK STOCK')}</button><button id="detailBuy" ${stock>0&&verified?'':'disabled'}>${verified?'BUY NOW':'PRICE ON REQUEST'}</button><a href="${wa}" target="_blank" rel="noopener">WHATSAPP TO ORDER</a>${fitmentRequired?'<a class="fitmentHelp" href="'+fitmentWa+'" target="_blank" rel="noopener">NOT SURE IT FITS? GET FITMENT ADVICE</a>':''}</div></div></div>`;document.querySelectorAll('.detailThumb').forEach(b=>b.onclick=()=>{const im=document.getElementById('detailMainImg');im.onerror=()=>{im.onerror=null;im.src='assets/gw-logo.png';im.classList.add('imgFallback')};im.src=b.dataset.gallery;document.querySelectorAll('.detailThumb').forEach(x=>x.classList.remove('active'));b.classList.add('active')});document.querySelectorAll('.miniProduct').forEach(b=>b.onclick=()=>{const x=products.find(z=>z.id===b.dataset.relatedId);if(x)openProduct(x)});document.getElementById('detailAdd').onclick=()=>{if(!verified){window.open(wa,'_blank','noopener');return}if(stock<=0){window.open(wa,'_blank','noopener');return}add(p.id);m.classList.remove('open');document.getElementById('mobileBuyBar').hidden=true};document.getElementById('detailBuy').onclick=()=>{if(!verified){window.open(wa,'_blank','noopener');return}if(stock<=0){window.open(wa,'_blank','noopener');return}add(p.id);m.classList.remove('open');document.getElementById('mobileBuyBar').hidden=true;document.getElementById('cartPanel').classList.add('open')};document.getElementById('mobileBuyBar').hidden=stock<=0||!verified;if(stock>0&&verified){document.getElementById('mbCart').onclick=()=>add(p.id);document.getElementById('mbBuy').onclick=()=>{add(p.id);m.classList.remove('open');document.getElementById('mobileBuyBar').hidden=true;document.getElementById('cartPanel').classList.add('open')}}m.classList.add('open')}function add(id){const p=products.find(x=>x.id===id);if(!p)return;if(!priceVerified(p)){window.open(priceQuoteUrl(p),'_blank','noopener');return}const stock=Number(p.stock_quantity||0);if(stock<=0)return;const h=cart.find(x=>x.id===id);if(h)h.qty=Math.min(stock,h.qty+1);else cart.push({id:p.id,name:p.name,public_sku:p.public_sku,price:Number(p.price),qty:1});localStorage.setItem('gw_cart',JSON.stringify(cart));cartRender();document.getElementById('cartPanel').classList.add('open')}function reconcileCart(){cart=cart.map(x=>{const p=products.find(y=>y.id===x.id);if(!p||Number(p.stock_quantity||0)<=0)return null;return{...x,name:p.name,public_sku:p.public_sku,price:Number(p.price),qty:Math.min(Math.max(1,Number(x.qty)||1),Number(p.stock_quantity))}}).filter(Boolean);localStorage.setItem('gw_cart',JSON.stringify(cart));}function cartRender(){let t=0;document.getElementById('cartItems').innerHTML=cart.length?cart.map((x,i)=>{const p=products.find(y=>y.id===x.id);const verified=priceVerified(p);if(verified)t+=x.price*x.qty;return`<div class="cartRow"><span><b>${esc(x.name)}</b><br><small>${esc(x.public_sku||'—')}</small><div class="qtyControls"><button data-cart-action="dec" data-cart-index="${i}" aria-label="Decrease quantity">−</button><span>${x.qty}</span><button data-cart-action="inc" data-cart-index="${i}" aria-label="Increase quantity">+</button><button class="removeItem" data-cart-action="remove" data-cart-index="${i}">REMOVE</button></div></span><b>${verified?money(x.price*x.qty):'Price on request'}</b></div>`}).join(''):'<p>Your cart is empty.</p>';document.getElementById('cartTotal').textContent=cart.some(x=>!priceVerified(products.find(y=>y.id===x.id)))?'Verified-price subtotal: '+money(t)+' · some items need a quote':'Total: '+money(t);document.querySelector('.badge').textContent=cart.reduce((n,x)=>n+x.qty,0)}function cartChange(i,a){const x=cart[i];if(!x)return;if(a==='inc'){const max=Number(products.find(p=>p.id===x.id)?.stock_quantity||0);if(max>0)x.qty=Math.min(max,x.qty+1)}else if(a==='dec')x.qty=Math.max(1,x.qty-1);else if(a==='remove')cart.splice(i,1);localStorage.setItem('gw_cart',JSON.stringify(cart));cartRender()}let vehicleIndex=[];
 async function loadVehicleIndex(){
  try{
   const rows=await apiAll('vehicle_search_index?select=product_id,make,model&order=make.asc,model.asc');
@@ -542,10 +1067,10 @@ function search(q){
   show(scored);
  },180);
 }
-document.addEventListener('click',e=>{const lm=e.target.closest('[data-load-more]');if(lm){render(activeGrid,activeResults,true);return}const cb=e.target.closest('[data-cart-action]');if(cb){cartChange(Number(cb.dataset.cartIndex),cb.dataset.cartAction);return}const b=e.target.closest('.catBtn');if(b){e.preventDefault();if(b.dataset.gwRootIndex!==undefined){openGwCategoryLevel(Number(b.dataset.gwRootIndex));return}if(b.dataset.gwSubcategoryRoot!==undefined&&b.dataset.gwSubcategoryIndex!==undefined){openGwSubcategory(Number(b.dataset.gwSubcategoryRoot),Number(b.dataset.gwSubcategoryIndex));return}show(products.filter(p=>ids(b.dataset.filter).includes(p.category_id)));return}const f=e.target.closest('[data-filter]');if(f)show(products.filter(p=>ids(f.dataset.filter).includes(p.category_id)));const c=e.target.closest('.product');if(c&&!e.target.closest('button')){const p=products.find(x=>x.id===c.dataset.id);if(p)openProduct(p)}if(e.target.closest('.product button')){const p=products.find(x=>x.id===e.target.closest('.product').dataset.id);if(p){if(!priceVerified(p))window.open(priceQuoteUrl(p),'_blank','noopener');else if(Number(p.stock_quantity||0)>0)add(p.id);else window.open('https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, please confirm stock and availability for '+p.name+' (SKU '+p.public_sku+').'),'_blank','noopener')}}});document.getElementById('searchInput').addEventListener('input',e=>search(e.target.value));document.getElementById('shopAllLink').onclick=()=>show(products);document.getElementById('allProductsLink').onclick=()=>show(products);
+document.addEventListener('click',e=>{const lm=e.target.closest('[data-load-more]');if(lm){render(activeGrid,activeResults,true);return}const cb=e.target.closest('[data-cart-action]');if(cb){cartChange(Number(cb.dataset.cartIndex),cb.dataset.cartAction);return}const b=e.target.closest('.catBtn');if(b){e.preventDefault();show(products.filter(p=>ids(b.dataset.filter).includes(p.category_id)));return}const f=e.target.closest('[data-filter]');if(f)show(products.filter(p=>ids(f.dataset.filter).includes(p.category_id)));const c=e.target.closest('.product');if(c&&!e.target.closest('button')){const p=products.find(x=>x.id===c.dataset.id);if(p)openProduct(p)}if(e.target.closest('.product button')){const p=products.find(x=>x.id===e.target.closest('.product').dataset.id);if(p){if(!priceVerified(p))window.open(priceQuoteUrl(p),'_blank','noopener');else if(Number(p.stock_quantity||0)>0)add(p.id);else window.open('https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, please confirm stock and availability for '+p.name+' (SKU '+p.public_sku+').'),'_blank','noopener')}}});document.getElementById('searchInput').addEventListener('input',e=>search(e.target.value));document.getElementById('shopAllLink').onclick=()=>show(products);document.getElementById('allProductsLink').onclick=()=>show(products);
 document.getElementById('sortProducts').onchange=()=>applyShopControls(currentShopList,false);
 document.getElementById('shopControls').addEventListener('click',e=>{const b=e.target.closest('[data-stock-filter]');if(!b)return;shopStockFilter=b.dataset.stockFilter;document.querySelectorAll('[data-stock-filter]').forEach(x=>x.classList.toggle('active',x===b));applyShopControls(currentShopList,false)});document.querySelector('.cart').onclick=()=>document.getElementById('cartPanel').classList.toggle('open');
-document.getElementById('mobileCartLink').onclick=e=>{e.preventDefault();document.getElementById('cartPanel').classList.add('open')};document.getElementById('closeCart').onclick=()=>document.getElementById('cartPanel').classList.remove('open');document.getElementById('modalClose').onclick=()=>document.getElementById('productModal').classList.remove('open');renderCats();(async()=>{try{[products,categories]=await Promise.all([apiAll('products?select=id,category_id,name,slug,public_sku,description,price,stock_quantity,image_url,gallery_urls,specifications,compatible_vehicles,featured&active=eq.true&order=featured.desc,name.asc'),apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc')]);window.gwProducts=products;window.gwOpenProduct=openProduct;renderCats();render('featuredGrid',products.filter(p=>p.featured));loadVehicleIndex()}catch(e){console.error(e);document.getElementById('featuredGrid').innerHTML='<div class="searchStatus">Unable to load products right now.</div>'}cartRender()})();async function initPartSourceForm(){const b=document.getElementById('sourceBrand'),m=document.getElementById('sourceMake'),y=document.getElementById('sourceModel');if(!b)return;const rows=window.gwVehicleRows||[];const byBrand={};rows.forEach(r=>{if(!r.make||!r.model)return;(byBrand[r.make]??=new Set()).add(r.model)});b.innerHTML='<option value="">Select brand</option>'+Object.keys(byBrand).sort().map(x=>'<option>'+esc(x)+'</option>').join('');b.onchange=()=>{m.disabled=!b.value;y.disabled=true;m.innerHTML='<option value="">Select make / model</option>';y.innerHTML='<option value="">Select model / year</option>';if(!b.value)return;m.innerHTML='<option value="">Select make / model</option>'+[...byBrand[b.value]].sort().map(x=>'<option>'+esc(x)+'</option>').join('');m.disabled=false};m.onchange=()=>{y.disabled=!m.value;y.innerHTML='<option value="">Select model / year</option>';if(!m.value)return;const hay=products.filter(p=>{const s=(String(p.name||'')+' '+String(p.description||'')+' '+text(p.compatible_vehicles)).toLowerCase();return s.includes(b.value.toLowerCase())&&s.includes(m.value.toLowerCase())});const years=new Set();hay.forEach(p=>{const s=String(p.description||'')+' '+text(p.compatible_vehicles)+' '+String(p.name||'');(s.match(/\\b(19\\d{2}|20\\d{2})\\b/g)||[]).forEach(v=>years.add(v))});y.innerHTML='<option value="">Year not specified</option>'+[...years].sort().map(v=>'<option>'+v+'</option>').join('');y.disabled=false};document.getElementById('sourcePartForm').onsubmit=submitPartSourceRequest}async function submitPartSourceRequest(e){e.preventDefault();const status=document.getElementById('sourceStatus'),btn=document.getElementById('sourceSubmit'),files=[...document.getElementById('sourcePhotos').files];if(files.length>5){status.className='sourceStatus err';status.textContent='Please select a maximum of 5 photos.';return}for(const f of files){if(f.size>5*1024*1024||!/^image\/(jpeg|png|webp)$/.test(f.type)){status.className='sourceStatus err';status.textContent='Each photo must be JPG, PNG or WebP and no larger than 5MB.';return}}const id=crypto.randomUUID();btn.disabled=true;status.className='sourceStatus';status.textContent='Sending request…';try{const paths=[];for(let i=0;i<files.length;i++){const file=files[i],ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg',path=id+'/'+(i+1)+'.'+ext;const r=await fetch(SUPABASE_URL+'/storage/v1/object/part-source-requests/'+path,{method:'POST',headers:{...headers,'Content-Type':file.type,'x-upsert':'false'},body:file});if(!r.ok)throw Error('Photo '+(i+1)+' upload failed');paths.push(path)}const payload={id,vehicle_brand:document.getElementById('sourceBrand').value,vehicle_make:document.getElementById('sourceMake').value,vehicle_model:document.getElementById('sourceModel').value,part_category:document.getElementById('sourcePartType').value,part_needed:document.getElementById('sourcePartNeeded').value.trim(),notes:document.getElementById('sourceNotes').value.trim(),photo_paths:paths};const r=await fetch(SUPABASE_URL+'/rest/v1/part_source_requests',{method:'POST',headers:{...headers,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(payload)});if(!r.ok)throw Error('Request submission failed');status.className='sourceStatus ok';status.textContent='Request sent successfully. We will use your details and photos to source the part and pricing.';document.getElementById('sourcePartForm').reset();document.getElementById('sourceMake').disabled=true;document.getElementById('sourceModel').disabled=true}catch(err){status.className='sourceStatus err';status.textContent='We could not send the request. Please try again or WhatsApp us on 074 4884 234.'}finally{btn.disabled=false}}</script><script src="product-details.js"></script><div id="partSearchDialog" class="partSearchOverlay" role="dialog" aria-modal="true" aria-labelledby="partSearchTitle"><div class="partSearchBox"><div class="partSearchHead"><h2 id="partSearchTitle">SEARCH FOR A PART</h2><button class="partSearchClose" type="button" onclick="closePartSearch()" aria-label="Close search">×</button></div><p class="partSearchHint">Search by part name, public GW SKU, brand, part number or vehicle application.</p><div class="partSearchInput"><input id="partSearchQuery" type="search" placeholder="e.g. alternator, relay, VW Polo lock, GW-12345678" autocomplete="off"><button type="button" onclick="runPartSearch()">SEARCH</button></div><button class="pictureSearchBtn" type="button" onclick="openPartRequest(true)">📷 SEARCH BY PICTURE — UPLOAD A PHOTO</button><div class="aiPictureSearch"><label for="aiPartPhoto"><b>AI PICTURE IDENTIFICATION</b><small>Select one clear photo of the part. JPG, PNG or WebP, up to 4 MB. Your photo will be sent to our AI provider for analysis; results are suggestions only and do not guarantee exact identity or fitment.</small></label><input id="aiPartPhoto" type="file" accept="image/jpeg,image/png,image/webp"><button type="button" id="aiIdentifyPartBtn" onclick="identifyPartFromPicture()">IDENTIFY PART WITH AI</button><div id="aiPartStatus" class="partSearchHint" aria-live="polite"></div><div id="aiPartMatches" class="partSearchResults"></div></div><div id="partSearchResults" class="partSearchResults"><div class="partSearchEmpty">Enter a search term to see matching catalogue items.</div></div></div></div><script>
+document.getElementById('mobileCartLink').onclick=e=>{e.preventDefault();document.getElementById('cartPanel').classList.add('open')};document.getElementById('closeCart').onclick=()=>document.getElementById('cartPanel').classList.remove('open');document.getElementById('modalClose').onclick=()=>document.getElementById('productModal').classList.remove('open');(async()=>{try{[products,categories]=await Promise.all([apiAll('products?select=id,category_id,name,slug,public_sku,description,price,stock_quantity,image_url,gallery_urls,specifications,compatible_vehicles,featured&active=eq.true&order=featured.desc,name.asc'),apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc')]);window.gwProducts=products;window.gwOpenProduct=openProduct;renderCats();render('featuredGrid',products.filter(p=>p.featured));loadVehicleIndex()}catch(e){console.error(e);document.getElementById('featuredGrid').innerHTML='<div class="searchStatus">Unable to load products right now.</div>'}cartRender()})();async function initPartSourceForm(){const b=document.getElementById('sourceBrand'),m=document.getElementById('sourceMake'),y=document.getElementById('sourceModel');if(!b)return;const rows=window.gwVehicleRows||[];const byBrand={};rows.forEach(r=>{if(!r.make||!r.model)return;(byBrand[r.make]??=new Set()).add(r.model)});b.innerHTML='<option value="">Select brand</option>'+Object.keys(byBrand).sort().map(x=>'<option>'+esc(x)+'</option>').join('');b.onchange=()=>{m.disabled=!b.value;y.disabled=true;m.innerHTML='<option value="">Select make / model</option>';y.innerHTML='<option value="">Select model / year</option>';if(!b.value)return;m.innerHTML='<option value="">Select make / model</option>'+[...byBrand[b.value]].sort().map(x=>'<option>'+esc(x)+'</option>').join('');m.disabled=false};m.onchange=()=>{y.disabled=!m.value;y.innerHTML='<option value="">Select model / year</option>';if(!m.value)return;const hay=products.filter(p=>{const s=(String(p.name||'')+' '+String(p.description||'')+' '+text(p.compatible_vehicles)).toLowerCase();return s.includes(b.value.toLowerCase())&&s.includes(m.value.toLowerCase())});const years=new Set();hay.forEach(p=>{const s=String(p.description||'')+' '+text(p.compatible_vehicles)+' '+String(p.name||'');(s.match(/\\b(19\\d{2}|20\\d{2})\\b/g)||[]).forEach(v=>years.add(v))});y.innerHTML='<option value="">Year not specified</option>'+[...years].sort().map(v=>'<option>'+v+'</option>').join('');y.disabled=false};document.getElementById('sourcePartForm').onsubmit=submitPartSourceRequest}async function submitPartSourceRequest(e){e.preventDefault();const status=document.getElementById('sourceStatus'),btn=document.getElementById('sourceSubmit'),files=[...document.getElementById('sourcePhotos').files];if(files.length>5){status.className='sourceStatus err';status.textContent='Please select a maximum of 5 photos.';return}for(const f of files){if(f.size>5*1024*1024||!/^image\/(jpeg|png|webp)$/.test(f.type)){status.className='sourceStatus err';status.textContent='Each photo must be JPG, PNG or WebP and no larger than 5MB.';return}}const id=crypto.randomUUID();btn.disabled=true;status.className='sourceStatus';status.textContent='Sending request…';try{const paths=[];for(let i=0;i<files.length;i++){const file=files[i],ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg',path=id+'/'+(i+1)+'.'+ext;const r=await fetch(SUPABASE_URL+'/storage/v1/object/part-source-requests/'+path,{method:'POST',headers:{...headers,'Content-Type':file.type,'x-upsert':'false'},body:file});if(!r.ok)throw Error('Photo '+(i+1)+' upload failed');paths.push(path)}const payload={id,vehicle_brand:document.getElementById('sourceBrand').value,vehicle_make:document.getElementById('sourceMake').value,vehicle_model:document.getElementById('sourceModel').value,part_category:document.getElementById('sourcePartType').value,part_needed:document.getElementById('sourcePartNeeded').value.trim(),notes:document.getElementById('sourceNotes').value.trim(),photo_paths:paths};const r=await fetch(SUPABASE_URL+'/rest/v1/part_source_requests',{method:'POST',headers:{...headers,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(payload)});if(!r.ok)throw Error('Request submission failed');status.className='sourceStatus ok';status.textContent='Request sent successfully. We will use your details and photos to source the part and pricing.';document.getElementById('sourcePartForm').reset();document.getElementById('sourceMake').disabled=true;document.getElementById('sourceModel').disabled=true}catch(err){status.className='sourceStatus err';status.textContent='We could not send the request. Please try again or WhatsApp us on 074 4884 234.'}finally{btn.disabled=false}}</script><script src="product-details.js"></script><div id="partSearchDialog" class="partSearchOverlay" role="dialog" aria-modal="true" aria-labelledby="partSearchTitle"><div class="partSearchBox"><div class="partSearchHead"><h2 id="partSearchTitle">SEARCH FOR A PART</h2><button class="partSearchClose" type="button" onclick="closePartSearch()" aria-label="Close search">×</button></div><p class="partSearchHint">Search by part name, public GW SKU, brand, part number or vehicle application.</p><div class="partSearchInput"><input id="partSearchQuery" type="search" placeholder="e.g. alternator, relay, VW Polo lock, GW-12345678" autocomplete="off"><button type="button" onclick="runPartSearch()">SEARCH</button></div><button class="pictureSearchBtn" type="button" onclick="openPartRequest(true)">📷 SEARCH BY PICTURE — UPLOAD A PHOTO</button><div class="aiPictureSearch"><label for="aiPartPhoto"><b>AI PICTURE IDENTIFICATION</b><small>Select one clear photo of the part. JPG, PNG or WebP, up to 4 MB. Your photo will be sent to our AI provider for analysis; results are suggestions only and do not guarantee exact identity or fitment.</small></label><input id="aiPartPhoto" type="file" accept="image/jpeg,image/png,image/webp"><button type="button" id="aiIdentifyPartBtn" onclick="identifyPartFromPicture()">IDENTIFY PART WITH AI</button><div id="aiPartStatus" class="partSearchHint" aria-live="polite"></div><div id="aiPartMatches" class="partSearchResults"></div></div><div id="partSearchResults" class="partSearchResults"><div class="partSearchEmpty">Enter a search term to see matching catalogue items.</div></div></div></div><script>
 (function(){
  const overlay=document.getElementById('partSearchDialog'),input=document.getElementById('partSearchQuery'),results=document.getElementById('partSearchResults');
  const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
