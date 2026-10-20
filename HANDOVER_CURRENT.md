@@ -5,7 +5,7 @@ Updated: 2026-10-20 SAST
 - **Only approved storefront/reference:** https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
 - **Authoritative source commit:** `1a76108c7415ade3bab07461ac27af16ce2fa8f8` (the commit associated with the approved 20:56 reference deployment).
 - Owner explicitly directs that this exact approved source replaces the divergent recovery build; do not mix in, inherit, merge, or rebuild from other storefront variants.
-- The recovery branch `recovery/approved-preview-index-new` is being reset to the exact approved source commit so its tracked build tree matches that version, rather than keeping the partial restoration commits.
+- The recovery branch `recovery/approved-preview-index-new` was reset successfully to the exact approved source commit so its tracked build tree matches that version, rather than keeping the partial restoration commits.
 - Keep historical Git commits for traceability; “remove other versions from the build” means exclude them from the active source tree, not erase repository history.
 - This is a source-selection/handover correction, **not proof of a newly deployed preview**. Do not claim the branch URL has refreshed or visually passed until a deployment/check is evidenced.
 - Do not merge to `main`, change Axxess/DNS/production, or change payment/catalogue systems as part of this task. Existing production release HOLD remains in force.
@@ -20,14 +20,14 @@ Updated: 2026-10-20 SAST
 - Owner-correction record saved: `handover-runs/2026-10-20-owner-approved-preview-correction.md`, commit `f994e56ea749bd77e01fe68e29652f96414a43f2`.
 - Isolated restoration branch: `recovery/approved-preview-index-new`.
 - PR #64 open/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/64
-- Latest known PR head: `e2e51ccfde1f25c4cb5f0b6dba68b53124edc6f4`.
-- Restored `index-new.html` from approved source exactly; verified blob SHA `d274b0ffdaa0a1c45939933e308c4c65acb85554` (144,657 characters).
-- Restored `assets/product-image-pending.svg`, missing from main but referenced by approved HTML; verified blob SHA `d5d140d1a5045fa912cd2345e3d27e9e642a0ba9`.
-- `product-details.js` is identical at main and approved source: `46003d9dee01a4853ee835f30d6b4ca74d064ea6`.
+- The former partial-restoration heads (`e2e51cc...` and `e85e794...`) are superseded. The recovery branch now points directly to the approved source commit `1a76108c7415ade3bab07461ac27af16ce2fa8f8`.
+- Earlier partial file-by-file restoration work is superseded by the exact approved-source branch reset; do not treat the partial-restoration commits as the active build.
+
+
 - Detailed restoration log saved at `handover-runs/2026-10-20-controlled-approved-source-restoration.md`, commit `18374704f09a07b55b89b0bebf0cc09b9b769c3b`.
 
 ## Current status — be precise
-- PR #64 remains open and unmerged; no merge or production promotion.
+- PR #64 remains open and unmerged; its recovery branch has been reset to the approved source commit. Do not merge/promote merely because the source is now selected.
 - At last check, no Cloudflare preview comment/status was available for the new PR head. Preview deployment is unverified.
 - Browser inspection tool could not open the approved or recovery preview URLs; this is a tool limitation, not proof that the owner's URL is broken.
 - Approved HTML also references `assets/gw-logo.png`; its presence/content was not established by text-only file retrieval. Verify via repository tree or rendered preview.
