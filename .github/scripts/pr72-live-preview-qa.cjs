@@ -32,23 +32,23 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   const root=frame.locator('#categoryGrid > .catWrap > .catBtn').first();
   const rootId=await root.getAttribute('data-filter');
   await root.click();
-  await page.waitForURL(/category\.html\?id=/,{timeout:20000});
-  check('root_category_click_opens_individual_page',new URL(page.url()).pathname.endsWith('/category.html')&&new URL(page.url()).searchParams.get('id')===rootId,{url:page.url(),rootId});
+  await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
+  check('root_category_click_opens_individual_page',/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&new URL(page.url()).searchParams.get('id')===rootId,{url:page.url(),rootId});
   await page.waitForTimeout(3500);
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
   const child=page.locator('.card[href^="category.html?id="]').first();
   const direct=page.locator('.card[href^="products.html?category="]').first();
-  if(await child.count()){await child.click();await page.waitForURL(/(?:category\.html\?id=|products\.html\?category=)/,{timeout:20000});await page.waitForTimeout(1000)}
-  else if(await direct.count()){await direct.click();await page.waitForURL(/products\.html\?category=/,{timeout:20000})}
+  if(await child.count()){await child.click();await page.waitForURL(/(?:\/category(?:\.html)?\/?\?id=|\/products(?:\.html)?\/?\?category=)/,{timeout:20000});await page.waitForTimeout(1000)}
+  else if(await direct.count()){await direct.click();await page.waitForURL(/\/products(?:\.html)?\/?\?category=/,{timeout:20000})}
   else throw new Error('The live root category has no populated subcategory or product-list link');
   if(new URL(page.url()).pathname.endsWith('/category.html')) await page.waitForURL(/products\.html\?category=/,{timeout:20000});
-  check('subcategory_to_product_listing',new URL(page.url()).pathname.endsWith('/products.html')&&!!new URL(page.url()).searchParams.get('category'),{url:page.url()});
+  check('subcategory_to_product_listing',/(?:^|\/)products(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&!!new URL(page.url()).searchParams.get('category'),{url:page.url()});
   await page.locator('a[href^="product.html?id="]').first().waitFor({timeout:45000});
   await page.screenshot({path:path.join(OUT,'product-listing.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('product-listing.png');
   await page.locator('a[href^="product.html?id="]').first().click();
-  await page.waitForURL(/product\.html\?id=/,{timeout:20000});
+  await page.waitForURL(/\/product(?:\.html)?\/?\?id=/,{timeout:20000});
   await page.locator('#add').waitFor({timeout:45000});
   await page.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0},{timeout:45000});
   report.productImage=await page.locator('.hero img').evaluate(img=>({src:img.currentSrc||img.src,naturalWidth:img.naturalWidth,alt:img.alt}));
