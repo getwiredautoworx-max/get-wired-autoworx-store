@@ -43,33 +43,33 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   if(await chosenSubcategory.count()){
     const chosenLabel=(await chosenSubcategory.innerText()).trim();
     await chosenSubcategory.click();
-    await page.waitForURL(/(?:\/category(?:\.html)?\/?\?id=|\/products(?:\.html)?\/?\?category=)/,{timeout:20000});
-    check('subcategory_click_opens_its_own_route',/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(page.url()).pathname)||/(?:^|\/)products(?:\.html)?\/?$/.test(new URL(page.url()).pathname),{label:chosenLabel,url:page.url()});
+    await page.waitForURL(new RegExp('/category(?:\\.html)?/?\\?id=|/products(?:\\.html)?/?\\?category='),{timeout:20000});
+    check('subcategory_click_opens_its_own_route',new RegExp('(?:^|/)category(?:\\.html)?/?$').test(new URL(page.url()).pathname)||new RegExp('(?:^|/)products(?:\\.html)?/?$').test(new URL(page.url()).pathname),{label:chosenLabel,url:page.url()});
     await page.waitForTimeout(700);
   } else {
     check('subcategory_tile_available',false,{url:page.url()});
   }
   async function findProductListing(depth=0){
     const currentPath=new URL(page.url()).pathname;
-    if(/(?:^|\\/)products(?:\\.html)?\\/?$/.test(currentPath))return true;
+    if(new RegExp('(?:^|/)products(?:\\.html)?/?$').test(currentPath))return true;
     if(depth>=5)return false;
     const directLink=page.locator('.card[href^="products.html?category="]').first();
     if(await directLink.count()){
       await directLink.click();
-      await page.waitForURL(/\/products(?:\.html)?\/?\?category=/,{timeout:20000});
+      await page.waitForURL(new RegExp('/products(?:\\.html)?/?\\?category='),{timeout:20000});
       return true;
     }
     const nextCategory=page.locator('.card[href^="category.html?id="]').first();
     if(await nextCategory.count()){
       await nextCategory.click();
-      await page.waitForURL(/(?:\/category(?:\.html)?\/?\?id=|\/products(?:\.html)?\/?\?category=)/,{timeout:20000});
+      await page.waitForURL(new RegExp('/category(?:\\.html)?/?\\?id=|/products(?:\\.html)?/?\\?category='),{timeout:20000});
       await page.waitForTimeout(500);
       return findProductListing(depth+1);
     }
     return false;
   }
   const reachedProducts=await findProductListing();
-  check('subcategory_to_product_listing',reachedProducts&&/(?:^|\/)products(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&!!new URL(page.url()).searchParams.get('category'),{url:page.url()});
+  check('subcategory_to_product_listing',reachedProducts&&new RegExp('(?:^|/)products(?:\\.html)?/?$').test(new URL(page.url()).pathname)&&!!new URL(page.url()).searchParams.get('category'),{url:page.url()});
   await page.screenshot({path:path.join(OUT,'product-listing.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('product-listing.png');
   await page.locator('a[href^="product.html?id="]').first().waitFor({timeout:45000});
