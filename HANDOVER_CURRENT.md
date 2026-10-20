@@ -241,3 +241,11 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - The 320px browser run after the first badge adjustment still failed because increasing the cart button's right padding made the whole button extend to x=334. This was a regression introduced by that attempted fix; it has been corrected by restoring the original button padding and moving only the badge inside the button (`right:0`, reduced badge dimensions).
 - Latest code commit: `0d6893dc33e35c2086fff31a6b705aeeaaa6dd8c`. Await the next responsive browser run before calling the issue fixed.
 - Category browser checks are now meaningful and pass at 320/360/390/768/1440px with eight cards and no horizontal overflow. Product page must still pass at all widths.
+
+
+## 2026-10-20 — Responsive browser acceptance now passes; latest review preview deployed
+- Corrected the cart count badge positioning without widening the cart button. Latest responsive browser run `39429111752` completed successfully: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39429111752.
+- Verified in Playwright at 320, 360, 390, 768 and 1440px: category page rendered eight mock category cards, expected two-column mobile and three-column desktop layout, no horizontal overflow; product page retained two columns on phones and no horizontal overflow at all five sizes.
+- Latest Cloudflare review preview deployment `39429104958` completed successfully for design commit `0d6893dc33e35c2086fff31a6b705aeeaaa6dd8c`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39429104958. Wrangler-reported deployment URL: https://9119fd77.get-wired-autoworx-store.pages.dev/store. Branch alias: https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store.
+- PR #70 remains draft/open/unmerged. Pre-change backup remains `backup/store-before-banner-category-images-2026-10-20`. No production promotion, Axxess/DNS/payment change, stock edits, or supplier activity.
+- Owner visual approval still needed for the brighter hero text and category photography. The review deployment is non-production; launch remains HOLD until approval and remaining release gates are satisfied.
