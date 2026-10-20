@@ -30,7 +30,7 @@ async function installMocks(page){
     const cors={
       'access-control-allow-origin':'*',
       'access-control-allow-methods':'GET,HEAD,OPTIONS',
-      'access-control-allow-headers':'apikey,authorization,content-type,prefer,range,x-client-info',
+      'access-control-allow-headers':'apikey,authorization,content-type,prefer,range,x-client-info,accept-profile,content-profile',
       'access-control-max-age':'86400'
     };
     if(req.method()==='OPTIONS') return route.fulfill({status:204,headers:cors,body:''});
@@ -49,6 +49,7 @@ async function installMocks(page){
  try {
   const page=await browser.newPage({viewport:{width:1440,height:1000}});
   page.on('pageerror',e=>report.errors.push('pageerror: '+String(e)));
+  page.on('requestfailed',r=>report.errors.push('requestfailed: '+r.method()+' '+r.url()+' :: '+(r.failure()?.errorText||'unknown')));
   page.on('console',m=>{if(m.type()==='error')report.errors.push('console: '+m.text())});
   await installMocks(page);
   const response=await page.goto('http://127.0.0.1:4173/store.html',{waitUntil:'domcontentloaded',timeout:45000});
@@ -59,7 +60,7 @@ async function installMocks(page){
     return !!g && g.querySelectorAll(':scope > .catWrap > .catBtn').length > 0;
   }, {timeout:20000}).catch(async e => {
     const diagnostic=await page.frameLocator('#store').locator('body').innerText().catch(()=> 'iframe body unavailable');
-    throw new Error('Category grid did not render. iframe diagnostic: '+diagnostic.slice(0,1400)+'; cause: '+e.message);
+    throw new Error('Category grid did not render. iframe diagnostic: '+diagnostic.slice(0,1400)+'; browser errors: '+report.errors.slice(-12).join(' | ')+'; cause: '+e.message);
   });
   await page.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:5000});
   await page.waitForTimeout(800);
