@@ -39,7 +39,7 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   report.screenshots.push('category-page.png');
   const child=page.locator('.card[href^="category.html?id="]').first();
   const direct=page.locator('.card[href^="products.html?category="]').first();
-  if(await child.count()){await child.click();await page.waitForURL(/category\.html\?id=/,{timeout:20000});await page.waitForTimeout(1000)}
+  if(await child.count()){await child.click();await page.waitForURL(/(?:category\.html\?id=|products\.html\?category=)/,{timeout:20000});await page.waitForTimeout(1000)}
   else if(await direct.count()){await direct.click();await page.waitForURL(/products\.html\?category=/,{timeout:20000})}
   else throw new Error('The live root category has no populated subcategory or product-list link');
   if(new URL(page.url()).pathname.endsWith('/category.html')) await page.waitForURL(/products\.html\?category=/,{timeout:20000});
