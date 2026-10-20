@@ -2693,3 +2693,10 @@ This section supersedes older QA statements above where they conflict.
 - Responsive mocked browser run `39472118767` completed PASS; public SKU audit `39472118766` completed PASS. Cloudflare bot comment for workflow-only commit `0207ed5` still says build in progress, but the live branch alias served the updated category photo marker and all real image loads passed. The exact immutable deployment SHA is not fully reconciled; branch alias acceptance is verified for the category page.
 - PR #71 remains draft/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71. No production Supabase/catalogue/stock writes, supplier reconciliation, Axxess/DNS/payment, production deployment, or APK changes. Launch HOLD.
 - Next: run the same real-browser verification on homepage product cards inside the store iframe and confirm canonical product-image URLs remain intact in the rendered DOM. Keep neutral placeholders for products whose endpoint has no image.
+
+
+## 2026-10-20 — Continuation run 29 task start: live homepage product-image browser test
+- Start after reading all three handovers. Category-photo network/browser checks passed on the Cloudflare branch alias; PR #71 remains draft/unmerged.
+- Scope: use real Playwright/Chromium against the current branch preview alias and inspect product image loading inside `store.html`'s same-origin iframe. Verify that canonical per-product image URLs are preserved, that loaded images decode, and that missing assets resolve to neutral placeholders rather than blank slots.
+- Constraints: no merge, no production writes/catalogue/stock, no supplier reconciliation, no Axxess/DNS/payment, no APK changes. Do not make any further app changes unless test evidence shows a concrete issue.
+- Plan: extend the existing QA workflow to test the actual preview iframe, wait for the latest category source marker, check five rendered product images and their final src/natural dimensions, then record the outcome and remaining owner-acceptance gate.
