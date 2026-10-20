@@ -2383,3 +2383,11 @@ This section supersedes older QA statements above where they conflict.
 - **PR #68 regression decision:** not run. The available completed Playwright run proves a local static server is used by the PR #70 workflow, but no confirmed, already-available execution path was found to run that workflow against PR #68 without pushing/dispatching and potentially triggering a preview deployment. Therefore no category browser regression was attempted; root-click, subcategory drill-down, counts, browser-back, and vehicle-finder exemptions remain OPEN/unverified. No commit was pushed to either PR and no workflow was dispatched or retried.
 - **Safety:** no deployment/credit use, merge, production or live-data write, schema change, Axxess/DNS/payment change, catalogue/stock mutation, or supplier reconciliation. PR #68/#70 remain draft/unmerged; launch remains HOLD.
 - **Next safest action:** establish a verified local/isolated test execution route (with the PR #68 source and mocked Supabase responses) that cannot call deployment workflows; then run the navigation matrix and record actual output. If that route cannot be established, leave the gate open and request explicit owner authorization before any PR update that might trigger a preview.
+
+
+## 2026-10-20 — continuation run 15 (task-start)
+
+- **Owner request:** continue the PR #68 isolated Playwright-route task without interfering with desktop-agent tasks; identify useful independent work that can proceed in parallel.
+- **Scope:** inspect current PR #68/PR #70 metadata and repository test/workflow files read-only; identify whether a local, non-deploying Playwright route already exists and what independent tasks are safe to do alongside the desktop agent.
+- **Safety:** no pushes to PR branches, no workflow dispatch/retry, no Cloudflare/Netlify deployment or credits, no merge, no production/live-data/schema/Axxess/DNS/payment changes, and no catalogue/stock mutation. Preserve approved reference storefront and keep PRs draft/unmerged and launch HOLD.
+- **Verification plan:** use GitHub read-only inspection and existing workflow evidence only; if no safe local execution route can be established from current files/tools, leave browser regression gate open and document the exact blocker. Avoid editing files owned by the desktop agent.
