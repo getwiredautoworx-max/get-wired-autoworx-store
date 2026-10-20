@@ -17,6 +17,20 @@
   html body .img { height: 118px; }
   html body .cart { padding: 10px 11px; }
 }
+
+@media (max-width: 359px) {
+  html body #gwSourcePartButton {
+    right: 12px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+  html body #gwSourcePartButton a {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    text-align: center !important;
+  }
+}
 </style></head><body><header class="header"><div class="head"><button class="back" onclick="history.back()">← BACK</button><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx"><div class="search"><input id="topSearch" placeholder="Search products, brands, or part numbers..."></div><button class="cart" onclick="location.href='checkout-v2.html'">CART <span class="badge" id="badge">0</span></button></div></header><main class="wrap"><div class="crumb"><a href="store.html">Home</a> / <a id="categoryLink" href="category.html">Categories</a> / <span id="crumbName">Products</span></div><div class="title"><div><h1 id="heading">PRODUCTS</h1><p>Browse the products in this sub-category.</p></div><div class="count" id="count"></div></div><div class="tools"><input id="filter" placeholder="Filter this category..."><select id="sort"><option value="default">Sort: Recommended</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="name">Name A–Z</option></select></div><div class="grid" id="grid"><div class="empty">Loading products…</div></div></main><div class="toast" id="toast"></div><script>
 const SUPABASE_URL='https://ojytykqpvonxvepprgbh.supabase.co',KEY='sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w';const params=new URLSearchParams(location.search),category=params.get('category');let products=[],categoryName='Products';
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');const money=v=>new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR'}).format(Number(v||0));
