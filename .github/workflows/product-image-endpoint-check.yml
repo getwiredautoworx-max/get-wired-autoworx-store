@@ -19,7 +19,7 @@ permissions:
 jobs:
   image-source-and-network-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
 
@@ -99,6 +99,80 @@ jobs:
               if (response.status !== 200 || !type.startsWith('image/') || bytes.length < 100) {
                 throw new Error('Category photo failed validation: ' + photoId);
               }
+            }
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
+
+      - name: Install Playwright for real preview browser verification
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Verify latest branch preview photos and responsive grid in a real browser
+        env:
+          PREVIEW_BASE: https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const base = process.env.PREVIEW_BASE;
+          const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+          (async () => {
+            let currentHtml = '';
+            let current = false;
+            for (let attempt = 0; attempt < 18; attempt++) {
+              const response = await fetch(base + '/category.html?qa=' + Date.now(), { signal: AbortSignal.timeout(20000) });
+              currentHtml = await response.text();
+              if (response.status === 200 && currentHtml.includes('photo-1747711475650-b222ac557e58') &&
+                  currentHtml.includes('photo-1693344150104-5ffb54127eff')) {
+                current = true;
+                console.log(JSON.stringify({ previewSource: 'current candidate marker found', status: response.status, attempt: attempt + 1 }));
+                break;
+              }
+              console.log(JSON.stringify({ previewSource: 'waiting for latest Pages deployment', status: response.status, attempt: attempt + 1 }));
+              await sleep(10000);
+            }
+            if (!current) throw new Error('Branch preview did not serve the latest category-photo source marker; refusing to test a stale deployment.');
+            const browser = await chromium.launch({ headless: true });
+            try {
+              for (const width of [1440, 390]) {
+                const page = await browser.newPage({ viewport: { width, height: 900 } });
+                const failedImages = [];
+                page.on('response', response => {
+                  if (response.request().resourceType() === 'image' && response.status() >= 400) {
+                    failedImages.push({ url: response.url(), status: response.status() });
+                  }
+                });
+                const response = await page.goto(base + '/category.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+                if (!response || response.status() >= 400) throw new Error('Category page failed at viewport ' + width);
+                await page.waitForSelector('.card-art img', { timeout: 45000 });
+                await page.locator('.card-art img').evaluateAll(imgs => imgs.forEach(img => { img.loading = 'eager'; }));
+                await page.waitForFunction(() => {
+                  const imgs = [...document.querySelectorAll('.card-art img')];
+                  return imgs.length > 0 && imgs.every(img => img.complete);
+                }, null, { timeout: 60000 });
+                const result = await page.evaluate(() => {
+                  const grid = document.querySelector('#grid');
+                  const imgs = [...document.querySelectorAll('.card-art img')].map(img => ({
+                    alt: img.alt, src: img.currentSrc || img.src, width: img.naturalWidth, height: img.naturalHeight
+                  }));
+                  return {
+                    title: document.title,
+                    columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+                    cards: imgs.length,
+                    images: imgs
+                  };
+                });
+                console.log(JSON.stringify({ viewport: width, ...result, failedImages }));
+                if (!result.cards || result.images.some(img => img.width < 1 || img.height < 1)) {
+                  throw new Error('One or more category images did not decode at viewport ' + width);
+                }
+                if (width > 900 && result.columns !== 3) throw new Error('Desktop category grid is not three columns');
+                if (width <= 500 && result.columns !== 2) throw new Error('Mobile category grid is not two columns');
+                if (failedImages.length) throw new Error('Image HTTP errors found at viewport ' + width);
+                await page.close();
+              }
+            } finally {
+              await browser.close();
             }
           })().catch(error => { console.error(error); process.exit(1); });
           NODE
