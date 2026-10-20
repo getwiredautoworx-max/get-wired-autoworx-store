@@ -2268,3 +2268,13 @@ This section supersedes older QA statements above where they conflict.
 - Run scope: verify latest background workflow state; continue supplier-price evidence and the 38 scaling-defect triage; preserve the 107/107 October-verified rows, six October-source SKUs and nine asterisk-price quote-only/inactive rules; retain the 198-row manual category queue.
 - Safety boundaries: no live product/price/stock/category/active-flag writes, no deployment or release-credit use, no production job retry, no automatic category moves. Any generated reconciliation output remains `DO NOT IMPORT` until validated.
 - Next action: inspect the latest current handover and workflow state, then append each verified outcome immediately. Do not duplicate completed work or claim a retry until the resulting run/job status is confirmed.
+
+
+## 2026-10-20 15:27 SAST — continuation run 11 (task-start)
+
+- **Task status: IN PROGRESS.** Read the latest permanent handover on `main` first (blob SHA `7f0cab6cf91cea2794b26493b0b1726b54d088eb`).
+- Owner instruction for this run: pause/ignore ASC stock reconciliation until supplier finalization; continue other store tasks instead.
+- Immediate task-start append is being attempted before other project work. If this write is blocked, stop further repository work until the failure is recorded locally and report the blocker.
+- Scope after task-start record: inspect active draft PRs and current GitHub Actions/background workflow states; identify safe non-stock store tasks that can progress without production/live data changes; prefer existing staging QA or a focused draft improvement. Do not repeat completed work.
+- Safety: no live catalogue/price/stock/category/active-flag writes, no production or deployment job retries, no merge, no Axxess/DNS/payment changes, and no release-credit use without explicit owner approval. Stock/discontinuation reconciliation is deferred pending supplier finalization.
+- Record actual workflow outcomes and next actions in the permanent handover immediately when verified. Monitoring is scheduled, not continuous.
