@@ -328,3 +328,9 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - No safe, already-available way to execute the category navigation matrix without potentially triggering a deployment was confirmed. No browser regression was run; root clicks, subcategory drill-down, counts, browser-back and vehicle-finder exemptions remain OPEN/unverified. No code was pushed and no workflow was dispatched/retried.
 - No deployment/credit use, merge, production/Axxess/DNS/payment change, Supabase write/schema change, catalogue/stock mutation, or supplier reconciliation. PR #68/#70 remain draft/unmerged; launch remains HOLD.
 - Next action: establish a confirmed isolated local Playwright route using PR #68 source and mocked Supabase responses; if not possible, keep the gate open and obtain owner authorization before any PR update that could trigger a preview deployment. Detailed run-14 evidence is in `AI_HANDOVER_PERMANENT.md`.
+
+
+### Validation update — SHA `9698f4c0f3c117cafb01b2c75b77197d2705b517`
+- Isolated review preview deployment succeeded: [workflow run 39444021237](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39444021237). Exact deployment URL: https://e7a282d6.get-wired-autoworx-store.pages.dev/store; review alias: https://review-70.get-wired-autoworx-store.pages.dev/store.
+- Responsive browser acceptance succeeded: [workflow run 39444031816](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39444031816). Public SKU exposure audit succeeded: [workflow run 39444031702](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39444031702).
+- Important limitation: responsive automation tests layout with mocked catalogue responses and does not verify the relevance of each external photo. Owner visual review of the actual subcategory grid is still required; if any tag-based image is irrelevant, replace it with a vetted fixed image before closing the task.
