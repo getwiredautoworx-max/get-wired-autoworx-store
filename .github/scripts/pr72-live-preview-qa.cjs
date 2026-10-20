@@ -37,13 +37,41 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   await page.waitForTimeout(3500);
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
-  const child=page.locator('.card[href^="category.html?id="]').first();
-  const direct=page.locator('.card[href^="products.html?category="]').first();
-  if(await child.count()){await child.click();await page.waitForURL(/(?:\/category(?:\.html)?\/?\?id=|\/products(?:\.html)?\/?\?category=)/,{timeout:20000});await page.waitForTimeout(1000)}
-  else if(await direct.count()){await direct.click();await page.waitForURL(/\/products(?:\.html)?\/?\?category=/,{timeout:20000})}
-  else throw new Error('The live root category has no populated subcategory or product-list link');
-  if(/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(page.url()).pathname)) await page.waitForURL(/\/products(?:\.html)?\/?\?category=/,{timeout:20000});
-  check('subcategory_to_product_listing',/(?:^|\/)products(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&!!new URL(page.url()).searchParams.get('category'),{url:page.url()});
+  const batterySubcategory=page.locator('.card[href^="category.html?id="]').filter({hasText:/BATTERY/i}).first();
+  const firstSubcategory=page.locator('.card[href^="category.html?id="]').first();
+  const chosenSubcategory=await batterySubcategory.count()?batterySubcategory:firstSubcategory;
+  if(await chosenSubcategory.count()){
+    const chosenLabel=(await chosenSubcategory.innerText()).trim();
+    await chosenSubcategory.click();
+    await page.waitForURL(/(?:\\/category(?:\\.html)?\\/?\\?id=|\\/products(?:\\.html)?\\/?\\?category=)/,{timeout:20000});
+    check('subcategory_click_opens_its_own_route',/(?:^|\\/)category(?:\\.html)?\\/?$/.test(new URL(page.url()).pathname)||/(?:^|\\/)products(?:\\.html)?\\/?$/.test(new URL(page.url()).pathname),{label:chosenLabel,url:page.url()});
+    await page.waitForTimeout(700);
+  } else {
+    check('subcategory_tile_available',false,{url:page.url()});
+  }
+  async function findProductListing(depth=0){
+    const currentPath=new URL(page.url()).pathname;
+    if(/(?:^|\\/)products(?:\\.html)?\\/?$/.test(currentPath))return true;
+    if(depth>=5)return false;
+    const directLink=page.locator('.card[href^="products.html?category="]').first();
+    if(await directLink.count()){
+      await directLink.click();
+      await page.waitForURL(/\\/products(?:\\.html)?\\/?\\?category=/,{timeout:20000});
+      return true;
+    }
+    const nextCategory=page.locator('.card[href^="category.html?id="]').first();
+    if(await nextCategory.count()){
+      await nextCategory.click();
+      await page.waitForURL(/(?:\\/category(?:\\.html)?\\/?\\?id=|\\/products(?:\\.html)?\\/?\\?category=)/,{timeout:20000});
+      await page.waitForTimeout(500);
+      return findProductListing(depth+1);
+    }
+    return false;
+  }
+  const reachedProducts=await findProductListing();
+  check('subcategory_to_product_listing',reachedProducts&&/(?:^|\\/)products(?:\\.html)?\\/?$/.test(new URL(page.url()).pathname)&&!!new URL(page.url()).searchParams.get('category'),{url:page.url()});
+  await page.screenshot({path:path.join(OUT,'product-listing.png'),fullPage:true}).catch(()=>{});
+  report.screenshots.push('product-listing.png');
   await page.locator('a[href^="product.html?id="]').first().waitFor({timeout:45000});
   await page.screenshot({path:path.join(OUT,'product-listing.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('product-listing.png');
