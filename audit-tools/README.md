@@ -28,3 +28,8 @@ The output is a CSV decision ledger plus a JSON summary.
 ## Current limitation
 
 No complete, current ASC stock/status feed was found in the available project context. Therefore no real SKU has been labelled discontinued or out of stock by this commit, and no live catalogue record has been changed.
+
+
+## Automated live audit
+
+The separate `asc_live_status_audit.py` uses the public ASC WooCommerce Store API and the storefront's public Supabase publishable key, which is constrained by RLS to active public products. It reads but never writes either system. The GitHub Actions workflow runs on the related pull-request changes and publishes a CSV + JSON report artifact for seven days. The crawl is paginated, rate-limited, and bounded to 250 pages. If the public endpoint denies or limits access, the job fails safely rather than attempting login or bypassing restrictions.
