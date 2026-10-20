@@ -13,7 +13,7 @@
     lighting:'cfd3e001-9292-459f-b0e5-9502f160eb5c',
     'tools-workshop':'77297c18-67f6-452e-8918-c55d2ef6231a',
     'camping-outdoors':'af2f8625-4f42-45e6-9f21-d571d7415893',
-    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79',
+    'trailer-canopy':'63a71fd9-df45-43f0-b61d-ad622daa9d79','spare-parts':'68e6ada2-ddf8-4327-844f-771d92db54bd',
     '4x4-outdoor':'182423ec-ea46-43e4-bbe3-b8857b5a1583',
     'marine-spares':'38b382c1-6ee0-4b3c-86ad-399094bc40cc'
   };
@@ -27,6 +27,7 @@
     'TOOLS, HARDWARE & CONSUMABLES':'tools-workshop',
     'CAMPING, LEISURE & OUTDOORS':'camping-outdoors',
     'TRAILER & CANOPY':'trailer-canopy',
+    'SPARE PARTS':'spare-parts',
     '4X4 OUTDOOR':'4x4-outdoor',
     'CAR ALARMS & IMMOBILIZERS':'alarms-security',
     'CAR ALARMS & IMMOBILISERS':'alarms-security',
@@ -47,7 +48,7 @@
     const slug=ALIASES[key];
     const id=slug && CATEGORY_IDS[slug];
     if(!id)return;
-    window.open(BASE+'?id='+encodeURIComponent(id),'_blank','noopener');
+    window.top.location.href=BASE+'?id='+encodeURIComponent(id);
   }
   function categoryIllustration(label){
     const key=clean(label);
@@ -62,16 +63,7 @@
     const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#122c45"/><stop offset="1" stop-color="#030a12"/></linearGradient><radialGradient id="glow"><stop stop-color="'+found[2]+'" stop-opacity=".38"/><stop offset="1" stop-color="'+found[2]+'" stop-opacity="0"/></radialGradient></defs><rect width="640" height="300" rx="22" fill="url(#bg)"/><ellipse cx="320" cy="145" rx="230" ry="145" fill="url(#glow)"/><path d="M25 258H615" stroke="'+found[2]+'" stroke-opacity=".6" stroke-width="2"/><circle cx="320" cy="130" r="83" fill="#07111e" stroke="'+found[2]+'" stroke-width="3"/><circle cx="320" cy="130" r="70" fill="none" stroke="#fff" stroke-opacity=".12"/><text x="320" y="159" text-anchor="middle" font-family="Arial,sans-serif" font-size="88" fill="#fff">'+found[1]+'</text><text x="320" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="2" fill="#eaf4ff">GET WIRED AUTOWORX</text></svg>';
     return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
   }
-  function installCategoryIllustrations(frame){
-    try{
-      const d=frame.contentDocument;if(!d)return;
-      d.querySelectorAll('#categoryGrid .catWrap').forEach(w=>{
-        const label=w.querySelector('.catContent b')?.textContent?.trim()||w.querySelector('.catBtn b')?.textContent?.trim()||'';
-        const img=w.querySelector('.catImage img');if(!img)return;
-        if(!img.dataset.gwCategoryIllustration){img.dataset.gwCategoryOriginal=img.getAttribute('src')||'';img.dataset.gwCategoryIllustration='1';img.src=categoryIllustration(label);img.alt=label+' category illustration';img.style.objectFit='cover';}
-      });
-    }catch(err){console.warn('GW category illustrations:',err);}
-  }
+  // Keep real category photography intact; do not replace image sources with generated illustrations.
   function installCategoryPresentation(frame){
     try{
       const d=frame.contentDocument;
@@ -117,7 +109,7 @@
         }
       `;
       d.head.appendChild(style);
-      installCategoryIllustrations(frame);
+
     }catch(err){console.warn('GW category presentation:',err);}
   }
   function install(frame){
@@ -126,7 +118,7 @@
       if(!d || d.__gwCategoryBridge)return;
       d.__gwCategoryBridge=true;
       installCategoryPresentation(frame);
-      installCategoryIllustrations(frame);
+
       d.addEventListener('click',function(e){
         const btn=e.target.closest('.catBtn');
         if(!btn)return;
@@ -145,6 +137,6 @@
     installCategoryPresentation(frame);
     install(frame);
     frame.addEventListener('load',function(){setTimeout(function(){install(frame)},0)});
-    setInterval(function(){install(frame);installCategoryIllustrations(frame)},1500);
+    setInterval(function(){install(frame);/* real category photography is preserved; no generated art override */},1500);
   };
 })();

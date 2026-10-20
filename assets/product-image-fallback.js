@@ -35,6 +35,13 @@
         var sku = skuFrom(scope);
         var urls = localUrls(sku);
         if (!urls.length) return;
+        // Respect the canonical per-product image endpoint and explicit neutral placeholders.
+        // Replacing these with a guessed local SKU path would hide valid server-side supplier-SKU fallback images.
+        if (existing) {
+          var source = existing.getAttribute('src') || '';
+          if (/\/functions\/v1\/product-image\?sku=/i.test(source) ||
+              /product-placeholder\.svg/i.test(source)) return;
+        }
         // A neutral placeholder is intentional until exact SKU/model and image-use rights are verified.
         // Never replace it with a local catalogue image that has not passed that review.
         if (existing && (existing.classList.contains('productImagePlaceholder') ||

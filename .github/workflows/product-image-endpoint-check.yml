@@ -1,0 +1,337 @@
+name: Storefront image, category navigation, and source QA
+
+on:
+  pull_request:
+    branches:
+      - recovery/approved-preview-index-new
+    paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'products.html'
+      - 'product.html'
+      - 'category-navigation.js'
+      - 'assets/product-image-fallback.js'
+      - '.github/workflows/product-image-endpoint-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  image-source-and-network-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate inline JavaScript syntax and image-source guards
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const files = ['index-new.html', 'category.html', 'products.html', 'product.html'];
+          let scriptsChecked = 0;
+          for (const file of files) {
+            const html = fs.readFileSync(file, 'utf8');
+            for (const [index, match] of [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].entries()) {
+              if (/\bsrc\s*=/.test(match[1])) continue;
+              try { new Function(match[2]); scriptsChecked++; }
+              catch (error) { throw new Error(file + ' inline script ' + index + ': ' + error.message); }
+            }
+          }
+          const home = fs.readFileSync('index-new.html', 'utf8');
+          const listing = fs.readFileSync('products.html', 'utf8');
+          const detail = fs.readFileSync('product.html', 'utf8');
+          const category = fs.readFileSync('category.html', 'utf8');
+          const fallback = fs.readFileSync('assets/product-image-fallback.js', 'utf8');
+          const bridge = fs.readFileSync('category-navigation.js', 'utf8');
+          const checks = [
+            ['homepage cards use product image_url', /esc\(p\.image_url\|\|PRODUCT_PLACEHOLDER\)/.test(home)],
+            ['homepage category cards link to category pages', home.includes('href="category.html?id=${encodeURIComponent(c.id)}" target="_top"')],
+            ['homepage category clicks preserve native navigation', home.includes("const b=e.target.closest('.catBtn');if(b)return;") && !home.includes("show(products.filter(p=>ids(b.dataset.filter).includes(p.category_id)))")],
+            ['homepage exposes the Spare Parts root', home.includes("'68e6ada2-ddf8-4327-844f-771d92db54bd':'Spare Parts'")],
+            ['category bridge maps the Spare Parts root', bridge.includes("'spare-parts':'68e6ada2-ddf8-4327-844f-771d92db54bd'") && bridge.includes("'SPARE PARTS':'spare-parts'")],
+            ['product listing uses product image_url', /esc\(p\.image_url\|\|/.test(listing)],
+            ['product detail uses product image_url', /esc\(p\.image_url\|\|/.test(detail)],
+            ['iframe fallback preserves canonical endpoint', fallback.includes('product-image') && fallback.includes('functions')],
+            ['iframe fallback preserves neutral placeholder', fallback.includes('product-placeholder')],
+            ['category bridge JavaScript parses', (()=>{try{new Function(bridge);return true;}catch(error){console.error('category-navigation.js syntax:',error.message);return false;}})()],
+            ['homepage category snapshot fallback keeps root tiles available', home.includes('categorySnapshotCategories.filter(c=>catIds.has(c.id))') && home.includes('.filter(Boolean);')],
+            ['category bridge does not call generated illustration override', !/installCategoryIllustrations\(frame\);/.test(bridge)],
+            ['security category uses key/remote photo', category.includes('photo-1693344150104-5ffb54127eff')],
+            ['trailer category uses towing photo', category.includes('photo-1747711475650-b222ac557e58')],
+            ['accessories category uses interior/accessory photo', category.includes('photo-1626966473515-71dc32f2aedd')]
+          ];
+          for (const [name, pass] of checks) {
+            console.log((pass ? 'PASS ' : 'FAIL ') + name);
+            if (!pass) process.exitCode = 1;
+          }
+          console.log('PASS inline script syntax count=' + scriptsChecked);
+          NODE
+
+      - name: Verify known exact-SKU images through the read-only product-image endpoint
+        env:
+          IMAGE_BASE: https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image
+        run: |
+          node <<'NODE'
+          const base = process.env.IMAGE_BASE;
+          const skus = ['GW-000174D6', 'GW-3DE84AF0'];
+          const photoIds = [
+            'photo-1486262715619-67b85e0b08d3',
+            'photo-1693344150104-5ffb54127eff',
+            'photo-1660022305751-54f903c7c4c8',
+            'photo-1576792105433-00d9b512ae6e',
+            'photo-1504148455328-c376907d081c',
+            'photo-1504280390367-361c6d9f38f4',
+            'photo-1747711475650-b222ac557e58',
+            'photo-1626966473515-71dc32f2aedd'
+          ];
+          (async () => {
+            for (const sku of skus) {
+              const url = base + '?sku=' + encodeURIComponent(sku);
+              const response = await fetch(url, { signal: AbortSignal.timeout(25000) });
+              const bytes = Buffer.from(await response.arrayBuffer());
+              const type = (response.headers.get('content-type') || '').toLowerCase();
+              const webp = bytes.length >= 12 && bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WEBP';
+              console.log(JSON.stringify({ sku, status: response.status, contentType: type, bytes: bytes.length, webpSignature: webp }));
+              if (response.status !== 200 || !type.startsWith('image/') || bytes.length < 100 || (!webp && !type.includes('jpeg'))) {
+                throw new Error('Image endpoint failed validation for ' + sku);
+              }
+            }
+            for (const photoId of photoIds) {
+              const url = 'https://images.unsplash.com/' + photoId + '?auto=format&fit=crop&w=960&q=82';
+              const response = await fetch(url, { signal: AbortSignal.timeout(25000) });
+              const bytes = Buffer.from(await response.arrayBuffer());
+              const type = (response.headers.get('content-type') || '').toLowerCase();
+              console.log(JSON.stringify({ categoryPhoto: photoId, status: response.status, contentType: type, bytes: bytes.length }));
+              if (response.status !== 200 || !type.startsWith('image/') || bytes.length < 100) {
+                throw new Error('Category photo failed validation: ' + photoId);
+              }
+            }
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
+
+      - name: Install Playwright for real browser verification
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local candidate server (no Cloudflare or Netlify dependency)
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory . >/tmp/gw-candidate-server.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/category.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/gw-candidate-server.log
+          exit 1
+
+      - name: Verify candidate category navigation and images in a real browser
+        env:
+          STORE_BASE: http://127.0.0.1:4173
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const base = process.env.STORE_BASE;
+          (async () => {
+            const categoryResponse = await fetch(base + '/category.html');
+            const currentHtml = await categoryResponse.text();
+            const homeResponse = await fetch(base + '/index-new.html');
+            const homeHtml = await homeResponse.text();
+            const bridgeResponse = await fetch(base + '/category-navigation.js');
+            const bridgeHtml = await bridgeResponse.text();
+            try { new Function(bridgeHtml); } catch (error) { throw new Error('category-navigation.js syntax error: ' + error.message); }
+            if (categoryResponse.status !== 200 || homeResponse.status !== 200 || bridgeResponse.status !== 200 ||
+                !currentHtml.includes('photo-1747711475650-b222ac557e58') ||
+                !currentHtml.includes('photo-1693344150104-5ffb54127eff') ||
+                !currentHtml.includes('68e6ada2-ddf8-4327-844f-771d92db54bd') ||
+                !homeHtml.includes('68e6ada2-ddf8-4327-844f-771d92db54bd') ||
+                !homeHtml.includes('target="_top"') ||
+                !homeHtml.includes("const b=e.target.closest('.catBtn');if(b)return;") ||
+                !bridgeHtml.includes("'SPARE PARTS':'spare-parts'")) {
+              throw new Error('Local candidate files are missing the prepared category navigation/photo fix');
+            }
+            console.log(JSON.stringify({ candidateSource: 'local files', categoryStatus: categoryResponse.status, homeStatus: homeResponse.status, bridgeStatus: bridgeResponse.status }));
+            const browser = await chromium.launch({ headless: true });
+            try {
+              for (const width of [1440, 390]) {
+                const page = await browser.newPage({ viewport: { width, height: 900 } });
+                const failedImages = [];
+                page.on('response', response => {
+                  if (response.request().resourceType() === 'image' && response.status() >= 400) {
+                    failedImages.push({ url: response.url(), status: response.status() });
+                  }
+                });
+                const response = await page.goto(base + '/category.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+                if (!response || response.status() >= 400) throw new Error('Category page failed at viewport ' + width);
+                await page.waitForSelector('.card-art img', { timeout: 45000 });
+                await page.locator('.card-art img').evaluateAll(imgs => imgs.forEach(img => { img.loading = 'eager'; }));
+                await page.waitForFunction(() => {
+                  const imgs = [...document.querySelectorAll('.card-art img')];
+                  return imgs.length > 0 && imgs.every(img => img.complete);
+                }, null, { timeout: 60000 });
+                const result = await page.evaluate(() => {
+                  const grid = document.querySelector('#grid');
+                  const imgs = [...document.querySelectorAll('.card-art img')].map(img => ({
+                    alt: img.alt, src: img.currentSrc || img.src, width: img.naturalWidth, height: img.naturalHeight
+                  }));
+                  return {
+                    title: document.title,
+                    columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+                    cards: imgs.length,
+                    images: imgs
+                  };
+                });
+                console.log(JSON.stringify({ viewport: width, ...result, failedImages }));
+                if (!result.cards || result.images.some(img => img.width < 1 || img.height < 1)) {
+                  throw new Error('One or more category images did not decode at viewport ' + width);
+                }
+                if (width > 900 && result.columns !== 3) throw new Error('Desktop category grid is not three columns');
+                if (width <= 500 && result.columns !== 2) throw new Error('Mobile category grid is not two columns');
+                if (failedImages.length) throw new Error('Image HTTP errors found at viewport ' + width);
+                await page.close();
+              }
+              const storePage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+              const productImageResponses = [];
+              storePage.on('response', response => {
+                if (response.url().includes('/functions/v1/product-image?sku=')) {
+                  productImageResponses.push({ url: response.url(), status: response.status() });
+                }
+              });
+              const storeResponse = await storePage.goto(base + '/store.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+              if (!storeResponse || storeResponse.status() >= 400) throw new Error('Store wrapper failed to load');
+              const frame = storePage.frameLocator('#store');
+              await frame.locator('.product img').first().waitFor({ timeout: 60000 });
+              await frame.locator('.product img').evaluateAll(imgs => imgs.slice(0, 5).forEach(img => { img.loading = 'eager'; }));
+              const productImages = await frame.locator('.product img').evaluateAll(imgs => Promise.all(imgs.slice(0, 5).map(img => new Promise(resolve => {
+                const snapshot = () => ({
+                  src: img.currentSrc || img.src,
+                  width: img.naturalWidth,
+                  height: img.naturalHeight,
+                  placeholder: /product-image-pending\.svg|product-placeholder\.svg/.test(img.currentSrc || img.src)
+                });
+                const done = () => { clearTimeout(timer); resolve(snapshot()); };
+                const timer = setTimeout(done, 20000);
+                if (img.complete && img.naturalWidth > 0) return done();
+                img.addEventListener('load', done, { once: true });
+                img.addEventListener('error', done, { once: true });
+              }))));
+              console.log(JSON.stringify({ storeWrapperStatus: storeResponse.status(), productImages, productImageResponses }));
+              if (productImages.length < 3 || productImages.filter(img => img.width > 0 && img.height > 0).length < 3) {
+                throw new Error('Fewer than three of the first five homepage product image slots decoded, including neutral placeholders');
+              }
+              if (!productImages.some(img => img.src.includes('/functions/v1/product-image?sku='))) {
+                throw new Error('Homepage product cards did not preserve any canonical per-product image endpoint URL');
+              }
+              await storePage.close();
+
+              const navPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+              await navPage.goto(base + '/category.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+              await navPage.waitForSelector('.card', { timeout: 45000 });
+              const rootDebug = await navPage.locator('#grid').evaluate(grid => JSON.parse(grid.dataset.debug || '{}'));
+              const rootCounts = rootDebug.rootChecks || [];
+              const rootRollup = rootCounts.reduce((sum, item) => sum + Number(item.total || 0), 0);
+              if (rootCounts.length !== 9 || rootCounts.some(item => !item.found || Number(item.total) <= 0) ||
+                  rootRollup !== Number(rootDebug.activeProducts)) {
+                throw new Error('Root categories do not expose all active products: ' + JSON.stringify({ rootCounts, rootRollup, activeProducts: rootDebug.activeProducts }));
+              }
+              const renderedRootCards = await navPage.locator('#grid .card').evaluateAll(cards => cards.map(card => ({
+                name: card.querySelector('h2')?.innerText?.trim(),
+                count: Number((card.querySelector('.card-count')?.innerText || '').replace(/[^0-9]/g, ''))
+              })));
+              if (renderedRootCards.length !== 9 || renderedRootCards.some(card => !card.count) ||
+                  !renderedRootCards.some(card => card.name === 'Spare Parts' && card.count > 0)) {
+                throw new Error('Root category counts were not rendered for all nine categories including Spare Parts: ' + JSON.stringify(renderedRootCards));
+              }
+              console.log(JSON.stringify({ rootCounts, renderedRootCards }));
+              await navPage.goto(base + '/store.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+              const homeFrame = navPage.frameLocator('#store');
+              navPage.on('pageerror', error => console.log(JSON.stringify({ pageError: error.message })));
+              const categoryGrid = homeFrame.locator('#categoryGrid');
+              await categoryGrid.waitFor({ state: 'attached', timeout: 15000 });
+              const categoryGridState = await categoryGrid.evaluate(el => ({
+                childCount: el.children.length,
+                cardCount: el.querySelectorAll('.catBtn').length,
+                text: (el.innerText || '').slice(0, 300),
+                display: getComputedStyle(el).display,
+                html: el.innerHTML.slice(0, 600)
+              }));
+              console.log(JSON.stringify({ homepageCategoryGrid: categoryGridState }));
+              const homeRoot = homeFrame.locator('#categoryGrid .catBtn').filter({ hasText: 'Auto Electrical Spares' }).first();
+              await homeRoot.waitFor({ timeout: 60000 });
+              const homeRootHref = await homeRoot.getAttribute('href');
+              const homeRootTarget = await homeRoot.getAttribute('target');
+              const homeRootTiles = await homeFrame.locator('#categoryGrid .catBtn').count();
+              if (!homeRootHref || !homeRootHref.includes('6cc56033-b0a9-4f25-b207-aeeb341a1c47') || homeRootTarget !== '_top' || homeRootTiles !== 9) {
+                throw new Error('Homepage category links are not configured for separate-page navigation: ' + JSON.stringify({ homeRootHref, homeRootTarget, homeRootTiles }));
+              }
+              console.log(JSON.stringify({ homeRootHref, homeRootTarget, homeRootTiles, beforeRootClick: navPage.url() }));
+              await Promise.all([
+                navPage.waitForURL(/\/category(?:\.html)?\?id=/, { timeout: 45000 }),
+                homeRoot.click()
+              ]);
+              if (new URL(navPage.url()).searchParams.get('id') !== '6cc56033-b0a9-4f25-b207-aeeb341a1c47') {
+                throw new Error('Homepage category click did not open the selected category page: ' + navPage.url());
+              }
+              const leaf = navPage.locator('.card').filter({ hasText: 'ELECTRICAL SPARES' }).first();
+              const leafHref = await leaf.getAttribute('href');
+              if (!leafHref || !leafHref.includes('category.html?id=9cb78a57-342e-40fa-a4e4-a8f1fd40e6d2')) {
+                throw new Error('Expected populated ELECTRICAL SPARES subcategory link was not found: ' + leafHref);
+              }
+              console.log(JSON.stringify({ leafHref, beforeLeafClick: navPage.url() }));
+              await Promise.all([
+                navPage.waitForURL(/\/products(?:\.html)?\?category=/, { timeout: 45000 }),
+                leaf.click()
+              ]);
+              await navPage.locator('#grid article.card a[href^="product.html?id="]').first().waitFor({ timeout: 60000 });
+              const listingCountText = await navPage.locator('#count').innerText();
+              const listingCards = await navPage.locator('#grid article.card').count();
+              if (!listingCards || !Number.parseInt(listingCountText, 10) || Number.parseInt(listingCountText, 10) !== listingCards) {
+                throw new Error('Product listing count does not match rendered product cards: ' + JSON.stringify({ listingCountText, listingCards }));
+              }
+              const firstProductLink = navPage.locator('#grid article.card a[href^="product.html?id="]').first();
+              const productHref = await firstProductLink.getAttribute('href');
+              console.log(JSON.stringify({ productHref, beforeProductClick: navPage.url() }));
+              await Promise.all([
+                navPage.waitForURL(/\/product(?:\.html)?\?id=/, { timeout: 45000 }),
+                firstProductLink.click()
+              ]);
+              await navPage.locator('#root .product').waitFor({ timeout: 60000 });
+              const detailImage = navPage.locator('#root .hero img').first();
+              await detailImage.waitFor({ timeout: 45000 });
+              await detailImage.evaluate(img => { img.loading = 'eager'; });
+              const detailImageInfo = await detailImage.evaluate(async img => {
+                try { await img.decode(); } catch (e) {}
+                return { src: img.currentSrc || img.src, width: img.naturalWidth, height: img.naturalHeight };
+              });
+              const detailName = await navPage.locator('#root .name').innerText();
+              console.log(JSON.stringify({
+                navigation: 'root → subcategory → products → product detail',
+                rootUrl: base + '/category.html',
+                leafHref,
+                listingUrl: navPage.url(),
+                listingCountText,
+                listingCards,
+                productHref,
+                detailUrl: navPage.url(),
+                detailName,
+                detailImageInfo
+              }));
+              const neutralImageFallback = await navPage.locator('#root .hero.no-image').count() > 0;
+              console.log(JSON.stringify({ detailImageAvailable: detailImageInfo.width > 0 && detailImageInfo.height > 0, neutralImageFallback }));
+              if (!detailName.trim() || (!(detailImageInfo.width > 0 && detailImageInfo.height > 0) && !neutralImageFallback)) {
+                throw new Error('Product detail did not render a name and either a decoded product image or neutral fallback');
+              }
+              await navPage.goBack({ waitUntil: 'domcontentloaded', timeout: 45000 });
+              await navPage.waitForURL(/\/products(?:\.html)?\?category=/, { timeout: 45000 });
+              await navPage.locator('#grid article.card').first().waitFor({ timeout: 45000 });
+              await navPage.goBack({ waitUntil: 'domcontentloaded', timeout: 45000 });
+              await navPage.waitForURL(/\/category(?:\.html)?\?id=/, { timeout: 45000 });
+              await navPage.goBack({ waitUntil: 'domcontentloaded', timeout: 45000 });
+              await navPage.waitForURL(url => /\/store(?:\.html)?$/.test(new URL(url).pathname), { timeout: 45000 });
+              await navPage.frameLocator('#store').locator('#categoryGrid .catBtn').first().waitFor({ timeout: 45000 });
+              console.log(JSON.stringify({ browserBack: 'product detail → product list → category page → store homepage', finalUrl: navPage.url() }));
+              await navPage.close();
+            } finally {
+              await browser.close();
+            }
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
