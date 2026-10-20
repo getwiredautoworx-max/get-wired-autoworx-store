@@ -228,7 +228,7 @@ jobs:
               const rootHref = await rootCard.getAttribute('href');
               console.log(JSON.stringify({ rootHref, beforeRootClick: navPage.url() }));
               await Promise.all([
-                navPage.waitForURL(/category\.html\?id=/, { timeout: 45000 }),
+                navPage.waitForURL(/\/category(?:\.html)?\?id=/, { timeout: 45000 }),
                 rootCard.click()
               ]);
               const leaf = navPage.locator('.card').filter({ hasText: 'ELECTRICAL SPARES' }).first();
@@ -238,7 +238,7 @@ jobs:
               }
               console.log(JSON.stringify({ leafHref, beforeLeafClick: navPage.url() }));
               await Promise.all([
-                navPage.waitForURL(/products\.html\?category=/, { timeout: 45000 }),
+                navPage.waitForURL(/\/products(?:\.html)?\?category=/, { timeout: 45000 }),
                 leaf.click()
               ]);
               await navPage.locator('#grid article.card a[href^="product.html?id="]').first().waitFor({ timeout: 60000 });
@@ -251,7 +251,7 @@ jobs:
               const productHref = await firstProductLink.getAttribute('href');
               console.log(JSON.stringify({ productHref, beforeProductClick: navPage.url() }));
               await Promise.all([
-                navPage.waitForURL(/product\.html\?id=/, { timeout: 45000 }),
+                navPage.waitForURL(/\/product(?:\.html)?\?id=/, { timeout: 45000 }),
                 firstProductLink.click()
               ]);
               await navPage.locator('#root .product').waitFor({ timeout: 60000 });
