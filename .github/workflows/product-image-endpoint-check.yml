@@ -31,8 +31,8 @@ jobs:
           let scriptsChecked = 0;
           for (const file of files) {
             const html = fs.readFileSync(file, 'utf8');
-            for (const [index, match] of [...html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)].entries()) {
-              if (/\\bsrc\\s*=/.test(match[1])) continue;
+            for (const [index, match] of [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].entries()) {
+              if (/\bsrc\s*=/.test(match[1])) continue;
               try { new Function(match[2]); scriptsChecked++; }
               catch (error) { throw new Error(file + ' inline script ' + index + ': ' + error.message); }
             }
@@ -43,12 +43,12 @@ jobs:
           const fallback = fs.readFileSync('assets/product-image-fallback.js', 'utf8');
           const bridge = fs.readFileSync('category-navigation.js', 'utf8');
           const checks = [
-            ['homepage cards use product image_url', /esc\\(p\\.image_url\\|\\|PRODUCT_PLACEHOLDER\\)/.test(home)],
-            ['product listing uses product image_url', /esc\\(p\\.image_url\\|\\|/.test(listing)],
-            ['product detail uses product image_url', /esc\\(p\\.image_url\\|\\|/.test(detail)],
-            ['iframe fallback preserves canonical endpoint', /functions\\\\\\/v1\\\\\\/product-image/.test(fallback)],
-            ['iframe fallback preserves neutral placeholder', /product-placeholder\\\\\\.svg/.test(fallback)],
-            ['category bridge does not call generated illustration override', !/installCategoryIllustrations\\(frame\\);/.test(bridge)]
+            ['homepage cards use product image_url', /esc\(p\.image_url\|\|PRODUCT_PLACEHOLDER\)/.test(home)],
+            ['product listing uses product image_url', /esc\(p\.image_url\|\|/.test(listing)],
+            ['product detail uses product image_url', /esc\(p\.image_url\|\|/.test(detail)],
+            ['iframe fallback preserves canonical endpoint', /\/functions\/v1\/product-image/.test(fallback)],
+            ['iframe fallback preserves neutral placeholder', /product-placeholder\.svg/.test(fallback)],
+            ['category bridge does not call generated illustration override', !/installCategoryIllustrations\(frame\);/.test(bridge)]
           ];
           for (const [name, pass] of checks) {
             console.log((pass ? 'PASS ' : 'FAIL ') + name);
