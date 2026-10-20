@@ -69,8 +69,8 @@ jobs:
                         categoryGrid:!!document.querySelector('#categoryGrid'),
                         categoryCards:document.querySelectorAll('#categoryGrid .catBtn[data-gw-root-index]').length,
                         categoryButtons:[...document.querySelectorAll('#categoryGrid .catBtn[data-gw-root-index]')].map(b=>({
-                          label:(b.innerText||'').replace(/\\s+/g,' ').trim(),
-                          image:b.querySelector('img')?{src:b.querySelector('img').currentSrc||b.querySelector('img').src,alt:b.querySelector('img').alt,complete:b.querySelector('img').complete,naturalWidth:b.querySelector('img').naturalWidth,naturalHeight:b.querySelector('img').naturalHeight,usesLogoFallback:/gw-logo\\.png/i.test(b.querySelector('img').currentSrc||b.querySelector('img').src)}:null
+                          label:(b.innerText||'').replace(/\s+/g,' ').trim(),
+                          image:b.querySelector('img')?{src:b.querySelector('img').currentSrc||b.querySelector('img').src,alt:b.querySelector('img').alt,complete:b.querySelector('img').complete,naturalWidth:b.querySelector('img').naturalWidth,naturalHeight:b.querySelector('img').naturalHeight,usesLogoFallback:/gw-logo\.png/i.test(b.querySelector('img').currentSrc||b.querySelector('img').src)}:null
                         })),
                         allProductsLink:!!document.querySelector('#allProductsLink'),
                         productGrid:!!document.querySelector('#allProductsGrid'),
