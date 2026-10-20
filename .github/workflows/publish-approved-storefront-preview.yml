@@ -1,0 +1,29 @@
+name: Publish Approved Storefront Preview
+on:
+  push:
+    branches:
+      - approved-storefront-preview-trigger
+    paths:
+      - .preview-deploy-trigger
+permissions:
+  contents: read
+  deployments: write
+concurrency:
+  group: approved-storefront-preview
+  cancel-in-progress: false
+jobs:
+  publish-approved-baseline:
+    name: Deploy locked approved source to isolated Pages preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout locked approved storefront source
+        uses: actions/checkout@v4
+        with:
+          ref: approved-storefront-baseline-2026-10-20
+      - name: Publish isolated Cloudflare Pages preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=get-wired-autoworx-store --branch=approved-storefront-preview
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
