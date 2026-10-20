@@ -1,3 +1,22 @@
+# PR #72 — CONTINUATION CHECKPOINT (2026-10-20, South Africa)
+
+## Current working state
+- PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72
+- Status at checkpoint: OPEN, DRAFT, UNMERGED; mergeable reported true. Base is `recovery/approved-preview-index-new` (PR #70-approved baseline); head is `fix/pr70-storefront-owner-feedback-2026-10-20`.
+- Head commit checked: `0055bf0b3ccf4cecbe0d2ea4f2c29b51bb5fd0e5`.
+- Owner review preview listed in PR description: https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev
+- Do not use the earlier `1b6e1a1f...` URL as the canonical current preview; it was an unconfirmed prior candidate.
+- PR description reports hosted preview QA PASS 20/20, including category image loading/navigation, product detail image and description, Add to Cart visibility, product-specific WhatsApp query, standalone request-part dialog, four Specials, absence of repeated WhatsApp CTAs, and 390px no-horizontal-overflow. Local mocked interaction checks reported 14/14 and responsive check passed. These results are recorded in PR metadata; current connector status query returned no status checks/workflow runs for the head commit, so do not describe the external QA as independently re-run in this continuation.
+- Changed files: 17, including storefront/category/product files, QA scripts/workflows, and handover documents.
+- This continuation did not merge PR, deploy production, touch Axxess/DNS, change payments, write stock/catalogue data, or modify supplier authorization.
+- Release remains HOLD pending owner review. Next: open the canonical preview, inspect desktop and mobile, test all 8 main categories and representative subcategories, confirm standalone request-part dialog, inspect product detail image/description/cart and WhatsApp SKU query, then record any defects and fix them on this PR branch. Keep PR #72 draft and unmerged until owner explicitly approves.
+
+## Continuation record
+- 2026-10-20: Recovered PR #72 metadata and preview URL; confirmed PR remains draft/unmerged and base is the approved PR #70-derived branch. Recorded difference between PR's canonical preview and the earlier unverified candidate URL.
+- Evidence caveat: the PR description contains prior QA assertions, but this session's GitHub combined-status and pull-request workflow-run lookups returned no status checks/runs for the head SHA. No fresh browser-driven visual test was available in this step. Do not claim fresh visual verification beyond the existing PR record.
+
+---
+
 # Get Wired AutoWorx — Current Handover Checkpoint
 Date: 2026-10-14 (South Africa)
 
