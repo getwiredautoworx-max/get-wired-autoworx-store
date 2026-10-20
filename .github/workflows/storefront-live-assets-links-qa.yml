@@ -54,8 +54,8 @@ jobs:
                 report.targets.push(entry);
                 const page=await browser.newPage({viewport:{width:1440,height:1000}});
                 page.on('pageerror',e=>entry.pageErrors.push(e.message));
-                page.on('requestfailed',req=>{if(req.resourceType()==='image')entry.failedImageRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});if(/supabase\\.co\\/rest\\/v1\\/(products|categories)/i.test(req.url()))entry.failedApiRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});});
-                page.on('response',res=>{if(res.request().resourceType()==='image')entry.images.push({url:res.url(),status:res.status(),ok:res.ok()});if(/supabase\\.co\\/rest\\/v1\\/(products|categories)/i.test(res.url()))entry.apiResponses.push({url:res.url(),status:res.status(),ok:res.ok()});});
+                page.on('requestfailed',req=>{if(req.resourceType()==='image')entry.failedImageRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});if(/supabase\.co\/rest\/v1\/(products|categories)/i.test(req.url()))entry.failedApiRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});});
+                page.on('response',res=>{if(res.request().resourceType()==='image')entry.images.push({url:res.url(),status:res.status(),ok:res.ok()});if(/supabase\.co\/rest\/v1\/(products|categories)/i.test(res.url()))entry.apiResponses.push({url:res.url(),status:res.status(),ok:res.ok()});});
                 try {
                   const response=await page.goto(target.url,{waitUntil:'domcontentloaded',timeout:18000});
                   entry.checks.push({id:'document-http',status:response&&response.status()<400?'PASS':'FAIL',http:response?.status()??null,finalUrl:page.url()});
