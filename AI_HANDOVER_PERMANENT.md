@@ -2387,3 +2387,8 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 ## Continuation run 22 follow-up — tighten image audit wait before concluding the homepage is stuck
 - The first image audit sampled the homepage after only 2.5–7 seconds. Because the homepage fetches the full active product list in paginated requests before rendering some content, this sampling window may be too short to conclusively call the category grid permanently stuck. The screenshots still show loading/empty category UI at the sample time, but this follow-up will wait up to 45 seconds and capture live Supabase request/response failures before finalizing that gate.
 - Scope remains read-only: update only the isolated QA workflow; no storefront source, stock, live data, production, or deployment changes. Re-check the current live www page and existing preview URLs; do not infer a failure from the short initial wait alone.
+
+
+## 2026-10-20 — Follow-up audit attempt failed at test-harness parse stage
+- Extended-wait asset audit run `39466751593`, job `118780018181`, failed before browser navigation because the newly added Supabase-request diagnostic regex was double-escaped and Node raised `SyntaxError: Invalid regular expression flags`. No site requests or screenshots were produced by this attempt; this is a test-harness error, not evidence of a storefront failure.
+- Correct the regex escapes in the isolated QA workflow and rerun once. Keep the longer wait and API response capture so the result can distinguish slow product pagination from an actual failed Supabase request. No application source or live data changed.
