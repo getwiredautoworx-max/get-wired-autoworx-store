@@ -117,7 +117,7 @@
         }
       `;
       d.head.appendChild(style);
-      installCategoryIllustrations(frame);
+
     }catch(err){console.warn('GW category presentation:',err);}
   }
   function install(frame){
@@ -126,7 +126,7 @@
       if(!d || d.__gwCategoryBridge)return;
       d.__gwCategoryBridge=true;
       installCategoryPresentation(frame);
-      installCategoryIllustrations(frame);
+
       d.addEventListener('click',function(e){
         const btn=e.target.closest('.catBtn');
         if(!btn)return;
