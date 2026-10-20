@@ -2535,3 +2535,10 @@ This section supersedes older QA statements above where they conflict.
 ### Run 19 follow-up: PR #66 policy-path source check (read-only)
 - Inspected PR #66 branch `fix/checkout-policy-links-2026-10-20` at head `e29b1f69d5fab7379dd38b344b171f630d60b67c`. `checkout-v2.html` blob `32b6f623a454fb7832146ace7addded054fe2a9d` contains links to both `terms-and-conditions.html` and `returns-refunds.html`.
 - Both target files exist on that same PR branch and also on `main` and `recovery/approved-preview-index-new`: Terms blob `802b3210b7a82938ce2c2ca5e6f6c87ddec19e75`; Returns blob `48d92c06943ef9c99ef959c984f34750a6200801`. This resolves the source-level missing-file concern. It does not prove links work in a packaged/deployed build; final-package/browser link checks remain outstanding. No file was changed and no checkout/order was submitted.
+
+
+## 2026-10-20 — Continuation run 20 (task-start)
+- Read `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and `HANDOVER_CURRENT.md` from the current default branch before project work. Current permanent handover blob SHA at task start: `d189303ca0869a9b932b1238af63087a70d335fd`.
+- Scope: continue safe, non-overlapping release checks; re-check current PR #66/#67/#68/#70 status and preview deployment evidence; inspect PR #66 policy link/package risk and PR #67 security findings read-only. Do not modify desktop-agent source branches, run deployment-triggering workflows, spend Cloudflare/Netlify credits, deploy Supabase, merge draft PRs, or change production/live systems.
+- Planned verification: compare current GitHub PR heads/status and existing workflow evidence only; if a useful source-only check can be completed without deployment or shared edits, record exact findings. Update handovers sequentially using fresh SHAs.
+- Permanent locked rules remain unchanged. Launch HOLD; supplier reconciliation PAUSED.
