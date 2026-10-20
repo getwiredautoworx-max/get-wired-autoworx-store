@@ -172,3 +172,10 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Cloudflare Pages reports PR #71 preview successful: https://c7d3caf8.get-wired-autoworx-store.pages.dev/store (branch alias https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev).
 - Responsive mocked browser workflow `39470411410` / job `118792659688` and SKU audit `39470411513` passed. These do not verify live remote image requests or image relevance.
 - Available web retrieval cannot open preview `/store` or `/category.html`; real browser verification remains blocked, not failed. Next: inspect product image coverage and implement only a correctness-preserving fix. No merge/production/data/hosting/payment changes; launch HOLD.
+
+
+## Latest checkpoint — 2026-10-20, continuation run 27
+- Product image path fix in draft PR #71: homepage, modal, listings and detail pages now use configured per-product `image_url`; iframe fallback no longer overwrites the canonical image endpoint or explicit neutral placeholder with guessed local SKU filenames.
+- Read-only catalogue audit: 4,187 active products; 4,093 exact-SKU Edge Function URLs, 8 exact-SKU local WebP URLs, 86 neutral placeholders. All 1,000 existing WebP filenames match active public SKUs; 3,187 active products lack local WebP, which explains why local-only paths are insufficient.
+- Image QA run `39471724683` / job `118797207328` PASS. Two exact-SKU endpoint requests returned HTTP 200 image/webp with valid signatures (GW-000174D6: 19,400 bytes; GW-3DE84AF0: 16,962 bytes). Inline script syntax/source assertions PASS; responsive mocked test `39471724719` and SKU audit `39471724633` PASS.
+- Draft PR #71: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71. Last reported Pages preview https://6034cdc5.get-wired-autoworx-store.pages.dev is for commit `5d6f785`, while PR head is `aa02d6c...`; served-source parity and visual relevance remain unverified. Next: test category photo URL mappings/network loads, then verify current preview in a real browser. No merge/production/data/hosting/payment changes; launch HOLD.
