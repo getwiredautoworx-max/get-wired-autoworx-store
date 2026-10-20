@@ -1,0 +1,164 @@
+name: Isolated Live Category Navigation QA — Preserve Approved Layout
+
+on:
+  push:
+    branches:
+      - fix/live-category-tree-preserve-approved-layout-2026-10-20
+    paths:
+      - '.github/workflows/isolated-live-category-navigation-qa.yml'
+      - 'category.html'
+      - 'products.html'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: isolated-live-category-navigation-qa
+  cancel-in-progress: false
+
+jobs:
+  category-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated Playwright runner
+        run: |
+          mkdir -p "$RUNNER_TEMP/category-qa"
+          cd "$RUNNER_TEMP/category-qa"
+          npm init -y
+          npm install --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Serve candidate files locally
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/category-qa-http.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl --silent --fail http://127.0.0.1:4173/category.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/category-qa-http.log
+          exit 1
+      - name: Read-only verify live Supabase category query schema
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('category.html', 'utf8');
+          const match = html.match(/const U='([^']+)',K='([^']+)'/);
+          if (!match) throw new Error('Could not locate the candidate page public read-only API config');
+          const base = match[1], key = match[2];
+          async function probe(table, query) {
+            const response = await fetch(base + '/rest/v1/' + table + '?' + query, {
+              headers: { apikey: key, Authorization: 'Bearer ' + key, Accept: 'application/json' }
+            });
+            const body = await response.text();
+            if (!response.ok) throw new Error(table + ' read-only probe returned HTTP ' + response.status + ': ' + body.slice(0, 350));
+            const data = JSON.parse(body);
+            if (!Array.isArray(data)) throw new Error(table + ' did not return a JSON array');
+            console.log('PASS read-only ' + table + ' query; sample rows=' + data.length);
+          }
+          (async () => {
+            await probe('categories', 'select=id,name,slug,parent_id,active,sort_order&active=eq.true&limit=1');
+            await probe('products', 'select=id,category_id&active=eq.true&limit=1');
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
+      - name: Verify all approved root IDs and active product counts from live read-only data
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('category.html', 'utf8');
+          const match = html.match(/const U='([^']+)',K='([^']+)'/);
+          if (!match) throw new Error('Could not locate public read-only API config');
+          const base = match[1], key = match[2];
+          async function allRows(table, select, order) {
+            const rows = [];
+            for (let offset = 0; offset < 30000; offset += 1000) {
+              const query = 'select=' + select + '&active=eq.true&order=' + order + '&limit=1000&offset=' + offset;
+              const response = await fetch(base + '/rest/v1/' + table + '?' + query, {headers:{apikey:key,Authorization:'Bearer ' + key,Accept:'application/json'}});
+              const body = await response.text();
+              if (!response.ok) throw new Error(table + ' returned HTTP ' + response.status + ': ' + body.slice(0, 300));
+              const batch = JSON.parse(body);
+              if (!Array.isArray(batch)) throw new Error(table + ' did not return an array');
+              rows.push(...batch);
+              if (batch.length < 1000) return rows;
+            }
+            throw new Error(table + ' pagination exceeded safety limit');
+          }
+          (async () => {
+            const categories = await allRows('categories', 'id,name,parent_id,active,sort_order', 'sort_order.asc,name.asc');
+            const products = await allRows('products', 'id,category_id', 'id.asc');
+            const roots = ['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79'];
+            const byId = new Map(categories.map(c => [c.id,c]));
+            const parents = new Map(categories.map(c => [c.id,c.parent_id]));
+            const counts = new Map(categories.map(c => [c.id,0]));
+            for (const product of products) { let id = product.category_id; const seen = new Set(); while (id && parents.has(id) && !seen.has(id)) { counts.set(id,(counts.get(id)||0)+1); seen.add(id); id = parents.get(id); } }
+            const missing = roots.filter(id => !byId.has(id));
+            console.log('Live read-only data: active categories=' + categories.length + ', active products=' + products.length);
+            console.log('Approved roots: ' + JSON.stringify(roots.map(id => ({id:id,found:byId.has(id),active:byId.has(id) ? byId.get(id).active : false,descendantProducts:counts.get(id)||0}))));
+            if (missing.length) throw new Error('Approved root IDs missing from active live categories: ' + missing.join(', '));
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
+      - name: Run mocked desktop and mobile category click-through
+        working-directory: ${{ runner.temp }}/category-qa
+        run: |
+          cat > navigation.cjs <<'NODE'
+          const { chromium } = require('playwright');
+          const rootId = '6cc56033-b0a9-4f25-b207-aeeb341a1c47';
+          const categories = [
+            {id:rootId,name:'Auto Electrical Spares',slug:'auto-electrical',parent_id:null,active:true,sort_order:1},
+            {id:'8e93d917-8fcc-4427-b364-cdad244f263f',name:'Vehicle Security',slug:'vehicle-security',parent_id:null,active:true,sort_order:2},
+            {id:'5ab55c53-eee3-41ce-ad48-04ad6df85181',name:'Car Audio & Entertainment',slug:'car-audio',parent_id:null,active:true,sort_order:3},
+            {id:'87982093-7d81-4f2e-a8e2-e20cdeef30d8',name:'Automotive Accessories',slug:'automotive-accessories',parent_id:null,active:true,sort_order:4},
+            {id:'38b382c1-6ee0-4b3c-86ad-399094bc40cc',name:'Marine Spares & Accessories',slug:'marine-spares',parent_id:null,active:true,sort_order:5},
+            {id:'77297c18-67f6-452e-8918-c55d2ef6231a',name:'Tools, Hardware & Consumables',slug:'tools',parent_id:null,active:true,sort_order:6},
+            {id:'af2f8625-4f42-45e6-9f21-d571d7415893',name:'Camping, Leisure & Outdoors',slug:'camping',parent_id:null,active:true,sort_order:7},
+            {id:'63a71fd9-df45-43f0-b61d-ad622daa9d79',name:'Trailer & Canopy',slug:'trailer',parent_id:null,active:true,sort_order:8},
+            {id:'child-1',name:'Electrical Connectors and Wiring',slug:'electrical-connectors',parent_id:rootId,active:true,sort_order:1},
+            {id:'empty-child',name:'Empty Category Must Be Hidden',slug:'empty-category',parent_id:rootId,active:true,sort_order:2}
+          ];
+          const products = [
+            {id:'p1',category_id:'child-1',name:'Automotive Electrical Connector Kit',public_sku:'GW-TEST0001',description:'Connector kit',price:499,stock_quantity:4,image_url:'',active:true,specifications:{}},
+            {id:'p2',category_id:'child-1',name:'Automotive Wiring Accessory Set',public_sku:'GW-TEST0002',description:'Wiring accessory set',price:249,stock_quantity:2,image_url:'',active:true,specifications:{}}
+          ];
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const failures = [];
+            for (const width of [320,390,1440]) {
+              const page = await browser.newPage({viewport:{width,height:900}});
+              page.on('pageerror', e => failures.push(width + 'px JS error: ' + e.message));
+              await page.route('**/rest/v1/categories**', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(categories)}));
+              await page.route('**/rest/v1/products**', route => {
+                const url = new URL(route.request().url());
+                const body = url.searchParams.has('category_id') ? products : products.map(p => ({id:p.id,category_id:p.category_id}));
+                return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
+              });
+              await page.goto('http://127.0.0.1:4173/category.html',{waitUntil:'domcontentloaded'});
+              await page.getByRole('heading',{name:'SHOP BY CATEGORY'}).waitFor();
+              await page.locator('.card').filter({hasText:'Auto Electrical Spares'}).waitFor();
+              const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 2);
+              if (overflow) failures.push(width + 'px root category page has horizontal overflow');
+              if (width === 390) {
+                await page.locator('.card').filter({hasText:'Auto Electrical Spares'}).click();
+                await page.waitForURL(/category\.html\?id=/);
+                await page.locator('.card').filter({hasText:'Electrical Connectors and Wiring'}).waitFor();
+                const emptyVisible = await page.getByText('Empty Category Must Be Hidden',{exact:false}).count();
+                if (emptyVisible) failures.push('Empty category was incorrectly shown');
+                await page.locator('.card').filter({hasText:'Electrical Connectors and Wiring'}).click();
+                await page.waitForURL(/products\.html\?category=child-1/);
+                await page.locator('article.card').first().waitFor();
+                const productCount = await page.locator('article.card').count();
+                if (productCount !== 2) failures.push('Expected 2 product cards after category click-through, got ' + productCount);
+                const productNames = await page.locator('article.card .name').allTextContents();
+                if (!productNames.some(x => x.includes('Connector Kit')) || !productNames.some(x => x.includes('Wiring Accessory Set'))) failures.push('Expected product names not rendered: ' + JSON.stringify(productNames));
+                console.log('PASS root → subcategory → product list: ' + productCount + ' mocked products');
+              }
+              console.log('PASS root category render at ' + width + 'px; no horizontal overflow=' + !overflow);
+              await page.close();
+            }
+            await browser.close();
+            if (failures.length) { console.error(failures.join('\n')); process.exit(1); }
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
+          node navigation.cjs
