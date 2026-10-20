@@ -6,7 +6,11 @@ on:
     paths:
       - 'index-new.html'
       - 'category.html'
+      - 'products.html'
       - '.github/workflows/cloudflare-pages-preview.yml'
+concurrency:
+  group: pages-review-70
+  cancel-in-progress: true
 permissions:
   contents: read
   deployments: write
