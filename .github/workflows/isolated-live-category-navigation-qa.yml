@@ -64,6 +64,42 @@ jobs:
             await probe('products', 'select=id,category_id&active=eq.true&limit=1');
           })().catch(e => { console.error(e); process.exit(1); });
           NODE
+      - name: Verify all approved root IDs and active product counts from live read-only data
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('category.html', 'utf8');
+          const match = html.match(/const U='([^']+)',K='([^']+)'/);
+          if (!match) throw new Error('Could not locate public read-only API config');
+          const base = match[1], key = match[2];
+          async function allRows(table, select, order) {
+            const rows = [];
+            for (let offset = 0; offset < 30000; offset += 1000) {
+              const query = 'select=' + select + '&active=eq.true&order=' + order + '&limit=1000&offset=' + offset;
+              const response = await fetch(base + '/rest/v1/' + table + '?' + query, {headers:{apikey:key,Authorization:'Bearer ' + key,Accept:'application/json'}});
+              const body = await response.text();
+              if (!response.ok) throw new Error(table + ' returned HTTP ' + response.status + ': ' + body.slice(0, 300));
+              const batch = JSON.parse(body);
+              if (!Array.isArray(batch)) throw new Error(table + ' did not return an array');
+              rows.push(...batch);
+              if (batch.length < 1000) return rows;
+            }
+            throw new Error(table + ' pagination exceeded safety limit');
+          }
+          (async () => {
+            const categories = await allRows('categories', 'id,name,parent_id,active,sort_order', 'sort_order.asc,name.asc');
+            const products = await allRows('products', 'id,category_id', 'id.asc');
+            const roots = ['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79'];
+            const byId = new Map(categories.map(c => [c.id,c]));
+            const parents = new Map(categories.map(c => [c.id,c.parent_id]));
+            const counts = new Map(categories.map(c => [c.id,0]));
+            for (const product of products) { let id = product.category_id; const seen = new Set(); while (id && parents.has(id) && !seen.has(id)) { counts.set(id,(counts.get(id)||0)+1); seen.add(id); id = parents.get(id); } }
+            const missing = roots.filter(id => !byId.has(id));
+            console.log('Live read-only data: active categories=' + categories.length + ', active products=' + products.length);
+            console.log('Approved roots: ' + JSON.stringify(roots.map(id => ({id:id,found:byId.has(id),active:byId.has(id) ? byId.get(id).active : false,descendantProducts:counts.get(id)||0}))));
+            if (missing.length) throw new Error('Approved root IDs missing from active live categories: ' + missing.join(', '));
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
       - name: Run mocked desktop and mobile category click-through
         working-directory: ${{ runner.temp }}/category-qa
         run: |
