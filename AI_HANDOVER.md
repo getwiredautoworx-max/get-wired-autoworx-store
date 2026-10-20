@@ -67,3 +67,13 @@ These eight rules are user-authoritative and must be copied into every new hando
 - PR #68 remains OPEN/DRAFT/UNMERGED at `47a634429783326cca9128770386046a3009a6fb`. PR #70 remains OPEN/DRAFT/UNMERGED at `9698f4c0f3c117cafb01b2c75b77197d2705b517`. Customer launch remains HOLD. This is mocked browser acceptance only, not live catalogue/data validation or owner approval.
 - **Next safest action:** preserve the isolated test branch (do not merge it to storefront branches), review the current PR #68 head and carry this successful test evidence into the PR review if the head is unchanged. Continue independent read-only work alongside the desktop agent; no production promotion or launch until all other release gates and owner approval are complete.
 - Detailed run log and scope limits: `AI_HANDOVER_PERMANENT.md`, run 17 outcome, commit `8744bc2260a29220a09451334723201c6cb6323b`.
+
+
+## LATEST CHECKPOINT — 2026-10-20, preview mismatch recovery continuation
+
+- Read `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and `HANDOVER_CURRENT.md` before work. Detailed evidence is appended to `AI_HANDOVER_PERMANENT.md` in commit `96d8282ad02fe9e312d59f73f70f60ec106dac56`.
+- Confirmed likely source of blank category artwork: `index-new.html` used `loremflickr.com` query URLs and its error handler removed the broken image without a usable fallback. The banner range text omitted Marine.
+- Correction committed to isolated design review branch `design/brighter-brand-category-images-2026-10-20`: `f19e60c03b1aa6273989199cc24bec6c30842a4d`. Marine is now in the banner; image URLs use fixed Unsplash CDN IDs chosen by category label; verified updated source has no loremflickr URL. Image relevance and real network loading are not yet verified.
+- Public SKU Exposure Audit passed: run `39452408700`. Responsive layout browser acceptance is still in progress: run `39452408814`. The review deploy workflow is push-triggered for this source file and the commit was the requested final-test preview step. Do not dispatch or retry another deployment until current deployment status is checked.
+- **Preview status:** exact URL for the new commit is NOT YET CONFIRMED. Do not present the older review URL as containing this correction. Next agent must retrieve the Cloudflare review deployment result for commit `f19e60c03b1aa6273989199cc24bec6c30842a4d`, then test the exact URL and image loading before calling it ready.
+- PR #70 remains draft/open/unmerged. Approved reference `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store` preserved. No merge, production promotion, Axxess/DNS, Supabase, checkout/payment, catalogue/stock or supplier changes. Customer launch remains HOLD.
