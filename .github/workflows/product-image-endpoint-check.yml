@@ -40,6 +40,7 @@ jobs:
           const home = fs.readFileSync('index-new.html', 'utf8');
           const listing = fs.readFileSync('products.html', 'utf8');
           const detail = fs.readFileSync('product.html', 'utf8');
+          const category = fs.readFileSync('category.html', 'utf8');
           const fallback = fs.readFileSync('assets/product-image-fallback.js', 'utf8');
           const bridge = fs.readFileSync('category-navigation.js', 'utf8');
           const checks = [
@@ -48,7 +49,10 @@ jobs:
             ['product detail uses product image_url', /esc\(p\.image_url\|\|/.test(detail)],
             ['iframe fallback preserves canonical endpoint', fallback.includes('product-image') && fallback.includes('functions')],
             ['iframe fallback preserves neutral placeholder', fallback.includes('product-placeholder')],
-            ['category bridge does not call generated illustration override', !/installCategoryIllustrations\(frame\);/.test(bridge)]
+            ['category bridge does not call generated illustration override', !/installCategoryIllustrations\(frame\);/.test(bridge)],
+            ['security category uses key/remote photo', category.includes('photo-1693344150104-5ffb54127eff')],
+            ['trailer category uses towing photo', category.includes('photo-1747711475650-b222ac557e58')],
+            ['accessories category uses interior/accessory photo', category.includes('photo-1626966473515-71dc32f2aedd')]
           ];
           for (const [name, pass] of checks) {
             console.log((pass ? 'PASS ' : 'FAIL ') + name);
@@ -64,6 +68,16 @@ jobs:
           node <<'NODE'
           const base = process.env.IMAGE_BASE;
           const skus = ['GW-000174D6', 'GW-3DE84AF0'];
+          const photoIds = [
+            'photo-1486262715619-67b85e0b08d3',
+            'photo-1693344150104-5ffb54127eff',
+            'photo-1660022305751-54f903c7c4c8',
+            'photo-1576792105433-00d9b512ae6e',
+            'photo-1504148455328-c376907d081c',
+            'photo-1504280390367-361c6d9f38f4',
+            'photo-1747711475650-b222ac557e58',
+            'photo-1626966473515-71dc32f2aedd'
+          ];
           (async () => {
             for (const sku of skus) {
               const url = base + '?sku=' + encodeURIComponent(sku);
@@ -74,6 +88,16 @@ jobs:
               console.log(JSON.stringify({ sku, status: response.status, contentType: type, bytes: bytes.length, webpSignature: webp }));
               if (response.status !== 200 || !type.startsWith('image/') || bytes.length < 100 || (!webp && !type.includes('jpeg'))) {
                 throw new Error('Image endpoint failed validation for ' + sku);
+              }
+            }
+            for (const photoId of photoIds) {
+              const url = 'https://images.unsplash.com/' + photoId + '?auto=format&fit=crop&w=960&q=82';
+              const response = await fetch(url, { signal: AbortSignal.timeout(25000) });
+              const bytes = Buffer.from(await response.arrayBuffer());
+              const type = (response.headers.get('content-type') || '').toLowerCase();
+              console.log(JSON.stringify({ categoryPhoto: photoId, status: response.status, contentType: type, bytes: bytes.length }));
+              if (response.status !== 200 || !type.startsWith('image/') || bytes.length < 100) {
+                throw new Error('Category photo failed validation: ' + photoId);
               }
             }
           })().catch(error => { console.error(error); process.exit(1); });
