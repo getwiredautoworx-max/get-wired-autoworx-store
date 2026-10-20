@@ -2651,3 +2651,10 @@ This section supersedes older QA statements above where they conflict.
 - Existing responsive mocked browser workflow run `39470411410`, job `118792659688`, completed PASS. It starts a local static preview with mocked catalogue responses; it is not a real remote-image network test. SKU exposure audit run `39470411513` also PASS.
 - Tried opening immutable preview `/store` and `/category.html` with the available web retrieval tool; both returned “URL is not accessible via this tool.” Therefore real browser image HTTP statuses, image relevance, served-source fingerprint, and desktop/mobile screenshot parity remain BLOCKED / NOT VERIFIED. This is an environment access limitation, not proof the deployment is down.
 - Next task: investigate the product image coverage pipeline without swapping in unverified images. Preserve exact-SKU image correctness, check the listing/detail render paths and available asset coverage, and add a safe fallback/QA check only where source evidence supports it. Do not merge or trigger another deployment to work around browser access. Launch HOLD; supplier reconciliation PAUSED.
+
+
+## 2026-10-20 — Continuation run 27 task start: product image coverage and safe fallback
+- Start after reading all three handover files. PR #71 remains draft/unmerged; its live image verification is blocked by browser access.
+- Scope: inspect product-card/detail/listing image rendering and repository image inventory. Identify safe, evidence-backed fallback behavior that never substitutes a visually similar or unverified product image.
+- Constraints: no production Supabase/catalogue/stock writes, no supplier reconciliation (authorization pending), no Axxess/DNS/payment changes, no APK work, no merge, and no deployment/retry unless a completed fix requires controlled preview validation.
+- Plan: compare homepage, category listing, and product detail image sources; check local exact-SKU asset coverage from GitHub metadata; add a static QA check or minimal code fix only if it cannot display incorrect images; update all handovers with evidence and next action.
