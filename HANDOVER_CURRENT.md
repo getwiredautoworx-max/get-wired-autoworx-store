@@ -363,3 +363,11 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - **Test gap:** the workflow performs Deno type-check and static assertions only; it does not execute auth-negative, input-boundary, hierarchy-cycle or audit-failure tests. Physical Hisense M72 Pro test remains outstanding. Existing queue_task/approve_opportunity actions also need explicit privilege-scope review.
 - No code edits, deployments, workflow runs, Supabase writes/schema changes or APK distribution. Detailed evidence and recommendations are in `AI_HANDOVER_PERMANENT.md` (run 16 outcome, commit `19e10850465d53fbbb7b26ce119db94fbc3d5b4e`).
 - PR #68 Playwright route remains blocked as documented in run 15; no desktop-agent task was interrupted. Approved reference remains https://1fdda0ab.get-wired-autoworx-store.pages.dev/store; launch stays HOLD.
+
+
+## 2026-10-20 — Owner reports the design preview still loads the old storefront
+- Do not use the URL previously supplied in the assistant reply as an approval link; owner reports it shows the previous version.
+- PR #70 verified OPEN / DRAFT / UNMERGED; head `9698f4c0f3c117cafb01b2c75b77197d2705b517`, base `712a805a1fe395bdb80f9344952016f136438a5f`. `store.html` wraps `index-new.html`; current source includes design changes, but exact deployed preview content is not independently verified.
+- Confirmed source bug: hero banner line omits Marine. Dynamic `loremflickr.com` photo URLs are unreliable/unverified and owner reports images fail to load.
+- Workflow on the design branch automatically invokes `wrangler pages deploy` for relevant file pushes. Per locked rule, do not push a fix or trigger deployment until final testing/credit phase. No code was changed and no new deploy/retry was triggered during this diagnosis.
+- Next: prepare local/offline patch and checks for Marine banner, reliable category/subcategory images filling button area, clear active/tap text highlight, and one customer-friendly “Search / Request a Part” modal. At final test stage only, trigger one isolated preview deploy and verify the exact immutable URL's served content before asking owner to approve. Keep launch HOLD and approved reference https://1fdda0ab.get-wired-autoworx-store.pages.dev/store unchanged.
