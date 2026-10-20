@@ -32,3 +32,8 @@
 - Do not touch Axxess, DNS, production promotion, live Supabase/catalogue/stock, supplier systems, checkout/payment settings or APK distribution without a separate approved task/release gate.
 - Cloudflare/Netlify deployment credits are reserved for final test checkpoints. The current URL is the deployed approved content commit; no fresh deployment of the squash commit is claimed.
 - Next: on an isolated branch from the canonical baseline, run local asset/link checks and category-navigation + mocked responsive browser tests without deploying. Continue catalogue accuracy and stock/category management from this point. Update `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md` and `HANDOVER_CURRENT.md` when each task is complete.
+
+
+## Continuation branch created — 2026-10-20
+- Fresh working branch: `work/approved-storefront-continuation-2026-10-20`, created from the owner-approved canonical branch `recovery/approved-preview-index-new` after PR #70 merge and handover reconciliation.
+- Use this isolated branch for upcoming catalogue/category management tasks. Do not deploy or merge until non-deploying checks pass and the next testing checkpoint is approved.
