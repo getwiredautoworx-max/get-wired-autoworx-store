@@ -177,3 +177,9 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - PR head is currently `5f2a48836e60123c37688c487d1f4498d3568290`. PR remains draft/open/unmerged.
 - Preview constraint: `.github/workflows/cloudflare-pages-deploy.yml` is explicitly `workflow_dispatch` only and deploys the `main` branch to the production Pages project; it must not be used for a layout preview. Attempted branch-preview URL `https://layout-category-grid-mobile-polish-2026-10-20.get-wired-autoworx-store.pages.dev/store` could not be verified accessible. Do not present it as a working preview. Approved visual reference remains `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store`. A real new preview still requires a safe non-production Cloudflare preview deployment path or an authorized preview host; do not promote to main or production merely to obtain a URL.
 - No production deployment, Axxess/DNS/payment changes, catalogue/stock data changes, or supplier activity. Launch remains HOLD.
+
+
+## 2026-10-20 — Responsive browser test failure and correction
+- The first browser-test run `39423629800` failed before layout assertions because the temporary test script lived in `/tmp`, so Node could not resolve the repository-local Playwright package. This was a test-harness path issue, not a storefront layout failure. Logs: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39423629800.
+- Corrected the workflow to run the test script from the repository workspace and fixed the `file://` URL construction so the product category query is passed as a URL query rather than part of the filesystem path. Fix commit `473fd80056b9a51df8049a1d3be466e540afcd86`.
+- Rerun `39423752473` is currently in progress: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39423752473. Its outcome must be checked before reporting browser validation. PR #69 remains draft/unmerged; no deployment was made.
