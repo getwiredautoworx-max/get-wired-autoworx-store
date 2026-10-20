@@ -15,6 +15,9 @@ async function authorized(req: Request) {
   if (error || !data.user) return null;
   const { data: admin, error: ae } = await db.from("veyron_admin_users").select("user_id,role,enabled").eq("user_id", data.user.id).eq("enabled", true).maybeSingle();
   if (ae || !admin) return null;
+  // This endpoint exposes inventory and cost-related operational data. Do not
+  // permit lower-privilege enabled staff roles to read it through GET routes.
+  if (admin.role !== "owner" && admin.role !== "admin") return null;
   return { user: data.user, admin };
 }
 
