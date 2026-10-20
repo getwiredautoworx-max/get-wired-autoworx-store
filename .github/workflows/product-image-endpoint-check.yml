@@ -188,7 +188,7 @@ jobs:
                   src: img.currentSrc || img.src,
                   width: img.naturalWidth,
                   height: img.naturalHeight,
-                  placeholder: /product-image-pending\\.svg|product-placeholder\\.svg/.test(img.currentSrc || img.src)
+                  placeholder: /product-image-pending\.svg|product-placeholder\.svg/.test(img.currentSrc || img.src)
                 });
                 const done = () => { clearTimeout(timer); resolve(snapshot()); };
                 const timer = setTimeout(done, 20000);
