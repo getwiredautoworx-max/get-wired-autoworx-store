@@ -57,3 +57,13 @@ These eight rules are user-authoritative and must be copied into every new hando
 5. Keep PR #68 and #70 draft/unmerged, launch HOLD, and supplier reconciliation paused unless the owner explicitly changes those instructions.
 
 **No task is considered complete merely because it was investigated.** The next agent must update this file only when its guidance/checkpoint materially changes, and must always append detailed dated outcomes to `AI_HANDOVER_PERMANENT.md`.
+
+
+## LATEST VERIFIED CHECKPOINT — 2026-10-20, continuation run 17
+
+- **PR #68 isolated Playwright regression: PASS** for mocked navigation/fitment acceptance. Exact source head tested: `47a634429783326cca9128770386046a3009a6fb`; base `recovery/approved-preview-index-new` at `712a805a1fe395bdb80f9344952016f136438a5f`.
+- Isolated runner branch: `test/pr68-isolated-playwright-2026-10-20`; harness commit `cbb62314817ffa79b230c8ea2c9dc0a21d27353f`. Successful run `39450493966`, job `118723695961`; artifact `12278521131`. This branch used only a local static server and mocked Supabase fixtures. Its only runs were the source-check workflow; no Cloudflare Pages or Netlify deployment was triggered and no credits were used.
+- Checks passed: all eight root categories visible; recursive category counts; root-category click; subcategory drill-down; exact product count/cards; browser Back to parent; Auto Electrical retains fitment guidance; Vehicle Security, Car Audio, Automotive Accessories, Marine, Tools/Consumables, Camping/Outdoors and Trailer/Canopy omit fitment-specific detail/advice.
+- PR #68 remains OPEN/DRAFT/UNMERGED at `47a634429783326cca9128770386046a3009a6fb`. PR #70 remains OPEN/DRAFT/UNMERGED at `9698f4c0f3c117cafb01b2c75b77197d2705b517`. Customer launch remains HOLD. This is mocked browser acceptance only, not live catalogue/data validation or owner approval.
+- **Next safest action:** preserve the isolated test branch (do not merge it to storefront branches), review the current PR #68 head and carry this successful test evidence into the PR review if the head is unchanged. Continue independent read-only work alongside the desktop agent; no production promotion or launch until all other release gates and owner approval are complete.
+- Detailed run log and scope limits: `AI_HANDOVER_PERMANENT.md`, run 17 outcome, commit `8744bc2260a29220a09451334723201c6cb6323b`.
