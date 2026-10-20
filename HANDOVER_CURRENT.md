@@ -2319,3 +2319,11 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - QA update commit `a2f4808c369eb87f0baadcac120723bd0834d0ce`: test the actual standalone header “PART SEARCH” button and improve category-grid timeout diagnostics so a future failure prints the iframe body state rather than only timing out.
 - These fixes are now pushed, but their new GitHub Actions result and a successful Cloudflare deployment of the latest source have not yet been confirmed. Do not mark ready until the latest run passes, including photo load, search-to-request handoff, rating/banner geometry, category/subcategory navigation, and mobile overflow. If it fails, use the emitted diagnostics and keep working on this same branch.
 - PR #72 stays draft/unmerged. No production/Axxess/DNS/payment/supplier/catalogue changes.
+
+
+## Follow-up test-harness root cause — 2026-10-20
+- After the category-cleanup fix, the rerun's diagnostics showed the page remained on “Loading categories…” and “Loading specials…”. The fixture API calls were not completing in the isolated iframe, so the browser never reached `renderCats()`.
+- Cause found in the Playwright fixture: the mocked Supabase REST route did not respond with CORS headers for cross-origin requests carrying `apikey` and `Authorization`, and it did not handle `OPTIONS` preflight explicitly. This is a QA harness problem; it does not establish a production Supabase outage.
+- Fix commit `ba38f4cfb328c92305899be103cf9708209664e4`: the fixture now returns permissive CORS headers for mocked REST responses and a valid 204 preflight response, then returns the fixture JSON for GET calls.
+- The category cleanup code fix remains commit `5629b58fec32f8be8eb99100d8ff11da5d93c8a8`; the standalone part-search selector and diagnostic improvement remain `a2f4808c369eb87f0baadcac120723bd0834d0ce`.
+- New QA run after the CORS fixture correction is still required. Do not state acceptance until it passes and latest preview is checked. PR #72 remains draft/unmerged; no production/Axxess/DNS/payment/supplier/catalogue change.
