@@ -2165,3 +2165,8 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - PR #70 is merged. Other PRs #67–69, #65–66 and unrelated branches remain separate; do not merge them as part of this approval. In particular, do not blindly reconcile the highly divergent `main` branch (compare showed 185 ahead / 227 behind) into the approved baseline. Review unrelated changes individually.
 - This is approval of the working layout, not production launch approval. Do not touch Axxess, DNS, production deployment, live Supabase/catalogue/stock, supplier systems, checkout/payment configuration or APK distribution without a separate task/release gate. Customer launch remains HOLD.
 - Next action: establish a fresh continuation branch from `recovery/approved-preview-index-new`; run file-link/asset checks plus category navigation and mocked responsive browser tests without deploying; then continue the next catalogue accuracy and stock/category management tasks from this baseline. Only deploy again when the next test checkpoint is ready.
+
+
+## Continuation branch created — 2026-10-20
+- Fresh working branch: `work/approved-storefront-continuation-2026-10-20`, created from the owner-approved canonical branch `recovery/approved-preview-index-new` after PR #70 merge and handover reconciliation.
+- Use this isolated branch for upcoming catalogue/category management tasks. Do not deploy or merge until non-deploying checks pass and the next testing checkpoint is approved.
