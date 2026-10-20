@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: storefront-live-assets-links-qa
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   live-assets-links:
@@ -57,9 +57,9 @@ jobs:
                 page.on('requestfailed',req=>{if(req.resourceType()==='image')entry.failedImageRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});});
                 page.on('response',res=>{if(res.request().resourceType()==='image')entry.images.push({url:res.url(),status:res.status(),ok:res.ok()});});
                 try {
-                  const response=await page.goto(target.url,{waitUntil:'domcontentloaded',timeout:45000});
+                  const response=await page.goto(target.url,{waitUntil:'domcontentloaded',timeout:18000});
                   entry.checks.push({id:'document-http',status:response&&response.status()<400?'PASS':'FAIL',http:response?.status()??null,finalUrl:page.url()});
-                  await page.waitForTimeout(7000);
+                  await page.waitForTimeout(1500);
                   let frameInfo=null;
                   for (const frame of page.frames()) {
                     try {
@@ -91,7 +91,7 @@ jobs:
                     entry.checks.push({id:'category-images-loaded-without-logo-fallback',status:broken.length===0?'PASS':'FAIL',broken});
                     const noAlt=imgs.filter(i=>!i.alt);
                     entry.checks.push({id:'category-image-alt-labels',status:noAlt.length===0?'PASS':'FAIL',missingAlt:noAlt.length});
-                    await page.screenshot({path:path.join(process.env.QA_OUT,target.label+'-category-grid.png'),fullPage:true}).catch(()=>{});
+                    await page.screenshot({path:path.join(process.env.QA_OUT,target.label+'-category-grid.png'),fullPage:false}).catch(()=>{});
                     entry.screenshots.push(target.label+'-category-grid.png');
                     if(info.categoryCards>0){
                       try{
