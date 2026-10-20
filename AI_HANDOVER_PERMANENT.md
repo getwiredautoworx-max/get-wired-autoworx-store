@@ -2392,3 +2392,7 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 ## 2026-10-20 — Follow-up audit attempt failed at test-harness parse stage
 - Extended-wait asset audit run `39466751593`, job `118780018181`, failed before browser navigation because the newly added Supabase-request diagnostic regex was double-escaped and Node raised `SyntaxError: Invalid regular expression flags`. No site requests or screenshots were produced by this attempt; this is a test-harness error, not evidence of a storefront failure.
 - Correct the regex escapes in the isolated QA workflow and rerun once. Keep the longer wait and API response capture so the result can distinguish slow product pagination from an actual failed Supabase request. No application source or live data changed.
+
+
+## 2026-10-20 — Extended-wait audit runtime adjustment
+- The corrected extended-wait audit run `39466924207` reached the browser step, but its wait condition can consume the full 45 seconds on pages that do not expose the expected `#categoryGrid` element. To keep QA bounded and avoid wasting runner time, replace that condition with one that resolves immediately when the element is absent or an explicit non-loading state is shown, and cap the actual loading wait at 20 seconds. This is a harness-only adjustment; no app or live data changes.
