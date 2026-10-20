@@ -131,3 +131,14 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Read all three handovers; rechecked existing GitHub Actions evidence read-only. Design source `f19e60c03b1aa6273989199cc24bec6c30842a4d`: SKU audit `39452408700` PASS, responsive acceptance `39452408814` PASS; existing preview deployment `39452404463` / job `118730382190` remains successful. No new deployment/retry.
 - Existing browser/network blocker remains: actual served content, remote image status/relevance, live counts/links, and the differing `fccc47b7` vs `ebe5ddb2` deployments are not reconciled. Do not redeploy just to compare them.
 - No app source, PR, production, live Supabase, catalogue/stock, Axxess/DNS/payment or APK changes. Customer launch HOLD; supplier reconciliation PAUSED. Next: verify existing URLs using a network-enabled real browser; preserve draft PRs and isolated test runner.
+
+
+## LATEST CHECKPOINT — 2026-10-20, continuation run 24
+
+- Re-read `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and `HANDOVER_CURRENT.md` before continuing.
+- PR #68 remains OPEN/DRAFT/UNMERGED at head `47a634429783326cca9128770386046a3009a6fb`. Existing isolated mocked Playwright regression PASS: run `39450493966`, job `118723695961`, artifact `12278521131`.
+- Cloudflare Pages bot reports the existing deployment for the PR #68 head succeeded at `https://93f742c0.get-wired-autoworx-store.pages.dev`; branch alias `https://qa-live-category-navigation.get-wired-autoworx-store.pages.dev`. The separate Workers build failure is not the Pages deployment.
+- Attempted to open `/category.html`, `/store`, and PR #68 via the available web retrieval interface; it could not access them. Live category click-through, live counts/product links, and served-source fingerprint remain BLOCKED / NOT VERIFIED. No new deployment was triggered.
+- Master handover outcome appended in commit `8aea51aae720bd6b64bfffadef213c5e89389a28`.
+- No source changes, merges, deployment retries, credit spend, live data/schema/catalogue/stock changes, Axxess/DNS/payment changes, or APK distribution. Customer launch remains HOLD; supplier reconciliation remains PAUSED.
+- Next: use a network-enabled browser to verify the existing immutable preview URL and category click-through; do not redeploy just to work around browser-access limitations.
