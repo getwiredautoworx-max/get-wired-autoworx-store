@@ -441,3 +441,11 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Read all three handovers; rechecked existing GitHub Actions evidence read-only. Design source `f19e60c03b1aa6273989199cc24bec6c30842a4d`: SKU audit `39452408700` PASS, responsive acceptance `39452408814` PASS; existing preview deployment `39452404463` / job `118730382190` remains successful. No new deployment/retry.
 - Existing browser/network blocker remains: actual served content, remote image status/relevance, live counts/links, and the differing `fccc47b7` vs `ebe5ddb2` deployments are not reconciled. Do not redeploy just to compare them.
 - No app source, PR, production, live Supabase, catalogue/stock, Axxess/DNS/payment or APK changes. Customer launch HOLD; supplier reconciliation PAUSED. Next: verify existing URLs using a network-enabled real browser; preserve draft PRs and isolated test runner.
+
+
+## Latest checkpoint — 2026-10-20, continuation run 26
+- PR #68 remains retired/closed, not to be reopened. Work continued from the PR #70 approved recovery baseline.
+- Concrete source regressions found: root `category-navigation.js` forcibly replaced category photo sources with generated SVG/emoji illustrations; `category.html` applied a light-theme override. Isolated fix is in draft PR #71: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71.
+- Source-level only; real image requests/relevance and desktop/mobile screenshot parity are NOT VERIFIED because a network-enabled browser is unavailable. Do not treat PR or deployment metadata as visual acceptance.
+- Product listings still use local exact-SKU WebP images (1,000 assets listed) and hide failed images into a neutral placeholder; database `image_url` is not used in `products.html`. Avoid unverified image substitutions.
+- No merge/deployment retry, production/Supabase/catalogue/stock, Axxess/DNS/payment, or APK changes. Launch HOLD; supplier reconciliation PAUSED. Next: check PR #71 existing CI/Pages metadata without retries, then perform real-browser image/visual tests before further image changes.
