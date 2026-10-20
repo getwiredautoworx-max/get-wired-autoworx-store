@@ -485,3 +485,10 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Preview for review: https://ba36f827.get-wired-autoworx-store.pages.dev/store (branch alias https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev/store). This resolves the source mismatch without a new deployment. Reachability and visual/image relevance still need owner/browser verification.
 - The explicit `.github/workflows/cloudflare-pages-deploy.yml` is manual-only and deploys `main`; do not dispatch it for PR preview testing.
 - Next: owner/browser visual review on desktop/mobile and live category/product click-through. No deployment/retry/merge or production/live-system changes; launch HOLD.
+
+
+## Latest checkpoint — 2026-10-20, continuation run 29
+- Real Playwright against branch alias https://fix-pr70-category-image-pari.get-wired-autoworx-store.pages.dev verified category images at 1440px (3 columns) and 390px (2 columns), all 8 images decoded with zero image HTTP failures.
+- Same browser run `39472625380` / job `118800335270` opened `/store.html` (HTTP 200), loaded homepage iframe, and verified first five product images retained canonical per-SKU image endpoint URLs and decoded at 1200x1200; observed image endpoint responses were HTTP 200.
+- PR #71 draft/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71. Cloudflare bot's latest immutable build status for workflow-only commit `13119c7` remains in progress, but branch alias browser checks pass against current category/product source.
+- Next: read-only audit category counts vs live active products, then test category → subcategory → product list → detail navigation in real browser. Launch HOLD; no production/data/hosting/payment changes.
