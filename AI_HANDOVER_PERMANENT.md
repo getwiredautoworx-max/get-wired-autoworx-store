@@ -2668,3 +2668,10 @@ This section supersedes older QA statements above where they conflict.
 - PR #71 remains draft/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/71. Cloudflare Pages last reported immutable preview `https://6034cdc5.get-wired-autoworx-store.pages.dev` successful for commit `5d6f785`; current PR head is `aa02d6c904b19d641e6fe2924a93d4bf00d3e7ac`, so latest served-source parity is not yet confirmed. Available web retrieval still cannot open preview URLs. Do not call visual acceptance complete until the current commit is confirmed and a real browser verifies image loading and category relevance.
 - No production Supabase writes, catalogue/stock changes, supplier reconciliation, Axxess/DNS/payment, production deployment, or APK changes. Launch HOLD; supplier reconciliation PAUSED.
 - Next task: test the curated category photo URLs and source-to-category mapping with a network-enabled GitHub runner; preserve the approved dark theme and do not substitute arbitrary images. Then confirm the current preview commit and desktop/mobile appearance.
+
+
+## 2026-10-20 — Continuation run 28 task start: category photo request and relevance audit
+- Start after reading all three handovers. PR #71 remains draft/unmerged; product image endpoint tests passed, but current preview commit and visual acceptance are not confirmed.
+- Scope: audit the curated category photo source map in `category.html`, validate that the URLs return image content from a network-enabled GitHub Actions runner, and ensure category names map to sensible automotive/tool/marine/camping/trailer photo themes.
+- Constraints: do not replace approved category names/navigation, do not use random/unrelated imagery, no merge or production deployment, no Supabase/catalogue/stock writes, no supplier reconciliation, no Axxess/DNS/payment/APK changes.
+- Plan: inspect the exact photo ID/keyword mapping, add category-photo network/status checks to the existing image QA workflow, run them against the PR head, and record all successes/failures. Real screenshot/visual browser verification remains a separate gate.
