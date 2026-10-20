@@ -2358,3 +2358,16 @@ The current crosswalk file reports **59 new page-image findings recorded**, **8 
 ## Continuation branch created — 2026-10-20
 - Fresh working branch: `work/approved-storefront-continuation-2026-10-20`, created from the owner-approved canonical branch `recovery/approved-preview-index-new` after PR #70 merge and handover reconciliation.
 - Use this isolated branch for upcoming catalogue/category management tasks. Do not deploy or merge until non-deploying checks pass and the next testing checkpoint is approved.
+
+
+## Current checkpoint — 2026-10-20 (handover refreshed)
+- Owner-approved storefront layout is the canonical direction. PR #70, “Brighten Get Wired branding and add category photography,” was squash-merged; merge commit: `39d4c77096e1460e131ebfaeff8672aaedcb93e7`.
+- Approved baseline branch: `recovery/approved-preview-index-new`. Active isolated continuation branch: `work/approved-storefront-continuation-2026-10-20`.
+- Review deployment reported by the GitHub/Cloudflare deployment bot for source commit `f19e60c03b1aa6273989199cc24bec6c30842a4d`: `https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store`. This URL was not independently opened/verified by the web checker; do not claim browser verification or that the squash merge itself was freshly deployed.
+- `index-new.html` image URL generation was changed from fragile `loremflickr.com` queries to fixed Unsplash CDN image IDs chosen by category label; Marine is included in the banner/category text. These are category-level images, not verified exact product images. Actual image network loading, visual relevance and rights remain unchecked.
+- `store.html` is a wrapper that loads `index-new.html` and shared product-image/category scripts. Preserve it; do not replace it with the full homepage document.
+- Existing evidence: responsive layout browser workflow run `39452408814` passed with mocked catalogue at 320, 360, 390, 768 and 1440 px; public SKU exposure audit run `39452408700` passed. These do not prove live catalogue correctness, image requests/rights, checkout readiness or launch readiness.
+- Immediate next work: perform non-deploying asset/link integrity checks, inspect category navigation and run isolated mocked responsive/browser checks. Do not trigger Cloudflare/Netlify deployments during this stage. Then continue catalogue accuracy, discontinued/out-of-stock supplier audit and secure stock/category management; maintain a review ledger and do not auto-approve ambiguous catalogue rows.
+- Branch divergence warning: prior compare showed `main` 185 commits ahead and 227 behind relative to the design branch. Do not blindly merge `main` or unrelated PRs #67–69 and #65–66; inspect and reconcile individually.
+- Release boundary: customer launch remains HOLD. Layout approval is not launch approval. No Axxess, DNS, production promotion, live Supabase/catalogue/stock, supplier systems, checkout/payment settings or APK distribution changes were made or authorized by this checkpoint.
+- Keep all status evidence-based: distinguish completed work from investigation, report failed/unverified checks plainly, and update all three handover files after successful task completion.
