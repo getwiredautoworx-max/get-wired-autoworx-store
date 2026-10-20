@@ -1,0 +1,33 @@
+name: Deploy design review preview to Cloudflare Pages
+on:
+  push:
+    branches:
+      - design/brighter-brand-category-images-2026-10-20
+    paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'products.html'
+      - '.github/workflows/cloudflare-pages-preview.yml'
+concurrency:
+  group: pages-review-70
+  cancel-in-progress: true
+permissions:
+  contents: read
+  deployments: write
+jobs:
+  deploy-review-preview:
+    name: Deploy isolated non-production design preview
+    if: github.ref == 'refs/heads/design/brighter-brand-category-images-2026-10-20'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout design branch
+        uses: actions/checkout@v4
+        with:
+          ref: design/brighter-brand-category-images-2026-10-20
+      - name: Deploy review branch only
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=get-wired-autoworx-store --branch=review-70
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
