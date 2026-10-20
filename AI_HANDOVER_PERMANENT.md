@@ -2311,3 +2311,27 @@ This section supersedes older QA statements above where they conflict.
 - Plan: inspect PR #68 exact head and existing checks; run only already-existing read-only/source/browser checks where possible. For PR #70, reconcile existing Cloudflare bot messages and available GitHub checks/logs; do not start/retry any deployment or build.
 - Safety boundaries: keep draft PRs unmerged; no production/Pages deployment, no Axxess/DNS/payment changes, no Supabase writes/schema changes, no product/category/stock/price/active-flag writes, and no supplier stock reconciliation pending supplier finalization. Preserve owner-approved baseline `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store`.
 - Record evidence-based outcomes and any blocker in this permanent handover as soon as verified. Monitoring is scheduled, not continuous.
+
+
+## 2026-10-20 15:35–15:42 SAST — continuation run 12 outcomes
+
+- **Task-start: SUCCESS.** Run 12 task-start entry was appended to `AI_HANDOVER_PERMANENT.md` on `main` in commit `1dc991423470df503d844228576e509800ec32f0`; resulting blob SHA `53cea42719c64e656786325436d947e36833fe8a`.
+- **Supplier reconciliation remains paused** pending supplier finalization; no stock/catalogue cleanup was performed.
+
+### PR #68 category navigation — source checks verified; browser navigation gate still open
+- Re-read current PR #68. It is OPEN/DRAFT and unmerged; exact head is `47a634429783326cca9128770386046a3009a6fb`.
+- Existing checks for that head are completed SUCCESS: Live category tree source checks run `39415362757` and Public SKU Exposure Audit run `39415362782`. The category source check verifies syntax, active categories/products live-read calls, and the approved eight root labels.
+- Inspected the source: root category rendering, category/subcategory drill-down, descendant counts, direct-product link, and redirect to `products.html?category=...` are present. This is source inspection, not proof of real browser navigation.
+- The existing successful browser run `39429111752` belongs to PR #70's responsive layout suite; its steps confirm Playwright ran with mocked catalogue responses at 320/360/390/768/1440 widths, but it is not a PR #68 category-navigation regression. The current PR #68 workflow only runs source assertions and does not exercise root clicks, subcategory drill-down, counts, browser back, or vehicle-finder exemptions.
+- **Status: PARTIALLY VALIDATED; browser navigation regression remains outstanding.** No new workflow/commit was pushed because the preview bot may automatically initiate a Cloudflare build on PR updates, which would violate the explicit instruction not to trigger another deployment. Do not label the category experience fully browser-validated.
+
+### PR #70 design preview — conflicting statuses classified, latest status unresolved
+- Re-read current PR #70. It remains OPEN/DRAFT and unmerged at head `89a0a11f7bdb84a1d2ce8f55e18f27d12d0ca1ca`.
+- Responsive browser acceptance run `39429111752` and Public SKU Exposure Audit `39429111750` are both completed SUCCESS. The browser job steps explicitly show Playwright plus mocked catalogue responses and all five viewport sizes. This verifies the tested responsive layout, not Cloudflare hosting health or owner visual approval.
+- The Cloudflare Pages bot comment says the Pages build for current head `89a0a11` was **in progress** at 2026-10-20 13:12 UTC (15:12 SAST), with log/dashboard identifier `3553ad7f-2b82-4079-918a-7755f0ef176e`. The separate preview-status table later lists FAILED builds for older commits `fcde22a` and `0d6893d`, plus an IN-PROGRESS build for `8e103a9`; none of those is the current PR #70 head `89a0a11`. Thus the apparent conflict is at least partly **cross-commit / cross-build status mixing**, not evidence that the current head itself failed.
+- The connected GitHub tools expose no Cloudflare build logs, and no later Cloudflare comment/status for `89a0a11` was present. **Latest-head deployment status remains UNRESOLVED**; do not reuse the old failed-build rows as the status of current head. Existing dashboard link for the current Pages build: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/3553ad7f-2b82-4079-918a-7755f0ef176e. Check this existing build's final state/logs only; do not redeploy, retry, or create a new build.
+- PR #70's PR body still lists `https://9119fd77.get-wired-autoworx-store.pages.dev/store` and branch alias `https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store`, but these were not independently revalidated in this run. Keep the owner-approved baseline `https://1fdda0ab.get-wired-autoworx-store.pages.dev/store` as the reference. No owner visual approval recorded.
+
+### Safety / next action
+- No deployment, build retry, merge, code change, Axxess/DNS/payment change, Supabase write/schema change, or live catalogue/stock/category/price/active-flag mutation was initiated.
+- Next: obtain the final state and first error (if failed) from the existing Cloudflare Pages build for current PR #70 head `89a0a11`, without starting a new deployment. Separately add/execute a browser regression for PR #68 only through a method confirmed not to trigger the preview bot; until then its browser-navigation gate remains open. Keep PR #68 and #70 draft/unmerged and launch HOLD.
