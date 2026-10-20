@@ -219,3 +219,12 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Updated category image choices to use more appropriate car-audio and marine-equipment photos. Images are external Unsplash URLs with an onerror visual fallback; verify visual rendering on the deployed preview.
 - The responsive test for PR #70 still fails at 320px because `products.html` reports document scroll width 325px; this is a pre-existing/parallel layout issue and remains unresolved. Latest responsive run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39428589352. Do not mark responsive acceptance complete.
 - Backup branch remains `backup/store-before-banner-category-images-2026-10-20`; design PR #70 remains draft and unmerged. No production deployment, Axxess/DNS/payment changes, stock edits, or supplier activity.
+
+
+## 2026-10-20 — Design review preview deployed successfully
+- Cloudflare Pages preview workflow run `39428593844` completed successfully and Wrangler reported deployment complete for design branch commit `f73112f3671c4fd13f4524f23c5ee23faf520dec`.
+- Exact deployment URL reported by Wrangler: https://8478dbfa.get-wired-autoworx-store.pages.dev/store
+- Deployment alias reported by Wrangler: https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store
+- These are non-production review URLs; no merge to `main` or production deploy was made. Owner can inspect the brighter homepage headline and category/subcategory photo cards here.
+- PR #70 remains draft/open/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/70. Backup branch `backup/store-before-banner-category-images-2026-10-20` preserves the pre-change snapshot.
+- Outstanding: browser acceptance workflow `39428589352` still fails the unrelated 320px products page overflow check (`scrollWidth=325`); category test fixture currently reports zero rendered cards, so that part of the test is not meaningful yet. Continue correcting the test/overflow before claiming responsive acceptance. Do not merge or promote until owner review and checks are complete.
