@@ -171,6 +171,39 @@ jobs:
                 if (failedImages.length) throw new Error('Image HTTP errors found at viewport ' + width);
                 await page.close();
               }
+              const storePage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+              const productImageResponses = [];
+              storePage.on('response', response => {
+                if (response.url().includes('/functions/v1/product-image?sku=')) {
+                  productImageResponses.push({ url: response.url(), status: response.status() });
+                }
+              });
+              const storeResponse = await storePage.goto(base + '/store.html', { waitUntil: 'domcontentloaded', timeout: 45000 });
+              if (!storeResponse || storeResponse.status() >= 400) throw new Error('Store wrapper failed to load');
+              const frame = storePage.frameLocator('#store');
+              await frame.locator('.product img').first().waitFor({ timeout: 60000 });
+              await frame.locator('.product img').evaluateAll(imgs => imgs.slice(0, 5).forEach(img => { img.loading = 'eager'; }));
+              const productImages = await frame.locator('.product img').evaluateAll(imgs => Promise.all(imgs.slice(0, 5).map(img => new Promise(resolve => {
+                const snapshot = () => ({
+                  src: img.currentSrc || img.src,
+                  width: img.naturalWidth,
+                  height: img.naturalHeight,
+                  placeholder: /product-image-pending\\.svg|product-placeholder\\.svg/.test(img.currentSrc || img.src)
+                });
+                const done = () => { clearTimeout(timer); resolve(snapshot()); };
+                const timer = setTimeout(done, 20000);
+                if (img.complete && img.naturalWidth > 0) return done();
+                img.addEventListener('load', done, { once: true });
+                img.addEventListener('error', done, { once: true });
+              }))));
+              console.log(JSON.stringify({ storeWrapperStatus: storeResponse.status(), productImages, productImageResponses }));
+              if (productImages.length < 3 || productImages.filter(img => img.width > 0 && img.height > 0).length < 3) {
+                throw new Error('Fewer than three of the first five homepage product image slots decoded, including neutral placeholders');
+              }
+              if (!productImages.some(img => img.src.includes('/functions/v1/product-image?sku='))) {
+                throw new Error('Homepage product cards did not preserve any canonical per-product image endpoint URL');
+              }
+              await storePage.close();
             } finally {
               await browser.close();
             }
