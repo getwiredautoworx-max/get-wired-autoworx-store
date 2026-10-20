@@ -411,3 +411,12 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 
 ### Run 19 additional read-only check — PR #66 policy links
 - Verified PR #66's checkout branch contains `checkout-v2.html` links to `terms-and-conditions.html` and `returns-refunds.html`; both target files exist on that branch and on `main` / `recovery/approved-preview-index-new`. Exact SHAs and limitation (not yet packaged/browser-tested) are in `AI_HANDOVER_PERMANENT.md`, run 19 follow-up. No order or live checkout was used.
+
+
+## Continuation run 20 — 2026-10-20 (latest checkpoint)
+- All three handovers were read at session start. Task start and outcome recorded in `AI_HANDOVER_PERMANENT.md`; outcome commit `c1241b51335272a10686e4e9922a2778d6038473`.
+- PR #66: OPEN/DRAFT/UNMERGED at `e29b1f69d5fab7379dd38b344b171f630d60b67c`. Source checkout links target the two root policy files correctly; actual served/package browser link acceptance remains unverified. Existing Cloudflare preview reported as `https://03b01bae.get-wired-autoworx-store.pages.dev`, but web retrieval tool could not open it (not proof of outage).
+- PR #67: OPEN/DRAFT/UNMERGED at `7c1cfae0821d1c4de5593c15fe60ea1264b3c93d`. CORS/OPTIONS handling and fail-closed audit insertion remain unresolved; no edits made due potential desktop-agent overlap and preview-trigger risk.
+- PR #68: OPEN/DRAFT/UNMERGED at `47a634429783326cca9128770386046a3009a6fb`; isolated mocked Playwright regression PASS and artifacts remain preserved.
+- PR #70: CLOSED/MERGED into recovery baseline at `39d4c77096e1460e131ebfaeff8672aaedcb93e7`. Source `f19e60c03b1aa6273989199cc24bec6c30842a4d` review deploy run `39452404463` succeeded; immutable preview IDs `fccc47b7` and `ebe5ddb2` are still not reconciled. Do not treat either as production approval.
+- No new deployment, credit use, merge, Supabase write/deploy, catalogue/stock change, Axxess/DNS/payment change, or APK distribution. Launch HOLD; supplier reconciliation PAUSED. Safest next action: read-only work until desktop-agent ownership is clear; then isolate PR #67 CORS/audit fixes and executable mocked tests without any deployment trigger.
