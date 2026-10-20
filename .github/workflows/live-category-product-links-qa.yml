@@ -6,6 +6,7 @@ on:
       - qa/live-category-navigation-isolated-2026-10-20
     paths:
       - '.github/workflows/live-category-product-links-qa.yml'
+      - 'product.html'
 
 permissions:
   contents: read
@@ -30,6 +31,15 @@ jobs:
           npm init -y
           npm install --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
+      - name: Serve isolated candidate files locally
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/gw-links-qa-http.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl --silent --fail http://127.0.0.1:4173/product.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/gw-links-qa-http.log
+          exit 1
       - name: Test live category counts and product detail links without writes
         run: |
           cat > "$RUNNER_TEMP/gw-links-qa/links.cjs" <<'NODE'
@@ -93,6 +103,11 @@ jobs:
                       const body=await probe.text();
                       report.checks.push({id:'api-probe-'+label,status:probe.ok?'PASS':'FAIL',http:probe.status,bodyPreview:body.slice(0,300)});
                     }
+                    response=await page.goto('http://127.0.0.1:4173/product.html?id='+encodeURIComponent(productId),{waitUntil:'domcontentloaded',timeout:12000});
+                    await page.waitForTimeout(1200);
+                    const candidate=await page.evaluate(()=>({url:location.href,title:document.title,heading:document.querySelector('h1')?.innerText||document.querySelector('h2')?.innerText||'',body:(document.body?.innerText||'').slice(0,600)}));
+                    report.candidateProductDetail={http:response?.status()??null,...candidate};
+                    report.checks.push({id:'isolated-candidate-product-detail',status:response&&response.status()===200&&!/Product request failed/i.test(candidate.body)&&/SKU|Price|REQUEST A PART/i.test(candidate.body)?'PASS':'FAIL',candidate:report.candidateProductDetail});
                   }
                   report.checks.push({id:'product-detail-content',status:detail.heading||/SKU|Price|Product/i.test(detail.body)?'PASS':'REVIEW',detail});
                 } else report.checks.push({id:'product-detail-link',status:'REVIEW',detail:'No live product card with a product.html?id link was available'});
