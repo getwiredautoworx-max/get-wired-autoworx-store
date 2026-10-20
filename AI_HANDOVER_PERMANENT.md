@@ -2627,3 +2627,10 @@ This section supersedes older QA statements above where they conflict.
 - Review URL `https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store`; branch alias `https://design-brighter-brand-catego.get-wired-autoworx-store.pages.dev/store`. Cloudflare Pages reported the immutable review deployment successful. The separate Workers build failure is not the Pages deployment.
 - Work exclusively from PR #70's approved baseline for visual changes. Next: diagnose actual image URL/network failures and relevance; use browser network inspection and compare desktop/mobile visuals. Mocked responsive checks alone do not establish image loading or visual acceptance. Do not continue PR #68 changes.
 - Launch remains HOLD. No production promotion, Axxess/DNS, production Supabase/catalogue/stock, payment, or APK actions. Do not redeploy until a corrected candidate is ready for the one controlled final preview verification.
+
+
+## 2026-10-20 — Continuation run 26 task start: continue from approved PR #70 baseline
+- Owner requested continuing recommended work until resolved, updating handovers after each task and moving to the next task. Re-read `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and `HANDOVER_CURRENT.md` before work.
+- Scope: inspect approved storefront source and image-loading paths, establish actionable fixes/tests, and record verifiable outcomes. PR #68 is retired/closed and must not be reopened; PR #70 remains the canonical approved design baseline.
+- Safety gates: no production promotion, no Axxess/DNS/payment edits, no production Supabase/catalogue/stock changes (supplier authorization pending), no APK distribution, and no unnecessary deployment/credit spend. Customer launch remains HOLD.
+- Plan: inspect approved branch files and image references, run source-level validation where possible, create a narrowly scoped candidate only if supported by evidence, then update all handovers with exact result and remaining blocker.
