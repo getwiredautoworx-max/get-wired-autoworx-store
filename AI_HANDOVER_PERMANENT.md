@@ -2596,3 +2596,10 @@ This section supersedes older QA statements above where they conflict.
 - No fresh evidence reconciles `https://fccc47b7.get-wired-autoworx-store.pages.dev/store` with the distinct `https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store`, and this run did not obtain a network-enabled real browser response. Served HTML/source fingerprint, remote image HTTP status/relevance, live category counts and product links therefore remain NOT VERIFIED. This is an environment access limitation, not proof that the preview is down.
 - No source/PR changes, merges, deployments/retries, Cloudflare/Netlify credit use, live data/schema changes, catalogue/stock edits, Axxess/DNS/payment changes, or APK distribution occurred. PR #66/#67/#68 remain draft/unmerged per last verified checkpoint; customer launch HOLD; supplier reconciliation PAUSED.
 - Next safe step: obtain browser/network access that can reach existing preview URLs and verify served fingerprint/assets and image requests without triggering a deploy. If unavailable, report this as an explicit blocker rather than cycling through another deployment. PR #67 CORS/preflight and fail-closed audit changes remain deferred until desktop-agent branch ownership and a non-deploying test route are confirmed.
+
+
+## 2026-10-20 — Continuation run 24 task start: PR #68 preview verification
+- Owner requested: read the handover and continue. Re-read `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and `HANDOVER_CURRENT.md` from the default branch before continuing.
+- Scope: verify PR #68's existing Cloudflare Pages preview and the exact live category navigation. PR #68 must remain OPEN/DRAFT/UNMERGED; no production promotion or release approval.
+- Constraints: do not trigger another deployment or spend Cloudflare/Netlify credits; do not merge, change live Supabase/data/schema, edit catalogue/stock, touch Axxess/DNS/payment, or distribute APK. Supplier reconciliation remains PAUSED; customer launch HOLD.
+- Plan: use existing deployment metadata and browser access only; record separately mocked test evidence and actual live verification. Update handover with the exact outcome and blocker.
