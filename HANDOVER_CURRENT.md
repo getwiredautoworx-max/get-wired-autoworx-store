@@ -202,3 +202,12 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Current layout branch head: `7187dd3beb1a854603fefedd6dab4f904e153029`; PR #69 remains draft/open/unmerged.
 - Responsive browser run `39424115890` is now running the updated 320px source-part button constraint and populated category-card fixtures: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39424115890. Last observed status: Playwright/Chromium installation in progress; no pass claim yet.
 - Current approved baseline for visual comparison: https://1fdda0ab.get-wired-autoworx-store.pages.dev/store. The new PR changes are not yet available at a verified deployed preview URL. Production Pages workflow remains manual-only; do not run it to main/production for this layout review.
+
+
+## 2026-10-20 — Backup created; banner contrast and category photos updated (draft PR #70)
+- Before editing, created backup branch `backup/store-before-banner-category-images-2026-10-20` from the current working layout branch head. It preserves the complete pre-change store snapshot at commit `7187dd3beb1a854603fefedd6dab4f904e153029`.
+- Created isolated design branch `design/brighter-brand-category-images-2026-10-20` and draft PR #70: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/70.
+- Homepage `index-new.html`: appended a final CSS override to make the QUALITY PARTS / GET WIRED headline bright blue with red emphasis on EXPERT SERVICE and a subtle high-contrast light edge; brightened the hero tagline as well.
+- Homepage category cards and the category/subcategory drill-down in `category.html`: replaced emoji-only category art with category-matched photographic URLs for auto electrical, security/accessories, car audio, marine, workshop tools, camping/4x4 and trailer/canopy. Added fallback styling if a remote image fails.
+- Changes are isolated in draft PR #70, not merged or deployed. No catalogue/stock data, supplier activity, Axxess/DNS, payment, or production changes.
+- Visual/browser verification remains outstanding. The approved preview for reference is https://1fdda0ab.get-wired-autoworx-store.pages.dev/store. Cloudflare workflow is production-only/manual and must not be run to obtain an unapproved preview. Await CI/browser results and establish a verified non-production preview before owner approval.
