@@ -71,7 +71,7 @@ async function installMocks(page){
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
   const rating=frame.locator('.ratingbox');
   const since=frame.getByText(/SINCE\s*2012/i).first();
-  const heroLayout=await frame.evaluate(()=>{const r=document.querySelector('.ratingbox'),s=[...document.querySelectorAll('body *')].find(e=>e.children.length===0&&/SINCE\s*2012/i.test(e.textContent||''));if(!r||!s)return {missing:true};const a=r.getBoundingClientRect(),b=s.getBoundingClientRect();return {rating:{x:a.x,y:a.y,width:a.width,height:a.height,right:a.right,bottom:a.bottom},since:{x:b.x,y:b.y,width:b.width,height:b.height,right:b.right,bottom:b.bottom},overlap:a.x<b.right&&a.right>b.x&&a.y<b.bottom&&a.bottom>b.y,viewport:innerWidth};});
+  const heroLayout=await frame.locator('html').evaluate(()=>{const r=document.querySelector('.ratingbox'),s=[...document.querySelectorAll('body *')].find(e=>e.children.length===0&&/SINCE\s*2012/i.test(e.textContent||''));if(!r||!s)return {missing:true};const a=r.getBoundingClientRect(),b=s.getBoundingClientRect();return {rating:{x:a.x,y:a.y,width:a.width,height:a.height,right:a.right,bottom:a.bottom},since:{x:b.x,y:b.y,width:b.width,height:b.height,right:b.right,bottom:b.bottom},overlap:a.x<b.right&&a.right>b.x&&a.y<b.bottom&&a.bottom>b.y,viewport:innerWidth};});
   check('rating_badge_does_not_overlap_since_2012',!heroLayout.missing&&!heroLayout.overlap,heroLayout);
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
   const firstRoot=frame.locator('#categoryGrid > .catWrap > .catBtn').first();
