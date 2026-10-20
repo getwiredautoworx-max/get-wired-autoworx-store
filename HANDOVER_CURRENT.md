@@ -10,7 +10,7 @@ Updated: 2026-10-20 SAST
 - **Verified source reset:** Git ref update moved `recovery/approved-preview-index-new` directly to approved commit `1a76108c7415ade3bab07461ac27af16ce2fa8f8`. `index-new.html` matches approved blob SHA `d274b0ffdaa0a1c45939933e308c4c65acb85554` (144,657 characters); `store.html` matches approved blob SHA `9f0e26e34face9bf7abab42ac158a11f3be88643`.
 - **Preview trigger:** Because the exact old commit did not generate a new Pages deployment event, created commit `712a805a1fe395bdb80f9344952016f136438a5f` with the **identical approved source tree** `a9c81aca653683a453f062fce541eb28fee58d92` and moved the recovery branch to it. This changes commit metadata only; all tracked files remain exactly those from the approved source tree.
 - **Pages deployment succeeded:** Cloudflare Pages bot confirms commit `712a805` deployed successfully. Exact deployment URL: https://e245f05c.get-wired-autoworx-store.pages.dev/store . Branch URL: https://recovery-approved-preview-in.get-wired-autoworx-store.pages.dev/store . Deployment log: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/e245f05c-57ad-4334-bfea-fe52c197e5e8 . Separate Worker build failures are not Pages preview results and must not be confused with Pages deployment status.
-- **Remaining verification limitation:** Pages deployment is confirmed successful, but the available web inspection and direct network access in this session cannot render/open `pages.dev` hosts, so desktop/mobile visual parity and interactive behaviour have not been independently confirmed. The preview is ready for visual acceptance at the exact URL above. Do not merge/promote or change production settings until visual acceptance is confirmed. If the preview is not correct, record the specific mismatch before changing source; do not start another redesign.
+- **Owner visual acceptance update (2026-10-20):** Owner opened the newly deployed preview and reported: “this version works fine on desktop.” Treat desktop appearance/functionality as owner-reported accepted, not independently browser-tested by the assistant. Mobile/tablet widths and detailed interaction checks remain unverified. Do not redesign the desktop version or disturb the approved source tree; any further UI changes should be isolated, tested, and only made for a specific confirmed issue.
 - Do not merge to `main`, change Axxess/DNS/production, or change payment/catalogue systems as part of this task. Existing production release HOLD remains in force.
 
 ## Owner-approved baseline (authoritative)
@@ -29,22 +29,19 @@ Updated: 2026-10-20 SAST
 
 - Detailed restoration log saved at `handover-runs/2026-10-20-controlled-approved-source-restoration.md`, commit `18374704f09a07b55b89b0bebf0cc09b9b769c3b`.
 
-## Current status — be precise
-- PR #64 remains open and unmerged; its recovery branch has been reset to the approved source commit. Do not merge/promote merely because the source is now selected.
-- At last check, no Cloudflare preview comment/status was available for the new PR head. Preview deployment is unverified.
-- Browser inspection tool could not open the approved or recovery preview URLs; this is a tool limitation, not proof that the owner's URL is broken.
-- Approved HTML also references `assets/gw-logo.png`; its presence/content was not established by text-only file retrieval. Verify via repository tree or rendered preview.
-- Matching hashes prove the two restored files match the approved source, not that every dependency or final layout is correct.
-- The full approved source branch diverges heavily from main (155 ahead / 144 behind); do not merge that entire branch or force-push main.
+## Current status — 2026-10-20, after owner desktop check
+- New Pages preview is deployed successfully from commit `712a805a1fe395bdb80f9344952016f136438a5f`; owner reports it works fine on desktop.
+- Exact deployment preview: https://e245f05c.get-wired-autoworx-store.pages.dev/store . Recovery branch preview: https://recovery-approved-preview-in.get-wired-autoworx-store.pages.dev/store . Cloudflare Pages deployment log: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/e245f05c-57ad-4334-bfea-fe52c197e5e8 .
+- The separate Worker build bot reports failure for the same commit at https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/5feb69f0-6ca6-4511-b98e-f272c4ef5216 . This is not the Pages deployment: Pages preview success and Worker build failure are separate statuses. Do not re-enable the disabled Worker build just to fix the preview.
+- Mobile/tablet visual parity and the detailed interaction checks have not been independently verified in this session. Keep the accepted desktop source unchanged unless a specific issue is reported.
+- PR #64 remains open/unmerged and its historic diff is misleading due to the formerly divergent branch history. Do not merge it wholesale, merge/promote, or force-push main. The recovery branch's active source tree matches the approved tree, with commit metadata-only trigger commit `712a805`.
 
 ## Continue from this exact point
-1. Inspect PR #64 current head, latest status checks, and comments for a Cloudflare Pages preview URL. Do not assume a preview exists.
-2. If no preview exists, find a safe way to trigger/obtain a PR preview without re-enabling any disabled production/worker build or changing production settings.
-3. Verify the exact preview at desktop/mobile sizes 1440px, 390px and 320px. Check no overlaps or horizontal overflow; distinct working Shop Now, Part Search and Request a Part controls; category navigation; image and logo loading.
-4. Verify `assets/gw-logo.png` and other dependencies referenced by restored HTML. Restore further files only when proven necessary and matching the approved source. Avoid broad CSS rewrites or blind rebuilds.
-5. Record findings and update this handover after meaningful success/failure. Do not mark work complete on investigation or deploy success alone.
-6. Keep PR #64 unmerged until exact preview visually matches owner-approved reference. After evidence passes, report it and follow release gates before any merge/promotion.
-7. Leave Axxess, production domain/DNS, Supabase data, checkout and payment settings unchanged until owner approves the verified release.
+1. Preserve the desktop-accepted preview and approved source tree; do not trigger another deployment unless a specific issue requires it.
+2. If continuing QA, check mobile at 390px and 320px and the key controls (Shop Now, Part Search, Request a Part, category navigation, logo/images). Clearly distinguish automated results from owner-reported visual acceptance.
+3. Keep the Cloudflare Pages preview success separate from the Worker build failure. Worker logs are available at the URL above, but do not re-enable the disabled Worker build or change production configuration without a clear need and approval.
+4. PR #64 remains unmerged; do not merge the historic divergent PR. If a later approved release is needed, create a clean, narrowly scoped path based on `main` and preserve the approved source files rather than merging the whole PR.
+5. Record evidence and update this handover after meaningful success/failure. Leave Axxess, production domain/DNS, Supabase data, checkout and payment settings unchanged until owner explicitly approves the verified release.
 
 ## Remaining launch gates
 - Final storefront/mobile acceptance and source/dependency parity.
