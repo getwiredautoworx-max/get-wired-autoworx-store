@@ -1,6 +1,15 @@
 # Get Wired AutoWorx — Current Handover
 Updated: 2026-10-20 SAST
 
+## OWNER DIRECTIVE — SINGLE APPROVED STOREFRONT ONLY (2026-10-20)
+- **Only approved storefront/reference:** https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
+- **Authoritative source commit:** `1a76108c7415ade3bab07461ac27af16ce2fa8f8` (the commit associated with the approved 20:56 reference deployment).
+- Owner explicitly directs that this exact approved source replaces the divergent recovery build; do not mix in, inherit, merge, or rebuild from other storefront variants.
+- The recovery branch `recovery/approved-preview-index-new` is being reset to the exact approved source commit so its tracked build tree matches that version, rather than keeping the partial restoration commits.
+- Keep historical Git commits for traceability; “remove other versions from the build” means exclude them from the active source tree, not erase repository history.
+- This is a source-selection/handover correction, **not proof of a newly deployed preview**. Do not claim the branch URL has refreshed or visually passed until a deployment/check is evidenced.
+- Do not merge to `main`, change Axxess/DNS/production, or change payment/catalogue systems as part of this task. Existing production release HOLD remains in force.
+
 ## Owner-approved baseline (authoritative)
 - Owner confirms the original working storefront around 20:56 SAST is the reference: https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
 - PR #54 Cloudflare Pages bot associated that preview with commit `1a76108c7415ade3bab07461ac27af16ce2fa8f8`.
