@@ -18,7 +18,7 @@ const productId = '11111111-1111-4111-8111-111111111111';
 const categories = rootIds.map(([name,id]) => ({id,name,parent_id:null,slug:name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),active:true,direct_active_products:1,sort_order:1}));
 categories.push({id:childId,name:'Electrical Connectors & Wiring',parent_id:rootIds[0][1],slug:'electrical-connectors-wiring',active:true,direct_active_products:2,sort_order:1});
 const products = rootIds.map(([name,id],i)=>({id:'22222222-2222-4222-8222-'+String(i+1).padStart(12,'0'),category_id:id,name:name+' Test Product',public_sku:'GW-000174D6',description:'Test product description for browser QA.',price:299,stock_quantity:4,image_url:'',gallery_urls:[],compatible_vehicles:[],specifications:{price_status:'VERIFIED'},active:true,featured:true}));
-products[0]={...products[0],id:productId,category_id:childId,name:'Automotive Electrical Connector Kit',public_sku:'GW-000174D6',description:'A connector kit used for automotive electrical repairs.',price:299,stock_quantity:4,featured:true};
+products[0]={...products[0],id:productId,category_id:childId,name:'Air Filter Breather Red',public_sku:'GW-000174D6',description:'Test fixture for the exact-SKU red breather air filter image.',price:299,stock_quantity:4,featured:true};
 products.push({id:'33333333-3333-4333-8333-333333333333',category_id:rootIds[0][1],name:'Auto Electrical Test Product',public_sku:'GW-TEST0001',description:'Test product description.',price:199,stock_quantity:3,image_url:'',gallery_urls:[],compatible_vehicles:[],specifications:{price_status:'VERIFIED'},active:true,featured:true});
 const categorySnapshot={generated_at:new Date().toISOString(),categories};
 const logo=fs.readFileSync('assets/gw-logo.png');
