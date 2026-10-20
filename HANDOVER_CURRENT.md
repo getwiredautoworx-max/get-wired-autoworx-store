@@ -2717,3 +2717,14 @@ The Cloudflare Pages PR integration automatically produced previews for the curr
 - Sole owner-approved working reference URL remains https://1fdda0ab.get-wired-autoworx-store.pages.dev/store?utm_source=chatgpt.com. Treat that URL as the design/behavior authority; the Git branch is a source snapshot and must not be represented as proof that the URL currently serves that commit.
 - Going forward, disregard other storefront variants. Do not merge or overwrite this baseline branch, do not redesign it, and do not deploy it or production `main` without explicit owner approval. Continue only with scoped, evidence-based next steps that preserve the approved working version.
 - No storefront files, workflows, hosting, DNS, payment settings, catalogue, or production data were changed; no deployment was triggered. Release/customer launch remains HOLD.
+
+
+## 2026-10-20 — Approved baseline preview successfully published
+
+- Owner asked to resolve outstanding tasks and provide a preview URL while using only the approved working version.
+- Added isolated workflow `.github/workflows/publish-approved-storefront-preview.yml` (workflow commit `33ee5025964b9a719432c904292dee32f30c05c7`). It explicitly checks out only `approved-storefront-baseline-2026-10-20` at locked source commit `6b7cf26b86fd4eaa1a88baad1c1d20efd2d5c9c8`, then deploys to Cloudflare Pages branch `approved-storefront-preview`; it does not deploy production `main`.
+- Triggered by a marker commit on separate branch `approved-storefront-preview-trigger` (`47ec43d2d7bdb6b7ff21c803a74ef454774eebff`). GitHub Actions run `39397116051` completed with conclusion `success`; job logs explicitly confirm `git log -1` source SHA `6b7cf26b86fd4eaa1a88baad1c1d20efd2d5c9c8`, Cloudflare reports “Deployment complete”, and alias URL is `https://approved-storefront-preview.get-wired-autoworx-store.pages.dev`.
+- Preview URL for owner testing: https://approved-storefront-preview.get-wired-autoworx-store.pages.dev/store
+- Deployment-specific URL from Cloudflare logs: https://901f74e8.get-wired-autoworx-store.pages.dev
+- This confirms successful upload/deployment of the locked source to an isolated Pages preview. It does not constitute visual browser QA: the available web reader reported the preview URL inaccessible and the container has no DNS/network access, so viewport rendering and interaction could not be independently inspected in this session. Do not claim responsive QA passed. The original owner-approved reference remains the authority/fallback: https://1fdda0ab.get-wired-autoworx-store.pages.dev/store?utm_source=chatgpt.com.
+- No source storefront files were edited, and no production deployment, Axxess, DNS, payment, catalogue, or production database settings were changed. Customer launch remains HOLD pending owner review of the isolated preview and remaining release gates.
