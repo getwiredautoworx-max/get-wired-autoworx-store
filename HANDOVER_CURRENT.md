@@ -29,6 +29,14 @@ Updated: 2026-10-20 SAST
 
 - Detailed restoration log saved at `handover-runs/2026-10-20-controlled-approved-source-restoration.md`, commit `18374704f09a07b55b89b0bebf0cc09b9b769c3b`.
 
+## 2026-10-20 — Separate Cloudflare Worker build failure: disposition
+- **Resolution:** Treat the failed Cloudflare Workers build as separate from the working Cloudflare Pages storefront. The owner confirmed the Pages preview from commit `712a805a1fe395bdb80f9344952016f136438a5f` works on desktop; Cloudflare Pages deployment succeeded at https://e245f05c.get-wired-autoworx-store.pages.dev/store.
+- **Evidence from the recovery branch:** `wrangler.toml` sets `pages_build_output_dir = "."`, consistent with a static Pages project. No root `package.json` or `_worker.js` exists at the recovery head. There is no evidence that the approved static storefront requires a separate Worker runtime.
+- **Action:** Keep the separate Worker build integration disabled. Do not rerun or re-enable it just to serve this storefront; do not remove or alter `wrangler.toml`, the approved source tree, or the successful Pages deployment as a speculative fix.
+- **Worker log link:** https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production/builds/5feb69f0-6ca6-4511-b98e-f272c4ef5216 . The authenticated log content was not accessible through the current tools, so the exact Worker failure message remains unverified. This is not a Pages failure.
+- **No production changes:** No Axxess, DNS, production Pages, Supabase, checkout, or payment configuration changed. No additional storefront deployment was triggered.
+- **Next step only if a Worker capability is later proven necessary:** inspect the authenticated Worker log and configure a genuine Worker entry point/build separately; do not conflate it with the static Pages project.
+
 ## Current status — 2026-10-20, after owner desktop check
 - New Pages preview is deployed successfully from commit `712a805a1fe395bdb80f9344952016f136438a5f`; owner reports it works fine on desktop.
 - Exact deployment preview: https://e245f05c.get-wired-autoworx-store.pages.dev/store . Recovery branch preview: https://recovery-approved-preview-in.get-wired-autoworx-store.pages.dev/store . Cloudflare Pages deployment log: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/e245f05c-57ad-4334-bfea-fe52c197e5e8 .
