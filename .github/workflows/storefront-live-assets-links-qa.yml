@@ -1,0 +1,139 @@
+name: Read-only Storefront Image and Product Navigation Audit
+
+on:
+  push:
+    branches:
+      - qa/live-category-navigation-isolated-2026-10-20
+    paths:
+      - '.github/workflows/storefront-live-assets-links-qa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: storefront-live-assets-links-qa
+  cancel-in-progress: false
+
+jobs:
+  live-assets-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated Playwright
+        run: |
+          mkdir -p "$RUNNER_TEMP/gw-assets-qa"
+          cd "$RUNNER_TEMP/gw-assets-qa"
+          npm init -y
+          npm install --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Read-only test live image requests, category counts, and product details
+        env:
+          QA_OUT: ${{ github.workspace }}/qa-assets-evidence
+        run: |
+          mkdir -p "$QA_OUT"
+          cat > "$RUNNER_TEMP/gw-assets-qa/audit.cjs" <<'NODE'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          const targets = [
+            {label:'live-www', url:'https://www.getwiredauto.co.za/index-new.html'},
+            {label:'approved-reference', url:'https://1fdda0ab.get-wired-autoworx-store.pages.dev/store'},
+            {label:'review-fccc47b7', url:'https://fccc47b7.get-wired-autoworx-store.pages.dev/store'},
+            {label:'review-ebe5ddb2', url:'https://ebe5ddb2.get-wired-autoworx-store.pages.dev/store'}
+          ];
+          const report = {startedAt:new Date().toISOString(),targets:[],safety:'read-only; no cart/add-to-cart/order action; no database writes'};
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            try {
+              for (const target of targets) {
+                const entry={...target,checks:[],images:[],pageErrors:[],failedImageRequests:[],screenshots:[]};
+                report.targets.push(entry);
+                const page=await browser.newPage({viewport:{width:1440,height:1000}});
+                page.on('pageerror',e=>entry.pageErrors.push(e.message));
+                page.on('requestfailed',req=>{if(req.resourceType()==='image')entry.failedImageRequests.push({url:req.url(),error:req.failure()?.errorText||'failed'});});
+                page.on('response',res=>{if(res.request().resourceType()==='image')entry.images.push({url:res.url(),status:res.status(),ok:res.ok()});});
+                try {
+                  const response=await page.goto(target.url,{waitUntil:'domcontentloaded',timeout:45000});
+                  entry.checks.push({id:'document-http',status:response&&response.status()<400?'PASS':'FAIL',http:response?.status()??null,finalUrl:page.url()});
+                  await page.waitForTimeout(7000);
+                  let frameInfo=null;
+                  for (const frame of page.frames()) {
+                    try {
+                      const info=await frame.evaluate(()=>({
+                        title:document.title,
+                        url:location.href,
+                        categoryGrid:!!document.querySelector('#categoryGrid'),
+                        categoryCards:document.querySelectorAll('#categoryGrid .catBtn[data-gw-root-index]').length,
+                        categoryButtons:[...document.querySelectorAll('#categoryGrid .catBtn[data-gw-root-index]')].map(b=>({
+                          label:(b.innerText||'').replace(/\\s+/g,' ').trim(),
+                          image:b.querySelector('img')?{src:b.querySelector('img').currentSrc||b.querySelector('img').src,alt:b.querySelector('img').alt,complete:b.querySelector('img').complete,naturalWidth:b.querySelector('img').naturalWidth,naturalHeight:b.querySelector('img').naturalHeight,usesLogoFallback:/gw-logo\\.png/i.test(b.querySelector('img').currentSrc||b.querySelector('img').src)}:null
+                        })),
+                        allProductsLink:!!document.querySelector('#allProductsLink'),
+                        productGrid:!!document.querySelector('#allProductsGrid'),
+                        productCards:document.querySelectorAll('#allProductsGrid article.product').length
+                      }));
+                      if(info.categoryGrid||info.productGrid){frameInfo={frame,info};break;}
+                    } catch {}
+                  }
+                  if(!frameInfo){
+                    entry.checks.push({id:'category-grid-discovery',status:'BLOCKED',detail:'No #categoryGrid found in any frame after load'});
+                  } else {
+                    const {frame,info}=frameInfo;
+                    entry.pageInfo={url:info.url,title:info.title,categoryCount:info.categoryCards,categoryButtons:info.categoryButtons};
+                    const imgs=info.categoryButtons.map(c=>c.image).filter(Boolean);
+                    entry.checks.push({id:'approved-eight-root-count',status:info.categoryCards===8?'PASS':'REVIEW',actual:info.categoryCards,expected:8});
+                    entry.checks.push({id:'category-images-present',status:imgs.length===info.categoryCards?'PASS':'FAIL',count:imgs.length,categories:info.categoryCards});
+                    const broken=imgs.filter(i=>!i.complete||i.naturalWidth===0||i.usesLogoFallback);
+                    entry.checks.push({id:'category-images-loaded-without-logo-fallback',status:broken.length===0?'PASS':'FAIL',broken});
+                    const noAlt=imgs.filter(i=>!i.alt);
+                    entry.checks.push({id:'category-image-alt-labels',status:noAlt.length===0?'PASS':'FAIL',missingAlt:noAlt.length});
+                    await page.screenshot({path:path.join(process.env.QA_OUT,target.label+'-category-grid.png'),fullPage:true}).catch(()=>{});
+                    entry.screenshots.push(target.label+'-category-grid.png');
+                    if(info.categoryCards>0){
+                      try{
+                        await frame.locator('#categoryGrid .catBtn[data-gw-root-index]').first().click({timeout:10000});
+                        await page.waitForTimeout(1500);
+                        const after=await frame.evaluate(()=>({url:location.href,categoryButtons:document.querySelectorAll('#categoryGrid .catBtn').length,productCards:document.querySelectorAll('#allProductsGrid article.product').length,productGridVisible:!!document.querySelector('#allProductsGrid')}));
+                        entry.checks.push({id:'category-click-response',status:after.categoryButtons>0||after.productCards>0?'PASS':'REVIEW',after});
+                      }catch(e){entry.checks.push({id:'category-click-response',status:'FAIL',error:String(e)});}
+                    }
+                    try{
+                      await frame.evaluate(()=>{const a=document.querySelector('#allProductsLink');if(a)a.click();});
+                      await page.waitForTimeout(2500);
+                      const products=await frame.evaluate(()=>[...document.querySelectorAll('#allProductsGrid article.product')].slice(0,3).map(p=>({name:p.querySelector('h3')?.innerText||'',sku:p.querySelector('.sku')?.innerText||'',hasImage:!!p.querySelector('img'),imageSrc:p.querySelector('img')?.currentSrc||p.querySelector('img')?.src||'',hasDetailsClick:!!p.querySelector('.prodImg')})));
+                      entry.productSample=products;
+                      entry.checks.push({id:'live-product-cards',status:products.length?'PASS':'REVIEW',count:products.length,sample:products});
+                      if(products.length){
+                        await frame.locator('#allProductsGrid article.product').first().locator('.prodImg').click({timeout:10000}).catch(async()=>frame.locator('#allProductsGrid article.product').first().click({timeout:10000}));
+                        await page.waitForTimeout(500);
+                        const detail=await frame.evaluate(()=>({modalVisible:!!document.querySelector('#productModal.show')||!!document.querySelector('#productModal[style*="display: block"]')||getComputedStyle(document.querySelector('#productModal')).display!=='none',heading:document.querySelector('#detailContent h2')?.innerText||'',detailText:(document.querySelector('#detailContent')?.innerText||'').slice(0,300)}));
+                        entry.productDetail=detail;
+                        entry.checks.push({id:'product-detail-open',status:detail.heading?'PASS':'REVIEW',detail});
+                      }
+                    }catch(e){entry.checks.push({id:'live-product-cards-and-details',status:'REVIEW',error:String(e)});}
+                  }
+                } catch(e) {
+                  entry.checks.push({id:'navigation',status:'BLOCKED',error:String(e)});
+                }
+                entry.imageResponseSummary={imageResponses:entry.images.length,httpFailures:entry.images.filter(i=>!i.ok).length,requestFailures:entry.failedImageRequests.length};
+                await page.close();
+              }
+            } finally { await browser.close(); }
+            report.finishedAt=new Date().toISOString();
+            fs.writeFileSync(path.join(process.env.QA_OUT,'storefront-live-assets-links-report.json'),JSON.stringify(report,null,2));
+            console.log(JSON.stringify(report,null,2));
+          })().catch(e=>{console.error(e);process.exit(2)});
+          NODE
+          node "$RUNNER_TEMP/gw-assets-qa/audit.cjs"
+      - name: Upload read-only evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-live-assets-links-evidence
+          path: qa-assets-evidence/
+          if-no-files-found: warn
+          retention-days: 14
