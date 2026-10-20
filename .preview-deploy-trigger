@@ -1,1 +1,3 @@
 Publish only the locked approved storefront baseline from branch approved-storefront-baseline-2026-10-20 to isolated Cloudflare Pages branch approved-storefront-preview.
+
+Deploy restored main storefront source from 60f76016902d05d771a37d6af91b1a320ec41bc6
