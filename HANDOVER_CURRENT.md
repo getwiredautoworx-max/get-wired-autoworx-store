@@ -1,3 +1,41 @@
+## IMMEDIATE NEXT SESSION — FIX AXXESS HOSTING, THEN LOAD APPROVED STORE FOR TESTING (2026-10-21)
+
+**This is the next task and takes precedence over older continuation pointers below. Do not skip ahead to the functionality audit until the Axxess access problem has been diagnosed and the current approved store is available on Axxess for owner testing.**
+
+### Owner's current instruction
+- Owner confirms the current PR #72-derived layout is working well and is the sole approved layout going forward.
+- Owner wants the paid Axxess hosting issue troubleshot first, then the current approved version loaded to Axxess so testing can continue there.
+- Reported symptom: `https://www.getwiredauto.co.za` displays **“404 site not found”** even though Axxess hosting is paid. The non-www domain also needs to be checked as part of the diagnosis.
+- Once Axxess is serving the current approved version, immediately resume the full storefront functionality audit, fix any verified issues in GitHub first, and provide a tested preview/build for the owner.
+
+### Required order of work
+1. **Diagnose the Axxess 404 before overwriting anything.**
+   - Confirm the Axxess hosting/domain subscription is active and the domain is attached to the expected DirectAdmin hosting account.
+   - Check DNS resolution for both `getwiredauto.co.za` and `www.getwiredauto.co.za`; identify the authoritative DNS and whether the www record points to the intended Axxess host. Do not guess or change DNS without establishing the current records and intended routing.
+   - In DirectAdmin, verify the domain's document root and whether `www` is configured as a pointer/alias to the root domain. Confirm that the requested hostname maps to the directory where the site files actually live.
+   - Inspect the target web root for a valid root-level `index.html` (case-sensitive filename), and check file/folder permissions and any `.htaccess` redirect/rewrite rules. Review DirectAdmin access/error logs around a fresh request to distinguish missing-file/document-root errors from DNS or SSL issues.
+   - Test HTTP and HTTPS for both root and www separately. Record observed status/redirects and evidence. A browser/web fetch failure is not proof of the server's underlying cause.
+   - Back up the existing Axxess `public_html` contents before replacing them. Preserve the previous trial build in a recoverable backup until the new version is verified.
+2. **Prepare and upload the approved current store to Axxess.**
+   - Use the clean approved storefront source now in `main` from PR #73 (merge `49366ccdf9a85468b623666d3717d2d40abc6b3c`) and the checkout policy-link changes from PR #74 (merge `48fd2762ada43612d012e635f7fd54d65fac34e3`). The approved source reference is PR #72; do not merge its divergent history.
+   - Use the repository's validated Axxess packaging workflow/package, and verify the archive has the correct files at its root, especially the intended `index.html` entry point and required assets. Do not deploy an old trial ZIP or a divergent branch.
+   - Upload/extract only after the document-root and DNS/hostname routing problem is understood; do not leave a mixed set of files from different store versions. Keep a backup and rollback path.
+   - Confirm the exact Axxess URL and verify root/www, HTTPS, images/assets, category navigation, Part Search, Request a Part, cart and checkout. The intended owner goal is `https://www.getwiredauto.co.za` serving the approved store, with `https://getwiredauto.co.za` redirecting to www only when the hosting/DNS setup supports that safely.
+   - This is owner-requested **Axxess test hosting**, not permission to declare a public launch or to activate payment providers. Do not change payment settings, place real orders, or claim the live production release is approved.
+3. **Immediately continue the functionality audit after Axxess is working.**
+   - Audit the full customer journey: category → subcategory → product/details → cart → checkout; separate Part Search and Request a Part actions; form validation/feedback; policy links; delivery/payment instructions; warranty/returns copy; broken buttons/links/images; mobile widths and overflow.
+   - Fix only confirmed defects in narrow GitHub-first changes based on the approved layout, run relevant automated tests, and produce a new verified review/test build for the owner.
+   - Keep catalogue/product-price/stock reconciliation paused pending supplier authorisation. Do not treat placeholder stock or old catalogue data as verified. No Supabase writes or schema changes.
+4. **Update this handover after each meaningful checkpoint**, including diagnosis evidence, files/records changed, backup/rollback location, exact upload/package commit, Axxess URLs tested, HTTP status/redirect outcomes, test run links, defects/fixes, blockers, and the next immediate action. Never mark a step complete without evidence.
+
+### Safety and release boundaries
+- Keep the PR #72-approved layout; no redesign or switching back to earlier layouts.
+- Do not change Cloudflare Pages production deployment or production domain/DNS configuration as a workaround for the Axxess hosting issue.
+- Axxess test upload is allowed by the owner's explicit request, but preserve a backup and make no unrelated hosting/account/payment changes.
+- Supplier catalogue/status work remains paused pending authorisation. Customer launch remains **HOLD** until all release gates and owner approval are satisfied.
+
+---
+
 # Get Wired AutoWorx — Current Handover
 Updated: 2026-10-21 SAST
 
