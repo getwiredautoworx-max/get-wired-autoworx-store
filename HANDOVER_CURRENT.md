@@ -589,3 +589,10 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Verification before merge: Storefront Smoke Test run 39634186164 PASS; Public SKU Exposure Audit run 39634186178 PASS. No live order was placed and no payment was activated.
 - Older draft PR #66 was closed as superseded after the change was carried forward without its divergent branch history. Comment added to preserve the reason and reference the merged commit.
 - No production deployment, Axxess upload, DNS change, Supabase write, payment configuration, or stock/catalogue mutation was performed. Customer launch remains HOLD.
+
+
+## 2026-10-21 — Latest approved PR #72 head QA confirmed
+- Rechecked exact PR #72 head `775796d131f812de8f85521e1e51e74fd3eff43d` after mainline promotion. All three current-head checks completed successfully: PR 72 Storefront Interaction QA run 39631068948 PASS; Responsive layout browser acceptance run 39631068868 PASS; Public SKU Exposure Audit run 39631068869 PASS.
+- Interaction QA job `119329060835` checked inline script/bridge syntax, served the exact PR revision locally, and ran mocked category/product click-through tests. Screenshot + QA report artifact: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39631068948/artifacts/12358369629 (expires 2026-11-04).
+- The PR #72 head differs from Cloudflare's latest successful preview commit `6d217353776f50d147dacca5350280d08b72ec9c` only in `HANDOVER_CURRENT.md`; storefront application source is identical. Separately, the mainline promotion preview at https://34116ce2.get-wired-autoworx-store.pages.dev was built from `e304e4f`; app files match the current promotion candidate. The browser/web retrieval tool cannot independently render either pages.dev URL in this session, so hosted visual inspection remains owner/browser-confirmed rather than independently claimed here.
+- Current mainline source includes the approved layout and checkout policy links. No production deployment, Axxess/DNS/payment change, Supabase write, or catalogue/stock change has been made. Customer launch remains HOLD.
