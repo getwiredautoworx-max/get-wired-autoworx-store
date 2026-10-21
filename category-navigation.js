@@ -42,14 +42,12 @@
     'DOOR LOCK & WINDOW REPAIRS':'automotive-accessories'
   };
   function clean(s){return String(s||'').replace(/\s+/g,' ').trim().toUpperCase();}
-  function openCategory(name){
-    const key=clean(name);
-    const slug=ALIASES[key];
-    const id=slug && CATEGORY_IDS[slug];
+  function openCategory(id){
     if(!id)return;
-    window.open(BASE+'?id='+encodeURIComponent(id),'_blank','noopener');
+    // Root-absolute path is required because Cloudflare Pages may serve store.html at /store.
+    window.location.href=window.location.origin+'/'+BASE+'?id='+encodeURIComponent(id);
   }
-  function installCategoryPresentation(frame){
+    function installCategoryPresentation(frame){
     try{
       const d=frame.contentDocument;
       if(!d||d.getElementById('gw-category-presentation'))return;
@@ -70,7 +68,11 @@
         #categoryGrid .children{grid-column:1/-1}
         #categoryGrid .children{display:none;max-width:100%;padding:10px 8px 12px;overflow:hidden}
         #categoryGrid .catWrap.open .children{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-        #categoryGrid .children>.catWrap{flex:0 0 190px;min-width:0;max-width:220px;align-self:stretch;scroll-snap-align:start}\n        #categoryGrid .children>.catWrap .catBtn{min-height:78px;padding:10px}\n        #categoryGrid .children>.catWrap .catImage{height:92px;display:block;overflow:hidden}\n        #categoryGrid .children>.catWrap .catImage img{width:100%;height:100%;object-fit:contain}\n        #categoryGrid .children .child{flex:0 0 auto;min-width:150px;max-width:210px;min-height:46px;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #28658c;border-radius:9px;background:#071728;scroll-snap-align:start}
+        #categoryGrid .children>.catWrap{flex:0 0 190px;min-width:0;max-width:220px;align-self:stretch;scroll-snap-align:start}
+        #categoryGrid .children>.catWrap .catBtn{min-height:78px;padding:10px}
+        #categoryGrid .children>.catWrap .catImage{height:92px;display:block;overflow:hidden}
+        #categoryGrid .children>.catWrap .catImage img{width:100%;height:100%;object-fit:contain}
+        #categoryGrid .children .child{flex:0 0 auto;min-width:150px;max-width:210px;min-height:46px;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #28658c;border-radius:9px;background:#071728;scroll-snap-align:start}
         #categoryGrid .children .child span{white-space:nowrap}
         @media(max-width:700px){
           #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
@@ -79,7 +81,9 @@
           #categoryGrid .catContent b{font-size:clamp(10px,2.8vw,12px);line-height:1.2}
           #categoryGrid .catContent small{font-size:10px}
           #categoryGrid .catContent i{font-size:13px}
-          #categoryGrid .children>.catWrap{flex-basis:150px}\n          #categoryGrid .children>.catWrap .catImage{height:78px}\n          #categoryGrid .children .child{min-width:138px;font-size:12px}
+          #categoryGrid .children>.catWrap{flex-basis:150px}
+          #categoryGrid .children>.catWrap .catImage{height:78px}
+          #categoryGrid .children .child{min-width:138px;font-size:12px}
         }
         @media(max-width:360px){
           #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
@@ -94,21 +98,21 @@
     try{
       const d=frame.contentDocument;
       if(!d || d.__gwCategoryBridge)return;
-      d.__gwCategoryBridge=true;
-      installCategoryPresentation(frame);
+      // Presentation is optional: it must never prevent the navigation handler from attaching.
+      if(d.head){
+        try{installCategoryPresentation(frame)}catch(presentationError){console.warn('GW category presentation skipped:',presentationError);}
+      }
       d.addEventListener('click',function(e){
-        const btn=e.target.closest('.catBtn');
-        if(!btn)return;
-        if(btn.dataset.gwRootIndex!==undefined||btn.dataset.gwSubcategoryRoot!==undefined)return;
-        const label=btn.querySelector('b');
-        if(!label)return;
-        const name=label.textContent.trim();
-        if(ALIASES[clean(name)]){
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          openCategory(name);
-        }
+        const tile=e.target.closest('.catBtn[data-filter], .child[data-filter]');
+        if(!tile)return;
+        const id=tile.dataset.filter;
+        if(!id)return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openCategory(id);
       },true);
+      // Mark the document only after the click handler has successfully attached.
+      d.__gwCategoryBridge=true;
     }catch(err){console.warn('GW category bridge:',err);}
   }
   window.installGetWiredCategoryNavigation=function(frame){
