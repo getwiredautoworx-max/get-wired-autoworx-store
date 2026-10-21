@@ -581,3 +581,11 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Successful Cloudflare Pages preview for the same storefront application source: https://34116ce2.get-wired-autoworx-store.pages.dev . Deployment source commit `e304e4f554508351d0512b66b8967a727da154de`; only non-application configuration/test/handover files differ between that deployed commit and the tested promotion head.
 - PR #72 remains the approved review/source reference; do not merge its divergent history directly. PR #73 is the clean mainline promotion that has now been merged.
 - **Release boundary unchanged:** this was a GitHub mainline source merge only. No production deploy, Axxess upload, DNS change, Supabase write, checkout/payment activation, stock/catalogue mutation, or APK distribution was performed. Customer launch remains HOLD; supplier catalogue work remains excluded pending authorisation.
+
+
+## 2026-10-21 — Checkout policy links promoted to main
+- **Verified merged:** clean main-based PR #74 https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/74 merged as `48fd2762ada43612d012e635f7fd54d65fac34e3`.
+- `checkout-v2.html` now includes direct links to the existing Terms & Conditions and Returns & Refunds policy pages beside order notes, before order submission. This was a one-file link-only change; no order logic, pricing, delivery calculations, payment provider, or order-writing behavior changed.
+- Verification before merge: Storefront Smoke Test run 39634186164 PASS; Public SKU Exposure Audit run 39634186178 PASS. No live order was placed and no payment was activated.
+- Older draft PR #66 was closed as superseded after the change was carried forward without its divergent branch history. Comment added to preserve the reason and reference the merged commit.
+- No production deployment, Axxess upload, DNS change, Supabase write, payment configuration, or stock/catalogue mutation was performed. Customer launch remains HOLD.
