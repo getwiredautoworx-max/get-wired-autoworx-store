@@ -1,2 +1,12 @@
-.git/
+# The Git checkout is not website content. Exclude it explicitly, root-anchored and unanchored.
+/.git
+/.git/**
+.git
 .git/**
+# Build/development metadata is not public website content.
+/.github
+/.github/**
+node_modules
+node_modules/**
+.wrangler
+.wrangler/**

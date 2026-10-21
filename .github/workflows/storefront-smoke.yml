@@ -83,7 +83,7 @@ jobs:
             const rootOptions = await categoryPage.locator('#grid .card').count();
             if (rootOptions < 1) throw new Error('No populated main categories rendered on category.html; debug='+await categoryPage.locator('#grid').getAttribute('data-debug')+'; grid='+await categoryPage.locator('#grid').innerText());
             const rootNames = await categoryPage.locator('#grid .card h2').allTextContents();
-            if (!rootNames.some(n => n.trim() === 'Auto Electrical')) throw new Error('Auto Electrical root missing from category navigation');
+            if (!rootNames.some(n => n.trim() === 'Auto Electrical Spares')) throw new Error('Approved Auto Electrical Spares root missing from category navigation; found='+JSON.stringify(rootNames));
             await categoryPage.locator('#grid .card').first().click();
             await categoryPage.locator('#grid .card').first().waitFor({timeout:60000});
             const childOptions = await categoryPage.locator('#grid .card').count();
@@ -154,7 +154,6 @@ jobs:
             await productDetailPage.close();
 
             await frame.locator('#featuredGrid .product').first().waitFor({timeout:60000});
-            await frame.locator('#searchInput').fill('');
             await frame.locator('#featuredGrid .product').first().locator('h3').click();
             try {
               await frame.locator('#productModal.open').waitFor({timeout:10000});
@@ -166,33 +165,30 @@ jobs:
             await frame.locator('#allProductsLink').click();
             const quoteOnlyHtml = await frame.locator('#featuredGrid').evaluate(grid => grid.ownerDocument.defaultView.card({id:'quote-only-test',name:'Quote-only test product',public_sku:'GW-TEST0001',price:123.45,stock_quantity:3,image_url:null,specifications:{price_status:'QUOTE_REQUIRED'}}));
             if (!quoteOnlyHtml.includes('Price on request') || !quoteOnlyHtml.includes('REQUEST PRICE')) throw new Error('Explicit quote-only product must show Price on request and REQUEST PRICE');
-            await frame.locator('#searchInput').fill('GW-B4F502E6');
-            const pricedCard = frame.locator('.product').filter({hasText:'GW-B4F502E6'}).first();
-            await pricedCard.waitFor({timeout:15000});
-            const pricedText = await pricedCard.innerText();
-            if (!pricedText.includes('ADD TO CART') || pricedText.includes('Price on request')) throw new Error('Formula-priced catalogue product must be purchasable unless explicitly marked QUOTE_REQUIRED: '+pricedText);
-            // Search suggestions intentionally sit above the product grid. Select the matching
-            // suggestion to open the product detail modal and close the dropdown before testing
-            // the card action; clicking through the overlay is not a valid user interaction.
-            const pricedSuggestion = frame.locator('.gwResult[data-full-product]').filter({hasText:'GW-B4F502E6'}).first();
-            await pricedSuggestion.waitFor({timeout:10000});
-            await pricedSuggestion.click();
+            // Verify the standalone Part Search button and its dialog instead of the retired inline #searchInput.
+            await frame.locator('button.headerPartSearch').click();
+            await frame.locator('#partSearchDialog.open').waitFor({timeout:10000});
+            await frame.locator('#partSearchQuery').fill('GW-B4F502E6');
+            const pricedResult = frame.locator('#partSearchResults .partSearchResult').filter({hasText:'GW-B4F502E6'}).first();
+            await pricedResult.waitFor({timeout:15000});
+            const pricedText = await pricedResult.innerText();
+            if (!pricedText.includes('GW-B4F502E6')) throw new Error('Part Search did not return the formula-priced public SKU: '+pricedText);
+            await pricedResult.locator('button[data-view-part]').click();
             await frame.locator('#productModal.open').waitFor({timeout:10000});
             await frame.locator('#detailAdd').click();
             await frame.locator('#cartPanel').evaluate(el => el.classList.remove('open'));
             await frame.locator('#productModal.open').waitFor({state:'detached',timeout:10000}).catch(async () => {
               if (await frame.locator('#productModal').evaluate(el => el.classList.contains('open'))) throw new Error('Adding formula-priced product did not close the detail modal');
             });
-            // The cart drawer opens after add-to-cart and intentionally overlays the product area.
-            // The harness above has already removed the cart panel's open state; do not click its now-hidden close button.
-            await frame.locator('#searchInput').fill('GW-F165DD11');
-            const verifiedCard = frame.locator('.product').filter({hasText:'GW-F165DD11'}).first();
-            await verifiedCard.waitFor({timeout:15000});
-            const verifiedText = await verifiedCard.innerText();
-            if (!verifiedText.includes('ADD TO CART') || verifiedText.includes('Price on request')) throw new Error('Verified product must show its price and Add to Cart');
-            const verifiedSuggestion = frame.locator('.gwResult').filter({hasText:'GW-F165DD11'}).first();
-            await verifiedSuggestion.waitFor({timeout:10000});
-            await verifiedSuggestion.click();
+            // Verify a second priced SKU through the same customer-facing search dialog.
+            await frame.locator('button.headerPartSearch').click();
+            await frame.locator('#partSearchDialog.open').waitFor({timeout:10000});
+            await frame.locator('#partSearchQuery').fill('GW-F165DD11');
+            const verifiedResult = frame.locator('#partSearchResults .partSearchResult').filter({hasText:'GW-F165DD11'}).first();
+            await verifiedResult.waitFor({timeout:15000});
+            const verifiedText = await verifiedResult.innerText();
+            if (!verifiedText.includes('GW-F165DD11')) throw new Error('Part Search did not return the second priced SKU: '+verifiedText);
+            await verifiedResult.locator('button[data-view-part]').click();
             await frame.locator('#productModal.open').waitFor({timeout:10000});
             await frame.locator('#detailAdd').click();
             await page.locator('#checkout').waitFor({timeout:10000});
