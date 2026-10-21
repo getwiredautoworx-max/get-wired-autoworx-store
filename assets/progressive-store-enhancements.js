@@ -12,10 +12,8 @@ function install(frame){
     .gwResult{padding:12px;border-bottom:1px solid #123f60;cursor:pointer}.gwResult:hover{background:#0b1c2d}.gwResult b{display:block}.gwResult small{color:#8fa4b8}
     .gwNoResults{padding:18px;color:#aab7c8;text-align:center}
     .gwStock{font-size:11px;font-weight:800;margin-top:5px;color:#7ee2a8}.gwStock.low{color:#ffd15c}.gwStock.out{color:#ff7180}
-    .gwWA{display:block!important;background:#168b4b!important;color:#fff!important;text-align:center;text-decoration:none;padding:9px;border-radius:7px;margin-top:7px;font-weight:800}
     .gwTools{display:flex;gap:7px;margin-top:7px}.gwCopy{flex:1;background:#07111e;border:1px solid #17618b;color:#dff3ff;border-radius:7px;padding:8px;font-weight:700;cursor:pointer}
     .gwTrust{margin:12px 20px 0;padding:12px;border:1px solid #12456c;border-radius:10px;background:#06111e;color:#cfe1f2;font-size:12px;text-align:center}
-    .gwFitment{margin-top:8px;padding:9px;border:1px dashed #17618b;border-radius:7px;color:#aab7c8;font-size:11px;line-height:1.4}
     .gwRecentStrip{margin-top:14px;padding:11px;border:1px solid #12456c;border-radius:10px;background:#06111e}
     .gwRecentTitle{font-size:12px;font-weight:800;color:#dff3ff;margin-bottom:8px}
     .gwRecentItems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
@@ -47,6 +45,8 @@ function install(frame){
   }
 
   function enrich(){d.querySelectorAll('.product').forEach(card=>{
+    // Remove legacy blanket fitment warnings left by older cached/embedded markup.
+    card.querySelectorAll('.gwFitment').forEach(el=>el.remove());
     if(card.dataset.gwEnhanced)return;card.dataset.gwEnhanced='1';
     const txt=(card.textContent||'').trim();
     const sku=(card.querySelector('.sku')?.textContent||'').replace(/^\s*(SKU|Part Number)\s*[:#-]?\s*/i,'').trim();
@@ -56,13 +56,9 @@ function install(frame){
     else if(/low stock/i.test(txt))stock.classList.add('low'),stock.textContent='LOW STOCK';
     else stock.textContent='CHECK STOCK';
     card.appendChild(stock);
-    if(!card.querySelector('.gwFitment')){
-      const f=d.createElement('div');f.className='gwFitment';f.textContent='Vehicle fitment: verify application with Get Wired AutoWorx before ordering.';card.appendChild(f);
-    }
-    if(!card.querySelector('.gwWA')){const a=d.createElement('a');a.className='gwWA';a.target='_blank';a.rel='noopener';a.textContent='WHATSAPP ABOUT THIS PRODUCT';a.href=WA+'?text='+encodeURIComponent(`Hi Get Wired AutoWorx, I am enquiring about ${name}${sku?' (SKU '+sku+')':''}. Please confirm availability, price and vehicle fitment.`);card.appendChild(a)}
-    if(sku&&!card.querySelector('.gwTools')){
-      const tools=d.createElement('div');tools.className='gwTools';const b=d.createElement('button');b.className='gwCopy';b.textContent='COPY SKU';b.onclick=async()=>{try{await navigator.clipboard.writeText(sku);b.textContent='SKU COPIED';setTimeout(()=>b.textContent='COPY SKU',1200)}catch(e){b.textContent=sku}};tools.appendChild(b);card.appendChild(tools);
-    }
+    // Vehicle compatibility prompt is added only for vehicle-specific products by the dedicated fitment flow.
+    
+
   })}
   const obs=new MutationObserver(enrich);obs.observe(d.body,{childList:true,subtree:true});enrich();
   // Install catalogue search/tools only after the search UI and product modal exist.
@@ -127,6 +123,25 @@ function install(frame){
       const title=detail.querySelector('h2')?.textContent?.trim();if(!title)return;
       const all=Array.isArray(d.defaultView.gwProducts)?d.defaultView.gwProducts:[];
       const p=all.find(x=>x.name===title);if(!p)return;
+      // Ask for vehicle compatibility confirmation only when product data indicates a specific make/model/application.
+      const fitmentText=[p.name,p.description,p.compatible_vehicles,p.vehicle_application,p.application,p.specifications,p.slug].filter(Boolean).join(' ').toLowerCase();
+      const makes=['toyota','nissan','isuzu','ford','volkswagen','vw','mazda','honda','hyundai','kia','renault','suzuki','mitsubishi','mercedes','bmw','audi','volvo','iveco','man ','scania','daf ','tata','mahindra','jeep','land rover','range rover','chevrolet','opel','peugeot','citroen','fiat','subaru','lexus','jaguar','proton','perodua','daihatsu','ssangyong','fuso','hino','kia'];
+      const compat=String(p.compatible_vehicles||p.vehicle_application||p.application||'').trim().toLowerCase();
+      const hasSpecificMake=makes.some(make=>fitmentText.includes(make.trim()));
+      const hasModelYear=/\b(19[7-9]\d|20[0-3]\d)\s*(?:-|to|\/|–)\s*(?:(?:19|20)\d{2}|onwards?|present)?\b/i.test(fitmentText);
+      const hasFitment=!!compat&&!/^(universal|all vehicles|all makes|n\/?a|none|not specified|generic)$/i.test(compat);
+      const needsVehicleCheck=hasSpecificMake||hasModelYear||hasFitment||/\b(for|fits|fitment|application)\s+(?:the\s+)?(?:toyota|nissan|isuzu|ford|vw|volkswagen|mazda|honda|hyundai|kia|renault|suzuki|mitsubishi|mercedes|bmw|audi|volvo|iveco|scania|jeep|land rover|chevrolet|opel|peugeot|fiat|subaru|lexus|jaguar)\b/i.test(fitmentText);
+      let verify=detail.querySelector('.gwVehicleVerify');
+      if(needsVehicleCheck){
+        if(!verify){
+          verify=d.createElement('div');verify.className='gwVehicleVerify';
+          verify.style.cssText='margin:12px 0;padding:12px;border:1px solid #d99b20;border-radius:8px;background:#fff8e7;color:#3d2b05;font-size:13px;line-height:1.45';
+          const msg=d.createElement('div');msg.innerHTML='<strong>Vehicle compatibility check required</strong><br>Before ordering, confirm your vehicle make, model, year and engine with Get Wired AutoWorx.';
+          const note=d.createElement('p');note.textContent='Need fitment help? Open the individual product page and use its Query Part on WhatsApp action.';note.style.cssText='margin:8px 0 0;font-size:12px;color:inherit';
+          verify.appendChild(msg);verify.appendChild(note);
+          const actionsAnchor=detail.querySelector('.detailActions');if(actionsAnchor)detail.insertBefore(verify,actionsAnchor);else detail.appendChild(verify);
+        }
+      }else if(verify){verify.remove();}
       const actions=detail.querySelector('.detailActions');if(!actions||actions.querySelector('.gwWishlist'))return;
       const b=d.createElement('button');b.className='gwWishlist';b.textContent='♡ SAVE PRODUCT';b.style.cssText='background:#07111e;border:1px solid #ff1c2d;color:#fff';
       b.onclick=()=>{let w=[];try{w=JSON.parse(localStorage.getItem('gw_wishlist')||'[]')}catch(e){};if(!w.includes(p.id))w.push(p.id);localStorage.setItem('gw_wishlist',JSON.stringify(w));b.textContent='♥ SAVED';const t=d.getElementById('gwSavedToggle');if(t)t.textContent='♥ SAVED ('+w.length+')';};
