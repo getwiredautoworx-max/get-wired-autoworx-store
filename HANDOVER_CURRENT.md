@@ -1,5 +1,14 @@
 # Get Wired AutoWorx — Current Handover
-Updated: 2026-10-20 SAST
+Updated: 2026-10-21 SAST
+
+## CURRENT OWNER DIRECTIVE — PR #72 IS THE SOLE STORE LAYOUT (2026-10-21)
+- This directive supersedes all older layout/baseline directions elsewhere in this historical handover. The owner explicitly approved the latest PR #72 review build as the sole storefront layout going forward; disregard previous layouts as active references.
+- The approved storefront source was promoted cleanly into `main` through PR #73, squash merge commit `49366ccdf9a85468b623666d3717d2d40abc6b3c`. Mainline now carries that layout. Do not merge PR #72's divergent history directly.
+- Latest PR #72 head `775796d131f812de8f85521e1e51e74fd3eff43d` passed interaction QA (run 39631068948), responsive layout QA (39631068868), and Public SKU Exposure Audit (39631068869). The clean mainline promotion also passed Storefront Smoke Test (39633626484) and Public SKU Exposure Audit (39633626623).
+- Checkout Terms & Conditions / Returns & Refunds links were promoted separately through PR #74, merge commit `48fd2762ada43612d012e635f7fd54d65fac34e3`; smoke test and SKU audit passed before merge.
+- Latest preview for the promoted application source: https://34116ce2.get-wired-autoworx-store.pages.dev . PR #72 review source: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72 .
+- Scope remains storefront UX/readiness only while supplier authorisation is pending. No production deployment, Axxess/DNS/payment activation, Supabase write, or catalogue/stock mutation. Customer launch remains HOLD.
+
 
 ## OWNER DIRECTIVE — SINGLE APPROVED STOREFRONT ONLY (2026-10-20)
 - **Only approved storefront/reference:** https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
