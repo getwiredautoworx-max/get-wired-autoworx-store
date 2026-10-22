@@ -71,7 +71,14 @@ These tasks can proceed while supplier catalogue/stock authorisation is pending.
 - Note: the test's `.catWrap` count includes recursively nested category/subcategory cards, so `103` is not a reliable count of root categories; future checks should use `#categoryGrid > .catWrap` to distinguish the top-level grid.
 - No live order was submitted; the new live checks are read-only and must not add products to the live cart.
 
+### Owner-admin security review progress (draft-only)
+- PR #67 remains OPEN/DRAFT/UNMERGED. Updated its feature branch head to `17a3da489324643dac679db1fedcc2e627b4d00b` with CORS preflight handling, CORS headers on JSON responses, explicit audit-log insert error handling, and isolated handler tests.
+- [Owner catalogue manager source checks run 39750455556](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39750455556) passed: Deno type-check, CORS OPTIONS preflight test, unauthenticated GET fail-closed test, and static owner UI assertions.
+- The audit-log error response deliberately warns that a preceding mutation may already have applied and must be verified before retrying. This does not provide transaction-level rollback; stronger atomic audit/write semantics and authenticated negative tests for field boundaries, hierarchy cycles and privileged legacy actions remain review items.
+- No Edge Function deployment, Supabase data write, APK distribution or production change was performed. PR #67 must remain draft/unmerged until the remaining security review is complete and the owner approves.
+
 ### Still outstanding
+- Complete the live-root Part Search diagnostic run and resolve the observed button/dialog failure before declaring storefront journey QA complete.
 - Complete PR #76 browser smoke and source-QA workflow validation; fix any reproducible test or application failures.
 - Run targeted customer-journey/responsive/image checks with evidence; current automated workflow only partially covers those dimensions.
 - Review owner admin-tool server-side authorization and validation in draft mode only.
