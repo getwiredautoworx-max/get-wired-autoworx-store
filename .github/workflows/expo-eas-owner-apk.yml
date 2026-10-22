@@ -1,6 +1,10 @@
 name: Expo EAS Owner APK
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'android-app/**'
+      - '.github/workflows/expo-eas-owner-apk.yml'
   push:
     paths:
       - 'android-app/**'
