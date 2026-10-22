@@ -46,6 +46,8 @@ jobs:
           grep -Fq "price_status==='QUOTE_REQUIRED'" checkout-v2.html
           grep -Fq 'onclick="window.openPartSearch()"' index-new.html
           grep -Fq 'onclick="window.openPartRequest()"' index-new.html
+          grep -Fq 'function openPartSearch(seed)' index-new.html
+          grep -Fq 'function openPartRequest(withImage)' index-new.html
           grep -Fq "Price on request" index-new.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
