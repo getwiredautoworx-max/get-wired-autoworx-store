@@ -44,6 +44,8 @@ jobs:
           grep -Fq 'price_status !== "QUOTE_REQUIRED"' supabase/functions/store-checkout/index.ts
           grep -Fq 'create_store_order_v2' supabase/functions/store-checkout/index.ts
           grep -Fq "price_status==='QUOTE_REQUIRED'" checkout-v2.html
+          grep -Fq 'onclick="window.openPartSearch()"' index-new.html
+          grep -Fq 'onclick="window.openPartRequest()"' index-new.html
           grep -Fq "Price on request" index-new.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
@@ -226,6 +228,18 @@ jobs:
             if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail price gate failed. Page content: '+productQuoteText.slice(0,600));
             await productQuotePage.close();
 
+            // Independently verify the separate Request a Part dialog; never submit the form.
+            const requestPage = await browser.newPage({viewport:{width:390,height:844}});
+            requestPage.on('pageerror', e => console.log('[request-pageerror] '+e.message));
+            await requestPage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
+            const requestFrame = requestPage.frameLocator('#store');
+            await requestFrame.locator('button.primaryAction').waitFor({timeout:15000});
+            await requestFrame.locator('button.primaryAction').click();
+            await requestFrame.locator('#sourcePart.open').waitFor({timeout:10000});
+            console.log('REQUEST_PART_DIALOG_PASS: separate request dialog opens');
+            await requestFrame.locator('.requestModalClose').click();
+            await requestPage.close();
+
             if (process.env.GITHUB_REF === 'refs/heads/main') {
               const publicPage = await browser.newPage({viewport:{width:390,height:844}});
               const homeResponse = await publicPage.goto('https://www.getwiredauto.co.za/',{waitUntil:'domcontentloaded',timeout:45000});
@@ -250,18 +264,21 @@ jobs:
                   dialogRect:(()=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}})()};
               });
               console.log('PUBLIC_PART_SEARCH_OPEN_DIAGNOSTIC='+JSON.stringify(partSearchOpenDiag));
-              if (!partSearchOpenDiag.className.split(/\\s+/).includes('open')) {
-                const directDiag = await publicFrame.locator('#partSearchDialog').evaluate(el => {
-                  const w = el.ownerDocument.defaultView;
-                  try { w.openPartSearch(); return {result:'called',className:el.className,display:w.getComputedStyle(el).display}; }
-                  catch (e) { return {result:'threw',error:String(e),className:el.className}; }
-                });
-                console.log('PUBLIC_PART_SEARCH_DIRECT_CALL_DIAGNOSTIC='+JSON.stringify(directDiag));
-              }
               await publicFrame.locator('#partSearchDialog.open').waitFor({timeout:10000});
               await publicFrame.locator('#partSearchQuery').fill('GW-B4F502E6');
               const result = publicFrame.locator('#partSearchResults .partSearchResult').filter({hasText:'GW-B4F502E6'}).first();
-              await result.waitFor({timeout:20000});
+              try {
+                await result.waitFor({timeout:20000});
+              } catch (e) {
+                const searchDiag = await publicFrame.locator('#partSearchResults').evaluate(el => {
+                  const w = el.ownerDocument.defaultView;
+                  return {text:el.innerText,count:el.querySelectorAll('.partSearchResult').length,
+                    productsLoaded:Array.isArray(w.gwProducts)?w.gwProducts.length:null,
+                    searchQuery:el.ownerDocument.getElementById('partSearchQuery')?.value};
+                });
+                console.log('PUBLIC_PART_SEARCH_RESULTS_DIAGNOSTIC='+JSON.stringify(searchDiag));
+                throw e;
+              }
               if (!(await result.innerText()).includes('GW-B4F502E6')) throw new Error('Known test SKU missing from public Part Search');
               console.log('PUBLIC_PART_SEARCH_PASS');
               await publicFrame.locator('#partSearchDialog').evaluate(el => el.classList.remove('open'));
