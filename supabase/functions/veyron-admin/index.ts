@@ -215,7 +215,7 @@ const handler = async (req: Request): Promise<Response> => {
           const { data: parent, error: parentError } = await db.from("categories").select("id,active,parent_id").eq("id", parentId).maybeSingle();
           if (parentError) throw parentError;
           if (!parent || parent.active !== true) return json({ ok: false, error: "Parent category must exist and be active." }, 400);
-          const seen = new Set();
+          const seen = new Set<string>();
           let ancestorId = parentId;
           while (ancestorId) {
             const hierarchyCheck = validateCategoryAncestorStep(id, ancestorId, seen);
