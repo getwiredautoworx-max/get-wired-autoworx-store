@@ -1,3 +1,21 @@
+## CONTINUATION UPDATE — 2026-10-22 10:52 SAST
+
+### Verified since the previous checkpoint
+- PR #67's latest available Owner catalogue manager source-check run `39750455556` completed successfully. Step-level evidence confirms: Deno type-check passed; `Run isolated CORS and auth-denial tests` passed; static owner UI safety assertions passed. This is useful baseline evidence, but these tests cover preflight and unauthenticated GET behavior only; they do not yet prove role-denial, field allowlists, mutation validation, or audit/database atomicity. Keep PR #67 draft and unmerged.
+- PR #67 Storefront Smoke Test run `39750455424` completed successfully, including Chromium install, verified-price checkout gate, and local storefront smoke test.
+- The Public SKU Exposure Audit for PR #67 also succeeded (run `39750455408`, recorded earlier).
+- Main live-root smoke run `39749972366` remains stuck/in progress at the Chromium installation step; the verified-price gate and storefront smoke test remain pending. Job logs endpoint returned BlobNotFound, so the reason for the stall is not established. Do not treat as pass/fail. Revisit later and, if it remains stuck, request an authorised rerun or make a narrow CI install-reliability fix only after evidence.
+- PR #66 (checkout terms/returns links) and PR #68 (live category navigation) are closed without merge. Do not assume their changes are in production. PR #74 policy links and PR #76 QA correction are merged; the owner-confirmed domain/store behavior remains the release baseline. If any feature from closed PRs is still missing, reimplement selectively against current main and review in a new isolated PR, rather than reopening/cherry-picking blindly.
+- Artifact listing for PR #67's storefront smoke run returned no downloadable artifacts. No APK artifact was established from this check.
+- No changes to app code, production configuration, DNS, Axxess, Supabase data, catalogue, stock, or payment settings were made during this pass.
+
+### Next actions
+1. Revisit the stuck main live-root smoke run; do not claim completion until its outcome is available.
+2. Add meaningful negative tests for owner/admin authorization, unknown actions/extra fields, malformed IDs/quantities and unsupported methods using mocked dependencies; do not make real DB writes.
+3. Resolve audit-log/mutation consistency and database-enforced category slug/hierarchy integrity before deployment.
+4. Check Owner APK build artifacts/workflow independently, then require physical-device acceptance on Hisense M72 Pro.
+5. Continue responsive/customer journey QA. Supplier reconciliation remains paused pending authorisation; payment activation and launch remain HOLD.
+
 ## FOLLOW-UP CHECK — 2026-10-22 10:48 SAST
 
 - Rechecked live-root smoke run `39749972366`: still `in_progress`; no completed conclusion is available yet. Do not report its live dialog/route tests as passed or failed until the job completes.
