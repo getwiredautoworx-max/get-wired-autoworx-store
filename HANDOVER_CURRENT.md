@@ -836,3 +836,28 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - **Owner approval gate:** package preparation is not permission to change Axxess. Do not upload, delete, change DNS/redirects, activate payments, change production routing, write to Supabase, or modify catalogue/stock without explicit owner approval for that action.
 - **Project constraints unchanged:** PR #74 remains the workable storefront baseline; do not switch designs. Supplier catalogue/stock work stays paused pending supplier authorisation. Customer launch remains HOLD until owner testing and required live checks pass.
 - **Current blockers / owner input:** Axxess credentials/session access and a verified off-host backup are required before safe hosting changes. If the owner performs the upload manually, ask for the exact outcome or screenshots from DirectAdmin and test URLs; do not assume upload succeeded.
+
+
+## CONTINUATION UPDATE — 2026-10-22 11:00 SAST
+
+### Owner-confirmed domain outcome
+- Owner confirmed the root domain redirects correctly to `https://www.getwiredauto.co.za` and the PR #74 storefront loads. Do not repeat DNS troubleshooting or upload again just to test redirects. No DNS/Axxess settings were changed in this continuation.
+
+### Storefront QA results reviewed
+- Latest Store Production QA run `39751751088` completed SUCCESS for commit `b95bb9077cb884611f2aa85a5b163ecb61d0c1aa`.
+- Latest Storefront Smoke Test run `39751750633` completed FAILURE. The local responsive audit passed at 320, 390, 768 and 1365px with nine homepage tiles and no document-wide horizontal overflow. Local verified-price checkout gate passed. Failure occurred in the public/live section: the live Part Search click did not open its dialog; diagnostic showed the hosted button still has inline handler `openPartSearch()`, while current main source uses `window.openPartSearch()`. Browser timed out waiting for `#partSearchDialog.open`. This indicates a live/source-version mismatch or stale hosted HTML for Part Search; it is not a domain redirect failure. Do not claim the live search flow passes.
+- Repeated preceding smoke run `39751438809` also failed at the same live Part Search interaction. It passed the verified-price checkout gate; responsive source checks and public SKU exposure audits succeeded.
+- Current main `index-new.html` defines `window.openPartSearch=function(seed){...}` and its header button calls `window.openPartSearch()`. The current-main source is therefore already corrected. The observed hosted HTML has the older `onclick="openPartSearch()"` attribute, consistent with Axxess serving an earlier package/cache. No live edits or uploads were made.
+- Mainline run links: smoke failure https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39751750633 ; source QA success https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39751751088 .
+
+### Next steps
+1. Keep the current working redirect and domain configuration untouched.
+2. Continue non-production checks on current main: Part Search and Request a Part, category/subcategory click-through, checkout policy links, verified-price gate, and public SKU exposure.
+3. Before any further Axxess upload, prepare a narrow, verified current-main package and request explicit owner approval. If the owner later authorizes upload, preserve an off-host backup and admin/redirect files; then retest the hosted Part Search flow on mobile and desktop.
+4. Continue PR #67 owner/admin security review with negative authorization and mutation-validation tests; keep draft/unmerged until evidence and owner approval.
+5. Check owner APK workflow artifacts separately; physical Hisense M72 Pro acceptance is still outstanding.
+6. Catalogue/supplier stock reconciliation remains paused pending supplier authorization. Payment-provider activation, real order/payment tests, production launch and customer-launch status remain HOLD.
+
+### Changes and blockers
+- This checkpoint was read-only: no source edits, commits, DNS/Axxess changes, Supabase writes, stock/catalogue changes, payment changes, or deployment occurred.
+- The immediate blocker is the mismatch between current main's Part Search handler and the HTML served at the live domain. The owner-confirmed redirect itself is working.
