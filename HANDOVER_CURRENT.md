@@ -919,3 +919,16 @@ PR #67 checks found TypeScript inference error for the category ancestor trackin
 
 ### Immediate next step
 Check the branch workflow for commits `f7248e6` / `ab14d3f`. If checks pass, continue with a focused opportunity-state guard and additional pure validation tests, then review APK artifact status. Keep PR #67 draft/unmerged until security coverage and owner approval are complete. Live Part Search remains a separate hosted-package blocker; preserve the working www redirect.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (method guard validated; opportunity guard added)
+
+- Owner catalogue manager workflow run `39754903434` (run #44) completed successfully for commit `ab14d3f8ff7c53eaa997c83846892944561428c7`: Deno type-check, isolated CORS/auth-denial tests, and static owner UI safety assertions passed. The new unsupported-method regression test was included in that run.
+- Storefront Smoke Test run `39754903359` (run #934) was still in progress at last check. Do not report it as passed until the run is rechecked.
+- Added a further narrow guard on PR #67 feature branch, commit `5a1de7be1345604f6ed5c2bba586a9ca1d7bf567`: opportunity approval now updates only records whose current status is `open`; a missing/non-open record returns HTTP 409 rather than approving stale/closed opportunities. This latest commit still needs its own workflow validation.
+- PR #67 remains draft/unmerged. No deployment or production data change. Live Part Search remains unverified on the hosted package; do not change DNS or repeat redirect work. Supplier-dependent catalogue changes, payment activation and customer launch remain HOLD.
+
+### Next
+1. Check workflow runs for latest commit `5a1de7b` and finish run #934.
+2. If checks pass, continue focused validation of opportunity state and request-body behavior; note that auth integration and atomic mutation/audit still require stronger tests/design before deployment.
+3. Inspect Android APK build artifact status. Keep physical Hisense M72 Pro acceptance as an owner-device gate.
