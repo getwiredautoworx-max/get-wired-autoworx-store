@@ -3161,3 +3161,6 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Prepared branch `fix/cloud-based-owner-apk`: the owner app's Store Test screen now loads `https://www.getwiredauto.co.za/` and Checkout loads `https://www.getwiredauto.co.za/checkout.html`; the local owner-control panel and Caelex bridge remain local/in-app. The workflow no longer copies the full storefront/assets directory into the APK and adds a hard 15 MiB APK-size gate plus size reporting.
 - No DNS, Axxess hosting, production files, payment settings, or live catalogue were changed. This is a GitHub-only change pending CI verification and PR review.
 - Required acceptance: workflow must pass; artifact APK must be under 15 MiB; inspect actual artifact size; emulator install/launch must pass; owner must install on Hisense M72 Pro and confirm it opens. If checkout path is not the live site's valid checkout endpoint, correct it before acceptance. A small APK is expected from this design but is NOT yet verified.
+
+
+- Follow-up correction during PR #81: updated the owner-control panel's Store Test and Store Admin buttons as well, so they no longer navigate to removed local `file:///android_asset/store/...` paths. Store Test points to the cloud homepage; Store Admin points to `/admin.html` and must be confirmed to exist/behave correctly on the live domain before acceptance.
