@@ -1,3 +1,30 @@
+# CURRENT SESSION CHECKPOINT — AXXESS DOMAIN ROUTING VERIFIED (2026-10-22 SAST)
+
+**This checkpoint supersedes the older Axxess-routing tasks below: the owner has now confirmed both public domain routes work. Do not repeat DNS troubleshooting or upload the package again unless a new, specific failure is reported.**
+
+## Confirmed by owner in Chrome
+- `https://www.getwiredauto.co.za` loads the new PR #74 store layout.
+- `https://getwiredauto.co.za` also loads the new store and redirects correctly to the `www` address.
+- Owner tested in a new Chrome tab and confirmed: “Works fine now.”
+- The earlier old-layout display was likely browser caching; this is the likely explanation, not a proven server-side diagnosis.
+- No further DNS changes, Axxess uploads, file deletion, or hosting edits are needed for this issue. Preserve the currently working Axxess setup.
+
+## Continue from here
+1. Resume focused storefront fine-tuning and functionality testing against the approved PR #74 storefront; do not redesign the accepted layout.
+2. Test customer journeys and visible controls: category/subcategory navigation, product pages, separate Part Search and Request a Part actions, cart/checkout, policy links, delivery/payment wording, images, and mobile layout.
+3. Build/test in GitHub first for future changes; only upload to Axxess when the owner approves a specific build. Avoid repeated ZIP uploads for small changes.
+4. Keep supplier catalogue/stock reconciliation paused pending supplier authorisation. Do not change prices, stock, catalogue data, Supabase, payment activation, or production configuration as part of ordinary UI QA.
+5. Customer launch remains **HOLD** until remaining release gates and owner approval are complete. Report only work backed by evidence.
+
+## Current deployment checkpoint
+- Axxess domain routing: **OWNER-CONFIRMED WORKING** for root and www.
+- PR #74 storefront visible at www: **OWNER-CONFIRMED WORKING**.
+- Root-to-www redirect: **OWNER-CONFIRMED WORKING**.
+- DNS or hosting changes required now: **NONE**.
+- Immediate next task: continue targeted storefront readiness QA and fix only confirmed issues through GitHub-first changes.
+
+---
+
 ## IMMEDIATE NEXT SESSION — FIX AXXESS HOSTING, THEN LOAD APPROVED STORE FOR TESTING (2026-10-21)
 
 **This is the next task and takes precedence over older continuation pointers below. Do not skip ahead to the functionality audit until the Axxess access problem has been diagnosed and the current approved store is available on Axxess for owner testing.**
