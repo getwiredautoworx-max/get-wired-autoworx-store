@@ -76,16 +76,16 @@ Where South African consumer law specifically requires the supplier/seller to be
 ### 12.4 Voluntary / change-of-mind refunds
 Get Wired AutoWorx does **not** provide an unrestricted general right to return goods simply because a customer has changed their mind, ordered incorrectly, no longer requires the item or has subsequently decided that the item is unsuitable, except where a statutory right to return applies.
 
-Where Get Wired AutoWorx agrees to accept a **discretionary/voluntary refund** that is not required by law, the following conditions apply:
+Where Get Wired AutoWorx agrees to accept a **discretionary/voluntary return** that is not required by law, the following conditions apply:
 
 1. The item must be **unused, undamaged and in its original condition**;
 2. The item must be returned in its **original packaging**, with packaging suitable for resale;
 3. All accessories, manuals, labels, fittings, seals and other components supplied with the item must be returned;
 4. The item must be in a condition in which Get Wired AutoWorx can reasonably resell it as new;
-5. **A 25% handling/restocking fee will be deducted from the refund** to cover handling, inspection, administration, repacking, stock processing and the commercial cost of returning the item to saleable inventory; and
+5. **No cash refund will be provided for a discretionary/voluntary return.** If the return is approved, the customer will receive store credit to use against other purchases from Get Wired AutoWorx, less a 25% handling/restocking fee where legally permitted; and
 6. The customer is responsible for the return courier cost.
 
-The 25% handling/restocking fee applies only to refunds or returns for which a charge is legally permitted. **It does not apply where the CPA, ECTA or another mandatory law requires a refund without such a charge.**
+The 25% handling/restocking fee applies only to discretionary returns for which a charge is legally permitted. **It does not apply where the CPA, ECTA or another mandatory law prohibits such a charge.** Store credit is not substituted for a cash refund or other remedy where applicable law requires a refund or a different remedy.
 
 ### 12.5 Statutory returns — defective, unsafe or non-conforming goods
 Nothing in this policy removes or limits a consumer's non-excludable statutory rights.
@@ -121,10 +121,10 @@ Manufacturer, importer, wholesaler and supplier warranties remain subject to the
 
 Where a product is returned for repair or warranty assessment, the customer may be required to provide proof of purchase and, where reasonably necessary for electrical/electronic products, an installation certificate and/or diagnosis report from a suitably qualified technician.
 
-### 12.11 Refund method and timing
-Once a return has been received, inspected and approved for a refund, Get Wired AutoWorx will process the applicable refund using the original payment method where reasonably practicable, subject to payment-provider processing times and any statutory deadline that applies.
+### 12.11 Store credit, refunds and timing
+For an approved **discretionary/voluntary return that is not required by law**, Get Wired AutoWorx does not offer cash refunds. The approved value, less any lawful handling/restocking fee, will be issued as store credit that may be applied against other purchases from Get Wired AutoWorx.
 
-Where only part of an order is approved for refund, the refund will relate only to the approved returned item(s) and any amounts the law requires to be refunded.
+**This no-cash-refund/store-credit rule does not apply where South African law requires a refund or another specific remedy.** Statutory refunds, including any applicable CPA or ECTA remedy, will be handled as required by law and within the applicable statutory timeframe. Where only part of an order qualifies for a remedy, the remedy will relate to the affected item(s) and any additional amount required by law.
 
 ### 12.12 Statutory rights prevail
 **This policy is intended to protect Get Wired AutoWorx's legitimate commercial interests to the maximum extent permitted by South African law. It must not, however, be interpreted as excluding, restricting or waiving any consumer right, remedy, warranty or protection that the CPA, ECTA or another mandatory law does not permit a supplier to exclude.**
