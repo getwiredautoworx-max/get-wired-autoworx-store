@@ -1099,3 +1099,12 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+## NO-COST AI / SMART SEARCH — PHASE 1 START (2026-10-22 SAST)
+
+- Owner instruction: execute the suggested no-cost AI phases strictly one at a time; do not begin the next phase until the current phase is fully implemented, tested, and evidenced as working.
+- Phase 1 scope: verify and harden the existing free catalogue search (SKU, name, description, brand/category/vehicle terms, typo tolerance) in GitHub-first source and automated local/mock tests. Keep existing Request a Part fallback available. No paid inference, API credits, production deployment, Axxess/DNS changes, Supabase writes, price/stock/catalogue edits, or customer launch.
+- Existing source inspection indicates `assets/progressive-store-enhancements.js` already contains a full-catalogue weighted search with prefix and one-edit typo matching; this is a starting observation, not proof that all search cases work. Existing smoke workflow has exact-SKU fixtures but no confirmed comprehensive search-ranking test yet.
+- Phase 1 acceptance gate: focused tests for exact SKU, partial SKU/name, multi-term query, brand/category/vehicle fields, one-character typo, no-match behavior, and safe rendering of product text; all relevant CI checks must pass against the exact branch head. Do not proceed to OCR/photo assistance until the phase gate passes.
+- Task status: IN PROGRESS — source/test audit underway. No production or live data changes made.
