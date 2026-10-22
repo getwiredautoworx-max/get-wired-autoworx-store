@@ -1004,3 +1004,34 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Owner can verify the secret's **name only** in Repository → Settings → Secrets and variables → Actions. For an Expo EAS token, the conventional name is `EXPO_TOKEN`; do not share its value.
 - To establish actual Expo/EAS linkage, first decide to replace or supplement the existing native Gradle build, then add the EAS project configuration and an EAS-aware workflow that consumes the secret. Do not claim a successful Expo build until a workflow run proves it.
 - No source/workflow, secret, hosting, DNS, supplier catalogue, payment, or production settings were changed during this check. APK physical-device acceptance remains open; release boundaries remain unchanged.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (Part Search root cause and compatibility fix)
+
+### Root cause verified from live browser logs
+- Re-read live smoke run `39751750633` job logs. The exact browser error is `ReferenceError: openPartSearch is not defined` when the hosted header button's inline handler calls `openPartSearch()`. The same diagnostic reports `window.openPartSearch` is a function and the button's old `onclick` attribute is `openPartSearch()`. This confirms a bare-global handler compatibility failure, not DNS or redirect failure.
+- Current main's header already calls `window.openPartSearch()`; it also has an early `window.openPartSearch` assignment. A legacy bare-name inline handler can still fail on the hosted page, so this is now addressed with explicit named global wrapper functions rather than another change to the DNS or domain routes.
+
+### Narrow fix prepared in PR #80
+- PR #80: [Fix legacy inline Part Search handler compatibility](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/80), branch `fix/live-part-search-global-handler-2026-10-22`.
+- Source commit `eae2fb6a0e92ce4516a2dcb69b7a80730e724287` adds explicit global `openPartSearch()` and `openPartRequest()` wrappers delegating to the canonical `window.*` handlers.
+- Follow-up commit `67468e74afd0bb1f62faaeaf20041f58d465670e` adds a local smoke assertion that both bare-name and `window.*` handlers exist. Workflow result must be checked before calling this fix tested.
+- This is a narrow compatibility fix; it changes no catalogue, prices, stock, checkout/payment logic, Supabase, DNS, or production settings.
+
+### Deployment status — still blocked outside GitHub
+- The live domain's failure is on the hosted copy. A GitHub branch/PR does not modify Axxess `public_html`. The connected tools in this session expose GitHub and Netlify operations but no Axxess/DirectAdmin/FTP upload operation or confirmed Axxess credentials. I therefore have not represented the hosted issue as resolved or attempted an unverified third-party deploy.
+- Owner's request to resolve the issue is recorded; do not alter DNS or the working root-to-www redirect. To complete the live fix, the reviewed PR must be tested/accepted, then the current approved package needs a backed-up deployment to the actual Axxess document root (or an explicitly approved deployment integration with verified credentials). After deployment, run the live desktop/mobile Part Search and Request a Part checks and checkout policy route checks. No real order is submitted.
+- If the current hosting can be updated by the owner through the existing package workflow, use the package generated from the exact tested commit and preserve a backup; do not copy only a single HTML file because this store depends on companion assets/scripts.
+
+### Separate APK workflow defect found while monitoring
+- Existing EAS run `39760436918` built successfully on Expo (build ID `3a111b6a-fba8-4f33-b3ed-f3938c22506f`) but the GitHub job failed while locating the downloaded file. EAS CLI placed the APK under its cache path `/tmp/runner/eas-cli-nodejs/eas-build-run-cache/...`, while the workflow searches only the repository working directory; therefore artifact upload was skipped and no APK artifact exists from that run.
+- Do not call that run a complete APK build. Fix the download destination/search path in PR #79 before rerunning; physical Hisense M72 Pro acceptance remains open.
+
+### Boundaries
+- No Axxess/production deployment, DNS change, Supabase write, supplier catalogue/stock change, payment activation, or customer launch was performed. Customer launch remains HOLD.
+
+
+### Follow-up validation correction — 2026-10-22
+- PR #80 smoke run `39762409721` failed in the newly added **test assertion**, before reaching the remaining local customer journey: Playwright's `frame` variable is a `FrameLocator`, which does not implement `.evaluate()`. This was a test harness defect, not a storefront runtime failure.
+- Corrected the assertion in commit `856ab930439b5e20bf34a18f16a9222f984702f8` to evaluate through `frame.locator('body')`. The new run for this correction has not yet appeared in the workflow query; check the latest run before claiming the compatibility test passes.
+- The earlier package artifact from run `39762409846` was built from commit `67468e74afd0bb1f62faaeaf20041f58d465670e`, which already contains the application compatibility wrappers. It is available at [Axxess package run artifacts](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39762409846#artifacts), artifact ID `12418981443`. Do not upload it until the corrected local test is green and a backup of current hosted files is confirmed.
