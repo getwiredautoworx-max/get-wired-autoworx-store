@@ -74,3 +74,14 @@ This supplement records the latest continuation point. Read this alongside `HAND
 - Reviewed `index-new.html` on the PR branch. The picture-search handler performs one fetch per user click; there is no automatic retry loop. On a non-OK response it displays the returned `payload.error` in the AI status area, and its `finally` block re-enables the identify button. This supports a single clear error/fallback flow in source.
 - This is a source review only, not a browser interaction test. The current AI modal and Request a Part modal have not yet been exercised in a browser with a simulated quota response. Do not mark frontend integration accepted until that test is recorded.
 - At last check, Storefront Smoke Test run ID `39825992749` (run #980) remained in progress at the Chromium installation step; no result should be inferred.
+
+
+## 6. Owner-requested Terms & Conditions change — 2026-10-22
+- Owner requested: change the returns terms to state **no cash refund; provide credit against other purchases**.
+- Updated on GitHub `main`:
+  - `TERMS_AND_CONDITIONS.md` — discretionary/voluntary returns now offer store credit instead of cash; the existing 25% handling/restocking fee remains only where legally permitted.
+  - `terms-and-conditions.html` — matching customer-facing Terms page language.
+  - `returns-refunds.html` — matching customer-facing Returns & Refunds page language.
+- Important legal guardrail: the no-cash/store-credit rule is explicitly limited to discretionary/voluntary returns. It does **not** override any cash refund or other remedy required by the South African Consumer Protection Act, ECTA, or other mandatory law. Statutory refunds/remedies must still be honoured where applicable. The 25% fee must not be applied where prohibited by law.
+- Changes were written to GitHub `main`; this does **not** mean the Axxess/live domain has been updated or that production display has been verified. Do not deploy or upload to Axxess without owner approval.
+- Verification still needed: inspect the final three files on GitHub, run relevant storefront/policy smoke checks if available, and later verify the published page only after an approved deployment. Recommend South African consumer-law review before treating this wording as final legal advice.
