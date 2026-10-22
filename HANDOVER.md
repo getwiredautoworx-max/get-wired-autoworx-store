@@ -3191,3 +3191,10 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Exact-head run #61 compiled the new 20 KiB APK successfully, but failed in the new metadata assertion before emulator testing. The cause was the workflow's AAPT command expanding a wildcard across multiple Android build-tools directories, which invoked AAPT incorrectly and printed its help instead of package metadata. This was a test-script defect, not an APK compilation failure.
 - Corrected the workflow to select the highest-version AAPT executable via find + version sort, then assert the exact application ID. The next workflow run must pass the metadata assertion and Android 13 API 33 install/launch check before the replacement APK is shared.
 - Failed run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39767753815. No physical-device success is claimed; no Axxess, DNS, production store, payment, or catalogue changes.
+
+
+## CONTINUATION LOG — 2026-10-22 — CLEAN-INSTALL APK BUILD #62
+
+- The corrected workflow now passes package metadata and size checks. APK artifact ID 12420858219 (21,349 bytes) was created from commit 50edc6856b6ddefebfb6219cf406cb1708f1b2ff; exact package ID is com.getwired.autoworx.owner, with no debug suffix, target SDK 33, versionCode 4.
+- Run #62: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39767956722. At the last check, Android 13 emulator install/launch step was still running; do not mark CI fully passed until the run completes. Physical Hisense M72 Pro install is still not verifiable from CI.
+- The APK is staged locally as /mnt/data/get-wired-autoworx-owner-cloud.apk. It is a fresh package ID intended to avoid collision with the prior za.co.getwiredautoworx.owner.test package. No hosting, DNS, payment, production catalogue, or live store changes.
