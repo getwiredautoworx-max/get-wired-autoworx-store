@@ -73,6 +73,42 @@ export function validateCategoryUpsert(b: Record<string, unknown>): ValidationRe
   return { ok: true, value: { id, name, slug, parentId, description, sortOrder, active: b.active === true } };
 }
 
+export function validateCategoryAncestorStep(categoryId: string | null, ancestorId: string, seen: Set<string>): ValidationResult<true> {
+  if (categoryId && ancestorId === categoryId) return { ok: false, status: 400, error: "A category cannot be its own ancestor." };
+  if (seen.has(ancestorId)) return { ok: false, status: 409, error: "Existing category hierarchy contains a cycle; resolve it before editing." };
+  return { ok: true, value: true };
+}
+
+export function validateQueueTask(b: Record<string, unknown>): ValidationResult<{
+  workerId: string | null; taskType: string; priority: number; inputData: Record<string, unknown>; requiresApproval: boolean;
+}> {
+  const allowed = new Set(["action", "worker_id", "task_type", "priority", "input_data", "requires_approval"]);
+  const unexpected = Object.keys(b).find((key) => !allowed.has(key));
+  if (unexpected) return { ok: false, status: 400, error: `Unsupported task field: ${unexpected}.` };
+  if (b.worker_id != null && typeof b.worker_id !== "string") return { ok: false, status: 400, error: "Worker ID must be a UUID." };
+  const workerValue = typeof b.worker_id === "string" ? b.worker_id.trim() : "";
+  const workerId = workerValue || null;
+  if (workerId && !/^[0-9a-f-]{36}$/i.test(workerId)) return { ok: false, status: 400, error: "Worker ID must be a UUID." };
+  const taskType = typeof b.task_type === "string" && b.task_type.trim() ? b.task_type.trim() : "manual";
+  if (!/^[a-z][a-z0-9_.-]{0,63}$/i.test(taskType)) return { ok: false, status: 400, error: "Task type must be 1–64 letters, numbers, dots, underscores or hyphens." };
+  const priority = b.priority == null || b.priority === "" ? 50 : Number(b.priority);
+  if (!Number.isInteger(priority) || priority < 1 || priority > 100) return { ok: false, status: 400, error: "Priority must be a whole number from 1 to 100." };
+  const inputData = b.input_data == null ? {} : b.input_data;
+  if (!inputData || typeof inputData !== "object" || Array.isArray(inputData)) return { ok: false, status: 400, error: "Task input must be a JSON object." };
+  if (JSON.stringify(inputData).length > 16000) return { ok: false, status: 413, error: "Task input exceeds the 16 KB limit." };
+  if (b.requires_approval !== undefined && typeof b.requires_approval !== "boolean") return { ok: false, status: 400, error: "requires_approval must be a boolean." };
+  return { ok: true, value: { workerId, taskType, priority, inputData: inputData as Record<string, unknown>, requiresApproval: b.requires_approval !== false } };
+}
+
+export function validateOpportunityApprovalId(b: Record<string, unknown>): ValidationResult<string> {
+  const allowed = new Set(["action", "id"]);
+  const unexpected = Object.keys(b).find((key) => !allowed.has(key));
+  if (unexpected) return { ok: false, status: 400, error: `Unsupported opportunity field: ${unexpected}.` };
+  const id = typeof b.id === "string" ? b.id.trim() : "";
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return { ok: false, status: 400, error: "Valid opportunity ID required." };
+  return { ok: true, value: id };
+}
+
 async function authorized(req: Request) {
   const h = req.headers.get("authorization") || "";
   if (!h.startsWith("Bearer ")) return null;
@@ -182,8 +218,8 @@ const handler = async (req: Request): Promise<Response> => {
           const seen = new Set();
           let ancestorId = parentId;
           while (ancestorId) {
-            if (ancestorId === id) return json({ ok: false, error: "A category cannot be its own ancestor." }, 400);
-            if (seen.has(ancestorId)) return json({ ok: false, error: "Existing category hierarchy contains a cycle; resolve it before editing." }, 409);
+            const hierarchyCheck = validateCategoryAncestorStep(id, ancestorId, seen);
+            if (!hierarchyCheck.ok) return json({ ok: false, error: hierarchyCheck.error }, hierarchyCheck.status);
             seen.add(ancestorId);
             const { data: ancestor, error: ae } = await db.from("categories").select("parent_id").eq("id", ancestorId).maybeSingle();
             if (ae) throw ae;
@@ -228,13 +264,19 @@ const handler = async (req: Request): Promise<Response> => {
         return json({ ok: true, category: data });
       }
       if (b.action === "queue_task") {
-        const { data, error } = await db.from("ai_tasks").insert({ worker_id:b.worker_id||null, task_type:String(b.task_type||"manual"), priority:Number(b.priority||50), input_data:b.input_data||{}, requires_approval:b.requires_approval !== false }).select("*").single();
+        const validation = validateQueueTask(b);
+        if (!validation.ok) return json({ ok: false, error: validation.error }, validation.status);
+        if (!validation.value.requiresApproval && auth.admin.role !== "owner") return json({ ok: false, error: "Only an owner can queue a task without approval." }, 403);
+        const { workerId, taskType, priority, inputData, requiresApproval } = validation.value;
+        const { data, error } = await db.from("ai_tasks").insert({ worker_id:workerId, task_type:taskType, priority, input_data:inputData, requires_approval:requiresApproval }).select("*").single();
         if (error) throw error;
         await audit({ actor_type:"admin",actor_id:auth.user.id,action:"queue_ai_task",resource_type:"ai_tasks",resource_id:data.id,details:{task_type:data.task_type}});
         return json({ok:true,task:data});
       }
       if (b.action === "approve_opportunity") {
-        const { data, error } = await db.from("opportunities").update({status:"approved",updated_at:new Date().toISOString()}).eq("id",b.id).select("*").single();
+        const validation = validateOpportunityApprovalId(b);
+        if (!validation.ok) return json({ ok: false, error: validation.error }, validation.status);
+        const { data, error } = await db.from("opportunities").update({status:"approved",updated_at:new Date().toISOString()}).eq("id",validation.value).select("*").single();
         if (error) throw error;
         await audit({actor_type:"admin",actor_id:auth.user.id,action:"approve_opportunity",resource_type:"opportunities",resource_id:data.id});
         return json({ok:true,opportunity:data});
