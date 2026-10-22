@@ -3184,3 +3184,10 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Applied a controlled GitHub-only fix on fix/cloud-based-owner-apk: changed to a fresh owner-specific ID com.getwired.autoworx.owner (no debug suffix), lowered target SDK to Android 13/API 33 for device-matched testing, and incremented versionCode to 4. Updated the workflow to assert the exact APK package metadata, enforce the 15 MiB limit, and perform clean install + launch on an API 33 emulator.
 - Commits: Gradle fix 00718f2a312a903430813477498eb5114135e7e4; workflow fix 5d7dd8a454b0f22e27f94a037a597ef9a3efd3d9. A new exact-head CI result is required before handing out the replacement APK.
 - Important limitation: the new package ID avoids collision with the old za.co.getwiredautoworx.owner.test test package, but a successful emulator run cannot prove physical installation on the Hisense. If the new APK still fails on-device, the next decisive diagnostic is Android Package Installer/ADB's specific failure code, not another blind rebuild. No Axxess, DNS, live store, payment, or catalogue changes.
+
+
+## CONTINUATION LOG — 2026-10-22 — APK CI ASSERTION FIX
+
+- Exact-head run #61 compiled the new 20 KiB APK successfully, but failed in the new metadata assertion before emulator testing. The cause was the workflow's AAPT command expanding a wildcard across multiple Android build-tools directories, which invoked AAPT incorrectly and printed its help instead of package metadata. This was a test-script defect, not an APK compilation failure.
+- Corrected the workflow to select the highest-version AAPT executable via find + version sort, then assert the exact application ID. The next workflow run must pass the metadata assertion and Android 13 API 33 install/launch check before the replacement APK is shared.
+- Failed run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39767753815. No physical-device success is claimed; no Axxess, DNS, production store, payment, or catalogue changes.
