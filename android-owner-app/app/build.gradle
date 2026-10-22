@@ -5,10 +5,10 @@ android {
     compileSdk 35
     defaultConfig {
         // One-time fresh install ID avoids signature conflicts with prior CI-signed APKs.
-        applicationId 'com.getwired.autoworx.owner.install106'
+        applicationId 'com.getwired.autoworx.owner.install107'
         minSdk 23
         targetSdk 33
         versionCode 1
-        versionName '1.0.5'
+        versionName '1.0.6'
     }
 }
