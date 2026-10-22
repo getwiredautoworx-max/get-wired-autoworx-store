@@ -82,9 +82,5 @@ jobs:
             adb shell am start -W -n com.getwired.autoworx.owner.install105/com.getwired.autoworx.owner.MainActivity
             sleep 5
             adb shell dumpsys activity activities | grep -E 'mResumedActivity|topResumedActivity' | grep -F 'com.getwired.autoworx.owner.install105/com.getwired.autoworx.owner.MainActivity'
-            if adb logcat -d -s AndroidRuntime:E | grep -q 'FATAL EXCEPTION'; then
-              adb logcat -d -s AndroidRuntime:E
-              echo 'Launcher Activity crashed after start.'
-              exit 1
-            fi
+            if adb logcat -d -s AndroidRuntime:E | grep -q 'FATAL EXCEPTION'; then adb logcat -d -s AndroidRuntime:E; echo 'Launcher Activity crashed after start.'; exit 1; fi
             echo "Android 13 clean-install and explicit launcher Activity check passed"
