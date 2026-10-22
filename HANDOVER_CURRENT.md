@@ -1070,3 +1070,12 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - This is the first candidate after switching to a fresh package ID to avoid a possible signature/update conflict with previously installed test builds. Emulator pass is evidence of installability in that test environment, **not** proof of physical Hisense M72 Pro acceptance. Physical-device installation remains pending owner test.
 - Do not use the previous `install105` APK again. If `install106` still says “App wasn't installed”, capture the exact installer failure via Android install/Package Installer logs rather than rebuilding with another guessed package ID.
 - No Axxess/DNS/production storefront/payment/catalogue changes were made. Customer launch remains HOLD.
+
+
+## PHYSICAL ANDROID INSTALL FAILURE — 2026-10-22 12:45 SAST
+
+- Owner reports the new `install106` APK still shows the same “App wasn't installed” result on the Hisense M72 Pro.
+- Reconfirmed candidate file at `/mnt/data/Get-Wired-AutoWorx-Owner-install106.apk` is a valid ZIP-format Android APK; SHA-256 `16aa252ff5eaa4bda494187d45985ad07756ea95b5e6b468aaa2a4a83cca91fd`. GitHub Actions run `39778992186` passed package ID/signature validation and Android 13 emulator install/launch. These results do not diagnose the physical device's installer failure.
+- Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
+- Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
+- No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
