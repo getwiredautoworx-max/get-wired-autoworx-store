@@ -126,6 +126,9 @@ async function authorized(req: Request) {
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
+  if (req.method !== "GET" && req.method !== "POST") {
+    return json({ ok: false, error: "Method Not Allowed" }, 405);
+  }
   try {
     const auth = await authorized(req);
     if (!auth) return json({ ok: false, error: "Admin authorization required." }, 401);
