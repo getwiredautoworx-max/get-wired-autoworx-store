@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101318">
+  <meta name="description" content="Get Wired AutoWorx owner tools">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Get Wired AutoWorx | Owner</title>
+</head>
+<body>
+  <main class="shell">
+    <header class="brand">
+      <div class="mark" aria-hidden="true">GW</div>
+      <div><p class="eyebrow">GET WIRED AUTOWORX</p><h1>Owner Hub</h1><p class="muted">Sound &amp; Security • Auto Electrical • Spares &amp; Accessories</p></div>
+    </header>
+    <section class="welcome">
+      <p class="eyebrow">OWNER ACCESS</p>
+      <h2>Your business tools, one tap away.</h2>
+      <p>This home screen is a lightweight web app. It does not need an APK, USB cable, ADB, or Windows installation tools.</p>
+    </section>
+    <nav class="actions" aria-label="Owner shortcuts">
+      <a class="action primary" href="https://www.getwiredauto.co.za/admin.html"><span class="action-icon">↗</span><span><strong>Open owner / admin page</strong><small>Uses the existing hosted page, if available</small></span><span class="chevron">›</span></a>
+      <a class="action" href="https://www.getwiredauto.co.za/"><span class="action-icon">⌂</span><span><strong>Open live storefront</strong><small>Customer-facing store</small></span><span class="chevron">›</span></a>
+      <button class="action" id="install-button" hidden><span class="action-icon">＋</span><span><strong>Install Owner Hub</strong><small>Add an app icon to your home screen</small></span><span class="chevron">›</span></button>
+    </nav>
+    <section class="notice"><strong>Security note</strong><p>This shortcut does not bypass sign-in or grant extra permissions. Owner actions must still be protected by the server. Do not use a public or shared phone for sensitive administration unless your account is secured.</p></section>
+    <footer><span>Established Since 2012</span><span>Owner Hub • Preview build</span></footer>
+  </main>
+  <script>
+    let installPrompt;
+    const installButton = document.getElementById('install-button');
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault(); installPrompt = event; installButton.hidden = false;
+    });
+    installButton.addEventListener('click', async () => {
+      if (!installPrompt) return;
+      installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; installButton.hidden = true;
+    });
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
