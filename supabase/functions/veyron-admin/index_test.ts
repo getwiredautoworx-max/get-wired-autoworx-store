@@ -41,6 +41,10 @@ Deno.test("product validator rejects malformed IDs, invalid stock and extra fiel
   assertEquals(validateProductUpdate({ ...validProduct, stock_quantity: 10000001 }).ok, false);
   assertEquals(validateProductUpdate({ ...validProduct, cost_price: 1 }).ok, false);
   assertEquals(validateProductUpdate({ ...validProduct, active: "true" }).ok, false);
+  const { active: _active, ...missingActive } = validProduct;
+  assertEquals(validateProductUpdate(missingActive).ok, false);
+  const { featured: _featured, ...missingFeatured } = validProduct;
+  assertEquals(validateProductUpdate(missingFeatured).ok, false);
 });
 
 Deno.test("valid product update returns only the allowed customer-safe fields", () => {
@@ -63,6 +67,8 @@ Deno.test("category validator rejects malformed IDs, sort order and extra fields
   assertEquals(validateCategoryUpsert({ ...validCategory, sort_order: 10001 }).ok, false);
   assertEquals(validateCategoryUpsert({ ...validCategory, cost_price: 1 }).ok, false);
   assertEquals(validateCategoryUpsert({ ...validCategory, active: "true" }).ok, false);
+  const { active: _active, ...missingActive } = validCategory;
+  assertEquals(validateCategoryUpsert(missingActive).ok, false);
 });
 
 Deno.test("valid category upsert normalizes slug and keeps sort order bounded", () => {
