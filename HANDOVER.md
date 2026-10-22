@@ -3216,3 +3216,6 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - To avoid this signature-collision path for the next test, created a one-time fresh application ID `com.getwired.autoworx.owner.install105`, version 1.0.5 / versionCode 1. The launcher Activity package/namespace remains aligned, and the workflow now checks the new ID, verifies APK signing, explicitly launches the exact launcher Activity, and checks for crashes.
 - This remains a test-install identity. Do not treat it as the permanent production package identity; a stable release signing key must be configured before distributing updateable app versions.
 - New artifact must not be shared until its exact-head workflow succeeds. No Axxess, DNS, live store, payment, or catalogue changes.
+
+
+- Follow-up verification note: the workflow assertions were corrected to check the fresh application ID `com.getwired.autoworx.owner.install105`, version 1.0.5, APK signature, and fully qualified launcher component `com.getwired.autoworx.owner.MainActivity`. Latest workflow source commit: `fb40dd699fffbe3b04e7536e0a8befd1aeaec3fc`. The available workflow-run lookup does not expose a confirmed run for this push, so no new APK is considered ready until the GitHub Actions run for this exact source head is visibly green and its artifact is retrieved.
