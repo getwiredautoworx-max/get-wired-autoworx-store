@@ -1,4 +1,4 @@
-package za.co.getwiredautoworx.owner;
+package com.getwired.autoworx.owner;
 
 import android.app.Activity;
 import android.os.Bundle;
