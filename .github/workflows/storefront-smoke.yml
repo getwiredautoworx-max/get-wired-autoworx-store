@@ -44,6 +44,8 @@ jobs:
           grep -Fq 'price_status !== "QUOTE_REQUIRED"' supabase/functions/store-checkout/index.ts
           grep -Fq 'create_store_order_v2' supabase/functions/store-checkout/index.ts
           grep -Fq "price_status==='QUOTE_REQUIRED'" checkout-v2.html
+          grep -Fq 'onclick="window.openPartSearch()"' index-new.html
+          grep -Fq 'onclick="window.openPartRequest()"' index-new.html
           grep -Fq "Price on request" index-new.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
@@ -225,6 +227,18 @@ jobs:
             const productQuoteText = await productQuotePage.locator('body').innerText();
             if (!productQuoteText.includes('Price on request') || !productQuoteText.includes('REQUEST PRICE')) throw new Error('Direct product detail price gate failed. Page content: '+productQuoteText.slice(0,600));
             await productQuotePage.close();
+
+            // Independently verify the separate Request a Part dialog; never submit the form.
+            const requestPage = await browser.newPage({viewport:{width:390,height:844}});
+            requestPage.on('pageerror', e => console.log('[request-pageerror] '+e.message));
+            await requestPage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
+            const requestFrame = requestPage.frameLocator('#store');
+            await requestFrame.locator('button.primaryAction').waitFor({timeout:15000});
+            await requestFrame.locator('button.primaryAction').click();
+            await requestFrame.locator('#sourcePart.open').waitFor({timeout:10000});
+            console.log('REQUEST_PART_DIALOG_PASS: separate request dialog opens');
+            await requestFrame.locator('.requestModalClose').click();
+            await requestPage.close();
 
             if (process.env.GITHUB_REF === 'refs/heads/main') {
               const publicPage = await browser.newPage({viewport:{width:390,height:844}});
