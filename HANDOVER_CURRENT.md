@@ -1,3 +1,32 @@
+## CURRENT CONTINUATION CHECKPOINT — 2026-10-22 10:46 SAST
+
+### Owner-confirmed hosting status
+- Owner confirmed the root URL redirects to `https://www.getwiredauto.co.za` and the new PR #74 storefront loads. Do not repeat DNS/redirect troubleshooting or make another Axxess upload unless a new specific failure is reported.
+- No DNS, Axxess files, live configuration, checkout/payment settings, catalogue, stock, or Supabase data were changed during this continuation.
+
+### QA workflow status checked
+- PR #76, “QA: repair storefront smoke route and public-source scan,” is merged into `main`: merge commit `299a9faa4886bb0d954117af8a92044e91374f88`. PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/76
+- Store Production QA run `39749972941` completed successfully (job `source-and-catalogue-qa`).
+- PR #76 smoke run `39749832056` completed successfully for the local browser smoke and verified-price gate.
+- Main live-root smoke run `39749972366` was still in progress when checked at 10:46 SAST. Job `119728447380` had completed checkout, Node setup and Playwright installation and was installing Chromium; verified-price and local storefront smoke steps were still pending. Do not record live Part Search / Request a Part / policy route checks as passed until this run finishes.
+- PR #76 preview deployment for commit `b434c4f294c8adcbd0fa4e01ca5a277e8e0f4c7e` succeeded: https://fe106c81.get-wired-autoworx-store.pages.dev . This is a QA preview, not a production deployment.
+
+### Owner-tool security review — draft only, not approved for deployment
+- Open PR #67 remains unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/67 . Reviewed `supabase/functions/veyron-admin/index.ts` on branch `feature/owner-catalogue-management-2026-10-20`, blob `50c027cec1d10e4eb96765a9132ab0c8479b445a`.
+- Positive controls observed: bearer-token verification via `auth.getUser`; enabled admin-user lookup; role restriction to owner/admin before any GET; UUID-shape checks for product/category IDs; whole-number stock range 0–10,000,000; active-category check; category self-ancestor/cycle traversal; duplicate-slug check; and audit writes after product/category changes.
+- Remaining security issues to resolve before any merge/deployment: (1) the endpoint uses a service-role client and exposes several non-catalogue POST actions (`queue_task`, `approve_opportunity`) without the same strict input/ID/range validation; (2) POST bodies are not checked against an explicit per-action field allowlist; (3) product/category mutation occurs before audit insertion, so audit failure can leave a committed mutation while returning HTTP 500 (the error message warns about this, but it is not transactional); (4) category duplicate-slug and cycle checks can race under concurrent requests unless backed by database constraints/transactional enforcement; (5) stock/product/category negative tests and role-denial tests need stronger runtime coverage than the current static assertions. These are review findings, not proof of a live exploit. Keep PR #67 draft/unmerged and do not deploy the Edge Function or write to Supabase.
+- Next safe action: add focused, isolated validation tests/fixes on the PR branch and collect positive/negative test evidence, keeping all writes mocked/local and preserving the approved storefront.
+
+### Next work queue
+1. Recheck run `39749972366`; if it failed, inspect logs and fix only a reproducible defect in a GitHub-first narrow change. If it passed, record the exact passing checks.
+2. Continue targeted customer journey / responsive / image checks without live orders or catalogue mutation.
+3. Harden and test PR #67 in draft mode only.
+4. Inspect Android APK workflow/build status; physical install and launch on the Hisense M72 Pro still requires owner-device acceptance.
+5. Keep supplier catalogue/stock reconciliation paused pending supplier authorisation; keep payment activation deferred and customer launch **HOLD**.
+6. Update this handover again after the next material result. Claim “completed” only with evidence.
+
+---
+
 ## INTERIM WORK PLAN — TASKS NOT BLOCKED BY SUPPLIER AUTHORISATION (2026-10-22)
 
 These tasks can proceed while supplier catalogue/stock authorisation is pending. The approved PR #72-derived storefront and PR #74 checkout policy links remain the baseline. This is a plan, not a claim that the checks below have already passed.
