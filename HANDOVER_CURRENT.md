@@ -1,3 +1,10 @@
+## FOLLOW-UP CHECK — 2026-10-22 10:48 SAST
+
+- Rechecked live-root smoke run `39749972366`: still `in_progress`; no completed conclusion is available yet. Do not report its live dialog/route tests as passed or failed until the job completes.
+- PR #67 current head is `17a3da489324643dac679db1fedcc2e627b4d00b`. Public SKU Exposure Audit run `39750455408` succeeded; Storefront Smoke Test run `39750455424` and Owner catalogue manager source checks run `39750455556` were still in progress when checked. PR remains open and unmerged. Continue to withhold any deployment/merge decision until security-specific negative tests and mutation/audit consistency concerns are resolved.
+- No Android physical-device acceptance evidence has been added; a successful emulator workflow, if available, must not be represented as tested on the owner's Hisense M72 Pro.
+- No source code, hosting, DNS, production configuration, payment settings, supplier catalogue, stock, or Supabase data was changed in this follow-up check.
+
 ## CURRENT CONTINUATION CHECKPOINT — 2026-10-22 10:46 SAST
 
 ### Owner-confirmed hosting status
