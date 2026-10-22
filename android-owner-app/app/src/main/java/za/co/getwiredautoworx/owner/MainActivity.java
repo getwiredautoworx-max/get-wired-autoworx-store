@@ -66,8 +66,8 @@ public class MainActivity extends Activity {
             if (target == null || !target.startsWith("https://caelexinfolog.co.za/Caelex/")) target = CAELEX_HOME;
             web.loadUrl(target);
         } else {
-            String target = "store".equals(screen) ? "file:///android_asset/store/store.html"
-                    : ("checkout".equals(screen) ? "file:///android_asset/store/checkout-v2.html"
+            String target = "store".equals(screen) ? "https://www.getwiredauto.co.za/"
+                    : ("checkout".equals(screen) ? "https://www.getwiredauto.co.za/checkout.html"
                     : "file:///android_asset/admin_app.html");
             web.loadUrl(target);
         }
