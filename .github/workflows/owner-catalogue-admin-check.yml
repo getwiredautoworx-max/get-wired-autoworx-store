@@ -24,6 +24,8 @@ jobs:
           deno-version: v2.x
       - name: Type-check veyron-admin Edge Function
         run: deno check supabase/functions/veyron-admin/index.ts
+      - name: Run isolated CORS and auth-denial tests
+        run: deno test --allow-env supabase/functions/veyron-admin/index_test.ts
       - name: Static owner UI safety assertions
         run: |
           python - <<'PY'
