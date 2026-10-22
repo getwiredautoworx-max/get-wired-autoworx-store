@@ -235,18 +235,29 @@ jobs:
               const publicFrame = publicPage.frameLocator('iframe#store');
               await publicFrame.locator('button.headerPartSearch').waitFor({timeout:30000});
               await publicFrame.locator('#categoryGrid .catWrap').first().waitFor({timeout:45000});
-              const categoryCount = await publicFrame.locator('#categoryGrid .catWrap').count();
+              const categoryCount = await publicFrame.locator('#categoryGrid > .catWrap').count();
               if (categoryCount < 1) throw new Error('Public homepage category grid did not populate');
               console.log('PUBLIC_CATEGORY_GRID_PASS count='+categoryCount);
               // Read-only live search: never add a product or submit an order.
+              publicPage.on('pageerror', e => console.log('PUBLIC_PAGE_ERROR='+String(e)));
+              publicPage.on('console', m => { if (m.type() === 'error') console.log('PUBLIC_CONSOLE_ERROR='+m.text()); });
               await publicFrame.locator('button.headerPartSearch').click();
               const partSearchOpenDiag = await publicFrame.locator('#partSearchDialog').evaluate(el => {
                 const d = el.ownerDocument, w = d.defaultView, b = d.querySelector('button.headerPartSearch');
                 return {exists:!!el,className:el.className,display:w.getComputedStyle(el).display,visibility:w.getComputedStyle(el).visibility,
-                  openPartSearchType:typeof w.openPartSearch,buttonOnclick:b?.getAttribute('onclick'),buttonText:b?.innerText,
+                  openPartSearchType:typeof w.openPartSearch,openPartSearchSource:String(w.openPartSearch).slice(0,400),
+                  buttonOnclick:b?.getAttribute('onclick'),buttonText:b?.innerText,buttonDisabled:b?.disabled,
                   dialogRect:(()=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}})()};
               });
               console.log('PUBLIC_PART_SEARCH_OPEN_DIAGNOSTIC='+JSON.stringify(partSearchOpenDiag));
+              if (!partSearchOpenDiag.className.split(/\\s+/).includes('open')) {
+                const directDiag = await publicFrame.locator('#partSearchDialog').evaluate(el => {
+                  const w = el.ownerDocument.defaultView;
+                  try { w.openPartSearch(); return {result:'called',className:el.className,display:w.getComputedStyle(el).display}; }
+                  catch (e) { return {result:'threw',error:String(e),className:el.className}; }
+                });
+                console.log('PUBLIC_PART_SEARCH_DIRECT_CALL_DIAGNOSTIC='+JSON.stringify(directDiag));
+              }
               await publicFrame.locator('#partSearchDialog.open').waitFor({timeout:10000});
               await publicFrame.locator('#partSearchQuery').fill('GW-B4F502E6');
               const result = publicFrame.locator('#partSearchResults .partSearchResult').filter({hasText:'GW-B4F502E6'}).first();
