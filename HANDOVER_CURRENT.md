@@ -1120,3 +1120,14 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - CI evidence: Free Catalogue Search Tests run `39794985834`, Storefront Smoke Test run `39794985723`, and Public SKU Exposure Audit run `39794985664` were observed **queued**, not passed, at the latest check. Do not treat queued runs as evidence of success. The package workflow also queued; no package was uploaded and no Axxess action was taken.
 - Phase 1 remains **IN PROGRESS / NOT ACCEPTED** until the dedicated CI gate and storefront browser smoke complete successfully on the final head. Do not begin Phase 2 (OCR/photo-assisted matching) before that gate passes.
 - No merge/deployment, Axxess/DNS, Supabase function/data, catalogue/stock/price, payment or customer-launch changes were made.
+
+
+## PHASE 1 ACCEPTANCE RECHECK — 2026-10-22 SAST
+
+- Executed the committed `assets/catalogue-search.js` in the available JavaScript runtime: all 10 focused behavior assertions passed.
+- Compiled the actual Part Search inline script extracted from `index-new.html`: JavaScript syntax check passed.
+- Static browser-integration assertions passed: exactly one catalogue-search script include; it loads before the Part Search IIFE; the dialog calls the tested matcher; product names/SKUs are escaped; Request a Part and photo-request fallback entry points remain present.
+- Storefront Smoke Test run `39794985723` / job `119879926743`: all listed steps, including local storefront smoke and verified-price checkout gate, reported completed/success in the job payload, but the overall workflow run still reported `in_progress` at this check. Await its terminal conclusion; do not mark it fully passed yet.
+- Dedicated Free Catalogue Search Tests run `39794985834` / job `119879927612` remains `queued`; Public SKU Exposure Audit `39794985664` and package workflow `39794985731` also remain queued. No CI pass is claimed for those runs.
+- Phase 1 is still **NOT ACCEPTED**. The remaining gate is a terminal PASS for the dedicated search CI and storefront smoke workflow, plus a successful completed run against the final code revision. If GitHub Actions remains queued or fails, investigate that exact blocker before changing code or considering Phase 2.
+- No Phase 2 OCR/photo implementation started. No merge, production deployment, Axxess/DNS, Supabase data/function, catalogue/stock/price, payment or launch changes made.
