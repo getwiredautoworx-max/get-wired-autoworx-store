@@ -3164,3 +3164,5 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 
 
 - Follow-up correction during PR #81: updated the owner-control panel's Store Test and Store Admin buttons as well, so they no longer navigate to removed local `file:///android_asset/store/...` paths. Store Test points to the cloud homepage; Store Admin points to `/admin.html` and must be confirmed to exist/behave correctly on the live domain before acceptance.
+
+- Checkout route corrected to the repository's current `checkout-v2.html` page (`https://www.getwiredauto.co.za/checkout-v2.html`) rather than assuming a legacy `/checkout.html` route. The live endpoint remains unverified because the web retrieval check could not access either route; do not claim checkout acceptance until a browser/device test confirms it.
