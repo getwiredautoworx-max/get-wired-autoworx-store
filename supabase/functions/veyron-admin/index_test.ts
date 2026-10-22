@@ -116,3 +116,10 @@ Deno.test("opportunity approval requires a UUID and rejects unexpected fields", 
   assertEquals(result.ok, true);
   if (result.ok) assertEquals(result.value, productId);
 });
+
+
+Deno.test("unsupported methods are rejected before authentication", async () => {
+  const response = await handler(new Request("https://example.supabase.co/functions/v1/veyron-admin", { method: "PUT" }));
+  assertEquals(response.status, 405);
+  assertEquals((await response.json()).error, "Method Not Allowed");
+});
