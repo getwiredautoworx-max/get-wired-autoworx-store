@@ -4,7 +4,21 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 const url = Deno.env.get("SUPABASE_URL")!;
 const secret = JSON.parse(Deno.env.get("SUPABASE_SECRET_KEYS")!).default;
 const db = createClient(url, secret);
-const json = (x: unknown, status = 200) => new Response(JSON.stringify(x), { status, headers: { "content-type": "application/json", "cache-control": "no-store" } });
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Max-Age": "86400",
+  "Vary": "Origin"
+};
+const json = (x: unknown, status = 200) => new Response(JSON.stringify(x), {
+  status,
+  headers: { ...corsHeaders, "content-type": "application/json", "cache-control": "no-store" }
+});
+async function audit(entry: Record<string, unknown>) {
+  const { error } = await db.from("audit_log").insert(entry);
+  if (error) throw new Error("AUDIT_LOG_WRITE_FAILED: mutation may have applied; verify state before retrying.");
+}
 
 async function authorized(req: Request) {
   const h = req.headers.get("authorization") || "";
@@ -22,6 +36,7 @@ async function authorized(req: Request) {
 }
 
 Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   try {
     const auth = await authorized(req);
     if (!auth) return json({ ok: false, error: "Admin authorization required." }, 401);
@@ -101,7 +116,7 @@ Deno.serve(async (req) => {
         const { data, error } = await db.from("products").update(patch).eq("id", id)
           .select("id,sku,public_sku,name,description,category_id,stock_quantity,active,featured,updated_at").single();
         if (error) throw error;
-        await db.from("audit_log").insert({
+        await audit({
           actor_type: "admin", actor_id: auth.user.id, action: "owner_update_product",
           resource_type: "product", resource_id: id,
           details: { fields: ["name","description","category_id","stock_quantity","active","featured"] }
@@ -164,7 +179,7 @@ Deno.serve(async (req) => {
           : await db.from("categories").insert(categoryPayload).select("id,name,slug,parent_id,description,active,sort_order").single();
         if (result.error) throw result.error;
         const data = result.data;
-        await db.from("audit_log").insert({
+        await audit({
           actor_type: "admin", actor_id: auth.user.id, action: id ? "owner_update_category" : "owner_create_category",
           resource_type: "category", resource_id: data.id,
           details: { name: data.name, slug: data.slug, parent_id: data.parent_id, active: data.active }
@@ -174,13 +189,13 @@ Deno.serve(async (req) => {
       if (b.action === "queue_task") {
         const { data, error } = await db.from("ai_tasks").insert({ worker_id:b.worker_id||null, task_type:String(b.task_type||"manual"), priority:Number(b.priority||50), input_data:b.input_data||{}, requires_approval:b.requires_approval !== false }).select("*").single();
         if (error) throw error;
-        await db.from("audit_log").insert({ actor_type:"admin",actor_id:auth.user.id,action:"queue_ai_task",resource_type:"ai_tasks",resource_id:data.id,details:{task_type:data.task_type}});
+        await audit({ actor_type:"admin",actor_id:auth.user.id,action:"queue_ai_task",resource_type:"ai_tasks",resource_id:data.id,details:{task_type:data.task_type}});
         return json({ok:true,task:data});
       }
       if (b.action === "approve_opportunity") {
         const { data, error } = await db.from("opportunities").update({status:"approved",updated_at:new Date().toISOString()}).eq("id",b.id).select("*").single();
         if (error) throw error;
-        await db.from("audit_log").insert({actor_type:"admin",actor_id:auth.user.id,action:"approve_opportunity",resource_type:"opportunities",resource_id:data.id});
+        await audit({actor_type:"admin",actor_id:auth.user.id,action:"approve_opportunity",resource_type:"opportunities",resource_id:data.id});
         return json({ok:true,opportunity:data});
       }
       return json({ok:false,error:"Unknown admin action."},400);
