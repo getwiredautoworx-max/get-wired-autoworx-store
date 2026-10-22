@@ -5,7 +5,7 @@ Deno.env.set("SUPABASE_URL", "https://example.supabase.co");
 Deno.env.set("SUPABASE_SECRET_KEYS", JSON.stringify({ default: testJwt }));
 Deno.env.set("SUPABASE_PUBLISHABLE_KEY", testJwt);
 
-const { handler, validateProductUpdate, validateCategoryUpsert } = await import("./index.ts");
+const { handler, validateProductUpdate, validateCategoryUpsert, validateCategoryAncestorStep, validateQueueTask, validateOpportunityApprovalId } = await import("./index.ts");
 
 Deno.test("OPTIONS preflight succeeds without a bearer token", async () => {
   const response = await handler(new Request("https://example.supabase.co/functions/v1/veyron-admin", {
@@ -73,4 +73,40 @@ Deno.test("valid category upsert normalizes slug and keeps sort order bounded", 
     assertEquals(result.value.sortOrder, 10);
     assertEquals(result.value.parentId, categoryId);
   }
+});
+
+Deno.test("category ancestor guard rejects self-parenting and existing cycles", () => {
+  assertEquals(validateCategoryAncestorStep(categoryId, categoryId, new Set()).ok, false);
+  assertEquals(validateCategoryAncestorStep(categoryId, productId, new Set([productId])).ok, false);
+  assertEquals(validateCategoryAncestorStep(categoryId, productId, new Set()).ok, true);
+});
+
+Deno.test("queue-task validator rejects invalid worker, priority, payload and extra fields", () => {
+  const validTask = { action: "queue_task", worker_id: productId, task_type: "catalogue_sync", priority: 50, input_data: { mode: "dry_run" }, requires_approval: true };
+  assertEquals(validateQueueTask({ ...validTask, worker_id: "bad" }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, task_type: "bad task type" }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, priority: 0 }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, priority: 1.5 }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, input_data: ["not", "an", "object"] }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, requires_approval: "false" }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, unexpected: true }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, input_data: { large: "x".repeat(17000) } }).ok, false);
+});
+
+Deno.test("valid queue task defaults to approval and preserves bounded fields", () => {
+  const result = validateQueueTask({ action: "queue_task", worker_id: productId, task_type: "manual", priority: 50, input_data: { dry_run: true } });
+  assertEquals(result.ok, true);
+  if (result.ok) {
+    assertEquals(result.value.requiresApproval, true);
+    assertEquals(result.value.priority, 50);
+    assertEquals(result.value.taskType, "manual");
+  }
+});
+
+Deno.test("opportunity approval requires a UUID and rejects unexpected fields", () => {
+  assertEquals(validateOpportunityApprovalId({ action: "approve_opportunity", id: "bad" }).ok, false);
+  assertEquals(validateOpportunityApprovalId({ action: "approve_opportunity", id: productId, status: "approved" }).ok, false);
+  const result = validateOpportunityApprovalId({ action: "approve_opportunity", id: productId });
+  assertEquals(result.ok, true);
+  if (result.ok) assertEquals(result.value, productId);
 });
