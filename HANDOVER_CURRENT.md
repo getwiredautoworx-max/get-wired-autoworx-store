@@ -1042,3 +1042,11 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 
 ### Change boundary
 - This checkpoint changed only the APK validation workflow on PR #81 branch and this handover file. No production host/DNS, Supabase data, catalogue/stock, payment settings, or customer-facing release was changed.
+
+
+## APK ARTIFACT DOWNLOAD — 2026-10-22 14:30 SAST
+
+- Downloaded the newly produced APK artifact from in-progress validation run [39778311640](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39778311640), artifact ID 12425462826, name get-wired-autoworx-owner-install-test-apk, SHA-256 9b339ff71982fb9725fd2965ab1d29759638af0192c6b40016d43c8e372ce0b2. ZIP contents were verified: app-debug.apk, 21,344 bytes.
+- Build, package metadata/size/signature checks and artifact upload all passed. Emulator install/launch step was still in progress at last poll, so the artifact is available for owner-device testing but this run is not yet a completed CI pass. The previous run's emulator log showed install Success, launcher Status: ok and resumed activity; it failed only at the final shell crash-check syntax, which was corrected in commit 824ba4c5db45b297bd8ef8dae2724845ff6eeb77.
+- Fresh artifact is ready for direct test; physical Hisense M72 Pro install/launch/network verification remains outstanding. Do not claim physical-device acceptance until the owner reports the result.
+- Read-only live smoke run 39776293352 failed only the PAGE_CONTENT assertion: HTTP 200 and canonical redirect to /store.html passed, mobile HTTP and no-horizontal-overflow passed, no console/page errors or failed requests were logged, but the smoke script observed bodyTextLength 0. Investigate whether the test is reading the iframe/DOM before content is ready before changing storefront source. Do not touch the confirmed working redirect.
