@@ -84,6 +84,7 @@ These tasks can proceed while supplier catalogue/stock authorisation is pending.
 - Review owner admin-tool server-side authorization and validation in draft mode only.
 - Check Android owner APK build availability; physical Hisense M72 Pro install/launch remains owner-device acceptance and cannot be marked complete from an emulator alone.
 - Keep supplier-authorised catalogue/stock reconciliation paused, payment activation deferred, and customer launch HOLD.
+- **Owner confirmation needed before launch:** the public Returns & Refunds page currently displays a full street return address. Given the business is home-based and has no shopfront, confirm whether that address is intentionally public or should be replaced with a contact-first return-authorisation process. No policy/address change has been made.
 
 ---
 
