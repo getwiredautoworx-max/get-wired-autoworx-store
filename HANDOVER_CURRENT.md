@@ -1027,3 +1027,29 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Rechecked GitHub Actions run [39760436918](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39760436918). The secret check, npm dependency installation, EAS initialization and EAS project-ID verification all show `success`.
 - Step `Build Android APK on EAS` is still `in_progress`; APK download and artifact upload are pending. The artifact list is currently empty.
 - Conclusion: environment/configuration has passed the early gates, but successful APK creation is **not yet proven**. Recheck this same run first; do not create duplicate builds unless this run fails or is cancelled. If it fails, use the run's step failure/logs to fix the specific cause, then rerun.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (hosted journey and APK monitor)
+
+### APK run 39760436918 — current evidence
+- Rechecked the existing Expo EAS Owner APK workflow; it remains `in_progress` at step 8, **Build Android APK on EAS**. The EXPO_KEY presence check, dependency installation, EAS initialization/linking, and EAS project-ID check passed.
+- APK download and artifact upload steps remain pending; artifact list is still empty. No duplicate build was started. Do not claim an APK artifact or successful build yet.
+- The secret-presence check proves a non-empty GitHub secret was injected, not that the Expo token is valid or that a build will succeed. Physical install/launch on the Hisense M72 Pro remains a separate acceptance gate.
+
+### Hosted Part Search / Request a Part
+- The latest recorded live-host smoke evidence in main's handover says run `39751750633` failed at the live Part Search interaction: the hosted markup used `onclick="openPartSearch()"` while current source uses `onclick="window.openPartSearch()"`. Responsive checks and the local checkout gate passed, but those do not clear the hosted failure.
+- Current `main` source uses `window.openPartSearch()` consistently for the header, homepage search action, and Find a Part tile. No application change is justified by that known source-parity issue; changing the source again would risk a circular fix.
+- Because the live smoke sequence fails at Part Search, this run does **not** establish live Request a Part dialog acceptance. The web-fetch interface could not independently render the live site in this continuation, so no new live-browser pass is claimed.
+- Do not change DNS or repeat redirect troubleshooting. The owner-confirmed root-to-www redirect remains the baseline. Hosted source mismatch needs a coordinated, owner-authorised hosting package update and a verified backup before any Axxess file change; none was performed here.
+
+### Checkout and policy QA
+- Read current `main` source: `checkout-v2.html` contains direct links to `terms-and-conditions.html` and `returns-refunds.html`, both opening in a new tab with `rel="noopener"`.
+- Both policy HTML files exist in the repository and contain policy page headings/content. Checkout source also states pickup is free, packaging is R35 per item, delivery is quoted separately, and the configured payment method is Direct EFT only.
+- Prior live release-gate evidence recorded HTTP 200 for checkout and both policy routes, and a read-only desktop/mobile checkout UI check with real order submission intercepted. However, this continuation did not independently click the live checkout links, and the latest live smoke failure prevented the current sequence from reaching its policy-route assertions. Record live link-click acceptance as **NOT VERIFIED in this pass**, not PASS.
+- No real order/payment was submitted. PayFast/PayJustNow remain unconfigured; no payment activation.
+
+### Boundaries and next actions
+- No source/catalogue, Supabase, production, Axxess, DNS, supplier, payment, or APK distribution changes were made in this QA pass.
+- Continue monitoring run `39760436918`; wait for build completion and artifact evidence before any claim of success.
+- Continue source-safe QA in parallel. Do not repeat the known Part Search fix blindly. If owner authorises a coordinated hosting update later, back up current files, deploy one verified package, then rerun hosted Part Search, Request a Part, and checkout policy link tests on desktop/mobile.
+- Supplier-dependent catalogue/stock changes remain paused; payment activation and customer launch remain **HOLD**.
