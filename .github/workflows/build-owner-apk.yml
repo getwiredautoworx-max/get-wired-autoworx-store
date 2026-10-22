@@ -41,7 +41,9 @@ jobs:
           BYTES=$(stat -c%s "$APK")
           echo "Owner APK size: $((BYTES / 1024)) KiB ($BYTES bytes)"
           test "$BYTES" -le 15728640 || { echo 'APK exceeds 15 MiB budget.'; exit 1; }
-          "$ANDROID_HOME"/build-tools/*/aapt dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner'"
+          AAPT=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name aapt | sort -V | tail -n 1)
+          test -x "$AAPT"
+          "$AAPT" dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner'"
       - name: Preserve built APK artifact
         uses: actions/upload-artifact@v4
         with:
