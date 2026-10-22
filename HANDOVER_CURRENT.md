@@ -932,3 +932,13 @@ Check the branch workflow for commits `f7248e6` / `ab14d3f`. If checks pass, con
 1. Check workflow runs for latest commit `5a1de7b` and finish run #934.
 2. If checks pass, continue focused validation of opportunity state and request-body behavior; note that auth integration and atomic mutation/audit still require stronger tests/design before deployment.
 3. Inspect Android APK build artifact status. Keep physical Hisense M72 Pro acceptance as an owner-device gate.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (latest security commit checks)
+
+- Owner catalogue manager source checks run `39754970281` (run #46) passed for latest security commit `5a1de7be1345604f6ed5c2bba586a9ca1d7bf567`: Deno type-check, isolated CORS/auth-denial tests, and static safety assertions all succeeded. This validates compilation and the current test suite, not all production integration/security concerns.
+- Storefront smoke run `39754903359` (run #934) completed successfully, including verified-price checkout gate and local smoke test.
+- Newest storefront smoke run `39754970178` (run #935) was still running at last check (Chromium setup in progress); status must be rechecked before calling that run complete.
+- Opportunity state guard now limits approval to status=open and returns 409 if missing/no longer open. The owner-tool workflow above passed after that commit.
+- Remaining owner-tool blockers are not being disguised as completed: authenticated role-matrix tests, invalid JSON/object-body behavior under a valid owner session, atomic mutation + audit design, and database-backed hierarchy constraints need a proper isolated test strategy and/or reviewed SQL migration. Do not deploy the Edge Function or merge PR #67 yet.
+- No live production changes, DNS/Axxess changes, catalogue or stock edits, payment activation, or customer launch. Live Part Search still requires a controlled hosting package update and live verification; preserve the working redirect.
