@@ -1,3 +1,21 @@
+## INTERIM WORK PLAN — TASKS NOT BLOCKED BY SUPPLIER AUTHORISATION (2026-10-22)
+
+These tasks can proceed while supplier catalogue/stock authorisation is pending. The approved PR #72-derived storefront and PR #74 checkout policy links remain the baseline. This is a plan, not a claim that the checks below have already passed.
+
+1. **Storefront customer-journey QA (highest priority):** test category → subcategory → product → cart → checkout; separate Part Search and Request a Part actions; required-field validation, confirmation/error feedback, policy links, and broken links/buttons. Use mocked/test-only flows; no real order or payment.
+2. **Responsive and visual QA:** check desktop, common mobile widths, and tablet layouts; specifically check horizontal overflow, clipped labels/badges, readable dark-navy trust/delivery/payment tiles, category images, product image fallbacks, and banner text overlap. Owner has already confirmed desktop/mobile domain access; this is additional targeted QA, not a claim that those prior checks failed.
+3. **Image and navigation audit:** verify category image relevance and loading, product-image fallback behavior, category/subcategory routing, and grouped product lists. Do not infer supplier identity or change catalogue mappings/prices/stock.
+4. **Checkout and policy review:** confirm Terms & Conditions and Returns & Refunds links open correctly from checkout and pages are reachable on the live test site. Review copy for consistency with owner instructions; do not activate PayFast/PayJustNow, change payment settings, or place live orders.
+5. **Security review for owner tools (isolated, draft-only):** continue review of the owner stock/category-management proposal and its server-side Edge Function authorization, allowlisted fields, ID/quantity validation, and negative tests. Do not deploy functions, expose service-role credentials, write to Supabase, or merge a draft PR without evidence and approval.
+6. **Android owner app testing:** inspect the APK/build workflow and, when a suitable build is available, verify install/launch on the physical Hisense M72 Pro. Emulator-only success is not physical-device acceptance.
+7. **Release-readiness documentation:** maintain a defect list with severity, reproduction steps, evidence, fix commit and test run; keep the final launch checklist current.
+
+**Explicitly blocked/paused:** current supplier stock/discontinued reconciliation, product-price or catalogue cleanup, and any data changes requiring supplier authorisation. No bulk catalogue edits while this gate remains closed.
+
+**Next execution step:** start with the targeted storefront customer-journey and responsive checks, then fix only reproducible defects in narrow GitHub-first changes and produce a preview tied to the exact tested commit. Do not re-investigate the now-working root/www redirect or upload another ZIP unless a new failure or an owner-approved build requires it.
+
+---
+
 # CURRENT SESSION CHECKPOINT — AXXESS DOMAIN ROUTING VERIFIED (2026-10-22 SAST)
 
 **This checkpoint supersedes the older Axxess-routing tasks below: the owner has now confirmed both public domain routes work. Do not repeat DNS troubleshooting or upload the package again unless a new, specific failure is reported.**
