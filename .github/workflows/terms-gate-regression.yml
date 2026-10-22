@@ -1,0 +1,37 @@
+name: Terms Gate Browser Regression
+
+on:
+  pull_request:
+    paths:
+      - "store.html"
+      - "tests/terms-gate.spec.cjs"
+      - ".github/workflows/terms-gate-regression.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: terms-gate-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  terms-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install isolated browser test dependency
+        run: |
+          mkdir -p "$RUNNER_TEMP/terms-gate-test"
+          cd "$RUNNER_TEMP/terms-gate-test"
+          npm init -y
+          npm install --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Test first visit, accept, decline and version refresh
+        env:
+          NODE_PATH: ${{ runner.temp }}/terms-gate-test/node_modules
+        run: node tests/terms-gate.spec.cjs
