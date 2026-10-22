@@ -44,6 +44,10 @@ jobs:
           assert edge.count('await audit({') == 4
           assert 'export function validateProductUpdate' in edge
           assert 'export function validateCategoryUpsert' in edge
+          assert 'export function validateCategoryAncestorStep' in edge
+          assert 'export function validateQueueTask' in edge
+          assert 'export function validateOpportunityApprovalId' in edge
+          assert 'Only an owner can queue a task without approval.' in edge
           assert 'Unsupported product field:' in edge and 'Unsupported category field:' in edge
           assert 'b.action === "update_product"' in edge
           assert 'b.action === "upsert_category"' in edge
