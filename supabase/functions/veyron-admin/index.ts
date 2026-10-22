@@ -37,8 +37,8 @@ export function validateProductUpdate(b: Record<string, unknown>): ValidationRes
   if (!Number.isInteger(stock) || stock < 0 || stock > 10000000) return { ok: false, status: 400, error: "Stock must be a whole number from 0 to 10,000,000." };
   const categoryId = typeof b.category_id === "string" ? b.category_id.trim() : "";
   if (!/^[0-9a-f-]{36}$/i.test(categoryId)) return { ok: false, status: 400, error: "Select a valid category." };
-  if (b.active !== undefined && typeof b.active !== "boolean") return { ok: false, status: 400, error: "Active must be a boolean." };
-  if (b.featured !== undefined && typeof b.featured !== "boolean") return { ok: false, status: 400, error: "Featured must be a boolean." };
+  if (typeof b.active !== "boolean") return { ok: false, status: 400, error: "Active must be explicitly set to true or false." };
+  if (typeof b.featured !== "boolean") return { ok: false, status: 400, error: "Featured must be explicitly set to true or false." };
   const description = typeof b.description === "string" ? b.description.trim().slice(0, 8000) || null : b.description == null ? null : undefined;
   if (description === undefined) return { ok: false, status: 400, error: "Description must be text." };
   return { ok: true, value: { id, name, categoryId, stock, description, active: b.active === true, featured: b.featured === true } };
@@ -65,7 +65,7 @@ export function validateCategoryUpsert(b: Record<string, unknown>): ValidationRe
   if (b.parent_id != null && typeof b.parent_id !== "string") return { ok: false, status: 400, error: "Parent category must be an ID." };
   const parentId = parentValue || null;
   if (parentId && !/^[0-9a-f-]{36}$/i.test(parentId)) return { ok: false, status: 400, error: "Invalid parent category." };
-  if (b.active !== undefined && typeof b.active !== "boolean") return { ok: false, status: 400, error: "Active must be a boolean." };
+  if (typeof b.active !== "boolean") return { ok: false, status: 400, error: "Active must be explicitly set to true or false." };
   if (b.description !== undefined && b.description !== null && typeof b.description !== "string") return { ok: false, status: 400, error: "Description must be text." };
   const description = typeof b.description === "string" ? b.description.trim().slice(0, 4000) || null : null;
   const sortOrder = b.sort_order == null || b.sort_order === "" ? 0 : Number(b.sort_order);
