@@ -168,7 +168,7 @@ jobs:
             const quoteOnlyHtml = await frame.locator('#featuredGrid').evaluate(grid => grid.ownerDocument.defaultView.card({id:'quote-only-test',name:'Quote-only test product',public_sku:'GW-TEST0001',price:123.45,stock_quantity:3,image_url:null,specifications:{price_status:'QUOTE_REQUIRED'}}));
             if (!quoteOnlyHtml.includes('Price on request') || !quoteOnlyHtml.includes('REQUEST PRICE')) throw new Error('Explicit quote-only product must show Price on request and REQUEST PRICE');
             // Legacy-host compatibility: older cached HTML may still call openPartSearch() without window.
-            const globalSearchHandlers = await frame.evaluate(() => ({
+            const globalSearchHandlers = await frame.locator('body').evaluate(() => ({
               bareSearch: typeof openPartSearch,
               windowSearch: typeof window.openPartSearch,
               bareRequest: typeof openPartRequest,
