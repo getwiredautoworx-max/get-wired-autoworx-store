@@ -14,6 +14,31 @@ These tasks can proceed while supplier catalogue/stock authorisation is pending.
 
 **Next execution step:** start with the targeted storefront customer-journey and responsive checks, then fix only reproducible defects in narrow GitHub-first changes and produce a preview tied to the exact tested commit. Do not re-investigate the now-working root/www redirect or upload another ZIP unless a new failure or an owner-approved build requires it.
 
+## STOREFRONT QA AUDIT UPDATE — 2026-10-22
+
+**Status: in progress. No storefront source, catalogue, Supabase data, payment configuration, DNS, hosting files, or production deployment was changed during this audit.**
+
+### Confirmed findings
+- The existing local browser smoke workflow had passed on commit `3684d3a`; a later run failed only after its live-site section navigated to `https://www.getwiredauto.co.za/store`. The owner-confirmed canonical site is the root URL, and the checked-in `index.html` redirects to `store.html`; `/store` is not a configured route. PR #76 updates the live smoke test to use the canonical root and test the current Part Search and Request a Part dialogs without placing an order.
+- Store Production QA previously failed its public-source security scan because the file glob included `.github/scripts/generate_docs.js`, a repository-only documentation generator that contains sample schema/pricing terms and is not delivered as browser code. PR #76 narrows the scan to customer-delivered browser source by excluding `.github/`.
+- The latest Live Release Gates run (ID `39723529717`) confirmed HTTP 200 for the canonical root, `index.html`, `index-new.html`, `category.html`, `checkout-v2.html`, Terms & Conditions, Returns & Refunds, and `assets/category-tree.json`. It also confirmed the legacy VERSION marker matches, but that marker is not a commit identity.
+- That release-gate run found byte-level source mismatches between the current live Axxess files and current GitHub `main` for `index-new.html`, `category.html`, and `checkout-v2.html`; `index.html` and `assets/category-tree.json` matched. Do not automatically overwrite Axxess: compare the approved package/build first and get owner approval before any hosting upload. This discrepancy remains a release-readiness blocker even though the owner confirmed the root/www routes load correctly.
+- The same release-gate run passed its read-only desktop/mobile checkout test with real order submission intercepted. PayFast/PayJustNow remain unconfigured, so release-gate failure on payment readiness is expected and launch remains HOLD.
+
+### Current QA change
+- PR #76: [QA: repair storefront smoke route and public-source scan](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/76)
+- Branch: `qa/storefront-audit-2026-10-22`
+- Current branch head: `b434c4f294c8adcbd0fa4e01ca5a277e8e0f4c7e` before this handover-only note.
+- The PR test run was queued/in progress at the time of this note; record final result only after checking GitHub Actions.
+- No live order was submitted; the new live checks are read-only and must not add products to the live cart.
+
+### Still outstanding
+- Complete PR #76 browser smoke and source-QA workflow validation; fix any reproducible test or application failures.
+- Run targeted customer-journey/responsive/image checks with evidence; current automated workflow only partially covers those dimensions.
+- Review owner admin-tool server-side authorization and validation in draft mode only.
+- Check Android owner APK build availability; physical Hisense M72 Pro install/launch remains owner-device acceptance and cannot be marked complete from an emulator alone.
+- Keep supplier-authorised catalogue/stock reconciliation paused, payment activation deferred, and customer launch HOLD.
+
 ---
 
 # CURRENT SESSION CHECKPOINT — AXXESS DOMAIN ROUTING VERIFIED (2026-10-22 SAST)
