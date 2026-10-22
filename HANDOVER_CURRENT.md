@@ -990,3 +990,17 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 ### Change boundary
 - No application source, Axxess files, DNS, production configuration, Supabase data, catalogue/stock, payment settings, or APK distribution was changed during this continuation.
 - Continue to record only evidence-backed completion; do not count inspection or an attempted test as a pass.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (Expo repository secret verification)
+
+### Evidence checked
+- Re-read the current main-branch APK workflow at `.github/workflows/build-owner-apk.yml` (blob SHA `cc4f52fd76983881701b068e72e815b7c5bc5937`). It uses Java 17, Gradle 8.10.2, `:app:assembleDebug`, artifact upload, and Android emulator install/launch. It contains no Expo/EAS command and does not reference an Expo token or other repository secret.
+- Checked for `eas.json`, root `app.json`, `android-owner-app/eas.json`, `android-owner-app/app.json`, and `android-owner-app/package.json`; none exists at those paths (GitHub returned 404).
+- The connected GitHub tool does not expose repository Actions-secret metadata, so the secret's name/presence cannot be independently confirmed here. Secret values must not be displayed or copied into logs.
+
+### Status and next step
+- Expo secret/configuration verification: BLOCKED / NOT VERIFIED. A secret being added in GitHub does not by itself link this native Gradle project to Expo.
+- Owner can verify the secret's **name only** in Repository → Settings → Secrets and variables → Actions. For an Expo EAS token, the conventional name is `EXPO_TOKEN`; do not share its value.
+- To establish actual Expo/EAS linkage, first decide to replace or supplement the existing native Gradle build, then add the EAS project configuration and an EAS-aware workflow that consumes the secret. Do not claim a successful Expo build until a workflow run proves it.
+- No source/workflow, secret, hosting, DNS, supplier catalogue, payment, or production settings were changed during this check. APK physical-device acceptance remains open; release boundaries remain unchanged.
