@@ -240,6 +240,13 @@ jobs:
               console.log('PUBLIC_CATEGORY_GRID_PASS count='+categoryCount);
               // Read-only live search: never add a product or submit an order.
               await publicFrame.locator('button.headerPartSearch').click();
+              const partSearchOpenDiag = await publicFrame.locator('#partSearchDialog').evaluate(el => {
+                const d = el.ownerDocument, w = d.defaultView, b = d.querySelector('button.headerPartSearch');
+                return {exists:!!el,className:el.className,display:w.getComputedStyle(el).display,visibility:w.getComputedStyle(el).visibility,
+                  openPartSearchType:typeof w.openPartSearch,buttonOnclick:b?.getAttribute('onclick'),buttonText:b?.innerText,
+                  dialogRect:(()=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}})()};
+              });
+              console.log('PUBLIC_PART_SEARCH_OPEN_DIAGNOSTIC='+JSON.stringify(partSearchOpenDiag));
               await publicFrame.locator('#partSearchDialog.open').waitFor({timeout:10000});
               await publicFrame.locator('#partSearchQuery').fill('GW-B4F502E6');
               const result = publicFrame.locator('#partSearchResults .partSearchResult').filter({hasText:'GW-B4F502E6'}).first();
