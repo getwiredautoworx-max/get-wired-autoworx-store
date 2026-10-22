@@ -76,9 +76,20 @@ Deno.serve(async (req: Request) => {
     });
     if (!aiResponse.ok) {
       const upstreamText = await aiResponse.text();
-      console.error("OpenAI image analysis failed", aiResponse.status, upstreamText.slice(0, 500));
+      let upstreamError: { code?: unknown; type?: unknown } = {};
+      try {
+        const parsed = JSON.parse(upstreamText);
+        upstreamError = parsed?.error && typeof parsed.error === "object" ? parsed.error : {};
+      } catch {
+        // Do not log raw provider response bodies; they are unnecessary for diagnosis.
+      }
+      const providerCode = String(upstreamError.code || upstreamError.type || "");
+      console.error("OpenAI image analysis failed", aiResponse.status, providerCode || "unclassified");
       if (aiResponse.status === 401 || aiResponse.status === 403) return json({ error: "AI provider authentication failed. Please contact the store administrator." }, 502, origin);
-      if (aiResponse.status === 429) return json({ error: "AI picture search is temporarily busy or its usage limit has been reached. Please try later." }, 429, origin);
+      if (aiResponse.status === 429 && (providerCode === "insufficient_quota" || providerCode === "credit_balance_exhausted")) {
+        return json({ error: "AI picture search is currently unavailable because the AI provider has no API credits. Use Part Search or Request a Part instead." }, 503, origin);
+      }
+      if (aiResponse.status === 429) return json({ error: "AI picture search is temporarily rate-limited. Please wait before trying again, or use Part Search or Request a Part." }, 429, origin);
       return json({ error: "The image could not be analysed right now. Please try again or use Request a Part." }, 502, origin);
     }
     const ai = await aiResponse.json();
