@@ -1107,3 +1107,21 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Prepared isolated GitHub-only fix branch `fix/mainline-part-search-global-compat-2026-10-22` from main commit `95ba37bdc0f17ae17df393cd9f4ad47a96e4c152`: explicitly declare classic-script global wrappers `openPartSearch(seed)` and `openPartRequest(withImage)` in the early bootstrap script, delegating to the canonical `window.*` functions that are initialized later. This preserves early-click queuing and supports old cached HTML without changing the catalogue, pricing, checkout/payment logic, database, hosting or DNS.
 - Added static smoke gates requiring both compatibility wrappers to remain present. The branch must pass CI/local smoke before package creation. Live Axxess deployment is a separate owner-approved step with backup; no hosting changes have been made.
 - Release remains HOLD. Do not claim the live issue is resolved until the exact tested package is approved, deployed to Axxess, and public Part Search + Request a Part checks pass.
+
+
+## CONTINUATION UPDATE — 2026-10-22 16:xx SAST — Part Search compatibility fix CI VERIFIED
+
+### Evidence-backed result
+- PR #83 branch `fix/mainline-part-search-global-compat-2026-10-22`, head commit `d25eb45a0e41e80bb6524aa2e29dcd59ef77382c`, is still open/draft and mergeable. PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/83
+- Three GitHub Actions runs associated with this exact commit completed successfully:
+  - Storefront Smoke Test run [39791871961](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791871961): all steps passed; log ends with `EARLY_REQUEST_PART_READY_PASS`, responsive homepage checks at 320/390/768/1365 px, and `STOREFRONT_SMOKE_PASS`.
+  - Prepare Axxess upload package run [39791872246](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791872246): ZIP integrity check passed and artifact uploaded as ID `12430983002`, SHA-256 `603951ae963ba99df16739a2c2757988e36e800ab1bab84c1f7b2d65cd0b3e05`; artifact link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791872246/artifacts/12430983002 . The ZIP is approximately 110.9 MB and artifact retention is 14 days.
+  - Public SKU Exposure Audit run [39791871922](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791871922): audit job completed successfully.
+- The passing smoke run is local browser automation against the branch source; it is NOT proof that Axxess/live public Part Search or Request a Part has been fixed. Hosted-source parity remains unverified.
+- Workflow file checks explicitly require both bare-name compatibility wrappers `openPartSearch(seed)` and `openPartRequest(withImage)` in addition to the canonical `window.*` handlers.
+
+### Next actions / release boundary
+1. Preserve the successful branch and artifact; do not start another speculative rebuild.
+2. PR #83 remains draft/unmerged pending owner approval. If approved, merge only this tested PR, then use the artifact built from the same validated commit and verify its checksum before any hosting action.
+3. Before any Axxess change, obtain explicit owner approval, back up the current document-root files, and confirm the intended package contents. Then test live Part Search and Request a Part immediately after page load, plus category navigation and checkout policy links on desktop/mobile.
+4. No Axxess upload, DNS/redirect, Supabase, catalogue/stock, pricing, payment activation, or customer launch changes were made. Customer launch remains HOLD until live acceptance passes.
