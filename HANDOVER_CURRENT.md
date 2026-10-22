@@ -1099,3 +1099,38 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+## STORE CONTINUATION — 2026-10-22 — LEGACY PART SEARCH FIX PREPARED
+
+- Reviewed live smoke run 39751750633 logs. It failed on the public page with `ReferenceError: openPartSearch is not defined`; diagnostics showed `window.openPartSearch` existed while the old inline handler called the bare global name. This is a specific JavaScript global-name compatibility issue, not a DNS/redirect issue.
+- Prepared isolated GitHub-only fix branch `fix/mainline-part-search-global-compat-2026-10-22` from main commit `95ba37bdc0f17ae17df393cd9f4ad47a96e4c152`: explicitly declare classic-script global wrappers `openPartSearch(seed)` and `openPartRequest(withImage)` in the early bootstrap script, delegating to the canonical `window.*` functions that are initialized later. This preserves early-click queuing and supports old cached HTML without changing the catalogue, pricing, checkout/payment logic, database, hosting or DNS.
+- Added static smoke gates requiring both compatibility wrappers to remain present. The branch must pass CI/local smoke before package creation. Live Axxess deployment is a separate owner-approved step with backup; no hosting changes have been made.
+- Release remains HOLD. Do not claim the live issue is resolved until the exact tested package is approved, deployed to Axxess, and public Part Search + Request a Part checks pass.
+
+
+## CONTINUATION UPDATE — 2026-10-22 — Part Search compatibility fix CI VERIFIED
+
+### Evidence-backed result
+- PR #83 branch `fix/mainline-part-search-global-compat-2026-10-22`, head commit `d25eb45a0e41e80bb6524aa2e29dcd59ef77382c`, is still open/draft and mergeable. PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/83
+- Three GitHub Actions runs associated with this exact commit completed successfully:
+  - Storefront Smoke Test run [39791871961](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791871961): all steps passed; log ends with `EARLY_REQUEST_PART_READY_PASS`, responsive homepage checks at 320/390/768/1365 px, and `STOREFRONT_SMOKE_PASS`.
+  - Prepare Axxess upload package run [39791872246](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791872246): ZIP integrity check passed and artifact uploaded as ID `12430983002`, SHA-256 `603951ae963ba99df16739a2c2757988e36e800ab1bab84c1f7b2d65cd0b3e05`; artifact link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791872246/artifacts/12430983002 . The ZIP is approximately 110.9 MB and artifact retention is 14 days.
+  - Public SKU Exposure Audit run [39791871922](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39791871922): audit job completed successfully.
+- The passing smoke run is local browser automation against the branch source; it is NOT proof that Axxess/live public Part Search or Request a Part has been fixed. Hosted-source parity remains unverified.
+- Workflow file checks explicitly require both bare-name compatibility wrappers `openPartSearch(seed)` and `openPartRequest(withImage)` in addition to the canonical `window.*` handlers.
+
+### Next actions / release boundary
+1. Preserve the successful branch and artifact; do not start another speculative rebuild.
+2. PR #83 remains draft/unmerged pending owner approval. If approved, merge only this tested PR, then use the artifact built from the same validated commit and verify its checksum before any hosting action.
+3. Before any Axxess change, obtain explicit owner approval, back up the current document-root files, and confirm the intended package contents. Then test live Part Search and Request a Part immediately after page load, plus category navigation and checkout policy links on desktop/mobile.
+4. No Axxess upload, DNS/redirect, Supabase, catalogue/stock, pricing, payment activation, or customer launch changes were made. Customer launch remains HOLD until live acceptance passes.
+
+
+## NEXT-STEP UPDATE — 2026-10-22 — Latest branch CI and package independently verified
+
+- The handover-only commit `67bc3bc606b507bfe063624025e81f2a07751ae1` triggered fresh GitHub Actions runs. All three finished successfully: smoke run [39792487267](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39792487267), SKU audit [39792487291](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39792487291), package [39792487259](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39792487259).
+- The package artifact is tied to the current branch head `67bc3bc606b507bfe063624025e81f2a07751ae1`, not the earlier tested commit. Artifact ID `12430314885`, 110,923,156 bytes, expiry 2026-11-05 14:04 UTC; download: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39792487259/artifacts/12430314885
+- Downloaded the artifact and independently checked its SHA-256 and ZIP integrity: `139e4d2777db5d6ccce7fd23514c944f820bf9a073474d62e119c329c07416f3`; `unzip -t` reported no errors.
+- PR #83 remains open/draft, unmerged, mergeable: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/83. Latest branch head is `67bc3bc606b507bfe063624025e81f2a07751ae1`.
+- This is a validated candidate package only. Live hosted behaviour has not been proven, and no Axxess/DNS/Supabase/catalogue/pricing/stock/payment changes were made. Next external action requires explicit approval to merge the tested PR and to perform a backed-up Axxess deployment; after that, immediately test Part Search and Request a Part on the public domain. Customer launch remains HOLD until live tests pass.
