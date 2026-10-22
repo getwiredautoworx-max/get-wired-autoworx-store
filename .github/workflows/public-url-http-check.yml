@@ -235,7 +235,7 @@ jobs:
                     productsLoaded:Array.isArray(window.gwProducts)?window.gwProducts.length:null
                   })).catch(e=>({error:e.message}));
                   console.log('LIVE_PART_SEARCH_DIALOG_DIAGNOSTIC='+JSON.stringify(afterClick));
-                  if (String(afterClick.dialogClass||'').split(/\\s+/).includes('open')) {
+                  if (String(afterClick.dialogClass||'').split(/\s+/).includes('open')) {
                     await frame.locator('#partSearchQuery').fill('GW-B4F502E6');
                     await page.waitForTimeout(3000);
                     const afterSearch = await frame.evaluate(() => ({
