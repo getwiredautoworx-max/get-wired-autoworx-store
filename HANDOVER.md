@@ -3175,3 +3175,12 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - CI emulator installation and launch step completed successfully. This is evidence for emulator acceptance only; physical Hisense M72 Pro installation remains unverified.
 - Artifact ID 12420861153: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39766728535/artifacts/12420861153
 - PR #81 remains open; no merge or production/hosting/DNS/payment changes were made. Keep release HOLD until the physical device is tested and cloud routes are verified on-device.
+
+
+## CONTINUATION LOG — 2026-10-22 — OWNER APK INSTALL-FAILURE REMEDIATION
+
+- Owner reports Android installer still says “Cancelling / App wasn't installed” for the cloud APK. Prior evidence was insufficient: emulator API 35 passed, but the Hisense M72 Pro failure remains real and unresolved until a physical install succeeds.
+- Rechecked the actual APK source: android-owner-app/app/build.gradle used applicationId 'za.co.getwiredautoworx.owner' plus debug suffix '.test', targetSdk 35, while the remembered intended app identity was com.getwired.autoworx. This mismatch could collide with an earlier test build/package and the previous emulator test did not match the owner's Android 13 device.
+- Applied a controlled GitHub-only fix on fix/cloud-based-owner-apk: changed to a fresh owner-specific ID com.getwired.autoworx.owner (no debug suffix), lowered target SDK to Android 13/API 33 for device-matched testing, and incremented versionCode to 4. Updated the workflow to assert the exact APK package metadata, enforce the 15 MiB limit, and perform clean install + launch on an API 33 emulator.
+- Commits: Gradle fix 00718f2a312a903430813477498eb5114135e7e4; workflow fix 5d7dd8a454b0f22e27f94a037a597ef9a3efd3d9. A new exact-head CI result is required before handing out the replacement APK.
+- Important limitation: the new package ID avoids collision with the old za.co.getwiredautoworx.owner.test test package, but a successful emulator run cannot prove physical installation on the Hisense. If the new APK still fails on-device, the next decisive diagnostic is Android Package Installer/ADB's specific failure code, not another blind rebuild. No Axxess, DNS, live store, payment, or catalogue changes.
