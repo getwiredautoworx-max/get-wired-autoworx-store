@@ -3208,3 +3208,11 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Corrective GitHub-only changes on `fix/cloud-based-owner-apk`: aligned Gradle namespace and Java Activity package with `com.getwired.autoworx.owner`; incremented version to 1.0.4 / versionCode 5; strengthened workflow to verify APK signing and explicitly start/check `com.getwired.autoworx.owner/.MainActivity`, including crash-log checking. Latest workflow source commit: `ecbf26b34692d3a024d11241f51513746b868f7c`. Do not distribute a replacement until its build and explicit Activity test have completed successfully.
 - Physical installation on Hisense M72 Pro is still unresolved. CI cannot read the phone's Package Installer/Play Protect diagnostics. If the corrected signed APK is still rejected, the decisive next step is the exact device-side install error/Play Protect warning (or `adb install` failure code), not increasing APK size or another speculative rebuild.
 - No DNS, Axxess, live store, payment, supplier catalogue, or production changes.
+
+
+## CONTINUATION LOG — 2026-10-22 — FRESH-SIGNATURE APK INSTALL HARDENING
+
+- Root cause addressed: CI debug signing keys are generated on ephemeral runners. Rebuilding the same Android application ID on a different runner can produce a different signing certificate; Android rejects an update over an existing install signed by the previous key with the generic “App wasn't installed” message.
+- To avoid this signature-collision path for the next test, created a one-time fresh application ID `com.getwired.autoworx.owner.install105`, version 1.0.5 / versionCode 1. The launcher Activity package/namespace remains aligned, and the workflow now checks the new ID, verifies APK signing, explicitly launches the exact launcher Activity, and checks for crashes.
+- This remains a test-install identity. Do not treat it as the permanent production package identity; a stable release signing key must be configured before distributing updateable app versions.
+- New artifact must not be shared until its exact-head workflow succeeds. No Axxess, DNS, live store, payment, or catalogue changes.
