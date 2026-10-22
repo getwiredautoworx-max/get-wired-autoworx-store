@@ -39,7 +39,7 @@ iframe{display:block;width:100%;height:100%;border:0}
     </div>
   </section>
 </div>
-<iframe id="store" src="index-new.html" title="Get Wired AutoWorx Online Store" inert></iframe>
+<iframe id="store" data-src="index-new.html" title="Get Wired AutoWorx Online Store" inert></iframe>
 <a id="checkout" class="checkout-fab" href="checkout-v2.html">CHECKOUT <span id="count">0</span></a>
 <script src="assets/product-image-fallback.js"></script>
 <script src="assets/category-cleanup.js"></script>
@@ -63,6 +63,7 @@ iframe{display:block;width:100%;height:100%;border:0}
   try{accepted=localStorage.getItem(ACCEPT_KEY)===TERMS_VERSION}catch(_e){}
   function enterStore(){
     gate.hidden=true;
+    if(!frame.hasAttribute('src'))frame.setAttribute('src',frame.dataset.src||'index-new.html');
     frame.removeAttribute('inert');
     frame.setAttribute('aria-hidden','false');
     sync();
