@@ -971,3 +971,22 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 ### Boundaries unchanged
 - PR #67 remains draft/unmerged; no Supabase deployment or production writes.
 - Supplier-dependent catalogue/stock work remains paused; payment activation, real orders, and customer launch remain HOLD.
+
+
+## CONTINUATION UPDATE — 2026-10-22 11:42 SAST
+
+### Verified during this continuation
+- Read the current `HANDOVER_CURRENT.md` from the repository before acting.
+- Rechecked workflow runs for PR #67's latest recorded security commit `5a1de7be1345604f6ed5c2bba586a9ca1d7bf567`: Public SKU Exposure Audit run `39754970102`, Owner catalogue manager source checks run `39754970281`, and Storefront Smoke Test run `39754970178` all completed with SUCCESS.
+- These results verify the recorded checks only; they do not close the remaining PR #67 security-review items or prove the live hosted Part Search flow works.
+- Inspected `.github/workflows/build-owner-apk.yml`. It builds a debug APK, uploads the artifact before emulator validation, and runs an emulator install/launch check. This workflow is triggered by workflow dispatch or changes under `android-owner-app/**` and the workflow file. Inspection alone does not establish a current APK artifact or physical-device acceptance.
+
+### Continue from here — no circular work
+1. Identify the newest completed run of `Build and Validate Get Wired AutoWorx Owner APK` on the intended current source revision and inspect its artifact. If no suitable current artifact exists, record that as a blocker; do not create unrelated code changes merely to trigger a build.
+2. Continue PR #67's draft-only security work: add isolated tests for authenticated non-admin denial, malformed/extra fields, and mutation boundaries. Keep real database writes mocked; do not deploy the Edge Function or merge the draft until audit/write consistency and database-backed integrity are adequately addressed.
+3. Keep the working root-to-www redirect unchanged. Live Part Search still needs hosted verification; use the verified current-main package only after explicit owner approval, with a verified backup before any Axxess change.
+4. Keep supplier-dependent catalogue/stock changes paused, payment activation off, and customer launch HOLD.
+
+### Change boundary
+- No application source, Axxess files, DNS, production configuration, Supabase data, catalogue/stock, payment settings, or APK distribution was changed during this continuation.
+- Continue to record only evidence-backed completion; do not count inspection or an attempted test as a pass.
