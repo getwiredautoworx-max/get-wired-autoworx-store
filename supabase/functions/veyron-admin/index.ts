@@ -279,8 +279,9 @@ const handler = async (req: Request): Promise<Response> => {
       if (b.action === "approve_opportunity") {
         const validation = validateOpportunityApprovalId(b);
         if (!validation.ok) return json({ ok: false, error: validation.error }, validation.status);
-        const { data, error } = await db.from("opportunities").update({status:"approved",updated_at:new Date().toISOString()}).eq("id",validation.value).select("*").single();
+        const { data, error } = await db.from("opportunities").update({status:"approved",updated_at:new Date().toISOString()}).eq("id",validation.value).eq("status","open").select("*").maybeSingle();
         if (error) throw error;
+        if (!data) return json({ ok: false, error: "Opportunity not found or is no longer open." }, 409);
         await audit({actor_type:"admin",actor_id:auth.user.id,action:"approve_opportunity",resource_type:"opportunities",resource_id:data.id});
         return json({ok:true,opportunity:data});
       }
