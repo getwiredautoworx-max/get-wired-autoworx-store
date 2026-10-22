@@ -1099,3 +1099,13 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+## APK-FREE OWNER PWA ALTERNATIVE — 2026-10-22 15:35 SAST
+
+- Owner approved pursuing a PWA instead of continuing the APK installation attempt for now.
+- Created draft PR #82: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/82 on branch `feature/owner-pwa-alternative`.
+- Added isolated `owner-pwa/` static shell: responsive dark-metallic Owner Hub page, manifest, scalable SVG icon, service worker caching only the static shell, stylesheet and README with installation/testing/security limits.
+- Shortcut targets are the existing `https://www.getwiredauto.co.za/admin.html` and storefront root. Neither target has been verified in this task; the owner page is a shortcut shell, not a replacement for the secured catalogue/stock manager. No admin authentication or authorization is implemented by this PWA.
+- No merge, production deploy, Axxess upload, DNS change, Supabase change, catalogue/stock edit, or payment activation. PR is draft and unmerged. Customer launch remains HOLD.
+- Remaining acceptance: obtain a preview URL/deployment and verify the PWA manifest/service worker, then test Chrome **Add to Home screen / Install app** on the Hisense M72 Pro; verify admin route and server-side authorization before use. This is not yet live or device-tested.
