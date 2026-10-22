@@ -39,3 +39,14 @@ This supplement records the latest continuation point. Read this alongside `HAND
 - Supplier catalogue/stock changes remain staged/read-only until the owner authorises the supplier data workflow and exact reconciliation is complete.
 - PR #67 owner/admin management remains draft/unmerged pending security negative tests and mutation/audit integrity work.
 - Never claim “completed” without test evidence. Update this supplement or the main handover after each material phase result; do not repeat already-failed diagnostics or work in circles.
+
+
+## 6. AI picture-search Phase 1 — log diagnosis and draft fix (2026-10-22)
+- Read-only Supabase logs for request at 2026-10-22 12:49:17 UTC conclusively show OpenAI returned HTTP 429 with `type: insufficient_quota`, `code: credit_balance_exhausted`, and message that no credits remain. This is exhausted API credit balance, not merely a per-minute throttle.
+- Function log execution/request correlation: function `part-image-search`, deployment version 2, request ID `01a163a8-8b63-770e-ac6f-2868cb994669`. Do not publish API keys or raw customer images.
+- Draft PR #85: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/85
+- Branch: `fix/part-image-search-quota-errors`; head `d102513524fd5c9097f89e9a1cdc0744a3c09ab8`.
+- Changes in draft: detect `insufficient_quota` / `credit_balance_exhausted`, return a clear no-credit message directing customers to Part Search or Request a Part, keep transient rate limiting distinct, avoid logging the raw provider response body, and add regression assertions plus a focused Actions workflow.
+- Current status: PR open, draft, unmerged. The GitHub workflow-run lookup returned no run record for this head at the time checked; therefore CI is **not yet verified**. The static assertions have not been accepted as a substitute for a passing CI run or live behavior test.
+- Phase 1 acceptance remains OPEN. Next: ensure regression test executes in CI, inspect actual pass output, review UI fallback text/behavior, and only then mark Phase 1 complete. Do not start Phase 2 or deploy the function before those checks pass.
+- No Supabase deployment, billing change, production storefront change, catalogue write, or repeat AI request was performed.
