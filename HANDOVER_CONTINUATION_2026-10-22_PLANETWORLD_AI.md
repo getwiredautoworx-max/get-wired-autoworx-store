@@ -118,3 +118,19 @@ Phased acceptance criteria (do not skip ahead):
 3. Implement durable versioned terms-acceptance evidence and secure RLS/server-side validation; test that missing, stale, and fabricated client-side acceptance are rejected.
 4. Enforce authenticated-customer and current-terms checks in checkout server-side, keeping existing price gates; test unauthenticated, unaccepted, stale-terms and valid-session cases with mocked/intercepted order creation. Do not create real orders during QA.
 5. Run full storefront and checkout regression checks against the exact branch head. Only then request approval for production migration/function deployment and a separately approved hosting update. Customer launch remains HOLD until the approved release is verified.
+
+
+## Terms gate implementation — isolated branch status (2026-10-22)
+- Branch: `feat/terms-gate-browse-account-required-checkout`.
+- Implemented in `store.html` on the branch only:
+  - Full-screen, keyboard- and screen-reader-labelled Terms dialogue appears for first-time visitors or when the terms version changes.
+  - Store iframe is deferred and does not begin loading until the visitor explicitly checks the agreement and accepts.
+  - Declining leaves the store locked and provides clear feedback.
+  - Links open the full Terms & Conditions and Returns & Refunds pages.
+  - Browsing remains available after acceptance without login; the dialogue states that an account will be required before purchase.
+  - Acceptance version in localStorage is used only to avoid repeatedly showing the UI dialogue in the same browser. It is explicitly not treated as durable legal evidence or server-side checkout authorization.
+- Added browser regression test `tests/terms-gate.spec.cjs` and workflow `.github/workflows/terms-gate-regression.yml` to test first visit, deferred iframe load, checkbox/accept, remembered version, version-change re-prompt, and decline behaviour.
+- Latest source commits at time of handover update: `store.html` commit `718ac60b513f22cd8ad25c757f76f4083da7c5e3`; test `811751d8dffc4462efb7ff92db3e73031b4615bf`; workflow `77a13486d377d92d77590d54f3df3b37964f80b3`.
+- Status: implementation committed to the isolated branch; browser CI has not yet been confirmed passing. Do not mark Phase 1 complete until the test workflow passes and the changed branch is reviewed.
+- Not yet implemented: customer registration/sign-in/session/recovery; server/database-backed terms acceptance evidence; server-side checkout auth/terms enforcement. These remain required phases, so checkout is not yet safe to enable and customer launch remains HOLD.
+- No merge, live deployment, Supabase schema change, Edge Function deployment, Axxess/Cloudflare update, or payment configuration change was performed.
