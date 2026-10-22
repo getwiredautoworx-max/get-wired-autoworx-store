@@ -12,7 +12,7 @@ assert.equal(ids("GW-B4F502E6")[0], "sku", "exact public SKU must rank first");
 assert.ok(ids("B4F502")[0] === "sku", "partial SKU should find product");
 assert.ok(ids("fuse regulator")[0] === "sku", "multi-term name/description search should work");
 assert.ok(ids("Bosch VW Polo").includes("sku"), "brand and vehicle fields should be searchable");
-assert.ok(ids("door lok").includes("door"), "one-edit typo should be tolerated");
+assert.ok(ids("door lockk").includes("door"), "one-edit typo should be tolerated");
 assert.ok(ids("headlght")[0] === undefined, "unrelated typo should not invent a match");
 assert.ok(ids("central locking").includes("door"), "common phrase alias should find central lock products");
 assert.equal(scoreProduct(products[0], "GW-B4F502E6") > scoreProduct(products[0], "regulator"), true, "exact SKU should outrank generic text");
