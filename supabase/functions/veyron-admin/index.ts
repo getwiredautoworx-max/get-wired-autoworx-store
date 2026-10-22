@@ -51,6 +51,7 @@ export function validateCategoryUpsert(b: Record<string, unknown>): ValidationRe
   const allowed = new Set(["action", "id", "name", "slug", "parent_id", "description", "sort_order", "active"]);
   const unexpected = Object.keys(b).find((key) => !allowed.has(key));
   if (unexpected) return { ok: false, status: 400, error: `Unsupported category field: ${unexpected}.` };
+  if (b.id != null && typeof b.id !== "string") return { ok: false, status: 400, error: "Invalid category ID." };
   const idValue = typeof b.id === "string" ? b.id.trim() : "";
   const id = idValue || null;
   if (id && !/^[0-9a-f-]{36}$/i.test(id)) return { ok: false, status: 400, error: "Invalid category ID." };
