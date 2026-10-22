@@ -886,3 +886,23 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 
 ## 2026-10-22 FOLLOW-UP
 PR #67 checks found TypeScript inference error for the category ancestor tracking Set. Corrected in feature-branch commit 72b6cbb03ff73484cc24766f1d48aa61b9709f4d by declaring Set<string>. Verify the new owner-catalogue workflow run; the visibility-flag regression tests and type correction are not considered complete until checks pass. Keep PR #67 draft/unmerged and do not deploy Supabase or distribute the APK. The live Part Search mismatch remains unresolved on the hosted site; no DNS or Axxess changes made.
+
+
+## CONTINUATION UPDATE — 2026-10-22 11:17 SAST
+
+### Verified results from latest owner-tool branch checks
+- Checked GitHub Actions associated with PR #67 feature-branch commit `72b6cbb03ff73484cc24766f1d48aa61b9709f4d`. All three workflows completed successfully: Storefront Smoke Test run `39752734850` (job `119737039149`, verified-price checkout gate and local storefront smoke passed); Public SKU Exposure Audit run `39752734859` (job `119737039524`); Owner catalogue manager source checks run `39752734975` (job `119737039846`, Deno type-check, isolated CORS/auth-denial tests, and static UI safety assertions passed).
+- This verifies those specific checks only. It does not establish that PR #67 is ready to merge or that the Edge Function is safe to deploy: the suite still does not demonstrate all owner/admin role-denial cases, strict unknown-action/method rejection, mocked mutation validation for every action, or atomic mutation-plus-audit behavior/database-enforced hierarchy integrity. Keep PR #67 draft and unmerged.
+
+### Live storefront blocker reconfirmed
+- Rechecked live-root smoke run `39749972366`: it has now completed with FAILURE, not an install stall. Chromium installation and verified-price checkout gate passed; the local storefront smoke step failed. The earlier detailed diagnosis for run `39751750633` is still that the hosted Part Search button calls the legacy `openPartSearch()` while current main uses `window.openPartSearch()`. Do not claim the live Part Search flow passes. Owner confirmed the root-to-www redirect and approved storefront loading work, so do not repeat DNS troubleshooting or alter the redirect.
+- Latest PR #67 branch local smoke run passing does not resolve the hosted live mismatch; these are different test targets.
+
+### Safe next actions
+1. Continue a narrow, mocked/local-only negative-test pass for PR #67: reject unsupported methods and unknown actions; exercise staff/non-admin denial; test malformed IDs, invalid quantities, missing flags, and extra fields across each mutation action. Inspect and document mutation/audit consistency and whether database constraints exist before proposing changes. Keep the PR draft/unmerged and do not deploy the Edge Function or write to Supabase.
+2. For the hosted Part Search mismatch, keep production untouched until the owner explicitly authorizes a controlled current-main package upload. Source QA and local smoke are not substitutes for live route verification.
+3. Continue responsive/category/product/policy/request-dialog checks on non-production builds; inspect APK build artifacts independently and leave physical install/launch on Hisense M72 Pro as owner-device acceptance.
+4. Supplier catalogue/stock reconciliation remains paused pending supplier authorization. Payment activation and customer launch remain HOLD.
+
+### Change boundary
+- This checkpoint changed only this GitHub handover document. No application code, production deployment, Axxess files, DNS, Supabase data, catalogue/stock, payment settings, or APK distribution was changed.
