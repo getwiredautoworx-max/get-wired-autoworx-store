@@ -1099,3 +1099,11 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+## STORE CONTINUATION — 2026-10-22 — LEGACY PART SEARCH FIX PREPARED
+
+- Reviewed live smoke run 39751750633 logs. It failed on the public page with `ReferenceError: openPartSearch is not defined`; diagnostics showed `window.openPartSearch` existed while the old inline handler called the bare global name. This is a specific JavaScript global-name compatibility issue, not a DNS/redirect issue.
+- Prepared isolated GitHub-only fix branch `fix/mainline-part-search-global-compat-2026-10-22` from main commit `95ba37bdc0f17ae17df393cd9f4ad47a96e4c152`: explicitly declare classic-script global wrappers `openPartSearch(seed)` and `openPartRequest(withImage)` in the early bootstrap script, delegating to the canonical `window.*` functions that are initialized later. This preserves early-click queuing and supports old cached HTML without changing the catalogue, pricing, checkout/payment logic, database, hosting or DNS.
+- Added static smoke gates requiring both compatibility wrappers to remain present. The branch must pass CI/local smoke before package creation. Live Axxess deployment is a separate owner-approved step with backup; no hosting changes have been made.
+- Release remains HOLD. Do not claim the live issue is resolved until the exact tested package is approved, deployed to Axxess, and public Part Search + Request a Part checks pass.
