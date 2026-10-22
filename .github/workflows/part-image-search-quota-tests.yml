@@ -1,0 +1,20 @@
+name: Part Image Search Quota Regression
+on:
+  pull_request:
+    paths:
+      - "supabase/functions/part-image-search/**"
+      - ".github/scripts/test-part-image-search-quota.mjs"
+      - ".github/workflows/part-image-search-quota-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quota-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test exhausted-credit and rate-limit handling
+        run: node .github/scripts/test-part-image-search-quota.mjs
