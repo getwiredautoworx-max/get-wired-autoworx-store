@@ -1004,3 +1004,14 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Owner can verify the secret's **name only** in Repository → Settings → Secrets and variables → Actions. For an Expo EAS token, the conventional name is `EXPO_TOKEN`; do not share its value.
 - To establish actual Expo/EAS linkage, first decide to replace or supplement the existing native Gradle build, then add the EAS project configuration and an EAS-aware workflow that consumes the secret. Do not claim a successful Expo build until a workflow run proves it.
 - No source/workflow, secret, hosting, DNS, supplier catalogue, payment, or production settings were changed during this check. APK physical-device acceptance remains open; release boundaries remain unchanged.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (Expo EAS workflow implementation)
+
+- Corrected the earlier path check: the repository's Expo project is in `android-app/`, not `android-owner-app/`. It already has `app.json` (slug `get-wired-autoworx`, Android package `com.getwired.autoworx`), `eas.json` with an internal `preview` APK profile, and a package build script for EAS.
+- Added draft PR #79: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/79
+- New workflow `.github/workflows/expo-eas-owner-apk.yml` references `${{ secrets.EXPO_KEY }}`, checks token availability without printing its value, attempts EAS project initialization/linking, builds an Android preview APK, downloads it and uploads a GitHub Actions artifact. The existing Gradle workflow `.github/workflows/build-owner-apk.yml` is unchanged.
+- Commit `bf50149be9e724cf68020aac9de8508b41600c27` contains the workflow. This is **implemented but not yet verified**: the first workflow run has not returned evidence in the connected GitHub run lookup. Do not claim the Expo secret is valid, the EAS project is linked, or an APK is built until the run completes successfully and an artifact is listed.
+- If the first run fails at token availability, confirm the GitHub secret is exactly `EXPO_KEY` and has a valid Expo access-token value, without sharing the value. If it fails at project initialization, use the reported error to link the existing Expo project or create one under the intended Expo account, then commit the resulting `extra.eas.projectId` to `android-app/app.json` and rerun.
+- Existing native Gradle build was not removed or altered. No storefront source/production deployment, Axxess/DNS change, Supabase write/deployment, supplier catalogue/stock edit, payment activation, customer launch, or APK distribution occurred.
+- Remaining acceptance: verify the EAS workflow passes and APK artifact exists, then install and test the intended APK on the physical Hisense M72 Pro. Emulator or CI success is not physical-device acceptance. Release boundaries remain unchanged.
