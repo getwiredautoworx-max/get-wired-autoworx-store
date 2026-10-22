@@ -1004,3 +1004,22 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Owner can verify the secret's **name only** in Repository → Settings → Secrets and variables → Actions. For an Expo EAS token, the conventional name is `EXPO_TOKEN`; do not share its value.
 - To establish actual Expo/EAS linkage, first decide to replace or supplement the existing native Gradle build, then add the EAS project configuration and an EAS-aware workflow that consumes the secret. Do not claim a successful Expo build until a workflow run proves it.
 - No source/workflow, secret, hosting, DNS, supplier catalogue, payment, or production settings were changed during this check. APK physical-device acceptance remains open; release boundaries remain unchanged.
+
+
+## IMMEDIATE FOLLOW-UP — 2026-10-22 12:22 SAST
+
+### Hosted Part Search — current finding
+- The live Part Search failure was traced to an early-startup race: the top-level category grid can become clickable before the global modal handler is assigned. A later live diagnostic opened the dialog after waiting for initialization, but that is not sufficient to pass immediate-click acceptance.
+- Narrow GitHub-only fix is in commit `0e9467adae0e1042cb8d923ea4771316dfe1c6ce`, “fix: queue early Part Search and Request a Part clicks”; it installs stable early handlers and queues/replays clicks once modal handlers are ready, with early-click browser tests. PR #78: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/78 . This fix has NOT been confirmed merged or validated by a completed CI run in this checkpoint.
+- The owner-confirmed root/www redirect remains working. Do not repeat DNS troubleshooting. Axxess still needs a controlled, approved package replacement and live retest after GitHub validation; no Axxess upload or live file change was made here.
+
+### Android owner APK — verified artifact and blocker
+- The native Gradle workflow `.github/workflows/build-owner-apk.yml` is the working build path. Run `39415638473` completed successfully; its job confirms the debug APK was built, uploaded as an artifact, installed in an Android emulator, and launched successfully.
+- Artifact: `get-wired-autoworx-owner-install-test-apk`, ID `12261346863`, SHA-256 `55588bdec52675354907533ec69d0be453da95d62bc500a190bb3348ad951a59`, created 2026-10-20, expires 2027-01-18. Run link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39415638473 . This is an install-test/debug APK, not proof of physical-device acceptance or a production-ready signed release.
+- Separate Expo workflow `.github/workflows/android-build.yml` is not ready: `android-app/app.json` lacks `expo.extra.eas.projectId`, and repository secret presence for `EXPO_TOKEN` cannot be verified through the connected GitHub tools. Do not claim EAS build success. Prefer the existing native Gradle path unless there is an explicit decision to migrate to EAS.
+- Physical installation and launch on the Hisense M72 Pro remains unverified. The owner must download the artifact ZIP from the run page, extract the APK, install it on the phone, and report whether it opens; emulator success cannot substitute for this check.
+
+### Change boundary / next actions
+- No Axxess/DNS/production change, Supabase write, catalogue/stock edit, payment activation, or customer launch occurred in this checkpoint.
+- First collect PR #78's completed CI results and confirm early-click browser coverage passes; then build a fresh package from the exact validated main commit. Only after the owner approves the tested build should the existing Axxess files be backed up, the verified package extracted at the correct document root, and live Part Search + Request a Part retested.
+- For Android, use the native Gradle artifact path and seek physical Hisense M72 Pro acceptance; do not spend time on the blocked EAS workflow unless migration is explicitly wanted.
