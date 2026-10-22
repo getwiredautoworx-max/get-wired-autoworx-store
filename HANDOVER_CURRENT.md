@@ -864,3 +864,15 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 ### Changes and blockers
 - This checkpoint was read-only: no source edits, commits, DNS/Axxess changes, Supabase writes, stock/catalogue changes, payment changes, or deployment occurred.
 - The immediate blocker is the mismatch between current main's Part Search handler and the HTML served at the live domain. The owner-confirmed redirect itself is working.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (focused security fix)
+
+- Continued without repeating domain/DNS work. The live Part Search blocker remains the known hosted-vs-main-source mismatch; current main's button calls `window.openPartSearch()`. No live host changes were made because that requires a package decision and owner approval.
+- Code review of draft PR #67 found a concrete safety defect in request validation: if a product update omitted `active` or `featured`, the handler silently defaulted that field to `false`; category upserts similarly defaulted omitted `active` to `false`. This could unintentionally hide products/categories if a caller sent an incomplete update.
+- Fixed on the PR #67 feature branch:
+  - `7afcb99548ad1400636161811000527c392281d4` — product updates now require explicit boolean `active` and `featured` flags.
+  - `657c7eacccb79ccbc93c778aa186f1b9d66ad584` — added regression tests proving omitted flags are rejected.
+- Validation status: code and test changes committed, but the resulting GitHub Actions run has not yet been verified in this checkpoint. Do not call this fix fully tested until the owner catalogue manager workflow passes.
+- PR remains draft and unmerged; no Supabase deployment, production writes, APK distribution, or owner-device test occurred.
+- Next: inspect PR #67 workflow result; address any test failures. Then continue storefront smoke-test investigation, policy-route and request-dialog verification, and APK artifact/device follow-through. Preserve the working www redirect. Catalogue supplier reconciliation and payment-provider activation remain paused/HOLD.
