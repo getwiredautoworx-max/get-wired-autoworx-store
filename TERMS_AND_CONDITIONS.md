@@ -124,6 +124,8 @@ Where a product is returned for repair or warranty assessment, the customer may 
 ### 12.11 Store credit, refunds and timing
 For an approved **discretionary/voluntary return that is not required by law**, Get Wired AutoWorx does not offer cash refunds. The approved value, less any lawful handling/restocking fee, will be issued as store credit that may be applied against other purchases from Get Wired AutoWorx.
 
+**Store credit is calculated on the eligible product price only. It automatically excludes delivery, packaging, courier, shipping, installation, handling and any other ancillary, related or unrelated costs or charges.** These excluded amounts will not be added to store credit unless applicable law requires them to be refunded or included in the remedy.
+
 **This no-cash-refund/store-credit rule does not apply where South African law requires a refund or another specific remedy.** Statutory refunds, including any applicable CPA or ECTA remedy, will be handled as required by law and within the applicable statutory timeframe. Where only part of an order qualifies for a remedy, the remedy will relate to the affected item(s) and any additional amount required by law.
 
 ### 12.12 Statutory rights prevail
