@@ -29,7 +29,9 @@ These tasks can proceed while supplier catalogue/stock authorisation is pending.
 - PR #76: [QA: repair storefront smoke route and public-source scan](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/76)
 - Branch: `qa/storefront-audit-2026-10-22`
 - Current branch head: `b434c4f294c8adcbd0fa4e01ca5a277e8e0f4c7e` before this handover-only note.
-- The PR test run was queued/in progress at the time of this note; record final result only after checking GitHub Actions.
+- PR #76 local storefront smoke test passed in [GitHub Actions run 39749832056](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39749832056) at code head `b434c4f294c8adcbd0fa4e01ca5a277e8e0f4c7e`; this verifies the local browser smoke and verified-price gate, not the live-site section.
+- Store Production QA passed on merged main commit `299a9faa4886bb0d954117af8a92044e91374f88` in [run 39749972941](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39749972941): source checks, canonical domain/policy reachability, delivery migration invariants, read-only active-catalogue invariants, and public-source security scan.
+- Main-branch live-root smoke run [39749972366](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39749972366) was still in progress when this note was updated; record live Part Search/Request a Part results only after it completes.
 - No live order was submitted; the new live checks are read-only and must not add products to the live cart.
 
 ### Still outstanding
