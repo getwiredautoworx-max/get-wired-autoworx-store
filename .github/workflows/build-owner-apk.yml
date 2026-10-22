@@ -44,7 +44,7 @@ jobs:
           test "$BYTES" -le 15728640 || { echo 'APK exceeds 15 MiB budget.'; exit 1; }
           AAPT=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name aapt | sort -V | tail -n 1)
           test -x "$AAPT"
-          "$AAPT" dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner.install107' versionCode='1' versionName='1.0.5'"
+          "$AAPT" dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner.install107' versionCode='1' versionName='1.0.6'"
           APKSIGNER=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name apksigner | sort -V | tail -n 1)
           "$APKSIGNER" verify --verbose "$APK"
       - name: Preserve built APK artifact
