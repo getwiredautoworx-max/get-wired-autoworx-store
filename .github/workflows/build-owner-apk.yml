@@ -28,11 +28,11 @@ jobs:
       - name: Assert clean-install package and cloud mode
         shell: bash
         run: |
-          grep -q "applicationId 'com.getwired.autoworx.owner.install105'" android-owner-app/app/build.gradle
+          grep -q "applicationId 'com.getwired.autoworx.owner.install106'" android-owner-app/app/build.gradle
           ! grep -q 'applicationIdSuffix' android-owner-app/app/build.gradle
           grep -q 'https://www.getwiredauto.co.za/' android-owner-app/app/src/main/java/za/co/getwiredautoworx/owner/MainActivity.java
           echo 'Using a fresh owner-specific application ID to avoid collisions with earlier test/Expo packages.'
-      - name: Build lightweight install-test APK
+      - name: Build fresh-install APK with a new package ID
         working-directory: android-owner-app
         run: gradle :app:assembleDebug
       - name: Verify APK package metadata and size
@@ -44,7 +44,7 @@ jobs:
           test "$BYTES" -le 15728640 || { echo 'APK exceeds 15 MiB budget.'; exit 1; }
           AAPT=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name aapt | sort -V | tail -n 1)
           test -x "$AAPT"
-          "$AAPT" dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner.install105' versionCode='1' versionName='1.0.5'"
+          "$AAPT" dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner.install106' versionCode='1' versionName='1.0.5'"
           APKSIGNER=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name apksigner | sort -V | tail -n 1)
           "$APKSIGNER" verify --verbose "$APK"
       - name: Preserve built APK artifact
@@ -77,10 +77,10 @@ jobs:
             adb shell settings put global transition_animation_scale 0
             adb shell settings put global animator_duration_scale 0
             adb install -r android-owner-app/app/build/outputs/apk/debug/app-debug.apk
-            adb shell pm path com.getwired.autoworx.owner.install105
+            adb shell pm path com.getwired.autoworx.owner.install106
             adb logcat -c
-            adb shell am start -W -n com.getwired.autoworx.owner.install105/com.getwired.autoworx.owner.MainActivity
+            adb shell am start -W -n com.getwired.autoworx.owner.install106/com.getwired.autoworx.owner.MainActivity
             sleep 5
-            adb shell dumpsys activity activities | grep -E 'mResumedActivity|topResumedActivity' | grep -F 'com.getwired.autoworx.owner.install105/com.getwired.autoworx.owner.MainActivity'
+            adb shell dumpsys activity activities | grep -E 'mResumedActivity|topResumedActivity' | grep -F 'com.getwired.autoworx.owner.install106/com.getwired.autoworx.owner.MainActivity'
             if adb logcat -d -s AndroidRuntime:E | grep -q 'FATAL EXCEPTION'; then adb logcat -d -s AndroidRuntime:E; echo 'Launcher Activity crashed after start.'; exit 1; fi
             echo "Android 13 clean-install and explicit launcher Activity check passed"
