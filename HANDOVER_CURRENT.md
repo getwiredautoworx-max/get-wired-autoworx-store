@@ -1021,3 +1021,9 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Expo EAS workflow run [39760436918](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39760436918) started from PR #79.
 - The workflow's dedicated secret check completed successfully: GitHub supplied a non-empty `EXPO_KEY` value to the job. The secret value was not printed or exposed. This verifies availability/non-emptiness only; it does not independently prove that the token is valid or authorized for the intended Expo account.
 - At the latest check, dependency installation was still in progress. EAS project initialization, cloud build, APK download and artifact upload had not started/completed; no APK artifact was available yet. Keep linkage/build status **in progress / not verified** until the run concludes.
+
+
+### Build progress checkpoint — 2026-10-22
+- Rechecked GitHub Actions run [39760436918](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39760436918). The secret check, npm dependency installation, EAS initialization and EAS project-ID verification all show `success`.
+- Step `Build Android APK on EAS` is still `in_progress`; APK download and artifact upload are pending. The artifact list is currently empty.
+- Conclusion: environment/configuration has passed the early gates, but successful APK creation is **not yet proven**. Recheck this same run first; do not create duplicate builds unless this run fails or is cancelled. If it fails, use the run's step failure/logs to fix the specific cause, then rerun.
