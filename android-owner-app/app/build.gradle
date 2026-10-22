@@ -1,15 +1,13 @@
 plugins { id 'com.android.application' }
 
 android {
-    namespace 'za.co.getwiredautoworx.owner'
+    namespace 'com.getwired.autoworx.owner'
     compileSdk 35
     defaultConfig {
-        // Deliberately use a clean owner-specific package ID so this install is
-        // not treated as an update to an older Expo/test/debug package.
         applicationId 'com.getwired.autoworx.owner'
         minSdk 23
         targetSdk 33
-        versionCode 4
-        versionName '1.0.3'
+        versionCode 5
+        versionName '1.0.4'
     }
 }
