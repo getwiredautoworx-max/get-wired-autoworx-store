@@ -59,3 +59,12 @@ This supplement records the latest continuation point. Read this alongside `HAND
 - PR #85 remains draft and unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/85. Its branch code is not deployed to Supabase; production function on `main` still has the older generic 429 message and logs a truncated raw upstream response body. Do not imply the customer-facing production behavior has changed.
 - A separate `Storefront Smoke Test` workflow run #977 (run ID `39825203452`) was still in progress when checked; it is not the quota regression test and must not be conflated with it.
 - Phase 1 remains **OPEN / partially verified**. Next work: strengthen tests to exercise an isolated error-mapping function with mocked quota and transient-rate-limit responses, verify the storefront displays the fallback without repeated retries, inspect the smoke-test result if relevant, and update the PR/handover with evidence. Do not deploy or start Phase 2 until all acceptance checks pass.
+
+
+## 8. AI picture-search Phase 1 — behavioral mapper tests added and passed
+- Refactored the PR branch to isolate provider error mapping in `supabase/functions/part-image-search/provider-error.js`, imported by `index.ts`.
+- Replaced source-only quota assertions with behavioral Node tests that invoke the actual mapper for: exhausted credit balance, `insufficient_quota` type, transient rate-limit 429, malformed provider body, authentication failure, and other provider errors. Integration assertions also check that the edge handler uses the mapper and logs only status/code.
+- GitHub Actions run ID `39825992864`, run #4 of `Part Image Search Quota Regression`: **completed / success**. Job `quota-regression` and test step `Test exhausted-credit and rate-limit handling` completed successfully.
+- Latest test commit: `3fb539670df50ae20bac47d8ef23b0cd9774c1b4`. PR #85 remains draft and unmerged.
+- Remaining Phase 1 acceptance items: verify the storefront UI surfaces the no-credit message correctly and does not auto-retry; inspect current PR diff/other relevant CI results; no live image-search success can be tested against OpenAI while its credit balance is exhausted. Do not deploy to production merely to test the error handler.
+- Phase 1 status remains **OPEN / implementation and error-mapping CI verified; storefront integration acceptance outstanding**. Phase 2 remains blocked.
