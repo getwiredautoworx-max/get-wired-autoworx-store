@@ -85,3 +85,9 @@ This supplement records the latest continuation point. Read this alongside `HAND
 - Important legal guardrail: the no-cash/store-credit rule is explicitly limited to discretionary/voluntary returns. It does **not** override any cash refund or other remedy required by the South African Consumer Protection Act, ECTA, or other mandatory law. Statutory refunds/remedies must still be honoured where applicable. The 25% fee must not be applied where prohibited by law.
 - Changes were written to GitHub `main`; this does **not** mean the Axxess/live domain has been updated or that production display has been verified. Do not deploy or upload to Axxess without owner approval.
 - Verification still needed: inspect the final three files on GitHub, run relevant storefront/policy smoke checks if available, and later verify the published page only after an approved deployment. Recommend South African consumer-law review before treating this wording as final legal advice.
+
+
+### Follow-up owner clarification — store-credit exclusions (2026-10-22)
+- Owner specified that store credit must automatically exclude unrelated/ancillary costs, including delivery, packaging, courier charges and any other related or unrelated costs.
+- Added matching wording to `TERMS_AND_CONDITIONS.md`, `terms-and-conditions.html`, and `returns-refunds.html`: discretionary store credit is calculated on the eligible product price only and excludes delivery, packaging, courier, shipping, installation, handling and any other ancillary, related or unrelated costs or charges.
+- Legal safeguard retained: excluded charges must still be refunded/included if applicable South African law requires it. This is a GitHub source change only; live Axxess deployment remains untouched pending owner approval.
