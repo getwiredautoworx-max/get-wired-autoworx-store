@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
     await page.waitForFunction(() => document.querySelector('#store').contentDocument?.title === 'Test storefront');
     check(await gate.isHidden(), 'accepting terms unlocks store');
     check((await page.locator('#store').getAttribute('src')) === 'index-new.html', 'store only starts loading after acceptance');
-    check(await page.locator('#checkout').evaluate(el => getComputedStyle(el).display === 'none' || !el.classList.contains('show'), 'checkout is not presented as enabled with an empty cart');
+    check(await page.locator('#checkout').evaluate(el => getComputedStyle(el).display === 'none' || !el.classList.contains('show')), 'checkout is not presented as enabled with an empty cart');
 
     await page.reload();
     check(await page.locator('#termsGate').isHidden(), 'same terms version is remembered on this browser');
