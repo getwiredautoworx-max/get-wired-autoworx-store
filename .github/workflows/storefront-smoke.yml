@@ -240,6 +240,29 @@ jobs:
             await requestFrame.locator('.requestModalClose').click();
             await requestPage.close();
 
+            // Click before the async catalogue query completes to catch startup races.
+            const earlySearchPage = await browser.newPage({viewport:{width:390,height:844}});
+            earlySearchPage.on('pageerror', e => console.log('[early-search-pageerror] '+e.message));
+            await earlySearchPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
+            const earlySearchFrame = earlySearchPage.frameLocator('#store');
+            await earlySearchFrame.locator('button.headerPartSearch').waitFor({state:'visible',timeout:15000});
+            await earlySearchFrame.locator('button.headerPartSearch').click();
+            await earlySearchFrame.locator('#partSearchDialog.open').waitFor({timeout:15000});
+            console.log('EARLY_PART_SEARCH_READY_PASS: click queued before catalogue initialization');
+            await earlySearchFrame.locator('#partSearchDialog').evaluate(el => el.classList.remove('open'));
+            await earlySearchPage.close();
+
+            const earlyRequestPage = await browser.newPage({viewport:{width:390,height:844}});
+            earlyRequestPage.on('pageerror', e => console.log('[early-request-pageerror] '+e.message));
+            await earlyRequestPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
+            const earlyRequestFrame = earlyRequestPage.frameLocator('#store');
+            await earlyRequestFrame.locator('button.primaryAction').waitFor({state:'visible',timeout:15000});
+            await earlyRequestFrame.locator('button.primaryAction').click();
+            await earlyRequestFrame.locator('#sourcePart.open').waitFor({timeout:15000});
+            console.log('EARLY_REQUEST_PART_READY_PASS: request click queued before catalogue initialization');
+            await earlyRequestFrame.locator('.requestModalClose').click();
+            await earlyRequestPage.close();
+
             // Responsive homepage audit on the current local source, independent of the live-host test.
             const responsivePage = await browser.newPage({viewport:{width:320,height:900}});
             await responsivePage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
