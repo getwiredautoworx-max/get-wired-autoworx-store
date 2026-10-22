@@ -1,3 +1,4 @@
+# Re-run install acceptance whenever the APK validation workflow itself is updated.
 name: Build and Validate Get Wired AutoWorx Owner APK
 on:
   workflow_dispatch:
