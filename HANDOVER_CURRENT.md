@@ -1023,3 +1023,22 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - No Axxess/DNS/production change, Supabase write, catalogue/stock edit, payment activation, or customer launch occurred in this checkpoint.
 - First collect PR #78's completed CI results and confirm early-click browser coverage passes; then build a fresh package from the exact validated main commit. Only after the owner approves the tested build should the existing Axxess files be backed up, the verified package extracted at the correct document root, and live Part Search + Request a Part retested.
 - For Android, use the native Gradle artifact path and seek physical Hisense M72 Pro acceptance; do not spend time on the blocked EAS workflow unless migration is explicitly wanted.
+
+
+## CONTINUATION UPDATE — 2026-10-22 14:28 SAST
+
+### Android owner APK — root cause isolated; rebuild in progress
+- Reviewed latest APK validation run [39769899650](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39769899650), commit 85f899c426fd195be68af0ae488ada7bc654cb40, PR #81 branch fix/cloud-based-owner-apk.
+- Evidence from the job log: APK build succeeded, size/signature/package checks passed, emulator install returned Success, explicit launcher activity returned Status: ok, and the activity remained resumed after 5 seconds. The workflow then failed only in the final crash-check shell command with “Syntax error: end of file unexpected (expecting fi)”. This is a CI shell-script failure, not an APK install/launch failure.
+- Preserved artifact from that run exists: artifact ID 12421812295, name get-wired-autoworx-owner-install-test-apk, SHA-256 8b03c14da8aca2ad9676e735f0b48b78b57e8198abb2332f2e901d0ea85021bc, expires 2027-01-20. Prefer the fresh artifact after the corrected validation run passes.
+- Applied a narrow GitHub-only fix to .github/workflows/build-owner-apk.yml on PR #81 branch: commit 824ba4c5db45b297bd8ef8dae2724845ff6eeb77. The crash check is now a single-line shell conditional to avoid the emulator action splitting the multi-line if/then/fi block into separate shell invocations.
+- New APK validation run [39778311640](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39778311640) is in progress. Do not mark APK CI green until it completes. Storefront smoke and SKU audit for the same commit are queued.
+- Physical install, launch, and network behavior on the owner's Hisense M72 Pro remain unverified. Emulator evidence does not replace that test. PR #81 remains open/unmerged.
+
+### Current separate blockers / boundaries
+- Main read-only storefront smoke [run 39776293352](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39776293352) failed; inspect the specific failed step before proposing any storefront fix. Do not repeat root/www redirect work; owner already confirmed it works.
+- Live Part Search / Request a Part still requires validated GitHub source plus owner-approved, backed-up Axxess package update and live retest. No Axxess/DNS changes were made.
+- PR #67 owner/admin security work remains draft-only; supplier-dependent catalogue/stock edits remain paused; payment activation and customer launch remain HOLD.
+
+### Change boundary
+- This checkpoint changed only the APK validation workflow on PR #81 branch and this handover file. No production host/DNS, Supabase data, catalogue/stock, payment settings, or customer-facing release was changed.
