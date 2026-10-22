@@ -35,7 +35,7 @@ async function authorized(req: Request) {
   return { user: data.user, admin };
 }
 
-Deno.serve(async (req) => {
+const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   try {
     const auth = await authorized(req);
@@ -202,4 +202,6 @@ Deno.serve(async (req) => {
     }
     return json({ok:false,error:"Method Not Allowed"},405);
   } catch (e) { return json({ok:false,error:String((e as Error)?.message||e)},500); }
-});
+};
+if (import.meta.main) Deno.serve(handler);
+export { handler };
