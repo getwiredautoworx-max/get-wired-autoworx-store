@@ -34,6 +34,12 @@ jobs:
           assert 'ownerSaveProduct' in html and 'ownerSaveCategory' in html
           assert 'SUPABASE_SECRET_KEYS' not in html
           assert 'if (!auth) return json({ ok: false, error: "Admin authorization required." }, 401);' in edge
+          assert 'if (req.method === "OPTIONS")' in edge
+          assert '"Access-Control-Allow-Origin": "*"' in edge
+          assert '"Access-Control-Allow-Methods": "GET, POST, OPTIONS"' in edge
+          assert 'async function audit(entry: Record<string, unknown>)' in edge
+          assert 'AUDIT_LOG_WRITE_FAILED' in edge
+          assert edge.count('await audit({') == 4
           assert 'b.action === "update_product"' in edge
           assert 'b.action === "upsert_category"' in edge
           assert 'Move/deactivate active products and child categories first' in edge
