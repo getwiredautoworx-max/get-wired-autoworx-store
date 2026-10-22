@@ -68,3 +68,9 @@ This supplement records the latest continuation point. Read this alongside `HAND
 - Latest test commit: `3fb539670df50ae20bac47d8ef23b0cd9774c1b4`. PR #85 remains draft and unmerged.
 - Remaining Phase 1 acceptance items: verify the storefront UI surfaces the no-credit message correctly and does not auto-retry; inspect current PR diff/other relevant CI results; no live image-search success can be tested against OpenAI while its credit balance is exhausted. Do not deploy to production merely to test the error handler.
 - Phase 1 status remains **OPEN / implementation and error-mapping CI verified; storefront integration acceptance outstanding**. Phase 2 remains blocked.
+
+
+## 9. Frontend fallback source review (2026-10-22)
+- Reviewed `index-new.html` on the PR branch. The picture-search handler performs one fetch per user click; there is no automatic retry loop. On a non-OK response it displays the returned `payload.error` in the AI status area, and its `finally` block re-enables the identify button. This supports a single clear error/fallback flow in source.
+- This is a source review only, not a browser interaction test. The current AI modal and Request a Part modal have not yet been exercised in a browser with a simulated quota response. Do not mark frontend integration accepted until that test is recorded.
+- At last check, Storefront Smoke Test run ID `39825992749` (run #980) remained in progress at the Chromium installation step; no result should be inferred.
