@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "Get Wired AutoWorx Owner Hub",
+  "short_name": "GW Owner",
+  "description": "Quick access to Get Wired AutoWorx owner tools",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0c0f13",
+  "theme_color": "#101318",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
