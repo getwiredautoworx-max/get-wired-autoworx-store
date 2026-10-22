@@ -1,3 +1,14 @@
+## ANDROID OWNER APK — FOLLOW-UP BUILD 107 (2026-10-22 12:52 UTC)
+
+- Owner confirmed the install106 failure is the generic Android message “App wasn't installed”; no Details/more-info option appears.
+- To avoid a possible package-ID collision with an earlier APK, PR #81 branch `fix/cloud-based-owner-apk` now uses the distinct application ID `com.getwired.autoworx.owner.install107`, versionName `1.0.6`. This is a targeted clean-install attempt, not a proven root-cause fix.
+- Build/validation run [39781371360](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39781371360) completed successfully: APK metadata and signature checks passed, and Android 13 emulator install/launcher test passed.
+- Artifact ID `12427196766`; extracted APK SHA-256: `2b12dee9d5adc3ef00534c7104fa8248c53e43a42ed86c04fac970396131c822`; size 21,344 bytes. The APK is generated and verified, but physical installation on the Hisense M72 Pro is still unverified. Do not call this resolved until the owner confirms it installs and launches on-device.
+- Install107 package ID is intentionally unique; do not rebuild/re-sign this same package ID and then ask the owner to install a different CI build, because each CI debug build can have a different debug signing certificate. If this candidate still fails, next step is to obtain an actual Android Package Manager failure reason via USB/Wireless ADB or another on-device installer diagnostic, rather than another blind package-ID rotation.
+- No production storefront, Axxess, DNS, Supabase, payment, catalogue, or stock changes were made. Customer launch remains HOLD.
+
+---
+
 ## CONTINUATION UPDATE — 2026-10-22 10:52 SAST
 
 ### Verified since the previous checkpoint
