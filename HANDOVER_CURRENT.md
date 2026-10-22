@@ -906,3 +906,16 @@ PR #67 checks found TypeScript inference error for the category ancestor trackin
 
 ### Change boundary
 - This checkpoint changed only this GitHub handover document. No application code, production deployment, Axxess files, DNS, Supabase data, catalogue/stock, payment settings, or APK distribution was changed.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (owner-tool method guard)
+
+- Continued directly from the previous checkpoint; did not revisit DNS or change the live domain.
+- PR #67 feature branch commit `f7248e6acb2d211eeb91c92423fe5376dbe42a92`: the `veyron-admin` Edge Function now rejects methods other than GET/POST before authentication and returns HTTP 405. OPTIONS preflight remains supported. This avoids unsupported methods being answered as an authentication failure and keeps the method contract explicit.
+- PR #67 feature branch commit `ab14d3f8ff7c53eaa997c83846892944561428c7`: added a regression test for unsupported methods.
+- Validation: these commits were just pushed; no associated workflow run was returned yet. Treat the change as implemented but NOT verified until the Owner catalogue manager source checks complete successfully. Do not merge/deploy based on this alone.
+- Important remaining concerns: authorized integration tests for malformed request bodies and staff-role denials are still absent; mutation and audit-log writes are separate operations, so failures can leave a mutation applied without its audit entry. Properly solving atomicity requires a reviewed database transaction/RPC design, not an ad-hoc client change. Opportunity approval should also be reviewed to ensure only currently open opportunities can be approved.
+- No Supabase deployment or data writes, no Axxess/DNS changes, no catalogue/stock modifications, no payment activation, and no customer launch occurred.
+
+### Immediate next step
+Check the branch workflow for commits `f7248e6` / `ab14d3f`. If checks pass, continue with a focused opportunity-state guard and additional pure validation tests, then review APK artifact status. Keep PR #67 draft/unmerged until security coverage and owner approval are complete. Live Part Search remains a separate hosted-package blocker; preserve the working www redirect.
