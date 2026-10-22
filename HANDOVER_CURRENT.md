@@ -1053,3 +1053,11 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Continue monitoring run `39760436918`; wait for build completion and artifact evidence before any claim of success.
 - Continue source-safe QA in parallel. Do not repeat the known Part Search fix blindly. If owner authorises a coordinated hosting update later, back up current files, deploy one verified package, then rerun hosted Part Search, Request a Part, and checkout policy link tests on desktop/mobile.
 - Supplier-dependent catalogue/stock changes remain paused; payment activation and customer launch remain **HOLD**.
+
+
+## APK FOLLOW-UP — 2026-10-22 (latest run checkpoint)
+
+- Rechecked run `39760436918`: **Build Android APK on EAS completed successfully**. The workflow is now executing **Download completed APK**; artifact upload has not started yet and the GitHub artifact list is still empty at this checkpoint.
+- This is meaningful progress, but the end-to-end workflow is not yet complete and no downloadable APK artifact is confirmed. Continue monitoring this same run; do not trigger another build.
+- Live hosted Part Search remains a documented failure in run `39751750633` at the live click-through stage. Its local smoke and verified-price gate passed, but this does not clear the hosted source mismatch. Live Request a Part and checkout policy click-through remain not independently verified in this continuation because the live test sequence did not get past Part Search and the web-fetch interface cannot render the site.
+- No production, hosting, DNS, catalogue, supplier, payment, Supabase or APK distribution changes were made. Customer launch remains HOLD.
