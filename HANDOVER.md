@@ -3166,3 +3166,12 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Follow-up correction during PR #81: updated the owner-control panel's Store Test and Store Admin buttons as well, so they no longer navigate to removed local `file:///android_asset/store/...` paths. Store Test points to the cloud homepage; Store Admin points to `/admin.html` and must be confirmed to exist/behave correctly on the live domain before acceptance.
 
 - Checkout route corrected to the repository's current `checkout-v2.html` page (`https://www.getwiredauto.co.za/checkout-v2.html`) rather than assuming a legacy `/checkout.html` route. The live endpoint remains unverified because the web retrieval check could not access either route; do not claim checkout acceptance until a browser/device test confirms it.
+
+
+## VERIFIED RESULT — 2026-10-22 — CLOUD OWNER APK BUILD PASSED
+
+- GitHub Actions run 59: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39766728535 — completed successfully on commit e40857a54084b7dfeaa5b124ad9c53929d683758.
+- The APK size gate passed. Downloaded and inspected the actual workflow artifact: APK is 21,350 bytes (~20.9 KiB); artifact ZIP is 17,554 bytes. This is dramatically below the previous 296,104,887-byte artifact.
+- CI emulator installation and launch step completed successfully. This is evidence for emulator acceptance only; physical Hisense M72 Pro installation remains unverified.
+- Artifact ID 12420861153: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39766728535/artifacts/12420861153
+- PR #81 remains open; no merge or production/hosting/DNS/payment changes were made. Keep release HOLD until the physical device is tested and cloud routes are verified on-device.
