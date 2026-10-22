@@ -1015,3 +1015,9 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - If the first run fails at token availability, confirm the GitHub secret is exactly `EXPO_KEY` and has a valid Expo access-token value, without sharing the value. If it fails at project initialization, use the reported error to link the existing Expo project or create one under the intended Expo account, then commit the resulting `extra.eas.projectId` to `android-app/app.json` and rerun.
 - Existing native Gradle build was not removed or altered. No storefront source/production deployment, Axxess/DNS change, Supabase write/deployment, supplier catalogue/stock edit, payment activation, customer launch, or APK distribution occurred.
 - Remaining acceptance: verify the EAS workflow passes and APK artifact exists, then install and test the intended APK on the physical Hisense M72 Pro. Emulator or CI success is not physical-device acceptance. Release boundaries remain unchanged.
+
+
+### Follow-up evidence — Expo secret availability
+- Expo EAS workflow run [39760436918](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39760436918) started from PR #79.
+- The workflow's dedicated secret check completed successfully: GitHub supplied a non-empty `EXPO_KEY` value to the job. The secret value was not printed or exposed. This verifies availability/non-emptiness only; it does not independently prove that the token is valid or authorized for the intended Expo account.
+- At the latest check, dependency installation was still in progress. EAS project initialization, cloud build, APK download and artifact upload had not started/completed; no APK artifact was available yet. Keep linkage/build status **in progress / not verified** until the run concludes.
