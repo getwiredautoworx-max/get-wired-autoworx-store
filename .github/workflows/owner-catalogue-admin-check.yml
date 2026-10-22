@@ -42,6 +42,9 @@ jobs:
           assert 'async function audit(entry: Record<string, unknown>)' in edge
           assert 'AUDIT_LOG_WRITE_FAILED' in edge
           assert edge.count('await audit({') == 4
+          assert 'export function validateProductUpdate' in edge
+          assert 'export function validateCategoryUpsert' in edge
+          assert 'Unsupported product field:' in edge and 'Unsupported category field:' in edge
           assert 'b.action === "update_product"' in edge
           assert 'b.action === "upsert_category"' in edge
           assert 'Move/deactivate active products and child categories first' in edge
