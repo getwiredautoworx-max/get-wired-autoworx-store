@@ -5,6 +5,19 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/public-url-http-check.yml'
+      - 'index.html'
+      - 'store.html'
+      - 'index-new.html'
+      - 'category.html'
+      - 'product.html'
+      - 'products.html'
+      - 'checkout-v2.html'
+      - 'terms-and-conditions.html'
+      - 'returns-refunds.html'
+      - 'product-details.js'
+      - 'category-navigation.js'
+      - 'assets/**'
+      - 'supabase/functions/store-checkout/**'
   workflow_dispatch:
 
 permissions:
