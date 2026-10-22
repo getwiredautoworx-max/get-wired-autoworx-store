@@ -1029,3 +1029,9 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 
 ### Boundaries
 - No Axxess/production deployment, DNS change, Supabase write, supplier catalogue/stock change, payment activation, or customer launch was performed. Customer launch remains HOLD.
+
+
+### Follow-up validation correction — 2026-10-22
+- PR #80 smoke run `39762409721` failed in the newly added **test assertion**, before reaching the remaining local customer journey: Playwright's `frame` variable is a `FrameLocator`, which does not implement `.evaluate()`. This was a test harness defect, not a storefront runtime failure.
+- Corrected the assertion in commit `856ab930439b5e20bf34a18f16a9222f984702f8` to evaluate through `frame.locator('body')`. The new run for this correction has not yet appeared in the workflow query; check the latest run before claiming the compatibility test passes.
+- The earlier package artifact from run `39762409846` was built from commit `67468e74afd0bb1f62faaeaf20041f58d465670e`, which already contains the application compatibility wrappers. It is available at [Axxess package run artifacts](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39762409846#artifacts), artifact ID `12418981443`. Do not upload it until the corrected local test is green and a backup of current hosted files is confirmed.
