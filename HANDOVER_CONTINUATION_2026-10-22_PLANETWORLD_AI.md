@@ -50,3 +50,12 @@ This supplement records the latest continuation point. Read this alongside `HAND
 - Current status: PR open, draft, unmerged. The GitHub workflow-run lookup returned no run record for this head at the time checked; therefore CI is **not yet verified**. The static assertions have not been accepted as a substitute for a passing CI run or live behavior test.
 - Phase 1 acceptance remains OPEN. Next: ensure regression test executes in CI, inspect actual pass output, review UI fallback text/behavior, and only then mark Phase 1 complete. Do not start Phase 2 or deploy the function before those checks pass.
 - No Supabase deployment, billing change, production storefront change, catalogue write, or repeat AI request was performed.
+
+
+## 7. AI picture-search Phase 1 — CI result (2026-10-22, latest check)
+- GitHub Actions run `39825203734`, workflow `Part Image Search Quota Regression`, run #1: **completed / success**. Job `quota-regression` and step `Test exhausted-credit and rate-limit handling` both completed successfully.
+- The workflow's seven source-content regression assertions passed: quota-code recognition, customer-facing no-credit message, separate transient 429 message, Part Search/Request a Part fallback, logging status/code without raw provider body, and no raw-body logging pattern.
+- Important test-scope limit: this workflow currently verifies source patterns, not a simulated invocation of the edge handler, not browser UI behavior, and not a live successful image search. It does not by itself prove Phase 1 fully resolved.
+- PR #85 remains draft and unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/85. Its branch code is not deployed to Supabase; production function on `main` still has the older generic 429 message and logs a truncated raw upstream response body. Do not imply the customer-facing production behavior has changed.
+- A separate `Storefront Smoke Test` workflow run #977 (run ID `39825203452`) was still in progress when checked; it is not the quota regression test and must not be conflated with it.
+- Phase 1 remains **OPEN / partially verified**. Next work: strengthen tests to exercise an isolated error-mapping function with mocked quota and transient-rate-limit responses, verify the storefront displays the fallback without repeated retries, inspect the smoke-test result if relevant, and update the PR/handover with evidence. Do not deploy or start Phase 2 until all acceptance checks pass.
