@@ -942,3 +942,14 @@ Check the branch workflow for commits `f7248e6` / `ab14d3f`. If checks pass, con
 - Opportunity state guard now limits approval to status=open and returns 409 if missing/no longer open. The owner-tool workflow above passed after that commit.
 - Remaining owner-tool blockers are not being disguised as completed: authenticated role-matrix tests, invalid JSON/object-body behavior under a valid owner session, atomic mutation + audit design, and database-backed hierarchy constraints need a proper isolated test strategy and/or reviewed SQL migration. Do not deploy the Edge Function or merge PR #67 yet.
 - No live production changes, DNS/Axxess changes, catalogue or stock edits, payment activation, or customer launch. Live Part Search still requires a controlled hosting package update and live verification; preserve the working redirect.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (smoke run completed)
+
+- Rechecked Storefront Smoke Test run `39754970178` (run #935): completed successfully. Steps passed: verified-price checkout gate and local storefront smoke test; Chromium setup also completed.
+- Latest owner catalogue manager source checks remain successful for commit `5a1de7be1345604f6ed5c2bba586a9ca1d7bf567`. Public SKU Exposure Audit run `39754970102` also succeeded.
+- Inspected `.github/workflows/build-owner-apk.yml`: APK builds are triggered by manual dispatch or Android app/workflow file changes and preserve an install-test APK before emulator validation. The artifact query performed was against the owner-tool check run, not an APK build, so it provides no evidence of an APK artifact. Physical Hisense M72 Pro installation remains outstanding; do not claim APK acceptance.
+- No source or production change beyond the PR #67 feature-branch method/opportunity safeguards and handover updates. PR remains draft/unmerged. No Supabase deploy, Axxess/DNS change, supplier catalogue/stock update, payment activation, or customer launch.
+
+### Current checkpoint
+The local storefront smoke test is green. The separate live-host Part Search mismatch is still not cleared by local CI; preserve the working www redirect and use a controlled owner-approved hosting package update only when authorised. Continue with the next isolated security tests and APK workflow verification without making production changes.
