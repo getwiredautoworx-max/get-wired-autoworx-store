@@ -43,7 +43,9 @@ jobs:
           test "$BYTES" -le 15728640 || { echo 'APK exceeds 15 MiB budget.'; exit 1; }
           AAPT=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name aapt | sort -V | tail -n 1)
           test -x "$AAPT"
-          "$AAPT" dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner'"
+          "$AAPT" dump badging "$APK" | grep -F "package: name='com.getwired.autoworx.owner' versionCode='5' versionName='1.0.4'"
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -mindepth 2 -maxdepth 2 -type f -name apksigner | sort -V | tail -n 1)
+          "$APKSIGNER" verify --verbose "$APK"
       - name: Preserve built APK artifact
         uses: actions/upload-artifact@v4
         with:
@@ -75,7 +77,13 @@ jobs:
             adb shell settings put global animator_duration_scale 0
             adb install -r android-owner-app/app/build/outputs/apk/debug/app-debug.apk
             adb shell pm path com.getwired.autoworx.owner
-            adb shell monkey -p com.getwired.autoworx.owner 1
-            sleep 8
-            adb shell dumpsys activity activities | grep -q com.getwired.autoworx.owner
-            echo "Android 13 clean-install and launch check passed"
+            adb logcat -c
+            adb shell am start -W -n com.getwired.autoworx.owner/.MainActivity
+            sleep 5
+            adb shell dumpsys activity activities | grep -E 'mResumedActivity|topResumedActivity' | grep -F 'com.getwired.autoworx.owner/.MainActivity'
+            if adb logcat -d -s AndroidRuntime:E | grep -q 'FATAL EXCEPTION'; then
+              adb logcat -d -s AndroidRuntime:E
+              echo 'Launcher Activity crashed after start.'
+              exit 1
+            fi
+            echo "Android 13 clean-install and explicit launcher Activity check passed"
