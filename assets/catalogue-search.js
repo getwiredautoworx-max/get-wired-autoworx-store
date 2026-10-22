@@ -12,7 +12,7 @@
   ];
   const STOP = new Set(["the", "and", "for", "with", "from", "part", "parts", "please", "find", "search"]);
   const ALIASES = {
-    batt: "battery", batteries: "battery", alternators: "alternator",
+    batt: "battery", batteries: "battery", alternators: "alternator", locking: "lock", locks: "lock", locked: "lock",
     starter: "starter motor", starters: "starter motor",
     headlamp: "headlight", headlamps: "headlight", headlights: "headlight",
     indicator: "indicator", indicators: "indicator", amp: "amplifier",
@@ -82,7 +82,7 @@
       if (best > 0) { matched++; score += best; }
     }
     // Require each original query term to be represented; aliases may improve ranking but cannot rescue an unrelated result.
-    const originalsMatched = queryTokens.every(term => fields.some(field => {
+    const originalsMatched = queryTokens.map(term => ALIASES[term] ? tokens(ALIASES[term]) : [term]).flat().every(term => fields.some(field => {
       const words = field.text.split(" ");
       return field.text.includes(term) || words.some(word => word.startsWith(term) ||
         (term.length >= 4 && distance(word, term, term.length >= 7 ? 2 : 1) <= (term.length >= 7 ? 2 : 1)));
