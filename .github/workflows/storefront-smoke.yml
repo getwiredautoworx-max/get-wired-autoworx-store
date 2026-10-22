@@ -240,6 +240,35 @@ jobs:
             await requestFrame.locator('.requestModalClose').click();
             await requestPage.close();
 
+            // Responsive homepage audit on the current local source, independent of the live-host test.
+            const responsivePage = await browser.newPage({viewport:{width:320,height:900}});
+            await responsivePage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
+            const responsiveFrame = responsivePage.frameLocator('#store');
+            await responsiveFrame.locator('#categoryGrid > .catWrap').first().waitFor({timeout:60000});
+            for (const width of [320,390,768,1365]) {
+              await responsivePage.setViewportSize({width,height:900});
+              const parentSize = await responsivePage.evaluate(() => ({
+                clientWidth:document.documentElement.clientWidth,
+                scrollWidth:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)
+              }));
+              const storeFrame = responsivePage.frames().find(f => f.url().includes('index-new.html'));
+              if (!storeFrame) throw new Error('Responsive audit could not locate the storefront iframe at width '+width);
+              const frameSize = await storeFrame.evaluate(() => ({
+                clientWidth:document.documentElement.clientWidth,
+                scrollWidth:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)
+              }));
+              if (parentSize.scrollWidth > parentSize.clientWidth + 4) throw new Error('Wrapper horizontal overflow at '+width+'px: '+JSON.stringify(parentSize));
+              if (frameSize.scrollWidth > frameSize.clientWidth + 4) throw new Error('Storefront horizontal overflow at '+width+'px: '+JSON.stringify(frameSize));
+              const rootCount = await responsiveFrame.locator('#categoryGrid > .catWrap').count();
+              if (rootCount !== 9) throw new Error('Expected 8 approved category tiles plus Find a Part at '+width+'px; found '+rootCount);
+              const searchBox = await responsiveFrame.locator('button.headerPartSearch').boundingBox();
+              if (!searchBox || searchBox.x < -2 || searchBox.x + searchBox.width > width + 2 || searchBox.width < 90) {
+                throw new Error('Part Search button is clipped or undersized at '+width+'px: '+JSON.stringify(searchBox));
+              }
+              console.log('RESPONSIVE_HOMEPAGE_PASS width='+width+' root_tiles='+rootCount+' document_width='+frameSize.scrollWidth);
+            }
+            await responsivePage.close();
+
             if (process.env.GITHUB_REF === 'refs/heads/main') {
               const publicPage = await browser.newPage({viewport:{width:390,height:844}});
               const homeResponse = await publicPage.goto('https://www.getwiredauto.co.za/',{waitUntil:'domcontentloaded',timeout:45000});
