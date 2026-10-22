@@ -167,6 +167,18 @@ jobs:
             await frame.locator('#allProductsLink').click();
             const quoteOnlyHtml = await frame.locator('#featuredGrid').evaluate(grid => grid.ownerDocument.defaultView.card({id:'quote-only-test',name:'Quote-only test product',public_sku:'GW-TEST0001',price:123.45,stock_quantity:3,image_url:null,specifications:{price_status:'QUOTE_REQUIRED'}}));
             if (!quoteOnlyHtml.includes('Price on request') || !quoteOnlyHtml.includes('REQUEST PRICE')) throw new Error('Explicit quote-only product must show Price on request and REQUEST PRICE');
+            // Legacy-host compatibility: older cached HTML may still call openPartSearch() without window.
+            const globalSearchHandlers = await frame.evaluate(() => ({
+              bareSearch: typeof openPartSearch,
+              windowSearch: typeof window.openPartSearch,
+              bareRequest: typeof openPartRequest,
+              windowRequest: typeof window.openPartRequest
+            }));
+            if (globalSearchHandlers.bareSearch !== 'function' || globalSearchHandlers.windowSearch !== 'function' ||
+                globalSearchHandlers.bareRequest !== 'function' || globalSearchHandlers.windowRequest !== 'function') {
+              throw new Error('Part Search compatibility globals missing: '+JSON.stringify(globalSearchHandlers));
+            }
+            console.log('PART_SEARCH_LEGACY_GLOBAL_COMPAT_PASS '+JSON.stringify(globalSearchHandlers));
             // Verify the standalone Part Search button and its dialog instead of the retired inline #searchInput.
             await frame.locator('button.headerPartSearch').click();
             await frame.locator('#partSearchDialog.open').waitFor({timeout:10000});
