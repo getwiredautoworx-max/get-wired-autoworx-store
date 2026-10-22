@@ -1109,7 +1109,7 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Release remains HOLD. Do not claim the live issue is resolved until the exact tested package is approved, deployed to Axxess, and public Part Search + Request a Part checks pass.
 
 
-## CONTINUATION UPDATE — 2026-10-22 16:xx SAST — Part Search compatibility fix CI VERIFIED
+## CONTINUATION UPDATE — 2026-10-22 — Part Search compatibility fix CI VERIFIED
 
 ### Evidence-backed result
 - PR #83 branch `fix/mainline-part-search-global-compat-2026-10-22`, head commit `d25eb45a0e41e80bb6524aa2e29dcd59ef77382c`, is still open/draft and mergeable. PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/83
