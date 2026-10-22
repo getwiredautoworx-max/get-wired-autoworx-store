@@ -1108,3 +1108,15 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Existing source inspection indicates `assets/progressive-store-enhancements.js` already contains a full-catalogue weighted search with prefix and one-edit typo matching; this is a starting observation, not proof that all search cases work. Existing smoke workflow has exact-SKU fixtures but no confirmed comprehensive search-ranking test yet.
 - Phase 1 acceptance gate: focused tests for exact SKU, partial SKU/name, multi-term query, brand/category/vehicle fields, one-character typo, no-match behavior, and safe rendering of product text; all relevant CI checks must pass against the exact branch head. Do not proceed to OCR/photo assistance until the phase gate passes.
 - Task status: IN PROGRESS — source/test audit underway. No production or live data changes made.
+
+
+## NO-COST AI / SMART SEARCH — PHASE 1 IMPLEMENTATION UPDATE (2026-10-22 SAST)
+
+- Added `assets/catalogue-search.js`: a browser-side deterministic search engine with no paid API dependency; weighted SKU/name/brand/description/category/vehicle/specification matching; prefix and bounded edit-distance typo tolerance; common terminology normalization; conservative query-term coverage; deterministic ranking; and result-count limit.
+- Integrated the tested matcher into the existing Part Search dialog in `index-new.html`. Existing HTML escaping remains in place for product names, public SKUs, prices, status and IDs. The Request a Part and picture-request fallback flows remain present.
+- Added `tests/catalogue-search.test.cjs` and the dedicated `.github/workflows/catalogue-search-tests.yml` CI gate.
+- Independently executed the exact committed search module in the available JavaScript runtime against the 10 acceptance assertions: **10/10 passed** (exact SKU, partial SKU, multi-term query, brand/vehicle fields, typo tolerance, no invented unrelated match, central-lock wording, exact-SKU ranking, empty query, and safe data-only handling of markup-like product names). This is a source-level runtime test, not a browser or GitHub Actions result.
+- Draft PR #84: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/84 . Exact checked head at this point: `12a58f4fda86f7de26e46bbf8a6e806e0f150ee7`.
+- CI evidence: Free Catalogue Search Tests run `39794985834`, Storefront Smoke Test run `39794985723`, and Public SKU Exposure Audit run `39794985664` were observed **queued**, not passed, at the latest check. Do not treat queued runs as evidence of success. The package workflow also queued; no package was uploaded and no Axxess action was taken.
+- Phase 1 remains **IN PROGRESS / NOT ACCEPTED** until the dedicated CI gate and storefront browser smoke complete successfully on the final head. Do not begin Phase 2 (OCR/photo-assisted matching) before that gate passes.
+- No merge/deployment, Axxess/DNS, Supabase function/data, catalogue/stock/price, payment or customer-launch changes were made.
