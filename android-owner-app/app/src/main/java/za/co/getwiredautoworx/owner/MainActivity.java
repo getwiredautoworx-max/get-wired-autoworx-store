@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
             web.loadUrl(target);
         } else {
             String target = "store".equals(screen) ? "https://www.getwiredauto.co.za/"
-                    : ("checkout".equals(screen) ? "https://www.getwiredauto.co.za/checkout.html"
+                    : ("checkout".equals(screen) ? "https://www.getwiredauto.co.za/checkout-v2.html"
                     : "file:///android_asset/admin_app.html");
             web.loadUrl(target);
         }
