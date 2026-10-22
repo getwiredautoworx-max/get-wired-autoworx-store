@@ -1099,3 +1099,35 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+## NO-COST AI / SMART SEARCH — PHASE 1 START (2026-10-22 SAST)
+
+- Owner instruction: execute the suggested no-cost AI phases strictly one at a time; do not begin the next phase until the current phase is fully implemented, tested, and evidenced as working.
+- Phase 1 scope: verify and harden the existing free catalogue search (SKU, name, description, brand/category/vehicle terms, typo tolerance) in GitHub-first source and automated local/mock tests. Keep existing Request a Part fallback available. No paid inference, API credits, production deployment, Axxess/DNS changes, Supabase writes, price/stock/catalogue edits, or customer launch.
+- Existing source inspection indicates `assets/progressive-store-enhancements.js` already contains a full-catalogue weighted search with prefix and one-edit typo matching; this is a starting observation, not proof that all search cases work. Existing smoke workflow has exact-SKU fixtures but no confirmed comprehensive search-ranking test yet.
+- Phase 1 acceptance gate: focused tests for exact SKU, partial SKU/name, multi-term query, brand/category/vehicle fields, one-character typo, no-match behavior, and safe rendering of product text; all relevant CI checks must pass against the exact branch head. Do not proceed to OCR/photo assistance until the phase gate passes.
+- Task status: IN PROGRESS — source/test audit underway. No production or live data changes made.
+
+
+## NO-COST AI / SMART SEARCH — PHASE 1 IMPLEMENTATION UPDATE (2026-10-22 SAST)
+
+- Added `assets/catalogue-search.js`: a browser-side deterministic search engine with no paid API dependency; weighted SKU/name/brand/description/category/vehicle/specification matching; prefix and bounded edit-distance typo tolerance; common terminology normalization; conservative query-term coverage; deterministic ranking; and result-count limit.
+- Integrated the tested matcher into the existing Part Search dialog in `index-new.html`. Existing HTML escaping remains in place for product names, public SKUs, prices, status and IDs. The Request a Part and picture-request fallback flows remain present.
+- Added `tests/catalogue-search.test.cjs` and the dedicated `.github/workflows/catalogue-search-tests.yml` CI gate.
+- Independently executed the exact committed search module in the available JavaScript runtime against the 10 acceptance assertions: **10/10 passed** (exact SKU, partial SKU, multi-term query, brand/vehicle fields, typo tolerance, no invented unrelated match, central-lock wording, exact-SKU ranking, empty query, and safe data-only handling of markup-like product names). This is a source-level runtime test, not a browser or GitHub Actions result.
+- Draft PR #84: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/84 . Exact checked head at this point: `12a58f4fda86f7de26e46bbf8a6e806e0f150ee7`.
+- CI evidence: Free Catalogue Search Tests run `39794985834`, Storefront Smoke Test run `39794985723`, and Public SKU Exposure Audit run `39794985664` were observed **queued**, not passed, at the latest check. Do not treat queued runs as evidence of success. The package workflow also queued; no package was uploaded and no Axxess action was taken.
+- Phase 1 remains **IN PROGRESS / NOT ACCEPTED** until the dedicated CI gate and storefront browser smoke complete successfully on the final head. Do not begin Phase 2 (OCR/photo-assisted matching) before that gate passes.
+- No merge/deployment, Axxess/DNS, Supabase function/data, catalogue/stock/price, payment or customer-launch changes were made.
+
+
+## PHASE 1 ACCEPTANCE RECHECK — 2026-10-22 SAST
+
+- Executed the committed `assets/catalogue-search.js` in the available JavaScript runtime: all 10 focused behavior assertions passed.
+- Compiled the actual Part Search inline script extracted from `index-new.html`: JavaScript syntax check passed.
+- Static browser-integration assertions passed: exactly one catalogue-search script include; it loads before the Part Search IIFE; the dialog calls the tested matcher; product names/SKUs are escaped; Request a Part and photo-request fallback entry points remain present.
+- Storefront Smoke Test run `39794985723` / job `119879926743`: all listed steps, including local storefront smoke and verified-price checkout gate, reported completed/success in the job payload, but the overall workflow run still reported `in_progress` at this check. Await its terminal conclusion; do not mark it fully passed yet.
+- Dedicated Free Catalogue Search Tests run `39794985834` / job `119879927612` remains `queued`; Public SKU Exposure Audit `39794985664` and package workflow `39794985731` also remain queued. No CI pass is claimed for those runs.
+- Phase 1 is still **NOT ACCEPTED**. The remaining gate is a terminal PASS for the dedicated search CI and storefront smoke workflow, plus a successful completed run against the final code revision. If GitHub Actions remains queued or fails, investigate that exact blocker before changing code or considering Phase 2.
+- No Phase 2 OCR/photo implementation started. No merge, production deployment, Axxess/DNS, Supabase data/function, catalogue/stock/price, payment or launch changes made.

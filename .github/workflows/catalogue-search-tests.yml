@@ -1,0 +1,40 @@
+name: Free Catalogue Search Tests
+on:
+  pull_request:
+    paths:
+      - "assets/catalogue-search.js"
+      - "tests/catalogue-search.test.cjs"
+      - "index-new.html"
+      - ".github/workflows/catalogue-search-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "assets/catalogue-search.js"
+      - "tests/catalogue-search.test.cjs"
+      - "index-new.html"
+      - ".github/workflows/catalogue-search-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  catalogue-search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run free catalogue search acceptance tests
+        run: node tests/catalogue-search.test.cjs
+      - name: Validate browser integration and safety
+        run: |
+          node --check assets/catalogue-search.js
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index-new.html','utf8');
+          if (!html.includes('<script src="assets/catalogue-search.js"></script>')) throw new Error('Catalogue search module is not loaded');
+          if (!html.includes('window.gwCatalogueSearch.search(all,q,25)')) throw new Error('Part Search does not use the tested free search module');
+          if (!html.includes('escapeHtml(p.name)')) throw new Error('Part Search result names are not HTML-escaped');
+          if (!html.includes('escapeHtml(p.public_sku||\'Not assigned\')')) throw new Error('Part Search SKU is not HTML-escaped');
+          console.log('CATALOGUE_SEARCH_INTEGRATION_GUARDS_PASS');
+          NODE
