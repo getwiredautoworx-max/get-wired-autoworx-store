@@ -1,3 +1,12 @@
+## INSTALL107 DEVICE RESULT UPDATE — 2026-10-22
+
+- Owner reports install107 also shows only “App wasn't installed” with no details. This confirms physical acceptance is still failing; do not describe the app as resolved.
+- Revalidated the exact distributed APK in the workspace: Android APK format recognized; ZIP integrity passed; SHA-256 remains `2b12dee9d5adc3ef00534c7104fa8248c53e43a42ed86c04fac970396131c822`; 21,344 bytes. CI build, signing validation and Android 13 emulator installation/launch all passed. Thus repeating the same build path is not a justified fix.
+- Most useful next evidence is the device Package Manager install result (e.g. `INSTALL_FAILED_...`) obtained from the Hisense via ADB/logcat or a trusted on-device installer report. The generic toast does not distinguish installer policy, package parsing, storage, or device-specific restrictions. Do not keep rotating application IDs or increase APK size without this diagnostic.
+- No access to the physical Hisense device is available from this CI environment, so cannot retrieve its Package Manager logs directly. Physical installation and launch remain an explicit release blocker. No storefront, Axxess, DNS, payment, catalogue or production changes made.
+
+---
+
 ## ANDROID OWNER APK — FOLLOW-UP BUILD 107 (2026-10-22 12:52 UTC)
 
 - Owner confirmed the install106 failure is the generic Android message “App wasn't installed”; no Details/more-info option appears.
