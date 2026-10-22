@@ -953,3 +953,21 @@ Check the branch workflow for commits `f7248e6` / `ab14d3f`. If checks pass, con
 
 ### Current checkpoint
 The local storefront smoke test is green. The separate live-host Part Search mismatch is still not cleared by local CI; preserve the working www redirect and use a controlled owner-approved hosting package update only when authorised. Continue with the next isolated security tests and APK workflow verification without making production changes.
+
+
+## CONTINUATION UPDATE — 2026-10-22 (APK artifact evidence and live Part Search)
+
+### Android APK: artifact found, but not current-build acceptance
+- Retrieved the artifact list for successful APK workflow run [39415638473](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39415638473). The workflow job completed successfully, including the Android emulator install/launch step.
+- Confirmed a non-expired artifact exists: `get-wired-autoworx-owner-install-test-apk`, artifact ID `12261346863`, produced 2026-10-20 from feature branch `feature/owner-catalogue-management-2026-10-20`, source SHA `2b362a9e0e21b06eea3650b1b888ebc445cb2173`. Artifact archive contains `app-debug.apk` at 24,317 bytes; artifact SHA-256 is `55588bdec52675354907533ec69d0be453da95d62bc500a190bb3348ad951a59` (as reported by GitHub for the uploaded artifact).
+- Qualification: this is the earlier small debug install-test APK, not proof of a build from the current main-branch APK workflow/source. Current `.github/workflows/build-owner-apk.yml` on main has a different build step that copies current storefront files/assets into the APK; no successful artifact from that exact current workflow revision was established in this check. The available GitHub toolset here does not expose a workflow-dispatch action, and no unrelated source change was made merely to force a build.
+- Hisense M72 Pro physical install, first launch, navigation and network behavior remain untested. Keep APK acceptance OPEN until a build from the intended source revision is downloaded and tested on the physical device.
+
+### Live Part Search: still blocked on hosted version
+- Latest verified live-smoke evidence remains failure [39751750633](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39751750633): responsive checks at 320/390/768/1365 px and the local verified-price checkout gate passed, but the live header Part Search click failed because hosted markup still used `onclick="openPartSearch()"` while current source uses `onclick="window.openPartSearch()"`. The source/catalogue QA run [39751751088](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39751751088) passed but does not clear this live interaction failure.
+- Current main `index-new.html` consistently uses `window.openPartSearch()` for the header, homepage search action and Find a Part tile. No source fix is currently justified by this known evidence; the remaining mismatch is hosted-source parity. No Axxess upload, hosting change, DNS change, or redirect change was made.
+- Next permitted path: keep the working root-to-www redirect untouched; when owner explicitly authorizes a hosting update, use a verified current-main package with backup and then retest the hosted Part Search and Request a Part flows on desktop/mobile. Do not describe live Part Search as passed before that verification.
+
+### Boundaries unchanged
+- PR #67 remains draft/unmerged; no Supabase deployment or production writes.
+- Supplier-dependent catalogue/stock work remains paused; payment activation, real orders, and customer launch remain HOLD.
