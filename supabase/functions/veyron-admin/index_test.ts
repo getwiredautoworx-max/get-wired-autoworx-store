@@ -57,6 +57,7 @@ Deno.test("valid product update returns only the allowed customer-safe fields", 
 Deno.test("category validator rejects malformed IDs, sort order and extra fields", () => {
   const validCategory = { action: "upsert_category", name: "Workshop Tools", parent_id: categoryId, sort_order: "10", active: true };
   assertEquals(validateCategoryUpsert({ ...validCategory, id: "bad-id" }).ok, false);
+  assertEquals(validateCategoryUpsert({ ...validCategory, id: 123 }).ok, false);
   assertEquals(validateCategoryUpsert({ ...validCategory, parent_id: "bad-parent" }).ok, false);
   assertEquals(validateCategoryUpsert({ ...validCategory, sort_order: 1.5 }).ok, false);
   assertEquals(validateCategoryUpsert({ ...validCategory, sort_order: 10001 }).ok, false);
