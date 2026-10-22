@@ -876,3 +876,7 @@ The detailed next-priority plan is recorded in [HANDOVER_NEXT_PRIORITIES_2026-10
 - Validation status: code and test changes committed, but the resulting GitHub Actions run has not yet been verified in this checkpoint. Do not call this fix fully tested until the owner catalogue manager workflow passes.
 - PR remains draft and unmerged; no Supabase deployment, production writes, APK distribution, or owner-device test occurred.
 - Next: inspect PR #67 workflow result; address any test failures. Then continue storefront smoke-test investigation, policy-route and request-dialog verification, and APK artifact/device follow-through. Preserve the working www redirect. Catalogue supplier reconciliation and payment-provider activation remain paused/HOLD.
+
+
+## 2026-10-22 FOLLOW-UP
+PR #67 checks found TypeScript inference error for the category ancestor tracking Set. Corrected in feature-branch commit 72b6cbb03ff73484cc24766f1d48aa61b9709f4d by declaring Set<string>. Verify the new owner-catalogue workflow run; the visibility-flag regression tests and type correction are not considered complete until checks pass. Keep PR #67 draft/unmerged and do not deploy Supabase or distribute the APK. The live Part Search mismatch remains unresolved on the hosted site; no DNS or Axxess changes made.
