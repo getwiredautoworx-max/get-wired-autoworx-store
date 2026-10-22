@@ -20,6 +20,58 @@ async function audit(entry: Record<string, unknown>) {
   if (error) throw new Error("AUDIT_LOG_WRITE_FAILED: mutation may have applied; verify state before retrying.");
 }
 
+type ValidationResult<T> = { ok: true; value: T } | { ok: false; status: number; error: string };
+
+export function validateProductUpdate(b: Record<string, unknown>): ValidationResult<{
+  id: string; name: string; categoryId: string; stock: number; description: string | null;
+  active: boolean; featured: boolean;
+}> {
+  const allowed = new Set(["action", "id", "name", "description", "category_id", "stock_quantity", "active", "featured"]);
+  const unexpected = Object.keys(b).find((key) => !allowed.has(key));
+  if (unexpected) return { ok: false, status: 400, error: `Unsupported product field: ${unexpected}.` };
+  const id = typeof b.id === "string" ? b.id.trim() : "";
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return { ok: false, status: 400, error: "Valid product ID required." };
+  const name = typeof b.name === "string" ? b.name.trim() : "";
+  if (!name || name.length > 240) return { ok: false, status: 400, error: "Product name is required (maximum 240 characters)." };
+  const stock = Number(b.stock_quantity);
+  if (!Number.isInteger(stock) || stock < 0 || stock > 10000000) return { ok: false, status: 400, error: "Stock must be a whole number from 0 to 10,000,000." };
+  const categoryId = typeof b.category_id === "string" ? b.category_id.trim() : "";
+  if (!/^[0-9a-f-]{36}$/i.test(categoryId)) return { ok: false, status: 400, error: "Select a valid category." };
+  if (b.active !== undefined && typeof b.active !== "boolean") return { ok: false, status: 400, error: "Active must be a boolean." };
+  if (b.featured !== undefined && typeof b.featured !== "boolean") return { ok: false, status: 400, error: "Featured must be a boolean." };
+  const description = typeof b.description === "string" ? b.description.trim().slice(0, 8000) || null : b.description == null ? null : undefined;
+  if (description === undefined) return { ok: false, status: 400, error: "Description must be text." };
+  return { ok: true, value: { id, name, categoryId, stock, description, active: b.active === true, featured: b.featured === true } };
+}
+
+export function validateCategoryUpsert(b: Record<string, unknown>): ValidationResult<{
+  id: string | null; name: string; slug: string; parentId: string | null; description: string | null;
+  sortOrder: number; active: boolean;
+}> {
+  const allowed = new Set(["action", "id", "name", "slug", "parent_id", "description", "sort_order", "active"]);
+  const unexpected = Object.keys(b).find((key) => !allowed.has(key));
+  if (unexpected) return { ok: false, status: 400, error: `Unsupported category field: ${unexpected}.` };
+  const idValue = typeof b.id === "string" ? b.id.trim() : "";
+  const id = idValue || null;
+  if (id && !/^[0-9a-f-]{36}$/i.test(id)) return { ok: false, status: 400, error: "Invalid category ID." };
+  const name = typeof b.name === "string" ? b.name.trim() : "";
+  if (!name || name.length > 160) return { ok: false, status: 400, error: "Category name is required (maximum 160 characters)." };
+  if (b.slug !== undefined && typeof b.slug !== "string") return { ok: false, status: 400, error: "Category slug must be text." };
+  const slug = String(b.slug || name).toLowerCase().trim()
+    .normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 120);
+  if (!slug) return { ok: false, status: 400, error: "A valid category slug is required." };
+  const parentValue = typeof b.parent_id === "string" ? b.parent_id.trim() : "";
+  if (b.parent_id != null && typeof b.parent_id !== "string") return { ok: false, status: 400, error: "Parent category must be an ID." };
+  const parentId = parentValue || null;
+  if (parentId && !/^[0-9a-f-]{36}$/i.test(parentId)) return { ok: false, status: 400, error: "Invalid parent category." };
+  if (b.active !== undefined && typeof b.active !== "boolean") return { ok: false, status: 400, error: "Active must be a boolean." };
+  if (b.description !== undefined && b.description !== null && typeof b.description !== "string") return { ok: false, status: 400, error: "Description must be text." };
+  const description = typeof b.description === "string" ? b.description.trim().slice(0, 4000) || null : null;
+  const sortOrder = b.sort_order == null || b.sort_order === "" ? 0 : Number(b.sort_order);
+  if (!Number.isInteger(sortOrder) || sortOrder < -10000 || sortOrder > 10000) return { ok: false, status: 400, error: "Sort order must be a whole number from -10000 to 10000." };
+  return { ok: true, value: { id, name, slug, parentId, description, sortOrder, active: b.active === true } };
+}
+
 async function authorized(req: Request) {
   const h = req.headers.get("authorization") || "";
   if (!h.startsWith("Bearer ")) return null;
@@ -92,14 +144,9 @@ const handler = async (req: Request): Promise<Response> => {
     if (req.method === "POST") {
       const b = await req.json();
       if (b.action === "update_product") {
-        const id = String(b.id || "");
-        if (!/^[0-9a-f-]{36}$/i.test(id)) return json({ ok: false, error: "Valid product ID required." }, 400);
-        const name = String(b.name || "").trim();
-        const categoryId = String(b.category_id || "");
-        const stock = Number(b.stock_quantity);
-        if (!name || name.length > 240) return json({ ok: false, error: "Product name is required (maximum 240 characters)." }, 400);
-        if (!Number.isInteger(stock) || stock < 0 || stock > 10000000) return json({ ok: false, error: "Stock must be a whole number from 0 to 10,000,000." }, 400);
-        if (!/^[0-9a-f-]{36}$/i.test(categoryId)) return json({ ok: false, error: "Select a valid category." }, 400);
+        const validation = validateProductUpdate(b);
+        if (!validation.ok) return json({ ok: false, error: validation.error }, validation.status);
+        const { id, name, categoryId, stock, description, active, featured } = validation.value;
         const { data: category, error: ce } = await db.from("categories").select("id,active").eq("id", categoryId).maybeSingle();
         if (ce) throw ce;
         if (!category || category.active !== true) return json({ ok: false, error: "Selected category is not active." }, 400);
@@ -109,9 +156,9 @@ const handler = async (req: Request): Promise<Response> => {
         const slug = (name + "-" + (current.sku || current.public_sku || id.slice(0, 8)))
           .toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 180);
         const patch = {
-          name, slug, description: String(b.description || "").trim().slice(0, 8000) || null,
-          category_id: categoryId, stock_quantity: stock, active: b.active === true,
-          featured: b.featured === true, updated_at: new Date().toISOString()
+          name, slug, description,
+          category_id: categoryId, stock_quantity: stock, active,
+          featured, updated_at: new Date().toISOString()
         };
         const { data, error } = await db.from("products").update(patch).eq("id", id)
           .select("id,sku,public_sku,name,description,category_id,stock_quantity,active,featured,updated_at").single();
@@ -124,15 +171,9 @@ const handler = async (req: Request): Promise<Response> => {
         return json({ ok: true, product: data });
       }
       if (b.action === "upsert_category") {
-        const id = String(b.id || "").trim() || null;
-        if (id && !/^[0-9a-f-]{36}$/i.test(id)) return json({ ok: false, error: "Invalid category ID." }, 400);
-        const name = String(b.name || "").trim();
-        if (!name || name.length > 160) return json({ ok: false, error: "Category name is required (maximum 160 characters)." }, 400);
-        const slug = String(b.slug || name).toLowerCase().trim()
-          .normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 120);
-        if (!slug) return json({ ok: false, error: "A valid category slug is required." }, 400);
-        const parentId = String(b.parent_id || "").trim() || null;
-        if (parentId && !/^[0-9a-f-]{36}$/i.test(parentId)) return json({ ok: false, error: "Invalid parent category." }, 400);
+        const validation = validateCategoryUpsert(b);
+        if (!validation.ok) return json({ ok: false, error: validation.error }, validation.status);
+        const { id, name, slug, parentId, description, sortOrder, active } = validation.value;
         if (parentId) {
           const { data: parent, error: parentError } = await db.from("categories").select("id,active,parent_id").eq("id", parentId).maybeSingle();
           if (parentError) throw parentError;
@@ -152,7 +193,7 @@ const handler = async (req: Request): Promise<Response> => {
           const { data: current, error: currentError } = await db.from("categories").select("id,active").eq("id", id).maybeSingle();
           if (currentError) throw currentError;
           if (!current) return json({ ok: false, error: "Category not found." }, 404);
-          if (current.active === true && b.active !== true) {
+          if (current.active === true && !active) {
             const [productsInCategory, children] = await Promise.all([
               db.from("products").select("id", { count: "exact", head: true }).eq("category_id", id).eq("active", true),
               db.from("categories").select("id", { count: "exact", head: true }).eq("parent_id", id).eq("active", true)
@@ -170,9 +211,8 @@ const handler = async (req: Request): Promise<Response> => {
         if (duplicateError) throw duplicateError;
         if (duplicate) return json({ ok: false, error: "That category slug is already in use." }, 409);
         const categoryPayload = {
-          name, slug, parent_id: parentId, description: String(b.description || "").trim().slice(0, 4000) || null,
-          sort_order: Number.isInteger(Number(b.sort_order)) ? Math.max(-10000, Math.min(10000, Number(b.sort_order))) : 0,
-          active: b.active === true
+          name, slug, parent_id: parentId, description,
+          sort_order: sortOrder, active
         };
         const result = id
           ? await db.from("categories").update(categoryPayload).eq("id", id).select("id,name,slug,parent_id,description,active,sort_order").single()
