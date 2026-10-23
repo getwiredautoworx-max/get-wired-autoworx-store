@@ -1141,3 +1141,17 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Draft Terms UI gate: prior SHA smoke passed; latest branch head verification pending.
 - Auth token parsing and order-to-customer linkage: source fixes committed to draft PR #89; validation pending.
 - Production Supabase migration/deployment and customer launch: HOLD.
+
+## CONTINUATION UPDATE — 2026-10-23 10:35 SAST (checkout identity binding and CI guards)
+
+- Continued the same draft PR #89; no production services were changed.
+- Copied the reviewed customer-linking migration into PR #89 as source-only file supabase/migrations/20261023100000_link_store_orders_to_customer.sql (commit 4d7007fa74aec253c374b8fa2755e73142f818c4). It replaces the existing 13-argument v2 RPC with a customer-ID-aware overload, checks a linked customer profile, and explicitly revokes execution from PUBLIC/anon/authenticated while granting service_role only.
+- Updated store-checkout to resolve/create the customer profile using the server-verified Auth user ID and pass the server-generated p_customer_id (commit 07cea1821662bfa4e28862fae5d8bd10a01ac148). Client input cannot choose that ID.
+- Added static CI assertions for the Bearer regex, server-generated customer ID, and RPC grant boundary in commit 033e05065c4ad963945e5dbca8c649f5da028fc6; corrected the assertion escaping in commit 49cdac035331118c4f0eb75757098061265e7c79. PR #89 current head is 49cdac035331118c4f0eb75757098061265e7c79.
+- The prior smoke run 39923781779 passed on SHA c705e7c3, but that SHA predates the current auth/profile/migration fixes. As of this checkpoint no smoke run for the latest head has been observed; Pages/Cloudflare checks were still in progress. Do not call the latest checkout fixes tested until a full current-head smoke run passes.
+
+### Next actions
+1. Check current-head GitHub Actions status and logs; verify the static source assertions and Deno type-check execute on the latest head. If the workflow is not triggered by API updates, identify a supported non-production trigger rather than treating the older run as evidence.
+2. Add mocked Edge Function tests for invalid/missing bearer, invalid session, missing/stale consent, linked customer profile, malformed/extra fields, and proof that rejected requests never call the order RPC. Do not invoke the live order RPC.
+3. Review profile creation under concurrent first checkout and ensure any uniqueness constraint/duplicate-email behavior cannot link one customer's order to another profile. Keep migration and Edge Function deployment disabled until review and tests pass.
+4. Keep PR #89 draft/unmerged, release HOLD, and no production Supabase writes/deployment, Axxess/DNS/payment changes, or supplier-dependent stock/catalogue work.
