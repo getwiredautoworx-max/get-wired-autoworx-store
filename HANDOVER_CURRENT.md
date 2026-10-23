@@ -1,3 +1,9 @@
+## CONSENT INSERT PERMISSION — 2026-10-23
+
+- Added explicit `GRANT SELECT, INSERT ... TO service_role` to the acceptance migration. This removes reliance on project default table grants for the server-side consent recorder; no update/delete grant is provided, and the immutable trigger remains. Added a CI source assertion for the grant.
+- Migration and workflow changes are still branch-only. Latest smoke run must be checked at the latest branch head; no production Supabase migration/function deployment is authorized.
+
+---
 ## WORKFLOW TAIL CLEANUP — 2026-10-23
 
 - Found the remaining parse blocker: a stale duplicate fragment from the first migration-test heredoc had been appended after the smoke-test script and duplicated the next workflow step with incorrect indentation. Removed everything after the original end-of-workflow audit comment in commit `65bf48b2f46ec7c455fc3acb7727937ddcdecd45`; verified the trailing `SQLCHECK` fragment is gone and the workflow ends at the original final comment.
