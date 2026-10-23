@@ -50,7 +50,6 @@ Deno.serve(async (req: Request) => {
     if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
     if (payload.p_items.length > 100) throw new Error("Too many cart items.");
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
     let secret: string | null = null;
     let usesSecretApiKey = false;
     const secretKeysEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
