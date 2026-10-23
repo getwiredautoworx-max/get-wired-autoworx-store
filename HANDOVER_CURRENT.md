@@ -1728,3 +1728,9 @@ This pass only read GitHub metadata and updated this handover file. No source be
 ## 2026-10-23 — Source inspection result
 - Read-only inspection confirms current main store.html embeds index-new.html in iframe#store; index-new.html has an early window.openPartSearch handler that adds class open to #partSearchDialog, and the header button calls it. The smoke workflow is .github/workflows/storefront-smoke.yml and its current public-site section logs a Part Search diagnostic before asserting the modal.
 - The failed main run's log predates that diagnostic version/PR #76 merge and provides only a generic timeout. It does not establish whether the click failed, CSS kept the overlay hidden, or the old test route was stale. No speculative code fix was made. Current-main end-to-end acceptance remains unverified; run the merged smoke test during the final controlled QA batch and inspect the diagnostic. No retry/deployment triggered.
+
+
+## 2026-10-23 — PR #67 security recheck
+- Current PR #67 function branch blob abbe59f3babb4c1078b6f8fc7bc604be9f34ce6f includes CORS headers and OPTIONS preflight, auth.getUser plus enabled admin allowlist, owner/admin role restriction, and explicit per-action field/type/range/ID validation for product/category/task/opportunity actions. Older handover statements saying CORS and validation are absent are superseded for this source revision.
+- Remaining blockers: mutations and audit_log writes are separate operations (audit failure can leave the mutation committed); category slug uniqueness and hierarchy checks lack proven database-enforced/transactional race protection; executable negative tests for auth/roles/extra fields/audit failure were not established. Keep PR #67 draft/unmerged; no Supabase deploy or data writes.
+- No code changes made. Next: isolated mocked runtime negative tests and a transaction/RPC review for atomic mutation+audit and category integrity.
