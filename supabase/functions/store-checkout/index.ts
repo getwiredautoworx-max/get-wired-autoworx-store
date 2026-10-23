@@ -47,6 +47,7 @@ Deno.serve(async (req: Request) => {
     for (const key of allowed) payload[key] = body[key];
 
     if (typeof payload.p_customer_name !== "string" || payload.p_customer_name.trim().length < 2) throw new Error("Customer name is required.");
+    if (typeof payload.p_customer_phone !== "string" || payload.p_customer_phone.trim().length < 5) throw new Error("A valid customer phone number is required.");
     if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
     if (payload.p_items.length > 100) throw new Error("Too many cart items.");
 
