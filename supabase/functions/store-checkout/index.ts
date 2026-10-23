@@ -74,6 +74,7 @@ Deno.serve(async (req: Request) => {
     consentUrl.searchParams.set("select", "id");
     consentUrl.searchParams.set("user_id", "eq." + authUser.id);
     consentUrl.searchParams.set("terms_version", "eq.gw-terms-2026-10-23-v1");
+    consentUrl.searchParams.set("terms_sha256", "eq.2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12");
     consentUrl.searchParams.set("limit", "1");
     const consentCheck = await fetch(consentUrl, { headers: adminHeaders });
     if (!consentCheck.ok) throw new Error("Unable to verify current Terms acceptance. Please retry.");
