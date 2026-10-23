@@ -1319,3 +1319,13 @@ Purpose: distinguish work completed in source from items actually verified. This
 - General Storefront Smoke Test [run 39926588551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551) was still running at this checkpoint; do not mark the PR's full check set complete until it finishes.
 - **Not yet working live:** no `GEMINI_API_KEY` secret has been configured or tested against the provider. The current production function remains unchanged and still uses the OpenAI path. The owner must create/configure a Gemini Developer API key in Supabase Edge Function secrets; never paste it into chat or GitHub source. Only after CI, privacy review and explicit approval should the provider change be deployed and tested with a real image.
 - Privacy/release gate: customer photos would be transmitted to Google when Gemini is selected. Review privacy disclosures and the applicable free-tier data-use terms before enabling the key. Free tier has quota/rate limits and is not an unlimited service.
+
+
+## NO-COST IMAGE SEARCH — FULL DRAFT CI PASS (2026-10-23 10:56 SAST)
+
+- PR #91 head `1f901195a48b9acade95114e5e3571643c78e2cd` now has both required CI jobs green:
+  - [Provider tests 39926588653](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588653): Deno type-check + 5/5 mocked provider tests passed.
+  - [Storefront Smoke Test 39926588551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551): verified-price gate and local storefront browser smoke passed.
+- **Resolved in source/tests:** the function can use Gemini free-tier vision when `GEMINI_API_KEY` is configured; test evidence proves the adapter sends image data to Gemini and does not call OpenAI if Gemini returns HTTP 429. Existing OpenAI support remains available only when Gemini is not configured. This is not yet a live provider test.
+- **Owner-only remaining actions:** create a Gemini Developer API key in Google AI Studio, add it in Supabase Edge Function secrets as `GEMINI_API_KEY`, review customer-photo/privacy wording, and explicitly approve a controlled Edge Function deployment/test. Do not paste the key into chat or source. Do not enable paid OpenAI fallback by default.
+- PR #91 stays draft/unmerged and the deployed `part-image-search` function remains unchanged until the owner key, privacy review and deployment approval are ready.
