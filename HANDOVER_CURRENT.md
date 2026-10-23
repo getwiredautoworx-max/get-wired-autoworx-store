@@ -1394,3 +1394,56 @@ Purpose: distinguish work completed in source from items actually verified. This
 - [Cloudflare Pages](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/runs/120326490805) **passed**; the separate [Cloudflare Workers Builds check](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/runs/120326485167) **failed** again. This is a separate provider/build integration failure, not a checkout test failure; the current connector does not expose its build logs.
 - This closes the prior missing CI evidence and missing mocked-handler-test gates for the current application source. It does **not** close live Supabase integration/staging migration validation or device acceptance. The checkout refactor is source-only, tested in mocks, and remains unmerged/un-deployed.
 - PR #89 is still draft and must remain so until both SQL migrations are reviewed/tested in isolated staging, release/owner approval is obtained, and branch handover synchronization/mergeability is verified. No production database/function changes were made.
+
+
+## CONTINUATION UPDATE — 2026-10-23 10:49 SAST (CHECKOUT HANDLER TEST PASS + EXPANDED NEGATIVE CASES)
+
+- Dedicated Checkout Handler Security Tests run [#5 / 39927120315](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927120315) completed **successfully**. Confirmed steps: existing source security assertions PASS; Edge Function Deno type-check PASS; mocked checkout handler tests PASS.
+- The associated Storefront Smoke Test [run 39927120301](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927120301) completed **successfully**, including Edge Function type-check, checkout source assertions, mocked handler tests, Terms SHA-256 report, verified-price gate check and local Playwright smoke test.
+- Expanded mocked regression coverage in `supabase/functions/store-checkout/handler.test.ts` with two further negative cases: malformed JSON must be rejected before any network call; failed customer-profile creation and retry must never reach the order RPC. This follow-up is commit `a2694f0ea765c56fcdf94804e0e9ae3a0c827f37` on `feature/terms-gate-phase1`. **The new head still requires its own CI run before the expanded test set can be marked passed.**
+- Keep PR #89 draft/unmerged. The mocked tests prove the handler's guarded paths in isolation, not actual Supabase migration/RLS/RPC behavior. Staging schema and end-to-end authenticated consent/checkout remain unverified. No production migration/function deployment, live order, stock decrement, hosting/DNS/payment change was performed.
+
+
+## CONTINUATION UPDATE — 2026-10-23 (NEXT EXECUTION ORDERS)
+
+### 1. Rechecked checkout PR and expanded negative tests
+- PR #89 remains open, draft, unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/89 . Current head reported by GitHub: `11a74fe7fcce996e9166304c5e0a9980c7c7b7a3`; the PR description identifies tested application-source head `c6ee2f27f0d913afb5ff7dd4b1ec6e804646c053` and says the latest commit only syncs the handover.
+- Read back `supabase/functions/store-checkout/handler.test.ts` from the PR branch. The two additional tests are present: malformed JSON must return 400 before any network call; failed customer profile creation must not reach `create_store_order_v2`.
+- Checked workflow runs for latest handover-only head `11a74fe7...`: the connector returned no PR-triggered runs for that SHA. This is not evidence that the newly expanded test cases passed. Earlier successful run `39927120315` covers the prior 5-test handler set only. The 2 new tests remain **pending their own CI evidence**.
+- Storefront Smoke Test workflow triggers on changes under `supabase/functions/**`; do not claim the expanded test set passed until a run on a commit containing these tests completes green. If no automatic run appears, use a supported workflow rerun/dispatch or a narrow test-path commit; do not merge just to force CI.
+
+### 2. Static review of checkout/Terms migrations (source-only)
+- Read `20261023090000_customer_terms_acceptances.sql`: acceptance rows bind an Auth user to a Terms version/hash, constrain the two policy URLs, enable RLS, allow customer SELECT through an own-user policy, grant service-role SELECT/INSERT, and block UPDATE/DELETE via trigger.
+- Read `20261023100000_link_store_orders_to_customer.sql`: the proposed RPC validates linked customer ID, payment/delivery method, item count, SKU and quantity, stock, and computed price; delivery requires a confirmed quote; it calculates R35/item packaging, creates order/order items, decrements stock inside the transaction, and restricts RPC execution to service_role.
+- This was a source review only. It does **not** prove SQL applies cleanly to the actual schema, that RLS/grants behave as expected in a deployed project, or that Auth/consent/profile/order linkage works end-to-end. These migrations are order-creating/stock-decrementing code and must be applied only to an isolated staging project with disposable test data and explicit owner approval. No migration was applied and no live order or stock change was made.
+- Staging remains blocked until an isolated Supabase staging target is available/authorized. Do not use production as a test environment.
+
+### 3. Image-search no-cost route — unchanged gate
+- PR #91 remains draft/unmerged. Mocked Deno provider tests and storefront smoke passed on recorded head `1f901195a48b9acade95114e5e3571643c78e2cd`; no live Gemini request has been made.
+- Still requires owner-created `GEMINI_API_KEY` in Supabase Edge Function secrets, customer-photo/privacy disclosure review, and explicit approval before controlled deployment. Never paste the key into chat or source. Do not turn on paid fallback. Production image-search function remains unchanged.
+
+### 4. Immediate next execution order
+1. Obtain a green checkout handler + Storefront Smoke run on the commit containing the 2 added negative tests; then record exact run IDs and tested SHA.
+2. Continue draft-only checkout review and prepare a staging-only validation plan. Do not run order RPC against production.
+3. Keep PR #89 and #91 draft/unmerged until their respective release gates are met.
+4. Await owner action for Gemini secret/privacy/deploy approval and a suitable isolated Supabase staging target.
+5. Keep APK physical-device install unresolved until the Hisense Package Manager `INSTALL_FAILED_...` reason is captured. Do not repeat blind rebuilds.
+6. Supplier stock/catalogue reconciliation remains paused pending ASC authorization. No Axxess/DNS/payment changes; customer launch remains **HOLD**.
+
+### Change boundary for this continuation
+- GitHub read-only inspection and this handover update only. No app deployment, Supabase secret/config change, SQL migration, live order, stock/catalogue write, hosting/DNS change, or payment activation.
+
+
+## CONTINUATION UPDATE — CHECKOUT METHOD-REJECTION REGRESSION (2026-10-23)
+
+- Added a third focused negative case to `supabase/functions/store-checkout/handler.test.ts` on draft PR #89 branch `feature/terms-gate-phase1`: a GET request must return HTTP 405 and must not invoke the injected fetch/network dependency. Commit: `eb914d9e498fa246392e832ce70e5d6b831c6d1e`.
+- The branch now contains the malformed-JSON, failed-profile-creation, and unsupported-method negative cases. The handler test file was re-read from the branch before editing and updated using its current blob SHA.
+- Immediately checked GitHub Actions runs for commit `eb914d9e...`; the workflow-run connector returned no runs. The earlier commit `a2694f0...` also had no associated PR-triggered runs, while the prior tested application head `c6ee2f2...` has successful runs. **Do not mark any of the new negative cases as CI-passed.** Current limitation: the GitHub integration's content-API commit did not produce an observable PR workflow run; this execution path cannot force a dispatch with the available write tools. Next step is to inspect PR #89 checks in GitHub or use an authorized Actions rerun/dispatch from the repository UI/token. Keep PR draft/unmerged until the exact expanded test commit has a green test and smoke run.
+- Handover main commit immediately preceding this note: `e451e9cb3fe5546cc8aae89dca7a8216e22eda98`; this update records the additional test and CI-trigger blocker.
+- No production function/migration, Supabase secret, live order, stock/catalogue, hosting, DNS or payment configuration was changed. Customer launch remains **HOLD**.
+
+
+### Follow-up check — CI/deploy status after regression-test commit
+- Read GitHub commit check-runs for `eb914d9e498fa246392e832ce70e5d6b831c6d1e`. The three Netlify configuration checks (redirects, headers, pages changed) completed with neutral conclusions; the Cloudflare Pages preview check was still in progress at the last poll: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/runs/120327531558 . This is a preview check, not a production deployment.
+- No GitHub Actions Deno/Node test workflow run is attached to this new commit in the Actions run query. Thus no evidence yet that the new handler tests executed. The fact that preview checks ran does not substitute for unit tests. Continue to hold PR #89.
+- Handover update commit `ae67519745c71eb861dfac8afef4c888eb106dbc` records the test addition and workflow-trigger limitation. Recheck the preview outcome if useful, but the immediate blocker remains obtaining a successful Actions test run on the test-containing commit.
