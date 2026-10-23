@@ -1715,3 +1715,11 @@ This pass only read GitHub metadata and updated this handover file. No source be
 ### State and next owner step
 - Ask owner to inspect Settings > Builds & deployments (or equivalent) on the Workers service and send the configured build/deploy commands and repository/branch binding. Do not retry/deploy or edit settings before review.
 - No code, Wrangler config, Cloudflare settings, routes, DNS, Axxess, production database, checkout/payment or deployment changed as part of this diagnosis. PR #89/#91 remain draft/unmerged; customer launch remains HOLD.
+
+
+## CONTINUATION UPDATE — 2026-10-23 14:53 SAST
+
+- Rechecked previously pending main live-root smoke run 39749972366: it completed FAILURE at job 119728447380. Chromium install and verified-price checkout gate passed; homepage HTTP 200 and category grid count 103 passed. The sole reported failure was a 10-second Playwright timeout waiting for iframe#store → #partSearchDialog.open to become visible (test line 186).
+- Related run 39750455424 / job 119729432191 completed SUCCESS for local storefront smoke and the verified-price gate. This is separate run evidence, not a retry of the failed main run. The failed run checked out main before PR #76's QA route correction was merged; do not treat the old failure as proof the current merged source still fails, and do not treat the separate pass as proof of live customer acceptance.
+- **Next:** inspect the current merged workflow and homepage Part Search trigger read-only. Defer any needed current-main browser run to the final controlled QA batch; do not trigger another deployment or retry solely to clear the historic red run.
+- No code or production changes made in this investigation. No Cloudflare/Netlify credits, Axxess/DNS, Supabase, checkout/payment settings, catalogue/stock, or live orders touched. PR #67 remains draft/unmerged with security-negative-test and audit atomicity concerns. Supplier reconciliation remains paused pending authorisation; customer launch remains HOLD.
