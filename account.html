@@ -62,6 +62,7 @@ async function auth(path,body){
  if(!res.ok)throw new Error(data.msg||data.message||data.error_description||data.error||'Authentication request failed.');
  return data;
 }
+function returnToCheckout(){try{return new URLSearchParams(window.location.search).get('return')==='checkout'}catch(_){return false}}
 function renderSession(){
  const s=session(),n=$('sessionNotice');
  if(s&&s.access_token){n.textContent='Signed in'+(s.user&&s.user.email?' as '+s.user.email:'')+'. Use this browser tab for checkout.';n.classList.remove('hidden');$('accountForm').classList.add('hidden');$('signOut').classList.remove('hidden');}
@@ -79,7 +80,7 @@ $('accountForm').addEventListener('submit',async e=>{
    if(d.access_token){saveSession(d);setStatus('Account created and signed in. Continue to the store; checkout remains subject to account and Terms verification.','success');renderSession();}
    else setStatus('Account request received. Check your email for confirmation before signing in.','success');
   }else if(mode==='login'){
-   const d=await auth('token?grant_type=password',{email,password});saveSession(d);setStatus('Signed in successfully.','success');renderSession();
+   const d=await auth('token?grant_type=password',{email,password});saveSession(d);setStatus('Signed in successfully.','success');renderSession();if(returnToCheckout())window.location.replace('checkout-v2.html');
   }else{
    await auth('recover',{email,gotrue_meta_security:{}});setStatus('If an account exists for that address, a password reset email has been sent.','success');
   }
