@@ -1914,3 +1914,10 @@ Run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-sto
 - Updated the Playwright test predicate to wait for actual brand cards or the clear no-match state instead of waiting for a heading that renders outside the grid. Latest audio workflow-source commit: `a7c8efd0abe8c7a430c4db9718a0882bb38c63a8`; category card escaping correction: `b2177571dd3a639be539cf1d02d11ddd8ceee42f`; neutral brand tile commit: `de1be452f1e22c456ad57ef8220816605221898e`.
 - **Still not CI-verified:** no workflow runs or combined status checks were returned for current PR #94 source head at the time of this update. No claim of successful rendered navigation or correct live brand coverage is permitted yet. If the catalogue's explicit manufacturer fields are empty, the UI intentionally presents “Brand not specified” instead of inventing JBL/Denon assignments; confirm actual data coverage during CI/staging review.
 - No live data was queried or changed during this source edit. No product/category assignments, prices, stock, supplier data, Supabase rows, deployment or Axxess files were modified.
+
+
+## CUSTOMER AUTH FOLLOW-UP — SIGN-OUT REVOCATION
+
+- Separate draft PR #87 now calls Supabase Auth `/auth/v1/logout?scope=local` with the current access token before clearing the stored session, then returns the shopper to the account gate. This improves on merely deleting the local token. Source commit `9a0e580e46302a586d15c8e966d7c23baec65e4e`; PR #87 handover checkpoint `73a5e9975e889177baea27bd6bfcf2c5f9272006`.
+- The latest PR #87 head still has no reported workflow runs or status checks in the connected GitHub status lookup. This auth hardening is source-only and unverified; no real session was revoked and no production data/function was changed.
+- PR #94 audio navigation source and its regression workflow are also awaiting CI. Overall customer readiness remains **HOLD** until both sets of tests pass and external blockers (approved staging verification and read-only live Axxess source comparison) are cleared.
