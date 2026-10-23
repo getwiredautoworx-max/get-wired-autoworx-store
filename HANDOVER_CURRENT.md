@@ -1,3 +1,12 @@
+## CONTINUATION UPDATE — 2026-10-23 10:00 SAST (GitHub-only)
+
+- Owner target: verify a 90% store build within the next 12 hours. Treat this as a work target, not a guarantee or a reason to bypass release gates. Continue in isolated GitHub branch/PR; no production deployment, merge, Axxess/DNS, payments, live database changes, or supplier/catalogue/stock work.
+- Rechecked Storefront Smoke Test run 39919739607. It failed at the Request a Part interaction, not at the Terms modal assertion. The trace proves a fresh Playwright page had its own isolated browser context and the new first-entry Terms gate correctly intercepted the click. The test had not accepted terms in those separate contexts.
+- Fixed the test setup on `feature/terms-gate-phase1` in commit `e6c6dc04f934c5b63939f9111472e7599e521ceb`: the isolated early-search, early-request and responsive page contexts now explicitly accept the UI gate before testing the underlying features. This is a test-harness correction, not a product security claim. The new workflow run is pending; recheck it after working on the next tasks.
+- Confirmed the Terms overlay is explicitly UI-only: it writes `gw_terms_ui_version` to browser localStorage and its source comment states that durable consent evidence and server enforcement are later phases. Confirmed the storefront source currently has no Supabase Auth sign-up/sign-in/sign-out implementation. Confirmed `store-checkout` currently has no bearer-token/customer/consent validation before it calls the service-role-only order RPC. Therefore login and server-side consent enforcement are genuine outstanding blockers, not completed features.
+- No production or live data changed. Customer launch remains HOLD. Next tasks: re-run smoke CI; implement account UI and Supabase Auth integration safely; add versioned durable acceptance evidence and enforce it server-side before checkout; add isolated tests; run regression and update this handover with actual evidence. Do not claim a 90% verified build until the acceptance checklist and CI evidence support it.
+
+---
 ## INSTALL107 DEVICE RESULT UPDATE — 2026-10-22
 
 - Owner reports install107 also shows only “App wasn't installed” with no details. This confirms physical acceptance is still failing; do not describe the app as resolved.
