@@ -2935,3 +2935,9 @@ This section supersedes older QA statements above where they conflict.
 ## 2026-10-23 — Smoke workflow progress update
 - PR #87 run `39912111692`: Chromium installation **passed** and the `Verify verified-price checkout gate` step **passed**. `Run local storefront smoke test` remains **in progress** at the last poll; no final result is available yet. Job log download was unavailable while the job was running (GitHub returned BlobNotFound), so do not infer success/failure from that.
 - Continue monitoring run `39912111692` and inspect the completed job logs/artifacts after it finishes. No code, database, or production hosting change is authorised by these CI results.
+
+
+## 2026-10-23 — First browser smoke failure diagnosed and test corrected
+- Storefront Smoke Test run `39912111692` **failed** at the click on the first product title because the new `#gwTermsGate` correctly intercepted pointer events. Earlier in the same run, category navigation, exact-SKU image fallback, product metadata leak guard, and verified-price checkout-gate checks passed. This was a stale smoke-test setup, not evidence that the modal should be removed.
+- Corrected `.github/workflows/storefront-smoke.yml` on the isolated branch to check `#gwTermsAcceptCheck` and click `#gwTermsAcceptButton` inside the disposable browser frame before interactive browsing checks, then wait for the modal to close. The test logs `PUBLIC_TERMS_GATE_ACCEPTED_FOR_TEST`. No order is submitted; no live order API is called by this change.
+- Fix commit: `9b943a79f43bb8976a7aeabbae4e37daf15a984d`; read-back blob SHA: `f00eb92feb0580ac0fe65f7fb213c598c678b8e9`. Await the newly triggered PR checks; do not rerun the failed run against old SHA or change production. Release remains HOLD.
