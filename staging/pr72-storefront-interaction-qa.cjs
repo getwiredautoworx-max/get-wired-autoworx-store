@@ -21,7 +21,6 @@ const products = rootIds.map(([name,id],i)=>({id:'22222222-2222-4222-8222-'+Stri
 products[0]={...products[0],id:productId,category_id:childId,name:'Air Filter Breather Red',public_sku:'GW-000174D6',description:'Test fixture for the exact-SKU red breather air filter image.',price:299,stock_quantity:4,featured:true};
 products.push({id:'33333333-3333-4333-8333-333333333333',category_id:rootIds[0][1],name:'Auto Electrical Test Product',public_sku:'GW-TEST0001',description:'Test product description.',price:199,stock_quantity:3,image_url:'',gallery_urls:[],compatible_vehicles:[],specifications:{price_status:'VERIFIED'},active:true,featured:true});
 const categorySnapshot={generated_at:new Date().toISOString(),categories};
-const logo=fs.readFileSync('assets/gw-logo.png');
 const report={startedAt:new Date().toISOString(),checks:[],errors:[],screenshots:[]};
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)report.errors.push(name+': '+JSON.stringify(detail));};
 async function installMocks(page){
@@ -42,7 +41,6 @@ async function installMocks(page){
   });
   await page.route('**/assets/category-tree.json',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(categorySnapshot)}));
   await page.route('**/functions/v1/product-image?**',route=>route.fulfill({status:404,contentType:'application/json',body:'{"error":"no fixture image"}'}));
-  await page.route('https://images.unsplash.com/**',route=>route.fulfill({status:200,contentType:'image/png',body:logo}));
 }
 (async()=>{
  const browser=await chromium.launch({headless:true});
@@ -67,11 +65,12 @@ async function installMocks(page){
   const frame=page.frameLocator('#store');
   const rootCount=await frame.locator('#categoryGrid > .catWrap > .catBtn:not(.findPartCategoryBtn)').count();
   const findPartTileCount=await frame.locator('#categoryGrid > .findPartCategoryTile .findPartCategoryBtn').count();
-  const rootImageData=await frame.locator('#categoryGrid > .catWrap > .catBtn .catPhoto').evaluateAll(els=>els.map(e=>({src:e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0})));
+  const rootImageData=await frame.locator('#categoryGrid > .catWrap > .catBtn .catPhoto').evaluateAll(els=>els.map(e=>({label:e.closest('.catBtn')?.querySelector('.catContent b')?.textContent?.trim()||'',src:e.currentSrc||e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0,naturalWidth:e.naturalWidth})));
   check('homepage_served',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
   check('eight_main_category_buttons',rootCount===8,{count:rootCount});
   check('same_size_find_a_part_tile',findPartTileCount===1,{count:findPartTileCount});
-  check('category_photos_loaded_and_distinct',rootImageData.length===8&&rootImageData.every(x=>x.loaded)&&new Set(rootImageData.map(x=>x.src)).size===8,{images:rootImageData});
+  check('category_photos_loaded_and_distinct',rootImageData.length===8&&rootImageData.every(x=>x.loaded&&x.naturalWidth>0)&&new Set(rootImageData.map(x=>x.src)).size===8,{images:rootImageData});
+  check('category_photos_are_not_logo_substitutions',rootImageData.every(x=>!/gw-logo\.png/i.test(x.src)),{logoSubstitutions:rootImageData.filter(x=>/gw-logo\.png/i.test(x.src)).map(x=>x.label)});
   const featuredCount=await frame.locator('#featuredGrid .product').count();
   check('specials_limited_to_four',featuredCount<=4,{count:featuredCount});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0&&await frame.locator('a[href*="wa.me"]').count()===0,{gwWA:await frame.locator('.gwWA').count(),whatsappLinks:await frame.locator('a[href*="wa.me"]').count()});
