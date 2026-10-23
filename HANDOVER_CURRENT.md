@@ -1868,3 +1868,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ### Owner attention required
 - Axxess File Manager folder-by-folder inventory when uploads/communication allow.
 - Explicit approval before any production upload or deletion. No other production approval is implied.
+
+
+## OWNER DECISION — CLEAN REPLACEMENT ZIP — 2026-10-23
+
+- Owner confirms manually compiling a full Axxess file/folder inventory is too tedious and prefers one complete replacement ZIP for `public_html`.
+- Adopt this as the preferred route: prepare a **new, clean, deployment-only ZIP from the verified current GitHub storefront source**, not an arbitrary ZIP already in the repository. Exclude repository-only handover/audit documents, source archives, build/test tooling, supplier files, private credentials, and unrelated Android/app projects. Include every runtime HTML/JS/CSS/asset/config file required by the selected static storefront, plus a correct root entry point that routes to the approved storefront. Preserve current PR #74 visual baseline while including the verified Part Search fix from merged PR #77; do not change stock/catalogue data, payments, checkout activation, DNS, or production settings.
+- Existing repository ZIP `Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip` is **not approved as the new release package** merely because it exists; its name indicates watermarked images and it has not been verified as the current clean runtime package.
+- Do not clear `public_html` yet. First assemble the new ZIP, inspect its file tree, verify all referenced assets/runtime entry points, run build/source and browser smoke tests in staging/preview, and confirm archive integrity. Then provide the exact package and simple Axxess replacement instructions. Owner must retain PR #74 ZIP and a recoverable copy of the current host before the approved switch. A clean ZIP is the plan; it is not yet created or validated in this checkpoint.
+- No Axxess deletion/upload, live stock/catalogue edits, DNS changes, or payment/checkout changes are authorized by this decision. Release stays HOLD until the package passes checks and the owner explicitly approves the production switch.
