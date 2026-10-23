@@ -140,8 +140,11 @@ BEGIN
     'payment_status', 'pending'
   );
 END;
-$function$
+$function$;
 
+CREATE UNIQUE INDEX IF NOT EXISTS customers_auth_user_id_unique
+  ON public.customers (auth_user_id)
+  WHERE auth_user_id IS NOT NULL;
 
 REVOKE ALL ON FUNCTION public.create_store_order_v2(text, text, text, text, text, text, text, numeric, text, text, jsonb, text, jsonb, uuid) FROM PUBLIC, anon, authenticated;
 GRANT EXECUTE ON FUNCTION public.create_store_order_v2(text, text, text, text, text, text, text, numeric, text, text, jsonb, text, jsonb, uuid) TO service_role;
