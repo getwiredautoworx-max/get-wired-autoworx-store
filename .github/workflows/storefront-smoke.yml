@@ -81,6 +81,7 @@ jobs:
           grep -Fq "navigator.serviceWorker.register('/sw.js')" store.html
           grep -Fq "installButton.classList.add('show')" store.html
           grep -Fq "NETWORK_ONLY_PAGES" sw.js
+          node --check sw.js
           grep -Fq "terms-and-conditions.html returns-refunds.html | sha256sum" .github/workflows/storefront-smoke.yml
           grep -Fq "TERMS_GATE_BEHAVIOR_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
