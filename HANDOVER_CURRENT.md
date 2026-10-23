@@ -1819,3 +1819,20 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Next: make a minimal change on a dedicated GitHub branch/PR, run the existing staging/local browser smoke by clicking the actual button (do not call the handler directly), and verify Request a Part as a separate click. Keep it unmerged until review.
 - For the live domain, first obtain owner approval for a backup-and-repair of the Axxess file, then compare the served file, back it up, apply only the approved minimal file change, and rerun the public live smoke. No Axxess upload, DNS change, deployment, or production edit was made in this session.
 - Current in-store stock remains test data only. No stock, prices, categories, active flags, supplier imports/reconciliation, checkout/payment settings, or production database were changed. Customer launch remains **HOLD**.
+
+
+## AXXESS PUBLIC_HTML CLEAN-REBUILD PROPOSAL — 2026-10-23
+
+### Owner's proposed direction
+- Owner reports Axxess `public_html` is over 1 GB and suspects duplicate/obsolete/conflicting files or folders.
+- Owner has a PR #74 ZIP backup and proposes clearing the contents of `public_html`, uploading one complete updated store, and continuing from that clean baseline.
+
+### Safe execution decision
+- Agree with the objective of consolidating the live site to one verified release and removing confirmed obsolete files.
+- **Do not delete or overwrite the current `public_html` yet.** The PR #74 ZIP is a useful fallback, but it has not been verified as a complete backup of current hosting state, assets, routing, redirects, or any non-store files.
+- First obtain a complete downloadable backup of the current `public_html` and hosting/routing configuration; inspect directory sizes and inventory files; identify the exact live entry points and referenced assets; compare current hosted files with the accepted source/release.
+- Prepare a clean candidate in a separate staging/subfolder if the hosting setup allows it, then test homepage, apex and www routing, category/product assets, Part Search, Request a Part, mobile layout, and relevant customer journey before a controlled live switch.
+- Remove old files only after the replacement is verified, owner explicitly approves the live switch/cleanup, and rollback material is confirmed usable. Preserve necessary hosting files/configuration; do not indiscriminately delete hidden files or unrelated account data.
+- This plan is **not** authorization to modify Axxess, DNS, checkout, payments, or production. No hosting files were deleted or uploaded as part of recording this plan.
+- Live Part Search remains a verified failure until an actual browser click succeeds. Store release remains **HOLD**.
+- Current in-store stock remains test data only. No supplier reconciliation, stock cleanup/import, catalogue price changes, or stock-data edits are authorized.
