@@ -1,9 +1,9 @@
 const { chromium } = require('playwright');
 const fs = require('node:fs');
 const path = require('node:path');
-const BASE=process.env.PREVIEW_URL || 'https://6fa32822.get-wired-autoworx-store.pages.dev/store.html';
+const BASE=process.env.PREVIEW_URL || 'https://1d4185ff.get-wired-autoworx-store.pages.dev/store.html';
 const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || process.env.GITHUB_SHA || '775796d131f812de8f85521e1e51e74fd3eff43d';
-const DEPLOYED_SOURCE_SHA='6a187f2e342e2b5f9974b16b5b9cab2b5c7d0152';
+const DEPLOYED_SOURCE_SHA='2b2a3d47a1f0b86259ad14eee8f9ec6797d447a3';
 const REPO='getwiredautoworx-max/get-wired-autoworx-store';
 const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js'];
 const OUT=path.resolve('qa-live-preview-output');
