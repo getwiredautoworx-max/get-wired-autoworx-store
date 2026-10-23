@@ -79,6 +79,7 @@ jobs:
           grep -Fq "CUSTOMER_PASSWORD_RESET_UI_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq 'rel="manifest" href="manifest.webmanifest"' store.html
           grep -Fq "navigator.serviceWorker.register('/sw.js')" store.html
+          grep -Fq "installButton.classList.add('show')" store.html
           grep -Fq "NETWORK_ONLY_PAGES" sw.js
           grep -Fq "terms-and-conditions.html returns-refunds.html | sha256sum" .github/workflows/storefront-smoke.yml
           grep -Fq "TERMS_GATE_BEHAVIOR_PASS" .github/workflows/storefront-smoke.yml
@@ -439,6 +440,7 @@ jobs:
             // PWA install shell and safe offline fallback. Keep this last because offline mode affects the context.
             const pwaPage = await browser.newPage({viewport:{width:390,height:844}});
             await pwaPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'domcontentloaded'});
+            await pwaPage.locator('#installApp.show').waitFor({timeout:10000});
             const manifestResponse = await pwaPage.request.get('http://127.0.0.1:4173/manifest.webmanifest');
             if (!manifestResponse.ok()) throw new Error('PWA manifest did not load');
             const manifest = await manifestResponse.json();
