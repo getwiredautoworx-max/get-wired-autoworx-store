@@ -1309,3 +1309,13 @@ Purpose: distinguish work completed in source from items actually verified. This
 - Added isolated Deno tests for Gemini selection/image payload, no paid fallback after Gemini 429, OpenAI compatibility when Gemini is not configured, exhausted OpenAI quota guidance, and missing-key behavior. Added a dedicated workflow to type-check the function/adapter and run these tests.
 - **Validation is pending:** these tests have not run yet. The change must stay in a draft PR until Deno check and all tests pass. A Gemini key must be supplied as a Supabase Edge Function secret by the owner before the no-cost path can work. Free tier remains subject to Google model availability, quota limits, and Google's free-tier data-use terms. No key was created or exposed by this session.
 - A helper file was briefly created on main by mistake during branch setup and was removed immediately in a follow-up commit; main's deployed function source remains unchanged. The implementation and tests are now on the isolated feature branch.
+
+
+## NO-COST IMAGE SEARCH PROVIDER — UNIT CHECKS PASS (2026-10-23 10:53 SAST)
+
+- Draft PR #91: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/91
+- Branch head: `1f901195a48b9acade95114e5e3571643c78e2cd`; source-only and unmerged.
+- Dedicated provider workflow [run 39926588653](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588653) **passed**: Deno type-check of the function/provider adapter and all 5 Deno tests. Tests verify Gemini is selected when configured, the image is sent in the request, Gemini quota failure does not call OpenAI, OpenAI remains supported only when Gemini is absent, exhausted OpenAI credits produce clear recovery guidance, and missing keys do not make a network call.
+- General Storefront Smoke Test [run 39926588551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551) was still running at this checkpoint; do not mark the PR's full check set complete until it finishes.
+- **Not yet working live:** no `GEMINI_API_KEY` secret has been configured or tested against the provider. The current production function remains unchanged and still uses the OpenAI path. The owner must create/configure a Gemini Developer API key in Supabase Edge Function secrets; never paste it into chat or GitHub source. Only after CI, privacy review and explicit approval should the provider change be deployed and tested with a real image.
+- Privacy/release gate: customer photos would be transmitted to Google when Gemini is selected. Review privacy disclosures and the applicable free-tier data-use terms before enabling the key. Free tier has quota/rate limits and is not an unlimited service.
