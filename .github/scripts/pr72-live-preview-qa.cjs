@@ -33,7 +33,7 @@ async function verifySourceParity(){
   const response=await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
   check('preview_home_http',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
   await verifySourceParity();
-  const frame=page;
+  const frame=page.frameLocator('#store');
   await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
   await page.waitForTimeout(5000);
   const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').count();
@@ -46,7 +46,7 @@ async function verifySourceParity(){
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('homepage.png');
   check('specials_no_more_than_four',await frame.locator('#featuredGrid .product').count()<=4,{count:await frame.locator('#featuredGrid .product').count()});
-  await frame.getByRole('button',{name:/CAN’T FIND A PART\? REQUEST IT/i}).click();
+  await frame.getByRole('button',{name:/CAN’T FIND A PART\? REQUEST IT/i}).first().click();
   check('request_part_dialog_opens',await frame.locator('#sourcePart.open').count()===1,{count:await frame.locator('#sourcePart.open').count()});
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
   const root=frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first();
@@ -117,9 +117,9 @@ async function verifySourceParity(){
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
   observe(mobile,'mobile');
   const mr=await mobile.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
-  await mobile.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
+  await mobile.frameLocator('#store').locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
   await mobile.waitForTimeout(3000);
-  const dimensions=await mobile.locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
+  const dimensions=await mobile.frameLocator('#store').locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
   check('mobile_home_http',!!mr&&mr.status()<400,{status:mr?.status()});
   check('mobile_no_horizontal_overflow',dimensions.scrollWidth<=dimensions.width+2,dimensions);
   await mobile.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true}).catch(()=>{});
