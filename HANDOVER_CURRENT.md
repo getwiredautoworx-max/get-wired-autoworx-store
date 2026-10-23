@@ -1155,3 +1155,28 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 2. Add mocked Edge Function tests for invalid/missing bearer, invalid session, missing/stale consent, linked customer profile, malformed/extra fields, and proof that rejected requests never call the order RPC. Do not invoke the live order RPC.
 3. Review profile creation under concurrent first checkout and ensure any uniqueness constraint/duplicate-email behavior cannot link one customer's order to another profile. Keep migration and Edge Function deployment disabled until review and tests pass.
 4. Keep PR #89 draft/unmerged, release HOLD, and no production Supabase writes/deployment, Axxess/DNS/payment changes, or supplier-dependent stock/catalogue work.
+
+## RESOLVED-TASKS REGISTER — 2026-10-23 (latest checkpoint)
+
+Purpose: distinguish work completed in source from items actually verified. This register supersedes earlier wording only where it explicitly says a source task is resolved; it does not mark the store or checkout release-ready.
+
+### Resolved in GitHub source (verified commits)
+- [RESOLVED — SOURCE] Corrected checkout Authorization Bearer token parsing in `supabase/functions/store-checkout/index.ts`. Commit: `dd312429e6669f2e794ca1c8f54cc1f86e9ff496`.
+- [RESOLVED — SOURCE] Checkout now looks up or creates a customer profile linked to the verified Supabase Auth user (`customers.auth_user_id`) and sets `payload.p_customer_id` server-side instead of trusting a browser-supplied customer ID. Commit: `07cea1821662bfa4e28862fae5d8bd10a01ac148`.
+- [RESOLVED — SOURCE] Added the customer-linked order RPC migration with explicit function execution restrictions (revoke from PUBLIC/anon/authenticated; grant to service_role). Migration file: `supabase/migrations/20261023100000_link_store_orders_to_customer.sql`; source-only; not applied to the live database.
+- [RESOLVED — SOURCE] Added static CI source assertions for the bearer-token expression, server-generated customer ID, and RPC grants. Latest workflow correction commit: `49cdac035331118c4f0eb75757098061265e7c79`.
+- [RESOLVED — DOCUMENTATION] Main handover updated with the findings, changes, evidence, risks, and release restrictions. Documentation commit: `e2cf032e5583dd8f8b4762ad3acf78093941decf`.
+- [RESOLVED — READ-ONLY CHECK] Live Supabase schema/permissions were inspected without writes: RLS is enabled on customers/orders/order_items; existing deployed order RPCs were executable by service_role only. This does not validate the unapplied migration.
+
+### Not resolved / must not be reported as complete
+- [PENDING — CI] Current PR #89 head is `49cdac035331118c4f0eb75757098061265e7c79`, remains open/draft. No Actions workflow run was found for this exact head at the latest check. The successful smoke run `39923781779` is for older SHA `c705e7c3` and is not validation of the current auth/profile/migration changes.
+- [PENDING — TESTS] Isolated mocked tests still required for missing/invalid bearer, invalid session, missing/stale Terms acceptance, customer ownership/profile binding, malformed fields, and proving rejected requests do not call the order RPC or mutate stock.
+- [PENDING — SECURITY REVIEW] Verify migration function body/signature against checkout payload, customer profile uniqueness/race handling, and default grants for every created function before any migration can be approved.
+- [PENDING — BROWSER] The earlier failed smoke run found the PWA install control/mobile navigation overlay intercepting the product-detail ADD TO CART click. The root cause still needs a genuine fix and a passing full smoke run.
+- [PENDING — DEVICE] Hisense M72 Pro APK installation remains unresolved; no physical-device acceptance evidence added in this continuation.
+
+### Release controls remain unchanged
+- PR #89 stays draft/unmerged until current-head checks and security tests pass.
+- Do not apply the migration or deploy Edge Functions to production, change Axxess/DNS/payment settings, upload a package, edit supplier-dependent catalogue/stock, or launch customer checkout without explicit release approval.
+- Do not mark Terms acceptance, authenticated purchasing, APK installation, or live checkout as complete based solely on source edits or an older successful workflow.
+
