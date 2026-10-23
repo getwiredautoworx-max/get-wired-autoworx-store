@@ -2933,3 +2933,8 @@ See `HANDOVER_CURRENT.md` for the full evidence and next-step queue. This checkp
 - PR #89 remains draft/unmerged. Checkout mocked tests and local browser QA are recorded as passing, but pending-EFT stock reservation/expiry/release policy and isolated staging verification remain unresolved.
 - Owner APK install107 still fails on physical Hisense M72 Pro with generic “App wasn't installed”; a device-side Package Manager error is required. Stop blind package-ID rotation.
 - No PR merges, Supabase production writes/migrations/deployments, payment activation, supplier catalogue/stock reconciliation, Axxess/DNS changes, or customer launch. Launch HOLD. No Cloudflare/Netlify credits intentionally spent in this sweep.
+
+
+---
+## LIVE PART SEARCH FAILURE — 2026-10-23 13:14 UTC
+Run 39958304900 completed FAILURE. Apex and www returned HTTP 200; category grid rendered 9 categories. Live Part Search button click produced `ReferenceError: openPartSearch is not defined`; live iframe button onclick is `openPartSearch()`, while the dialog remained closed/zero-sized. Request a Part and later live routes were not tested. Keep smoke assertion strict; do not call the handler directly to fake a pass. Current GitHub source expects a window-qualified handler; compare Axxess-served files to approved build and prepare backup before any owner-approved upload. No Axxess/DNS change made. PR #67 audit/database integrity, PR #89 EFT stock reservation/expiry policy, PR #91 Gemini secret/privacy approval, Android device install reason remain blockers. Launch HOLD.
