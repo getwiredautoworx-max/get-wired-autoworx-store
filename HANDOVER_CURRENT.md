@@ -1121,3 +1121,23 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Terms UI gate: source added; complete browser acceptance still NOT VERIFIED.
 - Authenticated checkout + durable consent: draft implementation; security review/tests IN PROGRESS.
 - Production/release: HOLD.
+
+## CONTINUATION UPDATE — 2026-10-23 10:31 SAST (checkout gate defects fixed in draft branch; validation pending)
+
+### Additional concrete findings and changes
+- Inspected the failed PR #89 smoke log (run 39923584335, job 120314477971). The run reached the local browser test but failed at a click on product detail ADD TO CART: the floating PWA INSTALL APP control and mobile navigation intercepted pointer events. The run is not a pass. A later run 39923781779 on older branch SHA c705e7c3 passed all smoke steps, including Deno type-check and Terms UI behavior, but it does not include the newer checkout fixes below.
+- Found a definite auth parsing bug in PR #89 checkout Edge Function: its bearer-token regex was double-escaped and would not parse a normal Authorization: Bearer token. Corrected it in commit dd312429e6669f2e794ca1c8f54cc1f86e9ff496; exact source now uses /^Bearer\\s+(.+)$/i in TypeScript source (single regex escape).
+- Found the draft checkout Edge Function did not create/resolve a customer profile linked to the verified Auth user and did not pass p_customer_id to the RPC. Added server-side profile lookup/create by verified auth_user_id and payload.p_customer_id; commit 07cea1821662bfa4e28862fae5d8bd10a01ac148.
+- Added the isolated order-linking migration from the existing reviewed draft implementation into PR #89 at supabase/migrations/20261023100000_link_store_orders_to_customer.sql (commit 4d7007fa74aec253c374b8fa2755e73142f818c4). It adds the customer-id-aware SECURITY DEFINER RPC overload, revokes execution from PUBLIC/anon/authenticated, and grants execute only to service_role. This migration remains source-only and has NOT been applied to Supabase.
+- PR #89 head is now 07cea1821662bfa4e28862fae5d8bd10a01ac148. Its deployment-provider checks were still in progress at last check; no completed smoke run was yet observed for this exact head. The successful older smoke run is not proof that the latest changes pass.
+
+### Next actions
+1. Inspect the current PR #89 check suite and run logs for head 07cea1821662bfa4e28862fae5d8bd10a01ac148. Require Deno type-check and full smoke suite success on this exact or newer head.
+2. Add mocked tests for auth regex/session rejection, current consent required, customer profile binding, wrong/missing customer ID, malformed fields and no order/stock mutation. Fix the PWA install/mobile-nav overlay test failure at its root (not by suppressing the assertion).
+3. Confirm the migration's function body, function grant boundary, and server-generated customer ID match the RPC request; then keep all migrations/functions un-deployed until isolated tests and owner release approval.
+4. Keep customer launch HOLD and preserve the no-production-write, no-Axxess/DNS/payment, and no-supplier-stock-work boundaries.
+
+### Status
+- Draft Terms UI gate: prior SHA smoke passed; latest branch head verification pending.
+- Auth token parsing and order-to-customer linkage: source fixes committed to draft PR #89; validation pending.
+- Production Supabase migration/deployment and customer launch: HOLD.
