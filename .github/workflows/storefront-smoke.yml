@@ -81,10 +81,11 @@ jobs:
               throw new Error('Category grid did not render within 60s. Frame text: '+diag.slice(0,1000));
             }
             // Accept the terms gate in this disposable local browser before testing store interactions.
-            const localTermsGate = frame.locator('#gwTermsGate');
+            // The consent dialog is in the outer store.html shell, not inside iframe#store.
+            const localTermsGate = page.locator('#gwTermsGate');
             if (await localTermsGate.count() && await localTermsGate.isVisible()) {
-              await frame.locator('#gwTermsAcceptCheck').check();
-              await frame.locator('#gwTermsAcceptButton').click();
+              await page.locator('#gwTermsAcceptCheck').check();
+              await page.locator('#gwTermsAcceptButton').click();
               await localTermsGate.waitFor({state:'hidden', timeout:10000});
               console.log('LOCAL_TERMS_GATE_ACCEPTED_FOR_TEST');
             }
@@ -317,10 +318,11 @@ jobs:
               await publicFrame.locator('#categoryGrid .catWrap').first().waitFor({timeout:45000});
               // The storefront now correctly blocks interaction until Terms & Conditions are accepted.
               // Accept only in this disposable browser context so smoke QA can test the browsing UI.
-              const termsGate = publicFrame.locator('#gwTermsGate');
+              // The consent dialog belongs to the outer public page; product UI is inside iframe#store.
+              const termsGate = publicPage.locator('#gwTermsGate');
               if (await termsGate.count() && await termsGate.isVisible()) {
-                await publicFrame.locator('#gwTermsAcceptCheck').check();
-                await publicFrame.locator('#gwTermsAcceptButton').click();
+                await publicPage.locator('#gwTermsAcceptCheck').check();
+                await publicPage.locator('#gwTermsAcceptButton').click();
                 await termsGate.waitFor({state:'hidden', timeout:10000});
                 console.log('PUBLIC_TERMS_GATE_ACCEPTED_FOR_TEST');
               }
