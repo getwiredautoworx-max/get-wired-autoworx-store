@@ -1,140 +1,3 @@
-## 90% BUILD VERIFICATION CHECKPOINT — 2026-10-23 10:20 SAST
-
-- **Latest complete verification passed** on branch head `c705e7c344499e680884511f83e80b61e6fa6f88`:
-  - Storefront Smoke Test: run `39923781779`, conclusion `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781779
-  - Public SKU Exposure Audit: run `39923781749`, conclusion `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781749
-  - Axxess package build: run `39923781778`, conclusion `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781778 (artifact/package was built only; **not uploaded**)
-- Verified in the passing smoke run: Terms gate first-visit/decline/accept; account sign-in/register/recovery/reset UI; verified-price checkout static gates; Deno type-check for both Edge Functions; current Terms and Returns digest checks; consent migration source checks; PWA manifest/icon/service-worker registration; offline checkout is not cached and falls back to the offline page; Request a Part flow; responsive storefront checks. Runtime markers confirmed `TERMS_GATE_BEHAVIOR_PASS`, `CUSTOMER_ACCOUNT_UI_PASS`, `CUSTOMER_PASSWORD_RESET_UI_PASS`, `PWA_INSTALL_SHELL_PASS`, `PWA_OFFLINE_SAFETY_PASS`, and `STOREFRONT_SMOKE_PASS`.
-- This meets the **90% GitHub build/code verification checkpoint** for the current branch. It does **not** mean the live store is launch-ready: the new migration/functions are not deployed, there is no existing Supabase development branch, and authenticated acceptance/order behavior has not been integration-tested against an isolated database. The connected production project was queried read-only; `public.customer_terms_acceptances` is absent and no live writes were performed.
-- Remaining release blockers: obtain approval for an isolated Supabase test branch/environment if it incurs cost; test RLS, immutable evidence, authenticated consent and rejected checkout paths there; confirm live account/email recovery behavior with test credentials; complete final owner review. Physical APK installation remains unresolved and must not be treated as passed.
-- Keep PR #89 draft/unmerged and customer launch HOLD. No Axxess/DNS/payment/live Supabase changes without explicit approval.
-
----
-## ISOLATED SUPABASE TEST ENVIRONMENT CHECK — 2026-10-23
-
-- Read-only Supabase inspection confirmed the connected production project is healthy and has no `public.customer_terms_acceptances` table yet. No SQL writes or migrations were run.
-- The project has **zero existing Supabase development branches**. Creating a new branch may incur hourly compute/usage charges and requires owner cost approval; therefore I did not create one or apply the migration to production.
-- This leaves one external verification blocker: migration/RLS/trigger and authenticated acceptance/checkout integration tests need an isolated Supabase environment. The branch-only code remains fail-closed against the current live backend until migration and functions are reviewed and deployed together under explicit approval.
-- Current target remains to finish all GitHub-only checks within the 12-hour window; do not claim the backend is fully verified or launch-ready without the isolated test.
-
----
-## PWA INSTALL-CONTROL OVERLAY FIX — 2026-10-23
-
-- Smoke run `39923461690` passed account/password-reset UI tests and Deno/static checks but failed on the Request a Part click: the always-visible floating PWA install button covered controls inside the embedded storefront frame. The failure trace identified the overlay directly.
-- Fixed by showing the PWA install button only when the browser emits `beforeinstallprompt`; removed the headless-browser assertion that an install prompt must appear, because that event is browser/platform dependent. Manifest, icon, service-worker registration and offline checkout safety remain tested. Commits `690189809124e13730e1ddd9840b191b630ba29c` and `dcc587f8a33afcc2b55eb046a5e6a0ffc18079df`.
-- Next smoke run must confirm Request a Part no longer gets covered and PWA offline checkout returns the explicit offline page. No production changes.
-
----
-## CONSENT INSERT PERMISSION — 2026-10-23
-
-- Added explicit `GRANT SELECT, INSERT ... TO service_role` to the acceptance migration. This removes reliance on project default table grants for the server-side consent recorder; no update/delete grant is provided, and the immutable trigger remains. Added a CI source assertion for the grant.
-- Migration and workflow changes are still branch-only. Latest smoke run must be checked at the latest branch head; no production Supabase migration/function deployment is authorized.
-
----
-## WORKFLOW TAIL CLEANUP — 2026-10-23
-
-- Found the remaining parse blocker: a stale duplicate fragment from the first migration-test heredoc had been appended after the smoke-test script and duplicated the next workflow step with incorrect indentation. Removed everything after the original end-of-workflow audit comment in commit `65bf48b2f46ec7c455fc3acb7727937ddcdecd45`; verified the trailing `SQLCHECK` fragment is gone and the workflow ends at the original final comment.
-- This is the root cause behind the zero-job workflow runs; the next run must confirm the workflow is parsed, then execute the full smoke suite. Do not count cancelled/zero-job runs as test passes.
-- No production changes.
-
----
-## WORKFLOW SOURCE-CHECK REPAIR — 2026-10-23
-
-- The first CI source-validation heredoc caused GitHub to reject the workflow definition (run `39923133286` had no jobs). Removed the fragile heredoc/regex and replaced it with straightforward shell `grep`/count assertions for exactly one table, one immutable trigger, one accepted timestamp, the 64-hex digest constraint, and the composite unique key.
-- Correction committed as `cb922d3a371aee3947706d0c3866bbbbecd5674f`. The workflow now needs a fresh run to confirm GitHub parses it and that the full smoke suite completes.
-- This is a CI-source issue only; no database or live store changes occurred.
-
----
-## FINAL SOURCE-VALIDATION ADDITION — 2026-10-23
-
-- Added a CI source-structure check for the consent migration after correcting the malformed file. The check asserts exactly one table and immutable trigger, the complete 64-hex digest constraint, the composite user/version/digest uniqueness, and absence of the previously observed duplicated SQL fragment.
-- The first attempt to author that check had an escaped-regex line truncated in the workflow source; it was immediately replaced with a simpler string-based Node assertion in commit `693b3f1badfb91ab01e37efa31c7e9d3c72fb552`. Re-fetched and verified the complete heredoc boundaries and assertions are present. This check still requires the latest workflow to execute successfully.
-- Current final smoke run should be checked at the latest head after this commit. PWA offline fallback remains unverified until the run passes. No production changes.
-
----
-## CONSENT MIGRATION SOURCE RECHECK — 2026-10-23
-
-- During a final read-through, the acceptance migration file was found malformed: the SHA-256 check line had lost its closing regex syntax and a duplicate SQL tail remained after the trigger definition. This was caught before any database application.
-- Replaced the complete file cleanly in commit `ec4726dd7b29173a213cc8be7177f2461fc664c1`. Re-fetched and verified the migration now has a valid-looking 64-hex digest constraint, accepted timestamp, both policy URLs, unique (user, version, digest), RLS/own-row SELECT, and immutable update/delete trigger with no duplicate tail. It remains **not applied**; SQL execution/trigger/RLS behavior still needs isolated database testing.
-- Latest prior browser run exposed service-worker syntax failure; corrected async callback and added `node --check sw.js`. Latest run after this migration correction is pending/queued and must be checked against the current branch head before calling the build verified.
-- Do not merge/deploy until the latest smoke run passes and isolated Supabase validation is available. No production changes.
-
----
-## PWA SERVICE-WORKER ROOT CAUSE — 2026-10-23
-
-- Latest browser run `39922642094` failed before offline verification because the service worker failed to evaluate. Browser warning confirmed registration failed; inspection found the navigation cache handler used `await` inside a non-async `.then(response => ...)` callback.
-- Fixed the syntax in commit `5c43c37d8ca8bb50dcb0b6f6fdc694aaa87590e8` by making the callback async. Added `node --check sw.js` to the static checks in `f9a6d7f77172791f9b038c4275f55ef203ac54c7`. This root-cause fix is awaiting the latest smoke run; do not mark PWA offline behavior passed until that run completes.
-- Earlier Deno type-check and account UI smoke tests passed on commit `191ef4b`, but the final combined run is still required because later PWA and policy-digest changes followed it.
-- No live deployment, production Supabase schema/function change, Axxess upload, DNS, payments or catalogue/stock work performed.
-
----
-## CI RUNTIME EFFICIENCY — 2026-10-23
-
-- Several superseded smoke runs were sitting at `Install Chromium` for an extended period while concurrent commits each launched a new hosted runner. Added workflow concurrency cancellation and changed the install step from `npx playwright install --with-deps chromium` to `npx playwright install chromium` to avoid repeated apt dependency installation on GitHub's Ubuntu runner. This is a measured CI-time optimization; verify browser launch on the next latest run before treating it as successful.
-- Latest branch commits after the last green Deno/browser run include the combined policy hash, customer-consent uniqueness adjustment, PWA install button, and offline safety changes. They require a final complete run. Current latest workflow run is queued/pending; don't use the earlier green commit as final proof.
-- No production systems changed.
-
----
-## PWA OFFLINE TEST CORRECTION — 2026-10-23
-
-- The PWA smoke run on `c7f8580` passed manifest/icon/service-worker checks but failed the explicit offline checkout fallback assertion. The failure proves the install shell alone is insufficient; do not report PWA safety as passed yet.
-- Corrected `sw.js` in commit `0deb110c143249c70ad9a36344b751e577026a5e`: checkout/account/data-dependent pages now use `fetch(..., {cache:'no-store'})` and explicitly return the cached offline page when `navigator.onLine === false`; this prevents an HTTP cache from making checkout appear available offline. Cache writes for static assets are awaited.
-- Improved the test failure message in commit `986dd4a29403a92f5ade0243f56749a9d7c8fee7` to print actual URL/body if offline behavior still fails. Awaiting the new latest smoke run before calling PWA safety verified.
-- Do not merge/deploy until latest smoke + Deno type-check pass and isolated Supabase tests cover auth, immutable consent and no-order-RPC on rejected requests. No live deployment or Supabase changes.
-
----
-## PWA + COMBINED CONSENT EVIDENCE — 2026-10-23 10:35 SAST
-
-- Pinned digest now covers **both** policy files, concatenated in the exact GitHub Actions checkout order: `terms-and-conditions.html` followed by `returns-refunds.html`. Combined SHA-256: `7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3`. The single Terms file digest remains `2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12`. Workflow checks are being updated to fail if either content changes without a deliberate version/hash update.
-- Updated acceptance endpoint, checkout request and server-side checkout lookup to use the combined digest. Migration records both Terms and Returns policy URLs, version, combined digest, authenticated user ID, database timestamp and user agent. Gate UI version is aligned to the durable acceptance version `gw-terms-2026-10-23-v1`.
-- Latest completed smoke run `39921753337` (commit `191ef4b0266188322a8bc18ee9fd28435f7003af`) passed all steps, including Deno type-check of both Edge Functions, verified-price checks, account UI tests and prior Request a Part/Terms gate regression checks. Its source predates the later PWA tests and the last combined digest/policy integration updates, so it is not the final acceptance run.
-- PWA alternative implemented on the branch: `manifest.webmanifest`, vector app icon `assets/pwa-icon.svg`, `sw.js`, `offline.html`, and store-page manifest/Install App/service-worker integration. The service worker never caches cross-origin Supabase/auth/pricing/shipping/order API traffic; account, checkout and data-dependent product/category pages are network-only and return an explicit offline page rather than pretending checkout works offline. Cache writes are awaited. PWA installability/offline regression is now included at the end of the smoke test; it is pending.
-- Public SKU Exposure Audit `39922168290` and Axxess package workflow `39922168317` passed on commit `c7f8580`; no package was uploaded. Smoke run `39922168190` for that commit was still in progress when this note was written. Commit `29468a6` fixes awaited service-worker cache writes; its new run is queued/in progress and should be the final run to verify after the latest changes.
-- None of the consent schema/functions have been deployed or tested against the live Supabase project. Isolated database/RLS/immutability tests and mocked auth/consent negative tests remain required before merge. Physical Hisense APK install remains unresolved. Keep launch HOLD and do not upload/deploy to Axxess or Supabase without approval.
-
----
-## SECURITY / VERIFICATION FOLLOW-UP — 2026-10-23 10:20 SAST
-
-- Current immutable policy document SHA-256 was computed by the GitHub Actions runner from the exact checked-out `terms-and-conditions.html`: `2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12`.
-- Added that digest to durable consent rows and pinned it in `record-terms-acceptance`, `store-checkout`, and the checkout consent request. The smoke workflow now fails if the actual policy file digest diverges from the pinned value; a changed policy therefore requires a deliberate version/hash update before release.
-- Added Deno setup/type-check for both Edge Functions to the smoke workflow, plus a browser test for the password-reset callback screen.
-- Rechecked the failure from smoke run `39921302901`: account UI modes passed; failure was another independent Request a Part test context (`requestPage`) clicking before accepting the UI gate. Added explicit readiness wait and acceptance in that context in commit `6cf971a359ef4b82fa150706ba7e6579bff87d49`. Earlier isolated contexts now wait for `data-ready=true`, which is set only after the gate event listeners are installed. This is a narrow test fix based on the exact failing trace, not a blind retry.
-- Current smoke run `39921463228` (head `8ab0662`) is still in progress and includes Deno type-check and password-reset UI coverage; it predates the last Request a Part test correction. A subsequent run for `6cf971a` is expected from the branch update; verify that latest run, not only the older run. Public SKU Exposure Audit `39921463064` and Axxess package build `39921463170` passed on `8ab0662`. The package build is not permission to upload/deploy.
-- No migration/function deployed to Supabase and no live orders created. The migration needs isolated database/RLS/immutability testing before any merge. Account UI and checkout changes still require full CI verification; no real customer login was tested because no test credentials were available.
-- Launch HOLD remains. Current focus for the 12-hour 90% verification target: obtain green latest smoke/Deno checks, test authenticated consent flow and negative authorization paths in an isolated Supabase environment, inspect responsive/browser results, and close/update all release-gate evidence. Physical APK install and owner approval remain outside CI verification.
-
----
-## CUSTOMER ACCESS + TERMS ENFORCEMENT WORK — 2026-10-23 (GitHub-only)
-
-### Implemented on isolated branch; awaiting full verification
-- Customer account page `account.html` added: Supabase Auth email/password sign-in, account creation, password recovery, and sign-out; customer session is stored in per-tab `sessionStorage`. UI modes covered by a new Playwright smoke test; no real credentials/accounts are used by CI.
-- Storefront header/navigation links to My Account.
-- Checkout redirects to `account.html?return=checkout` if no valid stored customer access token is present and passes the bearer token to the Edge Function.
-- `supabase/functions/store-checkout/index.ts` now validates the bearer token against Supabase Auth, derives the order email from the verified account, and rejects checkout unless a durable current-version acceptance row exists. The existing verified-price checks and service-role RPC flow remain in place.
-- Added `supabase/migrations/20261023090000_customer_terms_acceptances.sql`: customer-owned SELECT policy, server-only writes, unique user/version evidence, database-generated timestamp, and a trigger preventing update/delete.
-- Added `supabase/functions/record-terms-acceptance/index.ts`: verifies the Supabase Auth bearer token and records acceptance via server-side credentials. Checkout UI now requires an explicit current-policy checkbox and calls this endpoint before attempting order creation. A failed consent-recording call prevents order submission.
-- Smoke suite now includes account UI-mode tests and static assertions for auth/consent protections. It also explicitly accepts the UI-only Terms gate in every isolated Playwright browser context.
-- Key commits: account page `2ca7eb5`; storefront account link `07ccfee`; checkout session gate `fcc4934`; account return-to-checkout `2619f64`; durable evidence migration `7636f3b`; consent Edge Function `aeb0509`; server-side consent enforcement `a756d07`; checkout consent UI `e0f7348`; account smoke test `0701cf2`; security smoke assertions `c21689f`; final static assertion correction `28f9779`. Branch: `feature/terms-gate-phase1`; draft PR #89 remains unmerged.
-
-### Verification status at this checkpoint
-- Public SKU Exposure Audit for commit `0701cf2` passed: run `39920979873`.
-- Current latest smoke run `39920998817` is in progress for commit `c21689f`; do not mark green until the job and all steps complete. Earlier smoke run `39919739607` failed because a separate browser context did not accept the Terms gate; the first attempted correction did not persist into the workflow file and a second explicit correction was committed as `a7dd8e8`. This history is recorded to avoid repeating the same diagnosis.
-- Axxess package workflow may build from this branch, but no package is to be uploaded and no production deployment is authorised.
-- The consent migration and both changed Edge Functions are code-only changes in the PR; none have been applied/deployed to the live Supabase project. Current live checkout is unchanged. Because the schema/function changes are not deployed, this PR branch's checkout will intentionally fail closed if tested against the current live backend. Do not merge/deploy until the migration and functions are reviewed and tested in an isolated Supabase environment.
-- Remaining verification gaps: verify migration/trigger/RLS behavior in isolated Postgres; Deno type-check both Edge Functions; add mocked negative tests for missing/expired/forged auth, missing/stale consent and no order RPC invocation; add account session refresh/expiry handling and ensure password recovery redirects are correct; validate policy-version lifecycle. The acceptance row currently binds a version and policy URL but does not yet store a cryptographic hash of the exact policy document. Do not claim hash-backed consent until that is added and tested.
-- Current target is a 90% build verification within 12 hours, not a guarantee. Remaining 10% must include critical auth/consent security, browser regression, responsive checks, isolated backend tests and explicit owner approval before production changes. Customer launch remains HOLD.
-- No production database, Edge Function, hosting, DNS, payment, catalogue, supplier stock or Axxess state was changed.
-
----
-## CONTINUATION UPDATE — 2026-10-23 10:00 SAST (GitHub-only)
-
-- Owner target: verify a 90% store build within the next 12 hours. Treat this as a work target, not a guarantee or a reason to bypass release gates. Continue in isolated GitHub branch/PR; no production deployment, merge, Axxess/DNS, payments, live database changes, or supplier/catalogue/stock work.
-- Rechecked Storefront Smoke Test run 39919739607. It failed at the Request a Part interaction, not at the Terms modal assertion. The trace proves a fresh Playwright page had its own isolated browser context and the new first-entry Terms gate correctly intercepted the click. The test had not accepted terms in those separate contexts.
-- Fixed the test setup on `feature/terms-gate-phase1` in commit `e6c6dc04f934c5b63939f9111472e7599e521ceb`: the isolated early-search, early-request and responsive page contexts now explicitly accept the UI gate before testing the underlying features. This is a test-harness correction, not a product security claim. The new workflow run is pending; recheck it after working on the next tasks.
-- Confirmed the Terms overlay is explicitly UI-only: it writes `gw_terms_ui_version` to browser localStorage and its source comment states that durable consent evidence and server enforcement are later phases. Confirmed the storefront source currently has no Supabase Auth sign-up/sign-in/sign-out implementation. Confirmed `store-checkout` currently has no bearer-token/customer/consent validation before it calls the service-role-only order RPC. Therefore login and server-side consent enforcement are genuine outstanding blockers, not completed features.
-- No production or live data changed. Customer launch remains HOLD. Next tasks: re-run smoke CI; implement account UI and Supabase Auth integration safely; add versioned durable acceptance evidence and enforce it server-side before checkout; add isolated tests; run regression and update this handover with actual evidence. Do not claim a 90% verified build until the acceptance checklist and CI evidence support it.
-
----
 ## INSTALL107 DEVICE RESULT UPDATE — 2026-10-22
 
 - Owner reports install107 also shows only “App wasn't installed” with no details. This confirms physical acceptance is still failing; do not describe the app as resolved.
@@ -1237,33 +1100,161 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
 
+## CONTINUATION UPDATE — 2026-10-23 10:25 SAST (T&C/login gate and checkout-security review)
+
+### Verified in this continuation
+- Re-read current main handover (HANDOVER_CURRENT.md, blob SHA 02fc69ea3f4b72ad8bcdfbf5d735f614da73fb30) and checked current open PRs and Actions evidence.
+- Current main commit is 65e60e8cc895bb52d7bea1fc2174d8d2b55c575e. PR #89, feature/terms-gate-phase1, head 3357c30e2db67f6c5140bfd69498eb47cf5b476f, is still draft/unmerged. It adds a blocking first-entry Terms UI, account page, versioned consent recorder and checkout auth/consent source changes. This is not yet a release-ready or production-tested flow.
+- PR #89 latest observed Public SKU Exposure Audit run 39923584404 and Prepare Axxess upload package run 39923584347 succeeded. Storefront Smoke Test run 39923584335 ended CANCELLED, not passed. The current branch therefore lacks a completed full smoke-suite result. Do not interpret a package artifact build as authorization to upload it.
+- Read-only Supabase inspection on project ojytykqpvonxvepprgbh confirmed public.customers.auth_user_id exists and RLS is enabled on customers, orders and order_items. Existing customer own-profile policies are present; orders and order_items include owner-scoped SELECT policies and explicit deny-client policies.
+- Read-only privilege check confirmed every currently deployed create_store_order overload and the current create_store_order_v2 overload has EXECUTE for service_role only; neither anon nor authenticated can call these RPCs directly. This is evidence for the currently deployed database, not evidence for an unapplied migration.
+- PR #89 adds a new overload of create_store_order_v2 through migration 20261023100000_link_store_orders_to_customer.sql. Before any migration is considered safe, review PostgreSQL default EXECUTE grants for that new SECURITY DEFINER overload and explicitly revoke execution from PUBLIC/anon/authenticated, granting only service_role; new functions otherwise commonly inherit PUBLIC EXECUTE by default. Also verify the Edge Function binds the authenticated Auth user to the exact customer profile (customers.auth_user_id) and verifies current terms version/digest before any order RPC call.
+- The GitHub Contents API could not retrieve individual files at the PR head SHA in this continuation (404); no source edits were attempted on the basis of partial patches. Continue via PR file patches or a reachable branch ref, and do not guess file contents.
+
+### Next actions — do not loop
+1. Inspect the complete PR #89 versions of store-checkout/index.ts, record-terms-acceptance/index.ts, and the new order migration. Resolve the service-role-only function grant and auth-user/customer-profile binding risks in the draft branch.
+2. Check why the smoke run was cancelled; wait for or trigger one non-conflicting run on the latest PR head and require a completed pass for type checks, consent/auth assertions and browser gate behavior. Cancelled runs do not count.
+3. Add isolated mocked tests for unauthenticated checkout denial, invalid session, missing/stale consent, wrong customer profile, malformed/extra fields and the no-order/no-stock-mutation boundary. Do not call the live order RPC in tests.
+4. Keep PR #89 draft/unmerged and all migrations/functions source-only until checks and security review pass. No production Supabase writes/deployment, Axxess upload, DNS change, payment activation, stock/catalogue edits or customer launch.
+
+### Status
+- Terms UI gate: source added; complete browser acceptance still NOT VERIFIED.
+- Authenticated checkout + durable consent: draft implementation; security review/tests IN PROGRESS.
+- Production/release: HOLD.
+
+## CONTINUATION UPDATE — 2026-10-23 10:31 SAST (checkout gate defects fixed in draft branch; validation pending)
+
+### Additional concrete findings and changes
+- Inspected the failed PR #89 smoke log (run 39923584335, job 120314477971). The run reached the local browser test but failed at a click on product detail ADD TO CART: the floating PWA INSTALL APP control and mobile navigation intercepted pointer events. The run is not a pass. A later run 39923781779 on older branch SHA c705e7c3 passed all smoke steps, including Deno type-check and Terms UI behavior, but it does not include the newer checkout fixes below.
+- Found a definite auth parsing bug in PR #89 checkout Edge Function: its bearer-token regex was double-escaped and would not parse a normal Authorization: Bearer token. Corrected it in commit dd312429e6669f2e794ca1c8f54cc1f86e9ff496; exact source now uses /^Bearer\\s+(.+)$/i in TypeScript source (single regex escape).
+- Found the draft checkout Edge Function did not create/resolve a customer profile linked to the verified Auth user and did not pass p_customer_id to the RPC. Added server-side profile lookup/create by verified auth_user_id and payload.p_customer_id; commit 07cea1821662bfa4e28862fae5d8bd10a01ac148.
+- Added the isolated order-linking migration from the existing reviewed draft implementation into PR #89 at supabase/migrations/20261023100000_link_store_orders_to_customer.sql (commit 4d7007fa74aec253c374b8fa2755e73142f818c4). It adds the customer-id-aware SECURITY DEFINER RPC overload, revokes execution from PUBLIC/anon/authenticated, and grants execute only to service_role. This migration remains source-only and has NOT been applied to Supabase.
+- PR #89 head is now 07cea1821662bfa4e28862fae5d8bd10a01ac148. Its deployment-provider checks were still in progress at last check; no completed smoke run was yet observed for this exact head. The successful older smoke run is not proof that the latest changes pass.
+
+### Next actions
+1. Inspect the current PR #89 check suite and run logs for head 07cea1821662bfa4e28862fae5d8bd10a01ac148. Require Deno type-check and full smoke suite success on this exact or newer head.
+2. Add mocked tests for auth regex/session rejection, current consent required, customer profile binding, wrong/missing customer ID, malformed fields and no order/stock mutation. Fix the PWA install/mobile-nav overlay test failure at its root (not by suppressing the assertion).
+3. Confirm the migration's function body, function grant boundary, and server-generated customer ID match the RPC request; then keep all migrations/functions un-deployed until isolated tests and owner release approval.
+4. Keep customer launch HOLD and preserve the no-production-write, no-Axxess/DNS/payment, and no-supplier-stock-work boundaries.
+
+### Status
+- Draft Terms UI gate: prior SHA smoke passed; latest branch head verification pending.
+- Auth token parsing and order-to-customer linkage: source fixes committed to draft PR #89; validation pending.
+- Production Supabase migration/deployment and customer launch: HOLD.
+
+## CONTINUATION UPDATE — 2026-10-23 10:35 SAST (checkout identity binding and CI guards)
+
+- Continued the same draft PR #89; no production services were changed.
+- Copied the reviewed customer-linking migration into PR #89 as source-only file supabase/migrations/20261023100000_link_store_orders_to_customer.sql (commit 4d7007fa74aec253c374b8fa2755e73142f818c4). It replaces the existing 13-argument v2 RPC with a customer-ID-aware overload, checks a linked customer profile, and explicitly revokes execution from PUBLIC/anon/authenticated while granting service_role only.
+- Updated store-checkout to resolve/create the customer profile using the server-verified Auth user ID and pass the server-generated p_customer_id (commit 07cea1821662bfa4e28862fae5d8bd10a01ac148). Client input cannot choose that ID.
+- Added static CI assertions for the Bearer regex, server-generated customer ID, and RPC grant boundary in commit 033e05065c4ad963945e5dbca8c649f5da028fc6; corrected the assertion escaping in commit 49cdac035331118c4f0eb75757098061265e7c79. PR #89 current head is 49cdac035331118c4f0eb75757098061265e7c79.
+- The prior smoke run 39923781779 passed on SHA c705e7c3, but that SHA predates the current auth/profile/migration fixes. As of this checkpoint no smoke run for the latest head has been observed; Pages/Cloudflare checks were still in progress. Do not call the latest checkout fixes tested until a full current-head smoke run passes.
+
+### Next actions
+1. Check current-head GitHub Actions status and logs; verify the static source assertions and Deno type-check execute on the latest head. If the workflow is not triggered by API updates, identify a supported non-production trigger rather than treating the older run as evidence.
+2. Add mocked Edge Function tests for invalid/missing bearer, invalid session, missing/stale consent, linked customer profile, malformed/extra fields, and proof that rejected requests never call the order RPC. Do not invoke the live order RPC.
+3. Review profile creation under concurrent first checkout and ensure any uniqueness constraint/duplicate-email behavior cannot link one customer's order to another profile. Keep migration and Edge Function deployment disabled until review and tests pass.
+4. Keep PR #89 draft/unmerged, release HOLD, and no production Supabase writes/deployment, Axxess/DNS/payment changes, or supplier-dependent stock/catalogue work.
+
+## RESOLVED-TASKS REGISTER — 2026-10-23 (latest checkpoint)
+
+Purpose: distinguish work completed in source from items actually verified. This register supersedes earlier wording only where it explicitly says a source task is resolved; it does not mark the store or checkout release-ready.
+
+### Resolved in GitHub source (verified commits)
+- [RESOLVED — SOURCE] Corrected checkout Authorization Bearer token parsing in `supabase/functions/store-checkout/index.ts`. Commit: `dd312429e6669f2e794ca1c8f54cc1f86e9ff496`.
+- [RESOLVED — SOURCE] Checkout now looks up or creates a customer profile linked to the verified Supabase Auth user (`customers.auth_user_id`) and sets `payload.p_customer_id` server-side instead of trusting a browser-supplied customer ID. Commit: `07cea1821662bfa4e28862fae5d8bd10a01ac148`.
+- [RESOLVED — SOURCE] Added the customer-linked order RPC migration with explicit function execution restrictions (revoke from PUBLIC/anon/authenticated; grant to service_role). Migration file: `supabase/migrations/20261023100000_link_store_orders_to_customer.sql`; source-only; not applied to the live database.
+- [RESOLVED — SOURCE] Added static CI source assertions for the bearer-token expression, server-generated customer ID, and RPC grants. Latest workflow correction commit: `49cdac035331118c4f0eb75757098061265e7c79`.
+- [RESOLVED — DOCUMENTATION] Main handover updated with the findings, changes, evidence, risks, and release restrictions. Documentation commit: `e2cf032e5583dd8f8b4762ad3acf78093941decf`.
+- [RESOLVED — READ-ONLY CHECK] Live Supabase schema/permissions were inspected without writes: RLS is enabled on customers/orders/order_items; existing deployed order RPCs were executable by service_role only. This does not validate the unapplied migration.
+
+### Not resolved / must not be reported as complete
+- [PENDING — CI] Current PR #89 head is `49cdac035331118c4f0eb75757098061265e7c79`, remains open/draft. No Actions workflow run was found for this exact head at the latest check. The successful smoke run `39923781779` is for older SHA `c705e7c3` and is not validation of the current auth/profile/migration changes.
+- [PENDING — TESTS] Isolated mocked tests still required for missing/invalid bearer, invalid session, missing/stale Terms acceptance, customer ownership/profile binding, malformed fields, and proving rejected requests do not call the order RPC or mutate stock.
+- [PENDING — SECURITY REVIEW] Verify migration function body/signature against checkout payload, customer profile uniqueness/race handling, and default grants for every created function before any migration can be approved.
+- [PENDING — BROWSER] The earlier failed smoke run found the PWA install control/mobile navigation overlay intercepting the product-detail ADD TO CART click. The root cause still needs a genuine fix and a passing full smoke run.
+- [PENDING — DEVICE] Hisense M72 Pro APK installation remains unresolved; no physical-device acceptance evidence added in this continuation.
+
+### Release controls remain unchanged
+- PR #89 stays draft/unmerged until current-head checks and security tests pass.
+- Do not apply the migration or deploy Edge Functions to production, change Axxess/DNS/payment settings, upload a package, edit supplier-dependent catalogue/stock, or launch customer checkout without explicit release approval.
+- Do not mark Terms acceptance, authenticated purchasing, APK installation, or live checkout as complete based solely on source edits or an older successful workflow.
 
 
-## TERMS GATE PHASE 1 — GITHUB-ONLY IMPLEMENTATION CANDIDATE — 2026-10-23
+## CONTINUATION UPDATE — 2026-10-23 (security regression suite + modal stacking fix)
 
-- Created isolated branch `feature/terms-gate-phase1`; no merge or deployment.
-- Added a first-entry blocking Terms & Conditions overlay to `index-new.html`, including links to the full Terms and Returns policies, accept/decline actions, mobile styling, Escape-key blocking, and a versioned browser flag for the UI gate.
-- Added Playwright checks to `.github/workflows/storefront-smoke.yml` for first-visit visibility, decline-stays-blocked, and accept-unblocks-browsing. Workflow has not yet run against this branch at checkpoint time; behavior is NOT marked passed until CI result is inspected.
-- Critical limitation stated in source: the local browser flag is only a Phase 1 UI convenience, NOT durable legal evidence and NOT purchase authorization. Customer authentication, durable server/database consent evidence, and checkout enforcement remain later required phases. Do not deploy or represent the store as secure/launch-ready based on this phase alone.
-- No production Supabase/DNS/Axxess/payment/catalogue/stock changes. Customer launch remains HOLD.
+### Source changes committed to draft PR #89
+- Commit `ec4643771fe545ca6316e1971f05d7b107e35208`: corrected a SQL syntax defect by adding the missing semicolon after the `create_store_order_v2` function body. Added a partial unique index on `customers(auth_user_id)` for non-null IDs to prevent duplicate linked customer profiles. Read-only check of the live DB showed no duplicate non-null auth_user_id groups at check time. Migration remains unapplied.
+- Commit `37c142eab6f3eedb46b60fe255fe281c152c01f3`: added `tests/checkout-security.test.cjs` with isolated Node regression assertions for Bearer parsing, auth/consent/customer/RPC guard order, rejecting browser-supplied customer IDs, immutable versioned Terms evidence, and service-role-only RPC grants.
+- Commit `bd5b5c9c5d822f091d3d5dfb7645fd8acba402a9`: added the new regression test file to the storefront smoke workflow using `node --test tests/checkout-security.test.cjs`.
+- Commit `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`: raised the product modal z-index from 100 to 1000 so floating mobile navigation/PWA controls cannot visually stack above the modal and intercept clicks. This is a source-level fix; browser verification is still required.
+
+### Verification status and limitations
+- Latest observed PR #89 head is `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`, still draft/unmerged.
+- No GitHub Actions run was returned for the latest head after these commits. Existing successful Storefront Smoke Test run `39923781779` is from older SHA `c705e7c3`; it does not validate these changes. The GitHub integration available in this session does not expose a workflow-dispatch operation, and the commit operations did not create a new Actions run. Do not claim tests passed.
+- The regression test file and workflow wiring are committed, but the test suite has not been executed in this session because no current-head Actions run or local checkout/network access was available. The SQL migration has not been applied or tested in a staging database.
+- Existing live Supabase checks were read-only: `customers.auth_user_id` had no declared unique constraint before this draft migration, and no duplicate linked auth IDs were found in the queried rows. The new partial unique index is intended to enforce one linked profile per Auth user after staging review.
+
+### Still open — do not mark resolved
+1. Obtain an actual completed current-head CI run and fix any failures (Deno check, Node regression suite, browser smoke, terms/hash checks). Do not rely on old SHA results.
+2. Inspect the complete browser smoke logs after the modal z-index change; verify product-detail ADD TO CART, mobile navigation, PWA install control, Terms modal, Part Search, Request a Part and route checks pass.
+3. Execute the migration in an isolated staging project only after review; verify SQL syntax, uniqueness index creation, RPC grants/signature and order/customer linkage. Do not run real orders or stock-decrement tests against production.
+4. Strengthen tests to exercise the Edge Function with mocked Auth/REST responses (not just static source assertions): no token, invalid token, missing/stale consent, profile lookup/create and failure branches, malformed payload, no RPC call on rejected requests, and no stock mutation.
+5. Physical Hisense M72 Pro APK install diagnosis remains pending. No new physical-device evidence.
+
+### Release gates unchanged
+- PR #89 stays draft/unmerged; production database migrations and Edge Function deployments are prohibited until current-head checks, staging validation and explicit owner release approval.
+- No Axxess upload, DNS changes, payment activation, supplier-dependent stock/catalogue work, or customer launch.
+
+## CONTINUATION UPDATE — 2026-10-23 (attempted current-head CI trigger)
+
+- Latest draft PR #89 source head remains `a65fb9aa4bd21ddc36324fb714feb826cd8461a5` at this checkpoint.
+- To obtain current-head test evidence without merging, created temporary validation PR #90 from the exact same SHA, then inspected commit check-runs. Only Cloudflare preview/build checks appeared; the Storefront Smoke Test, Deno check and Node regression suite were not started. PR #90 was closed unmerged and marked explicitly as having no test evidence: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/90.
+- This confirms the available GitHub integration in this session cannot trigger the required GitHub Actions run even through a new PR. Do not repeat temporary PR creation; it did not help.
+- Latest main-branch GitHub Pages deployment for handover commit `0e69fc1f6b2888a52de5644244b01d003c61775c` was in progress when checked. This is a documentation/Pages deployment status only, not storefront checkout verification.
+
+### Required next action to unblock verification
+- Use a GitHub Actions run trigger available to the repository owner (Actions → Storefront Smoke Test → Run workflow on `feature/terms-gate-phase1`, or an authorized manual `workflow_dispatch` call) and wait for the complete run. This owner-side trigger is required because this session's GitHub connector does not expose workflow dispatch and API commits/PR creation did not start the workflow.
+- Once a run starts, check the Node regression tests, Deno checks, Terms/hash checks and browser smoke output. Fix each actual failure, update this handover with the run URL and exact SHA, and only then consider staging migration validation.
+- Do not deploy or merge while this evidence is missing.
 
 
-## TERMS GATE PHASE 1 — PR AND CI CHECKPOINT — 2026-10-23
+## HIGH-PRIORITY CONTINUATION — 2026-10-23 (started; no release changes)
 
-- Draft PR #89 opened: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/89
-- PR head: `de8047916265b79d43847e47e505dd1d134e77e4`; files changed: `index-new.html`, `.github/workflows/storefront-smoke.yml`, and this handover.
-- Workflow lookup for the exact PR head returned no associated PR workflow runs at the time of check. Therefore browser behavior tests are pending and Phase 1 is NOT accepted yet. Do not merge or deploy. Recheck the exact head's CI and fix any failure before progressing.
-- This phase is only the blocking entry UI. Browser-local acceptance version is not durable legal evidence. Later phases still need Supabase Auth flows, server-generated versioned acceptance records, RLS/ownership rules, and server-side checkout rejection for unauthenticated or non-consenting customers.
+### Task status at start
+1. **Checkout / Terms / customer identity security (PR #89): IN PROGRESS — NOT VERIFIED.** PR remains open/unmerged; current source head reported in prior checkpoint as `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`. The latest completed smoke evidence is for an older commit and cannot validate current source.
+2. **CI trigger and provider failure diagnosis: IN PROGRESS.** `.github/workflows/storefront-smoke.yml` does declare `workflow_dispatch` and `pull_request` to `main`, but the prior temporary PR generated Cloudflare checks only. Need inspect repository Actions run history and exact check-run records before assigning cause.
+3. **Cloudflare build failures: UNDIAGNOSED.** PR #89's bot comments show multiple failed Worker build checks on draft commits, including `a65fb9a`; these are not evidence that the storefront smoke workflow ran. Inspect their available logs/statuses and avoid treating them as app test failures without evidence.
+4. **Hisense M72 Pro APK install: BLOCKED ON DEVICE DIAGNOSTIC.** CI/emulator checks passed for install107, but the physical phone reports only “App wasn't installed”. Need Package Manager failure code from device; no remote access to physical phone.
+5. **Other high-priority scope:** customer-journey/responsive browser checks and Part Search / Request a Part functionality must be verified against a current source/preview; image-search 429 and PWA/APK path remain open. Supplier price/stock/catalogue reconciliation remains paused pending ASC authorisation.
+6. **Release controls:** customer launch HOLD. Do not merge PR #89, apply migrations, deploy Edge Functions, write production data, change Axxess/DNS/payment, or alter supplier-dependent catalogue/stock without the required evidence and owner approval.
+
+### Work sequence for this continuation
+- First determine why current-head Actions are absent and whether a permitted API route can start the existing workflow; do not create another temporary PR (previous attempt failed to trigger Actions).
+- Inspect actual CI/provider status and logs, then fix only a demonstrated defect.
+- Continue isolated checkout regression coverage and current-head smoke verification where tool access permits.
+- Record every status transition and exact commit/run evidence here. If the platform/permission boundary requires an owner action, document the smallest exact action and continue all unrelated safe tasks.
 
 
-## CONTINUATION — 2026-10-23 (launch readiness / Phase 1 CI failure diagnosis)
+## HIGH-PRIORITY CONTINUATION — VERIFIED REPOSITORY CHECK (2026-10-23 10:40 SAST)
 
-- Owner instructed continuation of all main outstanding work. Work remains GitHub-only on `feature/terms-gate-phase1`; no merge/deployment, production DB/function, hosting/DNS, payment, stock, or catalogue changes.
-- Inspected exact PR #89 head `24369af56d18f67f7d3c50d6430917b3ee80838d`. The Storefront Smoke Test failed at the Phase 1 assertion, not at storefront runtime: it queried `aria-modal` on the outer `#gwTermsGate`, while the attribute is correctly placed on its child `section[role=dialog]`. This is a test selector defect.
-- Also found malformed shell commands where literal backslash-n text joined three `grep` commands in the verified-price gate step. Although the step exited success, its logs showed grep errors, so that step's success was false confidence and must be corrected/validated.
-- Corrected `.github/workflows/storefront-smoke.yml` in commit `df7d79ae3eef8f6157a183834d783daf0fbc6886`: modal assertion now targets `#gwTermsGate [role="dialog"]`; the three grep commands are separate shell lines. Awaiting the resulting exact-head workflow run; no test is claimed passed yet.
-- Storefront smoke run `39919375136` failed with explicit error `Terms gate is not modal`; Public SKU Exposure Audit run `39919375124` succeeded; Axxess package workflow `39919375114` succeeded but no package was deployed. Audit success does not establish launch readiness.
-- Remaining critical implementation phases: (1) get Phase 1 CI green and verify all existing smoke checks; (2) implement/test Supabase Auth registration/login/logout/recovery without deployment; (3) implement durable, versioned server-side consent evidence with RLS/ownership and immutable server timestamp/hash; (4) enforce authenticated customer plus current consent in checkout Edge Function/RPC, with negative tests and mocked order writes; (5) run complete regression on exact PR head and keep customer launch HOLD pending owner approval. Never merge/deploy as part of these steps without explicit approval.
-- Existing `store-checkout` on main still has `verify_jwt=false`, does not validate an authenticated customer or durable consent, and uses service-role access to the order RPC. Do not represent checkout as secured until server-side checks are implemented and tested. Do not deploy this change to production as part of GitHub-only work.
-- APK install on the owner's Hisense M72 Pro remains failed/unresolved. Do not spend cycles on speculative rebuilds; keep separate from store launch gate and require actual device installer diagnostics for resolution.
-- Supplier-dependent catalogue/stock work remains paused pending ASC authorisation; payment activation and customer launch remain HOLD.
+### Evidence obtained this pass
+- Current PR #89 head is confirmed as `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`; PR remains draft/open/unmerged. PR metadata currently reports `mergeable: false`. The branch compare against main reports **92 commits ahead / 7 behind**, so branch divergence/conflict resolution is also a pre-merge task. Do not merge as-is.
+- Current-head check runs are only: Cloudflare Pages **success**, Cloudflare Workers Builds **failure**, and three Netlify redirect/header/page checks **neutral**. There is no current-head Storefront Smoke Test, Deno, or Node regression check. Exact check summary: [current-head checks](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/commit/a65fb9aa4bd21ddc36324fb714feb826cd8461a5/checks).
+- The Pages preview deploy succeeded for this source head: https://f319b8ce.get-wired-autoworx-store.pages.dev . This proves a preview was built, **not** that checkout/security/browser tests passed or that production was changed.
+- The previous Storefront Smoke Test run [39923781779](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781779) completed successfully on older SHA `c705e7c344499e680884511f83e80b61e6fa6f88`. Its step record confirms Deno type-check, verified-price checks and local storefront smoke passed at that old SHA only.
+- The current workflow file already declares both `pull_request` and `workflow_dispatch`. Therefore, simply adding another temporary PR or repeating the same source changes is not a solution. The available GitHub integration exposes GET and rerun operations but no workflow-dispatch operation; no workflow run can be created against the current SHA from this session. Required owner action is to run **Actions → Storefront Smoke Test → Run workflow**, selecting `feature/terms-gate-phase1`; then share/allow access to the run URL so failures can be fixed against exact logs.
+- The Cloudflare Pages check is green while the separate Cloudflare Workers Builds check is red. These are distinct integrations; the Workers check does not establish a storefront test failure. Its GitHub check summary links to the Cloudflare dashboard but exposes no actual build log in the connector. Keep this as a separate provider-config/build blocker and do not alter the production Worker or deployment config without the log/root cause.
+- Inspected the draft regression test and both source-only migrations. Static assertions cover token parsing, auth-before-consent/customer/order ordering, client customer-ID rejection, service-role RPC grants, and immutable Terms evidence. They are **not** runtime mocked Edge Function tests. The order migration's customer profile index and RPC change remain untested in a staging database.
+
+### Corrective documentation action
+- Updated PR #89 description to reflect the current source accurately and explicitly mark current-head verification, mocked runtime tests, staging migration review and branch divergence as unresolved. PR remains draft and unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/89.
+
+### Task status after this pass
+1. **Checkout / Terms / auth / customer binding:** source changes present; current-head CI and end-to-end verification still BLOCKED.
+2. **CI:** owner-side workflow dispatch required; no false pass recorded.
+3. **Cloudflare Workers build:** separate failure, logs not accessible through current connector; Pages preview is green.
+4. **Branch mergeability:** unresolved; 92 ahead / 7 behind and GitHub reports not mergeable. Must reconcile current main changes without merging/deploying.
+5. **APK:** physical Hisense M72 Pro installation still unresolved; install107 CI/emulator success is not device acceptance.
+6. **Supplier stock/catalogue:** still paused pending ASC authorisation.
+7. **Release:** HOLD. No production migration/deployment, Axxess/DNS/payment changes, live order, or supplier data changes made.
