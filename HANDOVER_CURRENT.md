@@ -1836,3 +1836,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - This plan is **not** authorization to modify Axxess, DNS, checkout, payments, or production. No hosting files were deleted or uploaded as part of recording this plan.
 - Live Part Search remains a verified failure until an actual browser click succeeds. Store release remains **HOLD**.
 - Current in-store stock remains test data only. No supplier reconciliation, stock cleanup/import, catalogue price changes, or stock-data edits are authorized.
+
+
+## UPLOADED `index.html` VERIFICATION — 2026-10-23 17:01 SAST
+
+- Inspected the owner-uploaded `index.html`: it is a minimal redirect shell, not the storefront application. Both the meta refresh and JavaScript redirect to relative path `store.html`.
+- Compared it with GitHub `main/index.html`; the content matches the current checked-in redirect shell. This verifies source parity for this one file only, not the contents or correctness of the live Axxess directory.
+- The redirect depends on `store.html` existing in the same served directory and correctly loading its dependencies. This file alone cannot verify Part Search, Request a Part, catalogue assets, or checkout.
+- Do not delete or clear `public_html` based on this file inspection. Continue with a full hosting backup/inventory, verify the complete PR #74 package and referenced files, stage and test a clean candidate, and obtain explicit approval before any live cleanup/switch.
+- Live Part Search remains a previously confirmed failure pending approved backup/repair and a real live-browser click test. No Axxess/DNS/production changes, stock/catalogue changes, payment changes, or deployment were made during this verification. Customer launch remains HOLD.
