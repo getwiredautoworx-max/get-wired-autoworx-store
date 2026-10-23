@@ -1,3 +1,11 @@
+## ISOLATED SUPABASE TEST ENVIRONMENT CHECK — 2026-10-23
+
+- Read-only Supabase inspection confirmed the connected production project is healthy and has no `public.customer_terms_acceptances` table yet. No SQL writes or migrations were run.
+- The project has **zero existing Supabase development branches**. Creating a new branch may incur hourly compute/usage charges and requires owner cost approval; therefore I did not create one or apply the migration to production.
+- This leaves one external verification blocker: migration/RLS/trigger and authenticated acceptance/checkout integration tests need an isolated Supabase environment. The branch-only code remains fail-closed against the current live backend until migration and functions are reviewed and deployed together under explicit approval.
+- Current target remains to finish all GitHub-only checks within the 12-hour window; do not claim the backend is fully verified or launch-ready without the isolated test.
+
+---
 ## PWA INSTALL-CONTROL OVERLAY FIX — 2026-10-23
 
 - Smoke run `39923461690` passed account/password-reset UI tests and Deno/static checks but failed on the Request a Part click: the always-visible floating PWA install button covered controls inside the embedded storefront frame. The failure trace identified the overlay directly.
