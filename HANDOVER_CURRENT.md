@@ -1734,3 +1734,10 @@ This pass only read GitHub metadata and updated this handover file. No source be
 - Current PR #67 function branch blob abbe59f3babb4c1078b6f8fc7bc604be9f34ce6f includes CORS headers and OPTIONS preflight, auth.getUser plus enabled admin allowlist, owner/admin role restriction, and explicit per-action field/type/range/ID validation for product/category/task/opportunity actions. Older handover statements saying CORS and validation are absent are superseded for this source revision.
 - Remaining blockers: mutations and audit_log writes are separate operations (audit failure can leave the mutation committed); category slug uniqueness and hierarchy checks lack proven database-enforced/transactional race protection; executable negative tests for auth/roles/extra fields/audit failure were not established. Keep PR #67 draft/unmerged; no Supabase deploy or data writes.
 - No code changes made. Next: isolated mocked runtime negative tests and a transaction/RPC review for atomic mutation+audit and category integrity.
+
+
+## 2026-10-23 — Owner admin test coverage update
+- PR #67 already has `supabase/functions/veyron-admin/index_test.ts` plus `.github/workflows/owner-catalogue-admin-check.yml` (Deno type-check, isolated tests, and static UI safety assertions). Previous note saying executable negative tests were not established is refined: a test suite exists; latest run outcome has not yet been confirmed.
+- Expanded tests on feature branch `feature/owner-catalogue-management-2026-10-20`, commit `3fed62d2b64279d3825b3565c9fcd0ee1f468941`, covering non-text/blank product descriptions, invalid explicit category slugs/name length/description type, and task priority/type/input defaults. No production branch or database touched.
+- CI result remains unverified: commit status API returned no statuses, workflow-runs lookup returned empty, and this environment has no Deno executable or network to install it. Do not represent tests as passing until the branch workflow confirms.
+- Mutation plus audit_log remains non-atomic; no RPC/schema fix made without enough verified schema and transaction context. Keep PR #67 draft/unmerged/undeployed.
