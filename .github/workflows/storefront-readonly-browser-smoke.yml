@@ -2,6 +2,11 @@ name: Storefront Read-Only Browser Smoke QA
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/storefront-readonly-browser-smoke.yml"
+      - "store.html"
+      - "index-new.html"
   schedule:
     - cron: "30 6 * * *"
 
@@ -67,9 +72,17 @@ jobs:
                   { status: response?.status() ?? null, finalUrl: desktop.url() });
                 add('HTTPS_CANONICAL', desktop.url().startsWith('https://') ? 'PASS' : 'FAIL', { finalUrl: desktop.url() });
                 const title = await desktop.title().catch(() => '');
-                const bodyText = await desktop.locator('body').innerText({ timeout: 10000 }).catch(() => '');
+                // store.html is a wrapper: customer-facing content lives inside same-origin iframe#store.
+                // Prefer the embedded storefront body; fall back to the outer body for non-iframe variants.
+                const iframe = desktop.locator('iframe#store');
+                const iframeSrc = await iframe.getAttribute('src').catch(() => null);
+                const frameBodyText = await desktop.frameLocator('iframe#store').locator('body')
+                  .innerText({ timeout: 15000 }).catch(() => '');
+                const outerBodyText = await desktop.locator('body').innerText({ timeout: 10000 }).catch(() => '');
+                const bodyText = frameBodyText.trim().length > 0 ? frameBodyText : outerBodyText;
                 add('PAGE_CONTENT', title.trim() && bodyText.trim().length > 30 ? 'PASS' : 'FAIL',
-                  { title, bodyTextLength: bodyText.trim().length });
+                  { title, iframeSrc, frameBodyTextLength: frameBodyText.trim().length,
+                    outerBodyTextLength: outerBodyText.trim().length, bodyTextLength: bodyText.trim().length });
                 await desktop.screenshot({ path: path.join(out, 'desktop-home.png'), fullPage: true }).catch(() => {});
                 const internalLinks = await desktop.locator('a[href]').evaluateAll((els, origin) =>
                   els.map(a => a.href).filter(h => h.startsWith(origin)).slice(0, 20), new URL(base).origin);
