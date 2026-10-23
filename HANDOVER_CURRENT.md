@@ -1646,3 +1646,29 @@ This pass only read GitHub metadata and updated this handover file. No source be
 - Cloudflare issue remains separate: exact-head Pages previews pass; Workers Builds fails on both heads. Build IDs and dashboard URLs were recorded above. The check summary still does not contain the actual compiler/build log, and no Cloudflare settings tool is available in this connection. The authorized account owner must open the dashboard build log; do not change settings or ignore the check based solely on Pages success.
 - Supabase staging remains unavailable (only `Store` visible, not approved for test writes). Terms digest and live checkout cannot be fully validated without isolated staging. Gemini secret/privacy approval and Android install error are still owner/device gates.
 - No code branches were rewritten, no PR merged, no production or database write/migration/deployment occurred, and no Axxess/DNS/payment/stock change was made. ASC tasks remain paused. Customer launch remains **HOLD**.
+
+
+## BLOCKER TRIAGE — 2026-10-23 (latest PR metadata and workflow run check)
+
+### What is preventing completion now
+1. **PR #89 is not merge-ready:** GitHub reports it open, draft, and non-mergeable. The exact head is `d494905479b54e00e66258ae5784c209a557e56e`; it is 114 commits ahead / 38 behind main per the last compare. Checkout-handler security tests, package, public SKU audit and Pages preview are passing, but the exact-head Storefront Smoke Test run `39927957647` is **cancelled** (earlier smoke at another SHA passed; that is not proof for this head). Isolated Supabase migration + real Auth/consent/checkout testing has not been done.
+2. **PR #91 is not merge-ready:** GitHub reports it open, draft, and non-mergeable. Exact head `1f901195a48b9acade95114e5e3571643c78e2cd`; 4 commits ahead / 27 behind main per last compare. Provider tests and smoke pass, but the deployed Gemini path remains untested because no `GEMINI_API_KEY` secret has been configured; enabling it sends customer photos to Google and needs owner-approved privacy disclosure.
+3. **Cloudflare Workers Builds is failing on both feature heads** while Pages previews pass. Build IDs: PR #89 `d194bde4-045e-4b69-8909-e934830189e1`; PR #91 `3f160d8c-5516-4eb9-a79b-220ba57822f7`. GitHub Actions logs retrieved for PR-triggered workflows do not include the Cloudflare vendor build log. Need the account owner to inspect the exact failure in Cloudflare dashboard before any config change. Do not assume Pages success makes this failure irrelevant.
+4. **No confirmed isolated staging target:** connected Supabase project `Store` (ref `ojytykqpvonxvepprgbh`) is not authorized as staging. No migrations or test writes have been run. Creating a branch/project may incur charges and is not authorized without a quoted cost and explicit approval.
+5. **Remaining owner/device gates:** confirm Terms text/hash is the exact published policy; approve staging target; configure Gemini secret securely and approve privacy wording if the feature is wanted; obtain Android Package Manager install error/log if APK work is still wanted. Android APK remains deferred in favour of PWA.
+6. **Explicitly paused / protected:** supplier-authorisation-dependent ASC stock/catalogue work; Axxess live files, DNS, checkout/payments, production DB/functions and customer launch. No change made to any of these.
+
+### Actions taken in this triage
+- Refetched both PRs' current metadata and exact heads; confirmed both remain draft/open/unmerged and GitHub currently reports non-mergeable.
+- Checked Actions runs attached to PR heads: PR #89 exact-head checkout security tests, package and SKU audit succeeded, but the listed exact-head smoke run is cancelled. PR #91 provider test and smoke runs succeeded.
+- Re-fetched the current handover before writing this update. No branch ref moved, PR merged, secret changed, database migrated/written, Cloudflare configuration changed, production deploy made, or Axxess/DNS/payment/stock action performed.
+
+### Safest resolution order (do not bypass gates)
+1. In GitHub, update/rebase each feature branch onto current `main` using a supported branch operation; inspect all conflict resolutions and rerun all checks at the resulting exact head. Do not use single-file content APIs to simulate a merge.
+2. Inspect the Cloudflare Workers Builds logs for both recorded build IDs and resolve only the evidenced cause; if Workers Builds is obsolete, owner must explicitly approve disabling/retiring that integration after confirming the Pages deployment path is the intended one.
+3. Identify/authorize isolated Supabase staging (or explicitly approve a quoted branch/project cost); apply migrations only there, validate RLS/grants/RPC and digest, and exercise real Auth → Terms acceptance → customer-linked checkout with no real payment.
+4. Configure `GEMINI_API_KEY` as a secret only after owner approval, test the provider within free-tier quota, verify no paid fallback on Gemini quota errors, and approve customer-photo disclosure before customer use.
+5. Resolve APK only if still required: capture the exact Android install failure/package-manager log first; otherwise keep the smaller PWA path.
+6. Require owner release approval and a complete pass of release gates before production changes or launch. Launch remains **HOLD**.
+
+**Status:** work is not fully resolved. These are concrete blockers, not evidence that the store itself is broken. Most remaining items need account-owner access/approval or isolated staging, and cannot be safely completed by changing production or guessing at external build settings.
