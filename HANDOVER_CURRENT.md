@@ -1,3 +1,15 @@
+## 90% BUILD VERIFICATION CHECKPOINT — 2026-10-23 10:20 SAST
+
+- **Latest complete verification passed** on branch head `c705e7c344499e680884511f83e80b61e6fa6f88`:
+  - Storefront Smoke Test: run `39923781779`, conclusion `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781779
+  - Public SKU Exposure Audit: run `39923781749`, conclusion `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781749
+  - Axxess package build: run `39923781778`, conclusion `success`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781778 (artifact/package was built only; **not uploaded**)
+- Verified in the passing smoke run: Terms gate first-visit/decline/accept; account sign-in/register/recovery/reset UI; verified-price checkout static gates; Deno type-check for both Edge Functions; current Terms and Returns digest checks; consent migration source checks; PWA manifest/icon/service-worker registration; offline checkout is not cached and falls back to the offline page; Request a Part flow; responsive storefront checks. Runtime markers confirmed `TERMS_GATE_BEHAVIOR_PASS`, `CUSTOMER_ACCOUNT_UI_PASS`, `CUSTOMER_PASSWORD_RESET_UI_PASS`, `PWA_INSTALL_SHELL_PASS`, `PWA_OFFLINE_SAFETY_PASS`, and `STOREFRONT_SMOKE_PASS`.
+- This meets the **90% GitHub build/code verification checkpoint** for the current branch. It does **not** mean the live store is launch-ready: the new migration/functions are not deployed, there is no existing Supabase development branch, and authenticated acceptance/order behavior has not been integration-tested against an isolated database. The connected production project was queried read-only; `public.customer_terms_acceptances` is absent and no live writes were performed.
+- Remaining release blockers: obtain approval for an isolated Supabase test branch/environment if it incurs cost; test RLS, immutable evidence, authenticated consent and rejected checkout paths there; confirm live account/email recovery behavior with test credentials; complete final owner review. Physical APK installation remains unresolved and must not be treated as passed.
+- Keep PR #89 draft/unmerged and customer launch HOLD. No Axxess/DNS/payment/live Supabase changes without explicit approval.
+
+---
 ## ISOLATED SUPABASE TEST ENVIRONMENT CHECK — 2026-10-23
 
 - Read-only Supabase inspection confirmed the connected production project is healthy and has no `public.customer_terms_acceptances` table yet. No SQL writes or migrations were run.
