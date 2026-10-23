@@ -1336,3 +1336,27 @@ Purpose: distinguish work completed in source from items actually verified. This
 - Source-level CI for PR #89 is green, but the five Node tests are static source assertions only. They do not execute the checkout handler against mocked Auth, Terms, customer-profile, price, or RPC responses.
 - Next isolated change on `feature/terms-gate-phase1`: make the handler injectable/testable without network or database writes, then add Deno tests proving invalid/missing auth, missing/stale consent, malformed payload, quote-required price and customer lookup/create failures never call the order RPC; prove a valid test request ignores a browser-supplied customer ID and passes the server-linked profile ID.
 - All fetches in these tests must be mocked. No live orders, stock updates, production migration, Edge Function deployment or staging-project creation. This change will remain draft until Deno type-check, Node source assertions and browser smoke all pass.
+
+
+## CONTINUATION UPDATE — 2026-10-23 10:43–10:46 SAST (HANDOVER READ-BACK + IMAGE SEARCH CI RECHECK)
+
+### Gemini image-search fallback — CI evidence now confirmed
+- Existing draft PR #91: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/91
+- Branch: `fix/gemini-free-image-search-fallback-2026-10-23`
+- Exact tested head: `1f901195a48b9acade95114e5e3571643c78e2cd`.
+- The PR description confirms [Part Image Search Provider Tests run 39926588653](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588653) passed Deno type-check and **5/5 provider tests**, and [Storefront Smoke Test run 39926588551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551) passed.
+- Read back the exact branch source for `supabase/functions/part-image-search/index.ts`, `vision-provider.ts`, `vision-provider.test.ts`, and `.github/workflows/part-image-search-provider.yml`. The provider adapter uses Gemini when `GEMINI_API_KEY` exists, does not fall back to potentially paid OpenAI on Gemini 429, and retains OpenAI only when Gemini is not configured. The dedicated workflow runs Deno type-check and the provider tests.
+- **Source/CI phase: PASS. Real-provider/deployment phase: BLOCKED on owner secret + approval.** No Gemini key was created, read, or configured; no production Supabase function deployment or live provider request was made. Do not describe image search as working live yet. Free-tier availability/quotas and Google data-use terms apply; customer photos would be sent to Google when Gemini is selected.
+- No new PR was created because GitHub confirmed a PR already exists for this branch. Do not create duplicate PRs or repeat setup.
+
+### Required next steps
+1. Owner must add `GEMINI_API_KEY` as a Supabase Edge Function secret (never place it in GitHub source or expose its value).
+2. Before enabling it for customers, review privacy disclosures for sending uploaded part photos to Google and confirm the intended free-tier terms.
+3. Only after owner approval, deploy the function as a separate controlled step and test a non-sensitive sample image; confirm provider/model, successful response shape, quota handling, and Request a Part fallback. Do not claim live resolution before this evidence.
+4. Keep PR #91 draft/unmerged until the owner-secret and privacy gates are satisfied. Do not use paid fallback or add billing as a workaround.
+
+### Other active gates unchanged
+- Checkout/Terms PR #89 remains draft/unmerged. Current-head source checks passed at the recorded SHA, but mocked runtime Edge Function tests and isolated staging migration validation remain outstanding; do not merge or deploy it.
+- Owner APK install107 still fails on the physical Hisense M72 Pro with a generic “App wasn't installed”; the actual Package Manager `INSTALL_FAILED_...` diagnostic is required. Windows 7's current ADB binary is incompatible; use Windows-7-compatible platform-tools or a Windows 10/11 machine.
+- ASC supplier stock/catalogue reconciliation remains paused pending supplier authorisation.
+- Customer launch remains **HOLD**. No Axxess/DNS/payment changes, production migration/function deployment, live order, or catalogue/stock writes were performed in this continuation.
