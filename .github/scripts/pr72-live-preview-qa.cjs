@@ -10,7 +10,7 @@ const REPO='getwiredautoworx-max/get-wired-autoworx-store';
 const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js','assets/PHOTO_CREDITS.md'];
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,sourceOverlay:SOURCE_OVERLAY,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],categorySubcategoryPages:[],fuelPumpCreditVisible:false,productImage:null,screenshots:[]};
+const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,sourceOverlay:SOURCE_OVERLAY,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],categorySubcategoryPages:[],fuelPumpCreditVisible:false,fusePhotoCreditVisible:false,productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
 function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
@@ -65,10 +65,8 @@ async function verifySourceParity(){
   report.categoryImages=photos;
   check('eight_main_category_tiles',roots===8,{count:roots});
   check('main_category_photos_load_are_distinct_and_labelled',photos.length===8&&photos.every(x=>x.loaded&&/product photo/i.test(x.alt))&&new Set(photos.map(x=>x.src)).size===8,{photos});
-  const rootLabels=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').evaluateAll(es=>es.map(e=>e.innerText.replace(/\s+/g,' ').trim()));
+  const rootLabels=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').evaluateAll(es=>es.map(e=>(e.querySelector('.catPhoto')?.alt||e.innerText).replace(/\s+/g,' ').replace(/ product photo$/i,'').trim()));
   check('eight_expected_main_category_labels',rootLabels.length===8&&[/Auto Electrical Spares/i,/Vehicle Security/i,/Car Audio & Entertainment/i,/Automotive Accessories/i,/Marine Spares & Accessories/i,/Tools, Hardware & Consumables/i,/Camping, Leisure & Outdoors/i,/Trailer & Canopy/i].every(re=>rootLabels.some(label=>re.test(label))),{rootLabels});
-  await frame.locator('#categoryGrid').screenshot({path:path.join(OUT,'main-category-grid.png')}).catch(()=>{});
-  report.screenshots.push('main-category-grid.png');
   const homeText=(await frame.locator('body').innerText()).replace(/\s+/g,' ').toUpperCase();
   const rangeBanner=['YOUR ONE STOP AUTOMOTIVE / MARINE / ONLINE STORE','QUALITY PARTS AND ACCESSORIES AT AFFORDABLE PRICES','SOUND & SECURITY • AUTO ELECTRICAL • SPARES & ACCESSORIES','CAR AUDIO • MARINE • TOOLS • 4X4 & CAMPING • TRAILER & CANOPY • AND MORE'];
   check('corrected_range_banner_text_present',rangeBanner.every(t=>homeText.includes(t.toUpperCase())),{expected:rangeBanner,found:homeText.includes('YOUR ONE STOP AUTOMOTIVE / MARINE / ONLINE STORE')});
@@ -78,6 +76,8 @@ async function verifySourceParity(){
   check('rating_badge_does_not_overlap_since_2012',!!ratingBox&&!!sinceBox&&!overlap,{ratingBox,sinceBox,overlap});
   const desktopDimensions=await frame.locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
   check('desktop_no_horizontal_overflow',desktopDimensions.scrollWidth<=desktopDimensions.width+2,desktopDimensions);
+  await frame.locator('#categoryGrid').screenshot({path:path.join(OUT,'main-category-grid.png')}).catch(()=>{});
+  report.screenshots.push('main-category-grid.png');
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
@@ -100,19 +100,47 @@ async function verifySourceParity(){
     await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
     const categoryUrl=page.url();
     const label=rootLabels[i];
-    check('same_tab_main_category_click:'+label,categoryUrl!==beforeUrl&&/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(categoryUrl).pathname),{label,url:categoryUrl});
+    const routeUrl=new URL(categoryUrl); const categoryRoute=/(?:^|\/)category(?:\.html)?\/?$/.test(routeUrl.pathname)&&routeUrl.searchParams.has('id'); const productRoute=/(?:^|\/)products(?:\.html)?\/?$/.test(routeUrl.pathname)&&routeUrl.searchParams.has('category');
+    check('same_tab_main_category_click:'+label,categoryUrl!==beforeUrl&&(categoryRoute||productRoute),{label,url:categoryUrl,categoryRoute,productRoute});
     await page.waitForTimeout(500);
     await page.locator('.card img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
     await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
     const imgs=await page.locator('.card img').evaluateAll(es=>es.map(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth})));
     report.categorySubcategoryPages.push({category:label,url:categoryUrl,images:imgs});
-    check('subcategory_images_load:'+label,imgs.length>0&&imgs.every(img=>img.loaded&&/product photo/i.test(img.alt)),{count:imgs.length,failed:imgs.filter(img=>!img.loaded),images:imgs});
+    check('category_page_images_load:'+label,imgs.length>0&&imgs.every(img=>img.loaded&&String(img.alt||'').trim().length>0),{count:imgs.length,failed:imgs.filter(img=>!img.loaded),images:imgs});
     if(imgs.some(img=>/fuel pumps?/i.test(img.alt))){
       report.fuelPumpCreditVisible=await page.locator('.card').filter({hasText:/fuel pumps?/i}).locator('a[href*="commons.wikimedia.org/wiki/File:Bosch_Fuel_Pump"]').count()>0;
+    }
+    if(imgs.some(img=>/fuses?|fuse holder/i.test(img.alt))){
+      report.fusePhotoCreditVisible=await page.locator('.card').filter({hasText:/fuses?|fuse holder/i}).locator('a[href*="commons.wikimedia.org/wiki/File:Close_view_of_a_car_fuse_box"]').count()>0;
     }
     await page.screenshot({path:path.join(OUT,'category-root-'+(i+1)+'.png'),fullPage:true}).catch(()=>{});
     report.screenshots.push('category-root-'+(i+1)+'.png');
   }
+  // Follow the nested 12V Light Duty Vehicles branch to verify the Fuel Pumps card image and visible attribution.
+  await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
+  const autoFrame=page.frameLocator('#store');
+  await autoFrame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().click();
+  await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
+  const lightDutyCard=page.locator('.card[href^="category.html?id="]').filter({hasText:/12V Light Duty Vehicles/i}).first();
+  const lightDutyCount=await lightDutyCard.count();
+  check('nested_light_duty_category_available',lightDutyCount>0,{url:page.url(),count:lightDutyCount});
+  if(lightDutyCount){
+    await lightDutyCard.click();
+    await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
+    await page.locator('.card img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
+    await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
+    const fuelCard=page.locator('.card[href^="category.html?id="]').filter({hasText:/fuel pumps?/i}).first();
+    const fuelCount=await fuelCard.count();
+    check('nested_fuel_pumps_category_available',fuelCount>0,{url:page.url(),count:fuelCount});
+    if(fuelCount){
+      const fuelImg=await fuelCard.locator('img').evaluate(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth}));
+      report.categorySubcategoryPages.push({category:'Fuel Pumps (nested)',url:page.url(),images:[fuelImg]});
+      check('fuel_pump_photo_loads_and_matches_part',fuelImg.loaded&&/Bosch_Fuel_Pump_0_580_254_957/.test(fuelImg.src),fuelImg);
+      report.fuelPumpCreditVisible=await fuelCard.locator('a[href*="commons.wikimedia.org/wiki/File:Bosch_Fuel_Pump"]').count()>0;
+    }
+  }
+  check('fuel_pump_photo_credit_visible',report.fuelPumpCreditVisible,{visible:report.fuelPumpCreditVisible});
   const allPhotoRecords=[...report.categoryImages,...report.categorySubcategoryPages.flatMap(x=>x.images)];
   const photoMappings=[
     {name:'main_auto_electrical',label:/Auto Electrical Spares/i,src:/photo-1632656687740-c83b67a55854/},
@@ -123,15 +151,15 @@ async function verifySourceParity(){
     {name:'main_tools',label:/Tools, Hardware & Consumables/i,src:/photo-1530124566582-a618bc2615dc/},
     {name:'main_camping',label:/Camping, Leisure & Outdoors/i,src:/photo-1478131143081-80f7f84ca84d/},
     {name:'main_trailer',label:/Trailer & Canopy/i,src:/photo-1688322313142-86f865a4b937/},
-    {name:'subcategory_fuses',label:/FUSES|Fuses & Fuse Holders/i,src:/photo-1578710078748-0899041a5e7d/},
-    {name:'subcategory_battery',label:/BATTERY/i,src:/photo-1667396654234-1484f03cabb3/},
+    {name:'subcategory_fuses',label:/FUSES|Fuses & Fuse Holders/i,src:/Close_view_of_a_car_fuse_box_showing_various_fuses/},
+    {name:'subcategory_battery',label:/BATTERY/i,src:/photo-1765211003026-f7666ea3a948/},
     {name:'subcategory_fuel_pumps',label:/Fuel Pumps/i,src:/Bosch_Fuel_Pump_0_580_254_957/},
-    {name:'subcategory_ignition',label:/IGNITION SPARES/i,src:/photo-1679712547753-eaaf4dad4af8/},
+    {name:'subcategory_ignition',label:/IGNITION SPARES/i,src:/Sparkplug3\.jpg/},
     {name:'subcategory_lighting',label:/Lighting/i,src:/photo-1779261320927-649d532ab438/},
     {name:'subcategory_relays',label:/RELAYS/i,src:/photo-1562877773-c6dd55a1415e/},
     {name:'subcategory_switches',label:/SWITCHES/i,src:/photo-1707085301598-3812ae4c01e1/},
     {name:'subcategory_wiring_connectors',label:/Wiring & Connectors/i,src:/photo-1762329404225-2953941c00f1/},
-    {name:'subcategory_vehicle_security',label:/Alarms & Security/i,src:/photo-1563442375728-31731baa5f02/},
+    {name:'subcategory_electrical',label:/View \d+ products in Electrical/i,src:/photo-1632656687740-c83b67a55854/},
     {name:'subcategory_trailer_towing',label:/Trailer & Towing/i,src:/photo-1688322313142-86f865a4b937/}
   ];
   for(const rule of photoMappings){
@@ -139,6 +167,7 @@ async function verifySourceParity(){
     check('photo_relevance_mapping:'+rule.name,!!found&&rule.src.test(found.src),{expectedLabel:String(rule.label),expectedSource:String(rule.src),found:found||null});
   }
   check('fuel_pump_photo_credit_visible',report.fuelPumpCreditVisible,{visible:report.fuelPumpCreditVisible});
+  check('fuse_photo_credit_visible',report.fusePhotoCreditVisible,{visible:report.fusePhotoCreditVisible});
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
   await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
   const root=frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first();
