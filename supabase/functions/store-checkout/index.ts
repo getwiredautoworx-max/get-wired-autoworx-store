@@ -17,7 +17,7 @@ Deno.serve(async (req: Request) => {
     // Authentication is verified by Supabase Auth, not by a client-supplied user ID.
     // Never permit the service-role order RPC to be reached by an anonymous browser request.
     const authorization = req.headers.get("Authorization") || req.headers.get("authorization") || "";
-    const bearer = authorization.match(/^Bearer\\s+(.+)$/i)?.[1];
+    const bearer = authorization.match(/^Bearer\s+(.+)$/i)?.[1];
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const publicApiKey = req.headers.get("apikey") || "";
     if (!bearer || !supabaseUrl || !publicApiKey) {
