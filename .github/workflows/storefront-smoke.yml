@@ -55,6 +55,11 @@ jobs:
           grep -Fq "Price on request" index-new.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
+          grep -Fq "auth/v1/recover" checkout-v2.html
+          grep -Fq "function signOutCustomer()" checkout-v2.html
+          grep -Fq "recordCurrentConsent" checkout-v2.html
+          grep -Fq "CONSENT_REQUIRED" supabase/functions/store-checkout/index.ts
+          echo "Customer account recovery/sign-out and server-side current-consent guards are present."
           echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
       - name: Run local storefront smoke test
         run: |
