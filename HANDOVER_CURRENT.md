@@ -2425,3 +2425,40 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 3. Correct the duplicated parent/subcategory electrical image and replace the generic Trailer & Canopy image; add and verify a relevant fuel-pump image and a proper fuse image where those labels are shown. Preserve any required image-attribution/license notices.
 4. Re-run non-deploying checks and inspect real image screenshots, same-tab navigation, request-part query handoff, range banner, product detail/cart/WhatsApp actions, and mobile/desktop layout.
 5. Only after these checks pass, use the repository's permitted controlled-preview path and verify the exact deployment. Until then, no URL is owner-verified.
+
+
+## MONITOR CHECKPOINT — 2026-10-23 22:39 SAST — PR #72
+
+### Scope and safety
+- Reviewed only draft PR #72 and its branch `fix/pr70-storefront-owner-feedback-2026-10-20`, based on the approved PR #70 baseline `recovery/approved-preview-index-new`.
+- Current PR metadata: OPEN, DRAFT, UNMERGED; base `recovery/approved-preview-index-new`; head commit `d55f4ae232c98caa8005b944e8725b22e3ec6a5a`; 17 changed files. PR #68 and PR #71 were not used as a starting point.
+- No storefront/runtime code was changed in this checkpoint. Handover updates are being recorded on the isolated documentation branch `handover/pr72-monitor-2026-10-23` to avoid pushing a new PR-head commit and accidentally triggering an unplanned Cloudflare preview deployment.
+- No merge, production, Axxess/DNS, payment, supplier-data, live-stock/catalogue, or Supabase write was performed.
+
+### Current GitHub Actions evidence
+- Public SKU Exposure Audit for current head: run `40020132943`, completed SUCCESS.
+- PR 72 Storefront Interaction QA for current head: run `40020132913`, IN PROGRESS at the checkpoint.
+- Responsive layout browser acceptance for current head: run `40020132930`, IN PROGRESS at the checkpoint.
+- Older interaction QA run `39490404565` failed on an earlier PR head (`a06f9dd85fa417d457232465102725b3cf740a44`). Inline-script and navigation-bridge syntax checks passed, but Playwright timed out waiting for the homepage category grid; the iframe still displayed “Loading categories…”. The run stopped before photo, click-through, request-flow, or product/cart checks, so it provides no pass evidence for those checks.
+- The latest checked source includes topic-mapped Unsplash/Wikimedia image URLs and image attribution markup, but source mappings alone do not verify HTTP loading or visual relevance. The browser test has not yet established those properties.
+
+### Preview verification
+- Cloudflare Pages bot comment `6298513671` reports a successful deployment associated with commit prefix `d55f4ae`; however, direct browser access to the Pages host failed in this runtime, and container DNS lookup returned “Temporary failure in name resolution”.
+- A separate Cloudflare Workers build failure is recorded for commit prefix `83d50a1` in comment `6298605365`; do not conflate that Workers result with the Pages report.
+- **No preview URL is independently verified as serving the current PR #72 build. Do not share a candidate URL as verified.** No new deployment was initiated.
+
+### Exact blockers and next actions
+1. Retrieve final conclusions for runs `40020132913` and `40020132930` before treating current-head checks as complete.
+2. Repair the non-deploying Playwright test harness so it proves category data reaches the iframe and the category grid renders. Capture request/response URLs, CORS/preflight outcomes, iframe console/page errors, and the category fallback result instead of timing out with only “Loading categories…”.
+3. Re-run non-deploying checks against the exact PR #72 head: eight main categories, distinct loaded images and topic relevance (inspect screenshots, not just URL strings), representative electrical subcategory images, same-tab category and subcategory click-through, standalone part-request dialog and search-query handoff, range banner/rating spacing, product detail image/description, Add to Cart/cart badge, product-specific WhatsApp SKU query, and mobile/desktop layout.
+4. Only after those checks pass, use the single controlled preview deployment permitted by the repository workflow. Open that exact deployment and verify it serves the tested commit and that category click-through works. Then record the verified URL and final evidence.
+5. Keep PR #72 draft/unmerged and preserve all release boundaries. Do not use PR #68/#71, merge, or change production/Axxess/DNS/payments/supplier data/live stock.
+
+### Evidence links
+- PR #72: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72
+- Current interaction QA run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40020132913
+- Current responsive QA run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40020132930
+- Current SKU audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40020132943
+- Older interaction QA failure/log evidence: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39490404565
+- Pages deployment report comment: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72#issuecomment-6298513671
+- Workers build-failure report comment: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72#issuecomment-6298605365
