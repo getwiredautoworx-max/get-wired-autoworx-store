@@ -6,7 +6,10 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-Deno.serve(async (req: Request) => {
+export function createStoreCheckoutHandler(deps: { fetchImpl?: typeof fetch; getEnv?: (name: string) => string | undefined } = {}) {
+  const fetcher = deps.fetchImpl ?? fetch;
+  const getEnv = deps.getEnv ?? ((name: string) => Deno.env.get(name));
+  return async (req: Request) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (req.method !== "POST") return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
@@ -18,12 +21,12 @@ Deno.serve(async (req: Request) => {
     // Never permit the service-role order RPC to be reached by an anonymous browser request.
     const authorization = req.headers.get("Authorization") || req.headers.get("authorization") || "";
     const bearer = authorization.match(/^Bearer\s+(.+)$/i)?.[1];
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseUrl = getEnv("SUPABASE_URL");
     const publicApiKey = req.headers.get("apikey") || "";
     if (!bearer || !supabaseUrl || !publicApiKey) {
       return new Response(JSON.stringify({ error: "Sign in to your customer account before checkout.", code: "AUTH_REQUIRED" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
-    const authCheck = await fetch(supabaseUrl + "/auth/v1/user", {
+    const authCheck = await fetcher(supabaseUrl + "/auth/v1/user", {
       headers: { apikey: publicApiKey, Authorization: "Bearer " + bearer },
     });
     if (!authCheck.ok) {
@@ -46,7 +49,7 @@ Deno.serve(async (req: Request) => {
     payload.p_customer_email = authUser.email;
     let secret: string | null = null;
     let usesSecretApiKey = false;
-    const secretKeysEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
+    const secretKeysEnv = getEnv("SUPABASE_SECRET_KEYS");
     if (secretKeysEnv) {
       try {
         const parsed = JSON.parse(secretKeysEnv);
@@ -58,7 +61,7 @@ Deno.serve(async (req: Request) => {
       }
       usesSecretApiKey = Boolean(secret);
     }
-    if (!secret) secret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || null;
+    if (!secret) secret = getEnv("SUPABASE_SERVICE_ROLE_KEY") || null;
     if (!supabaseUrl || !secret) throw new Error("Checkout service is not configured.");
 
     // New sb_secret keys are sent in apikey only; legacy service-role JWTs also use Authorization.
@@ -76,7 +79,7 @@ Deno.serve(async (req: Request) => {
     consentUrl.searchParams.set("terms_version", "eq.gw-terms-2026-10-23-v1");
     consentUrl.searchParams.set("terms_sha256", "eq.7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3");
     consentUrl.searchParams.set("limit", "1");
-    const consentCheck = await fetch(consentUrl, { headers: adminHeaders });
+    const consentCheck = await fetcher(consentUrl, { headers: adminHeaders });
     if (!consentCheck.ok) throw new Error("Unable to verify current Terms acceptance. Please retry.");
     const consentRows = await consentCheck.json();
     if (!Array.isArray(consentRows) || consentRows.length === 0) {
@@ -96,12 +99,12 @@ Deno.serve(async (req: Request) => {
     customerUrl.searchParams.set("select", "id");
     customerUrl.searchParams.set("auth_user_id", "eq." + authUser.id);
     customerUrl.searchParams.set("limit", "1");
-    const customerLookup = await fetch(customerUrl, { headers: adminHeaders });
+    const customerLookup = await fetcher(customerUrl, { headers: adminHeaders });
     if (!customerLookup.ok) throw new Error("Unable to verify your customer profile. Please try again.");
     const customerRows = await customerLookup.json();
     let customerId = Array.isArray(customerRows) && customerRows.length ? customerRows[0].id : null;
     if (!customerId) {
-      const profileResponse = await fetch(supabaseUrl + "/rest/v1/customers", {
+      const profileResponse = await fetcher(supabaseUrl + "/rest/v1/customers", {
         method: "POST",
         headers: { ...adminHeaders, Prefer: "return=representation" },
         body: JSON.stringify({
@@ -113,7 +116,7 @@ Deno.serve(async (req: Request) => {
       });
       if (!profileResponse.ok) {
         // Concurrent first checkout can race to create the same linked profile; re-read before failing.
-        const retry = await fetch(customerUrl, { headers: adminHeaders });
+        const retry = await fetcher(customerUrl, { headers: adminHeaders });
         const retryRows = retry.ok ? await retry.json() : [];
         customerId = Array.isArray(retryRows) && retryRows.length ? retryRows[0].id : null;
         if (!customerId) throw new Error("Unable to create or verify your customer profile. Please try again.");
@@ -136,7 +139,7 @@ Deno.serve(async (req: Request) => {
     productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price");
     productsUrl.searchParams.set("public_sku", "in.(" + publicSkus.join(",") + ")");
     productsUrl.searchParams.set("active", "eq.true");
-    const productCheck = await fetch(productsUrl, {
+    const productCheck = await fetcher(productsUrl, {
       headers: adminHeaders,
     });
     if (!productCheck.ok) throw new Error("Unable to verify current product prices. Please try again.");
@@ -162,7 +165,7 @@ Deno.serve(async (req: Request) => {
       }), { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
+    const rpc = await fetcher(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
       method: "POST",
       headers: adminHeaders,
       body: JSON.stringify(payload),
@@ -176,4 +179,7 @@ Deno.serve(async (req: Request) => {
   } catch (error) {
     return new Response(JSON.stringify({ error: error instanceof Error ? error.message : "Checkout request failed." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
   }
-});
+  };
+}
+
+if (import.meta.main) Deno.serve(createStoreCheckoutHandler());
