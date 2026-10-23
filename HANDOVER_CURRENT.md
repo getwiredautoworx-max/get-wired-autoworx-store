@@ -1432,3 +1432,12 @@ Purpose: distinguish work completed in source from items actually verified. This
 
 ### Change boundary for this continuation
 - GitHub read-only inspection and this handover update only. No app deployment, Supabase secret/config change, SQL migration, live order, stock/catalogue write, hosting/DNS change, or payment activation.
+
+
+## CONTINUATION UPDATE — CHECKOUT METHOD-REJECTION REGRESSION (2026-10-23)
+
+- Added a third focused negative case to `supabase/functions/store-checkout/handler.test.ts` on draft PR #89 branch `feature/terms-gate-phase1`: a GET request must return HTTP 405 and must not invoke the injected fetch/network dependency. Commit: `eb914d9e498fa246392e832ce70e5d6b831c6d1e`.
+- The branch now contains the malformed-JSON, failed-profile-creation, and unsupported-method negative cases. The handler test file was re-read from the branch before editing and updated using its current blob SHA.
+- Immediately checked GitHub Actions runs for commit `eb914d9e...`; the workflow-run connector returned no runs. The earlier commit `a2694f0...` also had no associated PR-triggered runs, while the prior tested application head `c6ee2f2...` has successful runs. **Do not mark any of the new negative cases as CI-passed.** Current limitation: the GitHub integration's content-API commit did not produce an observable PR workflow run; this execution path cannot force a dispatch with the available write tools. Next step is to inspect PR #89 checks in GitHub or use an authorized Actions rerun/dispatch from the repository UI/token. Keep PR draft/unmerged until the exact expanded test commit has a green test and smoke run.
+- Handover main commit immediately preceding this note: `e451e9cb3fe5546cc8aae89dca7a8216e22eda98`; this update records the additional test and CI-trigger blocker.
+- No production function/migration, Supabase secret, live order, stock/catalogue, hosting, DNS or payment configuration was changed. Customer launch remains **HOLD**.
