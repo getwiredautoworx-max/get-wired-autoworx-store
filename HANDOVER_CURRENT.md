@@ -1099,3 +1099,24 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-23 09:12 SAST
+
+### Handover reread and current evidence
+- Read the current main-branch `HANDOVER_CURRENT.md` and rechecked the latest recorded Owner APK workflow run `39781371360`.
+- Run `39781371360` completed successfully; build, package metadata/size checks, artifact upload, and Android 13 emulator install/launch passed. Artifact `12427196766` remains unexpired, but this does not establish physical installation on the Hisense M72 Pro. The owner has reported install107 still fails with the generic “App wasn't installed”; physical acceptance remains FAILED/OPEN. Do not repeat speculative rebuilds. Windows 7's current ADB executable is incompatible; next diagnostic must use a trusted Windows-7-compatible route or on-device Package Installer/log diagnostics, without disabling required USB tethering.
+- Supplier authorisation/integration remains pending. Per owner instruction, all supplier stock, discontinued-item reconciliation, stock imports, catalogue stock cleanup and price/availability verification remain PAUSED. Do not touch live data or release settings.
+- Root-to-www redirect is owner-confirmed working. Do not repeat DNS troubleshooting or upload to Axxess without explicit approval and a verified package/backup.
+
+### Newly confirmed storefront requirements from owner conversation
+- On initial storefront visit, show the Terms & Conditions dialogue before normal store interaction. Customer may browse after accepting, but purchasing/checkout must remain blocked until the customer logs in.
+- The acceptance and login design must be implemented as an auditable, secure customer flow—not merely a client-side button or localStorage flag presented as proof. Define how consent version, timestamp, customer identity, and acceptance evidence are stored and retrieved, and ensure the server-side checkout/order boundary enforces authentication and accepted current terms.
+- Preserve the approved storefront design and existing working routes. Build and test GitHub-first on an isolated branch/PR; do not deploy, upload to Axxess, enable payments, create real orders, or modify production/Supabase data without explicit approval.
+- Acceptance tests must cover first visit, accept/decline behavior, browsing while logged out, attempts to add/checkout/buy while logged out, successful login, returning customer, updated terms requiring renewed acceptance, and tampered client-side state. Do not mark complete until automated tests demonstrate these behaviors.
+
+### Immediate next task
+- Inspect current authentication, consent/policy pages, cart/checkout paths, and available database schema before coding. Design the minimum safe implementation and isolated tests; keep production changes out of scope. Keep the customer-launch status HOLD until the implementation and security tests pass and owner approves deployment.
+
+### Changes made in this checkpoint
+- Handover review and workflow evidence check only. No storefront source, APK, Axxess, DNS, Supabase, live catalogue/stock, payment configuration, or production settings changed.
