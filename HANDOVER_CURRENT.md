@@ -1180,3 +1180,28 @@ Purpose: distinguish work completed in source from items actually verified. This
 - Do not apply the migration or deploy Edge Functions to production, change Axxess/DNS/payment settings, upload a package, edit supplier-dependent catalogue/stock, or launch customer checkout without explicit release approval.
 - Do not mark Terms acceptance, authenticated purchasing, APK installation, or live checkout as complete based solely on source edits or an older successful workflow.
 
+
+## CONTINUATION UPDATE — 2026-10-23 (security regression suite + modal stacking fix)
+
+### Source changes committed to draft PR #89
+- Commit `ec4643771fe545ca6316e1971f05d7b107e35208`: corrected a SQL syntax defect by adding the missing semicolon after the `create_store_order_v2` function body. Added a partial unique index on `customers(auth_user_id)` for non-null IDs to prevent duplicate linked customer profiles. Read-only check of the live DB showed no duplicate non-null auth_user_id groups at check time. Migration remains unapplied.
+- Commit `37c142eab6f3eedb46b60fe255fe281c152c01f3`: added `tests/checkout-security.test.cjs` with isolated Node regression assertions for Bearer parsing, auth/consent/customer/RPC guard order, rejecting browser-supplied customer IDs, immutable versioned Terms evidence, and service-role-only RPC grants.
+- Commit `bd5b5c9c5d822f091d3d5dfb7645fd8acba402a9`: added the new regression test file to the storefront smoke workflow using `node --test tests/checkout-security.test.cjs`.
+- Commit `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`: raised the product modal z-index from 100 to 1000 so floating mobile navigation/PWA controls cannot visually stack above the modal and intercept clicks. This is a source-level fix; browser verification is still required.
+
+### Verification status and limitations
+- Latest observed PR #89 head is `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`, still draft/unmerged.
+- No GitHub Actions run was returned for the latest head after these commits. Existing successful Storefront Smoke Test run `39923781779` is from older SHA `c705e7c3`; it does not validate these changes. The GitHub integration available in this session does not expose a workflow-dispatch operation, and the commit operations did not create a new Actions run. Do not claim tests passed.
+- The regression test file and workflow wiring are committed, but the test suite has not been executed in this session because no current-head Actions run or local checkout/network access was available. The SQL migration has not been applied or tested in a staging database.
+- Existing live Supabase checks were read-only: `customers.auth_user_id` had no declared unique constraint before this draft migration, and no duplicate linked auth IDs were found in the queried rows. The new partial unique index is intended to enforce one linked profile per Auth user after staging review.
+
+### Still open — do not mark resolved
+1. Obtain an actual completed current-head CI run and fix any failures (Deno check, Node regression suite, browser smoke, terms/hash checks). Do not rely on old SHA results.
+2. Inspect the complete browser smoke logs after the modal z-index change; verify product-detail ADD TO CART, mobile navigation, PWA install control, Terms modal, Part Search, Request a Part and route checks pass.
+3. Execute the migration in an isolated staging project only after review; verify SQL syntax, uniqueness index creation, RPC grants/signature and order/customer linkage. Do not run real orders or stock-decrement tests against production.
+4. Strengthen tests to exercise the Edge Function with mocked Auth/REST responses (not just static source assertions): no token, invalid token, missing/stale consent, profile lookup/create and failure branches, malformed payload, no RPC call on rejected requests, and no stock mutation.
+5. Physical Hisense M72 Pro APK install diagnosis remains pending. No new physical-device evidence.
+
+### Release gates unchanged
+- PR #89 stays draft/unmerged; production database migrations and Edge Function deployments are prohibited until current-head checks, staging validation and explicit owner release approval.
+- No Axxess upload, DNS changes, payment activation, supplier-dependent stock/catalogue work, or customer launch.
