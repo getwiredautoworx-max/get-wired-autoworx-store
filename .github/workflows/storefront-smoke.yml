@@ -288,6 +288,10 @@ jobs:
             requestPage.on('pageerror', e => console.log('[request-pageerror] '+e.message));
             await requestPage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             const requestFrame = requestPage.frameLocator('#store');
+            await requestFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await requestFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
+            await requestFrame.locator('#gwTermsAccept').click();
+            await requestFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await requestFrame.locator('button.primaryAction').waitFor({timeout:15000});
             await requestFrame.locator('button.primaryAction').click();
             await requestFrame.locator('#sourcePart.open').waitFor({timeout:10000});
