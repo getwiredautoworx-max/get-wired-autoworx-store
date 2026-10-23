@@ -155,7 +155,7 @@ async function verifySourceParity(){
   const q=page.locator('#queryPart');
   const qHref=await q.getAttribute('href')||'';
   const skuText=await page.locator('.sku').innerText().catch(()=> '');
-  const sku=skuText.replace(/^SKU:\\s*/i,'').trim();
+  const sku=skuText.replace(/^SKU:/i,'').trim();
   const waMessage=qHref?new URL(qHref).searchParams.get('text')||'':'';
   check('query_part_button_has_product_whatsapp_link',await q.isVisible()&&qHref.startsWith('https://wa.me/')&&!!sku&&waMessage.includes(sku),{href:qHref,sku,waMessage});
   const addText=await page.locator('#add').innerText();
