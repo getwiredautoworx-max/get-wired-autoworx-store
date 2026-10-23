@@ -104,7 +104,6 @@ Deno.serve(async (req: Request) => {
     }
 
     // Current-version Terms & Conditions acceptance is checked server-side before any order RPC.
-    const termsVersion = Deno.env.get("STORE_TERMS_VERSION") || "GW-TERMS-2026-10-23-v1";
     const consentUrl = new URL(supabaseUrl + "/rest/v1/store_terms_acceptances");
     consentUrl.searchParams.set("select", "id");
     consentUrl.searchParams.set("user_id", "eq." + authenticatedUser.id);
