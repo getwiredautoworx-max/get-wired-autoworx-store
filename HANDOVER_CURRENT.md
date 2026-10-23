@@ -1,3 +1,10 @@
+## PWA INSTALL-CONTROL OVERLAY FIX — 2026-10-23
+
+- Smoke run `39923461690` passed account/password-reset UI tests and Deno/static checks but failed on the Request a Part click: the always-visible floating PWA install button covered controls inside the embedded storefront frame. The failure trace identified the overlay directly.
+- Fixed by showing the PWA install button only when the browser emits `beforeinstallprompt`; removed the headless-browser assertion that an install prompt must appear, because that event is browser/platform dependent. Manifest, icon, service-worker registration and offline checkout safety remain tested. Commits `690189809124e13730e1ddd9840b191b630ba29c` and `dcc587f8a33afcc2b55eb046a5e6a0ffc18079df`.
+- Next smoke run must confirm Request a Part no longer gets covered and PWA offline checkout returns the explicit offline page. No production changes.
+
+---
 ## CONSENT INSERT PERMISSION — 2026-10-23
 
 - Added explicit `GRANT SELECT, INSERT ... TO service_role` to the acceptance migration. This removes reliance on project default table grants for the server-side consent recorder; no update/delete grant is provided, and the immutable trigger remains. Added a CI source assertion for the grant.
