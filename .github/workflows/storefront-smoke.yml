@@ -31,6 +31,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Set up Deno for Edge Function type-check
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check checkout Edge Function
+        run: deno check supabase/functions/store-checkout/index.ts
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
@@ -73,6 +79,15 @@ jobs:
             } catch (e) {
               const diag = await frame.locator('body').innerText().catch(()=>'<frame unavailable>');
               throw new Error('Category grid did not render within 60s. Frame text: '+diag.slice(0,1000));
+            }
+            // Accept the terms gate in this disposable local browser before testing store interactions.
+            // The consent dialog is in the outer store.html shell, not inside iframe#store.
+            const localTermsGate = page.locator('#gwTermsGate');
+            if (await localTermsGate.count() && await localTermsGate.isVisible()) {
+              await page.locator('#gwTermsAcceptCheck').check();
+              await page.locator('#gwTermsAcceptButton').click();
+              await localTermsGate.waitFor({state:'hidden', timeout:10000});
+              console.log('LOCAL_TERMS_GATE_ACCEPTED_FOR_TEST');
             }
             // Exercise the standalone category-navigation route as well as the embedded homepage.
             const categoryPage = await browser.newPage({viewport:{width:390,height:844}});
@@ -196,8 +211,24 @@ jobs:
             await page.locator('#checkout').waitFor({timeout:10000});
             await page.locator('#checkout').click({force:true});
             await page.waitForURL('**/checkout-v2.html');
-            await page.locator('#name').waitFor({timeout:10000});
-            await page.locator('#phone').waitFor({timeout:10000});
+
+            // Verify checkout is blocked before sign-in, then use a synthetic session and mocked consent endpoints.
+            await page.locator('#accountGate').waitFor({timeout:10000});
+            if (await page.locator('#checkout').isVisible()) throw new Error('Checkout form must remain hidden until a customer signs in and accepts current terms');
+            if (!(await page.locator('#accountEmail').isVisible()) || !(await page.locator('#accountPassword').isVisible())) throw new Error('Customer sign-in form is not visible before checkout');
+            await page.route('**/auth/v1/user', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({id:'smoke-customer',email:'smoke@example.test'})}));
+            await page.route('**/rest/v1/store_terms_acceptances*', route => route.fulfill({status:200,contentType:'application/json',body:'[]'}));
+            await page.route('**/functions/v1/store-checkout', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,terms_version:'GW-TERMS-2026-10-23-v1'})}));
+            await page.evaluate(() => {
+              localStorage.removeItem('gw_terms_accepted_version');
+              localStorage.setItem('gw_customer_session', JSON.stringify({access_token:'smoke-test-token',refresh_token:'smoke-test-refresh',expires_at:Date.now()+3600000}));
+            });
+            await page.reload({waitUntil:'domcontentloaded'});
+            await page.locator('#consentPanel:not(.hidden)').waitFor({timeout:10000});
+            await page.locator('#consentCheck').check();
+            await page.locator('#consentContinue').click();
+            await page.locator('#name').waitFor({state:'visible',timeout:15000});
+            await page.locator('#phone').waitFor({state:'visible',timeout:10000});
             await page.locator('#deliverySummary').waitFor({timeout:10000});
             const delivery = await page.locator('#deliverySummary').textContent();
             if (!delivery || !delivery.includes('To be quoted')) throw new Error('Delivery must remain quoted separately until a delivery quote is selected');
@@ -232,6 +263,13 @@ jobs:
             const requestPage = await browser.newPage({viewport:{width:390,height:844}});
             requestPage.on('pageerror', e => console.log('[request-pageerror] '+e.message));
             await requestPage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
+            // Every fresh browser context must independently accept the outer store shell's terms gate.
+            const requestTermsGate = requestPage.locator('#gwTermsGate');
+            if (await requestTermsGate.count() && await requestTermsGate.isVisible()) {
+              await requestPage.locator('#gwTermsAcceptCheck').check();
+              await requestPage.locator('#gwTermsAcceptButton').click();
+              await requestTermsGate.waitFor({state:'hidden',timeout:10000});
+            }
             const requestFrame = requestPage.frameLocator('#store');
             await requestFrame.locator('button.primaryAction').waitFor({timeout:15000});
             await requestFrame.locator('button.primaryAction').click();
@@ -244,6 +282,11 @@ jobs:
             const earlySearchPage = await browser.newPage({viewport:{width:390,height:844}});
             earlySearchPage.on('pageerror', e => console.log('[early-search-pageerror] '+e.message));
             await earlySearchPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
+            const earlySearchGate = earlySearchPage.locator('#gwTermsGate');
+            await earlySearchGate.waitFor({state:'visible',timeout:15000});
+            await earlySearchPage.locator('#gwTermsAcceptCheck').check();
+            await earlySearchPage.locator('#gwTermsAcceptButton').click();
+            await earlySearchGate.waitFor({state:'hidden',timeout:10000});
             const earlySearchFrame = earlySearchPage.frameLocator('#store');
             await earlySearchFrame.locator('button.headerPartSearch').waitFor({state:'visible',timeout:15000});
             await earlySearchFrame.locator('button.headerPartSearch').click();
@@ -255,6 +298,11 @@ jobs:
             const earlyRequestPage = await browser.newPage({viewport:{width:390,height:844}});
             earlyRequestPage.on('pageerror', e => console.log('[early-request-pageerror] '+e.message));
             await earlyRequestPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
+            const earlyRequestGate = earlyRequestPage.locator('#gwTermsGate');
+            await earlyRequestGate.waitFor({state:'visible',timeout:15000});
+            await earlyRequestPage.locator('#gwTermsAcceptCheck').check();
+            await earlyRequestPage.locator('#gwTermsAcceptButton').click();
+            await earlyRequestGate.waitFor({state:'hidden',timeout:10000});
             const earlyRequestFrame = earlyRequestPage.frameLocator('#store');
             await earlyRequestFrame.locator('button.primaryAction').waitFor({state:'visible',timeout:15000});
             await earlyRequestFrame.locator('button.primaryAction').click();
@@ -301,6 +349,16 @@ jobs:
               const publicFrame = publicPage.frameLocator('iframe#store');
               await publicFrame.locator('button.headerPartSearch').waitFor({timeout:30000});
               await publicFrame.locator('#categoryGrid .catWrap').first().waitFor({timeout:45000});
+              // The storefront now correctly blocks interaction until Terms & Conditions are accepted.
+              // Accept only in this disposable browser context so smoke QA can test the browsing UI.
+              // The consent dialog belongs to the outer public page; product UI is inside iframe#store.
+              const termsGate = publicPage.locator('#gwTermsGate');
+              if (await termsGate.count() && await termsGate.isVisible()) {
+                await publicPage.locator('#gwTermsAcceptCheck').check();
+                await publicPage.locator('#gwTermsAcceptButton').click();
+                await termsGate.waitFor({state:'hidden', timeout:10000});
+                console.log('PUBLIC_TERMS_GATE_ACCEPTED_FOR_TEST');
+              }
               const categoryCount = await publicFrame.locator('#categoryGrid > .catWrap').count();
               if (categoryCount < 1) throw new Error('Public homepage category grid did not populate');
               console.log('PUBLIC_CATEGORY_GRID_PASS count='+categoryCount);
