@@ -76,6 +76,11 @@ jobs:
           grep -Fq "customer_terms_acceptances" supabase/functions/store-checkout/index.ts
           grep -Fq "prevent_terms_acceptance_mutation" supabase/migrations/20261023090000_customer_terms_acceptances.sql
           grep -Fq "CUSTOMER_ACCOUNT_UI_PASS" .github/workflows/storefront-smoke.yml
+          grep -Fq "CUSTOMER_PASSWORD_RESET_UI_PASS" .github/workflows/storefront-smoke.yml
+          grep -Fq 'rel="manifest" href="manifest.webmanifest"' store.html
+          grep -Fq "navigator.serviceWorker.register('/sw.js')" store.html
+          grep -Fq "NETWORK_ONLY_PAGES" sw.js
+          grep -Fq "terms-and-conditions.html returns-refunds.html | sha256sum" .github/workflows/storefront-smoke.yml
           grep -Fq "TERMS_GATE_BEHAVIOR_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
@@ -431,6 +436,26 @@ jobs:
                 await routePage.close();
               }
             }
+            // PWA install shell and safe offline fallback. Keep this last because offline mode affects the context.
+            const pwaPage = await browser.newPage({viewport:{width:390,height:844}});
+            await pwaPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'domcontentloaded'});
+            const manifestResponse = await pwaPage.request.get('http://127.0.0.1:4173/manifest.webmanifest');
+            if (!manifestResponse.ok()) throw new Error('PWA manifest did not load');
+            const manifest = await manifestResponse.json();
+            if (manifest.start_url !== '/store.html' || manifest.display !== 'standalone' || !manifest.icons?.length) throw new Error('PWA manifest fields are incomplete');
+            const iconResponse = await pwaPage.request.get('http://127.0.0.1:4173/assets/pwa-icon.svg');
+            if (!iconResponse.ok()) throw new Error('PWA icon did not load');
+            await pwaPage.waitForFunction(() => !!navigator.serviceWorker && !!navigator.serviceWorker.controller, null, {timeout:15000}).catch(async () => {
+              await pwaPage.reload({waitUntil:'domcontentloaded'});
+              await pwaPage.waitForFunction(() => !!navigator.serviceWorker && !!navigator.serviceWorker.controller, null, {timeout:15000});
+            });
+            console.log('PWA_INSTALL_SHELL_PASS manifest/icon/service-worker');
+            await pwaPage.context().setOffline(true);
+            await pwaPage.goto('http://127.0.0.1:4173/checkout-v2.html', {waitUntil:'domcontentloaded'});
+            if (!(await pwaPage.locator('body').innerText()).includes('offline')) throw new Error('PWA offline fallback did not block checkout and explain connectivity');
+            await pwaPage.context().setOffline(false);
+            console.log('PWA_OFFLINE_SAFETY_PASS checkout not cached for offline ordering');
+            await pwaPage.close();
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
