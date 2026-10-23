@@ -1,3 +1,25 @@
+## CUSTOMER ACCESS + TERMS ENFORCEMENT WORK — 2026-10-23 (GitHub-only)
+
+### Implemented on isolated branch; awaiting full verification
+- Customer account page `account.html` added: Supabase Auth email/password sign-in, account creation, password recovery, and sign-out; customer session is stored in per-tab `sessionStorage`. UI modes covered by a new Playwright smoke test; no real credentials/accounts are used by CI.
+- Storefront header/navigation links to My Account.
+- Checkout redirects to `account.html?return=checkout` if no valid stored customer access token is present and passes the bearer token to the Edge Function.
+- `supabase/functions/store-checkout/index.ts` now validates the bearer token against Supabase Auth, derives the order email from the verified account, and rejects checkout unless a durable current-version acceptance row exists. The existing verified-price checks and service-role RPC flow remain in place.
+- Added `supabase/migrations/20261023090000_customer_terms_acceptances.sql`: customer-owned SELECT policy, server-only writes, unique user/version evidence, database-generated timestamp, and a trigger preventing update/delete.
+- Added `supabase/functions/record-terms-acceptance/index.ts`: verifies the Supabase Auth bearer token and records acceptance via server-side credentials. Checkout UI now requires an explicit current-policy checkbox and calls this endpoint before attempting order creation. A failed consent-recording call prevents order submission.
+- Smoke suite now includes account UI-mode tests and static assertions for auth/consent protections. It also explicitly accepts the UI-only Terms gate in every isolated Playwright browser context.
+- Key commits: account page `2ca7eb5`; storefront account link `07ccfee`; checkout session gate `fcc4934`; account return-to-checkout `2619f64`; durable evidence migration `7636f3b`; consent Edge Function `aeb0509`; server-side consent enforcement `a756d07`; checkout consent UI `e0f7348`; account smoke test `0701cf2`; security smoke assertions `c21689f`; final static assertion correction `28f9779`. Branch: `feature/terms-gate-phase1`; draft PR #89 remains unmerged.
+
+### Verification status at this checkpoint
+- Public SKU Exposure Audit for commit `0701cf2` passed: run `39920979873`.
+- Current latest smoke run `39920998817` is in progress for commit `c21689f`; do not mark green until the job and all steps complete. Earlier smoke run `39919739607` failed because a separate browser context did not accept the Terms gate; the first attempted correction did not persist into the workflow file and a second explicit correction was committed as `a7dd8e8`. This history is recorded to avoid repeating the same diagnosis.
+- Axxess package workflow may build from this branch, but no package is to be uploaded and no production deployment is authorised.
+- The consent migration and both changed Edge Functions are code-only changes in the PR; none have been applied/deployed to the live Supabase project. Current live checkout is unchanged. Because the schema/function changes are not deployed, this PR branch's checkout will intentionally fail closed if tested against the current live backend. Do not merge/deploy until the migration and functions are reviewed and tested in an isolated Supabase environment.
+- Remaining verification gaps: verify migration/trigger/RLS behavior in isolated Postgres; Deno type-check both Edge Functions; add mocked negative tests for missing/expired/forged auth, missing/stale consent and no order RPC invocation; add account session refresh/expiry handling and ensure password recovery redirects are correct; validate policy-version lifecycle. The acceptance row currently binds a version and policy URL but does not yet store a cryptographic hash of the exact policy document. Do not claim hash-backed consent until that is added and tested.
+- Current target is a 90% build verification within 12 hours, not a guarantee. Remaining 10% must include critical auth/consent security, browser regression, responsive checks, isolated backend tests and explicit owner approval before production changes. Customer launch remains HOLD.
+- No production database, Edge Function, hosting, DNS, payment, catalogue, supplier stock or Axxess state was changed.
+
+---
 ## CONTINUATION UPDATE — 2026-10-23 10:00 SAST (GitHub-only)
 
 - Owner target: verify a 90% store build within the next 12 hours. Treat this as a work target, not a guarantee or a reason to bypass release gates. Continue in isolated GitHub branch/PR; no production deployment, merge, Axxess/DNS, payments, live database changes, or supplier/catalogue/stock work.
