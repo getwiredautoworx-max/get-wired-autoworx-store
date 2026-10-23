@@ -1497,3 +1497,24 @@ Purpose: distinguish work completed in source from items actually verified. This
 6. Continue GitHub-first; no Axxess upload, DNS/hosting/payment change, production migration/deploy, or supplier stock/catalogue work. ASC stock reconciliation remains PAUSED pending authorization. Customer launch remains **HOLD**.
 
 Handover update based on current blob SHA `1c94d44815bea2783e230d9e98a323a36f3b4a39`; this note records evidence and estimated readiness without representing blocked owner actions as completed.
+
+
+## CURRENT CHECKOUT RELEASE GATES — VERIFIED STATUS (2026-10-23 10:56 SAST)
+
+### Completed and evidence-backed
+- Current checkout source (latest app logic commit `b149f067d1948ca498bd1bed84447a0fe218c0f8`; PR head `d494905479b54e00e66258ae5784c209a557e56e` only removes the handover file from PR diff) has **11/11 mocked Deno handler tests passing**, Deno type-check passing, and existing Node source assertions passing: [run 39927770245](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927770245).
+- Full local storefront smoke **passed** at tested app source: [run 39927770248](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927770248). Log includes Terms gate, account UI/recovery, 8 main categories/12 Auto Electrical options, exact-SKU image fallback, metadata leak guard, Request a Part dialog, 320/390/768/1365 responsive widths, PWA shell/offline safety and `STOREFRONT_SMOKE_PASS`.
+- Package build [run 39927770269](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927770269) and exposure audit [run 39927770249](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927770249) passed. No package was uploaded to Axxess.
+- Cloudflare Pages preview [check](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/runs/120329049963) passed. PR #89 is reported mergeable by GitHub (`mergeable: true`, state `unstable`) and remains draft. Recurring handover conflict was resolved by keeping handover updates on main only; PR #89's handover file now matches its original base and is no longer in the diff.
+- No-cost image search provider PR #91: [Deno/provider tests](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588653) and [storefront smoke](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551) passed. Live Gemini secret/provider has not been configured or tested.
+
+### Still blocked / not verified
+1. **Cloudflare Workers Builds:** latest separate check failed [here](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/runs/120328880997), while Pages passed. The available GitHub integration does not expose the Cloudflare build log. Need the actual Cloudflare dashboard failure text before changing build settings; do not change production Worker config based on guesses.
+2. **Supabase staging:** both checkout/Terms SQL migrations are source-only and not applied. Need an isolated staging database to validate schema, grants/RLS, customer unique index and RPC behavior. No live production database writes or function deployment were made.
+3. **Real authenticated checkout:** tests use mocked Auth/Terms/customer/products/RPC responses. No real order was submitted and no production stock was decremented.
+4. **Image search:** confirmed OpenAI quota exhaustion is handled in source; the no-cost Gemini route needs owner-created `GEMINI_API_KEY`, privacy review and explicit deployment approval before a real image can be tested.
+5. **APK:** physical Hisense M72 Pro install remains unresolved; Windows 7 ADB compatibility path is recorded above. Need actual Package Manager `INSTALL_FAILED_*` reason via compatible adb or a modern computer. PWA checks pass and remain fallback.
+6. **ASC supplier data:** stock/price/catalogue work remains paused until ASC authorisation; no stock import/reconciliation performed.
+
+### Release decision
+- **Customer launch remains HOLD.** Do not merge PR #89 or #91 yet; both remain draft pending staging/release gates and owner approval. Do not deploy Supabase functions/migrations, submit real orders, upload to Axxess, change DNS/payment, or alter supplier stock/catalogue. The source-level and local browser test gates are now substantially stronger, but they are not a substitute for staging integration and owner acceptance.
