@@ -13,7 +13,7 @@ Deno.serve(async (req: Request) => {
   try {
     // Reject anonymous requests before parsing or trusting any customer-supplied identity.
     const authorization = req.headers.get("authorization") || "";
-    const bearer = authorization.match(/^Bearer\\s+(.+)$/i)?.[1];
+    const bearer = authorization.match(/^Bearer\s+(.+)$/i)?.[1];
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const publicApiKey = Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ||
       Deno.env.get("SUPABASE_ANON_KEY") || req.headers.get("apikey");
