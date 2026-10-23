@@ -1383,3 +1383,14 @@ Purpose: distinguish work completed in source from items actually verified. This
 - Covered: missing bearer rejected before any network request; invalid Auth session never reaches consent/customer/order; missing current Terms acceptance blocks before profile/order RPC; quote-required price blocks before order RPC; valid mocked checkout ignores browser `p_customer_id`, binds to the server-linked customer ID, and derives order email from verified Auth identity.
 - The test handler uses injected fetch/env dependencies; tests make no real network/database calls. The `createStoreCheckoutHandler` source refactor has type-checked successfully. This is strong source-level/runtime-mock evidence, not a live Supabase staging or real-order test.
 - Current full Storefront Smoke Test [run 39927120301](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927120301) is still in progress at this note; await its final outcome before marking the full PR checks complete.
+
+
+## CHECKOUT HANDLER RUNTIME-MOCK COVERAGE — FULL CURRENT-HEAD CI PASS (2026-10-23 10:50 SAST)
+
+- Exact source head tested: `c6ee2f27f0d913afb5ff7dd4b1ec6e804646c053` on draft PR #89.
+- [Checkout Handler Security Tests #39927120315](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927120315) **passed**: source assertions, Deno type-check, and 5/5 mocked handler tests.
+- [Storefront Smoke Test #39927120301](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927120301) **passed**: checkout/Terms Deno checks, 5/5 Node source assertions, 5/5 mocked handler tests, Terms document hashes, verified-price gates, Playwright browser smoke and responsive/PWA checks.
+- [Package build #39927120360](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927120360) and [Public SKU Exposure Audit #39927120332](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927120332) **passed**.
+- [Cloudflare Pages](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/runs/120326490805) **passed**; the separate [Cloudflare Workers Builds check](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/runs/120326485167) **failed** again. This is a separate provider/build integration failure, not a checkout test failure; the current connector does not expose its build logs.
+- This closes the prior missing CI evidence and missing mocked-handler-test gates for the current application source. It does **not** close live Supabase integration/staging migration validation or device acceptance. The checkout refactor is source-only, tested in mocks, and remains unmerged/un-deployed.
+- PR #89 is still draft and must remain so until both SQL migrations are reviewed/tested in isolated staging, release/owner approval is obtained, and branch handover synchronization/mergeability is verified. No production database/function changes were made.
