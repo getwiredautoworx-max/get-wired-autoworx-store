@@ -1803,3 +1803,19 @@ Run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-sto
 
 ### Safety / change boundary
 No Axxess, DNS, production Supabase schema/data/secrets, payment activation, supplier catalogue, or customer-launch changes were performed during this sweep. Cloudflare Pages preview status is evidence only, not authorization to deploy to production.
+
+
+## UPLOADED `index-new.html` VERIFICATION — 2026-10-23 16:42 SAST
+
+### Checks completed
+- Inspected the owner-uploaded `/mnt/data/index-new.html` (178,787 bytes; 1,333 lines).
+- Extracted all five inline script blocks and ran `node --check` on every non-empty block: all four non-empty blocks passed syntax validation.
+- Confirmed the uploaded file contains the Part Search dialog and defines `window.openPartSearch` in a separate inline script block; the header and Find a Part category buttons still use bare inline calls such as `onclick="openPartSearch()"`.
+- Read-only checked current `main` source: `store.html` embeds `index-new.html` in `iframe#store`; current `main/index-new.html` has the same relevant handler pattern.
+- This validates local JavaScript syntax and the intended handler's presence only. It does **not** prove the live Axxess-served file matches this upload, that earlier scripts do not throw at runtime, or that Part Search opens in a real browser. The live smoke result in run 39958304900 remains a confirmed failure: `ReferenceError: openPartSearch is not defined`; Request a Part was not reached.
+
+### Diagnosis / next safe action
+- The observed failure is consistent with the live served document/runtime not exposing the expected handler, but source inspection alone does not prove the exact cause. The uploaded source itself uses a window-qualified assignment but bare inline invocations; a defensive source change to `window.openPartSearch()` (and equivalent explicit qualification for related inline handlers) is a reasonable isolated candidate, not yet a verified fix.
+- Next: make a minimal change on a dedicated GitHub branch/PR, run the existing staging/local browser smoke by clicking the actual button (do not call the handler directly), and verify Request a Part as a separate click. Keep it unmerged until review.
+- For the live domain, first obtain owner approval for a backup-and-repair of the Axxess file, then compare the served file, back it up, apply only the approved minimal file change, and rerun the public live smoke. No Axxess upload, DNS change, deployment, or production edit was made in this session.
+- Current in-store stock remains test data only. No stock, prices, categories, active flags, supplier imports/reconciliation, checkout/payment settings, or production database were changed. Customer launch remains **HOLD**.
