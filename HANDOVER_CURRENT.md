@@ -1329,3 +1329,10 @@ Purpose: distinguish work completed in source from items actually verified. This
 - **Resolved in source/tests:** the function can use Gemini free-tier vision when `GEMINI_API_KEY` is configured; test evidence proves the adapter sends image data to Gemini and does not call OpenAI if Gemini returns HTTP 429. Existing OpenAI support remains available only when Gemini is not configured. This is not yet a live provider test.
 - **Owner-only remaining actions:** create a Gemini Developer API key in Google AI Studio, add it in Supabase Edge Function secrets as `GEMINI_API_KEY`, review customer-photo/privacy wording, and explicitly approve a controlled Edge Function deployment/test. Do not paste the key into chat or source. Do not enable paid OpenAI fallback by default.
 - PR #91 stays draft/unmerged and the deployed `part-image-search` function remains unchanged until the owner key, privacy review and deployment approval are ready.
+
+
+## TASK START — MOCKED CHECKOUT HANDLER TESTS (2026-10-23)
+
+- Source-level CI for PR #89 is green, but the five Node tests are static source assertions only. They do not execute the checkout handler against mocked Auth, Terms, customer-profile, price, or RPC responses.
+- Next isolated change on `feature/terms-gate-phase1`: make the handler injectable/testable without network or database writes, then add Deno tests proving invalid/missing auth, missing/stale consent, malformed payload, quote-required price and customer lookup/create failures never call the order RPC; prove a valid test request ignores a browser-supplied customer ID and passes the server-linked profile ID.
+- All fetches in these tests must be mocked. No live orders, stock updates, production migration, Edge Function deployment or staging-project creation. This change will remain draft until Deno type-check, Node source assertions and browser smoke all pass.
