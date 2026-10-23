@@ -174,3 +174,20 @@ Deno.test("failed customer profile creation never reaches the order RPC", async 
   assert(urls.some(u => u.includes("/rest/v1/customers") && !u.includes("select=id")), "Customer profile creation should be attempted");
   assert(!urls.some(u => u.includes("/rpc/create_store_order_v2")), "Profile failure must never reach order RPC");
 });
+
+Deno.test("verified Auth identity without an email is rejected before consent or order work", async () => {
+  const urls: string[] = [];
+  const handler = createStoreCheckoutHandler({
+    getEnv: env,
+    fetchImpl: async (url) => {
+      urls.push(String(url));
+      return json({ id: "auth-user-without-email" });
+    },
+  });
+  const response = await handler(new Request("https://local.test/checkout", {
+    method: "POST", headers: authHeaders(), body: JSON.stringify(baseOrder()),
+  }));
+  const payload = await response.json();
+  assert(response.status === 401 && payload.code === "AUTH_REQUIRED", "Auth identity without email must be rejected");
+  assert(urls.length === 1 && urls[0].includes("/auth/v1/user"), "No consent, profile, product, or order request may follow missing Auth email");
+});
