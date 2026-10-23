@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS public.customer_terms_acceptances (
 ALTER TABLE public.customer_terms_acceptances ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON TABLE public.customer_terms_acceptances FROM anon, authenticated;
 GRANT SELECT ON TABLE public.customer_terms_acceptances TO authenticated;
+GRANT SELECT, INSERT ON TABLE public.customer_terms_acceptances TO service_role;
 CREATE POLICY "customers_read_own_terms_acceptances"
   ON public.customer_terms_acceptances
   FOR SELECT TO authenticated
