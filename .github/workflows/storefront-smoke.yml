@@ -301,6 +301,15 @@ jobs:
               const publicFrame = publicPage.frameLocator('iframe#store');
               await publicFrame.locator('button.headerPartSearch').waitFor({timeout:30000});
               await publicFrame.locator('#categoryGrid .catWrap').first().waitFor({timeout:45000});
+              // The storefront now correctly blocks interaction until Terms & Conditions are accepted.
+              // Accept only in this disposable browser context so smoke QA can test the browsing UI.
+              const termsGate = publicFrame.locator('#gwTermsGate');
+              if (await termsGate.count() && await termsGate.isVisible()) {
+                await publicFrame.locator('#gwTermsAcceptCheck').check();
+                await publicFrame.locator('#gwTermsAcceptButton').click();
+                await termsGate.waitFor({state:'hidden', timeout:10000});
+                console.log('PUBLIC_TERMS_GATE_ACCEPTED_FOR_TEST');
+              }
               const categoryCount = await publicFrame.locator('#categoryGrid > .catWrap').count();
               if (categoryCount < 1) throw new Error('Public homepage category grid did not populate');
               console.log('PUBLIC_CATEGORY_GRID_PASS count='+categoryCount);
