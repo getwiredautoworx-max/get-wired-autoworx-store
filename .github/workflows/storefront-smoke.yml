@@ -452,7 +452,8 @@ jobs:
             console.log('PWA_INSTALL_SHELL_PASS manifest/icon/service-worker');
             await pwaPage.context().setOffline(true);
             await pwaPage.goto('http://127.0.0.1:4173/checkout-v2.html', {waitUntil:'domcontentloaded'});
-            if (!(await pwaPage.locator('body').innerText()).includes('offline')) throw new Error('PWA offline fallback did not block checkout and explain connectivity');
+            const offlineText = await pwaPage.locator('body').innerText();
+            if (!offlineText.toLowerCase().includes('offline')) throw new Error('PWA offline fallback did not block checkout. URL='+pwaPage.url()+' body='+offlineText.slice(0,500));
             await pwaPage.context().setOffline(false);
             console.log('PWA_OFFLINE_SAFETY_PASS checkout not cached for offline ordering');
             await pwaPage.close();
