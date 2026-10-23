@@ -132,7 +132,7 @@ Deno.test("valid checkout ignores browser customer ID and uses the server-linked
   assert(rpcPayloads.length === 1, "Valid request should reach the mocked order RPC exactly once");
   const sentPayload = rpcPayloads[0];
   assert(sentPayload.p_customer_id === "server-customer-1", "RPC customer ID must come from the server-linked Auth profile");
-  assert(sentPayload.p_customer_id !== "browser-supplied-attacker-id", "Browser-supplied customer ID must be ignored");
+  assert(String(sentPayload.p_customer_id) !== "browser-supplied-attacker-id", "Browser-supplied customer ID must be ignored");
   assert(sentPayload.p_customer_email === "customer@example.test", "Order email must come from verified Auth identity");
   assert(urls.filter(u => u.includes("/rpc/create_store_order_v2")).length === 1, "Exactly one mocked order RPC call expected");
 });
