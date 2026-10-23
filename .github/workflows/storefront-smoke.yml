@@ -81,6 +81,21 @@ jobs:
             await termsGate.waitFor({state:'hidden',timeout:5000});
             if (await frame.locator('#gwTermsGate').getAttribute('aria-hidden') !== 'true') throw new Error('Accepted terms gate did not become hidden');
             console.log('TERMS_GATE_BEHAVIOR_PASS first-visit/decline/accept');
+
+            // Account UI smoke test: no credentials are submitted and no real account is created.
+            const accountPage = await browser.newPage({viewport:{width:390,height:844}});
+            accountPage.on('pageerror', e => console.log('[account-pageerror] '+e.message));
+            await accountPage.goto('http://127.0.0.1:4173/account.html', {waitUntil:'domcontentloaded'});
+            await accountPage.locator('#tabLogin').waitFor({state:'visible',timeout:10000});
+            if (!(await accountPage.locator('#submit').innerText()).includes('Sign in')) throw new Error('Account page default sign-in mode missing');
+            await accountPage.locator('#tabSignup').click();
+            if (!(await accountPage.locator('#nameLabel').isVisible())) throw new Error('Account registration name field did not appear');
+            await accountPage.locator('#tabRecover').click();
+            if (!(await accountPage.locator('#passwordLabel').isHidden())) throw new Error('Password recovery should not request the current password');
+            if (!(await accountPage.locator('#submit').innerText()).includes('reset link')) throw new Error('Password recovery action missing');
+            console.log('CUSTOMER_ACCOUNT_UI_PASS sign-in/register/recovery modes');
+            await accountPage.close();
+
             try {
               await frame.locator('#categoryGrid .catWrap').first().waitFor({timeout:60000});
             } catch (e) {
