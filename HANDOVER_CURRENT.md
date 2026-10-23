@@ -1,3 +1,11 @@
+## PWA SERVICE-WORKER ROOT CAUSE — 2026-10-23
+
+- Latest browser run `39922642094` failed before offline verification because the service worker failed to evaluate. Browser warning confirmed registration failed; inspection found the navigation cache handler used `await` inside a non-async `.then(response => ...)` callback.
+- Fixed the syntax in commit `5c43c37d8ca8bb50dcb0b6f6fdc694aaa87590e8` by making the callback async. Added `node --check sw.js` to the static checks in `f9a6d7f77172791f9b038c4275f55ef203ac54c7`. This root-cause fix is awaiting the latest smoke run; do not mark PWA offline behavior passed until that run completes.
+- Earlier Deno type-check and account UI smoke tests passed on commit `191ef4b`, but the final combined run is still required because later PWA and policy-digest changes followed it.
+- No live deployment, production Supabase schema/function change, Axxess upload, DNS, payments or catalogue/stock work performed.
+
+---
 ## CI RUNTIME EFFICIENCY — 2026-10-23
 
 - Several superseded smoke runs were sitting at `Install Chromium` for an extended period while concurrent commits each launched a new hosted runner. Added workflow concurrency cancellation and changed the install step from `npx playwright install --with-deps chromium` to `npx playwright install chromium` to avoid repeated apt dependency installation on GitHub's Ubuntu runner. This is a measured CI-time optimization; verify browser launch on the next latest run before treating it as successful.
