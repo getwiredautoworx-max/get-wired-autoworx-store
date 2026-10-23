@@ -91,25 +91,48 @@ jobs:
             const childOptions = await categoryPage.locator('#grid .card').count();
             if (childOptions < 1) throw new Error('Selected main category has no populated child/direct-product options');
             console.log('CATEGORY_NAVIGATION_PASS: '+rootOptions+' populated main categories; '+childOptions+' populated Auto Electrical options');
-            // PR #94 audio navigation regression: validate the three owner-authorized virtual groups.
+            // PR #94 audio navigation regression: area -> explicit brand -> product-type grouping.
             const audioPage = await browser.newPage({viewport:{width:390,height:844}});
             audioPage.on('pageerror', e => console.log('[audio-pageerror] '+e.message));
             await audioPage.goto('http://127.0.0.1:4173/category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181', {waitUntil:'domcontentloaded'});
             await audioPage.waitForFunction(() => {
               const grid=document.querySelector('#grid');
-              return !!grid && (grid.dataset.error || grid.innerText.includes('Studio Audio'));
+              return !!grid && (grid.dataset.error || grid.innerText.includes('Studio Equipment'));
             }, null, {timeout:30000});
             const audioNames = await audioPage.locator('#grid .card h2').allTextContents();
-            for (const required of ['Studio Audio','Home Entertainment','Car Audio & Video','All Car Audio Products']) {
-              if (!audioNames.some(n => n.trim() === required)) throw new Error('Authorized audio group missing: '+required+'; found='+JSON.stringify(audioNames));
+            for (const required of ['Studio Equipment','Home Entertainment','Car Audio & Video','All Car Audio Products']) {
+              if (!audioNames.some(n => n.trim() === required)) throw new Error('Audio area missing: '+required+'; found='+JSON.stringify(audioNames));
             }
-            const studioHref = await audioPage.locator('#grid .card').filter({hasText:'Studio Audio'}).getAttribute('href');
-            if (!studioHref || !studioHref.includes('audio_group=studio')) throw new Error('Studio Audio link does not open the studio grouping: '+studioHref);
+            const studioHref = await audioPage.locator('#grid .card').filter({hasText:'Studio Equipment'}).getAttribute('href');
+            if (!studioHref || !studioHref.includes('audio_area=studio')) throw new Error('Studio Equipment does not open its brand-selection page: '+studioHref);
             const homeHref = await audioPage.locator('#grid .card').filter({hasText:'Home Entertainment'}).getAttribute('href');
-            if (!homeHref || !homeHref.includes('audio_group=home')) throw new Error('Home Entertainment link does not open the home grouping: '+homeHref);
+            if (!homeHref || !homeHref.includes('audio_area=home')) throw new Error('Home Entertainment does not open its brand-selection page: '+homeHref);
             const carHref = await audioPage.locator('#grid .card').filter({hasText:'Car Audio & Video'}).getAttribute('href');
-            if (!carHref || !carHref.includes('audio_group=car')) throw new Error('Car Audio & Video link does not open the car grouping: '+carHref);
-            console.log('AUTHORIZED_AUDIO_GROUPS_PASS: '+JSON.stringify(audioNames));
+            if (!carHref || !carHref.includes('audio_area=car')) throw new Error('Car Audio & Video does not open its brand-selection page: '+carHref);
+            await audioPage.goto(new URL(studioHref, 'http://127.0.0.1:4173/').href, {waitUntil:'domcontentloaded'});
+            await audioPage.waitForFunction(() => {
+              const grid=document.querySelector('#grid');
+              return !!grid && (grid.dataset.error || grid.innerText.includes('CHOOSE A BRAND') || grid.innerText.includes('No products are currently matched'));
+            }, null, {timeout:30000});
+            const brandCount = await audioPage.locator('#grid .card').count();
+            if (brandCount > 0) {
+              const brandHref = await audioPage.locator('#grid .card').first().getAttribute('href');
+              if (!brandHref || !brandHref.includes('audio_brand=')) throw new Error('Brand button does not pass explicit brand selection: '+brandHref);
+              await audioPage.goto(new URL(brandHref, 'http://127.0.0.1:4173/').href, {waitUntil:'domcontentloaded'});
+              await audioPage.waitForFunction(() => {
+                const grid=document.querySelector('#grid');
+                return !!grid && (grid.dataset.error || grid.querySelector('.audioProductGroup') || grid.innerText.includes('No products for this brand'));
+              }, null, {timeout:30000});
+              const productGroups = await audioPage.locator('.audioProductGroup h2').allTextContents();
+              const emptyBrand = await audioPage.locator('#grid').innerText();
+              if (!productGroups.length && !emptyBrand.includes('No products for this brand')) throw new Error('Brand page did not show product-type groups or a clear empty state: '+emptyBrand.slice(0,500));
+              console.log('AUDIO_BRAND_PRODUCT_GROUPING_PASS: brand cards='+brandCount+'; groups='+JSON.stringify(productGroups));
+            } else {
+              const emptyArea = await audioPage.locator('#grid').innerText();
+              if (!emptyArea.includes('No products are currently matched')) throw new Error('No brand cards and no clear empty-state message: '+emptyArea);
+              console.log('AUDIO_AREA_EMPTY_STATE_PASS: '+emptyArea.slice(0,250));
+            }
+            console.log('AUDIO_AREA_NAVIGATION_PASS: '+JSON.stringify(audioNames));
             await audioPage.close();
 
             await categoryPage.close();
