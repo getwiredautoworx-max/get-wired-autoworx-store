@@ -76,9 +76,10 @@ async function verifySourceParity(){
   check('rating_does_not_overlap_since_2012',!bannerGeometry.missing&&!bannerGeometry.overlap&&!bannerGeometry.error,bannerGeometry);
   const root=frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first();
   const rootId=await root.getAttribute('data-filter');
+  const tabsBefore=page.context().pages().length;
   await root.click();
   await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
-  check('root_category_click_opens_individual_page',/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&new URL(page.url()).searchParams.get('id')===rootId,{url:page.url(),rootId});
+  check('root_category_click_opens_individual_page_in_same_tab',/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(page.url()).pathname)&&new URL(page.url()).searchParams.get('id')===rootId&&page.context().pages().length===tabsBefore,{url:page.url(),rootId,tabsBefore,tabsAfter:page.context().pages().length});
   await page.waitForTimeout(1500);
   await page.locator('.card img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
   await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
