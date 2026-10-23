@@ -1845,3 +1845,26 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The redirect depends on `store.html` existing in the same served directory and correctly loading its dependencies. This file alone cannot verify Part Search, Request a Part, catalogue assets, or checkout.
 - Do not delete or clear `public_html` based on this file inspection. Continue with a full hosting backup/inventory, verify the complete PR #74 package and referenced files, stage and test a clean candidate, and obtain explicit approval before any live cleanup/switch.
 - Live Part Search remains a previously confirmed failure pending approved backup/repair and a real live-browser click test. No Axxess/DNS/production changes, stock/catalogue changes, payment changes, or deployment were made during this verification. Customer launch remains HOLD.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-23 17:15 SAST
+
+### Verified in this continuation
+- Read the current main-branch `HANDOVER_CURRENT.md`, `index.html`, and `index-new.html`. Current GitHub `index.html` is intentionally only a redirect to `store.html`; it is not the full storefront. Do not upload `index-new.html` as `index.html` or delete either file based on name alone.
+- Current main `index-new.html` defines `window.openPartSearch` and its visible Part Search buttons call `window.openPartSearch()`. Handover/search evidence confirms PR #77 merged to main as `56a8395add52b82eb64f90053705509f0a22874f`; its local browser smoke, package build, and public SKU exposure audit passed (runs `39751224635`, `39751224330`, `39751224394`). This is source/CI evidence only, not proof the Axxess-served copy is updated.
+- Previous live-root smoke checks observed older hosted markup using unqualified `openPartSearch()`, causing `ReferenceError: openPartSearch is not defined`. Evidence points to a stale/different Axxess-served package or cache, not a currently missing handler in GitHub main. The live customer Part Search is therefore still unverified/failing until the actual served file and catalogue request are tested again.
+- Owner's PR #74 ZIP remains the rollback backup. No Axxess, DNS, checkout, payments, stock, supplier catalogue, or production changes were made in this continuation. Release remains HOLD.
+
+### Axxess cleanup safety — owner action still pending
+- Owner explicitly requires a complete, folder-by-folder list and will delete only files named in that list. Do not ask the owner to bulk-delete `public_html`; do not provide a delete list from repository filenames or assumptions.
+- A verified Axxess File Manager inventory is still missing: capture the contents of `public_html` and each relevant subfolder, including filenames, file sizes, and folder sizes. Uploads are currently unavailable to the owner, so do not block on another upload; when access resumes, collect the inventory as text/screenshots in manageable folder-by-folder batches. Preserve the live site and PR #74 ZIP until a verified replacement package and rollback path are ready.
+
+### Next steps (in order)
+1. Obtain a folder-by-folder Axxess `public_html` inventory before naming any files for deletion. No deletions authorized or performed.
+2. Confirm the exact deployed package/served HTML and asset paths on Axxess; compare the served Part Search handler to current main. Do not assume browser cache alone is the cause.
+3. In an isolated staging/preview, verify Part Search button click, catalogue query/results with existing in-store stock strictly as test data, and the “Can't find it? Request a Part” handoff. No supplier reconciliation/import or live stock mutation.
+4. Only after staging passes and owner approves, prepare a complete replacement package and provide the exact file list/actions for approval before any production upload. Keep checkout/payment activation and customer launch on HOLD.
+
+### Owner attention required
+- Axxess File Manager folder-by-folder inventory when uploads/communication allow.
+- Explicit approval before any production upload or deletion. No other production approval is implied.
