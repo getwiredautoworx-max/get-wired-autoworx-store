@@ -1290,3 +1290,73 @@ Purpose: distinguish work completed in source from items actually verified. This
 
 ### Release controls
 - Customer launch remains **HOLD**. Do not merge/deploy checkout, apply either migration, submit a live order, alter Axxess/DNS/payment, or resume supplier-dependent catalogue/stock work without the respective validation and owner approval.
+
+
+## TASK START — NO-COST PART IMAGE SEARCH RECOVERY (2026-10-23 10:49 SAST)
+
+- Read-only Supabase log inspection has now established the exact cause of the earlier `part-image-search` HTTP 429. At `2026-10-22T12:49:17Z`, the function logged OpenAI response 429 with `type: insufficient_quota` and `code: credit_balance_exhausted`; the API message explicitly says there are no credits remaining. This is **not merely a transient request-rate burst**.
+- Deployed function is active at version 2, `verify_jwt=false`; its current code calls OpenAI Vision model `gpt-4.1-mini` and returns a generic 429 for upstream HTTP 429. No production code/configuration was changed during diagnosis.
+- No-cost route under evaluation: add an optional Gemini Developer API vision provider using a model listed on Google's free tier, prefer it when its key is configured, and keep the existing Request a Part path as a safe fallback. Official pricing reference: https://ai.google.dev/gemini-api/docs/pricing (free-tier input/output for supported models, subject to quota and availability).
+- This is a source-only change candidate. It will not work until an owner-created Gemini API key is configured as a Supabase Edge Function secret. Do not read or print secret values, do not add a paid billing account, and do not deploy without mock tests plus owner approval. Free tier still has rate limits and Google's free-tier data-use terms; do not promise unlimited/no-quota operation.
+- Status at start: **root cause resolved by evidence; durable no-cost fallback not yet implemented/tested**. Next steps are isolated provider adapter, unit tests for provider selection/429/fallback/error redaction, Deno type-check, and a draft PR. Production function remains unchanged.
+
+
+## NO-COST IMAGE SEARCH — SOURCE IMPLEMENTATION PREPARED, TESTS PENDING (2026-10-23)
+
+- Created isolated branch `fix/gemini-free-image-search-fallback-2026-10-23`; no production function deployment or Supabase secret changes were made.
+- Added a provider adapter that selects Gemini when `GEMINI_API_KEY` is configured, using `gemini-2.5-flash-lite` by default, and otherwise uses the existing OpenAI provider only if its key is present. It never silently falls back from Gemini to OpenAI when Gemini is rate-limited, to avoid unexpected paid usage.
+- The adapter maps Gemini/OpenAI auth/quota/upstream failures to safe user-facing errors and gives an explicit recovery message for the confirmed OpenAI `credit_balance_exhausted` failure.
+- Added isolated Deno tests for Gemini selection/image payload, no paid fallback after Gemini 429, OpenAI compatibility when Gemini is not configured, exhausted OpenAI quota guidance, and missing-key behavior. Added a dedicated workflow to type-check the function/adapter and run these tests.
+- **Validation is pending:** these tests have not run yet. The change must stay in a draft PR until Deno check and all tests pass. A Gemini key must be supplied as a Supabase Edge Function secret by the owner before the no-cost path can work. Free tier remains subject to Google model availability, quota limits, and Google's free-tier data-use terms. No key was created or exposed by this session.
+- A helper file was briefly created on main by mistake during branch setup and was removed immediately in a follow-up commit; main's deployed function source remains unchanged. The implementation and tests are now on the isolated feature branch.
+
+
+## NO-COST IMAGE SEARCH PROVIDER — UNIT CHECKS PASS (2026-10-23 10:53 SAST)
+
+- Draft PR #91: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/91
+- Branch head: `1f901195a48b9acade95114e5e3571643c78e2cd`; source-only and unmerged.
+- Dedicated provider workflow [run 39926588653](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588653) **passed**: Deno type-check of the function/provider adapter and all 5 Deno tests. Tests verify Gemini is selected when configured, the image is sent in the request, Gemini quota failure does not call OpenAI, OpenAI remains supported only when Gemini is absent, exhausted OpenAI credits produce clear recovery guidance, and missing keys do not make a network call.
+- General Storefront Smoke Test [run 39926588551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551) was still running at this checkpoint; do not mark the PR's full check set complete until it finishes.
+- **Not yet working live:** no `GEMINI_API_KEY` secret has been configured or tested against the provider. The current production function remains unchanged and still uses the OpenAI path. The owner must create/configure a Gemini Developer API key in Supabase Edge Function secrets; never paste it into chat or GitHub source. Only after CI, privacy review and explicit approval should the provider change be deployed and tested with a real image.
+- Privacy/release gate: customer photos would be transmitted to Google when Gemini is selected. Review privacy disclosures and the applicable free-tier data-use terms before enabling the key. Free tier has quota/rate limits and is not an unlimited service.
+
+
+## NO-COST IMAGE SEARCH — FULL DRAFT CI PASS (2026-10-23 10:56 SAST)
+
+- PR #91 head `1f901195a48b9acade95114e5e3571643c78e2cd` now has both required CI jobs green:
+  - [Provider tests 39926588653](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588653): Deno type-check + 5/5 mocked provider tests passed.
+  - [Storefront Smoke Test 39926588551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551): verified-price gate and local storefront browser smoke passed.
+- **Resolved in source/tests:** the function can use Gemini free-tier vision when `GEMINI_API_KEY` is configured; test evidence proves the adapter sends image data to Gemini and does not call OpenAI if Gemini returns HTTP 429. Existing OpenAI support remains available only when Gemini is not configured. This is not yet a live provider test.
+- **Owner-only remaining actions:** create a Gemini Developer API key in Google AI Studio, add it in Supabase Edge Function secrets as `GEMINI_API_KEY`, review customer-photo/privacy wording, and explicitly approve a controlled Edge Function deployment/test. Do not paste the key into chat or source. Do not enable paid OpenAI fallback by default.
+- PR #91 stays draft/unmerged and the deployed `part-image-search` function remains unchanged until the owner key, privacy review and deployment approval are ready.
+
+
+## TASK START — MOCKED CHECKOUT HANDLER TESTS (2026-10-23)
+
+- Source-level CI for PR #89 is green, but the five Node tests are static source assertions only. They do not execute the checkout handler against mocked Auth, Terms, customer-profile, price, or RPC responses.
+- Next isolated change on `feature/terms-gate-phase1`: make the handler injectable/testable without network or database writes, then add Deno tests proving invalid/missing auth, missing/stale consent, malformed payload, quote-required price and customer lookup/create failures never call the order RPC; prove a valid test request ignores a browser-supplied customer ID and passes the server-linked profile ID.
+- All fetches in these tests must be mocked. No live orders, stock updates, production migration, Edge Function deployment or staging-project creation. This change will remain draft until Deno type-check, Node source assertions and browser smoke all pass.
+
+
+## CONTINUATION UPDATE — 2026-10-23 10:43–10:46 SAST (HANDOVER READ-BACK + IMAGE SEARCH CI RECHECK)
+
+### Gemini image-search fallback — CI evidence now confirmed
+- Existing draft PR #91: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/91
+- Branch: `fix/gemini-free-image-search-fallback-2026-10-23`
+- Exact tested head: `1f901195a48b9acade95114e5e3571643c78e2cd`.
+- The PR description confirms [Part Image Search Provider Tests run 39926588653](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588653) passed Deno type-check and **5/5 provider tests**, and [Storefront Smoke Test run 39926588551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926588551) passed.
+- Read back the exact branch source for `supabase/functions/part-image-search/index.ts`, `vision-provider.ts`, `vision-provider.test.ts`, and `.github/workflows/part-image-search-provider.yml`. The provider adapter uses Gemini when `GEMINI_API_KEY` exists, does not fall back to potentially paid OpenAI on Gemini 429, and retains OpenAI only when Gemini is not configured. The dedicated workflow runs Deno type-check and the provider tests.
+- **Source/CI phase: PASS. Real-provider/deployment phase: BLOCKED on owner secret + approval.** No Gemini key was created, read, or configured; no production Supabase function deployment or live provider request was made. Do not describe image search as working live yet. Free-tier availability/quotas and Google data-use terms apply; customer photos would be sent to Google when Gemini is selected.
+- No new PR was created because GitHub confirmed a PR already exists for this branch. Do not create duplicate PRs or repeat setup.
+
+### Required next steps
+1. Owner must add `GEMINI_API_KEY` as a Supabase Edge Function secret (never place it in GitHub source or expose its value).
+2. Before enabling it for customers, review privacy disclosures for sending uploaded part photos to Google and confirm the intended free-tier terms.
+3. Only after owner approval, deploy the function as a separate controlled step and test a non-sensitive sample image; confirm provider/model, successful response shape, quota handling, and Request a Part fallback. Do not claim live resolution before this evidence.
+4. Keep PR #91 draft/unmerged until the owner-secret and privacy gates are satisfied. Do not use paid fallback or add billing as a workaround.
+
+### Other active gates unchanged
+- Checkout/Terms PR #89 remains draft/unmerged. Current-head source checks passed at the recorded SHA, but mocked runtime Edge Function tests and isolated staging migration validation remain outstanding; do not merge or deploy it.
+- Owner APK install107 still fails on the physical Hisense M72 Pro with a generic “App wasn't installed”; the actual Package Manager `INSTALL_FAILED_...` diagnostic is required. Windows 7's current ADB binary is incompatible; use Windows-7-compatible platform-tools or a Windows 10/11 machine.
+- ASC supplier stock/catalogue reconciliation remains paused pending supplier authorisation.
+- Customer launch remains **HOLD**. No Axxess/DNS/payment changes, production migration/function deployment, live order, or catalogue/stock writes were performed in this continuation.
