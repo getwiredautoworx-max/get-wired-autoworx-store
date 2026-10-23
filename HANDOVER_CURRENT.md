@@ -1099,3 +1099,13 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+
+## TERMS GATE PHASE 1 — GITHUB-ONLY IMPLEMENTATION CANDIDATE — 2026-10-23
+
+- Created isolated branch `feature/terms-gate-phase1`; no merge or deployment.
+- Added a first-entry blocking Terms & Conditions overlay to `index-new.html`, including links to the full Terms and Returns policies, accept/decline actions, mobile styling, Escape-key blocking, and a versioned browser flag for the UI gate.
+- Added Playwright checks to `.github/workflows/storefront-smoke.yml` for first-visit visibility, decline-stays-blocked, and accept-unblocks-browsing. Workflow has not yet run against this branch at checkpoint time; behavior is NOT marked passed until CI result is inspected.
+- Critical limitation stated in source: the local browser flag is only a Phase 1 UI convenience, NOT durable legal evidence and NOT purchase authorization. Customer authentication, durable server/database consent evidence, and checkout enforcement remain later required phases. Do not deploy or represent the store as secure/launch-ready based on this phase alone.
+- No production Supabase/DNS/Axxess/payment/catalogue/stock changes. Customer launch remains HOLD.
