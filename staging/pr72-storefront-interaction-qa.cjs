@@ -16,7 +16,7 @@ const rootIds = [
 const childId = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
 const productId = '11111111-1111-4111-8111-111111111111';
 const categories = rootIds.map(([name,id]) => ({id,name,parent_id:null,slug:name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),active:true,direct_active_products:1,sort_order:1}));
-categories.push([
+categories.push(...[
   {id:childId,name:'Electrical Connectors & Wiring',parent_id:rootIds[0][1],slug:'electrical-connectors-wiring',active:true,direct_active_products:2,sort_order:1},
   {id:'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',name:'Batteries',parent_id:rootIds[0][1],slug:'batteries',active:true,direct_active_products:2,sort_order:2},
   {id:'cccccccc-cccc-4ccc-8ccc-cccccccccccc',name:'Fuses',parent_id:rootIds[0][1],slug:'fuses',active:true,direct_active_products:2,sort_order:3},
