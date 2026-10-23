@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS public.customer_terms_acceptances (
   user_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE RESTRICT,
   terms_version text NOT NULL CHECK (terms_version ~ '^[a-z0-9][a-z0-9._-]{2,80}$'),
   terms_url text NOT NULL CHECK (terms_url IN ('/terms-and-conditions.html')),
+  returns_url text NOT NULL CHECK (returns_url IN ('/returns-refunds.html')),
   terms_sha256 text NOT NULL CHECK (terms_sha256 ~ '^[a-f0-9]{64} timestamptz NOT NULL DEFAULT clock_timestamp(),
   acceptance_source text NOT NULL DEFAULT 'web-checkout' CHECK (acceptance_source IN ('web-checkout')),
   user_agent text,
