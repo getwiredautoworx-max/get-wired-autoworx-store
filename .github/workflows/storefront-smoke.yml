@@ -80,6 +80,7 @@ jobs:
           test "$(grep -cF 'accepted_at timestamptz NOT NULL DEFAULT clock_timestamp()' supabase/migrations/20261023090000_customer_terms_acceptances.sql)" -eq 1
           grep -Fq "terms_sha256 text NOT NULL CHECK (terms_sha256 ~ '^[a-f0-9]{64}$')," supabase/migrations/20261023090000_customer_terms_acceptances.sql
           grep -Fq 'UNIQUE (user_id, terms_version, terms_sha256)' supabase/migrations/20261023090000_customer_terms_acceptances.sql
+          grep -Fq 'GRANT SELECT, INSERT ON TABLE public.customer_terms_acceptances TO service_role;' supabase/migrations/20261023090000_customer_terms_acceptances.sql
           grep -Fq "CUSTOMER_PASSWORD_RESET_UI_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq 'rel="manifest" href="manifest.webmanifest"' store.html
           grep -Fq "navigator.serviceWorker.register('/sw.js')" store.html
