@@ -48,6 +48,14 @@ jobs:
           grep -Fq 'onclick="window.openPartRequest()"' index-new.html
           grep -Fq "Price on request" index-new.html
           grep -Fq "gw-terms-ui-2026-10-22-v1" index-new.html
+          grep -Fq "gw_customer_session" account.html
+          grep -Fq "signUp" account.html
+          grep -Fq "token?grant_type=password" account.html
+          grep -Fq "functions/v1/record-terms-acceptance" checkout-v2.html
+          grep -Fq "gw-terms-2026-10-23-v1" supabase/functions/record-terms-acceptance/index.ts
+          grep -Fq "customer_terms_acceptances" supabase/functions/store-checkout/index.ts
+          grep -Fq "prevent_terms_acceptance_mutation" supabase/migrations/20261023090000_customer_terms_acceptances.sql
+          grep -Fq "CUSTOMER_ACCOUNT_UI_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq "TERMS_GATE_BEHAVIOR_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
