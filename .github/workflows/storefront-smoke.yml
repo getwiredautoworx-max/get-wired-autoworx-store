@@ -284,6 +284,7 @@ jobs:
             await earlySearchPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
             const earlySearchFrame = earlySearchPage.frameLocator('#store');
             await earlySearchFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await earlySearchFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
             await earlySearchFrame.locator('#gwTermsAccept').click();
             await earlySearchFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await earlySearchFrame.locator('button.headerPartSearch').waitFor({state:'visible',timeout:15000});
@@ -298,6 +299,7 @@ jobs:
             await earlyRequestPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
             const earlyRequestFrame = earlyRequestPage.frameLocator('#store');
             await earlyRequestFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await earlyRequestFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
             await earlyRequestFrame.locator('#gwTermsAccept').click();
             await earlyRequestFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await earlyRequestFrame.locator('button.primaryAction').waitFor({state:'visible',timeout:15000});
@@ -312,6 +314,7 @@ jobs:
             await responsivePage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             const responsiveFrame = responsivePage.frameLocator('#store');
             await responsiveFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await responsiveFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
             await responsiveFrame.locator('#gwTermsAccept').click();
             await responsiveFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await responsiveFrame.locator('#categoryGrid > .catWrap').first().waitFor({timeout:60000});
