@@ -105,7 +105,7 @@ Deno.test("quote-required price blocks checkout without invoking order RPC", asy
 });
 
 Deno.test("valid checkout ignores browser customer ID and uses the server-linked profile", async () => {
-  let rpcPayload: Record<string, unknown> | null = null;
+  const rpcPayloads: Record<string, unknown>[] = [];
   const urls: string[] = [];
   const handler = createStoreCheckoutHandler({
     getEnv: env,
@@ -119,7 +119,7 @@ Deno.test("valid checkout ignores browser customer ID and uses the server-linked
         price: 155.25, cost_price: 100,
       }]);
       if (u.includes("/rpc/create_store_order_v2")) {
-        rpcPayload = JSON.parse(String(init?.body));
+        rpcPayloads.push(JSON.parse(String(init?.body)));
         return json({ order_id: "mock-order-1", order_number: 1 }, 201);
       }
       throw new Error("Unexpected request: " + u);
@@ -129,9 +129,10 @@ Deno.test("valid checkout ignores browser customer ID and uses the server-linked
     method: "POST", headers: authHeaders(), body: JSON.stringify(baseOrder()),
   }));
   assert(response.status === 201, "Mocked valid checkout should return the RPC status");
-  assert(rpcPayload !== null, "Valid request should reach the mocked order RPC");
-  assert(rpcPayload.p_customer_id === "server-customer-1", "RPC customer ID must come from the server-linked Auth profile");
-  assert(rpcPayload.p_customer_id !== "browser-supplied-attacker-id", "Browser-supplied customer ID must be ignored");
-  assert(rpcPayload.p_customer_email === "customer@example.test", "Order email must come from verified Auth identity");
+  assert(rpcPayloads.length === 1, "Valid request should reach the mocked order RPC exactly once");
+  const sentPayload = rpcPayloads[0];
+  assert(sentPayload.p_customer_id === "server-customer-1", "RPC customer ID must come from the server-linked Auth profile");
+  assert(sentPayload.p_customer_id !== "browser-supplied-attacker-id", "Browser-supplied customer ID must be ignored");
+  assert(sentPayload.p_customer_email === "customer@example.test", "Order email must come from verified Auth identity");
   assert(urls.filter(u => u.includes("/rpc/create_store_order_v2")).length === 1, "Exactly one mocked order RPC call expected");
 });
