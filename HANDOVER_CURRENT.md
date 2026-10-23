@@ -1621,3 +1621,15 @@ This pass only read GitHub metadata and updated this handover file. No source be
 ### Current safety and readiness
 - No production/staging data writes, migrations, Edge Function deployment, Cloudflare configuration changes, Axxess upload, DNS/payment changes, stock/catalogue edits, or real orders occurred in this pass.
 - Keep customer launch **HOLD**. Previous estimates remain provisional: storefront source/build readiness **80%**, launch readiness **55%**; these are not certification scores and should not be raised based on a preview alone.
+
+
+## EXECUTION ORDER REVIEW — 2026-10-23 (exact-head CI audit)
+
+- Queried check-runs directly for the current PR head SHAs (not just the earlier smoke retry):
+  - **PR #89 head `d494905479b54e00e66258ae5784c209a557e56e`:** checkout-handler-tests, audit, package and Cloudflare Pages all succeeded; Cloudflare Pages preview is https://8b48e19c.get-wired-autoworx-store.pages.dev. Cloudflare Workers Builds failed (build `d194bde4-045e-4b69-8909-e934830189e1`). Netlify redirect/header/page-change statuses are neutral, not failures.
+  - **PR #91 head `1f901195a48b9acade95114e5e3571643c78e2cd`:** provider-tests and smoke succeeded; Cloudflare Pages succeeded with preview https://c68fcdf4.get-wired-autoworx-store.pages.dev. Cloudflare Workers Builds failed (build `3f160d8c-5516-4eb9-a79b-220ba57822f7`). Netlify redirect/header/page-change statuses are neutral.
+- This confirms both current feature heads deploy successfully to **Pages preview**, while the separate Workers Builds integration fails on both. The exact build cause is still absent from the GitHub check summary and requires the Cloudflare dashboard log. No project settings were changed.
+- PR #89 changed files were enumerated: includes customer Terms/checkout pages, Auth/Terms acceptance Edge Functions, two SQL migrations, service worker/PWA files and test workflows. PR #91 changed files were enumerated: image-search provider adapter, Edge Function, provider tests and workflow. These are still draft PRs; no merge performed.
+- **Mergeability remains false for both PRs.** No conflict resolution was attempted without reviewing an actual conflict diff and a safe branch-only resolution route. Do not force-push or merge as a workaround.
+- Staging and owner-only dependencies remain unchanged: the only connected Supabase project is `Store`, not approved as staging; Terms digest/persistence and real checkout remain unverified end-to-end; Gemini key/privacy approval and Android Package Manager error remain outstanding; supplier-dependent ASC work remains paused.
+- Safety: no database writes/migrations, production deployments, Cloudflare settings changes, Axxess uploads, DNS/payment changes, real orders or catalogue/stock changes were made. Launch remains **HOLD**. Readiness estimates remain provisional at storefront source/build **80%** and launch **55%**.
