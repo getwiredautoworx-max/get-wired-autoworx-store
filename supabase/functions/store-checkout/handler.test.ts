@@ -191,3 +191,15 @@ Deno.test("verified Auth identity without an email is rejected before consent or
   assert(response.status === 401 && payload.code === "AUTH_REQUIRED", "Auth identity without email must be rejected");
   assert(urls.length === 1 && urls[0].includes("/auth/v1/user"), "No consent, profile, product, or order request may follow missing Auth email");
 });
+
+
+Deno.test("unsupported HTTP method is rejected without any network request", async () => {
+  let calls = 0;
+  const handler = createStoreCheckoutHandler({
+    getEnv: env,
+    fetchImpl: async () => { calls++; return json({}); },
+  });
+  const response = await handler(new Request("https://local.test/checkout", { method: "GET" }));
+  assert(response.status === 405, "GET must be rejected with Method Not Allowed");
+  assert(calls === 0, "Unsupported methods must not call Auth, REST, or the order RPC");
+});
