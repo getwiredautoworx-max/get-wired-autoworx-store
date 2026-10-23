@@ -17,7 +17,15 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // Never cache Supabase, auth, pricing, shipping or order API traffic.
   if (NETWORK_ONLY_PAGES.has(url.pathname)) {
-    event.respondWith(fetch(request).catch(() => caches.match('/offline.html')));
+    event.respondWith((async () => {
+      // Never satisfy checkout/account/data routes from the HTTP cache while offline.
+      if (self.navigator.onLine === false) return (await caches.match('/offline.html')) || Response.error();
+      try {
+        return await fetch(request, { cache: 'no-store' });
+      } catch (_) {
+        return (await caches.match('/offline.html')) || Response.error();
+      }
+    })());
     return;
   }
   if (request.mode === 'navigate') {
