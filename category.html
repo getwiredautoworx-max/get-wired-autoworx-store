@@ -84,7 +84,7 @@ if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&!audioArea){
   {id:current.id,label:'Car Audio & Video',audioArea:'car',description:'Car stereos, head units, speakers, amplifiers and multimedia'},
   {id:current.id,label:'Home Entertainment',audioArea:'home',description:'Home audio, soundbars, home theatre and related equipment'},
   {id:current.id,label:'Studio Equipment',audioArea:'studio',description:'Microphones, mixers, recording and PA equipment'},
-  {id:current.id,label:'All Car Audio Products',isAllProducts:true,description:'Browse all products currently assigned to Car Audio'}
+  {id:current.id,label:'All Car Audio Products',audioGroup:'car',isAllProducts:true,description:'Browse all products currently assigned to Car Audio'}
  ];
  const children=cats.filter(x=>x.parent_id===current.id&&total(x)>0).map(x=>({...x,count:total(x)}));
  render([...groups,...children],current.name,'Choose an audio area. Brand and product-type groups use only explicit current catalogue data; no product assignments are changed.');
