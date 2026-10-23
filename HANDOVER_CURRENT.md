@@ -1234,3 +1234,27 @@ Purpose: distinguish work completed in source from items actually verified. This
 - Inspect actual CI/provider status and logs, then fix only a demonstrated defect.
 - Continue isolated checkout regression coverage and current-head smoke verification where tool access permits.
 - Record every status transition and exact commit/run evidence here. If the platform/permission boundary requires an owner action, document the smallest exact action and continue all unrelated safe tasks.
+
+
+## HIGH-PRIORITY CONTINUATION — VERIFIED REPOSITORY CHECK (2026-10-23 10:40 SAST)
+
+### Evidence obtained this pass
+- Current PR #89 head is confirmed as `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`; PR remains draft/open/unmerged. PR metadata currently reports `mergeable: false`. The branch compare against main reports **92 commits ahead / 7 behind**, so branch divergence/conflict resolution is also a pre-merge task. Do not merge as-is.
+- Current-head check runs are only: Cloudflare Pages **success**, Cloudflare Workers Builds **failure**, and three Netlify redirect/header/page checks **neutral**. There is no current-head Storefront Smoke Test, Deno, or Node regression check. Exact check summary: [current-head checks](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/commit/a65fb9aa4bd21ddc36324fb714feb826cd8461a5/checks).
+- The Pages preview deploy succeeded for this source head: https://f319b8ce.get-wired-autoworx-store.pages.dev . This proves a preview was built, **not** that checkout/security/browser tests passed or that production was changed.
+- The previous Storefront Smoke Test run [39923781779](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39923781779) completed successfully on older SHA `c705e7c344499e680884511f83e80b61e6fa6f88`. Its step record confirms Deno type-check, verified-price checks and local storefront smoke passed at that old SHA only.
+- The current workflow file already declares both `pull_request` and `workflow_dispatch`. Therefore, simply adding another temporary PR or repeating the same source changes is not a solution. The available GitHub integration exposes GET and rerun operations but no workflow-dispatch operation; no workflow run can be created against the current SHA from this session. Required owner action is to run **Actions → Storefront Smoke Test → Run workflow**, selecting `feature/terms-gate-phase1`; then share/allow access to the run URL so failures can be fixed against exact logs.
+- The Cloudflare Pages check is green while the separate Cloudflare Workers Builds check is red. These are distinct integrations; the Workers check does not establish a storefront test failure. Its GitHub check summary links to the Cloudflare dashboard but exposes no actual build log in the connector. Keep this as a separate provider-config/build blocker and do not alter the production Worker or deployment config without the log/root cause.
+- Inspected the draft regression test and both source-only migrations. Static assertions cover token parsing, auth-before-consent/customer/order ordering, client customer-ID rejection, service-role RPC grants, and immutable Terms evidence. They are **not** runtime mocked Edge Function tests. The order migration's customer profile index and RPC change remain untested in a staging database.
+
+### Corrective documentation action
+- Updated PR #89 description to reflect the current source accurately and explicitly mark current-head verification, mocked runtime tests, staging migration review and branch divergence as unresolved. PR remains draft and unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/89.
+
+### Task status after this pass
+1. **Checkout / Terms / auth / customer binding:** source changes present; current-head CI and end-to-end verification still BLOCKED.
+2. **CI:** owner-side workflow dispatch required; no false pass recorded.
+3. **Cloudflare Workers build:** separate failure, logs not accessible through current connector; Pages preview is green.
+4. **Branch mergeability:** unresolved; 92 ahead / 7 behind and GitHub reports not mergeable. Must reconcile current main changes without merging/deploying.
+5. **APK:** physical Hisense M72 Pro installation still unresolved; install107 CI/emulator success is not device acceptance.
+6. **Supplier stock/catalogue:** still paused pending ASC authorisation.
+7. **Release:** HOLD. No production migration/deployment, Axxess/DNS/payment changes, live order, or supplier data changes made.
