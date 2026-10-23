@@ -2919,3 +2919,17 @@ This section supersedes older QA statements above where they conflict.
 - **Run scope:** resume safely from the latest verified state; inspect current background workflow status before any other changes; prioritize permitted non-live blockers and current source-based evidence. The task prompt requests supplier price verification and price-scaling review, but the standing owner restriction recorded in the project memory says ASC authorisation/integration is still pending and all stock/price/supplier reconciliation work is paused. Therefore no supplier price, stock, catalogue price/quantity, or active-flag investigation or mutation will be performed until that restriction is lifted.
 - **Safety locks:** no live data changes, production deployment, release/deployment workflow rerun, Axxess/DNS/payment change, PR merge, or Cloudflare/Netlify credit use without explicit owner approval. Candidate catalogue files remain DO NOT IMPORT; never auto-move products. October-difference 107/107 source-image price checks and 198-row category OCR cross-check remain triage evidence only; no price/category edits inferred from review_status or OCR.
 - **First action after this entry:** read current workflow runs/PR state and verify any retry eligibility. Restart only a failed/cancelled/stopped safe staging job when a supported action exists; never duplicate queued/in-progress work and never retry release/production jobs.
+
+
+---
+
+## LATEST HIGH-PRIORITY BLOCKER STATUS — 2026-10-23 13:10 UTC
+See `HANDOVER_CURRENT.md` for the full evidence and next-step queue. This checkpoint intentionally preserves all eight locked rules above.
+
+- Main live smoke run 39958304900 is still in progress at Install Chromium; its actual apex/www and Part Search assertions have not run yet. Do not duplicate the active run. Job logs currently return BlobNotFound.
+- Main Store Production QA run 39958304890 passed; latest main Pages build run 39958575728 passed. Neither alone proves live Part Search or checkout acceptance.
+- PR #91 current head 504414c3c7173384b2736cb873e1a3ba3c0b5f40 has passing provider tests (run 39958112556) and storefront smoke (39958112578). It remains draft/unmerged/undeployed until owner configures Gemini secret and approves customer image-data privacy treatment.
+- PR #67 current head 3fed62d2b64279d3825b3565c9fcd0ee1f468941 has passing owner source checks (39957821517) and local storefront smoke (39957821537), but audit atomicity and DB-enforced category uniqueness/hierarchy still block merge/deploy.
+- PR #89 remains draft/unmerged. Checkout mocked tests and local browser QA are recorded as passing, but pending-EFT stock reservation/expiry/release policy and isolated staging verification remain unresolved.
+- Owner APK install107 still fails on physical Hisense M72 Pro with generic “App wasn't installed”; a device-side Package Manager error is required. Stop blind package-ID rotation.
+- No PR merges, Supabase production writes/migrations/deployments, payment activation, supplier catalogue/stock reconciliation, Axxess/DNS changes, or customer launch. Launch HOLD. No Cloudflare/Netlify credits intentionally spent in this sweep.
