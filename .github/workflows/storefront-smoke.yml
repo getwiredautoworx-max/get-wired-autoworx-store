@@ -91,6 +91,27 @@ jobs:
             const childOptions = await categoryPage.locator('#grid .card').count();
             if (childOptions < 1) throw new Error('Selected main category has no populated child/direct-product options');
             console.log('CATEGORY_NAVIGATION_PASS: '+rootOptions+' populated main categories; '+childOptions+' populated Auto Electrical options');
+            // PR #94 audio navigation regression: validate the three owner-authorized virtual groups.
+            const audioPage = await browser.newPage({viewport:{width:390,height:844}});
+            audioPage.on('pageerror', e => console.log('[audio-pageerror] '+e.message));
+            await audioPage.goto('http://127.0.0.1:4173/category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181', {waitUntil:'domcontentloaded'});
+            await audioPage.waitForFunction(() => {
+              const grid=document.querySelector('#grid');
+              return !!grid && (grid.dataset.error || grid.innerText.includes('Studio Audio'));
+            }, null, {timeout:30000});
+            const audioNames = await audioPage.locator('#grid .card h2').allTextContents();
+            for (const required of ['Studio Audio','Home Entertainment','Car Audio & Video','All Car Audio Products']) {
+              if (!audioNames.some(n => n.trim() === required)) throw new Error('Authorized audio group missing: '+required+'; found='+JSON.stringify(audioNames));
+            }
+            const studioHref = await audioPage.locator('#grid .card').filter({hasText:'Studio Audio'}).getAttribute('href');
+            if (!studioHref || !studioHref.includes('audio_group=studio')) throw new Error('Studio Audio link does not open the studio grouping: '+studioHref);
+            const homeHref = await audioPage.locator('#grid .card').filter({hasText:'Home Entertainment'}).getAttribute('href');
+            if (!homeHref || !homeHref.includes('audio_group=home')) throw new Error('Home Entertainment link does not open the home grouping: '+homeHref);
+            const carHref = await audioPage.locator('#grid .card').filter({hasText:'Car Audio & Video'}).getAttribute('href');
+            if (!carHref || !carHref.includes('audio_group=car')) throw new Error('Car Audio & Video link does not open the car grouping: '+carHref);
+            console.log('AUTHORIZED_AUDIO_GROUPS_PASS: '+JSON.stringify(audioNames));
+            await audioPage.close();
+
             await categoryPage.close();
 
             // Verify the image fallback only tries the exact public-SKU WebP.
