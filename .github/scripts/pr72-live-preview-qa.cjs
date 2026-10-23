@@ -46,11 +46,15 @@ async function verifySourceParity(){
   }
   await page.waitForTimeout(5000);
   const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').count();
-  const photos=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn .catPhoto').evaluateAll(es=>es.map(e=>({src:e.currentSrc||e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0,naturalWidth:e.naturalWidth})));
+  const photos=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn .catPhoto').evaluateAll(es=>es.map(e=>({label:e.closest('.catBtn')?.querySelector('.catContent b')?.textContent?.trim()||'',src:e.currentSrc||e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0,naturalWidth:e.naturalWidth})));
   report.categoryImages=photos;
   check('eight_main_category_tiles',roots===8,{count:roots});
   check('main_category_photos_load_are_distinct_and_labelled',photos.length===8&&photos.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt))&&new Set(photos.map(x=>x.src)).size===8,{photos});
   check('main_category_photos_are_not_logo_substitutions',photos.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:photos.filter(x=>/gw-logo\\.png/i.test(x.src))});
+  const expectedRootPhotos={'Auto Electrical Spares':'photo-1518770660439-4636190af475','Vehicle Security':'photo-1558002038-1055907df827','Car Audio & Entertainment':'photo-1600003014755-ba31aa59c4b6','Automotive Accessories':'photo-1492144534655-ae79c964c9d7','Marine Spares & Accessories':'photo-1544551763-46a013bb70d5','Tools, Hardware & Consumables':'photo-1530124566582-a618bc2615dc','Camping, Leisure & Outdoors':'photo-1478131143081-80f7f84ca84d','Trailer & Canopy':'photo-1747711475650-b222ac557e58'};
+  check('main_category_photo_topics_match_labels',photos.every(x=>expectedRootPhotos[x.label]&&x.src.includes(expectedRootPhotos[x.label])),{mismatches:photos.filter(x=>!expectedRootPhotos[x.label]||!x.src.includes(expectedRootPhotos[x.label]))});
+  const homepageCredits=await frame.locator('#categoryImageCredits').innerText().catch(()=> '');
+  check('homepage_commons_photo_attributions_visible',/Shixart1985/.test(homepageCredits)&&/Milicevic01/.test(homepageCredits)&&/Ahsanriaz6157/.test(homepageCredits),{homepageCredits});
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
@@ -87,6 +91,19 @@ async function verifySourceParity(){
   const subcategoryUnique=new Set(report.subcategoryImages.map(x=>x.src)).size;
   check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
   check('subcategory_photos_are_not_logo_substitutions',report.subcategoryImages.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:report.subcategoryImages.filter(x=>/gw-logo\\.png/i.test(x.src))});
+  const topicRules=[
+   {label:/BATTERY/i,src:'photo-1765211003026-f7666ea3a948',required:true},
+   {label:/FUSES/i,src:'Closeup_of_the_car_fuses.jpg',required:true},
+   {label:/REGULATORS/i,src:'Alternator_voltage_regulator.jpg',required:true},
+   {label:/RELAYS?/i,src:'Fuse_relay_with_a_connector_to_the_CANbus_in_yellow.JPG',required:true},
+   {label:/Wiring.*Connectors/i,src:'photo-1762329404225-2953941c00f1',required:true},
+   {label:/Fuel Pumps/i,src:'Automobile_Fuel_tank_cutaway.JPG',required:false},
+   {label:/Trailer|Towing|Canopy/i,src:'photo-1747711475650-b222ac557e58',required:false}
+  ];
+  const topicResults=topicRules.map(rule=>{const found=report.subcategoryImages.filter(x=>rule.label.test(x.alt));return {label:String(rule.label),expected:rule.src,required:rule.required,found:found.map(x=>({alt:x.alt,src:x.src,loaded:x.loaded,naturalWidth:x.naturalWidth})),passed:found.length?found.every(x=>x.src.includes(rule.src)&&x.loaded&&x.naturalWidth>0):!rule.required}});
+  check('subcategory_specific_photos_match_topics',topicResults.every(x=>x.passed),{topicResults});
+  const categoryCredits=await page.locator('#imageCredits').innerText().catch(()=> '');
+  check('category_commons_photo_attributions_visible',/Shixart1985/.test(categoryCredits)&&/Milicevic01/.test(categoryCredits)&&/Ahsanriaz6157/.test(categoryCredits),{categoryCredits});
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
   const batterySubcategory=page.locator('.card[href^="category.html?id="]').filter({hasText:/BATTERY/i}).first();
@@ -136,7 +153,11 @@ async function verifySourceParity(){
   check('product_description_is_visible',await page.getByRole('heading',{name:'Product Description'}).count()===1,{count:await page.getByRole('heading',{name:'Product Description'}).count()});
   check('add_to_cart_button_visible',await page.locator('#add').isVisible(),{text:await page.locator('#add').innerText()});
   const q=page.locator('#queryPart');
-  check('query_part_button_has_product_whatsapp_link',await q.isVisible()&&(await q.getAttribute('href')).startsWith('https://wa.me/')&&(await q.getAttribute('href')).includes(encodeURIComponent(await page.locator('.sku').innerText().catch(()=>''))),{href:await q.getAttribute('href'),sku:await page.locator('.sku').innerText().catch(()=> '')});
+  const qHref=await q.getAttribute('href')||'';
+  const skuText=await page.locator('.sku').innerText().catch(()=> '');
+  const sku=skuText.replace(/^SKU:\\s*/i,'').trim();
+  const waMessage=qHref?new URL(qHref).searchParams.get('text')||'':'';
+  check('query_part_button_has_product_whatsapp_link',await q.isVisible()&&qHref.startsWith('https://wa.me/')&&!!sku&&waMessage.includes(sku),{href:qHref,sku,waMessage});
   const addText=await page.locator('#add').innerText();
   if(/ADD TO CART/i.test(addText)&&await page.locator('#add').isEnabled()){
     await page.locator('#add').click();
