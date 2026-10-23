@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS public.customer_terms_acceptances (
   terms_sha256 text NOT NULL CHECK (terms_sha256 ~ '^[a-f0-9]{64} timestamptz NOT NULL DEFAULT clock_timestamp(),
   acceptance_source text NOT NULL DEFAULT 'web-checkout' CHECK (acceptance_source IN ('web-checkout')),
   user_agent text,
-  UNIQUE (user_id, terms_version)
+  UNIQUE (user_id, terms_version, terms_sha256)
 );
 
 ALTER TABLE public.customer_terms_acceptances ENABLE ROW LEVEL SECURITY;
