@@ -131,6 +131,9 @@ export function createStoreCheckoutHandler(deps: { fetchImpl?: typeof fetch; get
       // Only products with an explicitly verified current selling price may enter paid checkout.
       // The RPC is service_role-only, so this server-side gate cannot be bypassed by the public client.
       const items = payload.p_items as Array<Record<string, unknown>>;
+      if (items.some(item => typeof item.quantity !== "number" || !Number.isSafeInteger(item.quantity) || item.quantity < 1)) {
+        throw new Error("Every cart item must have a positive whole-number quantity.");
+      }
       const publicSkus = [...new Set(items.map(item => String(item.public_sku ?? item.sku ?? "").trim()).filter(Boolean))];
       if (!items.length || items.length > 100 || items.some(item => !/^GW-[A-Z0-9]{8}$/.test(String(item.public_sku ?? item.sku ?? "").trim())) || !publicSkus.length) {
         throw new Error("Every cart item must have a valid public SKU.");
