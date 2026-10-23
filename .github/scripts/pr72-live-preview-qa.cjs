@@ -3,12 +3,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const BASE=process.env.PREVIEW_URL || 'https://6fa32822.get-wired-autoworx-store.pages.dev/store.html';
 const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || '775796d131f812de8f85521e1e51e74fd3eff43d';
-const DEPLOYED_SOURCE_SHA='6a187f2e342e2b5f9974b16b5b9cab2b5c7d0152';
+const DEPLOYED_SOURCE_SHA=process.env.DEPLOYED_SOURCE_SHA || '6a187f2e342e2b5f9974b16b5b9cab2b5c7d0152';
 const REPO='getwiredautoworx-max/get-wired-autoworx-store';
-const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js'];
+const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js','assets/PHOTO_CREDITS.md'];
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
+const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],categorySubcategoryPages:[],fuelPumpCreditVisible:false,productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
 function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
@@ -41,6 +41,19 @@ async function verifySourceParity(){
   report.categoryImages=photos;
   check('eight_main_category_tiles',roots===8,{count:roots});
   check('main_category_photos_load_are_distinct_and_labelled',photos.length===8&&photos.every(x=>x.loaded&&/product photo/i.test(x.alt))&&new Set(photos.map(x=>x.src)).size===8,{photos});
+  const rootLabels=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').evaluateAll(es=>es.map(e=>e.innerText.replace(/\s+/g,' ').trim()));
+  check('eight_expected_main_category_labels',rootLabels.length===8&&[/Auto Electrical Spares/i,/Vehicle Security/i,/Car Audio & Entertainment/i,/Automotive Accessories/i,/Marine Spares & Accessories/i,/Tools, Hardware & Consumables/i,/Camping, Leisure & Outdoors/i,/Trailer & Canopy/i].every(re=>rootLabels.some(label=>re.test(label))),{rootLabels});
+  await frame.locator('#categoryGrid').screenshot({path:path.join(OUT,'main-category-grid.png')}).catch(()=>{});
+  report.screenshots.push('main-category-grid.png');
+  const homeText=(await frame.locator('body').innerText()).replace(/\s+/g,' ').toUpperCase();
+  const rangeBanner=['YOUR ONE STOP AUTOMOTIVE / MARINE / ONLINE STORE','QUALITY PARTS AND ACCESSORIES AT AFFORDABLE PRICES','SOUND & SECURITY • AUTO ELECTRICAL • SPARES & ACCESSORIES','CAR AUDIO • MARINE • TOOLS • 4X4 & CAMPING • TRAILER & CANOPY • AND MORE'];
+  check('corrected_range_banner_text_present',rangeBanner.every(t=>homeText.includes(t.toUpperCase())),{expected:rangeBanner,found:homeText.includes('YOUR ONE STOP AUTOMOTIVE / MARINE / ONLINE STORE')});
+  const ratingBox=await frame.getByText(/4\.7/).first().boundingBox().catch(()=>null);
+  const sinceBox=await frame.getByText('SINCE 2012',{exact:true}).first().boundingBox().catch(()=>null);
+  const overlap=!!(ratingBox&&sinceBox&&ratingBox.x<sinceBox.x+sinceBox.width&&ratingBox.x+ratingBox.width>sinceBox.x&&ratingBox.y<sinceBox.y+sinceBox.height&&ratingBox.y+ratingBox.height>sinceBox.y);
+  check('rating_badge_does_not_overlap_since_2012',!!ratingBox&&!!sinceBox&&!overlap,{ratingBox,sinceBox,overlap});
+  const desktopDimensions=await frame.locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
+  check('desktop_no_horizontal_overflow',desktopDimensions.scrollWidth<=desktopDimensions.width+2,desktopDimensions);
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
@@ -48,7 +61,62 @@ async function verifySourceParity(){
   check('specials_no_more_than_four',await frame.locator('#featuredGrid .product').count()<=4,{count:await frame.locator('#featuredGrid .product').count()});
   await frame.getByRole('button',{name:/CAN’T FIND A PART\? REQUEST IT/i}).first().click();
   check('request_part_dialog_opens',await frame.locator('#sourcePart.open').count()===1,{count:await frame.locator('#sourcePart.open').count()});
+  check('request_part_form_has_required_fields',await frame.locator('#sourcePartForm').count()===1&&await frame.locator('#sourcePartNeeded').getAttribute('required')!==null&&await frame.locator('#sourcePartType').getAttribute('required')!==null,{form:await frame.locator('#sourcePartForm').count(),partNameRequired:await frame.locator('#sourcePartNeeded').getAttribute('required'),typeRequired:await frame.locator('#sourcePartType').getAttribute('required')});
+  await frame.locator('#sourcePartNeeded').fill('QA TEST ONLY — not submitted');
+  await frame.locator('#sourcePartType').selectOption({label:'Auto Electrical'});
+  check('request_part_form_accepts_details_without_submitting',await frame.locator('#sourcePartNeeded').inputValue()==='QA TEST ONLY — not submitted'&&await frame.locator('#sourcePartType').inputValue()==='Auto Electrical',{status:'Filled only; deliberately not submitted to avoid creating a real request'});
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
+  // Visit every main category in the same tab; do not submit requests or change server data.
+  for(let i=0;i<rootLabels.length;i++){
+    await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
+    const categoryFrame=page.frameLocator('#store');
+    await categoryFrame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').nth(i).waitFor({timeout:60000});
+    const beforeUrl=page.url();
+    await categoryFrame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').nth(i).click();
+    await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
+    const categoryUrl=page.url();
+    const label=rootLabels[i];
+    check('same_tab_main_category_click:'+label,categoryUrl!==beforeUrl&&/(?:^|\/)category(?:\.html)?\/?$/.test(new URL(categoryUrl).pathname),{label,url:categoryUrl});
+    await page.waitForTimeout(500);
+    await page.locator('.card img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
+    await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
+    const imgs=await page.locator('.card img').evaluateAll(es=>es.map(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth})));
+    report.categorySubcategoryPages.push({category:label,url:categoryUrl,images:imgs});
+    check('subcategory_images_load:'+label,imgs.length>0&&imgs.every(img=>img.loaded&&/product photo/i.test(img.alt)),{count:imgs.length,failed:imgs.filter(img=>!img.loaded),images:imgs});
+    if(imgs.some(img=>/fuel pumps?/i.test(img.alt))){
+      report.fuelPumpCreditVisible=await page.locator('.card').filter({hasText:/fuel pumps?/i}).locator('a[href*="commons.wikimedia.org/wiki/File:Bosch_Fuel_Pump"]').count()>0;
+    }
+    await page.screenshot({path:path.join(OUT,'category-root-'+(i+1)+'.png'),fullPage:true}).catch(()=>{});
+    report.screenshots.push('category-root-'+(i+1)+'.png');
+  }
+  const allPhotoRecords=[...report.categoryImages,...report.categorySubcategoryPages.flatMap(x=>x.images)];
+  const photoMappings=[
+    {name:'main_auto_electrical',label:/Auto Electrical Spares/i,src:/photo-1632656687740-c83b67a55854/},
+    {name:'main_vehicle_security',label:/Vehicle Security/i,src:/photo-1563442375728-31731baa5f02/},
+    {name:'main_car_audio',label:/Car Audio & Entertainment/i,src:/photo-1642351250160-19a4884c6ff4/},
+    {name:'main_automotive_accessories',label:/Automotive Accessories/i,src:/photo-1492144534655-ae79c964c9d7/},
+    {name:'main_marine',label:/Marine Spares & Accessories/i,src:/photo-1544551763-46a013bb70d5/},
+    {name:'main_tools',label:/Tools, Hardware & Consumables/i,src:/photo-1530124566582-a618bc2615dc/},
+    {name:'main_camping',label:/Camping, Leisure & Outdoors/i,src:/photo-1478131143081-80f7f84ca84d/},
+    {name:'main_trailer',label:/Trailer & Canopy/i,src:/photo-1688322313142-86f865a4b937/},
+    {name:'subcategory_fuses',label:/FUSES|Fuses & Fuse Holders/i,src:/photo-1578710078748-0899041a5e7d/},
+    {name:'subcategory_battery',label:/BATTERY/i,src:/photo-1667396654234-1484f03cabb3/},
+    {name:'subcategory_fuel_pumps',label:/Fuel Pumps/i,src:/Bosch_Fuel_Pump_0_580_254_957/},
+    {name:'subcategory_ignition',label:/IGNITION SPARES/i,src:/photo-1679712547753-eaaf4dad4af8/},
+    {name:'subcategory_lighting',label:/Lighting/i,src:/photo-1779261320927-649d532ab438/},
+    {name:'subcategory_relays',label:/RELAYS/i,src:/photo-1562877773-c6dd55a1415e/},
+    {name:'subcategory_switches',label:/SWITCHES/i,src:/photo-1707085301598-3812ae4c01e1/},
+    {name:'subcategory_wiring_connectors',label:/Wiring & Connectors/i,src:/photo-1762329404225-2953941c00f1/},
+    {name:'subcategory_vehicle_security',label:/Alarms & Security/i,src:/photo-1563442375728-31731baa5f02/},
+    {name:'subcategory_trailer_towing',label:/Trailer & Towing/i,src:/photo-1688322313142-86f865a4b937/}
+  ];
+  for(const rule of photoMappings){
+    const found=allPhotoRecords.find(img=>rule.label.test(img.alt));
+    check('photo_relevance_mapping:'+rule.name,!!found&&rule.src.test(found.src),{expectedLabel:String(rule.label),expectedSource:String(rule.src),found:found||null});
+  }
+  check('fuel_pump_photo_credit_visible',report.fuelPumpCreditVisible,{visible:report.fuelPumpCreditVisible});
+  await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
+  await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
   const root=frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first();
   const rootId=await root.getAttribute('data-filter');
   await root.click();
@@ -107,7 +175,18 @@ async function verifySourceParity(){
   report.productImage=await page.locator('.hero img').evaluate(img=>({src:img.currentSrc||img.src,naturalWidth:img.naturalWidth,alt:img.alt}));
   check('individual_product_image_loads',report.productImage.naturalWidth>0,report.productImage);
   check('product_description_is_visible',await page.getByRole('heading',{name:'Product Description'}).count()===1,{count:await page.getByRole('heading',{name:'Product Description'}).count()});
-  check('add_to_cart_button_visible',await page.locator('#add').isVisible(),{text:await page.locator('#add').innerText()});
+  const addText=(await page.locator('#add').innerText()).trim();
+  check('add_to_cart_button_visible',await page.locator('#add').isVisible(),{text:addText});
+  const skuText=await page.locator('.sku').innerText().catch(()=> '');
+  const sku=skuText.replace(/^SKU:\s*/i,'').trim();
+  if(/ADD TO CART/i.test(addText)){
+    await page.locator('#add').click();
+    const cartAfter=await page.evaluate(()=>{try{return JSON.parse(localStorage.getItem('gw_cart')||'[]')}catch(e){return []}});
+    check('add_to_cart_updates_local_cart',cartAfter.some(item=>item.public_sku===sku&&Number(item.qty)>=1),{sku,cartCount:cartAfter.length});
+    await page.evaluate(()=>localStorage.removeItem('gw_cart'));
+  }else{
+    check('add_to_cart_updates_local_cart',false,{sku,buttonText:addText,reason:'The selected product is not eligible for Add to Cart; no order was submitted'});
+  }
   const q=page.locator('#queryPart');
   check('query_part_button_has_product_whatsapp_link',await q.isVisible()&&(await q.getAttribute('href')).startsWith('https://wa.me/'),{href:await q.getAttribute('href')});
   check('product_page_has_no_floating_request_cta',await page.locator('.requestPartFloating').count()===0,{count:await page.locator('.requestPartFloating').count()});
@@ -124,6 +203,8 @@ async function verifySourceParity(){
   check('mobile_no_horizontal_overflow',dimensions.scrollWidth<=dimensions.width+2,dimensions);
   await mobile.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('mobile-home.png');
+  await mobile.frameLocator('#store').locator('#categoryGrid').screenshot({path:path.join(OUT,'mobile-category-grid.png')}).catch(()=>{});
+  report.screenshots.push('mobile-category-grid.png');
   const fontCspErrors=report.consoleErrors.filter(x=>x.includes('fonts.googleapis.com')&&x.includes('Content Security Policy'));
   check('google_fonts_stylesheet_not_blocked_by_csp',fontCspErrors.length===0,{fontCspErrors});
   report.finishedAt=new Date().toISOString();
