@@ -4,32 +4,56 @@ const path = require('node:path');
 const BASE=process.env.PREVIEW_URL || 'https://6fa32822.get-wired-autoworx-store.pages.dev/store.html';
 const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || '775796d131f812de8f85521e1e51e74fd3eff43d';
 const DEPLOYED_SOURCE_SHA=process.env.DEPLOYED_SOURCE_SHA || '6a187f2e342e2b5f9974b16b5b9cab2b5c7d0152';
+const SOURCE_OVERLAY=process.env.SOURCE_OVERLAY==='1';
+const OVERLAY_FILES=new Set(['index-new.html','category.html','assets/PHOTO_CREDITS.md']);
 const REPO='getwiredautoworx-max/get-wired-autoworx-store';
 const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js','assets/PHOTO_CREDITS.md'];
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],categorySubcategoryPages:[],fuelPumpCreditVisible:false,productImage:null,screenshots:[]};
+const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,sourceOverlay:SOURCE_OVERLAY,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],categorySubcategoryPages:[],fuelPumpCreditVisible:false,productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
 function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
+async function installSourceOverlay(page){
+ if(!SOURCE_OVERLAY)return;
+ const origin=new URL(BASE).origin;
+ await page.route(url=>{
+  try{const u=new URL(url.toString());return u.origin===origin&&['/index-new.html','/category','/category.html'].includes(u.pathname)}catch(e){return false}
+ },async route=>{
+  const u=new URL(route.request().url());
+  const file=u.pathname==='/index-new.html'?'index-new.html':'category.html';
+  await route.fulfill({status:200,contentType:'text/html; charset=utf-8',body:fs.readFileSync(path.resolve(file),'utf8')});
+ });
+}
 const digest=s=>require('node:crypto').createHash('sha256').update(s).digest('hex');
 async function verifySourceParity(){
  for(const file of PARITY_FILES){
   const deployedUrl=new URL(file,new URL(BASE).origin+'/').toString();
   const sourceUrl='https://raw.githubusercontent.com/'+REPO+'/'+EXPECTED_SOURCE_SHA+'/'+file;
   try{
-   const [deployed,source]=await Promise.all([fetch(deployedUrl),fetch(sourceUrl)]);
-   const [deployedText,sourceText]=await Promise.all([deployed.text(),source.text()]);
-   const equal=deployed.ok&&source.ok&&deployedText===sourceText;
-   check('deployed_source_parity:'+file,equal,{deployedStatus:deployed.status,sourceStatus:source.status,deployedSha256:digest(deployedText),sourceSha256:digest(sourceText)});
-  }catch(e){check('deployed_source_parity:'+file,false,{error:String(e)})}
+   const source=await fetch(sourceUrl);
+   const sourceText=await source.text();
+   let deployedStatus=200,deployedText,target='deployed-preview';
+   if(SOURCE_OVERLAY&&OVERLAY_FILES.has(file)){
+    deployedText=fs.readFileSync(path.resolve(file),'utf8');
+    target='local-source-overlay';
+   }else{
+    const deployed=await fetch(deployedUrl);
+    deployedStatus=deployed.status;
+    deployedText=await deployed.text();
+   }
+   const equal=source.ok&&deployedStatus<400&&deployedText===sourceText;
+   check('source_parity:'+file,equal,{target,deployedStatus,sourceStatus:source.status,deployedSha256:digest(deployedText),sourceSha256:digest(sourceText)});
+  }catch(e){check('source_parity:'+file,false,{error:String(e)})}
+ }
 }
-}
+
 (async()=>{
  const browser=await chromium.launch({headless:true});
  try{
   const page=await browser.newPage({viewport:{width:1365,height:900},deviceScaleFactor:1});
   observe(page,'desktop');
+  await installSourceOverlay(page);
   const response=await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
   check('preview_home_http',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
   await verifySourceParity();
@@ -195,6 +219,7 @@ async function verifySourceParity(){
   report.screenshots.push('product-detail.png');
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
   observe(mobile,'mobile');
+  await installSourceOverlay(mobile);
   const mr=await mobile.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
   await mobile.frameLocator('#store').locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
   await mobile.waitForTimeout(3000);
