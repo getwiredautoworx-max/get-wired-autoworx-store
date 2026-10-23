@@ -58,6 +58,11 @@ jobs:
           grep -Fq "auth/v1/recover" checkout-v2.html
           grep -Fq "function signOutCustomer()" checkout-v2.html
           grep -Fq "recordCurrentConsent" checkout-v2.html
+          grep -Fq "assets/terms-access-gate.js" index-new.html
+          grep -Fq "assets/terms-access-gate.js" category.html
+          grep -Fq "assets/terms-access-gate.js" products.html
+          grep -Fq "assets/terms-access-gate.js" product.html
+          grep -Fq "gwDirectTermsGate" assets/terms-access-gate.js
           grep -Fq "CONSENT_REQUIRED" supabase/functions/store-checkout/index.ts
           echo "Customer account recovery/sign-out and server-side current-consent guards are present."
           echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
@@ -99,6 +104,12 @@ jobs:
             categoryPage.on('console', m => console.log('[category-browser:'+m.type()+'] '+m.text()));
             categoryPage.on('pageerror', e => console.log('[category-pageerror] '+e.message));
             await categoryPage.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
+            const directTermsGate = categoryPage.locator('#gwDirectTermsGate');
+            await directTermsGate.waitFor({state:'visible', timeout:10000});
+            await categoryPage.locator('#gwDirectTermsCheck').check();
+            await categoryPage.locator('#gwDirectTermsAccept').click();
+            await directTermsGate.waitFor({state:'detached', timeout:10000});
+            console.log('DIRECT_ROUTE_TERMS_GATE_PASS: category route blocks browsing until explicit acceptance');
             await categoryPage.waitForFunction(() => { const grid=document.querySelector('#grid'); return !!grid && (grid.dataset.error || grid.innerText.trim() !== 'Loading categories…'); }, null, {timeout:60000});
             const categoryLoadError = await categoryPage.locator('#grid').getAttribute('data-error');
             if (categoryLoadError) throw new Error('Category navigation failed: '+categoryLoadError);
