@@ -136,3 +136,41 @@ Deno.test("valid checkout ignores browser customer ID and uses the server-linked
   assert(sentPayload.p_customer_email === "customer@example.test", "Order email must come from verified Auth identity");
   assert(urls.filter(u => u.includes("/rpc/create_store_order_v2")).length === 1, "Exactly one mocked order RPC call expected");
 });
+
+
+Deno.test("malformed JSON is rejected before any network request", async () => {
+  let calls = 0;
+  const handler = createStoreCheckoutHandler({
+    getEnv: env,
+    fetchImpl: async () => { calls++; return json({}); },
+  });
+  const response = await handler(new Request("https://local.test/checkout", {
+    method: "POST", headers: authHeaders(), body: "{not-json",
+  }));
+  assert(response.status === 400, "Malformed JSON must be rejected");
+  assert(calls === 0, "Malformed JSON must not call Auth, REST, or the order RPC");
+});
+
+Deno.test("failed customer profile creation never reaches the order RPC", async () => {
+  const urls: string[] = [];
+  const handler = createStoreCheckoutHandler({
+    getEnv: env,
+    fetchImpl: async (url, init) => {
+      const u = String(url); urls.push(u);
+      if (u.includes("/auth/v1/user")) return json({ id: "auth-user-1", email: "customer@example.test" });
+      if (u.includes("/customer_terms_acceptances")) return json([{ id: "terms-row-1" }]);
+      if (u.includes("/rest/v1/customers") && init?.method === "POST") return json({ error: "mock profile insert failure" }, 500);
+      if (u.includes("/rest/v1/customers")) return json([]);
+      throw new Error("Unexpected request after profile failure: " + u);
+    },
+  });
+  const response = await handler(new Request("https://local.test/checkout", {
+    method: "POST", headers: authHeaders(), body: JSON.stringify(baseOrder()),
+  }));
+  const payload = await response.json();
+  assert(response.status === 400, "Failed profile creation must return a safe client error");
+  assert(String(payload.error).includes("customer profile"), "Profile failure should be actionable");
+  assert(urls.some(u => u.includes("/rest/v1/customers") && u.includes("select=id")), "Customer profile lookup should be attempted");
+  assert(urls.some(u => u.includes("/rest/v1/customers") && !u.includes("select=id")), "Customer profile creation should be attempted");
+  assert(!urls.some(u => u.includes("/rpc/create_store_order_v2")), "Profile failure must never reach order RPC");
+});
