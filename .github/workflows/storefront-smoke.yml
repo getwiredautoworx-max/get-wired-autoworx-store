@@ -110,6 +110,32 @@ jobs:
             await categoryPage.locator('#gwDirectTermsAccept').click();
             await directTermsGate.waitFor({state:'detached', timeout:10000});
             console.log('DIRECT_ROUTE_TERMS_GATE_PASS: category route blocks browsing until explicit acceptance');
+
+            // Exercise password recovery and the email-link callback with mocked Supabase Auth.
+            const accountPage = await browser.newPage({viewport:{width:390,height:844}});
+            await accountPage.addInitScript(() => localStorage.setItem('gw_cart', JSON.stringify([{id:'00000000-0000-0000-0000-000000000001',qty:1}])));
+            await accountPage.route('**/auth/v1/recover*', route => route.fulfill({status:200,contentType:'application/json',body:'{}'}));
+            await accountPage.goto('http://127.0.0.1:4173/checkout-v2.html', {waitUntil:'domcontentloaded'});
+            await accountPage.locator('#accountGate').waitFor({state:'visible',timeout:10000});
+            await accountPage.locator('#accountRecover').click();
+            if (await accountPage.locator('#accountPassword').isVisible()) throw new Error('Password field should be hidden during recovery request');
+            await accountPage.locator('#accountEmail').fill('customer@example.test');
+            await accountPage.locator('#accountSubmit').click();
+            await accountPage.locator('#accountMsg').getByText('If the account exists', {exact:false}).waitFor({timeout:10000});
+            await accountPage.close();
+
+            const resetPage = await browser.newPage({viewport:{width:390,height:844}});
+            await resetPage.route('**/auth/v1/user', route => {
+              if (route.request().method() === 'PUT') return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({id:'mock-customer',email:'customer@example.test'})});
+              return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({id:'mock-customer',email:'customer@example.test'})});
+            });
+            await resetPage.goto('http://127.0.0.1:4173/checkout-v2.html#access_token=mock-access&refresh_token=mock-refresh&type=recovery&expires_in=3600', {waitUntil:'domcontentloaded'});
+            await resetPage.waitForFunction(() => document.querySelector('#accountAction')?.value === 'update', null, {timeout:10000});
+            await resetPage.locator('#accountPassword').fill('Mocked-Reset-Password-123!');
+            await resetPage.locator('#accountSubmit').click();
+            await resetPage.locator('#accountMsg').getByText('Password updated.', {exact:false}).waitFor({timeout:10000});
+            console.log('CUSTOMER_PASSWORD_RECOVERY_PASS: reset email request and mocked recovery callback completed');
+            await resetPage.close();
             await categoryPage.waitForFunction(() => { const grid=document.querySelector('#grid'); return !!grid && (grid.dataset.error || grid.innerText.trim() !== 'Loading categories…'); }, null, {timeout:60000});
             const categoryLoadError = await categoryPage.locator('#grid').getAttribute('data-error');
             if (categoryLoadError) throw new Error('Category navigation failed: '+categoryLoadError);
