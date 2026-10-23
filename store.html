@@ -1,4 +1,119 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02060d"><title>Get Wired AutoWorx | Online Store</title><style>html,body{margin:0;width:100%;height:100%;background:#02060d;overflow:hidden}iframe{display:block;width:100%;height:100%;border:0}.checkout-fab{position:fixed;right:18px;bottom:18px;z-index:9999;background:#ff1c2d;color:#fff;border:2px solid #fff;border-radius:999px;padding:13px 18px;font:800 14px Arial,sans-serif;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,.55);display:none}.checkout-fab.show{display:block}.checkout-fab span{display:inline-block;min-width:20px;margin-left:6px;padding:2px 6px;border-radius:999px;background:#fff;color:#ff1c2d;text-align:center}@media(max-width:600px){.checkout-fab{right:12px;bottom:76px;padding:11px 14px;font-size:13px}}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#02060d">
+<title>Get Wired AutoWorx | Online Store</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#02060d;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#f5f8fc}
+iframe{display:block;width:100%;height:100%;border:0}
+.checkout-fab{position:fixed;right:18px;bottom:18px;z-index:50;background:#ff1c2d;color:#fff;border:2px solid #fff;border-radius:999px;padding:13px 18px;font:800 14px Arial,sans-serif;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,.55);display:none}
+.checkout-fab.show{display:block}.checkout-fab span{display:inline-block;min-width:20px;margin-left:6px;padding:2px 6px;border-radius:999px;background:#fff;color:#ff1c2d;text-align:center}
 @media(max-width:600px){.checkout-fab{right:12px;bottom:calc(76px + env(safe-area-inset-bottom));padding:10px 13px;font-size:12px}}
-</style></head><body><iframe id="store" src="index-new.html" title="Get Wired AutoWorx Online Store"></iframe><a id="checkout" class="checkout-fab" href="checkout-v2.html">CHECKOUT <span id="count">0</span></a><script src="assets/product-image-fallback.js"></script><script src="assets/category-cleanup.js"></script><script src="assets/progressive-store-enhancements.js"></script><script src="category-navigation.js"></script><script>const c=document.getElementById('checkout'),n=document.getElementById('count'),frame=document.getElementById('store');function sync(){try{const cart=JSON.parse(localStorage.getItem('gw_cart')||'[]');const count=cart.reduce((s,x)=>s+Number(x.qty||0),0);n.textContent=count;c.classList.toggle('show',count>0)}catch(e){c.classList.remove('show')}}sync();setInterval(sync,500);window.addEventListener('storage',sync);function refine(){try{const d=frame.contentDocument;if(!d)return;d.querySelectorAll('*').forEach(el=>{if(el.children.length===0&&el.textContent.trim()==='Pick up available')el.textContent='Pickup and delivery available';});const total=d.getElementById('cartTotal');if(total&&!total.dataset.refined){total.dataset.refined='1';const note=d.createElement('div');note.textContent='Packaging: R35.00 per item. Pickup: R0.00. Delivery: To be quoted separately based on parcel weight, size and destination.';note.style.cssText='color:#8fa4b8;font-size:12px;margin-top:6px';total.parentNode.insertBefore(note,total.nextSibling)}}catch(e){}}frame.addEventListener('load',function(){refine();if(window.installGetWiredProductImageFallback)window.installGetWiredProductImageFallback(frame);if(window.installGetWiredCategoryCleanup)window.installGetWiredCategoryCleanup(frame);if(window.installGetWiredCategoryNavigation)window.installGetWiredCategoryNavigation(frame)});setTimeout(refine,1000);setInterval(refine,3000);if(window.installGetWiredProductImageFallback)window.installGetWiredProductImageFallback(frame);if(window.installGetWiredCategoryCleanup)window.installGetWiredCategoryCleanup(frame);if(window.installGetWiredCategoryNavigation)window.installGetWiredCategoryNavigation(frame);</script></body></html>
+.terms-gate{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,3,9,.97);overflow-y:auto}
+.terms-gate[hidden]{display:none}.terms-card{width:min(680px,100%);max-height:92vh;overflow:auto;padding:clamp(20px,4vw,34px);background:linear-gradient(145deg,#0b1b30,#050b14);border:2px solid #087fe0;border-radius:16px;box-shadow:0 24px 80px #000}
+.terms-card h1{font-size:clamp(24px,5vw,34px);margin:0 0 12px}.terms-card p,.terms-card li{color:#d1deeb;line-height:1.55}.terms-card a{color:#36b8ff}.terms-callout{padding:12px 14px;border-left:4px solid #ff1c2d;background:#101d2b;border-radius:6px}
+.terms-check{display:flex;align-items:flex-start;gap:10px;margin:18px 0;font-weight:700;line-height:1.45}.terms-check input{width:20px;height:20px;flex:0 0 auto;accent-color:#087fe0}
+.terms-actions{display:flex;gap:10px;flex-wrap:wrap}.terms-actions button{flex:1;min-width:130px;padding:13px 16px;border-radius:8px;font-size:15px;font-weight:800;cursor:pointer}
+.accept-terms{border:0;background:linear-gradient(135deg,#078fe9,#00b4ff);color:#00111d}.accept-terms:disabled{opacity:.4;cursor:not-allowed}.decline-terms{background:#101d2b;border:1px solid #6d8297;color:#fff}.terms-status{min-height:1.3em;color:#ffd166;font-size:13px}
+</style>
+</head>
+<body>
+<div id="termsGate" class="terms-gate" role="dialog" aria-modal="true" aria-labelledby="termsTitle" aria-describedby="termsDescription">
+  <section class="terms-card">
+    <h1 id="termsTitle">Welcome to Get Wired AutoWorx</h1>
+    <p id="termsDescription">Please review and accept our Terms &amp; Conditions before entering the online store.</p>
+    <p class="terms-callout"><strong>You can browse and search the store without an account.</strong> A customer account and sign-in will be required before placing an order or completing a purchase.</p>
+    <ul>
+      <li>Prices and supplier availability may require confirmation before an order is accepted.</li>
+      <li>Returns, store credit and statutory consumer rights are governed by our published terms.</li>
+      <li>Product compatibility must be checked before purchase and installation.</li>
+    </ul>
+    <p><a href="terms-and-conditions.html" target="_blank" rel="noopener">Read full Terms &amp; Conditions</a> · <a href="returns-refunds.html" target="_blank" rel="noopener">Returns &amp; Refunds</a></p>
+    <label class="terms-check"><input id="termsConfirm" type="checkbox"><span>I have read and agree to the current Terms &amp; Conditions.</span></label>
+    <p id="termsStatus" class="terms-status" aria-live="polite"></p>
+    <div class="terms-actions">
+      <button id="declineTerms" class="decline-terms" type="button">Decline and exit</button>
+      <button id="acceptTerms" class="accept-terms" type="button" disabled>Accept &amp; enter store</button>
+    </div>
+  </section>
+</div>
+<iframe id="store" data-src="index-new.html" title="Get Wired AutoWorx Online Store" inert></iframe>
+<a id="checkout" class="checkout-fab" href="checkout-v2.html">CHECKOUT <span id="count">0</span></a>
+<script src="assets/product-image-fallback.js"></script>
+<script src="assets/category-cleanup.js"></script>
+<script src="assets/progressive-store-enhancements.js"></script>
+<script src="category-navigation.js"></script>
+<script>
+(function(){
+  'use strict';
+  // This version key only remembers the UI gate on this browser. It is NOT legal evidence
+  // and must never replace server-verified, versioned acceptance in the checkout flow.
+  const TERMS_VERSION='2026-10-22-v1';
+  const ACCEPT_KEY='gw_terms_gate_version';
+  const gate=document.getElementById('termsGate');
+  const confirmBox=document.getElementById('termsConfirm');
+  const accept=document.getElementById('acceptTerms');
+  const decline=document.getElementById('declineTerms');
+  const status=document.getElementById('termsStatus');
+  const frame=document.getElementById('store');
+  const checkout=document.getElementById('checkout');
+  let accepted=false;
+  try{accepted=localStorage.getItem(ACCEPT_KEY)===TERMS_VERSION}catch(_e){}
+  function enterStore(){
+    gate.hidden=true;
+    if(!frame.hasAttribute('src'))frame.setAttribute('src',frame.dataset.src||'index-new.html');
+    frame.removeAttribute('inert');
+    frame.setAttribute('aria-hidden','false');
+    sync();
+  }
+  if(accepted){enterStore()}else{frame.setAttribute('aria-hidden','true');frame.setAttribute('inert','')}
+  confirmBox.addEventListener('change',function(){accept.disabled=!confirmBox.checked;status.textContent=''});
+  accept.addEventListener('click',function(){
+    if(!confirmBox.checked){status.textContent='Please tick the agreement checkbox to continue.';return}
+    try{localStorage.setItem(ACCEPT_KEY,TERMS_VERSION)}catch(_e){}
+    enterStore();
+  });
+  decline.addEventListener('click',function(){
+    gate.hidden=false;
+    confirmBox.checked=false;accept.disabled=true;
+    status.textContent='You declined the Terms & Conditions. The store remains locked. Close this tab if you do not wish to continue.';
+    decline.textContent='Stay outside store';
+  });
+  const c=checkout,n=document.getElementById('count');
+  function sync(){
+    try{
+      const cart=JSON.parse(localStorage.getItem('gw_cart')||'[]');
+      const count=cart.reduce((s,x)=>s+Number(x.qty||0),0);
+      n.textContent=count;c.classList.toggle('show',count>0);
+    }catch(_e){c.classList.remove('show')}
+  }
+  sync();setInterval(sync,500);window.addEventListener('storage',sync);
+  function refine(){
+    if(gate.hidden!==true)return;
+    try{
+      const d=frame.contentDocument;if(!d)return;
+      d.querySelectorAll('*').forEach(el=>{if(el.children.length===0&&el.textContent.trim()==='Pick up available')el.textContent='Pickup and delivery available'});
+      const total=d.getElementById('cartTotal');
+      if(total&&!total.dataset.refined){
+        total.dataset.refined='1';const note=d.createElement('div');
+        note.textContent='Packaging: R35.00 per item. Pickup: R0.00. Delivery: To be quoted separately based on parcel weight, size and destination.';
+        note.style.cssText='color:#8fa4b8;font-size:12px;margin-top:6px';total.parentNode.insertBefore(note,total.nextSibling);
+      }
+    }catch(_e){}
+  }
+  frame.addEventListener('load',function(){
+    refine();
+    if(window.installGetWiredProductImageFallback)window.installGetWiredProductImageFallback(frame);
+    if(window.installGetWiredCategoryCleanup)window.installGetWiredCategoryCleanup(frame);
+    if(window.installGetWiredCategoryNavigation)window.installGetWiredCategoryNavigation(frame);
+  });
+  setTimeout(refine,1000);setInterval(refine,3000);
+  if(window.installGetWiredProductImageFallback)window.installGetWiredProductImageFallback(frame);
+  if(window.installGetWiredCategoryCleanup)window.installGetWiredCategoryCleanup(frame);
+  if(window.installGetWiredCategoryNavigation)window.installGetWiredCategoryNavigation(frame);
+})();
+</script>
+</body>
+</html>
