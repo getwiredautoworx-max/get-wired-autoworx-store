@@ -2839,3 +2839,11 @@ This section supersedes older QA statements above where they conflict.
 - Cloudflare Pages deployment bot confirms exact commit `c76d02017176f84634eed842e080a36169b4133e` deployed successfully. Owner preview: https://1b6e1a1f.get-wired-autoworx-store.pages.dev/store . Branch alias: https://fix-pr70-storefront-owner-fe.get-wired-autoworx-store.pages.dev/store . Deployment logs: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/1b6e1a1f-b209-476b-8566-39512c0af356 .
 - The Find a Part button is now a ninth tile inside the existing category grid, so it shares the same card footprint and responsive layout as the other category buttons. The former full-width standalone vehicle finder section is removed. Clicking the tile calls the store-search dialog; the dialog retains the request-unavailable-item path.
 - Exact deployment success is confirmed. Fresh browser interaction/screenshot QA on this SHA is still not recorded; owner can test preview now. PR #72 remains draft/unmerged, PR #70 baseline unchanged; no production/Axxess/DNS/payment/stock/catalogue changes.
+
+
+## 2026-10-23 — Continuation run: non-stock storefront QA (task start)
+- **Status: IN PROGRESS.** Read the latest permanent handover on main (blob SHA `ec15e6e90fb4d16f3d3f46c981f8e7a15d78ef94`) before starting this run.
+- Owner scope update: ASC authorisation/integration is still pending. Use existing store stock strictly for testing; pause all other stock-related work, including supplier-price verification, stock reconciliation, catalogue stock cleanup, stock imports and price/quantity investigations.
+- This run is limited to non-stock storefront/technical blockers. Do not modify live data, product active flags, hosting/DNS/payment settings, deploy production, or consume release credits without explicit approval. Do not merge draft PRs.
+- First focus: inspect current PR #72 and existing workflow statuses; do not duplicate queued/in-progress jobs. Only restart a failed/cancelled/stopped safe staging task when a supported retry action exists; never retry production/deployment jobs.
+- Next action: record the actual workflow and PR findings in a follow-up handover entry, then proceed with the smallest safe non-deploying verification.
