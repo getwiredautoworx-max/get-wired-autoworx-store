@@ -1,5 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { mapProviderError } from "./provider-error.js";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
 const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY") || "";
@@ -76,10 +77,9 @@ Deno.serve(async (req: Request) => {
     });
     if (!aiResponse.ok) {
       const upstreamText = await aiResponse.text();
-      console.error("OpenAI image analysis failed", aiResponse.status, upstreamText.slice(0, 500));
-      if (aiResponse.status === 401 || aiResponse.status === 403) return json({ error: "AI provider authentication failed. Please contact the store administrator." }, 502, origin);
-      if (aiResponse.status === 429) return json({ error: "AI picture search is temporarily busy or its usage limit has been reached. Please try later." }, 429, origin);
-      return json({ error: "The image could not be analysed right now. Please try again or use Request a Part." }, 502, origin);
+      const mapped = mapProviderError(aiResponse.status, upstreamText);
+      console.error("OpenAI image analysis failed", aiResponse.status, mapped.providerCode || "unclassified");
+      return json(mapped.body, mapped.status, origin);
     }
     const ai = await aiResponse.json();
     let identification: any;
