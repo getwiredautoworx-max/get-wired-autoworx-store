@@ -221,3 +221,30 @@
 - Live preview browser workflow run `40013816044` was queued after that test-harness correction. Status at this checkpoint: QUEUED / RESULT PENDING. Inspect its conclusion, job logs, JSON report and screenshots; fix any actual failures on the same PR #72 branch. Do not deploy again while this run is pending.
 - No preview deployment was triggered by the test-harness-only commit. No merge, production change, Axxess/DNS/payment change, supplier-data operation, live-stock/catalogue write, or Supabase data write was performed.
 - Current blocker: exact preview browser verification has not completed; no preview URL is yet certified as owner-ready. Next: inspect run `40013816044`; if it passes source parity and browser checks, inspect screenshots for photo relevance and layout, then record the verified URL and evidence. If it fails, fix the specific test/app issue and rerun without triggering a deployment.
+
+## Automated monitor checkpoint — 2026-10-23 20:18 UTC
+
+### PR and source boundary
+- PR #72 remains open, draft, and unmerged. Review branch: `fix/pr70-storefront-owner-feedback-2026-10-20`; base remains the approved PR #70 baseline, `recovery/approved-preview-index-new`. Do not use PR #68 or PR #71 as the starting point.
+- Latest branch head at this checkpoint: `651af9ab1a0f9e7918d5b72f036a902ce9413338`. The latest commits changed QA scripts only; the storefront application files deployed by the isolated preview run below were not changed after that deployment.
+- Production, Axxess, DNS, payments, supplier data, live catalogue/stock, and Supabase data were not modified.
+
+### New evidence
+- Commit `2b2a3d47a1f0b86259ad14eee8f9ec6797d447a3` removed the interaction-test interception that had replaced every Unsplash request with the Get Wired logo. The resulting local browser run [40017982677](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40017982677) completed successfully with 20 assertions passed, 0 failed. All eight homepage category images loaded at natural width 720 with eight distinct URLs and no logo substitution. The report still records one console 404 that has not yet been diagnosed.
+- [Responsive layout browser acceptance run 40017982671](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40017982671) passed for the latest checked head; [Public SKU Exposure Audit run 40017982543](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40017982543) passed.
+- Local interaction fixture checks passed for the eight main category buttons, standalone Part Search, standalone Request a Part, search-query handoff into the request form, rating badge spacing relative to “SINCE 2012”, category/subcategory route navigation, product detail/description, cart badge increment, WhatsApp query link with product name and SKU, and mobile horizontal overflow. These are fixture/local checks, not proof of the hosted runtime.
+- Screenshot inspection after removing the logo substitution confirms real photos load, but the Auto Electrical Spares parent tile and Electrical Connectors & Wiring subcategory tile use the same circuit-board photo. The eight root URLs being distinct does not prove subcategory relevance. The homepage Trailer & Canopy mapping still points to a generic landscape image and is not sufficiently topic-specific. Category/subcategory photo relevance is therefore **not fully passed**.
+
+### Preview deployment and browser verification
+- Isolated Pages deployment workflow [run 40017573895](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40017573895) completed successfully for commit `2b2a3d47a1f0b86259ad14eee8f9ec6797d447a3`. It was triggered automatically by the test-harness update because `staging/**` matches the preview deployment workflow paths; it ran before the real-photo review and remaining checks were ready. Treat this as an **unverified candidate deployment**, not an owner-ready preview.
+- Do not initiate another preview deployment during this checkpoint. Before any future storefront-source update that can trigger deployment, review the workflow path filters so test-only changes do not accidentally deploy.
+- Live browser QA [run 40017975782](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40017975782) targets the latest isolated deployment. At the last poll it was still in the “Install isolated Playwright runner” step; the browser-check step had not started, so there is no verified test URL yet.
+- Earlier live QA [run 40014120921](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40014120921) failed after a 60-second wait for the category grid on the older preview. Its report showed source parity passing for the listed static storefront files but no category grid; the revised live QA script now records iframe/body/network diagnostics on that failure and targets the latest deployment.
+- Do not give the candidate URL to the owner as verified until live browser QA proves that the exact deployed URL serves the current storefront and category click-through works.
+
+### Next actions
+1. Poll live QA run 40017975782 until it finishes; inspect its report and screenshots (including timeout diagnostics if it fails).
+2. Diagnose the remaining console 404.
+3. Correct the duplicated parent/subcategory electrical image and replace the generic Trailer & Canopy image; add and verify a relevant fuel-pump image and a proper fuse image where those labels are shown. Preserve any required image-attribution/license notices.
+4. Re-run non-deploying checks and inspect real image screenshots, same-tab navigation, request-part query handoff, range banner, product detail/cart/WhatsApp actions, and mobile/desktop layout.
+5. Only after these checks pass, use the repository's permitted controlled-preview path and verify the exact deployment. Until then, no URL is owner-verified.
