@@ -293,6 +293,14 @@ jobs:
             await responsivePage.close();
 
             if (process.env.GITHUB_REF === 'refs/heads/main') {
+              // Read-only check of the apex host in addition to canonical www; do not require a redirect because DNS/redirect policy is owner-controlled.
+              const apexPage = await browser.newPage({viewport:{width:390,height:844}});
+              const apexResponse = await apexPage.goto('https://getwiredauto.co.za/',{waitUntil:'domcontentloaded',timeout:45000});
+              if (!apexResponse || apexResponse.status() !== 200) throw new Error('Apex homepage did not return HTTP 200');
+              await apexPage.locator('iframe#store').waitFor({timeout:20000});
+              console.log('PUBLIC_APEX_HOMEPAGE_PASS HTTP '+apexResponse.status()+' final_url='+apexPage.url());
+              await apexPage.close();
+
               const publicPage = await browser.newPage({viewport:{width:390,height:844}});
               const homeResponse = await publicPage.goto('https://www.getwiredauto.co.za/',{waitUntil:'domcontentloaded',timeout:45000});
               if (!homeResponse || homeResponse.status() >= 400) throw new Error('Public homepage did not return a successful HTTP response');
