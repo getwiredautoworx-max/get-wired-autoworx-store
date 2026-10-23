@@ -2930,3 +2930,8 @@ This section supersedes older QA statements above where they conflict.
 - GitHub PR workflows triggered: Public SKU Exposure Audit run `39912111726` **success**; Prepare Axxess upload package run `39912111693` **success**; Storefront Smoke Test run `39912111692` still **in progress** at the last poll (Playwright setup completed, Chromium install running; checkout-gate and browser smoke steps pending).
 - Axxess package workflow uploaded a workflow artifact named `axxess-storefront-upload` (about 111 MB, SHA-256 `eaecf69eae52a4878a8edfd04b6daf9c5b0e474cd0b4bf46277a5d34f3e165e1`, expires 2026-11-06). This is a GitHub Actions artifact only; it was **not** uploaded to Axxess hosting or deployed. Do not use it for owner testing until PR tests and full review pass.
 - Current next gate: monitor run `39912111692` to completion; inspect failed steps/logs if any. Then run browser interaction QA in a controlled environment and get a true Deno type-check plus staging migration/RLS validation. Production remains untouched; release HOLD. Do not merge, deploy, apply migrations, or call live order RPC.
+
+
+## 2026-10-23 — Smoke workflow progress update
+- PR #87 run `39912111692`: Chromium installation **passed** and the `Verify verified-price checkout gate` step **passed**. `Run local storefront smoke test` remains **in progress** at the last poll; no final result is available yet. Job log download was unavailable while the job was running (GitHub returned BlobNotFound), so do not infer success/failure from that.
+- Continue monitoring run `39912111692` and inspect the completed job logs/artifacts after it finishes. No code, database, or production hosting change is authorised by these CI results.
