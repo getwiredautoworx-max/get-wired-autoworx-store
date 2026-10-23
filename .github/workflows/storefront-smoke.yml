@@ -42,7 +42,9 @@ jobs:
       - name: Type-check checkout and Terms acceptance Edge Functions
         run: deno check supabase/functions/store-checkout/index.ts supabase/functions/record-terms-acceptance/index.ts
       - name: Report current Terms document SHA-256
-        run: sha256sum terms-and-conditions.html
+        run: |
+          sha256sum terms-and-conditions.html
+          cat terms-and-conditions.html returns-refunds.html | sha256sum
       - name: Verify verified-price checkout gate
         shell: bash
         run: |
