@@ -2938,3 +2938,26 @@ See `HANDOVER_CURRENT.md` for the full evidence and next-step queue. This checkp
 ---
 ## LIVE PART SEARCH FAILURE — 2026-10-23 13:14 UTC
 Run 39958304900 completed FAILURE. Apex and www returned HTTP 200; category grid rendered 9 categories. Live Part Search button click produced `ReferenceError: openPartSearch is not defined`; live iframe button onclick is `openPartSearch()`, while the dialog remained closed/zero-sized. Request a Part and later live routes were not tested. Keep smoke assertion strict; do not call the handler directly to fake a pass. Current GitHub source expects a window-qualified handler; compare Axxess-served files to approved build and prepare backup before any owner-approved upload. No Axxess/DNS change made. PR #67 audit/database integrity, PR #89 EFT stock reservation/expiry policy, PR #91 Gemini secret/privacy approval, Android device install reason remain blockers. Launch HOLD.
+
+
+## COMPLETION BLOCKER SWEEP — 2026-10-23 (continued)
+
+### Source comparison result — live Part Search
+- GitHub store.html is an iframe shell loading index-new.html; the checked-in source contains window.openPartSearch. The live smoke test sees the button's inline handler as openPartSearch() and reports ReferenceError: openPartSearch is not defined when clicked. Public browser access to the live HTML source was not available to this session, so the exact deployed-file diff could not be independently retrieved here.
+- Diagnosis is narrowed to a mismatch in the Axxess-served iframe HTML/runtime or an inline handler scope issue. A GitHub-only fix cannot be represented as a live fix. Do not upload or modify Axxess without owner approval; the safe fix is to compare the served index-new.html and its button handler against the approved GitHub copy, back up the current live file, upload only the minimal corrected file after approval, then rerun the live smoke. Do not bypass the test by directly calling the function.
+- No live hosting/DNS changes made.
+
+### PR #91 deployment/build distinction
+- GitHub PR #91 latest head remains 504414c3c7173384b2736cb873e1a3ba3c0b5f40. A Cloudflare Pages preview bot comment reports successful Pages preview deployment for that SHA at https://76096a07.get-wired-autoworx-store.pages.dev, while a separate Workers Builds integration comment reports failed builds for the same SHA and its prior commit. These are distinct build paths; do not conflate the Pages preview with production Edge Function deployment or treat the Workers build failure as resolved.
+- No Cloudflare credits or production secrets changed. PR #91 remains draft pending a real, authorized provider smoke test, GEMINI_API_KEY owner configuration, and privacy approval for customer image uploads.
+
+### Completion blockers and owner attention
+1. Owner approval required: authorize a minimal Axxess file backup/repair for the live Part Search handler, or explicitly keep production untouched. Until then, live Part Search remains a verified failure.
+2. Owner action required: configure GEMINI_API_KEY in Supabase Edge Function secrets if the no-cost image-search path is wanted, and approve how customer-uploaded part photos are processed. No secret value should be shared in chat.
+3. Owner decision required: define whether pending EFT orders reserve stock and the timeout/expiry/release rule. PR #89 cannot safely finalize the stock-reservation behavior without this policy.
+4. Owner/device action required: install the existing 21 KB owner-app APK on the Hisense and report the exact Package Manager failure code if it fails. Windows 7 ADB is incompatible; no more blind rebuilds/package-ID rotations.
+5. No owner action yet: PR #67 remains draft because mutation+audit atomicity and database-enforced category slug/hierarchy integrity are not demonstrated. Inspect the actual schema/constraints before writing a transaction/RPC; no production migration/deployment.
+6. Release remains HOLD: successful source checks/builds do not establish the live shopping journey, terms/login gate, checkout, payment, image provider, or device installation. Supplier stock reconciliation remains paused pending ASC authorization.
+
+### Safety / change boundary
+No Axxess, DNS, production Supabase schema/data/secrets, payment activation, supplier catalogue, or customer-launch changes were performed during this sweep. Cloudflare Pages preview status is evidence only, not authorization to deploy to production.
