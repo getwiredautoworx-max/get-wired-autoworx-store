@@ -1,3 +1,14 @@
+## SECURITY / VERIFICATION FOLLOW-UP — 2026-10-23 10:20 SAST
+
+- Current immutable policy document SHA-256 was computed by the GitHub Actions runner from the exact checked-out `terms-and-conditions.html`: `2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12`.
+- Added that digest to durable consent rows and pinned it in `record-terms-acceptance`, `store-checkout`, and the checkout consent request. The smoke workflow now fails if the actual policy file digest diverges from the pinned value; a changed policy therefore requires a deliberate version/hash update before release.
+- Added Deno setup/type-check for both Edge Functions to the smoke workflow, plus a browser test for the password-reset callback screen.
+- Rechecked the failure from smoke run `39921302901`: account UI modes passed; failure was another independent Request a Part test context (`requestPage`) clicking before accepting the UI gate. Added explicit readiness wait and acceptance in that context in commit `6cf971a359ef4b82fa150706ba7e6579bff87d49`. Earlier isolated contexts now wait for `data-ready=true`, which is set only after the gate event listeners are installed. This is a narrow test fix based on the exact failing trace, not a blind retry.
+- Current smoke run `39921463228` (head `8ab0662`) is still in progress and includes Deno type-check and password-reset UI coverage; it predates the last Request a Part test correction. A subsequent run for `6cf971a` is expected from the branch update; verify that latest run, not only the older run. Public SKU Exposure Audit `39921463064` and Axxess package build `39921463170` passed on `8ab0662`. The package build is not permission to upload/deploy.
+- No migration/function deployed to Supabase and no live orders created. The migration needs isolated database/RLS/immutability testing before any merge. Account UI and checkout changes still require full CI verification; no real customer login was tested because no test credentials were available.
+- Launch HOLD remains. Current focus for the 12-hour 90% verification target: obtain green latest smoke/Deno checks, test authenticated consent flow and negative authorization paths in an isolated Supabase environment, inspect responsive/browser results, and close/update all release-gate evidence. Physical APK install and owner approval remain outside CI verification.
+
+---
 ## CUSTOMER ACCESS + TERMS ENFORCEMENT WORK — 2026-10-23 (GitHub-only)
 
 ### Implemented on isolated branch; awaiting full verification
