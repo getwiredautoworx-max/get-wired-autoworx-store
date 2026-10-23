@@ -2952,3 +2952,8 @@ This section supersedes older QA statements above where they conflict.
 ## 2026-10-23 — Next verification step started
 - After fixing the local browser's Terms-gate setup, the latest smoke workflow `39916036692` is still queued; prior completed smoke runs failed only because the modal intercepted a product click before the local test accepted terms. The updated branch now includes both local and public-frame acceptance logic.
 - Next action: add a true Deno type-check to the existing PR smoke workflow so the Edge Function is validated by its actual runtime/toolchain rather than annotation-stripped JavaScript only. This remains CI-only and source-only; no migrations will be applied and no live order RPC will be called.
+
+
+## 2026-10-23 — Deno type-check added to CI
+- Updated `.github/workflows/storefront-smoke.yml` on the isolated branch to install Deno v2 using `denoland/setup-deno@v2` and run `deno check supabase/functions/store-checkout/index.ts` before the Playwright tests. This is the first true Deno type-check gate in this branch; its result is **pending** until the workflow completes.
+- CI change commit `235cfe348d25ce005206497b95e2cde9ac66a38c`; workflow file read-back blob SHA `2952705eea59b3b9cb7a75899b2fb99fb8fd1222`. Continue monitoring the newest run; do not infer pass before logs report success. Production remains unchanged, PR #87 draft/unmerged, migrations unapplied, release HOLD.
