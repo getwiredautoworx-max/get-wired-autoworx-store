@@ -1,0 +1,55 @@
+name: PR72 Non-Deploying Category Photo QA
+
+on:
+  push:
+    branches:
+      - fix/pr72-photo-relevance-qa-2026-10-23
+    paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'assets/PHOTO_CREDITS.md'
+      - '.github/scripts/pr72-live-preview-qa.cjs'
+      - '.github/workflows/pr72-photo-mapping-check.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr72-nondeploying-photo-qa
+  cancel-in-progress: true
+
+jobs:
+  verify-candidate-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated candidate source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install isolated Playwright runner
+        run: |
+          npm init -y
+          npm install --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Browser-test candidate photo mappings without deployment
+        env:
+          PREVIEW_URL: https://6fa32822.get-wired-autoworx-store.pages.dev/store.html
+          EXPECTED_SOURCE_SHA: ${{ github.sha }}
+          DEPLOYED_SOURCE_SHA: 6a187f2e342e2b5f9974b16b5b9cab2b5c7d0152
+          SOURCE_OVERLAY: '1'
+        run: node .github/scripts/pr72-live-preview-qa.cjs
+
+      - name: Upload non-deploying browser report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr72-photo-mapping-nondeploying-qa-${{ github.run_number }}
+          path: qa-live-preview-output/
+          if-no-files-found: warn
+          retention-days: 14
