@@ -1,3 +1,10 @@
+## WORKFLOW TAIL CLEANUP — 2026-10-23
+
+- Found the remaining parse blocker: a stale duplicate fragment from the first migration-test heredoc had been appended after the smoke-test script and duplicated the next workflow step with incorrect indentation. Removed everything after the original end-of-workflow audit comment in commit `65bf48b2f46ec7c455fc3acb7727937ddcdecd45`; verified the trailing `SQLCHECK` fragment is gone and the workflow ends at the original final comment.
+- This is the root cause behind the zero-job workflow runs; the next run must confirm the workflow is parsed, then execute the full smoke suite. Do not count cancelled/zero-job runs as test passes.
+- No production changes.
+
+---
 ## WORKFLOW SOURCE-CHECK REPAIR — 2026-10-23
 
 - The first CI source-validation heredoc caused GitHub to reject the workflow definition (run `39923133286` had no jobs). Removed the fragile heredoc/regex and replaced it with straightforward shell `grep`/count assertions for exactly one table, one immutable trigger, one accepted timestamp, the 64-hex digest constraint, and the composite unique key.
