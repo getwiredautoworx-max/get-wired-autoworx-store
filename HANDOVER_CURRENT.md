@@ -1526,3 +1526,28 @@ Handover update based on current blob SHA `1c94d44815bea2783e230d9e98a323a36f3b4
 - Latest application logic in this tested tree includes positive integer quantity validation and the SQL-aligned maximum of 99 items per line; both lower/upper bound rejection tests passed. The latest PR head `d494905479b54e00e66258ae5784c209a557e56e` differs only by resetting `HANDOVER_CURRENT.md` to the original base so the PR no longer carries handover changes. GitHub reports PR #89 mergeable after recalculation; it remains draft/unmerged.
 - All available current-source code/browser checks for checkout are now green: 11/11 mocked Deno tests, Node source assertions, Deno type-check, storefront Playwright smoke, package build, exposure audit, and Cloudflare Pages preview. The separate Cloudflare Workers Builds check remains failed with no error log exposed in the GitHub check summary.
 - Still outstanding and explicitly not represented as completed: staging migration/RLS/RPC validation; real Supabase Auth + consent + customer profile + order integration; owner configuration/privacy approval for Gemini; device-level APK install failure code; and Cloudflare Worker root-cause logs. Production launch remains HOLD.
+
+
+## EXECUTION UPDATE — 2026-10-23 11:00 SAST
+
+### Completed in this pass
+1. **Storefront Smoke Test retry — PASS.** GitHub Actions run [39927770248](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927770248), attempt 2, completed with conclusion `success` on commit `746fdf532fbf1790cb9589ac778ad418aaf84d49`. Job `120329085974` passed all listed steps, including Deno type-check, isolated checkout security regression tests, mocked checkout handler tests, verified-price checkout gate, and local Playwright storefront smoke. This resolves the prior cancelled/queued retry uncertainty for this run; it does not replace staging or production validation.
+2. **PR #89 mergeability rechecked.** Current PR head is `d494905479b54e00e66258ae5784c209a557e56e`; GitHub currently reports `mergeable=true`, but PR remains open and draft. Do not merge yet: isolated Supabase staging validation and owner release approval are still absent, and the separate Cloudflare Workers Builds check previously failed while Pages preview passed.
+3. **PR #91 image-search fallback rechecked.** Still open, draft, and GitHub reports `mergeable=false` at head `1f901195a48b9acade95114e5e3571643c78e2cd`. Do not force merge or deploy. Provider tests are mocked; no live Gemini call or owner-configured `GEMINI_API_KEY` evidence exists. Customer-photo privacy disclosure remains an owner decision.
+
+### Remaining execution order
+1. **Inspect the failing Cloudflare Workers Builds check** linked from PR #89. Read the exact failed job/check output and classify whether it is a real build/configuration failure or an unrelated integration check. Fix only a reproducible, minimal GitHub-side issue; do not change production settings.
+2. **Stage-only database integration gate.** Confirm availability and explicit authorization of a separate Supabase staging project. Apply/review the two proposed migrations only there, then test Auth, Terms acceptance persistence, customer-linked checkout and validation using disposable test data. If no isolated staging project is available/authorized, stop at documented code review and mark blocked—never use production as a test target.
+3. **Reconcile PR #89 after evidence.** Re-run required CI on the exact current head after any code change; keep draft/unmerged until staging tests, the Cloudflare check and owner approval are satisfied.
+4. **Image-search fallback.** Owner must configure `GEMINI_API_KEY` as a Supabase Edge Function secret and decide/approve the customer-photo privacy disclosure before any live-provider test or deployment. Do not expose or request the secret in chat.
+5. **Physical Android acceptance.** Do not generate another blind APK variant. Obtain the actual device install failure code/log from the Hisense M72 Pro (ADB Package Manager/logcat or a trusted installer diagnostic), then fix based on that evidence and require a successful physical install + launch.
+6. Continue visual/customer journey QA in GitHub previews only; keep ASC supplier stock/catalogue reconciliation paused pending authorization.
+7. Release gate: no merge/deploy, production migration, Axxess upload, DNS/payment change, live order, stock/catalogue write, or customer launch without the required owner approval and evidence.
+
+### Readiness and ETA re-assessment
+- Storefront source/build readiness: **80% estimate** (smoke retry now green; staging and external-provider/device validation remain).
+- Customer launch readiness: **55% estimate**; launch remains **HOLD**.
+- ETA remains **2–4 working days after isolated staging access/authorization and owner-only Gemini/privacy decisions are available**, assuming no new blocker. The Android physical-device blocker may extend this; without the owner-only prerequisites there is no reliable calendar ETA.
+
+### Change-safety statement
+This pass only read GitHub metadata and updated this handover file. No source behavior, production deployment, Supabase database/function, Axxess, DNS, payment, stock, or catalogue was changed.
