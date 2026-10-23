@@ -1,13 +1,30 @@
 const { chromium } = require('playwright');
 const fs = require('node:fs');
 const path = require('node:path');
-const BASE='https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev/';
+const BASE=process.env.PREVIEW_URL || 'https://6fa32822.get-wired-autoworx-store.pages.dev/store.html';
+const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || '775796d131f812de8f85521e1e51e74fd3eff43d';
+const DEPLOYED_SOURCE_SHA='6a187f2e342e2b5f9974b16b5b9cab2b5c7d0152';
+const REPO='getwiredautoworx-max/get-wired-autoworx-store';
+const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js'];
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,deployedRevision:'4c484023967f1a9ef78639c3baa430db113d0ec8',deploymentAlias:'https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev',startedAt:new Date().toISOString(),checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
+const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
 function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
+const digest=s=>require('node:crypto').createHash('sha256').update(s).digest('hex');
+async function verifySourceParity(){
+ for(const file of PARITY_FILES){
+  const deployedUrl=new URL(file,new URL(BASE).origin+'/').toString();
+  const sourceUrl='https://raw.githubusercontent.com/'+REPO+'/'+EXPECTED_SOURCE_SHA+'/'+file;
+  try{
+   const [deployed,source]=await Promise.all([fetch(deployedUrl),fetch(sourceUrl)]);
+   const [deployedText,sourceText]=await Promise.all([deployed.text(),source.text()]);
+   const equal=deployed.ok&&source.ok&&deployedText===sourceText;
+   check('deployed_source_parity:'+file,equal,{deployedStatus:deployed.status,sourceStatus:source.status,deployedSha256:digest(deployedText),sourceSha256:digest(sourceText)});
+  }catch(e){check('deployed_source_parity:'+file,false,{error:String(e)})}
+}
+}
 (async()=>{
  const browser=await chromium.launch({headless:true});
  try{
@@ -15,14 +32,15 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   observe(page,'desktop');
   const response=await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
   check('preview_home_http',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
-  const frame=page.frameLocator('#store');
-  await frame.locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:60000});
+  await verifySourceParity();
+  const frame=page;
+  await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
   await page.waitForTimeout(5000);
-  const roots=await frame.locator('#categoryGrid > .catWrap > .catBtn').count();
-  const photos=await frame.locator('#categoryGrid > .catWrap > .catBtn .catPhoto').evaluateAll(es=>es.map(e=>({src:e.currentSrc||e.src,loaded:e.complete&&e.naturalWidth>0,naturalWidth:e.naturalWidth})));
+  const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').count();
+  const photos=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn .catPhoto').evaluateAll(es=>es.map(e=>({src:e.currentSrc||e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0,naturalWidth:e.naturalWidth})));
   report.categoryImages=photos;
   check('eight_main_category_tiles',roots===8,{count:roots});
-  check('main_category_photos_load_and_are_distinct',photos.length===8&&photos.every(x=>x.loaded)&&new Set(photos.map(x=>x.src)).size===8,{photos});
+  check('main_category_photos_load_are_distinct_and_labelled',photos.length===8&&photos.every(x=>x.loaded&&/product photo/i.test(x.alt))&&new Set(photos.map(x=>x.src)).size===8,{photos});
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
@@ -31,7 +49,7 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   await frame.getByRole('button',{name:/CAN’T FIND A PART\? REQUEST IT/i}).click();
   check('request_part_dialog_opens',await frame.locator('#sourcePart.open').count()===1,{count:await frame.locator('#sourcePart.open').count()});
   await frame.locator('#sourcePart').evaluate(el=>el.classList.remove('open'));
-  const root=frame.locator('#categoryGrid > .catWrap > .catBtn').first();
+  const root=frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first();
   const rootId=await root.getAttribute('data-filter');
   await root.click();
   await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
@@ -41,7 +59,7 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
   report.subcategoryImages=await page.locator('.card img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth})));
   const subcategoryUnique=new Set(report.subcategoryImages.map(x=>x.src)).size;
-  check('subcategory_photos_are_loaded_and_topic_specific',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
+  check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
   const batterySubcategory=page.locator('.card[href^="category.html?id="]').filter({hasText:/BATTERY/i}).first();
@@ -99,9 +117,9 @@ function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
   observe(mobile,'mobile');
   const mr=await mobile.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
-  await mobile.frameLocator('#store').locator('#categoryGrid > .catWrap > .catBtn').first().waitFor({timeout:60000});
+  await mobile.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
   await mobile.waitForTimeout(3000);
-  const dimensions=await mobile.frameLocator('#store').locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
+  const dimensions=await mobile.locator('html').evaluate(el=>({width:el.clientWidth,scrollWidth:el.scrollWidth}));
   check('mobile_home_http',!!mr&&mr.status()<400,{status:mr?.status()});
   check('mobile_no_horizontal_overflow',dimensions.scrollWidth<=dimensions.width+2,dimensions);
   await mobile.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true}).catch(()=>{});
