@@ -1400,6 +1400,7 @@ document.getElementById('mobileCartLink').onclick=e=>{e.preventDefault();documen
    gate.classList.add('gw-open');gate.setAttribute('aria-hidden','false');accept.focus();
  });
  document.addEventListener('keydown',function(e){if(gate.classList.contains('gw-open')&&e.key==='Escape'){e.preventDefault();e.stopPropagation();message.textContent='Please accept to enter the store, or leave this page.';}},true);
+ gate.setAttribute('data-ready','true');
 })();
 </script>
 </body></html>
