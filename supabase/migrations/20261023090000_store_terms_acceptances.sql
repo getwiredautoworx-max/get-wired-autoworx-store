@@ -19,13 +19,9 @@ CREATE POLICY store_terms_acceptances_select_own
   USING ((SELECT auth.uid()) = user_id);
 
 DROP POLICY IF EXISTS store_terms_acceptances_insert_own ON public.store_terms_acceptances;
-CREATE POLICY store_terms_acceptances_insert_own
-  ON public.store_terms_acceptances
-  FOR INSERT TO authenticated
-  WITH CHECK ((SELECT auth.uid()) = user_id);
 
 REVOKE ALL ON TABLE public.store_terms_acceptances FROM anon, authenticated;
-GRANT SELECT, INSERT ON TABLE public.store_terms_acceptances TO authenticated;
+GRANT SELECT ON TABLE public.store_terms_acceptances TO authenticated;
 
 -- Never let the browser choose the recorded acceptance time or source.
 CREATE OR REPLACE FUNCTION public.enforce_store_terms_acceptance_fields()
