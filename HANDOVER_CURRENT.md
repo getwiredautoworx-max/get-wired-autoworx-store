@@ -1258,3 +1258,13 @@ Purpose: distinguish work completed in source from items actually verified. This
 5. **APK:** physical Hisense M72 Pro installation still unresolved; install107 CI/emulator success is not device acceptance.
 6. **Supplier stock/catalogue:** still paused pending ASC authorisation.
 7. **Release:** HOLD. No production migration/deployment, Axxess/DNS/payment changes, live order, or supplier data changes made.
+
+
+## CURRENT-HEAD CI STARTED — 2026-10-23 10:43 SAST
+
+- A new source commit aligning the PR handover to main caused current-branch workflows to start; this removes the earlier “no current-head run exists” state. Exact latest PR #89 head is now `f2d88c79f7710585009f9c18715542c27ea5205d`. The application source under test is unchanged from `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`; only handover documentation changed.
+- **Storefront Smoke Test:** [run 39925970363](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39925970363) is in progress. Initial job inspection confirms checkout succeeded; Node setup is running; Deno check, Node regression suite and Playwright smoke are pending.
+- **Prepare Axxess upload package:** [run 39925970382](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39925970382) is in progress. This is package preparation only; it does not authorize an Axxess upload.
+- **Public SKU Exposure Audit:** [run 39925970339](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39925970339) is in progress.
+- These runs are not yet passes. Recheck outcomes and exact step logs before marking any task complete. Avoid additional commits to the PR branch while its smoke run is active because concurrency can cancel an in-progress run.
+- **Next task started while CI runs:** inspect the Android build workflow and latest APK build/artifact status without rebuilding blindly or changing application IDs. Physical-device failure still requires a Package Manager install error from the owner's Hisense M72 Pro.
