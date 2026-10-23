@@ -2869,3 +2869,10 @@ This section supersedes older QA statements above where they conflict.
 - Owner asks what remains to resolve. Work from the documented checkout-security findings; do not investigate supplier pricing/stock or alter live data.
 - First inspect current workflow statuses and Supabase auth/customer schema/RLS read-only. Then define the smallest isolated, non-deploying change and tests for login-required checkout and recorded T&C acceptance.
 - Safety: no live checkout/order calls because the RPC decrements stock; no PR merge, production/Axxess/DNS/payment change, or release-credit use without explicit owner approval.
+
+
+## 2026-10-23 — Continuation task start (14:53 SAST)
+- **Scope:** resume from current handover; verify the previously pending main live-root smoke run and isolate any reproducible local storefront smoke defect; continue draft-only owner-tool security review if time/evidence permits.
+- **Initial evidence:** current HANDOVER_CURRENT.md says run 39749972366 was pending at last check. Current GitHub status now shows run 39749972366 completed with failure at the local storefront smoke step after the verified-price gate passed; related run 39750455424 completed successfully. Failure cause is not yet established.
+- **Constraints:** GitHub-first, no Cloudflare/Netlify credits or deployment/retry; no merges, production/Axxess/DNS/Supabase/payment/catalogue/stock changes; PR #67 remains draft/unmerged; supplier stock reconciliation paused; customer launch HOLD. Preserve approved storefront baseline.
+- **Verification plan:** inspect failed job logs and exact smoke assertions, identify whether failure is test-only or a real regression, use isolated local/mock tests only, then append evidence and safest next action. Do not claim live customer journey acceptance from local tests.
