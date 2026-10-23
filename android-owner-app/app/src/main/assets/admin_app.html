@@ -54,8 +54,8 @@ function openCaelexItem(){if(window.AndroidBridge)AndroidBridge.openCaelex("item
 function captureCaelex(){if(window.AndroidBridge)AndroidBridge.captureCaelexPage();else alert("Capture is available in the installed Owner APK.");}
 function showCaelexCapture(){if(!window.AndroidBridge){alert("Capture is available in the installed Owner APK.");return}const raw=AndroidBridge.getCaelexSnapshot();$("caelexCapture").textContent=raw?JSON.stringify(JSON.parse(raw),null,2):"No Caelex capture stored yet. Log in, open/search an item, then capture the current page."}
 function clearCaelexCapture(){if(window.AndroidBridge){AndroidBridge.clearCaelexSnapshot();$("caelexCapture").textContent="Capture cleared."}}
-function openStoreTest(){location.href='file:///android_asset/store/store.html'}
-function openAdmin(){location.href='file:///android_asset/store/admin.html'}
+function openStoreTest(){location.href='https://www.getwiredauto.co.za/'}
+function openAdmin(){location.href='https://www.getwiredauto.co.za/admin.html'}
 boot();
 </script>
 <script>

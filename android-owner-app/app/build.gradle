@@ -1,11 +1,14 @@
 plugins { id 'com.android.application' }
 
-android { namespace 'za.co.getwiredautoworx.owner'; compileSdk 35
-    defaultConfig { applicationId 'za.co.getwiredautoworx.owner'; minSdk 23; targetSdk 35; versionCode 3; versionName '1.0.2' }
-    buildTypes {
-        debug {
-            applicationIdSuffix '.test'
-            versionNameSuffix '-test'
-        }
+android {
+    namespace 'com.getwired.autoworx.owner'
+    compileSdk 35
+    defaultConfig {
+        // One-time fresh install ID avoids signature conflicts with prior CI-signed APKs.
+        applicationId 'com.getwired.autoworx.owner.install107'
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName '1.0.6'
     }
 }
