@@ -1,3 +1,11 @@
+## CONSENT MIGRATION SOURCE RECHECK — 2026-10-23
+
+- During a final read-through, the acceptance migration file was found malformed: the SHA-256 check line had lost its closing regex syntax and a duplicate SQL tail remained after the trigger definition. This was caught before any database application.
+- Replaced the complete file cleanly in commit `ec4726dd7b29173a213cc8be7177f2461fc664c1`. Re-fetched and verified the migration now has a valid-looking 64-hex digest constraint, accepted timestamp, both policy URLs, unique (user, version, digest), RLS/own-row SELECT, and immutable update/delete trigger with no duplicate tail. It remains **not applied**; SQL execution/trigger/RLS behavior still needs isolated database testing.
+- Latest prior browser run exposed service-worker syntax failure; corrected async callback and added `node --check sw.js`. Latest run after this migration correction is pending/queued and must be checked against the current branch head before calling the build verified.
+- Do not merge/deploy until the latest smoke run passes and isolated Supabase validation is available. No production changes.
+
+---
 ## PWA SERVICE-WORKER ROOT CAUSE — 2026-10-23
 
 - Latest browser run `39922642094` failed before offline verification because the service worker failed to evaluate. Browser warning confirmed registration failed; inspection found the navigation cache handler used `await` inside a non-async `.then(response => ...)` callback.
