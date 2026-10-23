@@ -64,9 +64,9 @@ async function auth(path,body){
 }
 function returnToCheckout(){try{return new URLSearchParams(window.location.search).get('return')==='checkout'}catch(_){return false}}
 function renderSession(){
- const s=session(),n=$('sessionNotice');
- if(s&&s.access_token){n.textContent='Signed in'+(s.user&&s.user.email?' as '+s.user.email:'')+'. Use this browser tab for checkout.';n.classList.remove('hidden');$('accountForm').classList.add('hidden');$('signOut').classList.remove('hidden');}
- else{n.classList.add('hidden');$('accountForm').classList.remove('hidden');$('signOut').classList.add('hidden')}
+ let s=session();const n=$('sessionNotice');
+ if(s&&s.access_token&&Number(s.expires_at||0)>Date.now()){n.textContent='Signed in'+(s.user&&s.user.email?' as '+s.user.email:'')+'. Use this browser tab for checkout.';n.classList.remove('hidden');$('accountForm').classList.add('hidden');$('signOut').classList.remove('hidden');}
+ else{if(s)clearSession();n.classList.add('hidden');$('accountForm').classList.remove('hidden');$('signOut').classList.add('hidden')}
 }
 $('tabLogin').onclick=()=>setMode('login');$('tabSignup').onclick=()=>setMode('signup');$('tabRecover').onclick=()=>setMode('recover');
 $('accountForm').addEventListener('submit',async e=>{
