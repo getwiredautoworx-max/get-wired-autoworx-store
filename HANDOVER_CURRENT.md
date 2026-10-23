@@ -1360,3 +1360,13 @@ Purpose: distinguish work completed in source from items actually verified. This
 - Owner APK install107 still fails on the physical Hisense M72 Pro with a generic “App wasn't installed”; the actual Package Manager `INSTALL_FAILED_...` diagnostic is required. Windows 7's current ADB binary is incompatible; use Windows-7-compatible platform-tools or a Windows 10/11 machine.
 - ASC supplier stock/catalogue reconciliation remains paused pending supplier authorisation.
 - Customer launch remains **HOLD**. No Axxess/DNS/payment changes, production migration/function deployment, live order, or catalogue/stock writes were performed in this continuation.
+
+
+## CONTINUATION UPDATE — 2026-10-23 10:47 SAST (CHECKOUT MOCKED RUNTIME TESTS)
+
+- Resumed the explicit next task in this handover: execute the checkout Edge Function handler against mocked Auth, consent, customer profile, product/price and order RPC responses. The test harness is `supabase/functions/store-checkout/handler.test.ts`; no live network, order or stock mutation is used by these tests.
+- First dedicated workflow run [#3 / 39926984915](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39926984915) passed source security assertions and Edge Function type-check, but failed test-file type-check because a closure-assigned nullable capture narrowed to `never`.
+- Adjusted the mocked RPC capture to use an array. Second run [#4 / 39927063693](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39927063693) again passed source assertions and function type-check, then identified a TypeScript literal-comparison warning in the regression assertion.
+- The assertion was corrected by converting the captured customer ID to `String(...)` before comparing against the attacker-supplied ID. Latest observed PR #89 head at time of note: `c6ee2f27f0d913afb5ff7dd4b1ec6e804646c053`. Dedicated checkout handler test run #5 / 39927120315 was **in progress** at last check. Recheck its final result before marking the test phase complete.
+- Current coverage in the harness: missing bearer rejected before network; invalid Auth session stops after Auth verification; missing durable Terms acceptance blocks customer/order calls; quote-required product blocks order RPC; valid mocked checkout uses server-linked customer ID and verified Auth email, not browser-supplied identity. Add further negative cases only after the current run passes, especially malformed body and profile lookup/create failure paths.
+- No production function or migration was deployed/applied. PR #89 remains draft and customer launch remains HOLD until all tests pass and isolated staging migration/consent/checkout flows are validated.
