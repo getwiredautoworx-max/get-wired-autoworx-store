@@ -68,6 +68,23 @@ Deno.serve(async (req: Request) => {
     };
     if (!usesSecretApiKey) adminHeaders.Authorization = "Bearer " + secret;
 
+    // A client-side checkbox/localStorage flag is not proof. Require a durable acceptance
+    // row created by the authenticated record-terms-acceptance function.
+    const consentUrl = new URL(supabaseUrl + "/rest/v1/customer_terms_acceptances");
+    consentUrl.searchParams.set("select", "id");
+    consentUrl.searchParams.set("user_id", "eq." + authUser.id);
+    consentUrl.searchParams.set("terms_version", "eq.gw-terms-2026-10-23-v1");
+    consentUrl.searchParams.set("limit", "1");
+    const consentCheck = await fetch(consentUrl, { headers: adminHeaders });
+    if (!consentCheck.ok) throw new Error("Unable to verify current Terms acceptance. Please retry.");
+    const consentRows = await consentCheck.json();
+    if (!Array.isArray(consentRows) || consentRows.length === 0) {
+      return new Response(JSON.stringify({
+        error: "Please review and accept the current Terms & Conditions before checkout.",
+        code: "TERMS_ACCEPTANCE_REQUIRED",
+      }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
     // Only products with an explicitly verified current selling price may enter paid checkout.
     // The RPC is service_role-only, so this server-side gate cannot be bypassed by the public client.
     const items = payload.p_items as Array<Record<string, unknown>>;
