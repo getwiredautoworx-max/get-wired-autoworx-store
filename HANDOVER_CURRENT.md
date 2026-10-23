@@ -1,3 +1,10 @@
+## CI RUNTIME EFFICIENCY — 2026-10-23
+
+- Several superseded smoke runs were sitting at `Install Chromium` for an extended period while concurrent commits each launched a new hosted runner. Added workflow concurrency cancellation and changed the install step from `npx playwright install --with-deps chromium` to `npx playwright install chromium` to avoid repeated apt dependency installation on GitHub's Ubuntu runner. This is a measured CI-time optimization; verify browser launch on the next latest run before treating it as successful.
+- Latest branch commits after the last green Deno/browser run include the combined policy hash, customer-consent uniqueness adjustment, PWA install button, and offline safety changes. They require a final complete run. Current latest workflow run is queued/pending; don't use the earlier green commit as final proof.
+- No production systems changed.
+
+---
 ## PWA OFFLINE TEST CORRECTION — 2026-10-23
 
 - The PWA smoke run on `c7f8580` passed manifest/icon/service-worker checks but failed the explicit offline checkout fallback assertion. The failure proves the install shell alone is insufficient; do not report PWA safety as passed yet.
