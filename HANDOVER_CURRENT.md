@@ -1099,3 +1099,13 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+
+## CUSTOMER ACCOUNT UX FOLLOW-UP — 2026-10-23
+
+- Added a password-reset path to `checkout-v2.html`: customers can choose Reset password or use Forgot password, submit their email to Supabase Auth's recovery endpoint, and receive a neutral confirmation message that does not reveal whether an account exists.
+- Added sign-out controls before and during checkout; signing out clears the locally stored customer session and returns to the account gate. This does not revoke an already issued access token server-side; the storefront stops using it and Supabase token expiry still applies.
+- Extended `.github/workflows/storefront-smoke.yml` with source guards for the password recovery endpoint, sign-out handler, durable consent recording, and server-side `CONSENT_REQUIRED` guard.
+- Changes are on this draft PR branch only. Commits: account UX `7900cd878c331a5077f0b40c534123e7a6cb3626`; workflow guard `0e582b7be1deb1461cf1d70e52ab75ff63a0d53e`. Latest branch head checked is `0e582b7be1deb1461cf1d70e52ab75ff63a0d53e`.
+- Workflow-run lookup returned no PR-triggered runs for the latest head at the time of this update; therefore these changes are **not yet CI-verified**. Do not mark the account UX resolved until a successful run is confirmed and the browser flow is tested.
+- Still outstanding: verify password recovery redirect and email delivery using an approved test account; test sign-up/email confirmation, sign-in, session refresh, sign-out, terms consent persistence, stale version rejection and all direct storefront entry points; test server-side denials with mocked/intercepted order creation; apply migrations only to an approved staging project after permission and review. No live database, Edge Function, Axxess, DNS, payment or production changes were made.
