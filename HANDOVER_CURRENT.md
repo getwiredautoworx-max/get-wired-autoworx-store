@@ -1,3 +1,10 @@
+## FINAL SOURCE-VALIDATION ADDITION — 2026-10-23
+
+- Added a CI source-structure check for the consent migration after correcting the malformed file. The check asserts exactly one table and immutable trigger, the complete 64-hex digest constraint, the composite user/version/digest uniqueness, and absence of the previously observed duplicated SQL fragment.
+- The first attempt to author that check had an escaped-regex line truncated in the workflow source; it was immediately replaced with a simpler string-based Node assertion in commit `693b3f1badfb91ab01e37efa31c7e9d3c72fb552`. Re-fetched and verified the complete heredoc boundaries and assertions are present. This check still requires the latest workflow to execute successfully.
+- Current final smoke run should be checked at the latest head after this commit. PWA offline fallback remains unverified until the run passes. No production changes.
+
+---
 ## CONSENT MIGRATION SOURCE RECHECK — 2026-10-23
 
 - During a final read-through, the acceptance migration file was found malformed: the SHA-256 check line had lost its closing regex syntax and a duplicate SQL tail remained after the trigger definition. This was caught before any database application.
