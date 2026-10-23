@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('node:fs');
 const path = require('node:path');
 const BASE=process.env.PREVIEW_URL || 'https://6fa32822.get-wired-autoworx-store.pages.dev/store.html';
-const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || '775796d131f812de8f85521e1e51e74fd3eff43d';
+const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || process.env.GITHUB_SHA || '775796d131f812de8f85521e1e51e74fd3eff43d';
 const DEPLOYED_SOURCE_SHA='6a187f2e342e2b5f9974b16b5b9cab2b5c7d0152';
 const REPO='getwiredautoworx-max/get-wired-autoworx-store';
 const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js'];
@@ -34,13 +34,23 @@ async function verifySourceParity(){
   check('preview_home_http',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
   await verifySourceParity();
   const frame=page.frameLocator('#store');
-  await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
+  try {
+   await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:30000});
+  } catch(e) {
+   const frameInfo=await page.locator('iframe').evaluateAll(es=>es.map(x=>({id:x.id,src:x.getAttribute('src'),title:x.title}))).catch(()=>[]);
+   const frameBodies=await Promise.all(page.frames().filter(x=>x!==page.mainFrame()).map(async x=>({url:x.url(),body:(await x.locator('body').innerText().catch(()=>'' )).slice(0,1800)})));
+   await page.screenshot({path:path.join(OUT,'category-grid-timeout.png'),fullPage:true}).catch(()=>{});
+   report.screenshots.push('category-grid-timeout.png');
+   report.diagnostics={iframeCount:frameInfo.length,iframes:frameInfo,frames:frameBodies,consoleErrors:report.consoleErrors,failedRequests:report.failedRequests,badResponses:report.badResponses};
+   throw new Error('Category grid did not render in the deployed preview. Diagnostics: '+JSON.stringify(report.diagnostics)+'; wait error: '+e.message);
+  }
   await page.waitForTimeout(5000);
   const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').count();
   const photos=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn .catPhoto').evaluateAll(es=>es.map(e=>({src:e.currentSrc||e.src,alt:e.alt,loaded:e.complete&&e.naturalWidth>0,naturalWidth:e.naturalWidth})));
   report.categoryImages=photos;
   check('eight_main_category_tiles',roots===8,{count:roots});
-  check('main_category_photos_load_are_distinct_and_labelled',photos.length===8&&photos.every(x=>x.loaded&&/product photo/i.test(x.alt))&&new Set(photos.map(x=>x.src)).size===8,{photos});
+  check('main_category_photos_load_are_distinct_and_labelled',photos.length===8&&photos.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt))&&new Set(photos.map(x=>x.src)).size===8,{photos});
+  check('main_category_photos_are_not_logo_substitutions',photos.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:photos.filter(x=>/gw-logo\\.png/i.test(x.src))});
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
@@ -59,7 +69,8 @@ async function verifySourceParity(){
   await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
   report.subcategoryImages=await page.locator('.card img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth})));
   const subcategoryUnique=new Set(report.subcategoryImages.map(x=>x.src)).size;
-  check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
+  check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
+  check('subcategory_photos_are_not_logo_substitutions',report.subcategoryImages.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:report.subcategoryImages.filter(x=>/gw-logo\\.png/i.test(x.src))});
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
   const batterySubcategory=page.locator('.card[href^="category.html?id="]').filter({hasText:/BATTERY/i}).first();
@@ -109,7 +120,13 @@ async function verifySourceParity(){
   check('product_description_is_visible',await page.getByRole('heading',{name:'Product Description'}).count()===1,{count:await page.getByRole('heading',{name:'Product Description'}).count()});
   check('add_to_cart_button_visible',await page.locator('#add').isVisible(),{text:await page.locator('#add').innerText()});
   const q=page.locator('#queryPart');
-  check('query_part_button_has_product_whatsapp_link',await q.isVisible()&&(await q.getAttribute('href')).startsWith('https://wa.me/'),{href:await q.getAttribute('href')});
+  check('query_part_button_has_product_whatsapp_link',await q.isVisible()&&(await q.getAttribute('href')).startsWith('https://wa.me/')&&(await q.getAttribute('href')).includes(encodeURIComponent(await page.locator('.sku').innerText().catch(()=>''))),{href:await q.getAttribute('href'),sku:await page.locator('.sku').innerText().catch(()=> '')});
+  const addText=await page.locator('#add').innerText();
+  if(/ADD TO CART/i.test(addText)&&await page.locator('#add').isEnabled()){
+    await page.locator('#add').click();
+    const cartCount=await page.locator('#badge').innerText().catch(()=> '0');
+    check('product_add_to_cart_updates_cart_badge',Number(cartCount)>0,{addText,cartCount});
+  }else check('product_add_to_cart_updates_cart_badge',false,{addText,enabled:await page.locator('#add').isEnabled()});
   check('product_page_has_no_floating_request_cta',await page.locator('.requestPartFloating').count()===0,{count:await page.locator('.requestPartFloating').count()});
   check('product_detail_api_not_unauthorized',report.authErrors.length===0,{authErrors:report.authErrors});
   await page.screenshot({path:path.join(OUT,'product-detail.png'),fullPage:true}).catch(()=>{});
@@ -127,6 +144,7 @@ async function verifySourceParity(){
   const fontCspErrors=report.consoleErrors.filter(x=>x.includes('fonts.googleapis.com')&&x.includes('Content Security Policy'));
   check('google_fonts_stylesheet_not_blocked_by_csp',fontCspErrors.length===0,{fontCspErrors});
   report.finishedAt=new Date().toISOString();
+  check('no_browser_console_page_or_network_errors',report.consoleErrors.length===0&&report.pageErrors.length===0&&report.failedRequests.length===0&&report.badResponses.length===0,{consoleErrors:report.consoleErrors,pageErrors:report.pageErrors,failedRequests:report.failedRequests,badResponses:report.badResponses});
   report.summary={pass:report.checks.filter(x=>x.status==='PASS').length,fail:report.checks.filter(x=>x.status==='FAIL').length,consoleErrors:report.consoleErrors.length,pageErrors:report.pageErrors.length,failedRequests:report.failedRequests.length,badResponses:report.badResponses.length};
   fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
   console.log(JSON.stringify(report,null,2));
