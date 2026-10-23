@@ -1,3 +1,11 @@
+## PWA OFFLINE TEST CORRECTION — 2026-10-23
+
+- The PWA smoke run on `c7f8580` passed manifest/icon/service-worker checks but failed the explicit offline checkout fallback assertion. The failure proves the install shell alone is insufficient; do not report PWA safety as passed yet.
+- Corrected `sw.js` in commit `0deb110c143249c70ad9a36344b751e577026a5e`: checkout/account/data-dependent pages now use `fetch(..., {cache:'no-store'})` and explicitly return the cached offline page when `navigator.onLine === false`; this prevents an HTTP cache from making checkout appear available offline. Cache writes for static assets are awaited.
+- Improved the test failure message in commit `986dd4a29403a92f5ade0243f56749a9d7c8fee7` to print actual URL/body if offline behavior still fails. Awaiting the new latest smoke run before calling PWA safety verified.
+- Do not merge/deploy until latest smoke + Deno type-check pass and isolated Supabase tests cover auth, immutable consent and no-order-RPC on rejected requests. No live deployment or Supabase changes.
+
+---
 ## PWA + COMBINED CONSENT EVIDENCE — 2026-10-23 10:35 SAST
 
 - Pinned digest now covers **both** policy files, concatenated in the exact GitHub Actions checkout order: `terms-and-conditions.html` followed by `returns-refunds.html`. Combined SHA-256: `7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3`. The single Terms file digest remains `2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12`. Workflow checks are being updated to fail if either content changes without a deliberate version/hash update.
