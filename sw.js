@@ -24,7 +24,7 @@ self.addEventListener('fetch', event => {
     event.respondWith(fetch(request).then(response => {
       if (response.ok && response.type === 'basic') {
         const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(url.pathname, copy));
+        await caches.open(CACHE_NAME).then(cache => cache.put(url.pathname, copy));
       }
       return response;
     }).catch(async () => (await caches.match(url.pathname)) || (await caches.match('/offline.html'))));
@@ -33,8 +33,8 @@ self.addEventListener('fetch', event => {
   if (/\.(?:css|js|svg|png|webp|ico|woff2?)$/i.test(url.pathname) || url.pathname === '/manifest.webmanifest') {
     event.respondWith(caches.open(CACHE_NAME).then(async cache => {
       const cached = await cache.match(url.pathname);
-      const update = fetch(request).then(response => {
-        if (response.ok && response.type === 'basic') cache.put(url.pathname, response.clone());
+      const update = fetch(request).then(async response => {
+        if (response.ok && response.type === 'basic') await cache.put(url.pathname, response.clone());
         return response;
       }).catch(() => cached);
       return cached || update;
