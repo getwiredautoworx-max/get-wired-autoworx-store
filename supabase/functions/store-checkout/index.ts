@@ -86,6 +86,45 @@ Deno.serve(async (req: Request) => {
       }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
+    // Bind each order to a profile linked to the verified Auth user; never accept a customer ID from the browser.
+    if (typeof authUser.email !== "string" || !authUser.email) {
+      return new Response(JSON.stringify({ error: "A customer account with an email address is required.", code: "CUSTOMER_EMAIL_REQUIRED" }), {
+        status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const customerUrl = new URL(supabaseUrl + "/rest/v1/customers");
+    customerUrl.searchParams.set("select", "id");
+    customerUrl.searchParams.set("auth_user_id", "eq." + authUser.id);
+    customerUrl.searchParams.set("limit", "1");
+    const customerLookup = await fetch(customerUrl, { headers: adminHeaders });
+    if (!customerLookup.ok) throw new Error("Unable to verify your customer profile. Please try again.");
+    const customerRows = await customerLookup.json();
+    let customerId = Array.isArray(customerRows) && customerRows.length ? customerRows[0].id : null;
+    if (!customerId) {
+      const profileResponse = await fetch(supabaseUrl + "/rest/v1/customers", {
+        method: "POST",
+        headers: { ...adminHeaders, Prefer: "return=representation" },
+        body: JSON.stringify({
+          auth_user_id: authUser.id,
+          name: String(payload.p_customer_name).trim(),
+          email: authUser.email,
+          phone: String(payload.p_customer_phone || "").trim() || null,
+        }),
+      });
+      if (!profileResponse.ok) {
+        // Concurrent first checkout can race to create the same linked profile; re-read before failing.
+        const retry = await fetch(customerUrl, { headers: adminHeaders });
+        const retryRows = retry.ok ? await retry.json() : [];
+        customerId = Array.isArray(retryRows) && retryRows.length ? retryRows[0].id : null;
+        if (!customerId) throw new Error("Unable to create or verify your customer profile. Please try again.");
+      } else {
+        const created = await profileResponse.json();
+        customerId = Array.isArray(created) && created.length ? created[0].id : null;
+        if (!customerId) throw new Error("Customer profile was not returned. Please try again.");
+      }
+    }
+    payload.p_customer_id = customerId;
+
     // Only products with an explicitly verified current selling price may enter paid checkout.
     // The RPC is service_role-only, so this server-side gate cannot be bypassed by the public client.
     const items = payload.p_items as Array<Record<string, unknown>>;
