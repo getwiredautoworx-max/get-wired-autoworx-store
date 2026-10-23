@@ -2961,3 +2961,10 @@ Run 39958304900 completed FAILURE. Apex and www returned HTTP 200; category grid
 
 ### Safety / change boundary
 No Axxess, DNS, production Supabase schema/data/secrets, payment activation, supplier catalogue, or customer-launch changes were performed during this sweep. Cloudflare Pages preview status is evidence only, not authorization to deploy to production.
+
+
+## Automation run — 2026-10-23 15:34 SAST — TASK START
+- Status: IN PROGRESS. Began by reading the current default-branch `AI_HANDOVER_PERMANENT.md` (blob 7a28b23e00e3b78388b2dbb2dd0add4d8df1cfce).
+- Scope: inspect current workflow/background-run status; review existing price-scaling and October source-verification evidence; preserve October-sourced products; keep asterisk-price items quote-only/inactive; inspect category-review evidence without auto-moving products.
+- Safety boundary: no production/live data writes, no active-flag changes, no deployments, no release-credit use, and no supplier reconciliation/import unless explicitly authorised. Only safe staging/documentation changes are in scope.
+- Next action: inspect current workflows and relevant staging reports, then append evidence-based outcomes as they occur.
