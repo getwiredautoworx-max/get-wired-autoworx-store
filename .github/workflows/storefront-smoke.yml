@@ -252,6 +252,38 @@ jobs:
             await earlySearchFrame.locator('#partSearchDialog').evaluate(el => el.classList.remove('open'));
             await earlySearchPage.close();
 
+            // Regression: a customer may type while the async product catalogue is still loading.
+            // The search must refresh automatically once the delayed product response arrives.
+            const delayedSearchPage = await browser.newPage({viewport:{width:390,height:844}});
+            await delayedSearchPage.route('**/rest/v1/categories?*', route => route.fulfill({
+              status:200, contentType:'application/json',
+              body:JSON.stringify([{id:'race-category',name:'Electrical',slug:'electrical',parent_id:null,active:true}])
+            }));
+            await delayedSearchPage.route('**/rest/v1/products?*', async route => {
+              await new Promise(resolve => setTimeout(resolve, 2500));
+              await route.fulfill({
+                status:200, contentType:'application/json',
+                body:JSON.stringify([{
+                  id:'race-product',category_id:'race-category',name:'Race test fuse',slug:'race-test-fuse',
+                  public_sku:'GW-RACE0001',description:'Deterministic Part Search load-race test',
+                  price:10,stock_quantity:2,image_url:null,gallery_urls:[],specifications:{},
+                  compatible_vehicles:[],featured:false,active:true
+                }])
+              });
+            });
+            await delayedSearchPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'domcontentloaded'});
+            const delayedFrame = delayedSearchPage.frameLocator('#store');
+            await delayedFrame.locator('button.headerPartSearch').waitFor({state:'visible',timeout:15000});
+            await delayedFrame.locator('button.headerPartSearch').click();
+            await delayedFrame.locator('#partSearchDialog.open').waitFor({timeout:10000});
+            await delayedFrame.locator('#partSearchQuery').fill('GW-RACE0001');
+            await delayedFrame.locator('#partSearchResults .partSearchEmpty').filter({hasText:'catalogue is still loading'}).waitFor({timeout:5000});
+            const delayedResult = delayedFrame.locator('#partSearchResults .partSearchResult').filter({hasText:'GW-RACE0001'}).first();
+            await delayedResult.waitFor({timeout:15000});
+            if (!(await delayedResult.innerText()).includes('GW-RACE0001')) throw new Error('Part Search did not refresh after the delayed catalogue response');
+            console.log('PART_SEARCH_LOAD_RACE_PASS: query refreshed when catalogue finished loading');
+            await delayedSearchPage.close();
+
             const earlyRequestPage = await browser.newPage({viewport:{width:390,height:844}});
             earlyRequestPage.on('pageerror', e => console.log('[early-request-pageerror] '+e.message));
             await earlyRequestPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
