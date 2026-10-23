@@ -123,3 +123,25 @@ Deno.test("unsupported methods are rejected before authentication", async () => 
   assertEquals(response.status, 405);
   assertEquals((await response.json()).error, "Method Not Allowed");
 });
+
+
+Deno.test("product validator rejects non-text descriptions and normalizes empty descriptions", () => {
+  assertEquals(validateProductUpdate({ ...validProduct, description: 7 }).ok, false);
+  const result = validateProductUpdate({ ...validProduct, description: "   " });
+  assertEquals(result.ok, true);
+  if (result.ok) assertEquals(result.value.description, null);
+});
+
+Deno.test("category validator rejects an unusable explicit slug and excessive name length", () => {
+  const validCategory = { action: "upsert_category", name: "Workshop Tools", sort_order: 10, active: true };
+  assertEquals(validateCategoryUpsert({ ...validCategory, slug: "!!!" }).ok, false);
+  assertEquals(validateCategoryUpsert({ ...validCategory, name: "x".repeat(161) }).ok, false);
+  assertEquals(validateCategoryUpsert({ ...validCategory, description: 9 }).ok, false);
+});
+
+Deno.test("queue-task validator rejects non-integer priority boundaries and oversized task type", () => {
+  const validTask = { action: "queue_task", task_type: "manual", priority: 50, input_data: {}, requires_approval: true };
+  assertEquals(validateQueueTask({ ...validTask, priority: 101 }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, task_type: "a".repeat(65) }).ok, false);
+  assertEquals(validateQueueTask({ ...validTask, input_data: null }).ok, true);
+});
