@@ -13,6 +13,8 @@ export type VisionProviderInput = {
   geminiModel: string;
   openAiApiKey: string;
   openAiModel: string;
+  /** Paid OpenAI use is opt-in; default false keeps the feature on the no-cost path. */
+  allowPaidOpenAiFallback?: boolean;
   fetchImpl?: typeof fetch;
 };
 
@@ -85,8 +87,8 @@ export async function analyzePartImage(input: VisionProviderInput): Promise<Visi
     return { text, model: input.geminiModel, provider: "gemini" };
   }
 
-  if (!input.openAiApiKey) {
-    throw new VisionProviderError(503, "AI picture search is not configured. Add GEMINI_API_KEY for the free tier, or use Request a Part.");
+  if (input.allowPaidOpenAiFallback !== true || !input.openAiApiKey) {
+    throw new VisionProviderError(503, "AI picture search is not configured for no-cost mode. Configure GEMINI_API_KEY for the free tier, or use Request a Part. Paid OpenAI fallback is disabled unless explicitly enabled by the owner.");
   }
 
   const response = await fetcher("https://api.openai.com/v1/chat/completions", {
