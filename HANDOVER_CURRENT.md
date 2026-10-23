@@ -1672,3 +1672,19 @@ This pass only read GitHub metadata and updated this handover file. No source be
 6. Require owner release approval and a complete pass of release gates before production changes or launch. Launch remains **HOLD**.
 
 **Status:** work is not fully resolved. These are concrete blockers, not evidence that the store itself is broken. Most remaining items need account-owner access/approval or isolated staging, and cannot be safely completed by changing production or guessing at external build settings.
+
+
+## CLOUDFLARE BUILD LOG DIAGNOSIS — 2026-10-23 (owner supplied raw log)
+
+### Evidence
+- Owner supplied the full failing build excerpt for Workers Build ID `d194bde4-045e-4b69-8909-e934830189e1` (PR #89 build). Environment initialization and repository clone succeed.
+- The failing configured command is exactly `npx wrangler preview`. Wrangler 4.152.0 exits with: `Your Wrangler configuration is missing a previews block to run this command`, and suggests adding `[previews]`.
+- Current default-branch `wrangler.toml` was independently fetched and verified at blob `5824eefc32e352d227f43ed657c2d796876c7e4c`; it contains only `name = "get-wired-autoworx-store"`, `pages_build_output_dir = "."`, and `compatibility_date = "2026-10-06"`. This is Pages-style configuration, not evidence of a configured Worker preview target.
+
+### Diagnosis and safe next action
+- Confirmed immediate cause: the Workers Build is executing `wrangler preview` without the required `[previews]` configuration. Do **not** blindly add `[previews]`: the repository's current config is Pages-oriented and the correct deployment path must be confirmed first.
+- Next owner-only step: open Cloudflare dashboard for the failed build, navigate to the service's Settings / Builds & deployments (label may vary), and inspect the configured build/deploy command and service type. Share a screenshot/text of those settings; do not click Retry, Deploy, edit commands, or change production settings yet.
+- Resolution choice depends on that evidence: if this is an obsolete/accidental Workers integration for the Pages storefront, owner approval is required before disabling/retiring it; if a real Worker is intended, its entrypoint and preview configuration must be deliberately defined and tested. Pages previews being green does not itself prove the Workers integration is unnecessary.
+
+### Safety / state
+- No source config was edited, no build retried, no Cloudflare setting changed, and no deployment or production action occurred. PR #89 and PR #91 remain draft/unmerged; customer launch remains HOLD.
