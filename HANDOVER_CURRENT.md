@@ -1809,3 +1809,10 @@ Run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-sto
 - Studio and Home Entertainment groupings filter current audio-root/subcategory products by explicit name/description keywords. Car Audio & Video displays the existing audio-root/subcategory products. Empty matches are disclosed; the existing “Source a Part” path remains available.
 - No Supabase/category-row writes, product moves, stock/price edits, supplier imports, production/Axxess/DNS/checkout/payment changes, or deployments were performed. This is a UI/navigation draft on the PR #94 branch only.
 - Verification still required: exact branch diff review, storefront/Playwright smoke at mobile and desktop widths, audio root/group navigation, and no-match fallback. Do not describe these groupings as database categories or claim product coverage is complete until tested.
+
+
+### Audio-category implementation checkpoint — 2026-10-23
+- Implementation commits on the PR #94 branch: category navigation `d3f1369a736f9987ce7bb55e3725008018137cf7`; product-group filtering `97488bba6d799eadb1bb5d871159f6b62ac002ed`; regression test workflow `728a34c53cf00c2651cf252d724c4609faa1cd1a`; handover checkpoint to follow.
+- Read-back confirms all three group names and the “All Car Audio Products” link are present, product filters exist for Studio and Home Entertainment, and the regression workflow includes checks for group names and hrefs.
+- **CI has not started / no run is returned for the latest workflow commit** (GitHub status is pending with zero check statuses). Do not report this as a passing browser test. A CI trigger or manually dispatched run is still needed.
+- No deployment, live category/database write, stock/price change, Axxess, DNS, checkout or payment change.
