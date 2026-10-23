@@ -263,6 +263,13 @@ jobs:
             const requestPage = await browser.newPage({viewport:{width:390,height:844}});
             requestPage.on('pageerror', e => console.log('[request-pageerror] '+e.message));
             await requestPage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
+            // Every fresh browser context must independently accept the outer store shell's terms gate.
+            const requestTermsGate = requestPage.locator('#gwTermsGate');
+            if (await requestTermsGate.count() && await requestTermsGate.isVisible()) {
+              await requestPage.locator('#gwTermsAcceptCheck').check();
+              await requestPage.locator('#gwTermsAcceptButton').click();
+              await requestTermsGate.waitFor({state:'hidden',timeout:10000});
+            }
             const requestFrame = requestPage.frameLocator('#store');
             await requestFrame.locator('button.primaryAction').waitFor({timeout:15000});
             await requestFrame.locator('button.primaryAction').click();
