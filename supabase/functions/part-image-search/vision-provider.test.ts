@@ -55,7 +55,7 @@ Deno.test("Gemini quota errors do not fall back to potentially paid OpenAI", asy
   assert(calls === 1, "No OpenAI fallback call should be made");
 });
 
-Deno.test("uses OpenAI only when no Gemini key is configured", async () => {
+Deno.test("uses OpenAI only when no Gemini key is configured and paid fallback is explicitly enabled", async () => {
   const fakeFetch: typeof fetch = async (url, init) => {
     assert(String(url).includes("api.openai.com/v1/chat/completions"), "OpenAI endpoint was not used");
     assert(new Headers(init?.headers).get("authorization") === "Bearer openai-test-key", "OpenAI key header missing");
@@ -63,7 +63,7 @@ Deno.test("uses OpenAI only when no Gemini key is configured", async () => {
       choices: [{ message: { content: '{"part_name":"relay","confidence":"medium"}' } }],
     }), { status: 200, headers: { "content-type": "application/json" } });
   };
-  const result = await analyzePartImage(input({ fetchImpl: fakeFetch }));
+  const result = await analyzePartImage(input({ allowPaidOpenAiFallback: true, fetchImpl: fakeFetch }));
   assert(result.provider === "openai", "OpenAI should be used only when Gemini is not configured");
   assert(JSON.parse(result.text).part_name === "relay", "OpenAI JSON text was not extracted");
 });
@@ -75,7 +75,7 @@ Deno.test("OpenAI exhausted credits returns explicit no-cost recovery guidance",
   );
   let caught: unknown;
   try {
-    await analyzePartImage(input({ fetchImpl: fakeFetch }));
+    await analyzePartImage(input({ allowPaidOpenAiFallback: true, fetchImpl: fakeFetch }));
   } catch (error) {
     caught = error;
   }
@@ -99,4 +99,22 @@ Deno.test("missing provider keys fail clearly without making a network request",
   assert(caught instanceof VisionProviderError, "Expected a configuration error");
   assert(caught.status === 503, "Missing keys should return HTTP 503");
   assert(calls === 0, "Missing keys must not call a provider");
+});
+
+Deno.test("paid OpenAI fallback is disabled by default even when an OpenAI key exists", async () => {
+  let calls = 0;
+  const fakeFetch: typeof fetch = async () => {
+    calls++;
+    return new Response("unexpected", { status: 500 });
+  };
+  let caught: unknown;
+  try {
+    await analyzePartImage(input({ fetchImpl: fakeFetch }));
+  } catch (error) {
+    caught = error;
+  }
+  assert(caught instanceof VisionProviderError, "Expected paid fallback to be blocked");
+  assert(caught.status === 503, "Disabled paid fallback should return HTTP 503");
+  assert(caught.message.includes("Paid OpenAI fallback is disabled"), "Response should explain the owner-controlled fallback gate");
+  assert(calls === 0, "Disabled paid fallback must not call OpenAI");
 });
