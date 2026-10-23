@@ -112,7 +112,7 @@ jobs:
             await audioPage.goto(new URL(studioHref, 'http://127.0.0.1:4173/').href, {waitUntil:'domcontentloaded'});
             await audioPage.waitForFunction(() => {
               const grid=document.querySelector('#grid');
-              return !!grid && (grid.dataset.error || grid.innerText.includes('CHOOSE A BRAND') || grid.innerText.includes('No products are currently matched'));
+              return !!grid && (grid.dataset.error || grid.querySelector('.card') || grid.innerText.includes('No products are currently matched'));
             }, null, {timeout:30000});
             const brandCount = await audioPage.locator('#grid .card').count();
             if (brandCount > 0) {
