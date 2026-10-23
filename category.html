@@ -47,25 +47,37 @@ const U='https://ojytykqpvonxvepprgbh.supabase.co',K='sb_publishable_rSKAEYqQheF
 const ROOTS=[['Auto Electrical Spares','6cc56033-b0a9-4f25-b207-aeeb341a1c47'],['Vehicle Security','8e93d917-8fcc-4427-b364-cdad244f263f'],['Car Audio & Entertainment','5ab55c53-eee3-41ce-ad48-04ad6df85181'],['Automotive Accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],['Marine Spares & Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],['Tools, Hardware & Consumables','77297c18-67f6-452e-8918-c55d2ef6231a'],['Camping, Leisure & Outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],['Trailer & Canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']];
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');function artFor(label){
  const n=String(label||'').trim().toLowerCase();
+ const fuelPumpPhoto='https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Bosch_Fuel_Pump_0_580_254_957_-_opened-7457.jpg/720px-Bosch_Fuel_Pump_0_580_254_957_-_opened-7457.jpg';
  const photos=[
-  [/fuse.*regulator|regulator.*fuse/,'photo-1581092160562-40aa08e78837'],
-  [/fuse|blade fuse|fuse holder/,'photo-1586864387967-d02ef85d93e8'],
-  [/regulator|voltage|alternator|starter|ignition|engine|spark plug/,'photo-1486262715619-67b85e0b08d3'],
-  [/relay|contactor|switch|sensor|electrical|wiring|wire|cable|connector|terminal|harness/,'photo-1518770660439-4636190af475'],
-  [/battery|accumulator/,'photo-1621905251918-48416bd8575a'],
-  [/speaker|subwoofer|audio|radio|stereo|multimedia|amplifier|aerial/,'photo-1600003014755-ba31aa59c4b6'],
-  [/security|alarm|immobil|lock|remote|key|tracker|camera/,'photo-1558002038-1055907df827'],
-  [/light|lamp|bulb|globe|lighting|headlight/,'photo-1558618666-fcd25c85cd64'],
+  [/fuel pumps?.*oil filter|fuel pumps?|fuel pump/ ,fuelPumpPhoto],
+  [/fuse.*regulator|regulator.*fuse/,'photo-1663642775693-6628f65358be'],
+  [/fuses?|blade fuse|fuse holder/,'photo-1578710078748-0899041a5e7d'],
+  [/battery|accumulator/,'photo-1667396654234-1484f03cabb3'],
+  [/relay|contactor/,'photo-1562877773-c6dd55a1415e'],
+  [/switch/,'photo-1707085301598-3812ae4c01e1'],
+  [/sensor/,'photo-1663642775693-6628f65358be'],
+  [/wiring.*connectors|connectors.*wiring/,'photo-1762329404225-2953941c00f1'],
+  [/wiring|wire|cable|harness/,'photo-1632656687740-c83b67a55854'],
+  [/connector|terminal/,'photo-1762329404225-2953941c00f1'],
+  [/ignition|spark plug/,'photo-1679712547753-eaaf4dad4af8'],
+  [/regulator|voltage|alternator|starter|engine/,'photo-1663642775693-6628f65358be'],
+  [/speaker|subwoofer|audio|radio|stereo|multimedia|amplifier|aerial/,'photo-1642351250160-19a4884c6ff4'],
+  [/security|alarm|immobil|lock|remote|key|tracker|camera/,'photo-1563442375728-31731baa5f02'],
+  [/light(?!\s*duty)|lamp|bulb|globe|lighting|headlight/,'photo-1779261320927-649d532ab438'],
   [/spanner|wrench|socket|screwdriver|pliers|drill|tool|hardware|consumable|workshop|clamp|abrasive/,'photo-1530124566582-a618bc2615dc'],
   [/marine|boat|outboard|anchor|bilge/,'photo-1544551763-46a013bb70d5'],
   [/camp|outdoor|leisure|caravan|tent|sleep|lantern|4x4|recovery|winch/,'photo-1478131143081-80f7f84ca84d'],
-  [/trailer|canopy|tow|hitch|jockey wheel|coupling/,'photo-1500530855697-b586d89ba3ee'],
-  [/accessor|spare|automotive|vehicle/,'photo-1492144534655-ae79c964c9d7']
+  [/trailer|canopy|tow|hitch|jockey wheel|coupling/,'photo-1688322313142-86f865a4b937'],
+  [/accessor|spare|automotive|vehicle|car|bakkie/,'photo-1492144534655-ae79c964c9d7']
  ];
  const match=photos.find(([re])=>re.test(n));
  const photo=match?match[1]:'photo-1492144534655-ae79c964c9d7';
- return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=720&q=82';
+ return photo.startsWith('http')?photo:'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=720&q=82';
 }
-function render(items,title,sub){document.getElementById('heading').textContent=title;document.getElementById('subtitle').textContent=sub;document.getElementById('count').textContent=items.length+' options';document.getElementById('grid').innerHTML=items.length?items.map(c=>{const label=c.label||c.name;return `<a class="card" href="${c.isAllProducts?'products.html?category='+encodeURIComponent(c.id):'category.html?id='+encodeURIComponent(c.id)}"><span class="card-art"><img src="${artFor(label)}" alt="${esc(label)} product photo" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#dcebf6,#edf5fb)'"></span><h2>${esc(label)}</h2>${c.count?`<span class="card-count">${c.count} products</span>`:''}<span class="arrow" aria-hidden="true">→</span></a>`}).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>'}
+function photoCredit(label){
+ if(!/fuel pumps?|fuel pumps.*oil filter/i.test(String(label||'')))return '';
+ return '<small class="photo-credit" style="display:block;margin:2px 12px 4px;font-size:10px;line-height:1.2"><a href="https://commons.wikimedia.org/wiki/File:Bosch_Fuel_Pump_0_580_254_957_-_opened-7457.jpg" target="_blank" rel="noopener noreferrer" style="color:#526b80">Photo: Raimond Spekking · CC BY-SA 4.0</a></small>';
+}
+function render(items,title,sub){document.getElementById('heading').textContent=title;document.getElementById('subtitle').textContent=sub;document.getElementById('count').textContent=items.length+' options';document.getElementById('grid').innerHTML=items.length?items.map(c=>{const label=c.label||c.name;return `<a class="card" href="${c.isAllProducts?'products.html?category='+encodeURIComponent(c.id):'category.html?id='+encodeURIComponent(c.id)}"><span class="card-art"><img src="${artFor(label)}" alt="${esc(label)} product photo" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#dcebf6,#edf5fb)'"></span><h2>${esc(label)}</h2>${photoCredit(label)}${c.count?`<span class="card-count">${c.count} products</span>`:''}<span class="arrow" aria-hidden="true">→</span></a>`}).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>'}
 async function main(){try{const response=await fetch('assets/category-tree.json',{cache:'no-cache'});if(!response.ok)throw Error('Category snapshot load failed ('+response.status+')');const snapshot=await response.json();const cats=(Array.isArray(snapshot.categories)?snapshot.categories:[]).filter(c=>c.active!==false);if(!cats.length)throw Error('Category snapshot is empty');const direct=new Map(cats.map(c=>[c.id,Number(c.direct_active_products||0)]));const byId=new Map(cats.map(c=>[c.id,c]));const memo=new Map();function total(c,seen=new Set()){if(memo.has(c.id))return memo.get(c.id);if(seen.has(c.id))return direct.get(c.id)||0;const next=new Set(seen);next.add(c.id);const n=(direct.get(c.id)||0)+cats.filter(x=>x.parent_id===c.id).reduce((sum,ch)=>sum+total(ch,next),0);memo.set(c.id,n);return n}document.getElementById('grid').dataset.debug=JSON.stringify({activeCategories:cats.length,activeProducts:cats.reduce((n,c)=>n+(Number(c.direct_active_products)||0),0),rootChecks:ROOTS.map(([label,cid])=>{const c=byId.get(cid);return {label,found:!!c,direct:direct.get(cid)||0,total:c?total(c):null}})});let current=id?byId.get(id):slug?cats.find(c=>c.slug===slug):null;if(!current){const roots=ROOTS.map(([label,cid])=>{const c=byId.get(cid);return c&&total(c)>0?{...c,label,count:total(c)}:null}).filter(Boolean);render(roots,'SHOP BY CATEGORY','Choose a main category to continue.');return}if(total(current)===0){render([],'CATEGORY UNAVAILABLE','There are no active products assigned to this category yet. Please choose another category or use Search / WhatsApp.');return}document.title=current.name+' | Get Wired AutoWorx';document.getElementById('crumb').textContent=current.name;const children=cats.filter(c=>c.parent_id===current.id&&total(c)>0);const items=[];if((direct.get(current.id)||0)>0)items.push({id:current.id,label:'View '+(direct.get(current.id)||0)+' products in '+current.name,isAllProducts:true});children.forEach(c=>items.push({...c,count:total(c)}));if(children.length){render(items,current.name,'Choose products assigned directly to this category or browse a populated sub-category.');return}location.replace('products.html?category='+encodeURIComponent(current.id))}catch(e){console.error('Category navigation load failed',e);document.getElementById('grid').dataset.error=String(e);document.getElementById('grid').innerHTML='<div class="error">Unable to load this category right now. Please try again.</div>'}}
 document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?'flex':'none')});main();</script></body></html>
