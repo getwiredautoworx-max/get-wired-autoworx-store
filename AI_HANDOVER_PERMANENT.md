@@ -2933,3 +2933,9 @@ See `HANDOVER_CURRENT.md` for the full evidence and next-step queue. This checkp
 - PR #89 remains draft/unmerged. Checkout mocked tests and local browser QA are recorded as passing, but pending-EFT stock reservation/expiry/release policy and isolated staging verification remain unresolved.
 - Owner APK install107 still fails on physical Hisense M72 Pro with generic “App wasn't installed”; a device-side Package Manager error is required. Stop blind package-ID rotation.
 - No PR merges, Supabase production writes/migrations/deployments, payment activation, supplier catalogue/stock reconciliation, Axxess/DNS changes, or customer launch. Launch HOLD. No Cloudflare/Netlify credits intentionally spent in this sweep.
+
+
+## 2026-10-23 — Read-only browser smoke harness correction (task start)
+- **Status: IN PROGRESS.** Isolated branch `fix/read-only-smoke-iframe-content-2026-10-23` created from current main after the run-status check.
+- **Evidence prompting work:** scheduled read-only browser smoke run `39949187306` failed with 5 PASS / 1 FAIL. Its only failing assertion was `PAGE_CONTENT`: document title was present, but outer `body.innerText` length was 0. Current `store.html` deliberately embeds the actual storefront in same-origin `iframe#store`, so the check reads the wrapper instead of the storefront content. No console errors, page errors, failed network requests, or mobile horizontal overflow were reported.
+- **Scope:** fix only the QA harness to inspect the embedded storefront body; add a narrowly path-filtered pull-request trigger so this test can validate the correction. Read-only requests only. Do not change storefront runtime code, deploy, call checkout/order/payment, or modify live data.
