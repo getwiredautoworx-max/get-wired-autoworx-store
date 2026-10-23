@@ -1597,3 +1597,27 @@ This pass only read GitHub metadata and updated this handover file. No source be
 ### Safety / readiness
 - No production or Supabase writes, migrations, Edge Function deployment, Cloudflare configuration changes, Axxess upload, DNS/payment changes, stock/catalogue edits, or real orders were performed in this pass.
 - Storefront source/build readiness estimate remains **80%**; customer launch readiness estimate remains **55%**. Launch ETA remains conditional at **2–4 working days after isolated staging access and owner-only decisions**, with additional delay possible from the Cloudflare integration and physical-device blockers.
+
+
+## EXECUTION ORDER REVIEW — 2026-10-23 (fresh GitHub recheck)
+
+### Results from this pass
+- Re-fetched PR metadata and the handover before writing. **PR #89** remains open, draft, unmerged, and currently reports `mergeable=false`; head is `d494905479b54e00e66258ae5784c209a557e56e`. Do not merge while mergeability is false and staging gates are unmet.
+- **PR #91** remains open, draft, unmerged, and currently reports `mergeable=false`; head is `1f901195a48b9acade95114e5e3571643c78e2cd`. No secret or provider deployment was changed.
+- The successful smoke retry `39927770248` includes a successful smoke check for commit `746fdf532fbf1790cb9589ac778ad418aaf84d49` and a successful Cloudflare Pages deployment. Latest preview returned by that check: https://12eae7ae.get-wired-autoworx-store.pages.dev (branch preview: https://feature-terms-gate-phase1.get-wired-autoworx-store.pages.dev). This is useful preview evidence, **not proof that the current PR head is fully green**; reconcile the SHA difference and rerun checks on the final exact head before approval.
+- The previously observed Workers Builds failures remain unresolved. The GitHub summary doesn't expose the underlying Cloudflare build log. I attempted to fetch the individual check-run record through the approved GitHub fetch route, but that endpoint was rejected as not allowlisted; no error detail was obtained. Do not speculate-fix code or change Cloudflare settings. Owner/dashboard access is still needed to see the actual failure and confirm whether the legacy Workers Builds integration should remain enabled for this Pages-based project.
+- Rechecked the connected Supabase project inventory: only the existing `Store` project is visible. It is not approved as staging and may be production; no SQL, migration, auth, checkout, or data writes were performed.
+
+### Execution decisions and blockers
+1. **Do not merge either draft PR yet.** PR #89 has a current mergeability conflict/state plus no isolated integration validation; PR #91 has no live Gemini key/provider validation and still needs the privacy decision.
+2. Next GitHub-only action is to inspect PR #89's current changed-file list/conflict evidence and exact-head check runs. Resolve any genuine branch conflict only on the feature branch and only if the GitHub tools expose a safe, reviewable path; do not rewrite main or merge.
+3. For Cloudflare, owner must open the failed Workers Builds entry in the linked dashboard and provide the actual error text or authorize the dashboard investigation. Pages preview success alone does not settle whether the separate failed check is a release gate.
+4. For staging, owner must identify an isolated Supabase staging project or explicitly approve a cost-quoted creation. No safe staging test can be performed against the sole visible project.
+5. Before checkout/Terms can be called verified, validate the published Terms byte digest against `7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3`, then test durable acceptance and checkout against isolated staging. Mocked tests are not end-to-end proof.
+6. Gemini fallback remains mock-tested only. Owner must securely set `GEMINI_API_KEY` in the Supabase Edge Function environment and approve customer-photo transfer to Google before live test/deploy.
+7. Android APK install remains blocked pending the actual Package Manager error/log from the Hisense device. No blind rebuild.
+8. ASC supplier stock/catalogue reconciliation remains paused pending supplier authorization. Keep Axxess, DNS, production checkout/payments, live orders, and customer launch untouched.
+
+### Current safety and readiness
+- No production/staging data writes, migrations, Edge Function deployment, Cloudflare configuration changes, Axxess upload, DNS/payment changes, stock/catalogue edits, or real orders occurred in this pass.
+- Keep customer launch **HOLD**. Previous estimates remain provisional: storefront source/build readiness **80%**, launch readiness **55%**; these are not certification scores and should not be raised based on a preview alone.
