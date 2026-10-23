@@ -1,6 +1,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
 const TERMS_VERSION = "gw-terms-2026-10-23-v1";
+const TERMS_SHA256 = "__TERMS_SHA256_PENDING__";
 const TERMS_URL = "/terms-and-conditions.html";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -52,7 +53,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const body = await req.json().catch(() => null);
-    if (!body || body.terms_version !== TERMS_VERSION || body.accepted !== true) {
+    if (!body || body.terms_version !== TERMS_VERSION || body.terms_sha256 !== TERMS_SHA256 || body.accepted !== true) {
       return json({ error: "Explicit acceptance of the current Terms & Conditions version is required.", code: "TERMS_ACCEPTANCE_REQUIRED" }, 400);
     }
 
@@ -74,6 +75,7 @@ Deno.serve(async (req: Request) => {
           user_id: user.id,
           terms_version: TERMS_VERSION,
           terms_url: TERMS_URL,
+          terms_sha256: TERMS_SHA256,
           acceptance_source: "web-checkout",
           user_agent: (req.headers.get("user-agent") || "").slice(0, 500) || null,
         }),
