@@ -3,6 +3,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 const TERMS_VERSION = "gw-terms-2026-10-23-v1";
 const TERMS_SHA256 = "2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12";
 const TERMS_URL = "/terms-and-conditions.html";
+const RETURNS_URL = "/returns-refunds.html";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -75,6 +76,7 @@ Deno.serve(async (req: Request) => {
           user_id: user.id,
           terms_version: TERMS_VERSION,
           terms_url: TERMS_URL,
+          returns_url: RETURNS_URL,
           terms_sha256: TERMS_SHA256,
           acceptance_source: "web-checkout",
           user_agent: (req.headers.get("user-agent") || "").slice(0, 500) || null,
