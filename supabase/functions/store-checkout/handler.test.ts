@@ -223,6 +223,29 @@ Deno.test("invalid cart quantity is rejected before product lookup or order RPC"
   }));
   const payload = await response.json();
   assert(response.status === 400, "Invalid quantity must be rejected");
-  assert(String(payload.error).includes("positive whole-number quantity"), "Quantity rejection should be actionable");
+  assert(String(payload.error).includes("between 1 and 99"), "Quantity rejection should be actionable");
   assert(!urls.some(u => u.includes("/rest/v1/products") || u.includes("/rpc/create_store_order_v2")), "Invalid quantity must not reach product verification or order RPC");
+});
+
+Deno.test("quantity above the SQL RPC limit is rejected before product lookup or order RPC", async () => {
+  const urls: string[] = [];
+  const handler = createStoreCheckoutHandler({
+    getEnv: env,
+    fetchImpl: async (url) => {
+      const u = String(url); urls.push(u);
+      if (u.includes("/auth/v1/user")) return json({ id: "auth-user-1", email: "customer@example.test" });
+      if (u.includes("/customer_terms_acceptances")) return json([{ id: "terms-row-1" }]);
+      if (u.includes("/rest/v1/customers")) return json([{ id: "server-customer-1" }]);
+      throw new Error("Over-limit quantity must stop before product/order requests: " + u);
+    },
+  });
+  const response = await handler(new Request("https://local.test/checkout", {
+    method: "POST", headers: authHeaders(), body: JSON.stringify(baseOrder({
+      p_items: [{ public_sku: "GW-12345678", quantity: 100 }],
+    })),
+  }));
+  const payload = await response.json();
+  assert(response.status === 400, "Quantity above 99 must be rejected");
+  assert(String(payload.error).includes("between 1 and 99"), "Quantity bound message should match SQL RPC bounds");
+  assert(!urls.some(u => u.includes("/rest/v1/products") || u.includes("/rpc/create_store_order_v2")), "Over-limit quantity must not reach product verification or order RPC");
 });
