@@ -1775,3 +1775,8 @@ This pass only read GitHub metadata and updated this handover file. No source be
 
 ### Boundaries preserved
 No PR merged; no Supabase migration/function deployment or production data writes; no payment activation, live orders, supplier stock/catalogue reconciliation, Axxess/DNS change, or customer launch. No Cloudflare/Netlify credits were intentionally spent by this sweep. Supplier-dependent catalogue work remains paused pending authorisation.
+
+
+---
+## LIVE SMOKE RESULT — 2026-10-23 13:14 UTC
+Run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39958304900) completed FAILURE. Chromium install and verified-price source gate passed; apex and www returned HTTP 200; public category grid rendered 9 categories. Live Part Search click failed: `PUBLIC_PAGE_ERROR=ReferenceError: openPartSearch is not defined`; live iframe button has `onclick="openPartSearch()"`; `#partSearchDialog` remained closed and zero-sized, so `#partSearchDialog.open` timed out. Request a Part and later live routes were not reached. Current GitHub source intends a window-qualified handler, unlike the live observed button, suggesting stale/different Axxess files; compare source and prepare backup before any owner-approved upload. Do not weaken smoke test or bypass click by calling function directly. No Axxess/DNS change made. Pages build success does not fix live domain. PR #67 audit/database integrity, PR #89 EFT stock reservation/expiry policy, PR #91 Gemini secret/privacy approval, and Android device install reason remain blockers. Launch HOLD.
