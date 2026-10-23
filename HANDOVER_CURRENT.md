@@ -1697,3 +1697,21 @@ This pass only read GitHub metadata and updated this handover file. No source be
 - Current verified Wrangler config is Pages-oriented (`pages_build_output_dir = "."`); Cloudflare docs explain that Pages and Workers have distinct configuration/build flows. Workers Builds uses `npx wrangler preview` by default for preview builds, and the supplied log confirms that command fails because the Worker config has no `previews` block. Do not add a block or disable Workers until the dashboard service type and intended role are confirmed.
 - Next single step: owner should open the Workers service dashboard URL, select Settings, then Build configuration / Builds & deployments and share the displayed service type and Build / Deploy / Preview command settings. No Retry, Deploy, command edits, route edits, or live changes until reviewed.
 - No code, Cloudflare setting, DNS, Axxess, production, or payment changes made. Pages URL remains the known current-layout reference; customer launch remains HOLD.
+
+
+## SECOND CLOUDFLARE BUILD LOG CONFIRMS PROJECT-TYPE MISMATCH — 2026-10-23
+
+### Owner-provided log (2026-10-19 17:52 UTC)
+- Configured deploy command was `npx wrangler deploy` (Wrangler 4.151.2).
+- Wrangler explicitly warned: `It seems that you have run wrangler deploy on a Pages project, wrangler pages deploy should be used instead.`
+- The command continued in non-interactive mode and failed with `Missing entry-point to Worker script or to assets directory`.
+- Wrangler recommended either specifying a Worker entrypoint or an assets directory; however, current repo `wrangler.toml` is Pages-style (`pages_build_output_dir = "."`) and the Pages preview is the known current-layout reference. Do not invent a Worker entrypoint or add a Worker assets directory without evidence that a Worker is intended.
+
+### Combined diagnosis
+- Together with the 2026-10-23 failure of `npx wrangler preview` due to missing `[previews]`, this confirms that the Workers build pipeline is using Worker-oriented commands against a Pages-configured project. The immediate failures are configuration/command mismatch, not evidence of a defect in the current Pages storefront itself.
+- Preferred investigation: inspect the Cloudflare service's Build & deployments settings to determine why a Workers build is attached and whether it is legacy/accidental. Because removing/disabling a build integration can affect future deployments and is account-level, do not change it without explicit owner approval after verifying the Pages deployment path and any custom routes/worker dependencies.
+- Safe candidate if owner confirms the service is an obsolete duplicate: stop using the Worker deploy pipeline and keep the current Pages project as the source of the storefront. Do not modify the public Pages project, Axxess hosting, DNS, checkout/payment, secrets, or database in this step.
+
+### State and next owner step
+- Ask owner to inspect Settings > Builds & deployments (or equivalent) on the Workers service and send the configured build/deploy commands and repository/branch binding. Do not retry/deploy or edit settings before review.
+- No code, Wrangler config, Cloudflare settings, routes, DNS, Axxess, production database, checkout/payment or deployment changed as part of this diagnosis. PR #89/#91 remain draft/unmerged; customer launch remains HOLD.
