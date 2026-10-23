@@ -78,10 +78,15 @@ jobs:
           node <<'SQLCHECK'
           const fs = require('fs');
           const sql = fs.readFileSync('supabase/migrations/20261023090000_customer_terms_acceptances.sql','utf8');
-          const count = (re) => (sql.match(re) || []).length;
-          if (count(/CREATE TABLE IF NOT EXISTS public\\.customer_terms_acceptances/g) !== 1) throw new Error('Consent migration must define exactly one table');
-          if (count(/CREATE TRIGGER customer_terms_acceptances_immutable/g) !== 1) throw new Error('Consent migration must define exactly one immutable trigger');
-          if (!/terms_sha256 text NOT NULL CHECK \\(terms_sha256 ~ '\\^\\[a-f0-9\\]\\{64\\}\\
+          const count = (needle) => sql.split(needle).length - 1;
+          if (count('CREATE TABLE IF NOT EXISTS public.customer_terms_acceptances') !== 1) throw new Error('Consent migration must define exactly one table');
+          if (count('CREATE TRIGGER customer_terms_acceptances_immutable') !== 1) throw new Error('Consent migration must define exactly one immutable trigger');
+          if (!sql.includes("terms_sha256 text NOT NULL CHECK (terms_sha256 ~ '^[a-f0-9]{64}$'),")) throw new Error('Consent migration SHA-256 constraint is malformed');
+          if (!sql.includes('UNIQUE (user_id, terms_version, terms_sha256)')) throw new Error('Consent migration digest uniqueness is missing');
+          if (sql.includes('\n),\n  accepted_at')) throw new Error('Unexpected duplicated SQL fragment detected');
+          console.log('CONSENT_MIGRATION_SOURCE_PASS');
+          SQLCHECK
+          grep -Fq "CONSENT_MIGRATION_SOURCE_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq "CUSTOMER_PASSWORD_RESET_UI_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq 'rel="manifest" href="manifest.webmanifest"' store.html
           grep -Fq "navigator.serviceWorker.register('/sw.js')" store.html
