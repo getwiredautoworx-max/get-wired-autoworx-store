@@ -1268,3 +1268,25 @@ Purpose: distinguish work completed in source from items actually verified. This
 - **Public SKU Exposure Audit:** [run 39925970339](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39925970339) is in progress.
 - These runs are not yet passes. Recheck outcomes and exact step logs before marking any task complete. Avoid additional commits to the PR branch while its smoke run is active because concurrency can cancel an in-progress run.
 - **Next task started while CI runs:** inspect the Android build workflow and latest APK build/artifact status without rebuilding blindly or changing application IDs. Physical-device failure still requires a Package Manager install error from the owner's Hisense M72 Pro.
+
+
+## CURRENT-HEAD CHECKOUT REGRESSION — PASS (2026-10-23 10:46 SAST)
+
+**Exact source tested:** PR #89 head `f2d88c79f7710585009f9c18715542c27ea5205d`. The application source matches `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`; the head commit changed the handover file only.
+
+### Completed current-head evidence
+- [Storefront Smoke Test run 39925970363](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39925970363) — **success**. Steps passed: Deno type-check for checkout/Terms Edge Functions; 5/5 isolated Node security source assertions; Terms document and combined Terms/Returns SHA checks; verified-price gate assertions; local Playwright storefront smoke.
+- Browser log markers confirm: `TERMS_GATE_BEHAVIOR_PASS` (first visit, decline stays blocked, acceptance permits browsing); `CUSTOMER_ACCOUNT_UI_PASS` (sign-in/register/recovery modes); `CUSTOMER_PASSWORD_RESET_UI_PASS`; `CATEGORY_NAVIGATION_PASS` (8 populated main categories and 12 Auto Electrical options); `EXACT_SKU_IMAGE_FALLBACK_PASS`; `PRODUCT_METADATA_LEAK_GUARD_PASS`; `REQUEST_PART_DIALOG_PASS`; early Part Search/Request clicks queued before catalogue initialization; responsive homepage at 320, 390, 768 and 1365 px with document width equal to viewport; PWA install shell and offline checkout safety. Final marker: `STOREFRONT_SMOKE_PASS`. No test failure or browser page-error marker was found in the completed log.
+- [Prepare Axxess upload package run 39925970382](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39925970382) — **success**. Artifact packaging only; no upload performed.
+- [Public SKU Exposure Audit run 39925970339](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39925970339) — **success**.
+- This resolves the prior **missing current-head CI evidence** blocker for source-level Deno/Node/static gates and local browser smoke. It does **not** validate a production checkout, live Auth/Terms REST interactions, database migrations, stock mutation or an actual order. The 5 Node tests are source-level assertions, not mocked runtime Edge Function tests.
+
+### Remaining checkout gates (still HOLD)
+1. Add mocked runtime tests proving missing/invalid token, invalid Auth response, absent/stale consent, customer lookup/create failure, malformed item/quantity and price rejection never reach the order RPC. Existing tests do not yet exercise those branches.
+2. Review both SQL migrations and run them only in an isolated staging Supabase project; verify RLS/grants, the function signature and uniqueness behavior. No staging migration run has been performed in this session.
+3. Resolve PR #89's main-branch divergence/mergeability and keep it draft/unmerged pending runtime tests and staging review. The current feature branch was synchronized to the then-current main handover; this main handover has now been updated with the test results, so sync the branch handover once more after this note, then verify mergeability and rerun the source checks.
+4. Cloudflare Workers Builds is a separate provider check and has failed on earlier heads while Cloudflare Pages preview builds succeeded. Inspect the latest check outcome; do not equate this with a failed storefront smoke test or change production configuration without actual Worker build logs.
+5. Physical Hisense M72 Pro APK install remains unresolved. The CI APK build, metadata/signature checks and Android 13 emulator install/launch passed, but the owner phone rejected the package with a generic toast. The Windows 7 host's current adb.exe cannot launch because it imports `GetSystemTimePreciseAsFileTime`, an API first available on Windows 8; use a Windows-7-compatible older platform-tools binary or a Windows 10/11 computer to obtain the actual `INSTALL_FAILED_...` Package Manager reason. Do not keep rebuilding or rotating IDs without that device diagnostic.
+
+### Release controls
+- Customer launch remains **HOLD**. Do not merge/deploy checkout, apply either migration, submit a live order, alter Axxess/DNS/payment, or resume supplier-dependent catalogue/stock work without the respective validation and owner approval.
