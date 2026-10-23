@@ -11,6 +11,34 @@ Deno.serve(async (req: Request) => {
   if (req.method !== "POST") return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
   try {
+    // Reject anonymous requests before parsing or trusting any customer-supplied identity.
+    const authorization = req.headers.get("authorization") || "";
+    const bearer = authorization.match(/^Bearer\\s+(.+)$/i)?.[1];
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const publicApiKey = Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ||
+      Deno.env.get("SUPABASE_ANON_KEY") || req.headers.get("apikey");
+    if (!bearer || !supabaseUrl || !publicApiKey) {
+      return new Response(JSON.stringify({ error: "Sign in to your customer account before checkout.", code: "AUTH_REQUIRED" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Verify the access token with Supabase Auth; never trust a user ID supplied in the body.
+    const authResponse = await fetch(supabaseUrl + "/auth/v1/user", {
+      headers: { apikey: publicApiKey, Authorization: "Bearer " + bearer },
+    });
+    if (!authResponse.ok) {
+      return new Response(JSON.stringify({ error: "Your session is invalid or expired. Please sign in again.", code: "AUTH_INVALID" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const authenticatedUser = await authResponse.json();
+    if (typeof authenticatedUser?.id !== "string" || !authenticatedUser.id) {
+      return new Response(JSON.stringify({ error: "A valid customer account is required.", code: "AUTH_INVALID" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const body = await req.json();
     if (!body || typeof body !== "object") throw new Error("Invalid order request.");
 
@@ -38,7 +66,7 @@ Deno.serve(async (req: Request) => {
       usesSecretApiKey = Boolean(secret);
     }
     if (!secret) secret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || null;
-    if (!supabaseUrl || !secret) throw new Error("Checkout service is not configured.");
+    if (!secret) throw new Error("Checkout service is not configured.");
 
     // New sb_secret keys are sent in apikey only; legacy service-role JWTs also use Authorization.
     const adminHeaders: Record<string, string> = {
@@ -46,6 +74,26 @@ Deno.serve(async (req: Request) => {
       "Content-Type": "application/json",
     };
     if (!usesSecretApiKey) adminHeaders.Authorization = "Bearer " + secret;
+
+    // Current-version Terms & Conditions acceptance is checked server-side before any order RPC.
+    const termsVersion = Deno.env.get("STORE_TERMS_VERSION") || "GW-TERMS-2026-10-23-v1";
+    const consentUrl = new URL(supabaseUrl + "/rest/v1/store_terms_acceptances");
+    consentUrl.searchParams.set("select", "id");
+    consentUrl.searchParams.set("user_id", "eq." + authenticatedUser.id);
+    consentUrl.searchParams.set("terms_version", "eq." + termsVersion);
+    consentUrl.searchParams.set("limit", "1");
+    const consentCheck = await fetch(consentUrl, { headers: adminHeaders });
+    if (!consentCheck.ok) {
+      return new Response(JSON.stringify({ error: "Unable to verify Terms & Conditions acceptance. Please try again.", code: "CONSENT_CHECK_FAILED" }), {
+        status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const consentRows = await consentCheck.json();
+    if (!Array.isArray(consentRows) || consentRows.length === 0) {
+      return new Response(JSON.stringify({ error: "Accept the current Terms & Conditions in your signed-in account before placing an order.", code: "CONSENT_REQUIRED", terms_version: termsVersion }), {
+        status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Only products with an explicitly verified current selling price may enter paid checkout.
     // The RPC is service_role-only, so this server-side gate cannot be bypassed by the public client.
