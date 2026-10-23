@@ -1205,3 +1205,15 @@ Purpose: distinguish work completed in source from items actually verified. This
 ### Release gates unchanged
 - PR #89 stays draft/unmerged; production database migrations and Edge Function deployments are prohibited until current-head checks, staging validation and explicit owner release approval.
 - No Axxess upload, DNS changes, payment activation, supplier-dependent stock/catalogue work, or customer launch.
+
+## CONTINUATION UPDATE — 2026-10-23 (attempted current-head CI trigger)
+
+- Latest draft PR #89 source head remains `a65fb9aa4bd21ddc36324fb714feb826cd8461a5` at this checkpoint.
+- To obtain current-head test evidence without merging, created temporary validation PR #90 from the exact same SHA, then inspected commit check-runs. Only Cloudflare preview/build checks appeared; the Storefront Smoke Test, Deno check and Node regression suite were not started. PR #90 was closed unmerged and marked explicitly as having no test evidence: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/90.
+- This confirms the available GitHub integration in this session cannot trigger the required GitHub Actions run even through a new PR. Do not repeat temporary PR creation; it did not help.
+- Latest main-branch GitHub Pages deployment for handover commit `0e69fc1f6b2888a52de5644244b01d003c61775c` was in progress when checked. This is a documentation/Pages deployment status only, not storefront checkout verification.
+
+### Required next action to unblock verification
+- Use a GitHub Actions run trigger available to the repository owner (Actions → Storefront Smoke Test → Run workflow on `feature/terms-gate-phase1`, or an authorized manual `workflow_dispatch` call) and wait for the complete run. This owner-side trigger is required because this session's GitHub connector does not expose workflow dispatch and API commits/PR creation did not start the workflow.
+- Once a run starts, check the Node regression tests, Deno checks, Terms/hash checks and browser smoke output. Fix each actual failure, update this handover with the run URL and exact SHA, and only then consider staging migration validation.
+- Do not deploy or merge while this evidence is missing.
