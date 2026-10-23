@@ -282,6 +282,11 @@ jobs:
             const earlySearchPage = await browser.newPage({viewport:{width:390,height:844}});
             earlySearchPage.on('pageerror', e => console.log('[early-search-pageerror] '+e.message));
             await earlySearchPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
+            const earlySearchGate = earlySearchPage.locator('#gwTermsGate');
+            await earlySearchGate.waitFor({state:'visible',timeout:15000});
+            await earlySearchPage.locator('#gwTermsAcceptCheck').check();
+            await earlySearchPage.locator('#gwTermsAcceptButton').click();
+            await earlySearchGate.waitFor({state:'hidden',timeout:10000});
             const earlySearchFrame = earlySearchPage.frameLocator('#store');
             await earlySearchFrame.locator('button.headerPartSearch').waitFor({state:'visible',timeout:15000});
             await earlySearchFrame.locator('button.headerPartSearch').click();
@@ -293,6 +298,11 @@ jobs:
             const earlyRequestPage = await browser.newPage({viewport:{width:390,height:844}});
             earlyRequestPage.on('pageerror', e => console.log('[early-request-pageerror] '+e.message));
             await earlyRequestPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
+            const earlyRequestGate = earlyRequestPage.locator('#gwTermsGate');
+            await earlyRequestGate.waitFor({state:'visible',timeout:15000});
+            await earlyRequestPage.locator('#gwTermsAcceptCheck').check();
+            await earlyRequestPage.locator('#gwTermsAcceptButton').click();
+            await earlyRequestGate.waitFor({state:'hidden',timeout:10000});
             const earlyRequestFrame = earlyRequestPage.frameLocator('#store');
             await earlyRequestFrame.locator('button.primaryAction').waitFor({state:'visible',timeout:15000});
             await earlyRequestFrame.locator('button.primaryAction').click();
