@@ -2847,3 +2847,9 @@ This section supersedes older QA statements above where they conflict.
 - This run is limited to non-stock storefront/technical blockers. Do not modify live data, product active flags, hosting/DNS/payment settings, deploy production, or consume release credits without explicit approval. Do not merge draft PRs.
 - First focus: inspect current PR #72 and existing workflow statuses; do not duplicate queued/in-progress jobs. Only restart a failed/cancelled/stopped safe staging task when a supported retry action exists; never retry production/deployment jobs.
 - Next action: record the actual workflow and PR findings in a follow-up handover entry, then proceed with the smallest safe non-deploying verification.
+
+
+## 2026-10-23 — Handover recovery (task start)
+- **Status: IN PROGRESS.** Read the current main handover immediately before this task (blob SHA `7ff9e9363bccbbb17d9def70bd38ad2d5f787bfb`).
+- Owner instruction: resolve the handover-write blocker and do not claim findings are saved until a GitHub commit and subsequent read-back confirm them.
+- Scope: safely preserve the latest checkout-security and workflow findings without production deployment, merge, live-data mutation, stock investigation, or release-credit use. Since documentation commits on main have triggered Pages workflows previously, prefer a documentation-only branch/PR for recovery if a main write is blocked or risks triggering a build.
