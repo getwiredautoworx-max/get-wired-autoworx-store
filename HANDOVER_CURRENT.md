@@ -1290,3 +1290,12 @@ Purpose: distinguish work completed in source from items actually verified. This
 
 ### Release controls
 - Customer launch remains **HOLD**. Do not merge/deploy checkout, apply either migration, submit a live order, alter Axxess/DNS/payment, or resume supplier-dependent catalogue/stock work without the respective validation and owner approval.
+
+
+## TASK START — NO-COST PART IMAGE SEARCH RECOVERY (2026-10-23 10:49 SAST)
+
+- Read-only Supabase log inspection has now established the exact cause of the earlier `part-image-search` HTTP 429. At `2026-10-22T12:49:17Z`, the function logged OpenAI response 429 with `type: insufficient_quota` and `code: credit_balance_exhausted`; the API message explicitly says there are no credits remaining. This is **not merely a transient request-rate burst**.
+- Deployed function is active at version 2, `verify_jwt=false`; its current code calls OpenAI Vision model `gpt-4.1-mini` and returns a generic 429 for upstream HTTP 429. No production code/configuration was changed during diagnosis.
+- No-cost route under evaluation: add an optional Gemini Developer API vision provider using a model listed on Google's free tier, prefer it when its key is configured, and keep the existing Request a Part path as a safe fallback. Official pricing reference: https://ai.google.dev/gemini-api/docs/pricing (free-tier input/output for supported models, subject to quota and availability).
+- This is a source-only change candidate. It will not work until an owner-created Gemini API key is configured as a Supabase Edge Function secret. Do not read or print secret values, do not add a paid billing account, and do not deploy without mock tests plus owner approval. Free tier still has rate limits and Google's free-tier data-use terms; do not promise unlimited/no-quota operation.
+- Status at start: **root cause resolved by evidence; durable no-cost fallback not yet implemented/tested**. Next steps are isolated provider adapter, unit tests for provider selection/429/fallback/error redaction, Deno type-check, and a draft PR. Production function remains unchanged.
