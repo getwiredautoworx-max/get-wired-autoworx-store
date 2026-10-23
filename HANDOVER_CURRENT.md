@@ -1109,3 +1109,11 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Added Playwright checks to `.github/workflows/storefront-smoke.yml` for first-visit visibility, decline-stays-blocked, and accept-unblocks-browsing. Workflow has not yet run against this branch at checkpoint time; behavior is NOT marked passed until CI result is inspected.
 - Critical limitation stated in source: the local browser flag is only a Phase 1 UI convenience, NOT durable legal evidence and NOT purchase authorization. Customer authentication, durable server/database consent evidence, and checkout enforcement remain later required phases. Do not deploy or represent the store as secure/launch-ready based on this phase alone.
 - No production Supabase/DNS/Axxess/payment/catalogue/stock changes. Customer launch remains HOLD.
+
+
+## TERMS GATE PHASE 1 — PR AND CI CHECKPOINT — 2026-10-23
+
+- Draft PR #89 opened: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/89
+- PR head: `de8047916265b79d43847e47e505dd1d134e77e4`; files changed: `index-new.html`, `.github/workflows/storefront-smoke.yml`, and this handover.
+- Workflow lookup for the exact PR head returned no associated PR workflow runs at the time of check. Therefore browser behavior tests are pending and Phase 1 is NOT accepted yet. Do not merge or deploy. Recheck the exact head's CI and fix any failure before progressing.
+- This phase is only the blocking entry UI. Browser-local acceptance version is not durable legal evidence. Later phases still need Supabase Auth flows, server-generated versioned acceptance records, RLS/ownership rules, and server-side checkout rejection for unauthenticated or non-consenting customers.
