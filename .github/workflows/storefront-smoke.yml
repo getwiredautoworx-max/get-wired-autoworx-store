@@ -258,6 +258,9 @@ jobs:
             earlySearchPage.on('pageerror', e => console.log('[early-search-pageerror] '+e.message));
             await earlySearchPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
             const earlySearchFrame = earlySearchPage.frameLocator('#store');
+            await earlySearchFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await earlySearchFrame.locator('#gwTermsAccept').click();
+            await earlySearchFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await earlySearchFrame.locator('button.headerPartSearch').waitFor({state:'visible',timeout:15000});
             await earlySearchFrame.locator('button.headerPartSearch').click();
             await earlySearchFrame.locator('#partSearchDialog.open').waitFor({timeout:15000});
@@ -269,6 +272,9 @@ jobs:
             earlyRequestPage.on('pageerror', e => console.log('[early-request-pageerror] '+e.message));
             await earlyRequestPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
             const earlyRequestFrame = earlyRequestPage.frameLocator('#store');
+            await earlyRequestFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await earlyRequestFrame.locator('#gwTermsAccept').click();
+            await earlyRequestFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await earlyRequestFrame.locator('button.primaryAction').waitFor({state:'visible',timeout:15000});
             await earlyRequestFrame.locator('button.primaryAction').click();
             await earlyRequestFrame.locator('#sourcePart.open').waitFor({timeout:15000});
@@ -280,6 +286,9 @@ jobs:
             const responsivePage = await browser.newPage({viewport:{width:320,height:900}});
             await responsivePage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             const responsiveFrame = responsivePage.frameLocator('#store');
+            await responsiveFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await responsiveFrame.locator('#gwTermsAccept').click();
+            await responsiveFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await responsiveFrame.locator('#categoryGrid > .catWrap').first().waitFor({timeout:60000});
             for (const width of [320,390,768,1365]) {
               await responsivePage.setViewportSize({width,height:900});
