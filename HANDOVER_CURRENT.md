@@ -1688,3 +1688,12 @@ This pass only read GitHub metadata and updated this handover file. No source be
 
 ### Safety / state
 - No source config was edited, no build retried, no Cloudflare setting changed, and no deployment or production action occurred. PR #89 and PR #91 remain draft/unmerged; customer launch remains HOLD.
+
+
+## OWNER CLARIFIED CLOUDFLARE URLS — 2026-10-23
+
+- Owner reports the Cloudflare dashboard route `https://dash.cloudflare.com/43ab7b7bd3689458e2d0de39f6e897ca/workers/services/view/get-wired-autoworx-store/production` opens an old store layout, while `https://get-wired-autoworx-store.pages.dev/` opens the current layout.
+- Important distinction: the first URL is a Cloudflare dashboard/service route, not a public Pages URL; owner may be seeing a dashboard preview/service view. This observation supports that two different deployment surfaces/versions may be involved but does not yet prove the public Workers endpoint, route bindings, or which build pipeline controls production.
+- Current verified Wrangler config is Pages-oriented (`pages_build_output_dir = "."`); Cloudflare docs explain that Pages and Workers have distinct configuration/build flows. Workers Builds uses `npx wrangler preview` by default for preview builds, and the supplied log confirms that command fails because the Worker config has no `previews` block. Do not add a block or disable Workers until the dashboard service type and intended role are confirmed.
+- Next single step: owner should open the Workers service dashboard URL, select Settings, then Build configuration / Builds & deployments and share the displayed service type and Build / Deploy / Preview command settings. No Retry, Deploy, command edits, route edits, or live changes until reviewed.
+- No code, Cloudflare setting, DNS, Axxess, production, or payment changes made. Pages URL remains the known current-layout reference; customer launch remains HOLD.
