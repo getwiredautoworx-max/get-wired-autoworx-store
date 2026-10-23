@@ -68,7 +68,7 @@ Deno.serve(async (req: Request) => {
     if (!secret.secretApiKey) headers.Authorization = "Bearer " + secret.key;
 
     const response = await fetch(
-      supabaseUrl + "/rest/v1/customer_terms_acceptances?on_conflict=user_id,terms_version",
+      supabaseUrl + "/rest/v1/customer_terms_acceptances?on_conflict=user_id,terms_version,terms_sha256",
       {
         method: "POST",
         headers,
