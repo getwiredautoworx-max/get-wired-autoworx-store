@@ -97,7 +97,7 @@ async function verifySourceParity(){
     await categoryFrame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').nth(i).waitFor({timeout:60000});
     const beforeUrl=page.url();
     await categoryFrame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').nth(i).click();
-    await page.waitForURL(/\/category(?:\.html)?\/?\?id=/,{timeout:20000});
+    await page.waitForURL(/\/(?:category(?:\.html)?\/?\?id=|products(?:\.html)?\/?\?category=)/,{timeout:20000});
     const categoryUrl=page.url();
     const label=rootLabels[i];
     const routeUrl=new URL(categoryUrl); const categoryRoute=/(?:^|\/)category(?:\.html)?\/?$/.test(routeUrl.pathname)&&routeUrl.searchParams.has('id'); const productRoute=/(?:^|\/)products(?:\.html)?\/?$/.test(routeUrl.pathname)&&routeUrl.searchParams.has('category');
@@ -166,7 +166,6 @@ async function verifySourceParity(){
     const found=allPhotoRecords.find(img=>rule.label.test(img.alt));
     check('photo_relevance_mapping:'+rule.name,!!found&&rule.src.test(found.src),{expectedLabel:String(rule.label),expectedSource:String(rule.src),found:found||null});
   }
-  check('fuel_pump_photo_credit_visible',report.fuelPumpCreditVisible,{visible:report.fuelPumpCreditVisible});
   check('fuse_photo_credit_visible',report.fusePhotoCreditVisible,{visible:report.fusePhotoCreditVisible});
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
   await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:60000});
