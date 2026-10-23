@@ -1099,3 +1099,25 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Fresh package ID `com.getwired.autoworx.owner.install106` did not resolve the reported problem; do not rotate package IDs or rebuild another guessed APK. Need the actual Package Installer reason (e.g. conflicting package/signature, parse/SDK incompatibility, device policy, or download corruption) to select a deterministic fix.
 - Next required evidence: owner should send a screenshot of the exact installation failure screen or the expanded “App not installed” details, if available. If Android only shows the generic message, capture the device's Package Installer failure detail through system logs/ADB; no physical device is connected to this environment so those logs cannot be read remotely from here.
 - No Axxess/DNS/production storefront/payment/catalogue changes. APK physical-device acceptance remains FAILED/OPEN; customer launch remains HOLD.
+
+## CONTINUATION UPDATE — 2026-10-23 10:25 SAST (T&C/login gate and checkout-security review)
+
+### Verified in this continuation
+- Re-read current main handover (HANDOVER_CURRENT.md, blob SHA 02fc69ea3f4b72ad8bcdfbf5d735f614da73fb30) and checked current open PRs and Actions evidence.
+- Current main commit is 65e60e8cc895bb52d7bea1fc2174d8d2b55c575e. PR #89, feature/terms-gate-phase1, head 3357c30e2db67f6c5140bfd69498eb47cf5b476f, is still draft/unmerged. It adds a blocking first-entry Terms UI, account page, versioned consent recorder and checkout auth/consent source changes. This is not yet a release-ready or production-tested flow.
+- PR #89 latest observed Public SKU Exposure Audit run 39923584404 and Prepare Axxess upload package run 39923584347 succeeded. Storefront Smoke Test run 39923584335 ended CANCELLED, not passed. The current branch therefore lacks a completed full smoke-suite result. Do not interpret a package artifact build as authorization to upload it.
+- Read-only Supabase inspection on project ojytykqpvonxvepprgbh confirmed public.customers.auth_user_id exists and RLS is enabled on customers, orders and order_items. Existing customer own-profile policies are present; orders and order_items include owner-scoped SELECT policies and explicit deny-client policies.
+- Read-only privilege check confirmed every currently deployed create_store_order overload and the current create_store_order_v2 overload has EXECUTE for service_role only; neither anon nor authenticated can call these RPCs directly. This is evidence for the currently deployed database, not evidence for an unapplied migration.
+- PR #89 adds a new overload of create_store_order_v2 through migration 20261023100000_link_store_orders_to_customer.sql. Before any migration is considered safe, review PostgreSQL default EXECUTE grants for that new SECURITY DEFINER overload and explicitly revoke execution from PUBLIC/anon/authenticated, granting only service_role; new functions otherwise commonly inherit PUBLIC EXECUTE by default. Also verify the Edge Function binds the authenticated Auth user to the exact customer profile (customers.auth_user_id) and verifies current terms version/digest before any order RPC call.
+- The GitHub Contents API could not retrieve individual files at the PR head SHA in this continuation (404); no source edits were attempted on the basis of partial patches. Continue via PR file patches or a reachable branch ref, and do not guess file contents.
+
+### Next actions — do not loop
+1. Inspect the complete PR #89 versions of store-checkout/index.ts, record-terms-acceptance/index.ts, and the new order migration. Resolve the service-role-only function grant and auth-user/customer-profile binding risks in the draft branch.
+2. Check why the smoke run was cancelled; wait for or trigger one non-conflicting run on the latest PR head and require a completed pass for type checks, consent/auth assertions and browser gate behavior. Cancelled runs do not count.
+3. Add isolated mocked tests for unauthenticated checkout denial, invalid session, missing/stale consent, wrong customer profile, malformed/extra fields and the no-order/no-stock-mutation boundary. Do not call the live order RPC in tests.
+4. Keep PR #89 draft/unmerged and all migrations/functions source-only until checks and security review pass. No production Supabase writes/deployment, Axxess upload, DNS change, payment activation, stock/catalogue edits or customer launch.
+
+### Status
+- Terms UI gate: source added; complete browser acceptance still NOT VERIFIED.
+- Authenticated checkout + durable consent: draft implementation; security review/tests IN PROGRESS.
+- Production/release: HOLD.
