@@ -211,8 +211,24 @@ jobs:
             await page.locator('#checkout').waitFor({timeout:10000});
             await page.locator('#checkout').click({force:true});
             await page.waitForURL('**/checkout-v2.html');
-            await page.locator('#name').waitFor({timeout:10000});
-            await page.locator('#phone').waitFor({timeout:10000});
+
+            // Verify checkout is blocked before sign-in, then use a synthetic session and mocked consent endpoints.
+            await page.locator('#accountGate').waitFor({timeout:10000});
+            if (await page.locator('#checkout').isVisible()) throw new Error('Checkout form must remain hidden until a customer signs in and accepts current terms');
+            if (!(await page.locator('#accountEmail').isVisible()) || !(await page.locator('#accountPassword').isVisible())) throw new Error('Customer sign-in form is not visible before checkout');
+            await page.route('**/auth/v1/user', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({id:'smoke-customer',email:'smoke@example.test'})}));
+            await page.route('**/rest/v1/store_terms_acceptances*', route => route.fulfill({status:200,contentType:'application/json',body:'[]'}));
+            await page.route('**/functions/v1/store-checkout', route => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,terms_version:'GW-TERMS-2026-10-23-v1'})}));
+            await page.evaluate(() => {
+              localStorage.removeItem('gw_terms_accepted_version');
+              localStorage.setItem('gw_customer_session', JSON.stringify({access_token:'smoke-test-token',refresh_token:'smoke-test-refresh',expires_at:Date.now()+3600000}));
+            });
+            await page.reload({waitUntil:'domcontentloaded'});
+            await page.locator('#consentPanel:not(.hidden)').waitFor({timeout:10000});
+            await page.locator('#consentCheck').check();
+            await page.locator('#consentContinue').click();
+            await page.locator('#name').waitFor({state:'visible',timeout:15000});
+            await page.locator('#phone').waitFor({state:'visible',timeout:10000});
             await page.locator('#deliverySummary').waitFor({timeout:10000});
             const delivery = await page.locator('#deliverySummary').textContent();
             if (!delivery || !delivery.includes('To be quoted')) throw new Error('Delivery must remain quoted separately until a delivery quote is selected');
