@@ -1128,3 +1128,10 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Latest source commits: reset callback `981fb289e820aab1b03967134376e1f0886c1ba1`; mocked browser test `490c570789c3b083a71758d62a3633b11954faf1`.
 - **CI remains unverified:** workflow-run and combined-status queries returned no check records for latest head `490c570789c3b083a71758d62a3633b11954faf1`. Do not treat the new test as passed until a successful workflow run is available. A real disposable-account test is still needed for Supabase recovery email delivery/redirect configuration.
 - No Axxess, production storefront, DNS, payment, Supabase data, migration, or Edge Function deployment changed. Customer launch remains HOLD.
+
+
+## SIGN-OUT SESSION REVOCATION HARDENING — 2026-10-23
+
+- Updated the sign-out handler in `checkout-v2.html` to call Supabase Auth `/auth/v1/logout?scope=local` with the current access token before clearing the local session and returning to the account gate. Network failure is caught so the local session is still cleared.
+- Source commit: `9a0e580e46302a586d15c8e966d7c23baec65e4e`.
+- CI remains unverified: no workflow runs/status checks were returned for this branch head. Do not claim sign-out, password recovery, direct-route terms acceptance or account checkout flows as passed until the updated smoke workflow completes and a disposable account is tested.
