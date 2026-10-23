@@ -1567,3 +1567,11 @@ This pass only read GitHub metadata and updated this handover file. No source be
 4. Owner configures the Gemini secret and approves photo-privacy wording before any live image-search provider test/deploy.
 5. Diagnose the Hisense install failure from the real Android Package Manager code/log; no blind APK rebuilds.
 6. Keep ASC stock/catalogue work paused and launch HOLD until authorized release gates pass.
+
+
+## STAGING AVAILABILITY CHECK — 2026-10-23 11:08 SAST
+
+- Read-only Supabase project listing returned exactly one accessible project: `Store` (`ojytykqpvonxvepprgbh`), status `ACTIVE_HEALTHY`, region `eu-west-1`. No separate staging project is visible in the connected account.
+- **Staging validation is blocked.** Do not run the proposed migrations, create test users/orders, or exercise checkout writes against the only visible `Store` project; it may be production and is not an approved disposable test environment. Creating a separate Supabase project may incur cost, so no project/branch was created and no cost was incurred.
+- Owner action required: identify/authorize a genuinely isolated staging project, or explicitly authorize a cost-quoted staging project creation after reviewing the quote. Until then, migration/Auth/Terms/checkout integration validation cannot honestly be marked complete.
+- No database writes, migration application, Edge Function deployment, project creation, or settings changes were made in this check.
