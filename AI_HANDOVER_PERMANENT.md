@@ -2968,3 +2968,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Scope: inspect current workflow/background-run status; review existing price-scaling and October source-verification evidence; preserve October-sourced products; keep asterisk-price items quote-only/inactive; inspect category-review evidence without auto-moving products.
 - Safety boundary: no production/live data writes, no active-flag changes, no deployments, no release-credit use, and no supplier reconciliation/import unless explicitly authorised. Only safe staging/documentation changes are in scope.
 - Next action: inspect current workflows and relevant staging reports, then append evidence-based outcomes as they occur.
+
+
+## 2026-10-23 — Scheduled monitoring run 5 (15:34 SAST) — TASK START
+
+- **Status: IN PROGRESS.** Read the current default-branch permanent handover (blob SHA `278b6e92e7ce3d2d939060513fa1d36ff2f8eeb9`) and the current `HANDOVER_CURRENT.md` before starting this run.
+- **Run scope:** inspect the latest checkpoint/update notes and actual latest GitHub Actions attempt/status for category-navigation Chromium acceptance, buyer-guide evidence extraction, ASC Exact-SKU Image Sync, storefront smoke/production QA, and Cloudflare Pages/Worker builds. Retry only safe failed/cancelled/stopped staging jobs where a supported rerun exists; never rerun production/release workflows or duplicate active jobs.
+- **Safety locks:** no live product/price/stock/category changes, no catalogue restart, no Axxess/DNS/payment change, no production workflow rerun/deploy, no PR merge, and no intentional Cloudflare/Netlify credit use without owner approval. Supplier-dependent reconciliation remains paused pending ASC authorization.
+- **First action after this entry:** identify the newest relevant workflow attempts and inspect job-level conclusions before any rerun. Record exact IDs, status, result, blocker, and next action in this handover after each material result.
