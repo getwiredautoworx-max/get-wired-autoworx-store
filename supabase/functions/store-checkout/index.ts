@@ -42,14 +42,17 @@ Deno.serve(async (req: Request) => {
     const body = await req.json();
     if (!body || typeof body !== "object") throw new Error("Invalid order request.");
 
+    const isConsentAction = body?.action === "record_terms_acceptance";
     const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method","p_delivery_quote"];
     const payload: Record<string, unknown> = {};
     for (const key of allowed) payload[key] = body[key];
 
-    if (typeof payload.p_customer_name !== "string" || payload.p_customer_name.trim().length < 2) throw new Error("Customer name is required.");
-    if (typeof payload.p_customer_phone !== "string" || payload.p_customer_phone.trim().length < 5) throw new Error("A valid customer phone number is required.");
-    if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
-    if (payload.p_items.length > 100) throw new Error("Too many cart items.");
+    if (!isConsentAction) {
+      if (typeof payload.p_customer_name !== "string" || payload.p_customer_name.trim().length < 2) throw new Error("Customer name is required.");
+      if (typeof payload.p_customer_phone !== "string" || payload.p_customer_phone.trim().length < 5) throw new Error("A valid customer phone number is required.");
+      if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
+      if (payload.p_items.length > 100) throw new Error("Too many cart items.");
+    }
 
     let secret: string | null = null;
     let usesSecretApiKey = false;
@@ -74,6 +77,31 @@ Deno.serve(async (req: Request) => {
       "Content-Type": "application/json",
     };
     if (!usesSecretApiKey) adminHeaders.Authorization = "Bearer " + secret;
+
+    // A consent-only action records an explicit current-version acceptance without creating an order.
+    const termsVersion = Deno.env.get("STORE_TERMS_VERSION") || "GW-TERMS-2026-10-23-v1";
+    if (isConsentAction) {
+      if (body.accepted !== true || body.terms_version !== termsVersion) {
+        return new Response(JSON.stringify({ error: "Explicit acceptance of the current Terms & Conditions is required.", code: "CONSENT_NOT_ACCEPTED", terms_version: termsVersion }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const consentInsert = new URL(supabaseUrl + "/rest/v1/store_terms_acceptances");
+      consentInsert.searchParams.set("on_conflict", "user_id,terms_version");
+      const saved = await fetch(consentInsert, {
+        method: "POST",
+        headers: { ...adminHeaders, Prefer: "resolution=ignore-duplicates,return=minimal" },
+        body: JSON.stringify({ user_id: authenticatedUser.id, terms_version: termsVersion }),
+      });
+      if (!saved.ok) {
+        return new Response(JSON.stringify({ error: "Unable to record acceptance. Please try again.", code: "CONSENT_SAVE_FAILED" }), {
+          status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      return new Response(JSON.stringify({ ok: true, terms_version: termsVersion }), {
+        status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Current-version Terms & Conditions acceptance is checked server-side before any order RPC.
     const termsVersion = Deno.env.get("STORE_TERMS_VERSION") || "GW-TERMS-2026-10-23-v1";
