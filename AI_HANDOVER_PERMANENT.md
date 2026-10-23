@@ -3005,3 +3005,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## Automation run — 2026-10-23 15:39 SAST — audit tree query failed
 - **Outcome: FAILED retrieval path only.** Generic GitHub fetch rejected the recursive tree URL for branch `audit/buyer-guide-extraction` as an invalid repository path (HTTP 400); this is a connector URL/ref-encoding limitation, not evidence that the branch or files are missing. The three known CSVs remain readable through `fetch_file(ref=...)` and their hashes/counts are recorded above.
 - Next action: use a directory Contents API request with the branch ref encoded as a query parameter, then search for any separate price-scaling/asterisk evidence files. No changes to catalogue data.
+
+
+## Automation run — 2026-10-23 15:40 SAST — background workflow recheck
+- **Actual status captured:** GitHub Actions API showed run `39962349855` (Pages build/deployment for task-start commit `87c6983...`) ended `cancelled` at 13:35:36Z. Run `39962691693` (for commit `8c7b17d...`) also ended `cancelled`; run `39962585241` (for commit `295c5de...`) was `in_progress`; newest run `39962748715` for commit `0269c19...` was `pending` at 13:37:25Z. These are auto-triggered Pages workflow runs following documentation commits; no rerun endpoint was called. No conclusion is inferred for a run still pending/in progress.
+- **Important process observation:** each main-branch handover update starts a Pages build/deployment run and the later commit appears to cancel prior runs. This automation will not call a rerun action or change deployment workflow configuration. Avoiding unnecessary deployment churn is a release-process concern; continue only read-only catalogue evidence work and inspect the newest run before ending.
