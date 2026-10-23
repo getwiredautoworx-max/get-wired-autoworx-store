@@ -1217,3 +1217,20 @@ Purpose: distinguish work completed in source from items actually verified. This
 - Use a GitHub Actions run trigger available to the repository owner (Actions → Storefront Smoke Test → Run workflow on `feature/terms-gate-phase1`, or an authorized manual `workflow_dispatch` call) and wait for the complete run. This owner-side trigger is required because this session's GitHub connector does not expose workflow dispatch and API commits/PR creation did not start the workflow.
 - Once a run starts, check the Node regression tests, Deno checks, Terms/hash checks and browser smoke output. Fix each actual failure, update this handover with the run URL and exact SHA, and only then consider staging migration validation.
 - Do not deploy or merge while this evidence is missing.
+
+
+## HIGH-PRIORITY CONTINUATION — 2026-10-23 (started; no release changes)
+
+### Task status at start
+1. **Checkout / Terms / customer identity security (PR #89): IN PROGRESS — NOT VERIFIED.** PR remains open/unmerged; current source head reported in prior checkpoint as `a65fb9aa4bd21ddc36324fb714feb826cd8461a5`. The latest completed smoke evidence is for an older commit and cannot validate current source.
+2. **CI trigger and provider failure diagnosis: IN PROGRESS.** `.github/workflows/storefront-smoke.yml` does declare `workflow_dispatch` and `pull_request` to `main`, but the prior temporary PR generated Cloudflare checks only. Need inspect repository Actions run history and exact check-run records before assigning cause.
+3. **Cloudflare build failures: UNDIAGNOSED.** PR #89's bot comments show multiple failed Worker build checks on draft commits, including `a65fb9a`; these are not evidence that the storefront smoke workflow ran. Inspect their available logs/statuses and avoid treating them as app test failures without evidence.
+4. **Hisense M72 Pro APK install: BLOCKED ON DEVICE DIAGNOSTIC.** CI/emulator checks passed for install107, but the physical phone reports only “App wasn't installed”. Need Package Manager failure code from device; no remote access to physical phone.
+5. **Other high-priority scope:** customer-journey/responsive browser checks and Part Search / Request a Part functionality must be verified against a current source/preview; image-search 429 and PWA/APK path remain open. Supplier price/stock/catalogue reconciliation remains paused pending ASC authorisation.
+6. **Release controls:** customer launch HOLD. Do not merge PR #89, apply migrations, deploy Edge Functions, write production data, change Axxess/DNS/payment, or alter supplier-dependent catalogue/stock without the required evidence and owner approval.
+
+### Work sequence for this continuation
+- First determine why current-head Actions are absent and whether a permitted API route can start the existing workflow; do not create another temporary PR (previous attempt failed to trigger Actions).
+- Inspect actual CI/provider status and logs, then fix only a demonstrated defect.
+- Continue isolated checkout regression coverage and current-head smoke verification where tool access permits.
+- Record every status transition and exact commit/run evidence here. If the platform/permission boundary requires an owner action, document the smallest exact action and continue all unrelated safe tasks.
