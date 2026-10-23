@@ -1826,3 +1826,30 @@ Run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-sto
 - **Verification required:** Add/adjust regression tests for Audio/Video entry, all area buttons, brand filtering by area, brand selection, product-type section grouping, empty-state/source-a-part fallback, and mobile/desktop responsive layouts. Verify with current catalogue data and clearly report gaps where a category or brand has no matching products.
 - **Scope and release guardrails:** GitHub PR #94 branch only. No production/Axxess upload, deployment, DNS/payment/checkout changes, Supabase/category-row writes, stock/price/catalogue mutations, supplier import, or supplier stock reconciliation. Current store stock remains test data only. Keep PR #94 draft/unmerged and PR #74 as the fallback until owner approves a verified release.
 - **Status:** Specification captured in handover; implementation and browser/Playwright verification for this full three-level journey remain outstanding. Do not describe the requested journey as implemented or tested until those checks pass.
+
+
+## CUSTOMER READINESS EXECUTION — 2026-10-23
+
+### Source review performed
+- Reviewed the current PR #94 `category.html`, `products.html`, `assets/category-tree.json`, and `.github/workflows/storefront-smoke.yml` on branch `fix/part-search-load-race-smoke-qa-2026-10-23`.
+- Confirmed the current audio landing has virtual buttons for Studio Audio, Home Entertainment, Car Audio & Video, and All Car Audio Products. This is **not yet** the requested area → brand → grouped product-type journey.
+- Confirmed the checked-in category snapshot shows Car Audio has 39 direct active-product assignments and 7 under AERIALS; several audio subcategory rows have zero direct products. These are snapshot values only and are not proof of current live availability. No database queries or writes were made during this source review.
+- The current audio group logic uses keyword filtering for Studio and Home Entertainment; the Car group does not yet provide a brand-selection layer or product-type section grouping. Brand identity must be grounded in explicit product data; do not fabricate brand buttons from examples such as JBL or Denon.
+- Product cards already retain the existing price verification gate, cart action, and Source a Part link. Preserve those safeguards when implementing grouping.
+
+### Customer-readiness gate status
+- **Part Search on public Axxess:** unresolved. GitHub's load-race regression test does not prove the public Axxess copy is fixed. Exact live `index-new.html` is still required for a read-only source comparison; no owner upload has been provided in this step and no live file was changed.
+- **Audio/Video navigation:** incomplete. Current virtual area groups exist, but the brand layer and grouped product-type listing are not implemented/verified.
+- **Login and first-load Terms acceptance:** needs end-to-end verification in the current release candidate. Do not assume prior drafts or closed PRs are present in the approved live build.
+- **Cart/checkout/payment:** no live order/payment attempted. Payment activation remains deferred and customer launch remains HOLD until a full mocked/read-only flow and server-side gates are verified.
+- **Mobile responsiveness:** prior read-only browser smoke was successful for its covered routes, but full product → cart → checkout and all new audio navigation states still require explicit tests at mobile and desktop sizes.
+- **Production parity:** previously recorded byte-level differences between live Axxess files and GitHub main remain a release blocker. Do not overwrite public_html or upload a ZIP without a source comparison and owner approval.
+
+### Immediate execution order
+1. Implement area → explicitly supported brand → product-type group navigation on PR #94 only, using existing catalogue fields and preserving price/cart/source-a-part safeguards.
+2. Add Playwright checks for each navigation stage, empty-state handling, and mobile/desktop layouts; only mark passed when a real workflow run finishes successfully on the exact branch head.
+3. Recheck Part Search against the public Axxess source once a read-only copy of the live file is available. Until then this is an external evidence blocker, not a resolved defect.
+4. Verify the current release candidate's Terms/login and checkout route without creating real orders or activating payments.
+5. Append exact run IDs/results and any remaining blockers after each completed task. Do not merge/deploy or change Axxess, DNS, payment configuration, Supabase rows, prices, stock, or supplier data as part of this work.
+
+**Status at this checkpoint:** source audit complete; customer readiness is still **HOLD**. This update records findings and next actions only; it does not claim that the outstanding customer-readiness tasks are resolved.
