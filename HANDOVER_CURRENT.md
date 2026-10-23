@@ -1,3 +1,10 @@
+## WORKFLOW SOURCE-CHECK REPAIR — 2026-10-23
+
+- The first CI source-validation heredoc caused GitHub to reject the workflow definition (run `39923133286` had no jobs). Removed the fragile heredoc/regex and replaced it with straightforward shell `grep`/count assertions for exactly one table, one immutable trigger, one accepted timestamp, the 64-hex digest constraint, and the composite unique key.
+- Correction committed as `cb922d3a371aee3947706d0c3866bbbbecd5674f`. The workflow now needs a fresh run to confirm GitHub parses it and that the full smoke suite completes.
+- This is a CI-source issue only; no database or live store changes occurred.
+
+---
 ## FINAL SOURCE-VALIDATION ADDITION — 2026-10-23
 
 - Added a CI source-structure check for the consent migration after correcting the malformed file. The check asserts exactly one table and immutable trigger, the complete 64-hex digest constraint, the composite user/version/digest uniqueness, and absence of the previously observed duplicated SQL fragment.
