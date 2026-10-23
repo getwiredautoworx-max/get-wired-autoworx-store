@@ -61,15 +61,16 @@ jobs:
           grep -Fq 'onclick="window.openPartSearch()"' index-new.html
           grep -Fq 'onclick="window.openPartRequest()"' index-new.html
           grep -Fq "Price on request" index-new.html
-          grep -Fq "gw-terms-ui-2026-10-22-v1" index-new.html
+          grep -Fq "gw-terms-2026-10-23-v1" index-new.html
           grep -Fq "gw_customer_session" account.html
           grep -Fq "auth('signup'" account.html
           grep -Fq "token?grant_type=password" account.html
           grep -Fq "functions/v1/record-terms-acceptance" checkout-v2.html
           grep -Fq "gw-terms-2026-10-23-v1" supabase/functions/record-terms-acceptance/index.ts
-          grep -Fq "2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12" supabase/functions/record-terms-acceptance/index.ts
-          grep -Fq "eq.2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12" supabase/functions/store-checkout/index.ts
+          grep -Fq "7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3" supabase/functions/record-terms-acceptance/index.ts
+          grep -Fq "eq.7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3" supabase/functions/store-checkout/index.ts
           sha256sum terms-and-conditions.html | grep -Fq "2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12"
+          cat terms-and-conditions.html returns-refunds.html | sha256sum | grep -Fq "7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3"
           grep -Fq "AUTH_REQUIRED" supabase/functions/store-checkout/index.ts
           grep -Fq "TERMS_ACCEPTANCE_REQUIRED" supabase/functions/store-checkout/index.ts
           grep -Fq "customer_terms_acceptances" supabase/functions/store-checkout/index.ts
