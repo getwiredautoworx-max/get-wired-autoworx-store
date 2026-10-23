@@ -12,7 +12,27 @@ Deno.serve(async (req: Request) => {
 
   try {
     const body = await req.json();
-    if (!body || typeof body !== "object") throw new Error("Invalid order request.");
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("Invalid order request.");
+
+    // Authentication is verified by Supabase Auth, not by a client-supplied user ID.
+    // Never permit the service-role order RPC to be reached by an anonymous browser request.
+    const authorization = req.headers.get("Authorization") || req.headers.get("authorization") || "";
+    const bearer = authorization.match(/^Bearer\\s+(.+)$/i)?.[1];
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const publicApiKey = req.headers.get("apikey") || "";
+    if (!bearer || !supabaseUrl || !publicApiKey) {
+      return new Response(JSON.stringify({ error: "Sign in to your customer account before checkout.", code: "AUTH_REQUIRED" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+    const authCheck = await fetch(supabaseUrl + "/auth/v1/user", {
+      headers: { apikey: publicApiKey, Authorization: "Bearer " + bearer },
+    });
+    if (!authCheck.ok) {
+      return new Response(JSON.stringify({ error: "Your customer session is invalid or expired. Please sign in again.", code: "AUTH_REQUIRED" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+    const authUser = await authCheck.json();
+    if (!authUser || typeof authUser.id !== "string" || !authUser.id || typeof authUser.email !== "string" || !authUser.email) {
+      return new Response(JSON.stringify({ error: "A verified customer account with an email address is required.", code: "AUTH_REQUIRED" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
 
     const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method","p_delivery_quote"];
     const payload: Record<string, unknown> = {};
@@ -22,7 +42,8 @@ Deno.serve(async (req: Request) => {
     if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
     if (payload.p_items.length > 100) throw new Error("Too many cart items.");
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    // The order's email is derived from the verified account, not from editable form data.
+    payload.p_customer_email = authUser.email;
     let secret: string | null = null;
     let usesSecretApiKey = false;
     const secretKeysEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
