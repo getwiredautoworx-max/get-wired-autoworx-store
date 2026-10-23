@@ -35,6 +35,8 @@ jobs:
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Report current Terms document SHA-256
+        run: sha256sum terms-and-conditions.html
       - name: Verify verified-price checkout gate
         shell: bash
         run: |
