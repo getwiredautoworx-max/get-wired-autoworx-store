@@ -71,7 +71,7 @@ jobs:
           grep -Fq "eq.7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3" supabase/functions/store-checkout/index.ts
           sha256sum terms-and-conditions.html | grep -Fq "2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12"
           cat terms-and-conditions.html returns-refunds.html | sha256sum | grep -Fq "7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3"
-          grep -Fq 'authorization.match(/^Bearer\\s+(.+)$/i)' supabase/functions/store-checkout/index.ts
+          grep -Fq 'authorization.match(/^Bearer\s+(.+)$/i)' supabase/functions/store-checkout/index.ts
           grep -Fq "payload.p_customer_id = customerId" supabase/functions/store-checkout/index.ts
           grep -Fq "p_customer_id uuid DEFAULT NULL::uuid" supabase/migrations/20261023100000_link_store_orders_to_customer.sql
           grep -Fq "REVOKE ALL ON FUNCTION public.create_store_order_v2" supabase/migrations/20261023100000_link_store_orders_to_customer.sql
