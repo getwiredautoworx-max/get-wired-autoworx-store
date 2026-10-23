@@ -1575,3 +1575,25 @@ This pass only read GitHub metadata and updated this handover file. No source be
 - **Staging validation is blocked.** Do not run the proposed migrations, create test users/orders, or exercise checkout writes against the only visible `Store` project; it may be production and is not an approved disposable test environment. Creating a separate Supabase project may incur cost, so no project/branch was created and no cost was incurred.
 - Owner action required: identify/authorize a genuinely isolated staging project, or explicitly authorize a cost-quoted staging project creation after reviewing the quote. Until then, migration/Auth/Terms/checkout integration validation cannot honestly be marked complete.
 - No database writes, migration application, Edge Function deployment, project creation, or settings changes were made in this check.
+
+
+## EXECUTION ORDER REVIEW — 2026-10-23 11:20 SAST
+
+### Fresh checks and code review
+- Rechecked PR #89 and PR #91. Both remain open/draft/unmerged. PR #89 head `d494905479b54e00e66258ae5784c209a557e56e` is now reported `mergeable=false`; do not merge. Its 11/11 mocked checkout handler tests and latest smoke retry remain green, but mergeability has changed since the prior check and staging is still absent.
+- PR #91 head `1f901195a48b9acade95114e5e3571643c78e2cd`: provider tests `120324377670` passed; smoke `120324376927` passed; Pages preview `120324791938` passed. Workers Builds `120324946685` failed. This same Workers Builds failure is present on PR #89 (check `120329074081`) while Pages succeeds on both heads. That pattern is evidence of a project/integration-level Workers Builds issue rather than evidence that the storefront Pages build itself failed; exact cause remains unverified because Cloudflare's dashboard log is not exposed by the GitHub check summary. No config was changed.
+- Read-only inspection of `wrangler.toml` on main shows a Cloudflare Pages-style root output configuration (`pages_build_output_dir = "."`) and no Worker entrypoint configured there. This supports keeping the Workers Builds integration failure separate from Pages preview success pending dashboard confirmation; it does not prove the check can be ignored for release.
+- PR #89 migration source review: terms-acceptance table has RLS and customer-owned SELECT policy, server-only insert grant, and mutation-blocking trigger. Checkout RPC is revoked from public/anon/authenticated and granted to service_role. Edge handler validates the Auth bearer token with Supabase Auth, requires persisted version/hash acceptance, derives email and linked customer ID server-side, and validates quantity bounds before RPC. These are source-review observations only, not a substitute for execution against an isolated database. The RPC is SECURITY DEFINER, so staging review must verify function ownership/search path and service-role-only reachability remain intact.
+
+### Remaining work — updated order
+1. **Resolve the repeated Cloudflare Workers Builds failure at project level.** Open one failed build in the authorized Cloudflare dashboard and capture the actual error. Since Pages succeeds on two separate branches, do not alter storefront code speculatively. Confirm whether this Workers service/check is still intended/required given the project's Pages deployment model and previously disabled Worker build integration; change Cloudflare configuration only with owner approval.
+2. **Provide isolated staging.** Connected Supabase account exposes only project `Store` (`ojytykqpvonxvepprgbh`). No migrations or write tests have been run there. Owner must identify/authorize separate staging or explicitly approve a cost-quoted staging project creation.
+3. **Reconcile PR #89 head divergence/mergeability** after staging and CI evidence. Keep draft and unmerged. Re-run required CI on the exact final head; do not rely on green checks from a different SHA.
+4. **Validate Terms digest against published policy bytes** and exercise acceptance persistence + checkout in staging; no claim of end-to-end acceptance proof until tested.
+5. **PR #91 image search:** owner sets `GEMINI_API_KEY` securely and approves sending customer photos to Google before any live-provider test/deploy. Mocked tests only currently.
+6. **Android:** obtain real Package Manager install code/log from the Hisense; avoid another blind rebuild.
+7. Keep ASC supplier stock/catalogue tasks paused; launch remains HOLD.
+
+### Safety / readiness
+- No production or Supabase writes, migrations, Edge Function deployment, Cloudflare configuration changes, Axxess upload, DNS/payment changes, stock/catalogue edits, or real orders were performed in this pass.
+- Storefront source/build readiness estimate remains **80%**; customer launch readiness estimate remains **55%**. Launch ETA remains conditional at **2–4 working days after isolated staging access and owner-only decisions**, with additional delay possible from the Cloudflare integration and physical-device blockers.
