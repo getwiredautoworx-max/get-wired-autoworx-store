@@ -2823,3 +2823,21 @@ No Expo project link, GitHub secret, EAS build, APK download, or physical-device
 - Cloudflare Pages is a separate pipeline and did report a successful preview deployment for commit `44ef7d0`: https://67372272.get-wired-autoworx-store.pages.dev (branch preview https://review-staging-ui-verificati-hog1.get-wired-autoworx-store.pages.dev). This proves Pages deploy succeeded for that earlier handover commit; it does not prove the newest layout patch is visually correct.
 - Layout commits remain `068746ee7560d4811b0ebb52cdec74e59c796934` (`index-new.html`) and `3aab44ef1a0129a702ff56a829abd5f53e72c3f4` (`store.html`). The latest branch commit after handover refresh is not yet visually QA-verified. Next: inspect the newest Pages deployment/preview, run the existing Playwright browser QA against the exact latest commit at 1440/390/320 widths, and fix concrete failures only.
 - Apology/correction: prior response unnecessarily instructed the owner to repeat a dashboard action already completed. Do not repeat that instruction. Production/Axxess/DNS/payment configuration remains untouched; release remains HOLD until visual and interaction QA passes.
+
+
+## 2026-10-20 — Homepage assurance contrast and delivery/payment messaging
+
+- Owner reported that the homepage assurance tiles were too light to read and requested darker, clearer styling plus more delivery choices and easy/safe payment messaging.
+- Updated `index-new.html` on the existing PR #72 branch `fix/pr70-storefront-owner-feedback-2026-10-20` (commit `c6641256e62805489bbf7b5233038a2ce96070c7`). The four tiles now use a dark navy gradient, white bold headings, brighter body text, strong blue borders and colored bottom accents; responsive mobile styling keeps them readable in a two-column grid.
+- Updated delivery copy to list Courier Guy, PEP PAXI, collection/pickup, locker/parcel delivery and delivery arranged on request. Wording does not guarantee every option for every order; availability/cost must be confirmed for the order.
+- Updated payment copy to direct customers to the payment methods actually displayed at checkout and state that full payment confirms the order. This does not claim unverified gateways are active or change payment integration.
+- Source edit was committed successfully. **Visual verification of the new commit and an updated preview URL are still pending**; do not call the change visually accepted until the exact new preview is checked on desktop and mobile. PR #72 remains draft/unmerged. No production deployment, Axxess/DNS, supplier stock, Supabase, payment configuration, or live catalogue change was performed. Release remains HOLD.
+
+
+## OWNER CORRECTION — 2026-10-20: Navy trust tiles and missing Find a Part category
+
+- Owner reported that the assurance tiles still appeared bright rather than navy and the search/find-a-part category tile had disappeared.
+- Root cause found in source cascade: later `body.brightTheme .feature` and `body.brightTheme #categoryGrid .findPartCategoryTile/.findPartCategoryBtn` rules used stronger selectors and forced white backgrounds, overriding earlier navy styles. The renderer still creates eight shop categories plus a ninth `FIND A PART` tile, so the restoration focuses on overriding the conflicting bright-theme CSS without removing category data/navigation.
+- Updated `index-new.html` with a final high-specificity CSS override: four assurance tiles are explicitly dark navy with white headings and pale supporting text; the ninth Find a Part tile is explicitly visible in the category grid, navy with blue border, and retains its existing `openPartSearch()` click action. Mobile sizing included.
+- Source update committed as `414723f899aebd48d02cc285fbc69649ddefaf10` on `fix/pr70-storefront-owner-feedback-2026-10-20` (PR #72, draft/unmerged).
+- **Verification status:** source markup confirms eight categories plus the ninth Find a Part tile and the existing click handler; CSS source fix committed. The new exact preview deployment and rendered desktop/mobile appearance still need confirmation before declaring visual success. Do not use a stale preview as evidence. Production/Axxess/DNS/payment/stock remain untouched; launch HOLD.

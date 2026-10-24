@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - review/staging-ui-verification-fixes-current
+      - fix/pr70-storefront-owner-feedback-2026-10-20
     paths:
       - '.github/workflows/cloudflare-staging-preview.yml'
       - 'index.html'
@@ -16,7 +17,6 @@ on:
       - 'checkout-v2.html'
       - 'returns-refunds.html'
       - 'terms-and-conditions.html'
-      - 'staging/**'
   workflow_dispatch:
 
 permissions:
@@ -29,6 +29,7 @@ concurrency:
 
 jobs:
   deploy-preview:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[preview-approved]'))
     name: Deploy isolated review preview (not production)
     runs-on: ubuntu-latest
     steps:
@@ -60,5 +61,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=get-wired-autoworx-store --branch=review-staging-ui-verification-fixes-current
+          command: pages deploy . --project-name=get-wired-autoworx-store --branch=pr72-owner-feedback
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
