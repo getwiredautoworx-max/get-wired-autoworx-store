@@ -3133,3 +3133,7 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## Automation run — 2026-10-24 15:12 SAST — retry verification checkpoint
 - **Retry request accepted; retry is actively running.** GitHub supported failed-job rerun returned `success=true`. Read-only run metadata now reports run `40020132913`, attempt **3**, status `in_progress`, updated `2026-10-24T12:57:27Z`. The only job `browser-interaction-qa` (new job ID `120878509649`) is `in_progress`; checkout is running, remaining setup/test steps are pending. This is a single existing run's retry, not a duplicate workflow. Do not start another retry or infer a conclusion until completed.
 - **Next action:** continue non-conflicting source checks, then query this same run/job for final status and capture the retry's actual conclusion and failure/pass evidence.
+
+
+## Automation run — 2026-10-24 15:13 SAST — duplicate-fix check
+- **Status: IN PROGRESS.** PR #94's current description/diff already includes an iframe-aware `PAGE_CONTENT` check and a `STOREFRONT_FRAME_READY` assertion for the same QA false-negative. The branch-only helper patch I prepared is therefore overlapping work, not an independent completed fix. Do not merge both variants or claim runtime validation. Next action: inspect PR #94's exact current-head workflow and CI conclusions; if its fix is present, discard the duplicate workflow edit from this task branch while retaining this evidence/handover trail.
