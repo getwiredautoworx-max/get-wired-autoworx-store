@@ -3249,3 +3249,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## Automation run — 2026-10-24 15:55 SAST — March guide identity confirmed, visual access still blocked
 - **Outcome: PARTIAL.** Official ASC `March-Buyers-Guide-NP.pdf` is identified as MARCH 2026 and the indexed PDF snippet confirms `D9-FR1522` on printed page 32, matching the March queue. The original PDF remains unavailable to the screenshot tool (`DisabledError`); direct download also failed in this runtime. The March 2025 PDF was checked as a fallback and did not contain the queued SKUs `310619`, `6007-4`, `D9-FR2201`, `D9-FR1522`, so it is rejected. The 37 March rows remain unapproved; text snippets are not visual approval.
 - **Next action:** test whether the original August/September PDFs already in the audit branch can be rendered from their repository copies; if source page images are not accessible, leave those rows pending as well rather than substituting OCR.
+
+
+## Automation run — 2026-10-24 15:57 SAST — repository PDF rendering blocked
+- **Outcome: FAILURE to render repository copies through the current viewer.** Both raw GitHub and GitHub blob URLs for `August Buyer's Guide.pdf` returned `DisabledError`; no source-page image was obtained. No attempt was made to reconstruct or approve from OCR. The August/September queue rows remain pending until a visual-capable source route is found.
+- **Next action:** search the official supplier site for public no-price versions of the August and September guides, which may be screenshot-enabled like the February guide. Do not expose or use printed prices for catalogue changes.
