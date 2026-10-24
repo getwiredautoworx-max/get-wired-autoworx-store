@@ -9,6 +9,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  issues: read
 concurrency:
   group: pr72-live-preview-browser-qa
   cancel-in-progress: true
@@ -30,6 +31,8 @@ jobs:
           npm install --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
       - name: Run browser checks against deployed preview URL
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/pr72-live-preview-qa.cjs
       - name: Upload live preview screenshots and report
         if: always()

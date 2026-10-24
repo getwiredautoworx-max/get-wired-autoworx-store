@@ -1,38 +1,77 @@
 const { chromium } = require('playwright');
 const fs = require('node:fs');
 const path = require('node:path');
-const BASE=process.env.PREVIEW_URL || 'https://1d4185ff.get-wired-autoworx-store.pages.dev/store.html';
-const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || process.env.GITHUB_SHA || '775796d131f812de8f85521e1e51e74fd3eff43d';
-const DEPLOYED_SOURCE_SHA='2b2a3d47a1f0b86259ad14eee8f9ec6797d447a3';
-const REPO='getwiredautoworx-max/get-wired-autoworx-store';
+let BASE=process.env.PREVIEW_URL || '';
+const EXPECTED_SOURCE_SHA=process.env.EXPECTED_SOURCE_SHA || process.env.GITHUB_SHA || '';
+const REPO=process.env.GITHUB_REPOSITORY || 'getwiredautoworx-max/get-wired-autoworx-store';
 const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js'];
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:DEPLOYED_SOURCE_SHA,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
+const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:null,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
-function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>report.failedRequests.push({page:label,url:r.url(),error:r.failure()?.errorText||'failed'}));page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function resolvePreviewUrl(){
+ if(BASE){
+  const u=new URL(BASE);
+  if(u.pathname==='/'||u.pathname==='')u.pathname='/store.html';
+  return u.href;
+ }
+ if(!EXPECTED_SOURCE_SHA)throw new Error('GITHUB_SHA or EXPECTED_SOURCE_SHA is required; refusing a stale preview URL.');
+ const token=process.env.GITHUB_TOKEN;
+ if(!token)throw new Error('GITHUB_TOKEN is required to resolve the exact Cloudflare Pages preview from PR #72.');
+ const expectedShort=EXPECTED_SOURCE_SHA.slice(0,7).toLowerCase();
+ const commentsUrl='https://api.github.com/repos/'+REPO+'/issues/72/comments?per_page=100';
+ for(let attempt=0;attempt<18;attempt++){
+  const response=await fetch(commentsUrl,{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+  if(response.ok){
+   const comments=await response.json();
+   for(const comment of comments.slice().reverse()){
+    const body=String(comment.body||'');
+    const latest=body.match(/<strong>Latest commit:<\/strong>[\s\S]{0,200}<code>([0-9a-f]{7,40})<\/code>/i);
+    const preview=body.match(/<strong>Preview URL:<\/strong>[\s\S]{0,300}?<a href=['"]([^'"]+\.pages\.dev[^'"]*)['"]/i);
+    if(latest&&latest[1].toLowerCase().startsWith(expectedShort)&&preview){
+     const u=new URL(preview[1]);u.pathname='/store.html';u.search='';u.hash='';return u.href;
+    }
+   }
+  }
+  await sleep(10000);
+ }
+ throw new Error('No Cloudflare Pages deployment comment for exact PR #72 commit '+EXPECTED_SOURCE_SHA+' after 3 minutes; no URL will be guessed.');
+}
+function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>{const reason=r.failure()?.errorText||'failed';if(reason==='net::ERR_ABORTED')return;report.failedRequests.push({page:label,url:r.url(),error:reason})});page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
 const digest=s=>require('node:crypto').createHash('sha256').update(s).digest('hex');
 async function verifySourceParity(){
  for(const file of PARITY_FILES){
   const deployedUrl=new URL(file,new URL(BASE).origin+'/').toString();
   const sourceUrl='https://raw.githubusercontent.com/'+REPO+'/'+EXPECTED_SOURCE_SHA+'/'+file;
-  try{
-   const [deployed,source]=await Promise.all([fetch(deployedUrl),fetch(sourceUrl)]);
-   const [deployedText,sourceText]=await Promise.all([deployed.text(),source.text()]);
-   const equal=deployed.ok&&source.ok&&deployedText===sourceText;
-   check('deployed_source_parity:'+file,equal,{deployedStatus:deployed.status,sourceStatus:source.status,deployedSha256:digest(deployedText),sourceSha256:digest(sourceText)});
-  }catch(e){check('deployed_source_parity:'+file,false,{error:String(e)})}
-}
+  let detail={},equal=false;
+  for(let attempt=0;attempt<6;attempt++){
+   try{
+    const [deployed,source]=await Promise.all([fetch(deployedUrl,{cache:'no-store'}),fetch(sourceUrl,{cache:'no-store'})]);
+    const [deployedText,sourceText]=await Promise.all([deployed.text(),source.text()]);
+    equal=deployed.ok&&source.ok&&deployedText===sourceText;
+    detail={deployedStatus:deployed.status,sourceStatus:source.status,deployedSha256:digest(deployedText),sourceSha256:digest(sourceText),attempt:attempt+1};
+    if(equal)break;
+   }catch(e){detail={error:String(e),attempt:attempt+1}}
+   await sleep(5000);
+  }
+  check('deployed_source_parity:'+file,equal,detail);
+ }
+ if(report.checks.filter(x=>x.name.startsWith('deployed_source_parity:')).every(x=>x.status==='PASS'))report.deployedSourceSha=EXPECTED_SOURCE_SHA;
 }
 (async()=>{
  const browser=await chromium.launch({headless:true});
  try{
+  BASE=await resolvePreviewUrl();
+  report.base=BASE;
   const page=await browser.newPage({viewport:{width:1365,height:900},deviceScaleFactor:1});
   observe(page,'desktop');
   const response=await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});
   check('preview_home_http',!!response&&response.status()<400,{status:response?.status(),url:page.url()});
   await verifySourceParity();
+  const parityFailures=report.checks.filter(x=>x.name.startsWith('deployed_source_parity:')&&x.status==='FAIL');
+  if(parityFailures.length)throw new Error('Deployed preview does not match the exact current PR #72 source commit; stopping before browser acceptance. '+JSON.stringify(parityFailures));
   const frame=page.frameLocator('#store');
   try {
    await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn').first().waitFor({timeout:30000});
@@ -51,10 +90,10 @@ async function verifySourceParity(){
   check('eight_main_category_tiles',roots===8,{count:roots});
   check('main_category_photos_load_are_distinct_and_labelled',photos.length===8&&photos.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt))&&new Set(photos.map(x=>x.src)).size===8,{photos});
   check('main_category_photos_are_not_logo_substitutions',photos.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:photos.filter(x=>/gw-logo\\.png/i.test(x.src))});
-  const expectedRootPhotos={'Auto Electrical Spares':'photo-1518770660439-4636190af475','Vehicle Security':'photo-1558002038-1055907df827','Car Audio & Entertainment':'photo-1600003014755-ba31aa59c4b6','Automotive Accessories':'photo-1492144534655-ae79c964c9d7','Marine Spares & Accessories':'photo-1544551763-46a013bb70d5','Tools, Hardware & Consumables':'photo-1530124566582-a618bc2615dc','Camping, Leisure & Outdoors':'photo-1478131143081-80f7f84ca84d','Trailer & Canopy':'photo-1747711475650-b222ac557e58'};
+  const expectedRootPhotos={'Auto Electrical Spares':'photo-1518770660439-4636190af475','Vehicle Security':'photo-1558002038-1055907df827','Car Audio & Entertainment':'photo-1600003014755-ba31aa59c4b6','Automotive Accessories':'photo-1492144534655-ae79c964c9d7','Marine Spares & Accessories':'photo-1544551763-46a013bb70d5','Tools, Hardware & Consumables':'photo-1530124566582-a618bc2615dc','Camping, Leisure & Outdoors':'photo-1478131143081-80f7f84ca84d','Trailer & Canopy':'Ford_Ranger_with_tray_canopy_back.jpg'};
   check('main_category_photo_topics_match_labels',photos.every(x=>expectedRootPhotos[x.label]&&x.src.includes(expectedRootPhotos[x.label])),{mismatches:photos.filter(x=>!expectedRootPhotos[x.label]||!x.src.includes(expectedRootPhotos[x.label]))});
   const homepageCredits=await frame.locator('#categoryImageCredits').innerText().catch(()=> '');
-  check('homepage_commons_photo_attributions_visible',/Shixart1985/.test(homepageCredits)&&/Milicevic01/.test(homepageCredits)&&/Ahsanriaz6157/.test(homepageCredits),{homepageCredits});
+  check('homepage_commons_photo_attributions_visible',/Shixart1985/.test(homepageCredits)&&/Milicevic01/.test(homepageCredits)&&/Ahsanriaz6157/.test(homepageCredits)&&/Azorbli/.test(homepageCredits)&&/Steelkamp/.test(homepageCredits)&&/Articseahorse/.test(homepageCredits),{homepageCredits});
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
@@ -92,18 +131,18 @@ async function verifySourceParity(){
   check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
   check('subcategory_photos_are_not_logo_substitutions',report.subcategoryImages.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:report.subcategoryImages.filter(x=>/gw-logo\\.png/i.test(x.src))});
   const topicRules=[
-   {label:/BATTERY/i,src:'photo-1765211003026-f7666ea3a948',required:true},
+   {label:/BATTER(?:Y|IES)/i,src:'Car_battery.jpg',required:true},
    {label:/FUSES/i,src:'Closeup_of_the_car_fuses.jpg',required:true},
    {label:/REGULATORS/i,src:'Alternator_voltage_regulator.jpg',required:true},
    {label:/RELAYS?/i,src:'Fuse_relay_with_a_connector_to_the_CANbus_in_yellow.JPG',required:true},
    {label:/Wiring.*Connectors/i,src:'photo-1762329404225-2953941c00f1',required:true},
    {label:/Fuel Pumps/i,src:'Automobile_Fuel_tank_cutaway.JPG',required:false},
-   {label:/Trailer|Towing|Canopy/i,src:'photo-1747711475650-b222ac557e58',required:false}
+   {label:/Trailer|Towing|Canopy/i,src:'Ford_M151_MUTT_Trailer.jpg',required:false}
   ];
   const topicResults=topicRules.map(rule=>{const found=report.subcategoryImages.filter(x=>rule.label.test(x.alt));return {label:String(rule.label),expected:rule.src,required:rule.required,found:found.map(x=>({alt:x.alt,src:x.src,loaded:x.loaded,naturalWidth:x.naturalWidth})),passed:found.length?found.every(x=>x.src.includes(rule.src)&&x.loaded&&x.naturalWidth>0):!rule.required}});
   check('subcategory_specific_photos_match_topics',topicResults.every(x=>x.passed),{topicResults});
   const categoryCredits=await page.locator('#imageCredits').innerText().catch(()=> '');
-  check('category_commons_photo_attributions_visible',/Shixart1985/.test(categoryCredits)&&/Milicevic01/.test(categoryCredits)&&/Ahsanriaz6157/.test(categoryCredits),{categoryCredits});
+  check('category_commons_photo_attributions_visible',/Shixart1985/.test(categoryCredits)&&/Milicevic01/.test(categoryCredits)&&/Ahsanriaz6157/.test(categoryCredits)&&/Azorbli/.test(categoryCredits),{categoryCredits});
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
   const batterySubcategory=page.locator('.card[href^="category.html?id="]').filter({hasText:/BATTERY/i}).first();
@@ -168,6 +207,17 @@ async function verifySourceParity(){
   check('product_detail_api_not_unauthorized',report.authErrors.length===0,{authErrors:report.authErrors});
   await page.screenshot({path:path.join(OUT,'product-detail.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('product-detail.png');
+  await page.goto(new URL('/category.html?id=63a71fd9-df45-43f0-b61d-ad622daa9d79',BASE).href,{waitUntil:'domcontentloaded',timeout:60000});
+  const trailerCard=page.locator('.card').filter({hasText:/Trailer\/Towing/i}).first();
+  await trailerCard.locator('img').waitFor({timeout:20000});
+  await trailerCard.locator('img').evaluate(img=>{img.loading='eager'});
+  await page.waitForFunction(()=>{const c=[...document.querySelectorAll('.card')].find(e=>/Trailer\/Towing/i.test(e.innerText));const img=c&&c.querySelector('img');return !!img&&img.complete},{timeout:20000});
+  const trailerPhoto=await trailerCard.locator('img').evaluate(img=>({src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth}));
+  check('trailer_towing_subcategory_photo_matches_topic',trailerPhoto.loaded&&trailerPhoto.naturalWidth>0&&trailerPhoto.src.includes('Ford_M151_MUTT_Trailer.jpg'),trailerPhoto);
+  const trailerCredits=await page.locator('#imageCredits').innerText().catch(()=> '');
+  check('trailer_photo_attribution_visible',/Articseahorse/.test(trailerCredits),{trailerCredits});
+  await page.screenshot({path:path.join(OUT,'trailer-category.png'),fullPage:true}).catch(()=>{});
+  report.screenshots.push('trailer-category.png');
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
   observe(mobile,'mobile');
   const mr=await mobile.goto(BASE,{waitUntil:'domcontentloaded',timeout:60000});

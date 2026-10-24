@@ -27,7 +27,7 @@ categories.push(...[
 ]);
 const products = rootIds.map(([name,id],i)=>({id:'22222222-2222-4222-8222-'+String(i+1).padStart(12,'0'),category_id:id,name:name+' Test Product',public_sku:'GW-000174D6',description:'Test product description for browser QA.',price:299,stock_quantity:4,image_url:'',gallery_urls:[],compatible_vehicles:[],specifications:{price_status:'VERIFIED'},active:true,featured:true}));
 products[0]={...products[0],id:productId,category_id:childId,name:'Air Filter Breather Red',public_sku:'GW-000174D6',description:'Test fixture for the exact-SKU red breather air filter image.',price:299,stock_quantity:4,featured:true};
-products.push({id:'33333333-3333-4333-8333-333333333333',category_id:rootIds[0][1],name:'Auto Electrical Test Product',public_sku:'GW-TEST0001',description:'Test product description.',price:199,stock_quantity:3,image_url:'',gallery_urls:[],compatible_vehicles:[],specifications:{price_status:'VERIFIED'},active:true,featured:true});
+products.push({id:'33333333-3333-4333-8333-333333333333',category_id:rootIds[0][1],name:'Auto Electrical Test Product',public_sku:'GW-TEST0001',description:'Test product description.',price:199,stock_quantity:3,image_url:'assets/products_webp/GW-000174D6.webp',gallery_urls:[],compatible_vehicles:[],specifications:{price_status:'VERIFIED'},active:true,featured:true});
 const categorySnapshot={generated_at:new Date().toISOString(),categories};
 const report={startedAt:new Date().toISOString(),checks:[],errors:[],screenshots:[]};
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)report.errors.push(name+': '+JSON.stringify(detail));};
@@ -55,7 +55,7 @@ async function installMocks(page){
  try {
   const page=await browser.newPage({viewport:{width:1440,height:1000}});
   page.on('pageerror',e=>report.errors.push('pageerror: '+String(e)));
-  page.on('requestfailed',r=>report.errors.push('requestfailed: '+r.method()+' '+r.url()+' :: '+(r.failure()?.errorText||'unknown')));
+  page.on('requestfailed',r=>{const reason=r.failure()?.errorText||'unknown';if(reason==='net::ERR_ABORTED')return;report.errors.push('requestfailed: '+r.method()+' '+r.url()+' :: '+reason)});
   page.on('console',m=>{if(m.type()==='error')report.errors.push('console: '+m.text())});
   page.on('response',r=>{if(r.status()>=400)report.errors.push('http '+r.status()+': '+r.url())});
   await installMocks(page);
@@ -80,9 +80,9 @@ async function installMocks(page){
   check('same_size_find_a_part_tile',findPartTileCount===1,{count:findPartTileCount});
   check('category_photos_loaded_and_distinct',rootImageData.length===8&&rootImageData.every(x=>x.loaded&&x.naturalWidth>0)&&new Set(rootImageData.map(x=>x.src)).size===8,{images:rootImageData});
   check('category_photos_are_not_logo_substitutions',rootImageData.every(x=>!/gw-logo\.png/i.test(x.src)),{logoSubstitutions:rootImageData.filter(x=>/gw-logo\.png/i.test(x.src)).map(x=>x.label)});
-  const expectedRootPhotos={'Auto Electrical Spares':'photo-1518770660439-4636190af475','Vehicle Security':'photo-1558002038-1055907df827','Car Audio & Entertainment':'photo-1600003014755-ba31aa59c4b6','Automotive Accessories':'photo-1492144534655-ae79c964c9d7','Marine Spares & Accessories':'photo-1544551763-46a013bb70d5','Tools, Hardware & Consumables':'photo-1530124566582-a618bc2615dc','Camping, Leisure & Outdoors':'photo-1478131143081-80f7f84ca84d','Trailer & Canopy':'photo-1747711475650-b222ac557e58'};
+  const expectedRootPhotos={'Auto Electrical Spares':'photo-1518770660439-4636190af475','Vehicle Security':'photo-1558002038-1055907df827','Car Audio & Entertainment':'photo-1600003014755-ba31aa59c4b6','Automotive Accessories':'photo-1492144534655-ae79c964c9d7','Marine Spares & Accessories':'photo-1544551763-46a013bb70d5','Tools, Hardware & Consumables':'photo-1530124566582-a618bc2615dc','Camping, Leisure & Outdoors':'photo-1478131143081-80f7f84ca84d','Trailer & Canopy':'Ford_Ranger_with_tray_canopy_back.jpg'};
   check('main_category_photo_topics_match_labels',rootImageData.every(x=>expectedRootPhotos[x.label]&&x.src.includes(expectedRootPhotos[x.label])),{mismatches:rootImageData.filter(x=>!expectedRootPhotos[x.label]||!x.src.includes(expectedRootPhotos[x.label]))});
-  check('commons_image_attributions_visible_on_homepage',await frame.locator('#categoryImageCredits').isVisible()&&/Shixart1985/.test(await frame.locator('#categoryImageCredits').innerText())&&/Cschirp/.test(await frame.locator('#categoryImageCredits').innerText())&&/Milicevic01/.test(await frame.locator('#categoryImageCredits').innerText())&&/Ahsanriaz6157/.test(await frame.locator('#categoryImageCredits').innerText()),{text:await frame.locator('#categoryImageCredits').innerText().catch(()=> '')});
+  check('commons_image_attributions_visible_on_homepage',await frame.locator('#categoryImageCredits').isVisible()&&/Shixart1985/.test(await frame.locator('#categoryImageCredits').innerText())&&/Cschirp/.test(await frame.locator('#categoryImageCredits').innerText())&&/Milicevic01/.test(await frame.locator('#categoryImageCredits').innerText())&&/Ahsanriaz6157/.test(await frame.locator('#categoryImageCredits').innerText())&&/Azorbli/.test(await frame.locator('#categoryImageCredits').innerText())&&/Steelkamp/.test(await frame.locator('#categoryImageCredits').innerText())&&/Articseahorse/.test(await frame.locator('#categoryImageCredits').innerText()),{text:await frame.locator('#categoryImageCredits').innerText().catch(()=> '')});
   const featuredCount=await frame.locator('#featuredGrid .product').count();
   check('specials_limited_to_four',featuredCount<=4,{count:featuredCount});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0&&await frame.locator('a[href*="wa.me"]').count()===0,{gwWA:await frame.locator('.gwWA').count(),whatsappLinks:await frame.locator('a[href*="wa.me"]').count()});
@@ -119,15 +119,22 @@ async function installMocks(page){
   await page.locator('.card[href^="category.html?id="] img').first().waitFor({timeout:10000});
   await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card[href^="category.html?id="] img')];return imgs.length>=6&&imgs.every(i=>i.complete)},{timeout:20000}).catch(()=>{});
   const childImages=await page.locator('.card[href^="category.html?id="] img').evaluateAll(imgs=>imgs.map(img=>({label:img.closest('.card')?.querySelector('h2')?.textContent?.trim()||'',src:img.getAttribute('src')||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth,alt:img.alt})));
-  const expectedChildPhotos={'Electrical Connectors & Wiring':'photo-1762329404225-2953941c00f1','Batteries':'photo-1765211003026-f7666ea3a948','Fuses':'Closeup_of_the_car_fuses.jpg','Fuel Pumps':'Automobile_Fuel_tank_cutaway.JPG','Voltage Regulators':'Alternator_voltage_regulator.jpg','Relays & Contactors':'Fuse_relay_with_a_connector_to_the_CANbus_in_yellow.JPG'};
+  const expectedChildPhotos={'Electrical Connectors & Wiring':'photo-1762329404225-2953941c00f1','Batteries':'Car_battery.jpg','Fuses':'Closeup_of_the_car_fuses.jpg','Fuel Pumps':'Automobile_Fuel_tank_cutaway.JPG','Voltage Regulators':'Alternator_voltage_regulator.jpg','Relays & Contactors':'Fuse_relay_with_a_connector_to_the_CANbus_in_yellow.JPG'};
   check('subcategory_photos_load_and_match_part_labels',childImages.length===6&&childImages.every(x=>x.loaded&&x.naturalWidth>0&&expectedChildPhotos[x.label]&&x.src.includes(expectedChildPhotos[x.label])&&/product photo/i.test(x.alt)),{images:childImages,expectedChildPhotos});
-  check('subcategory_photo_attributions_visible',await page.locator('#imageCredits').isVisible()&&/Shixart1985/.test(await page.locator('#imageCredits').innerText())&&/Cschirp/.test(await page.locator('#imageCredits').innerText())&&/Milicevic01/.test(await page.locator('#imageCredits').innerText())&&/Ahsanriaz6157/.test(await page.locator('#imageCredits').innerText()),{text:await page.locator('#imageCredits').innerText().catch(()=> '')});
+  check('subcategory_photo_attributions_visible',await page.locator('#imageCredits').isVisible()&&/Shixart1985/.test(await page.locator('#imageCredits').innerText())&&/Cschirp/.test(await page.locator('#imageCredits').innerText())&&/Milicevic01/.test(await page.locator('#imageCredits').innerText())&&/Ahsanriaz6157/.test(await page.locator('#imageCredits').innerText())&&/Azorbli/.test(await page.locator('#imageCredits').innerText()),{text:await page.locator('#imageCredits').innerText().catch(()=> '')});
   await page.screenshot({path:path.join(OUT,'subcategory-photo-audit.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('subcategory-photo-audit.png');
   await page.locator('.card').filter({hasText:'Electrical Connectors & Wiring'}).waitFor({timeout:10000});
   await page.locator('.card').filter({hasText:'Electrical Connectors & Wiring'}).click();
   await page.waitForURL(/products\.html\?category=/,{timeout:15000});
   check('subcategory_click_opens_category_product_listing',new URL(page.url()).pathname.endsWith('/products.html')&&new URL(page.url()).searchParams.get('category')===childId,{url:page.url()});
+  await page.goto('http://127.0.0.1:4173/category.html?id='+rootIds[7][1],{waitUntil:'domcontentloaded'});
+  const trailerCard=page.locator('.card').filter({hasText:/Trailer\/Towing/i}).first();
+  await trailerCard.locator('img').waitFor({timeout:10000});
+  const trailerPhoto=await trailerCard.locator('img').evaluate(img=>({src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth}));
+  check('trailer_towing_subcategory_photo_matches_topic',trailerPhoto.loaded&&trailerPhoto.naturalWidth>0&&trailerPhoto.src.includes('Ford_M151_MUTT_Trailer.jpg'),trailerPhoto);
+  const trailerCredits=await page.locator('#imageCredits').innerText().catch(()=> '');
+  check('trailer_photo_attribution_visible',/Articseahorse/.test(trailerCredits),{trailerCredits});
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
   await installMocks(mobile);
   await mobile.goto('http://127.0.0.1:4173/store.html',{waitUntil:'domcontentloaded',timeout:45000});
