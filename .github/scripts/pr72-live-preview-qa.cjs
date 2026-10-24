@@ -93,7 +93,7 @@ async function verifySourceParity(){
   const expectedRootPhotos={'Auto Electrical Spares':'photo-1518770660439-4636190af475','Vehicle Security':'photo-1558002038-1055907df827','Car Audio & Entertainment':'photo-1600003014755-ba31aa59c4b6','Automotive Accessories':'photo-1492144534655-ae79c964c9d7','Marine Spares & Accessories':'photo-1544551763-46a013bb70d5','Tools, Hardware & Consumables':'photo-1530124566582-a618bc2615dc','Camping, Leisure & Outdoors':'photo-1478131143081-80f7f84ca84d','Trailer & Canopy':'Ford_Ranger_with_tray_canopy_back.jpg'};
   check('main_category_photo_topics_match_labels',photos.every(x=>expectedRootPhotos[x.label]&&x.src.includes(expectedRootPhotos[x.label])),{mismatches:photos.filter(x=>!expectedRootPhotos[x.label]||!x.src.includes(expectedRootPhotos[x.label]))});
   const homepageCredits=await frame.locator('#categoryImageCredits').innerText().catch(()=> '');
-  check('homepage_commons_photo_attributions_visible',/Shixart1985/.test(homepageCredits)&&/Milicevic01/.test(homepageCredits)&&/Ahsanriaz6157/.test(homepageCredits)&&/Azorbli/.test(homepageCredits)&&/Steelkamp/.test(homepageCredits)&&/Articseahorse/.test(homepageCredits),{homepageCredits});
+  check('homepage_commons_photo_attributions_visible',/Shixart1985/.test(homepageCredits)&&/Milicevic01/.test(homepageCredits)&&/Ahsanriaz6157/.test(homepageCredits)&&/Azorbli/.test(homepageCredits)&&/Steelkamp/.test(homepageCredits)&&/DanTD/.test(homepageCredits)&&/Nick Ares/.test(homepageCredits)&&/K\.Szonja/.test(homepageCredits)&&/Ballista/.test(homepageCredits),{homepageCredits});
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
   check('no_repeated_whatsapp_card_buttons',await frame.locator('.gwWA').count()===0,{count:await frame.locator('.gwWA').count()});
   await page.screenshot({path:path.join(OUT,'homepage.png'),fullPage:true}).catch(()=>{});
@@ -128,21 +128,28 @@ async function verifySourceParity(){
   await page.waitForFunction(()=>{const imgs=[...document.querySelectorAll('.card img')];return imgs.length>0&&imgs.every(img=>img.complete)},{timeout:20000}).catch(()=>{});
   report.subcategoryImages=await page.locator('.card img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth})));
   const subcategoryUnique=new Set(report.subcategoryImages.map(x=>x.src)).size;
-  check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=5&&report.subcategoryImages.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
+  check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=report.subcategoryImages.length-1&&report.subcategoryImages.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
   check('subcategory_photos_are_not_logo_substitutions',report.subcategoryImages.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:report.subcategoryImages.filter(x=>/gw-logo\\.png/i.test(x.src))});
   const topicRules=[
+   {label:/View\s+\d+\s+products in Electrical/i,src:'photo-1518770660439-4636190af475',required:true},
+   {label:/12V Light Duty Vehicles/i,src:'photo-1492144534655-ae79c964c9d7',required:true},
+   {label:/ELECTRICAL SPARES/i,src:'photo-1518770660439-4636190af475',required:true},
    {label:/BATTER(?:Y|IES)/i,src:'Car_battery.jpg',required:true},
    {label:/FUSES/i,src:'Closeup_of_the_car_fuses.jpg',required:true},
+   {label:/Fuel Pumps/i,src:'Bosch_Fuel_Pump_0_580_254_957-92468.jpg',required:false},
+   {label:/IGNITION SPARES/i,src:'Ignition_coil.jpg',required:true},
+   {label:/Lighting/i,src:'H4_halogen_car_lamp.jpg',required:true},
    {label:/REGULATORS/i,src:'Alternator_voltage_regulator.jpg',required:true},
    {label:/RELAYS?/i,src:'Fuse_relay_with_a_connector_to_the_CANbus_in_yellow.JPG',required:true},
+   {label:/SENSORS/i,src:'Car_parking_sensor_closeup.jpg',required:true},
+   {label:/SWITCHES/i,src:'Ignition_between_seats.JPG',required:true},
    {label:/Wiring.*Connectors/i,src:'photo-1762329404225-2953941c00f1',required:true},
-   {label:/Fuel Pumps/i,src:'Automobile_Fuel_tank_cutaway.JPG',required:false},
-   {label:/Trailer|Towing|Canopy/i,src:'Ford_M151_MUTT_Trailer.jpg',required:false}
+   {label:/TRAILER & TOWING/i,src:'Little_Big_Trailer_towed_by_Ram_Pickup_%40_WPB_Service_Plaza.jpg',required:true}
   ];
   const topicResults=topicRules.map(rule=>{const found=report.subcategoryImages.filter(x=>rule.label.test(x.alt));return {label:String(rule.label),expected:rule.src,required:rule.required,found:found.map(x=>({alt:x.alt,src:x.src,loaded:x.loaded,naturalWidth:x.naturalWidth})),passed:found.length?found.every(x=>x.src.includes(rule.src)&&x.loaded&&x.naturalWidth>0):!rule.required}});
   check('subcategory_specific_photos_match_topics',topicResults.every(x=>x.passed),{topicResults});
   const categoryCredits=await page.locator('#imageCredits').innerText().catch(()=> '');
-  check('category_commons_photo_attributions_visible',/Shixart1985/.test(categoryCredits)&&/Milicevic01/.test(categoryCredits)&&/Ahsanriaz6157/.test(categoryCredits)&&/Azorbli/.test(categoryCredits),{categoryCredits});
+  check('category_commons_photo_attributions_visible',/Shixart1985/.test(categoryCredits)&&/Milicevic01/.test(categoryCredits)&&/Ahsanriaz6157/.test(categoryCredits)&&/Azorbli/.test(categoryCredits)&&/Nick Ares/.test(categoryCredits)&&/K\.Szonja/.test(categoryCredits)&&/Ballista/.test(categoryCredits),{categoryCredits});
   await page.screenshot({path:path.join(OUT,'category-page.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('category-page.png');
   const batterySubcategory=page.locator('.card[href^="category.html?id="]').filter({hasText:/BATTERY/i}).first();
@@ -212,11 +219,11 @@ async function verifySourceParity(){
   await trailerCard.waitFor({timeout:20000});
   await trailerCard.scrollIntoViewIfNeeded();
   await trailerCard.locator('img').evaluate(img=>{img.loading='eager';img.scrollIntoView({block:'center'})});
-  await page.waitForFunction(()=>{const c=[...document.querySelectorAll('.card')].find(e=>{const h=e.querySelector('h2');return h&&h.textContent.trim().toUpperCase()==='TRAILER & TOWING'});const img=c&&c.querySelector('img');return !!img&&img.naturalWidth>0},{timeout:20000}).catch(()=>{});
+  await page.waitForFunction(()=>{const c=[...document.querySelectorAll('.card')].find(e=>{const h=e.querySelector('h2');return h&&h.textContent.trim().toUpperCase()==='TRAILER & TOWING'});const img=c&&c.querySelector('img');return !!img&&img.complete&&img.naturalWidth>0},{timeout:20000}).catch(()=>{});
   const trailerPhoto=await trailerCard.locator('img').evaluate(img=>({src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth}));
-  check('trailer_towing_subcategory_photo_matches_topic',trailerPhoto.loaded&&trailerPhoto.naturalWidth>0&&trailerPhoto.src.includes('Ford_M151_MUTT_Trailer.jpg'),trailerPhoto);
+  check('trailer_towing_subcategory_photo_matches_topic',trailerPhoto.loaded&&trailerPhoto.naturalWidth>0&&trailerPhoto.src.includes('Little_Big_Trailer_towed_by_Ram_Pickup_%40_WPB_Service_Plaza.jpg'),trailerPhoto);
   const trailerCredits=await page.locator('#imageCredits').innerText().catch(()=> '');
-  check('trailer_photo_attribution_visible',/Articseahorse/.test(trailerCredits),{trailerCredits});
+  check('trailer_photo_attribution_visible',/DanTD/.test(trailerCredits),{trailerCredits});
   await page.screenshot({path:path.join(OUT,'trailer-category.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('trailer-category.png');
   const mobile=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
