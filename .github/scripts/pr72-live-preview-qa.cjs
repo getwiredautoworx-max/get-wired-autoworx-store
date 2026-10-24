@@ -92,6 +92,10 @@ async function verifySourceParity(){
   check('main_category_photos_are_not_logo_substitutions',photos.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:photos.filter(x=>/gw-logo\\.png/i.test(x.src))});
   const expectedRootPhotos={'Auto Electrical Spares':'photo-1518770660439-4636190af475','Vehicle Security':'photo-1558002038-1055907df827','Car Audio & Entertainment':'photo-1600003014755-ba31aa59c4b6','Automotive Accessories':'photo-1492144534655-ae79c964c9d7','Marine Spares & Accessories':'photo-1544551763-46a013bb70d5','Tools, Hardware & Consumables':'photo-1530124566582-a618bc2615dc','Camping, Leisure & Outdoors':'photo-1478131143081-80f7f84ca84d','Trailer & Canopy':'Ford_Ranger_with_tray_canopy_back.jpg'};
   check('main_category_photo_topics_match_labels',photos.every(x=>expectedRootPhotos[x.label]&&x.src.includes(expectedRootPhotos[x.label])),{mismatches:photos.filter(x=>!expectedRootPhotos[x.label]||!x.src.includes(expectedRootPhotos[x.label]))});
+  const heroTagline=await frame.locator('.heroTagline').innerText().catch(()=> '');
+  const heroRange=await frame.locator('.heroRangeLine').innerText().catch(()=> '');
+  const heroAccessoryLines=await frame.locator('.heroAccessoryLine').evaluateAll(es=>es.map(e=>e.innerText.trim())).catch(()=>[]);
+  check('corrected_range_banner_copy_present',/YOUR ONE STOP AUTOMOTIVE\s*\/\s*MARINE\s*\/\s*ONLINE STORE/i.test(heroTagline)&&/SOUND\s*&\s*SECURITY.*AUTO ELECTRICAL.*SPARES\s*&\s*ACCESSORIES/i.test(heroRange)&&heroAccessoryLines.some(x=>/QUALITY PARTS AND ACCESSORIES AT AFFORDABLE PRICES/i.test(x))&&heroAccessoryLines.some(x=>/CAR AUDIO.*MARINE.*TOOLS.*4X4.*CAMPING.*TRAILER.*CANOPY.*AND MORE/i.test(x)),{heroTagline,heroRange,heroAccessoryLines});
   const homepageCredits=await frame.locator('#categoryImageCredits').innerText().catch(()=> '');
   check('homepage_commons_photo_attributions_visible',/Shixart1985/.test(homepageCredits)&&/Milicevic01/.test(homepageCredits)&&/Ahsanriaz6157/.test(homepageCredits)&&/Azorbli/.test(homepageCredits)&&/Steelkamp/.test(homepageCredits)&&/DanTD/.test(homepageCredits)&&/Nick Ares/.test(homepageCredits)&&/K\.Szonja/.test(homepageCredits)&&/Ballista/.test(homepageCredits),{homepageCredits});
   check('wrapper_whatsapp_button_removed',await page.locator('#whatsapp,.whatsapp-fab').count()===0,{count:await page.locator('#whatsapp,.whatsapp-fab').count()});
@@ -131,7 +135,7 @@ async function verifySourceParity(){
   check('subcategory_photos_load_are_distinct_and_labelled',report.subcategoryImages.length>=8&&subcategoryUnique>=report.subcategoryImages.length-1&&report.subcategoryImages.every(x=>x.loaded&&x.naturalWidth>0&&/product photo/i.test(x.alt)),{count:report.subcategoryImages.length,uniqueSources:subcategoryUnique,failed:report.subcategoryImages.filter(x=>!x.loaded),photos:report.subcategoryImages});
   check('subcategory_photos_are_not_logo_substitutions',report.subcategoryImages.every(x=>!/gw-logo\\.png/i.test(x.src)),{logoSubstitutions:report.subcategoryImages.filter(x=>/gw-logo\\.png/i.test(x.src))});
   const topicRules=[
-   {label:/View\s+\d+\s+products in Electrical/i,src:'photo-1518770660439-4636190af475',required:true},
+   {label:/View\s+\d+\s+products in (?:Auto )?Electrical(?: Spares)?/i,src:'photo-1518770660439-4636190af475',required:true},
    {label:/12V Light Duty Vehicles/i,src:'photo-1492144534655-ae79c964c9d7',required:true},
    {label:/ELECTRICAL SPARES/i,src:'photo-1518770660439-4636190af475',required:true},
    {label:/BATTER(?:Y|IES)/i,src:'Car_battery.jpg',required:true},
