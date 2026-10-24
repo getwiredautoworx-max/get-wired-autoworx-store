@@ -1,9 +1,12 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { analyzePartImage, VisionProviderError } from "./vision-provider.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
 const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY") || "";
-const MODEL = Deno.env.get("OPENAI_VISION_MODEL") || "gpt-4.1-mini";
+const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY") || "";
+const OPENAI_MODEL = Deno.env.get("OPENAI_VISION_MODEL") || "gpt-4.1-mini";
+const GEMINI_MODEL = Deno.env.get("GEMINI_VISION_MODEL") || "gemini-2.5-flash-lite";
 const ALLOWED_ORIGINS = new Set([
   "https://getwiredauto.co.za",
   "https://www.getwiredauto.co.za",
@@ -46,7 +49,7 @@ Deno.serve(async (req: Request) => {
   rate.set(ip, !current || current.reset <= now ? { count: 1, reset: now + 60_000 } : { count: current.count + 1, reset: current.reset });
   if (rate.size > 5000) for (const [key, value] of rate) if (value.reset <= now) rate.delete(key);
 
-  if (!OPENAI_API_KEY) return json({ error: "AI picture search is not configured yet. The store administrator must add the OPENAI_API_KEY secret before this feature can run. You can still use Request a Part." }, 503, origin);
+  if (!OPENAI_API_KEY && !GEMINI_API_KEY) return json({ error: "AI picture search is not configured yet. The store administrator can configure GEMINI_API_KEY for the supported free tier, or OPENAI_API_KEY if paid service is intended. You can still use Request a Part." }, 503, origin);
 
   try {
     const body = await req.json();
@@ -56,34 +59,17 @@ Deno.serve(async (req: Request) => {
     if (!base64 || base64.length > 5_600_000 || !/^[A-Za-z0-9+/]+={0,2}$/.test(base64)) return json({ error: "Image is empty or too large. Use a photo under 4 MB." }, 400, origin);
 
     const visionPrompt = `Identify the visible automotive/electrical/accessory/marine/tool part in this photo for a South African parts shop. Do not guess an exact vehicle fitment from appearance alone. Read visible labels or numbers if legible. Return JSON only with this shape: {"part_name":"short likely generic name","part_type":"category","keywords":["specific searchable terms"],"visible_text":["readable brand or part number"],"vehicle_hint":"only if clearly supported, otherwise empty","confidence":"high|medium|low","notes":"brief uncertainty or useful distinguishing detail"}. If unclear, say so and suggest what extra angle or measurement is needed. Never invent a part number.`;
-    const aiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: { "authorization": "Bearer " + OPENAI_API_KEY, "content-type": "application/json" },
-      body: JSON.stringify({
-        model: MODEL,
-        temperature: 0.1,
-        max_tokens: 450,
-        response_format: { type: "json_object" },
-        messages: [
-          { role: "system", content: "You identify physical automotive and electrical parts cautiously. Output valid JSON only." },
-          { role: "user", content: [
-            { type: "text", text: visionPrompt },
-            { type: "image_url", image_url: { url: "data:" + mime + ";base64," + base64, detail: "high" } }
-          ]}
-        ]
-      }),
-      signal: AbortSignal.timeout(25_000)
+    const vision = await analyzePartImage({
+      base64,
+      mime,
+      prompt: visionPrompt,
+      geminiApiKey: GEMINI_API_KEY,
+      geminiModel: GEMINI_MODEL,
+      openAiApiKey: OPENAI_API_KEY,
+      openAiModel: OPENAI_MODEL,
     });
-    if (!aiResponse.ok) {
-      const upstreamText = await aiResponse.text();
-      console.error("OpenAI image analysis failed", aiResponse.status, upstreamText.slice(0, 500));
-      if (aiResponse.status === 401 || aiResponse.status === 403) return json({ error: "AI provider authentication failed. Please contact the store administrator." }, 502, origin);
-      if (aiResponse.status === 429) return json({ error: "AI picture search is temporarily busy or its usage limit has been reached. Please try later." }, 429, origin);
-      return json({ error: "The image could not be analysed right now. Please try again or use Request a Part." }, 502, origin);
-    }
-    const ai = await aiResponse.json();
     let identification: any;
-    try { identification = JSON.parse(ai.choices?.[0]?.message?.content || "{}"); }
+    try { identification = JSON.parse(vision.text || "{}"); }
     catch { return json({ error: "The image analysis returned an unreadable result. Please try another photo." }, 502, origin); }
     identification = {
       part_name: clean(identification.part_name, 120) || "Part not confidently identified",
@@ -143,8 +129,9 @@ Deno.serve(async (req: Request) => {
       image_url: x.p.image_url,
       match_label: x.score >= Math.max(10, topScore * 0.75) ? "Closer catalogue match" : "Possible match"
     }));
-    return json({ ok: true, model: MODEL, identification, matches, disclaimer: "AI suggestions are not a guarantee of exact identity, fitment, stock or availability." }, 200, origin);
+    return json({ ok: true, model: vision.model, provider: vision.provider, identification, matches, disclaimer: "AI suggestions are not a guarantee of exact identity, fitment, stock or availability." }, 200, origin);
   } catch (error) {
+    if (error instanceof VisionProviderError) return json({ error: error.message }, error.status, origin);
     console.error("part-image-search failed", error instanceof Error ? error.message : String(error));
     return json({ error: "Picture search failed unexpectedly. Please try again or use Request a Part." }, 500, origin);
   }

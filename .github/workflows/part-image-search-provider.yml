@@ -1,0 +1,27 @@
+name: Part Image Search Provider Tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/part-image-search/**'
+      - '.github/workflows/part-image-search-provider.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'supabase/functions/part-image-search/**'
+      - '.github/workflows/part-image-search-provider.yml'
+
+jobs:
+  provider-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check image search function and provider adapter
+        run: deno check supabase/functions/part-image-search/index.ts supabase/functions/part-image-search/vision-provider.ts
+      - name: Run provider selection and quota regression tests
+        run: deno test supabase/functions/part-image-search/vision-provider.test.ts
