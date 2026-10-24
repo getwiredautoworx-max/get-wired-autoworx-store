@@ -1877,3 +1877,19 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Existing repository ZIP `Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip` is **not approved as the new release package** merely because it exists; its name indicates watermarked images and it has not been verified as the current clean runtime package.
 - Do not clear `public_html` yet. First assemble the new ZIP, inspect its file tree, verify all referenced assets/runtime entry points, run build/source and browser smoke tests in staging/preview, and confirm archive integrity. Then provide the exact package and simple Axxess replacement instructions. Owner must retain PR #74 ZIP and a recoverable copy of the current host before the approved switch. A clean ZIP is the plan; it is not yet created or validated in this checkpoint.
 - No Axxess deletion/upload, live stock/catalogue edits, DNS changes, or payment/checkout changes are authorized by this decision. Release stays HOLD until the package passes checks and the owner explicitly approves the production switch.
+
+
+## CONTINUATION UPDATE — 2026-10-24 08:49 SAST
+
+### Read-only source and live-smoke verification
+- Re-read the current main-branch handover and inspected current main `index-new.html`. Source blob SHA: `cf935038d5f7dd990885b4d27169c7ae66cbad9a`. The source defines `window.openPartSearch` and `window.openPartRequest`; this is source inspection only and does not establish live behavior.
+- Retrieved the full job output for Storefront Smoke Test run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39958304900), job ID `120432729517`. Desktop responsive homepage passed (1365px, 9 top-level tiles); apex and www homepage HTTP checks passed; public category grid reported 9 tiles. The actual live Part Search button click then failed with `ReferenceError: openPartSearch is not defined`. Diagnostics showed the button's served inline handler was `openPartSearch()`, the function object was present as `window.openPartSearch`, but the overlay stayed closed/zero-sized. The workflow failed and Request a Part was not reached. Do not weaken the smoke test or bypass the click by calling the function directly.
+- Current evidence continues to indicate a mismatch between the Axxess-served storefront runtime/markup and current GitHub source, or an inline-handler scope issue in the served document. The exact cause is not yet proven because the actual live served file has not been independently retrieved and compared byte-for-byte in this session.
+
+### Safe next action and release boundary
+- Next production-relevant step remains an approved, minimal backup-and-repair of the actual Axxess-served storefront file, followed by a real browser click test for Part Search, a catalogue query using existing in-store stock only as test data, and a separate Request a Part click/validation test.
+- Owner previously selected a clean deployment-only ZIP as the preferred consolidation route, but that ZIP has not yet been assembled and verified. Before switching the host, inspect the full runtime file tree and references, run package/archive and browser smoke checks in a preview, retain the PR #74 backup and a recoverable copy of current hosting, then obtain explicit owner approval for the production switch. Do not clear `public_html` or upload files without that approval.
+- No Axxess/DNS/production/Supabase/payment changes were made during this continuation. Supplier stock reconciliation and catalogue changes remain paused pending supplier authorization. Customer launch remains **HOLD**.
+
+### Owner attention required
+- Explicit approval is required before any Axxess backup/repair/upload or clean replacement switch. No additional owner action is needed to understand the current blocker: the latest live smoke evidence confirms the Part Search click still fails.
