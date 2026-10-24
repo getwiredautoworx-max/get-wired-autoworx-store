@@ -22,6 +22,10 @@ on:
       - '.github/workflows/storefront-smoke.yml'
   workflow_dispatch:
 
+concurrency:
+  group: storefront-smoke-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
@@ -34,7 +38,21 @@ jobs:
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check checkout and Terms acceptance Edge Functions
+        run: deno check supabase/functions/store-checkout/index.ts supabase/functions/record-terms-acceptance/index.ts
+      - name: Run isolated checkout security regression tests
+        run: node --test tests/checkout-security.test.cjs
+      - name: Run mocked checkout handler tests
+        run: deno test supabase/functions/store-checkout/handler.test.ts
+      - name: Report current Terms document SHA-256
+        run: |
+          sha256sum terms-and-conditions.html
+          cat terms-and-conditions.html returns-refunds.html | sha256sum
       - name: Verify verified-price checkout gate
         shell: bash
         run: |
@@ -47,6 +65,39 @@ jobs:
           grep -Fq 'onclick="window.openPartSearch()"' index-new.html
           grep -Fq 'onclick="window.openPartRequest()"' index-new.html
           grep -Fq "Price on request" index-new.html
+          grep -Fq "gw-terms-2026-10-23-v1" index-new.html
+          grep -Fq "gw_customer_session" account.html
+          grep -Fq "auth('signup'" account.html
+          grep -Fq "token?grant_type=password" account.html
+          grep -Fq "functions/v1/record-terms-acceptance" checkout-v2.html
+          grep -Fq "gw-terms-2026-10-23-v1" supabase/functions/record-terms-acceptance/index.ts
+          grep -Fq "7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3" supabase/functions/record-terms-acceptance/index.ts
+          grep -Fq "eq.7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3" supabase/functions/store-checkout/index.ts
+          sha256sum terms-and-conditions.html | grep -Fq "2e09e4f014250df7a03c371c5132318cd59edda9bcde0c70c81eb98474979b12"
+          cat terms-and-conditions.html returns-refunds.html | sha256sum | grep -Fq "7998c6a2a86d44d04fa0ca3f814840cdc1b2e0bdaefde82340253a7040efcfa3"
+          grep -Fq 'authorization.match(/^Bearer\s+(.+)$/i)' supabase/functions/store-checkout/index.ts
+          grep -Fq "payload.p_customer_id = customerId" supabase/functions/store-checkout/index.ts
+          grep -Fq "p_customer_id uuid DEFAULT NULL::uuid" supabase/migrations/20261023100000_link_store_orders_to_customer.sql
+          grep -Fq "REVOKE ALL ON FUNCTION public.create_store_order_v2" supabase/migrations/20261023100000_link_store_orders_to_customer.sql
+          grep -Fq "GRANT EXECUTE ON FUNCTION public.create_store_order_v2" supabase/migrations/20261023100000_link_store_orders_to_customer.sql
+          grep -Fq "AUTH_REQUIRED" supabase/functions/store-checkout/index.ts
+          grep -Fq "TERMS_ACCEPTANCE_REQUIRED" supabase/functions/store-checkout/index.ts
+          grep -Fq "customer_terms_acceptances" supabase/functions/store-checkout/index.ts
+          grep -Fq "prevent_terms_acceptance_mutation" supabase/migrations/20261023090000_customer_terms_acceptances.sql
+          test "$(grep -cF 'CREATE TABLE IF NOT EXISTS public.customer_terms_acceptances' supabase/migrations/20261023090000_customer_terms_acceptances.sql)" -eq 1
+          test "$(grep -cF 'CREATE TRIGGER customer_terms_acceptances_immutable' supabase/migrations/20261023090000_customer_terms_acceptances.sql)" -eq 1
+          test "$(grep -cF 'accepted_at timestamptz NOT NULL DEFAULT clock_timestamp()' supabase/migrations/20261023090000_customer_terms_acceptances.sql)" -eq 1
+          grep -Fq "terms_sha256 text NOT NULL CHECK (terms_sha256 ~ '^[a-f0-9]{64}$')," supabase/migrations/20261023090000_customer_terms_acceptances.sql
+          grep -Fq 'UNIQUE (user_id, terms_version, terms_sha256)' supabase/migrations/20261023090000_customer_terms_acceptances.sql
+          grep -Fq 'GRANT SELECT, INSERT ON TABLE public.customer_terms_acceptances TO service_role;' supabase/migrations/20261023090000_customer_terms_acceptances.sql
+          grep -Fq "CUSTOMER_PASSWORD_RESET_UI_PASS" .github/workflows/storefront-smoke.yml
+          grep -Fq 'rel="manifest" href="manifest.webmanifest"' store.html
+          grep -Fq "navigator.serviceWorker.register('/sw.js')" store.html
+          grep -Fq "installButton.classList.add('show')" store.html
+          grep -Fq "NETWORK_ONLY_PAGES" sw.js
+          node --check sw.js
+          grep -Fq "terms-and-conditions.html returns-refunds.html | sha256sum" .github/workflows/storefront-smoke.yml
+          grep -Fq "TERMS_GATE_BEHAVIOR_PASS" .github/workflows/storefront-smoke.yml
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
           echo "Verified-price gate is present in storefront, checkout, and server-side order creation."
@@ -68,6 +119,38 @@ jobs:
             const iframe = page.locator('#store');
             await iframe.waitFor({timeout:10000});
             const frame = page.frameLocator('#store');
+            // Phase 1 terms gate behavioral checks: first visit blocks, decline stays blocked, accept opens browsing.
+            const termsGate = frame.locator('#gwTermsGate');
+            await termsGate.waitFor({state:'visible',timeout:15000});
+            if (!(await frame.locator('#gwTermsGate [role="dialog"]').evaluate(el => el.getAttribute('aria-modal') === 'true'))) throw new Error('Terms gate is not modal');
+            await frame.locator('#gwTermsDecline').click();
+            if (!(await termsGate.isVisible())) throw new Error('Declining terms must keep the store blocked');
+            if (!(await frame.locator('#gwTermsMessage').innerText()).includes('must accept')) throw new Error('Decline explanation missing');
+            await frame.locator('#gwTermsAccept').click();
+            await termsGate.waitFor({state:'hidden',timeout:5000});
+            if (await frame.locator('#gwTermsGate').getAttribute('aria-hidden') !== 'true') throw new Error('Accepted terms gate did not become hidden');
+            console.log('TERMS_GATE_BEHAVIOR_PASS first-visit/decline/accept');
+
+            // Account UI smoke test: no credentials are submitted and no real account is created.
+            const accountPage = await browser.newPage({viewport:{width:390,height:844}});
+            accountPage.on('pageerror', e => console.log('[account-pageerror] '+e.message));
+            await accountPage.goto('http://127.0.0.1:4173/account.html', {waitUntil:'domcontentloaded'});
+            await accountPage.locator('#tabLogin').waitFor({state:'visible',timeout:10000});
+            if (!(await accountPage.locator('#submit').innerText()).includes('Sign in')) throw new Error('Account page default sign-in mode missing');
+            await accountPage.locator('#tabSignup').click();
+            if (!(await accountPage.locator('#nameLabel').isVisible())) throw new Error('Account registration name field did not appear');
+            await accountPage.locator('#tabRecover').click();
+            if (!(await accountPage.locator('#passwordLabel').isHidden())) throw new Error('Password recovery should not request the current password');
+            if (!(await accountPage.locator('#submit').innerText()).includes('reset link')) throw new Error('Password recovery action missing');
+            console.log('CUSTOMER_ACCOUNT_UI_PASS sign-in/register/recovery modes');
+            await accountPage.close();
+            const resetPage = await browser.newPage({viewport:{width:390,height:844}});
+            await resetPage.goto('http://127.0.0.1:4173/account.html#access_token=smoke-token&refresh_token=smoke-refresh&expires_in=3600&type=recovery', {waitUntil:'domcontentloaded'});
+            if (!(await resetPage.locator('#submit').innerText()).includes('Save new password')) throw new Error('Password recovery callback did not enter reset mode');
+            if (!(await resetPage.locator('#confirmLabel').isVisible())) throw new Error('Password recovery confirmation field missing');
+            console.log('CUSTOMER_PASSWORD_RESET_UI_PASS recovery callback mode');
+            await resetPage.close();
+
             try {
               await frame.locator('#categoryGrid .catWrap').first().waitFor({timeout:60000});
             } catch (e) {
@@ -233,6 +316,10 @@ jobs:
             requestPage.on('pageerror', e => console.log('[request-pageerror] '+e.message));
             await requestPage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             const requestFrame = requestPage.frameLocator('#store');
+            await requestFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await requestFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
+            await requestFrame.locator('#gwTermsAccept').click();
+            await requestFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await requestFrame.locator('button.primaryAction').waitFor({timeout:15000});
             await requestFrame.locator('button.primaryAction').click();
             await requestFrame.locator('#sourcePart.open').waitFor({timeout:10000});
@@ -245,6 +332,10 @@ jobs:
             earlySearchPage.on('pageerror', e => console.log('[early-search-pageerror] '+e.message));
             await earlySearchPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
             const earlySearchFrame = earlySearchPage.frameLocator('#store');
+            await earlySearchFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await earlySearchFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
+            await earlySearchFrame.locator('#gwTermsAccept').click();
+            await earlySearchFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await earlySearchFrame.locator('button.headerPartSearch').waitFor({state:'visible',timeout:15000});
             await earlySearchFrame.locator('button.headerPartSearch').click();
             await earlySearchFrame.locator('#partSearchDialog.open').waitFor({timeout:15000});
@@ -256,6 +347,10 @@ jobs:
             earlyRequestPage.on('pageerror', e => console.log('[early-request-pageerror] '+e.message));
             await earlyRequestPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'commit'});
             const earlyRequestFrame = earlyRequestPage.frameLocator('#store');
+            await earlyRequestFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await earlyRequestFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
+            await earlyRequestFrame.locator('#gwTermsAccept').click();
+            await earlyRequestFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await earlyRequestFrame.locator('button.primaryAction').waitFor({state:'visible',timeout:15000});
             await earlyRequestFrame.locator('button.primaryAction').click();
             await earlyRequestFrame.locator('#sourcePart.open').waitFor({timeout:15000});
@@ -267,6 +362,10 @@ jobs:
             const responsivePage = await browser.newPage({viewport:{width:320,height:900}});
             await responsivePage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
             const responsiveFrame = responsivePage.frameLocator('#store');
+            await responsiveFrame.locator('#gwTermsGate').waitFor({state:'visible',timeout:15000});
+            await responsiveFrame.locator('#gwTermsGate[data-ready="true"]').waitFor({state:'attached',timeout:15000});
+            await responsiveFrame.locator('#gwTermsAccept').click();
+            await responsiveFrame.locator('#gwTermsGate').waitFor({state:'hidden',timeout:5000});
             await responsiveFrame.locator('#categoryGrid > .catWrap').first().waitFor({timeout:60000});
             for (const width of [320,390,768,1365]) {
               await responsivePage.setViewportSize({width,height:900});
@@ -361,6 +460,27 @@ jobs:
                 await routePage.close();
               }
             }
+            // PWA install shell and safe offline fallback. Keep this last because offline mode affects the context.
+            const pwaPage = await browser.newPage({viewport:{width:390,height:844}});
+            await pwaPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'domcontentloaded'});
+            const manifestResponse = await pwaPage.request.get('http://127.0.0.1:4173/manifest.webmanifest');
+            if (!manifestResponse.ok()) throw new Error('PWA manifest did not load');
+            const manifest = await manifestResponse.json();
+            if (manifest.start_url !== '/store.html' || manifest.display !== 'standalone' || !manifest.icons?.length) throw new Error('PWA manifest fields are incomplete');
+            const iconResponse = await pwaPage.request.get('http://127.0.0.1:4173/assets/pwa-icon.svg');
+            if (!iconResponse.ok()) throw new Error('PWA icon did not load');
+            await pwaPage.waitForFunction(() => !!navigator.serviceWorker && !!navigator.serviceWorker.controller, null, {timeout:15000}).catch(async () => {
+              await pwaPage.reload({waitUntil:'domcontentloaded'});
+              await pwaPage.waitForFunction(() => !!navigator.serviceWorker && !!navigator.serviceWorker.controller, null, {timeout:15000});
+            });
+            console.log('PWA_INSTALL_SHELL_PASS manifest/icon/service-worker');
+            await pwaPage.context().setOffline(true);
+            await pwaPage.goto('http://127.0.0.1:4173/checkout-v2.html', {waitUntil:'domcontentloaded'});
+            const offlineText = await pwaPage.locator('body').innerText();
+            if (!offlineText.toLowerCase().includes('offline')) throw new Error('PWA offline fallback did not block checkout. URL='+pwaPage.url()+' body='+offlineText.slice(0,500));
+            await pwaPage.context().setOffline(false);
+            console.log('PWA_OFFLINE_SAFETY_PASS checkout not cached for offline ordering');
+            await pwaPage.close();
             await page.setViewportSize({width:1280,height:900});
             console.log('STOREFRONT_SMOKE_PASS');
             await browser.close();
