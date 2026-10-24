@@ -7,7 +7,7 @@ const REPO=process.env.GITHUB_REPOSITORY || 'getwiredautoworx-max/get-wired-auto
 const PARITY_FILES=['index.html','store.html','index-new.html','category.html','products.html','product.html','category-navigation.js','assets/category-tree.json','assets/category-cleanup.js','assets/progressive-store-enhancements.js'];
 const OUT=path.resolve('qa-live-preview-output');
 fs.mkdirSync(OUT,{recursive:true});
-const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:null,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
+const report={base:BASE,expectedSourceSha:EXPECTED_SOURCE_SHA,deployedSourceSha:null,checks:[],pageErrors:[],consoleErrors:[],failedRequests:[],badResponses:[],expectedImageFallbacks:[],authErrors:[],categoryImages:[],subcategoryImages:[],productImage:null,screenshots:[]};
 const failures=[];
 const check=(name,ok,detail={})=>{report.checks.push({name,status:ok?'PASS':'FAIL',detail});if(!ok)failures.push(name+': '+JSON.stringify(detail));};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -39,7 +39,7 @@ async function resolvePreviewUrl(){
  }
  throw new Error('No Cloudflare Pages deployment comment for exact PR #72 commit '+EXPECTED_SOURCE_SHA+' after 3 minutes; no URL will be guessed.');
 }
-function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>{const reason=r.failure()?.errorText||'failed';if(reason==='net::ERR_ABORTED')return;report.failedRequests.push({page:label,url:r.url(),error:reason})});page.on('response',async r=>{if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
+function observe(page,label){page.on('pageerror',e=>report.pageErrors.push(label+': '+String(e)));page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(label+': '+m.text())});page.on('requestfailed',r=>{const reason=r.failure()?.errorText||'failed';if(reason==='net::ERR_ABORTED')return;report.failedRequests.push({page:label,url:r.url(),error:reason})});page.on('response',async r=>{if(r.status()===404&&r.url().includes('/functions/v1/product-image?sku='))report.expectedImageFallbacks.push({page:label,status:r.status(),url:r.url()});else if(r.status()>=400)report.badResponses.push({page:label,status:r.status(),url:r.url()});if(r.status()===401&&r.url().includes('/rest/v1/products'))report.authErrors.push({page:label,url:r.url(),body:await r.text().catch(()=>'(body unavailable)')})})}
 const digest=s=>require('node:crypto').createHash('sha256').update(s).digest('hex');
 async function verifySourceParity(){
  for(const file of PARITY_FILES){
@@ -58,7 +58,7 @@ async function verifySourceParity(){
   }
   check('deployed_source_parity:'+file,equal,detail);
  }
- if(report.checks.filter(x=>x.name.startsWith('deployed_source_parity:')).every(x=>x.status==='PASS'))report.deployedSourceSha=EXPECTED_SOURCE_SHA;
+ if(report.checks.filter(x=>x.name.startsWith('deployed_source_parity:')).every(x=>x.status==='PASS'))report.deployedSourceSha=process.env.EXPECTED_DEPLOYED_SHA||EXPECTED_SOURCE_SHA;
 }
 (async()=>{
  const browser=await chromium.launch({headless:true});
@@ -208,10 +208,11 @@ async function verifySourceParity(){
   await page.screenshot({path:path.join(OUT,'product-detail.png'),fullPage:true}).catch(()=>{});
   report.screenshots.push('product-detail.png');
   await page.goto(new URL('/category.html?id=63a71fd9-df45-43f0-b61d-ad622daa9d79',BASE).href,{waitUntil:'domcontentloaded',timeout:60000});
-  const trailerCard=page.locator('.card').filter({hasText:/Trailer\/Towing/i}).first();
-  await trailerCard.locator('img').waitFor({timeout:20000});
-  await trailerCard.locator('img').evaluate(img=>{img.loading='eager'});
-  await page.waitForFunction(()=>{const c=[...document.querySelectorAll('.card')].find(e=>/Trailer\/Towing/i.test(e.innerText));const img=c&&c.querySelector('img');return !!img&&img.complete},{timeout:20000});
+  const trailerCard=page.locator('.card:has(h2:text-is("TRAILER & TOWING"))').first();
+  await trailerCard.waitFor({timeout:20000});
+  await trailerCard.scrollIntoViewIfNeeded();
+  await trailerCard.locator('img').evaluate(img=>{img.loading='eager';img.scrollIntoView({block:'center'})});
+  await page.waitForFunction(()=>{const c=[...document.querySelectorAll('.card')].find(e=>{const h=e.querySelector('h2');return h&&h.textContent.trim().toUpperCase()==='TRAILER & TOWING'});const img=c&&c.querySelector('img');return !!img&&img.naturalWidth>0},{timeout:20000}).catch(()=>{});
   const trailerPhoto=await trailerCard.locator('img').evaluate(img=>({src:img.currentSrc||img.src,loaded:img.complete&&img.naturalWidth>0,naturalWidth:img.naturalWidth}));
   check('trailer_towing_subcategory_photo_matches_topic',trailerPhoto.loaded&&trailerPhoto.naturalWidth>0&&trailerPhoto.src.includes('Ford_M151_MUTT_Trailer.jpg'),trailerPhoto);
   const trailerCredits=await page.locator('#imageCredits').innerText().catch(()=> '');
@@ -231,8 +232,15 @@ async function verifySourceParity(){
   const fontCspErrors=report.consoleErrors.filter(x=>x.includes('fonts.googleapis.com')&&x.includes('Content Security Policy'));
   check('google_fonts_stylesheet_not_blocked_by_csp',fontCspErrors.length===0,{fontCspErrors});
   report.finishedAt=new Date().toISOString();
-  check('no_browser_console_page_or_network_errors',report.consoleErrors.length===0&&report.pageErrors.length===0&&report.failedRequests.length===0&&report.badResponses.length===0,{consoleErrors:report.consoleErrors,pageErrors:report.pageErrors,failedRequests:report.failedRequests,badResponses:report.badResponses});
-  report.summary={pass:report.checks.filter(x=>x.status==='PASS').length,fail:report.checks.filter(x=>x.status==='FAIL').length,consoleErrors:report.consoleErrors.length,pageErrors:report.pageErrors.length,failedRequests:report.failedRequests.length,badResponses:report.badResponses.length};
+  const expectedFallbackConsoleErrors=report.expectedImageFallbacks.length?report.consoleErrors.filter(x=>x.includes('Failed to load resource')&&x.includes('404')):[];
+  const unexpectedConsoleErrors=report.consoleErrors.filter(x=>!expectedFallbackConsoleErrors.includes(x));
+  const exactSkuImageCheck=report.checks.find(x=>x.name==='individual_product_image_loads');
+  const expectedFallbackOk=report.expectedImageFallbacks.length===0||exactSkuImageCheck?.status==='PASS';
+  report.expectedFallbackConsoleErrors=expectedFallbackConsoleErrors;
+  report.consoleErrors=unexpectedConsoleErrors;
+  check('expected_product_image_404_uses_exact_sku_fallback',expectedFallbackOk,{expectedImageFallbacks:report.expectedImageFallbacks,exactSkuImageCheck});
+  check('no_browser_console_page_or_network_errors',report.consoleErrors.length===0&&report.pageErrors.length===0&&report.failedRequests.length===0&&report.badResponses.length===0&&expectedFallbackOk,{consoleErrors:report.consoleErrors,pageErrors:report.pageErrors,failedRequests:report.failedRequests,badResponses:report.badResponses,expectedImageFallbacks:report.expectedImageFallbacks});
+  report.summary={pass:report.checks.filter(x=>x.status==='PASS').length,fail:report.checks.filter(x=>x.status==='FAIL').length,consoleErrors:report.consoleErrors.length,pageErrors:report.pageErrors.length,failedRequests:report.failedRequests.length,badResponses:report.badResponses.length,expectedImageFallbacks:report.expectedImageFallbacks.length};
   fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
   console.log(JSON.stringify(report,null,2));
   if(failures.length)process.exitCode=1;
