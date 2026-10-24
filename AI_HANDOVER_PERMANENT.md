@@ -3239,3 +3239,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## Automation run — 2026-10-24 15:51 SAST — March source retrieval still blocked
 - **Outcome: FAILURE to locate the exact March PDF so far.** Searches for official ASC March 2026 guide by the queued SKUs (`310619`, `6007-4`, `D9-FR2201`, `D9-FR1522`) and likely public URL patterns returned no accessible exact source. Direct attempts at candidate March PDF paths were rejected by the web viewer. The repository audit branch has no March PDF. Do not substitute the 2025 May guide or a similarly named source; the 37 March rows remain OCR-only pending exact source retrieval.
 - **Next action:** continue a broader official-site search for the exact March PDF/source page, or mark those 37 rows pending if the original source cannot be retrieved in this run. No category changes.
+
+
+## Automation run — 2026-10-24 15:53 SAST — March 2026 PDF candidate located, viewer blocked
+- **Outcome: PARTIAL.** Found official ASC `March-Buyers-Guide-NP.pdf` dated MARCH 2026 at `https://accessoriesspares.co.za/wp-content/uploads/2026/02/March-Buyers-Guide-NP.pdf`. However, the PDF viewer reports `DisabledError`; exact-SKU `find` calls for `310619`, `6007-4`, `D9-FR2201`, `D9-FR1522` did not return text. The URL/date alone does not prove it is the exact source version for the 37 queued rows. Keep the March rows pending until exact SKU/page evidence and original page images are accessible.
+- **Next action:** check the official March 2025 guide for exact SKU/page match as a fallback; accept it only if exact codes and printed pages match the crosscheck. Do not infer from guide title alone.
