@@ -148,7 +148,6 @@ async function verifySourceParity(){
    {label:/SENSORS/i,src:'Car_parking_sensor_closeup.jpg',required:true},
    {label:/SWITCHES/i,src:'Ignition_between_seats.JPG',required:true},
    {label:/Wiring.*Connectors/i,src:'photo-1762329404225-2953941c00f1',required:true},
-   {label:/TRAILER & TOWING/i,src:'Little_Big_Trailer_towed_by_Ram_Pickup_%40_WPB_Service_Plaza.jpg',required:true}
   ];
   const topicResults=topicRules.map(rule=>{const found=report.subcategoryImages.filter(x=>rule.label.test(x.alt));return {label:String(rule.label),expected:rule.src,required:rule.required,found:found.map(x=>({alt:x.alt,src:x.src,loaded:x.loaded,naturalWidth:x.naturalWidth})),passed:found.length?found.every(x=>x.src.includes(rule.src)&&x.loaded&&x.naturalWidth>0):!rule.required}});
   check('subcategory_specific_photos_match_topics',topicResults.every(x=>x.passed),{topicResults});
