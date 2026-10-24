@@ -33,8 +33,8 @@ jobs:
       - name: Run browser checks against deployed preview URL
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PREVIEW_URL: https://281cf7ac.get-wired-autoworx-store.pages.dev/store.html
-          EXPECTED_DEPLOYED_SHA: 4bc175245259588a6fa555d3e01904f2004a3b99
+          PREVIEW_URL: https://b1ee7dbb.get-wired-autoworx-store.pages.dev/store.html
+          EXPECTED_DEPLOYED_SHA: e59d9d25a4814c9365100769d84ebf44ab5bdafa
         run: node .github/scripts/pr72-live-preview-qa.cjs
       - name: Upload live preview screenshots and report
         if: always()
