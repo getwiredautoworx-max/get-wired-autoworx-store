@@ -2462,3 +2462,32 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Older interaction QA failure/log evidence: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39490404565
 - Pages deployment report comment: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72#issuecomment-6298513671
 - Workers build-failure report comment: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/72#issuecomment-6298605365
+
+## Latest verified PR #72 preview checkpoint — 2026-10-24 20:14 UTC
+
+### Status
+- PR #72 is still **draft and unmerged**, based on the approved PR #70 baseline. Branch: `fix/pr70-storefront-owner-feedback-2026-10-20`. PR #68 and PR #71 were not used as starting points.
+- Exactly one controlled non-production Cloudflare Pages preview deployment succeeded for application-source commit `e59d9d25a4814c9365100769d84ebf44ab5bdafa`.
+- **Exact verified test URL:** https://b1ee7dbb.get-wired-autoworx-store.pages.dev/store.html
+- Mutable branch alias: https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev/store.html
+- Current PR head: `6fad09870098b819e2f93cfd47a646427759ceb4`. Subsequent commits changed QA workflow/test harness only. Live QA compared deployed files with current-head source and passed 10/10 parity checks.
+
+### Latest evidence
+- Live preview browser QA run 40128799675: **47/47 PASS**, 10/10 deployed-source parity, zero console/page/network errors. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128799675
+- Storefront interaction QA run 40128802808: **27/27 PASS**. Includes root/subcategory photo loading and relevance, image credits, corrected range-banner copy, same-tab root category navigation, subcategory-to-product listing, standalone Part Search, Request a Part and query handoff, product detail, Add to Cart and SKU-bearing WhatsApp query. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802808
+- Responsive browser acceptance run 40128802832: **PASS** at 320, 360, 390, 768 and 1440 CSS pixels. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802832
+- Public SKU Exposure Audit run 40128802813: **PASS**. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802813
+- Controlled Pages deployment run 40128567122: **SUCCESS**. https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128567122
+
+### Source/test corrections included in the preview
+- Replaced the failing Ford M151 trailer photo with a stable, topic-relevant utility-trailer photograph; corrected attribution to DanTD (CC BY 4.0).
+- Replaced the fuel-tank cutaway for Fuel Pumps with a Bosch fuel-pump photograph; corrected attribution to Raimond Spekking (CC BY-SA 4.0).
+- Added specific ignition-coil, H4 lamp, parking-sensor and ignition-switch photos with license/author credits; corrected electrical-parent, electrical-spares and light-duty-vehicle image mapping.
+- Strengthened photo assertions to require loaded images, topic-matched expected sources and near-complete uniqueness; trailer verification is performed on the trailer category page.
+- Added explicit range-banner copy assertions. Inspected live homepage, Electrical subcategory and Trailer & Canopy screenshots.
+
+### Separate integration warning and release controls
+- A separate Cloudflare Workers build record for commit `e59d9d2` failed in the bot comment. It is distinct from the successful Pages preview workflow; no Workers/production deployment URL was reported and no production configuration was changed. Track it separately from storefront preview acceptance.
+- Live QA run 40128654981 previously failed only because a trailer assertion was incorrectly scoped to the Electrical category page. After scoping the assertion to the dedicated trailer page, run 40128799675 passed 47/47.
+- No merge, production deployment, Axxess/DNS change, payment activation, supplier-data change, catalogue import or live-stock write occurred. The single controlled preview deployment is complete; do not deploy again in this checkpoint.
+- Next step: owner visual review of the exact verified preview. Keep PR #72 draft/unmerged until explicit owner approval and release gates are satisfied.
