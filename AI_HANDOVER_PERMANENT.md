@@ -3254,3 +3254,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## Automation run — 2026-10-24 15:57 SAST — repository PDF rendering blocked
 - **Outcome: FAILURE to render repository copies through the current viewer.** Both raw GitHub and GitHub blob URLs for `August Buyer's Guide.pdf` returned `DisabledError`; no source-page image was obtained. No attempt was made to reconstruct or approve from OCR. The August/September queue rows remain pending until a visual-capable source route is found.
 - **Next action:** search the official supplier site for public no-price versions of the August and September guides, which may be screenshot-enabled like the February guide. Do not expose or use printed prices for catalogue changes.
+
+
+## Automation run — 2026-10-24 15:59 SAST — official August/September source candidates found
+- **Outcome: PARTIAL SUCCESS locating public official guides.** Search found ASC’s public August 2025 no-price guide `https://accessoriesspares.co.za/wp-content/uploads/2025/08/August-Buyers-Guide-NP.pdf` and September 2025 no-price guide `https://accessoriesspares.co.za/wp-content/uploads/2025/08/September-Buyers-Guide-No-Prices.pdf`. Their dates indicate they may be the correct versions for the audit branch’s August/September PDFs, but exact SKU/page match has not yet been established. Do not visually approve any rows solely from the titles or contents-at-a-glance.
+- **Next action:** compare the queued August and September SKUs/page numbers against these public guides; if exact matches hold, capture original page images where the viewer supports it. Keep all rows pending if image capture is blocked.
