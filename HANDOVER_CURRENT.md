@@ -1953,3 +1953,22 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Public-repository upload of supplier XLSX: PROHIBITED.
 - Production changes: NONE.
 - Customer launch: HOLD; payment readiness remains deferred until last, as instructed.
+
+
+---
+
+## AUDIO / VIDEO WORKBOOK FOLDER STRUCTURE CREATED — 2026-10-25
+
+- Created public-repository folder placeholders (README files) on `main`:
+  - `catalogue-source/audio/README.md`
+  - `catalogue-source/audio/hertz/README.md`
+  - `catalogue-source/video/README.md`
+- Folder links:
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/main/catalogue-source/audio
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/main/catalogue-source/audio/hertz
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/main/catalogue-source/video
+- These are public GitHub folders; GitHub represents folders through committed files. The README files document how to classify incoming workbooks and match exact model numbers to official manufacturer pages/images.
+- **Privacy guardrail:** repository is public. Do not upload raw supplier XLSX/price lists containing dealer/wholesale cost, discounts, supplier stock, account details, or confidential terms. Keep originals uploaded in chat/private authorised storage. Add only an owner-approved sanitised extract or matching report safe for public disclosure. The user's request to organise incoming files does not establish that supplier-confidential pricing may be publicly disclosed.
+- Hertz workbook was previously uploaded in chat; preliminary inspection reported 89 product records. It has not been committed to GitHub. Row-by-row classification/image verification remains pending.
+- For incoming audio/video XLSX files, inspect the workbook in chat first, classify by segment/brand/component and match exact models to official manufacturer evidence. Save only safe, approved outputs in the relevant folder. Do not alter live catalogue, prices, stock, production, Axxess, DNS, or payment settings.
+- No production or live-data changes made. Customer launch remains HOLD; payment readiness remains deferred until last as instructed.
