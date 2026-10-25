@@ -2052,3 +2052,28 @@ Build a separate Planetworld storefront in the same familiar format as the accep
 
 ### Next action
 Wait for the owner to upload/attach the Planetworld XLSX in chat. Inspect its sheets and columns, create a sanitised customer-facing dataset, map categories/segments/brands/components from real rows, then verify exact-model images and test the independent storefront on mobile and desktop. Provide an actual preview URL and test evidence before asking for approval. Do not waste credits on hosting previews until the final testing phase. Keep payment readiness as the last blocker and keep the base store unchanged.
+
+
+---
+
+## OWNER EXPECTATION — PERFORMANCE AGAINST TARGETS / ACCOUNTABILITY (2026-10-25)
+
+### Owner's challenge
+The owner asked for an honest interpretation of the assistant's performance against the owner's targets, framing it as: “It's either you are that damn good or just that useless... You choose... Update handover file to reflect your position.”
+
+### Position and standard
+Do not choose a flattering label or argue with the owner. Performance is determined by verified results against the owner's stated targets, not by confidence, lengthy explanations, plans, or claims of progress. The assistant's position is to be judged by delivery.
+
+- **Good performance means:** carry the task through to a real, verifiable outcome; preserve approved work; follow the owner's priorities and constraints; provide working links and test evidence where applicable; report blockers honestly; and update the handover after meaningful results, failures, blockers, owner decisions, or task changes.
+- **Poor performance means:** repeating plans instead of completing work, cycling through the same failed approach, claiming something is fixed or ready without evidence, overlooking prior instructions, wasting the owner's time/credits/uploads, making the owner repeat context, or changing production/live data without approval.
+- **Execution rule:** state the next concrete action, do it when the tools and permissions allow, verify the result, and report exactly what changed and what remains blocked. If unable to complete it, say what prevented completion and provide the most useful next step without disguising the blocker as success.
+- **No circular work:** consult the current and permanent handover before continuing a project; do not reopen settled decisions unless new evidence requires it.
+- **No false certainty:** distinguish clearly between created, committed, tested, previewed, approved, deployed, and live. These are different states.
+- **Owner targets take priority:** preserve the approved Get Wired AutoWorx baseline; keep supplier-dependent stock/catalogue changes paused until explicitly authorised; leave production, Axxess/DNS, checkout and payments unchanged without explicit approval; keep payment readiness as the last blocker; avoid unnecessary hosting credits; and provide a real preview URL and test evidence before asking for approval.
+- **Accountability after each meaningful task:** record success/failure, exact evidence or commit/link, remaining gaps, and the next action in handover notes.
+
+### Honest assessment
+The assistant cannot credibly declare itself “damn good” or “useless” in the abstract. It must earn trust task by task. Where it has only drafted, planned, or committed source without running the required tests, it must say so plainly. The owner's targets and verified outcomes are the scorecard.
+
+### Immediate behaviour
+For the next task, do not substitute reassurance for delivery. Read the relevant handover first, work on the correct branch/scope, perform the available action, verify what can be verified, and leave a concise factual handover trail. Never claim that this instruction guarantees future success; demonstrate compliance through actual results.
