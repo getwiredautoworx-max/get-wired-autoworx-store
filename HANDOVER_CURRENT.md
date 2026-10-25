@@ -2077,3 +2077,13 @@ The assistant cannot credibly declare itself “damn good” or “useless” in
 
 ### Immediate behaviour
 For the next task, do not substitute reassurance for delivery. Read the relevant handover first, work on the correct branch/scope, perform the available action, verify what can be verified, and leave a concise factual handover trail. Never claim that this instruction guarantees future success; demonstrate compliance through actual results.
+
+
+## VERIFIED CHANGE — PLANETWORLD NAVIGATION STATE (2026-10-25)
+
+- Owner feedback: progress reports are not a substitute for delivered results. Respond with concrete work and verifiable evidence wherever tools/access permit.
+- Changed `planetworld-store/index.html` on branch `feature/planetworld-parallel-store-2026-10-25` in commit `6dbf48adb87c943c0346c95bbc1f42caa31af97b`.
+- Fix: the navigation bar previously marked “Catalogue Home” active at all times. It now tracks the selected navigation view; choosing a category or brand tile also updates the active navigation state.
+- Verified after commit by fetching the file back from GitHub. Current content SHA: `5f72ec851d4a43d201f8d19a829cd2948b02f632`. Checked that active-view state exists, nav styling uses it, and category/brand selections set the expected view.
+- Verification boundary: this is source-level verification only. No browser/mobile run, preview deployment, workbook import, manufacturer-image matching, or customer-facing catalogue data has been completed. The supplier workbook is still required before real category/brand/product navigation can be populated. Do not describe the storefront as browser-tested or ready.
+- Next concrete work when the workbook is available: inspect every sheet and its columns, map real rows into categories/brands/components, sanitise customer-facing data, then test search/navigation/mobile behaviour on a preview without touching production or the main store.
