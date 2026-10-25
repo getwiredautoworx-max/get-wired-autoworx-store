@@ -3060,3 +3060,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - **Owner instruction:** remove PayJustNow from payment-readiness scope. Treat PayFast as the payment provider still requiring readiness verification; do not treat PayJustNow as a required provider or launch blocker.
 - **Safety:** documentation/staging-only change. Do not alter live payment settings, checkout configuration, production data, DNS, or deploy; do not consume release credits. Monitor relevant background workflows and record actual conclusions.
 - **Next action:** update the payment-readiness wording in the handover on a non-main working branch, then verify the resulting text and check workflow status without rerunning deployment/release jobs.
+
+
+## Owner correction — 2026-10-25 — PayJustNow excluded from payment readiness
+- **SUCCESS — scope corrected.** PayJustNow is removed from current/future payment-readiness requirements and must not be listed as a required provider or launch blocker. This owner instruction supersedes older handover entries that grouped PayJustNow with PayFast; those historical entries are retained as historical records, not current requirements.
+- **Current payment readiness scope:** verify PayFast only if online card/payment-provider checkout is required for launch. The existing checkout has been reported as Direct EFT only, and PayFast integration/merchant approval/end-to-end verification remain unconfirmed. Do not claim PayFast is ready. If the owner chooses an EFT/manual-payment launch route, assess that route on its own disclosed terms and remaining launch gates.
+- **No production changes:** this is a documentation/scope correction only. No payment configuration, checkout code, credentials, live data, deployment, or release credits were touched.
+- **Next action:** use this corrected scope in future release-gate summaries and adjust any staging-only readiness checklist when next edited; never require PayJustNow.
