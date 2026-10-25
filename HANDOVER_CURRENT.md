@@ -2214,3 +2214,10 @@ Find and implement a no-cost way to keep the source project and confidential sup
 4. Protect a Planetworld preview separately with a verified no-cost access-control option before sharing it. No Planetworld Netlify project was found, so do not claim a preview exists.
 5. Verify the deployment connection and live-site health before any hosting cutover. No merge, production change, Axxess/DNS change, checkout/payment activation, or live catalogue/stock change without explicit approval.
 6. Update both AI handover files and this project handover after every verified action/blocker. Report exact commit/link/state, not intentions.
+
+
+### Owner feedback / execution blocker — 2026-10-25
+- Owner states that explanations and handover edits without a completed privacy change are not useful progress. Do not respond with another plan-only update or treat documentation as task completion.
+- Rechecked connected GitHub tool inventory: it exposes file/branch/PR operations but no repository-visibility change or repository-creation action. Therefore I cannot directly flip visibility or create the private repository through the current connection. This is a tool limitation, not completion.
+- Privacy remains outstanding: existing repo is public; existing Netlify Get Wired site remains public; no settings changed. Keep live Get Wired site online. Do not upload confidential Planetworld/Hertz XLSX files into the public repository.
+- Immediate required action is a real GitHub UI operation to create a separate private repository, verify its Private status, then implement and verify a no-cost preview access gate without changing the live site. If that UI action cannot be performed by the assistant, state the exact single owner action needed and stop presenting handover edits as progress.
