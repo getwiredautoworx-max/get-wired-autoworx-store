@@ -2160,3 +2160,35 @@ The repository is public. Do **not** upload original supplier XLSX files contain
 
 ### Immediate continuation point
 **Waiting for private source XLSX attachments.** Once attached, begin by inspecting the actual workbook structure; do not repeat workspace-planning or create duplicate folders.
+
+
+---
+
+## CONTINUATION HANDOVER — PRIVATE SOURCE / PUBLIC STOREFRONT SECURITY (2026-10-25)
+
+### Owner's instruction
+Find and implement a no-cost way to keep the source project and confidential supplier files private while preserving the public customer-facing storefront.
+
+### Verified facts and decision
+- The existing repository `getwiredautoworx-max/get-wired-autoworx-store` is public. Its supplier folders are workflow markers only; they do not protect files from public access.
+- Do **not** change the visibility of the existing repository casually. The repository contains the storefront and active branches, and changing a public repository to private may affect GitHub Pages and other public-facing integrations.
+- Target architecture: a **separate private GitHub repository** on GitHub Free for source/development and confidential supplier inputs, plus a **public deployment-only repository or publish artifact** containing only the approved files/data required by customers. This avoids putting supplier cost lists into public Git history and avoids intentionally taking the current live shop offline.
+- Raw Hertz/Planetworld XLSX files, wholesale/dealer costs, discounts, supplier terms, stock feeds, account identifiers and credentials must never be committed to the current public repository.
+- Keep Axxess, DNS, checkout, payment configuration, live catalogue/stock and current customer-facing deployment unchanged unless the owner explicitly approves a tested migration.
+
+### Action status — not yet implemented
+- No repository-visibility setting action is available through the currently connected GitHub tools; no private repository has been created in this step.
+- No source files were moved or copied, no repository visibility was changed, and no deployment or production configuration was changed.
+- The separate-private-source/public-deployment architecture is a recommended solution, **not a completed migration**. Before copying project files, check deployment workflows, secrets, Pages/Cloudflare integration and branch protections; never copy secrets into Git or logs.
+- If a confidential supplier workbook was ever committed to the public repository, removing the current file alone is insufficient because Git history may retain it. Treat it as exposed and assess history cleanup/credential rotation as applicable; do not rewrite shared history without a reviewed plan.
+
+### Next execution steps
+1. Create a new private repository on GitHub Free, using the GitHub web UI if connector permissions cannot create or change repository settings.
+2. Copy the source/development project into the private repository without publishing confidential files elsewhere; verify its visibility is Private.
+3. Set up a reviewed, minimal public deployment output containing only the approved storefront files and sanitized customer-facing data. Keep secrets in repository/environment secret settings, not in files.
+4. Validate a preview/deploy path and confirm the existing live site is unaffected before any production cutover; obtain owner approval before changing deployment targets.
+5. Only after the privacy boundary is verified, process the private Hertz and Planetworld workbooks and publish sanitized outputs.
+6. Update this handover with each verified repository link, visibility check, commit, test, blocker, or deployment result.
+
+### Immediate continuation point
+**Security architecture agreed; implementation remains pending.** Do not claim the source is private or the migration is complete. Next concrete action is creating and verifying the separate private repository, while preserving the existing public/live storefront.
