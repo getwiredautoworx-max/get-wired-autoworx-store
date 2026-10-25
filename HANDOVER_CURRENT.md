@@ -2121,3 +2121,42 @@ The repository is public. Do **not** upload original supplier XLSX files contain
 - The root supplier-control README and some supplier README files already existed and were confirmed by fetching them; they are being updated to document the standardized layout.
 - This is a workspace/control structure, not a completed catalogue build. No supplier workbook has been parsed as part of this change, no product rows or image matches have been invented, and no storefront browser QA or deployment was performed.
 - Next concrete action: owner attaches the actual Planetworld and Hertz XLSX files privately in ChatGPT; inspect every sheet, then create sanitized catalogue outputs and exception/image-match reports in the correct supplier workspaces.
+
+
+---
+
+## CONTINUATION HANDOVER — SUPPLIER WORKSPACE STANDARDIZATION (2026-10-25)
+
+### Current state verified
+- Worked only on branch `feature/planetworld-parallel-store-2026-10-25`.
+- Supplier control structure is now documented at `catalogue-source/README.md` and `catalogue-source/suppliers/README.md`.
+- Planetworld workspace contains standard subfolders: `incoming-xlsx/`, `processed/`, `exceptions/`, `image-matches/`, and `handover/`.
+- Hertz workspace contains the same five subfolders.
+- Reusable `catalogue-source/suppliers/TEMPLATE/` contains the same folder pattern for onboarding future suppliers.
+- Each folder has a README marker describing its purpose and what may be stored there.
+- The folder markers and instructions were fetched back from GitHub after creation to confirm they exist. This verifies repository contents, not catalogue functionality or browser behaviour.
+
+### Repository and confidentiality boundary
+- Repository visibility was checked earlier through GitHub API and is **public**.
+- Do not commit original supplier XLSX workbooks containing dealer/wholesale costs, discounts, supplier terms, stock feeds, account identifiers, or other confidential information.
+- Supplier folders are structured for workflow control; their presence does not make public upload safe.
+- Use private ChatGPT attachments or other authorized private storage for original workbooks. Commit only sanitized, owner-approved outputs and non-confidential QA reports.
+
+### Scope protected
+- No merge into `main`, deployment, production-store edit, Axxess/DNS change, payment change, or live stock/catalogue change was performed.
+- Planetworld storefront navigation change remains source-level verified only; no claim of browser/mobile QA or readiness.
+- Supplier catalogue processing is **not complete**: no workbook was processed in this action, no product rows or category counts were inferred, and no manufacturer image match was claimed.
+
+### Next actions (do in order)
+1. Receive the actual Planetworld and Hertz XLSX workbooks as private ChatGPT attachments (or approved private storage); do not ask the owner to upload confidential originals into the public repository.
+2. Inspect every worksheet and record actual sheet names, headers, and row counts.
+3. Preserve original model/SKU values in the private working copy. Normalize only where documented; do not invent product fields or supplier categories.
+4. Produce a sanitized customer-facing dataset, excluding private supplier commercial fields.
+5. Create per-supplier exception reports for duplicate models/SKUs, missing/ambiguous model numbers, unclear category, missing price/specification, and unresolved images.
+6. Verify manufacturer images against exact model numbers; mark unresolved matches as UNVERIFIED / NOT FOUND / AMBIGUOUS rather than guessing.
+7. Write sanitized outputs to each supplier's `processed/`, exception reports to `exceptions/`, image evidence to `image-matches/`, and record progress in `handover/`.
+8. Test the isolated Planetworld storefront on desktop and mobile only after real data is available. Keep the main/live store and production settings untouched.
+9. Update this handover after every meaningful result, failure, blocker, or change of task. Report only verifiable outcomes.
+
+### Immediate continuation point
+**Waiting for private source XLSX attachments.** Once attached, begin by inspecting the actual workbook structure; do not repeat workspace-planning or create duplicate folders.
