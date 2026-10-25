@@ -2096,3 +2096,28 @@ For the next task, do not substitute reassurance for delivery. Read the relevant
 - This is the dedicated Planetworld incoming-XLSX location, distinct from the Planetworld storefront and other supplier workspaces.
 - Safety condition: repository visibility must be confirmed private before uploading original supplier workbooks with dealer costs, wholesale prices, discounts, stock feeds, account identifiers or confidential terms. If public, do not commit raw workbooks; upload them through authorised private storage/chat for processing. Folder README documents this.
 - No XLSX workbook has been uploaded or processed by this action. Next step: open the folder link and check repository visibility before adding a workbook.
+
+
+---
+
+## SUPPLIER WORKSPACE CONTROL STRUCTURE — 2026-10-25
+
+**Owner request:** Stop creating only one upload folder at a time. Establish supplier-specific workspaces and repeatable controls for Planetworld, Hertz, and future audio/video suppliers.
+
+### Repository changes
+- Added top-level `catalogue-source/README.md` describing the source-control lifecycle and confidentiality boundary.
+- Expanded `catalogue-source/suppliers/README.md` with standardized supplier isolation and folder rules.
+- Planetworld workspace now has `incoming-xlsx/`, `processed/`, `exceptions/`, `image-matches/`, and `handover/`.
+- Created the corresponding Hertz workspace with all five folders.
+- Created `catalogue-source/suppliers/TEMPLATE/` with the same layout for future suppliers.
+- Each folder is represented by a README so GitHub preserves it and explains what belongs there.
+- Branch: `feature/planetworld-parallel-store-2026-10-25`. Main/live store was not changed; no merge or deployment performed.
+
+### Confidentiality control
+The repository is public. Do **not** upload original supplier XLSX files containing dealer costs, discounts, trading terms, account details, or confidential stock feeds into GitHub. Use a private ChatGPT attachment or authorized private storage. Only sanitized, owner-approved outputs and non-confidential QA records may be committed.
+
+### Verification and limitations
+- GitHub create-file calls returned commit SHAs for the new Planetworld, Hertz, and template subfolder markers.
+- The root supplier-control README and some supplier README files already existed and were confirmed by fetching them; they are being updated to document the standardized layout.
+- This is a workspace/control structure, not a completed catalogue build. No supplier workbook has been parsed as part of this change, no product rows or image matches have been invented, and no storefront browser QA or deployment was performed.
+- Next concrete action: owner attaches the actual Planetworld and Hertz XLSX files privately in ChatGPT; inspect every sheet, then create sanitized catalogue outputs and exception/image-match reports in the correct supplier workspaces.
