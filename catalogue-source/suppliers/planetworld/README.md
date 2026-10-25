@@ -22,3 +22,8 @@ Purpose: prepare a separate Planetworld-powered storefront using the accepted Ge
 ## Status
 
 **Waiting for Planetworld XLSX.** No Planetworld products, prices, stock quantities, images or category counts have been inferred. No production catalogue, payment, Axxess or DNS changes are authorised by this workspace.
+
+
+## Standardized supplier controls added (2026-10-25)
+
+The workspace now has `processed/`, `exceptions/`, `image-matches/`, and `handover/` subfolders alongside the existing `incoming-xlsx/`. Use the matching folder for each output type. Since the repository is public, the incoming folder contains instructions only; submit the actual confidential XLSX privately in ChatGPT or approved private storage.
