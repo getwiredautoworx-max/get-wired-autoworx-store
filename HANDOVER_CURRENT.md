@@ -1921,3 +1921,35 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Before production remediation of the live Part Search mismatch, the owner must approve a specific verified package after its preview passes and a complete Axxess backup/rollback plan is confirmed.
 - Physical APK acceptance requires a device-side failure diagnostic or owner confirmation; this cannot be obtained by the remote CI runner.
 - Customer launch remains **HOLD**. Do not describe the store as fully customer-ready until each required gate above has recorded evidence.
+
+
+---
+
+## AUDIO CATEGORY CONTINUATION — HERTZ SOURCE WORKBOOK (2026-10-25 16:32 SAST)
+
+### Current task and source
+- Owner uploaded `hertz-price-list-2026-10-22.xlsx` in the ChatGPT conversation. The workbook is available at `/mnt/data/hertz-price-list-2026-10-22.xlsx` in this session; do not assume it has been committed to GitHub.
+- Initial workbook inspection reported 89 product records, populated item names, and no duplicate item codes detected. Treat these as preliminary checks, not a completed row-by-row catalogue audit.
+- Begin the Audio / Video category work with Hertz car-audio products. For each exact model/SKU, classify product type and proposed storefront subcategory (e.g. component/coaxial speakers, subwoofers, amplifiers, DSP/signal processors, integration/accessories) and record the exact official manufacturer product page/image source plus verification status.
+- Do not infer home theatre, studio, marine, or other use-cases solely because an item is audio-related. The current workbook is identified as Hertz / car audio; assign other segments only where exact manufacturer evidence supports it.
+- Official Hertz product information/image sources previously identified as starting points: https://hertz-audio.com/collections/car-audio-speakers/ ; https://hertz-audio.com/product/mpk-165-3/ ; https://hertz-audio.com/product/ck-165/ . These are examples, not verification of every workbook row. Match exact model numbers and do not use visually similar images as proof.
+
+### Repository / confidentiality guardrail
+- The existing repository `getwiredautoworx-max/get-wired-autoworx-store` is public. Dealer-confidential supplier price lists must NOT be uploaded to this public repository.
+- The earlier proposed `catalogue-source/audio/` path is only a folder-structure proposal, not a confirmed existing directory, and must not be used for confidential supplier workbooks. Keep the original XLSX in the current conversation/private authorised storage unless a private repository or approved non-confidential extract is available.
+- A safe deliverable can be a separate working catalogue/matching report containing only fields approved for use; do not expose supplier cost/pricing, confidential terms, or supplier stock data in public commits.
+- Current live catalogue and stock are for testing only. Supplier reconciliation, stock cleanup/imports, supplier-price changes, and live catalogue mutations remain paused pending owner/supplier authorisation.
+
+### Next actions
+1. Inspect all 89 Hertz records from the attached workbook and produce a row-by-row working table: source item code, exact model, product name, proposed segment/category/subcategory, official manufacturer page, exact image source, match confidence/status, and unresolved notes. Keep supplier-confidential price/stock fields out of public GitHub.
+2. Verify exact models against official Hertz/manufacturer sources; mark unverified items clearly instead of guessing. Separate verified matches from candidates and unresolved products.
+3. Prepare the Audio / Video navigation hierarchy requested by the owner: Audio / Video entry → segment buttons (Car Audio, Home Entertainment, Studio Equipment, Marine Audio, etc. only where relevant catalogue support exists) → brand buttons → brand product listing grouped by component type. Hertz products from this source belong in Car Audio unless manufacturer evidence says otherwise.
+4. Do not alter production storefront, live catalogue/stock, prices, payment configuration, Axxess, DNS, or hosting while building the classification/matching report. GitHub-first and preview-before-approval rules remain in force.
+5. Update this handover after the first completed row-by-row matching result, including evidence, remaining unmatched rows, and the exact next action.
+
+### Status
+- Audio category classification/image matching: STARTED; not completed.
+- Hertz workbook row-by-row manufacturer image verification: NOT YET COMPLETED.
+- Public-repository upload of supplier XLSX: PROHIBITED.
+- Production changes: NONE.
+- Customer launch: HOLD; payment readiness remains deferred until last, as instructed.
