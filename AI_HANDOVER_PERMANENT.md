@@ -3088,3 +3088,20 @@ Each supplier gets an isolated folder/workspace for source tracking, normalised 
 
 ### Next immediate action
 Request the Planetworld XLSX from the owner, then inspect the actual workbook and proceed directly to the data model. Do not start another planning exercise or redesign the accepted base storefront.
+
+
+---
+
+## 2026-10-25 ADDENDUM — PLANETWORLD PARALLEL STOREFRONT SHELL
+
+- Owner direction: create a Planetworld storefront using the same familiar format as the accepted Get Wired AutoWorx store but with a distinct colour scheme to make later integration straightforward.
+- Created `planetworld-store/index.html` on branch `feature/planetworld-parallel-store-2026-10-25`. Theme uses charcoal `#171B22`, teal `#16B8A6`, pale teal `#8CE9DF`, and light/grey text. Main store design and production are untouched.
+- Implemented a responsive storefront shell with search, category/brand/component navigation areas, product-list area, catalogue status messaging and an enquiry-preparation dialog.
+- Catalogue data remains deliberately empty until the owner provides the actual Planetworld XLSX. Do not invent products, brand names, prices, stock, availability or manufacturer image matches.
+- The enquiry dialog prepares a local text file only; it does not send a message, place an order or accept payment.
+- Store source: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/feature/planetworld-parallel-store-2026-10-25/planetworld-store/index.html
+- Store README: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/feature/planetworld-parallel-store-2026-10-25/planetworld-store/README.md
+- State is source-created but not browser-tested and not deployed. Do not describe it as a working live store or provide a guessed preview URL.
+- Next: inspect the uploaded workbook, map the real supplier fields and customer-facing categories/segments/brands/components, sanitise data before committing, match images to exact manufacturer model numbers, and run desktop/mobile and data-isolation tests. Then obtain a genuine preview URL and record evidence.
+- Keep supplier source workbooks, confidential dealer/wholesale pricing, discount terms, account details and non-public stock feeds out of the public repository. Do not connect this pilot to live Supabase product/stock tables.
+- Do not merge, deploy to Axxess, alter DNS or the home store, mutate live catalogue/stock, or activate payment without explicit owner approval. Hosting credits remain deferred until final testing. Payment readiness remains the last blocker.
