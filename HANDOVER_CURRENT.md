@@ -2087,3 +2087,12 @@ For the next task, do not substitute reassurance for delivery. Read the relevant
 - Verified after commit by fetching the file back from GitHub. Current content SHA: `5f72ec851d4a43d201f8d19a829cd2948b02f632`. Checked that active-view state exists, nav styling uses it, and category/brand selections set the expected view.
 - Verification boundary: this is source-level verification only. No browser/mobile run, preview deployment, workbook import, manufacturer-image matching, or customer-facing catalogue data has been completed. The supplier workbook is still required before real category/brand/product navigation can be populated. Do not describe the storefront as browser-tested or ready.
 - Next concrete work when the workbook is available: inspect every sheet and its columns, map real rows into categories/brands/components, sanitise customer-facing data, then test search/navigation/mobile behaviour on a preview without touching production or the main store.
+
+
+## PLANETWORLD XLSX UPLOAD FOLDER CREATED (2026-10-25)
+
+- Created `catalogue-source/suppliers/planetworld/incoming-xlsx/README.md` on branch `feature/planetworld-parallel-store-2026-10-25`.
+- Folder link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/feature/planetworld-parallel-store-2026-10-25/catalogue-source/suppliers/planetworld/incoming-xlsx
+- This is the dedicated Planetworld incoming-XLSX location, distinct from the Planetworld storefront and other supplier workspaces.
+- Safety condition: repository visibility must be confirmed private before uploading original supplier workbooks with dealer costs, wholesale prices, discounts, stock feeds, account identifiers or confidential terms. If public, do not commit raw workbooks; upload them through authorised private storage/chat for processing. Folder README documents this.
+- No XLSX workbook has been uploaded or processed by this action. Next step: open the folder link and check repository visibility before adding a workbook.
