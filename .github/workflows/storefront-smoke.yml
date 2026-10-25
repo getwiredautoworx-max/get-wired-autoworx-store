@@ -46,6 +46,8 @@ jobs:
           grep -Fq "price_status==='QUOTE_REQUIRED'" checkout-v2.html
           grep -Fq 'onclick="window.openPartSearch()"' index-new.html
           grep -Fq 'onclick="window.openPartRequest()"' index-new.html
+          grep -Fq 'function openPartSearch(seed) { return window.openPartSearch(seed); }' index-new.html
+          grep -Fq 'function openPartRequest(withImage) { return window.openPartRequest(withImage); }' index-new.html
           grep -Fq "Price on request" index-new.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
@@ -294,6 +296,19 @@ jobs:
             await earlySearchFrame.locator('#partSearchDialog.open').waitFor({timeout:15000});
             console.log('EARLY_PART_SEARCH_READY_PASS: click queued before catalogue initialization');
             await earlySearchFrame.locator('#partSearchDialog').evaluate(el => el.classList.remove('open'));
+            // Explicitly exercise the legacy bare-name call that failed on the hosted Axxess HTML.
+            const bareSearchType = await earlySearchFrame.locator('body').evaluate(() => typeof openPartSearch);
+            if (bareSearchType !== 'function') throw new Error('Legacy bare openPartSearch is not globally callable: '+bareSearchType);
+            await earlySearchFrame.locator('body').evaluate(() => openPartSearch());
+            await earlySearchFrame.locator('#partSearchDialog.open').waitFor({timeout:10000});
+            console.log('LEGACY_BARE_PART_SEARCH_HANDLER_PASS: openPartSearch() resolves and opens dialog');
+            await earlySearchFrame.locator('#partSearchDialog').evaluate(el => el.classList.remove('open'));
+            const bareRequestType = await earlySearchFrame.locator('body').evaluate(() => typeof openPartRequest);
+            if (bareRequestType !== 'function') throw new Error('Legacy bare openPartRequest is not globally callable: '+bareRequestType);
+            await earlySearchFrame.locator('body').evaluate(() => openPartRequest());
+            await earlySearchFrame.locator('#sourcePart.open').waitFor({timeout:10000});
+            console.log('LEGACY_BARE_REQUEST_PART_HANDLER_PASS: openPartRequest() resolves and opens dialog');
+            await earlySearchFrame.locator('#sourcePart').evaluate(el => el.classList.remove('open'));
             await earlySearchPage.close();
 
             // Regression: a customer may type while the async product catalogue is still loading.
