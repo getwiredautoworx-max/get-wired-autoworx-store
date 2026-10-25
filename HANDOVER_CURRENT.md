@@ -1972,3 +1972,16 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Hertz workbook was previously uploaded in chat; preliminary inspection reported 89 product records. It has not been committed to GitHub. Row-by-row classification/image verification remains pending.
 - For incoming audio/video XLSX files, inspect the workbook in chat first, classify by segment/brand/component and match exact models to official manufacturer evidence. Save only safe, approved outputs in the relevant folder. Do not alter live catalogue, prices, stock, production, Axxess, DNS, or payment settings.
 - No production or live-data changes made. Customer launch remains HOLD; payment readiness remains deferred until last as instructed.
+
+
+---
+
+## HERTZ AUDIO CATALOGUE — FIRST-PASS RESULT (2026-10-25 17:55 SAST)
+
+- Work continued from the existing handover on isolated branch `work/hertz-catalogue-audit-2026-10-25`; no main-branch or deployment changes.
+- The private XLSX `hertz-price-list-2026-10-22.xlsx` was retrieved from ChatGPT Library and inspected. `Products` sheet: 89 rows, 12 columns. Raw workbook remains private and was not committed to public GitHub because it contains dealer/retail prices and regional stock.
+- Private working report created in the session: `Hertz_audio_model_classification_working_report.xlsx` and `Hertz_audio_model_classification_working_report.csv`. Both exclude price and stock fields. The report has all 89 item codes/names, provisional Car Audio component grouping, model-page status, and unresolved notes.
+- First-pass provisional category counts: 22 coaxial speakers; 14 speaker grilles; 12 standalone subwoofers; 10 component speaker kits; 8 amplifiers; 6 tweeters; 6 subwoofer enclosures/active sub boxes; 4 woofers/midbass drivers; 3 controls/accessories; 2 OEM integration adapters; 1 DSP/signal processor; 1 manual-review item.
+- Official manufacturer pages found for six exact model strings in this pass: [CPX 165](https://hertz-audio.com/product/cpx-165/), [CPX 690](https://hertz-audio.com/product/cpx-690/), [DBX 25.3](https://hertz-audio.com/product/dbx-25-3/), [DBX 30.3](https://hertz-audio.com/product/dbx-30-3/), [MPS 250 S2](https://hertz-audio.com/product/mps-250-s2/), [MPS 250 S4](https://hertz-audio.com/product/mps-250-s4/). This does not yet verify direct image assets. 83/89 rows still need exact page matching; image-level verification remains open for all rows.
+- Do not commit the raw XLSX or public-facing report until disclosure is reviewed. No live catalogue/stock/pricing, production, Axxess/DNS, checkout/payment, or hosting changes. Supplier reconciliation paused; launch HOLD; payment readiness last.
+- **Next action:** continue exact model-by-model official Hertz lookups and image verification, then review whether a sanitized report can safely be published to `catalogue-source/audio/hertz/`. Keep unresolved models marked UNVERIFIED. Do not merge this branch or trigger deployment workflows.
