@@ -2192,3 +2192,25 @@ Find and implement a no-cost way to keep the source project and confidential sup
 
 ### Immediate continuation point
 **Security architecture agreed; implementation remains pending.** Do not claim the source is private or the migration is complete. Next concrete action is creating and verifying the separate private repository, while preserving the existing public/live storefront.
+
+
+## 2026-10-25 — Owner feedback, accountability and privacy blocker
+
+### Owner feedback / required change in execution
+- Owner asked whether the assistant is an asset or a hindrance to achieving goals, citing repeated explanations, uncertainty and requests for approval instead of delivery. Treat this as a real process failure. Next work must focus on verified outcomes rather than another proposal or progress narration.
+- Required: inspect actual state and available controls, choose the best route using project constraints, execute what is possible without risking production, verify the exact outcome, and update the handover. Never claim completion without evidence. Do not make the owner repeat known requirements or choose between options when context already supports a clear recommendation.
+
+### Privacy request — current verified state
+- Owner requested that both the GitHub repository and store be made private without added cost.
+- GitHub connector lookup verified `getwiredautoworx-max/get-wired-autoworx-store` visibility is **public**. Connected GitHub tools do not expose a repository visibility-change or repository-creation operation.
+- Netlify lookup found project `get-wired-autoworx-store`, with visitor password protection disabled and SSO-team login disabled. Search for a Planetworld Netlify project returned none.
+- No repository visibility, site access, DNS, deployment, production, catalogue, stock, checkout or payment setting was changed during this task.
+- The privacy request is **not completed**. Do not report the repository or any website as private.
+
+### Best next execution path
+1. Preserve the existing live Get Wired customer website as public; do not lock it as a side effect of protecting development.
+2. Create a separate GitHub Free private repository for development and confidential Planetworld/Hertz supplier XLSX files. Since the connected tool cannot create repositories or change visibility, use GitHub web UI for that specific step; verify the new repository shows **Private** before putting confidential data there.
+3. Keep this existing repository as a deployment/public-code location only after reviewing its contents and workflows; do not place supplier price lists or confidential feeds in it. Do not assume deleting a file erases public Git history.
+4. Protect a Planetworld preview separately with a verified no-cost access-control option before sharing it. No Planetworld Netlify project was found, so do not claim a preview exists.
+5. Verify the deployment connection and live-site health before any hosting cutover. No merge, production change, Axxess/DNS change, checkout/payment activation, or live catalogue/stock change without explicit approval.
+6. Update both AI handover files and this project handover after every verified action/blocker. Report exact commit/link/state, not intentions.
