@@ -1972,3 +1972,21 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Hertz workbook was previously uploaded in chat; preliminary inspection reported 89 product records. It has not been committed to GitHub. Row-by-row classification/image verification remains pending.
 - For incoming audio/video XLSX files, inspect the workbook in chat first, classify by segment/brand/component and match exact models to official manufacturer evidence. Save only safe, approved outputs in the relevant folder. Do not alter live catalogue, prices, stock, production, Axxess, DNS, or payment settings.
 - No production or live-data changes made. Customer launch remains HOLD; payment readiness remains deferred until last as instructed.
+
+
+---
+
+## PLANETWORLD PARALLEL STORE — STARTED 2026-10-25
+
+- Owner's direction: build a parallel storefront using the accepted existing layout while ASC and other supplier approvals remain pending. It may remain standalone or be integrated later after review.
+- Created branch `feature/planetworld-parallel-store-2026-10-25` from `main`; no merge, deployment, production write, Axxess/DNS/payment change, or live catalogue/stock change was made.
+- Added supplier-isolated workspaces:
+  - `catalogue-source/suppliers/README.md`
+  - `catalogue-source/suppliers/planetworld/README.md`
+  - `planetworld-store/README.md`
+- Supplier-folder approach is accepted: each supplier's source data, working extracts, classification, stock/pricing audit and exception list should be isolated. Because the GitHub repository is public, raw supplier XLSX files and confidential costs/terms must remain private; only owner-approved sanitised customer-facing data may be committed.
+- The current storefront `index-new.html` is backed by the existing Supabase catalogue. The Planetworld pilot must not reuse that live product endpoint or mutate live tables. Plan is to reuse the visual baseline with a separate static/sanitised Planetworld dataset and isolated enquiry-first flow; do not imply payments/checkout are live.
+- **Blocking input:** no Planetworld XLSX was found in the current Library search. Ask owner to attach/upload the Planetworld workbook in this chat. Do not invent products, prices, stock or image matches.
+- Next steps after workbook arrives: inspect all sheets/columns; preserve original supplier SKU/model privately; classify actual products into supported categories; verify exact-model manufacturer imagery; produce a sanitised dataset and exception list; implement responsive storefront; run build and mobile/customer-journey checks; provide a preview URL tied to the tested branch/commit.
+- 48-hour target is a reasonable MVP target only if the workbook has usable product identifiers and customer-facing pricing. It is not yet a verified delivery promise.
+- Existing accepted PR#74/base storefront remains untouched. Payment readiness stays last; customer launch remains HOLD until release checks and owner approval.
