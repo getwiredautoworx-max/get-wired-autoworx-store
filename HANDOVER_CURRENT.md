@@ -1990,3 +1990,38 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Next steps after workbook arrives: inspect all sheets/columns; preserve original supplier SKU/model privately; classify actual products into supported categories; verify exact-model manufacturer imagery; produce a sanitised dataset and exception list; implement responsive storefront; run build and mobile/customer-journey checks; provide a preview URL tied to the tested branch/commit.
 - 48-hour target is a reasonable MVP target only if the workbook has usable product identifiers and customer-facing pricing. It is not yet a verified delivery promise.
 - Existing accepted PR#74/base storefront remains untouched. Payment readiness stays last; customer launch remains HOLD until release checks and owner approval.
+
+
+---
+
+## WAY FORWARD — PLANETWORLD INDEPENDENT STORE (OWNER DIRECTION, 2026-10-25)
+
+### Decision
+Proceed with a separate Planetworld-powered pilot using the accepted Get Wired AutoWorx layout as the design baseline. Build while ASC and other supplier approvals are pending. Keep it standalone initially; later either retain it as a separate store or integrate selected sanitised customer-facing records into the base store only after review and explicit approval.
+
+### Current verified state
+- Branch: `feature/planetworld-parallel-store-2026-10-25`, created from `main`.
+- Workspaces created: `catalogue-source/suppliers/README.md`, `catalogue-source/suppliers/planetworld/README.md`, and `planetworld-store/README.md`.
+- This is a workspace/documentation kickoff, **not yet a working storefront or verified preview**.
+- Planetworld XLSX was not found in the current Library search at this checkpoint. Build data work is blocked until the owner uploads/attaches the workbook in chat.
+- Base `index-new.html` uses the live Supabase product/category endpoints. The parallel storefront must not reuse those endpoints for Planetworld data or write to live tables.
+- No production, Axxess, DNS, payment, base-store catalogue or stock changes were made. Existing customer launch remains HOLD; payment readiness remains last.
+
+### Execution sequence (avoid circles; close each step with evidence)
+1. **Input:** owner uploads Planetworld XLSX privately in chat. Do not put the raw workbook in this public repository.
+2. **Inspect once:** list sheets, columns, row counts, SKU/model/name/brand/category/price/stock/image fields, formulas and duplicate/missing identifiers. Record the source workbook/version in the private working audit.
+3. **Prepare data:** normalise a working copy without changing source values; separate supplier cost/terms from approved customer-facing fields. Do not infer stock semantics or calculate selling prices until the workbook's pricing conventions and owner-approved pricing rule are clear.
+4. **Classify:** map actual products into the supported categories/segments and brands represented by the workbook. Flag ambiguous products instead of forcing categories.
+5. **Images:** use exact-model manufacturer evidence where available; track product classification confidence separately from image verification. Missing/unverified images must be marked, not fabricated.
+6. **Build MVP:** reuse the accepted visual/layout baseline; use an isolated Planetworld-only sanitised data file and independent search/category/brand/component/product-detail views. Keep the first pilot enquiry/request-to-order only unless payment, fulfilment, policies and operational ownership are separately approved. Do not claim live checkout or verified live stock.
+7. **Test and preview:** check build, direct product links, search, category/brand navigation, mobile layout, empty/missing data, enquiry links and that no Planetworld page calls live catalogue endpoints. Give owner the exact preview URL and tested commit; do not merge/deploy to production without approval.
+8. **Decision:** after owner acceptance, choose standalone hosting or a reviewed integration. Do not merge automatically.
+
+### 48-hour target
+Target a usable pilot within 48 hours **from receipt of a usable workbook**, not a guarantee before the source data is inspected. Prioritise working catalogue navigation/search/details and enquiry flow over full image coverage. Report blockers with evidence and keep a clear completed/incomplete list.
+
+### Supplier workspace policy
+Each supplier gets an isolated folder/workspace for source tracking, normalised private working data, category mapping, stock/pricing audit and exceptions. Repository is public: never commit raw XLSX/price lists, confidential dealer cost, discounts, supplier stock feeds, account identifiers or trading terms. Only owner-approved sanitised outputs may be committed.
+
+### Next immediate action
+Request the Planetworld XLSX from the owner, then inspect the actual workbook and proceed directly to the data model. Do not start another planning exercise or redesign the accepted base storefront.
