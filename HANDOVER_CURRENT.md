@@ -2025,3 +2025,30 @@ Each supplier gets an isolated folder/workspace for source tracking, normalised 
 
 ### Next immediate action
 Request the Planetworld XLSX from the owner, then inspect the actual workbook and proceed directly to the data model. Do not start another planning exercise or redesign the accepted base storefront.
+
+
+---
+
+## PLANETWORLD PARALLEL STOREFRONT SHELL — 2026-10-25
+
+### Owner direction
+Build a separate Planetworld storefront in the same familiar format as the accepted Get Wired AutoWorx layout, with a clearly different colour scheme so the storefront can later integrate into the home store without a redesign.
+
+### Completed and verified in GitHub
+- Created `planetworld-store/index.html` on branch `feature/planetworld-parallel-store-2026-10-25`.
+- Visual direction: charcoal `#171B22`, teal `#16B8A6`, pale teal `#8CE9DF`, light text and muted grey. The existing main-store palette and production layout remain unchanged.
+- Added responsive header/search, catalogue navigation, category and brand areas, product-list area, status notes and an enquiry-preparation dialog.
+- The product dataset is intentionally empty until the actual Planetworld XLSX is supplied. No products, brands, prices, stock or image matches are invented.
+- Enquiry form currently prepares a local text file only. It does not transmit customer data, submit an order or take payment.
+- Updated `planetworld-store/README.md` with current state, workbook mapping steps, data privacy and release boundaries.
+- Store source: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/feature/planetworld-parallel-store-2026-10-25/planetworld-store/index.html
+- README: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/feature/planetworld-parallel-store-2026-10-25/planetworld-store/README.md
+
+### Not yet done / do not claim
+- Planetworld workbook is still required to populate real products and category/brand/component hierarchy.
+- Exact-model manufacturer image matching is pending.
+- No browser/visual QA has been run and no deployed preview URL exists yet.
+- No merge, production deployment, Axxess/DNS change, live catalogue/stock mutation, Supabase connection or payment activation occurred.
+
+### Next action
+Wait for the owner to upload/attach the Planetworld XLSX in chat. Inspect its sheets and columns, create a sanitised customer-facing dataset, map categories/segments/brands/components from real rows, then verify exact-model images and test the independent storefront on mobile and desktop. Provide an actual preview URL and test evidence before asking for approval. Do not waste credits on hosting previews until the final testing phase. Keep payment readiness as the last blocker and keep the base store unchanged.
