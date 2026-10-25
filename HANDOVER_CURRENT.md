@@ -2491,3 +2491,29 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 - Live QA run 40128654981 previously failed only because a trailer assertion was incorrectly scoped to the Electrical category page. After scoping the assertion to the dedicated trailer page, run 40128799675 passed 47/47.
 - No merge, production deployment, Axxess/DNS change, payment activation, supplier-data change, catalogue import or live-stock write occurred. The single controlled preview deployment is complete; do not deploy again in this checkpoint.
 - Next step: owner visual review of the exact verified preview. Keep PR #72 draft/unmerged until explicit owner approval and release gates are satisfied.
+
+
+## Automated monitor checkpoint — 2026-10-25 19:20 UTC (21:20 SAST)
+
+### Current PR and commit state
+- Re-read PR #72 and the latest commits on `fix/pr70-storefront-owner-feedback-2026-10-20`. PR #72 remains OPEN, DRAFT, UNMERGED, based on approved PR #70 baseline `recovery/approved-preview-index-new`.
+- Current PR head remains `6fad09870098b819e2f93cfd47a646427759ceb4` (commit message: `[preview-qa] scope trailer photo verification to the trailer category page`, 2026-10-24 20:13:12 UTC). No newer commit exists on the PR branch as of this checkpoint. PR #68 and PR #71 were not used as starting points.
+- Recent repository-wide main-branch activity was not treated as a PR #72 change.
+
+### Freshly rechecked Actions evidence
+- Live Cloudflare Pages browser QA run [40128799675](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128799675): SUCCESS, 47 PASS / 0 FAIL; zero browser console errors, page errors, failed requests, bad HTTP responses or unexpected image fallbacks. It opened `https://b1ee7dbb.get-wired-autoworx-store.pages.dev/store.html` and verified the homepage and same-tab root-category click-through. Its report lists all 10 deployed application files as passing exact-source parity against PR head `6fad09870098b819e2f93cfd47a646427759ceb4`. The deployed application source commit is `e59d9d25a4814c9365100769d84ebf44ab5bdafa`; the later PR-head commits changed QA/test harness only.
+- Local interaction QA run [40128802808](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802808): SUCCESS, 27 PASS / 0 FAIL. Evidence includes labelled/distinct loaded category/subcategory images, electrical-topic mapping, trailer photo loading and attribution, standalone Part Search and Request a Part, search-query handoff, corrected banner, same-tab navigation, product details, Add to Cart/cart badge, and WhatsApp query containing product name/SKU.
+- Responsive layout browser acceptance [40128802832](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802832): SUCCESS at 320, 360, 390, 768 and 1440 CSS pixels; no horizontal overflow in tested category/product pages.
+- Public SKU Exposure Audit [40128802813](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802813): SUCCESS.
+- The one controlled non-production Pages deployment [40128567122](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128567122) remains SUCCESS. No additional deployment was initiated during this monitoring pass.
+
+### Exact preview and access caveat
+- Exact browser-tested review URL: https://b1ee7dbb.get-wired-autoworx-store.pages.dev/store.html
+- GitHub-hosted Playwright run 40128799675 opened this URL and passed live source parity and same-tab category click-through. In the current monitor execution environment, a separate direct-open attempt failed before HTTP response because this environment's DNS resolver returned `Temporary failure in name resolution`; this is an environment access limitation, not a newly observed storefront failure. Do not trigger another deployment merely to retry this local DNS issue.
+- A separate Cloudflare Workers build failure previously recorded for commit prefix `e59d9d2` remains distinct from the successful Pages preview; it is not a production deployment and has no verified Workers URL.
+
+### Next steps and safety boundary
+1. Owner visually reviews the exact verified Pages preview above.
+2. Keep PR #72 draft/unmerged until explicit owner approval and separate release gates.
+3. Do not deploy again unless storefront source changes and the non-deploying checks pass; review workflow path filters to avoid accidental deployments from test-only changes.
+4. No merge, production deployment, Axxess/DNS change, payment activation, supplier-data change, catalogue import, live-stock write, or Supabase data write occurred in this monitoring pass.
