@@ -2523,3 +2523,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The image proxy can return 404 for multiple distinct reasons (product missing/inactive; no exact WebP plus missing private supplier mapping; or no matching upstream JPG). Current evidence does not isolate which cause applies to this SKU.
 - The audit's hard-coded SKU probes conflate per-product image availability with endpoint health; no repeat run or source/production change was made. Next safe step is authorized read-only status/mapping/log inspection, then an isolated-branch audit improvement that classifies endpoint health separately from SKU image availability.
 - No live catalogue/stock/image, Supabase data/config, hosting, Axxess, DNS, payment, or deployment changes. Customer launch remains **HOLD**.
+
+
+### Second failing image-proxy probe cross-check — 2026-10-26
+
+- Read-only search also matched `GW-026C7F71`, the earlier 404 from audit attempt 2. The staging outside-hierarchy CSV identifies it as “Universal Fuel Filter” with disposition `QUARANTINE_UNTIL_OWNER_SCOPE_DECISION`, approval `NOT_APPROVED — READ ONLY CANDIDATE`.
+- Both failing hard-coded smoke probes are therefore rows already marked unapproved/out-of-scope in staging taxonomy review. This strengthens the concern that the smoke test's chosen legacy SKU probes are unsuitable as unconditional endpoint-health fixtures; it still does not prove why either runtime request returned 404.
+- No database query, source edit, rerun, image/catalogue mutation, or deployment was made. Continue with read-only function/product/mapping/log checks if authorized, then redesign the smoke test to distinguish proxy health from availability of specific unapproved products.
