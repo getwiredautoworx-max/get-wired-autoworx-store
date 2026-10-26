@@ -75,7 +75,7 @@ def guess_component(division, description, model):
         if any(x in t for x in ("head unit", "double din", "single din", "media receiver", "car stereo", "receiver")): return "Car Head Units & Receivers"
         if "subwoofer" in t: return "Car Subwoofers"
         if "speaker" in t or "tweeter" in t: return "Car Speakers"
-        if "amplifier" in t or re.search(r"\\bamp\\b", t): return "Car Amplifiers"
+        if "amplifier" in t or re.search(r"\bamp\b", t): return "Car Amplifiers"
         if "camera" in t: return "Vehicle Cameras"
         if "antenna" in t: return "Vehicle Antennas"
         if any(x in t for x in ("cable", "adapter", "adaptor", "remote", "bracket", "accessory", "accessories")): return "Car Audio Accessories"
