@@ -1,5 +1,6 @@
 # Re-run install acceptance whenever the APK validation workflow itself is updated.
 name: Build and Validate Get Wired AutoWorx Owner APK
+# Keep the owner APK build independently runnable from workflow_dispatch and on source changes.
 on:
   workflow_dispatch:
   push:
