@@ -76,3 +76,13 @@ The exact manufacturer page was not located for the six Harness and Trims codes 
 | Mason AL-2144A | Supplier row says 4/4 cello; exact manufacturer page/image not located in this pass. | Musical Instruments → Orchestral strings (provisional) | No verified exact source |
 
 No images were copied or added. Where a supplier code includes additional suffixes, verify the exact variant before attaching manufacturer imagery. The two unresolved codes remain unverified; no inferred URLs or image matches are claimed.
+
+
+## Manufacturer / exact-SKU follow-up — 2026-10-26
+
+| Supplier SKU | Evidence checked | Result and next action |
+|---|---|---|
+| 90011904 | NXT Level Tech exact-SKU listing identifies it as “2-Din Toyota OEM Head Unit Black” by OneNav and categorizes it as a head unit: https://nxtleveltech.co.za/product/90011904-2-din-toyota-oem-head-unit-black | **SKU identity corroborated by a third-party reseller, not official manufacturer documentation.** The supplier workbook's RRP is R349 incl VAT while this reseller listing showed R448 incl VAT; that discrepancy reinforces the existing price-basis/source-value review flag. Do not replace supplier RRP, infer availability, or copy its image. Keep as Car Audio → vehicle-specific head unit / Toyota 2-DIN fitment, pending authorised supplier confirmation. Search result availability wording conflicted with a category-page snippet, so current availability is unverified. |
+| 86180 | Exact code appears in Toyota ISO2CAR compatibility listings; a specialist reseller identifies it as a Toyota ISO2CAR mute adaptor: https://www.carkit-shop.nl/kram-iso2car-selecteer-hier-uw-toyota-iso2car.html and https://www.carkit-shop.nl/kram-iso2car-selecteer-hier-uw-toyota-iso2car.html | **Function/fitment cross-check only; no official manufacturer product page established.** Retain the supplier's description and classify provisionally under Vehicle Harnesses & Trims / Toyota ISO2CAR adaptor. Do not treat the cross-reference as proof of exact current variant, image permission, Planetworld stock, or price validity. |
+
+No image downloaded, no supplier workbook changed, and no live catalogue or price field changed. Third-party listing prices and availability are not substitutes for current authorised Planetworld confirmation.
