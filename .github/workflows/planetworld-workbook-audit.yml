@@ -42,3 +42,5 @@ jobs:
           path: planetworld-audit-output/
           if-no-files-found: error
           retention-days: 14
+
+# 2026-10-26: harmless workflow edit to rerun the read-only audit against current branch inputs.
