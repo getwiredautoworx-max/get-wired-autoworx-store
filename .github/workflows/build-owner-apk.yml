@@ -8,7 +8,69 @@ on:
       - 'android-owner-app/**'
       - '.github/workflows/build-owner-apk.yml'
 jobs:
-  build-and-validate:
+  owner-webview-smoke:
+    # Run deterministic HTML/JavaScript checks independently of hosted emulator availability.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check bundled owner WebView HTML and inline JavaScript
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import tempfile, subprocess, sys
+
+          source = Path('android-owner-app/app/src/main/assets/admin_app.html').read_text(encoding='utf-8')
+          class Scripts(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.inline = []
+                  self.current = None
+                  self.external = False
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() == 'script':
+                      attrs = dict(attrs)
+                      self.external = bool(attrs.get('src'))
+                      self.current = [] if not self.external else None
+              def handle_data(self, data):
+                  if self.current is not None:
+                      self.current.append(data)
+              def handle_endtag(self, tag):
+                  if tag.lower() == 'script':
+                      if self.current is not None:
+                          self.inline.append(''.join(self.current))
+                      self.current = None
+                      self.external = False
+
+          parser = Scripts()
+          parser.feed(source)
+          if not parser.inline:
+              raise SystemExit('No inline JavaScript found to validate')
+          with tempfile.TemporaryDirectory() as d:
+              for i, script in enumerate(parser.inline):
+                  p = Path(d) / f'inline-{i}.js'
+                  p.write_text(script, encoding='utf-8')
+                  subprocess.run(['node', '--check', str(p)], check=True)
+          required = [
+              'if(window.supabase&&typeof window.supabase.createClient===',
+              'Supabase login library did not load',
+              'async function loginPassword()',
+              'async function boot()',
+              'Could not check the owner session:',
+          ]
+          missing = [item for item in required if item not in source]
+          if missing:
+              raise SystemExit('Missing owner-login guard/check: ' + ', '.join(missing))
+          print(f'PASS: {len(parser.inline)} inline JavaScript blocks parse; owner login guards are present.')
+          PY
+
     # Pin to the stable 22.04 runner while investigating 2026 emulator hangs on ubuntu-latest.
     runs-on: ubuntu-22.04
     timeout-minutes: 45
