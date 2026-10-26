@@ -1,3 +1,19 @@
+## CONTINUATION MONITOR RESULT — 2026-10-26 16:24 SAST
+
+- Task-start entry committed at `e2df19bb435a3ec378eaa20d503567e626066162`.
+- Rechecked actual job conclusions:
+  - Live read-only browser smoke run `40330025420`, job `121596666728`: FAILED; failed step is `Run read-only desktop and mobile smoke checks`. This targets the live domain, so no automatic rerun was triggered.
+  - Live release-gates run `40326339664`, job `121583885828`: FAILED only at the separate payment-readiness gate. HTTPS/version marker, live desktop/mobile category navigation, and checkout UI without a real order all passed. This is a production release gate, not rerun.
+  - ASC exact-SKU image sync run `40283779662`, job `121442633206`: SUCCESS. The run's own bounded batch found zero eligible image targets; no catalogue image changes were made.
+  - Background controller run `40334030417`, job `121610672166`: SUCCESS.
+- Safe staging retry: manually restarted only failed Catalogue Image Audit job `121609906245` from run `40288619507` using the supported failed-job rerun action. GitHub accepted the rerun. Latest attempt created job `121628594559`; at 16:24 SAST it was `in_progress` at Checkout, with the audit steps pending. Do not claim the rerun passed until a completed conclusion is observed.
+- Prior failed attempt logs confirm deterministic HTTP 404 for public image proxy SKU `GW-D44F3E5F`; it is a read-only URL smoke check, not a live data mutation. The retry is limited to one attempt; if it fails again, stop retries and fix the proxy/asset mismatch in staging source before testing again.
+- Open pull-request search returned multiple draft/open candidates; no PR was merged or updated in this pass.
+- No live Axxess, DNS, payment credentials, catalogue/product/stock data, or Supabase secrets were changed. No Pages/Cloudflare/Netlify deployment was triggered and no release credits intentionally consumed.
+- Next precise action: recheck job `121628594559` / run `40288619507` until it completes, capture the final conclusion and failing SKU (if any), then update this handover. If the 404 persists, inspect the staging proxy mapping and asset path for `GW-D44F3E5F`; do not invent/replace a product image or mutate catalogue rows.
+
+---
+
 ## CONTINUATION TASK START — 2026-10-26 16:21 SAST
 
 - Task: continue Get Wired AutoWorx staging/store QA from permanent handover instructions; inspect latest relevant GitHub Actions and continue only safe, non-production work.
