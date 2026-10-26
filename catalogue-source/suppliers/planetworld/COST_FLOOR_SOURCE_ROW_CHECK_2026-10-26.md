@@ -1,10 +1,10 @@
 # Planetworld cost-floor source-row check — 2026-10-26
 
-**Source:** latest successful read-only audit artifact from run [40285978617](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40285978617).  
+**Source:** latest corrected successful read-only audit artifact from run [40290002999](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999).  
 **Purpose:** validate the mapped source fields for non-zero-RRP risk rows. Read-only; no supplier workbook or live data changed.
 
 ## What the source rows confirm
-For the listed rows, the audit mapped the supplier's **Retail Price (Incl)** as RRP and **Dealer Price (Excl)** as dealer cost. Adding 15% VAT to the dealer cost makes the listed RRP lower than estimated VAT-inclusive cost for 18 rows, before any proposed discount. The fields are not obviously swapped or unmapped in the extracted source rows, but source errors, bundle treatment, pricing policy, and supplier price basis still need confirmation. These are not approved prices.
+For the listed rows, the audit mapped the supplier's **Retail Price (Incl)** as RRP and **Dealer Price (Excl)** as dealer cost. Adding 15% VAT to the dealer cost makes the listed RRP lower than estimated VAT-inclusive cost for 18 distinct positive-RRP products, before any proposed discount. The corrected run excludes zero-RRP rows and an identical product-data duplicate workbook from cost-floor counts; the 19 zero-RRP products remain a separate owner-audit hold. The fields are not obviously swapped or unmapped in the extracted source rows, but source errors, bundle treatment, pricing policy, and supplier price basis still need confirmation. These are not approved prices. The corrected audit scanned 48 XLSX files / 96 sheets / 3,343 extracted rows with zero workbook errors. Its cost-floor scope contains 3,298 positive-RRP rows after excluding the 26 rows from the identical duplicate workbook. It reports 18 distinct products below estimated cost at RRP−1% and 19 distinct products at RRP−2%; the extra 2% sensitivity row is `90011904`. No supplier workbook, production catalogue, live price, or stock was changed.
 
 | Workbook / row | Model / short description | Dealer cost excl. VAT | Retail Price (Incl) | Est. cost incl. VAT | RRP−1% less than cost by |
 |---|---|---:|---:|---:|---:|
