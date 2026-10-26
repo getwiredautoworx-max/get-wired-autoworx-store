@@ -57,3 +57,9 @@
 - No live product/price/stock/category data, source workbook, DNS, Axxess hosting files, payment configuration, Supabase secrets, or customer orders were changed. No Cloudflare/Netlify deployment or credit use was initiated by this run.
 - **Next precise action:** keep customer launch HOLD. Owner should review PR #94's no-AI Request a Part photo path and authorize a coordinated release only after the live `index-new.html` mismatch and payment-readiness blockers are resolved. If true AI identification is required instead, obtain explicit photo-provider/privacy approval and configure an authorized server-side provider secret; do not activate paid fallback. Separately investigate the live image-proxy 404s for `GW-026C7F71` and `GW-D44F3E5F` using source/asset evidence, without altering catalogue records or guessing images.
 - Monitoring is periodic when the scheduled workflow/automation runs; it is not continuous between runs.
+
+
+## Controller follow-up — 2026-10-26 15:50 SAST
+- After the audit retry completed, the Background Task Controller ran as [40334030417](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40334030417), SUCCESS attempt 1, head SHA `9f490538fc3bf74053737f7ad9eb79121cc8f2ea`. Job `121610672166` completed successfully with `retry_actions_requested=0` and `monitoring_errors=0`. It did not queue a fourth image-audit attempt.
+- Rechecked the main Actions list after this controller run: Catalogue Image Audit remains attempt 3 FAILURE; no new attempt is queued/in progress. Latest GitHub Pages run remains `40273562032` SUCCESS on `5d8f23f9668a3b3796fad540d65401d9ba00f94d`; no Pages run is associated with documentation-only handover commits `9f490538fc3bf74053737f7ad9eb79121cc8f2ea` or the outcome-note update.
+- No further rerun/deployment action is justified in this run. Continue from the next actions recorded above; do not enter a retry loop for the image-proxy 404s.
