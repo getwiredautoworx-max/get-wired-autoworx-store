@@ -2256,3 +2256,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Confirmed the automation update succeeded; it remains enabled on its existing daily schedule in the Africa/Johannesburg timezone. Monitoring runs on its schedule, not continuously.
 - Current verified status at setup: PR #95 open/unmerged, head `fba989e06b84230945682dc61c463301e11f9473`, GitHub `mergeable=false`; prior audit run `40279792830` succeeded and artifact exists until 2026-11-09, but it predates the later source-file cleanup and must be refreshed.
 - No workflow-dispatch action is available in the connected GitHub tools surfaced for this session; no fresh audit run was started. Next action: on a monitoring run, use the repository GitHub Actions UI to manually run the safe read-only Planetworld audit workflow, then verify the new run and artifact before replacing historical counts. Do not rerun production/deployment jobs.
+
+
+## DAILY MONITOR SCHEDULE CONFIRMED — 2026-10-26
+
+- Updated the existing enabled automation to start its daily recurrence at **08:00 Africa/Johannesburg on 2026-10-27**, titled **Get Wired Store & Planetworld Monitor**. It retains the previous store-reconciliation instructions and adds the Planetworld monitoring requirements.
+- The platform reports the automation enabled and the schedule update succeeded; its next-run timestamp is not populated in the returned metadata, so do not promise an exact delivery/run time beyond the configured daily schedule.
+- Current PR #95 remains open and unmerged; its head branch is `docs/planetworld-blocker-handover-2026-10-26`. A fresh audit run is still outstanding because no workflow-dispatch action is exposed in the connected GitHub tool set.
