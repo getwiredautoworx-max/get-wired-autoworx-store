@@ -2504,3 +2504,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - This is a targeted CI reliability change, **not yet verified**: the workflow must run against this commit and the result must be inspected. Do not label the APK validated or hand out a replacement until the artifact and tests are confirmed.
 - Next: inspect the new Actions run and job logs. If emulator boot still times out, preserve the build/artifact result separately and investigate the emulator startup logs/runner virtualization rather than repeatedly changing APK source. Then owner must test the replacement's login on the Hisense M72 Pro; never request their password or OTP.
 - Scope remains APK-only. No storefront, hosting, Axxess, DNS, checkout/payment, supplier workbook, catalogue/stock, or Supabase project/data changes. Storefront work remains in the separate desktop session; customer launch remains **HOLD**.
+
+
+## CONTINUATION TASK START — 2026-10-26 16:40 SAST
+
+- Read the permanent and current handover files before continuing.
+- Immediate task: resolve the rejected documentation update and continue staging image-proxy diagnosis.
+- Starting evidence: audit run 40288619507, latest job 121628594559 failed with HTTP 404 for SKU GW-D44F3E5F. Do not retry without a source fix.
+- Safe scope: inspect repository and PR evidence. No catalogue/stock writes, image replacement, production reruns, deployment, Axxess/DNS/payment changes, or release-credit use.
+- Documentation recovery was committed on isolated branch docs/continuation-handover-20261026 at fb6d8c2da3b0a4d505397fefbfcd3eda30e609ab; main-branch sync remains separate.
+- No production action was performed.
