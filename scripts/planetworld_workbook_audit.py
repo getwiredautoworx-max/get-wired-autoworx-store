@@ -100,6 +100,7 @@ for path in files:
                 rrp, cost, stock = as_number(val("rrp")), as_number(val("cost")), as_text(val("stock"))
                 flags = []
                 if not model: flags.append("MISSING_MODEL_OR_SKU")
+                if rrp == 0: flags.append("ZERO_RRP_REVIEW")
                 if not desc: flags.append("MISSING_DESCRIPTION")
                 if rrp is None: flags.append("MISSING_OR_UNMAPPED_RRP")
                 if columns["cost"] is None: flags.append("COST_COLUMN_NOT_MAPPED")
@@ -113,6 +114,8 @@ for path in files:
                 cost_incl_vat = round(cost * 1.15, 2) if cost is not None and cost_basis == "EX_VAT" else (cost if cost is not None and cost_basis == "INCL_VAT" else None)
                 margin_1 = round(proposed_1 - cost_incl_vat, 2) if proposed_1 is not None and cost_incl_vat is not None else None
                 margin_2 = round(proposed_2 - cost_incl_vat, 2) if proposed_2 is not None and cost_incl_vat is not None else None
+                if margin_1 is not None and margin_1 < 0: flags.append("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT")
+                if margin_2 is not None and margin_2 < 0: flags.append("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT")
                 extracted.append({
                     "source_file": rel, "sheet": ws.title, "source_row": row_num,
                     "brand": brand, "model_or_sku": model, "product_type_source_value": product_type, "description": desc,
@@ -151,6 +154,30 @@ for row in extracted:
     key = norm(row["model_or_sku"])
     if key and counts[key] > 1:
         row["quality_flags"] = ";".join(filter(None, [row["quality_flags"], "DUPLICATE_MODEL_OR_SKU_CROSS_SOURCE"]))
+
+# Detect different XLSX files that contain identical product-row data even when
+# workbook metadata makes their binary SHA-256 hashes differ.
+by_file = {}
+for row in extracted:
+    by_file.setdefault(row["source_file"], []).append((
+        norm(row["model_or_sku"]), norm(row["description"]), row["rrp_source_value"],
+        row["cost_source_value"], row["stock_source_value"], row["all_source_values_json"]
+    ))
+def preferred_source(filename):
+    return 0 if not re.search(r"\\s*\\(\\d+\\)\\.xlsx$", filename, re.I) else 1
+signature_groups = {}
+for filename, records in by_file.items():
+    signature = tuple(sorted(records))
+    signature_groups.setdefault(signature, []).append(filename)
+identical_product_data_file_groups = []
+for group in signature_groups.values():
+    if len(group) > 1:
+        keep = sorted(group, key=lambda x: (preferred_source(x), x))[0]
+        duplicates = [x for x in sorted(group) if x != keep]
+        identical_product_data_file_groups.append({"retained_source": keep, "duplicate_sources": duplicates})
+        for row in extracted:
+            if row["source_file"] in duplicates:
+                row["quality_flags"] = ";".join(filter(None, [row["quality_flags"], "IDENTICAL_PRODUCT_DATA_DUPLICATE_WORKBOOK"]))
 def write_csv(name, rows):
     path = OUT / name
     if not rows:
@@ -167,8 +194,13 @@ summary = {
   "sheets_scanned": len(inventory), "rows_extracted": len(extracted),
   "workbooks_with_errors": len(errors),
   "identical_workbook_hash_groups": [g for g in (lambda d: [[k, sorted(set(v))] for k, v in d.items() if len(set(v)) > 1])(dict((h, [x["source_file"] for x in inventory if x["source_file_sha256"] == h]) for h in set(x["source_file_sha256"] for x in inventory)))],
+  "identical_product_data_file_groups": identical_product_data_file_groups,
   "rows_missing_model_or_sku": sum("MISSING_MODEL_OR_SKU" in r["quality_flags"] for r in extracted),
   "rows_missing_or_unmapped_rrp": sum("MISSING_OR_UNMAPPED_RRP" in r["quality_flags"] for r in extracted),
+  "rows_with_zero_rrp": sum("ZERO_RRP_REVIEW" in r["quality_flags"] for r in extracted),
+  "rows_where_rrp_minus_1pct_is_below_estimated_cost_incl_vat": sum("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT" in r["quality_flags"] for r in extracted),
+  "rows_where_rrp_minus_2pct_is_below_estimated_cost_incl_vat": sum("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT" in r["quality_flags"] for r in extracted),
+  "rows_from_identical_duplicate_workbooks": sum("IDENTICAL_PRODUCT_DATA_DUPLICATE_WORKBOOK" in r["quality_flags"] for r in extracted),
   "rows_with_duplicate_model_or_sku": sum("DUPLICATE_MODEL_OR_SKU_CROSS_SOURCE" in r["quality_flags"] for r in extracted),
   "category_guess_counts": dict(Counter(r["category_guess_review_only"] for r in extracted)),
   "important": "RRP source values appear VAT-inclusive and dealer costs marked Excl are VAT-exclusive; cost comparison multiplies detected EX_VAT cost by 1.15. Figures are review-only and exclude overheads; no catalogue, price, or stock changes are performed."
