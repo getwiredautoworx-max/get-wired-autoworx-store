@@ -1936,3 +1936,10 @@ Run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-sto
 - Automatic external checks were triggered by the PR branch update: Netlify redirect/header/pages checks finished `neutral`; Cloudflare Pages remained `in_progress` at last read-only check. No manual deploy/retry was initiated. Avoid further PR-branch commits while this check is unresolved to prevent additional preview builds/credit use.
 - Source assertions and isolated runtime harness passed. New-head Playwright Actions run remains unverified; previous CI success applies only to older head `35828e03e428b0448c9ba0eae68c5bc74dc400e8`.
 - Live Axxess Part Search is still not repaired by GitHub-only work. No Axxess upload or production change without explicit approval of the verified package and backup/rollback plan. Customer launch HOLD; stock/catalogue reconciliation PAUSED.
+
+
+## LATEST PART SEARCH CHECK — 2026-10-26 06:45 SAST
+- Exact source/runtime harness now also confirms bare legacy `openPartSearch(seed)` and `openPartRequest(true)` wrappers are callable and open the expected dialogs; both pass alongside the delayed-load, SKU match, no-match and Request a Part handoff tests.
+- PR #94 exact head `fec0b1c51f9bed5680cf6169fbcf8d70fbb00888`: Cloudflare Pages check reports SUCCESS with preview `https://f6aa4bfc.get-wired-autoworx-store.pages.dev`, but the available web retrieval tool cannot access it; Netlify checks are neutral. Worker-build bot still shows `e719f19` failed and `e4eadd8`/`c98ed17` in progress at last update. These Worker builds are separate from Pages and match the known config mismatch; no retry was performed.
+- Exact-head Playwright run is still not available; added browser test remains NOT VERIFIED. Stop further commits to PR #94 to avoid repeated automatic preview/build triggers.
+- Live Axxess behavior remains unresolved; GitHub-only changes do not update Axxess. No upload, live data/payment/DNS/Supabase changes, merge, Gemini/API calls or manual deploy were performed. Owner approval of the tested package and backup/rollback plan remains required before the live switch.
