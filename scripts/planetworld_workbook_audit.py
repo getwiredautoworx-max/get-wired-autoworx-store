@@ -75,6 +75,10 @@ def guess_component(division, description, model, brand=""):
     t = norm(" ".join([brand, description, model]))
     if any(x in t for x in ("marine", "boat", "waterproof marine")): return "Marine Audio"
     if "car audio" in d:
+        if model.lower().startswith("s2-s69c") or model in ("69030020", "69030021"): return "Car Speakers"
+        if model.lower().startswith("9i"): return "Car Audio Accessories"
+        if model.lower().startswith("on669"): return "Car Audio Accessories"
+        if model.lower().startswith("on1509-cs"): return "Car Head Units & Receivers"
         if b == "kicker":
             if any(x in model.lower() for x in ("46kisload", "46pwb", "46pw", "46pkd", "47keyloc", "47kpb", "51keychain")): return "Car Audio Accessories"
             if any(x in model.lower() for x in ("51hs8", "hs8")): return "Car Subwoofers"
@@ -102,6 +106,10 @@ def guess_component(division, description, model, brand=""):
         if any(x in t for x in ("cable", "adapter", "adaptor", "remote", "bracket", "accessory", "accessories", "extension", "terminal", "spk out", "speaker out", "anti reflective", "anti glare", "screen protector", "protective foil", "acc cntl module", "t h set", "fuse holder", "termination block", "rca interconnect", "interconnect", "power kit", "power wire", "wire roll", "line-out converter", "line out converter", "smart-radio interface", "keychain", "license plate holder")): return "Car Audio Accessories"
         return "Car Audio - Review Component"
     if d == "musical instruments":
+        if model.lower().startswith(("ber10", "k7yang")): return "Guitars & Basses"
+        if model.lower().startswith(("smmini", "trmini", "ts808", "ts9", "ts9dx", "tsmaxi", "wh10v3")): return "Instrument Effects & Pedals"
+        if model.lower().startswith(("t30ii", "t80ii")): return "Instrument Amplifiers"
+        if model.lower() == "tamm002": return "Music Accessories"
         if b in ("tama", "remo", "paiste"): return "Drums & Percussion"
         if b == "mason":
             if any(x in t for x in ("cello", "tuba", "violin", "shoulder rest", "violin bridge", "slide oil", "valve oil")): return "Orchestral Instruments & Accessories"
@@ -143,6 +151,8 @@ def guess_component(division, description, model, brand=""):
         if any(x in t for x in ("cable", "adapter", "adaptor", "battery", "case", "bag", "stand", "clip", "strap", "power supply", "psu", "accessory", "accessories")): return "Music Accessories"
         return "Musical Instruments - Review Component"
     if d in ("installed av", "home ci"):
+        if model in ("1600-289", "8800-00-90", "8800-00-94", "8800-01-104"): return "Headset & Conferencing Accessories"
+        if model.startswith(("2740-", "2755-", "5121-", "5131-", "5132-", "9000-")): return "Headsets & Conferencing"
         if b == "vogels": return "Mounts & Stands"
         if b == "planetwaves": return "AV Accessories"
         if b == "p5": return "Home Automation Controls"
@@ -160,7 +170,7 @@ def guess_component(division, description, model, brand=""):
         if any(x in t for x in ("cable", "adapter", "adaptor", "remote", "accessory", "accessories")): return "AV Accessories"
         return "Installed AV - Review Component"
     if d == "home retail":
-        if b == "klipsch": return "Consumer Audio"
+        if b == "klipsch" or any(x in t for x in ("miami eua", "new york eua")): return "Consumer Audio"
         if any(x in t for x in ("pool", "vacuum", "skimmer", "robotic cleaner")): return "Pool Cleaning & Outdoor"
         if any(x in t for x in ("keyboard", "mouse", "wireless mouse")): return "Computer Accessories"
         if any(x in t for x in ("adapter", "adaptor", "charging base", "optical adapter", "hdmi arc", "line in adapter", "line-in adapter", "combo adapter")): return "Consumer Audio Accessories"
