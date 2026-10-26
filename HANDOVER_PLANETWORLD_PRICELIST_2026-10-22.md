@@ -53,3 +53,12 @@ Owner wants to use Planetworld's dealer downloadable pricelist to assess the com
 3. Continue exact manufacturer page/image validation for the 77 unresolved rows; verify images individually even for the 12 page-matched rows.
 4. Confirm current dealer availability and lead times in Planetworld's portal immediately before quoting; never treat the 22-Oct stock columns as live.
 5. Only after owner approval, prepare a separate non-live catalogue delta for review. No production catalogue or stock changes until explicitly authorised.
+
+
+## OWNER PRICING DECISION — PLANETWORLD RRP BENCHMARK — 2026-10-26
+
+- Owner decision: use Planetworld's recommended retail price (RRP) as the pricing benchmark, then price approximately 1–2 percentage points below RRP to be more competitive. Do not use the previous dealer-cost × VAT × markup formula as the final customer price.
+- Updated the local confidential staging workbook `Planetworld_Hertz_Staging_Analysis_2026-10-26.xlsx`: added RRP less 1% and RRP less 2% options, with estimated gross profit and gross margin against VAT-inclusive dealer cost. Both discount options are calculated for all 89 source rows. In this dataset, none of the 2%-below-RRP prices falls at or below VAT-inclusive dealer cost; this is only a product-level cost check and excludes overhead, delivery, payment fees, returns, and other costs.
+- Working recommendation for review: use RRP less 2% as the initial competitive test price where margin remains acceptable; use 1% below RRP where the extra discount is not needed or margin protection is preferred. Final pricing still requires owner approval and any relevant cost/availability checks.
+- Workbook remains local/confidential because it contains dealer cost and dated regional stock. It was not uploaded to this public repository. No live prices, catalogue, stock, Axxess/DNS, payment, or Supabase settings were changed; nothing was published to customers.
+- Next: continue official manufacturer page and direct image-asset verification, then prepare a review-only catalogue delta after owner approval. Do not import or publish automatically.
