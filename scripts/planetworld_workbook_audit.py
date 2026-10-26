@@ -107,7 +107,7 @@ def guess_component(division, description, model, brand=""):
         return "Car Audio - Review Component"
     if d == "musical instruments":
         if model.lower().startswith(("ber10", "k7yang")): return "Guitars & Basses"
-        if model.lower().startswith(("smmini", "trmini", "ts808", "ts9", "ts9dx", "tsmaxi", "wh10v3")): return "Instrument Effects & Pedals"
+        if model.lower().startswith(("smmini", "trmini", "tsmini", "ts808", "ts9", "ts9dx", "tsmaxi", "wh10v3")): return "Instrument Effects & Pedals"
         if model.lower().startswith(("t30ii", "t80ii")): return "Instrument Amplifiers"
         if model.lower() == "tamm002": return "Music Accessories"
         if b in ("tama", "remo", "paiste"): return "Drums & Percussion"
