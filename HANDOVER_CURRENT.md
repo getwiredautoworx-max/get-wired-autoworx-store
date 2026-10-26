@@ -2395,3 +2395,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Phone-readable report: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/docs/planetworld-blocker-handover-2026-10-26/catalogue-source/suppliers/planetworld/COST_FLOOR_SOURCE_ROW_CHECK_2026-10-26.md
 - This was documentation/evidence maintenance only. No supplier XLSX, product classification, live price, stock, production catalogue, Axxess, DNS, checkout, payment, image, or Supabase data was changed. PR #95 remains open/unmerged; customer launch remains HOLD.
 - Next: continue evidence-backed exact model/variant and category-fit checks; do not treat supplier AV/music/home products as automotive/marine catalogue candidates without explicit fit, and do not import anything pending supplier authorisation. Keep the 19 zero-RRP items for owner audit and keep all 19 cost-floor SKUs review-only pending supplier confirmation.
+
+
+## STORE PREVIEW CHECKPOINT — 2026-10-26
+- Created `PREVIEW_READINESS_2026-10-26.md` on main (commit `dcffc1b15ff9145a691628d4078384a88cb163e8`) with the candidate PR #94 preview URLs and the current verification boundary: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/PREVIEW_READINESS_2026-10-26.md
+- Candidate links: https://deploy-preview-94--get-wired-autoworx-store.netlify.app and https://fix-part-search-load-race-sm.get-wired-autoworx-store.pages.dev. Latest-head browser pass is not evidenced; do not treat preview as release-approved. No live/Axxess/DNS/payment/catalogue/stock changes. Launch HOLD.
