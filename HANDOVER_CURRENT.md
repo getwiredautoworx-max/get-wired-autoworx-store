@@ -2400,3 +2400,21 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ## STORE PREVIEW CHECKPOINT — 2026-10-26
 - Created `PREVIEW_READINESS_2026-10-26.md` on main (commit `dcffc1b15ff9145a691628d4078384a88cb163e8`) with the candidate PR #94 preview URLs and the current verification boundary: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/PREVIEW_READINESS_2026-10-26.md
 - Candidate links: https://deploy-preview-94--get-wired-autoworx-store.netlify.app and https://fix-part-search-load-race-sm.get-wired-autoworx-store.pages.dev. Latest-head browser pass is not evidenced; do not treat preview as release-approved. No live/Axxess/DNS/payment/catalogue/stock changes. Launch HOLD.
+
+
+---
+
+## CONTINUATION UPDATE — ONE NAV EXACT SKU EVIDENCE / PREVIEW RECHECK — 2026-10-26 10:30 SAST
+
+### Planet World audit progress
+- Continued exact-model checks from the current PR #95 work branch. Exact-code search located a South African reseller page for OneNav **ON1509-LX1**, titled “OneNav Evolution 9inch Screen with Slim Chassis”; page identifies the exact SKU and Car Audio range but reports out of stock / call for pricing: https://nxtleveltech.co.za/product/onenav-evolution-9inch-screen-with-slim-chassis . This is third-party corroboration only, not official manufacturer or Planetworld confirmation.
+- Updated `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` on branch `docs/planetworld-blocker-handover-2026-10-26` in commit `3ab68fe643fdc13bb17b6f2e940ce4d6fb6e6a4a`. Keep exact SKU identity as reseller-corroborated; do not infer Planetworld stock, price validity, vehicle fitment, or image-use rights. No reseller image or price copied.
+- Corrected read-only audit remains run [40290002999](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999), successful; artifact `12635711006`. Scope remains 48 XLSX, 96 sheets, 3,343 extracted rows, zero workbook read errors; 19 zero-RRP owner-hold rows; 19 separate positive-RRP cost-floor candidate SKUs. No source XLSX or live catalogue data changed.
+
+### Store preview recheck
+- Re-read `PREVIEW_READINESS_2026-10-26.md` on main. Candidate links remain https://deploy-preview-94--get-wired-autoworx-store.netlify.app and https://fix-part-search-load-race-sm.get-wired-autoworx-store.pages.dev, associated with PR #94.
+- Attempted to open both candidate preview URLs through the available web access; both returned “URL is not accessible via this tool.” This is an access limitation, not proof that either site is down or working. No exact-head browser pass has been established, so PR #94 remains unapproved for release and the preview remains a candidate for owner review only.
+- Next concrete action: obtain current PR #94 head/CI state from GitHub and verify the preview using a browser path that can reach the deployment; if runtime checks cannot be executed here, report that limitation and ask the owner to open the candidate preview rather than claim a pass. Do not upload to Axxess or change DNS.
+
+### Release boundaries
+- No Axxess, DNS, checkout/payment, production price/stock/catalogue, image, or Supabase changes. No supplier workbook edited. Customer launch remains **HOLD**.
