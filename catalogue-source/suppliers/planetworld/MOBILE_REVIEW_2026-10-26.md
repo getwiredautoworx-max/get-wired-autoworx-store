@@ -91,3 +91,17 @@ The 19 distinct positive-RRP cost-floor candidates are listed in the phone-reada
 - Confirmed HARMAN's official page maps Soundcraft SKU 5085985EU to the Notepad-12FX 12-channel mixer with USB and Lexicon effects.
 - OneNav ON263-FK2 has only a reseller match (Ford Ranger XLS 2015+ 9-inch fitment kit); this is not official evidence and reseller stock is not Planetworld stock. ON1509-LX1 remains unverified.
 - These identity checks do not resolve the source price discrepancies or permit image reuse. No supplier XLSX or live data was changed. See the manufacturer-match log on PR #95 for sources and detail.
+
+
+## Corrected audit checkpoint — 2026-10-26 10:20 SAST
+
+The earlier sections above contain historical counts and should not be used for current pricing decisions. The corrected audit is run [40290002999](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999), successful, artifact [12635711006](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999). Verified from the artifact:
+
+- 48 XLSX files scanned, 96 sheets, 3,343 rows extracted, zero workbook errors.
+- One identical product-data duplicate workbook contributes 26 rows; those rows are excluded from cost-floor counts. Corrected positive-RRP analysis scope is 3,298 rows after also excluding 19 zero-RRP rows.
+- **19 zero-RRP items remain on owner-personal-audit hold.** No inference whether out-of-stock or special-request; no pricing suggestion for these items.
+- **18 distinct positive-RRP products** are below estimated VAT-inclusive dealer cost at RRP−1%; **19 distinct products** at RRP−2%. Eighteen overlap; SKU `90011904` is the additional 2%-only sensitivity case. These are source-value/basis review flags, not approved prices or proof of supplier error.
+- Price fields map consistently to `Dealer Price (Excl)`, `Retail Price (Excl)`, and `Retail Price (Incl)`; extreme gaps still require Planetworld confirmation, including VAT and bundle/pack basis. Supplier clarification draft remains unsent.
+- Report refreshed on PR #95 branch in commit `002ddf0028abaf7134ffe25f9f44e0793df1c3f8`: [Cost-Floor Source-Row Check](COST_FLOOR_SOURCE_ROW_CHECK_2026-10-26.md).
+
+No supplier workbook or live catalogue/price/stock data changed. PR #95 remains open/unmerged; supplier authorisation, production changes, and customer launch remain HOLD.
