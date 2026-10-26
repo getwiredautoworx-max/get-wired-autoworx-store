@@ -2333,3 +2333,14 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The 19 zero-RRP rows remain a separate owner-personal-audit hold; no meaning (out-of-stock vs special request) has been inferred. Do not mix them with the 19 positive-RRP cost-floor candidates.
 - Audit output still has heuristic category/component suggestions only; it does not prove exact model/variant or image rights. Continue exact model/variant verification and category refinement for non-zero-RRP items; verify source anomalies with Planetworld rather than overriding the supplier RRP or publishing unapproved prices.
 - No source XLSX was modified. No live catalogue, price, stock, image, production, Axxess, DNS, checkout, payment, or Supabase changes were made. PR #95 remains open/unmerged; customer launch remains HOLD.
+
+
+---
+
+## CONTINUATION RESULT — COST-FLOOR ROW IDENTITY CHECKS — 2026-10-26 10:12 SAST
+
+- Added evidence-based follow-up for two cost-floor candidates to `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` on PR #95 branch in commit `720d32c3a88ccf9de4b71e7b4783cad5cb2a0864`.
+- SKU `90011904` was corroborated by a third-party reseller as a OneNav 2-DIN Toyota OEM head unit; reseller listing showed R448 incl VAT while the supplier workbook RRP is R349 incl VAT. This is a source-value/price-basis discrepancy to confirm with Planetworld, not permission to override the supplier value. Availability snippets conflicted; current stock is unverified. No image used.
+- SKU `86180` was cross-referenced to Toyota ISO2CAR compatibility listings; no official manufacturer page established. Keep fitment/category provisional; do not treat third-party listing as proof of exact variant, image rights, current supplier stock or price validity.
+- Corrected audit run #40290002999 remains successful, artifact #12635711006; counts remain 48 workbooks, 96 sheets, 3,343 rows, zero workbook errors, 19 zero-RRP owner-hold rows, 18 positive-RRP cost-floor rows at RRP−1%, 19 at RRP−2%. Cost-floor queue and handover were updated on main in commits `5643afbbc88ebd832cc791ebb04ec4f065f79c5c` and `d0b11c4a48e47c328afcdabe6bd6ff9741df4c9d`.
+- Continue exact-SKU/manufacturer checks and category refinement using authorized evidence. No supplier XLSX or live store data changed; no image downloaded; PR #95 remains open/unmerged and customer launch remains HOLD.
