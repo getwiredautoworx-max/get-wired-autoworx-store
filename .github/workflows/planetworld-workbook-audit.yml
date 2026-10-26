@@ -9,13 +9,6 @@ on:
       - 'catalogue-source/suppliers/planetworld/incoming-xlsx/**'
       - 'scripts/planetworld_workbook_audit.py'
       - '.github/workflows/planetworld-workbook-audit.yml'
-  push:
-    branches:
-      - docs/planetworld-blocker-handover-2026-10-26
-    paths:
-      - 'catalogue-source/suppliers/planetworld/incoming-xlsx/**'
-      - 'scripts/planetworld_workbook_audit.py'
-      - '.github/workflows/planetworld-workbook-audit.yml'
 
 permissions:
   contents: read
