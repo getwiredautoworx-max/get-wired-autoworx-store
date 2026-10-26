@@ -2265,3 +2265,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - This is a cost-floor review queue, not a price approval. The estimated VAT-inclusive dealer-cost basis is detected from the source header; 19 distinct rows currently show RRP below that estimated cost at one or both discount options. Validate exact source columns, product identity, and supplier price basis before any decision. Do not adjust customer prices or import the data.
 - Latest verified audit remains run [40287579649](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287579649), artifact `12635310456`. All 19 zero-RRP rows have blank price-suggestion fields and only `ZERO_RRP_REVIEW`; they remain excluded from pricing.
 - Continue by reviewing those 19 distinct positive-RRP cost-floor candidates against source headers/values, then manufacturer model/variant evidence. No supplier workbook or live store data changed; supplier authorisation gate and launch HOLD remain.
+
+
+## COST-FLOOR REVIEW QUEUE CREATED — 2026-10-26 09:46 SAST
+
+- Created private phone-readable review queue `catalogue-source/suppliers/planetworld/COST_FLOOR_REVIEW_QUEUE_2026-10-26.md` in commit `9408dfe54beeb3e374573e16fbb47404133828e3`.
+- The queue lists all 19 distinct positive-RRP cost-floor candidates with workbook, sheet/row, model/SKU, description, detected RRP/dealer-cost source headers, estimated VAT-inclusive cost and difference at RRP−1%/2%. It explicitly flags extreme RRP/cost disparities (e.g. some JBL, Ibanez, Paiste and Soundcraft rows) as source-value/price-basis verification issues, not as approved price changes.
+- This review is based on the current-main audit artifact, run [40287579649](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287579649). No source XLSX was edited; no live catalogue, prices, stock, production, Axxess, DNS, payments or Supabase data changed.
+- Next: continue exact-model/variant verification and category refinement for the non-zero-RRP set, while keeping the 19 zero-RRP owner-hold rows excluded from all pricing recommendations. Supplier authorisation gate remains; customer launch remains **HOLD**.
