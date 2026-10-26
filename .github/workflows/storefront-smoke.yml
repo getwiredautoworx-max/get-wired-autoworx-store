@@ -48,6 +48,11 @@ jobs:
           grep -Fq 'onclick="window.openPartRequest()"' index-new.html
           grep -Fq 'function openPartSearch(seed) { return window.openPartSearch(seed); }' index-new.html
           grep -Fq 'function openPartRequest(withImage) { return window.openPartRequest(withImage); }' index-new.html
+          grep -Fq 'UPLOAD PHOTO WITH PART REQUEST' index-new.html
+          grep -Fq 'NO AI CREDITS NEEDED' index-new.html
+          ! grep -Fq '/functions/v1/part-image-search' index-new.html
+          ! grep -Fq 'identifyPartFromPicture' index-new.html
+          ! grep -Fq 'aiPartPhoto' index-new.html
           grep -Fq "Price on request" index-new.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" products.html
           grep -Fq "price_status!=='QUOTE_REQUIRED'" product.html
