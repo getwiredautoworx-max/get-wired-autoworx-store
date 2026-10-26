@@ -2126,3 +2126,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Checked accessible GitHub repositories: both are public; no private supplier-data repository is currently available through the connected listing. No source pricelist or sensitive pricing/stock workbook was uploaded to GitHub.
 - No live catalogue/stock/price changes, Axxess/DNS/payment/Supabase changes, or supplier/customer orders were made. Supplier reconciliation remains staged/read-only until owner approval; customer launch remains HOLD.
 - Next: owner review of the staging workbook and pricing policy; establish approved private storage; continue manufacturer page/image validation; then prepare a separate review-only catalogue delta. Do not publish or import automatically.
+
+
+## OWNER PRICING DECISION — PLANETWORLD RRP BENCHMARK — 2026-10-26
+
+- Owner decision: use Planetworld's recommended retail price (RRP) as the pricing benchmark, then price approximately 1–2 percentage points below RRP to be more competitive. Do not use the previous dealer-cost × VAT × markup formula as the final customer price.
+- Updated the local confidential staging workbook `Planetworld_Hertz_Staging_Analysis_2026-10-26.xlsx`: added RRP less 1% and RRP less 2% options, with estimated gross profit and gross margin against VAT-inclusive dealer cost. Both discount options are calculated for all 89 source rows. In this dataset, none of the 2%-below-RRP prices falls at or below VAT-inclusive dealer cost; this is only a product-level cost check and excludes overhead, delivery, payment fees, returns, and other costs.
+- Working recommendation for review: use RRP less 2% as the initial competitive test price where margin remains acceptable; use 1% below RRP where the extra discount is not needed or margin protection is preferred. Final pricing still requires owner approval and any relevant cost/availability checks.
+- Workbook remains local/confidential because it contains dealer cost and dated regional stock. It was not uploaded to this public repository. No live prices, catalogue, stock, Axxess/DNS, payment, or Supabase settings were changed; nothing was published to customers.
+- Next: continue official manufacturer page and direct image-asset verification, then prepare a review-only catalogue delta after owner approval. Do not import or publish automatically.
