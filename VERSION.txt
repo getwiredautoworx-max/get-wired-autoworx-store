@@ -1,1 +1,1 @@
-2026-09-15 product details
+2026-10-26 secure-checkout-release-candidate
