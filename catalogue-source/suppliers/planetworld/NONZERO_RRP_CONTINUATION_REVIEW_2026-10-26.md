@@ -1,7 +1,7 @@
 # Planetworld non-zero-RRP review — refreshed audit 2026-10-26 07:26 UTC
 
-**Audit run:** [40285764150 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40285764150)  
-**Artifact:** `planetworld-workbook-audit`, created 2026-10-26 07:26:25 UTC.  
+**Audit run:** [40286163359 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40286163359)  
+**Artifact:** `planetworld-workbook-audit`, created 2026-10-26 07:30:25 UTC.  
 **Mode:** Read-only; no source XLSX, catalogue, price, stock, image, or production data was changed.
 
 ## Scope and exclusion rules
