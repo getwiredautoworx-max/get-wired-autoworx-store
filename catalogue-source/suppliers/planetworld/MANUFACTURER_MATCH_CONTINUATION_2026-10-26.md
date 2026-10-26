@@ -112,3 +112,14 @@ These results are reseller cross-checks, not authoritative supplier inventory ev
 | One / ON1509-LX1 | **Still unverified.** Search did not establish an exact official manufacturer page for this SKU. Do not use family-only imagery or infer successor/availability. | Provisional vehicle infotainment classification only | No exact verified source |
 
 **Price-risk note:** The Paiste and Soundcraft identities are now strongly corroborated, but the source RRP/dealer-cost gaps remain unresolved. Model verification does not validate price basis, unit/pack basis, current Planetworld availability, or image-reuse permission. Do not change prices or use external imagery without authorization.
+
+
+## OneNav and JBL suffix verification — 2026-10-26 10:09 SAST
+
+| Supplier SKU | New evidence | Disposition |
+|---|---|---|
+| One / ON263-FK2 | Official OneNav page confirms a 9-inch Ranger XLS (2015+) Evolution system, but lists SKU ON263-2LX, not ON263-FK2. | **Fitment family only, not exact SKU match.** Do not merge SKU identities or treat the official page's price/availability as applicable to the supplier kit. Keep ON263-FK2 unverified pending supplier clarification. Official sibling listing: https://onenav.co.za/product/onenav-9inch-for-ranger-xls-2015/ |
+| JBL IRX108BT-EK | Official JBL page confirms IRX108BT base model and specifications, but no evidence located tying the -EK suffix to a specific region/pack. | Base model confirmed; exact suffix remains unverified. https://jblpro.com/en-US/products/irx108bt |
+| JBL JBL-EON710-EK | Official JBL page confirms EON710 base model and specifications, but no evidence located tying the -EK suffix to a specific region/pack. | Base model confirmed; exact suffix remains unverified. https://jblpro.com/en-US/products/jbl-eon710 |
+
+The suffix/family distinction is material: use exact supplier codes as keys, do not attach a different SKU's image or pricing, and do not infer current Planetworld availability from manufacturer or reseller listings. No images were copied; no source XLSX or catalogue data was changed.
