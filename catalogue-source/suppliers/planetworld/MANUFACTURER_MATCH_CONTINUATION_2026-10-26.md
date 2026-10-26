@@ -62,3 +62,17 @@ The read-only audit script now excludes rows from identical product-data duplica
 | Harness and Trims 90022567 | Exact manufacturer page not located in this pass; retain supplier description “9-inch Suzuki Alivio/Ciaz 2014+ fitment”. | Vehicle Harnesses & Trims; exact image unverified. |
 
 The exact manufacturer page was not located for the six Harness and Trims codes in this search pass; do not use a similar-looking image or mark these exact matches as verified. No supplier files or live catalogue fields were changed.
+
+
+## Manufacturer verification batch — additional audio models, 2026-10-26
+
+| Supplier model | Verification | Suggested component | Source |
+|---|---|---|---|
+| Kicker 43DSC69304 | **Exact model matched.** Official Kicker DS-series page lists 43DSC69304 as a 6×9-inch, 3-way coaxial speaker. | Car Audio → Coaxial speakers | https://www.kicker.com/2016-ds-series |
+| Kicker 46CXA12001 | **Model matched to official CXA1200.1 amplifier documentation.** The official product page lists the 46CXA12001 white-paper model identifier. | Car Audio → Mono amplifiers | https://www.kicker.com/CXA12001-1200-Watt-Mono-Class-D-Subwoofer-Amp |
+| M-Audio Keystation49MK3 | **Exact product family/model matched.** Official M-Audio page describes the Keystation 49 MK3 as a 49-key USB-MIDI keyboard controller. | Studio / MIDI → Keyboard controllers | https://www.m-audio.com/keyboard-controllers/keystation-49-mk3.html |
+| Jabra Evolve2 40 SE, supplier variants using 24189-… | **Official family and variant documentation found.** Jabra's technical sheet lists exact 24189-series variant SKUs for Evolve2 40 SE USB-A/USB-C and UC/MS mono/stereo configurations. Match each full suffix, not just the family. | Headsets & Conferencing → Wired USB headsets | https://www.jabra.com/business/office-headsets/jabra-evolve/jabra-evolve2-40 |
+| One ON1509-CS1 | Exact official manufacturer page not located in this pass; supplier description says 9-inch Android radio. | Car Audio → Head unit (provisional) | No verified exact source |
+| Mason AL-2144A | Supplier row says 4/4 cello; exact manufacturer page/image not located in this pass. | Musical Instruments → Orchestral strings (provisional) | No verified exact source |
+
+No images were copied or added. Where a supplier code includes additional suffixes, verify the exact variant before attaching manufacturer imagery. The two unresolved codes remain unverified; no inferred URLs or image matches are claimed.
