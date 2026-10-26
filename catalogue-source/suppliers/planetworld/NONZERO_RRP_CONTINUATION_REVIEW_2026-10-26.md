@@ -1,7 +1,7 @@
 # Planetworld non-zero-RRP review — refreshed audit 2026-10-26 07:26 UTC
 
-**Audit run:** [40286163359 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40286163359)  
-**Artifact:** `planetworld-workbook-audit`, created 2026-10-26 07:30:25 UTC.  
+**Audit run:** [40286402931 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40286402931)  
+**Artifact:** `planetworld-workbook-audit`, created 2026-10-26 07:32:43 UTC.  
 **Mode:** Read-only; no source XLSX, catalogue, price, stock, image, or production data was changed.
 
 ## Scope and exclusion rules
@@ -13,7 +13,7 @@
 ## Refreshed screening counts for remaining items
 - **18 rows**: RRP minus 1% is below estimated dealer cost including VAT.
 - **19 rows**: RRP minus 2% is below estimated dealer cost including VAT.
-- **32 rows** carry a raw duplicate model/SKU cross-source flag after excluding duplicate-file rows from the continuation scope. **26 of these flags are explained by the identical duplicate JBL workbook still being present in the source set**; the remaining **6 candidate rows** are On Stage KT7800 / KT7800+ and Roborock Q7 TF B/W and Q7 TF+ B/W. These six need identity review; similar family names or colour variants are not proof of duplicate SKUs.
+- **0 duplicate model/SKU flags** remain after the audit logic was corrected to exclude rows from the identical duplicate JBL workbook before calculating duplicate keys and to preserve meaningful plus signs in model codes. The 26 repeated rows in the duplicate JBL workbook remain explicitly flagged as duplicate-workbook rows and are not included in the continuation scope.
 - **1,016 rows** have a component guess marked for review.
 - **1,348 rows** remain broadly unclassified by the heuristic category guess.
 - 0 missing model/SKU, 0 missing/unmapped RRP, and 0 missing descriptions were reported in the filtered non-zero scope.
@@ -51,7 +51,7 @@ The difference columns below show the estimated amount by which (RRP × 0.99) fa
 - Review the 1,016 component-review rows from full descriptions and exact model codes; do not force a guess.
 - Review the 1,348 unclassified category guesses.
 - Continue official manufacturer exact-model/variant checks for non-zero-RRP items; record exact-match confidence and source URL. No family-only image should be labelled as an exact match.
-- Clear the 26 JBL duplicate-source flags only after the duplicate JBL workbook is safely excluded from future audit inputs or removed with owner approval. Review the six On Stage/Roborock candidates separately; do not auto-delete or collapse colour/variant SKUs.
+- The 26 duplicate JBL rows are excluded from the continuation analysis, but the duplicate source workbook remains in the input folder. Remove it only through safe source-file management with owner approval. The audit now distinguishes KT7800 from KT7800+ and Q7 TF B/W from Q7 TF+ B/W.
 
 ## Next actions
 1. Keep the 19 zero-RRP items untouched in the separate [owner audit hold list](ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md).
@@ -59,3 +59,7 @@ The difference columns below show the estimated amount by which (RRP × 0.99) fa
 3. Continue exact-model matching and category/component refinement.
 4. Remove the duplicate JBL source workbook only after owner confirmation / safe source-file management; the current audit excludes its rows for analysis but does not delete it.
 5. Keep all findings review-only until the owner authorizes any supplier/catalogue changes.
+
+
+## Duplicate-key false-positive fix verified
+The audit script was corrected so identical duplicate-workbook rows are excluded before SKU duplicate counting and plus signs remain meaningful in model keys. Latest run **40286402931** succeeded; artifact summary reports **0 duplicate model/SKU flags** and still identifies 26 rows from the identical JBL duplicate workbook. The six previously flagged On Stage/Roborock rows are variants, not confirmed duplicate SKUs. No source XLSX was edited or deleted.
