@@ -2373,3 +2373,15 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Updated the manufacturer-match log on PR #95 branch `docs/planetworld-blocker-handover-2026-10-26` with the source links and explicit don't-merge/don't-reuse-image guidance. These checks do not resolve the cost-floor discrepancies or confirm Planetworld availability.
 - No source XLSX, live catalogue, prices, stock, images, Axxess, DNS, checkout/payment, Supabase, or production data changed. Customer launch remains **HOLD**.
 - Next: continue exact model/variant verification and review the source price anomalies; retain exact supplier SKU keys and keep uncertain matches unverified.
+
+
+---
+
+## CONTINUED WORK — AUDIT ARTIFACT INSPECTED / REVIEW REFRESHED — 2026-10-26 10:13 SAST
+
+- Downloaded and inspected artifact `12635711006` from successful corrected run [40290002999](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999). Confirmed 48 XLSX files, 96 sheets, 3,343 rows, 0 workbook errors; 19 zero-RRP rows; 26 duplicate-workbook rows; 0 duplicate model/SKU flags after exclusions.
+- Recalculated source CSV scope: 3,298 rows remain after excluding zero-RRP owner-hold and duplicate-workbook rows. Cost-floor counts: 18 below estimated VAT-inclusive cost at RRP−1%; 19 below cost at RRP−2%; 19 distinct SKUs overall, with SKU `90011904` failing only at 2% reduction.
+- Confirmed the listed exception workbooks consistently use `Dealer Price (Excl)`, `Retail Price (Excl)`, and `Retail Price (Incl)` headers. Extreme gaps exist in the source values; they are not caused by an unmapped RRP column. Bundle/pack basis or source-value errors still require Planetworld confirmation.
+- Updated `catalogue-source/suppliers/planetworld/NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md` on PR #95 branch in commit `1c94709c4fd8b9c716c9fa55ade19289adda73e2` with latest run/artifact evidence and clarification that automated category/component assignments are heuristic, not validated. Exact model follow-up: Paiste `0004801419` and Soundcraft `5085985EU` exact models corroborated; OneNav `ON1509-LX1` still unverified after exact-code searches. No substitute model/image assigned.
+- `SUPPLIER_PRICE_FIELD_CONFIRMATION_DRAFT_2026-10-26.md` remains an unsent draft; it covers the 18 one-percent cost-floor rows and the separate `90011904` two-percent sensitivity row, excludes all 19 zero-RRP owner-hold items, and requests source-field/pack/VAT confirmation. Do not claim it was sent.
+- Next work: continue exact model/variant verification and storefront-category fit review for non-zero-RRP rows; preserve unresolved items as unresolved. No source XLSX or production/live data changed; customer launch remains HOLD.
