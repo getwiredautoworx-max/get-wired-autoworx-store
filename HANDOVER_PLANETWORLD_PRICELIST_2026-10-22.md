@@ -36,3 +36,20 @@ Owner wants to use Planetworld's dealer downloadable pricelist to assess the com
 - No supplier data imported, modified, or published.
 - No repository deployment or production changes made as part of this task.
 - Waiting for owner to confirm private repository/storage option or provide a safe sample.
+
+## CONTINUATION UPDATE — HERTZ DEALER FILE ANALYSED LOCALLY — 2026-10-26
+
+- Located and read the previously uploaded Library file `hertz-price-list-2026-10-22.xlsx`; source metadata says 89 records, filtered to Brand=Hertz, Division=Car Audio, pulled 22 October 2026 at 14:39:28. This file is now available to the current workflow; do not ask the owner to upload it again.
+- Read-only audit: 89 product rows, 89 unique item codes, no duplicate codes, no missing dealer-cost fields. The regional stock columns are a dated snapshot only, not current availability. 62 rows show stock in at least one listed region and 27 show zero across the listed regions; verify availability and lead time in the dealer portal before quoting.
+- Joined the 89 rows against the existing Hertz classification workbook. 12 rows have an official exact-model product page recorded; the remaining 77 still require exact model/product-page verification. Even the 12 existing page matches still need direct image-asset verification. All products are Car Audio; this source file does not establish Home Theatre, Studio/Pro AV, or Marine inventory.
+- Built a local staging workbook at `/mnt/data/Planetworld_Hertz_Staging_Analysis_2026-10-26.xlsx` for owner review. It includes the source product/cost/dated regional-stock fields, proposed categories, the owner pricing formula, comparison with supplier retail values, and model/image verification statuses. It is a working analysis only, not an import file or approved customer price list.
+- Pricing QA: the owner formula (dealer cost excluding VAT × 1.15 × 1.35) produces a higher result than the source supplier Retail Price (Incl) for all 89 rows, averaging approximately 3.36% above that listed retail value. This is a pricing-policy/competitiveness review flag, not a recommendation to override the owner's formula or supplier retail price. Owner must decide whether to keep the formula, use supplier RRP, or handle exceptions before publication.
+- Confidentiality: confirmed accessible repositories for this account are both PUBLIC; no private supplier-data repository is available through the current connected GitHub listing, and the available GitHub actions do not create a repository. Therefore the source XLSX and pricing/stock staging workbook were **not uploaded or committed** to GitHub. Do not place them in this public repository or any public branch. A separate private repository or owner-controlled private storage is still needed for persistent supplier-source storage.
+- No catalogue import, store price/stock update, Axxess/DNS/payment/Supabase change, supplier order, or customer-facing publication was made.
+
+### Next actions
+1. Owner review the downloadable local staging workbook; decide pricing treatment after considering the ~3.36% average premium over the supplier's listed inclusive retail price.
+2. Obtain/create a private repository or approved private storage for the confidential source and staging workbook. The existing public repository is not suitable.
+3. Continue exact manufacturer page/image validation for the 77 unresolved rows; verify images individually even for the 12 page-matched rows.
+4. Confirm current dealer availability and lead times in Planetworld's portal immediately before quoting; never treat the 22-Oct stock columns as live.
+5. Only after owner approval, prepare a separate non-live catalogue delta for review. No production catalogue or stock changes until explicitly authorised.
