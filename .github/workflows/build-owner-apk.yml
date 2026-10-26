@@ -9,7 +9,8 @@ on:
       - '.github/workflows/build-owner-apk.yml'
 jobs:
   build-and-validate:
-    runs-on: ubuntu-latest
+    # Pin to the stable 22.04 runner while investigating 2026 emulator hangs on ubuntu-latest.
+    runs-on: ubuntu-22.04
     timeout-minutes: 45
     permissions:
       contents: read
