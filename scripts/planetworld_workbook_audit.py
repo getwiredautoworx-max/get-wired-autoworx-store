@@ -56,8 +56,11 @@ def field_score(header, terms):
 def guess_category(brand, description, model, filename):
     text = norm(" ".join([brand, description, model, filename]))
     rules = [
-      ("DJ / Studio / Pro Audio", ("dj ", "mixer", "microphone", "studio", "shure", "denon dj", "ibanez", "wireless mic", "drum", "guitar", "keyboard", "midi", "audio interface", "stage monitor", "pro audio")),
-      ("Home Theatre / Hi-Fi", ("home theatre", "home theater", "soundbar", "av receiver", "receiver", "sonos", "denon", "hi fi", "hifi", "home audio", "projector", "mount", "display", "screen", "tv bracket", "television")),
+      ("Musical Instruments & Accessories", ("ibanez", "tama", "remo", "paiste", "on stage", "planetwaves", "guitar", "bass guitar", "electric bass", "cymbal", "snare", "drum", "percussion", "ukulele", "mandolin", "piano bench", "keyboard bench", "powerpad")),
+      ("Headsets & Conferencing", ("jabra", "jlab", "headset", "earbuds", "earbud", "panacast", "video bar", "conference phone", "speakerphone")),
+      ("Robotic Vacuums & Home Care", ("roborock", "robotic vacuum", "vacuum cleaner", "pool cleaning", "skimmer")),
+      ("DJ / Studio / Pro Audio", ("dj ", "mixer", "microphone", "studio", "shure", "denon dj", "wireless mic", "audio interface", "stage monitor", "pro audio")),
+      ("Home Theatre / Hi-Fi", ("home theatre", "home theater", "soundbar", "av receiver", "receiver", "sonos", "sonance", "m&k sound", "vogels", "hdanywhere", "denon", "hi fi", "hifi", "home audio", "projector", "mount", "display", "screen", "tv bracket", "television")),
       ("Marine Audio", ("marine", "boat", "waterproof", "nautic")),
       ("Car Audio", ("car audio", "vehicle", "car speaker", "head unit", "double din", "single din", "alpine", "jvc car", "kenwood car", "pioneer car", "focal car", "jbl car", "audison", "car amplifier", "component speaker", "coaxial", "harness", "trim kit")),
       ("Speakers", ("speaker", "loudspeaker", "woofer", "tweeter")),
