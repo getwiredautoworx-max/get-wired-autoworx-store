@@ -205,13 +205,7 @@ for path in files:
     except Exception as e:
         errors.append({"source_file": rel, "error": f"{type(e).__name__}: {e}"})
 
-# Duplicate model flags across all files; source rows remain unmodified.
-counts = Counter(norm(r["model_or_sku"]) for r in extracted if norm(r["model_or_sku"]))
-for row in extracted:
-    key = norm(row["model_or_sku"])
-    if key and counts[key] > 1:
-        row["quality_flags"] = ";".join(filter(None, [row["quality_flags"], "DUPLICATE_MODEL_OR_SKU_CROSS_SOURCE"]))
-
+# Duplicate model/SKU flags are calculated after identical product-data duplicate workbooks are identified, so repeated rows in a duplicate workbook do not create false positives.\n
 # Detect different XLSX files that contain identical product-row data even when
 # workbook metadata makes their binary SHA-256 hashes differ.
 by_file = {}
@@ -235,6 +229,33 @@ for group in signature_groups.values():
         for row in extracted:
             if row["source_file"] in duplicates:
                 row["quality_flags"] = ";".join(filter(None, [row["quality_flags"], "IDENTICAL_PRODUCT_DATA_DUPLICATE_WORKBOOK"]))
+
+# Recalculate duplicate model/SKU flags using only retained source workbooks.
+# Keep '+' meaningful: KT7800 and KT7800+ are distinct models, as are Q7 TF B/W
+# and Q7 TF+ B/W (the latter also includes an auto-empty dock).
+duplicate_sources = {
+    source for group in identical_product_data_file_groups
+    for source in group["duplicate_sources"]
+}
+def duplicate_model_key(value):
+    value = str(value or "").strip().lower()
+    value = re.sub(r"[^a-z0-9+]+", " ", value)
+    return re.sub(r"\\s+", " ", value).strip()
+for row in extracted:
+    row["quality_flags"] = ";".join(
+        flag for flag in row["quality_flags"].split(";")
+        if flag and flag != "DUPLICATE_MODEL_OR_SKU_CROSS_SOURCE"
+    )
+eligible_keys = [
+    duplicate_model_key(row["model_or_sku"])
+    for row in extracted
+    if row["source_file"] not in duplicate_sources and duplicate_model_key(row["model_or_sku"])
+]
+counts = Counter(eligible_keys)
+for row in extracted:
+    key = duplicate_model_key(row["model_or_sku"])
+    if row["source_file"] not in duplicate_sources and key and counts[key] > 1:
+        row["quality_flags"] = ";".join(filter(None, [row["quality_flags"], "DUPLICATE_MODEL_OR_SKU_CROSS_SOURCE"]))
 def write_csv(name, rows):
     path = OUT / name
     if not rows:
