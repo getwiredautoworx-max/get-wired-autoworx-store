@@ -2549,3 +2549,5 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Next safe diagnostic: inspect function-level logs and upstream source fetch outcomes if available, then change only the isolated audit/test logic after the cause is evidenced. Do not alter product rows, mappings, images, or deploy a function without explicit authorization. Customer launch remains **HOLD**.
 
 - Follow-up log check: read-only `function_logs` query for 2026-10-25 16:30 UTC–2026-10-26 16:30 UTC returned no matching function-level diagnostic messages. The current function therefore provides no logged branch-level reason for the intermittent 404s; do not infer a specific upstream cause from status codes alone.
+
+- Repository code search for the exact normalized legacy filenames `WP3_4.jpg`, `GF-239_240.jpg` and public files `GW-D44F3E5F.webp`, `GW-026C7F71.webp` returned no indexed matches. Because GitHub code search may not index binary asset filenames reliably, this is inconclusive and is not evidence that those files are absent. The next check must inspect the repository tree or request the exact upstream asset URLs directly; no assets were changed.
