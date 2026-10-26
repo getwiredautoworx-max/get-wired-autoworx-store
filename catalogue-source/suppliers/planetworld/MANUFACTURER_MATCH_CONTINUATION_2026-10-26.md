@@ -22,3 +22,17 @@
 2. Continue refining the 1,016 component-review rows and 1,348 unclassified rows from the previous filtered snapshot.
 3. Rerun the workbook audit against current files to replace provisional counts.
 4. Keep all prices/categories/images as review-only until owner approval; no stock imports or live catalogue changes.
+
+
+## Second batch — six more non-zero-RRP candidates checked
+
+| Supplier model/SKU | Result | Source / category guidance |
+|---|---|---|
+| One / ISA-ON115-3LX | Supplier SKU and product identity matched to OneNav 9-inch Isuzu RBA/RBB head unit; supplier page says out of stock and call for pricing. This is not proof of current Planetworld stock/status and is not an official manufacturer page. | https://nxtleveltech.co.za/product/onenav-9inch-for-isuzu-rba-rbb — Vehicle-specific Car Audio → Head units |
+| Paiste / 0004801419 | Supplier listing matches “19IN SIG DARK Energy Crash MK I”; page says out of stock and call for pricing. Exact model identity corroborated by supplier listing, but official manufacturer page not established in this pass. | https://nxtleveltech.co.za/product/paiste-19in-sig-dark-energy-crash-mk-i — Musical Instruments → Cymbals / percussion |
+| Vogel's / THIN215 | Official Vogel's page matches THIN 215 UltraThin tilting TV wall mount; official page says this model has been succeeded by TVM 3415. This is an end-of-life/product-successor flag for owner review, not permission to delete or replace the supplier row. | https://www.vogels.com/en/c/thin-215-ultrathin-tilting-tv-wall-mount — Home CI / TV mounting |
+| Vogel's / 7225154 | Exact code is corroborated by product-distributor listings as PUC 2515 / Connect-it 150 cm ceiling pole, but an exact official Vogel's product page for code 7225154 was not found in this pass. Treat as a high-confidence third-party identification, not official verification. | https://www.ivojo.co.uk/mount.php?pid=Vogels_PUC+2515S — Installed AV / ceiling mount components |
+| One / ON263-FK2 | Exact official or reliable exact-SKU match not established in this pass. | Keep as unverified; likely vehicle-specific fitment kit only as a provisional description. |
+| Vogel's / PFW4600 | Exact official page for the PFW4600 SKU not established in this pass. Search surfaced the broader PFW family only; do not use family imagery as an exact match. | Keep as unverified; display mounting category remains provisional. |
+
+No product images were downloaded or added. Third-party supplier/distributor pages are identity cross-checks only; image reuse rights are not established. Current supplier stock and orderability must be confirmed directly from current Planetworld data before any decision.
