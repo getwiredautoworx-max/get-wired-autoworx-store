@@ -2263,3 +2263,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Updated the existing enabled automation to start its daily recurrence at **08:00 Africa/Johannesburg on 2026-10-27**, titled **Get Wired Store & Planetworld Monitor**. It retains the previous store-reconciliation instructions and adds the Planetworld monitoring requirements.
 - The platform reports the automation enabled and the schedule update succeeded; its next-run timestamp is not populated in the returned metadata, so do not promise an exact delivery/run time beyond the configured daily schedule.
 - Current PR #95 remains open and unmerged; its head branch is `docs/planetworld-blocker-handover-2026-10-26`. A fresh audit run is still outstanding because no workflow-dispatch action is exposed in the connected GitHub tool set.
+
+
+## FRESH PLANETWORLD AUDIT TRIGGERED — 2026-10-26
+
+- Found and corrected the earlier assumption that no workflow-run path existed. The read-only audit workflow is present on the open PR branch (not on `main` yet) at `.github/workflows/planetworld-workbook-audit.yml`.
+- Updated its pull-request path filter to include Planetworld Markdown review files and `HANDOVER_CURRENT.md`, in addition to incoming XLSX files, the audit script and workflow itself. This update was committed as `eb35f25865af60a210b2a26570fae2e9a20f424e`, intended to trigger a fresh read-only audit on the open PR. No supplier workbook was changed.
+- Verified the commit has GitHub checks in progress. At the last poll, Cloudflare Workers Builds and Netlify Redirect rules checks were in progress; these are integration checks, not confirmation that the Planetworld audit passed. Monitor all checks and specifically confirm a new `Planetworld Workbook Audit (Read Only)` run and a new `planetworld-workbook-audit` artifact before treating the audit as refreshed.
+- Safety note: PR remains unmerged. Do not merge to make the workflow run. Do not change production deployment settings. If the expected audit does not start from the PR synchronize event, use the Actions UI to run the read-only workflow manually.
+- The prior audit run `40279792830` remains stale (head `701b094d8821e6062d5706c4609ff6c6dfd3429c`, created 2026-10-26 06:26 UTC) and must not be used as current totals.
+- Owner's 19 zero-RRP items remain isolated in `ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md`; do not process or publish them as part of non-zero-RRP decisions.
