@@ -1,33 +1,43 @@
 # Planetworld workbook review — phone-friendly summary
-**Updated:** 26 October 2026, 08:40 SAST  
+**Updated:** 26 October 2026, 08:44 SAST  
 **Status:** Read-only review; not an approved catalogue import.
 
-## Audit checkpoint
-- 48 XLSX workbooks audited
-- 3,343 rows across 96 sheets
-- 0 audit errors reported in the prior checkpoint
-- Duplicate JBL workbook removed: the suffixed `jbl-price-list-2026-10-25 (1).xlsx` was deleted; the original `jbl-price-list-2026-10-25.xlsx` was retained.
-- Prior review identified 1,023 broad component groups requiring refinement.
+## Latest audit result
+GitHub Actions audit run [40279792830](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40279792830) completed successfully. Its artifact is [available until 9 November 2026](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40279792830).
 
-## What still needs review
-1. Inspect products with missing/zero RRP and candidates that appear below cost.
-2. Refine broad audio component groups (for example car audio, marine audio, home theatre/hi-fi, DJ/studio/pro audio, speakers, amplifiers, head units, and accessories).
-3. Match exact manufacturer model numbers to official manufacturer pages and relevant product images.
-4. Keep uncertain matches marked for review rather than inventing a product match.
+The audit ran before the duplicate JBL workbook was removed, so its input snapshot contained 48 workbooks. After that run, only the suffixed duplicate was deleted; the unsuffixed JBL workbook remains.
+
+## Review counts from that audit
+- 3,343 rows across 96 sheets; zero workbook read errors
+- 19 rows with zero RRP
+- 39 rows where RRP less 1% is below the estimated VAT-inclusive dealer cost
+- 40 rows where RRP less 2% is below the estimated VAT-inclusive dealer cost
+- 58 rows flagged for duplicate model/SKU identifiers; this count includes duplicate-workbook rows from the pre-deletion snapshot and needs a fresh audit before acting
+- 1,023 rows placed in broad “Review Component” groups requiring classification refinement
+- No rows were reported missing model/SKU or missing/unmapped RRP in this audit snapshot
+
+These are automated review flags, not proof of supplier errors. Price comparisons rely on detected VAT basis and exclude overheads.
+
+## Processing order
+1. **Hold zero-RRP rows** for review; do not derive customer prices from zero.
+2. **Review below-cost flags** before any RRP-minus-1%/2% suggestion. Validate product identity, RRP, dealer cost and VAT treatment first.
+3. **Re-run audit after duplicate removal** to refresh row counts and duplicate flags.
+4. Refine component classifications, then match exact model numbers to official manufacturer pages and appropriate product images.
+5. Keep uncertain matches marked for review.
 
 ## Price guidance
-Planetworld RRP less 1% or 2% may be considered as a **review suggestion only**. These are not approved selling prices. Validate margin, VAT treatment, and product identity before any future approval.
+Planetworld RRP less 1% or 2% is a **review suggestion only**, not an approved selling price. No price should be published or imported from this report.
 
 ## Safety boundaries
-- Do not modify supplier XLSX files.
-- Do not import supplier stock, prices, or catalogue data.
+- Do not modify supplier XLSX contents.
+- Supplier price/stock reconciliation and imports remain on hold pending authorisation.
 - Use existing in-store stock for testing only.
-- No live storefront, Axxess, DNS, checkout, or payment changes.
-- Store launch remains **HOLD** pending release checks.
+- No live storefront, Axxess, DNS, checkout or payment changes.
+- Store launch remains **HOLD**.
 
 ## Continue here
-- [Planetworld supplier folder](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/main/catalogue-source/suppliers/planetworld/incoming-xlsx)
+- [Planetworld incoming XLSX folder](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/main/catalogue-source/suppliers/planetworld/incoming-xlsx)
 - [Current handover](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/HANDOVER_CURRENT.md)
-- [PR #95 — read-only audit workflow](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/95)
+- [PR #95 — audit code and workflow](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/95)
 
-This summary is designed for reading on a phone. It does not replace the detailed row-level audit or official model/image verification.
+This phone-friendly summary does not replace row-level review or official model/image verification.
