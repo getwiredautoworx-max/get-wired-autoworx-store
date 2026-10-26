@@ -212,7 +212,7 @@ by_file = {}
 for row in extracted:
     by_file.setdefault(row["source_file"], []).append((
         norm(row["model_or_sku"]), norm(row["description"]), row["rrp_source_value"],
-        row["cost_source_value"], row["stock_source_value"], row["all_source_values_json"]
+        row["cost_source_value"], row["stock_by_location_json"], row["all_source_values_json"]
     ))
 def preferred_source(filename):
     return 0 if not re.search(r"\s*\(\d+\)\.xlsx$", filename, re.I) else 1
