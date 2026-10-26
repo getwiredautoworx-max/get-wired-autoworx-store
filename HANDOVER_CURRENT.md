@@ -2458,3 +2458,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The available GitHub status connector currently returns no commit statuses for that trigger commit, and its workflow-run lookup only returns pull-request-triggered runs; therefore this does NOT establish that the APK build/emulator test ran or passed.
 - Next: check the Actions page directly for the run associated with the branch/commit. Do not give the owner a replacement APK until the actual build artifact and successful Android 13 emulator checks are confirmed.
 - No storefront, production Supabase settings/data, credentials, checkout/payments, Axxess, or DNS were changed.
+
+
+## ANDROID OWNER APK — EMULATOR BOOT TIMEOUT FOLLOW-UP (2026-10-26)
+
+- Owner supplied the latest validation failure: **Failed — “Time out. Waiting for emulator to boot.”** This points to CI emulator startup; it does not establish that the corrected APK source failed to compile, nor does it prove the APK works.
+- Updated only `.github/workflows/build-owner-apk.yml` on isolated branch `fix/cloud-based-owner-apk`, commit `b5c60b65d0924335eb2d720a07397ffe1474d4c6`: switched the Android 13 test image from `google_apis` to the lighter `default` target (the app's current smoke test does not require Google APIs), increased the configured emulator boot wait from 600 to 900 seconds, disabled snapshot loading/saving, and capped emulator memory/cores at 2048 MiB / 2 cores. Existing KVM setup, APK package/size/signature checks, artifact upload and install/launch assertions remain.
+- This is a targeted CI reliability change, **not yet verified**: the workflow must run against this commit and the result must be inspected. Do not label the APK validated or hand out a replacement until the artifact and tests are confirmed.
+- Next: inspect the new Actions run and job logs. If emulator boot still times out, preserve the build/artifact result separately and investigate the emulator startup logs/runner virtualization rather than repeatedly changing APK source. Then owner must test the replacement's login on the Hisense M72 Pro; never request their password or OTP.
+- Scope remains APK-only. No storefront, hosting, Axxess, DNS, checkout/payment, supplier workbook, catalogue/stock, or Supabase project/data changes. Storefront work remains in the separate desktop session; customer launch remains **HOLD**.
