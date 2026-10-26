@@ -42,3 +42,11 @@ Planetworld RRP less 1% or 2% is a **review suggestion only**, not an approved s
 - [PR #95 — audit code and workflow](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/95)
 
 This phone-friendly summary does not replace row-level review or official model/image verification.
+
+
+## CONTINUATION CHECK — 2026-10-26 09:37 SAST
+
+- Re-read current `main` handover and this report. The only confirmed audit run remains `40279792830` (successful but predates removal of the duplicate JBL workbook); the report's 3,317-row figures are filtered historical triage, not a fresh scan.
+- Owner's 19 zero-RRP rows remain reserved for personal audit and must be excluded from all remaining price suggestions. Their meaning is unresolved: do not label them out-of-stock or special-order without confirmation.
+- Attempted to inspect the audit workflow at `.github/workflows/planetworld-workbook-audit.yml`; that exact path is not present on `main` (GitHub returned 404). The PR #95 branch/run reference is available, but this connector session exposes no workflow-dispatch action. No fresh current-file audit or artifact can honestly be claimed yet.
+- Next action: locate the actual workflow filename/path from PR #95's changed files, then trigger the read-only audit on the current input set and verify the new artifact before updating counts. If it cannot be triggered, record the exact workflow/permission blocker. Keep supplier files and live catalogue/prices/stock unchanged; no Axxess/DNS/payment/Supabase changes; launch HOLD.
