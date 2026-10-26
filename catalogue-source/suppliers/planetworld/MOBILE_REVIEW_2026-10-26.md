@@ -79,3 +79,7 @@ Fresh audit run [40287470154](https://github.com/getwiredautoworx-max/get-wired-
 
 ### Cost-floor count clarification — 26 October 2026, 09:45 SAST
 The 18 rows flagged at RRP−1% and 19 rows flagged at RRP−2% overlap. Deduplicating by source workbook/sheet/source row gives **19 distinct non-zero-RRP cost-floor candidates**, not 37. Eighteen appear in both flags; one additional row appears only in the RRP−2% flag. These are review candidates only. Validate source values, VAT basis and product identity before making any pricing decision.
+
+
+## Review queue added — 26 October 2026, 09:46 SAST
+The 19 distinct positive-RRP cost-floor candidates are listed in the phone-readable [Cost-Floor Review Queue](COST_FLOOR_REVIEW_QUEUE_2026-10-26.md), including source workbook/row, model/SKU, detected price headers, and review-only cost comparisons. Large RRP/cost gaps are explicitly treated as source-value or price-basis verification flags, not automatic price changes.
