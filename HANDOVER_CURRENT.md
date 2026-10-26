@@ -2233,3 +2233,18 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Extended the non-zero-RRP manufacturer match note with six more candidate checks. OneNav ISA-ON115-3LX and Paiste 0004801419 were corroborated against supplier listings only (not official manufacturer pages); Vogel's THIN215 was confirmed on the official page and is marked succeeded by TVM 3415; Vogel's 7225154/P​​UC 2515 was corroborated by distributor listings but not an exact official page; One ON263-FK2 and Vogel's PFW4600 remain unverified.
 - Supplier pages showing “out of stock” or “call for pricing” are third-party/current-site signals, not confirmation of Planetworld status. No supplier row was marked discontinued or altered based on them.
 - No images downloaded/added and no catalogue, price, stock, or live-store data changed. Continue non-zero-RRP model matching and classification; 19 zero-RRP rows remain in the owner's separate audit list.
+
+
+## PLANETWORLD MONITORING CHECKPOINT — 2026-10-26
+
+- Owner instruction: monitor Planetworld work until resolved and keep this handover updated.
+- Current check: PR #95 remains OPEN and UNMERGED; latest checked head commit `fba989e06b84230945682dc61c463301e11f9473`; GitHub reports `mergeable=false`. Do not merge or treat review-only notes as released.
+- Last known workflow run `40279792830`: audit job completed successfully; artifact `planetworld-workbook-audit` exists and expires 2026-11-09. This run was created 2026-10-26 06:26 UTC, before the later duplicate-file cleanup; it is not a fresh audit of the current workbook set.
+- Tool capability blocker: the connected GitHub actions available in this session expose reading workflow jobs/artifacts and rerunning failed jobs, but no workflow-dispatch/start-run action was found. Do not claim a fresh audit was started. Next available safe action is to use the repository's GitHub Actions UI to run the manual audit workflow, then verify the new run/artifact and refresh all non-zero-RRP findings.
+- Non-zero-RRP work is documented on this branch: filtered historical risk review and manufacturer-match continuation. Continue exact model/variant checks and component/category refinement, but refresh counts from a current audit first. The 19 zero-RRP entries remain isolated for owner personal audit.
+- Latest reviewed file links:
+  - `catalogue-source/suppliers/planetworld/ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md`
+  - `catalogue-source/suppliers/planetworld/NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md`
+  - `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md`
+- No supplier XLSX, live catalogue, price, stock, checkout/payment, Axxess, DNS or production changes made.
+- Monitoring cadence is scheduled, not continuous. Recheck PR status, latest audit run/artifact, and current source-file count on each monitoring pass. Record exact run/commit IDs and actual result; continue until fresh audit and remaining non-zero-RRP classification/model verification are complete. Escalate owner approval only for decisions that require it.
