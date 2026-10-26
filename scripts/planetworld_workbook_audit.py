@@ -171,15 +171,16 @@ for path in files:
                 if not brand: brand = path.stem.split("-price-list")[0].replace("-", " ").replace("_", " ").title()
                 cat = guess_category(brand, " ".join([product_type, desc]), model, path.name)
                 component = guess_component(division, desc, model, brand)
-                proposed_1 = round(rrp * 0.99, 2) if rrp is not None else None
-                proposed_2 = round(rrp * 0.98, 2) if rrp is not None else None
+                # Owner-reserved zero-RRP rows must never receive price suggestions.
+                proposed_1 = round(rrp * 0.99, 2) if rrp is not None and rrp > 0 else None
+                proposed_2 = round(rrp * 0.98, 2) if rrp is not None and rrp > 0 else None
                 cost_header = headers[columns["cost"]] if columns["cost"] is not None and columns["cost"] < len(headers) else ""
                 cost_basis = "EX_VAT" if re.search(r"excl|excluding|ex vat|net", norm(cost_header)) else ("INCL_VAT" if re.search(r"incl|including|inc vat", norm(cost_header)) else "UNKNOWN")
                 cost_incl_vat = round(cost * 1.15, 2) if cost is not None and cost_basis == "EX_VAT" else (cost if cost is not None and cost_basis == "INCL_VAT" else None)
                 margin_1 = round(proposed_1 - cost_incl_vat, 2) if proposed_1 is not None and cost_incl_vat is not None else None
                 margin_2 = round(proposed_2 - cost_incl_vat, 2) if proposed_2 is not None and cost_incl_vat is not None else None
-                if margin_1 is not None and margin_1 < 0: flags.append("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT")
-                if margin_2 is not None and margin_2 < 0: flags.append("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT")
+                if rrp is not None and rrp > 0 and margin_1 is not None and margin_1 < 0: flags.append("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT")
+                if rrp is not None and rrp > 0 and margin_2 is not None and margin_2 < 0: flags.append("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT")
                 extracted.append({
                     "source_file": rel, "sheet": ws.title, "source_row": row_num,
                     "brand": brand, "model_or_sku": model, "supplier_division_source_value": division, "product_type_source_value": product_type, "description": desc,
