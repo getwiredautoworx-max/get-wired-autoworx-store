@@ -22,7 +22,8 @@ export default async (req: Request) => {
   let body: QuoteRequest; try { body = await req.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
   if (!body?.city || !body?.postal_code || !Array.isArray(body.items) || body.items.length === 0) return json({ error: 'Delivery city, postal code and cart items are required.' }, 400);
   const p = parcel(body.items); const quotes: Quote[] = [];
-  for (const provider of ['BOBGO', 'TCG', 'PUDO']) { try { const q = await configuredProviderQuote(provider, body, p); if (q) quotes.push(q); } catch (error) { console.error(`${provider} quote failed`, error); } }
+  const provisional = body.items.some(item => [item.weight_kg, item.length_cm, item.width_cm, item.height_cm].some(value => !Number.isFinite(Number(value)) || Number(value) <= 0));
+  for (const provider of ['BOBGO', 'TCG', 'PUDO']) { try { const q = await configuredProviderQuote(provider, body, p); if (q) quotes.push(provisional ? { ...q, live: false, note: "Indicative only: at least one cart item lacks verified shipping weight or dimensions. Confirm the parcel with the courier before ordering." } : q); } catch (error) { console.error(`${provider} quote failed`, error); } }
   // PAXI fixed published pricing is available without an API key. Only show it when a real product weight is present and within bag limits.
   if (p.weight_kg > 0 && p.weight_kg <= 5) {
     quotes.push({ provider: 'PAXI', service: 'Standard bag · 7–9 business days', price: 59.95, currency: 'ZAR', timeframe: '7–9 business days', live: false, note: 'Published PAXI fixed price; destination point selected separately.', locker_required: true });
