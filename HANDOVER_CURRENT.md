@@ -2309,3 +2309,15 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - No changes to live storefront, Axxess hosting/files, DNS, checkout, payment activation, production prices/stock/catalogue, or Supabase production data without explicit approval.
 - Preserve the accepted PR #74 storefront baseline; customer launch remains HOLD until release checks pass.
 - This handoff update itself is documentation only; it is not evidence that the pending supplier audit steps have completed.
+
+
+---
+
+## CONTINUATION RESULT — FRESH PLANETWORLD AUDIT TRIGGERED — 2026-10-26 10:05 SAST
+
+- Resumed from the current handover and inspected PR #95 (open, unmerged): https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/95 . The read-only workflow and audit script exist on branch `docs/planetworld-blocker-handover-2026-10-26`, not on `main`; the earlier claim that the workflow path was missing applies to `main`, not the PR branch.
+- Triggered a fresh read-only audit by a documentation-only workflow comment commit on that PR branch: commit `a17e43ee5aff78c8f6faf8c1bb2593b2aa9881b2`. GitHub Actions run #40289815830 was confirmed created and `in_progress` at the latest check. Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40289815830 . No supplier workbook was modified to trigger it.
+- Current input directory on the PR branch contains the incoming XLSX set; the workflow audits those branch inputs and uploads a 14-day review artifact. Wait for completed run and inspect the artifact before replacing prior counts. Do not describe this run as successful until GitHub reports `success` and the artifact is present.
+- Reconfirmed separate queues: 19 zero-RRP owner-hold rows are reserved for owner decision; 19 positive-RRP cost-floor candidates are a different queue. Zero RRP alone does not prove out-of-stock or special-request status. The current owner-hold list comes from an earlier run; verify row identity against the refreshed audit before any final owner decision, without changing the hold.
+- PR #95's existing manufacturer-match continuation contains 12 reviewed candidates across two batches; some are exact/base-model matches, some only supplier-page corroboration, and unresolved models remain explicitly unverified. Continue only with evidence-based exact model/variant checks; no images or catalogue records were changed.
+- No changes to live catalogue, selling prices, stock, Axxess, DNS, checkout, payment activation, or Supabase production data. Customer launch remains HOLD. This entry records the triggered run and current evidence, not audit completion.
