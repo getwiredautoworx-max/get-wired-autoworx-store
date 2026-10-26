@@ -1,23 +1,7 @@
 {
-  "generated_at": "2026-10-11T09:56:20Z",
-  "source": "Supabase active category rows and active product assignments; refreshed automatically by GitHub Actions.",
+  "generated_at": "2026-10-26T08:38:25.123Z",
+  "source": "Supabase public.categories and current active product assignments; refreshed for the secure-checkout release candidate.",
   "categories": [
-    {
-      "id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
-      "name": "12V Light Duty Vehicles (Cars and Bakkies etc)",
-      "slug": "12v-light-duty-vehicles",
-      "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "ff3f339f-31da-4dfe-8246-385de1251fdb",
-      "name": "4X4 Outdoor",
-      "slug": "catalogue-4x4-outdoor",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
     {
       "id": "182423ec-ea46-43e4-bbe3-b8857b5a1583",
       "name": "4X4 OUTDOOR",
@@ -25,14 +9,6 @@
       "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
       "active": true,
       "direct_active_products": 16
-    },
-    {
-      "id": "e165c7b9-d7ef-488e-8d50-3279533a16a6",
-      "name": "Abrasives",
-      "slug": "catalogue-abrasives",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "61c8da7c-72ca-451b-9070-2aeeca17cabf",
@@ -43,28 +19,12 @@
       "direct_active_products": 0
     },
     {
-      "id": "815720be-9cf0-4f38-a872-e81280c31950",
-      "name": "Accessories",
-      "slug": "catalogue-accessories",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "4f440d20-ac97-4ff7-ac6c-703a46499fa9",
       "name": "ACCESSORIES",
       "slug": "accessories-sub",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
       "direct_active_products": 60
-    },
-    {
-      "id": "7228adea-37f7-4d5a-b633-e138a3ed158d",
-      "name": "Aerials",
-      "slug": "catalogue-aerials",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "f7f2ea3b-f15d-46a7-920b-9d3d9a394c79",
@@ -83,34 +43,18 @@
       "direct_active_products": 25
     },
     {
-      "id": "8e93d917-8fcc-4427-b364-cdad244f263f",
+      "id": "08b100c4-c648-4c0f-8f34-ddff8b79bb87",
       "name": "Alarms & Security",
-      "slug": "alarms-security",
+      "slug": "legacy-alarms-security",
       "parent_id": null,
-      "active": true,
-      "direct_active_products": 2
+      "active": false,
+      "direct_active_products": 0
     },
     {
       "id": "a4b912c4-25c6-4daa-a049-6b67818098ba",
       "name": "Amplifiers",
       "slug": "amplifiers",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
-      "name": "Amplifiers",
-      "slug": "car-audio-amplifiers",
-      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "03c48c91-f42d-4071-8e5e-cedbf57efd24",
-      "name": "ATV Winches & Wheel Caps",
-      "slug": "catalogue-atv-winches-and-wheel-caps",
-      "parent_id": null,
       "active": true,
       "direct_active_products": 0
     },
@@ -131,20 +75,12 @@
       "direct_active_products": 0
     },
     {
-      "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
+      "id": "2c71b54a-c562-4f08-afd1-0e2dc467d3fe",
       "name": "Automotive Accessories",
-      "slug": "catalogue-automotive-accessories",
+      "slug": "legacy-automotive-accessories",
       "parent_id": null,
-      "active": true,
+      "active": false,
       "direct_active_products": 0
-    },
-    {
-      "id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
-      "name": "Automotive Accessories",
-      "slug": "automotive-accessories",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 288
     },
     {
       "id": "cb05745e-8a9c-4250-8509-f208e4ccb25e",
@@ -163,14 +99,6 @@
       "direct_active_products": 10
     },
     {
-      "id": "b8ffc1e1-636c-4da2-890c-744bc727b3e7",
-      "name": "Automotive Tools",
-      "slug": "catalogue-automotive-tools",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "ff803cb3-b5e0-4d37-a1e1-41898ad0c00c",
       "name": "AUTOMOTIVE TOOLS",
       "slug": "automotive-tools",
@@ -187,28 +115,12 @@
       "direct_active_products": 0
     },
     {
-      "id": "4b805b28-67a1-4eb3-bb65-84dda87d6cbb",
-      "name": "Battery",
-      "slug": "catalogue-battery",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "a4c82c89-2469-492b-ad0d-43e39271d348",
       "name": "BATTERY",
       "slug": "battery",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
       "direct_active_products": 46
-    },
-    {
-      "id": "b9c9aaa9-de94-491c-a02d-173b7d129245",
-      "name": "Boat Accessories",
-      "slug": "catalogue-boat-accessories",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "dc6e56aa-05c3-4ffd-96f9-cdb0777be49c",
@@ -219,36 +131,12 @@
       "direct_active_products": 52
     },
     {
-      "id": "53daec04-d315-43f9-91e0-2df49f9d89c6",
-      "name": "Brake Parts",
-      "slug": "catalogue-brake-parts",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "407e459f-a325-4542-9b9d-a0e3553e83db",
       "name": "Brake Parts",
       "slug": "brake-parts",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 41
-    },
-    {
-      "id": "af2f8625-4f42-45e6-9f21-d571d7415893",
-      "name": "Camping / Leisure / Outdoors",
-      "slug": "camping-leisure-outdoors",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 9
-    },
-    {
-      "id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
-      "name": "Car Audio",
-      "slug": "car-audio-store",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 39
     },
     {
       "id": "c910bc35-2f87-465e-b7c5-f6b27c133146",
@@ -283,14 +171,6 @@
       "direct_active_products": 0
     },
     {
-      "id": "69b931cf-af8a-4037-825c-b1c69ca53c28",
-      "name": "Clamps",
-      "slug": "catalogue-clamps",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "94f2f85c-fda1-4ee4-bcee-7d30d8afdb82",
       "name": "CLAMPS",
       "slug": "clamps",
@@ -315,26 +195,10 @@
       "direct_active_products": 84
     },
     {
-      "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
-      "name": "Consumables",
-      "slug": "catalogue-consumables",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "50cc925a-f099-46ee-8c5b-3532622dda52",
       "name": "Convenience Accessories",
       "slug": "convenience-accessories",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "ab07f2e9-ff89-42a7-a3c2-8a0e0551cba1",
-      "name": "Crossovers",
-      "slug": "car-audio-crossovers",
-      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
     },
@@ -345,14 +209,6 @@
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
       "direct_active_products": 51
-    },
-    {
-      "id": "23272a41-f706-4d75-898b-b5410eab66d5",
-      "name": "Cylinders",
-      "slug": "catalogue-cylinders",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "2da17284-d78f-4a53-a2f2-74f7552214ca",
@@ -371,28 +227,12 @@
       "direct_active_products": 6
     },
     {
-      "id": "775d3823-57de-45bc-8c88-39c98656b536",
-      "name": "Door Parts",
-      "slug": "catalogue-door-parts",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "c85dec4d-a386-4f9e-96db-e6b50a2b49da",
       "name": "DOOR PARTS",
       "slug": "door-parts",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 51
-    },
-    {
-      "id": "e72b663f-9053-4297-a5b5-b6549d0a47c1",
-      "name": "Drill Bits",
-      "slug": "catalogue-drill-bits",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "88db128c-6b5f-4add-8e31-897b5cf13794",
@@ -403,19 +243,11 @@
       "direct_active_products": 23
     },
     {
-      "id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "id": "8c9abf55-a54e-4748-bf48-196c697404af",
       "name": "Electrical",
-      "slug": "electrical",
+      "slug": "legacy-electrical",
       "parent_id": null,
-      "active": true,
-      "direct_active_products": 3
-    },
-    {
-      "id": "06889e1c-f1a1-434d-bb8e-471bc7500ebb",
-      "name": "Electrical Spares",
-      "slug": "catalogue-electrical-spares",
-      "parent_id": null,
-      "active": true,
+      "active": false,
       "direct_active_products": 0
     },
     {
@@ -459,36 +291,12 @@
       "direct_active_products": 12
     },
     {
-      "id": "fa08b2d8-a638-485a-b0ff-5c27a86b97ac",
-      "name": "Fuel Pumps",
-      "slug": "light-duty-fuel-pumps",
-      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
-      "active": true,
-      "direct_active_products": 10
-    },
-    {
-      "id": "cfaf680b-27ec-428f-9580-8104acf576f4",
-      "name": "Fuel Pumps & Oil Filter",
-      "slug": "catalogue-fuel-pumps-and-oil-filter",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "5549384b-cfaa-4e55-96f5-2f5d21509247",
       "name": "FUEL PUMPS & OIL FILTER",
       "slug": "fuel-pumps-oil-filter",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 13
-    },
-    {
-      "id": "23a63b03-5a21-4b3b-84ca-0337a0d64cbd",
-      "name": "Fuses",
-      "slug": "catalogue-fuses",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "09aaa5c2-bf22-4ef0-841c-3f8c7210ca46",
@@ -503,14 +311,6 @@
       "name": "Fuses & Fuse Holders",
       "slug": "fuses-fuse-holders",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "5eb76e02-c7ac-415d-b235-94c0701fb096",
-      "name": "Garden Tools and Accessories",
-      "slug": "catalogue-garden-tools-and-accessories",
-      "parent_id": null,
       "active": true,
       "direct_active_products": 0
     },
@@ -531,36 +331,12 @@
       "direct_active_products": 35
     },
     {
-      "id": "df14b7f8-f086-4fdb-8496-733bde7e18e7",
-      "name": "General Accessories",
-      "slug": "accessories-general",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
-      "active": true,
-      "direct_active_products": 41
-    },
-    {
-      "id": "7c5d5092-9d92-429d-985d-019aa0016979",
-      "name": "Globes and Globe Holders",
-      "slug": "catalogue-globes-and-globe-holders",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "a05e6167-049a-4392-8c7f-c58bbbf41d57",
       "name": "GLOBES AND GLOBE HOLDERS",
       "slug": "globes-and-globe-holders",
       "parent_id": "cfd3e001-9292-459f-b0e5-9502f160eb5c",
       "active": true,
       "direct_active_products": 18
-    },
-    {
-      "id": "e4301043-03e0-4242-945d-e88f7ea23f23",
-      "name": "Hand & Foot Pumps",
-      "slug": "catalogue-hand-and-foot-pumps",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "8f6cd5e6-2836-44b0-bafb-3f76234abe2b",
@@ -579,33 +355,9 @@
       "direct_active_products": 324
     },
     {
-      "id": "cefc3905-a81d-4ad7-803f-d2acd5d9f4c4",
-      "name": "Hand Tools",
-      "slug": "catalogue-hand-tools",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "c04c7226-405e-467a-892d-b713aa1ac9ac",
-      "name": "Hardware",
-      "slug": "hardware",
-      "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
-      "active": true,
-      "direct_active_products": 21
-    },
-    {
       "id": "a142d33a-0cb4-4971-9195-d85e5d39f352",
       "name": "Head Units",
       "slug": "head-units",
-      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "4da98e3f-d542-4842-b6be-c4a8e109c0dd",
-      "name": "Head Units",
-      "slug": "car-audio-head-units",
       "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
       "active": true,
       "direct_active_products": 0
@@ -623,14 +375,6 @@
       "name": "Honing Tools",
       "slug": "honing-tools",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "d725c8e9-9dc7-46b0-b5b4-29198b869d48",
-      "name": "Ignition Spares",
-      "slug": "catalogue-ignition-spares",
-      "parent_id": null,
       "active": true,
       "direct_active_products": 0
     },
@@ -667,26 +411,10 @@
       "direct_active_products": 0
     },
     {
-      "id": "e789ec51-d388-4794-8c2a-18c13eef8e56",
-      "name": "Knives",
-      "slug": "catalogue-knives",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "678eae09-613b-4ef3-a773-6cb7f2101f7b",
       "name": "KNIVES",
       "slug": "knives",
       "parent_id": "8e93d917-8fcc-4427-b364-cdad244f263f",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "ee52bc1e-8fa9-409c-bffc-c09e92a5a566",
-      "name": "Lamps",
-      "slug": "catalogue-lamps",
-      "parent_id": null,
       "active": true,
       "direct_active_products": 0
     },
@@ -715,14 +443,6 @@
       "direct_active_products": 0
     },
     {
-      "id": "e62dc348-dc20-4043-896a-25b0aae1a461",
-      "name": "Lifestyle",
-      "slug": "catalogue-lifestyle",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "60ac52c6-5f4d-406b-aada-a8334be7c0d1",
       "name": "LIFESTYLE",
       "slug": "lifestyle",
@@ -747,43 +467,43 @@
       "direct_active_products": 17
     },
     {
-      "id": "f17406cf-cd7a-4726-8b55-4b2f7e5e28ec",
+      "id": "cb77510a-4b10-4e2e-a96f-2d7a0d88a4d8",
+      "name": "Marine",
+      "slug": "marine",
+      "parent_id": null,
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5b8f7ca3-1df6-4be1-b826-0e83c5aec5bb",
       "name": "Marine Accessories",
-      "slug": "marine-accessories-store",
+      "slug": "marine-accessories",
       "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
-      "active": true,
+      "active": false,
       "direct_active_products": 0
     },
     {
-      "id": "2f7cc43a-6a6b-42ed-8841-508168dfcc39",
-      "name": "Marine Rigging",
-      "slug": "marine-rigging",
+      "id": "6f4f4e5a-0a4a-4d57-aed3-e79d95219b40",
+      "name": "Marine Audio",
+      "slug": "marine-audio",
       "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
-      "active": true,
+      "active": false,
       "direct_active_products": 0
     },
     {
-      "id": "166ab457-4392-41ba-888d-b5ee969a93b5",
-      "name": "Marine Spares",
-      "slug": "marine-spares",
+      "id": "10d6ef3c-4787-4d16-b212-476588ab4bb9",
+      "name": "Marine Electrical",
+      "slug": "marine-electrical",
       "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
-      "active": true,
+      "active": false,
       "direct_active_products": 0
     },
     {
-      "id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
-      "name": "Marine Spares & Accessories",
-      "slug": "marine-spares-accessories",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 5
-    },
-    {
-      "id": "d1956e58-16a6-4f3a-805a-5a79e7ccb91f",
-      "name": "Measuring Tools",
-      "slug": "catalogue-measuring-tools",
-      "parent_id": null,
-      "active": true,
+      "id": "a061eacd-62c7-48b2-b5e5-814afb84cb85",
+      "name": "Marine Lighting",
+      "slug": "marine-lighting",
+      "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
+      "active": false,
       "direct_active_products": 0
     },
     {
@@ -795,28 +515,12 @@
       "direct_active_products": 30
     },
     {
-      "id": "153c977f-a9df-43ba-a2bf-e9fa076d8401",
-      "name": "Mirrors",
-      "slug": "catalogue-mirrors",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "294f2575-da85-4327-ac32-832f9ef1f4aa",
       "name": "MIRRORS",
       "slug": "mirrors",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 58
-    },
-    {
-      "id": "4e6922d3-4771-4249-b900-f5b5a990ccdd",
-      "name": "Multimeters",
-      "slug": "catalogue-multimeters",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "dd6ff1e4-961c-41a9-889f-3924e5a3ebf5",
@@ -835,28 +539,12 @@
       "direct_active_products": 12
     },
     {
-      "id": "133c6ef7-0cc4-4b8a-a9fe-a36f3776f258",
-      "name": "Padlocks",
-      "slug": "catalogue-padlocks",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "d3e76af9-3605-46ae-980d-7ee3c1e5622b",
       "name": "PADLOCKS",
       "slug": "padlocks",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
       "direct_active_products": 35
-    },
-    {
-      "id": "b1528723-09bc-430e-95d5-c3dfe629d1d3",
-      "name": "Panel Clips",
-      "slug": "catalogue-panel-clips",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "07256192-8500-46d5-a284-c88bb666e9d9",
@@ -867,14 +555,6 @@
       "direct_active_products": 141
     },
     {
-      "id": "e9b2645b-9928-4333-b646-6c490c3554f9",
-      "name": "Portable Compressors",
-      "slug": "catalogue-portable-compressors",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "02eb909c-e8ad-4959-b653-8fa157fe6dde",
       "name": "PORTABLE COMPRESSORS",
       "slug": "portable-compressors",
@@ -883,11 +563,11 @@
       "direct_active_products": 2
     },
     {
-      "id": "2e60b676-e728-412d-bd88-87bfb66def06",
-      "name": "Racing Stickers",
-      "slug": "catalogue-racing-stickers",
-      "parent_id": null,
-      "active": true,
+      "id": "20476673-bcf9-4e44-aa70-c9b942c81490",
+      "name": "Pumps & Plumbing",
+      "slug": "pumps-plumbing",
+      "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
+      "active": false,
       "direct_active_products": 0
     },
     {
@@ -899,14 +579,6 @@
       "direct_active_products": 6
     },
     {
-      "id": "65ba34f8-b6f6-4e72-8d01-9a86fe690454",
-      "name": "Radiator Caps & Bottles",
-      "slug": "catalogue-radiator-caps-and-bottles",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "51bc3b05-a498-4d7d-bfab-df7254526fe1",
       "name": "RADIATOR CAPS & BOTTLES",
       "slug": "radiator-caps-bottles",
@@ -915,28 +587,12 @@
       "direct_active_products": 25
     },
     {
-      "id": "64f538d0-4920-45b4-a43f-70ed59500f48",
-      "name": "Regulators",
-      "slug": "catalogue-regulators",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "cfcc829f-a2bb-4dec-907e-32df3fcafefa",
       "name": "REGULATORS",
       "slug": "regulators",
       "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
       "active": true,
       "direct_active_products": 41
-    },
-    {
-      "id": "344bf660-7d9b-40f7-9cf0-b3043724c774",
-      "name": "Relays",
-      "slug": "catalogue-relays",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "a76fc08b-b523-4498-8376-2433a15f82cc",
@@ -963,44 +619,12 @@
       "direct_active_products": 2
     },
     {
-      "id": "36629f43-c0e8-429f-93fb-03f92522e42d",
-      "name": "Screwdrivers",
-      "slug": "catalogue-screwdrivers",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "ccc99593-98f1-47b1-a365-70cb63a39152",
       "name": "SCREWDRIVERS",
       "slug": "screwdrivers",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
       "direct_active_products": 29
-    },
-    {
-      "id": "c0aa1cae-0aef-4ef9-995d-37999da722ab",
-      "name": "Seat Covers",
-      "slug": "seat-covers",
-      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
-      "active": true,
-      "direct_active_products": 24
-    },
-    {
-      "id": "b0fc911a-babb-4161-9558-9115887d2259",
-      "name": "Seat Covers",
-      "slug": "catalogue-seat-covers",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "76d6c6e2-d657-479d-8570-742836d478e9",
-      "name": "Sensors",
-      "slug": "catalogue-sensors",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "3a1191ad-5fb8-4eb1-9ec0-6ddc598ea272",
@@ -1011,14 +635,6 @@
       "direct_active_products": 18
     },
     {
-      "id": "2f7c1a92-db39-43ad-81ea-2e9ec53fff9b",
-      "name": "Sockets",
-      "slug": "catalogue-sockets",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "0be88240-2136-496e-9aa3-c8f065db38ed",
       "name": "SOCKETS",
       "slug": "sockets",
@@ -1027,28 +643,12 @@
       "direct_active_products": 55
     },
     {
-      "id": "5f639830-2555-4db5-82e5-6b749c6b656a",
-      "name": "Spanners",
-      "slug": "catalogue-spanners",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "0b002215-cd32-4c84-9719-292f95b53099",
       "name": "Spanners & Wrenches",
       "slug": "spanners-wrenches",
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
       "direct_active_products": 148
-    },
-    {
-      "id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
-      "name": "Spare Parts",
-      "slug": "catalogue-spare-parts",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 136
     },
     {
       "id": "fef8b3a3-08bf-4598-9e24-0e570af62fd7",
@@ -1067,28 +667,12 @@
       "direct_active_products": 0
     },
     {
-      "id": "8cbc5953-a290-45ca-9d7a-1a3a1aa4f3ea",
-      "name": "Speakers",
-      "slug": "car-audio-speakers",
-      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "ecd90243-f58f-457d-a6f2-1f7edcedf5c3",
       "name": "Spotlights",
       "slug": "spotlights",
       "parent_id": "cfd3e001-9292-459f-b0e5-9502f160eb5c",
       "active": true,
       "direct_active_products": 15
-    },
-    {
-      "id": "302bb457-5f6b-403c-b41c-876f95ab3c5b",
-      "name": "Steering Wheel Covers",
-      "slug": "catalogue-steering-wheel-covers",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "096df8d4-f785-4478-850e-ae1e307c14a1",
@@ -1107,28 +691,12 @@
       "direct_active_products": 0
     },
     {
-      "id": "f4589d66-1bee-4579-b8b0-5e58e7b78d52",
-      "name": "Suspension",
-      "slug": "catalogue-suspension",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "ba26d072-fdc6-4dbe-9eb8-b374e8aacbf0",
       "name": "SUSPENSION",
       "slug": "suspension",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 47
-    },
-    {
-      "id": "ee23b3dd-9e16-490a-b624-c018651c4f9c",
-      "name": "Switches",
-      "slug": "catalogue-switches",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "2cb1bdff-652a-4aa5-9b06-b85d3ec44191",
@@ -1147,14 +715,6 @@
       "direct_active_products": 0
     },
     {
-      "id": "f689555a-5a73-48d4-a2e8-e6237d7411be",
-      "name": "Thermostats & Pipes",
-      "slug": "catalogue-thermostats-and-pipes",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "09542c2c-2440-4ae3-a4c3-92749e0fdd40",
       "name": "THERMOSTATS & PIPES",
       "slug": "thermostats-pipes",
@@ -1163,42 +723,18 @@
       "direct_active_products": 45
     },
     {
-      "id": "77297c18-67f6-452e-8918-c55d2ef6231a",
+      "id": "f37095f4-b134-4f73-86a2-d694f250f667",
       "name": "Tools & Workshop",
-      "slug": "tools-workshop",
+      "slug": "legacy-tools-workshop",
       "parent_id": null,
-      "active": true,
-      "direct_active_products": 133
+      "active": false,
+      "direct_active_products": 0
     },
     {
       "id": "71196695-5fa0-48eb-a17a-9fcb5bd76e04",
       "name": "Towing & Recovery",
       "slug": "towing-recovery",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
-      "id": "b0268448-35de-43a2-ab92-009aa57d1572",
-      "name": "Trailer",
-      "slug": "trailer",
-      "parent_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
-      "active": true,
-      "direct_active_products": 4
-    },
-    {
-      "id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
-      "name": "Trailer & Canopy",
-      "slug": "trailer-canopy",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 64
-    },
-    {
-      "id": "f9034e71-4b2b-4b88-9020-bf5b5ff7502a",
-      "name": "Trailer & Towing",
-      "slug": "catalogue-trailer-and-towing",
-      "parent_id": null,
       "active": true,
       "direct_active_products": 0
     },
@@ -1227,28 +763,12 @@
       "direct_active_products": 0
     },
     {
-      "id": "07ffc4e6-4515-4de3-a75f-7685d6e99537",
-      "name": "Wheel Accessories",
-      "slug": "catalogue-wheel-accessories",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "e40fa8f4-ef1e-4ca1-8d18-370528c47827",
       "name": "WHEEL ACCESSORIES",
       "slug": "wheel-accessories",
       "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
       "active": true,
       "direct_active_products": 136
-    },
-    {
-      "id": "6a89a4d7-e43a-4ad7-89c4-62453ff5f84d",
-      "name": "Wheel Covers",
-      "slug": "catalogue-wheel-covers",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "1904c145-d1f9-4624-8621-28f267b5bce5",
@@ -1259,44 +779,12 @@
       "direct_active_products": 12
     },
     {
-      "id": "a1be0843-c0ef-4c3c-a57f-3759660e3475",
-      "name": "Winch Spares & Accessories",
-      "slug": "winch-spares-accessories",
-      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
-      "active": true,
-      "direct_active_products": 21
-    },
-    {
-      "id": "b8ea4179-5b94-45ae-a143-09790aaf6068",
-      "name": "Winches",
-      "slug": "winches",
-      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
-      "active": true,
-      "direct_active_products": 18
-    },
-    {
-      "id": "3bdf1771-e7a6-431c-8687-1e9d1801ed7f",
-      "name": "Wipers",
-      "slug": "catalogue-wipers",
-      "parent_id": null,
-      "active": true,
-      "direct_active_products": 0
-    },
-    {
       "id": "bedbeb2d-a367-4cee-919d-2850d532f358",
       "name": "WIPERS",
       "slug": "wipers",
       "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
       "active": true,
       "direct_active_products": 44
-    },
-    {
-      "id": "64726cde-6d3b-4ca5-b778-9f1699e6602b",
-      "name": "Wiring & Accessories",
-      "slug": "car-audio-wiring-accessories",
-      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
-      "active": true,
-      "direct_active_products": 0
     },
     {
       "id": "8d6cd1a0-d112-42a7-bb31-319efb3b08ae",
@@ -1321,6 +809,1134 @@
       "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
       "active": true,
       "direct_active_products": 5
+    },
+    {
+      "id": "e690fcb9-b089-44d6-8204-2f97c270c832",
+      "name": "12V",
+      "slug": "parts-12v",
+      "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5d00d8d3-0003-4c1e-ab2c-89603ae7d4fe",
+      "name": "12V",
+      "slug": "accessories-12v",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "name": "12V Light Duty Vehicles (Cars and Bakkies etc)",
+      "slug": "12v-light-duty-vehicles",
+      "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "815720be-9cf0-4f38-a872-e81280c31950",
+      "name": "Accessories",
+      "slug": "catalogue-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "425ed8c5-761a-495d-a29f-bd8c430a6a8e",
+      "name": "Brake Parts",
+      "slug": "parts-brake",
+      "parent_id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5d0ef754-604e-40f0-893c-e9cef5fd6dd8",
+      "name": "Camping",
+      "slug": "camping",
+      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "3487c41f-7f12-4947-a8bd-b451ecedb7d5",
+      "name": "Car alarm / Immobiliser Systems",
+      "slug": "car-alarm-immobiliser-systems",
+      "parent_id": "8e93d917-8fcc-4427-b364-cdad244f263f",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "2a0a1bd7-acf8-4c8d-ad84-ef6488066543",
+      "name": "Fan Blades",
+      "slug": "parts-24v-fan-blades",
+      "parent_id": "81716c34-4a19-4c9b-b5d2-a312fe515323",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "81716c34-4a19-4c9b-b5d2-a312fe515323",
+      "name": "Fans",
+      "slug": "parts-24v-fans",
+      "parent_id": "26f657f0-ca2f-450b-b824-8327f85b3db5",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "07fd38f7-23d4-437c-a925-7045588e9501",
+      "name": "Head Units",
+      "slug": "store-head-units",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "4da98e3f-d542-4842-b6be-c4a8e109c0dd",
+      "name": "Head Units",
+      "slug": "car-audio-head-units",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5d7cac3c-b018-4f37-904e-053e225349c1",
+      "name": "Ignition Coils",
+      "slug": "ignition-coils",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "c84858bd-bca5-4f97-85de-cd5e287287d4",
+      "name": "Lighting Accessories",
+      "slug": "lighting-accessories",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "166ab457-4392-41ba-888d-b5ee969a93b5",
+      "name": "Marine Spares",
+      "slug": "marine-spares",
+      "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "51b4e58f-2053-40fc-a473-099a881f3ef3",
+      "name": "Parts",
+      "slug": "parts",
+      "parent_id": null,
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "3abe6852-b3e5-4c5a-82d4-d2d8a847efd1",
+      "name": "Petrol",
+      "slug": "parts-12v-petrol",
+      "parent_id": "e690fcb9-b089-44d6-8204-2f97c270c832",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f3de5b85-5df8-425d-b53b-a4c685999000",
+      "name": "Starters",
+      "slug": "heavy-duty-starters",
+      "parent_id": "9c323e5e-6b0c-44fe-89d8-254903dbd274",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "9ec21110-650e-4ae5-99bc-64c00accc5f2",
+      "name": "Tools",
+      "slug": "store-tools",
+      "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b0268448-35de-43a2-ab92-009aa57d1572",
+      "name": "Trailer",
+      "slug": "trailer",
+      "parent_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
+      "active": true,
+      "direct_active_products": 4
+    },
+    {
+      "id": "26f657f0-ca2f-450b-b824-8327f85b3db5",
+      "name": "24V",
+      "slug": "parts-24v",
+      "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "1139abdd-2acf-4a4e-b346-822129274e4b",
+      "name": "24V",
+      "slug": "accessories-24v",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "9c323e5e-6b0c-44fe-89d8-254903dbd274",
+      "name": "24V Heavy Duty Vehicles (Trucks & Buses etc)",
+      "slug": "24v-heavy-duty-vehicles",
+      "parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b165aab4-c5c9-457e-9168-73869bcd8040",
+      "name": "Canopy",
+      "slug": "canopy",
+      "parent_id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "11fcb18c-5625-4fd3-9f51-fe83560e1e33",
+      "name": "Central Locking",
+      "slug": "vehicle-security-central-locking",
+      "parent_id": "8e93d917-8fcc-4427-b364-cdad244f263f",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "c31c6289-a8e2-44ed-a182-5626604c2829",
+      "name": "Cylinders",
+      "slug": "parts-cylinders",
+      "parent_id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "28060750-8a8c-4dbf-a388-eeb680a710ec",
+      "name": "Diesel",
+      "slug": "parts-12v-diesel",
+      "parent_id": "e690fcb9-b089-44d6-8204-2f97c270c832",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "46839e3f-f258-4cc0-861c-a01222faca9f",
+      "name": "Electrical",
+      "slug": "parts-24v-electrical",
+      "parent_id": "26f657f0-ca2f-450b-b824-8327f85b3db5",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "86a3f007-cf0c-4605-8895-551d0e49214c",
+      "name": "Fan Clutches",
+      "slug": "parts-24v-fan-clutches",
+      "parent_id": "81716c34-4a19-4c9b-b5d2-a312fe515323",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "fa08b2d8-a638-485a-b0ff-5c27a86b97ac",
+      "name": "Fuel Pumps",
+      "slug": "light-duty-fuel-pumps",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": true,
+      "direct_active_products": 10
+    },
+    {
+      "id": "c04c7226-405e-467a-892d-b713aa1ac9ac",
+      "name": "Hardware",
+      "slug": "hardware",
+      "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
+      "active": true,
+      "direct_active_products": 21
+    },
+    {
+      "id": "e789ec51-d388-4794-8c2a-18c13eef8e56",
+      "name": "Knives",
+      "slug": "catalogue-knives",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "c8270b65-ab8d-477e-b3c9-0fca06fe5fd1",
+      "name": "Leisure",
+      "slug": "leisure",
+      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f17406cf-cd7a-4726-8b55-4b2f7e5e28ec",
+      "name": "Marine Accessories",
+      "slug": "marine-accessories-store",
+      "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "c0aa1cae-0aef-4ef9-995d-37999da722ab",
+      "name": "Seat Covers",
+      "slug": "seat-covers",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": true,
+      "direct_active_products": 24
+    },
+    {
+      "id": "8cbc5953-a290-45ca-9d7a-1a3a1aa4f3ea",
+      "name": "Speakers",
+      "slug": "car-audio-speakers",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "50405a23-7fda-48a7-896f-8a7f6fedd232",
+      "name": "Speakers",
+      "slug": "store-speakers",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e39323af-34f2-4861-babe-e27977b8fc10",
+      "name": "Starter Spares",
+      "slug": "starter-spares",
+      "parent_id": "9c323e5e-6b0c-44fe-89d8-254903dbd274",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "ff2e9f4c-ee5b-4c1e-9ba6-33a909d6cbb5",
+      "name": "Alternators Spares",
+      "slug": "alternator-spares",
+      "parent_id": "9c323e5e-6b0c-44fe-89d8-254903dbd274",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f9a275f5-d356-4b85-ba41-74fed5677f3f",
+      "name": "Amplifiers",
+      "slug": "car-audio-amplifiers",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "bb5a9ad6-6496-4156-b258-faf5876fa8b1",
+      "name": "Car Audio",
+      "slug": "car-audio",
+      "parent_id": null,
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5c359afe-4069-4645-88a4-6d168391617b",
+      "name": "Complete Fans",
+      "slug": "parts-24v-complete-fans",
+      "parent_id": "81716c34-4a19-4c9b-b5d2-a312fe515323",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "d9f82e18-6a1b-4d75-b563-d66b124d9bc2",
+      "name": "Consumables",
+      "slug": "store-consumables",
+      "parent_id": "77297c18-67f6-452e-8918-c55d2ef6231a",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "1dc02ce1-dc14-418f-ae13-c35e960e4593",
+      "name": "Electrical & Ignition",
+      "slug": "parts-12v-electrical",
+      "parent_id": "e690fcb9-b089-44d6-8204-2f97c270c832",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "6e5474bd-3fde-40f2-9f80-6e72f7644cac",
+      "name": "General 24V",
+      "slug": "parts-24v-general",
+      "parent_id": "26f657f0-ca2f-450b-b824-8327f85b3db5",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "df14b7f8-f086-4fdb-8496-733bde7e18e7",
+      "name": "General Accessories",
+      "slug": "accessories-general",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": true,
+      "direct_active_products": 41
+    },
+    {
+      "id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
+      "name": "General Parts",
+      "slug": "parts-general",
+      "parent_id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "3ac810da-5e08-403d-b6da-33d621847fd7",
+      "name": "Ignition & Door Barrel Sets",
+      "slug": "ignition-door-barrel-sets",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e62dc348-dc20-4043-896a-25b0aae1a461",
+      "name": "Lifestyle",
+      "slug": "catalogue-lifestyle",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "2f7cc43a-6a6b-42ed-8841-508168dfcc39",
+      "name": "Marine Rigging",
+      "slug": "marine-rigging",
+      "parent_id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "52620844-c78d-45f2-8386-f03d0a95dc43",
+      "name": "Outdoors",
+      "slug": "outdoors",
+      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f895ff8d-7523-45b4-8967-8743b27c2f1f",
+      "name": "Split Systems",
+      "slug": "split-systems",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "ca68014c-a0f9-4279-b2cb-c239ac6146c3",
+      "name": "Steering Wheels",
+      "slug": "steering-wheels",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e227bcee-6ea6-4175-8561-9c0ed1b5a759",
+      "name": "Suspension",
+      "slug": "parts-suspension",
+      "parent_id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "ff3f339f-31da-4dfe-8246-385de1251fdb",
+      "name": "4X4 Outdoor",
+      "slug": "catalogue-4x4-outdoor",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "87c8c0a5-7027-4d32-9153-731905d87d8e",
+      "name": "Accessories",
+      "slug": "accessories-store",
+      "parent_id": null,
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "ab07f2e9-ff89-42a7-a3c2-8a0e0551cba1",
+      "name": "Crossovers",
+      "slug": "car-audio-crossovers",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "56fa719a-be09-48be-b60a-8efb6f1fa495",
+      "name": "Fan Motors",
+      "slug": "parts-24v-fan-motors",
+      "parent_id": "81716c34-4a19-4c9b-b5d2-a312fe515323",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "263a900b-bc9d-454b-bb93-a5de5aa4a6e1",
+      "name": "Fans & Fan Spares",
+      "slug": "fans-fan-spares",
+      "parent_id": "9c323e5e-6b0c-44fe-89d8-254903dbd274",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b4b7eab2-c0f0-474c-8fe7-8ee0b1fd1354",
+      "name": "Gear knobs & Hand brake covers",
+      "slug": "gear-knobs-hand-brake-covers",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "31867303-171b-42b1-85d3-c17c09c2330c",
+      "name": "Spare Parts",
+      "slug": "parts-spares",
+      "parent_id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "a0e1b3ab-f576-44a4-ae07-1cc9903da675",
+      "name": "Starters",
+      "slug": "light-duty-starters",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "43f8140e-77ff-4e1f-b071-a62bdb18334c",
+      "name": "Tweeters",
+      "slug": "tweeters",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "8b2a1169-f239-4caf-910f-60bb0680f5cd",
+      "name": "Alternators",
+      "slug": "light-duty-alternators",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "22bde2df-4e2e-4b06-b7de-3081331891c8",
+      "name": "Amplifiers",
+      "slug": "store-amplifiers",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5f1bc9b5-cf3e-4065-bb67-f592312fd0e2",
+      "name": "Body Kits",
+      "slug": "body-kits",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f9034e71-4b2b-4b88-9020-bf5b5ff7502a",
+      "name": "Trailer & Towing",
+      "slug": "catalogue-trailer-and-towing",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "7d80d879-836d-4fd4-b3cc-2bb1abb1af33",
+      "name": "Wheel Parts",
+      "slug": "parts-wheel",
+      "parent_id": "f596787b-64a9-4be6-b7b6-53a11aec08f0",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "64726cde-6d3b-4ca5-b778-9f1699e6602b",
+      "name": "Wiring & Accessories",
+      "slug": "car-audio-wiring-accessories",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "c54971c0-9ef7-4ed9-b04f-be561aa4565e",
+      "name": "Automotive Accessories",
+      "slug": "catalogue-automotive-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "eb391006-56f5-4c75-be54-dabfd8b50051",
+      "name": "Batteries",
+      "slug": "batteries",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "d03fb6fb-abd7-4e84-acb8-2382293a3ff8",
+      "name": "Car Mats",
+      "slug": "car-mats",
+      "parent_id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "625d4740-c7f8-47c5-82e2-be8357228112",
+      "name": "Subwoofers",
+      "slug": "store-subwoofers",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "9c62a324-4d76-402b-af88-9d252108a52f",
+      "name": "Crossovers & Equalisers",
+      "slug": "crossovers-equalisers",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "2e60b676-e728-412d-bd88-87bfb66def06",
+      "name": "Racing Stickers",
+      "slug": "catalogue-racing-stickers",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "a7a25a4d-05ef-4853-97cc-50cf6be9903e",
+      "name": "Tappet Covers",
+      "slug": "tappet-covers",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b0fc911a-babb-4161-9558-9115887d2259",
+      "name": "Seat Covers",
+      "slug": "catalogue-seat-covers",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "50c7e440-dd77-4f54-88c1-f571d12ed836",
+      "name": "Thermostat Housings",
+      "slug": "thermostat-housings",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "297436a5-f35f-4619-89b6-8f46003bf323",
+      "name": "Wiring Kits & Accessories",
+      "slug": "wiring-kits-accessories",
+      "parent_id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "2d174038-4dc2-4ab7-abb7-c862ec089d1d",
+      "name": "Side Mirrors",
+      "slug": "side-mirrors",
+      "parent_id": "fac95b1b-7d53-4583-9ed2-c2390230714b",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "302bb457-5f6b-403c-b41c-876f95ab3c5b",
+      "name": "Steering Wheel Covers",
+      "slug": "catalogue-steering-wheel-covers",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "db02065f-f17f-4b37-989d-50e58e2349cc",
+      "name": "Brush Kits",
+      "slug": "parts-12v-starter-brush-kits",
+      "parent_id": "bbfcb619-038d-4625-b606-5392bf710fa9",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "1838e084-758c-49e4-9c48-10b8cec94bb0",
+      "name": "Diesel Pumps",
+      "slug": "parts-12v-diesel-pumps",
+      "parent_id": "28060750-8a8c-4dbf-a388-eeb680a710ec",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "name": "Electrical",
+      "slug": "electrical",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 3
+    },
+    {
+      "id": "301ebc83-5222-4987-bf4f-e5e8d177c3e8",
+      "name": "Fuel Pumps Only",
+      "slug": "parts-12v-fuel-pumps-only",
+      "parent_id": "6e92f3d5-2d6b-4b27-a434-3f84e26267ef",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5078ced3-6a2b-4a6d-8602-bf94bffbe964",
+      "name": "Regulators",
+      "slug": "parts-12v-alternator-regulators",
+      "parent_id": "ab4516fd-07a4-45a1-a74b-028ba05fd2b4",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "bbfcb619-038d-4625-b606-5392bf710fa9",
+      "name": "Starters",
+      "slug": "parts-12v-petrol-starters",
+      "parent_id": "3abe6852-b3e5-4c5a-82d4-d2d8a847efd1",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "6a89a4d7-e43a-4ad7-89c4-62453ff5f84d",
+      "name": "Wheel Covers",
+      "slug": "catalogue-wheel-covers",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "153c977f-a9df-43ba-a2bf-e9fa076d8401",
+      "name": "Mirrors",
+      "slug": "catalogue-mirrors",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "775d3823-57de-45bc-8c88-39c98656b536",
+      "name": "Door Parts",
+      "slug": "catalogue-door-parts",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b1528723-09bc-430e-95d5-c3dfe629d1d3",
+      "name": "Panel Clips",
+      "slug": "catalogue-panel-clips",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "7228adea-37f7-4d5a-b633-e138a3ed158d",
+      "name": "Aerials",
+      "slug": "catalogue-aerials",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "4b805b28-67a1-4eb3-bb65-84dda87d6cbb",
+      "name": "Battery",
+      "slug": "catalogue-battery",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "06889e1c-f1a1-434d-bb8e-471bc7500ebb",
+      "name": "Electrical Spares",
+      "slug": "catalogue-electrical-spares",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "23a63b03-5a21-4b3b-84ca-0337a0d64cbd",
+      "name": "Fuses",
+      "slug": "catalogue-fuses",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "344bf660-7d9b-40f7-9cf0-b3043724c774",
+      "name": "Relays",
+      "slug": "catalogue-relays",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "7c5d5092-9d92-429d-985d-019aa0016979",
+      "name": "Globes and Globe Holders",
+      "slug": "catalogue-globes-and-globe-holders",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "8e93d917-8fcc-4427-b364-cdad244f263f",
+      "name": "Alarms & Security",
+      "slug": "alarms-security",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 2
+    },
+    {
+      "id": "c23c6b2a-a2e0-4e41-abc2-7193ed12bbca",
+      "name": "Alternator Components",
+      "slug": "parts-12v-alternator-components",
+      "parent_id": "ab4516fd-07a4-45a1-a74b-028ba05fd2b4",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "ab4516fd-07a4-45a1-a74b-028ba05fd2b4",
+      "name": "Alternators",
+      "slug": "parts-12v-petrol-alternators",
+      "parent_id": "3abe6852-b3e5-4c5a-82d4-d2d8a847efd1",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "282aac60-4108-4875-acf8-b4a008e1b9c4",
+      "name": "Fuel Pumps Complete",
+      "slug": "parts-12v-fuel-pumps-complete",
+      "parent_id": "6e92f3d5-2d6b-4b27-a434-3f84e26267ef",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "ee52bc1e-8fa9-409c-bffc-c09e92a5a566",
+      "name": "Lamps",
+      "slug": "catalogue-lamps",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b0584530-6cc1-4b98-a10d-e7c81994083f",
+      "name": "Starter Motors",
+      "slug": "parts-12v-starter-motors",
+      "parent_id": "bbfcb619-038d-4625-b606-5392bf710fa9",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "ee23b3dd-9e16-490a-b624-c018651c4f9c",
+      "name": "Switches",
+      "slug": "catalogue-switches",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "76d6c6e2-d657-479d-8570-742836d478e9",
+      "name": "Sensors",
+      "slug": "catalogue-sensors",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "3bdf1771-e7a6-431c-8687-1e9d1801ed7f",
+      "name": "Wipers",
+      "slug": "catalogue-wipers",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "64f538d0-4920-45b4-a43f-70ed59500f48",
+      "name": "Regulators",
+      "slug": "catalogue-regulators",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "cfaf680b-27ec-428f-9580-8104acf576f4",
+      "name": "Fuel Pumps & Oil Filter",
+      "slug": "catalogue-fuel-pumps-and-oil-filter",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "65ba34f8-b6f6-4e72-8d01-9a86fe690454",
+      "name": "Radiator Caps & Bottles",
+      "slug": "catalogue-radiator-caps-and-bottles",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f689555a-5a73-48d4-a2e8-e6237d7411be",
+      "name": "Thermostats & Pipes",
+      "slug": "catalogue-thermostats-and-pipes",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "d725c8e9-9dc7-46b0-b5b4-29198b869d48",
+      "name": "Ignition Spares",
+      "slug": "catalogue-ignition-spares",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "68e6ada2-ddf8-4327-844f-771d92db54bd",
+      "name": "Spare Parts",
+      "slug": "catalogue-spare-parts",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 136
+    },
+    {
+      "id": "5ab55c53-eee3-41ce-ad48-04ad6df85181",
+      "name": "Car Audio",
+      "slug": "car-audio-store",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 39
+    },
+    {
+      "id": "6e92f3d5-2d6b-4b27-a434-3f84e26267ef",
+      "name": "Fuel Pumps",
+      "slug": "parts-12v-petrol-fuel-pumps",
+      "parent_id": "3abe6852-b3e5-4c5a-82d4-d2d8a847efd1",
+      "active": false,
+      "direct_active_products": 0
+    },
+    {
+      "id": "f4589d66-1bee-4579-b8b0-5e58e7b78d52",
+      "name": "Suspension",
+      "slug": "catalogue-suspension",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "53daec04-d315-43f9-91e0-2df49f9d89c6",
+      "name": "Brake Parts",
+      "slug": "catalogue-brake-parts",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "23272a41-f706-4d75-898b-b5410eab66d5",
+      "name": "Cylinders",
+      "slug": "catalogue-cylinders",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "07ffc4e6-4515-4de3-a75f-7685d6e99537",
+      "name": "Wheel Accessories",
+      "slug": "catalogue-wheel-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b8ffc1e1-636c-4da2-890c-744bc727b3e7",
+      "name": "Automotive Tools",
+      "slug": "catalogue-automotive-tools",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e165c7b9-d7ef-488e-8d50-3279533a16a6",
+      "name": "Abrasives",
+      "slug": "catalogue-abrasives",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "cefc3905-a81d-4ad7-803f-d2acd5d9f4c4",
+      "name": "Hand Tools",
+      "slug": "catalogue-hand-tools",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "69b931cf-af8a-4037-825c-b1c69ca53c28",
+      "name": "Clamps",
+      "slug": "catalogue-clamps",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e72b663f-9053-4297-a5b5-b6549d0a47c1",
+      "name": "Drill Bits",
+      "slug": "catalogue-drill-bits",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "4e6922d3-4771-4249-b900-f5b5a990ccdd",
+      "name": "Multimeters",
+      "slug": "catalogue-multimeters",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "87982093-7d81-4f2e-a8e2-e20cdeef30d8",
+      "name": "Automotive Accessories",
+      "slug": "automotive-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 288
+    },
+    {
+      "id": "d1956e58-16a6-4f3a-805a-5a79e7ccb91f",
+      "name": "Measuring Tools",
+      "slug": "catalogue-measuring-tools",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b8ea4179-5b94-45ae-a143-09790aaf6068",
+      "name": "Winches",
+      "slug": "winches",
+      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
+      "active": true,
+      "direct_active_products": 18
+    },
+    {
+      "id": "2f7c1a92-db39-43ad-81ea-2e9ec53fff9b",
+      "name": "Sockets",
+      "slug": "catalogue-sockets",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "a1be0843-c0ef-4c3c-a57f-3759660e3475",
+      "name": "Winch Spares & Accessories",
+      "slug": "winch-spares-accessories",
+      "parent_id": "af2f8625-4f42-45e6-9f21-d571d7415893",
+      "active": true,
+      "direct_active_products": 21
+    },
+    {
+      "id": "36629f43-c0e8-429f-93fb-03f92522e42d",
+      "name": "Screwdrivers",
+      "slug": "catalogue-screwdrivers",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5f639830-2555-4db5-82e5-6b749c6b656a",
+      "name": "Spanners",
+      "slug": "catalogue-spanners",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e4301043-03e0-4242-945d-e88f7ea23f23",
+      "name": "Hand & Foot Pumps",
+      "slug": "catalogue-hand-and-foot-pumps",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "5eb76e02-c7ac-415d-b235-94c0701fb096",
+      "name": "Garden Tools and Accessories",
+      "slug": "catalogue-garden-tools-and-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "988d31a5-68b7-4655-9123-b4e5a1423225",
+      "name": "Consumables",
+      "slug": "catalogue-consumables",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "133c6ef7-0cc4-4b8a-a9fe-a36f3776f258",
+      "name": "Padlocks",
+      "slug": "catalogue-padlocks",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "b9c9aaa9-de94-491c-a02d-173b7d129245",
+      "name": "Boat Accessories",
+      "slug": "catalogue-boat-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "e9b2645b-9928-4333-b646-6c490c3554f9",
+      "name": "Portable Compressors",
+      "slug": "catalogue-portable-compressors",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "03c48c91-f42d-4071-8e5e-cedbf57efd24",
+      "name": "ATV Winches & Wheel Caps",
+      "slug": "catalogue-atv-winches-and-wheel-caps",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 0
+    },
+    {
+      "id": "38b382c1-6ee0-4b3c-86ad-399094bc40cc",
+      "name": "Marine Spares & Accessories",
+      "slug": "marine-spares-accessories",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 5
+    },
+    {
+      "id": "77297c18-67f6-452e-8918-c55d2ef6231a",
+      "name": "Tools & Workshop",
+      "slug": "tools-workshop",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 133
+    },
+    {
+      "id": "af2f8625-4f42-45e6-9f21-d571d7415893",
+      "name": "Camping / Leisure / Outdoors",
+      "slug": "camping-leisure-outdoors",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 9
+    },
+    {
+      "id": "63a71fd9-df45-43f0-b61d-ad622daa9d79",
+      "name": "Trailer & Canopy",
+      "slug": "trailer-canopy",
+      "parent_id": null,
+      "active": true,
+      "direct_active_products": 64
     }
   ]
 }
