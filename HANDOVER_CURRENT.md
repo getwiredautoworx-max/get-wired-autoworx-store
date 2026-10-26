@@ -2287,3 +2287,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Updated the workflow path filters to allow audit runs on review-branch updates while avoiding reruns on handover-only changes. The workflow remains read-only and does not import or change supplier/live data.
 - Next actions: inspect the 18 cost-floor rows against exact source workbook cells, continue exact model/variant verification and component/category refinement, and keep the 19 zero-RRP items untouched. Confirm or remove the duplicate JBL source file only through safe source-file management; it is not deleted.
 - No supplier XLSX, live catalogue, price, stock, images, checkout/payment, Axxess, DNS, or production settings changed. PR #95 remains open/unmerged; do not merge without release approval.
+
+
+## COST-FLOOR ROWS AND DUPLICATE FLAGS TRIAGED — 2026-10-26
+
+- Inspected the source header/value snapshots for all 18 non-zero-RRP rows where RRP−1% is below estimated VAT-inclusive dealer cost. The mapped fields are consistently `Retail Price (Incl)` and `Dealer Price (Excl)`; source values are present and mapped, so these do not look like simple missing-column mappings. They still require Planetworld confirmation for RRP/cost correctness, bundle/pack basis, and VAT treatment; no prices were changed.
+- Added [COST_FLOOR_SOURCE_ROW_CHECK_2026-10-26.md](catalogue-source/suppliers/planetworld/COST_FLOOR_SOURCE_ROW_CHECK_2026-10-26.md) with all 18 exact model/source rows, RRP, dealer cost, estimated VAT-inclusive cost and difference, plus the one additional row that only fails at RRP−2%.
+- Refined duplicate flags in the non-zero review: 26 of the 32 raw flags are explained by the identical duplicate JBL workbook still present in the input set. Six non-JBL candidates remain: On Stage `KT7800` / `KT7800+`, and Roborock `Q7 TF B`, `Q7 TF W`, `Q7 TF+ B`, `Q7 TF+ W`. These appear to be distinct model/variant codes and must not be auto-collapsed; verify exact source identities before clearing flags.
+- Latest verified audit run is **40286163359**, conclusion **success**, created 2026-10-26 07:30:07 UTC, artifact ID **12634315949** created 07:30:25 UTC. Downloaded and checked its summary: 48 XLSX files, 96 sheets, 3,343 rows, zero workbook errors; counts match the refreshed continuation review.
+- Workflow now triggers on relevant incoming XLSX/script/workflow changes and does not rerun solely for documentation/handover changes, avoiding a handover-trigger loop. Read-only scope retained.
+- Next: verify the six non-JBL candidate identities; continue exact model/variant checks and classification refinement. Request supplier confirmation for the 18 cost-floor rows before any price recommendation. Keep 19 zero-RRP rows for the owner's personal audit.
