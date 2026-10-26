@@ -2439,3 +2439,14 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 ### Scope boundary
 - This handover entry records the APK-only direction and diagnostic plan. No APK was rebuilt or distributed in this step; no storefront or production settings/data changed. Customer launch remains **HOLD**.
+
+
+## Android Owner APK — login blocker found and source fix committed (2026-10-26)
+
+- Owner reports the APK now installs and opens on the Hisense M72 Pro, but submitting Supabase owner credentials leaves the app on the login screen.
+- Read-only source inspection found a concrete JavaScript parse error in `android-owner-app/app/src/main/assets/admin_app.html`: the literal characters `\\n` were embedded between the `loginPassword()` and `loginLink()` declarations instead of an actual newline. This can prevent the whole script from parsing, so the sign-in button cannot complete its intended action.
+- Fixed on isolated branch `fix/cloud-based-owner-apk`, commit `4736ddf1e92e1ab22e341d13e4229fcf87827c02`. The login handler now catches request/network exceptions and displays an error, and checks for a returned session before changing screens.
+- The change is scoped to the APK's bundled owner HTML; no Supabase project settings, users/passwords, database, live storefront, Axxess, DNS, checkout, payments, or supplier/catalogue data were changed.
+- The workflow `.github/workflows/build-owner-apk.yml` is configured to run on pushes that change `android-owner-app/**`; a new APK build/Android 13 emulator validation should therefore run for this commit. Do not claim the fix is physically verified until the new workflow passes and the rebuilt APK is installed and tested on the owner's phone.
+- Next: inspect the new workflow result and artifact; give owner the new APK only after CI build and emulator checks pass. Owner must test login and report whether the screen advances or displays an error. Never ask owner to share their password or OTP.
+- Current status: source defect fixed in branch; rebuilt APK/device login validation pending. Storefront work remains separate in desktop session.
