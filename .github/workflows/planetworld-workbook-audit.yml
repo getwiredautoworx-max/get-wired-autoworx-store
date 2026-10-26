@@ -2,6 +2,13 @@ name: Planetworld Workbook Audit (Read Only)
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'catalogue-source/suppliers/planetworld/incoming-xlsx/**'
+      - 'scripts/planetworld_workbook_audit.py'
+      - '.github/workflows/planetworld-workbook-audit.yml'
   push:
     branches:
       - docs/planetworld-blocker-handover-2026-10-26
