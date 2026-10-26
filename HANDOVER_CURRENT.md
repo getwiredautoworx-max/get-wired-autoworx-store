@@ -2273,3 +2273,15 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The queue lists all 19 distinct positive-RRP cost-floor candidates with workbook, sheet/row, model/SKU, description, detected RRP/dealer-cost source headers, estimated VAT-inclusive cost and difference at RRP−1%/2%. It explicitly flags extreme RRP/cost disparities (e.g. some JBL, Ibanez, Paiste and Soundcraft rows) as source-value/price-basis verification issues, not as approved price changes.
 - This review is based on the current-main audit artifact, run [40287579649](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287579649). No source XLSX was edited; no live catalogue, prices, stock, production, Axxess, DNS, payments or Supabase data changed.
 - Next: continue exact-model/variant verification and category refinement for the non-zero-RRP set, while keeping the 19 zero-RRP owner-hold rows excluded from all pricing recommendations. Supplier authorisation gate remains; customer launch remains **HOLD**.
+
+
+---
+
+## DESKTOP / MOBILE CONTINUATION SYNC — 2026-10-26 09:58 SAST
+
+- Owner confirmed ChatGPT is already signed in on desktop and mobile; do not repeat sign-in/setup instructions.
+- Continue using this repository's handover as the shared project checkpoint. ChatGPT conversation history may sync across devices, but a separate agent's live execution state or unsaved local files do not automatically sync.
+- Current owner-directed Planet World task: continue processing all supplier items except the 19 zero-RRP items explicitly set aside for the owner's personal audit. Zero RRP may mean out of stock or a special-request item needing price confirmation; do not guess which without evidence.
+- Follow the owner's current Planet World RRP direction: use Planet World Recommended Retail Prices as the basis and aim to be 1–2 percentage points more competitive where the approved pricing formula supports it. Do not invent supplier cost/availability data.
+- Preserve release boundaries: no unapproved Axxess/DNS/live storefront, checkout/payment, or production catalogue/stock changes. Use current in-store stock for testing only; do not resume broader stock reconciliation/imports without explicit authorization.
+- Keep moving on the remaining authorized Planet World audit work; report verified outcomes and blockers only. Update this handover after each material result. This entry records the continuation instructions, not a claim that supplier processing or an audit has completed.
