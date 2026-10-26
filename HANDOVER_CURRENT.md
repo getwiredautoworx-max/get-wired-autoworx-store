@@ -2418,3 +2418,24 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 ### Release boundaries
 - No Axxess, DNS, checkout/payment, production price/stock/catalogue, image, or Supabase changes. No supplier workbook edited. Customer launch remains **HOLD**.
+
+
+---
+
+## OWNER DIRECTIVE — APK-ONLY CONTINUATION / DESKTOP STORE WORK SEPARATE — 2026-10-26 10:40 SAST
+
+- Owner explicitly directed: “Let's work with the APK and leave desktop to continue with the store.” This session must focus only on the Android owner APK; storefront work is assigned to the owner's separate desktop session. Do not modify storefront files, preview/hosting, Axxess, DNS, checkout/payments, supplier workbooks, catalogue/stock, or Supabase as part of APK troubleshooting.
+
+### APK state revalidated
+- Latest known physical-device result remains install107: Hisense M72 Pro / Android 13 shows generic “App wasn't installed.” APK is 21,344 bytes, SHA-256 `2b12dee9d5adc3ef00534c7104fa8248c53e43a42ed86c04fac970396131c822`; CI package/signature checks and Android 13 emulator install/launch passed but physical installation did not.
+- Current build workflow on branch `fix/cloud-based-owner-apk` confirms package ID `com.getwired.autoworx.owner.install107`, version `1.0.6`, cloud-loaded storefront URL, APK size cap 15 MiB, signature verification, and emulator install/launch. A new blind build/package-ID rotation is not justified.
+- Prior Windows 7 ADB binary fails with missing `GetSystemTimePreciseAsFile` in `Kernel32.dll`; do not ask owner to rerun the same incompatible executable. No trusted device-side installer failure code is available yet.
+
+### Best next diagnostic path (no APK rebuild first)
+- Use an older **official Google** Android SDK Platform-Tools package instead of an unofficial mirror. Candidate download: https://dl.google.com/android/repository/platform-tools_r30.0.5-windows.zip (Google-hosted archive; older build selected because the current tool fails on Windows 7). Google release documentation describes Platform-Tools as including ADB: https://developer.android.com/tools/releases/platform-tools . Compatibility with this exact Windows 7 setup is not yet tested; do not claim it works until `adb version` runs successfully.
+- Extract to a separate folder (do not overwrite the existing tools), connect the Hisense by USB with Developer options → USB debugging enabled, accept the device authorization prompt, and first run `adb devices`. Only if the device appears as `device`, run `adb install -r <full-path-to-install107.apk>` and record the exact `INSTALL_FAILED_...` output. That error distinguishes the real cause; do not paste any personal files/logs beyond the relevant installer error.
+- If the older official ADB still cannot run on Windows 7, stop rather than try random mirrors. Next safe route is a trusted compatible computer or an on-device diagnostic that exposes the Package Installer result.
+- APK candidate/installer error still requires owner device participation; CI cannot access the physical phone. Do not rotate package IDs, inflate APK size, or blind re-sign/rebuild before collecting the reason.
+
+### Scope boundary
+- This handover entry records the APK-only direction and diagnostic plan. No APK was rebuilt or distributed in this step; no storefront or production settings/data changed. Customer launch remains **HOLD**.
