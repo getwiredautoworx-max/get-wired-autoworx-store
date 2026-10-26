@@ -1,9 +1,12 @@
 name: Deploy Store Layout Fix Preview
+
 on:
   workflow_dispatch:
+
 permissions:
   contents: read
   deployments: write
+
 jobs:
   preview:
     name: Publish isolated layout-fix preview
@@ -13,10 +16,12 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: main
-      - name: Deploy to a non-production Pages branch
+      - name: Build clean runtime-only storefront
+        run: bash scripts/build-storefront.sh dist && cp _headers dist/_headers
+      - name: Deploy only the isolated preview output
         uses: cloudflare/wrangler-action@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=get-wired-autoworx-store --branch=layout-fix-preview
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          apiToken: \${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=get-wired-autoworx-store --branch=layout-fix-preview
+          gitHubToken: \${{ secrets.GITHUB_TOKEN }}
