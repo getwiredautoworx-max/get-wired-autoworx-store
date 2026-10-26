@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { normalizeCheckoutItems, matchCurrentLiveQuote } from "../supabase/functions/store-checkout/quote-validation.js";
+import { normalizeCheckoutItems, matchCurrentLiveQuote } from "../supabase/functions/store-checkout/quote-validation.mjs";
 
 test("normalizes SKU aliases and combines duplicate cart lines", () => {
   assert.deepEqual(
