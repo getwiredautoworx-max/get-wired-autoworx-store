@@ -3,7 +3,7 @@
 **Status:** Private, read-only review aid. Not approved selling prices or catalogue data.
 
 ## Scope and rules
-- Derived from the successful current-main audit artifact for run [40287579649](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287579649).
+- Refreshed against read-only audit run [40290002999](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999), artifact `12635711006` (successful; 48 workbooks, 96 sheets, 3,343 extracted rows, 0 workbook read errors). The corrected audit explicitly excludes zero-RRP and identical duplicate-workbook rows from cost-floor counts.
 - Contains **19 distinct positive-RRP rows** flagged below estimated VAT-inclusive dealer cost at RRP−1%, RRP−2%, or both.
 - The 19 zero-RRP owner-hold rows are excluded from this queue and from price suggestions.
 - Source headers detected for this queue are `Retail Price (Incl)` and `Dealer Price (Excl)`; the audit estimates cost including VAT by multiplying dealer cost by 1.15. This is a mechanical source-column check, not confirmation that each row's values or VAT treatment are correct.
