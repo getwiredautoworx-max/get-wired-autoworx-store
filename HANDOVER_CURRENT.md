@@ -1972,3 +1972,26 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Hertz workbook was previously uploaded in chat; preliminary inspection reported 89 product records. It has not been committed to GitHub. Row-by-row classification/image verification remains pending.
 - For incoming audio/video XLSX files, inspect the workbook in chat first, classify by segment/brand/component and match exact models to official manufacturer evidence. Save only safe, approved outputs in the relevant folder. Do not alter live catalogue, prices, stock, production, Axxess, DNS, or payment settings.
 - No production or live-data changes made. Customer launch remains HOLD; payment readiness remains deferred until last as instructed.
+
+
+## CONTINUATION UPDATE — NO-COST PART SEARCH VERIFICATION — 2026-10-26
+
+### Work checked this session
+- Re-read PR #94 metadata. It remains OPEN, DRAFT and UNMERGED; current head reported by GitHub is `fec0b1c51f9bed5680cf6169fbcf8d70fbb00888`. Do not use the older `6d48a2c` checkpoint as the current head.
+- Re-read PR #94 branch `index-new.html` and `.github/workflows/storefront-smoke.yml`.
+- Candidate source contains canonical `window.openPartSearch` / `window.openPartRequest` handlers, top-level legacy aliases `openPartSearch(seed)` / `openPartRequest(withImage)`, a `gw:products-loaded` event and search refresh after asynchronous catalogue loading, normal catalogue text/SKU search, and manual Request a Part with photo upload.
+- Workflow source includes static assertions for both aliases, Playwright checks invoking the legacy bare-name handlers and verifying dialogs open, and a deterministic delayed-catalogue test using `GW-RACE0001`. These checks are present in source; this is not proof the workflow executed successfully.
+- PR #94's prior checkpoint records removal of the AI picture-identification UI/handler and the `part-image-search` call from the candidate storefront, replacing it with a no-AI photo-to-Request-a-Part path. No AI-provider key or paid API was used.
+- GitHub's connected workflow-run lookup returned no PR-triggered runs for the current reported head, and the combined status lookup returned no status entries. Exact-head browser test results remain UNVERIFIED, not passed.
+- Read-only code search still finds historical `part-image-search` references in older Supabase function/docs and handover history. These historical files do not prove the current storefront calls the endpoint. Do not delete the deployed Supabase function or change its secrets/deployment as part of this UI fix.
+
+### Current blocker / safe boundary
+- Live Axxess Part Search previously failed in the real public-browser smoke with `ReferenceError: openPartSearch is not defined`. The live hosted HTML has not been re-tested after this candidate-source work.
+- PR #94 source changes do not update Axxess. No PR merge, Axxess upload, production deployment, DNS, checkout/payment, Supabase, live stock/catalogue, or order changes were made in this session.
+- No paid AI credits were used. The supported no-cost route is text/SKU catalogue search plus manual photo-based Request a Part.
+- Customer launch remains **HOLD**. Supplier stock/price reconciliation remains **PAUSED** pending supplier authorisation.
+
+### Next action
+1. Obtain actual exact-head Actions/browser evidence for `fec0b1c51f9bed5680cf6169fbcf8d70fbb00888`, or run the same Playwright test against the exact PR preview without triggering another deployment if an existing preview is available.
+2. If tests pass, prepare and verify a clean deployment-only package plus a complete Axxess backup/rollback plan. Owner must explicitly approve the specific package before any production upload.
+3. After approval and controlled upload, click-test Part Search, delayed catalogue search, no-match fallback, and Request a Part on the live site. Do not call the issue resolved until that real-browser test passes.
