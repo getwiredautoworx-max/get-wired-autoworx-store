@@ -75,3 +75,7 @@ Fresh audit run [40287470154](https://github.com/getwiredautoworx-max/get-wired-
 2. Review the 37 non-zero-RRP below-cost candidates and identify exact row/model/source evidence; do not approve a selling price from the automated suggestion alone.
 3. Continue exact manufacturer model/variant checks and category refinement for the remaining non-zero-RRP rows.
 4. Keep all work read-only until supplier authorisation; store launch remains **HOLD**.
+
+
+### Cost-floor count clarification — 26 October 2026, 09:45 SAST
+The 18 rows flagged at RRP−1% and 19 rows flagged at RRP−2% overlap. Deduplicating by source workbook/sheet/source row gives **19 distinct non-zero-RRP cost-floor candidates**, not 37. Eighteen appear in both flags; one additional row appears only in the RRP−2% flag. These are review candidates only. Validate source values, VAT basis and product identity before making any pricing decision.
