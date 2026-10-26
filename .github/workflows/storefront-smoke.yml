@@ -253,6 +253,10 @@ jobs:
             await frame.locator('#sourcePart.open').waitFor({state:'detached',timeout:10000}).catch(async () => {
               if (await frame.locator('#sourcePart').evaluate(el => el.classList.contains('open'))) throw new Error('Photo request dialog did not close');
             });
+            // Opening Request a Part dismisses Part Search; reopen it before interacting with the second result.
+            await frame.locator('button.headerPartSearch').click();
+            await frame.locator('#partSearchDialog.open').waitFor({timeout:10000});
+            await frame.locator('#partSearchQuery').fill('GW-F165DD11');
             await verifiedResult.locator('button[data-view-part]').click();
             await frame.locator('#productModal.open').waitFor({timeout:10000});
             await frame.locator('#detailAdd').click();
