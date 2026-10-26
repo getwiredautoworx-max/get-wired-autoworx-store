@@ -2365,3 +2365,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The extreme source price gaps for Paiste and Soundcraft remain unresolved despite model identity confirmation. Do not derive a price change from these matches. Supplier confirmation draft exists but has not been sent; 19 zero-RRP items remain reserved for owner audit.
 - No source XLSX, live catalogue, price, stock, Axxess, DNS, checkout/payment, Supabase, or production data was changed. No customer order/payment was placed. Customer launch remains **HOLD**.
 - Next: continue manufacturer/model verification for the remaining non-zero-RRP rows in batches, prioritizing the 19 cost-floor exception queue and uncertain OneNav/vehicle-fitment rows; validate exact source-row/unit basis for price anomalies; keep all suggestions review-only. Update this handover after each material result.
+
+
+## CONTINUATION RESULT — SUFFIX AND FITMENT CHECKS — 2026-10-26 10:09 SAST
+
+- Additional official-source checks: OneNav's official page identifies a 9-inch Ranger XLS 2015+ Evolution system under SKU ON263-2LX, not ON263-FK2. This corroborates the fitment family only; the supplier's FK2 kit remains an exact-SKU mismatch/unverified. JBL's official IRX108BT and EON710 pages confirm the base models, but no evidence found for the supplier -EK suffixes; exact suffixes remain unverified.
+- Updated the manufacturer-match log on PR #95 branch `docs/planetworld-blocker-handover-2026-10-26` with the source links and explicit don't-merge/don't-reuse-image guidance. These checks do not resolve the cost-floor discrepancies or confirm Planetworld availability.
+- No source XLSX, live catalogue, prices, stock, images, Axxess, DNS, checkout/payment, Supabase, or production data changed. Customer launch remains **HOLD**.
+- Next: continue exact model/variant verification and review the source price anomalies; retain exact supplier SKU keys and keep uncertain matches unverified.
