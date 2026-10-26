@@ -2181,3 +2181,15 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 ### Readiness
 - Store readiness remains a provisional estimate of approximately 80%, not a newly verified release score. No increase is claimed from deleting the duplicate or adding a review summary. Launch remains HOLD.
+
+
+---
+
+## AUDIT ARTIFACT REVIEW — 2026-10-26 08:44 SAST
+
+- Located and verified successful GitHub Actions run `40279792830` for PR #95; job `audit` and the artifact-upload step both completed successfully.
+- Downloaded artifact `12631762223` (`planetworld-workbook-audit`; 231,188-byte ZIP, retained until 2026-11-09) and inspected its `summary.json` and row-level CSV. This is a real generated artifact, not an assumed output.
+- Audit snapshot counts: 48 XLSX files, 96 sheets, 3,343 extracted rows, zero workbook read errors; 19 zero-RRP rows; 39 candidates where RRP minus 1% falls below estimated VAT-inclusive cost; 40 where RRP minus 2% falls below estimated VAT-inclusive cost; 58 duplicate model/SKU flags; 1,023 rows assigned to broad review-component groups. No model/SKU omissions or missing/unmapped RRP were reported.
+- Important timing caveat: artifact run predates removal of the duplicate JBL workbook. The 58 duplicate model/SKU flags include data from that duplicate snapshot; rerun the audit against the current branch before treating those duplicate counts as current. These automated flags are review candidates, not confirmed errors or approved prices.
+- Updated `catalogue-source/suppliers/planetworld/MOBILE_REVIEW_2026-10-26.md` with these counts, processing order, artifact run link, and the pre-deletion caveat. It is a phone-readable Markdown page.
+- Next safe processing: prioritise zero-RRP and below-cost review, then re-run the read-only audit after duplicate deletion; refine component groups and perform official manufacturer model/image matching. No catalogue/pricing/stock import or live production changes made. Launch remains HOLD.
