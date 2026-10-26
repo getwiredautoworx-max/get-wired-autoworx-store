@@ -2224,3 +2224,14 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - PR #95 remains the relevant open review path for the read-only workbook audit and manual/push-triggered artifact workflow: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/95. The previous available report does not certify the post-duplicate-removal workbook state. A fresh current-file audit and artifact readback are still required before calling the audit resolved.
 - No new supplier workbook, storefront, Axxess, DNS, checkout/payment, Supabase, stock, or production changes were made in this continuation. Customer launch remains **HOLD**.
 - Next action: run the PR #95 audit workflow against the current incoming-xlsx directory, retrieve its artifact/report, verify the 19-row owner-audit hold list is excluded from remaining review, then update the phone-friendly report and handover with exact fresh counts and evidence. If workflow dispatch is unavailable, record that blocker rather than treating the old artifact as current.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-26 09:37 SAST
+
+- Read `HANDOVER_CURRENT.md` and `catalogue-source/suppliers/planetworld/MOBILE_REVIEW_2026-10-26.md` from `main` before continuing.
+- Reconfirmed the only available successful Planetworld audit is run [40279792830](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40279792830), which predates deletion of `jbl-price-list-2026-10-25 (1).xlsx`. The 3,317-row / 19 zero-RRP / 37 below-cost at RRP−1% / 38 below-cost at RRP−2% / 32 duplicate flags are filtered from the old artifact, not a fresh current-input audit.
+- Owner instruction preserved: reserve all 19 zero-RRP items for the owner's personal audit. Keep them blocked as **PRICE / AVAILABILITY CONFIRMATION REQUIRED**; do not infer out-of-stock or special-order and exclude them from price recommendations.
+- Attempted to inspect `.github/workflows/planetworld-workbook-audit.yml` on `main`; that exact path returned GitHub 404. PR #95 remains the intended review path, but this session has no workflow-dispatch tool exposed. Therefore a fresh audit and artifact readback remain **not completed**; no false success claim made.
+- Updated the phone-friendly report with this checkpoint and the specific next action. Report update commit: a9f58fbcefbe467f1d34166ef24854571eda304a.
+- Next: inspect PR #95 changed filenames to identify the actual workflow path; trigger the read-only audit against current inputs, retrieve the fresh artifact, and verify the 19-item hold list is excluded from all other price suggestions. If workflow triggering is unavailable, capture the exact permission/workflow limitation and use a safe alternative audit path.
+- No source XLSX was changed; no supplier data imported; no live price/catalogue/stock, Supabase, Axxess, DNS, checkout/payment, or production changes. Existing store stock remains test-only. Customer launch remains **HOLD**.
