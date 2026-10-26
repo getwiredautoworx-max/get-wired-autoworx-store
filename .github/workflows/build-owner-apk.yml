@@ -65,11 +65,11 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
-          target: google_apis
+          target: default
           arch: x86_64
           force-avd-creation: true
-          emulator-boot-timeout: 600
-          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot-save
+          emulator-boot-timeout: 900
+          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot -no-snapshot-save -memory 2048 -cores 2
           disable-animations: true
           script: |
             adb wait-for-device
