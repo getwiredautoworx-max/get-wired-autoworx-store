@@ -235,8 +235,8 @@ for path in files:
                 cost_incl_vat = round(cost * 1.15, 2) if cost is not None and cost_basis == "EX_VAT" else (cost if cost is not None and cost_basis == "INCL_VAT" else None)
                 margin_1 = round(proposed_1 - cost_incl_vat, 2) if proposed_1 is not None and cost_incl_vat is not None else None
                 margin_2 = round(proposed_2 - cost_incl_vat, 2) if proposed_2 is not None and cost_incl_vat is not None else None
-                if margin_1 is not None and margin_1 < 0: flags.append("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT")
-                if margin_2 is not None and margin_2 < 0: flags.append("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT")
+                if rrp is not None and rrp > 0 and margin_1 is not None and margin_1 < 0: flags.append("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT")
+                if rrp is not None and rrp > 0 and margin_2 is not None and margin_2 < 0: flags.append("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT")
                 extracted.append({
                     "source_file": rel, "sheet": ws.title, "source_row": row_num,
                     "brand": brand, "model_or_sku": model, "supplier_division_source_value": division, "product_type_source_value": product_type, "description": desc,
@@ -332,6 +332,9 @@ def write_csv(name, rows):
 write_csv("workbook_sheet_inventory.csv", inventory)
 write_csv("product_rows_review_only.csv", extracted)
 write_csv("workbook_errors.csv", errors)
+# Price-risk counts intentionally exclude zero-RRP owner-hold rows and rows from
+# identical product-data duplicate workbooks; those are separate review queues.
+price_risk_rows = [r for r in extracted if r["source_file"] not in duplicate_sources and r["rrp_numeric"] is not None and float(r["rrp_numeric"]) > 0]
 summary = {
   "source_root": ROOT.as_posix(), "xlsx_files_found": len(files),
   "sheets_scanned": len(inventory), "rows_extracted": len(extracted),
@@ -341,8 +344,9 @@ summary = {
   "rows_missing_model_or_sku": sum("MISSING_MODEL_OR_SKU" in r["quality_flags"] for r in extracted),
   "rows_missing_or_unmapped_rrp": sum("MISSING_OR_UNMAPPED_RRP" in r["quality_flags"] for r in extracted),
   "rows_with_zero_rrp": sum("ZERO_RRP_REVIEW" in r["quality_flags"] for r in extracted),
-  "rows_where_rrp_minus_1pct_is_below_estimated_cost_incl_vat": sum("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT" in r["quality_flags"] for r in extracted),
-  "rows_where_rrp_minus_2pct_is_below_estimated_cost_incl_vat": sum("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT" in r["quality_flags"] for r in extracted),
+  "rows_where_rrp_minus_1pct_is_below_estimated_cost_incl_vat": sum("RRP_MINUS_1_BELOW_ESTIMATED_COST_INCL_VAT" in r["quality_flags"] for r in price_risk_rows),
+  "rows_where_rrp_minus_2pct_is_below_estimated_cost_incl_vat": sum("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT" in r["quality_flags"] for r in price_risk_rows),
+  "price_risk_count_scope": "positive-RRP rows only, excluding identical product-data duplicate workbooks; zero-RRP rows are a separate owner-hold queue",
   "rows_from_identical_duplicate_workbooks": sum("IDENTICAL_PRODUCT_DATA_DUPLICATE_WORKBOOK" in r["quality_flags"] for r in extracted),
   "rows_with_duplicate_model_or_sku": sum("DUPLICATE_MODEL_OR_SKU_CROSS_SOURCE" in r["quality_flags"] for r in extracted),
   "supplier_division_counts": dict(Counter(r["supplier_division_source_value"] or "MISSING DIVISION" for r in extracted)),
