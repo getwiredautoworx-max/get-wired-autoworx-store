@@ -1034,3 +1034,5 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - Scope stayed APK-only. No Supabase settings/data, live store, Axxess, DNS, checkout/payment, supplier files, catalogue, or stock changed. Storefront remains separate; release/customer launch HOLD.
 
 - Follow-up change committed to the same isolated branch: workflow commit `a896ad540160562f2a4847441e8a44ab57399f94`. Removed the emulator's explicit 2048-MiB/2-core caps and enabled verbose emulator output so the next run can expose why `emulator-5554` never appeared. This commit should trigger the APK validation workflow; result not yet observed at handover time. No APK was sent to the owner and no production/Supabase data was changed.
+
+- Trigger confirmed: GitHub Actions run [40322406885](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40322406885) started on commit `a896ad540160562f2a4847441e8a44ab57399f94` at 14:25 SAST and was still in progress at the latest check. Await this run's result before any further change or APK handoff.
