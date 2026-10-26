@@ -2322,3 +2322,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Remaining cost-floor risk is unchanged: 18 rows below estimated VAT-inclusive cost at RRP−1%, 19 rows at RRP−2% within the filtered continuation scope. They require Planetworld confirmation; do not apply a 1–2% reduction or change prices.
 - Owner's 19 zero-RRP items remain reserved for personal audit. The duplicate JBL workbook remains physically present, but its 26 repeated rows are excluded from continuation counts. No supplier XLSX, live catalogue, price, stock, image, checkout/payment, Axxess, DNS, or production data changed.
 - Next: continue exact-model/variant verification and refine the remaining 777 component-review and 468 unclassified category guesses in evidence-based batches; obtain supplier confirmation for 18 cost-floor rows. PR #95 remains open/unmerged.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-26 09:40 SAST
+
+- Read the latest handover from `main`, then inspected PR #95 changed filenames and branch files. Correction: `.github/workflows/planetworld-workbook-audit.yml` exists on PR #95's review branch `docs/planetworld-blocker-handover-2026-10-26`; the earlier 404 was because the file is not present on `main`, not because the path was wrong on the PR branch.
+- PR #95 remains open/unmerged. Its read-only audit workflow includes `workflow_dispatch`, push-triggering paths for the workflow and audit script, and read-only repository permissions.
+- To request a fresh audit against the current branch inputs, added a harmless explanatory YAML comment to the workflow file on the PR branch. Commit: `712e69c74c48986ef487ab73f44b33f642790b51`. The commit status currently reports pending with no checks; no new successful audit run or artifact has yet been verified. Do not call the fresh audit complete until a run and its artifact are confirmed.
+- Next: check GitHub Actions for a new `Planetworld Workbook Audit (Read Only)` run associated with this commit/PR; once complete, retrieve the artifact and verify file/sheet/row counts and the 19 zero-RRP rows. Confirm the 19 owner-audit rows are excluded from downstream price recommendations. If no run starts, capture the actual workflow/permission limitation and perform a local read-only audit from the uploaded files if available, without modifying source workbooks.
+- Owner's 19 zero-RRP items remain reserved for personal audit and blocked as **PRICE / AVAILABILITY CONFIRMATION REQUIRED**. Continue all other non-zero-RRP items read-only; no supplier imports or live catalogue/price/stock changes.
+- No Axxess, DNS, checkout/payment, Supabase, production, or live-store changes were made. Customer launch remains **HOLD**.
