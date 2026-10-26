@@ -3152,3 +3152,70 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Resolution remains external/dashboard-side: inspect the failing Workers service's Settings > Builds and Triggers/Routes. If it is a duplicate static storefront service and has no live routes, custom domains, required bindings, or consumers, disable the duplicate Workers build/service while retaining the working Pages project. If it is required, give it its own actual Worker entry point/config and valid Worker build command. Do not alter the Pages config to fix this separate service.
 - This session's connected GitHub tools cannot edit Cloudflare dashboard settings or inspect route bindings; no remote Worker setting was changed and the Worker failure is NOT resolved. No Axxess, DNS, payment, production Supabase, or production deployment changes occurred. Release remains HOLD.
 - Next exact step: open the failed Workers build link above and check whether any route/domain/binding uses that Worker before disabling or reconfiguring it. Then trigger a fresh build and verify the newest status. Continue storefront visual/catalogue gates separately.
+
+
+## CONTINUATION LOG — 2026-10-22 — CLOUD-BASED OWNER APK SIZE FIX (PR PENDING)
+
+- Owner clarified that the APK must be cloud-based and only a few MB. The previous successful workflow artifact was 296,104,887 bytes (~296 MB); this was not an acceptable install package.
+- Root cause in the build workflow: it copied the full storefront HTML and the entire repository `assets/` directory into Android app assets, then built those files into the APK. This made the app a bundled/offline storefront instead of a lightweight cloud client.
+- Prepared branch `fix/cloud-based-owner-apk`: the owner app's Store Test screen now loads `https://www.getwiredauto.co.za/` and Checkout loads `https://www.getwiredauto.co.za/checkout.html`; the local owner-control panel and Caelex bridge remain local/in-app. The workflow no longer copies the full storefront/assets directory into the APK and adds a hard 15 MiB APK-size gate plus size reporting.
+- No DNS, Axxess hosting, production files, payment settings, or live catalogue were changed. This is a GitHub-only change pending CI verification and PR review.
+- Required acceptance: workflow must pass; artifact APK must be under 15 MiB; inspect actual artifact size; emulator install/launch must pass; owner must install on Hisense M72 Pro and confirm it opens. If checkout path is not the live site's valid checkout endpoint, correct it before acceptance. A small APK is expected from this design but is NOT yet verified.
+
+
+- Follow-up correction during PR #81: updated the owner-control panel's Store Test and Store Admin buttons as well, so they no longer navigate to removed local `file:///android_asset/store/...` paths. Store Test points to the cloud homepage; Store Admin points to `/admin.html` and must be confirmed to exist/behave correctly on the live domain before acceptance.
+
+- Checkout route corrected to the repository's current `checkout-v2.html` page (`https://www.getwiredauto.co.za/checkout-v2.html`) rather than assuming a legacy `/checkout.html` route. The live endpoint remains unverified because the web retrieval check could not access either route; do not claim checkout acceptance until a browser/device test confirms it.
+
+
+## VERIFIED RESULT — 2026-10-22 — CLOUD OWNER APK BUILD PASSED
+
+- GitHub Actions run 59: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39766728535 — completed successfully on commit e40857a54084b7dfeaa5b124ad9c53929d683758.
+- The APK size gate passed. Downloaded and inspected the actual workflow artifact: APK is 21,350 bytes (~20.9 KiB); artifact ZIP is 17,554 bytes. This is dramatically below the previous 296,104,887-byte artifact.
+- CI emulator installation and launch step completed successfully. This is evidence for emulator acceptance only; physical Hisense M72 Pro installation remains unverified.
+- Artifact ID 12420861153: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39766728535/artifacts/12420861153
+- PR #81 remains open; no merge or production/hosting/DNS/payment changes were made. Keep release HOLD until the physical device is tested and cloud routes are verified on-device.
+
+
+## CONTINUATION LOG — 2026-10-22 — OWNER APK INSTALL-FAILURE REMEDIATION
+
+- Owner reports Android installer still says “Cancelling / App wasn't installed” for the cloud APK. Prior evidence was insufficient: emulator API 35 passed, but the Hisense M72 Pro failure remains real and unresolved until a physical install succeeds.
+- Rechecked the actual APK source: android-owner-app/app/build.gradle used applicationId 'za.co.getwiredautoworx.owner' plus debug suffix '.test', targetSdk 35, while the remembered intended app identity was com.getwired.autoworx. This mismatch could collide with an earlier test build/package and the previous emulator test did not match the owner's Android 13 device.
+- Applied a controlled GitHub-only fix on fix/cloud-based-owner-apk: changed to a fresh owner-specific ID com.getwired.autoworx.owner (no debug suffix), lowered target SDK to Android 13/API 33 for device-matched testing, and incremented versionCode to 4. Updated the workflow to assert the exact APK package metadata, enforce the 15 MiB limit, and perform clean install + launch on an API 33 emulator.
+- Commits: Gradle fix 00718f2a312a903430813477498eb5114135e7e4; workflow fix 5d7dd8a454b0f22e27f94a037a597ef9a3efd3d9. A new exact-head CI result is required before handing out the replacement APK.
+- Important limitation: the new package ID avoids collision with the old za.co.getwiredautoworx.owner.test test package, but a successful emulator run cannot prove physical installation on the Hisense. If the new APK still fails on-device, the next decisive diagnostic is Android Package Installer/ADB's specific failure code, not another blind rebuild. No Axxess, DNS, live store, payment, or catalogue changes.
+
+
+## CONTINUATION LOG — 2026-10-22 — APK CI ASSERTION FIX
+
+- Exact-head run #61 compiled the new 20 KiB APK successfully, but failed in the new metadata assertion before emulator testing. The cause was the workflow's AAPT command expanding a wildcard across multiple Android build-tools directories, which invoked AAPT incorrectly and printed its help instead of package metadata. This was a test-script defect, not an APK compilation failure.
+- Corrected the workflow to select the highest-version AAPT executable via find + version sort, then assert the exact application ID. The next workflow run must pass the metadata assertion and Android 13 API 33 install/launch check before the replacement APK is shared.
+- Failed run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39767753815. No physical-device success is claimed; no Axxess, DNS, production store, payment, or catalogue changes.
+
+
+## CONTINUATION LOG — 2026-10-22 — CLEAN-INSTALL APK BUILD #62
+
+- The corrected workflow now passes package metadata and size checks. APK artifact ID 12420858219 (21,349 bytes) was created from commit 50edc6856b6ddefebfb6219cf406cb1708f1b2ff; exact package ID is com.getwired.autoworx.owner, with no debug suffix, target SDK 33, versionCode 4.
+- Run #62: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/39767956722 completed SUCCESS. Package metadata, 15 MiB cap, Android 13/API 33 emulator installation, package path lookup, launch, and foreground activity check all passed.
+- Downloaded artifact ID 12420858219, verified ZIP integrity and extracted a 21,349-byte valid APK to /mnt/data/get-wired-autoworx-owner-android13-validated.apk. This is the test candidate to send to the owner. Physical Hisense M72 Pro install is still not verifiable from CI; do not claim the owner's device is fixed until they install it.
+- The APK uses fresh package ID com.getwired.autoworx.owner, intended to avoid collision with prior za.co.getwiredautoworx.owner.test. No hosting, DNS, payment, production catalogue, or live store changes.
+
+
+## CONTINUATION LOG — 2026-10-22 — APK INSTALL FAILURE FOLLOW-UP
+
+- Owner confirmed the 21,349-byte APK still fails with Android's generic “App wasn't installed” message. Do not resend the same artifact or make APK file size larger as a guess: its signature/archive are valid and the exact build installed in the Android 13 emulator, so size alone is not supported as the cause.
+- A source-level defect was found during follow-up: Gradle declared applicationId `com.getwired.autoworx.owner` while the launcher class remained in package `za.co.getwiredautoworx.owner`. The prior emulator check only searched for the package string in activity dumps and could pass without proving the intended launcher Activity was actually foregrounded. This did not explain the installer's generic rejection by itself, but it invalidated the previous launch acceptance claim.
+- Corrective GitHub-only changes on `fix/cloud-based-owner-apk`: aligned Gradle namespace and Java Activity package with `com.getwired.autoworx.owner`; incremented version to 1.0.4 / versionCode 5; strengthened workflow to verify APK signing and explicitly start/check `com.getwired.autoworx.owner/.MainActivity`, including crash-log checking. Latest workflow source commit: `ecbf26b34692d3a024d11241f51513746b868f7c`. Do not distribute a replacement until its build and explicit Activity test have completed successfully.
+- Physical installation on Hisense M72 Pro is still unresolved. CI cannot read the phone's Package Installer/Play Protect diagnostics. If the corrected signed APK is still rejected, the decisive next step is the exact device-side install error/Play Protect warning (or `adb install` failure code), not increasing APK size or another speculative rebuild.
+- No DNS, Axxess, live store, payment, supplier catalogue, or production changes.
+
+
+## CONTINUATION LOG — 2026-10-22 — FRESH-SIGNATURE APK INSTALL HARDENING
+
+- Root cause addressed: CI debug signing keys are generated on ephemeral runners. Rebuilding the same Android application ID on a different runner can produce a different signing certificate; Android rejects an update over an existing install signed by the previous key with the generic “App wasn't installed” message.
+- To avoid this signature-collision path for the next test, created a one-time fresh application ID `com.getwired.autoworx.owner.install105`, version 1.0.5 / versionCode 1. The launcher Activity package/namespace remains aligned, and the workflow now checks the new ID, verifies APK signing, explicitly launches the exact launcher Activity, and checks for crashes.
+- This remains a test-install identity. Do not treat it as the permanent production package identity; a stable release signing key must be configured before distributing updateable app versions.
+- New artifact must not be shared until its exact-head workflow succeeds. No Axxess, DNS, live store, payment, or catalogue changes.
+
+
+- Follow-up verification note: the workflow assertions were corrected to check the fresh application ID `com.getwired.autoworx.owner.install105`, version 1.0.5, APK signature, and fully qualified launcher component `com.getwired.autoworx.owner.MainActivity`. Latest workflow source commit: `fb40dd699fffbe3b04e7536e0a8befd1aeaec3fc`. The available workflow-run lookup does not expose a confirmed run for this push, so no new APK is considered ready until the GitHub Actions run for this exact source head is visibly green and its artifact is retrieved.
