@@ -18,6 +18,7 @@ HEADER_TERMS = {
     "model": ("model", "model no", "model number", "item code", "product code", "sku", "part no", "part number", "code"),
     "description": ("description", "long description", "product description", "item description", "short description", "product name", "item name", "product title", "marketing description", "details"),
     "product_type": ("product type", "category", "product class", "type", "class"),
+    "division": ("division", "business division", "product division"),
     "rrp": ("rrp", "recommended retail", "retail price", "list price", "selling price", "srp"),
     "cost": ("dealer cost", "dealer price", "net price", "cost price", "dealer", "cost", "buy price"),
     "stock": ("stock", "qty", "quantity", "availability", "on hand"),
@@ -65,6 +66,49 @@ def guess_category(brand, description, model, filename):
     for label, words in rules:
         if any(norm(w) in text for w in words): return label
     return "REVIEW - UNCLASSIFIED"
+def guess_component(division, description, model):
+    d = norm(division)
+    t = norm(" ".join([description, model]))
+    if any(x in t for x in ("marine", "boat", "waterproof marine")): return "Marine Audio"
+    if "car audio" in d:
+        if any(x in t for x in ("harness", "trim kit", "steering wheel interface", "fascia")): return "Vehicle Harnesses & Trims"
+        if any(x in t for x in ("head unit", "double din", "single din", "media receiver", "car stereo", "receiver")): return "Car Head Units & Receivers"
+        if "subwoofer" in t: return "Car Subwoofers"
+        if "speaker" in t or "tweeter" in t: return "Car Speakers"
+        if "amplifier" in t or re.search(r"\\bamp\\b", t): return "Car Amplifiers"
+        if "camera" in t: return "Vehicle Cameras"
+        if "antenna" in t: return "Vehicle Antennas"
+        if any(x in t for x in ("cable", "adapter", "adaptor", "remote", "bracket", "accessory", "accessories")): return "Car Audio Accessories"
+        return "Car Audio - Review Component"
+    if d == "musical instruments":
+        if any(x in t for x in ("guitar", "bass guitar", "ukulele", "mandolin")): return "Guitars & Basses"
+        if any(x in t for x in ("drum", "cymbal", "snare", "tom tom", "tambourine", "percussion", "drumstick", "drum head")): return "Drums & Percussion"
+        if any(x in t for x in ("keyboard", "piano", "synthesizer", "synth")): return "Keyboards & Synthesizers"
+        if any(x in t for x in ("microphone", "mic ", "mic-", "lavali", "shotgun mic")): return "Microphones"
+        if any(x in t for x in ("studio monitor", "powered speaker", "pa speaker", "line array", "loudspeaker")): return "PA & Studio Speakers"
+        if "speaker" in t or "woofer" in t: return "Speakers"
+        if "amplifier" in t or "guitar amp" in t: return "Instrument Amplifiers"
+        if any(x in t for x in ("mixer", "mixing console")): return "Mixers"
+        if any(x in t for x in ("recorder", "audio interface", "podcast", "field recorder", "multitrack")): return "Recording & Interfaces"
+        if any(x in t for x in ("headphone", "headset", "earphone")): return "Headphones & Headsets"
+        if any(x in t for x in ("cable", "adapter", "adaptor", "battery", "case", "bag", "stand", "clip", "strap", "power supply", "psu", "accessory", "accessories")): return "Music Accessories"
+        return "Musical Instruments - Review Component"
+    if d in ("installed av", "home ci"):
+        if any(x in t for x in ("hdmi", "splitter", "matrix", "zone processor", "distribution", "extender", "switcher", "switch pro")): return "AV Distribution & Switching"
+        if "projector" in t: return "Projectors"
+        if "screen" in t: return "Screens"
+        if any(x in t for x in ("mount", "bracket", "stand", "pole", "plate", "wall support", "ceiling")): return "Mounts & Stands"
+        if "soundbar" in t: return "Soundbars"
+        if "speaker" in t: return "Installed Speakers"
+        if any(x in t for x in ("amplifier", "receiver", "processor", "multi zone")): return "Amplifiers & AV Processors"
+        if any(x in t for x in ("cable", "adapter", "adaptor", "remote", "accessory", "accessories")): return "AV Accessories"
+        return "Installed AV - Review Component"
+    if d == "home retail":
+        if any(x in t for x in ("pool", "vacuum", "skimmer", "robotic cleaner")): return "Pool Cleaning & Outdoor"
+        if any(x in t for x in ("speaker", "headphone", "earbud", "soundbar")): return "Consumer Audio"
+        return "Home Retail - Review Component"
+    return "REVIEW - UNCLASSIFIED"
+
 def choose_column(headers, kind):
     ranked = sorted(((field_score(h, HEADER_TERMS[kind]), i) for i, h in enumerate(headers)), reverse=True)
     return ranked[0][1] if ranked and ranked[0][0] > 0 else None
@@ -96,7 +140,12 @@ for path in files:
                     return vals[idx] if idx is not None and idx < len(vals) else None
                 model, desc = as_text(val("model")), as_text(val("description"))
                 product_type = as_text(val("product_type"))
+                division = as_text(val("division"))
                 brand = as_text(val("brand"))
+                stock_indices = [i for i, h in enumerate(headers) if "stock" in norm(h) and i < len(vals)]
+                stock_by_location = {headers[i]: as_text(vals[i]) for i in stock_indices}
+                stock_numbers = [as_number(vals[i]) for i in stock_indices if vals[i] is not None and as_number(vals[i]) is not None]
+                stock_total = sum(stock_numbers) if stock_numbers else None
                 rrp, cost, stock = as_number(val("rrp")), as_number(val("cost")), as_text(val("stock"))
                 flags = []
                 if not model: flags.append("MISSING_MODEL_OR_SKU")
@@ -107,6 +156,7 @@ for path in files:
                 if columns["rrp"] is None: flags.append("RRP_COLUMN_NOT_MAPPED")
                 if not brand: brand = path.stem.split("-price-list")[0].replace("-", " ").replace("_", " ").title()
                 cat = guess_category(brand, " ".join([product_type, desc]), model, path.name)
+                component = guess_component(division, desc, model)
                 proposed_1 = round(rrp * 0.99, 2) if rrp is not None else None
                 proposed_2 = round(rrp * 0.98, 2) if rrp is not None else None
                 cost_header = headers[columns["cost"]] if columns["cost"] is not None and columns["cost"] < len(headers) else ""
@@ -118,14 +168,15 @@ for path in files:
                 if margin_2 is not None and margin_2 < 0: flags.append("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT")
                 extracted.append({
                     "source_file": rel, "sheet": ws.title, "source_row": row_num,
-                    "brand": brand, "model_or_sku": model, "product_type_source_value": product_type, "description": desc,
+                    "brand": brand, "model_or_sku": model, "supplier_division_source_value": division, "product_type_source_value": product_type, "description": desc,
+                    "component_guess_review_only": component,
                     "all_source_headers_json": json.dumps(headers, ensure_ascii=False),
                     "all_source_values_json": json.dumps([as_text(v) for v in vals], ensure_ascii=False),
                     "rrp_source_header": headers[columns["rrp"]] if columns["rrp"] is not None and columns["rrp"] < len(headers) else "",
                     "rrp_source_value": as_text(val("rrp")), "rrp_numeric": rrp,
                     "cost_source_header": cost_header, "cost_source_value": as_text(val("cost")), "cost_numeric": cost,
                     "cost_vat_basis_detected": cost_basis, "estimated_cost_incl_vat": cost_incl_vat,
-                    "stock_source_value": stock, "category_guess_review_only": cat,
+                    "stock_source_value_selected_column": stock, "stock_by_location_json": json.dumps(stock_by_location, ensure_ascii=False), "stock_total_known_locations_review_only": stock_total, "category_guess_review_only": cat,
                     "rrp_minus_1pct_review_only": proposed_1, "rrp_minus_2pct_review_only": proposed_2,
                     "estimated_difference_vs_cost_incl_vat_at_minus_1": margin_1, "estimated_difference_vs_cost_incl_vat_at_minus_2": margin_2,
                     "quality_flags": ";".join(flags),
@@ -202,8 +253,10 @@ summary = {
   "rows_where_rrp_minus_2pct_is_below_estimated_cost_incl_vat": sum("RRP_MINUS_2_BELOW_ESTIMATED_COST_INCL_VAT" in r["quality_flags"] for r in extracted),
   "rows_from_identical_duplicate_workbooks": sum("IDENTICAL_PRODUCT_DATA_DUPLICATE_WORKBOOK" in r["quality_flags"] for r in extracted),
   "rows_with_duplicate_model_or_sku": sum("DUPLICATE_MODEL_OR_SKU_CROSS_SOURCE" in r["quality_flags"] for r in extracted),
+  "supplier_division_counts": dict(Counter(r["supplier_division_source_value"] or "MISSING DIVISION" for r in extracted)),
+  "component_guess_counts": dict(Counter(r["component_guess_review_only"] for r in extracted)),
   "category_guess_counts": dict(Counter(r["category_guess_review_only"] for r in extracted)),
-  "important": "RRP source values appear VAT-inclusive and dealer costs marked Excl are VAT-exclusive; cost comparison multiplies detected EX_VAT cost by 1.15. Figures are review-only and exclude overheads; no catalogue, price, or stock changes are performed."
+  "important": "Supplier Division is retained as the primary source classification; component guesses are heuristic. Regional stock fields are preserved and summed for review only. RRP source values appear VAT-inclusive and dealer costs marked Excl are VAT-exclusive; cost comparison multiplies detected EX_VAT cost by 1.15. Figures are review-only and exclude overheads; no catalogue, price, or stock changes are performed."
 }
 (OUT / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 print(json.dumps(summary, indent=2))
