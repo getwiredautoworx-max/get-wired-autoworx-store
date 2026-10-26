@@ -164,7 +164,7 @@ for row in extracted:
         row["cost_source_value"], row["stock_source_value"], row["all_source_values_json"]
     ))
 def preferred_source(filename):
-    return 0 if not re.search(r"\\s*\\(\\d+\\)\\.xlsx$", filename, re.I) else 1
+    return 0 if not re.search(r"\s*\(\d+\)\.xlsx$", filename, re.I) else 1
 signature_groups = {}
 for filename, records in by_file.items():
     signature = tuple(sorted(records))
