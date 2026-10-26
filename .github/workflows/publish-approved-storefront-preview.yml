@@ -1,29 +1,35 @@
 name: Publish Restored Main Storefront Preview
+
 on:
   push:
     branches:
       - approved-storefront-preview-trigger
     paths:
       - .preview-deploy-trigger
+
 permissions:
   contents: read
   deployments: write
+
 concurrency:
   group: approved-storefront-preview
   cancel-in-progress: false
+
 jobs:
   publish-approved-baseline:
-    name: Deploy restored main source to isolated Pages preview
+    name: Deploy clean main source to isolated Pages preview
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current restored main storefront source
         uses: actions/checkout@v4
         with:
           ref: main
-      - name: Publish isolated Cloudflare Pages preview
+      - name: Build clean runtime-only storefront
+        run: bash scripts/build-storefront.sh dist && cp _headers dist/_headers
+      - name: Publish isolated Pages preview
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=get-wired-autoworx-store --branch=approved-storefront-preview
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          apiToken: \${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=get-wired-autoworx-store --branch=approved-storefront-preview
+          gitHubToken: \${{ secrets.GITHUB_TOKEN }}
