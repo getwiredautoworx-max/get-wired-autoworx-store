@@ -2226,3 +2226,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - These 19 items are explicitly reserved for the owner's personal audit and excluded from the non-zero-RRP continuation. Zero RRP alone does not establish out-of-stock vs special-request/price-confirmation status.
 - The list is derived from the older audit artifact; validate against current supplier files or ask Planetworld before deciding. Historical regional stock is not a current availability promise.
 - Non-zero-RRP work continues separately. No supplier workbook or live catalogue/price/stock data was changed.
+
+
+## PLANETWORLD MODEL-MATCH SECOND BATCH — 2026-10-26
+
+- Extended the non-zero-RRP manufacturer match note with six more candidate checks. OneNav ISA-ON115-3LX and Paiste 0004801419 were corroborated against supplier listings only (not official manufacturer pages); Vogel's THIN215 was confirmed on the official page and is marked succeeded by TVM 3415; Vogel's 7225154/P​​UC 2515 was corroborated by distributor listings but not an exact official page; One ON263-FK2 and Vogel's PFW4600 remain unverified.
+- Supplier pages showing “out of stock” or “call for pricing” are third-party/current-site signals, not confirmation of Planetworld status. No supplier row was marked discontinued or altered based on them.
+- No images downloaded/added and no catalogue, price, stock, or live-store data changed. Continue non-zero-RRP model matching and classification; 19 zero-RRP rows remain in the owner's separate audit list.
