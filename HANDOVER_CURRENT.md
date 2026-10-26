@@ -2257,3 +2257,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Updated the phone-friendly review report on main in commit `6570a90f2d5107d73ba81cc11c0f916865c81c47`: [MOBILE_REVIEW_2026-10-26.md](catalogue-source/suppliers/planetworld/MOBILE_REVIEW_2026-10-26.md). It now records fresh counts, run/artifact links, the zero-RRP exclusion test, and remaining work.
 - Next: review the below-cost candidates using row-level model/source evidence, refine component/category review groups (470 rows remain broadly unclassified), and continue official manufacturer exact model/variant verification. Do not publish/import supplier prices or stock; do not alter source XLSX files. Supplier authorisation gate remains; current store stock is test-only. Customer launch remains **HOLD**.
 - No Axxess, DNS, payment, Supabase, live catalogue, price, stock, or production settings changed. Audit/script fix remains isolated on the unmerged audit branch; PR #95 remains open/unmerged.
+
+
+## COST-FLOOR TRIAGE COUNT CORRECTION — 2026-10-26 09:45 SAST
+
+- Row-level deduplication of the latest corrected audit CSV confirms the below-cost flags overlap: 18 rows are flagged at RRP−1%; 19 at RRP−2%; **19 distinct non-zero-RRP rows total** are flagged across either option (18 overlap, 1 additional row flagged only at RRP−2%). Do not add 18 + 19 and call them 37 distinct candidates.
+- This is a cost-floor review queue, not a price approval. The estimated VAT-inclusive dealer-cost basis is detected from the source header; 19 distinct rows currently show RRP below that estimated cost at one or both discount options. Validate exact source columns, product identity, and supplier price basis before any decision. Do not adjust customer prices or import the data.
+- Latest verified audit remains run [40287579649](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287579649), artifact `12635310456`. All 19 zero-RRP rows have blank price-suggestion fields and only `ZERO_RRP_REVIEW`; they remain excluded from pricing.
+- Continue by reviewing those 19 distinct positive-RRP cost-floor candidates against source headers/values, then manufacturer model/variant evidence. No supplier workbook or live store data changed; supplier authorisation gate and launch HOLD remain.
