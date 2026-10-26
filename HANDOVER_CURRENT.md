@@ -1,3 +1,14 @@
+## CATALOGUE IMAGE AUDIT RETRY CONCLUSION — 2026-10-26 16:25 SAST
+
+- Failed-job-only retry completed: run `40288619507`, latest job `121628594559`, conclusion `failure`.
+- Step results: Checkout passed; `Audit active SKU image mapping` passed; `Smoke test slash-normalised supplier image filenames` failed; published public-SKU WebP smoke step skipped; audit report artifact upload passed.
+- Exact repeat failure: HTTP 404 for `GW-D44F3E5F`. The four probe SKUs were `GW-38E68CCF`, `GW-D44F3E5F`, `GW-026C7F71`, `GW-5E7F77E5`. Artifact ID `12658995799`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40288619507/artifacts/12658995799
+- Decision: stop retries for this audit run. Repeated 404 confirms a deterministic proxy/asset-path mismatch; further blind retries are not useful. Next action is inspect staging image-proxy routing and the expected normalized path for SKU `GW-D44F3E5F`, compare it with published WebP assets, then add/fix a narrow staging-only test before rerunning the audit. Do not change catalogue rows or invent product images.
+- Current live release blockers remain unchanged: payment readiness gate and live smoke assertion failure. No production deployment/rerun was performed.
+- Handover documentation commit: this entry is appended to the existing `HANDOVER_CURRENT.md`; prior continuation entry and task-start entry are retained.
+
+---
+
 ## CONTINUATION MONITOR RESULT — 2026-10-26 16:24 SAST
 
 - Task-start entry committed at `e2df19bb435a3ec378eaa20d503567e626066162`.
