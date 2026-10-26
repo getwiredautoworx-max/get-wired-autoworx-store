@@ -2362,3 +2362,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Exact manufacturer pages were not found in this pass for Harness and Trims SKUs `86180`, `90008003`, `90013009`, `90014004`, `90022538`, `90022567`. Their supplier descriptions are retained as provisional; exact images/subcategories remain unverified. Do not use visually similar images as exact matches.
 - Latest full read-only audit remains **40288470708** (success; artifact `12635400900`). Filtered first-pass classification remains 3,298 non-zero-RRP rows with 0 component-review flags, 0 unclassified category guesses, and 0 duplicate SKU flags. This is first-pass categorization, not 100% exact model/image verification.
 - Cost-floor risks remain 18 rows below estimated VAT-inclusive cost at RRP−1% and 19 at RRP−2%; supplier confirmation is still required. No prices or stock changed.
+
+
+## ADDITIONAL OFFICIAL MODEL MATCHES — 2026-10-26
+
+- Added another exact-model verification batch to [MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md](catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md): Kicker 43DSC69304 (6×9-inch 3-way coaxial speaker) and 46CXA12001 (CXA1200.1 amplifier documentation), M-Audio Keystation49MK3 (49-key USB-MIDI controller), and Jabra Evolve2 40 SE variant documentation (full 24189 suffix must match exactly).
+- One ON1509-CS1 and Mason AL-2144A still lack an exact official manufacturer page/image match in this pass; their component guesses remain provisional. No images copied and no catalogue fields changed.
+- Latest full read-only audit remains run **40288470708** with successful conclusion and artifact **12635400900**. First-pass categories/components are assigned for all 3,298 non-zero-RRP rows, but exact model/image verification continues separately.
