@@ -2193,3 +2193,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Important timing caveat: artifact run predates removal of the duplicate JBL workbook. The 58 duplicate model/SKU flags include data from that duplicate snapshot; rerun the audit against the current branch before treating those duplicate counts as current. These automated flags are review candidates, not confirmed errors or approved prices.
 - Updated `catalogue-source/suppliers/planetworld/MOBILE_REVIEW_2026-10-26.md` with these counts, processing order, artifact run link, and the pre-deletion caveat. It is a phone-readable Markdown page.
 - Next safe processing: prioritise zero-RRP and below-cost review, then re-run the read-only audit after duplicate deletion; refine component groups and perform official manufacturer model/image matching. No catalogue/pricing/stock import or live production changes made. Launch remains HOLD.
+
+
+---
+
+## FOLLOW-UP TRIAGE — 2026-10-26 08:46 SAST
+
+- Performed an additional row-level triage on the downloaded audit CSV after excluding the 26 rows sourced from the now-deleted suffixed JBL workbook. This is a filtered view of the prior audit artifact, not a fresh workbook scan.
+- Filtered working set: 3,317 rows; 19 zero-RRP rows; 37 RRP-minus-1% below estimated VAT-inclusive cost; 38 RRP-minus-2% below estimated VAT-inclusive cost; 32 duplicate model/SKU flags; 1,023 broad review-component rows.
+- Updated the phone-friendly report to distinguish filtered triage counts from a fresh audit. Next required technical check is a new successful read-only audit against current `main`; the current audit workflow run is attached to PR #95's older head and no dispatch tool is available in this session. Do not treat filtered counts as the new authoritative scan.
+- Do not alter supplier source workbooks or import any flagged price/stock/catalogue data. Prioritise zero-RRP and below-cost candidates for review, then component refinement and official manufacturer matching. Launch remains HOLD.
