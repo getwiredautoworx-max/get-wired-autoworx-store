@@ -44,3 +44,5 @@ jobs:
           retention-days: 14
 
 # 2026-10-26: harmless workflow edit to rerun the read-only audit against current branch inputs.
+
+# 2026-10-26 10:02 SAST: trigger a fresh read-only audit against the current branch workbook inputs; no supplier files modified.
