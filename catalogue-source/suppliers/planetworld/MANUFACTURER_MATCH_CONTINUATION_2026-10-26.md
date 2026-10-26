@@ -123,3 +123,11 @@ These results are reseller cross-checks, not authoritative supplier inventory ev
 | JBL JBL-EON710-EK | Official JBL page confirms EON710 base model and specifications, but no evidence located tying the -EK suffix to a specific region/pack. | Base model confirmed; exact suffix remains unverified. https://jblpro.com/en-US/products/jbl-eon710 |
 
 The suffix/family distinction is material: use exact supplier codes as keys, do not attach a different SKU's image or pricing, and do not infer current Planetworld availability from manufacturer or reseller listings. No images were copied; no source XLSX or catalogue data was changed.
+
+
+## Exact OneNav model corroboration — 2026-10-26 10:30 SAST
+
+- Exact-code search now finds a South African reseller product page titled **OneNav Evolution 9inch Screen with Slim Chassis**, SKU **ON1509-LX1**: https://nxtleveltech.co.za/product/onenav-evolution-9inch-screen-with-slim-chassis . The page explicitly identifies the brand, exact SKU, product family and category (Car Audio), but shows **out of stock / call for pricing**.
+- This upgrades the item from “no reliable exact-code match found” to **exact SKU and product-family corroborated by a third-party reseller**. It is not official manufacturer or Planetworld evidence. Do not infer current Planetworld availability, price validity, fitment, or image-use rights; no reseller price/image copied.
+- Provisional classification remains Car Audio → 9-inch Evolution screen/head unit pending authorised supplier confirmation and Get Wired category-fit review.
+- No source workbook or live catalogue/price/stock data changed.
