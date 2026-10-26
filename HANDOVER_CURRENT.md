@@ -2273,3 +2273,17 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Safety note: PR remains unmerged. Do not merge to make the workflow run. Do not change production deployment settings. If the expected audit does not start from the PR synchronize event, use the Actions UI to run the read-only workflow manually.
 - The prior audit run `40279792830` remains stale (head `701b094d8821e6062d5706c4609ff6c6dfd3429c`, created 2026-10-26 06:26 UTC) and must not be used as current totals.
 - Owner's 19 zero-RRP items remain isolated in `ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md`; do not process or publish them as part of non-zero-RRP decisions.
+
+
+## FRESH PLANETWORLD AUDIT COMPLETED SUCCESSFULLY — 2026-10-26 07:28 UTC
+
+- Fresh read-only audit run **40285978617** completed with conclusion **success** on commit `95631c7ce18de3fe9f1b7d0e15b69f1b2d79b56b`: [open run](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40285978617).
+- Verified artifact `planetworld-workbook-audit`, ID `12633504348`, created 2026-10-26 07:28:35 UTC. Downloaded and inspected `summary.json`; 48 XLSX files, 96 sheets, 3,343 rows extracted, zero workbook errors.
+- **Owner hold:** 19 zero-RRP rows remain set aside for the owner's personal audit.
+- **Duplicate source:** 26 rows in `jbl-price-list-2026-10-25 (1).xlsx` duplicate `jbl-price-list-2026-10-25.xlsx`. The duplicate workbook still exists in the input set; analysis excludes those 26 rows, but no file was deleted.
+- Refreshed continuation scope: **3,298 non-zero-RRP rows across 47 workbooks** after excluding the 19 zero-RRP rows and 26 rows from the duplicate JBL workbook.
+- Refreshed non-zero scope flags: **18** rows below estimated VAT-inclusive cost at RRP−1%; **19** at RRP−2%; **32** duplicate model/SKU cross-source flags after duplicate-file exclusion; **1,016** component-review guesses; **1,348** unclassified category guesses. Zero missing model/SKU, zero missing/unmapped RRP, zero missing descriptions in the filtered non-zero scope.
+- Updated phone-friendly [NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md](catalogue-source/suppliers/planetworld/NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md) with fresh counts and the 18 cost-floor rows. Revalidated the final artifact from run 40285978617; the summary counts match the refreshed report's filtering method.
+- Updated the workflow path filters to allow audit runs on review-branch updates while avoiding reruns on handover-only changes. The workflow remains read-only and does not import or change supplier/live data.
+- Next actions: inspect the 18 cost-floor rows against exact source workbook cells, continue exact model/variant verification and component/category refinement, and keep the 19 zero-RRP items untouched. Confirm or remove the duplicate JBL source file only through safe source-file management; it is not deleted.
+- No supplier XLSX, live catalogue, price, stock, images, checkout/payment, Axxess, DNS, or production settings changed. PR #95 remains open/unmerged; do not merge without release approval.
