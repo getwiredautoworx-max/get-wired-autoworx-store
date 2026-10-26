@@ -2165,3 +2165,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Next processing priority is read-only extraction of all 48 source workbooks: workbook/sheet names, row counts, header/field mapping, model/SKU, description, RRP, cost (if present), and quality exceptions. Then classify by brand/category/component, flag duplicate model numbers and missing identifiers/prices, and prepare a review-only pricing comparison using RRP minus 1–2% where margin allows. Do not publish, import, or change live prices/stock/catalogue.
 - Manufacturer image/model verification is a later phase and must record evidence/source URLs; do not claim verified matches from filenames alone.
 - No Axxess, DNS, payment, production, live catalogue, price, or stock changes authorized or made. Customer launch remains HOLD.
+
+
+## PLANETWORLD AUDIT IMPLEMENTATION UPDATE — 2026-10-26
+
+- Created branch `docs/planetworld-blocker-handover-2026-10-26` and opened review PR #95: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/95. This is review-only; it has not been merged to main.
+- Added `scripts/planetworld_workbook_audit.py`, which opens XLSX workbooks read-only and outputs a workbook/sheet inventory, row-level review extract, duplicate model/SKU flags, missing/unmapped field flags, provisional category guesses, and RRP-minus-1%/2% comparison columns. It does not write to source workbooks or update the store catalogue/prices/stock.
+- Added `.github/workflows/planetworld-workbook-audit.yml` with read-only repository permissions and an artifact output. It now triggers on pull requests affecting the Planetworld workbooks/script/workflow. Workflow run `40278736485` was observed `in_progress`; no success/failure is claimed until a completed result and artifact are verified.
+- The owner-authorized deletion of `jbl-price-list-2026-10-25 (1).xlsx` is still unresolved. The delete endpoint returned HTTP 409 even when the fetched blob SHA matched; earlier direct deletion attempts were safety-blocked. Do not claim the duplicate is deleted. Keep `jbl-price-list-2026-10-25.xlsx` as the intended retained file.
+- The duplicate files were reported as equal-sized (28,527 bytes), but identical contents have not been cryptographically confirmed. Do not silently delete other supplier files.
+- No live catalogue, price, stock, production, Axxess, DNS, checkout, or payment changes were made. Supplier processing remains review-only pending the audit output and owner review; launch remains HOLD.
