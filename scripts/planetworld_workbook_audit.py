@@ -56,13 +56,15 @@ def field_score(header, terms):
 def guess_category(brand, description, model, filename):
     text = norm(" ".join([brand, description, model, filename]))
     rules = [
-      ("Musical Instruments & Accessories", ("ibanez", "tama", "remo", "paiste", "on stage", "planetwaves", "guitar", "bass guitar", "electric bass", "cymbal", "snare", "drum", "percussion", "ukulele", "mandolin", "piano bench", "keyboard bench", "powerpad")),
+      ("Musical Instruments & Accessories", ("ibanez", "tama", "remo", "paiste", "on stage", "planetwaves", "mason", "medeli", "crossrock", "guitar", "bass guitar", "electric bass", "cymbal", "snare", "drum", "percussion", "ukulele", "mandolin", "piano bench", "keyboard bench", "powerpad")),
       ("Headsets & Conferencing", ("jabra", "jlab", "headset", "earbuds", "earbud", "panacast", "video bar", "conference phone", "speakerphone")),
       ("Robotic Vacuums & Home Care", ("roborock", "robotic vacuum", "vacuum cleaner", "pool cleaning", "skimmer")),
-      ("DJ / Studio / Pro Audio", ("dj ", "mixer", "microphone", "studio", "shure", "denon dj", "wireless mic", "audio interface", "stage monitor", "pro audio")),
-      ("Home Theatre / Hi-Fi", ("home theatre", "home theater", "soundbar", "av receiver", "receiver", "sonos", "sonance", "m&k sound", "vogels", "hdanywhere", "denon", "hi fi", "hifi", "home audio", "projector", "mount", "display", "screen", "tv bracket", "television")),
+      ("Pool Cleaning & Outdoor", ("aiper", "pool vacuum", "robotic pool cleaner", "pool cleaner")),
+      ("Home Automation & Lighting Controls", ("p5 ", "low voltage led dimmer", "smart dimmer", "ethernet relay", "dimmer and 0-10v")),
+      ("Home Theatre / Hi-Fi", ("kicker kb6", "arcam", "klipsch", "onkyo", "home theatre", "home theater", "soundbar", "av receiver", "receiver", "sonos", "sonance", "m&k sound", "vogels", "hdanywhere", "denon", "hi fi", "hifi", "home audio", "projector", "mount", "display", "screen", "tv bracket", "television")),
+      ("Car Audio", ("one price list", "one nav", "onenav", "onex", "oneacoustic", "kicker", "car audio", "vehicle", "car speaker", "head unit", "double din", "single din", "alpine", "jvc car", "kenwood car", "pioneer car", "focal car", "jbl car", "audison", "car amplifier", "component speaker", "coaxial", "harness", "trim kit", "android radio", "rear view monitor", "car dvr", "parking sensor", "can bus", "smart mirror")),
+      ("DJ / Studio / Pro Audio", ("dj ", "mixer", "microphone", "studio", "shure", "denon dj", "wireless mic", "audio interface", "stage monitor", "pro audio", "m-audio", "zoom", "alto professional", "amplified", "dbx", "numark", "rane dj", "sound switch", "soundcraft", "line array", "pa system", "portable pa")),
       ("Marine Audio", ("marine", "boat", "waterproof", "nautic")),
-      ("Car Audio", ("car audio", "vehicle", "car speaker", "head unit", "double din", "single din", "alpine", "jvc car", "kenwood car", "pioneer car", "focal car", "jbl car", "audison", "car amplifier", "component speaker", "coaxial", "harness", "trim kit")),
       ("Speakers", ("speaker", "loudspeaker", "woofer", "tweeter")),
       ("Cables / Accessories", ("cable", "adapter", "bracket", "mount", "remote", "accessory", "connector")),
     ]
