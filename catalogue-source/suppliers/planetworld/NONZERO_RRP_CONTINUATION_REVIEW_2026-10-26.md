@@ -13,7 +13,7 @@
 ## Refreshed screening counts for remaining items
 - **18 rows**: RRP minus 1% is below estimated dealer cost including VAT.
 - **19 rows**: RRP minus 2% is below estimated dealer cost including VAT.
-- **32 rows** retain a duplicate model/SKU cross-source flag after excluding the duplicate JBL file. Treat as identity-review candidates, not automatic deletions.
+- **32 rows** carry a raw duplicate model/SKU cross-source flag after excluding duplicate-file rows from the continuation scope. **26 of these flags are explained by the identical duplicate JBL workbook still being present in the source set**; the remaining **6 candidate rows** are On Stage KT7800 / KT7800+ and Roborock Q7 TF B/W and Q7 TF+ B/W. These six need identity review; similar family names or colour variants are not proof of duplicate SKUs.
 - **1,016 rows** have a component guess marked for review.
 - **1,348 rows** remain broadly unclassified by the heuristic category guess.
 - 0 missing model/SKU, 0 missing/unmapped RRP, and 0 missing descriptions were reported in the filtered non-zero scope.
@@ -51,7 +51,7 @@ The difference columns below show the estimated amount by which (RRP × 0.99) fa
 - Review the 1,016 component-review rows from full descriptions and exact model codes; do not force a guess.
 - Review the 1,348 unclassified category guesses.
 - Continue official manufacturer exact-model/variant checks for non-zero-RRP items; record exact-match confidence and source URL. No family-only image should be labelled as an exact match.
-- Keep 32 duplicate-model/SKU flags for identity review; do not auto-delete.
+- Clear the 26 JBL duplicate-source flags only after the duplicate JBL workbook is safely excluded from future audit inputs or removed with owner approval. Review the six On Stage/Roborock candidates separately; do not auto-delete or collapse colour/variant SKUs.
 
 ## Next actions
 1. Keep the 19 zero-RRP items untouched in the separate [owner audit hold list](ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md).
