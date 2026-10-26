@@ -240,7 +240,7 @@ duplicate_sources = {
 def duplicate_model_key(value):
     value = str(value or "").strip().lower()
     value = re.sub(r"[^a-z0-9+]+", " ", value)
-    return re.sub(r"\\s+", " ", value).strip()
+    return re.sub(r"\s+", " ", value).strip()
 for row in extracted:
     row["quality_flags"] = ";".join(
         flag for flag in row["quality_flags"].split(";")
