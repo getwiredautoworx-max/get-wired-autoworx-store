@@ -1,4 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { matchCurrentLiveQuote, normalizeCheckoutItems } from "./quote-validation.js";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -19,8 +20,16 @@ Deno.serve(async (req: Request) => {
     for (const key of allowed) payload[key] = body[key];
 
     if (typeof payload.p_customer_name !== "string" || payload.p_customer_name.trim().length < 2) throw new Error("Customer name is required.");
-    if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
-    if (payload.p_items.length > 100) throw new Error("Too many cart items.");
+    payload.p_customer_name = payload.p_customer_name.trim();
+    if (typeof payload.p_customer_email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.p_customer_email.trim())) throw new Error("A valid email address is required.");
+    payload.p_customer_email = payload.p_customer_email.trim();
+    if (typeof payload.p_customer_phone !== "string" || payload.p_customer_phone.trim().length < 5) throw new Error("Customer phone is required.");
+    payload.p_customer_phone = payload.p_customer_phone.trim();
+
+    const deliveryMethod = String(payload.p_delivery_method ?? "").toLowerCase();
+    if (deliveryMethod !== "pickup" && deliveryMethod !== "delivery") throw new Error("Choose pickup or delivery.");
+    const normalizedItems = normalizeCheckoutItems(payload.p_items);
+    payload.p_items = normalizedItems;
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     let secret: string | null = null;
@@ -32,7 +41,6 @@ Deno.serve(async (req: Request) => {
         if (typeof parsed === "string") secret = parsed;
         else if (parsed && typeof parsed.default === "string") secret = parsed.default;
       } catch {
-        // Support a plain secret value if the runtime exposes one rather than the documented JSON object.
         secret = secretKeysEnv;
       }
       usesSecretApiKey = Boolean(secret);
@@ -40,41 +48,30 @@ Deno.serve(async (req: Request) => {
     if (!secret) secret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || null;
     if (!supabaseUrl || !secret) throw new Error("Checkout service is not configured.");
 
-    // New sb_secret keys are sent in apikey only; legacy service-role JWTs also use Authorization.
     const adminHeaders: Record<string, string> = {
       apikey: secret,
       "Content-Type": "application/json",
     };
     if (!usesSecretApiKey) adminHeaders.Authorization = "Bearer " + secret;
 
-    // Only products with an explicitly verified current selling price may enter paid checkout.
-    // The RPC is service_role-only, so this server-side gate cannot be bypassed by the public client.
-    const items = payload.p_items as Array<Record<string, unknown>>;
-    const publicSkus = [...new Set(items.map(item => String(item.public_sku ?? item.sku ?? "").trim()).filter(Boolean))];
-    if (!items.length || items.length > 100 || items.some(item => !/^GW-[A-Z0-9]{8}$/.test(String(item.public_sku ?? item.sku ?? "").trim())) || !publicSkus.length) {
-      throw new Error("Every cart item must have a valid public SKU.");
-    }
+    const publicSkus = normalizedItems.map(item => item.public_sku);
     const productsUrl = new URL(supabaseUrl + "/rest/v1/products");
-    productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price");
+    productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price,weight_kg,length_cm,width_cm,height_cm");
     productsUrl.searchParams.set("public_sku", "in.(" + publicSkus.join(",") + ")");
     productsUrl.searchParams.set("active", "eq.true");
-    const productCheck = await fetch(productsUrl, {
-      headers: adminHeaders,
-    });
+    const productCheck = await fetch(productsUrl, { headers: adminHeaders });
     if (!productCheck.ok) throw new Error("Unable to verify current product prices. Please try again.");
-    const verifiedRows = await productCheck.json();
-    const verifiedSkus = new Set(
-      verifiedRows
-        .filter((product: Record<string, unknown>) => {
-          const spec = product.specifications as Record<string, unknown> | null;
-          const price = Number(product.price), cost = Number(product.cost_price);
-          const expected = Math.round(cost * 1.15 * 1.35 * 100) / 100;
-          return product.active === true && spec?.price_status !== "QUOTE_REQUIRED" &&
-            Number.isFinite(price) && price > 0 && Number.isFinite(cost) && cost > 0 &&
-            Math.abs(price - expected) < 0.011;
-        })
-        .map((product: Record<string, unknown>) => String(product.public_sku))
-    );
+    const products = await productCheck.json() as Array<Record<string, unknown>>;
+    const productsBySku = new Map(products.map(product => [String(product.public_sku), product]));
+    const verifiedRows = products.filter(product => {
+      const spec = product.specifications as Record<string, unknown> | null;
+      const price = Number(product.price), cost = Number(product.cost_price);
+      const expected = Math.round(cost * 1.15 * 1.35 * 100) / 100;
+      return product.active === true && spec?.price_status !== "QUOTE_REQUIRED" &&
+        Number.isFinite(price) && price > 0 && Number.isFinite(cost) && cost > 0 &&
+        Math.abs(price - expected) < 0.011;
+    });
+    const verifiedSkus = new Set(verifiedRows.map(product => String(product.public_sku)));
     const blockedSkus = publicSkus.filter(sku => !verifiedSkus.has(sku));
     if (blockedSkus.length) {
       return new Response(JSON.stringify({
@@ -82,6 +79,58 @@ Deno.serve(async (req: Request) => {
         code: "PRICE_CONFIRMATION_REQUIRED",
         public_skus: blockedSkus,
       }), { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (deliveryMethod === "pickup") {
+      payload.p_delivery_fee = 0;
+      payload.p_delivery_quote = null;
+      payload.p_delivery_address = "Customer pickup from Get Wired AutoWorx";
+      payload.p_city = null;
+      payload.p_province = null;
+      payload.p_postal_code = null;
+    } else {
+      const address = typeof payload.p_delivery_address === "string" ? payload.p_delivery_address.trim() : "";
+      const city = typeof payload.p_city === "string" ? payload.p_city.trim() : "";
+      const province = typeof payload.p_province === "string" ? payload.p_province.trim() : "";
+      const postalCode = typeof payload.p_postal_code === "string" ? payload.p_postal_code.trim() : "";
+      if (!address || !city || !province || !postalCode) throw new Error("Complete delivery address is required.");
+
+      const quoteItems = normalizedItems.map(item => {
+        const product = productsBySku.get(item.public_sku);
+        if (!product) throw new Error("Unable to verify product shipping details.");
+        return {
+          qty: item.quantity,
+          weight_kg: Number(product.weight_kg ?? 0),
+          length_cm: Number(product.length_cm ?? 0),
+          width_cm: Number(product.width_cm ?? 0),
+          height_cm: Number(product.height_cm ?? 0),
+        };
+      });
+      const quoteResponse = await fetch(supabaseUrl + "/functions/v1/shipping-quote", {
+        method: "POST",
+        headers: adminHeaders,
+        body: JSON.stringify({ address, city, province, postal_code: postalCode, items: quoteItems }),
+      });
+      if (!quoteResponse.ok) {
+        return new Response(JSON.stringify({
+          error: "Unable to verify a current delivery quotation. Request a fresh quote or contact us on WhatsApp.",
+          code: "DELIVERY_QUOTE_VERIFICATION_FAILED",
+        }), { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
+      const quoteData = await quoteResponse.json() as { quotes?: unknown[] };
+      const currentQuote = matchCurrentLiveQuote(payload.p_delivery_quote, quoteData.quotes);
+      if (!currentQuote) {
+        return new Response(JSON.stringify({
+          error: "This delivery quote is not current for the submitted address and cart. Request a fresh quotation before placing the order.",
+          code: "DELIVERY_QUOTE_STALE",
+        }), { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
+      payload.p_delivery_quote = currentQuote;
+      payload.p_delivery_fee = Number((currentQuote as Record<string, unknown>).price);
+      payload.p_delivery_address = address;
+      payload.p_city = city;
+      payload.p_province = province;
+      payload.p_postal_code = postalCode;
     }
 
     const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
