@@ -2344,3 +2344,15 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - SKU `86180` was cross-referenced to Toyota ISO2CAR compatibility listings; no official manufacturer page established. Keep fitment/category provisional; do not treat third-party listing as proof of exact variant, image rights, current supplier stock or price validity.
 - Corrected audit run #40290002999 remains successful, artifact #12635711006; counts remain 48 workbooks, 96 sheets, 3,343 rows, zero workbook errors, 19 zero-RRP owner-hold rows, 18 positive-RRP cost-floor rows at RRP−1%, 19 at RRP−2%. Cost-floor queue and handover were updated on main in commits `5643afbbc88ebd832cc791ebb04ec4f065f79c5c` and `d0b11c4a48e47c328afcdabe6bd6ff9741df4c9d`.
 - Continue exact-SKU/manufacturer checks and category refinement using authorized evidence. No supplier XLSX or live store data changed; no image downloaded; PR #95 remains open/unmerged and customer launch remains HOLD.
+
+
+---
+
+## CONTINUATION RESULT — VEHICLE-FITMENT SKU RESEARCH BATCH — 2026-10-26 10:16 SAST
+
+- Added a second evidence-based fitment-SKU research batch to `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` on PR #95 branch, commit `971c3f5f9d3e27efe872bdcf5e7b911436a76254`.
+- Third-party reseller pages corroborate exact codes/descriptions for OneNav `90008003` (Toyota Corolla 2007–2013 2-DIN fascia/fitment) and `90014004` (universal 2-DIN cage kit 180x113mm). Treat as identity cross-checks only; neither proves official manufacturer status, current Planetworld price/availability, or image-use rights.
+- SKU `ON263-FK2` has a reseller page with contradictory content: title says Ford Ranger XLS fitment kit but body/specifications appear to describe a full 9-inch head unit. Marked as a content/SKU mismatch requiring Planetworld confirmation; do not select an image or use its price.
+- `90013009`, `90022538`, and `90022567` remain unverified in this pass; descriptions/category assignments remain provisional. No guessed product URLs or images were added.
+- Refreshed read-only audit run #40290002999 is successful with artifact #12635711006. Corrected counts remain 18 positive-RRP candidates below cost at RRP−1% and 19 at RRP−2%; the 19 zero-RRP rows stay in their separate owner-audit hold.
+- No source XLSX or live catalogue/price/stock data changed. No Axxess, DNS, checkout, payment, or Supabase changes. PR #95 remains open/unmerged; launch HOLD remains.
