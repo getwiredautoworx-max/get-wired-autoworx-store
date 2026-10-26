@@ -9,6 +9,8 @@ on:
       - 'catalogue-source/suppliers/planetworld/incoming-xlsx/**'
       - 'scripts/planetworld_workbook_audit.py'
       - '.github/workflows/planetworld-workbook-audit.yml'
+      - 'catalogue-source/suppliers/planetworld/*.md'
+      - 'HANDOVER_CURRENT.md'
 
 permissions:
   contents: read
