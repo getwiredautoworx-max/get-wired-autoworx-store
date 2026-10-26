@@ -50,3 +50,28 @@ This phone-friendly summary does not replace row-level review or official model/
 - Owner's 19 zero-RRP rows remain reserved for personal audit and must be excluded from all remaining price suggestions. Their meaning is unresolved: do not label them out-of-stock or special-order without confirmation.
 - Attempted to inspect the audit workflow at `.github/workflows/planetworld-workbook-audit.yml`; that exact path is not present on `main` (GitHub returned 404). The PR #95 branch/run reference is available, but this connector session exposes no workflow-dispatch action. No fresh current-file audit or artifact can honestly be claimed yet.
 - Next action: locate the actual workflow filename/path from PR #95's changed files, then trigger the read-only audit on the current input set and verify the new artifact before updating counts. If it cannot be triggered, record the exact workflow/permission blocker. Keep supplier files and live catalogue/prices/stock unchanged; no Axxess/DNS/payment/Supabase changes; launch HOLD.
+
+
+## CURRENT-MAIN AUDIT — VERIFIED 2026-10-26 09:44 SAST
+
+Fresh audit run [40287470154](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287470154) succeeded against a branch created from current main after the JBL duplicate was removed. The follow-up safety fix was then applied and verified by run [40287579649](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287579649). Latest artifact [12635310456](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287579649) is available until 9 November 2026.
+
+### Current verified counts
+- 47 XLSX files, 94 sheets, 3,317 rows; zero workbook read errors.
+- 19 zero-RRP rows remain reserved for owner personal audit.
+- **Verified zero-RRP exclusion:** all 19 have blank RRP-minus-1% and RRP-minus-2% suggestion fields and have no below-cost pricing flags. Their only quality flag is `ZERO_RRP_REVIEW`.
+- 18 non-zero-RRP rows are below estimated VAT-inclusive cost at RRP−1%; 19 non-zero-RRP rows are below estimated cost at RRP−2%.
+- Zero rows from identical duplicate workbooks and zero duplicate model/SKU flags in the current audit.
+- Zero missing model/SKU and zero missing/unmapped RRP fields.
+- Broad category guesses still include 470 rows marked `REVIEW - UNCLASSIFIED`; component counts remain heuristic and need source-description/manufacturer review.
+
+### What is and is not resolved
+- Resolved: current-main workbook audit and artifact readback; duplicate JBL source is absent from main; zero-RRP items are excluded from price suggestions.
+- Still open: review the 37 distinct below-cost candidates (18 at RRP−1%; 19 at RRP−2%; overlap possible), refine component/category guesses, and verify exact model/variant against official manufacturer sources and suitable image assets.
+- The audit branch is separate and unmerged; the script correction has not been merged to main. No supplier workbook, live price, catalogue, stock, Axxess, DNS, payment, Supabase, or production data was changed.
+
+## Next processing order
+1. Keep the 19 zero-RRP rows out of all downstream pricing work pending owner audit.
+2. Review the 37 non-zero-RRP below-cost candidates and identify exact row/model/source evidence; do not approve a selling price from the automated suggestion alone.
+3. Continue exact manufacturer model/variant checks and category refinement for the remaining non-zero-RRP rows.
+4. Keep all work read-only until supplier authorisation; store launch remains **HOLD**.
