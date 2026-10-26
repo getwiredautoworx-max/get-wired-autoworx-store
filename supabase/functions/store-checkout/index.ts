@@ -62,7 +62,7 @@ Deno.serve(async (req: Request) => {
     const productCheck = await fetch(productsUrl, { headers: adminHeaders });
     if (!productCheck.ok) throw new Error("Unable to verify current product prices. Please try again.");
     const products = await productCheck.json() as Array<Record<string, unknown>>;
-    const productsBySku = new Map(products.map(product => [String(product.public_sku), product]));
+    const productsBySku = new Map<string, Record<string, unknown>>(products.map(product => [String(product.public_sku), product] as const));
     const verifiedRows = products.filter(product => {
       const spec = product.specifications as Record<string, unknown> | null;
       const price = Number(product.price), cost = Number(product.cost_price);
