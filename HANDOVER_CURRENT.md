@@ -1929,3 +1929,10 @@ Run [39958304900](https://github.com/getwiredautoworx-max/get-wired-autoworx-sto
 - Exact-head browser execution is still pending; do not report Part Search as resolved until the tests pass. Cloudflare Pages build for the latest head was still in progress at the last check. Netlify/Cloudflare preview links and previous build results are recorded in PR #94.
 - A prior automatic Cloudflare Workers build for commit `3d65ded` failed; no intentional production deployment was made and production impact is not established. Do not make further release changes until the Workers integration/failure is understood.
 - Live Axxess Part Search remains unresolved. No Axxess files, DNS, checkout/payments, Supabase data, stock/catalogue data, or live orders were changed. Customer launch remains HOLD. Supplier stock/price reconciliation remains paused pending supplier authorisation.
+
+
+## FOLLOW-UP — PR preview-check status — 2026-10-26 06:42 SAST
+- Exact PR #94 head `fec0b1c51f9bed5680cf6169fbcf8d70fbb00888` has the no-AI Part Search source change, source assertions, Playwright photo-request test, and handover entries.
+- Automatic external checks were triggered by the PR branch update: Netlify redirect/header/pages checks finished `neutral`; Cloudflare Pages remained `in_progress` at last read-only check. No manual deploy/retry was initiated. Avoid further PR-branch commits while this check is unresolved to prevent additional preview builds/credit use.
+- Source assertions and isolated runtime harness passed. New-head Playwright Actions run remains unverified; previous CI success applies only to older head `35828e03e428b0448c9ba0eae68c5bc74dc400e8`.
+- Live Axxess Part Search is still not repaired by GitHub-only work. No Axxess upload or production change without explicit approval of the verified package and backup/rollback plan. Customer launch HOLD; stock/catalogue reconciliation PAUSED.
