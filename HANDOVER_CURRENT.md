@@ -2208,3 +2208,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - These are six initial page-level checks, not completion of all 3,343 manufacturer/image matches. Official product pages show imagery where noted, but no images were downloaded or added to the store. Image reuse rights and regional SKU/variant confirmation remain required before catalog use.
 - Owner report updated: `Planetworld_ReadOnly_Review_Report_2026-10-26.xlsx`, including Summary, Supplier Divisions, Component Guesses, Pricing Exceptions, Duplicate Review, Full Extract and Manufacturer Match Pilot sheets.
 - The supported GitHub file-delete endpoint still cannot remove the owner-authorized duplicate because it returns HTTP 409 despite a fresh matching blob SHA. Duplicate product data is neutralized in analysis by marking all 26 duplicate rows; physical file deletion remains owner action through the GitHub web UI. Do not claim deletion success.
+
+
+## PLANETWORLD OWNER-DIRECTED CONTINUATION — 2026-10-26
+
+- Owner directed that the 19 zero-RRP items be set aside for personal audit and that all other Planetworld items continue. The zero-RRP list is excluded from the continuation triage.
+- Added phone-friendly review note: [NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md](catalogue-source/suppliers/planetworld/NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md). It filters the earlier audit output to 3,298 non-zero-RRP rows across 47 workbooks, excluding the 26 rows from the duplicate JBL source. This is a historical filtered snapshot, not a fresh audit of current files.
+- Historical flags in the filtered snapshot: 18 rows below estimated VAT-inclusive cost at RRP−1%; 19 at RRP−2%; 32 duplicate model/SKU flags; 1,016 component-review rows; 1,348 broadly unclassified rows. Values must be refreshed by rerunning the audit.
+- Added [MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md](catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md): six non-zero-RRP model checks. JBL IRX108BT and EON710 base models were found on official manufacturer pages (regional suffixes unconfirmed); Ibanez IAB541-WR exact colour variant confirmed; Soundcraft 5085985EU corroborated on Planetworld's listing only; One ON1509-LX1 and Paiste 0004801419 remain unverified.
+- No product images were copied or added; no XLSX, live catalogue, prices, stock, checkout, payments, Axxess, DNS, or production settings changed. PR #95 remains open/unmerged.
+- Next: refresh the audit against the current source workbooks; continue exact model/variant matching and refine component/category groups for non-zero-RRP items. Do not publish or import supplier data without explicit authorization.
