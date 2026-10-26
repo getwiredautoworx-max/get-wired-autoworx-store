@@ -71,6 +71,7 @@ jobs:
           print(f'PASS: {len(parser.inline)} inline JavaScript blocks parse; owner login guards are present.')
           PY
 
+  build-and-validate:
     # Pin to the stable 22.04 runner while investigating 2026 emulator hangs on ubuntu-latest.
     runs-on: ubuntu-22.04
     timeout-minutes: 45
