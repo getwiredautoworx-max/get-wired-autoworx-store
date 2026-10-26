@@ -2530,3 +2530,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Read-only search also matched `GW-026C7F71`, the earlier 404 from audit attempt 2. The staging outside-hierarchy CSV identifies it as “Universal Fuel Filter” with disposition `QUARANTINE_UNTIL_OWNER_SCOPE_DECISION`, approval `NOT_APPROVED — READ ONLY CANDIDATE`.
 - Both failing hard-coded smoke probes are therefore rows already marked unapproved/out-of-scope in staging taxonomy review. This strengthens the concern that the smoke test's chosen legacy SKU probes are unsuitable as unconditional endpoint-health fixtures; it still does not prove why either runtime request returned 404.
 - No database query, source edit, rerun, image/catalogue mutation, or deployment was made. Continue with read-only function/product/mapping/log checks if authorized, then redesign the smoke test to distinguish proxy health from availability of specific unapproved products.
+
+
+## IMAGE PROXY DIAGNOSTIC — 2026-10-26 16:55 SAST
+
+- Read-only Supabase query confirmed the failing public SKU GW-D44F3E5F resolves to one active product (internal SKU WP3/4) and one private supplier mapping (WP3/4). The expected slash-normalised repository image asset `assets/products/WP3_4.jpg` exists on GitHub main; `assets/products_webp/GW-D44F3E5F.webp` also exists.
+- Deployed `product-image` Edge Function version 11 matches the repository implementation: it checks exact-public-SKU WebP assets first, then the private supplier mapping and slash-normalised JPG path. No deployment was made.
+- Read-only function logs show the same public SKU returned HTTP 200 at 2026-10-26 07:54:44 UTC, but HTTP 404 at 13:48:47 UTC and 14:23:13 UTC. This disproves a permanently missing product/mapping/path as the sole explanation; the failure is intermittent, likely in upstream fetch/database resolution, and current code does not log which branch failed.
+- The audit should not be rerun yet. Next safe step: add a staging-only diagnostic/unit test for path normalisation and upstream fallback, and improve observable branch-level error logging on a review branch. Any change to the deployed Supabase function remains prohibited without explicit approval; do not modify product rows, mappings, images, secrets, or live settings.
+- Scope check: only read-only GitHub/Supabase inspection was performed. No database writes, deployments, production reruns, or Cloudflare/Netlify credit use.
