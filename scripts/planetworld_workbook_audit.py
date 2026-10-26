@@ -97,8 +97,8 @@ def guess_component(division, description, model):
         if any(x in t for x in ("cable", "adapter", "adaptor", "battery", "case", "bag", "stand", "clip", "strap", "power supply", "psu", "accessory", "accessories")): return "Music Accessories"
         return "Musical Instruments - Review Component"
     if d in ("installed av", "home ci"):
-        if any(x in t for x in ("ear cushion", "eargel", "ear gel", "headband cushion", "headset pouch", "headset carry", "neckband", "clothing clip", "microphone cover")): return "Headset & Conferencing Accessories"
-        if "headset" in t or "earbuds" in t or "earbud" in t: return "Headsets & Conferencing"
+        if any(x in t for x in ("ear cushion", "earcushion", "eargel", "ear gel", "earhook", "ear hook", "headband cushion", "headset pouch", "headset carry", "headband", "neckband", "clothing clip", "microphone cover", "battery pack", "charging pad", "charging stand", "charging cradle", "cradle", "power supply", "link ehs", "link extension", "link controller", "cord", "cable", "adapter", "adaptor", "controller", "extension", "replacement", "spare", "accessory", "accessories", "earpiece", "ear tip", "eartip", "charger", "base acc")): return "Headset & Conferencing Accessories"
+        if any(x in t for x in ("headset", "earbuds", "earbud", "speakerphone", "conference phone", "panacast", "video bar", "webcam")): return "Headsets & Conferencing"
         if any(x in t for x in ("hdmi", "splitter", "matrix", "zone processor", "distribution", "extender", "switcher", "switch pro", "mhub", "xtnd")): return "AV Distribution & Switching"
         if "projector" in t: return "Projectors"
         if "screen" in t: return "Screens"
