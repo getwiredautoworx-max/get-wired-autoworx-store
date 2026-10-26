@@ -36,3 +36,13 @@
 | Vogel's / PFW4600 | Exact official page for the PFW4600 SKU not established in this pass. Search surfaced the broader PFW family only; do not use family imagery as an exact match. | Keep as unverified; display mounting category remains provisional. |
 
 No product images were downloaded or added. Third-party supplier/distributor pages are identity cross-checks only; image reuse rights are not established. Current supplier stock and orderability must be confirmed directly from current Planetworld data before any decision.
+
+
+## Duplicate-key candidates resolved — 2026-10-26
+
+The six candidates previously marked by the old duplicate-normalization rule were checked. They are distinct model/variant SKUs, not safe candidates for merging:
+
+- **On-Stage KT7800 vs KT7800+** are different bench models: KT7800 is the three-position X-style bench (300 lb capacity); KT7800+ is the deluxe model with a larger/extended cushion and 360 lb capacity. Official sources: https://tmppro.com/kt7800 and https://on-stage.com/deluxe-x-style-keyboard-bench. The plus sign must be preserved in model normalization.
+- **Roborock Q7 TF B vs Q7 TF+ B**, and **Q7 TF W vs Q7 TF+ W**, are different non-plus versus plus variants; the plus SKU description includes an auto-empty dock. Local exact-SKU listing corroboration: https://www.mhcworld.co.za/products/roborock-q7-tf-smart-multi-surface-robot-vacuum-white and https://guardsondutyshop.co.za/collections/roborock. Official Q7 family overview: https://global.roborock.com/pages/roborock-q7-series. Regional naming differs by market, so keep the supplier's exact code and confirm authorized imagery/region-specific details before catalogue use.
+
+The read-only audit script now excludes rows from identical product-data duplicate workbooks before calculating model/SKU duplicates and preserves '+' in model codes. Latest run [40286402931](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40286402931) succeeded; its artifact summary reports zero duplicate model/SKU flags after this correction. The duplicate JBL workbook itself remains present and its 26 rows are separately marked as identical-workbook duplicates.
