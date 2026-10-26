@@ -3061,3 +3061,22 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Branch: `continuation/planetworld-supplier-folders-2026-10-26`, created from current `main`; no merge, deployment, preview build, Axxess/DNS/payment change, live catalogue/stock mutation, or supplier import authorized.
 - Constraints: keep supplier pricing/dealer files inside the now-private repository only; do not publish prices or change customer catalogue prices; do not use Cloudflare/Netlify credits; retain release HOLD and current-store stock for testing only.
 - Verification plan: inspect repository/PR/workflow evidence read-only; add supplier folder README placeholders; record exact results and remaining owner-gated items below.
+
+
+## CONTINUATION RESULT — 2026-10-26 07:51 SAST
+
+### Verified outcomes
+- Repository metadata and the latest Actions run both confirm `getwiredautoworx-max/get-wired-autoworx-store` is **private**. Confidential Planetworld/ASC supplier files can be staged here, subject to supplier terms; no visibility change was made.
+- Created `suppliers/ASC/README.md` and `suppliers/Planetworld/README.md` on branch `continuation/planetworld-supplier-folders-2026-10-26`. These are placeholders for owner-supplied files; no supplier XLSX/pricelist was available in this session, so no supplier rows were processed.
+- Planetworld README records owner instruction: benchmark against Planet World RRP and consider 1–2 percentage points below RRP only after checking verified cost, VAT, margin and supplier restrictions. This is not a published or imported store price. Live catalogue/prices remain unchanged.
+- PR #94 remains OPEN / DRAFT / UNMERGED, head `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`. Actions run `40272185866` (`Storefront Smoke Test`, run #1105) completed SUCCESS on that exact head, including the verified-price checkout gate and local storefront smoke test. This is local CI evidence, not live Part Search acceptance or owner browser approval.
+- The existing AI image-search function is credential-gated: its README states HTTP 503 if `OPENAI_API_KEY` is absent; prior handover records confirmed OpenAI returned `insufficient_quota` / `credit_balance_exhausted`. No free AI vision service or successful no-cost image recognition path has been verified.
+- Safe no-cost path remains ordinary catalogue SKU/keyword Part Search plus the separate Request a Part/manual follow-up. Treat image recognition as optional and unavailable until a genuinely no-cost, tested provider/path exists; do not add paid API calls or loop on exhausted credits.
+- Current Actions runs are executing successfully on the private repository (run `40272185866`), but the exact remaining GitHub Actions minute balance is **not exposed by the available connected GitHub metadata endpoints**. Do not guess a number or change visibility to public to save minutes.
+
+### Still open / next actions
+1. Owner uploads authorized Planetworld XLSX/pricelist into `suppliers/Planetworld/`; then produce a read-only mapping report (brand/model/SKU/category/component/RRP/cost/VAT basis/image references), preserve source file, flag uncertain matches, and do not publish/import prices without approval.
+2. Owner uploads authorized ASC files into `suppliers/ASC/` only when supplier authorization is confirmed; current store stock remains testing-only.
+3. Continue PR #94 exact-head browser regression evidence without pushing extra commits or triggering Cloudflare/Netlify builds. PR #94 remains draft/unmerged until verified browser results and coordinated owner approval.
+4. GitHub Actions remaining minutes: owner must check GitHub Settings → Billing & licensing → Usage / Actions for the exact account balance; do not purchase minutes or change repository visibility.
+5. No Axxess, DNS, checkout/payment, Supabase, live stock/catalogue, customer-order or production changes made. Customer launch remains HOLD. No Cloudflare/Netlify credits used.
