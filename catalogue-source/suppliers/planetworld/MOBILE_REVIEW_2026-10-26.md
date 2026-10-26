@@ -83,3 +83,11 @@ The 18 rows flagged at RRP−1% and 19 rows flagged at RRP−2% overlap. Dedupli
 
 ## Review queue added — 26 October 2026, 09:46 SAST
 The 19 distinct positive-RRP cost-floor candidates are listed in the phone-readable [Cost-Floor Review Queue](COST_FLOOR_REVIEW_QUEUE_2026-10-26.md), including source workbook/row, model/SKU, detected price headers, and review-only cost comparisons. Large RRP/cost gaps are explicitly treated as source-value or price-basis verification flags, not automatic price changes.
+
+
+## Official model-check update — 26 October 2026, 10:07 SAST
+
+- Confirmed official Paiste model page for Signature Dark Energy Crash Mark I (sizes 16–19 inches); a published catalogue cross-reference maps CY0004801419 to the 19-inch variant. Supplier code 0004801419 is retained as supplied; manufacturer-code cross-reference is separate.
+- Confirmed HARMAN's official page maps Soundcraft SKU 5085985EU to the Notepad-12FX 12-channel mixer with USB and Lexicon effects.
+- OneNav ON263-FK2 has only a reseller match (Ford Ranger XLS 2015+ 9-inch fitment kit); this is not official evidence and reseller stock is not Planetworld stock. ON1509-LX1 remains unverified.
+- These identity checks do not resolve the source price discrepancies or permit image reuse. No supplier XLSX or live data was changed. See the manufacturer-match log on PR #95 for sources and detail.
