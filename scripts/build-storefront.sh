@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-out="\${1:-dist}"
+out="${1:-dist}"
 rm -rf "$out"
 mkdir -p "$out/assets"
 
