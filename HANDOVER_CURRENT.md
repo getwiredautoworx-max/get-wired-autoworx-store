@@ -2068,3 +2068,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Narrow test fix committed to PR #94 branch: after closing the photo Request a Part dialog, explicitly reopen Part Search, wait for `#partSearchDialog.open`, and refill `GW-F165DD11` before clicking its result. Commit `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`; workflow blob `4c30b45917c471845e9d8ba75d34392843ed3506`.
 - Next: confirm the new push-triggered run on this exact commit; inspect results through completion. Do not suppress visibility checks or force-click hidden UI. If it fails, fix only the next reproducible sequence or storefront defect.
 - Status **IN PROGRESS / NOT RESOLVED**. No production/Axxess changes, no merge, no paid AI credits, no DNS/payment/Supabase/live stock/catalogue changes. Owner approval remains required for any live upload; customer launch remains HOLD.
+
+
+## FOLLOW-UP — REGRESSION RUN #1105 STARTED — 2026-10-26
+
+- The latest test-sequence fix commit `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89` triggered [Storefront Smoke Test run #1105 / 40272185866](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40272185866) on the PR #94 branch; exact head SHA matches.
+- Latest poll: run and job `121407182246` are `in_progress`. Checkout and Node setup succeeded; Playwright installation completed and Chromium installation is in progress. Regression test has not started yet; no pass/fail conclusion available.
+- Continue polling run #1105. Inspect exact logs after the job completes; the job-log endpoint may return `BlobNotFound` while a run is still active. Do not merge/upload to Axxess until the candidate test passes and the owner approves the exact package.
+- Part Search remains **IN PROGRESS / NOT RESOLVED**. No production changes, no paid AI credits, no DNS/payment/Supabase/live stock/catalogue changes. Customer launch remains HOLD.
