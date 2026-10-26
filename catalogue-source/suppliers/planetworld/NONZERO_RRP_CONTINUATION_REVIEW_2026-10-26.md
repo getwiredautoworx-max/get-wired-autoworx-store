@@ -83,3 +83,21 @@ The audit script was corrected so identical duplicate-workbook rows are excluded
 - Excluding the 19 zero-RRP owner-hold rows and 26 rows from the duplicate JBL workbook leaves **3,298 non-zero-RRP rows**. **0 component-review flags, 0 unclassified category guesses, and 0 duplicate model/SKU flags** remain in this filtered scope.
 - Heuristic category distribution in the filtered scope: Musical Instruments & Accessories 1,492; Car Audio 644; Headsets & Conferencing 480; Home Theatre / Hi-Fi 424; DJ / Studio / Pro Audio 213; Robotic Vacuums & Home Care 21; Speakers 14; Pool Cleaning & Outdoor 5; Home Automation & Lighting Controls 5.
 - **Important:** this completes the first-pass categorization only. It does not mean all 3,298 exact manufacturer model/variant matches, product images, image permissions, pricing correctness or availability have been individually verified. Continue exact model/image-source verification in batches.
+
+
+---
+
+## Corrected audit refresh — 2026-10-26 10:12 SAST
+
+**Authoritative latest run:** [40290002999 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999), artifact ID `12635711006`.
+
+- Confirmed current source scan: 48 XLSX files, 96 sheets, 3,343 rows extracted, 0 workbook read errors.
+- Scope remains 3,298 non-zero-RRP rows after excluding 19 owner-hold zero-RRP rows and 26 rows from the identical duplicate JBL workbook.
+- Corrected price-risk count: 18 rows below estimated VAT-inclusive dealer cost at RRP−1%; 19 rows below estimated cost at RRP−2%. This is 19 distinct SKUs total; SKU `90011904` is the extra row that only fails the 2% test.
+- Missing model/SKU, missing/unmapped RRP, and missing descriptions: 0 in this extracted scope. Duplicate model/SKU flags: 0 after identical duplicate workbook exclusion.
+- The CSV assigns a heuristic category and component to every row (zero blanks and zero literal “unclassified” labels), but these are suggestions, not validated catalogue mappings. Do not interpret those zero counts as zero product-classification risk. Exact model/variant verification and fit to Get Wired's actual storefront categories remain incomplete.
+- Source-row check confirms the headers are consistently `Dealer Price (Excl)`, `Retail Price (Excl)`, and `Retail Price (Incl)` on the listed exception workbooks. This means the extreme gaps are present in the workbook's source values, not caused by the audit selecting an unmapped RRP header. It still does not prove whether source values, pack basis, or supplier pricing are correct.
+- Exact-model work already added to this report: Paiste `0004801419` and Soundcraft `5085985EU` are corroborated to exact model; OneNav `ON1509-LX1` remains unverified. Targeted web searches for the exact `ON1509-LX1` code did not return a reliable official OneNav or Planetworld match in this pass. Keep the item unverified and request supplier confirmation rather than substituting a sibling model.
+- The supplier clarification message remains a draft and has **not** been sent. Owner review/authorized sending is still required. Zero-RRP items are deliberately excluded from that request.
+
+No supplier XLSX, catalogue, price, stock, image, production, Axxess, DNS, checkout, payment, or Supabase data was changed. Customer launch remains HOLD.
