@@ -2706,3 +2706,29 @@ The owner rejected the prior visual result: cartoon category artwork, search not
 
 ### Handover maintenance evidence
 - This checkpoint is being added to `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and `HANDOVER_CURRENT.md` on the isolated documentation branch `handover/pr72-monitor-2026-10-23`; it does not change the PR #72 application branch or trigger a storefront deployment.
+
+
+---
+
+## Monitoring checkpoint — 2026-10-26 21:44 SAST (19:44 UTC)
+
+### PR and exact-head evidence
+- Refreshed PR #72 metadata: still **OPEN / DRAFT / UNMERGED**, mergeable reported true. Base remains `recovery/approved-preview-index-new` (the approved PR #70 baseline); head branch remains `fix/pr70-storefront-owner-feedback-2026-10-20`; exact head SHA remains `6fad09870098b819e2f93cfd47a646427759ceb4`. PR #68 and PR #71 were not used.
+- Retrieved exact-head GitHub Actions runs (all completed successfully on 2026-10-24):
+  - Interaction QA run [40128802808](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802808): **27 passed / 0 failed**. Log confirms homepage 200, eight main category buttons, distinct relevant category photos, corrected banner copy, Specials capped at four, standalone Request a Part dialog, Part Search dialog and query handoff, same-tab category navigation, subcategory listing click-through, trailer/towing image relevance, product image fallback and description, Add to Cart/cart badge, product-specific WhatsApp SKU query, and mobile overflow check. Artifact includes desktop category navigation, subcategory photo audit, mobile home, and product detail screenshots.
+  - Responsive layout run [40128802832](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802832): **PASS** at 320, 360, 390, 768, and 1440 CSS-pixel viewports; no horizontal overflow. Mobile category/product two-column layout and desktop category three-column layout checks passed.
+  - Public SKU exposure audit [40128802813](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40128802813): **PASS**.
+- The PR description records a prior hosted Cloudflare preview QA result of 20/20. Existing canonical preview URL on record: https://pr72-owner-feedback.get-wired-autoworx-store.pages.dev .
+
+### Live preview verification and deployment boundary
+- Attempted to open the canonical preview root and a category URL using the available web access. Both requests returned “URL is not accessible via this tool”; this is a limitation of the current verification path, **not evidence that the site itself is down**. No fresh HTTP response, current deployment commit metadata, or live category-click test could be captured in this run.
+- Reviewed `.github/workflows/cloudflare-pages-deploy.yml`: its Cloudflare deployment workflow is `workflow_dispatch` only and explicitly deploys `--branch=main` (production), so it must not be invoked for this task. No safe, controlled preview-deploy workflow was identified in the repository. **No deployment was initiated**, and no Cloudflare/Netlify credits were deliberately consumed.
+- Therefore the prior preview URL is historical evidence only in this run; do not describe it as freshly reverified. The required final live-browser check remains blocked on access to a browser capable of opening the preview.
+
+### Next action
+- From a real interactive browser (owner Chrome or an approved browser runner), open the existing canonical preview URL above and confirm it serves the PR #72 head, then click a main category and a subcategory and verify same-tab navigation plus the category/product listing. Check the banner, request dialog, product detail, Add to Cart, WhatsApp SKU query, and mobile/desktop layout.
+- If the existing URL does not serve the current PR #72 build, first identify a repository-permitted, preview-only deployment path. Do not invoke the production-only manual deploy workflow and do not create another deployment until its preview-only scope is confirmed.
+- Keep PR #72 draft/unmerged. No production/Axxess/DNS/payment, Supabase, supplier, catalogue, stock, or live-order changes were made.
+
+### Handover update method
+- This monitoring note is being recorded only on the isolated documentation branch `handover/pr72-monitor-2026-10-23`; the PR #72 application branch and production branch remain untouched.
