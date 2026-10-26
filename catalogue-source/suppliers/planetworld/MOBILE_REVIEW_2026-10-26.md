@@ -10,13 +10,14 @@ The audit ran before the duplicate JBL workbook was removed, so its input snapsh
 ## Review counts from that audit
 - 3,343 rows across 96 sheets; zero workbook read errors
 - 19 rows with zero RRP
-- 39 rows where RRP less 1% is below the estimated VAT-inclusive dealer cost
-- 40 rows where RRP less 2% is below the estimated VAT-inclusive dealer cost
-- 58 rows flagged for duplicate model/SKU identifiers; this count includes duplicate-workbook rows from the pre-deletion snapshot and needs a fresh audit before acting
+- 37 rows where RRP less 1% is below the estimated VAT-inclusive dealer cost after excluding the deleted duplicate workbook's 26 rows
+- 38 rows where RRP less 2% is below the estimated VAT-inclusive dealer cost after excluding the deleted duplicate workbook's 26 rows
+- 32 rows flagged for duplicate model/SKU identifiers after excluding the deleted duplicate workbook's 26 rows
+- 3,317 rows remain when the 26 rows from the deleted duplicate workbook are excluded from the previous audit output; this is a filtered view of the old artifact, not a fresh workbook rerun
 - 1,023 rows placed in broad “Review Component” groups requiring classification refinement
 - No rows were reported missing model/SKU or missing/unmapped RRP in this audit snapshot
 
-These are automated review flags, not proof of supplier errors. Price comparisons rely on detected VAT basis and exclude overheads.
+These are automated review flags, not proof of supplier errors. Counts above are filtered from the pre-deletion audit output by excluding the duplicate workbook's 26 rows; rerun the audit against current main to certify the current totals. Price comparisons rely on detected VAT basis and exclude overheads.
 
 ## Processing order
 1. **Hold zero-RRP rows** for review; do not derive customer prices from zero.
