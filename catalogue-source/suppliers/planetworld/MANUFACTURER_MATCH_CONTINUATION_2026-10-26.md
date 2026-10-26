@@ -46,3 +46,19 @@ The six candidates previously marked by the old duplicate-normalization rule wer
 - **Roborock Q7 TF B vs Q7 TF+ B**, and **Q7 TF W vs Q7 TF+ W**, are different non-plus versus plus variants; the plus SKU description includes an auto-empty dock. Local exact-SKU listing corroboration: https://www.mhcworld.co.za/products/roborock-q7-tf-smart-multi-surface-robot-vacuum-white and https://guardsondutyshop.co.za/collections/roborock. Official Q7 family overview: https://global.roborock.com/pages/roborock-q7-series. Regional naming differs by market, so keep the supplier's exact code and confirm authorized imagery/region-specific details before catalogue use.
 
 The read-only audit script now excludes rows from identical product-data duplicate workbooks before calculating model/SKU duplicates and preserves '+' in model codes. Latest run [40288470708](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40288470708) succeeded; its artifact summary reports zero duplicate model/SKU flags after this correction. The duplicate JBL workbook itself remains present and its 26 rows are separately marked as identical-workbook duplicates.
+
+
+## Manufacturer verification batch — cost-floor candidates, 2026-10-26
+
+| SKU | Verified result | Classification / image status |
+|---|---|---|
+| Remo HK-2417-00 | **Exact official match.** Remo identifies this SKU as the Active Snare Dampening System, a free-floating adjustable snare sustain-control accessory for drum sets. | Drums & Percussion → Snare accessories. Official source: https://remo.com/partnumber/hk-2417-00. No image copied. |
+| Vogel's PFW4600 | **Exact official-source match.** Vogel's-hosted product compliance list identifies PFW4600 as a black tilting wall mount rated for 75 kg. | Home CI → TV Mounts & Stands. Official-hosted source: https://downloads.vogels.com/en/TUV-Products-overview-PROF.pdf. No image copied. |
+| Harness and Trims 86180 | Exact manufacturer page not located in this pass; retain supplier description “Toyota ISO2CAR mute adaptor”. | Vehicle Harnesses & Trims; exact image unverified. |
+| Harness and Trims 90008003 | Exact manufacturer page not located in this pass; retain supplier description “2-DIN Toyota Corolla 2007–2013”. | Vehicle Harnesses & Trims; exact image unverified. |
+| Harness and Trims 90013009 | Exact manufacturer page not located in this pass; retain supplier description “amplified Fakra-to-bullet antenna adaptor”. | Vehicle Antennas / harness accessory; exact subcategory and image unverified. |
+| Harness and Trims 90014004 | Exact manufacturer page not located in this pass; retain supplier description “2-DIN universal cage kit 180×113 mm”. | Vehicle Harnesses & Trims; exact image unverified. |
+| Harness and Trims 90022538 | Exact manufacturer page not located in this pass; retain supplier description “9-inch VW Polo 2014+ fitment”. | Vehicle Harnesses & Trims; exact image unverified. |
+| Harness and Trims 90022567 | Exact manufacturer page not located in this pass; retain supplier description “9-inch Suzuki Alivio/Ciaz 2014+ fitment”. | Vehicle Harnesses & Trims; exact image unverified. |
+
+The exact manufacturer page was not located for the six Harness and Trims codes in this search pass; do not use a similar-looking image or mark these exact matches as verified. No supplier files or live catalogue fields were changed.
