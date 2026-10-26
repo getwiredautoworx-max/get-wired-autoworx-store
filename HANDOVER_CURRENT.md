@@ -2135,3 +2135,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Working recommendation for review: use RRP less 2% as the initial competitive test price where margin remains acceptable; use 1% below RRP where the extra discount is not needed or margin protection is preferred. Final pricing still requires owner approval and any relevant cost/availability checks.
 - Workbook remains local/confidential because it contains dealer cost and dated regional stock. It was not uploaded to this public repository. No live prices, catalogue, stock, Axxess/DNS, payment, or Supabase settings were changed; nothing was published to customers.
 - Next: continue official manufacturer page and direct image-asset verification, then prepare a review-only catalogue delta after owner approval. Do not import or publish automatically.
+
+
+## GITHUB SUPPLIER FOLDER LINK CORRECTION — 2026-10-26
+
+- Owner reported the previously supplied Planetworld incoming-XLSX URL returned 404 because the path did not exist. The earlier link was given without verifying it; this was an assistant error.
+- Queried GitHub repository metadata directly: `getwiredautoworx-max/get-wired-autoworx-store`, default branch `main`, visibility reported as `private`, permissions include admin/push for the connected account.
+- Created `catalogue-source/suppliers/planetworld/incoming-xlsx/README.md` on `main` to establish the folder path and document supplier-file handling. Commit: 5bfcaa31b34ea81f3dc357e45d03f31e0e5c863b.
+- Verified privacy via repository metadata at this checkpoint; do not infer that visibility will remain unchanged. Before confidential uploads, ensure repository visibility still reads private in GitHub settings.
+- Folder URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/tree/main/catalogue-source/suppliers/planetworld/incoming-xlsx
+- No supplier XLSX files were uploaded; no catalogue, price, stock, Axxess, DNS, checkout/payment, or Supabase data was changed. Part Search PR #94 release boundary remains unchanged; customer launch remains HOLD.
