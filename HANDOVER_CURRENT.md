@@ -2051,3 +2051,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Narrow fix committed on PR #94 branch: changed the request monitor from `frame.on('request', ...)` to `page.on('request', ...)` in `.github/workflows/storefront-smoke.yml`. Commit `9bc4a76d462981a6c9f97ca386fb094fef6fd7ba`; workflow blob `94803f412f0d73dad6a55ea93da9bcaa51dacf04`.
 - Next: verify the push-triggered smoke run for this new commit; wait for completion and inspect the log. If another failure occurs, fix only the first reproducible failure and rerun. The public-site Part Search test at the end of the workflow checks the currently hosted live site, so a failure there must be distinguished from the local candidate iframe tests. Do not merge/upload/modify Axxess without owner approval.
 - Status remains **IN PROGRESS / NOT RESOLVED**. No AI credits, Axxess/live uploads, merge, DNS/payment, Supabase, orders, or live stock/catalogue changes made. Customer launch remains HOLD.
+
+
+## FOLLOW-UP — RETEST AFTER PLAYWRIGHT LISTENER FIX — 2026-10-26
+
+- Push of commit `9bc4a76d462981a6c9f97ca386fb094fef6fd7ba` automatically started run [#1104 / 40272051383](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40272051383) on the PR #94 branch. Confirmed exact run head matches the test-harness fix commit.
+- Latest Actions status poll: run `in_progress`; job `smoke` ID `121406767337`. Setup, checkout, Node and Playwright install steps passed; Chromium installation is in progress and test steps remain pending. GitHub's job-log download endpoint currently returns `BlobNotFound` while the job is still running, so there is no new test outcome yet.
+- Continue polling this exact run to completion. If Chromium installation stalls/fails, inspect completed logs once available and address the install problem only if reproducible. After smoke begins, inspect the exact failing assertion if any and iterate narrowly.
+- The first run's test-harness error was corrected; Part Search remains **IN PROGRESS / NOT RESOLVED** until this retest passes and the relevant hosted behavior is verified. Do not merge or upload to Axxess without explicit owner approval. No production/live data, DNS, payment, Supabase, order, stock/catalogue or AI credit changes.
