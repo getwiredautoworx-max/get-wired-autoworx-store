@@ -2218,3 +2218,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Remaining historical triage flags after those exclusions: 18 rows below estimated VAT-inclusive dealer cost at RRP−1%; 19 at RRP−2%; 32 duplicate model/SKU flags; 1,016 component-review rows; 1,348 broadly unclassified category guesses. A table of the 18 RRP−1% cost-floor flags is in the review note. Figures are review-only and may change on a fresh audit.
 - Next: rerun audit against current files; refine component/category classifications; prioritize official manufacturer exact-model/variant and image-source verification for non-zero-RRP items. Preserve source Division; do not publish guessed categories/prices or import supplier data without authorization.
 - No supplier XLSX contents, live catalogue, prices, stock, production, Axxess, DNS, checkout, or payment settings were changed. PR #95 remains open/unmerged; this continuation is a separate branch and is not released.
+
+
+## PLANETWORLD EXACT-MODEL MATCH CONTINUATION — 2026-10-26
+
+- Added [MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md](catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md) on the non-zero-RRP review branch.
+- Six additional non-zero-RRP candidates checked: JBL IRX108BT and EON710 base models confirmed on official JBL Professional pages, but `-EK` suffixes remain unconfirmed; Ibanez IAB541-WR exact wine-red variant confirmed on the official Ibanez page; Soundcraft 5085985EU SKU/product identity corroborated on Planetworld's listing but an official manufacturer URL was not established; One ON1509-LX1 and Paiste 0004801419 remain unverified in this pass.
+- No product images were copied or added. Exact model/variant and image-use rights still need confirmation; no catalogue mappings, prices or stock were changed.
+- Next: continue model/variant matching for non-zero-RRP items, refine component/category review groups, and rerun the audit against the current source files. The 19 zero-RRP items remain set aside for the owner's personal audit.
