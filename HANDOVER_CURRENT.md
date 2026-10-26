@@ -2369,3 +2369,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Added another exact-model verification batch to [MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md](catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md): Kicker 43DSC69304 (6×9-inch 3-way coaxial speaker) and 46CXA12001 (CXA1200.1 amplifier documentation), M-Audio Keystation49MK3 (49-key USB-MIDI controller), and Jabra Evolve2 40 SE variant documentation (full 24189 suffix must match exactly).
 - One ON1509-CS1 and Mason AL-2144A still lack an exact official manufacturer page/image match in this pass; their component guesses remain provisional. No images copied and no catalogue fields changed.
 - Latest full read-only audit remains run **40288470708** with successful conclusion and artifact **12635400900**. First-pass categories/components are assigned for all 3,298 non-zero-RRP rows, but exact model/image verification continues separately.
+
+
+## SUPPLIER PRICE-FIELD QUERY DRAFT PREPARED — 2026-10-26
+
+- Prepared [SUPPLIER_PRICE_FIELD_CONFIRMATION_DRAFT_2026-10-26.md](catalogue-source/suppliers/planetworld/SUPPLIER_PRICE_FIELD_CONFIRMATION_DRAFT_2026-10-26.md), ready for owner review/send. It lists the 18 non-zero-RRP rows where the source RRP is below estimated VAT-inclusive dealer cost, plus the one additional row that only fails after a 2% reduction. It asks Planetworld to confirm RRP, dealer cost, VAT basis, and unit/bundle basis.
+- The draft was **not sent**; no authorized supplier contact address or explicit send approval was available. No prices were changed.
+- This request explicitly excludes the 19 zero-RRP items reserved for the owner's personal audit and does not ask for stock updates.
+- Latest audit remains run 40288470708 (success) / artifact 12635400900; first-pass category/component guesses are assigned for all 3,298 non-zero-RRP continuation rows. Exact model/image verification continues in separate batches.
+- Next owner-dependent action: review and send the draft through an authorized Planetworld channel, then record the supplier response and reconcile only after explicit authorization. Keep live store data untouched.
