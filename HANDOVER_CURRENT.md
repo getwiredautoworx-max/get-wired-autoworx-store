@@ -1,3 +1,13 @@
+## CONTINUATION TASK START — 2026-10-26 16:21 SAST
+
+- Task: continue Get Wired AutoWorx staging/store QA from permanent handover instructions; inspect latest relevant GitHub Actions and continue only safe, non-production work.
+- Start status: latest HANDOVER_CURRENT.md and AI_HANDOVER_PERMANENT.md read from main. Previous monitor update linked run IDs 40330025420 (live browser smoke failure), 40326339664 (release-gates failure), 40288619507 (catalogue image audit failure), and 40283779662 (ASC exact-SKU image sync success). These are historical until rechecked.
+- Guardrails: no production reruns/deployments, no live Axxess/Supabase/catalogue/payment/DNS changes, and no Cloudflare/Netlify credit use without explicit approval.
+- In progress: verify current open PR heads and latest runs/jobs; inspect the precise failed assertion and whether a supported failed-job-only rerun is appropriate; continue category evidence review only from source evidence, never auto-move SKUs.
+- This is a dated start entry, not a claim of completion. Next action: query current PR and run/job evidence, then record actual results below.
+
+---
+
 ## INSTALL107 DEVICE RESULT UPDATE — 2026-10-22
 
 - Owner reports install107 also shows only “App wasn't installed” with no details. This confirms physical acceptance is still failing; do not describe the app as resolved.
