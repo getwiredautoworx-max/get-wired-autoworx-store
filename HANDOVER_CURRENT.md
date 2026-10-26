@@ -2218,3 +2218,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Added [MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md](catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md): six non-zero-RRP model checks. JBL IRX108BT and EON710 base models were found on official manufacturer pages (regional suffixes unconfirmed); Ibanez IAB541-WR exact colour variant confirmed; Soundcraft 5085985EU corroborated on Planetworld's listing only; One ON1509-LX1 and Paiste 0004801419 remain unverified.
 - No product images were copied or added; no XLSX, live catalogue, prices, stock, checkout, payments, Axxess, DNS, or production settings changed. PR #95 remains open/unmerged.
 - Next: refresh the audit against the current source workbooks; continue exact model/variant matching and refine component/category groups for non-zero-RRP items. Do not publish or import supplier data without explicit authorization.
+
+
+## ZERO-RRP OWNER HOLD LIST CREATED — 2026-10-26
+
+- Created [ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md](catalogue-source/suppliers/planetworld/ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md) listing all 19 zero-RRP items, their historical source row, model/description, dealer cost and regional stock snapshot.
+- These 19 items are explicitly reserved for the owner's personal audit and excluded from the non-zero-RRP continuation. Zero RRP alone does not establish out-of-stock vs special-request/price-confirmation status.
+- The list is derived from the older audit artifact; validate against current supplier files or ask Planetworld before deciding. Historical regional stock is not a current availability promise.
+- Non-zero-RRP work continues separately. No supplier workbook or live catalogue/price/stock data was changed.
