@@ -2285,3 +2285,27 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Follow the owner's current Planet World RRP direction: use Planet World Recommended Retail Prices as the basis and aim to be 1–2 percentage points more competitive where the approved pricing formula supports it. Do not invent supplier cost/availability data.
 - Preserve release boundaries: no unapproved Axxess/DNS/live storefront, checkout/payment, or production catalogue/stock changes. Use current in-store stock for testing only; do not resume broader stock reconciliation/imports without explicit authorization.
 - Keep moving on the remaining authorized Planet World audit work; report verified outcomes and blockers only. Update this handover after each material result. This entry records the continuation instructions, not a claim that supplier processing or an audit has completed.
+
+
+---
+
+## OWNER REQUEST — DESKTOP SESSION HANDOFF / CONTINUE FROM HERE — 2026-10-26 10:00 SAST
+
+### Desktop sync instructions
+- This is the authoritative continuation checkpoint for both the phone conversation and the desktop session. When continuing on desktop, read this file from the repository's current default branch first; do not rely on stale chat summaries or assume a separate session has inherited live execution state.
+- Desktop/phone ChatGPT history may sync under the same account, but separate sessions do not automatically share active tool state, unsaved files, or work in progress. Use this committed file and GitHub artifacts/PRs as the durable handoff.
+- Owner has already completed desktop sign-in/setup. Do not send setup steps again. The owner explicitly asked to update the handover and continue from this point.
+
+### Immediate next actions — do actual work, not setup narration
+1. Resume the Planet World supplier audit using the latest committed audit outputs and source workbooks already in catalogue-source/suppliers/planetworld/. Check current branch/PR and latest Actions run/artifacts before editing or regenerating anything; avoid duplicating completed work.
+2. Keep the 19 zero-RRP rows reserved for the owner's personal audit. They are not the same set as the 19 positive-RRP cost-floor candidates listed in COST_FLOOR_REVIEW_QUEUE_2026-10-26.md; do not conflate the two queues. Zero RRP can mean out of stock or a special-request item requiring price confirmation. Do not assign either meaning without evidence.
+3. Continue the already-authorized work on all other Planet World items: exact manufacturer/model/variant verification and category refinement, using available source evidence. Preserve source XLSX files; do not invent product matches, RRP, cost, availability, or image URLs.
+4. Review the 19 positive-RRP cost-floor candidates as a separate exception queue. Flag anomalous source values/price bases for evidence-based review; do not approve or publish a price change automatically. Owner's competitive direction is to use Planet World RRP as the basis and aim 1–2 percentage points below it only where the approved margin/cost-floor rules support that.
+5. Inspect relevant audit scripts/PR and run focused validation on a narrow branch. Produce a phone-readable report/artifact and verify it opens before claiming delivery. Keep generated outputs, source data, and review exceptions clearly separated.
+6. After each material success/failure/blocker, update this file with exact evidence: commit/PR/run/artifact links, what changed, what did not change, and the next concrete action. Do not claim the audit is complete merely because a handover was updated.
+
+### Non-negotiable safety/release boundaries
+- Supplier authorisation gate remains in force for any live supplier imports/stock changes. Current in-store stock is for testing only; do not resume broad stock reconciliation, cleanup, or imports without explicit owner authorization.
+- No changes to live storefront, Axxess hosting/files, DNS, checkout, payment activation, production prices/stock/catalogue, or Supabase production data without explicit approval.
+- Preserve the accepted PR #74 storefront baseline; customer launch remains HOLD until release checks pass.
+- This handoff update itself is documentation only; it is not evidence that the pending supplier audit steps have completed.
