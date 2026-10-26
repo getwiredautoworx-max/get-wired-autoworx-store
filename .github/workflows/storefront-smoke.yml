@@ -241,6 +241,18 @@ jobs:
             await verifiedResult.waitFor({timeout:15000});
             const verifiedText = await verifiedResult.innerText();
             if (!verifiedText.includes('GW-F165DD11')) throw new Error('Part Search did not return the second priced SKU: '+verifiedText);
+            // No-AI photo path: upload goes to Request a Part; it must not call the AI provider.
+            const aiProviderRequests = [];
+            frame.on('request', request => { if (request.url().includes('/functions/v1/part-image-search')) aiProviderRequests.push(request.url()); });
+            await frame.locator('button.pictureSearchBtn').click();
+            await frame.locator('#sourcePart.open').waitFor({timeout:10000});
+            await frame.locator('#sourcePhotos').waitFor({state:'visible',timeout:10000});
+            if (await frame.locator('#aiPartPhoto').count()) throw new Error('Deprecated AI photo-identification control is still present');
+            if (aiProviderRequests.length) throw new Error('Photo request unexpectedly called AI provider: '+aiProviderRequests.join(', '));
+            await frame.locator('#sourcePart .requestModalClose').click();
+            await frame.locator('#sourcePart.open').waitFor({state:'detached',timeout:10000}).catch(async () => {
+              if (await frame.locator('#sourcePart').evaluate(el => el.classList.contains('open'))) throw new Error('Photo request dialog did not close');
+            });
             await verifiedResult.locator('button[data-view-part]').click();
             await frame.locator('#productModal.open').waitFor({timeout:10000});
             await frame.locator('#detailAdd').click();
