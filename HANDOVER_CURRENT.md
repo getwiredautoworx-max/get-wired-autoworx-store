@@ -2076,3 +2076,24 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Latest poll: run and job `121407182246` are `in_progress`. Checkout and Node setup succeeded; Playwright installation completed and Chromium installation is in progress. Regression test has not started yet; no pass/fail conclusion available.
 - Continue polling run #1105. Inspect exact logs after the job completes; the job-log endpoint may return `BlobNotFound` while a run is still active. Do not merge/upload to Axxess until the candidate test passes and the owner approves the exact package.
 - Part Search remains **IN PROGRESS / NOT RESOLVED**. No production changes, no paid AI credits, no DNS/payment/Supabase/live stock/catalogue changes. Customer launch remains HOLD.
+
+
+## VERIFIED RESULT — PART SEARCH CANDIDATE REGRESSION PASSED — 2026-10-26
+
+- Read the current handover and verified the newest run and job details directly from GitHub Actions.
+- Run [#1105 / 40272185866](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40272185866) completed with `success`, exact head `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`, job `121407182246`. All workflow steps passed, including Chromium installation, verified-price checkout gate and the complete local storefront smoke test.
+- Retrieved job logs and confirmed actual runtime markers:
+  - `CATEGORY_NAVIGATION_PASS`: 8 populated main categories and 12 Auto Electrical options.
+  - Audio area navigation and clear empty-state pass.
+  - `EXACT_SKU_IMAGE_FALLBACK_PASS`: exact local SKU WebP loaded successfully (natural width 400; no supplier proxy).
+  - `PRODUCT_METADATA_LEAK_GUARD_PASS`.
+  - `REQUEST_PART_DIALOG_PASS`.
+  - `EARLY_PART_SEARCH_READY_PASS`.
+  - `LEGACY_BARE_PART_SEARCH_HANDLER_PASS` and `LEGACY_BARE_REQUEST_PART_HANDLER_PASS`.
+  - `PART_SEARCH_LOAD_RACE_PASS`: typed query refreshed after the deliberately delayed catalogue response.
+  - `EARLY_REQUEST_PART_READY_PASS`.
+  - Responsive homepage passed at 320, 390, 768 and 1365 px; each reported 9 tiles and no document-width overflow.
+  - Final `STOREFRONT_SMOKE_PASS`.
+- Important boundary: run #1105 ran on the PR branch, not `main`; workflow public-host checks are explicitly gated to `refs/heads/main`. Therefore this is a **verified candidate/local regression pass**, not proof that the currently hosted Axxess/live page is fixed. Public Part Search and Request a Part checks have not been evidenced by this branch run.
+- PR #94 remains OPEN/DRAFT/UNMERGED. Do not merge or upload to Axxess without explicit owner approval of the exact candidate. The remaining next action is to inspect the candidate preview for the same bare-name handler and delayed-load behaviors using an accessible browser; if preview interaction remains unavailable through connected tools, record that limitation rather than claiming live resolution. No live hosting/DNS/checkout/payment/Supabase/orders/stock/catalogue changes and no paid AI credits. Supplier reconciliation remains paused; customer launch remains HOLD.
+- Status wording: **CANDIDATE REGRESSION PASSED; LIVE/Axxess RESOLUTION NOT YET VERIFIED**.
