@@ -2155,3 +2155,29 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - This is an inventory/visibility confirmation only. The workbook contents have **not yet been parsed or classified** in this checkpoint, and manufacturer product pages/images have not been verified from these newly uploaded files. Do not describe the catalogue analysis as completed.
 - Next processing sequence: parse every workbook and worksheet; record row counts, sheet names, header mapping, model/SKU, descriptions, RRP, dealer cost and any stock fields in a read-only staging analysis; normalize brand/category/component (car audio, home audio/theatre, studio/PA, DJ, musical instruments, marine only where the source/model supports it); flag missing/duplicate model identifiers and pricing gaps; then verify exact models against official manufacturer pages and image assets. Keep raw workbooks unchanged and supplier data private. Preserve the owner’s RRP-minus-1% / RRP-minus-2% pricing direction as review-only; no customer-facing price changes or live catalogue imports.
 - No XLSX content changes, catalogue/stock/price imports, Axxess/DNS/payment/Supabase changes, PR merges, or customer-facing publication were made during this inventory check. Supplier stock reconciliation remains paused pending authorisation; customer launch remains HOLD.
+
+
+---
+
+## CONTINUATION UPDATE — 2026-10-26 08:40 SAST
+
+### Verified result: duplicate JBL workbook removed
+- Owner instruction was to delete only `catalogue-source/suppliers/planetworld/incoming-xlsx/jbl-price-list-2026-10-25 (1).xlsx` and retain the unsuffixed original.
+- Deletion succeeded on `main` in commit `16db2d704a38d4d58f92305b3eb7022695052e01`.
+- Verified against the recursive Git tree immediately after the commit: suffixed duplicate is absent; `jbl-price-list-2026-10-25.xlsx` remains present.
+- This resolves the previously reported HTTP 409 blocker. No other supplier workbook was deleted or modified.
+
+### Mobile review alternative
+- Added `catalogue-source/suppliers/planetworld/MOBILE_REVIEW_2026-10-26.md`, a small Markdown summary intended to open directly in a phone browser; it avoids requiring an XLSX viewer.
+- It records the last audit checkpoint (48 workbooks, 3,343 rows, 96 sheets, zero audit errors reported), clarifies that this is a read-only audit, and lists the next manual review priorities.
+- Detailed workbook output and official manufacturer model/image verification remain unfinished; do not present this summary as a complete product-match or price approval.
+
+### Next priorities
+1. Review flagged missing/zero RRP and below-cost candidates from the audit output; do not publish prices or change catalogue data.
+2. Refine the 1,023 broad component groups, then match exact model numbers against official manufacturer sources and relevant images.
+3. Preserve supplier workbook contents and live store stock/prices. Supplier reconciliation/import remains on hold pending authorisation; current store stock is for testing only.
+4. Continue GitHub-first work. No Axxess, DNS, live catalogue, payment, or production setting was changed. Customer launch remains HOLD.
+5. PR #95 remains open/unmerged as last checked. Its audit workflow is on the PR branch; do not claim its artifact workflow ran until a run and artifact are verified.
+
+### Readiness
+- Store readiness remains a provisional estimate of approximately 80%, not a newly verified release score. No increase is claimed from deleting the duplicate or adding a review summary. Launch remains HOLD.
