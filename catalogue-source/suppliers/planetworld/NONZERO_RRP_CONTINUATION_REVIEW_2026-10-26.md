@@ -1,57 +1,61 @@
-# Planetworld non-zero-RRP continuation review — 2026-10-26
+# Planetworld non-zero-RRP review — refreshed audit 2026-10-26 07:26 UTC
 
-**Status:** Read-only triage on the previous audit artifact. This is not a fresh workbook rerun and is not an approved price list or catalogue import.
+**Audit run:** [40285764150 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40285764150)  
+**Artifact:** `planetworld-workbook-audit`, created 2026-10-26 07:26:25 UTC.  
+**Mode:** Read-only; no source XLSX, catalogue, price, stock, image, or production data was changed.
 
-## Scope applied
-- Set aside all **19 zero-RRP rows** for owner personal audit. They are excluded from the continuation count below.
-- Excluded the 26 extracted rows from the duplicate source `jbl-price-list-2026-10-25 (1).xlsx`; retain `jbl-price-list-2026-10-25.xlsx`.
-- Remaining triage scope from the prior artifact: **3,298 non-zero-RRP rows across 47 source workbooks**. These figures are derived by filtering the earlier artifact, not by re-reading the current XLSX files.
+## Scope and exclusion rules
+- The audit scanned 48 XLSX files, 96 sheets, and extracted 3,343 rows; 0 workbook read errors.
+- 19 zero-RRP rows are **set aside for the owner's personal audit** and excluded from all continuation counts below.
+- 26 rows from `jbl-price-list-2026-10-25 (1).xlsx` are excluded as an identical product-data duplicate of `jbl-price-list-2026-10-25.xlsx`. The duplicate source file still exists in the audited input set; it has not been deleted.
+- Remaining review scope: **3,298 non-zero-RRP rows across 47 source workbooks**, after the two exclusions above.
 
-## Other-item triage counts
-- **18 rows** where RRP minus 1% falls below estimated VAT-inclusive dealer cost.
-- **19 rows** where RRP minus 2% falls below estimated VAT-inclusive dealer cost.
-- **32 rows** still flagged for duplicate model/SKU identifiers after excluding the duplicate JBL workbook; these need identity review, not automatic deletion.
-- **1,016 rows** in component groups explicitly marked “Review Component”.
-- **1,348 rows** with broad category guess “REVIEW - UNCLASSIFIED”.
-- No missing model/SKU or missing/unmapped RRP was reported in the prior artifact for the remaining rows.
+## Refreshed screening counts for remaining items
+- **18 rows**: RRP minus 1% is below estimated dealer cost including VAT.
+- **19 rows**: RRP minus 2% is below estimated dealer cost including VAT.
+- **32 rows** retain a duplicate model/SKU cross-source flag after excluding the duplicate JBL file. Treat as identity-review candidates, not automatic deletions.
+- **1,016 rows** have a component guess marked for review.
+- **1,348 rows** remain broadly unclassified by the heuristic category guess.
+- 0 missing model/SKU, 0 missing/unmapped RRP, and 0 missing descriptions were reported in the filtered non-zero scope.
 
-These flags are screening aids only. They do not prove supplier mistakes or establish a safe selling price. Cost comparison converts dealer cost marked Excl to VAT-inclusive using 15%; freight, overhead, payment fees, warranty/returns and other costs are not included.
+**Cost caution:** Dealer cost marked Excl was estimated inclusive of 15% VAT. Differences exclude freight, overhead, payment fees, warranty/returns and other costs. These are risk flags, not approved selling prices. RRP source fields appear VAT-inclusive. Do not apply a blanket 1–2% reduction to rows where the result is below estimated cost.
 
-## Priority 1 — below-cost risk at RRP less 1%
-These 18 remaining rows need identity, source RRP and VAT-basis confirmation before any price suggestion is considered:
+## Priority 1 — 18 non-zero-RRP cost-floor flags
+The difference columns below show the estimated amount by which (RRP × 0.99) falls below VAT-inclusive dealer cost. All 18 rows also fail the RRP−2% check.
 
-| Source workbook | Row | Brand / model | RRP | Estimated cost incl. VAT | Difference at RRP−1% |
-|---|---:|---|---:|---:|---:|
-| harness-and-trims-price-list-2026-10-25.xlsx | 6 | Harness and Trims / 86180 | 312.00 | 412.85 | -103.97 |
-| harness-and-trims-price-list-2026-10-25.xlsx | 9 | Harness and Trims / 90008003 | 329.00 | 355.35 | -29.64 |
-| harness-and-trims-price-list-2026-10-25.xlsx | 35 | Harness and Trims / 90013009 | 152.00 | 182.85 | -32.37 |
-| harness-and-trims-price-list-2026-10-25.xlsx | 38 | Harness and Trims / 90014004 | 311.00 | 355.35 | -47.46 |
-| harness-and-trims-price-list-2026-10-25.xlsx | 42 | Harness and Trims / 90022538 | 829.00 | 953.35 | -132.64 |
-| harness-and-trims-price-list-2026-10-25.xlsx | 43 | Harness and Trims / 90022567 | 229.00 | 240.35 | -13.64 |
-| ibanez-price-list-2026-10-25.xlsx | 268 | Ibanez / IAB541-WR | 99.00 | 746.35 | -648.34 |
-| jbl-price-list-2026-10-25.xlsx | 7 | JBL / IRX108BT-EK | 8,599.00 | 17,708.85 | -9,195.84 |
-| jbl-price-list-2026-10-25.xlsx | 12 | JBL / JBL-EON710-EK | 15,399.00 | 38,868.85 | -23,623.84 |
-| one-price-list-2026-10-25.xlsx | 18 | One / ISA-ON115-3LX | 4,543.00 | 4,598.85 | -101.28 |
-| one-price-list-2026-10-25.xlsx | 131 | One / ON1509-LX1 | 2,250.00 | 2,873.85 | -646.35 |
-| one-price-list-2026-10-25.xlsx | 155 | One / ON263-FK2 | 1,500.00 | 1,725.00 | -240.00 |
-| paiste-price-list-2026-10-25.xlsx | 55 | Paiste / 0004801419 | 3,549.00 | 7,243.85 | -3,730.34 |
-| remo-price-list-2026-10-25.xlsx | 80 | Remo / HK-2417-00 | 286.00 | 286.35 | -3.21 |
-| soundcraft-price-list-2026-10-25.xlsx | 7 | Soundcraft / 5085985EU | 4,599.00 | 9,888.85 | -5,335.84 |
-| vogels-price-list-2026-10-25.xlsx | 30 | Vogels / 7225154 | 1,506.00 | 1,506.50 | -15.56 |
-| vogels-price-list-2026-10-25.xlsx | 81 | Vogels / PFW4600 | 999.00 | 999.35 | -10.34 |
-| vogels-price-list-2026-10-25.xlsx | 82 | Vogels / THIN215 | 399.00 | 399.05 | -4.04 |
+| Workbook / row | Brand / model | RRP | Est. cost incl. VAT | Difference at RRP−1% |
+|---|---|---:|---:|---:|
+| jbl-price-list-2026-10-25.xlsx / 12 | JBL / JBL-EON710-EK | 15,399.00 | 38,868.85 | -23,623.84 |
+| jbl-price-list-2026-10-25.xlsx / 7 | JBL / IRX108BT-EK | 8,599.00 | 17,708.85 | -9,195.84 |
+| soundcraft-price-list-2026-10-25.xlsx / 7 | Soundcraft / 5085985EU | 4,599.00 | 9,888.85 | -5,335.84 |
+| paiste-price-list-2026-10-25.xlsx / 55 | Paiste / 0004801419 | 3,549.00 | 7,243.85 | -3,730.34 |
+| ibanez-price-list-2026-10-25.xlsx / 268 | Ibanez / IAB541-WR | 99.00 | 746.35 | -648.34 |
+| one-price-list-2026-10-25.xlsx / 131 | One / ON1509-LX1 | 2,250.00 | 2,873.85 | -646.35 |
+| one-price-list-2026-10-25.xlsx / 155 | One / ON263-FK2 | 1,500.00 | 1,725.00 | -240.00 |
+| harness-and-trims-price-list-2026-10-25.xlsx / 42 | Harness and Trims / 90022538 | 829.00 | 953.35 | -132.64 |
+| harness-and-trims-price-list-2026-10-25.xlsx / 6 | Harness and Trims / 86180 | 312.00 | 412.85 | -103.97 |
+| one-price-list-2026-10-25.xlsx / 18 | One / ISA-ON115-3LX | 4,543.00 | 4,598.85 | -101.28 |
+| harness-and-trims-price-list-2026-10-25.xlsx / 38 | Harness and Trims / 90014004 | 311.00 | 355.35 | -47.46 |
+| harness-and-trims-price-list-2026-10-25.xlsx / 35 | Harness and Trims / 90013009 | 152.00 | 182.85 | -32.37 |
+| harness-and-trims-price-list-2026-10-25.xlsx / 9 | Harness and Trims / 90008003 | 329.00 | 355.35 | -29.64 |
+| vogels-price-list-2026-10-25.xlsx / 30 | Vogels / 7225154 | 1,506.00 | 1,506.50 | -15.56 |
+| harness-and-trims-price-list-2026-10-25.xlsx / 43 | Harness and Trims / 90022567 | 229.00 | 240.35 | -13.64 |
+| vogels-price-list-2026-10-25.xlsx / 81 | Vogels / PFW4600 | 999.00 | 999.35 | -10.34 |
+| vogels-price-list-2026-10-25.xlsx / 82 | Vogels / THIN215 | 399.00 | 399.05 | -4.04 |
+| remo-price-list-2026-10-25.xlsx / 80 | Remo / HK-2417-00 | 286.00 | 286.35 | -3.21 |
 
-The above values come from the older audit extract and must be revalidated against the current source workbooks before any owner decision. RRP−1%/2% is not approved selling-price guidance.
+**Recommended handling:** retain supplier RRP as a reference field; do not derive or publish a discounted selling price for these 18 until model, RRP basis, dealer cost and any source data error are verified. Some extreme differences may indicate mismatched units/columns or source price errors and require source-row inspection.
 
-## Priority 2 — classification and manufacturer matching
-1. Preserve each supplier's own Division field as the source classification.
-2. Refine the 1,016 “Review Component” rows by reading full descriptions/model codes; do not force uncertain rows into a store category.
-3. Resolve the 1,348 broad unclassified category guesses from source evidence.
-4. Verify exact model/variant on official manufacturer pages and record the URL, match confidence, and whether the image actually depicts the exact model. Family-only matches are not exact matches.
-5. Keep the 32 duplicate model/SKU flags as review candidates until brand/model identity is confirmed.
+## Priority 2 — component and category refinement
+- Preserve the supplier's Division as the primary source classification.
+- Review the 1,016 component-review rows from full descriptions and exact model codes; do not force a guess.
+- Review the 1,348 unclassified category guesses.
+- Continue official manufacturer exact-model/variant checks for non-zero-RRP items; record exact-match confidence and source URL. No family-only image should be labelled as an exact match.
+- Keep 32 duplicate-model/SKU flags for identity review; do not auto-delete.
 
-## Safety and next run
-- Zero-RRP owner-audit list remains separate and is not processed in this continuation.
-- Duplicate JBL rows are excluded from this filtered review, but the suffixed workbook's physical deletion was previously blocked; do not claim it has been deleted.
-- No XLSX, live catalogue, live prices, stock, checkout, payments, Axxess, DNS, or production settings were changed.
-- Next evidence needed: rerun the audit against the current 47 XLSX files, then produce refreshed non-zero-RRP rows, refreshed pricing/duplicate flags, and a prioritized exact-model manufacturer-match queue.
+## Next actions
+1. Keep the 19 zero-RRP items untouched in the separate [owner audit hold list](ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md).
+2. Inspect the 18 cost-floor flags against the exact current source workbook rows and validate any suspicious RRP/cost field mappings.
+3. Continue exact-model matching and category/component refinement.
+4. Remove the duplicate JBL source workbook only after owner confirmation / safe source-file management; the current audit excludes its rows for analysis but does not delete it.
+5. Keep all findings review-only until the owner authorizes any supplier/catalogue changes.
