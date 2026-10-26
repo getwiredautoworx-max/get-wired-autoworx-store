@@ -1,5 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { matchCurrentLiveQuote, normalizeCheckoutItems } from "./quote-validation.js";
+import { matchCurrentLiveQuote, normalizeCheckoutItems } from "./quote-validation.mjs";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
