@@ -2321,3 +2321,15 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Reconfirmed separate queues: 19 zero-RRP owner-hold rows are reserved for owner decision; 19 positive-RRP cost-floor candidates are a different queue. Zero RRP alone does not prove out-of-stock or special-request status. The current owner-hold list comes from an earlier run; verify row identity against the refreshed audit before any final owner decision, without changing the hold.
 - PR #95's existing manufacturer-match continuation contains 12 reviewed candidates across two batches; some are exact/base-model matches, some only supplier-page corroboration, and unresolved models remain explicitly unverified. Continue only with evidence-based exact model/variant checks; no images or catalogue records were changed.
 - No changes to live catalogue, selling prices, stock, Axxess, DNS, checkout, payment activation, or Supabase production data. Customer launch remains HOLD. This entry records the triggered run and current evidence, not audit completion.
+
+
+---
+
+## VERIFIED RESULT — CORRECTED PLANETWORLD AUDIT PASSED — 2026-10-26 10:08 SAST
+
+- Fixed the read-only audit logic on PR #95 branch `docs/planetworld-blocker-handover-2026-10-26` in commit `4b39cab1354fc12f2f7a1059756c74dec31d7e64`: zero-RRP rows no longer receive below-cost pricing flags, and cost-floor summary counts exclude both zero-RRP owner-hold rows and identical product-data duplicate workbooks.
+- Fresh corrected run [40290002999](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40290002999) completed successfully. Artifact `12635711006` (`planetworld-workbook-audit`, SHA-256 `8cbd7f0365762dddd72a60266c275472ee45a65b8227023e15c903d5d94db4da`, retained until 2026-11-09). Verified `summary.json` from the downloaded artifact: 48 XLSX files, 96 sheets, 3,343 rows extracted, 0 workbook errors; one duplicate product-data workbook identified (26 rows), zero duplicate model/SKU flags after exclusions, 19 zero-RRP rows.
+- Corrected cost-floor counts are **18** positive-RRP rows below estimated VAT-inclusive dealer cost at RRP−1%, and **19** at RRP−2%. These include 19 distinct candidate rows overall (18 overlap; 1 additional row, SKU `90011904`, is below cost only at the 2% discount). This matches the current `COST_FLOOR_REVIEW_QUEUE_2026-10-26.md`; that queue's source reference has been updated to run #40290002999.
+- The 19 zero-RRP rows remain a separate owner-personal-audit hold; no meaning (out-of-stock vs special request) has been inferred. Do not mix them with the 19 positive-RRP cost-floor candidates.
+- Audit output still has heuristic category/component suggestions only; it does not prove exact model/variant or image rights. Continue exact model/variant verification and category refinement for non-zero-RRP items; verify source anomalies with Planetworld rather than overriding the supplier RRP or publishing unapproved prices.
+- No source XLSX was modified. No live catalogue, price, stock, image, production, Axxess, DNS, checkout, payment, or Supabase changes were made. PR #95 remains open/unmerged; customer launch remains HOLD.
