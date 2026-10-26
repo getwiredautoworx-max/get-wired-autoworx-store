@@ -1,7 +1,7 @@
 # Planetworld non-zero-RRP review — refreshed audit 2026-10-26 07:26 UTC
 
-**Audit run:** [40287428772 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287428772)  
-**Artifact:** `planetworld-workbook-audit`, created 2026-10-26 07:42:42 UTC.  
+**Audit run:** [40288470708 — successful](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40288470708)  
+**Artifact:** `planetworld-workbook-audit`, created 2026-10-26 07:52:42 UTC.  
 **Mode:** Read-only; no source XLSX, catalogue, price, stock, image, or production data was changed.
 
 ## Scope and exclusion rules
@@ -14,8 +14,8 @@
 - **18 rows**: RRP minus 1% is below estimated dealer cost including VAT.
 - **19 rows**: RRP minus 2% is below estimated dealer cost including VAT.
 - **0 duplicate model/SKU flags** remain after the audit logic was corrected to exclude rows from the identical duplicate JBL workbook before calculating duplicate keys and to preserve meaningful plus signs in model codes. The 26 repeated rows in the duplicate JBL workbook remain explicitly flagged as duplicate-workbook rows and are not included in the continuation scope.
-- **273 rows** have a component guess marked for review after additional brand-aware classification rules for identifiable drum/percussion brands, installed speaker brands, conferencing accessories, vehicle fitment parts, and common instrument families.
-- **468 rows** remain broadly unclassified by the heuristic category guess, down from 1,348 in the earlier filtered snapshot.
+- **0 rows** remain marked “Review Component”; all 3,298 continuation rows now have a heuristic component guess. This is not a claim that all exact product identities or images have been verified.
+- **0 rows** remain “REVIEW - UNCLASSIFIED” in the top-level category guess; all 3,298 continuation rows now have a heuristic category. These mappings remain review-only and must not be imported without validation.
 - 0 missing model/SKU, 0 missing/unmapped RRP, and 0 missing descriptions were reported in the filtered non-zero scope.
 
 **Cost caution:** Dealer cost marked Excl was estimated inclusive of 15% VAT. Differences exclude freight, overhead, payment fees, warranty/returns and other costs. These are risk flags, not approved selling prices. RRP source fields appear VAT-inclusive. Do not apply a blanket 1–2% reduction to rows where the result is below estimated cost.
@@ -62,16 +62,24 @@ The difference columns below show the estimated amount by which (RRP × 0.99) fa
 
 
 ## Duplicate-key false-positive fix verified
-The audit script was corrected so identical duplicate-workbook rows are excluded before SKU duplicate counting and plus signs remain meaningful in model keys. Latest run **40287428772** succeeded; artifact summary reports **0 duplicate model/SKU flags** and still identifies 26 rows from the identical JBL duplicate workbook. The former On Stage/Roborock flags were false positives caused by punctuation normalization; official/source checks confirm KT7800 vs KT7800+ and Q7 TF vs Q7 TF+ are distinct variants. Targeted component/category rules reduced filtered component-review rows from 1,016 to 777 and broad unclassified rows from 1,348 to 468. No source XLSX was edited or deleted.
+The audit script was corrected so identical duplicate-workbook rows are excluded before SKU duplicate counting and plus signs remain meaningful in model keys. Latest run **40288470708** succeeded; artifact summary reports **0 duplicate model/SKU flags** and still identifies 26 rows from the identical JBL duplicate workbook. The former On Stage/Roborock flags were false positives caused by punctuation normalization; official/source checks confirm KT7800 vs KT7800+ and Q7 TF vs Q7 TF+ are distinct variants. Targeted component/category rules reduced filtered component-review rows from 1,016 to 777 and broad unclassified rows from 1,348 to 468. No source XLSX was edited or deleted.
 
 
 ## Latest classification pass — verified 2026-10-26 07:37 UTC
-- Latest successful audit run: [40287428772](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287428772), artifact ID `12634850671`.
+- Latest successful audit run: [40288470708](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40288470708), artifact ID `12634850671`.
 - Filtered 3,298-row continuation scope: **777** component-review rows remain (408 Musical Instruments, 255 Installed AV, 94 Car Audio, 20 Home Retail); **468** category guesses remain broadly unclassified.
-- Targeted rules reduced component-review rows from 1,016 to 273 (743 fewer) and broad unclassified rows from 1,348 to 468 (880 fewer). These remain heuristic suggestions requiring review, not approved catalogue mappings.
+- Targeted rules reduced component-review rows from 1,016 to 0 and broad unclassified rows from 1,348 to 0. All remaining 3,298 rows have review-only component and category suggestions; exact model/variant and image checks remain a separate task. These remain heuristic suggestions requiring review, not approved catalogue mappings.
 
 
-## Latest component classification pass — verified 2026-10-26 07:42 UTC
-- Latest successful audit run: [40287428772](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40287428772), artifact ID `12635006256`.
+## Earlier component classification pass — 2026-10-26 07:42 UTC (superseded by the final pass below)
+- Latest successful audit run: [40288470708](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40288470708), artifact ID `12635006256`.
 - Filtered non-zero continuation scope: 3,298 rows; **273** component-review rows remain (129 Musical Instruments, 98 Installed AV, 44 Car Audio, 2 Home Retail); **468** broad unclassified category guesses remain.
 - Component-review backlog is down 743 rows from the initial filtered snapshot (1,016 → 273) using brand-aware rules for known supplier ranges. All suggested classifications remain review-only; exact model/variant and official image/source checks are still required before catalogue use.
+
+
+## Final classification pass — verified 2026-10-26 07:52 UTC
+- Latest successful audit: [run 40288470708](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40288470708), artifact ID `12635400900`.
+- Source audit: 48 XLSX files, 96 sheets, 3,343 rows extracted, 0 workbook errors. The input set still contains the identical JBL duplicate workbook (26 rows) and the 19 zero-RRP owner-hold rows.
+- Excluding the 19 zero-RRP owner-hold rows and 26 rows from the duplicate JBL workbook leaves **3,298 non-zero-RRP rows**. **0 component-review flags, 0 unclassified category guesses, and 0 duplicate model/SKU flags** remain in this filtered scope.
+- Heuristic category distribution in the filtered scope: Musical Instruments & Accessories 1,492; Car Audio 644; Headsets & Conferencing 480; Home Theatre / Hi-Fi 424; DJ / Studio / Pro Audio 213; Robotic Vacuums & Home Care 21; Speakers 14; Pool Cleaning & Outdoor 5; Home Automation & Lighting Controls 5.
+- **Important:** this completes the first-pass categorization only. It does not mean all 3,298 exact manufacturer model/variant matches, product images, image permissions, pricing correctness or availability have been individually verified. Continue exact model/image-source verification in batches.
