@@ -2517,3 +2517,22 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 2. Keep PR #72 draft/unmerged until explicit owner approval and separate release gates.
 3. Do not deploy again unless storefront source changes and the non-deploying checks pass; review workflow path filters to avoid accidental deployments from test-only changes.
 4. No merge, production deployment, Axxess/DNS change, payment activation, supplier-data change, catalogue import, live-stock write, or Supabase data write occurred in this monitoring pass.
+
+
+## HANDOVER UPDATE — 2026-10-26 06:20 SAST — read-and-update continuation
+
+### Scope and verified evidence carried forward
+- Read all three handover files on `handover/pr72-monitor-2026-10-23` before updating. This checkpoint preserves the latest evidenced status; it does not claim a fresh browser run or a new deployment on 26 October.
+- PR #72 remains the review target and must stay draft/unmerged. The approved PR #70 baseline is `recovery/approved-preview-index-new`; do not use PR #68 or PR #71 as the starting point.
+- Last recorded PR #72 head: `6fad09870098b819e2f93cfd47a646427759ceb4`, commit message `[preview-qa] scope trailer photo verification to the trailer category page`.
+- Last Actions results fetched during this update confirm these recorded runs are completed successfully: interaction QA `40128802808`, responsive layout `40128802832`, and Public SKU Exposure Audit `40128802813`. These runs are associated with the above PR head. The previous live-preview QA run `40128799675` reported 47/47 passing, including 10/10 deployed-source parity checks and same-tab root-category click-through; controlled Pages deployment run `40128567122` succeeded.
+- The existing exact verified review URL remains: https://b1ee7dbb.get-wired-autoworx-store.pages.dev/store.html . The last recorded hosted Playwright run opened that exact URL and verified the deployed application files against PR #72 source. A separate direct-open attempt from the monitoring runtime previously failed before HTTP response because of DNS resolution; this does not invalidate the hosted test, but no new direct-open check is claimed here.
+- The recorded functional evidence covers relevant/distinct loaded category and subcategory imagery, trailer image and attribution, same-tab category/subcategory navigation, separate Part Search and Request a Part actions with query handoff, corrected range banner/rating spacing, product detail and description, Add to Cart/cart badge, product-name/SKU WhatsApp query, and responsive layouts at 320, 360, 390, 768 and 1440 CSS pixels.
+- Separate Cloudflare Workers build failure remains an integration warning distinct from the successful Pages preview. Do not conflate them.
+
+### Current blocker / next action
+- No new storefront code change is justified by the evidence retrieved for this handover-only task. The next action remains owner visual review of the exact preview URL above. If further QA is needed, first retrieve fresh PR metadata and workflow results, then run only the relevant non-deploying checks. Do not redeploy merely to retry the monitoring environment's DNS issue.
+- Do not merge PR #72 or alter production, Axxess/DNS, payments, supplier data, catalogue/live stock, or Supabase data. The one controlled Pages preview is already complete; no additional deployment was initiated.
+
+### Handover maintenance evidence
+- This checkpoint is being added to `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and `HANDOVER_CURRENT.md` on the isolated documentation branch `handover/pr72-monitor-2026-10-23`; it does not change the PR #72 application branch or trigger a storefront deployment.
