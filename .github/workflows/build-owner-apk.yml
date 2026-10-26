@@ -69,7 +69,7 @@ jobs:
           arch: x86_64
           force-avd-creation: true
           emulator-boot-timeout: 900
-          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot -no-snapshot-save -memory 2048 -cores 2
+          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot -no-snapshot-save -verbose
           disable-animations: true
           script: |
             adb wait-for-device
