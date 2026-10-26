@@ -100,3 +100,15 @@ No image downloaded, no supplier workbook changed, and no live catalogue or pric
 | 90022567 | No reliable exact-SKU match established in this search pass for “9-inch Suzuki Alivio/Ciaz 2014+”. | **Unverified.** Keep Vehicle Harnesses & Trims / Suzuki Alivio-Ciaz fitment provisional; exact vehicle/trim compatibility and image remain unverified. |
 
 These results are reseller cross-checks, not authoritative supplier inventory evidence. They do not grant image-reuse rights. No images were downloaded, no supplier workbooks were changed, and no live catalogue/price/stock data was touched.
+
+
+## Official manufacturer verification batch — 2026-10-26 10:07 SAST
+
+| Supplier model/SKU | Result | Category guidance | Evidence |
+|---|---|---|---|
+| Paiste 0004801419 | **Exact model/size confirmed.** Official Paiste model page identifies Signature Dark Energy Crash Mark I in 16, 17, 18 and 19 inch sizes; a published catalogue associates CY0004801419 with the 19-inch version. The supplier code omits the CY prefix, so preserve supplier SKU and record manufacturer-code cross-reference separately. | Musical Instruments → Drums & Percussion → 19-inch crash cymbal | https://www.paiste.com/en/products/models/14-crash-mark-i and https://www.musikk-miljo.no/images/uploaded/produktkataloger/Paiste_Signature_Dark_Energy_171002.pdf |
+| Soundcraft 5085985EU | **Exact model and regional SKU confirmed.** HARMAN's official page maps 5085985EU to the Notepad-12FX 12-channel mixer with USB audio and Lexicon effects. | DJ / Studio / Pro Audio → Analogue mixers | https://www.harmanaudio.in/Notepad-12FX.html |
+| One / ON263-FK2 | **Exact SKU corroborated by a South African reseller, not official manufacturer evidence.** Listing identifies a OneNav Ford Ranger XLS 2015+ 9-inch fitment kit; reseller shows out of stock. This is reseller status only, not Planetworld stock status. | Vehicle-specific Car Audio → Ford Ranger fitment kit (provisional until supplier confirmation) | https://www.caraudiowarehouse.co.za/product/onenav-fitment-kit-for-ford-ranger-xls-2015-9-inch/ |
+| One / ON1509-LX1 | **Still unverified.** Search did not establish an exact official manufacturer page for this SKU. Do not use family-only imagery or infer successor/availability. | Provisional vehicle infotainment classification only | No exact verified source |
+
+**Price-risk note:** The Paiste and Soundcraft identities are now strongly corroborated, but the source RRP/dealer-cost gaps remain unresolved. Model verification does not validate price basis, unit/pack basis, current Planetworld availability, or image-reuse permission. Do not change prices or use external imagery without authorization.
