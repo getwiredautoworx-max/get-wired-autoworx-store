@@ -2014,3 +2014,21 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Part Search fix: IN PROGRESS; exact-head runtime proof missing.
 - No-cost approach: normal text/SKU catalogue search plus manual photo Request a Part; no paid AI credits needed.
 - Live Axxess remains unmodified; do not merge PR #94, upload files, change DNS/checkout/payments/Supabase, or modify stock/catalogue without the required approval. Supplier reconciliation remains paused. Customer launch remains HOLD.
+
+
+## URGENT FOLLOW-UP — PART SEARCH CI TRIGGER INVESTIGATION — 2026-10-26
+
+### Action taken
+- On PR #94 branch `fix/part-search-load-race-smoke-qa-2026-10-23`, updated `.github/workflows/storefront-smoke.yml` so its existing `push` trigger explicitly includes the PR #94 fix branch. This is intended to make the browser smoke/regression workflow run on branch pushes as well as PR events, giving a second trigger path if PR-event scheduling is the reason no run appeared.
+- Commit: `7cc3f2debae6c2cd235c546e9f803022475c9db5`; workflow file blob: `1b12b2a0d972173b623670956c60fbbd0a2f4831`. PR #94 now points at this head and remains OPEN/DRAFT/UNMERGED.
+- Rechecked the connected Actions lookup and combined status immediately after the commit: the PR-filtered workflow-run lookup still returned zero runs and combined status returned no status entries. The wrapper explicitly filters to pull-request-triggered runs, so it cannot establish whether a push-triggered run has started. The generic GitHub fetch connector rejected the Actions page/API endpoint. No successful runtime test has been observed yet.
+- Existing source still includes the legacy bare-name compatibility functions, delayed-catalogue regression test, and manual photo Request a Part fallback. The Pages preview on prior head `fec0b1c` built successfully, but preview interactions remain inaccessible to available browser inspection. The Worker integration build previously failed due the known Pages-only configuration/Worker-entrypoint mismatch; do not modify Pages config or production hosting to chase that unrelated failure.
+
+### Exact next action
+1. Check GitHub Actions UI directly for `Storefront Smoke Test` on commit `7cc3f2d` (the workflow's branch push trigger is now explicitly enabled). If queued/running, inspect logs through completion and record every Part Search assertion. If no run appears, the blocker is Actions scheduling/permissions/integration visibility rather than the test code; inspect repository Actions settings and workflow-run list in GitHub before making further commits.
+2. If the run starts but fails, fix the first reproducible failure on the PR branch and retain the failing log as evidence. Do not weaken actual click/dialog assertions.
+3. If all tests pass, prepare a clean deployment package and rollback plan; only upload to Axxess after owner approval. Live verification must separately cover open/close, exact SKU/text match, delayed catalogue loading, no-match fallback, and Request a Part.
+
+### Current state — honest release gate
+- Part Search runtime fix: **NOT YET PROVEN / IN PROGRESS**. The new trigger change is committed, but no run result has been observed in this session.
+- No Axxess/live upload, merge, DNS, checkout/payment, Supabase, order, stock or catalogue change was made. No paid AI credit was used. Supplier reconciliation remains paused; customer launch remains HOLD.
