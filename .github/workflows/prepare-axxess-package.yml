@@ -54,6 +54,8 @@ jobs:
     steps:
       - name: Check out release source
         uses: actions/checkout@v4
+      - name: Test checkout validation helpers
+        run: node --test tests/store-checkout-quote-validation.test.mjs
       - name: Assemble one clean storefront from the shared build script
         shell: bash
         run: |
