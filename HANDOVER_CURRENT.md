@@ -2514,3 +2514,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Safe scope: inspect repository and PR evidence. No catalogue/stock writes, image replacement, production reruns, deployment, Axxess/DNS/payment changes, or release-credit use.
 - Documentation recovery was committed on isolated branch docs/continuation-handover-20261026 at fb6d8c2da3b0a4d505397fefbfcd3eda30e609ab; main-branch sync remains separate.
 - No production action was performed.
+
+
+## IMAGE-PROXY 404 DIAGNOSTIC FOLLOW-UP — 2026-10-26
+
+- Read-only source inspection completed and recorded in [HANDOVER_IMAGE_PROXY_404_DIAGNOSTIC_2026-10-26.md](HANDOVER_IMAGE_PROXY_404_DIAGNOSTIC_2026-10-26.md), commit `cd450ab2b370af85c6efeca01bfaa0aff067fe8e`.
+- Confirmed `GW-D44F3E5F` is a 3/4-inch zinc-plated Welsh plug listed as an unapproved, out-of-scope taxonomy candidate in the staging CSV. This is not approval to change its live category or image.
+- The image proxy can return 404 for multiple distinct reasons (product missing/inactive; no exact WebP plus missing private supplier mapping; or no matching upstream JPG). Current evidence does not isolate which cause applies to this SKU.
+- The audit's hard-coded SKU probes conflate per-product image availability with endpoint health; no repeat run or source/production change was made. Next safe step is authorized read-only status/mapping/log inspection, then an isolated-branch audit improvement that classifies endpoint health separately from SKU image availability.
+- No live catalogue/stock/image, Supabase data/config, hosting, Axxess, DNS, payment, or deployment changes. Customer launch remains **HOLD**.
