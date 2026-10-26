@@ -2208,3 +2208,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - These are six initial page-level checks, not completion of all 3,343 manufacturer/image matches. Official product pages show imagery where noted, but no images were downloaded or added to the store. Image reuse rights and regional SKU/variant confirmation remain required before catalog use.
 - Owner report updated: `Planetworld_ReadOnly_Review_Report_2026-10-26.xlsx`, including Summary, Supplier Divisions, Component Guesses, Pricing Exceptions, Duplicate Review, Full Extract and Manufacturer Match Pilot sheets.
 - The supported GitHub file-delete endpoint still cannot remove the owner-authorized duplicate because it returns HTTP 409 despite a fresh matching blob SHA. Duplicate product data is neutralized in analysis by marking all 26 duplicate rows; physical file deletion remains owner action through the GitHub web UI. Do not claim deletion success.
+
+
+## PLANETWORLD CONTINUATION — NON-ZERO-RRP ITEMS (2026-10-26)
+
+- Owner instruction: set aside the 19 zero-RRP items for the owner's personal audit; continue processing all other Planetworld items. Do not combine the zero-RRP hold list with ordinary processing.
+- Added phone-friendly review note on branch `planetworld/nonzero-items-review-2026-10-26`: [NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md](catalogue-source/suppliers/planetworld/NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md).
+- This note filters the prior audit artifact by excluding the 19 zero-RRP rows and 26 rows from the duplicate JBL workbook. It therefore covers 3,298 non-zero-RRP rows across 47 source workbooks, but remains a filtered historical snapshot, not a fresh rerun against current source files.
+- Remaining historical triage flags after those exclusions: 18 rows below estimated VAT-inclusive dealer cost at RRP−1%; 19 at RRP−2%; 32 duplicate model/SKU flags; 1,016 component-review rows; 1,348 broadly unclassified category guesses. A table of the 18 RRP−1% cost-floor flags is in the review note. Figures are review-only and may change on a fresh audit.
+- Next: rerun audit against current files; refine component/category classifications; prioritize official manufacturer exact-model/variant and image-source verification for non-zero-RRP items. Preserve source Division; do not publish guessed categories/prices or import supplier data without authorization.
+- No supplier XLSX contents, live catalogue, prices, stock, production, Axxess, DNS, checkout, or payment settings were changed. PR #95 remains open/unmerged; this continuation is a separate branch and is not released.
