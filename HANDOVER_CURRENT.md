@@ -2248,3 +2248,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
   - `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md`
 - No supplier XLSX, live catalogue, price, stock, checkout/payment, Axxess, DNS or production changes made.
 - Monitoring cadence is scheduled, not continuous. Recheck PR status, latest audit run/artifact, and current source-file count on each monitoring pass. Record exact run/commit IDs and actual result; continue until fresh audit and remaining non-zero-RRP classification/model verification are complete. Escalate owner approval only for decisions that require it.
+
+
+## MONITORING SCHEDULE UPDATED — 2026-10-26
+
+- The dedicated new automation request was rejected because the account already has the maximum three scheduled tasks. To avoid losing this monitoring requirement, updated the existing daily automation from “Get Wired Store Reconciliation” to **“Get Wired Store & Planetworld Monitor”** and preserved its existing prompt while adding Planetworld checks.
+- Confirmed the automation update succeeded; it remains enabled on its existing daily schedule in the Africa/Johannesburg timezone. Monitoring runs on its schedule, not continuously.
+- Current verified status at setup: PR #95 open/unmerged, head `fba989e06b84230945682dc61c463301e11f9473`, GitHub `mergeable=false`; prior audit run `40279792830` succeeded and artifact exists until 2026-11-09, but it predates the later source-file cleanup and must be refreshed.
+- No workflow-dispatch action is available in the connected GitHub tools surfaced for this session; no fresh audit run was started. Next action: on a monitoring run, use the repository GitHub Actions UI to manually run the safe read-only Planetworld audit workflow, then verify the new run and artifact before replacing historical counts. Do not rerun production/deployment jobs.
