@@ -1023,3 +1023,12 @@ The local storefront smoke test is green. The separate live-host Part Search mis
 - No Axxess/DNS/production change, Supabase write, catalogue/stock edit, payment activation, or customer launch occurred in this checkpoint.
 - First collect PR #78's completed CI results and confirm early-click browser coverage passes; then build a fresh package from the exact validated main commit. Only after the owner approves the tested build should the existing Axxess files be backed up, the verified package extracted at the correct document root, and live Part Search + Request a Part retested.
 - For Android, use the native Gradle artifact path and seek physical Hisense M72 Pro acceptance; do not spend time on the blocked EAS workflow unless migration is explicitly wanted.
+
+
+### APK validation recheck — 2026-10-26 14:25 SAST
+
+- Inspected GitHub Actions run [40295565850](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40295565850) for commit `b5c60b65d0924335eb2d720a07397ffe1474d4c6`. Build, APK metadata/size checks, signature verification, and artifact upload all passed; Android 13 emulator install/launch step failed.
+- Job log confirms repeated `adb: device 'emulator-5554' not found`, followed by `Timeout waiting for emulator to boot.` This is an emulator provisioning/startup failure, not a reported Gradle compile failure. The uploaded artifact exists for that run, but it is **not approved for owner distribution** because emulator acceptance did not pass and physical-device login is still unverified.
+- The lightweight/default API 33 image, 900-second boot timeout, snapshots disabled, and 2-core/2048-MiB settings did not resolve the issue. Do not repeat the same workflow unchanged or give the owner another APK yet.
+- Next technical action: adjust CI validation so emulator startup diagnostics are captured (runner process, `/dev/kvm`, emulator stdout/stderr, and `adb devices -l`) and use a supported alternative emulator boot strategy if the action still fails. Preserve build/signature/artifact checks. Only distribute after install/launch checks pass; then owner tests login on Hisense M72 Pro and reports outcome without sharing credentials.
+- Scope stayed APK-only. No Supabase settings/data, live store, Axxess, DNS, checkout/payment, supplier files, catalogue, or stock changed. Storefront remains separate; release/customer launch HOLD.
