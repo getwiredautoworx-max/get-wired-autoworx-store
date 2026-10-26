@@ -2032,3 +2032,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ### Current state — honest release gate
 - Part Search runtime fix: **NOT YET PROVEN / IN PROGRESS**. The new trigger change is committed, but no run result has been observed in this session.
 - No Axxess/live upload, merge, DNS, checkout/payment, Supabase, order, stock or catalogue change was made. No paid AI credit was used. Supplier reconciliation remains paused; customer launch remains HOLD.
+
+
+## FOLLOW-UP — PART SEARCH CI RUN STARTED — 2026-10-26
+
+- GitHub Actions run [40271217307](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40271217307), run #1103 “Storefront Smoke Test”, was created by a `push` event for exact head `7cc3f2debae6c2cd235c546e9f803022475c9db5` on PR #94 branch `fix/part-search-load-race-smoke-qa-2026-10-23`. The branch push trigger change therefore worked and resolves the missing-trigger blocker.
+- Latest poll: run and `smoke` job remain `in_progress`. Setup, checkout, Node setup and Playwright installation succeeded; `Install Chromium` remains in progress. Verified-price/source assertions and local Playwright browser smoke are still pending. No pass/fail conclusion is available yet.
+- Source assertions include verified-price gates, legacy `openPartSearch` / `openPartRequest` aliases, no-AI search path and removal of the AI picture-search endpoint; the browser test includes mobile viewport and category/audio regression checks. A test present in source is not a test that has passed.
+- Next: poll run 40271217307 to terminal state, inspect actual step results/logs, and fix only the first reproducible failure. If Chromium install fails/stalls, diagnose that step. If CI passes, separately validate Part Search interactions on a candidate preview; CI alone does not prove live Axxess behavior.
+- Part Search remains **IN PROGRESS / NOT RESOLVED** until exact-head tests pass and live behavior is separately verified after owner-approved deployment. No paid AI credits, Axxess/live upload, merge, DNS, checkout/payment, Supabase, order, live stock or catalogue changes. Supplier reconciliation remains paused; customer launch remains HOLD.
