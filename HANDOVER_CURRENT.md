@@ -1995,3 +1995,22 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 1. Obtain actual exact-head Actions/browser evidence for `fec0b1c51f9bed5680cf6169fbcf8d70fbb00888`, or run the same Playwright test against the exact PR preview without triggering another deployment if an existing preview is available.
 2. If tests pass, prepare and verify a clean deployment-only package plus a complete Axxess backup/rollback plan. Owner must explicitly approve the specific package before any production upload.
 3. After approval and controlled upload, click-test Part Search, delayed catalogue search, no-match fallback, and Request a Part on the live site. Do not call the issue resolved until that real-browser test passes.
+
+
+## CONTINUATION UPDATE — PART SEARCH FOLLOW-UP / PREVIEW RECHECK — 2026-10-26
+
+### New evidence checked
+- Rechecked PR #94: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/94 remains OPEN, DRAFT, UNMERGED; current head is `fec0b1c51f9bed5680cf6169fbcf8d70fbb00888`. Preserve PR #74 as the approved visual baseline.
+- Re-read branch source at this head. `index-new.html` includes legacy bare-name aliases for `openPartSearch()` / `openPartRequest()`, the no-AI text/SKU search route, manual photo Request a Part, and refresh-on-`gw:products-loaded`. `.github/workflows/storefront-smoke.yml` includes static source assertions, browser checks for both legacy handlers, and a delayed catalogue response test using `GW-RACE0001`.
+- PR discussion confirms Cloudflare Pages deployment for commit `fec0b1c` succeeded at https://f6aa4bfc.get-wired-autoworx-store.pages.dev and branch preview https://fix-part-search-load-race-sm.get-wired-autoworx-store.pages.dev. This is a successful build only, not a runtime interaction pass. Both preview URLs were inaccessible through the available web inspection tool in this session, so actual button/dialog behavior could not be confirmed here.
+- Exact-head GitHub Actions lookup still returns no PR-triggered workflow runs and combined commit status has no checks for `fec0b1c...`. Therefore the regression tests exist in source but have NOT been demonstrated to pass. The latest PR discussion also records the separate Cloudflare Workers build failed for `fec0b1c`; this is the known Pages-only-config/Worker-entrypoint mismatch, not evidence that the Pages build failed and not a reason to alter Pages configuration.
+
+### Follow-up decision
+- Do not create another code commit merely to trigger CI: the PR workflow already declares a pull_request trigger and workflow_dispatch, and extra commits have been causing repeated Worker integration builds. No connected action is available in this session to dispatch the workflow directly.
+- Next engineering step is to obtain an exact-head Playwright run using the existing workflow via GitHub Actions (or run its documented test script in an environment with Chromium) and capture the actual logs. If the run is not being scheduled, inspect repository Actions settings/path-filter behavior before changing workflow source. Do not weaken or bypass the real click assertions.
+- Once tests pass, assemble and inspect the clean deployment-only package and rollback plan. No Axxess upload or production change until the owner approves that exact package. Then perform live browser tests for open/close, SKU/text result, delayed catalogue result, no-match fallback and Request a Part.
+
+### Current status / guardrails
+- Part Search fix: IN PROGRESS; exact-head runtime proof missing.
+- No-cost approach: normal text/SKU catalogue search plus manual photo Request a Part; no paid AI credits needed.
+- Live Axxess remains unmodified; do not merge PR #94, upload files, change DNS/checkout/payments/Supabase, or modify stock/catalogue without the required approval. Supplier reconciliation remains paused. Customer launch remains HOLD.
