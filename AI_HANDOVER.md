@@ -306,3 +306,13 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Cloudflare Pages deployment bot confirms exact commit `c76d02017176f84634eed842e080a36169b4133e` deployed successfully. Owner preview: https://1b6e1a1f.get-wired-autoworx-store.pages.dev/store . Branch alias: https://fix-pr70-storefront-owner-fe.get-wired-autoworx-store.pages.dev/store . Deployment logs: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/1b6e1a1f-b209-476b-8566-39512c0af356 .
 - The Find a Part button is now a ninth tile inside the existing category grid, so it shares the same card footprint and responsive layout as the other category buttons. The former full-width standalone vehicle finder section is removed. Clicking the tile calls the store-search dialog; the dialog retains the request-unavailable-item path.
 - Exact deployment success is confirmed. Fresh browser interaction/screenshot QA on this SHA is still not recorded; owner can test preview now. PR #72 remains draft/unmerged, PR #70 baseline unchanged; no production/Axxess/DNS/payment/stock/catalogue changes.
+
+
+## CONTINUATION CHECKPOINT — 2026-10-26 07:51 SAST
+- Repository confirmed **private**; no visibility change made.
+- On branch `continuation/planetworld-supplier-folders-2026-10-26`, created `suppliers/ASC/README.md` and `suppliers/Planetworld/README.md`. Upload authorized source XLSX/pricelists to the matching folder when available. No source supplier file was present to process in this session.
+- Planetworld pricing benchmark: use RRP less 1–2 percentage points as a possible target only after checking verified cost, VAT, margin and supplier terms. No prices imported or published.
+- PR #94 remains draft/unmerged at `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`. Storefront Smoke Test run `40272185866` passed on this head (verified-price gate + local smoke); this does not prove live Part Search acceptance.
+- No-cost Part Search: preserve catalogue SKU/keyword search and separate Request a Part/manual follow-up. AI image recognition remains unavailable without provider credits; the deployed function is credential-gated and previous logs recorded exhausted OpenAI quota. No free AI recognition alternative is verified.
+- Exact remaining GitHub Actions minutes could not be read through the connected metadata; recent Actions run succeeded on private repo, but this is not a balance reading. Owner can check GitHub Settings → Billing & licensing → Usage / Actions.
+- No Cloudflare/Netlify credits, Axxess/DNS/payment/Supabase/live catalogue or stock changes. Customer launch remains HOLD.
