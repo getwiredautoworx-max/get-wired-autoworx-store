@@ -2450,3 +2450,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The workflow `.github/workflows/build-owner-apk.yml` is configured to run on pushes that change `android-owner-app/**`; a new APK build/Android 13 emulator validation should therefore run for this commit. Do not claim the fix is physically verified until the new workflow passes and the rebuilt APK is installed and tested on the owner's phone.
 - Next: inspect the new workflow result and artifact; give owner the new APK only after CI build and emulator checks pass. Owner must test login and report whether the screen advances or displays an error. Never ask owner to share their password or OTP.
 - Current status: source defect fixed in branch; rebuilt APK/device login validation pending. Storefront work remains separate in desktop session.
+
+
+### Follow-up — APK validation trigger attempt (2026-10-26)
+
+- Added a harmless comment to `.github/workflows/build-owner-apk.yml` on `fix/cloud-based-owner-apk` to trigger the configured push validation after the login JavaScript correction. Trigger commit: `39b01f484bd7ea6298f876ee9ac0b87ca3c30c8f`.
+- The available GitHub status connector currently returns no commit statuses for that trigger commit, and its workflow-run lookup only returns pull-request-triggered runs; therefore this does NOT establish that the APK build/emulator test ran or passed.
+- Next: check the Actions page directly for the run associated with the branch/commit. Do not give the owner a replacement APK until the actual build artifact and successful Android 13 emulator checks are confirmed.
+- No storefront, production Supabase settings/data, credentials, checkout/payments, Axxess, or DNS were changed.
