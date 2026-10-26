@@ -1,23 +1,26 @@
 name: Prepare Axxess upload package
-# Release verification trigger: rebuild the storefront artifact from the current main branch.
-# Package run requested 2026-10-15: verify current-main ZIP before Axxess handoff.
+
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/prepare-axxess-package.yml'
+      - 'scripts/build-storefront.sh'
+      - 'netlify.toml'
       - 'index.html'
       - 'store.html'
       - 'index-new.html'
       - 'product.html'
+      - 'products.html'
       - 'checkout-v2.html'
       - 'checkout.html'
-      - 'products.html'
       - 'terms-and-conditions.html'
       - 'category.html'
       - 'returns-refunds.html'
       - 'product-details.js'
       - 'category-navigation.js'
+      - 'admin.html'
+      - 'assets/admin.js'
       - 'assets/gw-logo.png'
       - 'assets/product-image-fallback.js'
       - 'assets/category-cleanup.js'
@@ -26,53 +29,71 @@ on:
       - 'assets/category-tree.json'
       - 'assets/products_webp/**'
   pull_request:
-    branches: [main, qa/desktop-mobile-screenshots-2026-10-15]
+    branches: [main]
     paths:
       - '.github/workflows/prepare-axxess-package.yml'
+      - 'scripts/build-storefront.sh'
+      - 'netlify.toml'
       - 'index-new.html'
       - 'checkout-v2.html'
-      - 'staging/trigger-axxess-package-build.md'
+      - 'admin.html'
+      - 'assets/admin.js'
+      - 'supabase/functions/store-checkout/**'
+      - 'supabase/functions/shipping-quote/**'
+      - 'netlify/functions/shipping-quote.ts'
+      - 'tests/**'
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   package:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - name: Checkout repository
+      - name: Check out release source
         uses: actions/checkout@v4
-      - name: Assemble minimal storefront package
+      - name: Assemble one clean storefront from the shared build script
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p axxess-upload/assets
-          cp index.html store.html index-new.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html product-details.js category-navigation.js axxess-upload/
-          cp assets/gw-logo.png assets/product-image-fallback.js assets/category-cleanup.js assets/progressive-store-enhancements.js assets/product-placeholder.svg assets/category-tree.json axxess-upload/assets/
-          cp -a assets/products_webp axxess-upload/assets/
-          cat > axxess-upload/UPLOAD-INSTRUCTIONS.txt <<'EOF'
-          GET WIRED AUTOWORX — AXXESS DIRECTADMIN DEPLOYMENT
-          
-          This package contains storefront runtime files and local WebP product images; the exact image count is recorded below.
-          Before extraction, make a backup archive of the existing public_html contents in DirectAdmin File Manager.
-          Upload this ZIP to public_html, select it, and use Extract. Extract into public_html (not into a nested folder).
-          Confirm the existing admin.html is preserved; it is intentionally not included in this package.
-          Do not upload repository documentation, GitHub workflows, database files, or source archives. The customer-facing terms-and-conditions.html page is included.
-          After extraction, test /, /store.html, /product.html, /products.html, /checkout.html, /category.html, /checkout-v2.html, /returns-refunds.html, and /terms-and-conditions.html.
-          The store uses Supabase remotely; this package does not move the database or secrets.
-          EOF
-          image_count=$(find axxess-upload/assets/products_webp -type f -name '*.webp' | wc -l | tr -d ' ')
-          echo "Included local WebP image count: $image_count" >> axxess-upload/UPLOAD-INSTRUCTIONS.txt
-          test "$image_count" -gt 0
-          for required in index.html store.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html product-details.js category-navigation.js; do test -f "axxess-upload/$required" || { echo "Missing required package file: $required"; exit 1; }; done
-          find axxess-upload -type f | wc -l
-          du -sh axxess-upload
-          (cd axxess-upload && zip -qr ../axxess-storefront-upload.zip .)
+          bash scripts/build-storefront.sh dist
+          (cd dist && zip -qr ../axxess-storefront-upload.zip .)
           unzip -t axxess-storefront-upload.zip
-          for required in index.html store.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html; do unzip -Z1 axxess-storefront-upload.zip | grep -Fxq "$required" || { echo "ZIP missing required page: $required"; exit 1; }; done
-      - name: Upload deployment ZIP
+          for required in index.html store.html index-new.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html admin.html assets/admin.js assets/product-placeholder.svg assets/category-tree.json; do
+            unzip -Z1 axxess-storefront-upload.zip | grep -Fxq "$required" || { echo "ZIP missing required file: $required"; exit 1; }
+          done
+          if unzip -Z1 axxess-storefront-upload.zip | grep -E '(^|/)(store-enhancements|ui-fixes)\.js$'; then
+            echo "Legacy overlay found in ZIP" >&2
+            exit 1
+          fi
+          cat > axxess-upload-instructions.txt <<'EOF'
+          GET WIRED AUTOWORX — CLEAN AXXESS WEBSITE REPLACEMENT
+
+          This ZIP contains the website runtime only. It deliberately excludes repository history, supplier catalogues, SQL exports, source archives, and the old JPG image library. Product images use optimized WebP files.
+
+          SAFE REPLACEMENT ORDER
+          1. In DirectAdmin, create and download a backup of the complete current public_html folder before deleting anything.
+          2. Check that the backup archive can be downloaded and has a non-zero size.
+          3. Remove the old website files/folders inside public_html only after the backup is verified. Do not delete the public_html directory itself, domain settings, mailboxes, databases, or anything outside the website root.
+          4. Upload axxess-storefront-upload.zip into public_html and extract directly into public_html, not into a nested folder.
+          5. Confirm index.html is directly inside public_html and assets/products_webp contains the optimized product image files.
+          6. This package includes the current admin.html and assets/admin.js; do not retain the old admin page or old checkout overlay.
+          7. Test /, /store.html, /product.html, /products.html, /category.html, /checkout-v2.html, /returns-refunds.html, /terms-and-conditions.html and /admin.html.
+          8. Verify HTTPS, Supabase catalogue loading, pickup checkout, delivery quote blocking for unverified rates, and the admin sign-in flow. Do not submit a real customer order as a test.
+
+          The ZIP contains no Supabase secrets or database contents. Final upload must wait for release approval.
+          EOF
+          echo "Package size:"
+          du -h axxess-storefront-upload.zip
+          echo "Runtime image count: $(find dist/assets/products_webp -type f -name '*.webp' | wc -l | tr -d ' ')"
+      - name: Upload clean package and separate instructions
         uses: actions/upload-artifact@v4
         with:
           name: axxess-storefront-upload
-          path: axxess-storefront-upload.zip
+          path: |
+            axxess-storefront-upload.zip
+            axxess-upload-instructions.txt
           if-no-files-found: error
           retention-days: 14
