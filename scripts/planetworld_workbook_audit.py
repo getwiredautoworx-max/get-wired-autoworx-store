@@ -69,9 +69,10 @@ def guess_category(brand, description, model, filename):
     for label, words in rules:
         if any(norm(w) in text for w in words): return label
     return "REVIEW - UNCLASSIFIED"
-def guess_component(division, description, model):
+def guess_component(division, description, model, brand=""):
     d = norm(division)
-    t = norm(" ".join([description, model]))
+    b = norm(brand)
+    t = norm(" ".join([brand, description, model]))
     if any(x in t for x in ("marine", "boat", "waterproof marine")): return "Marine Audio"
     if "car audio" in d:
         if any(x in t for x in ("harness", "trim kit", "steering wheel interface", "fascia", "2-din", "2 din", "1-din", "1 din", "fitment kit", "cage kit")): return "Vehicle Harnesses & Trims"
@@ -86,6 +87,8 @@ def guess_component(division, description, model):
         if any(x in t for x in ("cable", "adapter", "adaptor", "remote", "bracket", "accessory", "accessories", "extension", "terminal", "spk out", "speaker out", "anti reflective", "anti glare", "screen protector", "protective foil", "acc cntl module", "t h set", "fuse holder", "termination block", "rca interconnect", "interconnect")): return "Car Audio Accessories"
         return "Car Audio - Review Component"
     if d == "musical instruments":
+        if b in ("tama", "remo", "paiste"): return "Drums & Percussion"
+        if b == "on stage": return "Music Accessories"
         if any(x in t for x in ("dj controller", "deck controller", "dj deck", "media player")): return "DJ Controllers & Decks"
         if any(x in t for x in ("powerpad", "gig bag", "guitar bag", "guitar case", "drum bag", "stick bag", "instrument case", "instrument bag", "guitar strap", "drumstick bag", "stand", "bench", "pouch", "carry case", "cable", "adapter", "adaptor", "battery", "clip", "strap", "power supply", "psu", "accessory", "accessories", "picks", "tuner", "teardrop shape", "guitar string", "strings", "replacement spring", "planetwaves", "music stand", "microphone stand", "speaker stand")): return "Music Accessories"
         if any(x in t for x in ("guitar", "bass guitar", "electric bass", "el.5-st.bass", "bass", "ukulele", "mandolin", "banjo", "advanced acoustic", "aeg series", "ae series", "aeb series", "aewc series", "artcore series", "artwood series", "grand concert", "rg gio", "sr gio", "az essentials", "pf series", "gio series", "ga series", "gb signature", "artist series", "solid okoume", "spruce top", "gtr")) or re.match(r"^(aam|aeg|rg|sr|az|pf|grg|sa|af|as|tmb)[a-z0-9-]*", model.strip().lower()): return "Guitars & Basses"
@@ -97,7 +100,7 @@ def guess_component(division, description, model):
         if "amplifier" in t or "guitar amp" in t: return "Instrument Amplifiers"
         if any(x in t for x in ("mixer", "mixing console")): return "Mixers"
         if any(x in t for x in ("recorder", "audio interface", "podcast", "field recorder", "multitrack")): return "Recording & Interfaces"
-        if any(x in t for x in ("headphone", "headset", "earphone")): return "Headphones & Headsets"
+        if any(x in t for x in ("headphone", "headset", "earphone", "earpad", "earpads")): return "Headphones & Headsets"
         if any(x in t for x in ("cable", "adapter", "adaptor", "battery", "case", "bag", "stand", "clip", "strap", "power supply", "psu", "accessory", "accessories")): return "Music Accessories"
         return "Musical Instruments - Review Component"
     if d in ("installed av", "home ci"):
@@ -108,7 +111,7 @@ def guess_component(division, description, model):
         if "screen" in t: return "Screens"
         if any(x in t for x in ("mount", "bracket", "stand", "pole", "plate", "wall support", "ceiling", "pfw", "puc", "thin")): return "Mounts & Stands"
         if "soundbar" in t: return "Soundbars"
-        if any(x in t for x in ("speaker", "subwoofer", "lcr", "in wall", "on wall", "surrounds", "m&k", "sonance", "2-way", "2 way", "full range", "kicker kb6")): return "Installed Speakers & Subwoofers"
+        if any(x in t for x in ("speaker", "subwoofer", "lcr", "in wall", "on wall", "surrounds", "m k", "sonance", "2-way", "2 way", "full range", "kicker kb6")): return "Installed Speakers & Subwoofers"
         if any(x in t for x in ("amplifier", "receiver", "processor", "multi zone", "avr")): return "Amplifiers & AV Processors"
         if any(x in t for x in ("cable", "adapter", "adaptor", "remote", "accessory", "accessories")): return "AV Accessories"
         return "Installed AV - Review Component"
@@ -167,7 +170,7 @@ for path in files:
                 if columns["rrp"] is None: flags.append("RRP_COLUMN_NOT_MAPPED")
                 if not brand: brand = path.stem.split("-price-list")[0].replace("-", " ").replace("_", " ").title()
                 cat = guess_category(brand, " ".join([product_type, desc]), model, path.name)
-                component = guess_component(division, desc, model)
+                component = guess_component(division, desc, model, brand)
                 proposed_1 = round(rrp * 0.99, 2) if rrp is not None else None
                 proposed_2 = round(rrp * 0.98, 2) if rrp is not None else None
                 cost_header = headers[columns["cost"]] if columns["cost"] is not None and columns["cost"] < len(headers) else ""
