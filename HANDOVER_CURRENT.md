@@ -2748,3 +2748,14 @@ This entry records the evidence available at 17:08 SAST; it does not claim the s
 - Recursive tree verification after deletion confirmed **zero root-level PDFs**, **35 PDFs under `suppliers/ASC/`**, and the other suppliers' PDFs remain in their own folders (Audio Connections: 2; Caelex: 1). No files in any supplier folder were deleted. The owner's re-upload task can now proceed using `suppliers/ASC/`.
 - No live catalogue/product/stock/price data, Supabase, Axxess, DNS, payment settings, deployment, or Cloudflare/Netlify credits were changed.
 - Remaining scope note: this verified check was specifically for root-level PDFs, which is where the misplaced copies were found. Do not claim that every possible ASC PDF elsewhere in nested non-ASC directories has been audited until that full-path inventory is separately reviewed.
+
+
+## SUPPLIERS FOLDER INVENTORY SCAN — 2026-10-27
+
+- Owner request: scan the entire tracked `suppliers/` folder and update documentation.
+- Enumerated the authoritative recursive Git tree on `main`; after the root-PDF cleanup, the supplier folder contains 44 tracked files: 38 PDFs and 6 Markdown README files across five supplier subfolders.
+- Counts verified: `suppliers/ASC/` = 35 PDFs + README; `suppliers/Audio Connections/` = 2 PDFs + README; `suppliers/Caelex/` = 1 PDF + README; `suppliers/Electrocity/` = README only (0 PDFs); `suppliers/Planetworld/` = README only (0 PDFs). Parent `suppliers/README.md` is present. The repository root contains zero tracked PDFs.
+- Updated `suppliers/README.md` with the inventory table and scope limitations; updated `suppliers/ASC/README.md` with the verified count and audit caveat. Both writes were committed successfully.
+- Important scope: this was a recursive path and file-type inventory, not a page-by-page PDF content audit. Duplicate editions, expired guides, pricing/stock accuracy, SKU coverage, and supplier data completeness remain unverified. Empty Electrocity/Planetworld folders are not a permissions issue; they simply have no PDF source files tracked at present.
+- No source PDFs were moved or deleted in this scan. No catalogue/product/stock/price records, deployments, Axxess, DNS, payments, Supabase, Cloudflare or Netlify settings were changed.
+- Next safe step: when owner re-uploads missing/updated supplier documents, verify each path lands in its matching folder, then perform content-level catalogue audit as a separate task. Continue to hold live catalogue/stock/price writes until the owner explicitly approves them.
