@@ -59,7 +59,12 @@ jobs:
 
           if [ "$CONFIRM_DELETE" != "yes" ]; then
             echo "SAFE MODE: no runs were deleted. Re-run this workflow and choose confirm_delete=yes to delete failed runs."
-            printf '%s\n' "${failed_ids[@]}" | head -n 30
+            shown=0
+            for run_id in "${failed_ids[@]}"; do
+              echo "$run_id"
+              shown=$((shown + 1))
+              [ "$shown" -ge 30 ] && break
+            done
             exit 0
           fi
 
