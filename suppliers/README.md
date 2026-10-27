@@ -17,3 +17,18 @@ This is the single parent folder for supplier catalogues and reference documents
 - Do not import or change live stock, prices, product listings, or catalogue data without explicit owner authorisation.
 - Do not upload passwords, API keys, customer personal information, or other secrets.
 - Keep supplier files and all work in this repository; do not create separate top-level supplier folders elsewhere.
+
+
+## Verified supplier-folder inventory — 2026-10-27
+
+Recursive Git tree scan of the `main` branch (tree SHA `08b97bed8e05c18bd3696262593d4c12da8822e2`) found **44 tracked files** under `suppliers/`: 38 PDFs and 6 Markdown README files.
+
+| Supplier folder | PDF files | README | Notes |
+|---|---:|---|---|
+| `ASC/` | 35 | Present | 35 supplier reference PDFs retained in the authorised ASC folder. |
+| `Audio Connections/` | 2 | Present | STARSOUND and Sony Mobile ES dealer price lists. |
+| `Caelex/` | 1 | Present | Halloween Week Deals PDF. |
+| `Electrocity/` | 0 | Present | Folder currently contains its README only; no catalogue/price-list PDFs are tracked yet. |
+| `Planetworld/` | 0 | Present | Folder currently contains its README only; no dealer price-list/catalogue PDFs are tracked yet. |
+
+The repository root currently has **zero tracked PDFs**; all 38 tracked supplier PDFs are inside their respective supplier subfolders. This is a path/file-type inventory only; PDF contents, duplicate editions, expiry, pricing accuracy, and SKU completeness have not been audited by this scan. Do not infer that empty Electrocity/Planetworld folders mean the suppliers are unauthorised; upload their approved source files to their named folders when available. Keep live product/stock/price imports on hold until explicitly approved by the owner.
