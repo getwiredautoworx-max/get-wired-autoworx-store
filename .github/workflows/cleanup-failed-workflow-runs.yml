@@ -63,12 +63,20 @@ jobs:
             exit 0
           fi
 
+          # Keep each dispatch below the typical per-repository GITHUB_TOKEN API rate limit.
+          max_per_run=700
           deleted=0
           for run_id in "${failed_ids[@]}"; do
+            [ "$deleted" -ge "$max_per_run" ] && break
             echo "Deleting failed run $run_id"
             gh api --method DELETE "repos/$REPOSITORY/actions/runs/$run_id"
             deleted=$((deleted + 1))
           done
 
+          remaining=$((total - deleted))
           echo "Deletion requests completed: $deleted"
+          echo "Failed runs remaining from this scan: $remaining"
+          if [ "$remaining" -gt 0 ]; then
+            echo "Re-run with confirm_delete=yes to continue in another rate-limit-safe batch."
+          fi
           echo "Only completed runs whose conclusion was failure were targeted. Successful, cancelled, queued, and in-progress runs were not targeted."
