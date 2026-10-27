@@ -10,7 +10,6 @@ on:
       - ".github/workflows/live-release-gates.yml"
       - "VERSION.txt"
       - "index.html"
-      - "index-new.html"
       - "category.html"
       - "checkout-v2.html"
       - "staging/CATEGORY_OUTSIDE_HIERARCHY_CANDIDATES_2026-10-14.csv"
@@ -40,7 +39,7 @@ jobs:
           set -euo pipefail
           base="https://www.getwiredauto.co.za"
           failed=0
-          for path in / /index.html /index-new.html /category.html /checkout-v2.html /terms-and-conditions.html /returns-refunds.html /assets/category-tree.json; do
+          for path in / /index.html /store.html /category.html /checkout-v2.html /terms-and-conditions.html /returns-refunds.html /assets/category-tree.json; do
             if [ "$path" = "/" ]; then safe="home"; else safe="${path#/}"; safe="${safe//\//_}"; safe="${safe//./_}"; fi
             code="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --connect-timeout 10 --max-time 45 -o "/tmp/live-$safe" -w '%{http_code}' "$base$path")"
             printf 'LIVE_HTTP %s %s\n' "$path" "$code"
@@ -62,7 +61,7 @@ jobs:
             echo "legacy_version_marker_match=unknown" >> "$GITHUB_OUTPUT"
           fi
           source_match=true
-          for spec in "index.html:/tmp/live-index_html" "index-new.html:/tmp/live-index-new_html" "category.html:/tmp/live-category_html" "checkout-v2.html:/tmp/live-checkout-v2_html" "assets/category-tree.json:/tmp/live-assets_category-tree_json"; do
+          for spec in "index.html:/tmp/live-index_html" "store.html:/tmp/live-store_html" "category.html:/tmp/live-category_html" "checkout-v2.html:/tmp/live-checkout-v2_html" "assets/category-tree.json:/tmp/live-assets_category-tree_json"; do
             local_file="${spec%%:*}"
             remote_file="${spec#*:}"
             if [ -s "$remote_file" ] && cmp -s "$local_file" "$remote_file"; then
