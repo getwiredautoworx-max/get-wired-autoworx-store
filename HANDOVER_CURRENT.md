@@ -2902,3 +2902,23 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 
 - New release-gate run [40567061844](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40567061844), commit `3919acfb623fa5c4f0979c1a642f6359d1318249`, reached and PASSED the “Verify live HTTPS, routes and deployed version marker” step after the workflow was corrected to validate the actual `store.html` wrapper and stop treating `index-new.html` as a release entrypoint.
 - This is the first confirmed resolution of the previously failing source-integrity gate. It is not yet a complete release pass: Playwright installation and desktop/mobile navigation/checkout tests were still running at the time of this update. Check final workflow result before claiming all gates pass.
+
+## HANDOVER RESUME POINT — 2026-10-27 — RELEASE GATE RUN COMPLETED
+
+- Latest completed Live Release Gates run: [40567061844](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40567061844), head commit [3919acfb623fa5c4f0979c1a642f6359d1318249](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/commit/3919acfb623fa5c4f0979c1a642f6359d1318249). Overall workflow conclusion: **SUCCESS**.
+- Verified from job logs:
+  - HTTP routes returned 200, including `/store.html`; `LIVE_HTTP_CHECK_FAILED=0`.
+  - Exact live/repository file hashes match for `index.html`, `store.html`, `category.html`, `checkout-v2.html`, and `assets/category-tree.json`.
+  - Desktop category navigation passed with 8 root categories.
+  - Mobile category navigation passed with 8 root categories.
+  - Desktop checkout UI passed; mobile checkout UI passed.
+  - Checkout exposes only `Direct EFT / bank payment`. Test deliberately blocked order submission; no real order was sent and order creation/admin visibility remain unverified.
+  - Workflow's own output still says payment readiness is NOT CONFIRMED because no PayFast/PayJustNow integration was found. Overall green workflow means the automated checks completed successfully; it does NOT mean the store is fully launch-ready or that payments/orders were end-to-end tested.
+- Prior source-integrity failure is resolved by workflow correction commit `3919acfb`: `index-new.html` is no longer incorrectly treated as a live entrypoint, and the actual `store.html` wrapper is checked. No live/Axxess files were changed.
+- Remaining release work (keep scope tight):
+  1. Inspect existing order creation/admin flow and find a safe, non-customer test method; verify Direct EFT order creation and admin visibility without creating a real customer order or modifying live records.
+  2. Confirm intended payment launch decision: Direct EFT only or owner-approved integration. Do not enable/activate payment providers without explicit approval.
+  3. Confirm leaked-password protection setting in Supabase Auth; it remains a documented production security gate. Do not change auth settings without the owner's required action/approval.
+  4. Revisit homepage content smoke assertion if still part of the release checklist; prior failure was `PAGE_CONTENT` after redirect to `/store.html`, while mobile overflow and console/network checks passed.
+  5. Keep supplier reconciliation, catalogue optimisation and image work outside the launch critical path unless a concrete launch-critical defect is found.
+- Do not touch production/Axxess/DNS/live catalogue, prices, stock, database or payment activation without explicit owner approval. Continue to update this file after each material result.
