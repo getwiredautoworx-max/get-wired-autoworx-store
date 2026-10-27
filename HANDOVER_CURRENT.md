@@ -2866,3 +2866,27 @@ Read this handover and inspect the repository tree/workpapers. Locate existing c
 - Inspected the failed Live Release Gates job log line-by-line. The live HTTPS/routes check itself returned `LIVE_HTTP_CHECK_FAILED=0`. Source comparison results were: `index.html` MATCH; `index-new.html` **MISMATCH**; `category.html` MATCH; `checkout-v2.html` MATCH; `assets/category-tree.json` MATCH. The legacy VERSION marker matched, but the workflow correctly warns that it is not a commit identity. The exact source-mismatch blocker is therefore `index-new.html`, not a general site outage.
 - Next safe action is to inspect `index-new.html` in the repo and compare its intended role with the accepted PR#74/current Axxess layout. Do not blindly overwrite or delete the live file: determine whether it is referenced by navigation/redirects and whether the release gate should compare only deployed entrypoints versus every tracked file. Keep production unchanged until that is confirmed.
 - Reconfirmed the payment gate is independent: checkout UI works in safe test mode, but only Direct EFT is configured and payment-provider integration/activation remains unverified. Do not claim ready to accept online payments.
+
+## OWNER COMMITMENTS & MEASURABLE LAUNCH TRACKER — 2026-10-27
+
+Owner direction: execute the remaining launch work rather than repeatedly explaining it to the owner. Keep this tracker current after each meaningful run. Supplier reconciliation, catalogue optimisation and improved product images are parallel workstreams and are NOT general-store launch prerequisites.
+
+### Current verified position
+- Live Release Gates run [40555506414](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40555506414), commit `5b1f63a`: HTTPS/routes, desktop category navigation, mobile category navigation, desktop checkout UI and mobile checkout UI passed (5 verified UI/route checks). Checkout submissions were intercepted; no real order was placed.
+- Source-integrity check failed only for `index-new.html`; `index.html`, `category.html`, `checkout-v2.html`, and `assets/category-tree.json` matched live files. This exact mismatch is the next code/release-gate investigation.
+- Payment capability currently detected: Direct EFT/bank payment only. PayFast/PayJustNow integration is not verified. Do not activate a provider or make claims that online card/instant payment is ready.
+- Auth leaked-password protection remains a documented production security blocker until enabled by the owner before final release.
+- Earlier browser smoke's PAGE_CONTENT assertion failed after redirect to `/store.html`, while HTTPS, mobile HTTP, mobile overflow and console/network checks passed. Verify whether this is a stale test assertion or real page-content issue.
+- Actions artifact upload quota is a separate GitHub storage issue; a previously assembled ZIP passed integrity validation before upload was rejected. Do not conflate this with storefront code readiness.
+
+### Readiness reporting rule
+Do not invent a calendar launch date or label the store launch-ready while a release gate fails. Current verified release-check tally is 5 passing route/UI checks and at least 3 independent unresolved gates (source integrity, payment-method decision/verification, auth protection); order/admin/security end-to-end confirmation also remains unverified. This is a progress tally, NOT a claim that the store is 62.5% commercially ready. Report percentage only when the checklist denominator and pass/fail evidence are explicit and stable.
+
+### Required execution commitments
+1. Inspect why `index-new.html` differs and whether it is actually deployed/used; fix the comparison or source mismatch on GitHub safely, then rerun the live release gate. Do not overwrite the production copy blindly.
+2. Verify the existing Direct EFT path and order creation/admin visibility using safe test controls, without creating a real customer order or activating payment.
+3. Repair/confirm the redirected homepage content smoke assertion against the actual accepted page.
+4. Run the existing desktop/mobile release checks again and record exact run URLs and outcomes.
+5. Keep image matching and supplier/catalogue reconciliation out of the critical path unless they reveal a specific functional or legal blocker.
+6. Keep production/Axxess/DNS/live catalogue/prices/stock/database/payments unchanged without explicit owner approval.
+7. After each meaningful result, append the evidence and update this tracker. Notify the owner only with the completed result, measured readiness, specific remaining blockers, and any truly required owner input.
