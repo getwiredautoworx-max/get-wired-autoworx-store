@@ -173,3 +173,16 @@ Official pages contain product imagery, but no image was downloaded or copied. M
 | KTE-S69G | Alpine's official S2-S69 speaker page confirms that the 6×9-inch S-Series coaxial speaker is compatible with the KTE-S69G grille. https://www.alpine-usa.com/product/s-series-speakers-s2s69 | Car Audio → Car Speaker Pods, Grilles & Enclosures. Compatibility cross-reference only; no exact KTE-S69G product page located in this pass, so its standalone image/source remains unverified. |
 
 Official pages include imagery for some models; no image was downloaded or copied. Manufacturer identity/fitment confirmation does not grant re-hosting rights or confirm Planetworld stock/price. No source XLSX or live catalogue data changed.
+
+
+## Official Alpine speaker/subwoofer verification batch — 2026-10-27 SAST
+
+| Supplier model/SKU | Official source result | Review-only category/component |
+|---|---|---|
+| R2-S69C | Alpine official page confirms the next-generation R-Series 6×9-inch component speaker set with 1-inch tweeters and included grilles. https://www.alpine-usa.com/product/r-series-speakers-r2s69c | Car Audio → Car Speakers. Exact model/type confirmed. |
+| R2-S65C | Alpine official page confirms the next-generation R-Series 6.5-inch component speaker set with 1-inch tweeters and inline crossovers. https://www.alpine-usa.com/product/r-series-speakers-r2s65c | Car Audio → Car Speakers. Exact model/type confirmed. |
+| R2-W12D4 | Alpine official page confirms the next-generation 12-inch R-Series subwoofer with dual 4-ohm voice coils. https://www.alpine-usa.com/product/r-series-subwoofer-r2w12d4 | Car Audio → Car Subwoofers. Exact model/type confirmed. |
+| KTE-RS10G | Alpine official page confirms the 10-inch R-Series shallow-subwoofer grille kit, compatible with RS-W10D4/RS-W10D2. https://www.alpine-usa.com/product/%20subwoofer-grille-kters10g | Car Audio → Car Speaker Pods, Grilles & Enclosures. Exact accessory and compatibility confirmed. |
+| KTE-S65G | Alpine official S2-S65 page confirms compatibility with the 6.5-inch S-Series coaxial speaker, but a standalone KTE-S65G product page was not found in this pass. https://www.alpine-usa.com/product/s-series-speakers-s2s65 | Car Audio → Car Speaker Pods, Grilles & Enclosures. Compatibility cross-reference only; standalone image/source remains unverified. |
+
+Official product pages include imagery; no images were downloaded or copied. These checks establish model/type or compatibility, not image reuse rights, current Planetworld availability, or supplier price correctness. No supplier XLSX or live catalogue data changed.
