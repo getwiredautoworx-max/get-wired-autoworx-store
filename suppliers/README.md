@@ -2,6 +2,8 @@
 
 This is the single parent folder for supplier catalogues and reference documents used by Get Wired AutoWorx.
 
+**Owner confirmation (2026-10-27): all supplier folders currently listed here are authorised for catalogue use.** Use these sources proactively for catalogue review, extraction, matching, analysis and preparation while supplier IT teams work through technical integration. This permission does not itself authorise writes to live stock, prices, product listings, or production systems.
+
 ## Supplier folders
 - `Audio Connections/` — catalogues, price lists and reference documents.
 - `ASC/` — catalogues, monthly Buyer's Guides, price lists and reference documents; interim permission to use ASC catalogues has been granted to Get Wired AutoWorx as an authorised dealer while ASC's IT department works on a longer-term solution.
