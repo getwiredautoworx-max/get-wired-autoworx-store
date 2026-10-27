@@ -1,5 +1,8 @@
 # ASC Supplier References
 
+**Owner confirmation (2026-10-27):** all supplier folders in the GitHub supplier library are authorised for catalogue use. Use ASC catalogue material proactively for authorised dealer catalogue review, extraction, matching and analysis. Keep source documents intact. This permission does not by itself authorise changes to live stock, prices, product listings, or production catalogue/database records; obtain explicit owner approval for those writes.
+
+
 Store ASC catalogues, monthly Buyer's Guides, price lists and reference documents in this folder.
 
 The monthly Buyer's Guides previously stored at the repository root have been moved into this folder to keep supplier source material together.
