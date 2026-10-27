@@ -2701,3 +2701,12 @@ This entry records the evidence available at 17:08 SAST; it does not claim the s
 - Moved all seven root-level monthly Buyer's Guide PDFs into `suppliers/ASC/` in commit `7e2cff3a9078a4b51faa0f278fddbfa4093dc1f3`, preserving their existing Git blob contents. Files moved: February, March, May, June (filename retained as `June Buyer's Guide (1).pdf`), July, August, and September. The previous root paths were removed in the same commit.
 - Updated `suppliers/ASC/README.md` to document the correct location. Verified via recursive repository tree that all seven guides are under `suppliers/ASC/` and no longer at repository root.
 - This was a file-organisation change only. No catalogue imports, stock/price changes, production/Axxess/DNS/payment changes, Supabase changes, or Cloudflare/Netlify deployments were performed. ASC supplier authorisation restriction remains unchanged.
+
+
+## SUPPLIER CATALOGUE PERMISSION UPDATE — 2026-10-27
+
+- Owner clarified that **both ASC and Electrocity have granted interim permission** for Get Wired AutoWorx to use their catalogues because the business is an authorised dealer, while each supplier's IT department investigates a longer-term way forward.
+- This supersedes older handover wording that said ASC supplier authorisation itself was pending. The remaining blocker is supplier IT integration / longer-term technical access, not permission to use the catalogues for authorised dealer work.
+- Updated `suppliers/README.md`, `suppliers/ASC/README.md`, and `suppliers/Electrocity/README.md` to record this accurately. Also added Caelex to the parent supplier index so it matches the existing folder.
+- Scope: catalogue review, extraction and analysis may proceed within the interim permission. This does **not** automatically authorise writes to live stock, prices, product listings, or production catalogue/database records. Those changes still require explicit owner approval. Do not invent supplier feeds or claim technical integration is solved.
+- No catalogue data, live stock, prices, production settings, credentials, or deployments were changed by this documentation update.
