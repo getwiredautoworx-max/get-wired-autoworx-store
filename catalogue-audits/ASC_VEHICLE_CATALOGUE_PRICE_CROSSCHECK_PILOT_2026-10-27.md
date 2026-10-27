@@ -52,3 +52,10 @@ The current ASC trade price-list file was not located among the inspected Librar
 ## Safety / release boundary
 
 No live product, price, stock, image URL, database, Axxess, DNS, payment or deployment changes were made. This pilot is not an import file and must not be treated as a verified catalogue. The working storefront remains the rollback baseline.
+
+
+## Image-card extraction follow-up — same pilot run
+
+- Generated 42 individual card crops for the 42 exact-code occurrences that intersect the historical workbook, from the Suzuki and Renault/Dacia catalogue pages. A contact sheet was visually inspected: the crops retain the printed code, product label and corresponding product photo in the same card for the sampled cards.
+- These are **source-evidence crops for internal reconciliation**, not approved live product images. Some linked workbook descriptions/costs are demonstrably wrong, so do not let the crop alone approve a price or product record.
+- The current runtime workspace contains the full 406-row CSV candidate ledger, 42-card crop manifest, 42 card PNGs, and a contact-sheet montage. These local artifacts are not committed to GitHub as binary source assets. The tracked pilot report and handover record the verified summary and next actions.
