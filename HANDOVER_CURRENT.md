@@ -2679,3 +2679,11 @@ This entry records the evidence available at 17:08 SAST; it does not claim the s
 - Folder purpose is supplier reference documents only. README explicitly prohibits storing secrets/customer personal information and states supplier files must not trigger live stock, price, or catalogue imports without explicit owner authorization.
 - Verified the README is retrievable from GitHub. No supplier files have been uploaded yet; the folder is now ready for the owner to upload files from the phone using GitHub's Upload files action.
 - No production/Axxess/DNS/payment, catalogue/stock, Supabase, or Cloudflare/Netlify deployment changes were made.
+
+
+## SUPPLIER LIBRARY RESTRUCTURED — 2026-10-27
+
+- Owner clarified that supplier documents must live under one parent folder, `suppliers/`, with a separate subfolder for each relevant supplier. The previous action created only the Audio Connections subfolder and was incomplete.
+- Corrected the structure on `main`: `suppliers/README.md` is the index and upload guidance; supplier folders are `Audio Connections/`, `ASC/`, `Electrocity/`, and `Planetworld/`, each with a README explaining its intended contents and reference-only handling rules.
+- Verified creation commits: parent index `be5a7ccc8f2a19c4cf2439593ef79a5281d2a34e`; ASC `9eca1a6d3adf4d6e7ccb72036f2a654e2590ec97`; Electrocity `e9d4d0ba088da8ec3fdf7e5178de3c50dc2017d9`; Planetworld `b65c8a0fdcd8f08815372738eb1d6ac99a834c0d`. Audio Connections folder already exists from the prior commit.
+- No actual supplier catalogue files have been uploaded yet. Keep supplier documents as reference only; do not change live stock, prices, product listings, or catalogue data without explicit owner authorisation. ASC authorisation/integration remains pending. No production/Axxess/DNS/payment, Supabase, or Cloudflare/Netlify deployment changes were made.
