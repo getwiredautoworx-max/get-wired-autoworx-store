@@ -2890,3 +2890,10 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 5. Keep image matching and supplier/catalogue reconciliation out of the critical path unless they reveal a specific functional or legal blocker.
 6. Keep production/Axxess/DNS/live catalogue/prices/stock/database/payments unchanged without explicit owner approval.
 7. After each meaningful result, append the evidence and update this tracker. Notify the owner only with the completed result, measured readiness, specific remaining blockers, and any truly required owner input.
+
+## CONTINUATION UPDATE — 2026-10-27 — RELEASE GATE TARGET CORRECTED
+
+- Inspected the actual release workflow and confirmed the site root's repository `index.html` immediately redirects to `store.html`; `store.html` is the active storefront iframe entrypoint. The previous source-integrity gate checked `index-new.html` but did not check `store.html`, so it could fail on an unused alternate page while omitting the actual wrapper entrypoint.
+- Corrected `.github/workflows/live-release-gates.yml` in commit [3919acfb623fa5c4f0979c1a642f6359d1318249](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/commit/3919acfb623fa5c4f0979c1a642f6359d1318249): removed `index-new.html` from the source-match gate and added `store.html` to both the HTTP route checks and exact repository/live file comparison. No live/Axxess files were changed.
+- The workflow change triggers a new release-gate run on main. Next: inspect that run and its exact logs; do not count this code change as a passed gate until the run finishes.
+- Current independently verified browser status from run [40555506414](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40555506414): HTTPS/routes and desktop/mobile category and checkout UI checks passed; checkout order submission was intercepted, no real order sent. Direct EFT is the only configured checkout method detected. Auth leaked-password protection remains a separately documented owner-side production blocker.
