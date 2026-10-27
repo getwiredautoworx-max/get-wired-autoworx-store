@@ -46,6 +46,34 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python scripts/background_task_controller.py
 
+      - name: Prune expired background checkpoint artifacts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+            let page = 1;
+            let deleted = 0;
+            while (true) {
+              const { data } = await github.rest.actions.listArtifactsForRepo({
+                ...context.repo, per_page: 100, page
+              });
+              if (!data.artifacts.length) break;
+              for (const artifact of data.artifacts) {
+                if (
+                  artifact.name.startsWith('background-task-checkpoint-') &&
+                  new Date(artifact.created_at).getTime() < cutoff
+                ) {
+                  await github.rest.actions.deleteArtifact({
+                    ...context.repo, artifact_id: artifact.id
+                  });
+                  deleted++;
+                }
+              }
+              if (data.artifacts.length < 100) break;
+              page++;
+            }
+            core.info(`Deleted ${deleted} background checkpoint artifacts older than 24 hours.`);
+
       - name: Publish checkpoint artifact
         if: always()
         uses: actions/upload-artifact@v4
