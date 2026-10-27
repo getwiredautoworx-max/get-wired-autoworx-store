@@ -12,7 +12,6 @@ function install(frame){
     .gwResult{padding:12px;border-bottom:1px solid #123f60;cursor:pointer}.gwResult:hover{background:#0b1c2d}.gwResult b{display:block}.gwResult small{color:#8fa4b8}
     .gwNoResults{padding:18px;color:#aab7c8;text-align:center}
     .gwStock{font-size:11px;font-weight:800;margin-top:5px;color:#7ee2a8}.gwStock.low{color:#ffd15c}.gwStock.out{color:#ff7180}
-    .gwWA{display:block!important;background:#168b4b!important;color:#fff!important;text-align:center;text-decoration:none;padding:9px;border-radius:7px;margin-top:7px;font-weight:800}
     .gwTools{display:flex;gap:7px;margin-top:7px}.gwCopy{flex:1;background:#07111e;border:1px solid #17618b;color:#dff3ff;border-radius:7px;padding:8px;font-weight:700;cursor:pointer}
     .gwTrust{margin:12px 20px 0;padding:12px;border:1px solid #12456c;border-radius:10px;background:#06111e;color:#cfe1f2;font-size:12px;text-align:center}
     .gwRecentStrip{margin-top:14px;padding:11px;border:1px solid #12456c;border-radius:10px;background:#06111e}
@@ -59,7 +58,6 @@ function install(frame){
     card.appendChild(stock);
     // Vehicle compatibility prompt is added only for vehicle-specific products by the dedicated fitment flow.
     
-    if(!card.querySelector('.gwWA')){const a=d.createElement('a');a.className='gwWA';a.target='_blank';a.rel='noopener';a.textContent='WHATSAPP ABOUT THIS PRODUCT';a.href=WA+'?text='+encodeURIComponent(`Hi Get Wired AutoWorx, I am enquiring about ${name}${sku?' (SKU '+sku+')':''}. Please confirm availability, current price and product details.`);card.appendChild(a)}
 
   })}
   const obs=new MutationObserver(enrich);obs.observe(d.body,{childList:true,subtree:true});enrich();
@@ -139,9 +137,8 @@ function install(frame){
           verify=d.createElement('div');verify.className='gwVehicleVerify';
           verify.style.cssText='margin:12px 0;padding:12px;border:1px solid #d99b20;border-radius:8px;background:#fff8e7;color:#3d2b05;font-size:13px;line-height:1.45';
           const msg=d.createElement('div');msg.innerHTML='<strong>Vehicle compatibility check required</strong><br>Before ordering, confirm your vehicle make, model, year and engine with Get Wired AutoWorx.';
-          const link=d.createElement('a');link.className='gwWA';link.textContent='VERIFY VEHICLE FITMENT ON WHATSAPP';link.target='_blank';link.rel='noopener';
-          link.href=WA+'?text='+encodeURIComponent('Hi Get Wired AutoWorx, please verify compatibility before I order. Product: '+(p.name||'')+(p.public_sku?' (SKU '+p.public_sku+')':'')+'. My vehicle make, model, year and engine: ');
-          verify.appendChild(msg);verify.appendChild(link);
+          const note=d.createElement('p');note.textContent='Need fitment help? Open the individual product page and use its Query Part on WhatsApp action.';note.style.cssText='margin:8px 0 0;font-size:12px;color:inherit';
+          verify.appendChild(msg);verify.appendChild(note);
           const actionsAnchor=detail.querySelector('.detailActions');if(actionsAnchor)detail.insertBefore(verify,actionsAnchor);else detail.appendChild(verify);
         }
       }else if(verify){verify.remove();}
