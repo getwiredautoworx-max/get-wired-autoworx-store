@@ -2671,3 +2671,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 4. Keep production release HOLD; no production settings/data were changed in this continuation.
 
 This entry records the evidence available at 17:08 SAST; it does not claim the storage quota is cleared or PR #94 is verified.
+
+
+## SUPPLIER FOLDER CREATED — 2026-10-27 18:15 SAST
+
+- Owner reported that `suppliers/Audio Connections/` did not exist. Verified by attempting to locate the destination; created the folder structure on the default branch by adding `suppliers/Audio Connections/README.md` in commit `070330427d848157c7fc2dbba8b3410dbf3c67a9`.
+- Folder purpose is supplier reference documents only. README explicitly prohibits storing secrets/customer personal information and states supplier files must not trigger live stock, price, or catalogue imports without explicit owner authorization.
+- Verified the README is retrievable from GitHub. No supplier files have been uploaded yet; the folder is now ready for the owner to upload files from the phone using GitHub's Upload files action.
+- No production/Axxess/DNS/payment, catalogue/stock, Supabase, or Cloudflare/Netlify deployment changes were made.
