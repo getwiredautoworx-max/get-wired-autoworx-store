@@ -2560,3 +2560,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Existing artifact cleanup remains blocked in this ChatGPT GitHub connection: it exposes artifact listing/download but no delete-artifact action, and its generic fetch does not permit the private repository's Actions artifacts endpoint. Do not delete source files as a substitute; that does not free Actions artifact storage.
 - Immediate owner action still required to reclaim already-stored bytes: open repository Actions, delete obsolete generated artifacts/old workflow runs from the Actions UI, prioritising the many `background-task-checkpoint-*` artifacts and stale APK/test/report artifacts. Preserve current store source and essential handover/evidence.
 - Verification pending: check GitHub Actions storage after deleting existing artifacts. The one-day retention change prevents this particular checkpoint accumulation from persisting long-term but does not instantly delete existing artifacts.
+
+
+## 2026-10-27 follow-up: automatic old-checkpoint cleanup added
+- Added an `actions/github-script@v7` step to `.github/workflows/background-task-controller.yml` that deletes only artifacts whose names start with `background-task-checkpoint-` and whose creation time is older than 24 hours. It uses the workflow's existing `actions: write` permission.
+- Commit: `d5b0c96fd69596e17a3573eb31c1d646e1b4d3f9`. The same workflow now keeps new checkpoint artifacts for one day and prunes older checkpoint artifacts during the next successful scheduled/controller run.
+- Scope intentionally excludes Axxess package ZIPs, APKs, QA evidence, catalogue audit reports, source files, live storefront, checkout/payments, DNS, and stock/catalogue data.
+- Not yet verified as executed: the cleanup step will run on the next controller workflow execution; check the run log and Actions storage afterward. If the workflow fails before the cleanup step or other artifacts dominate storage, use the Actions UI to delete additional obsolete generated artifacts.
