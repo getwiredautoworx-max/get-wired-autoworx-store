@@ -2710,3 +2710,12 @@ This entry records the evidence available at 17:08 SAST; it does not claim the s
 - Updated `suppliers/README.md`, `suppliers/ASC/README.md`, and `suppliers/Electrocity/README.md` to record this accurately. Also added Caelex to the parent supplier index so it matches the existing folder.
 - Scope: catalogue review, extraction and analysis may proceed within the interim permission. This does **not** automatically authorise writes to live stock, prices, product listings, or production catalogue/database records. Those changes still require explicit owner approval. Do not invent supplier feeds or claim technical integration is solved.
 - No catalogue data, live stock, prices, production settings, credentials, or deployments were changed by this documentation update.
+
+
+## OWNER CONFIRMATION — ALL SUPPLIER FOLDERS AUTHORISED FOR CATALOGUE USE — 2026-10-27
+
+- Owner clarified that **all supplier folders currently in the GitHub supplier library are authorised for catalogue use**. This includes ASC, Audio Connections, Caelex, Electrocity and Planetworld.
+- This supersedes any blanket assumption that catalogue use must remain paused for a supplier solely because its IT integration is unresolved. Use the supplier folders proactively for authorised dealer catalogue review, extraction, SKU/product matching, comparison and preparation while supplier IT teams work on technical integration.
+- Updated the supplier library index and all five supplier-folder READMEs to record this owner instruction.
+- Keep source documents intact and clearly identify derived outputs. This permission does not by itself authorise changes to live stock, prices, product listings, production catalogue/database records, payment configuration, or deployments; obtain explicit owner approval for those writes.
+- No supplier source documents, live catalogue data, stock, prices, or production systems were changed by this documentation-only update.
