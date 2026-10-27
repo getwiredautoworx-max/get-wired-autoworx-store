@@ -131,3 +131,18 @@ The suffix/family distinction is material: use exact supplier codes as keys, do 
 - This upgrades the item from “no reliable exact-code match found” to **exact SKU and product-family corroborated by a third-party reseller**. It is not official manufacturer or Planetworld evidence. Do not infer current Planetworld availability, price validity, fitment, or image-use rights; no reseller price/image copied.
 - Provisional classification remains Car Audio → 9-inch Evolution screen/head unit pending authorised supplier confirmation and Get Wired category-fit review.
 - No source workbook or live catalogue/price/stock data changed.
+
+
+## Exact-SKU follow-up — 2026-10-27 SAST
+
+| Supplier SKU | Evidence checked | Result / disposition |
+|---|---|---|
+| OneNav ON263-FK2 | South African reseller page uses exact SKU and Ford Ranger XLS 2015+ title, but its detailed content describes a complete multimedia receiver and conflicts with the “fitment kit” wording. An official OneNav page found for sibling ON263-2LX is not an exact SKU match. | **Exact variant remains UNVERIFIED.** Do not transfer the sibling's identity, price, availability, or image. Keep the supplier description and category provisional pending Planetworld clarification. |
+| OneNav 90022538 | Reseller category listing shows exact SKU/description “9 Inch VW Polo 2014+”. | **Reseller description corroborated only; no official manufacturer page found.** Keep Vehicle Harnesses & Trims / VW Polo fitment provisional. Do not reuse reseller imagery without authorization. |
+| OneNav 90022567 | Reseller category listing shows exact SKU/description “9-inch / 230:220 × 130 mm / Suzuki Alivio Ciaz 2014+”. | **Reseller description corroborated only; no official manufacturer page found.** Keep Vehicle Harnesses & Trims / Suzuki fitment provisional. Exact vehicle/trim fit and image remain unverified. |
+| Harness & Trims 90013009 | Exact-code searches returned unrelated products using the same numeric code; no reliable exact manufacturer/distributor match to the source description “amplified Fakra-to-bullet antenna adaptor”. | **UNVERIFIED.** Ignore unrelated numeric-code matches; retain source description only and do not attach an image. |
+| OneNav 90011904 | Reseller product page identifies the exact SKU and Toyota 2-DIN head-unit description, displaying R448 incl. VAT. Its category listing has conflicting availability wording (in-stock product page vs out-of-stock category snippet). | **Identity corroborated by reseller only; price/availability unverified.** The R448 reseller price differs from the supplier workbook's R349 RRP and is not an authorized replacement. Keep the existing RRP−2% cost-risk flag and request supplier confirmation. |
+
+Sources inspected: reseller listing for ON263-FK2 (https://www.caraudiowarehouse.co.za/product/onenav-fitment-kit-for-ford-ranger-xls-2015-9-inch/); OneNav brand catalogue and 90011904 product page (https://nxtleveltech.co.za/brands/onenav; https://nxtleveltech.co.za/product/90011904-2-din-toyota-oem-head-unit-black); reseller category listing showing 90022538 and 90022567 (https://guardsondutyshop.co.za/collections/category-tools-electrical-wiring); official OneNav sibling listing (https://onenav.co.za/product/onenav-9inch-for-ranger-xls-2015/).
+
+No image was downloaded or copied. No source workbook, live catalogue, price, stock, active flag, or production setting was changed. These matches are identity triage only, not permission to reuse images or proof of Planetworld availability.
