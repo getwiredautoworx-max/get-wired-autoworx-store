@@ -53,4 +53,6 @@ jobs:
           name: background-task-checkpoint-${{ github.run_number }}
           path: background-task-checkpoint/
           if-no-files-found: warn
-          retention-days: 90
+          # This controller runs every 15 minutes and also after monitored workflows.
+          # Checkpoints are short-lived diagnostics, not permanent records.
+          retention-days: 1
