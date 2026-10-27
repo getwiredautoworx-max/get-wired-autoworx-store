@@ -2635,3 +2635,28 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 2. Fix the iframe-aware assertion in a staging/review branch based on current main, then validate it locally/PR-only. Never rerun the live browser smoke or Live Release Gates without explicit owner approval.
 3. Keep customer launch HOLD until live-source parity and payment readiness pass. Keep PR #96/#97 draft/unmerged until their base is reconciled to current main and owner review is complete.
 4. Continue category reconciliation only after a supported staging path can render the cited original guide pages for visual review; do not auto-move any of the 198 manual-review SKUs.
+
+
+---
+
+## CONTINUATION TASK START + RESULT — 2026-10-27 17:08 SAST
+
+### Scope and guardrails
+- Read `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and current `HANDOVER_CURRENT.md` before continuing.
+- Scope: resume GitHub Actions artifact-storage recovery and exact-head PR #94 verification.
+- No merge, production deployment, Axxess/DNS/payment change, Supabase/live catalogue/stock/price mutation, or Cloudflare/Netlify credit use.
+
+### Verified results
+- **Actions cleanup controller:** current main's `.github/workflows/background-task-controller.yml` has `actions: write` and a scheduled run every 15 minutes. Its cleanup step deletes expired checkpoint artifacts, APK/build artifacts older than seven days, and duplicate old storefront ZIPs while preserving the newest storefront package. It does not upload checkpoint artifacts unless the explicit feature flag is enabled.
+- **Prior cleanup evidence remains:** run [40501240190](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40501240190) removed three obsolete ~296 MB APKs plus two small artifacts, freeing 888,283,212 APK bytes (~847.1 MiB) and 3,946 additional bytes. The latest known upload attempt, [40505467029](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40505467029), still failed because GitHub reported its Actions storage quota had been hit and that usage recalculation takes 6–12 hours. Do not repeat upload retries before that window has elapsed and usage is rechecked.
+- **Latest controller:** [40523421013](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40523421013) succeeded on main commit `ab2ad0c937f2670b461fd551fc15a927d8051dd8` at 2026-10-27 14:40 UTC. Its run has no artifact of its own; checkpoint upload remains feature-flag disabled. This proves the controller run succeeded, not that GitHub's account-level quota has recalculated.
+- **PR #94:** remains OPEN and DRAFT. Current head `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`; base `2206a3304b37c436d0a97e3e0b5d54ece8338639`; GitHub reports `mergeable=false`. Exact-head checks are stale from 2026-10-26 and show Cloudflare Pages success, smoke success, and the separate Workers build failure. They do not constitute a fresh exact-head PR browser test. No merge or new workflow dispatch was performed.
+- **Live release gates remain blocked:** latest documented live browser smoke and release gates still failed on main commit `28f675640d505c46690dd31db86cda08a5e7052a`; failures concern iframe wrapper text assertion/source parity and unconfirmed payment readiness. Do not rerun live-domain workflows or upload to Axxess without owner approval.
+
+### Blocker and next safest actions
+1. Let the existing scheduled controller continue pruning eligible obsolete artifacts; it is configured to preserve the newest storefront ZIP and not to upload checkpoint artifacts by default.
+2. After the full 6–12-hour recalculation window from the last quota error, recheck GitHub Actions storage usage before any artifact upload/retry. Do not assume the 847 MiB deletion immediately restores quota.
+3. For PR #94, reconcile with current main and use a PR-only/local mocked browser test path; avoid commits that trigger the unresolved automatic Cloudflare Workers integration. Keep PR #94 draft/unmerged until current-head tests and owner review pass.
+4. Keep production release HOLD; no production settings/data were changed in this continuation.
+
+This entry records the evidence available at 17:08 SAST; it does not claim the storage quota is cleared or PR #94 is verified.
