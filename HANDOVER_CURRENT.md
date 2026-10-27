@@ -2551,3 +2551,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Follow-up log check: read-only `function_logs` query for 2026-10-25 16:30 UTC–2026-10-26 16:30 UTC returned no matching function-level diagnostic messages. The current function therefore provides no logged branch-level reason for the intermittent 404s; do not infer a specific upstream cause from status codes alone.
 
 - Repository code search for the exact normalized legacy filenames `WP3_4.jpg`, `GF-239_240.jpg` and public files `GW-D44F3E5F.webp`, `GW-026C7F71.webp` returned no indexed matches. Because GitHub code search may not index binary asset filenames reliably, this is inconclusive and is not evidence that those files are absent. The next check must inspect the repository tree or request the exact upstream asset URLs directly; no assets were changed.
+
+
+## 2026-10-27 GitHub Actions storage mitigation
+- Owner reported GitHub Actions included storage at 100% (0.5 GB / 0.5 GB), with quota reset shown for 2026-11-01.
+- Read `.github/workflows/background-task-controller.yml`: it runs every 15 minutes and on monitored workflow completions, and each run uploaded a uniquely named checkpoint artifact with `retention-days: 90`. This creates a high-frequency artifact accumulation risk and is a likely avoidable contributor to storage pressure.
+- Changed only the checkpoint artifact retention to `retention-days: 1` in commit `a1c72c1d44a085a8f1206201f5fa06be3a491eb5`. The accepted PR#74 storefront baseline, Axxess hosting, DNS, checkout, payment configuration, and live stock/catalogue were not changed.
+- Existing artifact cleanup remains blocked in this ChatGPT GitHub connection: it exposes artifact listing/download but no delete-artifact action, and its generic fetch does not permit the private repository's Actions artifacts endpoint. Do not delete source files as a substitute; that does not free Actions artifact storage.
+- Immediate owner action still required to reclaim already-stored bytes: open repository Actions, delete obsolete generated artifacts/old workflow runs from the Actions UI, prioritising the many `background-task-checkpoint-*` artifacts and stale APK/test/report artifacts. Preserve current store source and essential handover/evidence.
+- Verification pending: check GitHub Actions storage after deleting existing artifacts. The one-day retention change prevents this particular checkpoint accumulation from persisting long-term but does not instantly delete existing artifacts.
