@@ -2567,3 +2567,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Commit: `d5b0c96fd69596e17a3573eb31c1d646e1b4d3f9`. The same workflow now keeps new checkpoint artifacts for one day and prunes older checkpoint artifacts during the next successful scheduled/controller run.
 - Scope intentionally excludes Axxess package ZIPs, APKs, QA evidence, catalogue audit reports, source files, live storefront, checkout/payments, DNS, and stock/catalogue data.
 - Not yet verified as executed: the cleanup step will run on the next controller workflow execution; check the run log and Actions storage afterward. If the workflow fails before the cleanup step or other artifacts dominate storage, use the Actions UI to delete additional obsolete generated artifacts.
+
+
+## 2026-10-27 Actions storage automation follow-up
+
+- Owner chose automated cleanup (Option 2) to resolve Actions storage exhaustion and avoid a 6–12 hour wait.
+- Read current `.github/workflows/background-task-controller.yml` and checked run [40487414068](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40487414068): syntax validation, checkpoint build, and the existing checkpoint-prune step succeeded; only the final checkpoint artifact upload failed because Actions storage remained full. This confirms the workflow can run and delete artifacts even while its upload is blocked.
+- Expanded the existing cleanup step in commit `816d0b95cc0b4198d83e8ee4a84dce1ab005ca8e` to prune expired background checkpoints (>24 hours), obsolete APK/build artifacts (>7 days), and older duplicate named storefront ZIPs (>7 days). It deliberately preserves the newest artifact named `axxess-storefront-upload` or `storefront-upload` as the recovery/rollback candidate. It does not touch source files, live hosting, Axxess, DNS, checkout/payment, catalogue, stock, or Supabase data.
+- This change is committed to main and will be picked up by the controller's 15-minute schedule / next monitored workflow completion. It has NOT yet been verified as executed; do not claim storage is freed until the next run log confirms deletion and a subsequent upload succeeds.
+- Next: inspect the next Background Task Controller run, confirm cleanup counts, then retry the PR#94 package only after confirming storage is available. If no run occurs or other artifact types dominate usage, open the Actions artifacts UI for a broader inventory; the connected GitHub tools do not expose direct deletion of arbitrary artifacts outside a workflow.
