@@ -2811,3 +2811,12 @@ Read this handover and inspect the repository tree/workpapers. Locate existing c
 4. Cross-reference the expanded exact-code ledger against the current price list when found; separate current cost, VAT basis, historical guide price, calculated proposed retail, and confidence.
 5. Reuse the existing correction ledger, image audit and prior crosswalks; never bulk overwrite or publish from the corrupted historical workbook. Validate a staged delta and update the handover after each meaningful batch.
 6. Preserve the live storefront and no-production-write boundary until owner reviews/approves a verified import package.
+
+
+## IMAGE-CARD EXTRACTION FOLLOW-UP — 2026-10-27
+
+- Continued beyond the first code cross-check: generated **42 product-card crops** for all 42 exact-code occurrences that intersect the June–August audit workbook, directly from the illustrated Suzuki and Renault/Dacia catalogue PDFs. The crops preserve the printed ASC code, product label and picture on the same card; a montage of the crops was visually inspected.
+- Current workspace artifacts: `ASC_VEHICLE_CATALOGUE_PRICE_CROSSCHECK_PILOT.csv` (406 code-like candidate occurrences), `ASC_vehicle_catalogue_image_crop_manifest.csv` (42 crop records), 42 PNG card crops, and `ASC_vehicle_catalogue_exact_match_card_crops_montage.jpg`. These are local analysis artifacts, not committed to GitHub as binary assets; do not imply otherwise.
+- Updated the tracked pilot report with the card-crop follow-up in commit `450c27774a2005f140e6dcc446647fb1e094006b`.
+- The contact sheet confirms the crop method can retain the printed code, product description and corresponding product photo together. This is useful source evidence, but crops remain **internal reconciliation evidence**, not approved public product images. Product records with suspect prices/descriptions stay quarantined.
+- Next: expand card-level extraction beyond the current 42 workbook-intersecting code occurrences, resolve candidate codes to ASC SKU vs OE/reference code, then join verified ASC SKUs to the current trade price list if/when located. In parallel, use original pages and the existing OCR correction ledger to repair the extreme-cost OCR errors. Continue without asking for routine approval; do not publish uncertain rows or write live catalogue data.
