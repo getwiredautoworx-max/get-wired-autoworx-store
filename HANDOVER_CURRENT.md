@@ -2551,3 +2551,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Follow-up log check: read-only `function_logs` query for 2026-10-25 16:30 UTC–2026-10-26 16:30 UTC returned no matching function-level diagnostic messages. The current function therefore provides no logged branch-level reason for the intermittent 404s; do not infer a specific upstream cause from status codes alone.
 
 - Repository code search for the exact normalized legacy filenames `WP3_4.jpg`, `GF-239_240.jpg` and public files `GW-D44F3E5F.webp`, `GW-026C7F71.webp` returned no indexed matches. Because GitHub code search may not index binary asset filenames reliably, this is inconclusive and is not evidence that those files are absent. The next check must inspect the repository tree or request the exact upstream asset URLs directly; no assets were changed.
+
+
+## OWNER BASELINE DECISION — 2026-10-27
+
+- Owner clarified that PR #94 is the active candidate for current verification and Planetworld integration planning, not a permanent development baseline.
+- Once PR #94's exact head has completed required tests and the owner accepts the evidence, preserve that verified commit and test evidence as the next rollback backup.
+- PR #74 remains an older emergency fallback only; do not start new work from PR #74 while a newer verified development line exists.
+- PR #95 is currently a separate, unmerged Planetworld workbook audit/documentation PR. Its review-only supplier findings are not themselves an integrated storefront catalogue. Do not import supplier prices, stock, products, or images without the required authorization and validation.
+- Current PR #94 metadata (checked 2026-10-27): draft/open, head `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`, base `main`; exact-head runtime/browser verification is not yet established by the available evidence. Do not mark PR #94 verified or promote it to backup until that gate passes.
+- No code, deployment, production, payment, DNS, Supabase data, supplier workbook, or live catalogue changes were made as part of this owner-direction update.
