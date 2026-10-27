@@ -95,7 +95,9 @@ jobs:
             core.info(`Cleanup totals: checkpoints=${deletedCheckpoints}, obsolete APK/build artifacts=${deletedApks}, old duplicate storefront packages=${deletedOldPackages}.`);
 
       - name: Publish checkpoint artifact
-        if: always()
+        # Temporarily disabled while GitHub's Actions storage quota recalculates after cleanup.
+        # Re-enable only after storage usage is confirmed available.
+        if: github.event_name == 'workflow_dispatch' && vars.ENABLE_CHECKPOINT_ARTIFACT_UPLOAD == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: background-task-checkpoint-${{ github.run_number }}
