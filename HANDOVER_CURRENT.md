@@ -2421,3 +2421,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Manufacturer-match report updated in commit `a51ef240b9b2a2951435b87b24b2d9564863857a`. Official Alpine Europe sources now confirm exact iLX-F115D Halo11 head unit, KAE-HF11DA screen protector specifically for iLX-F115D (resolves earlier regional fitment uncertainty), and iLX-705D 2-DIN media station. Alpine USA confirms KAC-001 accessory-control module. Official S2-S69 documentation cross-references KTE-S69G grille compatibility, but no standalone exact KTE-S69G product page was found; its image source remains unverified.
 - These checks support the existing review-only Car Audio category/components. No supplier workbook, image, live catalogue, price, stock, active flag, or production configuration changed.
 - The post-script audit status is still not verifiable via the connected workflow-run reader because it only returns pull-request-triggered runs; see the explicit UI verification instruction recorded above. Do not claim the classification fix has passed until the new audit artifact is checked.
+
+
+## OFFICIAL ALPINE SPEAKER/SUBWOOFER BATCH — 2026-10-27 SAST — SUCCESS
+
+- Updated `MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` in commit `f0b89c7971f4bf7d5c8bf9dc37b8c2aa29ad5dc8`: official Alpine pages confirm R2-S69C and R2-S65C component speakers, R2-W12D4 dual-4-ohm subwoofer, and KTE-RS10G shallow-subwoofer grille. KTE-S65G has an official compatibility cross-reference from S2-S65, but no standalone exact product page was found; keep its exact image/source unverified.
+- All matches remain review-only source evidence. No image copied, supplier workbook modified, or live catalogue/price/stock/active flag changed.
+- The post-script audit workflow is still not independently observable through the connected run reader. Do not make further audit-script changes until the run for `176056e896b5c2ab14ace489a8ee64716fddaefe` is found or the documented GitHub Actions UI action is used once.
