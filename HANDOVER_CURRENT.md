@@ -2693,3 +2693,11 @@ This entry records the evidence available at 17:08 SAST; it does not claim the s
 
 - Owner identified the missing Caelex supplier folder. Created `suppliers/Caelex/README.md` on `main` in commit `6a28f729ef6c437f936d3a690870c1e724336467`, establishing the `suppliers/Caelex/` folder for Caelex catalogues, price lists and product reference documents.
 - Supplier documents have not yet been uploaded. Reference-only handling remains in force; no live stock, prices, catalogue data, production settings, or deployment settings were changed.
+
+
+## ASC SOURCE DOCUMENTS FILED UNDER SUPPLIER — 2026-10-27
+
+- Owner correctly pointed out that the ASC Buyer's Guides were still sitting at repository root after the supplier folders were created. That was an incomplete organisation step; creating `suppliers/ASC/` had not moved the existing source documents.
+- Moved all seven root-level monthly Buyer's Guide PDFs into `suppliers/ASC/` in commit `7e2cff3a9078a4b51faa0f278fddbfa4093dc1f3`, preserving their existing Git blob contents. Files moved: February, March, May, June (filename retained as `June Buyer's Guide (1).pdf`), July, August, and September. The previous root paths were removed in the same commit.
+- Updated `suppliers/ASC/README.md` to document the correct location. Verified via recursive repository tree that all seven guides are under `suppliers/ASC/` and no longer at repository root.
+- This was a file-organisation change only. No catalogue imports, stock/price changes, production/Axxess/DNS/payment changes, Supabase changes, or Cloudflare/Netlify deployments were performed. ASC supplier authorisation restriction remains unchanged.
