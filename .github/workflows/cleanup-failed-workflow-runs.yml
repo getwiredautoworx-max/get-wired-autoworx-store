@@ -41,12 +41,13 @@ jobs:
 
           while true; do
             response="$(gh api "repos/$REPOSITORY/actions/runs?per_page=100&page=$page")"
+            page_count="$(jq '.workflow_runs | length' <<< "$response")"
             count="$(jq '[.workflow_runs[] | select(.status == "completed" and .conclusion == "failure")] | length' <<< "$response")"
             while IFS= read -r run_id; do
               [ -n "$run_id" ] && failed_ids+=("$run_id")
             done < <(jq -r '.workflow_runs[] | select(.status == "completed" and .conclusion == "failure") | .id' <<< "$response")
             total=$((total + count))
-            [ "$count" -lt 100 ] && break
+            [ "$page_count" -lt 100 ] && break
             page=$((page + 1))
           done
 
