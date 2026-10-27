@@ -2820,3 +2820,20 @@ Read this handover and inspect the repository tree/workpapers. Locate existing c
 - Updated the tracked pilot report with the card-crop follow-up in commit `450c27774a2005f140e6dcc446647fb1e094006b`.
 - The contact sheet confirms the crop method can retain the printed code, product description and corresponding product photo together. This is useful source evidence, but crops remain **internal reconciliation evidence**, not approved public product images. Product records with suspect prices/descriptions stay quarantined.
 - Next: expand card-level extraction beyond the current 42 workbook-intersecting code occurrences, resolve candidate codes to ASC SKU vs OE/reference code, then join verified ASC SKUs to the current trade price list if/when located. In parallel, use original pages and the existing OCR correction ledger to repair the extreme-cost OCR errors. Continue without asking for routine approval; do not publish uncertain rows or write live catalogue data.
+
+
+---
+
+## OWNER DIRECTION — SUPPLIER CROSS-SOURCING AND PROFIT PLAN — 2026-10-27
+
+- Owner clarified the commercial objective: when two suppliers offer the same verified product, select the best source after comparing true landed cost, quality, warranty, availability and delivery reliability. Use the best accurate authorised product image and price the product for maximum sensible profit after inbound delivery, packaging, customer courier/subsidy, payment fees and expected warranty/return costs.
+- Created tracked execution plan: [SUPPLIER_TO_STORE_PROFIT_PLAN_2026-10-27.md](catalogue-audits/SUPPLIER_TO_STORE_PROFIT_PLAN_2026-10-27.md), commit `c88837dbcc45081ec9d2393b048aa6a93fba2f45`.
+- Source inventory observed in main tree:
+  - ASC: multiple dated Buyer’s Guides, October promo, specialist product catalogues, stock-arrival PDFs and vehicle catalogue material.
+  - Caelex: Halloween Week Deals PDF; treat as time-limited offers.
+  - Audio Connections: Starsound dealer price list dated 5 Aug 2026 and Sony Mobile ES dealer list dated Sept 2026.
+  - Planetworld: multi-brand XLSX price lists dated 25 Oct 2026 staged under `catalogue-source/suppliers/planetworld/incoming-xlsx/`, plus an existing cost-floor review queue.
+  - Electrocity's tracked `suppliers/Electrocity/` currently contains only its README; owner has confirmed interim permission for authorised supplier catalogues. Continue checking accessible Library/connected source files, but do not fabricate missing data.
+- Immediate order: (1) parse Planetworld dated XLSX batch into a normalised offer ledger, (2) extract Audio Connections and Caelex offers, (3) cross-match by verified manufacturer code against store and other supplier offers, (4) continue ASC code/fitment/image extraction while locating current ASC trade pricing, (5) produce a ranked product opportunity list with supplier winner and cost/margin evidence.
+- Each offer must retain supplier/source/page/date, product code/cross-reference, VAT basis, cost, offer validity, image evidence, availability evidence and cost-to-customer delivery components. Keep supplier offers separate internally but deduplicate equivalent customer-facing listings.
+- No automatic live writes. Keep PR#74 as accepted baseline; PR#94 remains unverified until exact-head tests and browser evidence pass. No live prices/stock/listings, Axxess, DNS, payments, database or production deployment changed.
