@@ -2562,3 +2562,17 @@ Continue implementation in isolated review branches, run checks, keep Axxess unt
 
 ### Handover update method
 - This monitoring note is being recorded only on the isolated documentation branch `handover/pr72-monitor-2026-10-23`; the PR #72 application branch and production branch remain untouched.
+
+
+## 2026-10-27 — PR #72 scheduled monitor (SAST)
+
+- Current PR metadata re-read from GitHub: PR #72 remains OPEN / DRAFT / UNMERGED. Base is `recovery/approved-preview-index-new` (the approved PR #70 baseline); working branch is `fix/pr70-storefront-owner-feedback-2026-10-20`. PR #68 and PR #71 were not used as starting points.
+- Latest head is `1c9f4eedcb4b58aefff3683e147c7e8e1efa46ac`. This checkpoint commit changes only `.github/workflows/pr72-live-preview-qa.yml`: removed the stale hard-coded preview URL `b1ee7dbb.get-wired-autoworx-store.pages.dev` and stale expected source SHA `e59d9d25a4814c9365100769d84ebf44ab5bdafa`, so live QA attempts to resolve the Cloudflare Pages preview for the exact triggering commit.
+- Cloudflare Pages bot reported successful deployment of commit prefix `1c9f4ee` and returned a candidate unique URL plus branch alias. **Neither is marked as a verified test URL yet.** The new live browser QA run failed before opening the page because its GitHub Actions token/API path did not find the deployment comment for the exact commit after 3 minutes. The bot comment is visible through the connected GitHub API, so the cause remains unconfirmed; likely next investigation is token permission/endpoint response plus explicit HTTP-status and comment-count diagnostics.
+- Exact-head GitHub Actions results on `1c9f4eedcb4b58aefff3683e147c7e8e1efa46ac`:
+  - Public SKU Exposure Audit run [40572387618] completed SUCCESS.
+  - Responsive layout browser acceptance run [40572387589] completed SUCCESS.
+  - PR #72 Storefront Interaction QA run [40572387964] produced **27 PASS / 0 FAIL** in its Playwright report, including category navigation, subcategory photos, mobile layout, product detail, Add to Cart, and WhatsApp SKU query. The overall job ended FAILURE only because artifact upload hit the GitHub Actions storage quota; screenshots/report artifact could not be saved.
+  - Live preview QA run [40572375942] failed before browser assertions because exact-commit preview resolution timed out. Its report artifact upload also hit the same Actions storage quota. Do not treat the older successful live QA run [40128799675] as current-head verification: it tested the stale `b1ee7dbb...` preview against old SHA `e59d9d25...`.
+- No production deploy, Axxess/DNS/payment changes, Supabase writes, supplier/catalogue/stock changes, live orders, or PR merge occurred. The Cloudflare Workers build failure remains a separate integration path and was not addressed.
+- **Next action:** repair exact-commit preview discovery by logging API response status and visible comment count, confirming the workflow token has the required read permission, then run a browser test against the exact deployed commit and verify same-tab main-category/subcategory click-through. Because the current attempt already generated a new Pages preview and the live test did not reach the browser, do not trigger another preview deployment until the resolver is corrected and the single controlled final verification path is confirmed. Keep PR #72 draft/unmerged.
