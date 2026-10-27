@@ -1,0 +1,73 @@
+name: Cleanup Failed Workflow Runs
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_delete:
+        description: "Choose yes to permanently delete all failed workflow runs in this repository"
+        required: true
+        type: choice
+        options:
+          - "no"
+          - "yes"
+        default: "no"
+
+permissions:
+  actions: write
+
+concurrency:
+  group: cleanup-failed-workflow-runs
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: List failed runs and delete only after confirmation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          CONFIRM_DELETE: ${{ inputs.confirm_delete }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Repository: $REPOSITORY"
+          echo "Finding completed workflow runs with conclusion=failure..."
+          page=1
+          total=0
+          failed_ids=()
+
+          while true; do
+            response="$(gh api "repos/$REPOSITORY/actions/runs?per_page=100&page=$page")"
+            count="$(jq '[.workflow_runs[] | select(.status == "completed" and .conclusion == "failure")] | length' <<< "$response")"
+            while IFS= read -r run_id; do
+              [ -n "$run_id" ] && failed_ids+=("$run_id")
+            done < <(jq -r '.workflow_runs[] | select(.status == "completed" and .conclusion == "failure") | .id' <<< "$response")
+            total=$((total + count))
+            [ "$count" -lt 100 ] && break
+            page=$((page + 1))
+          done
+
+          echo "Failed workflow runs found: $total"
+          if [ "$total" -eq 0 ]; then
+            echo "Nothing to delete."
+            exit 0
+          fi
+
+          if [ "$CONFIRM_DELETE" != "yes" ]; then
+            echo "SAFE MODE: no runs were deleted. Re-run this workflow and choose confirm_delete=yes to delete failed runs."
+            printf '%s\n' "${failed_ids[@]}" | head -n 30
+            exit 0
+          fi
+
+          deleted=0
+          for run_id in "${failed_ids[@]}"; do
+            echo "Deleting failed run $run_id"
+            gh api --method DELETE "repos/$REPOSITORY/actions/runs/$run_id"
+            deleted=$((deleted + 1))
+          done
+
+          echo "Deletion requests completed: $deleted"
+          echo "Only completed runs whose conclusion was failure were targeted. Successful, cancelled, queued, and in-progress runs were not targeted."
