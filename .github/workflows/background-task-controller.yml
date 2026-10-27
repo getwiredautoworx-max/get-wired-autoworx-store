@@ -46,33 +46,49 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python scripts/background_task_controller.py
 
-      - name: Prune expired background checkpoint artifacts
+      - name: Prune obsolete generated artifacts before checkpoint upload
         uses: actions/github-script@v7
         with:
           script: |
-            const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+            const now = Date.now();
+            const checkpointCutoff = now - 24 * 60 * 60 * 1000;
+            const staleBuildCutoff = now - 7 * 24 * 60 * 60 * 1000;
             let page = 1;
-            let deleted = 0;
+            let deletedCheckpoints = 0;
+            let deletedApks = 0;
+            let deletedOldPackages = 0;
+            const artifacts = [];
             while (true) {
               const { data } = await github.rest.actions.listArtifactsForRepo({
                 ...context.repo, per_page: 100, page
               });
-              if (!data.artifacts.length) break;
-              for (const artifact of data.artifacts) {
-                if (
-                  artifact.name.startsWith('background-task-checkpoint-') &&
-                  new Date(artifact.created_at).getTime() < cutoff
-                ) {
-                  await github.rest.actions.deleteArtifact({
-                    ...context.repo, artifact_id: artifact.id
-                  });
-                  deleted++;
-                }
-              }
+              artifacts.push(...data.artifacts);
               if (data.artifacts.length < 100) break;
               page++;
             }
-            core.info(`Deleted ${deleted} background checkpoint artifacts older than 24 hours.`);
+            // Keep the newest Axxess storefront ZIP as the rollback/recovery candidate.
+            const packages = artifacts
+              .filter(a => /^(axxess-storefront-upload|storefront-upload)$/i.test(a.name))
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            const newestPackageId = packages[0]?.id;
+            for (const artifact of artifacts) {
+              const created = new Date(artifact.created_at).getTime();
+              let reason = null;
+              if (artifact.name.startsWith('background-task-checkpoint-') && created < checkpointCutoff) {
+                reason = 'expired checkpoint';
+              } else if (/\.apk$|\b(apk|android-build|owner-apk|store-apk)\b/i.test(artifact.name) && created < staleBuildCutoff) {
+                reason = 'obsolete APK/build artifact older than 7 days';
+              } else if (/^(axxess-storefront-upload|storefront-upload)$/i.test(artifact.name) && artifact.id !== newestPackageId && created < staleBuildCutoff) {
+                reason = 'older duplicate storefront package';
+              }
+              if (!reason) continue;
+              core.info(`Deleting artifact id=${artifact.id} name=${artifact.name} size=${artifact.size_in_bytes} reason=${reason}`);
+              await github.rest.actions.deleteArtifact({ ...context.repo, artifact_id: artifact.id });
+              if (reason === 'expired checkpoint') deletedCheckpoints++;
+              else if (reason.startsWith('obsolete APK')) deletedApks++;
+              else deletedOldPackages++;
+            }
+            core.info(`Cleanup totals: checkpoints=${deletedCheckpoints}, obsolete APK/build artifacts=${deletedApks}, old duplicate storefront packages=${deletedOldPackages}.`);
 
       - name: Publish checkpoint artifact
         if: always()
