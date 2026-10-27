@@ -26,6 +26,15 @@ HEADER_TERMS = {
 }
 def norm(value):
     return re.sub(r"[^a-z0-9]+", " ", str(value or "").strip().lower()).strip()
+def contains_term(text, term):
+    """Match normalized whole words/phrases; avoid e.g. 'remo' matching 'remote'."""
+    term = norm(term)
+    if not term: return False
+    if term.endswith("y") and len(term) > 1:
+        pattern = re.escape(term[:-1]) + r"(?:y|ies)"
+    else:
+        pattern = re.escape(term) + r"(?:s|es)?"
+    return re.search(rf"(?<![a-z0-9]){pattern}(?![a-z0-9])", text) is not None
 def as_text(value):
     if value is None: return ""
     if isinstance(value, float) and value.is_integer(): return str(int(value))
@@ -53,8 +62,16 @@ def field_score(header, terms):
         t = norm(term)
         if t and (t in h or h in t and len(h) > 2): return 70 - i
     return 0
-def guess_category(brand, description, model, filename):
+def guess_category(brand, description, model, filename, division=""):
     text = norm(" ".join([brand, description, model, filename]))
+    # Supplier Division is the primary source classification. Prevent generic
+    # words such as "display", "receiver", or "remote" from moving Car Audio
+    # records into Home Theatre or Musical Instruments. Explicit marine/boat
+    # language remains a review-only Marine Audio signal.
+    if norm(division) == "car audio":
+        if any(contains_term(text, w) for w in ("marine", "boat", "nautic")):
+            return "Marine Audio"
+        return "Car Audio"
     rules = [
       ("Musical Instruments & Accessories", ("ibanez", "tama", "remo", "paiste", "on stage", "planetwaves", "mason", "medeli", "crossrock", "guitar", "bass guitar", "electric bass", "cymbal", "snare", "drum", "percussion", "ukulele", "mandolin", "piano bench", "keyboard bench", "powerpad")),
       ("Headsets & Conferencing", ("jabra", "jlab", "headset", "earbuds", "earbud", "panacast", "video bar", "conference phone", "speakerphone")),
@@ -69,7 +86,7 @@ def guess_category(brand, description, model, filename):
       ("Cables / Accessories", ("cable", "adapter", "bracket", "mount", "remote", "accessory", "connector")),
     ]
     for label, words in rules:
-        if any(norm(w) in text for w in words): return label
+        if any(contains_term(text, w) for w in words): return label
     return "REVIEW - UNCLASSIFIED"
 def guess_component(division, description, model, brand=""):
     d = norm(division)
@@ -226,7 +243,7 @@ for path in files:
                 if columns["cost"] is None: flags.append("COST_COLUMN_NOT_MAPPED")
                 if columns["rrp"] is None: flags.append("RRP_COLUMN_NOT_MAPPED")
                 if not brand: brand = path.stem.split("-price-list")[0].replace("-", " ").replace("_", " ").title()
-                cat = guess_category(brand, " ".join([product_type, desc]), model, path.name)
+                cat = guess_category(brand, " ".join([product_type, desc]), model, path.name, division)
                 component = guess_component(division, desc, model, brand)
                 proposed_1 = round(rrp * 0.99, 2) if rrp is not None else None
                 proposed_2 = round(rrp * 0.98, 2) if rrp is not None else None
