@@ -160,3 +160,16 @@ No image was downloaded or copied. No source workbook, live catalogue, price, st
 | KAE-HF11DA | Alpine official product page identifies the exact accessory code as the anti-reflective screen protector for the Halo11. The page includes inconsistent internal copy referring to Halo9 in one feature sentence but otherwise identifies the 11-inch/iLX-F511 fitment. https://www.alpine-usa.com/product/kae-hf11da_alpine_halo11_screen_protector | Car Audio → Car Audio Accessories. Exact accessory code/type matched; confirm the regional iLX-F115D vs iLX-F511 cross-reference with supplier before asserting exact head-unit compatibility. |
 
 Official pages contain product imagery, but no image was downloaded or copied. Manufacturer page availability does not by itself grant image-reuse rights or prove current Planetworld stock/price. These are source-backed identity/category checks only; no supplier workbook or live catalogue fields changed.
+
+
+## Official Alpine follow-up batch — 2026-10-27 SAST
+
+| Supplier model/SKU | Official evidence | Review-only category/component |
+|---|---|---|
+| iLX-F115D | Alpine Europe official page confirms Halo11 11-inch media receiver/head unit with 1-DIN chassis. https://finland.alpine-europe.com/p/Products/SingleView/ilx-f115d | Car Audio → Car Head Units & Receivers. Exact model/type confirmed. |
+| KAE-HF11DA | Alpine Europe official page explicitly identifies the anti-reflective screen protector for iLX-F115D, resolving the regional fitment ambiguity noted against the US page. https://finland.alpine-europe.com/p/Products/SingleView/kae-hf11da | Car Audio → Car Audio Accessories. Exact accessory and regional fitment confirmed. |
+| iLX-705D | Alpine Europe official page confirms the 2-DIN digital media station/head unit, 7-inch display, wireless Apple CarPlay and Android Auto support. https://finland.alpine-europe.com/p/Products/SingleView/ilx-705d | Car Audio → Car Head Units & Receivers. Exact model/type confirmed. |
+| KAC-001 | Alpine official page confirms the external accessory control module for controlling vehicle accessories through compatible Alpine dash systems. https://www.alpine-usa.com/product/kac-001 | Car Audio → Car Audio Accessories. Exact model/type confirmed. |
+| KTE-S69G | Alpine's official S2-S69 speaker page confirms that the 6×9-inch S-Series coaxial speaker is compatible with the KTE-S69G grille. https://www.alpine-usa.com/product/s-series-speakers-s2s69 | Car Audio → Car Speaker Pods, Grilles & Enclosures. Compatibility cross-reference only; no exact KTE-S69G product page located in this pass, so its standalone image/source remains unverified. |
+
+Official pages include imagery for some models; no image was downloaded or copied. Manufacturer identity/fitment confirmation does not grant re-hosting rights or confirm Planetworld stock/price. No source XLSX or live catalogue data changed.
