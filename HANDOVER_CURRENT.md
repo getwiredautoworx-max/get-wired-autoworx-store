@@ -2595,3 +2595,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - This verifies the automation no longer fails on the known checkpoint-upload quota error. It does **not** prove that GitHub's storage meter has recalculated or that a new package artifact can upload.
 - Current blocker is external quota-accounting refresh. First cleanup run ended at 2026-10-27 10:25 UTC; GitHub states recalculation can take 6–12 hours. Do not repeatedly retry package upload before that window. After 2026-10-27 16:25 UTC, check Actions storage/quota status and retry the PR#94 packaging workflow once; if still full, allow until 22:25 UTC and inspect remaining artifacts before any further deletions.
 - PR#94 is still not verified and must not be declared the rollback backup until package assembly, ZIP integrity, and artifact upload all succeed. No production/Axxess/DNS/payment/catalogue/stock/Supabase changes were made.
+
+
+## CONTINUATION TASK START — 2026-10-27 14:40 SAST
+
+- Read `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and latest update `HANDOVER_UPDATE_2026-10-26_MONITOR_RUN_08.md` before monitoring. Search found no repository-root `HANDOVER_CHECKPOINT_*.md`; the latest identified monitor update is Run 08.
+- Task: inspect actual latest GitHub Actions run status, conclusion, attempt and jobs for staging category navigation Chromium acceptance, buyer-guide extraction, ASC Exact-SKU Image Sync, storefront smoke/production QA, Pages/Cloudflare deployment, and monitor/controller workflows. Check eligible failed/cancelled/stopped non-production jobs for supported failed-only rerun, avoiding duplicates. Record exact run/job/commit results and the next precise action.
+- Guardrails: do not rerun production/live-site workflows, mutate live data, change DNS/payment credentials, deploy to Axxess, alter Supabase secrets, or spend Cloudflare/Netlify credits without explicit owner approval. Do not restart the catalogue or auto-move category-review products; source/OCR presence is not approval. Preserve locked pricing/category rules.
+- **Start status:** monitoring in progress. No application source, live data, hosting, DNS, payment or deployment settings changed.
+- **Next action:** query the latest Actions run list and inspect latest attempts/jobs for each named workflow before any rerun decision.
