@@ -30,11 +30,9 @@ jobs:
           npm init -y
           npm install --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
-      - name: Run browser checks against deployed preview URL
+      - name: Resolve the exact commit preview and run browser checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PREVIEW_URL: https://b1ee7dbb.get-wired-autoworx-store.pages.dev/store.html
-          EXPECTED_DEPLOYED_SHA: e59d9d25a4814c9365100769d84ebf44ab5bdafa
         run: node .github/scripts/pr72-live-preview-qa.cjs
       - name: Upload live preview screenshots and report
         if: always()
