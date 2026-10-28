@@ -34,7 +34,7 @@ on:
       - 'staging/trigger-axxess-package-build.md'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   package:
     runs-on: ubuntu-latest
@@ -69,10 +69,27 @@ jobs:
           (cd axxess-upload && zip -qr ../axxess-storefront-upload.zip .)
           unzip -t axxess-storefront-upload.zip
           for required in index.html store.html product.html products.html checkout.html checkout-v2.html category.html returns-refunds.html terms-and-conditions.html; do unzip -Z1 axxess-storefront-upload.zip | grep -Fxq "$required" || { echo "ZIP missing required page: $required"; exit 1; }; done
-      - name: Upload deployment ZIP
+      - name: Upload deployment ZIP to Actions artifact storage
+        id: upload_artifact
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: axxess-storefront-upload
           path: axxess-storefront-upload.zip
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 1
+      - name: Publish private draft-release fallback if artifact upload fails
+        if: steps.upload_artifact.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TARGET: ${{ github.event.pull_request.head.sha || github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="internal-axxess-package-${GITHUB_RUN_ID}"
+          gh release create "$tag" axxess-storefront-upload.zip \
+            --draft \
+            --title "Internal QA Axxess package — run ${GITHUB_RUN_ID}" \
+            --notes "Private draft fallback for the verified storefront ZIP. Created because GitHub Actions artifact storage rejected the upload. Not a production release. Source run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}." \
+            --target "$RELEASE_TARGET"
+          gh release view "$tag" --json url,isDraft,assets
