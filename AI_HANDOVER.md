@@ -306,3 +306,20 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Cloudflare Pages deployment bot confirms exact commit `c76d02017176f84634eed842e080a36169b4133e` deployed successfully. Owner preview: https://1b6e1a1f.get-wired-autoworx-store.pages.dev/store . Branch alias: https://fix-pr70-storefront-owner-fe.get-wired-autoworx-store.pages.dev/store . Deployment logs: https://dash.cloudflare.com/?to=/43ab7b7bd3689458e2d0de39f6e897ca/pages/view/get-wired-autoworx-store/1b6e1a1f-b209-476b-8566-39512c0af356 .
 - The Find a Part button is now a ninth tile inside the existing category grid, so it shares the same card footprint and responsive layout as the other category buttons. The former full-width standalone vehicle finder section is removed. Clicking the tile calls the store-search dialog; the dialog retains the request-unavailable-item path.
 - Exact deployment success is confirmed. Fresh browser interaction/screenshot QA on this SHA is still not recorded; owner can test preview now. PR #72 remains draft/unmerged, PR #70 baseline unchanged; no production/Axxess/DNS/payment/stock/catalogue changes.
+
+
+## 2026-10-28 — Electrocity catalogue SKU mapping started from glowplug PDFs
+- Owner requested inspection of the GitHub Electrocity supplier folder and processing according to the supplier-SKU instructions: create unique internal SKUs by supplier, preserve all printed supplier codes and dimensional data, and keep similar products from Electrocity and ASC distinct while making comparable items easy to compare.
+- Inspected the current `main` branch at `suppliers/Electrocity/`. The current folder contains `converters.pdf`, `Ignition Looms-Coils-Modules/(1)IGNITION MODULES.pdf`, `IGNITION COILS.pdf`, and `IGNITION LOOMS.pdf`, plus README files. The two glowplug PDFs were available as this conversation's attachments but were **not listed in the GitHub Electrocity folder** during the inspection. Do not claim they were committed there.
+- Extracted the two attached source pages:
+  - Isuzu: Glowplug PI40; Isuzu-SLR DA120/DH100; printed codes 220246, PGL023, PGL624; TL 90 mm; Tip OD 6 mm; Thread OD 7.7 mm; 22.5 V; source catalogue date 22/06/2021.
+  - Mazda: Glowplug PZ33; Mazda T3000 / glowplug R2; printed codes 213105, PGL002, PGL511; TL 85 mm; Tip OD 5 mm; Thread OD 10 mm; 10.5 V; source catalogue date 22/06/2021.
+- Created internal working SKUs `GWA-EC-000001` (Isuzu PI40) and `GWA-EC-000002` (Mazda PZ33). All three printed codes per item are preserved, but their individual roles are marked unconfirmed because the source PDF does not label them. Cost and stock were not shown and remain blank. No live catalogue, database, price, or stock records were changed.
+- Added committed working mapping files:
+  - `suppliers/Electrocity/catalogue-work/GLOWPLUGS_SKU_MAP.csv`
+  - `suppliers/Electrocity/catalogue-work/README.md`
+  - CSV commit: `c438918eca0a7d73f7f82fb264137f2c43c55615`
+  - README commit: `2e15243c906f909dfb4c3f77d09c7b7571d1dfd5`
+- Created local deliverables from the two attached source PDFs: `Get_Wired_AutoWorx_Electrocity_Glowplugs_SKU_Map.xlsx` and `Get_Wired_AutoWorx_Electrocity_Glowplugs_Catalogue.pdf` (available in the current ChatGPT turn's generated files; not committed to GitHub as binary files).
+- Important next steps: (1) confirm/upload the two glowplug PDFs into `suppliers/Electrocity/` if they are intended to be retained in GitHub; (2) extract and map the existing converter and ignition PDFs, preserving all source data; (3) compare Electrocity items against ASC only where there is sufficient product/code/specification evidence; (4) never invent equivalence, cost, stock, or supplier-code roles; (5) keep all work separate from live product/stock/pricing imports until the owner explicitly approves a verified import.
+- Launch hold remains unchanged. No production deploy, Axxess/DNS, checkout/payment, live product, live stock, or live pricing changes were made.
