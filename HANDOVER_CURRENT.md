@@ -1,3 +1,11 @@
+## CONTINUATION TASK START — 2026-10-28 15:24 SAST
+
+- Task: scheduled continuation of Get Wired AutoWorx work under `AI_HANDOVER_PERMANENT.md`; inspect latest checkpoints/updates and current GitHub Actions evidence before any safe staging-only recovery.
+- Initial read: `AI_HANDOVER_PERMANENT.md` (blob `809cd828bee0e43656a670e5b1bfb7c671919ed6`) and `HANDOVER_CURRENT.md` (blob `a045b93c61026258f85a206d3b5e2cfb6c98c5eb`) were read from main. Previous current-handover entry reports no verified Actions-storage recalculation, PR #94 not tested at exact head, live smoke/payment gates still blocked, and old image-audit failure requiring staging diagnosis.
+- Start status: in progress; prior run IDs are historical until queried live. Latest `HANDOVER_CHECKPOINT_*.md` and `HANDOVER_UPDATE_*.md` still to be enumerated and read.
+- Guardrails: no production reruns/deployments, no Axxess/DNS/payment credential changes, no live product/price/stock/category writes, and no Cloudflare/Netlify credit consumption. Only rerun a failed/cancelled/stopped safe staging job if its latest status and supported rerun action are verified.
+- Next precise action: enumerate the latest checkpoint/update files, then query the latest attempts/statuses for staging category navigation, buyer-guide extraction, ASC Exact-SKU Image Sync, image audit, storefront smoke/production QA, and Pages/Cloudflare deployment workflows.
+
 ## CONTINUATION MONITOR — 2026-10-27 16:45 SAST
 
 - Rechecked GitHub Actions cleanup automation. Background Task Controller run [40523421013](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40523421013) completed SUCCESS at 16:41 SAST; syntax validation, checkpoint generation and artifact-pruning steps passed. Checkpoint upload was skipped by design.
