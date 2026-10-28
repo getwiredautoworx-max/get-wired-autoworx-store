@@ -2922,3 +2922,10 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
   4. Revisit homepage content smoke assertion if still part of the release checklist; prior failure was `PAGE_CONTENT` after redirect to `/store.html`, while mobile overflow and console/network checks passed.
   5. Keep supplier reconciliation, catalogue optimisation and image work outside the launch critical path unless a concrete launch-critical defect is found.
 - Do not touch production/Axxess/DNS/live catalogue, prices, stock, database or payment activation without explicit owner approval. Continue to update this file after each material result.
+
+
+## Automation update — 2026-10-28 — Actions storage and PR #94
+- GitHub Actions storage is **not confirmed resolved**. PR #96 and #97 upload retries failed again with `Artifact storage quota has been hit`; ZIP integrity passed. Stop retries until fresh evidence shows quota availability. Do not repeat deletion of Axxess packages already removed by the owner.
+- The permanent handover file was too large for the connected contents update action to accept. A small addendum was successfully committed at `handover-updates/2026-10-28-actions-storage-and-pr94.md` (commit `299742959e88a0aa9080d4afc86fb94d867df2a6`).
+- PR #94 remains draft/open/unmerged. Existing smoke run `40272185866` passed Part Search load-race, early Request Part, and responsive homepage checks at 320/390/768/1365 px. On PR head, Cloudflare Pages passed but Workers Builds failed. Investigate the Workers failure without triggering deployment/paid credits; do not merge or call release-ready.
+- No production, live catalogue/stock/pricing, Supabase, Axxess/DNS/payment, or supplier workbook changes were made.
