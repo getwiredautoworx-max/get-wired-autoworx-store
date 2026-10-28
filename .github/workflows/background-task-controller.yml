@@ -36,7 +36,7 @@ jobs:
     # workflow_run gives event-driven checks when monitored workflows finish.
     # A 15-minute schedule catches events that were missed or delayed.
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
