@@ -3131,3 +3131,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Staging Category Navigation Chromium Acceptance `38521429939` and Buyer Guide PDF Text Extraction `38525300051` remain successful latest observed runs from 2026-10-14; their workflow files are absent from current main, so no current workflow could be rerun.
 - Data controls unchanged: 198 category-review rows remain manual-review only (OCR presence is not approval); the 107-row October price queue still indicates no price writes. No catalogue restart/import, live product/category/price/stock write, Supabase write/deploy, Axxess/DNS/payment change, PR merge, or production deployment.
 - Next: keep PRs #100/#101 draft pending owner review; verify account-wide Actions storage after recalculation and inspect other repositories if still full; owner UI check of ASC workflow enabled/scheduled state; continue original-page visual category review; keep launch HOLD until payment readiness passes.
+
+
+## POST-RETRY CONTROLLER CHECK — 2026-10-28
+
+- After the failed-job-only image-audit retry (run `40659812384`, attempt 3, failure), Background Task Controller run `40703477112`, attempt 1, SUCCESS at 2026-10-28 14:11:45 UTC on task-start commit `e90c76d463050e94607e62b0dec2a8118734f1bd`; job `122869225623`. Syntax validation, checkpoint generation, and pruning passed; checkpoint artifact upload skipped by design.
+- Latest repository artifact inventory remains 420 artifacts / 9,294,057 bytes (8.86 MiB), with zero eligible deletions. No relevant workflows were queued/in progress at the final status check. Actions storage is still unresolved/unverified at account level because artifact uploads continue to fail with the quota error.
+- Supplemental detailed record: `HANDOVER_UPDATE_2026-10-28_MONITOR_RUN_11.md`; latest master summary: `HANDOVER_CURRENT.md`.
