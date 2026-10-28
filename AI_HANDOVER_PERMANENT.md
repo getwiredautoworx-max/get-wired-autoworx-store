@@ -3079,3 +3079,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Current confirmed failures remain PR #96 run `40486053287` / retry job `122667433890` and PR #97 run `40486777889` / retry job `122667691005`; both package ZIPs passed integrity but artifact upload failed with the Actions storage quota error. Do not rerun until storage availability is verified.
 - Current connected GitHub tool inventory exposes workflow-run-specific artifact listing, but no repository-wide artifact inventory or artifact-delete action. The generic read-only GitHub fetch does not accept the Actions artifacts collection endpoint. Do not claim a fresh storage inventory or successful cleanup until verified via GitHub UI or a supported action.
 - No production/deployment, supplier workbook, live catalogue/price/stock, Supabase, Axxess, DNS, or payment changes.
+
+
+## Automation run — 2026-10-28 — immediate Actions storage resolution task start
+- **Status: IN PROGRESS.** Read the latest permanent handover first (current file blob `70820a432f45aac852f8abc286948fc51fbbab70`).
+- **Owner clarification preserved:** storefront-ready Axxess upload packages from around 2026-10-15 were already deleted; do not ask for that again or assume those packages explain the current quota.
+- **Scope:** identify any supported, read-only way to determine remaining GitHub Actions storage consumers and GitHub Packages usage; inspect recent runs/artifacts and cleanup workflow status; take only safe, evidence-backed staging actions.
+- **Hard boundaries:** no production/deployment reruns, PR merges, live catalogue/price/stock/active-flag changes, Supabase writes, supplier workbook edits/imports, Axxess/DNS/payment changes, or release-credit consumption without explicit approval. Preserve rollback and audit evidence. Do not retry PR #96/#97 package uploads until storage is verified available.
+- **Current known blocker:** PR #96 run `40486053287` and PR #97 run `40486777889` passed ZIP integrity but failed upload with the Actions storage quota error. Prior connected tooling lacked repository-wide artifact inventory/deletion. This run must verify whether any new supported action exists before claiming cleanup.
