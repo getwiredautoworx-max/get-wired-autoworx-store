@@ -2991,3 +2991,12 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 - Read-only check-runs inspection reconfirmed PR #94 head `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`: Cloudflare Pages preview succeeded at `https://706d6da1.get-wired-autoworx-store.pages.dev`; GitHub Actions smoke passed; Workers Builds check failed on 2026-10-26.
 - The repository's `wrangler.toml` configures Pages output (`pages_build_output_dir = "."`) and has no Worker `main` entrypoint. The repo's own Cloudflare Pages production deploy workflow is manual-only (`workflow_dispatch`), and no deploy was triggered. Evidence supports treating the failed Workers Builds check as a separate/legacy Worker-service integration rather than proof that the Pages preview failed. Do not change Worker configuration or spend Cloudflare credits without owner approval; verify the intended production target at final release testing.
 - No Cloudflare/Netlify deploy, merge, or production change was performed.
+
+
+## SCHEDULED CONTINUATION TASK START — 2026-10-28 16:04 SAST
+
+- Read `AI_HANDOVER_PERMANENT.md` (blob `44e98620c05e9babf09dc8366d8932c4506be4a8`) and the latest `HANDOVER_CURRENT.md` (blob `9a4137cf64ee76b62c208400693a8d960bf80c4a`) before acting.
+- Previous in-progress item: PR #100 frame-aware storefront smoke regression run `40699575226` was queued at 13:46:48 UTC; latest completion, subsequent staging workflow runs, and current attempts must be rechecked against live GitHub records.
+- Task: enumerate latest checkpoint/update handovers and inspect current GitHub Actions runs/jobs/attempts for staging category navigation, buyer-guide extraction, ASC Exact-SKU Image Sync, image audit, storefront smoke/production QA, and GitHub Pages/Cloudflare deployment workflows. Retry only a verified failed/cancelled/stopped safe staging job when supported and not already queued/in progress.
+- Guardrails: no production workflow reruns/deployments; no Axxess/DNS/payment changes; no live product/category/price/stock writes; no Supabase writes; no Cloudflare/Netlify credit use.
+- Status: in progress. Next precise action: enumerate current handover filenames and workflow run records; poll PR #100 and inspect the latest scheduled/PR-only runs before deciding whether any safe retry is warranted.
