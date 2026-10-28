@@ -1,3 +1,11 @@
+## CONTINUATION IN-PROGRESS — 2026-10-28 15:47 SAST
+
+- Follow-up test refinement on draft PR #100: `.github/workflows/storefront-smoke.yml` now exercises the same frame-aware body-text collection strategy as the read-only smoke workflow, not only a direct iframe locator. Review branch head is `7ae4b50f4beb50268ace128d3257a3bd0d4dede3`.
+- PR-only Storefront Smoke Test run `40699575226`, attempt 1, was observed QUEUED at 13:46:48 UTC. Do not trigger another run while queued/in progress.
+- Next precise action: poll run `40699575226` and inspect its final job conclusion/log marker before claiming the updated assertion logic passed. No production workflow was dispatched and no live changes were made.
+
+---
+
 ## CONTINUATION MONITOR RESULT — 2026-10-28 15:36 SAST
 
 - **Review-only QA fix passed:** draft PR #100 `fix/iframe-aware-readonly-smoke-2026-10-28`, head `e74516695664375bb8cbb1d7b7753c5635f38f8b`, contains an iframe-aware PAGE_CONTENT assertion plus a local wrapper regression test. PR-only Storefront Smoke Test run `40697602940`, attempt 1, completed SUCCESS. The local test verified 8 main categories, 12 Auto Electrical options, and `store.html` iframe text length 1,788. PR remains draft/open/unmerged; no production test was rerun.
