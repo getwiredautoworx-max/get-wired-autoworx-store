@@ -224,3 +224,15 @@ This batch adds four exact-model manufacturer-source records. The manufacturer p
 - The remaining 26 Home Retail rows (20 Roborock and 6 Aiper) are explicitly held outside the current core store categories for owner mapping; they are not forced into car/audio categories.
 - Component categories remain heuristic review suggestions. They are not approved taxonomy changes or an import file. Exact-model image research is a separate evidence column; rows without evidence are labelled “Not yet individually researched” and receive no image.
 - Review workbook: `Planetworld_Category_Image_Review_2026-10-28.xlsx` was generated for owner review outside the repository. Supplier price and stock columns are omitted. No images were copied, no supplier workbook changed, and no live catalogue/prices/stock changed.
+
+
+## Official manufacturer image-source batch — 2026-10-28 (additional brands)
+
+| Supplier model/SKU | Evidence | Category/component | Image disposition |
+|---|---|---|---|
+| Jabra 1000-04 | Jabra's official GN1000 support page lists item number 1000-04 and model number 01-0369, identifying the remote handset lifter. | Installed AV → Headset & Conferencing Accessories | Exact item identity confirmed; official support page includes documentation, not proof of image reuse rights. Source: https://www.jabra.com/en-emea/supportpages/jabra-gn1000 |
+| Ibanez A527-IPT | Ibanez's official A527 product page lists A527-IPT as the Iron Pewter colour variant of the A527 7-string electric guitar. | Musical Instruments → Guitars & Basses | Exact model/colour variant confirmed; image reuse rights unresolved. Source: https://www.ibanez.com/na/products/detail/a527_1p_01.html |
+| Shure SM58SE | Shure's official product page identifies SKU SM58SE as the SM58 vocal microphone with on/off switch. | Musical Instruments / Pro Audio → Microphones | Exact SKU/model confirmed; image reuse rights unresolved. Source: https://www.shure.com/en-MEA/products/microphones/sm58?variant=SM58SE |
+| Klipsch 1007161 / AWR-650-SM | The supplier row description contains AWR-650-SM; Klipsch's official product page identifies the exact AWR-650-SM as an outdoor rock speaker and provides product imagery/specification. The numeric supplier code 1007161 is not established as a manufacturer SKU by this source. | Home CI → Installed Speakers / Outdoor Speakers | Product model in description matched; keep numeric supplier-code mapping separate. Image reuse rights unresolved. Source: https://www.klipsch.com/products/awr-650-sm |
+
+These checks add four model/variant records across additional brands. The official pages substantiate model identity and/or variant and offer image references, but no image was downloaded or copied and no re-hosting permission was assumed. Do not infer supplier stock or pricing from manufacturer pages.
