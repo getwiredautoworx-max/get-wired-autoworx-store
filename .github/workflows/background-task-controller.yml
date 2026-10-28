@@ -70,6 +70,11 @@ jobs:
               if (data.artifacts.length < 100) break;
               page++;
             }
+            const totalBytes = artifacts.reduce((sum, a) => sum + Number(a.size_in_bytes || 0), 0);
+            core.info(`ARTIFACT_INVENTORY count=${artifacts.length} total_bytes=${totalBytes} total_MiB=${(totalBytes / 1048576).toFixed(2)}`);
+            for (const a of [...artifacts].sort((x, y) => Number(y.size_in_bytes || 0) - Number(x.size_in_bytes || 0)).slice(0, 25)) {
+              core.info(`ARTIFACT_INVENTORY_ITEM id=${a.id} name=${a.name} bytes=${a.size_in_bytes} created=${a.created_at} expired=${a.expired}`);
+            }
             // Keep the newest Axxess storefront ZIP as the rollback/recovery candidate.
             const packages = artifacts
               .filter(a => /^(axxess-storefront-upload|storefront-upload)$/i.test(a.name))
