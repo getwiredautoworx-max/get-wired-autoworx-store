@@ -2486,3 +2486,34 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - PR #95 is still OPEN in GitHub search. The connector does not expose the current `mergeable` field. Combined status and commit-associated PR-triggered workflow-run results for head `90f12e905c65b0570ac86f8db1941cfe3b0f1182` are empty; push-triggered audit status remains unobservable through this connector.
 - Latest inspectable Planetworld audit remains run `40290002999` / job `121462561811` SUCCESS, artifact `12635711006` available. The artifact is based on head `4b39cab1354fc12f2f7a1059756c74dec31d7e64` and predates the classification fix `176056e896b5c2ab14ace489a8ee64716fddaefe`; do not claim the fix validated.
 - No additional script/input commit or audit rerun was made. Required next action remains: Actions → Planetworld Workbook Audit (Read Only) → inspect current branch run for the fix; if absent, Run workflow once on this branch, then verify job/artifact. Do not merge PR #95 until divergence and mergeability are resolved.
+
+## IMMEDIATE CONTINUATION — 2026-10-28 10:01–10:05 SAST
+
+### Task-start and verification
+- Permanent handover was read first. Task-start entry committed to main as `657fe6e1c7e08d842e99f4fb51419a1fe5027d9c` before further inspection.
+- Read this current handover and reviewed the current mobile-review report plus manufacturer-match continuation report. The 19 zero-RRP rows remain owner-only review; no supplier XLSX, live catalogue, price, stock, active flag, or image was changed.
+
+### Planetworld audit status — BLOCKED on workflow dispatch
+- Latest inspectable run remains `40290002999`; job `121462561811` completed SUCCESS. Artifact `12635711006`, name `planetworld-workbook-audit`, size 229,303 bytes, digest `sha256:8cbd7f0365762dddd72a60266c275472ee45a65b8227023e15c903d5d94db4da`, created 2026-10-26 08:06:48 UTC and expires 2026-11-09 08:06:48 UTC.
+- Artifact input head is `4b39cab1354fc12f2f7a1059756c74dec31d7e64`, before script correction `176056e896b5c2ab14ace489a8ee64716fddaefe`; it does not verify that correction.
+- Workflow `.github/workflows/planetworld-workbook-audit.yml` exists on this branch (blob `ad3380965646264992c20469dbf8762a9e0168fd`) and declares `workflow_dispatch`, push and PR triggers, with `contents: read` and read-only audit steps. The connected GitHub action set has no workflow-dispatch/start-run action; the run-list reader only returns PR-triggered runs, so it cannot confirm a push/manual run exists. No successful-run rerun was attempted and no duplicate workflow was queued.
+- **Exact required UI action:** open [Planetworld Workbook Audit (Read Only)](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/workflows/planetworld-workbook-audit.yml), select branch `docs/planetworld-blocker-handover-2026-10-26`, click **Run workflow** once, then inspect the new `audit` job and `planetworld-workbook-audit` artifact. Confirm the artifact's run head includes the correction commit before updating counts or claiming validation.
+
+### Branch / PR status
+- PR #95 remains OPEN and unmerged. Current branch-to-main comparison: **103 commits ahead / 143 behind**, status `diverged`; this is not safe to merge/rebase blindly. The connected PR search does not return fresh `mergeable` metadata, so mergeability is unverified, not assumed.
+- No merge, rebase, source script edit, supplier workbook edit, price import, catalogue write, deployment, or Axxess/DNS/payment change occurred.
+
+### GitHub Actions storage — confirmed blocker
+- PR #96 package run `40486053287`, retry job `122667433890`: completed FAILURE after ZIP integrity passed; upload step failed because Actions artifact storage quota was hit.
+- PR #97 package run `40486777889`, retry job `122667691005`: confirmed COMPLETED FAILURE; checkout/package assembly/ZIP integrity passed, upload step failed with the same quota error.
+- The one allowed retry for each staging package has been used. Do not retry again until storage is freed and recalculated. The connected GitHub actions expose no artifact-delete or all-artifacts inventory action.
+- **Exact required UI action:** repository → Actions → open older completed workflow runs → inspect artifacts and delete only obsolete, non-required artifacts. Preserve the current rollback package and audit evidence. Also inspect GitHub Packages if storage remains full. Wait for quota recalculation, verify storage is below the limit, then rerun only the failed package jobs once. No production/deployment job was rerun.
+
+### Manufacturer-match batch outcome
+- Official Vogel's evidence corroborates PFW4600 (tilting mount, 75 kg) and 7225154 (silver PUC 2515 pole, 150 cm, 80 kg). PFW4600 still has a supplier description discrepancy; flag it, do not edit the workbook.
+- Paiste 0004801419 is corroborated as Signature Dark Energy Crash Mark I, 19-inch, using official model/size plus exact-code reseller evidence; numeric SKU is not on Paiste's page.
+- ON1509-CS1 remains reseller-only corroboration; ON1509-LX1 image explicitly illustrative and unusable as exact image; Mason AL-2144A remains unverified. No images copied.
+
+### Counts and next action
+- Last verified audit snapshot: 48 XLSX files, 96 sheets, 3,343 extracted rows, zero workbook read errors; continuation scope 3,298 non-zero-RRP rows. Price-risk flags remain 18 below estimated VAT-inclusive cost at RRP−1% and 19 at RRP−2%; 19 zero-RRP rows remain isolated for owner audit. These are historical audit counts, not post-correction refresh results.
+- Next action: owner must dispatch the read-only Planetworld audit once from Actions and delete obsolete Actions artifacts in GitHub UI. Until those UI actions are completed, no supported connected action can safely refresh the audit or free storage. Keep all live data and release controls unchanged.
