@@ -126,6 +126,8 @@ jobs:
               {label:'Car Audio & Video',param:'car',brand:'JBL',group:'Speakers'}
             ];
             for(const area of areas){
+              await audioPage.goto('http://127.0.0.1:4173/category.html?id='+audioRootId,{waitUntil:'domcontentloaded'});
+              await audioPage.waitForFunction(()=>{const grid=document.querySelector('#grid');return !!grid&&grid.innerText.includes('Studio Equipment')},null,{timeout:30000});
               const href=await audioPage.locator('#grid .card').filter({hasText:area.label}).getAttribute('href');
               if(!href||!href.includes('audio_area='+area.param)) throw new Error(area.label+' does not open its brand-selection page: '+href);
               await audioPage.goto(new URL(href,'http://127.0.0.1:4173/').href,{waitUntil:'domcontentloaded'});
