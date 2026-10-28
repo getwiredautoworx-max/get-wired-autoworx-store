@@ -3085,3 +3085,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Last verified artifact remains `40290002999` / job `121462561811` / artifact `12635711006`; successful for the pre-fix audit script, not evidence that the category-precedence/whole-word fix passed. Do not state the new audit is refreshed until a new artifact is inspected.
 - Scope still open: 3,298 non-zero-RRP rows require continuing exact model/variant/image-source verification even though every row has a heuristic category/component guess; 18 cost-floor rows fail RRP−1%, 19 fail RRP−2% (19 distinct SKUs), and authorized Planetworld confirmation remains outstanding. The 19 zero-RRP products remain reserved for owner personal audit; 26 duplicate-JBL rows stay excluded from analysis but the source workbook remains physically present. The supplier clarification draft is unsent.
 - No supplier XLSX, catalogue, price, stock, active flag, image, Axxess, DNS, payment, Supabase, deployment or production data changed. No confirmed price-scaling defect was found. Preserve the 107/107 October-verified prices. Payment remains the last blocker and PayJustNow remains excluded.
+
+
+## AUTOMATION TASK START — 2026-10-28 08:20 SAST
+
+- Read latest `AI_HANDOVER_PERMANENT.md` from `main` first (blob SHA `6ed26337e78bc9c2c8438f4ad9f4ca79c0bb46d1`).
+- Task started on isolated branch `task/2026-10-27-planetworld-monitor`; no changes to `main`.
+- Scope this run: first read `HANDOVER_CURRENT.md` and the three Planetworld reports on `docs/planetworld-blocker-handover-2026-10-26`; check PR #95 head/state/mergeability, latest audit workflow/job/artifact, and safely continue exact model/variant/manufacturer image-source verification.
+- Preserve all owner holds: 19 zero-RRP items reserved for personal audit; no XLSX edits, imports, publishing, live catalogue/price/stock/active-flag changes, merges, deployments, Axxess/DNS/payment changes, or release-credit use.
+- Status at start: IN PROGRESS. Next action: read Planetworld handover and three reports, then inspect workflow/PR evidence before making any review-only updates.
