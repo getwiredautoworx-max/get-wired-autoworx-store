@@ -2562,3 +2562,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Manual hosted-browser/mobile verification is still NOT RECORDED: the available web reader returned internal errors for both preview URLs. Do not treat this as proof of a site failure, but do not claim browser verification.
 - Keep PR #99 as a draft, unmerged. PR #96/#97 also remain drafts/unmerged. No Axxess upload, production deployment, DNS, payments, Supabase, supplier data, live catalogue, prices, or stock changes.
 - Manual checks still needed on desktop and phone: Part Search query `GW-B4F502E6` refreshes after catalogue initialization; Studio Equipment → Shure → Studio Equipment; Home Entertainment → Sonos → Home Entertainment; Car Audio & Video → JBL → Speakers. Record evidence before considering release approval.
+
+
+## Integration warning guard follow-up — 2026-10-28
+- Found a non-fatal iframe timing warning during combined smoke logs: `category-navigation.js` attempted to append CSS before the iframe document head existed. Added a head-readiness guard on integration branch commit `797f1de3db5a859a0c985c9cdb34fac1add3eb8b`.
+- Fresh PR #99 checks (smoke, audit, package, Cloudflare Pages) were still running at the last poll. Verify the new smoke run and inspect logs for absence of the prior `GW category presentation` TypeError before claiming the fix is verified.
+- PR #99 stays draft/unmerged; PR #96/#97 stay draft/unmerged. Hosted browser/mobile checks remain outstanding; no production/live-data changes.
