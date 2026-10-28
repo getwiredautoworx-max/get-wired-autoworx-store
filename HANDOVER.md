@@ -3164,3 +3164,31 @@ Replace or remove inappropriate product-derived category-card imagery in staging
 - Resolution remains external/dashboard-side: inspect the failing Workers service's Settings > Builds and Triggers/Routes. If it is a duplicate static storefront service and has no live routes, custom domains, required bindings, or consumers, disable the duplicate Workers build/service while retaining the working Pages project. If it is required, give it its own actual Worker entry point/config and valid Worker build command. Do not alter the Pages config to fix this separate service.
 - This session's connected GitHub tools cannot edit Cloudflare dashboard settings or inspect route bindings; no remote Worker setting was changed and the Worker failure is NOT resolved. No Axxess, DNS, payment, production Supabase, or production deployment changes occurred. Release remains HOLD.
 - Next exact step: open the failed Workers build link above and check whether any route/domain/binding uses that Worker before disabling or reconfiguring it. Then trigger a fresh build and verify the newest status. Continue storefront visual/catalogue gates separately.
+
+
+## CONTINUATION LOG — 2026-10-28 — SUPPLIER CATALOGUE SORTING AND INTERNAL SKU PLAN
+
+### User-approved direction
+- Prepare and sort the actual Electrocity and ASC supplier product catalogues for Get Wired AutoWorx. The immediate next input required is the user uploading the Electrocity and ASC source PDFs (or supplier spreadsheets) into the current chat. The catalogue files themselves were not found among the available Library search results in this continuation; do not claim they have been received or edited yet.
+- Assign every verified supplier-product record a unique Get Wired AutoWorx internal SKU, while retaining the original supplier SKU unchanged as a linked cross-reference. Proposed format examples only:
+  - Electrocity: `GWA-EC-000001`
+  - ASC: `GWA-ASC-000001`
+  These are format examples, not assigned product SKUs. Allocate actual numbers only after source rows are extracted and duplicate/collision checks are performed. Internal SKUs should be permanent and should not be derived from a changeable category or description.
+- Keep the two suppliers' records distinct even where they supply similar product types (e.g. alternator regulators, terminals, connectors). Group by shared product category and display comparable Electrocity and ASC items beside each other, without merging the records or assuming they are the same part.
+- Preserve all source dimensions and measurement detail exactly, including values and units (length, width, height, diameter, thread size, terminal size, and any other supplier-listed measurements). Do not infer missing dimensions; flag missing, inconsistent, or unreadable values for review.
+- Preserve supplier name, supplier SKU, source filename and PDF page/sheet/row reference, product description, all dimensions, and any source-provided specifications. Prices, stock, fitment, and product equivalence must remain source-evidenced; do not invent or reconcile conflicts by guessing.
+- Intended deliverables after source files are supplied: (1) an editable master workbook with one row per supplier/product record, separate internal and supplier SKU columns, supplier identifier, category/subcategory, description, dimensions with units, source/page references, and verification/exception notes; (2) a clean, sorted reference PDF catalogue with comparable supplier records grouped together; and (3) a duplicate/uncertain-match review list where necessary.
+- Keep the source data auditable. Never import the previously rejected 1,109-row CSV with incorrect product/SKU/price pairings. Do not overwrite supplier originals.
+
+### Separation and safety controls
+- This work is a catalogue-preparation/reconciliation stage only. Do not update live Supabase products, supplier costs, retail prices, stock, categories, images, checkout, or production storefront while preparing or reviewing the workbook/PDF. Any future import requires a separate validated import plan and explicit approval.
+- Continue to preserve the store pricing rule `cost_price * 1.15 * 1.35`, pickup at R0, packaging at R35 per item, and quotation-based courier/PAXI delivery. These commercial rules do not authorize altering any source supplier price.
+- No supplier PDF was edited, no new SKU was assigned to a real product, no catalogue export was generated, and no live data was changed in this continuation. Status: WAITING FOR SOURCE FILES.
+
+### Exact resume point
+1. Ask the user to upload the Electrocity catalogue and ASC catalogue PDFs (and any corresponding price-list spreadsheets if available).
+2. Inventory files and page counts; extract the source product/SKU/dimension data while retaining source references.
+3. Establish and check the internal SKU registry for uniqueness before assigning IDs.
+4. Sort by category and create side-by-side comparisons while keeping each supplier record separate.
+5. Validate dimension preservation, supplier SKU mapping, duplicate/near-match flags, and source page references.
+6. Produce the editable master workbook and clean PDF, then report the exception list and QA results. Do not stop at a proposed template; proceed through the source-backed work once files are available.
