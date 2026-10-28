@@ -93,6 +93,58 @@ jobs:
             console.log('CATEGORY_NAVIGATION_PASS: '+rootOptions+' populated main categories; '+childOptions+' populated Auto Electrical options');
             await categoryPage.close();
 
+            // Planetworld groundwork: verify audio areas and brand/product grouping without changing catalogue rows.
+            const audioPage = await browser.newPage({viewport:{width:390,height:844}});
+            audioPage.on('pageerror', e => console.log('[audio-pageerror] '+e.message));
+            // Use controlled fixtures so this test verifies populated area/brand/component navigation
+            // even when the current live category has no assigned products. No catalogue rows are written.
+            const audioRootId='5ab55c53-eee3-41ce-ad48-04ad6df85181';
+            const audioFixtures=[
+              {id:'audio-fixture-car',name:'JBL Club 6520 Coaxial Car Speakers',public_sku:'TEST-CAR-AUDIO',description:'Car audio coaxial speakers',price:100,stock_quantity:1,image_url:null,specifications:{brand:'JBL'},category_id:audioRootId,active:true},
+              {id:'audio-fixture-home',name:'Sonos Beam Soundbar',public_sku:'TEST-HOME-AUDIO',description:'Home theatre soundbar',price:200,stock_quantity:1,image_url:null,specifications:{brand:'Sonos'},category_id:audioRootId,active:true},
+              {id:'audio-fixture-studio',name:'Shure SM58 Dynamic Microphone',public_sku:'TEST-STUDIO-AUDIO',description:'Studio dynamic microphone',price:150,stock_quantity:1,image_url:null,specifications:{brand:'Shure'},category_id:audioRootId,active:true}
+            ];
+            await audioPage.route('**/*', async route => {
+              const url=new URL(route.request().url());
+              if(url.pathname!=='/rest/v1/products') return route.continue();
+              const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET, OPTIONS','access-control-allow-headers':'apikey, authorization, range, range-unit, prefer, content-type','content-type':'application/json'};
+              if(route.request().method()==='OPTIONS'){await route.fulfill({status:204,headers:cors,body:''});return;}
+              const filter=url.searchParams.get('category_id')||'';
+              const ids=filter.startsWith('in.(')?filter.slice(4,-1).split(','):(filter.startsWith('eq.')?[filter.slice(3)]:[]);
+              const rows=audioFixtures.filter(p=>ids.includes(p.category_id));
+              await route.fulfill({status:200,headers:cors,body:JSON.stringify(rows)});
+            });
+            await audioPage.goto('http://127.0.0.1:4173/category.html?id='+audioRootId, {waitUntil:'domcontentloaded'});
+            await audioPage.waitForFunction(() => { const grid=document.querySelector('#grid'); return !!grid && grid.innerText.includes('Studio Equipment'); }, null, {timeout:30000});
+            const audioNames = await audioPage.locator('#grid .card h2').allTextContents();
+            for (const required of ['Studio Equipment','Home Entertainment','Car Audio & Video','All Car Audio Products']) {
+              if (!audioNames.some(n => n.trim() === required)) throw new Error('Audio area missing: '+required+'; found='+JSON.stringify(audioNames));
+            }
+            const areas=[
+              {label:'Studio Equipment',param:'studio',brand:'Shure',group:'Studio Equipment'},
+              {label:'Home Entertainment',param:'home',brand:'Sonos',group:'Home Entertainment'},
+              {label:'Car Audio & Video',param:'car',brand:'JBL',group:'Speakers'}
+            ];
+            for(const area of areas){
+              await audioPage.goto('http://127.0.0.1:4173/category.html?id='+audioRootId,{waitUntil:'domcontentloaded'});
+              await audioPage.waitForFunction(()=>{const grid=document.querySelector('#grid');return !!grid&&grid.innerText.includes('Studio Equipment')},null,{timeout:30000});
+              const href=await audioPage.locator('#grid .card').filter({hasText:area.label}).getAttribute('href');
+              if(!href||!href.includes('audio_area='+area.param)) throw new Error(area.label+' does not open its brand-selection page: '+href);
+              await audioPage.goto(new URL(href,'http://127.0.0.1:4173/').href,{waitUntil:'domcontentloaded'});
+              await audioPage.waitForFunction(()=>{const grid=document.querySelector('#grid');return !!grid&&(grid.querySelector('.card')||grid.innerText.includes('No products are currently matched'));},null,{timeout:30000});
+              const brands=await audioPage.locator('#grid .card h2').allTextContents();
+              if(brands.length!==1||brands[0].trim()!==area.brand) throw new Error(area.label+' brand filtering wrong; expected '+area.brand+', got '+JSON.stringify(brands));
+              const brandHref=await audioPage.locator('#grid .card').first().getAttribute('href');
+              if(!brandHref||!brandHref.includes('audio_brand=')) throw new Error('Brand button does not pass explicit brand selection: '+brandHref);
+              await audioPage.goto(new URL(brandHref,'http://127.0.0.1:4173/').href,{waitUntil:'domcontentloaded'});
+              await audioPage.waitForFunction(()=>{const grid=document.querySelector('#grid');return !!grid&&(grid.querySelector('.audioProductGroup')||grid.innerText.includes('No products for this brand'));},null,{timeout:30000});
+              const groups=await audioPage.locator('.audioProductGroup h2').allTextContents();
+              if(groups.length!==1||groups[0].trim()!==area.group) throw new Error(area.label+' component grouping wrong; expected '+area.group+', got '+JSON.stringify(groups));
+              console.log('AUDIO_AREA_BRAND_COMPONENT_PASS: '+area.label+' => '+area.brand+' => '+groups[0].trim());
+            }
+            console.log('AUDIO_AREA_NAVIGATION_PASS: '+JSON.stringify(audioNames));
+            await audioPage.close();
+
             // Verify the image fallback only tries the exact public-SKU WebP.
             // A missing approved image must produce a clean "Image not available" state,
             // never fall back to supplier/catalogue imagery.
