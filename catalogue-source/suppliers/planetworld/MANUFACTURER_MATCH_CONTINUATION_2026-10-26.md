@@ -186,3 +186,22 @@ Official pages include imagery for some models; no image was downloaded or copie
 | KTE-S65G | Alpine official S2-S65 page confirms compatibility with the 6.5-inch S-Series coaxial speaker, but a standalone KTE-S65G product page was not found in this pass. https://www.alpine-usa.com/product/s-series-speakers-s2s65 | Car Audio → Car Speaker Pods, Grilles & Enclosures. Compatibility cross-reference only; standalone image/source remains unverified. |
 
 Official product pages include imagery; no images were downloaded or copied. These checks establish model/type or compatibility, not image reuse rights, current Planetworld availability, or supplier price correctness. No supplier XLSX or live catalogue data changed.
+
+
+## Evidence-led exact-model follow-up — 2026-10-28 SAST
+
+| Supplier SKU/model | New evidence | Safe disposition |
+|---|---|---|
+| Vogel's PFW4600 | Vogel's-hosted TÜV product list identifies PFW4600 — black wall mount tilt, article 7046000, max load 75 kg (official PDF, page 4). This is an exact model match, but it conflicts with the supplier-row wording “flat TV wall mount”. | Mark model/type as officially corroborated; flag supplier description discrepancy for owner/supplier review. Do not alter the source workbook or reuse an image automatically. Source: https://downloads.vogels.com/en/TUV-Products-overview-PROF.pdf |
+| Vogel's 7225154 | The same Vogel's-hosted TÜV list identifies article 7225154 as the silver PUC 2515 Connect-it large pole, 150 cm, max load 80 kg (page 7). | Official exact article/variant evidence found. Supplier description “PUC 2515 ceiling pole” is broadly consistent but omits silver/150 cm/load. Keep only as review evidence; do not change supplier row. Source: https://downloads.vogels.com/en/TUV-Products-overview-PROF.pdf |
+| Paiste 0004801419 | Paiste's official model page confirms Signature Dark Energy Crash Mark I, sizes include 19-inch; NXT Level Tech's exact-SKU listing maps 0004801419 to that 19-inch model. | Product identity is strongly corroborated by official model/type/size plus reseller SKU mapping; the official page does not expose the numeric supplier SKU. Exact SKU mapping is not manufacturer-confirmed. No image copied; manufacturer imagery reuse rights remain unverified. Sources: https://www.paiste.com/en/products/models/14-crash-mark-i ; https://nxtleveltech.co.za/product/paiste-19in-sig-dark-energy-crash-mk-i |
+| OneNav ON1509-CS1 | Two reseller listings identify exact code ON1509-CS1 as a 9-inch Android/digital-media receiver: NXT Level Tech and SBR Pro Sound. No exact official OneNav manufacturer page was found in this pass. | Reseller-only identity corroboration; retain as provisional exact variant and do not copy reseller imagery. Supplier price/availability still require Planetworld confirmation. Sources: https://nxtleveltech.co.za/product/9-inch-android-radio ; https://sbrprosound.co.za/product/onenav-classic-on1509-cs1-9-digital-media-receiver/ |
+| OneNav ON1509-LX1 | A reseller listing identifies ON1509-LX1 as a OneNav Evolution 9-inch slim-chassis screen, but the page explicitly says its product images are illustrative. No exact official manufacturer page found in this pass. | Description is reseller-corroborated only; image remains unverified and must not be used as an exact image. Keep supplier description/category provisional pending authorized confirmation. Source: https://guardsondutyshop.co.za/products/onenav-evolution-9inch-screen-with-slim-chassis-on1509-lx1 |
+| Mason AL-2144A | Search evidence only surfaces the model in a reseller's related-products listings; no standalone exact product page or manufacturer page was established. | Remains UNVERIFIED for exact variant/image. Do not use the related-product tile as image evidence. |
+
+### Batch conclusion
+- New official exact article/model evidence: 2 Vogel's items (PFW4600, 7225154). One (PFW4600) has a supplier-description discrepancy that needs review; do not silently correct it.
+- Paiste 0004801419: official model/type/size plus exact-code reseller corroboration; numeric SKU not independently listed by Paiste.
+- OneNav ON1509-CS1 and ON1509-LX1: reseller-only evidence; manufacturer identity and image reuse remain unverified. The LX1 reseller page expressly labels images illustrative.
+- Mason AL-2144A: still unverified.
+- No image downloaded/copied, no supplier XLSX modified, no price/stock/catalogue/active flag changed. The 19 zero-RRP owner-audit rows remain isolated.
