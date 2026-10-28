@@ -2517,3 +2517,16 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ### Counts and next action
 - Last verified audit snapshot: 48 XLSX files, 96 sheets, 3,343 extracted rows, zero workbook read errors; continuation scope 3,298 non-zero-RRP rows. Price-risk flags remain 18 below estimated VAT-inclusive cost at RRP−1% and 19 at RRP−2%; 19 zero-RRP rows remain isolated for owner audit. These are historical audit counts, not post-correction refresh results.
 - Next action: owner must dispatch the read-only Planetworld audit once from Actions and delete obsolete Actions artifacts in GitHub UI. Until those UI actions are completed, no supported connected action can safely refresh the audit or free storage. Keep all live data and release controls unchanged.
+
+
+---
+
+## PLANETWORLD CATEGORY / IMAGE CONTINUATION — 2026-10-28
+
+- Continued from the existing read-only audit artifact. Generated the owner-review workbook `Planetworld_Category_Image_Review_2026-10-28.xlsx` outside the repository; it contains 3,298 non-zero-RRP rows, omits supplier price/stock fields, and excludes the 19 zero-RRP owner-hold rows plus 26 duplicate-workbook rows.
+- Recorded segment candidates using supplier Division as the primary classification: Car Audio 696; Musical Instruments 1,713; Installed AV 428; Home CI 319; Home Retail personal-audio/home-entertainment 116; Roborock home-care 20 and Aiper pool/outdoor 6 held outside the current core categories pending owner mapping.
+- Added official image-source/model evidence for JVC CS-DR162 and CS-DR6930 and KICKER 43C104 / 43C124. Updated `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` and created `catalogue-source/suppliers/planetworld/CATEGORY_IMAGE_REVIEW_2026-10-28.md` on this review branch.
+- These are review-only category candidates and model/source matches. Component categories remain heuristic until checked; manufacturer image pages do not grant image-reuse rights. No image was copied/published and no supplier workbook or live catalogue/prices/stock changed.
+- The underlying audit artifact is a prior snapshot, not a fresh run against the corrected current branch head. Do not certify current input counts until a new workflow run/artifact is completed and inspected.
+- PR #95 remains the review branch for the read-only audit/documentation. No PR was merged. The category workbook is generated locally for owner review and has not been added to the repository.
+- Next: continue exact-model image-source verification and component-category refinement; then obtain a fresh audit artifact if the available Actions UI/manual workflow can be run. Do not proceed to Electro-city or Caelex until Planetworld image/category review is marked complete after evidence-based review. All production and release boundaries remain unchanged.
