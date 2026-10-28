@@ -2461,3 +2461,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Per the safe-staging retry rule, reran only failed jobs for PR #96 via the supported failed-job rerun action. The retry was accepted; latest job is `122667433890`, status **QUEUED**, conclusion null. Do not duplicate this run while queued/in progress; next action is poll this same run/job and inspect its result.
 - PR #97's equivalent failed upload is not yet retried. It failed for the same explicit artifact-storage quota reason; avoid another expensive package/upload attempt until the PR #96 retry resolves whether quota is still blocking artifact creation. If PR #96 retry succeeds, retry PR #97's failed job once; if it fails with the same quota error, record the shared blocker and do not repeat identical retries.
 - This retry concerns package artifact preparation only; it is not a production deployment. No Axxess upload, deploy, live data, catalogue, prices, stock, active flags, DNS, payment, or Supabase changes were made.
+
+## PR #97 PACKAGE RETRY QUEUED — 2026-10-28 SAST
+
+- After PR #96 retry job `122667433890` completed **FAILURE** with the same explicit Actions artifact-storage quota error, the safe PR #97 package-preparation job was also retried once using the supported failed-job rerun action (original run `40486777889`, original job `122132401984`).
+- Retry accepted; current retry job `122667691005` is **QUEUED**, conclusion null. Do not duplicate it while queued/in progress. Poll this same run/job for a final result.
+- If PR #97 retry again fails at artifact upload with the same quota message, stop retrying these package uploads; the blocker is account Actions artifact storage, not ZIP assembly or storefront test. No production deployment or Axxess upload occurred.
