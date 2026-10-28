@@ -93,6 +93,20 @@ jobs:
             console.log('CATEGORY_NAVIGATION_PASS: '+rootOptions+' populated main categories; '+childOptions+' populated Auto Electrical options');
             await categoryPage.close();
 
+            // Reproduce the public store.html wrapper locally. Its own body is intentionally sparse;
+            // the actual store UI is rendered by index-new.html inside iframe#store.
+            const wrapperPage = await browser.newPage({viewport:{width:390,height:844}});
+            wrapperPage.on('pageerror', e => console.log('[wrapper-pageerror] '+e.message));
+            await wrapperPage.goto('http://127.0.0.1:4173/store.html', {waitUntil:'domcontentloaded'});
+            await wrapperPage.locator('iframe#store').waitFor({timeout:10000});
+            const wrapperFrame = wrapperPage.frameLocator('iframe#store');
+            await wrapperFrame.locator('button.headerPartSearch').waitFor({timeout:45000});
+            await wrapperFrame.locator('#categoryGrid .catWrap').first().waitFor({timeout:45000});
+            const wrapperText = await wrapperFrame.locator('body').innerText();
+            if (wrapperText.trim().length <= 30) throw new Error('store.html iframe has no readable customer content: length='+wrapperText.trim().length);
+            console.log('STORE_WRAPPER_IFRAME_CONTENT_PASS body_text_length='+wrapperText.trim().length);
+            await wrapperPage.close();
+
             // Verify the image fallback only tries the exact public-SKU WebP.
             // A missing approved image must produce a clean "Image not available" state,
             // never fall back to supplier/catalogue imagery.
