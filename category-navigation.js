@@ -50,7 +50,7 @@
     function installCategoryPresentation(frame){
     try{
       const d=frame.contentDocument;
-      if(!d||d.getElementById('gw-category-presentation'))return;
+      if(!d||!d.head||d.getElementById('gw-category-presentation'))return;
       const style=d.createElement('style');
       style.id='gw-category-presentation';
       style.textContent=`
