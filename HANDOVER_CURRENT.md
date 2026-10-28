@@ -3013,3 +3013,10 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 - Staging Category Navigation Chromium Acceptance `38521429939` and Buyer Guide PDF Text Extraction `38525300051` remain successful latest observed runs from 2026-10-14; their workflow files are absent from current main, so no current workflow could be rerun.
 - Catalogue safeguards unchanged: 198 category rows remain manual review only (OCR is not approval); 107 October price rows indicate no price writes. No live product/category/price/stock data, Supabase, Axxess, DNS, payment settings, or production runtime was changed.
 - Next precise actions: (1) owner review of draft PRs #100/#101; (2) verify account-wide Actions storage after recalculation and inspect other repositories if still full; (3) owner UI check of ASC workflow enabled/scheduled status; (4) keep live launch HOLD until payment readiness passes; (5) continue source-page visual category review without auto-moving SKUs.
+
+
+## POST-RETRY CONTROLLER CHECK — 2026-10-28
+
+- Latest Background Task Controller run is now `40703477112`, attempt 1, SUCCESS at 14:11:45 UTC on task-start commit `e90c76d463050e94607e62b0dec2a8118734f1bd`; job `122869225623`. Syntax, checkpoint generation, and safe pruning passed; checkpoint artifact upload skipped by design.
+- Latest inventory: 420 artifacts / 9,294,057 bytes (8.86 MiB); zero eligible deletions. Final workflow snapshot contained no relevant queued/in-progress tasks. The quota remains unresolved because audit/monitor artifact uploads still return the account storage-quota error.
+- Supplemental detail appended to `HANDOVER_UPDATE_2026-10-28_MONITOR_RUN_11.md`, commit `05d3579ee450e20c7db12516fd6247882cf17839`.
