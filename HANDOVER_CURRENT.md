@@ -2467,3 +2467,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - After PR #96 retry job `122667433890` completed **FAILURE** with the same explicit Actions artifact-storage quota error, the safe PR #97 package-preparation job was also retried once using the supported failed-job rerun action (original run `40486777889`, original job `122132401984`).
 - Retry accepted; current retry job `122667691005` is **QUEUED**, conclusion null. Do not duplicate it while queued/in progress. Poll this same run/job for a final result.
 - If PR #97 retry again fails at artifact upload with the same quota message, stop retrying these package uploads; the blocker is account Actions artifact storage, not ZIP assembly or storefront test. No production deployment or Axxess upload occurred.
+
+## PACKAGE RETRY OUTCOMES — 2026-10-28 SAST
+
+- PR #96 package retry: run `40486053287`, retry job `122667433890` — **COMPLETED FAILURE**. ZIP integrity passed; artifact upload again failed with `Failed to CreateArtifact: Artifact storage quota has been hit. Unable to upload any new artifacts.`
+- PR #97 package retry: run `40486777889`, retry job `122667691005` — **IN PROGRESS** at last check. Checkout, package assembly and ZIP integrity passed; the `Upload deployment ZIP` step has already failed with the same storage-quota message, while post-job cleanup was still in progress. Do not duplicate/retry while the run is in progress; poll the same run until its final conclusion.
+- The repeated failure after a retry confirms the immediate blocker is GitHub Actions artifact-storage quota, not ZIP integrity. Stop further package upload retries after PR #97's final status; another identical attempt would not free storage. No deploy or Axxess upload occurred.
