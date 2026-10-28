@@ -3094,3 +3094,37 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Scope this run: first read `HANDOVER_CURRENT.md` and the three Planetworld reports on `docs/planetworld-blocker-handover-2026-10-26`; check PR #95 head/state/mergeability, latest audit workflow/job/artifact, and safely continue exact model/variant/manufacturer image-source verification.
 - Preserve all owner holds: 19 zero-RRP items reserved for personal audit; no XLSX edits, imports, publishing, live catalogue/price/stock/active-flag changes, merges, deployments, Axxess/DNS/payment changes, or release-credit use.
 - Status at start: IN PROGRESS. Next action: read Planetworld handover and three reports, then inspect workflow/PR evidence before making any review-only updates.
+
+
+## AUTOMATION RUN OUTCOME — 2026-10-28 08:20 SAST
+
+### Work completed
+- Read latest `AI_HANDOVER_PERMANENT.md` from `main` first (blob SHA `6ed26337e78bc9c2c8438f4ad9f4ca79c0bb46d1`), then appended the task-start entry to this isolated task branch in commit `0188531da233741fbb9f4bbf21740b42d517f859` before other work.
+- Read `HANDOVER_CURRENT.md` and the three requested Planetworld reports on `docs/planetworld-blocker-handover-2026-10-26` before research.
+- Added a dated exact-model evidence batch to `MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md`, commit `af6068987d683b4a5e265e5b06d87bb7fdf81f0f`.
+- Appended this run's Planetworld status and evidence to `HANDOVER_CURRENT.md`, commit `c65e715e1114c8bc9b37c83c2a3312aa33774db8`. Both commits are on the PR review branch only; `main` was not changed.
+
+### Background workflows / PR #95
+- PR #95 remains OPEN according to GitHub PR search. Current branch head at the end of monitoring is `c65e715e1114c8bc9b37c83c2a3312aa33774db8`. Compare with `main`: branch is diverged, **98 commits ahead and 142 behind**. Current mergeability is not exposed by the connector; prior recorded `mergeable=false` remains unresolved. Do not merge/rebase automatically.
+- Combined status for current head is empty. The commit-associated workflow reader returned no PR-triggered runs for current head, audit-script fix `176056e896b5c2ab14ace489a8ee64716fddaefe`, or prior head `bedfaa1816ccb68e90f968c1feff42d56fb90ffa`. This reader does not list push-triggered runs; no conclusion about a push-triggered run can be inferred from the empty result.
+- Latest inspectable audit remains run `40290002999` — SUCCESS; job `121462561811` (`audit`) — SUCCESS. Artifact `12635711006` is available, not expired, digest `8cbd7f0365762dddd72a60266c275472ee45a65b8227023e15c903d5d94db4da`, expires `2026-11-09T08:06:48Z`. Its head SHA `4b39cab1354fc12f2f7a1059756c74dec31d7e64` predates script fix `176056e896b5c2ab14ace489a8ee64716fddaefe`.
+- Workflow `.github/workflows/planetworld-workbook-audit.yml` includes `workflow_dispatch`, but no connected GitHub tool supports dispatch. No rerun attempted: the latest inspectable run succeeded and no failed/stopped target run was identified. The pending post-fix run must be checked in Actions; if absent, manually run the workflow once on `docs/planetworld-blocker-handover-2026-10-26`, then verify job/artifact.
+
+### Exact-model evidence results
+- Vogel's official TÜV PDF confirms PFW4600 = black tilting wall mount, article 7046000, 75 kg. Supplier description says flat wall mount; flag the mismatch for review and do not alter source XLSX.
+- Vogel's official TÜV PDF confirms 7225154 = silver PUC 2515 Connect-it large pole, 150 cm, 80 kg.
+- Official Paiste page confirms Signature Dark Energy Crash Mark I in 19-inch size; reseller exact-SKU page maps 0004801419 to that model. Exact numeric SKU is not independently published by Paiste.
+- OneNav ON1509-CS1 is reseller-corroborated as a 9-inch receiver; official exact page not found. ON1509-LX1 is reseller-described as an Evolution 9-inch slim screen, but that seller labels images illustrative, so its image is not suitable as exact-source evidence. Mason AL-2144A remains unverified.
+- No images copied. These are source-evidence/review changes only; no XLSX, price, stock, live catalogue, active flag, import, deployment, Axxess, DNS, Supabase or payment changes.
+
+### Counts and owner holds unchanged
+- Last verified workbook audit: 48 XLSX, 96 sheets, 3,343 extracted rows, 0 workbook errors. Continuation scope 3,298 non-zero-RRP rows after excluding 19 zero-RRP owner-hold rows and 26 identical duplicate-JBL rows.
+- Cost-floor risks remain 18 rows below estimated VAT-inclusive cost at RRP−1% and 19 at RRP−2% (19 distinct SKUs). Supplier clarification draft remains unsent; supplier confirmation is still required. Do not change price suggestions into live prices.
+- Keep 19 zero-RRP items separate for owner's personal audit. Keep nine legacy asterisk-price products quote-only/inactive. Preserve the 107/107 October source-image verified rows; no price scaling defect was confirmed by this run. The 198-category queue still requires visual approval; no auto-moves.
+- Customer launch remains HOLD. Payment readiness stays last; PayJustNow is not a current requirement/blocker.
+
+### Exact next actions
+1. Inspect GitHub Actions → Planetworld Workbook Audit (Read Only) for branch `docs/planetworld-blocker-handover-2026-10-26`, commit `176056e896b5c2ab14ace489a8ee64716fddaefe` or current branch head. If no run exists, click Run workflow once for that branch; verify the resulting run, job and artifact before further script changes.
+2. Continue exact manufacturer/variant/image-source checks for remaining unverified SKUs; preserve uncertain matches as unverified and never use reseller imagery as authorized without permission.
+3. Seek owner-authorized Planetworld confirmation for the 18/19 cost-floor sensitivities and the PFW4600 source-description discrepancy. Keep the request draft unsent until authorized.
+4. Do not merge PR #95 until the substantial branch divergence and mergeability are resolved with owner-approved coordination.
