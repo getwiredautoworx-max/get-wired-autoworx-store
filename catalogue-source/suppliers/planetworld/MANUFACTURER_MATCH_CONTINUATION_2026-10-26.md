@@ -205,3 +205,22 @@ Official product pages include imagery; no images were downloaded or copied. The
 - OneNav ON1509-CS1 and ON1509-LX1: reseller-only evidence; manufacturer identity and image reuse remain unverified. The LX1 reseller page expressly labels images illustrative.
 - Mason AL-2144A: still unverified.
 - No image downloaded/copied, no supplier XLSX modified, no price/stock/catalogue/active flag changed. The 19 zero-RRP owner-audit rows remain isolated.
+
+## Official manufacturer image-source batch — 2026-10-28 SAST
+
+| Supplier model/SKU | Evidence | Category/component | Image disposition |
+|---|---|---|---|
+| JVC CS-DR162 | JVC's official product page identifies the exact model as a 6.5-inch 2-way coaxial car speaker and displays product images. | Car Audio → Car Speakers | Exact model page found; image reuse rights remain unverified. Source: https://www.us.jvc.com/car/speakers_subwoofers/cs_dr162/ |
+| JVC CS-DR6930 | JVC's official product page identifies the exact model as a 6×9-inch 3-way coaxial car speaker and displays product images. | Car Audio → Car Speakers | Exact model page found; image reuse rights remain unverified. Source: https://ae.jvc.com/car/speakers/cs_dr6930/ |
+| KICKER 43C104 | Official KICKER Comp line page lists the exact 10-inch 43C104 model. | Car Audio → Car Subwoofers | Model family listing is evidence; confirm exact variant image and image-use permission before use. Source: https://www.kicker.com/2016-comp-subwoofers |
+| KICKER 43C124 | Official KICKER Comp line page lists the exact 12-inch 43C124 model. | Car Audio → Car Subwoofers | Model family listing is evidence; confirm exact variant image and image-use permission before use. Source: https://www.kicker.com/2016-comp-subwoofers |
+
+This batch adds four exact-model manufacturer-source records. The manufacturer pages support identity/type and show product imagery, but **no image files were downloaded or copied** and no re-hosting rights were assumed. Do not treat a model-page match as proof of Planetworld stock, pricing, or a matching existing Get Wired product record.
+
+## Category review pass — 2026-10-28 SAST
+
+- Built a phone-friendly, filterable review workbook covering **3,298 non-zero-RRP rows** after excluding the 19 zero-RRP owner-hold rows and 26 rows from the duplicate JBL workbook.
+- Top-level segment candidates use supplier Division as the primary evidence: 696 Car Audio rows; 1,713 Musical Instruments rows; 428 Installed AV rows; 319 Home CI rows; and 116 Home Retail personal-audio/home-entertainment rows.
+- The remaining 26 Home Retail rows (20 Roborock and 6 Aiper) are explicitly held outside the current core store categories for owner mapping; they are not forced into car/audio categories.
+- Component categories remain heuristic review suggestions. They are not approved taxonomy changes or an import file. Exact-model image research is a separate evidence column; rows without evidence are labelled “Not yet individually researched” and receive no image.
+- Review workbook: `Planetworld_Category_Image_Review_2026-10-28.xlsx` was generated for owner review outside the repository. Supplier price and stock columns are omitted. No images were copied, no supplier workbook changed, and no live catalogue/prices/stock changed.
