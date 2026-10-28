@@ -1,0 +1,40 @@
+name: One-time Actions artifact quota cleanup
+
+on:
+  push:
+    branches:
+      - ops/actions-artifact-cleanup-2026-10-28
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List and delete obsolete build artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Inventory of retained Actions artifacts matching obsolete package patterns:"
+          artifacts="$(gh api --paginate --jq '.artifacts[] | select(.expired == false) | select(.name | test("(?i)(apk|android|axxess-storefront-upload|store-package|storefront-package|deployment-zip)")) | [.id, .name, (.size_in_bytes|tostring)] | @tsv' "repos/${GITHUB_REPOSITORY}/actions/artifacts?per_page=100")"
+          if [[ -z "$artifacts" ]]; then
+            echo "NO_MATCHING_ARTIFACTS: no retained APK/Android/store-package artifacts found."
+            exit 0
+          fi
+          total=0
+          count=0
+          while IFS=$'\t' read -r id name size; do
+            [[ -n "$id" ]] || continue
+            echo "DELETE_CANDIDATE id=$id name=$name size_bytes=$size"
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/$id"
+            echo "DELETED id=$id name=$name"
+            total=$((total + size))
+            count=$((count + 1))
+          done <<< "$artifacts"
+          echo "CLEANUP_COMPLETE deleted_count=$count reclaimed_bytes=$total"
+          echo "Preserved unrelated artifacts, including planetworld-workbook-audit."
