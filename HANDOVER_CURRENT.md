@@ -2537,3 +2537,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - PR #96 Part Search head `59d7d4b04e0baaec601649357232f8145dcdf1ee` now has a successful Cloudflare Pages preview: `https://e85778d7.get-wired-autoworx-store.pages.dev`; smoke test confirms the async query refresh assertion.
 - PR #97 audio navigation head `6f491650451a48a832b08ff8ec206844085444e6` now has a successful Cloudflare Pages preview: `https://b15c8e72.get-wired-autoworx-store.pages.dev`; smoke test confirms Studio/Shure, Home/Sonos, and Car/JBL component grouping with test-only fixtures.
 - Both PRs remain draft/unmerged. Preview build and automated tests pass, but do a manual browser/mobile pass before considering either merge-ready. No production, Axxess, DNS, payments, Supabase, supplier data, live catalogue, stock, or prices changed.
+
+
+## PR #96 / #97 preview-check continuation — 2026-10-28
+- Reconfirmed both PRs are still open drafts and unmerged: #96 head `59d7d4b04e0baaec601649357232f8145dcdf1ee`; #97 head `6f491650451a48a832b08ff8ec206844085444e6`. No production deployment/merge was attempted.
+- Exact-head CI results remain successful: #96 audit `40662599490`, smoke `40662599503`, package prep `40662599496`; #97 audit `40663109831`, smoke `40663109978`, package prep `40663109951`.
+- Hosted preview verification remains **NOT RECORDED**. The web reader failed to open both Pages URLs and the execution container could not resolve their DNS; no browser/computer-control or Cloudflare deployment inspection tool is available in this session. This is an access limitation, not evidence that either preview is broken or healthy.
+- #96 preview https://e85778d7.get-wired-autoworx-store.pages.dev — check query `GW-B4F502E6` entered in Part Search before/through catalogue initialization, verify results refresh, then repeat on mobile.
+- #97 preview https://b15c8e72.get-wired-autoworx-store.pages.dev — verify Studio Equipment → Shure → Studio Equipment; Home Entertainment → Sonos → Home Entertainment; Car Audio & Video → JBL → Speakers; then repeat on mobile.
+- Keep both PRs as drafts until browser results are recorded. Do not merge, deploy, upload to Axxess, or change live systems/data. Existing local CI is already green; do not waste time repeating it as a substitute for hosted-preview evidence.
