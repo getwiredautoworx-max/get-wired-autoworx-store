@@ -2929,3 +2929,10 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 - The permanent handover file was too large for the connected contents update action to accept. A small addendum was successfully committed at `handover-updates/2026-10-28-actions-storage-and-pr94.md` (commit `299742959e88a0aa9080d4afc86fb94d867df2a6`).
 - PR #94 remains draft/open/unmerged. Existing smoke run `40272185866` passed Part Search load-race, early Request Part, and responsive homepage checks at 320/390/768/1365 px. On PR head, Cloudflare Pages passed but Workers Builds failed. Investigate the Workers failure without triggering deployment/paid credits; do not merge or call release-ready.
 - No production, live catalogue/stock/pricing, Supabase, Axxess/DNS/payment, or supplier workbook changes were made.
+
+
+## Automation update — 2026-10-28 — read-only checkout security audit
+- Read-only inspection of `supabase/functions/store-checkout/index.ts` and `supabase/migrations/20261013070000_create_store_order_v2.sql` confirms the public checkout Edge Function forwards caller-supplied order details to the service-role-only `create_store_order_v2` RPC using privileged credentials. It validates product SKU/current price and payload basics, but does not validate a customer Supabase Auth session or bind the order to an authenticated user. The RPC creates an order, locks and decrements product stock, and writes order items. Therefore do not run a live order test or call the RPC as a smoke test; it would create a record and affect stock.
+- `assets/admin.js` uses authenticated admin RPCs for order listing and updates. This source review is not an end-to-end test of RLS or deployed settings.
+- **Release blocker:** checkout identity/session validation and customer linkage remain unverified/unimplemented in the inspected source. Resolve through a staged, reviewed change with explicit approval; do not deploy Supabase changes or run migrations/functions as part of this audit.
+- No database calls, writes, orders, stock changes, deployments, or merges were performed.
