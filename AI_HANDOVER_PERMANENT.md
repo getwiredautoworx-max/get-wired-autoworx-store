@@ -3168,3 +3168,8 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 - Final Planetworld `HANDOVER_CURRENT.md` checkpoint commit: `df3bf1288d94c9aa1657e926744721133f743578` on `docs/planetworld-blocker-handover-2026-10-26`. This is the current PR #95 branch head after the monitoring updates; comparison remains diverged **102 ahead / 142 behind** main.
 - Permanent handover was verified after the prior update; this entry records the final Planetworld handover commit and confirms the audit fix remains unverified, PR #95 open, no merge, and no live/store/Supabase data changes.
+
+## CORRECTED FINAL PR #95 DIVERGENCE COUNT — 2026-10-28 SAST
+
+- Rechecked the exact current Planetworld branch ref via GitHub: head `df3bf1288d94c9aa1657e926744721133f743578`; compare to `main` is diverged **103 ahead / 142 behind** (the previous 102-ahead count described the parent head before the final handover-only commit).
+- Combined status is empty and the connector still returns no PR-triggered workflow runs for this head. Push-triggered audit status remains unobservable. No code or source XLSX changes were made by the handover commit.
