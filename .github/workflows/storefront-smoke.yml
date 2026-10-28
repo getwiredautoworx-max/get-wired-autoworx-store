@@ -249,6 +249,11 @@ jobs:
             await earlySearchFrame.locator('button.headerPartSearch').click();
             await earlySearchFrame.locator('#partSearchDialog.open').waitFor({timeout:15000});
             console.log('EARLY_PART_SEARCH_READY_PASS: click queued before catalogue initialization');
+            // Keep a non-empty query open across catalogue initialization. The result list must refresh
+            // when gw:products-loaded fires, even though the first input event ran against an empty array.
+            await earlySearchFrame.locator('#partSearchQuery').fill('GW-B4F502E6');
+            await earlySearchFrame.locator('#partSearchResults').getByText('GW-B4F502E6', {exact:false}).waitFor({state:'visible',timeout:30000});
+            console.log('PART_SEARCH_REFRESH_AFTER_CATALOGUE_LOAD_PASS: queued query returned GW-B4F502E6');
             await earlySearchFrame.locator('#partSearchDialog').evaluate(el => el.classList.remove('open'));
             await earlySearchPage.close();
 
