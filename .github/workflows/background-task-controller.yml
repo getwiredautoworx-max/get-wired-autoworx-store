@@ -57,10 +57,12 @@ jobs:
             const now = Date.now();
             const checkpointCutoff = now - 24 * 60 * 60 * 1000;
             const staleBuildCutoff = now - 24 * 60 * 60 * 1000;
+            const staleQaCutoff = now - 3 * 24 * 60 * 60 * 1000;
             let page = 1;
             let deletedCheckpoints = 0;
             let deletedApks = 0;
             let deletedOldPackages = 0;
+            let deletedOldQa = 0;
             const artifacts = [];
             while (true) {
               const { data } = await github.rest.actions.listArtifactsForRepo({
@@ -77,7 +79,7 @@ jobs:
             }
             // Keep the newest Axxess storefront ZIP as the rollback/recovery candidate.
             const packages = artifacts
-              .filter(a => /^(axxess-storefront-upload|storefront-upload)$/i.test(a.name))
+              .filter(a => /^(axxess-storefront-upload(?:-ready)?|storefront-upload(?:-ready)?)$/i.test(a.name))
               .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
             const newestPackageId = packages[0]?.id;
             for (const artifact of artifacts) {
@@ -87,17 +89,20 @@ jobs:
                 reason = 'expired checkpoint';
               } else if (/\.apk$|\b(apk|android-build|owner-apk|store-apk)\b/i.test(artifact.name) && created < staleBuildCutoff) {
                 reason = 'obsolete APK/build artifact older than 7 days';
-              } else if (/^(axxess-storefront-upload|storefront-upload)$/i.test(artifact.name) && artifact.id !== newestPackageId) {
+              } else if (/^(axxess-storefront-upload(?:-ready)?|storefront-upload(?:-ready)?)$/i.test(artifact.name) && artifact.id !== newestPackageId) {
                 reason = 'duplicate storefront package; preserve newest recovery candidate';
+              } else if (/qa|screenshot|evidence/i.test(artifact.name) && created < staleQaCutoff) {
+                reason = 'stale QA/screenshot/evidence artifact older than 3 days';
               }
               if (!reason) continue;
               core.info(`Deleting artifact id=${artifact.id} name=${artifact.name} size=${artifact.size_in_bytes} reason=${reason}`);
               await github.rest.actions.deleteArtifact({ ...context.repo, artifact_id: artifact.id });
               if (reason === 'expired checkpoint') deletedCheckpoints++;
               else if (reason.startsWith('obsolete APK')) deletedApks++;
-              else deletedOldPackages++;
+              else if (reason.startsWith('older duplicate') || reason.startsWith('duplicate storefront')) deletedOldPackages++;
+              else deletedOldQa++;
             }
-            core.info(`Cleanup totals: checkpoints=${deletedCheckpoints}, obsolete APK/build artifacts=${deletedApks}, old duplicate storefront packages=${deletedOldPackages}.`);
+            core.info(`Cleanup totals: checkpoints=${deletedCheckpoints}, obsolete APK/build artifacts=${deletedApks}, old duplicate storefront packages=${deletedOldPackages}, stale QA/screenshot/evidence artifacts=${deletedOldQa}.`);
 
       - name: Publish checkpoint artifact
         # Temporarily disabled while GitHub's Actions storage quota recalculates after cleanup.
