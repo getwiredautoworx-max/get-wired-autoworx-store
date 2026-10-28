@@ -89,6 +89,7 @@ async function main(){
    const seen=new Set();products=batches.flat().filter(x=>{if(seen.has(x.id))return false;seen.add(x.id);return true});
    if(audioGroup==='studio'){const re=/studio|microphone|mic|mixer|mixing desk|dj|recording|audio interface|monitor speaker|pa system|public address|xlr|condenser|dynamic mic|headphone/i;products=products.filter(x=>re.test([x.name,x.description].join(' ')))}
    else if(audioGroup==='home'){const re=/home theatre|home theater|soundbar|surround|hi[- ]?fi|bluetooth speaker|bookshelf speaker|television|tv|av receiver|hdmi|projector|wireless speaker|party speaker|home audio/i;products=products.filter(x=>re.test([x.name,x.description].join(' ')))}
+   else if(audioGroup==='car'){const studio=/studio|microphone|\\bmic\\b|mixer|mixing desk|\\bdj\\b|recording|audio interface|monitor speaker|\\bpa system\\b|public address|\\bxlr\\b|condenser|dynamic mic|headphone/i;const home=/home theatre|home theater|soundbar|surround|hi[- ]?fi|bluetooth speaker|bookshelf speaker|television|\\btv\\b|av receiver|hdmi|projector|wireless speaker|party speaker|home audio/i;products=products.filter(x=>{const t=[x.name,x.description].join(' ');return !studio.test(t)&&!home.test(t)})}
   }else{
    products=await apiAll('products?select=id,name,public_sku,description,price,stock_quantity,image_url,specifications,active&category_id=eq.'+encodeURIComponent(category)+'&active=eq.true&order=name.asc');
   }
