@@ -2554,3 +2554,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Created draft PR #99 against main to trigger combined PR checks/preview only. Keep it unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/99
 - PR #96 and #97 remain open drafts and unmerged at their original tested heads. No production deployment or live data changes.
 - Combined CI/hosted preview is not yet verified. Check PR #99 workflow runs and preview, then test Part Search query `GW-B4F502E6` after catalogue initialization and the three audio routes: Studio Equipment → Shure → Studio Equipment; Home Entertainment → Sonos → Home Entertainment; Car Audio & Video → JBL → Speakers. Record desktop and mobile evidence before any merge/release decision.
+
+
+## Combined integration CI + Pages preview — 2026-10-28
+- Cloudflare Pages reported successful deployment for combined integration head `a44fe660705dc879ca917d72606b0283a5e03a89` from draft PR #99. Preview: https://dd99396b.get-wired-autoworx-store.pages.dev ; branch preview: https://integration-pr96-pr97-troubl.get-wired-autoworx-store.pages.dev .
+- Combined automated checks all passed: smoke run `40667858859`, public SKU exposure audit `40667858774`, package preparation `40667858769`. Smoke includes the Part Search async refresh query and the three audio-area/brand/component paths using controlled test fixtures.
+- Manual hosted-browser/mobile verification is still NOT RECORDED: the available web reader returned internal errors for both preview URLs. Do not treat this as proof of a site failure, but do not claim browser verification.
+- Keep PR #99 as a draft, unmerged. PR #96/#97 also remain drafts/unmerged. No Axxess upload, production deployment, DNS, payments, Supabase, supplier data, live catalogue, prices, or stock changes.
+- Manual checks still needed on desktop and phone: Part Search query `GW-B4F502E6` refreshes after catalogue initialization; Studio Equipment → Shure → Studio Equipment; Home Entertainment → Sonos → Home Entertainment; Car Audio & Video → JBL → Speakers. Record evidence before considering release approval.
