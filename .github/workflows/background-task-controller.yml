@@ -56,7 +56,7 @@ jobs:
           script: |
             const now = Date.now();
             const checkpointCutoff = now - 24 * 60 * 60 * 1000;
-            const staleBuildCutoff = now - 7 * 24 * 60 * 60 * 1000;
+            const staleBuildCutoff = now - 24 * 60 * 60 * 1000;
             let page = 1;
             let deletedCheckpoints = 0;
             let deletedApks = 0;
@@ -87,8 +87,8 @@ jobs:
                 reason = 'expired checkpoint';
               } else if (/\.apk$|\b(apk|android-build|owner-apk|store-apk)\b/i.test(artifact.name) && created < staleBuildCutoff) {
                 reason = 'obsolete APK/build artifact older than 7 days';
-              } else if (/^(axxess-storefront-upload|storefront-upload)$/i.test(artifact.name) && artifact.id !== newestPackageId && created < staleBuildCutoff) {
-                reason = 'older duplicate storefront package';
+              } else if (/^(axxess-storefront-upload|storefront-upload)$/i.test(artifact.name) && artifact.id !== newestPackageId) {
+                reason = 'duplicate storefront package; preserve newest recovery candidate';
               }
               if (!reason) continue;
               core.info(`Deleting artifact id=${artifact.id} name=${artifact.name} size=${artifact.size_in_bytes} reason=${reason}`);
