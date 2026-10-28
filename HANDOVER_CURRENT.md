@@ -1,3 +1,13 @@
+## SCHEDULED CONTINUATION TASK START — 2026-10-28 15:52 SAST
+
+- Read the latest `AI_HANDOVER_PERMANENT.md` (blob `44e98620c05e9babf09dc8366d8932c4506be4a8`) and `HANDOVER_CURRENT.md` (blob `532baf33d80abb044888501dce07cccca1c832be`) before acting.
+- Previous recorded in-progress item: PR #100 frame-aware smoke assertion test run `40699575226` was queued at 13:46:48 UTC; its completion had not yet been verified.
+- Task: enumerate latest checkpoint/update handovers and query current GitHub Actions run status/attempts for staging category navigation, buyer-guide extraction, ASC Exact-SKU Image Sync, image audit, storefront smoke and production QA, and GitHub Pages/Cloudflare deployment workflows.
+- Guardrails: no production workflow reruns/deployments, no Axxess/DNS/payment changes, no live product/category/price/stock writes, and no Cloudflare/Netlify credit use. Rerun only a confirmed failed/cancelled/stopped non-production job when supported and not queued/in progress.
+- Status: in progress. Next precise action: enumerate current handover filenames and workflow run records; inspect the latest PR #100 smoke run before any retry decision.
+
+---
+
 ## CONTINUATION IN-PROGRESS — 2026-10-28 15:47 SAST
 
 - Follow-up test refinement on draft PR #100: `.github/workflows/storefront-smoke.yml` now exercises the same frame-aware body-text collection strategy as the read-only smoke workflow, not only a direct iframe locator. Review branch head is `7ae4b50f4beb50268ace128d3257a3bd0d4dede3`.
