@@ -2546,3 +2546,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - #96 preview https://e85778d7.get-wired-autoworx-store.pages.dev — check query `GW-B4F502E6` entered in Part Search before/through catalogue initialization, verify results refresh, then repeat on mobile.
 - #97 preview https://b15c8e72.get-wired-autoworx-store.pages.dev — verify Studio Equipment → Shure → Studio Equipment; Home Entertainment → Sonos → Home Entertainment; Car Audio & Video → JBL → Speakers; then repeat on mobile.
 - Keep both PRs as drafts until browser results are recorded. Do not merge, deploy, upload to Axxess, or change live systems/data. Existing local CI is already green; do not waste time repeating it as a substitute for hosted-preview evidence.
+
+
+## Combined PR #96 + #97 troubleshooting branch — 2026-10-28
+- Created `integration/pr96-pr97-troubleshooting-2026-10-28` from PR #96 tested head `59d7d4b04e0baaec601649357232f8145dcdf1ee`.
+- Merged integration-only PR #98 into that branch (not main); merge commit `a44fe660705dc879ca917d72606b0283a5e03a89`. PR #98: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/98
+- Created draft PR #99 against main to trigger combined PR checks/preview only. Keep it unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/99
+- PR #96 and #97 remain open drafts and unmerged at their original tested heads. No production deployment or live data changes.
+- Combined CI/hosted preview is not yet verified. Check PR #99 workflow runs and preview, then test Part Search query `GW-B4F502E6` after catalogue initialization and the three audio routes: Studio Equipment → Shure → Studio Equipment; Home Entertainment → Sonos → Home Entertainment; Car Audio & Video → JBL → Speakers. Record desktop and mobile evidence before any merge/release decision.
