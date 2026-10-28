@@ -107,10 +107,12 @@ jobs:
             await audioPage.route('**/*', async route => {
               const url=new URL(route.request().url());
               if(url.pathname!=='/rest/v1/products') return route.continue();
+              const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET, OPTIONS','access-control-allow-headers':'apikey, authorization, range, range-unit, prefer, content-type','content-type':'application/json'};
+              if(route.request().method()==='OPTIONS'){await route.fulfill({status:204,headers:cors,body:''});return;}
               const filter=url.searchParams.get('category_id')||'';
               const ids=filter.startsWith('in.(')?filter.slice(4,-1).split(','):(filter.startsWith('eq.')?[filter.slice(3)]:[]);
               const rows=audioFixtures.filter(p=>ids.includes(p.category_id));
-              await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(rows)});
+              await route.fulfill({status:200,headers:cors,body:JSON.stringify(rows)});
             });
             await audioPage.goto('http://127.0.0.1:4173/category.html?id='+audioRootId, {waitUntil:'domcontentloaded'});
             await audioPage.waitForFunction(() => { const grid=document.querySelector('#grid'); return !!grid && grid.innerText.includes('Studio Equipment'); }, null, {timeout:30000});
