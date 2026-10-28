@@ -81,7 +81,7 @@ jobs:
                   if (frameTexts.some(frame => frame.text.trim().length > 30)) break;
                   await desktop.waitForTimeout(500);
                 }
-                const bodyText = frameTexts.map(frame => frame.text).filter(Boolean).join('\\n');
+                const bodyText = frameTexts.map(frame => frame.text).filter(Boolean).join('\n');
                 add('PAGE_CONTENT', title.trim() && bodyText.trim().length > 30 ? 'PASS' : 'FAIL',
                   { title, bodyTextLength: bodyText.trim().length, frameCount: frameTexts.length,
                     contentFrameUrls: frameTexts.filter(frame => frame.text.trim().length > 0).map(frame => frame.url) });
