@@ -71,3 +71,9 @@
 4. Verify ASC Exact-SKU Image Sync is enabled/scheduled in GitHub Actions UI; last observed run is `40659713537` with zero eligible targets. Connected tools cannot dispatch or inspect workflow enablement.
 5. Do not rerun live smoke/release gates or deploy Pages/Cloudflare. Keep customer launch HOLD until payment readiness is resolved.
 6. Continue original-page visual review for the 198 category rows; do not auto-move products or alter the 107 audited prices.
+
+
+## Post-retry controller verification — 2026-10-28
+
+- After Catalogue Image Audit attempt 3 completed, Background Task Controller run [40703477112](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40703477112), attempt 1, completed SUCCESS at 2026-10-28 14:11:45 UTC on task-start commit `e90c76d463050e94607e62b0dec2a8118734f1bd`; job `122869225623` passed syntax validation, checkpoint generation, and safe pruning. Checkpoint artifact upload was skipped by design.
+- Fresh inventory still reports **420 artifacts / 9,294,057 bytes / 8.86 MiB**; cleanup totals remain zero in every category. No relevant workflow was queued/in progress at the final status check. This does not verify account-wide storage availability; quota errors persist.
