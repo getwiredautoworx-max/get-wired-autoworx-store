@@ -3345,3 +3345,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Security workflow `40874216958` passed 12 shared quote tests, one checkout-handler integration test, isolated PostgreSQL-compatible migration test, and both Edge Function type checks.
 - Integration test confirms forged `live=true`, tampered quote token, changed address/cart/fee are blocked before RPC; valid signed quote reaches mocked RPC. Storefront smoke `40874217012` passed.
 - Not release-ready: signing secret is not configured, migration not validated against disposable Supabase, and real-schema endpoint integration remains. PR is draft/unmerged; no production changes; release HOLD.
+
+
+## TASK START — 2026-10-29 — continue all non-payment release blockers
+
+- Owner confirms PayFast requirements have been submitted and approval is pending; treat provider approval as external and do not modify PayFast/payment configuration.
+- This run starts from latest handover and will verify the current heads/statuses for PR #94, #104, #105, #106 and related drafts before acting; priority is reproducible no-cost test fixes, security and customer-journey blockers. No merges, production deploys, live data/stock/price/active-flag changes, supplier imports, DNS/Axxess/payment changes, or hosting-credit-consuming release actions.
