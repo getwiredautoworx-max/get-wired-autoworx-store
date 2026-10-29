@@ -3419,3 +3419,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 4. Continue supplier-separated Planetworld/Audio Connections extraction via a binary-preserving staging route; then map source SKU -> verified GW SKU -> image/description/price evidence. Do not claim imports until actual files are parsed and reviewed.
 5. Restore category navigation/buyer-guide workflows on a review branch only if still required; validate before any merge.
 6. Keep launch HOLD until payment readiness, signing-secret setup, disposable Supabase migration validation, real-schema quote integration, and current-head QA are independently verified.
+
+
+## TASK START — 2026-10-29 16:15 SAST — 5-hour readiness push
+
+- Owner target: advance Get Wired AutoWorx toward 99% verified readiness within the next five hours (target window ends approximately 21:15 SAST). Do not promise 99% if release gates remain unverified; report measured readiness and blockers.
+- Read the permanent handover, current handover and latest Monitor Run 12 update before acting. Latest documented main commit: 242795ea12e049b8b6dde1fedf6597fefd5eccce; current files may have advanced and must be rechecked before any write.
+- This run starts with a fresh workflow/PR status audit, then prioritises safe, review-only fixes that improve real readiness quickly: investigate current PR heads and failed checks, identify eligible failed non-production jobs for job-only reruns, and progress supplier source processing only where actual files can be safely read. Check category-navigation, buyer-guide extraction, ASC Exact-SKU Image Sync, smoke/QA and Pages/Cloudflare checks.
+- Hard boundaries: no PR merges, production workflow reruns/deployments, live catalogue/price/stock/category changes, Supabase production mutations, Axxess upload, DNS/payment changes, real orders, or Cloudflare/Netlify release-credit consumption. Do not use production-linked Workers Builds failures as staging retries. Payment readiness remains last and PayFast approval is pending.
+- Known blockers to resolve or narrow: Actions quota/evidence uploads; repeated image proxy 404 for GW-38E68CCF; absent category/buyer-guide workflow files on main; unverified ASC schedule; signing secret + disposable Supabase migration/real-schema quote validation; hosted signup/email/session expiry/order flow; 38 supplier-price confirmations; 198 manual category-review rows; Axxess release-package verification; PayFast approval.
+- Record this start before continuing: current branch and exact task-start commit are verified by the resulting GitHub write; do not claim automatic/continuous monitoring.
