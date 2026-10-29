@@ -13,3 +13,10 @@
 - Owner requested a storefront reset to buttons only on 2026-10-29.
 - Proposed implementation replaces the product-heavy index-new.html presentation with the eight approved main category buttons and expandable subcategory buttons; no products or prices are displayed.
 - Review branch: feat/button-only-storefront-reset-2026-10-29. This branch must remain unmerged until review and preview checks. Production remains unchanged.
+
+
+## Verification workflow correction — 2026-10-29
+- The first PR #109 Storefront Smoke Test run (40918640378) failed before tests started because Playwright 1.55 does not support the ubuntu-latest image selected on 2026-10-29 (runner ubuntu 26.04). This is an environment compatibility failure, not a storefront assertion result.
+- Added a dedicated button-only Playwright workflow pinned to ubuntu-24.04, testing widths 360, 390, 768 and 1280px, eight main buttons, child/brand buttons, expand/collapse, no product/price/search elements and no horizontal overflow.
+- The legacy full-commerce smoke workflow is skipped only for this temporary button-only reset branch because its assertions require product cards and Part Search that are intentionally hidden. It is pinned to ubuntu-24.04 for future compatible runs. Other branches retain the existing smoke tests.
+- Status pending the new workflow run and its logs. No production deployment or live catalogue/stock/price/payment/DNS changes authorized or made.
