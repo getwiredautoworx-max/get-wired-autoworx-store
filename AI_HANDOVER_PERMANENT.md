@@ -3309,3 +3309,13 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - GitHub Actions lookup returned no PR-triggered workflow runs for policy branch commits `310d85c154750e9727eb53a994f161581b4a3bb5` and `9277f976c8f4aa32f1f5b6261af5e7b813455acf`. Latest policy edits therefore remain **CI-unverified**; do not claim tests or preview passed. PR #105 remains draft/open/unmerged.
 - Separate security branch PR #104 head `211dd5278355fcf66987836126e368e41165d6fe`: GitHub reports Delivery Quote Security Tests, Storefront Smoke Test, Public SKU Exposure Audit and Axxess package preparation completed SUCCESS. These are branch checks only, not production endpoint verification. Signing-secret provisioning, disposable Supabase migration/integration validation and explicitly approved coordinated deployment remain blockers.
 - No production changes. Continue release HOLD; do not merge or deploy. No payment/DNS/Axxess/database/stock/catalogue changes.
+
+
+### Addendum — 2026-10-29 — cross-PR checks re-queried during continuation
+
+- Re-queried PR-triggered runs for the recorded tested heads. PR #106 head `234b61450b3a53b220d72a06c606c0299ce94e6a`: Public SKU Exposure Audit, Customer Authentication Security Tests, Axxess package preparation and Storefront Smoke Test all SUCCESS. This still does not prove hosted signup, email confirmation, session expiry or real order submission; no production secrets/functions were changed.
+- PR #99 recorded head `062edf5029c1b93ac0511e3c0690f32a0f951c9a`: Public SKU Exposure Audit, Axxess package preparation and Storefront Smoke Test all SUCCESS. This verifies automated branch checks, not a real customer order.
+- PR #107 recorded head `90862aa54400db0f6340b76157948a847340f2a2`: Public SKU Exposure Audit, Axxess package preparation and Storefront Smoke Test all SUCCESS. The code-tested earlier head remains the no-cost, no-AI fallback; keep draft/unmerged.
+- PR #101 recorded head `93b94ee4efebf19aeae978ff1d27d7ff9bce552f`: no PR-triggered workflow runs returned; do not claim that artifact-suppression change passed. Account-wide Actions storage remains unresolved.
+- Policy PR #105's latest commits still have no returned PR-triggered workflow runs; exact price label source change remains unverified by CI/browser preview.
+- All PRs remain review-only; no merges/deployments or production changes. Release HOLD remains in force while PayFast approval, real hosted authentication/order verification, signed delivery quote setup/integration, and policy preview checks remain incomplete.
