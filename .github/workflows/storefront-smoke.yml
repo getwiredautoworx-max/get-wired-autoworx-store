@@ -254,6 +254,30 @@ jobs:
             await requestFrame.locator('.requestModalClose').click();
             await requestPage.close();
 
+            // Mock the REST endpoint locally in-browser to verify blank vehicle fields satisfy the
+            // existing RLS insert contract; no real request is sent and no row is created.
+            const requestSubmitPage = await browser.newPage({viewport:{width:390,height:844}});
+            let capturedPartPayload = null;
+            await requestSubmitPage.route('**/rest/v1/part_source_requests*', async route => {
+              const cors = {'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'apikey, authorization, content-type, prefer','access-control-max-age':'86400','content-type':'application/json'};
+              if (route.request().method() === 'OPTIONS') { await route.fulfill({status:204,headers:cors,body:''}); return; }
+              capturedPartPayload = JSON.parse(route.request().postData() || '{}');
+              await route.fulfill({status:201,headers:cors,body:''});
+            });
+            await requestSubmitPage.goto('http://127.0.0.1:4173/index.html', {waitUntil:'domcontentloaded'});
+            const requestSubmitFrame = requestSubmitPage.frameLocator('#store');
+            await requestSubmitFrame.locator('button.primaryAction').click();
+            await requestSubmitFrame.locator('#sourcePart.open').waitFor({timeout:10000});
+            await requestSubmitFrame.locator('#sourcePartType').selectOption('Other');
+            await requestSubmitFrame.locator('#sourcePartNeeded').fill('Mock photo identification request');
+            await requestSubmitFrame.locator('#sourceSubmit').click();
+            await requestSubmitFrame.locator('#sourceStatus').filter({hasText:'Request sent successfully'}).waitFor({timeout:10000});
+            if (!capturedPartPayload || capturedPartPayload.vehicle_brand !== 'Not specified' || capturedPartPayload.vehicle_make !== 'Not specified' || capturedPartPayload.vehicle_model !== 'Not specified') {
+              throw new Error('Part request must supply non-empty vehicle fallback values to satisfy current RLS policy: '+JSON.stringify(capturedPartPayload));
+            }
+            console.log('PART_REQUEST_RLS_PAYLOAD_PASS: blank vehicle fields are safely represented as Not specified; REST call mocked');
+            await requestSubmitPage.close();
+
             // Click before the async catalogue query completes to catch startup races.
             const earlySearchPage = await browser.newPage({viewport:{width:390,height:844}});
             earlySearchPage.on('pageerror', e => console.log('[early-search-pageerror] '+e.message));
