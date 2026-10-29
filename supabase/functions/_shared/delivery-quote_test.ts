@@ -1,4 +1,4 @@
-import { cartCanonical, digest, signQuote, verifyQuoteToken } from "./delivery-quote.ts";
+import { cartCanonical, destinationCanonical, digest, quoteTimeValid, signQuote, verifyQuoteToken } from "./delivery-quote.ts";
 
 const secret = "test-only-secret-value-with-at-least-32-chars";
 
@@ -28,4 +28,19 @@ Deno.test("invalid cart SKU and quantity are rejected", () => {
     let threw = false; try { cartCanonical([item]); } catch { threw = true; }
     if (!threw) throw new Error("Invalid cart should throw");
   }
+});
+
+Deno.test("quote expiry and maximum lifetime are enforced", () => {
+  const now = 1_800_000_000_000;
+  if (!quoteTimeValid({ v: 1, issued_at: now, expires_at: now + 600_000 }, now)) throw new Error("A valid 10-minute quote should pass");
+  if (quoteTimeValid({ v: 1, issued_at: now - 600_000, expires_at: now }, now)) throw new Error("An expired quote must fail");
+  if (quoteTimeValid({ v: 1, issued_at: now, expires_at: now + 600_001 }, now)) throw new Error("An overlong quote must fail");
+});
+
+Deno.test("destination canonicalization binds street, province and postal code", async () => {
+  const base = { address: "1 Main St", city: "Durban", province: "KwaZulu-Natal", postal_code: "4001" };
+  const original = await digest(destinationCanonical(base));
+  const changed = await digest(destinationCanonical({ ...base, postal_code: "4000" }));
+  const changedStreet = await digest(destinationCanonical({ ...base, address: "2 Main St" }));
+  if (original === changed || original === changedStreet) throw new Error("Destination changes must change the canonical hash");
 });
