@@ -2626,3 +2626,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 - **Outcome: BLOCKED by connector interaction requirement.** Attempted read-only Gmail searches for the 38-SKU request tracker and current supplier-price confirmations; the connected Gmail search action returned `User input required but current turn is running in a non-interactive mode` for each query. No email messages were retrieved, so this is **not** evidence that no supplier replies exist.
 - **Next action:** owner-side interactive Gmail search or an available current supplier price list / reply is required. Do not infer a current price from the September guide, reseller listings, or formula-correct but scaled live values. No email was sent and no live data changed.
+
+
+## ORIGINAL SEPTEMBER SOURCE-PAGE VERIFICATION — 2026-10-29 09:02:23 SAST
+
+- **Outcome: SUCCESS for historical source identity and printed prices.** Visually inspected the original `September Buyer's Guide.pdf` source pages in the owner Library: page 16 (EWV4500, ROMA13XP), page 26 (the 10 drill-bit SKUs), page 28 (the 14 socket SKUs), page 29 (the 10 spanner SKUs), and page 32 (LEOPARD and LION). All 38 requested SKU rows and their historical printed cost values match the tracker/source page group; this independently confirms the source basis of the 38-row scale comparison.
+- The source PDF's page 32 states prices are **ex VAT**, valid while stocks last, and the offer ends **2026-09-30**. Therefore the historical source establishes the prior scale defect but is **not current supplier-price confirmation** on 2026-10-29.
+- Page 28 itself prints SKU `SCR23MM` against description “22mm Socket 1/2Dr 12Point”; this is an original-source identity ambiguity, not a guessed correction. Keep it held pending ASC confirmation. `SCR8MM` retains the one-cent scaled rounding exception described above.
+- Page 32 also states ASC owns the catalogue intellectual property and unauthorized use is prohibited. Owner's separate interim dealer permission does not itself prove permission to crop/edit/watermark individual images; the 38-SKU tracker still has no recorded image-rights response. No catalogue images were copied or published.
+- **Disposition unchanged:** all 38 remain `DO NOT IMPORT / CURRENT PRICE UNVERIFIED`; preserve the separate 107/107 October-verified set and the nine asterisk-price items as quote-only/inactive. No live prices, costs, active flags, stock or catalogue records changed.
