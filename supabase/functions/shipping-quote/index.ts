@@ -63,7 +63,7 @@ function ratesFrom(data: any): any[] {
   if (data?.rate && typeof data.rate === "object") return [data.rate];
   return data && typeof data === "object" ? [data] : [];
 }
-Deno.serve(async request => {
+export async function handleRequest(request: Request): Promise<Response> {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
   try {
@@ -127,4 +127,6 @@ Deno.serve(async request => {
   } catch (error) {
     return json({ error: error instanceof Error ? error.message : "Quote request failed." }, 400);
   }
-});
+}
+
+if (import.meta.main) Deno.serve(handleRequest);
