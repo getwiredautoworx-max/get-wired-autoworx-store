@@ -69,3 +69,41 @@ export async function verifyQuoteToken(token: string, secret: string): Promise<Q
     return null;
   }
 }
+
+export async function validateBoundQuote(args: {
+  quote: Record<string, unknown>;
+  token: string;
+  secret: string;
+  items: QuoteItem[];
+  destination: Record<string, unknown>;
+  deliveryFee: number;
+  parcel: { weight_kg: number; length_cm: number; width_cm: number; height_cm: number };
+  now?: number;
+}): Promise<QuoteClaims> {
+  if (args.quote.live !== true || !args.token) throw new Error("A signed live delivery quote is required.");
+  const claims = await verifyQuoteToken(args.token, args.secret);
+  if (!claims) throw new Error("Delivery quote signature is invalid.");
+  const now = args.now ?? Date.now();
+  if (!quoteTimeValid(claims, now)) throw new Error("Delivery quote is expired or has an invalid lifetime.");
+  const [cartHash, destinationHash] = await Promise.all([
+    digest(cartCanonical(args.items)), digest(destinationCanonical(args.destination)),
+  ]);
+  const quotePrice = Number(args.quote.price), claimPrice = Number(claims.price);
+  if (claims.cart_hash !== cartHash || claims.destination_hash !== destinationHash ||
+      typeof claims.provider !== "string" || typeof claims.service !== "string" || claims.currency !== "ZAR" ||
+      !Number.isFinite(claimPrice) || claimPrice <= 0 ||
+      args.quote.provider !== claims.provider || args.quote.service !== claims.service ||
+      args.quote.nonce !== claims.nonce || String(args.quote.currency).toUpperCase() !== "ZAR" ||
+      quotePrice !== claimPrice || args.deliveryFee !== claimPrice) {
+    throw new Error("Delivery quote is altered or does not match this address, cart, provider or fee.");
+  }
+  const parcel = claims.parcel as Record<string, unknown> | null;
+  if (!parcel ||
+      Math.abs(Number(parcel.weight_kg) - args.parcel.weight_kg) >= 0.001 ||
+      Number(parcel.length_cm) !== args.parcel.length_cm ||
+      Number(parcel.width_cm) !== args.parcel.width_cm ||
+      Number(parcel.height_cm) !== args.parcel.height_cm) {
+    throw new Error("Delivery quote parcel dimensions do not match current product data.");
+  }
+  return claims;
+}
