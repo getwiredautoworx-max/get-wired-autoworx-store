@@ -3255,3 +3255,10 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 
 ### Next precise action
 - Next safe work should focus on a source-only PR review/validation path for PR #99 and confirm which current-main tests can be invoked without triggering production-linked Workers Builds. Then record any new run IDs and verify final attempts. Owner action is required for account-wide Actions quota, Workers Builds settings/logs, ASC workflow enabled state, PayFast approval, signing-secret setup and disposable-Supabase validation. Customer launch remains HOLD until these gates are independently verified.
+
+
+## CATALOGUE ACCESS CHECK — 2026-10-29 16:18 SAST
+
+- Follow-up corrected the binary-access assessment: GitHub `fetch_file` can return the unsuffixed Planetworld JBL workbook as base64 (`jbl-price-list-2026-10-25.xlsx`, blob SHA `0ab3d4123beb3a0a2133324f7edbb8b916d0651a`, encoded response length 38,670 characters). The suffixed duplicate `jbl-price-list-2026-10-25 (1).xlsx` returns 404 on current main, consistent with the existing mobile review note that it had already been deleted. Do not try to delete it again.
+- This confirms the original workbook is accessible through the repository API, but the current connector response is not automatically materialized as a local binary for parsing or safe supplier-folder move. No workbook content has been parsed in this pass. Use the verified current-main path/SHA above if a supported binary processing bridge becomes available.
+- Canonical supplier-folder issue remains: original Planetworld workbook set is still under `catalogue-source/suppliers/planetworld/incoming-xlsx/`, not `suppliers/Planetworld/`; Audio Connections has two source PDFs in `suppliers/Audio Connections/`. No binary move/import or customer-facing image relabelling was done.
