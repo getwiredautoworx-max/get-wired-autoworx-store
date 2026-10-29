@@ -3263,3 +3263,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Draft PR #104 current head `a230cd7476393a81404a977f756632f2d6c6aafe`; Delivery Quote Security Tests run `40870935629` passed. No production changes.
 - Signed nonce is now returned by `shipping-quote`, required to match claims in `store-checkout`, and included in review migration `20261029150000_delivery_quote_nonce_unique.sql` for a unique partial index over `orders.delivery_quote->>'nonce'`. This is only a draft; migration has not been applied or validated. Because Supabase CLI is unavailable in this runtime, regenerate/validate the migration via `supabase migration new` before merge.
 - Still block merge/deploy pending signing secret configuration, migration validation, behavioral attack tests and browser-flow testing. Store remains HOLD; Direct EFT only and payment issue #103 remains open.
+
+
+### Addendum — 2026-10-29 — signed quote helper tests
+
+- Current draft PR #104 head `844298d9f5e2a02d690c30977e37fb3289d340c7`; Delivery Quote Security Tests run `40872092058` passed with 6 tests / 0 failures and Deno type checks for both Edge Functions.
+- Shared helper tests cover HMAC validity/tampering, cart canonicalization/invalid inputs, quote expiry/max lifetime, and destination binding. This is not full endpoint integration testing.
+- Browser checkout remains unverified; migration `20261029150000_delivery_quote_nonce_unique.sql` remains review-only/unapplied and must be regenerated/validated with the Supabase CLI workflow before merge. Secret setup and provider/attack-case integration tests still block release. No production changes; launch HOLD.
