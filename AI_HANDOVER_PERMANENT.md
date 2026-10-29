@@ -3306,3 +3306,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - PR #105 smoke test run 40872723647 failed at Chromium installation; audit and package runs passed. No browser result is inferred from that failure.
 - No production deployment, PR merge, live catalogue/price/stock/active-flag write, Axxess/DNS/payment change, or Cloudflare/Netlify credit use occurred. Preserve the 107 October-verified prices, 19 Planetworld zero-RRP owner-hold items, and quote-only/inactive asterisk-price products.
 - Next safe actions: verify current PR #104 CI conclusions; validate the proposed nonce migration in an isolated disposable database (not production); check the customer-auth workflow and draft branch source; then continue source-only storefront and Part Search QA. PayFast remains pending with the provider.
+
+
+### Addendum — 2026-10-29 — bound quote validation CI
+
+- PR #104 current head `80724217f02c66ac0de177735395dcedd743523e`.
+- Security workflow `40873267963`: 12 tests passed / 0 failed; Deno type-checks passed for both Edge Functions. The shared validator used by checkout now has behavioral tests for forged/tampered quotes, cart/address/fee/provider mismatch, expiry, parcel dimensions and pickup restrictions.
+- Storefront smoke `40873267551`: SUCCESS on Ubuntu 24.04, including responsive and public-route checks. Not a full live quote/order integration test.
+- Do not merge/deploy. Signing secret is not configured; SQL nonce migration is unvalidated/unapplied and needs CLI validation; disposable-project endpoint integration tests remain open. No production changes; launch HOLD.
