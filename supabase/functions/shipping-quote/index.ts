@@ -1,4 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { cartCanonical, destinationCanonical, digest, signQuote, type QuoteItem } from "../_shared/delivery-quote.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -6,7 +7,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-type Item = { public_sku?: string; qty?: number; quantity?: number };
+type Item = QuoteItem;
 function adminHeaders(): Record<string, string> {
   let secret: string | null = null; let usesSecretApiKey = false;
   const env = Deno.env.get("SUPABASE_SECRET_KEYS");
@@ -20,34 +21,6 @@ function adminHeaders(): Record<string, string> {
   const headers: Record<string, string> = { apikey: secret, "Content-Type": "application/json" };
   if (!usesSecretApiKey) headers.Authorization = "Bearer " + secret;
   return headers;
-}
-function normalise(value: unknown): string { return String(value ?? "").normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase(); }
-async function digest(value: string): Promise<string> {
-  const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
-  return Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, "0")).join("");
-}
-function cartCanonical(items: Item[]): string {
-  const quantities = new Map<string, number>();
-  for (const item of items) {
-    const sku = String(item.public_sku ?? "").trim().toUpperCase();
-    const qty = Number(item.quantity ?? item.qty);
-    if (!/^GW-[A-Z0-9]{8}$/.test(sku) || !Number.isInteger(qty) || qty < 1 || qty > 100) throw new Error("Cart items need a valid SKU and quantity.");
-    quantities.set(sku, (quantities.get(sku) || 0) + qty);
-  }
-  return [...quantities.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([sku, qty]) => sku + ":" + qty).join("|");
-}
-function destinationCanonical(body: Record<string, unknown>): string {
-  return [body.address, body.city, body.province, body.postal_code].map(normalise).join("|");
-}
-function b64url(bytes: Uint8Array): string {
-  let binary = ""; for (const byte of bytes) binary += String.fromCharCode(byte);
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
-}
-async function signQuote(claims: Record<string, unknown>, secret: string): Promise<string> {
-  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
-  const payload = b64url(new TextEncoder().encode(JSON.stringify(claims)));
-  const signature = new Uint8Array(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload)));
-  return payload + "." + b64url(signature);
 }
 async function authoritativeParcel(supabaseUrl: string, items: Item[]) {
   const canonical = cartCanonical(items), quantities = new Map<string, number>();
