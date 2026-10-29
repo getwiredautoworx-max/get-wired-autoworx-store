@@ -3270,3 +3270,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Current draft PR #104 head `844298d9f5e2a02d690c30977e37fb3289d340c7`; Delivery Quote Security Tests run `40872092058` passed with 6 tests / 0 failures and Deno type checks for both Edge Functions.
 - Shared helper tests cover HMAC validity/tampering, cart canonicalization/invalid inputs, quote expiry/max lifetime, and destination binding. This is not full endpoint integration testing.
 - Browser checkout remains unverified; migration `20261029150000_delivery_quote_nonce_unique.sql` remains review-only/unapplied and must be regenerated/validated with the Supabase CLI workflow before merge. Secret setup and provider/attack-case integration tests still block release. No production changes; launch HOLD.
+
+
+## CONTINUATION TASK START — 2026-10-29 — remaining main blockers after PayFast submission
+
+- Owner confirms PayFast requirements have been sent and approval is pending. Treat PayFast as provider-pending; do not reclassify as rejected or ready, and do not change payment settings.
+- Scope: continue remaining non-payment blockers, starting with draft PR #104 delivery-quote security remediation; verify latest checks and inspect exact code/migration/tests. Then address other safe, non-production storefront blockers where evidence and supported tools permit.
+- Locked boundaries: no production deployment/function/database writes, PR merges, live catalogue/price/stock/active-flag changes, Axxess/DNS/payment changes, or Cloudflare/Netlify credit use. No invented supplier data. Preserve user’s 8 permanent rules.
+- Task started after reading this permanent handover. Record each verified result and blocker before moving to the next task.
