@@ -1,4 +1,4 @@
-import { cartCanonical, destinationCanonical, digest, normalise, quoteTimeValid, signQuote, verifyQuoteToken } from "./delivery-quote.ts";
+import { cartCanonical, destinationCanonical, digest, normalise, quoteTimeValid, signQuote, validateBoundQuote, verifyQuoteToken } from "./delivery-quote.ts";
 
 const secret = "test-only-secret-value-with-at-least-32-chars";
 
@@ -47,4 +47,52 @@ Deno.test("destination canonicalization binds street, province and postal code",
 
 Deno.test("destination normalization collapses whitespace and normalizes Unicode", () => {
   if (normalise("  MAIN   Street\t #２  ") !== "main street #2") throw new Error("Destination normalization must collapse whitespace and normalize compatibility characters");
+});
+
+
+async function boundQuoteFixture(now = Date.now()) {
+  const items = [{ public_sku: "GW-12345678", quantity: 2 }];
+  const destination = { address: "1 Main St", city: "Durban", province: "KwaZulu-Natal", postal_code: "4001" };
+  const parcel = { weight_kg: 2, length_cm: 10, width_cm: 10, height_cm: 5 };
+  const claims = {
+    v: 1, cart_hash: await digest(cartCanonical(items)), destination_hash: await digest(destinationCanonical(destination)),
+    provider: "The Courier Guy", service: "Standard", price: 85.5, currency: "ZAR", parcel,
+    issued_at: now, expires_at: now + 600000, nonce: "fixture-nonce",
+  };
+  const token = await signQuote(claims, secret);
+  return {
+    items, destination, parcel, token,
+    quote: { live: true, quote_token: token, provider: claims.provider, service: claims.service, price: claims.price, currency: claims.currency, nonce: claims.nonce },
+    deliveryFee: claims.price, secret, now,
+  };
+}
+async function mustReject(promise: Promise<unknown>, message: string) {
+  let rejected = false; try { await promise; } catch { rejected = true; }
+  if (!rejected) throw new Error(message);
+}
+
+Deno.test("bound quote accepts a valid token only for its exact cart and destination", async () => {
+  const f = await boundQuoteFixture();
+  const claims = await validateBoundQuote({ ...f, token: f.token, deliveryFee: f.deliveryFee, now: f.now });
+  if (claims.nonce !== "fixture-nonce") throw new Error("Expected verified nonce");
+});
+
+Deno.test("forged live flag without a signed token is rejected", async () => {
+  const f = await boundQuoteFixture();
+  await mustReject(validateBoundQuote({ ...f, token: "", quote: { ...f.quote, quote_token: "" } }), "Forged live=true without token must fail");
+});
+
+Deno.test("bound quote rejects altered cart, address, price, fee and provider", async () => {
+  const f = await boundQuoteFixture();
+  await mustReject(validateBoundQuote({ ...f, items: [{ public_sku: "GW-12345678", quantity: 3 }] }), "Changed quantity must fail");
+  await mustReject(validateBoundQuote({ ...f, destination: { ...f.destination, postal_code: "4000" } }), "Changed destination must fail");
+  await mustReject(validateBoundQuote({ ...f, quote: { ...f.quote, price: 999 }, deliveryFee: 999 }), "Changed quote price/fee must fail");
+  await mustReject(validateBoundQuote({ ...f, quote: { ...f.quote, provider: "Other courier" } }), "Changed provider must fail");
+});
+
+Deno.test("bound quote rejects expired tokens and changed parcel dimensions", async () => {
+  const now = Date.now(), f = await boundQuoteFixture(now - 700000);
+  await mustReject(validateBoundQuote({ ...f, now }), "Expired quote must fail");
+  const fresh = await boundQuoteFixture();
+  await mustReject(validateBoundQuote({ ...fresh, parcel: { ...fresh.parcel, weight_kg: 4 } }), "Changed parcel dimensions must fail");
 });
