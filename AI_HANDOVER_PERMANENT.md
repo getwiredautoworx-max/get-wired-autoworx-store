@@ -3205,3 +3205,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Source-level inspection of `category.html` and `assets/category-tree.json` confirms the new `Glowplugs` category UUID `ada27a2c-647a-4cb4-83f5-557a5ef33694` is already present in the static category snapshot under `Electrical`; the snapshot currently records `direct_active_products: 0` for Glowplugs.
 - The customer category page computes descendant totals and renders `CATEGORY UNAVAILABLE` when a selected category has zero active products; root/subcategory choices with zero total are filtered out. Since both glowplug products remain inactive, this prevents an empty public category/listing from being shown. This is source inspection, not a live-browser test.
 - No storefront source edit was needed or made. Keep products inactive until current supplier price and stock are confirmed; then update/refresh the category snapshot and run the final browser QA only under the release-credit policy.
+
+
+## SOURCE-PDF EXTRACTION BLOCKER — 2026-10-29
+
+- Confirmed the next Electrocity source files and exact GitHub paths: `suppliers/Electrocity/converters.pdf` (62,362 bytes), `suppliers/Electrocity/Ignition Looms-Coils-Modules/(1)IGNITION MODULES.pdf` (342,493 bytes), `.../IGNITION COILS.pdf` (86,978 bytes), and `.../IGNITION LOOMS.pdf` (66,694 bytes). The supplier README authorizes analysis and mapping.
+- The connected GitHub text-fetch action can enumerate these PDFs but cannot decode their binary blobs as UTF-8 (confirmed UnicodeDecodeError). The available browser retrieval path also rejected the PDF URL, and the current runtime contains only the two glowplug PDF attachments. Therefore **no extraction/mapping was performed for the converter/ignition PDFs in this run**. Do not claim otherwise.
+- To continue accurately without guessing, make the four source PDFs available as chat attachments (or use a supported binary-file retrieval path). Once readable, extract the original item/code/application/dimensions exactly, assign supplier-specific internal SKUs, and flag uncertain code roles/fitment. No new catalogue/database mutation was made.
