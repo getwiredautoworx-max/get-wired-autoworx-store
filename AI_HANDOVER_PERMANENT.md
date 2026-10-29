@@ -3360,3 +3360,14 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Catalogue priorities retained: Planetworld + Audio Connections supplier-separated processing and accurate GW-SKU image labels; ASC replacement dataset only from approved dated guides/catalogues; 198 category rows remain manual review; 107 audited October price rows remain no-write.
 - Guardrails: no production workflow rerun, PR merge, live product/stock/price/category mutation, Supabase deployment, Axxess/DNS/payment change, or Cloudflare/Netlify release-credit use. Launch remains HOLD pending independent checkout/payment/identity/delivery gates.
 - Task-start commit is being written now; workflow checks and any supported safe retries follow.
+
+
+## 2026-10-29 — OWNER-APPROVED PRIVATE RETURNS / COLLECTION RULES
+- Owner confirmed: returns address must remain private and be provided to the buyer in writing when a return is required; collection is by appointment only; no walk-ins; no C.O.D.; customer collection is permitted only after payment is received and Get Wired AutoWorx has notified the buyer in writing that the order is ready.
+- Draft branch: `draft/private-returns-appointment-pickup-2026-10-29`; no merge or production deployment.
+- Updated `returns-refunds.html`: removed the street address from the return instructions and contact section; return address/instructions are sent privately in writing; added paid, written-confirmation, appointment-only pickup rule and no C.O.D.
+- Updated `terms-and-conditions.html`: removed public street address from business/contact and return-address sections; states online business/no walk-in shopfront, appointment-only collection after payment plus written ready notification, no walk-ins, no C.O.D., and private return address supplied in writing.
+- Updated `index-new.html`: replaced the public street address in the top bar with online-business, appointment-only collection, no-walk-in and no-C.O.D. wording.
+- Pre-write validation passed for all three pages: zero remaining occurrences of `29 Wattlebrook Crescent` in these files and all required collection/private-return clauses present. This was source-level validation; browser preview/visual checks still required.
+- A standalone `privacy-policy.html`/ `privacy.html` page was not found in the repository at this checkpoint. Do not claim a standalone Privacy Policy was updated; check public legal-page links separately before release.
+- PayFast approval remains pending. Do not merge, deploy, change Axxess/DNS, payment settings, live stock/prices/catalogue, or Supabase as part of this policy task.
