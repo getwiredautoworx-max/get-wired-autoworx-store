@@ -18,7 +18,7 @@
 - Customer-facing product pictures must show the assigned Get Wired (GW) SKU, replacing the supplier SKU printed on the picture. Keep supplier SKU internally for ordering and traceability.
 - Never pair a picture, description, price, supplier SKU, GW SKU, category or subcategory by visual guess. Match exact manufacturer/supplier SKU and source evidence; send ambiguous records to review.
 - Continue Planetworld and Audio Connections processing while preparing the approved ASC replacement dataset separately.
-- Price-less products must be labelled exactly: **“Price on Request due to Limited Stock.”** Do not invent a price. Keep Planetworld's 19 zero-RRP items on the owner's audit hold; don't infer that zero means out of stock or special order.
+- Price-less products must be labelled exactly: **“Price on Request due to Limited Stock and Availability”** Do not invent a price. Keep Planetworld's 19 zero-RRP items on the owner's audit hold; don't infer that zero means out of stock or special order.
 - Return address is private and is to be communicated to the buyer in writing only when a return is required. Returns/pickups are by appointment only; **No Walk-ins; No C.O.D.** Customer may collect only after payment and after Get Wired notifies them that the order is ready.
 - Catalogue images must remain legible on both phone and PC. Prefer clean, high-quality PNG exports; use 300 DPI as a print/master target, but for web/mobile optimise pixel dimensions and file size (DPI metadata alone does not improve screen sharpness). Retain source PDFs and originals.
 - Storefront launch remains HOLD; do not merge draft PRs, deploy, consume Cloudflare/Netlify credits, alter Axxess/DNS/payment, or mutate live prices/stock/catalogue/Supabase without explicit approval.
@@ -44,3 +44,13 @@
 
 ## RELEASE / DATA SAFETY STATUS
 No live product/price/stock/category write, ASC deletion/reload, Supabase mutation, PR merge, production deployment, Axxess/DNS/payment change or Cloudflare/Netlify credit use was made in this continuation check. Catalogue extraction/import completion is **not claimed**. Customer launch remains **HOLD**.
+
+
+## CONTINUATION CORRECTION — 29 October 2026, 19:58 SAST
+
+- Read back the current master handover, permanent handover, catalogue continuation and the latest monitor checkpoint before continuing.
+- Mandatory exact customer-facing fallback for every unverified/missing selling price: **“Price on Request due to Limited Stock and Availability”**. The earlier shorter phrase in this handover has been corrected; do not use the shorter wording.
+- The corrected Planetworld review workbook in the Library is a filtered legacy review report, not a fresh source audit. Its 19 zero-RRP, 37/38 potential below-cost, and 32 model/SKU-match flags remain advisory queues only. The 32 flags are not confirmed duplicates: source-file provenance, exact model, full description/specifications and actual product image must be checked before any duplicate decision. Do not delete or suppress listings on flags alone.
+- Current verified supplier sources remain 47 Planetworld XLSX files under `catalogue-source/suppliers/planetworld/incoming-xlsx/` and two Audio Connections PDFs under `suppliers/Audio Connections/`. The canonical `suppliers/Planetworld/` folder is not yet populated with those XLSX files; no binary move, fresh workbook parse, Audio Connections extraction, GW-SKU assignment, image-label replacement or store import is claimed by this checkpoint.
+- Next work remains source-led and review-only: inspect source rows and images together; retain source path/sheet/row or PDF page; preserve supplier SKU internally; assign/relabel GW SKU only after an exact documented match; leave uncertain matches unresolved. Continue Planetworld and Audio Connections without waiting on ASC, but do not change live stock/prices/catalogue/Supabase, production hosting, Axxess, DNS or payments.
+- No supplier binary or live store data was changed in this continuation checkpoint. Launch remains HOLD.
