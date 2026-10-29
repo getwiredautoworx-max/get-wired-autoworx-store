@@ -1,15 +1,16 @@
-## REPOSITORY RECONCILIATION + FRESH SOURCE AUDIT — 2026-10-29
+## REPOSITORY + CATALOGUE RESULTS — 2026-10-29
 
-- Full recursive Git tree scan of base `3e362397e249150f4fb992fde199784b6cc42f7c` returned `truncated=false`: 5,205 tracked blobs / 498,013,273 declared bytes.
-- Review PR #110: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/110. It relocates 47 Planetworld XLSX files byte-for-byte into `suppliers/Planetworld/`, preserving blob SHA. Read-after-write tree check: 47 XLSX at canonical destination, 0 XLSX left at old incoming path.
-- Fresh read-only audit run 40941740509 **SUCCESS**: 47 workbooks, 94 sheets, 3,317 rows, 0 workbook errors; 0 identical workbook/product-data duplicate groups; 0 duplicate model/SKU rows; 0 missing model/SKU or unmapped RRP.
-- Fresh price review flags: 19 zero-RRP rows remain owner hold; 18 positive-RRP rows below estimated cost at RRP−1%; 19 at RRP−2%. No selling-price changes made.
-- Source division count: Car Audio 702 rows; Musical Instruments 1,719; Installed AV 435; Home CI 319; Home Retail 142. Component guesses remain heuristic pending exact model/image/features checks.
-- Product image hash audit found 163 groups of exact byte-identical files in `assets/products/`. None deleted/reassigned because byte identity alone does not prove identical product identity. Additional non-image duplicate blob groups and stale placeholders are itemised in `REPOSITORY_FILE_RECONCILIATION_2026-10-29.md`.
-- GitHub Actions artifact upload failed due account storage quota, but the audit job and summary succeeded. No production or live catalogue/stock/price/database writes; no deployment or Cloudflare/Netlify credit used.
-- Current store mode remains intentionally buttons-only per owner instruction. Do not re-enable product cards until exact product/model/image/description/price/category mapping is verified.
-- Continue by producing the sanitized Car Audio row-level review dataset from the successful current-source audit, then verify images/features and create a review-only category/brand presentation. Audio Connections has 2 PDFs awaiting extraction; ASC source PDFs are already under `suppliers/ASC/`, but ASC store stock must stay excluded.
- 
+- Full recursive repository tree scanned: 5,205 tracked blobs / 498,013,273 declared bytes at base `3e362397e249150f4fb992fde199784b6cc42f7c`, `truncated=false`.
+- Review PR #110: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/110. Relocates 47 Planetworld XLSX files byte-for-byte into `suppliers/Planetworld/`; verification confirms 47 at the canonical destination and 0 at the old incoming path. Original workbook blob SHAs are preserved.
+- Read-only audit run 40941740509: **SUCCESS** — 47 workbooks, 94 sheets, 3,317 rows, 0 workbook errors; 0 identical workbook/product-data duplicate groups; 0 duplicate model/SKU rows; 0 missing model/SKU; 0 missing/unmapped RRP. Historical 32 duplicate flags are not reproduced by the fresh current-source audit and are not confirmed duplicates.
+- Review queues: 19 zero-RRP rows (owner hold); 18 positive-RRP rows below estimated VAT-inclusive cost at RRP−1%; 19 at RRP−2%. No prices changed.
+- Sanitized Car Audio review dataset: `catalogue-audits/PLANETWORLD_CAR_AUDIO_REVIEW_ONLY_2026-10-29.csv`, 702 data rows; 0 blank descriptions; excludes price, dealer cost, stock and margin. Source counts: One 290, Kicker 189, Audison 94, Alpine 58, Harness and Trims 47 (range, not brand), JVC 13, Kenwood 4, Amplified 3, Focal 2, Pioneer 2.
+- Compared the 702 Car Audio model codes with all 4,902 repository image assets: **0 exact normalized filename matches**. Therefore no current repository image can be safely assigned by filename to these supplier rows; official manufacturer image/feature verification and GW-SKU label generation remain outstanding. Do not use similar-looking pictures or guessed matches.
+- Repository-wide product-image audit: 163 exact byte-identical image-file groups, but no images deleted/reassigned because byte identity is not proof of identical product identity. The detailed 557-line file report plus current-source results is `REPOSITORY_FILE_RECONCILIATION_2026-10-29.md`.
+- Actions audit job succeeded but artifact upload failed because account Actions storage quota is full. Results are recorded from job logs; no Cloudflare/Netlify credits used.
+- Main storefront remains intentionally `buttons-only` under the owner's reset instruction. No product, price, stock, database, Axxess, DNS, payment or production deployment change was made.
+- Next: source official images/features for the Car Audio models, build a separate review-only asset/brand-navigation proposal, extract the 2 Audio Connections PDFs, and keep ASC store stock excluded. Do not merge/deploy until checks and the required release approvals are satisfied.
+
 ## PERMANENT USER INSTRUCTIONS — 8 LOCKED RULES
 1. **Maintain workflow — efficiency — speed.**
 2. **Complete all available tasks in a single flow.**
