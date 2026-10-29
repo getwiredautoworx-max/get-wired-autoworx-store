@@ -3138,3 +3138,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - After the failed-job-only image-audit retry (run `40659812384`, attempt 3, failure), Background Task Controller run `40703477112`, attempt 1, SUCCESS at 2026-10-28 14:11:45 UTC on task-start commit `e90c76d463050e94607e62b0dec2a8118734f1bd`; job `122869225623`. Syntax validation, checkpoint generation, and pruning passed; checkpoint artifact upload skipped by design.
 - Latest repository artifact inventory remains 420 artifacts / 9,294,057 bytes (8.86 MiB), with zero eligible deletions. No relevant workflows were queued/in progress at the final status check. Actions storage is still unresolved/unverified at account level because artifact uploads continue to fail with the quota error.
 - Supplemental detailed record: `HANDOVER_UPDATE_2026-10-28_MONITOR_RUN_11.md`; latest master summary: `HANDOVER_CURRENT.md`.
+
+
+## Automation run — 2026-10-29 08:55 SAST — task start
+- **Status: IN PROGRESS.** Read the latest permanent handover first (blob `321ebe5a4ee510dfe276f3b60a13d7e9a340fb72`). Appending this task-start checkpoint before any other investigation.
+- **Run scope:** read Planetworld branch `docs/planetworld-blocker-handover-2026-10-26` `HANDOVER_CURRENT.md` and its three named reports; verify PR #95 state/head/mergeability and the latest audit run, job, and artifact; inspect current safe staging/background workflow states and supported retry actions; continue source-evidence-only Planetworld verification if available.
+- **Hard boundaries:** no PR merge, supplier XLSX edits/imports, live catalogue/price/stock/active-flag changes, Supabase writes, production/deployment reruns, Axxess/DNS/payment changes, or release-credit use. Do not retry queued/in-progress runs or repeat completed work. Keep 19 zero-RRP items isolated for owner audit and asterisk-price items quote-only/inactive.
+- **Next action:** after this entry is saved, read the current Planetworld handover and all three reports before inspecting workflows or changing anything else.
