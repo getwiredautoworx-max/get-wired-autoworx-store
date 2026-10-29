@@ -33,6 +33,8 @@ jobs:
           grep -Fq 'nonce: claims.nonce' supabase/functions/shipping-quote/index.ts
           grep -Fq 'quote.nonce !== claims.nonce' supabase/functions/store-checkout/index.ts
           grep -Fq 'orders_delivery_quote_nonce_uidx' supabase/migrations/20261029150000_delivery_quote_nonce_unique.sql
+      - name: Run behavioral quote-token tests
+        run: deno test supabase/functions/_shared/delivery-quote_test.ts
       - name: Type-check shipping quote
         run: deno check supabase/functions/shipping-quote/index.ts
       - name: Type-check checkout
