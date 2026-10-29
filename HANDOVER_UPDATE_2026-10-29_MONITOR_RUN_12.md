@@ -46,3 +46,10 @@
 - Continue supplier-separated Planetworld/Audio Connections processing through a binary-preserving staging route. Map exact source SKU -> verified GW SKU -> image/description/price evidence; never infer or import unverified rows.
 - Restore missing staging category/buyer-guide workflows only on a review branch if required; manually verify original source pages for the **198** category-review rows. The **107** audited October price rows remain no-write.
 - No live stock/product/category/price/active-flag changes, Supabase production mutation/deployment, Axxess/DNS/payment changes, PR merge, or manual Cloudflare/Netlify deployment occurred. Launch remains HOLD until checkout, payment, identity and delivery gates are independently verified.
+
+
+## Documentation commit verification
+
+- Final result commit: `7c3f205382dc3662f6aedffb3a0386c9e62c76f9`; the three files `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and this update were committed together.
+- Post-commit read-back verified all three files and confirmed the permanent result section, current-handover result section, and all eight permanent rules are present.
+- GitHub check-runs for the result commit returned **0** entries. The `[CF-Pages-Skip]` prefix prevented another Cloudflare Pages build; no manual deployment or release-credit action was taken.
