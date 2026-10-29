@@ -332,3 +332,10 @@ These eight rules are user-authoritative and must be copied into every new hando
 - The previous 2026-10-28 checkpoint's statement that no catalogue/database rows had changed was true at that point only; a subsequent session created the category and these two inactive drafts. This note supersedes that earlier state.
 - Standalone HTML preview was not created because the data-analysis tool reported a temporary limit; no preview link should be shared as if verified. No deployment/merge/release-credit use occurred.
 - Next: continue supplier PDF extraction/mapping (converters, ignition coils, looms, modules), preserve each supplier's own SKU prefix, retain dimensions/source codes, flag uncertain matches, and keep stock/price unmodified. Launch remains HOLD for checkout identity/security and payment readiness.
+
+
+## STOREFRONT CATEGORY VISIBILITY CHECK — 2026-10-29
+
+- Source-level inspection of `category.html` and `assets/category-tree.json` confirms the new `Glowplugs` category UUID `ada27a2c-647a-4cb4-83f5-557a5ef33694` is already present in the static category snapshot under `Electrical`; the snapshot currently records `direct_active_products: 0` for Glowplugs.
+- The customer category page computes descendant totals and renders `CATEGORY UNAVAILABLE` when a selected category has zero active products; root/subcategory choices with zero total are filtered out. Since both glowplug products remain inactive, this prevents an empty public category/listing from being shown. This is source inspection, not a live-browser test.
+- No storefront source edit was needed or made. Keep products inactive until current supplier price and stock are confirmed; then update/refresh the category snapshot and run the final browser QA only under the release-credit policy.
