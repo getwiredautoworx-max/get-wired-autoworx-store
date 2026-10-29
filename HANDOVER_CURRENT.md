@@ -3109,3 +3109,11 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - Shared quote-token module now has six passing Deno tests and both edge functions type-check. The current PR-only security workflow on head `e6a3b561bc6cc23c5dd20c5b75605877794e19b9`, run [40872390791](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872390791), completed **SUCCESS**.
 - Diagnosed the repeat Storefront Smoke failure from job logs: Playwright 1.55.0 cannot install Chromium dependencies on `ubuntu26.04-x64` (runner default changed beyond Playwright's supported OS list). Changed only the PR smoke workflow runner to `ubuntu-24.04`; run [40872390811](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872390811) was still in progress at the last status check at the Chromium install step. Verify its final outcome before claiming browser QA.
 - Current PR #104 remains draft/open/unmerged. Quote security code is not deployed. Migration is review-only/unapplied and requires Supabase CLI validation; secret provisioning and full endpoint integration tests remain blockers. No live functions/database/payment/DNS/catalogue changes.
+
+
+### Addendum — 2026-10-29 — latest PR-head verification
+
+- Latest PR #104 head: `770d6a46190255e76363496aef0557301ef8eece`.
+- Delivery Quote Security Tests [40872472113](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872472113) **SUCCESS**: 7 behavioral tests passed, 0 failed; Deno type-checks passed for both Edge Functions.
+- Storefront Smoke Test [40872472179](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872472179) **SUCCESS** after the runner was pinned to `ubuntu-24.04`. The logs confirm responsive homepage checks at 320/390/768/1365px, 8 populated main categories plus Find a Part, 12 Auto Electrical options, exact-SKU image fallback, metadata leak guard, request-part dialog, and public route checks.
+- These results validate helper behavior and general storefront smoke, **not** end-to-end quote/order security. PR #104 remains draft/open/unmerged. Secret setup, disposable-DB migration validation and endpoint attack-case tests remain release blockers; no production changes made.
