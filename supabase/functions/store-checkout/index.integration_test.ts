@@ -64,7 +64,7 @@ Deno.test("checkout handler rejects forged or altered delivery quotes before RPC
     if (changedFee.status !== 400 || rpcCalls !== 0) throw new Error("Changed delivery fee reached order RPC");
 
     const valid = await submit(base);
-    if (valid.status !== 200 || rpcCalls !== 1) throw new Error("Valid bound quote did not reach mocked order RPC");
+    if (valid.status !== 200 || Number(rpcCalls) !== 1) throw new Error("Valid bound quote did not reach mocked order RPC");
     const result = await valid.json();
     if (result.order_number !== 1001) throw new Error("Valid checkout response was not returned");
   } finally {
