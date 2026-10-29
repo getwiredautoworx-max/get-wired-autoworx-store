@@ -1,5 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { cartCanonical, destinationCanonical, digest, quoteTimeValid, verifyQuoteToken, type QuoteItem } from "../_shared/delivery-quote.ts";
+import { cartCanonical, validateBoundQuote, type QuoteItem } from "../_shared/delivery-quote.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -102,8 +102,6 @@ Deno.serve(async (req: Request) => {
         return new Response(JSON.stringify({ error: "A secure, current delivery quotation is required. Please request a new quote.", code: "DELIVERY_QUOTE_REQUIRED" }),
           { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       }
-      const claims = await verifyQuoteToken(token, quoteSecret);
-      if (!claims) throw new Error("Delivery quote signature is invalid.");
       const cartQuantities = new Map<string, number>();
       // Shared canonicalization enforces the same SKU/quantity rules used when the quote was issued.
       cartCanonical(items as QuoteItem[]);
@@ -112,14 +110,6 @@ Deno.serve(async (req: Request) => {
         const qty = Number(item.quantity ?? item.qty);
         cartQuantities.set(sku, (cartQuantities.get(sku) || 0) + qty);
       }
-      const dest = {
-        p_delivery_address: payload.p_delivery_address, p_city: payload.p_city,
-        p_province: payload.p_province, p_postal_code: payload.p_postal_code,
-      };
-      const [cartHash, destinationHash] = await Promise.all([
-        digest(cartCanonical(items as QuoteItem[])), digest(destinationCanonical(dest)),
-      ]);
-      const quotePrice = Number(quote.price);
       const productsBySku = new Map((verifiedRows as Array<Record<string, unknown>>).map(product => [String(product.public_sku), product]));
       let verifiedWeight = 0, verifiedLength = 0, verifiedWidth = 0, verifiedHeight = 0;
       for (const [sku, qty] of cartQuantities) {
@@ -130,18 +120,14 @@ Deno.serve(async (req: Request) => {
         }
         verifiedWeight += w * qty; verifiedLength = Math.max(verifiedLength, l); verifiedWidth = Math.max(verifiedWidth, wi); verifiedHeight = Math.max(verifiedHeight, h);
       }
-      const parcel = claims.parcel as Record<string, unknown> | null;
-      const parcelMatches = !!parcel &&
-        Math.abs(Number(parcel.weight_kg) - Number(verifiedWeight.toFixed(3))) < 0.001 &&
-        Number(parcel.length_cm) === verifiedLength && Number(parcel.width_cm) === verifiedWidth && Number(parcel.height_cm) === verifiedHeight;
-      if (!parcelMatches) throw new Error("Delivery quote parcel dimensions do not match current product data. Request a fresh quote.");
-      if (!quoteTimeValid(claims) || claims.cart_hash !== cartHash || claims.destination_hash !== destinationHash ||
-          typeof claims.provider !== "string" || typeof claims.service !== "string" || claims.currency !== "ZAR" ||
-          !Number.isFinite(Number(claims.price)) || Number(claims.price) <= 0 ||
-          quote.provider !== claims.provider || quote.service !== claims.service || quote.nonce !== claims.nonce || String(quote.currency).toUpperCase() !== "ZAR" ||
-          quotePrice !== Number(claims.price) || deliveryFee !== Number(claims.price)) {
-        throw new Error("Delivery quotation is expired, altered, or does not match this address/cart. Request a fresh quote.");
-      }
+      const dest = {
+        p_delivery_address: payload.p_delivery_address, p_city: payload.p_city,
+        p_province: payload.p_province, p_postal_code: payload.p_postal_code,
+      };
+      await validateBoundQuote({
+        quote, token, secret: quoteSecret, items: items as QuoteItem[], destination: dest, deliveryFee,
+        parcel: { weight_kg: Number(verifiedWeight.toFixed(3)), length_cm: verifiedLength, width_cm: verifiedWidth, height_cm: verifiedHeight },
+      });
     }
 
     const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
