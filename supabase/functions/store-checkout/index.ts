@@ -84,6 +84,61 @@ Deno.serve(async (req: Request) => {
       }), { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
+
+    // Delivery rates must carry a short-lived HMAC token minted by shipping-quote.
+    // Never trust browser-supplied live=true, price, or matching delivery fee on its own.
+    const deliveryMethod = String(payload.p_delivery_method || "delivery").toLowerCase();
+    const deliveryFee = Number(payload.p_delivery_fee);
+    if (deliveryMethod === "pickup") {
+      if (!Number.isFinite(deliveryFee) || deliveryFee !== 0 || payload.p_delivery_quote != null) {
+        throw new Error("Pickup must have a zero delivery fee and no delivery quote.");
+      }
+    } else {
+      const quote = payload.p_delivery_quote as Record<string, unknown> | null;
+      const token = typeof quote?.quote_token === "string" ? quote.quote_token : "";
+      const quoteSecret = Deno.env.get("DELIVERY_QUOTE_SIGNING_SECRET");
+      if (!quote || quote.live !== true || !token || !quoteSecret || quoteSecret.length < 32) {
+        return new Response(JSON.stringify({ error: "A secure, current delivery quotation is required. Please request a new quote.", code: "DELIVERY_QUOTE_REQUIRED" }),
+          { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
+      const parts = token.split(".");
+      if (parts.length !== 2) throw new Error("Invalid delivery quote token.");
+      const decode = (part: string) => {
+        const normal = part.replace(/-/g, "+").replace(/_/g, "/");
+        const padded = normal + "=".repeat((4 - normal.length % 4) % 4);
+        return Uint8Array.from(atob(padded), c => c.charCodeAt(0));
+      };
+      const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(quoteSecret), { name: "HMAC", hash: "SHA-256" }, false, ["verify"]);
+      const validSignature = await crypto.subtle.verify("HMAC", key, decode(parts[1]), new TextEncoder().encode(parts[0]));
+      if (!validSignature) throw new Error("Delivery quote signature is invalid.");
+      const claims = JSON.parse(new TextDecoder().decode(decode(parts[0]))) as Record<string, unknown>;
+      const norm = (value: unknown) => String(value ?? "").normalize("NFKC").trim().replace(/\\s+/g, " ").toLowerCase();
+      const digest = async (value: string) => {
+        const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+        return Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, "0")).join("");
+      };
+      const cartQuantities = new Map<string, number>();
+      for (const item of items) {
+        const sku = String(item.public_sku ?? item.sku ?? "").trim().toUpperCase();
+        const qty = Number(item.quantity ?? item.qty);
+        if (!/^GW-[A-Z0-9]{8}$/.test(sku) || !Number.isInteger(qty) || qty < 1 || qty > 100) throw new Error("Invalid cart item for delivery quote.");
+        cartQuantities.set(sku, (cartQuantities.get(sku) || 0) + qty);
+      }
+      const cartCanonical = [...cartQuantities.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([sku, qty]) => sku + ":" + qty).join("|");
+      const dest = [payload.p_delivery_address, payload.p_city, payload.p_province, payload.p_postal_code].map(norm).join("|");
+      const [cartHash, destinationHash] = await Promise.all([digest(cartCanonical), digest(dest)]);
+      const quotePrice = Number(quote.price);
+      if (claims.v !== 1 || !Number.isFinite(Number(claims.expires_at)) || Number(claims.expires_at) <= Date.now() ||
+          Number(claims.issued_at) > Date.now() + 30000 || Number(claims.expires_at) - Number(claims.issued_at) > 10 * 60 * 1000 ||
+          claims.cart_hash !== cartHash || claims.destination_hash !== destinationHash ||
+          typeof claims.provider !== "string" || typeof claims.service !== "string" || claims.currency !== "ZAR" ||
+          !Number.isFinite(Number(claims.price)) || Number(claims.price) <= 0 ||
+          quote.provider !== claims.provider || quote.service !== claims.service || String(quote.currency).toUpperCase() !== "ZAR" ||
+          quotePrice !== Number(claims.price) || deliveryFee !== Number(claims.price)) {
+        throw new Error("Delivery quotation is expired, altered, or does not match this address/cart. Request a fresh quote.");
+      }
+    }
+
     const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
       method: "POST",
       headers: adminHeaders,
