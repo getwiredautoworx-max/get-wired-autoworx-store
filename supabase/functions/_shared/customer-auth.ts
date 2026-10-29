@@ -15,7 +15,7 @@ export async function validateCustomerSession(
     const response = await fetcher(supabaseUrl.replace(/\/+$/, "") + "/auth/v1/user", { headers: { apikey: publicApiKey, Authorization: "Bearer " + accessToken } });
     if (!response.ok) return { ok: false, status: 401, code: "AUTH_REQUIRED", message: "Your customer session is invalid or expired. Please sign in again." };
     const user = await response.json();
-    if (!user?.id || typeof user.email !== "string" || !user.email) return { ok: false, status: 403, code: "AUTH_EMAIL_REQUIRED", message: "A verified customer email account is required for checkout." };
+    if (!user?.id || typeof user.email !== "string" || !user.email || !user.email_confirmed_at) return { ok: false, status: 403, code: "AUTH_EMAIL_REQUIRED", message: "A verified customer email account is required for checkout." };
     return { ok: true, user: { id: String(user.id), email: user.email } };
   } catch {
     return { ok: false, status: 503, code: "AUTH_CHECK_FAILED", message: "Unable to verify your customer session. Please try again." };
