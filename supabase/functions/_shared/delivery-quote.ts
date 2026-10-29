@@ -10,12 +10,18 @@ export async function digest(value: string): Promise<string> {
   return Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2, "0")).join("");
 }
 
+export function quoteTimeValid(claims: QuoteClaims, now = Date.now()): boolean {
+  const issuedAt = Number(claims.issued_at), expiresAt = Number(claims.expires_at);
+  return claims.v === 1 && Number.isFinite(issuedAt) && Number.isFinite(expiresAt) && expiresAt > now &&
+    issuedAt <= now + 30000 && expiresAt > issuedAt && expiresAt - issuedAt <= 10 * 60 * 1000;
+}
+
 export function cartCanonical(items: QuoteItem[]): string {
   const quantities = new Map<string, number>();
   for (const item of items) {
     const sku = String(item.public_sku ?? item.sku ?? "").trim().toUpperCase();
     const qty = Number(item.quantity ?? item.qty);
-    if (!/^GW-[A-Z0-9]{8}$/.test(sku) || !Number.isInteger(qty) || qty < 1 || qty > 100) {
+    if (!/^GW-[A-Z0-9]{8}$/.test(sku) || !Number.isInteger(qty) || qty < 1 || qty > 99) {
       throw new Error("Cart items need a valid SKU and quantity.");
     }
     quantities.set(sku, (quantities.get(sku) || 0) + qty);
