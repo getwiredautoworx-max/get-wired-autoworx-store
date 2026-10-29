@@ -3366,3 +3366,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Read-only Supabase advisors show two admin SECURITY DEFINER warnings; both inspected RPC definitions check authenticated identity and enabled admin membership. Leaked-password protection is disabled; no connected Auth-settings write action is available. No schema or function deployments.
 - Legal-page clarification required before finalizing: current draft policy/terms/returns pages and footer show a street address despite the home-based/no-walk-in-shop context. Ask owner whether approved for public display or should be replaced by a private return address provided after contact; do not invent a replacement.
 - No PR merge, production deployment, Axxess/DNS/payment change, Supabase deployment/migration, catalogue/price/stock/active-flag write, supplier import, or Cloudflare/Netlify credit use occurred. Preserve the 107 October-verified products, 19 zero-RRP owner-hold items, 38 historical price discrepancies and 198 category-review rows without automatic edits.
+
+
+### Addendum — 2026-10-29 — latest live Part Search smoke evidence
+
+- Integrated PR #99 Storefront Smoke Test run `40877601706` passed on code head `49be2291bfb8c9b301af3a90688323923d8e7b98`. Its log explicitly contains `PUBLIC_PART_SEARCH_PASS` and `PUBLIC_REQUEST_PART_DIALOG_PASS` against the public storefront, plus local Part Search catalogue-load refresh, audio navigation, no-AI photo request, mocked part-request RLS payload and responsive smoke markers. The previously recorded live handler mismatch was not reproduced in this latest read-only test.
+- This does not mean the no-AI picture fallback is live; it remains in draft PR #99/#107. No order was submitted and no production code was deployed.
