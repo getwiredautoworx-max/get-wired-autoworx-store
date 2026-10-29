@@ -198,7 +198,7 @@ jobs:
             await frame.locator('button.pictureSearchBtn').first().click();
             await frame.locator('#sourcePart.open').waitFor({timeout:10000});
             const photoInput = frame.locator('#sourcePhotos');
-            if (!(await photoInput.getAttribute('multiple')) || !(await photoInput.getAttribute('accept')).includes('image/jpeg')) throw new Error('Picture request must accept multiple image uploads');
+            if (!(await photoInput.evaluate(el => el.multiple)) || !(await photoInput.getAttribute('accept')).includes('image/jpeg')) throw new Error('Picture request must accept multiple image uploads');
             await frame.locator('button.requestModalClose').click();
             if (aiProviderRequests.length) throw new Error('No-AI picture request unexpectedly called an AI provider');
             console.log('NO_AI_PART_PHOTO_REQUEST_PASS: multi-photo Request a Part path; no AI provider request');
