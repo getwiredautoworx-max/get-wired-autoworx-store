@@ -23,8 +23,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  detect-storefront-mode:
+    runs-on: ubuntu-24.04
+    outputs:
+      button_only: ${{ steps.mode.outputs.button_only }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: mode
+        shell: bash
+        run: |
+          if grep -Fq 'data-storefront-mode="buttons-only"' index-new.html; then
+            echo "button_only=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "button_only=false" >> "$GITHUB_OUTPUT"
+          fi
   smoke:
-    if: github.event_name != 'pull_request' || github.head_ref != 'feat/button-only-storefront-reset-2026-10-29'
+    needs: detect-storefront-mode
+    if: needs.detect-storefront-mode.outputs.button_only != 'true'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
