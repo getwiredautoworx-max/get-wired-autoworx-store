@@ -55,7 +55,7 @@ Deno.serve(async (req: Request) => {
       throw new Error("Every cart item must have a valid public SKU.");
     }
     const productsUrl = new URL(supabaseUrl + "/rest/v1/products");
-    productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price");
+    productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price,weight_kg,length_cm,width_cm,height_cm");
     productsUrl.searchParams.set("public_sku", "in.(" + publicSkus.join(",") + ")");
     productsUrl.searchParams.set("active", "eq.true");
     const productCheck = await fetch(productsUrl, {
@@ -128,6 +128,21 @@ Deno.serve(async (req: Request) => {
       const dest = [payload.p_delivery_address, payload.p_city, payload.p_province, payload.p_postal_code].map(norm).join("|");
       const [cartHash, destinationHash] = await Promise.all([digest(cartCanonical), digest(dest)]);
       const quotePrice = Number(quote.price);
+      const productsBySku = new Map((verifiedRows as Array<Record<string, unknown>>).map(product => [String(product.public_sku), product]));
+      let verifiedWeight = 0, verifiedLength = 0, verifiedWidth = 0, verifiedHeight = 0;
+      for (const [sku, qty] of cartQuantities) {
+        const product = productsBySku.get(sku);
+        const w = Number(product?.weight_kg), l = Number(product?.length_cm), wi = Number(product?.width_cm), h = Number(product?.height_cm);
+        if (!product || ![w, l, wi, h].every(Number.isFinite) || w <= 0 || l <= 0 || wi <= 0 || h <= 0) {
+          throw new Error("Verified parcel dimensions are missing or changed; request a fresh manual delivery quotation.");
+        }
+        verifiedWeight += w * qty; verifiedLength = Math.max(verifiedLength, l); verifiedWidth = Math.max(verifiedWidth, wi); verifiedHeight = Math.max(verifiedHeight, h);
+      }
+      const parcel = claims.parcel as Record<string, unknown> | null;
+      const parcelMatches = !!parcel &&
+        Math.abs(Number(parcel.weight_kg) - Number(verifiedWeight.toFixed(3))) < 0.001 &&
+        Number(parcel.length_cm) === verifiedLength && Number(parcel.width_cm) === verifiedWidth && Number(parcel.height_cm) === verifiedHeight;
+      if (!parcelMatches) throw new Error("Delivery quote parcel dimensions do not match current product data. Request a fresh quote.");
       if (claims.v !== 1 || !Number.isFinite(Number(claims.expires_at)) || Number(claims.expires_at) <= Date.now() ||
           Number(claims.issued_at) > Date.now() + 30000 || Number(claims.expires_at) - Number(claims.issued_at) > 10 * 60 * 1000 ||
           claims.cart_hash !== cartHash || claims.destination_hash !== destinationHash ||
