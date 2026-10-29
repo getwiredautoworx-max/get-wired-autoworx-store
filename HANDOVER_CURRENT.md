@@ -3125,3 +3125,11 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - Delivery Quote Security Tests [40873267963](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873267963) **SUCCESS**: 12 tests passed, 0 failed; shipping-quote and store-checkout Deno type-checks passed. Tests now exercise the same shared validator used by checkout, including forged live flag without token, tampered signature, changed cart/address/price/provider, expiry, parcel mismatch, invalid SKU/quantity, Unicode/whitespace normalization, and pickup fee/quote rules.
 - Storefront Smoke Test [40873267551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873267551) **SUCCESS** on Ubuntu 24.04. Public category navigation, SKU image fallback, metadata guard, request-part dialog, responsive widths and route checks passed.
 - The draft nonce unique-index migration is still not applied or validated on a disposable database; Supabase CLI is unavailable in this runtime. The signing secret remains unconfigured, and endpoint-level tests in a disposable Supabase project remain outstanding. PR #104 stays draft/open/unmerged; no production changes. Launch remains HOLD.
+
+
+### Addendum — 2026-10-29 — nonce migration test and current-head QA
+
+- Current PR #104 head `07ae1afc56a965bbfafd6d1434ef19c4dd91ecd1`.
+- Security workflow [40873626236](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873626236) **SUCCESS**: 12 quote-validation tests passed, both Edge Functions type-check, and an isolated PGlite/PostgreSQL-compatible test executed the nonce-index migration successfully. It confirmed legacy quote rows without nonce remain allowed and duplicate nonce rows are rejected.
+- Storefront smoke [40873626052](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873626052) **SUCCESS** on Ubuntu 24.04.
+- This validates the migration in an isolated PostgreSQL-compatible engine, not against a disposable Supabase project. Standard Supabase CLI migration validation and full Edge Function integration tests remain open. Signing secret is not configured. PR remains draft/open/unmerged; no production changes. Launch HOLD.
