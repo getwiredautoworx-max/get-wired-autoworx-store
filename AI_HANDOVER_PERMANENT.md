@@ -3171,3 +3171,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ### Supplier-contact blocker and next action
 - Read-only Gmail search was attempted for supplier replies but returned `User input required but current turn is running in a non-interactive mode`; no email was retrieved or sent. This is not evidence that no supplier response exists.
 - **Next:** obtain current supplier confirmation for the 38 historical scale-defect SKUs (and exact `SCR23MM` identity); use the interactive Gmail UI or a current supplier price list. Keep the nine asterisk items quote-only/inactive, preserve October 107/107, and leave all live data untouched. Continue manual visual approval for the 198-row category queue; OCR presence is not category approval. Customer launch remains HOLD pending verified price-safe behavior, Axxess Part Search mismatch, payment readiness, and successful browser/checkout gates.
+
+
+## Post-check correction — 2026-10-29 09:04:04 SAST
+
+- After the final documentation checkpoint on the Planetworld branch, PR #95 was rechecked at head `629c122e3b7fb82e23f2027b0d9b64370cedb6d8`: OPEN, UNMERGED, not draft, `mergeable=false`; comparison to main commit `d4b726a4be8eb6166693c4952b12146001cd3853` was diverged **128 ahead / 182 behind**, merge base `3b7003862725714ce8e8d108f670a5c4acde51b1`. This supersedes the earlier 127/181 snapshot above. Do not merge or rebase blindly.
+- Latest Planetworld handover branch commit is `629c122e3b7fb82e23f2027b0d9b64370cedb6d8`. The manufacturer report evidence commit is `ffab49b26b7d8ccfb6be2df29cc368ce1419fac4`.
+- No new Planetworld audit run followed the documentation commits: run `40290002999` remains the newest branch audit, SUCCESS on old head `4b39cab1354fc12f2f7a1059756c74dec31d7e64`. Final Actions query showed 0 in-progress and 0 queued runs.
+- This permanent-handover-only commit advances `main` once more. Treat the recorded ahead/behind values as the last observed snapshot and recheck the actual comparison before any merge; the durable conclusions are that PR #95 remains unmerged and non-mergeable, and the corrected audit still requires one owner UI dispatch.
