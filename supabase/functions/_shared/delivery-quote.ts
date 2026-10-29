@@ -37,7 +37,7 @@ export function destinationCanonical(body: Record<string, unknown>): string {
 function b64url(bytes: Uint8Array): string {
   let binary = "";
   for (const byte of bytes) binary += String.fromCharCode(byte);
-  return btoa(binary).replace(/\\+/g, "-").replace(/\\//g, "_").replace(/=+$/g, "");
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/g, "");
 }
 
 function decodeB64url(part: string): Uint8Array {
@@ -60,7 +60,9 @@ export async function verifyQuoteToken(token: string, secret: string): Promise<Q
   if (parts.length !== 2 || !parts[0] || !parts[1]) return null;
   try {
     const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["verify"]);
-    if (!await crypto.subtle.verify("HMAC", key, decodeB64url(parts[1]), new TextEncoder().encode(parts[0]))) return null;
+    const signature = decodeB64url(parts[1]);
+    const signatureBuffer = signature.buffer.slice(signature.byteOffset, signature.byteOffset + signature.byteLength) as ArrayBuffer;
+    if (!await crypto.subtle.verify("HMAC", key, signatureBuffer, new TextEncoder().encode(parts[0]))) return null;
     const claims = JSON.parse(new TextDecoder().decode(decodeB64url(parts[0])));
     return claims && typeof claims === "object" && !Array.isArray(claims) ? claims as QuoteClaims : null;
   } catch {
