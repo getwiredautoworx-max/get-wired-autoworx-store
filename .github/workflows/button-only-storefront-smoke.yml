@@ -1,5 +1,9 @@
 name: Button-Only Storefront Smoke Test
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'index-new.html'
   pull_request:
     branches: [main]
     paths:
