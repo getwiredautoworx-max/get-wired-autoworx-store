@@ -2,7 +2,7 @@ export type QuoteItem = { public_sku?: string; sku?: string; qty?: number; quant
 export type QuoteClaims = Record<string, unknown>;
 
 export function normalise(value: unknown): string {
-  return String(value ?? "").normalize("NFKC").trim().replace(/\\s+/g, " ").toLowerCase();
+  return String(value ?? "").normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase();
 }
 
 export async function digest(value: string): Promise<string> {
