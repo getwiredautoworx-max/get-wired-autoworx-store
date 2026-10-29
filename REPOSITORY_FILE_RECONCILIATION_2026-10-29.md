@@ -583,3 +583,9 @@
 - Added `REPOSITORY_FILE_INVENTORY_2026-10-29.csv`, a row for every one of the **5210** tracked blobs at snapshot `3b3e477155df64e2987c7b03cf030aef53c81b31`: path, declared bytes, Git blob SHA, extension, file class, duplicate-image group size, reconciliation disposition, and content-review status.
 - The inventory is deliberately path/hash/size complete but does **not** claim semantic review of every binary or historical document. It identifies which content is supplier source, review-only output, historical handover, image asset, workflow, or storefront file and prevents unverified files from being mistaken for reconciled product mappings.
 - The inventory CSV itself is an additional audit artifact created after the snapshot, so it is not self-listed in its own rows.
+
+
+## Final validation of review head
+- Review head at validation: `d064125b4bbf556f2155fd5c8ef39825724f8b15`.
+- Planetworld workbook audit run **40944326232 SUCCESS** and Audio Connections PDF inspection run **40944326104 SUCCESS**; both ran against that same review head.
+- Inventory CSV has 5,210 data rows for snapshot `3b3e477155df64e2987c7b03cf030aef53c81b31`; current branch contained 5211 tracked files at the validation snapshot, including the inventory CSV itself. Repository privacy was verified (`private=true`). PR #110 remains open/draft/unmerged.
