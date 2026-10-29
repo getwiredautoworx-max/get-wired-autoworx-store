@@ -26,7 +26,8 @@ jobs:
           grep -Fq 'authoritativeParcel' supabase/functions/shipping-quote/index.ts
           grep -Fq 'quote_token' supabase/functions/shipping-quote/index.ts
           grep -Fq 'crypto.subtle.verify' supabase/functions/_shared/delivery-quote.ts
-          grep -Fq 'verifyQuoteToken(token, quoteSecret)' supabase/functions/store-checkout/index.ts
+          grep -Fq 'validateBoundQuote' supabase/functions/store-checkout/index.ts
+          grep -Fq 'validateBoundQuote' supabase/functions/_shared/delivery-quote.ts
           grep -Fq 'destination_hash' supabase/functions/shipping-quote/index.ts
           grep -Fq 'destination_hash' supabase/functions/store-checkout/index.ts
           grep -Fq 'cart_hash' supabase/functions/shipping-quote/index.ts
