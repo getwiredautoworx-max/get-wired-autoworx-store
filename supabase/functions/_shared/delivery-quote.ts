@@ -107,3 +107,9 @@ export async function validateBoundQuote(args: {
   }
   return claims;
 }
+
+export function validatePickup(deliveryFee: number, quote: unknown): void {
+  if (!Number.isFinite(deliveryFee) || deliveryFee !== 0 || quote != null) {
+    throw new Error("Pickup must have a zero delivery fee and no delivery quote.");
+  }
+}
