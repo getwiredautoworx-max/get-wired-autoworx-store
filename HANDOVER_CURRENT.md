@@ -1,3 +1,9 @@
+
+## CURRENT SOURCE AUDIT WORKFLOW ADDED — 2026-10-29
+- Added the existing read-only Planetworld workbook audit script to this review branch, redirected to canonical `suppliers/Planetworld/`; source workbook bytes remain untouched.
+- Updated its workflow triggers to the canonical folder and pinned the runner to Ubuntu 24.04 for Playwright/runner compatibility consistency. The audit only writes ephemeral review CSV/JSON outputs and a GitHub Actions summary; it does not import or modify catalogue, price or stock data.
+- This PR's audit run must be inspected before reporting fresh workbook/sheet/row/duplicate totals. Artifact upload is best-effort because account Actions storage may be full; the job summary remains the primary result source.
+
 ## REPOSITORY RECONCILIATION RESULT — 2026-10-29
 
 - Recursive Git tree scan completed against base `3e362397e249150f4fb992fde199784b6cc42f7c`: 5205 tracked files, 498013273 declared bytes; tree response was not truncated.
