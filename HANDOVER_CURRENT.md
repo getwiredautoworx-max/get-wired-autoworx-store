@@ -3093,3 +3093,12 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - PR #104 head is now `a230cd7476393a81404a977f756632f2d6c6aafe`. Current-head Delivery Quote Security Tests run [40870935629](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40870935629) completed **SUCCESS**; Deno type checks and source integrity checks passed.
 - Added signed nonce output and checkout nonce-match validation, plus review migration `supabase/migrations/20261029150000_delivery_quote_nonce_unique.sql`. The intended unique partial index on `orders.delivery_quote->>'nonce'` makes reuse fail atomically when the RPC inserts the order. This migration is **not applied** and has not been validated on a disposable database. Supabase CLI is not installed in this runtime, so it must be regenerated/validated with the normal CLI workflow before merge.
 - PR #104 remains draft/open/unmerged. The latest Storefront Smoke Test still fails at Chromium installation; browser flow not tested. Signing secret setup and real behavioral attack tests remain outstanding. No production changes made; launch HOLD.
+
+
+### Addendum — 2026-10-29 — shared quote helper tests passed
+
+- Draft PR #104 latest code head `844298d9f5e2a02d690c30977e37fb3289d340c7`.
+- Delivery Quote Security Tests run [40872092058](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872092058) completed **SUCCESS**: six behavioral tests passed (valid HMAC signature, altered signature rejected, stable/order-independent cart canonicalization, invalid SKU/quantity rejection, expiry/max lifetime, destination binding) and Deno type-checks passed for both Edge Functions.
+- The first run of the extracted helper tests exposed TypeScript/Deno encoding and BufferSource issues; these were corrected and the current head passed. Do not cite the earlier failed run as the final result.
+- Browser checkout remains unverified: the latest smoke run status was not yet final at this checkpoint; previous smoke failures were during Chromium installation. The nonce migration remains a draft and has not been applied or checked against a disposable database. Supabase CLI is unavailable here, so regenerate/validate migration using `supabase migration new` before merge.
+- Still no production changes. PR #104 remains draft/open/unmerged; signing secret, integration tests, migration validation and final browser checkout remain release blockers. Keep launch HOLD.
