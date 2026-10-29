@@ -3078,3 +3078,11 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - **Still not resolved/release-approved:** configure the same strong (at least 32-character) signing secret securely in both Edge Functions; implement one-time nonce/replay protection; add executable forged/tampered/expired/cart/address/fee/pickup tests; review provider adapters and missing-dimension/manual-quote behavior; complete CI and security review. Do not merge or deploy this draft yet. The code deliberately fails closed for delivery quotes if the secret is absent.
 - Payment remains Direct EFT only and pending confirmation; issue #103 remains open. The store remains on HOLD. No payment, DNS, Axxess, catalogue, product, price, stock or active-flag changes; no release credits used.
 - Next actions: verify run `40870309771`; add behavioral token tests and replay protection using a reviewed schema migration; update the PR with evidence; keep launch HOLD until the delivery security and payment gates are actually cleared.
+
+
+### Addendum — 2026-10-29 14:20 SAST — current-head CI recheck
+
+- Rechecked PR #104 latest code head `d0cdfa13eedbcc7c822daefa62e56473667e95e2`. Delivery Quote Security Tests run [40870309771](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40870309771) completed **SUCCESS**: source-integrity assertions and both Deno type-checks passed.
+- Storefront Smoke Test run [40870309584](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40870309584) failed at the `Install Chromium` setup step. This is not evidence that quote validation failed; browser tests did not reach the relevant flow.
+- Read-only inspection of `create_store_order_v2` reconfirmed the SQL RPC stores the submitted `p_delivery_quote` in `orders.delivery_quote`, but trusts `live=true`/matching client fee when called. Public checkout must continue verifying the signature before calling it. The RPC remains SECURITY DEFINER and EXECUTE restricted to `postgres`/ `service_role`; no database changes made.
+- PR #104 remains draft/open/unmerged. Current code rechecks authoritative parcel dimensions, but one-time nonce replay prevention and executable attack-case tests are still outstanding. The shared signing secret is not configured; do not deploy. Payment gate issue #103 remains open and launch remains HOLD.
