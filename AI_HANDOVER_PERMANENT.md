@@ -3293,3 +3293,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Updated draft branch `fix/checkout-terms-privacy-gates-2026-10-29` files: `returns-refunds.html`, `terms-and-conditions.html`, `TERMS_AND_CONDITIONS.md`, `privacy-policy.html`, and `index-new.html` (store top bar and footer). Removed the public street address from those customer-facing files.
 - This is a source-only change on the existing draft policy branch associated with PR #105. No merge, production deployment, Axxess upload, DNS, checkout/payment, database, stock, or catalogue change was performed.
 - Next verification: inspect changed files and run the PR's storefront smoke and source checks. Confirm all public pages/footer are address-free before requesting review. Live site remains unchanged until separately approved and deployed.
+
+
+## 2026-10-29 — Owner-approved unpriced item label (draft branch only)
+
+- Owner instruction: every catalogue/store item without a confirmed price must display exactly: **“Price on Request due to Limited Stock.”**
+- Applied the label to all existing storefront price-on-request display fallbacks in `index-new.html` on review branch `fix/checkout-terms-privacy-gates-2026-10-29`; this includes product cards, product detail/related-product price labels, cart line display, and the shared money fallback where used. The update replaced 7 occurrences of the old generic phrase.
+- This is a customer-facing quote-request label, not proof of stock availability. Do not invent prices or change supplier values, stock quantities, active flags, or catalogue data. Items with a confirmed/approved price continue to display their price.
+- Draft-only source change. No merge, production deployment, Axxess upload, DNS, payment, database, live stock, or live catalogue changes. Run/inspect CI and preview before any release claim.
