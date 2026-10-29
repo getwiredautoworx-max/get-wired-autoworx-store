@@ -3102,3 +3102,10 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - The first run of the extracted helper tests exposed TypeScript/Deno encoding and BufferSource issues; these were corrected and the current head passed. Do not cite the earlier failed run as the final result.
 - Browser checkout remains unverified: the latest smoke run status was not yet final at this checkpoint; previous smoke failures were during Chromium installation. The nonce migration remains a draft and has not been applied or checked against a disposable database. Supabase CLI is unavailable here, so regenerate/validate migration using `supabase migration new` before merge.
 - Still no production changes. PR #104 remains draft/open/unmerged; signing secret, integration tests, migration validation and final browser checkout remain release blockers. Keep launch HOLD.
+
+
+### Addendum — 2026-10-29 14:30 SAST — behavioral tests and Playwright runner fix
+
+- Shared quote-token module now has six passing Deno tests and both edge functions type-check. The current PR-only security workflow on head `e6a3b561bc6cc23c5dd20c5b75605877794e19b9`, run [40872390791](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872390791), completed **SUCCESS**.
+- Diagnosed the repeat Storefront Smoke failure from job logs: Playwright 1.55.0 cannot install Chromium dependencies on `ubuntu26.04-x64` (runner default changed beyond Playwright's supported OS list). Changed only the PR smoke workflow runner to `ubuntu-24.04`; run [40872390811](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872390811) was still in progress at the last status check at the Chromium install step. Verify its final outcome before claiming browser QA.
+- Current PR #104 remains draft/open/unmerged. Quote security code is not deployed. Migration is review-only/unapplied and requires Supabase CLI validation; secret provisioning and full endpoint integration tests remain blockers. No live functions/database/payment/DNS/catalogue changes.
