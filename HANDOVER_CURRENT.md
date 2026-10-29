@@ -3020,3 +3020,13 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 - Latest Background Task Controller run is now `40703477112`, attempt 1, SUCCESS at 14:11:45 UTC on task-start commit `e90c76d463050e94607e62b0dec2a8118734f1bd`; job `122869225623`. Syntax, checkpoint generation, and safe pruning passed; checkpoint artifact upload skipped by design.
 - Latest inventory: 420 artifacts / 9,294,057 bytes (8.86 MiB); zero eligible deletions. Final workflow snapshot contained no relevant queued/in-progress tasks. The quota remains unresolved because audit/monitor artifact uploads still return the account storage-quota error.
 - Supplemental detail appended to `HANDOVER_UPDATE_2026-10-28_MONITOR_RUN_11.md`, commit `05d3579ee450e20c7db12516fd6247882cf17839`.
+
+
+## CONTINUATION OUTCOME — 2026-10-29 13:31 SAST — Electrocity glowplugs
+
+- Verified GitHub mapping CSV and README exist on main. Mapping CSV blob: `2eae236edf4e02dddbd83618933a2c48c5cab8a9`; README blob: `d7851f3c3838bb3b30d0f040564b130f1fa73082`.
+- Read-only Supabase verification confirms active category `Glowplugs` under `Electrical`; two records exist but remain inactive: PI40 / `GWA-EC-000001` (UUID `b728f961-05a5-4721-bd7c-04f3112fbdca`) and PZ33 / `GWA-EC-000002` (UUID `3c045180-0c0f-4dde-8db4-4e4b861599ba`). Both have price 0, stock 0, `QUOTE_REQUIRED`, and `UNCONFIRMED`; the three printed supplier codes and source dimensions are retained, code roles unconfirmed. No database mutation occurred in this continuation.
+- Correction: a later session created the category and two inactive draft products after the earlier 2026-10-28 extraction note stated no database changes. Current verified state supersedes that earlier note.
+- The previously generated XLSX/PDF are local deliverables. Standalone HTML preview creation failed due a temporary data-analysis tool limit; no preview path exists and no public customer-facing display was verified.
+- No product activation, price/stock change, deployment, merge, Axxess/DNS/payment change, or release-credit use.
+- Next: inspect the existing storefront category behavior and continue extracting the Electrocity converter/ignition PDFs into distinct `GWA-EC-` SKU mappings. Keep products inactive until current price/stock are confirmed. Launch remains HOLD pending checkout identity/security and payment readiness.
