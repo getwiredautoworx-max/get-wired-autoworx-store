@@ -323,3 +323,12 @@ These eight rules are user-authoritative and must be copied into every new hando
 - Created local deliverables from the two attached source PDFs: `Get_Wired_AutoWorx_Electrocity_Glowplugs_SKU_Map.xlsx` and `Get_Wired_AutoWorx_Electrocity_Glowplugs_Catalogue.pdf` (available in the current ChatGPT turn's generated files; not committed to GitHub as binary files).
 - Important next steps: (1) confirm/upload the two glowplug PDFs into `suppliers/Electrocity/` if they are intended to be retained in GitHub; (2) extract and map the existing converter and ignition PDFs, preserving all source data; (3) compare Electrocity items against ASC only where there is sufficient product/code/specification evidence; (4) never invent equivalence, cost, stock, or supplier-code roles; (5) keep all work separate from live product/stock/pricing imports until the owner explicitly approves a verified import.
 - Launch hold remains unchanged. No production deploy, Axxess/DNS, checkout/payment, live product, live stock, or live pricing changes were made.
+
+
+## LATEST CONTINUATION — 2026-10-29 — Electrocity glowplugs verified
+
+- Read current handover files and verified committed Electrocity working files. The SKU map CSV and catalogue-work README are present on main.
+- Read-only Supabase query confirms `Glowplugs` category active under `Electrical`; products PI40 (`GWA-EC-000001`) and PZ33 (`GWA-EC-000002`) are present but inactive, price 0, stock 0, quote-required and stock-unconfirmed. Source codes/dimensions are retained; code roles remain unconfirmed. Do not activate or publish without current supplier price and stock confirmation.
+- The previous 2026-10-28 checkpoint's statement that no catalogue/database rows had changed was true at that point only; a subsequent session created the category and these two inactive drafts. This note supersedes that earlier state.
+- Standalone HTML preview was not created because the data-analysis tool reported a temporary limit; no preview link should be shared as if verified. No deployment/merge/release-credit use occurred.
+- Next: continue supplier PDF extraction/mapping (converters, ignition coils, looms, modules), preserve each supplier's own SKU prefix, retain dimensions/source codes, flag uncertain matches, and keep stock/price unmodified. Launch remains HOLD for checkout identity/security and payment readiness.
