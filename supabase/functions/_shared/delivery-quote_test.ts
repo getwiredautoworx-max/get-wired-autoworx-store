@@ -1,4 +1,4 @@
-import { cartCanonical, destinationCanonical, digest, quoteTimeValid, signQuote, verifyQuoteToken } from "./delivery-quote.ts";
+import { cartCanonical, destinationCanonical, digest, normalise, quoteTimeValid, signQuote, verifyQuoteToken } from "./delivery-quote.ts";
 
 const secret = "test-only-secret-value-with-at-least-32-chars";
 
@@ -43,4 +43,8 @@ Deno.test("destination canonicalization binds street, province and postal code",
   const changed = await digest(destinationCanonical({ ...base, postal_code: "4000" }));
   const changedStreet = await digest(destinationCanonical({ ...base, address: "2 Main St" }));
   if (original === changed || original === changedStreet) throw new Error("Destination changes must change the canonical hash");
+});
+
+Deno.test("destination normalization collapses whitespace and normalizes Unicode", () => {
+  if (normalise("  MAIN   Street\t #２  ") !== "main street #2") throw new Error("Destination normalization must collapse whitespace and normalize compatibility characters");
 });
