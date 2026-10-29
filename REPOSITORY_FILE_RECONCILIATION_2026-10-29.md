@@ -568,3 +568,12 @@
 - Old incoming XLSX path empty.
 - Sanitized Car Audio CSV read-back verified at 702 rows and no price/stock/cost fields.
 - PR #110 remains draft/unmerged; no production changes.
+
+
+## Audio Connections PDF extraction — 2026-10-29
+- Read-only `pdftotext -layout` inspection succeeded for both supplier PDFs: STARSOUND list (2 pages, 360,046 bytes) and Sony Mobile ES dealer list (2 pages, 312,605 bytes).
+- Extracted **53 Starsound/Reference Audio/Blackspider rows** and **15 Sony Mobile ES rows** into `catalogue-audits/AUDIO_CONNECTIONS_SOURCE_EXTRACT_REVIEW_ONLY_2026-10-29.csv` (68 rows total). Original PDFs remain unchanged under `suppliers/Audio Connections/`.
+- Exact customer-facing label **“Price on Request due to Limited Stock and Availability”** applied to 3 Starsound rows with missing source prices and Sony `XS-690ES`, which the supplier explicitly marks Sold Out. These are review rows, not live listings.
+- Starsound PDF explicitly states its prices are VAT-exclusive. Sony PDF includes `Price Ex` and `RRP` columns. No customer selling prices or live stock values were changed; source prices remain review-only.
+- Added `catalogue-audits/PLANETWORLD_CAR_AUDIO_OFFICIAL_MATCHES_BATCH1_2026-10-29.csv` with 5 exact-model official Alpine page matches (BBX-F1200, BBX-T600, HDZ-653, HCE-C2100RD, iLX-705D) and verified feature summaries. Two direct manufacturer image URLs were identified, but images were not downloaded or relabelled; all five remain blocked from publishing until the exact image is locally saved/checked and the approved GW SKU is applied.
+- Source references: https://www.alpine-asia.com/en/productDetail/24/BBX-F1200 ; https://alpineindia.com/discription-amplifier/BBX-T600.html ; https://www.alpine.com.au/product/hdz-653/ ; https://www.alpine-usa.com/product/hce-c2100rd ; https://www.alpine.co.il/p/Products/SingleView/ilx-705d .

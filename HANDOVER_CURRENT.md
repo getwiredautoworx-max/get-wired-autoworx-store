@@ -1,15 +1,14 @@
 ## REPOSITORY + CATALOGUE RESULTS — 2026-10-29
 
-- Full recursive repository tree scanned: base main snapshot 5,205 blobs / 498,013,273 declared bytes, `truncated=false`; current review branch is complete and contains 5,206 blobs after reconciliation additions.
-- Review PR #110: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/110. All 47 Planetworld XLSX workbooks moved byte-for-byte to `suppliers/Planetworld/`; 0 XLSX remain at the old incoming path; original blob SHAs preserved.
-- Fresh audit run 40941740509 **SUCCESS**: 47 workbooks, 94 sheets, 3,317 rows, 0 errors; 0 identical workbook/product-data duplicate groups, 0 duplicate model/SKU rows, 0 missing model/SKU or unmapped RRP. Old 32 duplicate flags were not reproduced.
-- Review queues: 19 zero-RRP rows owner hold; 18 positive-RRP rows below estimated cost at RRP−1%; 19 at RRP−2%. No prices changed.
-- Sanitized Car Audio review CSV: `catalogue-audits/PLANETWORLD_CAR_AUDIO_REVIEW_ONLY_2026-10-29.csv`, 702 rows and 0 blank descriptions; excludes prices, dealer costs, stock and margins. It includes source provenance, brand, model, exact description, heuristic category/component and verification status.
-- Compared all 702 Car Audio model codes to 4,902 repository image assets: 0 exact filename matches. Official manufacturer image/features and GW-SKU picture labelling remain outstanding. 163 identical-image groups exist in JPG assets alone; 339 across all image assets. No images deleted or reassigned.
-- Removed three unreferenced temp files; replaced the broken Electrocity StepDown pointer with a README that records the missing source. Detailed inventory/manifest/duplicate list is `REPOSITORY_FILE_RECONCILIATION_2026-10-29.md`.
-- GitHub Actions audit passed, but artifact upload is blocked by account storage quota. No production catalogue/stock/price/database/Axxess/DNS/payment changes or deployment; no Cloudflare/Netlify credits used.
-- Current main storefront remains intentionally `buttons-only`; keep products hidden until model/image/description/price/category mapping is verified. Audio Connections' 2 PDFs still need extraction; ASC stock remains excluded.
-- Continue with official Car Audio model/image/features and GW-SKU mapping, then Audio Connections extraction. Keep PR #110 draft/unmerged.
+- Full recursive repository tree scanned; current review branch has a complete non-truncated tree. Detailed inventory and 339 exact byte-identical image groups are documented in `REPOSITORY_FILE_RECONCILIATION_2026-10-29.md`; no images were deleted or reassigned.
+- PR #110: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/110 remains draft/unmerged. All 47 Planetworld XLSX workbooks moved byte-for-byte into `suppliers/Planetworld/`; 0 XLSX remain in the old incoming path.
+- Planetworld audit SUCCESS: 47 workbooks, 94 sheets, 3,317 rows, 0 errors; 0 duplicate model/SKU rows and 0 identical duplicate-workbook groups. 19 zero-RRP rows are owner hold; 18/19 positive-RRP cost-risk flags at RRP−1%/−2%. No prices changed.
+- Sanitized Planetworld Car Audio CSV: 702 rows, 0 blank descriptions, no price/cost/stock/margin columns. Compared to all 4,902 local image assets: 0 exact normalized model-code filename matches. Official image/features and GW-SKU labeling remain outstanding.
+- Audio Connections PDFs successfully text-extracted: 53 Starsound/Reference Audio/Blackspider entries + 15 Sony Mobile ES entries = 68 review rows. Exact label “Price on Request due to Limited Stock and Availability” is assigned to 3 missing-price Starsound items and Sony XS-690ES (supplier marks Sold Out). No live prices or stock changed.
+- Five exact Alpine manufacturer pages/features matched to Planetworld models in `catalogue-audits/PLANETWORLD_CAR_AUDIO_OFFICIAL_MATCHES_BATCH1_2026-10-29.csv`. Direct images not yet saved or GW-labelled, so those five are not approved for customer listing yet.
+- Three unreferenced temp files were removed in this review branch; broken Electrocity StepDown pointer was replaced by a README documenting missing source. No supplier PDF or product image deleted.
+- GitHub Actions artifact upload remains blocked by account storage quota; job logs were used to verify extracted results. No production catalogue/stock/price/database/Axxess/DNS/payment change or deployment; no Cloudflare/Netlify credits used.
+- Next: retrieve exact official product image assets for verified models, apply approved GW SKU labels, then continue source-to-image matching across the remaining Car Audio rows; keep main storefront buttons-only until that is verified. Keep ASC store stock excluded.
 
 ## PERMANENT USER INSTRUCTIONS — 8 LOCKED RULES
 1. **Maintain workflow — efficiency — speed.**
