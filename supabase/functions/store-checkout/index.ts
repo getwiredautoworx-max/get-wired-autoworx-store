@@ -23,6 +23,16 @@ Deno.serve(async (req: Request) => {
     if (payload.p_items.length > 100) throw new Error("Too many cart items.");
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const authHeader = req.headers.get("Authorization") || "";
+    const accessToken = authHeader.match(/^Bearer\\s+(.+)$/i)?.[1] || "";
+    const publicApiKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY");
+    if (!supabaseUrl || !publicApiKey) throw new Error("Customer authentication is not configured.");
+    if (!accessToken) return new Response(JSON.stringify({ error: "Please sign in before checkout.", code: "AUTH_REQUIRED" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    const userResponse = await fetch(supabaseUrl + "/auth/v1/user", { headers: { apikey: publicApiKey, Authorization: "Bearer " + accessToken } });
+    if (!userResponse.ok) return new Response(JSON.stringify({ error: "Your customer session is invalid or expired. Please sign in again.", code: "AUTH_REQUIRED" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    const authUser = await userResponse.json();
+    if (!authUser?.id || typeof authUser.email !== "string" || !authUser.email) return new Response(JSON.stringify({ error: "A verified customer email account is required for checkout.", code: "AUTH_EMAIL_REQUIRED" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    payload.p_customer_email = authUser.email;
     let secret: string | null = null;
     let usesSecretApiKey = false;
     const secretKeysEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
