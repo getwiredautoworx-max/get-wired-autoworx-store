@@ -1,5 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { cartCanonical, destinationCanonical, digest, verifyQuoteToken, type QuoteItem } from "../_shared/delivery-quote.ts";
+import { cartCanonical, destinationCanonical, digest, quoteTimeValid, verifyQuoteToken, type QuoteItem } from "../_shared/delivery-quote.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -135,9 +135,7 @@ Deno.serve(async (req: Request) => {
         Math.abs(Number(parcel.weight_kg) - Number(verifiedWeight.toFixed(3))) < 0.001 &&
         Number(parcel.length_cm) === verifiedLength && Number(parcel.width_cm) === verifiedWidth && Number(parcel.height_cm) === verifiedHeight;
       if (!parcelMatches) throw new Error("Delivery quote parcel dimensions do not match current product data. Request a fresh quote.");
-      if (claims.v !== 1 || !Number.isFinite(Number(claims.expires_at)) || Number(claims.expires_at) <= Date.now() ||
-          Number(claims.issued_at) > Date.now() + 30000 || Number(claims.expires_at) - Number(claims.issued_at) > 10 * 60 * 1000 ||
-          claims.cart_hash !== cartHash || claims.destination_hash !== destinationHash ||
+      if (!quoteTimeValid(claims) || claims.cart_hash !== cartHash || claims.destination_hash !== destinationHash ||
           typeof claims.provider !== "string" || typeof claims.service !== "string" || claims.currency !== "ZAR" ||
           !Number.isFinite(Number(claims.price)) || Number(claims.price) <= 0 ||
           quote.provider !== claims.provider || quote.service !== claims.service || quote.nonce !== claims.nonce || String(quote.currency).toUpperCase() !== "ZAR" ||
