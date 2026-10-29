@@ -3360,3 +3360,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Catalogue priorities retained: Planetworld + Audio Connections supplier-separated processing and accurate GW-SKU image labels; ASC replacement dataset only from approved dated guides/catalogues; 198 category rows remain manual review; 107 audited October price rows remain no-write.
 - Guardrails: no production workflow rerun, PR merge, live product/stock/price/category mutation, Supabase deployment, Axxess/DNS/payment change, or Cloudflare/Netlify release-credit use. Launch remains HOLD pending independent checkout/payment/identity/delivery gates.
 - Task-start commit is being written now; workflow checks and any supported safe retries follow.
+
+
+## TASK START — 2026-10-29 15:49 SAST — scheduled monitoring run 12
+
+- Read `AI_HANDOVER_PERMANENT.md` (blob 67e9deafffec0c1727825719c1e21ff40a8c7787), `HANDOVER_CURRENT.md`, and identified the newest root-level handover update as `HANDOVER_UPDATE_2026-10-28_MONITOR_RUN_11.md`. Recursive main-branch tree contains six HANDOVER_UPDATE files and **zero** `HANDOVER_CHECKPOINT_*.md` files; do not assume checkpoint data exists.
+- Starting verification of latest workflow/run attempt status for draft PRs #104/#105/#106 and other active work, image audit, ASC Exact-SKU Image Sync, category navigation, buyer-guide extraction, live smoke/release QA, GitHub Pages, and Cloudflare-related workflows. Inspect only; do not rerun any live/production workflow.
+- Work priorities retained from owner instructions: exact GW-SKU image labels; supplier-separated Planetworld and Audio Connections processing; approved ASC dated catalogue/guides only; 198 category rows remain manual review; 107 October price rows remain no-write.
+- Guardrails: no PR merge, live product/price/stock/category/active-flag changes, Supabase production mutation/deployment, Axxess/DNS/payment changes, or Cloudflare/Netlify release-credit use. Live launch remains HOLD until independent checkout, payment, identity, and delivery gates are verified.
+- Task-start entry is being saved before workflow inspection. Next step: inspect latest workflow run records and latest root update details; retry only failed/cancelled/stopped non-production jobs where a supported job-only rerun exists and no attempt is queued/in progress.
