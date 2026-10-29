@@ -131,7 +131,7 @@ Deno.serve(async request => {
           const claims = { v: 1, cart_hash: cartHash, destination_hash: destinationHash, provider: provider.name, service,
             price: Number(price.toFixed(2)), currency, parcel: p, issued_at: issuedAt, expires_at: issuedAt + 10 * 60 * 1000, nonce: crypto.randomUUID() };
           const quote_token = await signQuote(claims, quoteSecret);
-          quotes.push({ provider: provider.name, service, price: claims.price, currency, timeframe, live: true, quote_token,
+          quotes.push({ provider: provider.name, service, price: claims.price, currency, timeframe, live: true, quote_token, nonce: claims.nonce,
             ...( /locker|lockers|parcel point|pickup point|collection point|pudo|bob box/i.test(service) ? { delivery_type: "locker_or_point" } : { delivery_type: "door_or_standard" }) });
         }
       } catch {
