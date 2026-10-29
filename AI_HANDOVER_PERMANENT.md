@@ -3500,3 +3500,16 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The 32 duplicate model/SKU flags are heuristic matches only. They have NOT been verified against product images plus descriptions, nor proven to be accidental duplicate catalogue uploads. Do not delete or suppress products from those flags. A duplicate decision requires comparing source workbook/file provenance, exact model, description/specifications, and product image; report confirmed duplicates separately from legitimate repeated models/SKUs.
 - Corrected workflow: proceed with catalogue presentation and source-led matching now; mark unverified prices with the exact price-on-request wording; retain supplier SKU internally and replace it with GW SKU only after a documented exact match; never pair a picture, description, price, or GW SKU by guesswork. Review queues are advisory and must not become project-wide stop signs.
 - No product listing, price, stock, category, image, production, payment, DNS, Axxess or Supabase change was made as part of this correction. Existing counts remain provisional until a fresh current-source audit; the old derived report did not verify duplicate images/descriptions.
+
+
+---
+
+## PERMANENT RULE — BUTTON-ONLY STOREFRONT RESET (OWNER INSTRUCTION, 2026-10-29)
+
+- The customer-facing storefront presentation is to be blanked to category/subcategory buttons only before catalogue content is rebuilt. Hide product cards/lists, prices, catalogue/product images, specials/featured products, product search results and other product-display content from the storefront presentation.
+- Keep the approved eight main category buttons and their subcategory/brand navigation buttons. Expand/collapse navigation must work on both mobile and desktop. The temporary storefront must not present products for sale while this reset is in force.
+- This instruction applies to storefront presentation only. Do not delete supplier source catalogues, source images/originals, product records, price/stock records, admin tools, checkout code, backups or historical project work unless the owner separately authorises it. No live data or production deployment changes are implied.
+- Reintroduce catalogue content only after exact model/manufacturer/SKU, image, description, price basis and category mappings are verified. Ambiguous matches remain in review; never guess.
+- Repeated products across supplier guides/catalogues are cross-catalogue matches requiring evidence-based review, not confirmed duplicate products by default. Verify manufacturer/model, image, description and source before classifying; never delete/merge based only on repeated SKU/model flags.
+- Implement and validate in a review-only branch/PR first. No merge, production deployment, Axxess upload, DNS/payment changes, live catalogue/price/stock writes, or Cloudflare/Netlify credit use without explicit owner approval.
+- Record task start, every material status change, test evidence, blockers and next action in the handover. Never claim completion until the change is saved and read-back/preview verification supports the claim.
