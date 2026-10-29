@@ -1,0 +1,32 @@
+name: Audio Connections PDF Source Inspection (Read Only)
+
+on:
+  push:
+    branches:
+      - reconcile/repo-file-inventory-planetworld-2026-10-29
+    paths:
+      - 'suppliers/Audio Connections/**'
+      - 'scripts/audio_connections_pdf_inspect.py'
+      - '.github/workflows/audio-connections-pdf-review.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'suppliers/Audio Connections/**'
+      - 'scripts/audio_connections_pdf_inspect.py'
+      - '.github/workflows/audio-connections-pdf-review.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDF text tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils
+      - name: Inspect source PDFs without modifying them
+        run: python3 scripts/audio_connections_pdf_inspect.py
