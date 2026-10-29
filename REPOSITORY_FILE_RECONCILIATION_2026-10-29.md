@@ -577,3 +577,9 @@
 - Starsound PDF explicitly states its prices are VAT-exclusive. Sony PDF includes `Price Ex` and `RRP` columns. No customer selling prices or live stock values were changed; source prices remain review-only.
 - Added `catalogue-audits/PLANETWORLD_CAR_AUDIO_OFFICIAL_MATCHES_BATCH1_2026-10-29.csv` with 5 exact-model official Alpine page matches (BBX-F1200, BBX-T600, HDZ-653, HCE-C2100RD, iLX-705D) and verified feature summaries. Two direct manufacturer image URLs were identified, but images were not downloaded or relabelled; all five remain blocked from publishing until the exact image is locally saved/checked and the approved GW SKU is applied.
 - Source references: https://www.alpine-asia.com/en/productDetail/24/BBX-F1200 ; https://alpineindia.com/discription-amplifier/BBX-T600.html ; https://www.alpine.com.au/product/hdz-653/ ; https://www.alpine-usa.com/product/hce-c2100rd ; https://www.alpine.co.il/p/Products/SingleView/ilx-705d .
+
+
+## Full per-file inventory ledger
+- Added `REPOSITORY_FILE_INVENTORY_2026-10-29.csv`, a row for every one of the **5210** tracked blobs at snapshot `3b3e477155df64e2987c7b03cf030aef53c81b31`: path, declared bytes, Git blob SHA, extension, file class, duplicate-image group size, reconciliation disposition, and content-review status.
+- The inventory is deliberately path/hash/size complete but does **not** claim semantic review of every binary or historical document. It identifies which content is supplier source, review-only output, historical handover, image asset, workflow, or storefront file and prevents unverified files from being mistaken for reconciled product mappings.
+- The inventory CSV itself is an additional audit artifact created after the snapshot, so it is not self-listed in its own rows.
