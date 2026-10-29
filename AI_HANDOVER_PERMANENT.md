@@ -3285,3 +3285,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - On PR #104 head `e6a3b561bc6cc23c5dd20c5b75605877794e19b9`, security workflow run `40872390791` passed: 6 behavioral helper tests and Deno checks for both Edge Functions.
 - Repeat browser smoke failure was traced to Playwright 1.55.0 rejecting the `ubuntu26.04-x64` runner for Chromium dependencies. PR branch pins only `.github/workflows/storefront-smoke.yml` to `ubuntu-24.04`; smoke run `40872390811` was in progress at Chromium installation when recorded. Verify final run before claiming browser tests pass.
 - Still draft/unmerged/unapplied: migration, secret setup and full Edge Function integration tests. No production changes; launch HOLD.
+
+
+### Addendum — 2026-10-29 — latest quote PR CI
+
+- Current draft PR #104 head `770d6a46190255e76363496aef0557301ef8eece`.
+- Security workflow `40872472113`: 7 tests passed / 0 failed; both Edge Functions type-check.
+- Storefront smoke `40872472179`: SUCCESS after pinning Playwright to Ubuntu 24.04. Responsive layout, category navigation, exact-SKU fallback, metadata guard, request dialog and public routes passed. This does not equal a full quote-to-order integration test.
+- Do not merge/deploy. Signing secret is not configured; migration is review-only and requires CLI validation on a disposable database; endpoint attack-case tests remain open. Production release remains HOLD.
