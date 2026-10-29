@@ -3030,3 +3030,10 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 - The previously generated XLSX/PDF are local deliverables. Standalone HTML preview creation failed due a temporary data-analysis tool limit; no preview path exists and no public customer-facing display was verified.
 - No product activation, price/stock change, deployment, merge, Axxess/DNS/payment change, or release-credit use.
 - Next: inspect the existing storefront category behavior and continue extracting the Electrocity converter/ignition PDFs into distinct `GWA-EC-` SKU mappings. Keep products inactive until current price/stock are confirmed. Launch remains HOLD pending checkout identity/security and payment readiness.
+
+
+## STOREFRONT CATEGORY VISIBILITY CHECK — 2026-10-29
+
+- Source-level inspection of `category.html` and `assets/category-tree.json` confirms the new `Glowplugs` category UUID `ada27a2c-647a-4cb4-83f5-557a5ef33694` is already present in the static category snapshot under `Electrical`; the snapshot currently records `direct_active_products: 0` for Glowplugs.
+- The customer category page computes descendant totals and renders `CATEGORY UNAVAILABLE` when a selected category has zero active products; root/subcategory choices with zero total are filtered out. Since both glowplug products remain inactive, this prevents an empty public category/listing from being shown. This is source inspection, not a live-browser test.
+- No storefront source edit was needed or made. Keep products inactive until current supplier price and stock are confirmed; then update/refresh the category snapshot and run the final browser QA only under the release-credit policy.
