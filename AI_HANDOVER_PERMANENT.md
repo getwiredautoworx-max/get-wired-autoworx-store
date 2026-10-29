@@ -3278,3 +3278,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Scope: continue remaining non-payment blockers, starting with draft PR #104 delivery-quote security remediation; verify latest checks and inspect exact code/migration/tests. Then address other safe, non-production storefront blockers where evidence and supported tools permit.
 - Locked boundaries: no production deployment/function/database writes, PR merges, live catalogue/price/stock/active-flag changes, Axxess/DNS/payment changes, or Cloudflare/Netlify credit use. No invented supplier data. Preserve user’s 8 permanent rules.
 - Task started after reading this permanent handover. Record each verified result and blocker before moving to the next task.
+
+
+### Addendum — 2026-10-29 — Playwright runner diagnosis
+
+- On PR #104 head `e6a3b561bc6cc23c5dd20c5b75605877794e19b9`, security workflow run `40872390791` passed: 6 behavioral helper tests and Deno checks for both Edge Functions.
+- Repeat browser smoke failure was traced to Playwright 1.55.0 rejecting the `ubuntu26.04-x64` runner for Chromium dependencies. PR branch pins only `.github/workflows/storefront-smoke.yml` to `ubuntu-24.04`; smoke run `40872390811` was in progress at Chromium installation when recorded. Verify final run before claiming browser tests pass.
+- Still draft/unmerged/unapplied: migration, secret setup and full Edge Function integration tests. No production changes; launch HOLD.
