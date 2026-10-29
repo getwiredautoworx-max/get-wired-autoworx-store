@@ -3256,3 +3256,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Security workflow run `40869885847` passed on the earlier head. Latest run `40870309771` for the follow-up commit was in progress at the last check. Do not infer pass until its conclusion is verified. Storefront Smoke run `40869885627` failed at Chromium installation, not at a quote-security assertion.
 - Not production-ready: signing secret has not been configured; nonce replay protection and behavioral attack tests remain outstanding; PR is draft/open/unmerged. No production functions, DB, payments, DNS, catalogue, prices or stock changed. Keep release HOLD.
 - Next: verify latest workflow run; add reviewed replay guard/migration and executable tests; complete security review; only then request explicit approval for coordinated secret configuration/deployment. Payment issue #103 remains open; Direct EFT only.
+
+
+### Addendum — 2026-10-29 — nonce guard and CI follow-up
+
+- Draft PR #104 current head `a230cd7476393a81404a977f756632f2d6c6aafe`; Delivery Quote Security Tests run `40870935629` passed. No production changes.
+- Signed nonce is now returned by `shipping-quote`, required to match claims in `store-checkout`, and included in review migration `20261029150000_delivery_quote_nonce_unique.sql` for a unique partial index over `orders.delivery_quote->>'nonce'`. This is only a draft; migration has not been applied or validated. Because Supabase CLI is unavailable in this runtime, regenerate/validate the migration via `supabase migration new` before merge.
+- Still block merge/deploy pending signing secret configuration, migration validation, behavioral attack tests and browser-flow testing. Store remains HOLD; Direct EFT only and payment issue #103 remains open.
