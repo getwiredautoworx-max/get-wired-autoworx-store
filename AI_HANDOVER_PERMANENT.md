@@ -3297,7 +3297,7 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 ## 2026-10-29 — Owner-approved unpriced item label (draft branch only)
 
-- Owner instruction: every catalogue/store item without a confirmed price must display exactly: **“Price on Request due to Limited Stock.”**
+- Owner instruction: every catalogue/store item without a confirmed price must display exactly: **“Price on Request due to Limited Stock and Availability”**
 - Applied the label to all existing storefront price-on-request display fallbacks in `index-new.html` on review branch `fix/checkout-terms-privacy-gates-2026-10-29`; this includes product cards, product detail/related-product price labels, cart line display, and the shared money fallback where used. The update replaced 7 occurrences of the old generic phrase.
 - This is a customer-facing quote-request label, not proof of stock availability. Do not invent prices or change supplier values, stock quantities, active flags, or catalogue data. Items with a confirmed/approved price continue to display their price.
 - Draft-only source change. No merge, production deployment, Axxess upload, DNS, payment, database, live stock, or live catalogue changes. Run/inspect CI and preview before any release claim.
@@ -3305,7 +3305,7 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 ### Addendum — 2026-10-29 — policy label verification and continuation checkpoint
 
-- Verified draft `index-new.html` at branch `fix/checkout-terms-privacy-gates-2026-10-29`: seven display fallbacks now use the exact owner-approved text **“Price on Request due to Limited Stock.”**; zero old generic “Price on request” fallbacks remain. These are quote-request labels only, not assertions of actual stock availability.
+- Verified draft `index-new.html` at branch `fix/checkout-terms-privacy-gates-2026-10-29`: seven display fallbacks now use the exact owner-approved text **“Price on Request due to Limited Stock and Availability”**; zero old generic “Price on request” fallbacks remain. These are quote-request labels only, not assertions of actual stock availability.
 - GitHub Actions lookup returned no PR-triggered workflow runs for policy branch commits `310d85c154750e9727eb53a994f161581b4a3bb5` and `9277f976c8f4aa32f1f5b6261af5e7b813455acf`. Latest policy edits therefore remain **CI-unverified**; do not claim tests or preview passed. PR #105 remains draft/open/unmerged.
 - Separate security branch PR #104 head `211dd5278355fcf66987836126e368e41165d6fe`: GitHub reports Delivery Quote Security Tests, Storefront Smoke Test, Public SKU Exposure Audit and Axxess package preparation completed SUCCESS. These are branch checks only, not production endpoint verification. Signing-secret provisioning, disposable Supabase migration/integration validation and explicitly approved coordinated deployment remain blockers.
 - No production changes. Continue release HOLD; do not merge or deploy. No payment/DNS/Axxess/database/stock/catalogue changes.
@@ -3319,3 +3319,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - PR #101 recorded head `93b94ee4efebf19aeae978ff1d27d7ff9bce552f`: no PR-triggered workflow runs returned; do not claim that artifact-suppression change passed. Account-wide Actions storage remains unresolved.
 - Policy PR #105's latest commits still have no returned PR-triggered workflow runs; exact price label source change remains unverified by CI/browser preview.
 - All PRs remain review-only; no merges/deployments or production changes. Release HOLD remains in force while PayFast approval, real hosted authentication/order verification, signed delivery quote setup/integration, and policy preview checks remain incomplete.
+
+
+## OWNER WORDING CORRECTION — 29 OCTOBER 2026
+
+- Corrected the PR #105 working branch `index-new.html`: all 7 customer-facing fallback occurrences now use the exact owner-approved wording **“Price on Request due to Limited Stock and Availability”**. Change commit: `d393b104a7bbf67ede33e66c089c2ee843fcfc6e`.
+- Do not publish, merge or deploy solely because wording was corrected; keep the PR draft and run checks on the updated head before any release decision.
