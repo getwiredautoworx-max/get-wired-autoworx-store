@@ -3329,3 +3329,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - PR #104 head advanced to 07ae1afc56a965bbfafd6d1434ef19c4dd91ecd1 after the prior fully-green checkpoint. On this exact latest head, Public SKU Exposure Audit run 40873626174 is SUCCESS; Delivery Quote Security Tests run 40873626236, Storefront Smoke Test 40873626052 and Axxess package preparation 40873626176 were still IN_PROGRESS at last query. Do not carry forward the earlier all-green status to this newer head until these four runs conclude.
 - PR #106 head is 4ed8c39ebc6c619a002619b4f0334ef2bb79b97c. Customer Authentication Security Tests run 40873623297 and Axxess package preparation 40873623401 were still IN_PROGRESS at last query; Public SKU Exposure Audit run 40873623313 is SUCCESS. Storefront Smoke Test run 40873623308 has failed its Chromium installation step; browser tests did not run. Earlier customer-auth test run 40873432964 passed on prior head 3424057de861e52ac6f868a3f0fece877c19007f.
 - PRs #104, #105 and #106 remain draft/open/unmerged. No production changes or release credits were used.
+
+
+### Addendum — 2026-10-29 — isolated nonce migration test passed
+
+- Current draft PR #104 head `07ae1afc56a965bbfafd6d1434ef19c4dd91ecd1`.
+- Security workflow `40873626236`: 12 quote validation tests passed, both Edge Functions type-check, and PGlite/PostgreSQL-compatible migration test passed (legacy rows without nonce allowed; duplicate nonce rejected).
+- Storefront smoke `40873626052`: SUCCESS on Ubuntu 24.04.
+- Still do not merge/deploy. Migration has not been tested against a disposable Supabase project; signing secret remains unconfigured; full endpoint integration tests are required. No production changes; release HOLD.
