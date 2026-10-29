@@ -1,4 +1,4 @@
-import { cartCanonical, destinationCanonical, digest, normalise, quoteTimeValid, signQuote, validateBoundQuote, verifyQuoteToken } from "./delivery-quote.ts";
+import { cartCanonical, destinationCanonical, digest, normalise, quoteTimeValid, signQuote, validateBoundQuote, validatePickup, verifyQuoteToken } from "./delivery-quote.ts";
 
 const secret = "test-only-secret-value-with-at-least-32-chars";
 
@@ -95,4 +95,12 @@ Deno.test("bound quote rejects expired tokens and changed parcel dimensions", as
   await mustReject(validateBoundQuote({ ...f, now }), "Expired quote must fail");
   const fresh = await boundQuoteFixture();
   await mustReject(validateBoundQuote({ ...fresh, parcel: { ...fresh.parcel, weight_kg: 4 } }), "Changed parcel dimensions must fail");
+});
+
+Deno.test("pickup requires zero fee and no delivery quote", () => {
+  validatePickup(0, null);
+  for (const [fee, quote] of [[1, null], [0, { live: true }]] as Array<[number, unknown]>) {
+    let threw = false; try { validatePickup(fee, quote); } catch { threw = true; }
+    if (!threw) throw new Error("Pickup must reject delivery fees and quote payloads");
+  }
 });
