@@ -58,7 +58,7 @@ A customer must contact Get Wired AutoWorx before sending an item back and obtai
 
 Where a return is permitted or required, the item may be inspected by Get Wired AutoWorx and, where appropriate, referred to the applicable supplier, wholesaler, importer, manufacturer or authorised service agent for technical assessment.
 
-### 12.2 Mandatory return address
+### 12.2 Private return address and written instructions
 **The returns address is private and is not published on this website.** When a return is authorised or required, Get Wired AutoWorx will notify the buyer in writing and provide the applicable return address and instructions. Do not send goods to an address unless those written instructions have been received. This does not limit mandatory statutory rights or remedies.
 
 Customers must use suitable protective packaging and a trackable courier/service. The customer remains responsible for the parcel until it has been safely received and acknowledged by Get Wired AutoWorx, except where applicable law places the risk or return cost on the supplier.
