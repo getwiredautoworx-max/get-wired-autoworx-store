@@ -2620,3 +2620,9 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - **Outcome: SUCCESS for overlap check.** Compared the 38 historical scale-defect SKUs against `staging/source-extracts/PRICE_RECONCILIATION_EFFECTIVE_STATUS_2026-10-14.csv` (blob `fb61c9b7419a2f056324919c108bb59c42c860d7`). Exact-token overlap is **0/38**. The previously verified **107/107 October set remains separate and unchanged**.
 - Limitation: this proves no overlap with the 107-row October effective-status audit, not absence from every page of the full October Buyer’s Guide. The full October guide/OCR text was not found in the checked repository source-extracts or Library search results, so broader October presence cannot be asserted.
 - **Next action:** obtain current supplier confirmation for the 38 rows (and exact SKU/description confirmation for `SCR23MM`); if the owner later authorizes a price-safe release, use only validated current costs and preserve all October-verified rows unchanged. Until then, keep the 38 flagged `DO NOT IMPORT / CURRENT PRICE UNVERIFIED`; no live change.
+
+
+## SUPPLIER-RESPONSE LOOKUP — 2026-10-29 09:01:37 SAST
+
+- **Outcome: BLOCKED by connector interaction requirement.** Attempted read-only Gmail searches for the 38-SKU request tracker and current supplier-price confirmations; the connected Gmail search action returned `User input required but current turn is running in a non-interactive mode` for each query. No email messages were retrieved, so this is **not** evidence that no supplier replies exist.
+- **Next action:** owner-side interactive Gmail search or an available current supplier price list / reply is required. Do not infer a current price from the September guide, reseller listings, or formula-correct but scaled live values. No email was sent and no live data changed.
