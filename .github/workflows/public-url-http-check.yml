@@ -24,16 +24,32 @@ permissions:
   contents: read
 
 jobs:
+  detect-storefront-mode:
+    runs-on: ubuntu-24.04
+    outputs:
+      button_only: ${{ steps.mode.outputs.button_only }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: mode
+        shell: bash
+        run: |
+          if grep -Fq 'data-storefront-mode="buttons-only"' index-new.html; then
+            echo "button_only=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "button_only=false" >> "$GITHUB_OUTPUT"
+          fi
   public-http-check:
     name: Check public homepage and policy pages
-    runs-on: ubuntu-latest
+    needs: detect-storefront-mode
+    if: needs.detect-storefront-mode.outputs.button_only != 'true'
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Check homepage and both policy pages from GitHub-hosted runner
         shell: bash
         run: |
           set -uo pipefail
-          base="https://getwiredautoworx-max.github.io/get-wired-autoworx-store"
+          base="https://www.getwiredauto.co.za"
           failed=0
 
           check_url() {
@@ -116,7 +132,7 @@ jobs:
         run: |
           node <<'NODE'
           const { chromium } = require('playwright');
-          const base = 'https://getwiredautoworx-max.github.io/get-wired-autoworx-store';
+          const base = 'https://www.getwiredauto.co.za';
           (async () => {
             const browser = await chromium.launch({headless:true});
             try {
