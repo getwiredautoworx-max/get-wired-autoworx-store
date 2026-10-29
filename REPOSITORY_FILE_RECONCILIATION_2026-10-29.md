@@ -575,3 +575,9 @@ Found **177** repeated-blob groups outside `assets/products/`. These include mir
 - Source row distribution: Alpine 58; Amplified 3; Audison 94; Focal Car Audio 2; JVC Car Audio 13; Kenwood Car Audio 4; Kicker 189; One 290; Pioneer Car Audio 2; Harness and Trims 47. **Harness and Trims is a product range, not a manufacturer brand button**; keep it as a component/category grouping, not a brand.
 - Heuristic component counts: Vehicle Harnesses & Trims 243; Car Subwoofers 99; Car Head Units & Receivers 88; Car Speakers 78; Car Audio Accessories 65; Car Amplifiers 42; Car Speaker Pods/Grilles/Enclosures 28; Marine Audio 25; Vehicle Cameras 14; Car DSP/Signal Processors 11; Car Audio Packages 7; Vehicle Sensors/Parking Assist 2. These are review suggestions only.
 - Current main storefront is intentionally `buttons-only` and currently has a short brand list under Car Audio / Video (JBL, Hertz, Denon) compared with the 9 actual manufacturer brands in this Planetworld Car Audio extraction. Do not change that storefront in this inventory PR; create a separate review-only navigation change after official logo assets/source evidence are gathered and the owner-approved reset tests are retained.
+
+
+## Confirmed orphan cleanup — review branch only
+- GitHub code search returned zero references to `index-new.tmp`, `index.html.tmp`, or `netlify.toml.new`; their contents were only `temporary`, `placeholder`, and an incomplete empty-command build stub. These three unreferenced temporary files are removed in this review branch.
+- The 12-byte `suppliers/Electrocity/24V - 12V Step Down Convertors` item contained only `StepDown.md`; exact repository-wide code search found no target file. It is replaced with a named folder README recording the missing source, rather than pretending the catalogue is available.
+- No supplier PDF, product image, or product record was deleted. These changes are review-only and remain in PR #110.
