@@ -3133,3 +3133,12 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - Security workflow [40873626236](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873626236) **SUCCESS**: 12 quote-validation tests passed, both Edge Functions type-check, and an isolated PGlite/PostgreSQL-compatible test executed the nonce-index migration successfully. It confirmed legacy quote rows without nonce remain allowed and duplicate nonce rows are rejected.
 - Storefront smoke [40873626052](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873626052) **SUCCESS** on Ubuntu 24.04.
 - This validates the migration in an isolated PostgreSQL-compatible engine, not against a disposable Supabase project. Standard Supabase CLI migration validation and full Edge Function integration tests remain open. Signing secret is not configured. PR remains draft/open/unmerged; no production changes. Launch HOLD.
+
+
+### Addendum — 2026-10-29 — checkout-handler integration checks passed
+
+- Current PR #104 head `211dd5278355fcf66987836126e368e41165d6fe`.
+- Delivery Quote Security Tests [40874216958](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40874216958) **SUCCESS**: 12 shared-helper tests passed, one checkout-handler integration test passed, isolated PostgreSQL-compatible nonce migration test passed, and both Edge Functions passed Deno type-checks.
+- The checkout-handler integration test uses mocked Supabase REST/RPC responses and confirms forged `live=true`, tampered token, changed address, changed cart and changed fee are blocked before order RPC; a valid bound quote reaches the mocked RPC. This is not a live Supabase project test.
+- Storefront Smoke [40874217012](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40874217012) **SUCCESS** on Ubuntu 24.04.
+- Remaining release blockers: securely configure `DELIVERY_QUOTE_SIGNING_SECRET` in both functions; validate/apply the nonce migration only after a disposable Supabase project test and standard CLI checks; run full endpoint integration against real schema/RPC; review and explicitly approve coordinated deployment. PR remains draft/open/unmerged; no production changes. Launch HOLD.
