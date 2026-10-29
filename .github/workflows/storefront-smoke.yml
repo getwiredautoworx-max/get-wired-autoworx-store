@@ -202,6 +202,11 @@ jobs:
             await frame.locator('button.requestModalClose').click();
             if (aiProviderRequests.length) throw new Error('No-AI picture request unexpectedly called an AI provider');
             console.log('NO_AI_PART_PHOTO_REQUEST_PASS: multi-photo Request a Part path; no AI provider request');
+            // Opening Request a Part closes Part Search, so reopen the search before continuing SKU checks.
+            await frame.locator('button.headerPartSearch').click();
+            await frame.locator('#partSearchDialog.open').waitFor({timeout:10000});
+            await frame.locator('#partSearchQuery').fill('GW-F165DD11');
+            await verifiedResult.waitFor({timeout:15000});
             const verifiedText = await verifiedResult.innerText();
             if (!verifiedText.includes('GW-F165DD11')) throw new Error('Part Search did not return the second priced SKU: '+verifiedText);
             await verifiedResult.locator('button[data-view-part]').click();
