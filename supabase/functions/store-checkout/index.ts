@@ -148,7 +148,7 @@ Deno.serve(async (req: Request) => {
           claims.cart_hash !== cartHash || claims.destination_hash !== destinationHash ||
           typeof claims.provider !== "string" || typeof claims.service !== "string" || claims.currency !== "ZAR" ||
           !Number.isFinite(Number(claims.price)) || Number(claims.price) <= 0 ||
-          quote.provider !== claims.provider || quote.service !== claims.service || String(quote.currency).toUpperCase() !== "ZAR" ||
+          quote.provider !== claims.provider || quote.service !== claims.service || quote.nonce !== claims.nonce || String(quote.currency).toUpperCase() !== "ZAR" ||
           quotePrice !== Number(claims.price) || deliveryFee !== Number(claims.price)) {
         throw new Error("Delivery quotation is expired, altered, or does not match this address/cart. Request a fresh quote.");
       }
