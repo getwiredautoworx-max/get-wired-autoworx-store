@@ -1,20 +1,15 @@
+## REPOSITORY RECONCILIATION + FRESH SOURCE AUDIT — 2026-10-29
 
-## CURRENT SOURCE AUDIT WORKFLOW ADDED — 2026-10-29
-- Added the existing read-only Planetworld workbook audit script to this review branch, redirected to canonical `suppliers/Planetworld/`; source workbook bytes remain untouched.
-- Updated its workflow triggers to the canonical folder and pinned the runner to Ubuntu 24.04 for Playwright/runner compatibility consistency. The audit only writes ephemeral review CSV/JSON outputs and a GitHub Actions summary; it does not import or modify catalogue, price or stock data.
-- This PR's audit run must be inspected before reporting fresh workbook/sheet/row/duplicate totals. Artifact upload is best-effort because account Actions storage may be full; the job summary remains the primary result source.
-
-## REPOSITORY RECONCILIATION RESULT — 2026-10-29
-
-- Recursive Git tree scan completed against base `3e362397e249150f4fb992fde199784b6cc42f7c`: 5205 tracked files, 498013273 declared bytes; tree response was not truncated.
-- Opened review branch `reconcile/repo-file-inventory-planetworld-2026-10-29` to reconcile source paths without touching production.
-- 47 Planetworld XLSX files are being moved byte-for-byte into `suppliers/Planetworld/`; source blob SHAs are preserved. Full source manifest and repository-wide duplicate-blob audit are in `REPOSITORY_FILE_RECONCILIATION_2026-10-29.md`.
-- Exact byte-identical images: 163 groups in `assets/products/`. These are **not** confirmed duplicate products. No image was deleted or remapped; each must be compared against model, full description, and supplier evidence.
-- Audio Connections source PDFs remain 2 and need extraction/matching. ASC PDFs are already in `suppliers/ASC/`; do not restore ASC stock to customer listings. Planetworld row extraction, verified images/features, GW SKU mappings, and category/component mapping remain incomplete.
-- Found stale-looking temporary files and duplicated historical handovers; retained them pending content/reference checks rather than destructive cleanup.
-- No live catalogue/stock/price/Supabase/Axxess/DNS/payment/deployment changes; no Cloudflare/Netlify credits used.
-- Next: run current workbook extraction from the moved source set; independently verify row totals and source-level duplicate identities; then prepare sanitized review-only car-audio listings with exact model/image evidence.
-
+- Full recursive Git tree scan of base `3e362397e249150f4fb992fde199784b6cc42f7c` returned `truncated=false`: 5,205 tracked blobs / 498,013,273 declared bytes.
+- Review PR #110: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/110. It relocates 47 Planetworld XLSX files byte-for-byte into `suppliers/Planetworld/`, preserving blob SHA. Read-after-write tree check: 47 XLSX at canonical destination, 0 XLSX left at old incoming path.
+- Fresh read-only audit run 40941740509 **SUCCESS**: 47 workbooks, 94 sheets, 3,317 rows, 0 workbook errors; 0 identical workbook/product-data duplicate groups; 0 duplicate model/SKU rows; 0 missing model/SKU or unmapped RRP.
+- Fresh price review flags: 19 zero-RRP rows remain owner hold; 18 positive-RRP rows below estimated cost at RRP−1%; 19 at RRP−2%. No selling-price changes made.
+- Source division count: Car Audio 702 rows; Musical Instruments 1,719; Installed AV 435; Home CI 319; Home Retail 142. Component guesses remain heuristic pending exact model/image/features checks.
+- Product image hash audit found 163 groups of exact byte-identical files in `assets/products/`. None deleted/reassigned because byte identity alone does not prove identical product identity. Additional non-image duplicate blob groups and stale placeholders are itemised in `REPOSITORY_FILE_RECONCILIATION_2026-10-29.md`.
+- GitHub Actions artifact upload failed due account storage quota, but the audit job and summary succeeded. No production or live catalogue/stock/price/database writes; no deployment or Cloudflare/Netlify credit used.
+- Current store mode remains intentionally buttons-only per owner instruction. Do not re-enable product cards until exact product/model/image/description/price/category mapping is verified.
+- Continue by producing the sanitized Car Audio row-level review dataset from the successful current-source audit, then verify images/features and create a review-only category/brand presentation. Audio Connections has 2 PDFs awaiting extraction; ASC source PDFs are already under `suppliers/ASC/`, but ASC store stock must stay excluded.
+ 
 ## PERMANENT USER INSTRUCTIONS — 8 LOCKED RULES
 1. **Maintain workflow — efficiency — speed.**
 2. **Complete all available tasks in a single flow.**

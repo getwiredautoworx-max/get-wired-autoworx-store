@@ -349,6 +349,25 @@ def write_csv(name, rows):
 write_csv("workbook_sheet_inventory.csv", inventory)
 write_csv("product_rows_review_only.csv", extracted)
 write_csv("workbook_errors.csv", errors)
+# Sanitized Car Audio-only review dataset: no dealer cost, RRP, stock or margin fields.
+car_audio_review_fields = [
+    "source_file", "sheet", "source_row", "brand", "model_or_sku", "description",
+    "category_guess_review_only", "component_guess_review_only", "review_status",
+]
+car_audio_review_rows = [
+    {
+        "source_file": r["source_file"], "sheet": r["sheet"], "source_row": r["source_row"],
+        "brand": r["brand"], "model_or_sku": r["model_or_sku"], "description": r["description"],
+        "category_guess_review_only": r["category_guess_review_only"],
+        "component_guess_review_only": r["component_guess_review_only"],
+        "review_status": "MODEL_IMAGE_FEATURE_AND_GW_SKU_VERIFICATION_REQUIRED",
+    }
+    for r in extracted if norm(r["supplier_division_source_value"]) == "car audio"
+]
+with (OUT / "car_audio_review_only.csv").open("w", newline="", encoding="utf-8-sig") as f:
+    w = csv.DictWriter(f, fieldnames=car_audio_review_fields, extrasaction="ignore")
+    w.writeheader(); w.writerows(car_audio_review_rows)
+
 # Price-risk counts intentionally exclude zero-RRP owner-hold rows and rows from
 # identical product-data duplicate workbooks; those are separate review queues.
 price_risk_rows = [r for r in extracted if r["source_file"] not in duplicate_sources and r["rrp_numeric"] is not None and float(r["rrp_numeric"]) > 0]
@@ -373,4 +392,8 @@ summary = {
 }
 (OUT / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 print(json.dumps(summary, indent=2))
+# Emit only sanitized Car Audio identity/category fields for retrieval if artifact storage is full.
+print("GW_CAR_AUDIO_ROWS_JSON_BEGIN")
+print(json.dumps(car_audio_review_rows, ensure_ascii=False, separators=(",", ":")))
+print("GW_CAR_AUDIO_ROWS_JSON_END")
 if errors: print("Some workbooks failed; see workbook_errors.csv", file=sys.stderr)

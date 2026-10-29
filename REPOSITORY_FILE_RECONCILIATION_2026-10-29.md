@@ -555,3 +555,14 @@ Found **177** repeated-blob groups outside `assets/products/`. These include mir
 - Moved workbook paths preserve the exact existing blob SHA and byte size.
 - Canonical supplier README and incoming-folder README are updated in the same review branch.
 - Review PR must remain unmerged until the file moves and manifest are checked.
+
+
+## Fresh Planetworld workbook audit — run 40941740509
+- Result: **SUCCESS**, commit `60af286b37b4cd147eb28a0fb79ea78e2b75d959`, run URL https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40941740509.
+- Current canonical source root `suppliers/Planetworld/`: **47 XLSX, 94 sheets, 3,317 extracted rows, 0 workbook errors**.
+- Identity/duplicate checks: **0 identical workbook hash groups, 0 identical product-data duplicate groups, 0 rows from identical duplicate workbooks, 0 duplicate model/SKU flags, 0 missing model/SKU, 0 missing/unmapped RRP**.
+- Review queues: **19 zero-RRP rows** (owner hold; do not price); **18** positive-RRP rows where RRP−1% falls below estimated VAT-inclusive dealer cost; **19** where RRP−2% falls below estimated cost. These are risk flags, not final selling-price decisions.
+- Supplier divisions: Car Audio **702**; Musical Instruments **1,719**; Installed AV **435**; Home CI **319**; Home Retail **142**.
+- The previous filtered legacy report's 32 model/SKU flags are **not reproduced** by the current-source audit; current audit reports zero duplicate model/SKU rows. Do not call old flags confirmed duplicates.
+- The audit's 702 Car Audio component classifications remain heuristic. A sanitized row-level review file is now being generated with source workbook/sheet/row, brand, model, exact source description, proposed category/component and mandatory model/image/features/GW-SKU verification status. It excludes RRP, dealer cost, stock and margin data.
+- Artifact upload failed despite the audit job succeeding because GitHub Actions account storage quota remains full. Counts above are verified from the successful job log. No live catalogue, stock, price, database or production write occurred.
