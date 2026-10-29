@@ -1,3 +1,24 @@
+## REPOSITORY RECONCILIATION RESULT — 2026-10-29
+
+- Recursive Git tree scan completed against base `3e362397e249150f4fb992fde199784b6cc42f7c`: 5205 tracked files, 498013273 declared bytes; tree response was not truncated.
+- Opened review branch `reconcile/repo-file-inventory-planetworld-2026-10-29` to reconcile source paths without touching production.
+- 47 Planetworld XLSX files are being moved byte-for-byte into `suppliers/Planetworld/`; source blob SHAs are preserved. Full source manifest and repository-wide duplicate-blob audit are in `REPOSITORY_FILE_RECONCILIATION_2026-10-29.md`.
+- Exact byte-identical images: 163 groups in `assets/products/`. These are **not** confirmed duplicate products. No image was deleted or remapped; each must be compared against model, full description, and supplier evidence.
+- Audio Connections source PDFs remain 2 and need extraction/matching. ASC PDFs are already in `suppliers/ASC/`; do not restore ASC stock to customer listings. Planetworld row extraction, verified images/features, GW SKU mappings, and category/component mapping remain incomplete.
+- Found stale-looking temporary files and duplicated historical handovers; retained them pending content/reference checks rather than destructive cleanup.
+- No live catalogue/stock/price/Supabase/Axxess/DNS/payment/deployment changes; no Cloudflare/Netlify credits used.
+- Next: run current workbook extraction from the moved source set; independently verify row totals and source-level duplicate identities; then prepare sanitized review-only car-audio listings with exact model/image evidence.
+
+## PERMANENT USER INSTRUCTIONS — 8 LOCKED RULES
+1. **Maintain workflow — efficiency — speed.**
+2. **Complete all available tasks in a single flow.**
+3. **Only notify the user when user input or permissions are required.**
+4. **AI will update the master handover file after every successful task is completed.**
+5. **Do not use Cloudflare or Netlify credits until final testing.**
+6. **All tasks requiring Cloudflare or Netlify credits will be added to the handover file to be completed at the very end, during the testing phase.**
+7. **AI will copy these rules into every new handover file and will not leave any rule out or edit any rule without user permission.**
+8. **AI will reply with these 8 rules when required by the user to be edited or removed.**
+
 ## SCHEDULED CONTINUATION TASK START — 2026-10-28 15:52 SAST
 
 - Read the latest `AI_HANDOVER_PERMANENT.md` (blob `44e98620c05e9babf09dc8366d8932c4506be4a8`) and `HANDOVER_CURRENT.md` (blob `532baf33d80abb044888501dce07cccca1c832be`) before acting.
