@@ -82,17 +82,7 @@ const providers: Provider[] = [
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), {
   status, headers: { ...corsHeaders, "content-type": "application/json", "cache-control": "no-store" },
 });
-function parcel(items: Item[]) {
-  let weight = 0, length = 0, width = 0, height = 0;
-  for (const item of items) {
-    const qty = Math.max(1, Number(item?.qty || 1));
-    weight += Math.max(0, Number(item?.weight_kg || 0)) * qty;
-    length = Math.max(length, Number(item?.length_cm || 0));
-    width = Math.max(width, Number(item?.width_cm || 0));
-    height = Math.max(height, Number(item?.height_cm || 0));
-  }
-  return { weight_kg: Number(weight.toFixed(3)), length_cm: length, width_cm: width, height_cm: height };
-}
+
 function ratesFrom(data: any): any[] {
   if (Array.isArray(data?.rates)) return data.rates;
   if (Array.isArray(data?.services)) return data.services;
@@ -149,11 +139,11 @@ Deno.serve(async request => {
       }
     }
     if (p.weight_kg <= 5) {
-      quotes.push({ provider: "PEP PAXI", service: "Standard bag · 7–9 business days", price: 59.95, currency: "ZAR", timeframe: "7–9 business days", live: false, note: (provisional ? "Provisional rate because product weight data is not recorded; final quotation subject to confirmation. " : "") + "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
-      quotes.push({ provider: "PEP PAXI", service: "Standard bag · 3–5 business days", price: 109.95, currency: "ZAR", timeframe: "3–5 business days", live: false, note: (provisional ? "Provisional rate because product weight data is not recorded; final quotation subject to confirmation. " : "") + "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
+      quotes.push({ provider: "PEP PAXI", service: "Standard bag · 7–9 business days", price: 59.95, currency: "ZAR", timeframe: "7–9 business days", live: false, note: "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
+      quotes.push({ provider: "PEP PAXI", service: "Standard bag · 3–5 business days", price: 109.95, currency: "ZAR", timeframe: "3–5 business days", live: false, note: "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
     } else if (p.weight_kg <= 10) {
-      quotes.push({ provider: "PEP PAXI", service: "Large bag · 7–9 business days", price: 119.95, currency: "ZAR", timeframe: "7–9 business days", live: false, note: (provisional ? "Provisional rate because product weight data is not recorded; final quotation subject to confirmation. " : "") + "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
-      quotes.push({ provider: "PEP PAXI", service: "Large bag · 3–5 business days", price: 139.95, currency: "ZAR", timeframe: "3–5 business days", live: false, note: (provisional ? "Provisional rate because product weight data is not recorded; final quotation subject to confirmation. " : "") + "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
+      quotes.push({ provider: "PEP PAXI", service: "Large bag · 7–9 business days", price: 119.95, currency: "ZAR", timeframe: "7–9 business days", live: false, note: "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
+      quotes.push({ provider: "PEP PAXI", service: "Large bag · 3–5 business days", price: 139.95, currency: "ZAR", timeframe: "3–5 business days", live: false, note: "Published store-to-store rate; destination point selection and parcel eligibility must be confirmed." });
     }
     quotes.sort((a, b) => a.price - b.price);
     return json({
