@@ -45,6 +45,8 @@ jobs:
         run: |
           npm install --no-save @electric-sql/pglite
           node supabase/tests/delivery-quote-migration.test.mjs
+      - name: Run isolated checkout handler integration tests
+        run: deno test --allow-env supabase/functions/store-checkout/index.integration_test.ts
       - name: Type-check shipping quote
         run: deno check supabase/functions/shipping-quote/index.ts
       - name: Type-check checkout
