@@ -3301,3 +3301,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Applied the label to all existing storefront price-on-request display fallbacks in `index-new.html` on review branch `fix/checkout-terms-privacy-gates-2026-10-29`; this includes product cards, product detail/related-product price labels, cart line display, and the shared money fallback where used. The update replaced 7 occurrences of the old generic phrase.
 - This is a customer-facing quote-request label, not proof of stock availability. Do not invent prices or change supplier values, stock quantities, active flags, or catalogue data. Items with a confirmed/approved price continue to display their price.
 - Draft-only source change. No merge, production deployment, Axxess upload, DNS, payment, database, live stock, or live catalogue changes. Run/inspect CI and preview before any release claim.
+
+
+### Addendum — 2026-10-29 — policy label verification and continuation checkpoint
+
+- Verified draft `index-new.html` at branch `fix/checkout-terms-privacy-gates-2026-10-29`: seven display fallbacks now use the exact owner-approved text **“Price on Request due to Limited Stock.”**; zero old generic “Price on request” fallbacks remain. These are quote-request labels only, not assertions of actual stock availability.
+- GitHub Actions lookup returned no PR-triggered workflow runs for policy branch commits `310d85c154750e9727eb53a994f161581b4a3bb5` and `9277f976c8f4aa32f1f5b6261af5e7b813455acf`. Latest policy edits therefore remain **CI-unverified**; do not claim tests or preview passed. PR #105 remains draft/open/unmerged.
+- Separate security branch PR #104 head `211dd5278355fcf66987836126e368e41165d6fe`: GitHub reports Delivery Quote Security Tests, Storefront Smoke Test, Public SKU Exposure Audit and Axxess package preparation completed SUCCESS. These are branch checks only, not production endpoint verification. Signing-secret provisioning, disposable Supabase migration/integration validation and explicitly approved coordinated deployment remain blockers.
+- No production changes. Continue release HOLD; do not merge or deploy. No payment/DNS/Axxess/database/stock/catalogue changes.
