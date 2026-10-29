@@ -1,0 +1,145 @@
+name: Store Production QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - '*.js'
+      - 'assets/**'
+      - 'supabase/migrations/**'
+      - '.github/workflows/store-production-qa.yml'
+      - '.github/workflows/storefront-smoke.yml'
+      - 'scripts/asc_image_sync_bounded.py'
+      - 'image-sync/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-catalogue-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate storefront source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s index.html
+          test -s store.html
+          test -s index-new.html
+          test -s checkout-v2.html
+          test -s admin.html
+          test -s assets/admin.js
+          grep -q "index-new.html" store.html
+          grep -q "checkout-v2.html" store.html
+          if grep -RIl "getwiredautoworx\.co\.za" --include='*.html' --include='*.js' --exclude-dir='.git' .; then
+            echo "ERROR: obsolete domain reference found"
+            exit 1
+          fi
+          grep -q "Pickup: R0.00" checkout-v2.html
+          grep -q "R35.00 per item" checkout-v2.html
+          grep -q "Your Courier" checkout-v2.html
+          grep -q "PEP PAXI" checkout-v2.html
+          grep -q "PUDO lockers" checkout-v2.html
+          grep -q "direct_eft" checkout-v2.html
+          if grep -Eiq "R15\.00 despatch|Phoenix Plaza" checkout-v2.html; then
+            echo "ERROR: obsolete Phoenix Plaza despatch fee found"
+            exit 1
+          fi
+          grep -q "Delivery orders cannot be submitted until a quotation is confirmed" checkout-v2.html
+
+      - name: Verify canonical production domain is reachable
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-store-home.html -w '%{http_code}' https://www.getwiredauto.co.za/)"
+          test "$status" = "200"
+          grep -Eiq "Get Wired AutoWorx|Get Wired AutoWorx" /tmp/live-store-home.html
+          if grep -Fq 'data-storefront-mode="buttons-only"' /tmp/live-store-home.html; then
+            echo "LIVE_BUTTON_ONLY_PASS: canonical production homepage is serving the buttons-only reset."
+          else
+            echo "LIVE_BUTTON_ONLY_NOT_DEPLOYED: canonical production homepage is reachable but does not yet serve the merged button-only storefront."
+            exit 1
+          fi
+          terms_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-terms.html -w '%{http_code}' https://www.getwiredauto.co.za/terms-and-conditions.html)"
+          test "$terms_status" = "200"
+          grep -Eiq "Terms & Conditions" /tmp/live-terms.html
+          returns_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-returns.html -w '%{http_code}' https://www.getwiredauto.co.za/returns-refunds.html)"
+          test "$returns_status" = "200"
+          grep -Eiq "Returns & Refunds" /tmp/live-returns.html
+          category_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category.html -w '%{http_code}' https://www.getwiredauto.co.za/category.html)"
+          test "$category_status" = "200"
+          snapshot_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-category-tree.json -w '%{http_code}' https://www.getwiredauto.co.za/assets/category-tree.json)"
+          test "$snapshot_status" = "200"
+          grep -q "Auto Electrical" /tmp/live-category.html
+          grep -q "Spare Parts" /tmp/live-category-tree.json
+          image_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-000174D6.webp)"
+          test "$image_status" = "200"
+          image_type="$(file --mime-type -b /tmp/live-product-image.webp)"
+          test "$image_type" = "image/webp"
+          # Also verify a WebP newly committed by the current bounded exact-SKU retry.
+          new_image_status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o /tmp/live-new-product-image.webp -w '%{http_code}' https://www.getwiredauto.co.za/assets/products_webp/GW-001CED3B.webp)"
+          test "$new_image_status" = "200"
+          new_image_type="$(file --mime-type -b /tmp/live-new-product-image.webp)"
+          test "$new_image_type" = "image/webp"
+          # Targeted verification for the eight exact-SKU assets found by the bounded image audit.
+          for sku in GW-F60D9CE9 GW-F632303D GW-F6416160 GW-F6461F7B GW-F6672DED GW-F672879F GW-F68FB0CE GW-F69F8DA1; do
+            status="$(curl --retry 1 --retry-all-errors --retry-delay 2 -sS -L --max-time 30 -o "/tmp/${sku}.webp" -w '%{http_code}' "https://www.getwiredauto.co.za/assets/products_webp/${sku}.webp")"
+            test "$status" = "200" || { echo "ERROR: exact-SKU asset ${sku} returned HTTP ${status}"; exit 1; }
+            type="$(file --mime-type -b "/tmp/${sku}.webp")"
+            test "$type" = "image/webp" || { echo "ERROR: exact-SKU asset ${sku} returned MIME ${type}"; exit 1; }
+            echo "EXACT_SKU_IMAGE_PASS: ${sku} HTTP ${status} ${type}"
+          done
+          echo "Canonical domain, category snapshot, established/new exact-SKU images, and all eight audit exception images returned HTTP 200 with WebP content type."
+
+      - name: Validate delivery quote database rule
+        shell: bash
+        run: |
+          set -euo pipefail
+          migration="supabase/migrations/20261009040000_allow_actual_delivery_quotes.sql"
+          test -s "$migration"
+          grep -Fq "IF v_delivery <= 0" "$migration"
+          grep -Fq "v_packaging := v_item_count * 35.00" "$migration"
+          if grep -Fq "IF v_delivery < 59.95" "$migration"; then
+            echo "ERROR: fixed minimum delivery fee remains in migration"
+            exit 1
+          fi
+          echo "Delivery fee: any positive selected quote; pickup: R0; packaging: R35 per item"
+
+      - name: Validate public catalogue invariants
+        shell: bash
+        env:
+          SUPABASE_KEY: sb_publishable_rSKAEYqQheFAljUmro6uGA_MmBm-l3w
+        run: |
+          set -euo pipefail
+          hdr=(-H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY")
+          curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true" "${hdr[@]}" -H "Range: 0-0" -H "Prefer: count=exact" -D /tmp/headers -o /tmp/row
+          count="$(awk 'BEGIN{IGNORECASE=1} /^content-range:/{print $2}' /tmp/headers | sed 's#^.*/##' | tr -d '\r')"
+          test -n "$count"
+          test "$count" -ge 1
+          uncategorized="$(curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true&category_id=is.null&limit=1" "${hdr[@]}" | jq 'length')"
+          null_images="$(curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true&image_url=is.null&limit=1" "${hdr[@]}" | jq 'length')"
+          priced_nulls="$(curl -fsS "https://ojytykqpvonxvepprgbh.supabase.co/rest/v1/products?select=id&active=eq.true&price=is.null&limit=1" "${hdr[@]}" | jq 'length')"
+          test "$uncategorized" -eq 0
+          test "$null_images" -eq 0
+          test "$priced_nulls" -eq 0
+          echo "Active products: $count"
+          echo "Uncategorized sample count: $uncategorized"
+          echo "Null-image sample count: $null_images"
+          echo "Null-price sample count: $priced_nulls"
+
+      - name: Validate public source security boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Only scan browser-delivered source; repository tooling under .github/scripts is not shipped to customers.
+          files="$(git ls-files '*.html' '*.js' | grep -v '^.github/' | grep -v '^functions/' | grep -v '^android-owner-app/' || true)"
+          if [ -n "$files" ] && grep -nHE "cost_price|supplier_cost|vendor[[:space:]_-]*price|service_role|SUPABASE_SERVICE_ROLE_KEY|SUPABASE_SECRET_KEYS" $files; then
+            echo "ERROR: private supplier-cost or server-secret reference exposed in public source"
+            exit 1
+          fi
+
+# Audit trigger: 2026-10-14 — execute existing read-only production QA checks without changing test behavior.
