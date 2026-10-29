@@ -3337,3 +3337,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Security workflow `40873626236`: 12 quote validation tests passed, both Edge Functions type-check, and PGlite/PostgreSQL-compatible migration test passed (legacy rows without nonce allowed; duplicate nonce rejected).
 - Storefront smoke `40873626052`: SUCCESS on Ubuntu 24.04.
 - Still do not merge/deploy. Migration has not been tested against a disposable Supabase project; signing secret remains unconfigured; full endpoint integration tests are required. No production changes; release HOLD.
+
+
+### Addendum — 2026-10-29 — checkout handler integration tests
+
+- PR #104 current head `211dd5278355fcf66987836126e368e41165d6fe`.
+- Security workflow `40874216958` passed 12 shared quote tests, one checkout-handler integration test, isolated PostgreSQL-compatible migration test, and both Edge Function type checks.
+- Integration test confirms forged `live=true`, tampered quote token, changed address/cart/fee are blocked before RPC; valid signed quote reaches mocked RPC. Storefront smoke `40874217012` passed.
+- Not release-ready: signing secret is not configured, migration not validated against disposable Supabase, and real-schema endpoint integration remains. PR is draft/unmerged; no production changes; release HOLD.
