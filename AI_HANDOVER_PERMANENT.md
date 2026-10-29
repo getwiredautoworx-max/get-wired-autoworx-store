@@ -3285,3 +3285,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - On PR #104 head `e6a3b561bc6cc23c5dd20c5b75605877794e19b9`, security workflow run `40872390791` passed: 6 behavioral helper tests and Deno checks for both Edge Functions.
 - Repeat browser smoke failure was traced to Playwright 1.55.0 rejecting the `ubuntu26.04-x64` runner for Chromium dependencies. PR branch pins only `.github/workflows/storefront-smoke.yml` to `ubuntu-24.04`; smoke run `40872390811` was in progress at Chromium installation when recorded. Verify final run before claiming browser tests pass.
 - Still draft/unmerged/unapplied: migration, secret setup and full Edge Function integration tests. No production changes; launch HOLD.
+
+
+## 2026-10-29 — Owner-approved private returns address and pickup policy (draft branch only)
+
+- Owner instruction: keep the returns address private; provide it to the buyer in writing when a return is authorised/required; pickup by appointment only; no walk-ins; no C.O.D.; customer may collect only after payment and written notification that the order is ready.
+- Updated draft branch `fix/checkout-terms-privacy-gates-2026-10-29` files: `returns-refunds.html`, `terms-and-conditions.html`, `TERMS_AND_CONDITIONS.md`, `privacy-policy.html`, and `index-new.html` (store top bar and footer). Removed the public street address from those customer-facing files.
+- This is a source-only change on the existing draft policy branch associated with PR #105. No merge, production deployment, Axxess upload, DNS, checkout/payment, database, stock, or catalogue change was performed.
+- Next verification: inspect changed files and run the PR's storefront smoke and source checks. Confirm all public pages/footer are address-free before requesting review. Live site remains unchanged until separately approved and deployed.
