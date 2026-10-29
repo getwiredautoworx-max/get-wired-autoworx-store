@@ -3467,3 +3467,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 ### Next precise action
 - Next safe work should focus on a source-only PR review/validation path for PR #99 and confirm which current-main tests can be invoked without triggering production-linked Workers Builds. Then record any new run IDs and verify final attempts. Owner action is required for account-wide Actions quota, Workers Builds settings/logs, ASC workflow enabled state, PayFast approval, signing-secret setup and disposable-Supabase validation. Customer launch remains HOLD until these gates are independently verified.
+
+
+## CATALOGUE ACCESS CHECK — 2026-10-29 16:18 SAST
+
+- Correction to the initial access note: GitHub `fetch_file` successfully returned base64 for current-main `catalogue-source/suppliers/planetworld/incoming-xlsx/jbl-price-list-2026-10-25.xlsx`, blob SHA `0ab3d4123beb3a0a2133324f7edbb8b916d0651a`, encoded response length 38,670 characters. This confirms the original workbook can be retrieved through the repository API, though the connector does not itself materialize those returned bytes into a local workbook-processing file.
+- The suffixed duplicate `jbl-price-list-2026-10-25 (1).xlsx` returns 404 on current main. `MOBILE_REVIEW_2026-10-26.md` records that this duplicate had already been deleted after the older 48-workbook audit. Do not attempt another deletion; refresh audit counts against current main before using old totals.
+- No workbook was parsed in this pass and no supplier file was moved/imported. The supplier-folder reorganisation and exact product-image/GW-SKU mapping remain unfinished. Continue only through a real binary-preserving processing route; never claim a move based only on a text or README change.
+- Master handover correction committed at `bc583bdd41c0631b81b7a32c33abc62267c55d86`. No live data, price/stock/category changes, production settings, PR merges, or hosting-credit-consuming deployment occurred.
