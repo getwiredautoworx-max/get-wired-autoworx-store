@@ -3142,3 +3142,33 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - The checkout-handler integration test uses mocked Supabase REST/RPC responses and confirms forged `live=true`, tampered token, changed address, changed cart and changed fee are blocked before order RPC; a valid bound quote reaches the mocked RPC. This is not a live Supabase project test.
 - Storefront Smoke [40874217012](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40874217012) **SUCCESS** on Ubuntu 24.04.
 - Remaining release blockers: securely configure `DELIVERY_QUOTE_SIGNING_SECRET` in both functions; validate/apply the nonce migration only after a disposable Supabase project test and standard CLI checks; run full endpoint integration against real schema/RPC; review and explicitly approve coordinated deployment. PR remains draft/open/unmerged; no production changes. Launch HOLD.
+
+
+## CONTINUATION PRIORITY UPDATE — 2026-10-29 — GW SKU IMAGE LABELS + SUPPLIER CATALOGUE IMPORTS
+
+### Owner's latest instructions
+- Reprioritise the active work around accurate product-picture SKU labelling and completing Planetworld and Audio Connections catalogue uploads into the store.
+- Owner will prepare category/subcategory pictures. The image workflow must replace the supplier SKU printed on each product image with the correct Get Wired GW SKU.
+- Remove existing ASC-listed stock from the store catalogue and reload only from the approved ASC catalogues identified by the owner: September, October and November Buyers Guides, vehicle-parts catalogues, and new-arrivals catalogues. Do not use the existing ASC store-stock list as authoritative import data.
+- Continue Planetworld and Audio Connections work in parallel; do not let ASC image preparation block those supplier catalogue tasks.
+
+### Non-negotiable product data and image matching
+1. Match by exact supplier SKU/manufacturer part number and source catalogue page/reference first; visual resemblance alone is insufficient.
+2. Each customer-facing image label must use the correct assigned/existing GW SKU. Never invent or reuse a GW SKU for a different product. Preserve the original supplier SKU and supplier identity in internal source fields for reordering and traceability.
+3. Keep the product image, description/specification, price, supplier SKU, GW SKU, category and subcategory bound to the same source item. Do not infer missing product details or substitute a visually similar image.
+4. Extract price exactly as printed and record its type/basis (e.g. cost, RRP, VAT basis, date/validity) where the source states it. Do not publish missing, ambiguous, zero-RRP, expired or quote-only pricing without the required review/confirmation. Preserve existing Planetworld owner-hold rules: 19 zero-RRP items remain separate for owner audit; previously verified October prices are not to be overwritten by unverified rows.
+5. Different suppliers may share a customer-facing category, but retain separate supplier SKUs, source evidence and prices. Do not merge similar-looking items unless equivalence is verified.
+6. Route any uncertain SKU/image/description/price/fitment match to a review queue. Run duplicate, missing-field, SKU/image-label, price-basis and category checks before import.
+
+### Execution order
+- A. Inspect current repository and store/import implementation; read supplier-specific handover notes and identify the actual Planetworld workbook batch and Audio Connections source catalogues.
+- B. Process Planetworld and Audio Connections source data into reviewable, supplier-separated import records. Preserve exact source paths and catalogue/page/workbook references; report confirmed counts only after parsing the actual files.
+- C. Prepare image label mapping: source image/file -> supplier SKU -> verified GW SKU -> exact product record. Generate/alter images only where the identity mapping is proven; flag ambiguous cases instead of editing.
+- D. Prepare the approved ASC replacement dataset from the specified dated guides, vehicle-parts catalogues and new-arrivals catalogues. Do not carry forward the existing ASC stock listing as import truth.
+- E. Validate shared categories/subcategories without auto-merging different SKUs; create a review-only branch/PR and test the import path before any customer-facing release.
+
+### Guardrails and status truth
+- This priority update does not authorise a live product import, live ASC stock deletion, price/stock/category/active-flag write, PR merge, production deployment, Axxess/DNS/payment change, Supabase mutation, or use of Cloudflare/Netlify release credits.
+- No claim is made here that Planetworld or Audio Connections uploads have been completed. Their current source paths, parsable files, actual row counts, image matches and import status must be verified in the next execution step.
+- Keep store launch HOLD until its independent checkout, payment, identity and delivery-quote release gates are verified. Catalogue work is a parallel workstream and must not be misreported as release readiness.
+- Continue to update this file after each material verified success, failure, blocker or owner-input requirement.
