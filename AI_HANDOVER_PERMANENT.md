@@ -3179,3 +3179,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Latest Planetworld handover branch commit is `629c122e3b7fb82e23f2027b0d9b64370cedb6d8`. The manufacturer report evidence commit is `ffab49b26b7d8ccfb6be2df29cc368ce1419fac4`.
 - No new Planetworld audit run followed the documentation commits: run `40290002999` remains the newest branch audit, SUCCESS on old head `4b39cab1354fc12f2f7a1059756c74dec31d7e64`. Final Actions query showed 0 in-progress and 0 queued runs.
 - This permanent-handover-only commit advances `main` once more. Treat the recorded ahead/behind values as the last observed snapshot and recheck the actual comparison before any merge; the durable conclusions are that PR #95 remains unmerged and non-mergeable, and the corrected audit still requires one owner UI dispatch.
+
+
+## CONTINUATION TASK START — 2026-10-29 13:31 SAST
+
+- Read the current `AI_HANDOVER.md` and `AI_HANDOVER_PERMANENT.md` from main before continuation. Read `HANDOVER_CURRENT.md` as the current detailed checkpoint.
+- **Scope:** reconcile the 2026-10-28 Electrocity glowplug work with actual GitHub and Supabase state; verify the committed SKU map and draft records; append a factual handover outcome; continue only safe, evidence-based work.
+- **Constraints:** no Cloudflare/Netlify credits, deployment, PR merge, Axxess/DNS/payment change, or APK distribution. Do not publish products, invent current prices/stock, or activate draft records. Keep supplier codes and dimensions as printed and preserve the supplier-specific SKU namespace.
+- **Initial safe next action:** verify the committed mapping files and query the two product records read-only before deciding the next step.
