@@ -1,5 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { cartCanonical, validateBoundQuote, type QuoteItem } from "../_shared/delivery-quote.ts";
+import { cartCanonical, validateBoundQuote, validatePickup, type QuoteItem } from "../_shared/delivery-quote.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -91,9 +91,7 @@ Deno.serve(async (req: Request) => {
     const deliveryMethod = String(payload.p_delivery_method || "delivery").toLowerCase();
     const deliveryFee = Number(payload.p_delivery_fee);
     if (deliveryMethod === "pickup") {
-      if (!Number.isFinite(deliveryFee) || deliveryFee !== 0 || payload.p_delivery_quote != null) {
-        throw new Error("Pickup must have a zero delivery fee and no delivery quote.");
-      }
+      validatePickup(deliveryFee, payload.p_delivery_quote);
     } else {
       const quote = payload.p_delivery_quote as Record<string, unknown> | null;
       const token = typeof quote?.quote_token === "string" ? quote.quote_token : "";
