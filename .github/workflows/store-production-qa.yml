@@ -58,6 +58,12 @@ jobs:
           status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-store-home.html -w '%{http_code}' https://www.getwiredauto.co.za/)"
           test "$status" = "200"
           grep -Eiq "Get Wired AutoWorx|Get Wired AutoWorx" /tmp/live-store-home.html
+          if grep -Fq 'data-storefront-mode="buttons-only"' /tmp/live-store-home.html; then
+            echo "LIVE_BUTTON_ONLY_PASS: canonical production homepage is serving the buttons-only reset."
+          else
+            echo "LIVE_BUTTON_ONLY_NOT_DEPLOYED: canonical production homepage is reachable but does not yet serve the merged button-only storefront."
+            exit 1
+          fi
           terms_status="$(curl --retry 2 --retry-all-errors --retry-delay 2 -sS -L --max-time 45 -o /tmp/live-terms.html -w '%{http_code}' https://www.getwiredauto.co.za/terms-and-conditions.html)"
           test "$terms_status" = "200"
           grep -Eiq "Terms & Conditions" /tmp/live-terms.html
