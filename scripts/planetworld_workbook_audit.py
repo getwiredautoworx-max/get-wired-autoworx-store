@@ -397,3 +397,5 @@ print("GW_CAR_AUDIO_ROWS_JSON_BEGIN")
 print(json.dumps(car_audio_review_rows, ensure_ascii=False, separators=(",", ":")))
 print("GW_CAR_AUDIO_ROWS_JSON_END")
 if errors: print("Some workbooks failed; see workbook_errors.csv", file=sys.stderr)
+
+# 2026-10-29: emit sanitized Car Audio review rows for recovery when Actions artifact storage is unavailable.
