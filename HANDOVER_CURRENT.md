@@ -3279,3 +3279,15 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - The 32 duplicate model/SKU flags are heuristic matches only. They have NOT been verified against product images plus descriptions, nor proven to be accidental duplicate catalogue uploads. Do not delete or suppress products from those flags. A duplicate decision requires comparing source workbook/file provenance, exact model, description/specifications, and product image; report confirmed duplicates separately from legitimate repeated models/SKUs.
 - Corrected workflow: proceed with catalogue presentation and source-led matching now; mark unverified prices with the exact price-on-request wording; retain supplier SKU internally and replace it with GW SKU only after a documented exact match; never pair a picture, description, price, or GW SKU by guesswork. Review queues are advisory and must not become project-wide stop signs.
 - No product listing, price, stock, category, image, production, payment, DNS, Axxess or Supabase change was made as part of this correction. Existing counts remain provisional until a fresh current-source audit; the old derived report did not verify duplicate images/descriptions.
+
+
+---
+
+## STOREFRONT BUTTON-ONLY RESET — 2026-10-29 19:05 SAST
+
+- Owner instruction: blank the storefront presentation to category/subcategory buttons only so the catalogue can be repopulated correctly later.
+- Permanent rule was appended to AI_HANDOVER_PERMANENT.md in commit f13b79c20b025d4b5a72337374c91305efbae72e. The eight locked rules above it were preserved; the file was replaced by append-preserving full-content update.
+- Review-only implementation branch: feat/button-only-storefront-reset-2026-10-29. Replaced index-new.html with a temporary category-button interface containing the approved eight main categories and expandable subcategory/brand buttons. Product cards, product prices and product imagery are not shown (the existing business logo is retained where available).
+- This is a source change on a review branch only. No PR merge, production deployment, Axxess upload, DNS/payment change, live catalogue/price/stock write or Cloudflare/Netlify credit use was performed.
+- Cross-catalogue matching rule: repeated SKU/model appearances across supplier guides are not confirmed duplicate products by themselves. Verify manufacturer/model, image, description and source before classifying; do not delete/merge on a flag alone.
+- Verification still required: browser/preview check for mobile and desktop button expand/collapse, confirm no product content is visible, then update this entry with exact test evidence. Do not claim storefront reset is live until an approved deployment is explicitly authorised and verified.
