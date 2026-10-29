@@ -3117,3 +3117,11 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - Delivery Quote Security Tests [40872472113](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872472113) **SUCCESS**: 7 behavioral tests passed, 0 failed; Deno type-checks passed for both Edge Functions.
 - Storefront Smoke Test [40872472179](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40872472179) **SUCCESS** after the runner was pinned to `ubuntu-24.04`. The logs confirm responsive homepage checks at 320/390/768/1365px, 8 populated main categories plus Find a Part, 12 Auto Electrical options, exact-SKU image fallback, metadata leak guard, request-part dialog, and public route checks.
 - These results validate helper behavior and general storefront smoke, **not** end-to-end quote/order security. PR #104 remains draft/open/unmerged. Secret setup, disposable-DB migration validation and endpoint attack-case tests remain release blockers; no production changes made.
+
+
+### Addendum — 2026-10-29 — quote validator and pickup tests
+
+- Current PR #104 head `80724217f02c66ac0de177735395dcedd743523e`.
+- Delivery Quote Security Tests [40873267963](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873267963) **SUCCESS**: 12 tests passed, 0 failed; shipping-quote and store-checkout Deno type-checks passed. Tests now exercise the same shared validator used by checkout, including forged live flag without token, tampered signature, changed cart/address/price/provider, expiry, parcel mismatch, invalid SKU/quantity, Unicode/whitespace normalization, and pickup fee/quote rules.
+- Storefront Smoke Test [40873267551](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/40873267551) **SUCCESS** on Ubuntu 24.04. Public category navigation, SKU image fallback, metadata guard, request-part dialog, responsive widths and route checks passed.
+- The draft nonce unique-index migration is still not applied or validated on a disposable database; Supabase CLI is unavailable in this runtime. The signing secret remains unconfigured, and endpoint-level tests in a disposable Supabase project remain outstanding. PR #104 stays draft/open/unmerged; no production changes. Launch remains HOLD.
