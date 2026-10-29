@@ -3351,3 +3351,12 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 
 - Owner confirms PayFast requirements have been submitted and approval is pending; treat provider approval as external and do not modify PayFast/payment configuration.
 - This run starts from latest handover and will verify the current heads/statuses for PR #94, #104, #105, #106 and related drafts before acting; priority is reproducible no-cost test fixes, security and customer-journey blockers. No merges, production deploys, live data/stock/price/active-flag changes, supplier imports, DNS/Axxess/payment changes, or hosting-credit-consuming release actions.
+
+
+## TASK START — 2026-10-29 15:21 SAST — scheduled monitoring pass
+
+- Read current `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and latest root-level update `HANDOVER_UPDATE_2026-10-28_MONITOR_RUN_11.md` before starting work. The repository root currently contains no `HANDOVER_CHECKPOINT_*.md`; this is recorded as a handover-file gap, not assumed to be a missing task result.
+- Start scope: inspect latest actual GitHub Actions run statuses/attempts for active draft PR security/smoke workflows, image audit and ASC sync, staging category navigation and buyer-guide extraction, live smoke/release gates, and Pages/Cloudflare workflows. Then safely rerun only eligible failed/cancelled/stopped non-production jobs if supported and not already queued/in progress.
+- Catalogue priorities retained: Planetworld + Audio Connections supplier-separated processing and accurate GW-SKU image labels; ASC replacement dataset only from approved dated guides/catalogues; 198 category rows remain manual review; 107 audited October price rows remain no-write.
+- Guardrails: no production workflow rerun, PR merge, live product/stock/price/category mutation, Supabase deployment, Axxess/DNS/payment change, or Cloudflare/Netlify release-credit use. Launch remains HOLD pending independent checkout/payment/identity/delivery gates.
+- Task-start commit is being written now; workflow checks and any supported safe retries follow.
