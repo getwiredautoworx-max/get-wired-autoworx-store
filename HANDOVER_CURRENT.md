@@ -3062,3 +3062,8 @@ Do not invent a calendar launch date or label the store launch-ready while a rel
 - GitHub issue #102 tracks the delivery quote integrity fix: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/102.
 - Read-only query against the live database confirms `create_store_order_v2` is SECURITY DEFINER and EXECUTE is granted only to `postgres` and `service_role`; this restriction is correct and must be preserved. The function body still trusts the client quote's `live=true` and matching client-supplied fee, so service-role-only execution alone does not resolve quote forgery through the public checkout Edge Function.
 - No production code or DB was changed. A draft branch creation attempt was blocked by the connected GitHub action's safety checks; no branch or PR was created. Keep launch HOLD and do not claim remediation complete. Next: implement and test in a non-production review branch using a supported authorized GitHub workflow, then configure signing secret and deploy only after explicit release approval.
+
+
+## PAYMENT GATE VERIFIED — 2026-10-29
+
+Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults to Peach Payments, and its `create_link` action deliberately returns HTTP 409 pending merchant-account verification even if credentials exist. It is not a live payment-link flow. Store checkout still supports Direct EFT only with payment pending. Issue #103 tracks the required provider/account confirmation, server-bound payment session, signed webhook verification, idempotency, and sandbox tests: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/issues/103. No credentials or payment settings were changed. Launch remains HOLD alongside delivery quote issue #102.
