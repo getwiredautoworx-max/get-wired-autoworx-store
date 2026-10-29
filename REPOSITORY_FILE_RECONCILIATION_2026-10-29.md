@@ -3,7 +3,9 @@
 ## Complete tracked-file inventory
 - Repository: `getwiredautoworx-max/get-wired-autoworx-store`
 - Base main snapshot before reconciliation: `3e362397e249150f4fb992fde199784b6cc42f7c`; recursive tree was `truncated=false`, **5,205 blobs / 498,013,273 declared bytes**.
-- Current review branch tree: `caf0a1d2ae68da6addb06c7ea0b5c0c7b7f5a1c0`; recursive tree was `truncated=false`, **5,206 blobs / 498,280,807 declared bytes**.
+- Intermediate review branch snapshot: `caf0a1d2ae68da6addb06c7ea0b5c0c7b7f5a1c0`; recursive tree was `truncated=false`, **5,206 blobs / 498,280,807 declared bytes**.
+- Complete inventory-ledger snapshot: `3b3e477155df64e2987c7b03cf030aef53c81b31`; **5,210 blobs**, all represented in `REPOSITORY_FILE_INVENTORY_2026-10-29.csv` (the inventory file was added after this snapshot).
+- Final review branch head: `c323c2c40898443167361685d8ebb9b256651ade`; **5,211 tracked blobs**, non-truncated.
 - Image assets (JPG, PNG, WebP under `assets/`): **4,902**.
 - Supplier library: 98 files.
 - Catalogue source workspace: 6 files.
@@ -423,7 +425,7 @@
 ## Non-image duplicate blobs
 - SHA `38723ba3e3ef98167073d90937a3f8e490da979c`: `.github/workflows/store-production-qa.yml`, `store-production-qa.yml`
 
-## Top-level inventory on current review branch
+## Top-level inventory at ledger snapshot `3b3e477155df64e2987c7b03cf030aef53c81b31` (5,210 blobs; before adding the inventory CSV)
 | Path | Files | Declared bytes |
 |---|---:|---:|
 | `assets` | 4913 | 317,497,390 |
@@ -586,6 +588,7 @@
 
 
 ## Final validation of review head
-- Review head at validation: `d064125b4bbf556f2155fd5c8ef39825724f8b15`.
-- Planetworld workbook audit run **40944326232 SUCCESS** and Audio Connections PDF inspection run **40944326104 SUCCESS**; both ran against that same review head.
-- Inventory CSV has 5,210 data rows for snapshot `3b3e477155df64e2987c7b03cf030aef53c81b31`; current branch contained 5211 tracked files at the validation snapshot, including the inventory CSV itself. Repository privacy was verified (`private=true`). PR #110 remains open/draft/unmerged.
+- Final review head: `c323c2c40898443167361685d8ebb9b256651ade`; recursive tree response `truncated=false`; **5,211 tracked blobs**.
+- Planetworld workbook audit run **40944562096 SUCCESS** and Audio Connections PDF inspection run **40944561831 SUCCESS**, both completed on this final review head.
+- Inventory CSV contains **5,210 data rows** for snapshot `3b3e477155df64e2987c7b03cf030aef53c81b31`; the CSV itself and later document updates are additional files, not self-listed.
+- Repository privacy verified (`private=true`). PR #110 remains open/draft/unmerged. No live catalogue/stock/price/database/Axxess/DNS/payment changes or production deployment occurred.
