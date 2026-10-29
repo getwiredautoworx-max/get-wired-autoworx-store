@@ -2635,3 +2635,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Page 28 itself prints SKU `SCR23MM` against description “22mm Socket 1/2Dr 12Point”; this is an original-source identity ambiguity, not a guessed correction. Keep it held pending ASC confirmation. `SCR8MM` retains the one-cent scaled rounding exception described above.
 - Page 32 also states ASC owns the catalogue intellectual property and unauthorized use is prohibited. Owner's separate interim dealer permission does not itself prove permission to crop/edit/watermark individual images; the 38-SKU tracker still has no recorded image-rights response. No catalogue images were copied or published.
 - **Disposition unchanged:** all 38 remain `DO NOT IMPORT / CURRENT PRICE UNVERIFIED`; preserve the separate 107/107 October-verified set and the nine asterisk-price items as quote-only/inactive. No live prices, costs, active flags, stock or catalogue records changed.
+
+
+## FINAL PR / WORKFLOW RECHECK — 2026-10-29 09:03:39 SAST
+
+- After permanent-handover commit `d4b726a4be8eb6166693c4952b12146001cd3853`, PR #95 was re-read: OPEN, UNMERGED, not draft, `mergeable=false`; head `8b862dc2035a3199e15456228f63bba91ed2a284`; comparison against main `d4b726a4be8eb6166693c4952b12146001cd3853` is diverged **127 ahead / 182 behind**, merge base `3b7003862725714ce8e8d108f670a5c4acde51b1`. No merge or rebase attempted.
+- Latest Planetworld audit remains `40290002999` SUCCESS on old source head `4b39cab1354fc12f2f7a1059756c74dec31d7e64`; no run was created by the documentation-only commits. Repository run query still shows **0 in progress, 0 queued, 0 waiting**. Other latest background conclusions remain as recorded above.
+- This checkpoint is documentation-only and advances this PR branch once. Before any future merge decision, recheck the actual head/divergence against the then-current `main`; do not rely on stored ahead/behind counts or mergeability from a prior check.
+- **Next action remains owner-side UI dispatch** of the read-only Planetworld audit on `docs/planetworld-blocker-handover-2026-10-26`, then verify the run's source head, job conclusion and artifact. No live data, deployment, supplier workbook, DNS, payment, or Axxess change.
