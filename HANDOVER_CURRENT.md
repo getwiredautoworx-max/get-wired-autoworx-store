@@ -3842,3 +3842,18 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - GitHub repository metadata was rechecked after supplier workbook staging: `getwiredautoworx-max/get-wired-autoworx-store` now reports `visibility=private`, with admin/push access for the connected owner account.
 - Supplier workbooks and dealer pricing sources therefore remain inside the private GitHub repository; Cloudflare Pages public-package QA continues to enforce the customer-only allowlist and exclude supplier workbooks/catalogue review files.
 - No repository visibility change was made in this check.
+
+---
+
+## OWNER EXECUTION UPDATE — PLANETWORLD SNAPSHOT PREVIEW — 2026-10-30
+
+- Owner directed that the existing Planetworld stock sheets be used now, with a later refresh when the next supplier sheet arrives. The 2026-10-25 workbook set is therefore treated as the latest available provisional snapshot, not a reason to block catalogue review.
+- Built preview-planetworld.html from 68 exact supplier-SKU/manufacturer-model matches. It shows verified names/descriptions, proposed collision-checked GW SKUs, manufacturer source links, JHB/DBN/CPT snapshot quantities, and two review-only price options (RRP−1% / RRP−2%). Dealer costs are excluded.
+- Snapshot result: 44/68 candidates have positive stock across the listed locations; 24/68 show zero. All 68 pass the existing estimated VAT-inclusive cost-floor check at both proposed selling-price options. This is review-only and not a live inventory feed or approved selling-price import.
+- Added a link from preview-store.html to the Planetworld preview and opened PR #119: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/119. PR branch is integration/planetworld-provisional-catalogue-preview-2026-10-30, based on tested populated-preview PR #117.
+- Extended the preview browser workflow to include the Planetworld page and automated assertions for all 68 rows, 44/24 stock split, cost-floor flags, official manufacturer links, dealer-cost non-disclosure, search filtering and mobile/desktop overflow. These checks are awaiting execution on the updated exact head.
+- Reconciliation note: PR #94 and #99 were closed without merge; their tested Part Search/no-AI and audio navigation work is already present in the isolated preview files (preview-store.html, preview-category.html, preview-products.html). PR #117's exact-head QA passed the preview, Part Search no-AI flow, audio area navigation, ASC zero stock, product modal and responsive checks. Do not reopen the old branches.
+- Checkout security/policy PR #113 is merged. PayFast credentials/approval and live payment testing remain a separate release gate.
+- Image work is now the remaining content gap for the 68 Planetworld preview candidates: exact manufacturer pages are linked, but actual image assets are not embedded or visually approved. Do not treat a text link as an image.
+- No Supabase write, public product/SKU insert, live stock/price change, supplier activation, image publication, checkout/payment activation, Axxess upload, DNS change or production deployment was made.
+- Next: retrieve exact-head QA for PR #119; inspect the preview URL after Pages publishes it; continue remaining 689 supplier rows using existing source sheets, without waiting for the next stock snapshot. Keep all old snapshot quantities visibly dated and replace them on the next workbook intake.
