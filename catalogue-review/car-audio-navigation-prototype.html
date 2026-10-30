@@ -69,7 +69,8 @@ function productCard(p){
  var skuStatus=p.gw_sku_status==="NOT ASSIGNED"?"not assigned":(p.gw_sku_status||"not assigned");
  var displayName=p.display_name||p.supplier_item_name;
  var pageLink=p.official_manufacturer_page?'<div class="meta"><a href="'+esc(p.official_manufacturer_page)+'" target="_blank" rel="noopener">Official manufacturer product page</a></div>':(p.candidate_manufacturer_page?'<div class="meta">Candidate model: '+esc(p.candidate_manufacturer_model)+' — not confirmed · <a href="'+esc(p.candidate_manufacturer_page)+'" target="_blank" rel="noopener">Candidate manufacturer page</a></div>':'');
- return '<article class="product"><h3>'+esc(displayName)+'</h3><div class="meta">Supplier item code: '+esc(p.supplier_item_code)+'</div><div class="meta">Source: '+esc(p.source_file)+' · '+esc(p.source_sheet)+' row '+esc(p.source_row)+'</div><div class="pending">Image: '+esc(imageStatus)+' · Manufacturer description: '+esc(descriptionStatus)+' · GW SKU: '+esc(skuStatus)+'</div>'+pageLink+'</article>';
+ var featureBlock=p.manufacturer_description&&String(p.manufacturer_description_status||"").startsWith("VERIFIED")?'<p class="desc">'+esc(p.manufacturer_description)+'</p>':'';
+ return '<article class="product"><h3>'+esc(displayName)+'</h3><div class="meta">Supplier item code: '+esc(p.supplier_item_code)+'</div><div class="meta">Source: '+esc(p.source_file)+' · '+esc(p.source_sheet)+' row '+esc(p.source_row)+'</div><div class="pending">Image: '+esc(imageStatus)+' · Manufacturer description: '+esc(descriptionStatus)+' · GW SKU: '+esc(skuStatus)+'</div>'+featureBlock+pageLink+'</article>';
 }
 function hertzProductCard(p){
  var linkLabel=p.official_manufacturer_page.indexOf("sandbox")>=0?"Manufacturer-operated B2B product record (sandbox)":"Official manufacturer product page";
