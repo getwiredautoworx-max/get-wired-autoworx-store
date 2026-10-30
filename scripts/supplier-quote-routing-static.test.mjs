@@ -11,6 +11,8 @@ const create = edge.slice(createStart, createEnd);
 assert.ok(create.includes('from("product_supplier_codes")'), "create_request must resolve private product supplier mappings");
 assert.ok(create.includes('from("supplier_catalog_items")'), "create_request must resolve supplier catalogue mappings");
 assert.ok(create.includes('supplier_resolution'), "create_request must report mapped/unmapped/ambiguous state");
+assert.ok(create.includes('supplier_id:supplier?.id||null'), "quote request must persist the resolved supplier ID");
+assert.ok(!create.includes('supplier_id:s?.id'), "stale supplier variable must not be referenced");
 assert.ok(!create.includes('order("priority").limit(1)'), "create_request must never default to first active supplier");
 assert.ok(!create.includes('p.specifications?.supplier_id'), "create_request must not trust public product specifications for private routing");
 assert.ok(!create.includes('b.supplier_id'), "public customers must not choose an internal supplier ID");
