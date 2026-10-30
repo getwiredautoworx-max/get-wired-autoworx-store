@@ -1,6 +1,6 @@
 # Planetworld Kicker — additional official model verification
 Date: 2026-10-30
-Scope: 36 Kicker supplier references upgraded from “no exact official page/collection match” using official KICKER product pages and model collections.
+Scope: 51 Kicker supplier references upgraded from “no exact official page/collection match” using official KICKER product pages and model collections.
 
 ## Individual product pages
 
@@ -33,8 +33,8 @@ Scope: 36 Kicker supplier references upgraded from “no exact official page/col
 The current Kicker audit contains **189 unique supplier reference codes**, not the earlier 122-row count. After this recheck:
 
 - 23 exact individual/verified product pages across car audio and marine combined (14 standard car-audio individual pages + 5 marine product pages).
-- 80 official collection matches (41 standard car-audio + 23 marine).
-- 86 rows still have no official individual product page or collection match recorded.
+- 95 official collection matches (41 standard car-audio + 23 marine).
+- 71 rows still have no official individual product page or collection match recorded.
 
 This is an evidence classification only. Collection pages may list a model without an individual detail page. **No image binaries were downloaded or approved, no GW SKU was assigned, no customer price or live stock was imported, and no product was published.** Use the manufacturer page only for identity/specification verification; image assets still require separate visual matching and approval.
 
@@ -98,3 +98,26 @@ Official source: https://www.kicker.com/compvr-subwoofers
 | 51KMC4 | https://www.kicker.com/51KMC4 | KMC4 Marine Dual-Zone Media Center; 4 channels, up to 160 W built-in peak power, Bluetooth/weather-band tuner, four RCA output sets, IP66 |
 
 The revised Kicker totals are **18 standard Car Audio exact individual product pages + 5 Marine exact individual product pages = 23 exact pages**, **80 official collection matches** (57 standard + 23 Marine), and **86 standard Car Audio rows still without an official page/collection match**. Product images remain un-downloaded/unapproved, and no GW SKUs or public catalogue products were assigned.
+
+
+## Fifteen additional official Kicker collection matches — 2026-10-30
+
+| Supplier code | Product type | Official KICKER collection | Evidence note |
+|---|---|---|---|
+| 51LX12005 | LX 1200.5 five-channel amplifier | https://www.kicker.com/lx-amplifiers | Exact model in LX collection; FIT+ and LXCC ecosystem |
+| 51LX13007 | LX 1300.7 seven-channel hybrid amplifier | https://www.kicker.com/lx-amplifiers | Exact model in LX collection; full-range plus subwoofer channels |
+| 51LX16501 | LX 1650.1 mono amplifier | https://www.kicker.com/lx-amplifiers | Exact model in LX collection; 1-ohm-stable mono design |
+| 51LX5004 | LX 500.4 four-channel amplifier | https://www.kicker.com/lx-amplifiers | Exact model in LX collection; full-range 4-channel |
+| 53VXA3004 | VXA 300.4 four-channel amplifier | https://www.kicker.com/vxa_amplifiers | Exact model in VXA collection; international distribution only |
+| 53VXA6005 | VXA 600.5 five-channel amplifier | https://www.kicker.com/vxa_amplifiers | Exact model in VXA collection; international distribution only |
+| 53VXA7001 | VXA 700.1 mono amplifier | https://www.kicker.com/vxa_amplifiers | Exact model in VXA collection; international distribution only |
+| 51PTRTP10 | PTRTP 10-inch powered down-firing loaded enclosure | https://shop.kicker.com/PTRTP-powered-down-firing | Exact model listed; passive reFLEX + active CompRT + integrated amp |
+| 51PTRTP12 | PTRTP 12-inch powered down-firing loaded enclosure | https://shop.kicker.com/PTRTP-powered-down-firing | Exact model listed; passive reFLEX + active CompRT + integrated amp |
+| 52GL78 | 8-inch square steel-mesh grille | https://www.kicker.com/subwoofer-grilles | Exact model listed; check subwoofer compatibility |
+| 52GL710 | 10-inch square steel-mesh grille | https://www.kicker.com/subwoofer-grilles | Exact model listed; check subwoofer compatibility |
+| 52GL712 | 12-inch square steel-mesh grille | https://www.kicker.com/subwoofer-grilles | Exact model listed; check subwoofer compatibility |
+| 52GR8 | 8-inch round steel-mesh grille | https://www.kicker.com/subwoofer-grilles | Exact model listed; check subwoofer compatibility |
+| 52GR10 | 10-inch round steel-mesh grille | https://www.kicker.com/subwoofer-grilles | Exact model listed; check subwoofer compatibility |
+| 52GR12 | 12-inch round steel-mesh grille | https://www.kicker.com/subwoofer-grilles | Exact model listed; check subwoofer compatibility |
+
+The revised Kicker totals are **18 standard Car Audio exact individual product pages + 5 Marine exact individual product pages = 23 exact pages**, **95 official collection matches** (72 standard + 23 Marine), and **71 standard Car Audio rows still without an official page/collection match**. The VXA series is explicitly marked by KICKER as for international distribution only. No image binaries were downloaded or approved, and grille fitment still requires exact subwoofer compatibility checks.
