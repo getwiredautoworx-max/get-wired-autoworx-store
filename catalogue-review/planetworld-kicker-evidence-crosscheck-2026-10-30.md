@@ -37,3 +37,14 @@ The current Kicker audit contains **189 unique supplier reference codes**, not t
 - 106 rows still have no official individual product page or collection match recorded.
 
 This is an evidence classification only. Collection pages may list a model without an individual detail page. **No image binaries were downloaded or approved, no GW SKU was assigned, no customer price or live stock was imported, and no product was published.** Use the manufacturer page only for identity/specification verification; image assets still require separate visual matching and approval.
+
+
+## Additional KICKER individual product pages verified — 2026-10-30
+
+| Supplier model code | Official product page | Confirmed features |
+|---|---|---|
+| 47KEY2004ISO | https://www.kicker.com/47KEY2004ISO | KEY200.4 Smart 4-channel amp, 50 W x 4, 40-band auto EQ, DSP, auto time alignment, 24 dB/octave crossovers, universal ISO T-harness |
+| 47KEY5001 | https://www.kicker.com/key-5001-1-channel-smart-amplifier | KEY500.1 Smart mono amp, 500 W at 1 Ω / 300 W at 2 Ω / 150 W at 4 Ω, auto EQ, FIT+ integration |
+| 51HS8 | https://www.kicker.com/hideaway?p=62809 | Hideaway HS8 compact powered 8-inch subwoofer, 150 W RMS, 25–120 Hz, remote bass control |
+
+The audit now records **17 standard Car Audio exact individual product pages + 5 Marine exact individual pages = 22 exact individual pages** across the 189 Kicker source rows. Standard Car Audio unresolved count falls from 106 to 103; collection-only matches remain distinct. Product descriptions are now shown in the review cards only where manufacturer verification is recorded. Images remain unapproved and no GW SKU assigned.
