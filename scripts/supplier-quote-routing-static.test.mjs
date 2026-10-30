@@ -31,6 +31,9 @@ assert.ok(detail.includes('suppliers:suppliers.data||[]'), "detail response must
 
 assert.ok(admin.includes('id="qrSupplier"'), "owner UI must render a supplier selector");
 assert.ok(admin.includes('supplier_id:document.getElementById(\'qrSupplier\').value'), "owner UI must submit the selected supplier ID");
+assert.ok(admin.includes("r?.id?'':'disabled'"), "owner UI must disable offer creation until a supplier response exists");
+assert.ok(admin.includes("await detail(id);"), "owner UI must refresh the supplier response ID after saving");
+
 const offerStart = edge.indexOf('if(req.method==="POST"&&action==="create_offer")');
 const offerEnd = edge.indexOf('if(req.method==="POST"&&action==="create_payment_link")');
 assert.ok(offerStart >= 0 && offerEnd > offerStart, "create_offer handler must exist");
