@@ -3921,3 +3921,16 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - No ASC stock restoration; no unconfirmed non-ASC stock update; no supplier item activation; no public product/image/price publication; no checkout or PayFast activation; no Axxess upload, DNS change, Cloudflare Worker change or production deployment.
 - Do not claim the store is launch-ready. Launch remains HOLD.
 - Continue from this checkpoint; do not redo the completed 81-row description/pricing work or reopen PR #116.
+
+---
+
+## CLEAN-MAIN PREVIEW REBASE — PLANETWORLD SNAPSHOT — 2026-10-30
+
+- The first integration branch was based on an older main commit and GitHub reported it non-mergeable after main advanced. Rather than merge a divergent branch, rebuilt the preview files on a fresh branch from current main commit 584e0f2552844485a441bfad97ac983c8c16de8b.
+- Ported the four isolated populated-store preview routes, the new Planetworld snapshot page and its browser-QA workflow onto the clean current-main branch integration/planetworld-preview-clean-main-2026-10-30.
+- Planetworld page includes 68 exact supplier/manufacturer candidate matches, 44 positive-stock / 24 zero-stock snapshot rows from 2026-10-25, RRP−1% and RRP−2% review-only proposals, all 68 estimated VAT-inclusive cost-floor passes, and official manufacturer source links. Dealer costs are excluded; no live writes.
+- Preview routes include the previously tested no-AI Request a Part fallback and audio area/brand/component navigation. Existing customer-facing main routes remain untouched.
+- Added browser checks for the Planetworld page: row count, stock split, cost-floor status, HTTPS manufacturer links, no dealer-cost exposure, search filtering and mobile/desktop overflow.
+- Actual product image assets remain to be staged; cards link to exact manufacturer product pages pending image asset capture/inspection. This does not block provisional stock/catalogue review.
+- No Supabase writes, public product creation, live price/stock changes, image publication, Axxess, DNS, payment activation or production deployment.
+- Next: open clean-main PR, wait for exact-head browser/security/smoke workflows, then inspect its Cloudflare Pages preview. Close the superseded divergent PR only after clean-main PR is confirmed open and checks are running.
