@@ -3429,3 +3429,10 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - Source commit: `d393b104a7bbf67ede33e66c089c2ee843fcfc6e`. Permanent-handover branch update: `d6da55731f1fadabd74d1a65aac7e89205cf1e5e`. PR #105 description updated to the same exact wording and explicit fresh-check requirement: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/105
 - PR #105 remains draft/unmerged; this new head has not yet been certified by CI or browser/mobile preview. Do not merge/deploy on source-text verification alone.
 - Next uninterrupted work: continue actual Planetworld + Audio Connections source processing and product mapping; use exact-model + description/specification + image evidence for duplicate decisions. Do not spend further cycles sending status-only messages. Keep release boundary unchanged: no live catalogue/stock/pricing, Supabase, Axxess, DNS, payments or production deployment changes without explicit owner approval.
+
+
+## SONY IMAGE AUDIT SAFE RESTART — 2026-10-30 09:42 SAST
+
+- Confirmed no in-progress Sony image audit or other branch workflow before restart. The prior Sony run `41015289924` was cancelled and returned no jobs; its workflow was push-only with no supported rerun action.
+- Added `workflow_dispatch:` to `.github/workflows/sony-browser-image-audit.yml` on isolated review branch `catalogue/ingest-review-2026-10-30`, commit `5642c012a092f4b009551d45c90596b4b3ca6f8c`. The existing push path filter triggered exactly one safe staging retry.
+- New run `41021963315` is confirmed **IN_PROGRESS**, job `123951111064` (`browser-audit`); checkout was in progress, Playwright/Chromium/image audit pending at last inspection. Do not start a duplicate. Recheck this exact run/job to conclusion and inspect generated CSV/JSON/image candidate outputs. This is staging-only; no supplier workbook, live data, deployment, payment, DNS or Axxess changes.
