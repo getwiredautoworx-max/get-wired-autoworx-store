@@ -1,3 +1,13 @@
+## SUPABASE SUPPLIER-MAPPING ROOT CAUSE — RE-AUDITED READ-ONLY — 2026-10-30
+
+- Corrected the mapping audit with fresh SQL aggregates. Store database: 4,200 `public.products`; 4,198 `gw_private.product_supplier_codes`; all 4,198 legacy rows have `supplier_id IS NULL`; all 4,198 legacy `supplier_sku` values do join `public.products.sku`. This legacy relation is not supplier-attributed and is not the new Planetworld mapping.
+- Compared the **702 distinct original Planetworld source SKUs** against `public.products.sku`, `public.products.public_sku`, `gw_private.product_supplier_codes.supplier_sku` and `gw_private.supplier_catalog_items.supplier_sku`: **0 matches in all four checks**. `gw_private.supplier_catalog_items` has 0 rows.
+- `gw_private.product_supplier_codes.supplier_id` and `gw_private.supplier_catalog_items.supplier_id` reference `gw_private.supplier_connections.id`. Only three active connections exist: Caelex Infolog (portal), Accessories Spares Centre (email), and Electro City (manual). Planetworld and Audio Connections are not registered.
+- Updated `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json` and the verification summary JSON. This is now the exact blocker: the existing 4,198 legacy SKU joins do not identify their supplier; no Planetworld source SKU is linked to a product or GW public_sku; no supplier catalogue rows or supplier connections exist for Planetworld/Audio Connections.
+- **No Supabase writes or schema changes.** Do not invent supplier IDs, use `products.sku` as a GW public_sku, or attach product images to a guessed product. Before any write, confirm app-code semantics for legacy `sku` versus `public_sku`, then obtain explicit approval and the real supplier connection details. Keep Planetworld/Audio Connections catalogues in staging until the supplier/product links are validated.
+
+---
+
 ## KICKER KMC6 CORRECTION — RESPONSIVE QA PASS — 2026-10-30
 
 - Detailed review workflow **41022045101** completed **SUCCESS** after the 48KMC6 correction: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41022045101
