@@ -1,3 +1,11 @@
+## READ-ONLY INTERNAL PRODUCT MAPPING AUDIT — 2026-10-30
+
+- Read-only Supabase checks found 0 exact mappings between the 702 Planetworld supplier SKUs and existing public products. `gw_private.product_supplier_codes` has 4,198 rows, all with NULL `supplier_id`; `gw_private.supplier_catalog_items` has 0 rows; exact matches against `public.products.sku/public_sku` = 0; name/description search for 220 candidate manufacturer models = 0.
+- No database writes or schema changes. This confirms there is no verified internal public_sku/product_id target for the staged products. Do not assign product images or publish supplier rows until an owner-approved supplier-specific mapping exists.
+- Evidence in review branch: `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json`.
+
+---
+
 ## REVIEW-BRANCH MULTI-BRAND AUDIT RESULT — 2026-10-30
 
 - Review branch `catalogue/complete-remaining-review-2026-10-30` now records official manufacturer page/collection references for 226 of 702 Planetworld rows. These are model-reference matches, not approved images or published products.
