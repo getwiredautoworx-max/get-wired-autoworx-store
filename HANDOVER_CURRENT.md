@@ -4693,3 +4693,10 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - Corrected the new hosted browser QA heading assertion to read the rendered DOM heading with Playwright `innerText()`, rather than matching the raw HTML string. This avoids a false failure because the ampersand is HTML-escaped as `&amp;` in source.
 - Commit: `088d4a8abc3de15f80c16bb730abd68178fa2ada` on `gw-store-preview-1030`.
 - Remaining test logic still checks all eight navigation buttons and exact collection counts, while preserving dealer-price/cost and private-source-domain guards. No exact-head workflow/browser result or latest-head Cloudflare Pages success is confirmed yet.
+
+
+## 2026-10-30 — MOBILE NAVIGATION REGRESSION CHECK AND IMAGE GAP RETAINED
+
+- Added a 390px mobile-width overflow assertion immediately after the Planetworld browser QA clicks all eight collection buttons and returns to Car Audio. Commit: `61b8854717e02e646633e3e4043886a29f680a93`.
+- Important remaining catalogue presentation gap: the full 3,317-row Planetworld browse feed currently has no approved product image or full manufacturer description for most rows; those cards use the fixed-height photo-coming-soon placeholder and show the available brand/title/component only. The separate 68-card curated GW set has 11 exact-model image sources and 57 placeholders, with manufacturer descriptions. Do not claim the broad image/description issue is resolved. Continue exact-model asset matching and only display verified images/descriptions.
+- No exact-head CI/browser pass or latest-head Cloudflare Pages deployment confirmation yet. All changes remain preview-only.
