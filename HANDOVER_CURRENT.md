@@ -1,3 +1,11 @@
+## ADDITIONAL PLANETWORLD ONE VERIFICATION — 2026-10-30
+
+- Exact official OneNav product page + visible supplier SKU + vehicle application matches increased from four to nine: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
+- Audit: `catalogue-review/planetworld-one-official-model-audit.csv`; the nine source rows in the 702-row staging CSV now contain official URLs. Images remain unapproved; no GW SKUs assigned.
+- Logged a potential alias pair `ISA-ON115-3LX` vs `ON115-3LX` (same source description/application; only unprefixed SKU matches official page) in `catalogue-review/planetworld-one-potential-alias-review.csv`. Not a confirmed duplicate. Do not merge/delete until supplier confirmation.
+
+---
+
 ## CONTINUATION RESULT — 2026-10-30 — SUPPLIER CATALOGUE VERIFICATION
 
 - Review-only branch: `catalogue/complete-remaining-review-2026-10-30`. The permanent handover contains the full detailed checkpoint and file list.
