@@ -1,3 +1,12 @@
+## KICKER MARINE KMC6 MODEL CONFLICT RESOLVED — 2026-10-30
+
+- Corrected Planetworld supplier item **48KMC6** from the erroneous source description “KMC5” to the exact manufacturer model **KMC6 Premium Marine Media Center** using KICKER's official product page https://www.kicker.com/48KMC6 .
+- The review tree preserves the original supplier wording in `source_description_original`, uses the corrected KMC6 display name, adds the official manufacturer description and page link, and retains the item in the separate Marine Audio category (not Car Audio).
+- Updated the Kicker model audit and verification summary: Marine Kicker exact product pages **5**, collection-only matches **22**, model-code/description conflicts **0** (previously one). No image binary downloaded/approved, no GW SKU assigned, no price/stock changes.
+- Added Playwright assertions to verify KMC6 display, official manufacturer status/link and absence of the old KMC5 wording in the Marine Audio route. The next detailed QA run must pass before this correction is marked fully tested.
+
+---
+
 ## SMALL-BRAND MODEL EVIDENCE ADVANCE — 2026-10-30
 
 - Rechecked all 21 Focal/JVC/Kenwood/Pioneer source rows and updated `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv`, the summary JSON and new `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-evidence-crosscheck-2026-10-30.md`.
