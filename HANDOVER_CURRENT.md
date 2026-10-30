@@ -1,3 +1,10 @@
+## QA correction — Kicker marine assertion — 2026-10-30
+
+- Inspected failed responsive-review job **123960002669** (run **41024725122**). Supplier-routing unit/static tests and Deno type-check passed; the only failing assertion was the Kicker marine product-detail text check.
+- Root cause: the test expected the display substring `KMC6 Premium Media Center`, but the verified manufacturer review record correctly renders `Kicker KMC6 Premium Marine Media Center (48KMC6)`. This was a stale test expectation, not a product-data omission. Exact KMC4 and KMC6 model records and official links are present; KMC4 specs are 25 W x 4 at 4 Ω / IP66, KMC6 specs are 25 W x 6 at 4 Ω / IP66. Product images remain unapproved; GW SKUs remain unassigned.
+- Corrected only the assertion in `scripts/catalogue-review-prototype.spec.js` to match the verified display name. No product/source data, price, stock, GW SKU, image approval, live catalogue, or database record was changed.
+- Awaiting fresh exact-head QA run triggered by this test-only commit. Do not call the responsive review passing until that run is green.
+
 ## LATEST KICKER / SUPPLIER ROUTING QA PASS — 2026-10-30
 
 - Latest review workflow **41023292662** completed **SUCCESS** at commit `8bba587f81a878c653b4cbc85b5fb1a8fefbbe6a`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41023292662
