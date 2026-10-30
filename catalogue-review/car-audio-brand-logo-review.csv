@@ -1,0 +1,11 @@
+brand,official_source_url,candidate_asset,status,notes
+Alpine,https://www.alpine-usa.com/static/images/Alpine_Logo_Black_Digital.png,brand-logo-candidates/alpine-logo-candidate-2.png,OFFICIAL WORDMARK — VISUALLY CHECKED,Use black logo on white logo frame.
+Audison,https://static.audison.com/media/2022/11/audison_logo_c.svg,brand-logo-candidates/audison-logo-candidate-2.svg,OFFICIAL WORDMARK SOURCE — SVG CANDIDATE,Blue SVG candidate; visual browser check pending.
+Kicker,https://www.kicker.com/app/images/header/kicker-logo.png,brand-logo-candidates/kicker-logo-candidate-1.png,OFFICIAL WORDMARK — VISUALLY CHECKED,Yellow logo on dark frame.
+Focal,https://www.focal.com/,,NOT LOCATED,Homepage rendered but logo asset not identified.
+JVC,https://www.jvc.com/,,BLOCKED,Official homepage returned HTTP 403; no logo asset copied.
+Kenwood,https://www.kenwood.com/,,BLOCKED,Official homepage returned HTTP 403; no logo asset copied.
+Pioneer,https://www.pioneer-car.eu/,,BLOCKED,Official homepage returned Cloudflare/403; no logo asset copied.
+Hertz,https://hertz-audio.com/,,MAIN WORDMARK NOT LOCATED,Only Mille/Cento/Dieci/Uno/SPL line logos found; do not substitute line logo for Hertz brand.
+One,,,SOURCE NOT IDENTIFIED,Keep text wordmark until supplier confirms official brand source.
+Amplified,,,SOURCE NOT IDENTIFIED,Keep text wordmark until supplier confirms official brand source.
