@@ -1,3 +1,13 @@
+## EXACT-HEAD REVIEW QA CONFIRMED — 2026-10-30
+
+- The review-branch workflow now checks out the triggering commit SHA, preventing tests from silently running against a moving branch head.
+- **Latest exact-head run: 41021714286 — SUCCESS** at commit `2124861cfa6960e91c081ab0d0b67473b3a1dd14`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021714286 . Playwright passed at 360, 390, 768 and 1,280 px with 10 brand choices, 6 Alpine amplifiers, 84 Hertz verified product cards, 3 unresolved Hertz exceptions, 28 Marine Audio records and 47 Harnesses & Trims records. It also passed Audison AFBMW reclassification and manufacturer-link assertions, supplier price/stock privacy checks, image/GW-SKU hold checks, zero browser errors and no horizontal overflow.
+- Earlier intermediate runs failed because the branch's data changed from 702 to 704 source rows while a test was still asserting the earlier count. The exact-commit checkout and current 704-row assertion are now in place; the latest exact-head run is green. Do not repeat the older stale 702-row assertion.
+- This is **review-prototype QA only**. It does not prove the live storefront is populated or that product images/GW SKUs are approved, nor does it test live checkout, payment, stock, database mapping or production deployment.
+- Continue from this branch and latest handover. Next: obtain the three exact Hertz supplier confirmations; visually verify candidate images and source/rights suitability; establish owner-approved supplier-specific public_sku/product_id mapping; complete remaining Planetworld brand product detail/image matching; resolve Audio Connections Starsound/Sony images and price/availability clarifications; then run populated-storefront QA. No production writes/deployments without separate release approval.
+
+---
+
 ## HERTZ PRODUCT DETAIL RECONCILIATION + COMBINED NAVIGATION QA PASS — 2026-10-30
 
 - Created `catalogue-review/hertz-manufacturer-product-review.json` from the 86 manufacturer-record audit rows, excluding two records that manufacturer evidence identifies as Audison. The file contains **84 verified Hertz product records**, **2 Audison brand corrections**, and the **3 unresolved Hertz exceptions**. It contains no dealer cost, supplier price, regional stock or margin fields.
