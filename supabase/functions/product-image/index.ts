@@ -1,10 +1,13 @@
 import { withSupabase } from "npm:@supabase/server@1";
 
+const ASSET_ORIGIN = "https://approved-storefront-preview.get-wired-autoworx-store.pages.dev";
+
+// The GitHub repository is private. Serve only files copied into the explicit
+// public Cloudflare Pages allowlist; never fetch product images from GitHub raw
+// or jsDelivr. The allowlist contains public WebP assets and approved JPGs only.
 const SOURCES = [
-  { base: "https://cdn.jsdelivr.net/gh/getwiredautoworx-max/get-wired-autoworx-store@main/assets/products_webp/", extension: ".webp", type: "image/webp" },
-  { base: "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/assets/products_webp/", extension: ".webp", type: "image/webp" },
-  { base: "https://cdn.jsdelivr.net/gh/getwiredautoworx-max/get-wired-autoworx-store@main/assets/products/", extension: ".jpg", type: "image/jpeg" },
-  { base: "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/assets/products/", extension: ".jpg", type: "image/jpeg" }
+  { base: `${ASSET_ORIGIN}/assets/products_webp/`, extension: ".webp", type: "image/webp" },
+  { base: `${ASSET_ORIGIN}/assets/products/`, extension: ".jpg", type: "image/jpeg" }
 ];
 
 function headers(type="image/jpeg") {
