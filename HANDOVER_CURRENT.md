@@ -3793,3 +3793,11 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PR #116 remains draft/unmerged and is not merge-ready: it is 13 commits ahead / 31 behind main. Main remains buttons-only. No production release, Axxess, DNS, PayFast, Supabase write, live price/stock change, supplier publication or Cloudflare Worker configuration change occurred.
 - Supplier product mapping/catalogue publication is still data-gated, not a storefront-code blocker: 770 supplier records are privately staged and inactive; no exact existing public product matches were found for the 702 Planetworld source SKUs; 81 unique proposed GW SKU IDs remain collision-checked internal candidates, with no public product rows inserted. Do not invent matches or publish incomplete product records.
 - The prior hosted preview URL remains valid for owner review. Non-ASC quantities are current store-record values only; supplier_stock is empty and those quantities are not newly supplier-confirmed. Checkout and supplier submissions remain disabled.
+
+
+## HOSTED PREVIEW PART SEARCH + AUDIO ROUTE COVERAGE EXTENSION — 2026-10-30
+
+- After the exact-head local preview QA passed (run 41035774818), extended the same PR #116 browser workflow to exercise Part Search, the no-AI Request a Part fallback and the Car Audio area navigation against the actual hosted Pages preview URL as well.
+- Workflow-only commit: `a2135b36ff929f76fc2c902d3714b860869c805b`.
+- New exact-head Populated Store Preview Browser QA run was not yet listed by the commit-run lookup at this checkpoint. Do not claim the new hosted Part Search/audio checks passed until its completion/logs are reviewed.
+- This is QA coverage only; no storefront runtime files, catalogue rows, stock, prices, supplier records, Supabase data, main branch, DNS, Axxess, payment or production hosting were changed.
