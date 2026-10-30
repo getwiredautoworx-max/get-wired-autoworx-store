@@ -4466,3 +4466,22 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - Latest head `dc02e2f5b15ebefae0d11c781522a7e912104b73` job IDs: Cloudflare Pages Public Package QA 124103991439; Public SKU Exposure Audit 124103991751; Storefront Smoke mode detection 124103991477 (smoke job 124104011619 skipped); Populated Store Preview Browser QA 124103991162; Catalogue Image Audit 124103991293.
 - All five active jobs are completed FAILURE; all five log downloads again return Azure `BlobNotFound`; all job records expose no step list. This is a repeat of the same log/runner evidence gap on the latest PR head. Root cause remains unclassified. Do not continue blind reruns or treat the workflows as passed.
 - PR #135 is open/draft/unmerged; current mergeability is true. Preview source changes are committed, but preview deployment/visual acceptance and successful exact-head CI are still outstanding.
+
+
+## 2026-10-30 18:40 SAST — PLANETWORLD CATALOGUE CATEGORY NAVIGATION INTEGRATED (PREVIEW BRANCH)
+
+- Owner's specific complaint addressed on PR #136 branch `gw-store-preview-1030`: the 3,317-row Planetworld browse catalogue existed as a separate lower-page section but had no clear entry points from the store's category navigation. This made the supplier catalogue effectively disconnected from the shopping journey.
+- Updated `preview-store.html` in commit `5f6167e0b5d7a732ba6b065f2134c69133a34b81`.
+- Added a clearly branded **PLANETWORLD — AUDIO & ENTERTAINMENT CATALOGUE** navigation block immediately below the main Shop by Category tiles. Buttons route directly into the existing catalogue and select the corresponding collection:
+  - Car Audio (674 source rows)
+  - Home Entertainment (461)
+  - Band & Live Sound (792; keyword-based browse grouping within Musical Instruments)
+  - DJ Equipment (15; keyword-based browse grouping within Musical Instruments)
+  - Studio & Pro Audio (62; keyword-based browse grouping within Musical Instruments)
+  - Marine Audio (28)
+  - Installed AV (435)
+  - Musical Instruments (850)
+- Added the collection-selection bridge so each button resets brand/component filters, displays the selected collection, and scrolls to the catalogue. Component filters are now available for all listed collections rather than Car Audio only.
+- Static assertions passed for the navigation block, all five owner-requested audio destinations, collection click routing, expanded component filtering, and exactly one `noindex,nofollow` robots directive.
+- Existing safety boundary preserved: all 3,317 rows remain enquiry-only; no dealer cost, supplier price, or supplier stock quantities are exposed; no live catalogue, product, price, stock, Supabase, checkout, Axxess, DNS or production changes.
+- **Not yet verified:** exact-head GitHub Actions/browser QA, latest Cloudflare Pages redeployment, and hosted desktop/mobile click-through. Do not call the change preview-ready until these checks complete. PR #136 remains draft/unmerged and production HOLD remains.
