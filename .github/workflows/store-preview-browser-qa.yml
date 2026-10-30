@@ -73,8 +73,8 @@ jobs:
           const pwHeading=await hosted.locator('#planetworldCategoryNav .sectionTitle h2').innerText();
           if(pwHeading!=='PLANETWORLD — AUDIO & ENTERTAINMENT CATALOGUE')throw new Error('Planetworld category navigation branding is missing from the hosted store: '+pwHeading);
           if(/Dealer Price|Dealer Cost|accessoriesspares\.co\.za/i.test(initialHtml))throw new Error('Dealer pricing or private supplier source reference exposed in hosted storefront HTML');
-          await hosted.waitForFunction(()=>document.querySelectorAll('#planetworldCategoryNav [data-pw-collection]').length===8&&document.getElementById('pwCount')?.innerText.startsWith('674 catalogue items'),{timeout:60000});
-          const pwTargets=[['Car Audio & Video',674],['Home Entertainment',461],['Band & Live Sound',792],['DJ',15],['Studio Equipment',62],['Marine Audio',28],['Installed AV',435],['Musical Instruments',850]];
+          await hosted.waitForFunction(()=>document.querySelectorAll('#planetworldCategoryNav [data-pw-collection]').length===9&&document.getElementById('pwCount')?.innerText.startsWith('627 catalogue items'),{timeout:60000});
+          const pwTargets=[['Car Audio & Video',627],['Harnesses & Trims',47],['Marine Audio',28],['Home Entertainment',461],['Band & Live Sound',792],['DJ',15],['Studio Equipment',62],['Installed AV',435],['Musical Instruments',850]];
           for(const [collection,expected] of pwTargets){
             await hosted.locator('#planetworldCategoryNav [data-pw-collection="'+collection+'"]').click();
             await hosted.waitForFunction(expectedCount=>document.getElementById('pwCount')?.innerText.startsWith(expectedCount+' catalogue items'),expected,{timeout:15000});
@@ -122,6 +122,25 @@ jobs:
             if(!hostedSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('Hosted no-AI photo-request fallback is missing');
             await hosted.locator('#partSearchDialog button.pictureSearchBtn').first().click();
             await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
+            await hosted.evaluate(()=>window.closePartRequest());
+            await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
+            // A preview part request must hand off to WhatsApp and perform zero POST/storage writes.
+            await hosted.locator('#partSearchDialog button.pictureSearchBtn').first().click();
+            await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
+            await hosted.evaluate(()=>{
+              window.__gwOpenedUrls=[];window.__gwPostCalls=[];
+              window.open=(url)=>{window.__gwOpenedUrls.push(String(url));return null;};
+              const originalFetch=window.fetch.bind(window);
+              window.fetch=(input,init={})=>{if(String(init.method||'GET').toUpperCase()!=='GET')window.__gwPostCalls.push(String(input));return originalFetch(input,init);};
+              const set=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value;};
+              set('sourceBrand','Toyota');set('sourceMake','Toyota');set('sourceModel','Hilux');
+              set('sourcePartType','Auto Electrical');set('sourcePartNeeded','Alternator');set('sourceNotes','Preview no-write verification');
+              document.getElementById('sourcePartForm').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+            });
+            await hosted.waitForFunction(()=>window.__gwPartRequestPreviewHandoff===true,{timeout:5000});
+            const previewRequest=await hosted.evaluate(()=>({url:window.__gwOpenedUrls?.[0]||'',posts:window.__gwPostCalls||[],status:document.getElementById('sourceStatus')?.textContent||''}));
+            if(!previewRequest.url.startsWith('https://wa.me/27744884234?text=')||previewRequest.posts.length!==0||!previewRequest.status.includes('Preview did not submit or store'))throw new Error('Preview part request wrote data or failed WhatsApp handoff: '+JSON.stringify(previewRequest));
+            console.log('PREVIEW_PART_REQUEST_WHATSAPP_NO_WRITE_PASS '+JSON.stringify(previewRequest));
             await hosted.evaluate(()=>window.closePartRequest());
             await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
             await hosted.goto('https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
