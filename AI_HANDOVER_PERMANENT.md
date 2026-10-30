@@ -1,3 +1,38 @@
+## LATEST EXECUTION RUN 18 RESULT — 2026-10-30
+
+## Verified work completed
+- Read current `AI_HANDOVER_PERMANENT.md` and `HANDOVER_CURRENT.md` before execution. Recorded Run 18 task start in `HANDOVER_UPDATE_2026-10-30_EXECUTION_RUN_18_TASK_START.md`.
+- Confirmed repository is private and default branch is `main`. Current main head at inspection: `e5dbd9d072b2491952a3247e17e37123dd438bee`.
+- Confirmed the latest populated preview PR #136 is open/draft, mergeable, head `4a2fb20263fd8af29401a2d7b7f48dfeb7538e92`. Its description records successful Cloudflare Pages preview deployment at `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`. It integrates a 68-row GW catalogue preview, 11 exact manufacturer-model image sources (3 Alpine, 4 Kicker, 3 Audison, 1 Focal), and a photo-coming-soon fallback for 57 remaining cards. This is preview-only and not a release acceptance.
+- Confirmed no authentic manufacturer logo assets exist in the current main repository tree (only `assets/gw-logo.png` was found among logo/brand image paths). Do not create fake wordmarks or claim logo work is complete.
+- Confirmed the 702 Planetworld and 68 Audio Connections source catalogue staging remains inactive/unlinked and not customer-published. Planetworld dealer onboarding is already confirmed; Audio Connections dealer authorisation and confidential dealer-pricing access are owner-confirmed. Do not ask for further authorisation evidence. Product-level model mapping, approved images, current prices/VAT and availability remain publication controls.
+- Confirmed latest PR #131 Part Search tests before Run 18: four workflows passed (Storefront Smoke Test, Public SKU Exposure Audit, Cloudflare Pages Public Package QA, Free Catalogue Search Tests); its populated-preview browser QA failed for a real test bug.
+- Fixed the browser QA's over-escaped robots-meta regular expression on PR #131 branch `feature/free-no-ai-part-search-preview-safe-2026-10-30`. Commit: `339cbefd834f48b56fbc8d44d7811b5470971cdf`. The earlier failure was `Preview route must have exactly one noindex,nofollow directive: preview-store.html []`; the test regex was matching a literal backslash sequence instead of whitespace.
+- After the fix, GitHub created new PR checks for exact head `339cbefd834f48b56fbc8d44d7811b5470971cdf`: runs 41071684208 (Populated Store Preview Browser QA), 41071684022 (Storefront Smoke Test), 41071684010 (Public SKU Exposure Audit), 41071684021 (Cloudflare Pages Public Package QA), and 41071684026 (Free Catalogue Search Tests). All five completed FAILURE before any job steps; browser job 124117143648 has zero steps and log retrieval returns GitHub Actions storage `BlobNotFound` 404. This is an Actions runner/job-start infrastructure failure, not a post-fix browser assertion result. Do not repeatedly rerun until runner issue changes.
+- PR #136 exact-head runs 41071208655, 41071208680, 41071208685, 41071208771, 41071208903 and 41071209002 also all failed before steps. Minimal runner diagnostic job 124115553720 has zero steps; log retrieval returns `BlobNotFound` 404. No retry was made.
+- PR #137 courier collection-origin privacy fix is draft and mergeable but its three exact-head workflows also failed before steps. Keep draft; no secrets/migrations/deployed functions changed.
+- PR #130 and #134 remain unresolved integration candidates; PR #130 is stale/diverged and PR #134 has no PR-triggered workflow runs returned for its current head. Do not merge wholesale. PR #126 also remains a separate populated-preview search candidate.
+- No production/Axxess upload, DNS, Supabase production write/migration, live stock/price/product/image change, PayFast activation, checkout/payment credential change, Cloudflare production deploy or paid hosting credit use occurred.
+
+## Current outstanding priorities and concrete blockers
+1. **GitHub Actions runner** — owner/admin must inspect Actions runner availability, account quota/billing, repository Actions policy and GitHub status. Current failing jobs create no steps/logs. Once corrected, rerun exact-head checks for PR #136 and PR #131.
+2. **Populated preview acceptance** — PR #136 is the best current preview candidate and has a live preview URL above, but checks remain failed pre-step and owner visual acceptance is pending. Do not claim ready/launchable.
+3. **Brand navigation/logo assets** — prototype exists only in review materials; no authentic brand logo binaries are present in main. Obtain/commit manufacturer-approved logo assets or official brand media links; do not substitute text-only fake logos. Band Instruments & Studio must remain a separate route/category.
+4. **Product imagery and content** — only 11/68 PR #136 catalogue cards have exact-model image sources; 57 use fallback. Do not force unrelated photos. Complete exact model-to-GW SKU matching, manufacturer feature/description verification, image download/visual approval, supplier price/VAT and availability checks.
+5. **Audio Connections** — dealer relationship is confirmed; remaining work is product-level matching and asset/content review, not dealer authorisation. Keep the 68 staged supplier items inactive/unlinked until publication criteria are met.
+6. **ASC** — previously audited preview had 34 matching rows all at zero after 36 ledger SKUs / 7,037 units were reset. This proves audited stock zero, not deletion of all ASC product records. Verify remaining ASC catalogue records on preview; do not delete outside approved exact scope. Keep 11 IASC rows / 55 units and 4,101 WebP cache assets protected.
+7. **Part Search / checkout / launch** — Part Search regex test defect fixed on PR #131 branch, but new checks are blocked by runner-start failures. Keep checkout preview disabled. PayFast approval and end-to-end payment tests remain outstanding. Axxess live Part Search mismatch requires separate explicit upload approval and hosted verification.
+8. **PR integration** — no PR merged in Run 18. Reconcile the passing functional components from #131 with the current #136 preview branch after CI runner is fixed; do not merge stale divergent PRs as-is.
+
+## Owner action required
+- Restore GitHub Actions execution so jobs reach their first step and produce logs. This is the immediate blocker preventing independent CI/browser verification.
+- Review the populated preview URL and provide visual acceptance/defect notes. No other owner confirmation is needed for Audio Connections dealer authorisation.
+
+## Safety boundary
+Production remains HOLD. All customer-visible product, price, stock, supplier publication, checkout/payment activation, Supabase production migration, Axxess upload, DNS and production deployment remain unchanged.
+
+---
+
 ## LATEST SUPABASE SUPPLIER STAGING RESULT — 2026-10-30
 
 - Owner request to establish supplier IDs and supplier catalogue relationships has now been executed in the private `gw_private` schema, using inactive/unlinked staging only.
