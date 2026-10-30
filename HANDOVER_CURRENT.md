@@ -16,7 +16,7 @@
 
 ## LATEST MAIN-BRANCH CHECKPOINT — 2026-10-30 — TWO VERIFIED INTEGRATIONS MERGED
 
-- Current main head: `5619d9f6d19d29b3e73fd6c663759bde6e3e2215`.
+- Latest code merge commit: `5619d9f6d19d29b3e73fd6c663759bde6e3e2215`; subsequent main commits are handover-documentation updates.
 - **PR #115 merged** as `c36dac5863e3cef7e6f67681e0aa05aad09c0749`: 47 Planetworld workbooks in canonical private supplier folder; 770-row Planetworld/Audio Connections crosswalk; 81 collision-checked proposed GW public SKUs; official supplier connection proposals and inactive/unlinked SQL staging proposal; fail-closed supplier routing; Actions artifact guards; customer-only Cloudflare Pages allowlist. Exact-head CI passed all six workflows on `25a99c249490f00881aed54892790eb25490180a`.
 - **PR #113 merged** as `5619d9f6d19d29b3e73fd6c663759bde6e3e2215`: authenticated checkout, signed delivery quotes, server-enforced Terms/Returns/Privacy acknowledgement and durable order-linked policy audit wrapper/migration. Exact-head CI passed all five workflows on `9379a9463b14bbd949ca1016b92bd0b47dc3cd0a`.
 - These were source/repository merges only. No Supabase migration was applied, no Edge Function was deployed, no supplier connection or supplier catalogue row was inserted, no public product/GW SKU was inserted, and no stock/price/image was changed or published. No Axxess upload, DNS change, PayFast activation or Cloudflare deployment was performed.
