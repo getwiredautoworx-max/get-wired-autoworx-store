@@ -169,21 +169,16 @@ jobs:
           grep -F 'String(mapping.supplier_sku).replace(/[\\/]/g, "_")' supabase/functions/product-image/index.ts
           echo "SERVER_SIDE_SUPPLIER_FILENAME_NORMALISATION_PASS"
 
-      - name: Diagnose public WebP source availability from CI
-        shell: bash
-        run: |
-          set -euo pipefail
-          for sku in GW-000174D6 GW-001CED3B; do
-            raw="$(curl -sS -L --max-time 20 -o /dev/null -w '%{http_code}' "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/assets/products_webp/${sku}.webp")"
-            cdn="$(curl -sS -L --max-time 20 -o /dev/null -w '%{http_code}' "https://cdn.jsdelivr.net/gh/getwiredautoworx-max/get-wired-autoworx-store@main/assets/products_webp/${sku}.webp")"
-            echo "UPSTREAM_WEBP_SOURCE sku=${sku} raw_github=${raw} jsdelivr=${cdn}"
-          done
-
       - name: Verify public Cloudflare image asset origin for private repository
         shell: bash
         run: |
           set -euo pipefail
           base="https://approved-storefront-preview.get-wired-autoworx-store.pages.dev"
+          grep -F 'const ASSET_ORIGIN = "https://approved-storefront-preview.get-wired-autoworx-store.pages.dev";' supabase/functions/product-image/index.ts
+          if grep -Eq 'raw.githubusercontent.com|cdn.jsdelivr.net/gh' supabase/functions/product-image/index.ts; then
+            echo "ERROR: private GitHub image origins must not be used by the deployed proxy"
+            exit 1
+          fi
           for path in preview-store.html preview-planetworld.html assets/products_webp/GW-000174D6.webp assets/products/C5-018-2.jpg; do
             status="$(curl -sS -L --max-time 20 -o /dev/null -w '%{http_code}' "${base}/${path}")"
             if [ "$status" != "200" ]; then
@@ -193,10 +188,16 @@ jobs:
             echo "CLOUDFLARE_ASSET_ORIGIN_PASS ${path}"
           done
 
-      - name: Smoke test a known active public-SKU WebP image
+      - name: Smoke test deployed product-image function when owner-approved
         shell: bash
+        env:
+          GW_PRODUCT_IMAGE_FUNCTION_CDN_DEPLOYED: ${{ vars.GW_PRODUCT_IMAGE_FUNCTION_CDN_DEPLOYED }}
         run: |
           set -euo pipefail
+          if [ "${GW_PRODUCT_IMAGE_FUNCTION_CDN_DEPLOYED:-false}" != "true" ]; then
+            echo "PRODUCT_IMAGE_FUNCTION_SMOKE_SKIPPED: source is prepared; Supabase deployment still requires explicit owner approval."
+            exit 0
+          fi
           mapfile -t skus < <(python - <<'PY'
           import json
           report=json.load(open("catalogue-image-audit.json",encoding="utf-8"))
@@ -204,19 +205,14 @@ jobs:
               print(sku)
           PY
           )
-          if [ "${#skus[@]}" -eq 0 ]; then
-            echo "No active product has an exact-SKU WebP asset; skipping proxy availability probe."
-            exit 0
-          fi
           for sku in "${skus[@]}"; do
             status="$(curl -sS -o /dev/null -w '%{http_code}' "https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=${sku}")"
             if [ "$status" = "200" ]; then
               echo "ACTIVE_PUBLIC_WEBP_PROXY_PASS: ${sku}"
               exit 0
             fi
-            echo "Image proxy returned HTTP ${status} for active exact-SKU WebP candidate ${sku}; trying next sample."
           done
-          echo "ERROR: no active exact-SKU WebP candidate returned HTTP 200"
+          echo "ERROR: deployed product-image function returned no HTTP 200 for active WebP samples"
           exit 1
 
       - name: Upload audit report
