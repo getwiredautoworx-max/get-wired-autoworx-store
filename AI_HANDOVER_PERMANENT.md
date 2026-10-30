@@ -1,3 +1,13 @@
+## AUDISON NAVIGATION RECLASSIFICATION — 2026-10-30
+
+- Reclassified AFBMW BOOSTER 01 (66772099) and AFBMW ReAMP 3 (66772206) from the Hertz-labelled supplier staging workbook into the **Audison → Harnesses, Trims & Fitment** navigation group. Both are confirmed by official Audison manufacturer pages; the source-brand mislabel is explicitly retained in the note.
+- Combined navigation tree now has **704 source rows**: 629 brand products, 28 Marine Audio, 47 separate Harnesses & Trims component records. Audison is now 96 records; its Harnesses & Trims group is 8 records. The Hertz brand staging group is 87 records and excludes the two Audison items.
+- Prototype product cards now read image status, manufacturer-description status and GW SKU status from each review record. The two AFBMW items show verified manufacturer descriptions, but images remain unverified and GW SKUs unassigned. Official manufacturer page links are shown in the review card.
+- Added Playwright assertions for the two Audison records, their component route, verified manufacturer evidence links, and publication guards. Runs **41021332022 / 41021331896 / 41021379789 / 41021379978 / 41021398729** were triggered by the changes; inspect final conclusions before claiming the latest combined navigation test passed. The prior 41021015423 run passed the earlier 87-Hertz/three-exception prototype.
+- Repository metadata confirms visibility is **private**. Supplier review data in the private repository is not publicly exposed by the current repository visibility.
+
+---
+
 ## REVIEW-BRANCH RESPONSIVE QA PASS — 2026-10-30
 
 - Review-branch workflow run **41021015423** completed **SUCCESS** at commit `6d18f04ce22d477d0eaccd55d678cced56642fb4`.
