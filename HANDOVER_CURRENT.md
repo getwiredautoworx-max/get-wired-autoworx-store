@@ -1,3 +1,14 @@
+## PREVIEW REQUEST SAFETY FIX — 2026-10-30
+
+- **Fixed in the current PR #136 preview branch:** `preview-store.html` now checks `document.body.dataset.previewMode === 'true'` before any photo-storage upload or Supabase request insert. In preview mode it constructs the request summary, opens the existing WhatsApp number `074 4884 234`, tells the customer to attach selected photos in WhatsApp, and displays that the preview did not submit or store the request. The original Supabase/photo-upload path remains only for non-preview/production mode; it has not been deployed to production.
+- Code commit: `d34f01022b937b03e05c062c643c163a08c3af70`.
+- **Added browser regression assertions:** `.github/workflows/store-preview-browser-qa.yml` now checks all nine current Planetworld collections and exact counts (Car Audio 627; Harnesses & Trims 47; Marine Audio 28; Home Entertainment 461; Band & Live Sound 792; DJ 15; Studio 62; Installed AV 435; Musical Instruments 850). It submits a preview part request with a stubbed WhatsApp opener and asserts the WhatsApp URL is opened, zero non-GET fetch calls occur, and the preview no-write status appears.
+- QA workflow commit: `fb7c8390a947cd7fedc416f5d9ebb1ddf001d586`. Static source assertions passed for the preview guard, WhatsApp handoff, no-write flag, guard-before-upload ordering, preservation of production handler, nine routes, exact counts and zero-POST regression test. These are source-level checks, not a successful hosted browser run.
+- Cloudflare Pages and GitHub Actions have not yet confirmed deployment/test success for these latest commits. The latest previously confirmed hosted storefront is commit `5ef1c83` at `https://2fd6b95d.get-wired-autoworx-store.pages.dev/preview-store.html`; the new preview safety fix is not represented there until a later deployment is confirmed.
+- Remaining release gaps are unchanged: exact-model images and richer verified descriptions for the 3,317 Planetworld cards; only 11/68 exact-model images in the separate curated set; hosted desktop/mobile acceptance; passing exact-head QA; PR #136 integration onto a clean mainline. PR remains draft/unmerged. Production HOLD; no live Supabase, stock, price, checkout, payment, Axxess, DNS or supplier publication changes.
+
+---
+
 ## EXECUTION AUDIT — 2026-10-30 (latest continuation)
 
 - Owner's complaint is valid: previous updates described intended work without delivering the end-to-end customer-ready store. This entry records only what was checked in this continuation; no completion claim is made.
