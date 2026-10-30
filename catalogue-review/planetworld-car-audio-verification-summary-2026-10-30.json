@@ -114,13 +114,24 @@
   "internal_mapping_audit": {
     "status": "READ_ONLY_NO_WRITES",
     "project": "Store (ojytykqpvonxvepprgbh)",
+    "products_rows": 4200,
     "product_supplier_codes_rows": 4198,
     "product_supplier_codes_rows_with_supplier_id_null": 4198,
+    "existing_legacy_supplier_codes_joining_products_sku": 4198,
     "exact_supplier_code_matches_to_702_planetworld_rows": 0,
+    "exact_matches_to_products_sku_for_702_planetworld_rows": 0,
+    "exact_matches_to_public_sku_for_702_planetworld_rows": 0,
     "supplier_catalog_items_rows": 0,
-    "public_products_exact_sku_or_public_sku_matches": 0,
+    "supplier_connections_rows": 3,
+    "existing_supplier_connections": [
+      "Caelex Infolog",
+      "Accessories Spares Centre",
+      "Electro City"
+    ],
+    "planetworld_supplier_connection_present": false,
+    "audio_connections_supplier_connection_present": false,
     "public_products_name_or_description_matches_to_220_candidate_models": 0,
-    "conclusion": "No internal public_sku/product_id mapping found; image assets cannot be safely assigned to products.",
+    "conclusion": "No Planetworld public_sku/product_id mapping. Existing legacy supplier-code rows all join products.sku but all supplier_id are null; none match the 702 Planetworld source SKUs. No supplier_catalog_items exist and no Planetworld/Audio Connections supplier connections are registered.",
     "details": "catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json",
     "database_changes": 0
   },
