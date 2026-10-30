@@ -115,6 +115,7 @@ jobs:
           # They are not public product references and therefore are not audited as public SKU files.
           source_root=Path("assets/products")
           source_files=[p.name for p in source_root.iterdir() if p.is_file() and p.suffix.lower() in {".jpg",".jpeg",".png",".webp"}] if source_root.exists() else []
+          active_webp_skus=sorted({(p.get('public_sku') or '').strip().upper() for p in products if (p.get('public_sku') or '').strip().upper() in webp_skus})
           placeholder_skus=set(placeholder)
           proxy_skus=set(proxy)
           direct_webp_skus=set(direct_webp)
@@ -134,7 +135,8 @@ jobs:
             "placeholder_products_with_webp_skus":sorted(placeholder_with_webp),
             "placeholder_products_without_known_webp_skus":sorted(placeholder_skus-webp_skus),
             "invalid_or_mismatched_public_image_refs":bad,
-            "internal_source_image_files":len(source_files)
+            "internal_source_image_files":len(source_files),
+            "active_skus_with_webp_sample":active_webp_skus[:10]
           }
           Path("catalogue-image-audit.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
           print(json.dumps({
@@ -167,24 +169,31 @@ jobs:
           grep -F 'String(mapping.supplier_sku).replace(/[\\/]/g, "_")' supabase/functions/product-image/index.ts
           echo "SERVER_SIDE_SUPPLIER_FILENAME_NORMALISATION_PASS"
 
-      - name: Smoke test a published public-SKU WebP image when available
+      - name: Smoke test a known active public-SKU WebP image
         shell: bash
         run: |
           set -euo pipefail
-          shopt -s nullglob
-          files=(assets/products_webp/*.webp)
-          if [ "${#files[@]}" -eq 0 ]; then
-            echo "No WebP files published yet; existing JPG proxy samples were tested above."
+          mapfile -t skus < <(python - <<'PY'
+          import json
+          report=json.load(open("catalogue-image-audit.json",encoding="utf-8"))
+          for sku in report.get("active_skus_with_webp_sample",[]):
+              print(sku)
+          PY
+          )
+          if [ "${#skus[@]}" -eq 0 ]; then
+            echo "No active product has an exact-SKU WebP asset; skipping proxy availability probe."
             exit 0
           fi
-          file="${files[0]}"
-          sku="$(basename "$file" .webp)"
-          status="$(curl -sS -o /dev/null -w '%{http_code}' "https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=${sku}")"
-          if [ "$status" != "200" ]; then
-            echo "ERROR: WebP proxy returned HTTP $status for public SKU $sku"
-            exit 1
-          fi
-          echo "Public-SKU WebP image proxy returned HTTP 200"
+          for sku in "${skus[@]}"; do
+            status="$(curl -sS -o /dev/null -w '%{http_code}' "https://ojytykqpvonxvepprgbh.supabase.co/functions/v1/product-image?sku=${sku}")"
+            if [ "$status" = "200" ]; then
+              echo "ACTIVE_PUBLIC_WEBP_PROXY_PASS: ${sku}"
+              exit 0
+            fi
+            echo "Image proxy returned HTTP ${status} for active exact-SKU WebP candidate ${sku}; trying next sample."
+          done
+          echo "ERROR: no active exact-SKU WebP candidate returned HTTP 200"
+          exit 1
 
       - name: Upload audit report
         if: always() && vars.ENABLE_CATALOGUE_IMAGE_AUDIT_ARTIFACT_UPLOAD == 'true'
