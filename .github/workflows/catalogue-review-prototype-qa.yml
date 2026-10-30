@@ -8,6 +8,11 @@ on:
       - "catalogue-review/car-audio-navigation-prototype.html"
       - "catalogue-review/car-audio-navigation-tree-review.json"
       - "scripts/catalogue-review-prototype.spec.js"
+      - "supabase/functions/supplier-quote/index.ts"
+      - "supabase/functions/_shared/supplier-routing.mjs"
+      - "scripts/supplier-routing.test.mjs"
+      - "scripts/supplier-quote-routing-static.test.mjs"
+      - "android-owner-app/app/src/main/assets/admin_app.html"
       - ".github/workflows/catalogue-review-prototype-qa.yml"
 
 permissions:
@@ -29,6 +34,10 @@ jobs:
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Run supplier routing unit and static tests
+        run: |
+          node scripts/supplier-routing.test.mjs
+          node scripts/supplier-quote-routing-static.test.mjs
       - name: Run responsive review checks
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/review-http.log 2>&1 &
