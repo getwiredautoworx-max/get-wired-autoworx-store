@@ -1,3 +1,15 @@
+## FINAL SALES-CATALOGUE PREVIEW STATUS — 2026-10-30
+
+- Latest confirmed Cloudflare Pages success is commit `b2006e51836db5224523ebd25a4979aa14ce505f`. Immutable preview: `https://4c01c196.get-wired-autoworx-store.pages.dev/preview-store.html`; branch alias: `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`. This successful deployment includes the full Planetworld browse, nine direct category tiles, indicative prices and dated availability labels.
+- Current PR head is `5ef1c83a163d8e87c2dad0e13796e4814f319a8f`, a price-formatting-only refinement adding rand thousands separators. Cloudflare has not yet confirmed a deployment for this exact commit. The b2006e5 preview remains a valid deployed sales-catalogue preview; use the branch alias after the next deployment completes for the latest formatter.
+- Final source/data checks: 3,317 rows, 47 workbooks, 94 sheets; nine collection counts: Car Audio & Video 627; Harnesses & Trims 47; Marine Audio 28; Home Entertainment 461; Band & Live Sound 792; DJ 15; Studio Equipment 62; Installed AV 435; Musical Instruments 850. The Car Audio source division reconciles 627+47+28=702.
+- Pricing/availability: 3,280 indicative customer prices at 1% below source RRP only where a private cost-floor check passes; 37 quote-only (18 below cost floor, 19 zero RRP). 1,727 rows had some supplier stock recorded and 1,590 had none in the 25-Oct snapshot. JSON exposes only the indicative price and a boolean stock-status flag; no dealer cost, margin, supplier item code or exact regional stock quantity.
+- Functional mock-browser test exercised all nine category routes, brand/component filters, search, pagination, 47-item Harnesses & Trims list, price/quote-only display and snapshot-availability text. Static QA: all 8 inline scripts compile, 35 component groups, zero missing titles, no sensitive supplier fields, one noindex directive.
+- Product imagery is only partially resolved: nine category navigation cards use illustrative category photos; the 3,317 broad-feed product cards still use clean placeholders pending exact-model assets. The 68 curated manufacturer-described cards retain 11 exact-model images and 57 placeholders. Do not claim product-image coverage is complete. 236 Car Audio rows remain manual review and 3 marine keyword conflicts are held in a review component.
+- GitHub Actions exact-head/browser QA has not produced a successful run; earlier jobs failed before steps/logs. Hosted desktop/mobile click-through remains outstanding. PR #136 is draft/unmerged and diverged from main (46 ahead / 42 behind; mergeable=false). Do not merge/force-push; a clean-main successor is needed for eventual integration. Production HOLD; no production, Supabase, stock/price DB, supplier activation, checkout/payment, Axxess or DNS changes.
+
+---
+
 ## SALES CATALOGUE — LATEST OWNER-DIRECTED DELIVERY — 2026-10-30
 
 - **Full Planetworld browse feed is integrated into the populated store preview:** 3,317 catalogue rows from 47 workbooks / 94 sheets, source snapshot 25-Oct-2026.
