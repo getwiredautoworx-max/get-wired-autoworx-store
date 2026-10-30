@@ -26,3 +26,10 @@
 
 ## Safety boundary
 No public product inserts, `product_supplier_codes` inserts, supplier-item activation, public image URL writes, customer-price imports, stock updates, checkout/payment changes, Axxess/DNS changes or production deployment were performed. No dealer cost or supplier price data is exposed on the public storefront.
+
+
+### Audio Connections component classification — 2026-10-30
+- All 68 source rows in `audio-connections-product-review.csv` have now been assigned a component group in `AUDIO_CONNECTIONS_COMPONENT_CLASSIFICATION_2026-10-30.csv`.
+- Counts: Car Speakers 20; Subwoofers 12; Amplifiers 26; Head Units & Media 6; Signal Processing & Crossovers 4.
+- Brand names and model references are preserved exactly as supplied. The source abbreviation `RA` is not expanded because its full brand identity is unverified.
+- The 68 rows remain review-only, inactive and unlinked. No supplier prices, public product rows, stock, images or supplier activation were changed.
