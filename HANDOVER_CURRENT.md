@@ -4089,3 +4089,46 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PRs #121, #125 and #128 remain unmerged. PR #126 and #129 remain open but their changes are included in #125 for integration QA; PR #127 is a closed duplicate of #121.
 - No Axxess upload, DNS, production deployment, Supabase migration/function deployment, supplier activation, public SKU/product creation, price/stock/image publication, or payment activation.
 - Planetworld quantities remain the 25-Oct workbook snapshot, not fresh supplier availability. Current store quantities outside the ASC ledger are not supplier-confirmed. Owner-directed ASC stock reset remains exactly 36 matched SKUs / 7,037 units to zero, with 0 positive ASC stock remaining.
+
+
+---
+
+## 2026-10-30 CONTINUATION CHECKPOINT — PREVIEW, EFT, IMAGE CDN, SUPPLIER MAPPING
+
+### Populated preview
+- PR #122 merged: isolated populated-store review routes, exact eight-root navigation, Audio navigation route and Planetworld review data. Exact-head browser QA passed:
+  - 4,187 products; exactly 8 visible root categories with the approved labels.
+  - 4X4 Outdoor nested under Camping, Leisure & Outdoors.
+  - 34 active ASC rows, all zero stock; no positive ASC stock restored.
+  - Checkout and supplier submissions hidden/disabled.
+  - Desktop 1280px and mobile 390px passed with no horizontal overflow or browser page errors.
+  - Planetworld review: 68 candidates, 44 positive / 24 zero on the available 2026-10-25 snapshot; all 68 pass estimated VAT-inclusive cost-floor check; dealer cost not exposed.
+- PR #129 merged: three exact official Alpine images added (R2-W10D2, R2-A60F, S2-S40C); family image R2-W12D4 deliberately excluded because it does not distinguish impedance variant. Seven exact-model manufacturer images now load successfully. Exact-head browser QA passed.
+- Preview deployment branch: `approved-storefront-preview`, non-production only. Previous safe deployment run 41048521188 used the explicit allowlist and published the preview routes plus approved assets. New deployment with seven images triggered by run 41050592357; wait for completion and record its exact URL.
+- Current previously verified deployment URL before the seven-image refresh: `https://2c042f13.get-wired-autoworx-store.pages.dev/preview-store.html` and `/preview-planetworld.html`. Replace with the new run URL after run 41050592357 succeeds.
+- IMPORTANT: the trigger branch initially held a stale workflow that ran `wrangler pages deploy .` and created a full-repository deployment (run 41048356814, unique URL `https://0d9c14be.get-wired-autoworx-store.pages.dev`). The trigger branch workflow was then synced to the safe main workflow and the branch alias was redeployed using `pages-public` allowlist. Do not share/reuse the old unique deployment URL; it may remain accessible as an immutable old deployment. It has not been deleted. The current branch alias points to the safe allowlisted deployment.
+
+### Direct EFT and WhatsApp
+- PR #127 merged after all six exact-head checks passed. Current main now contains secure Direct EFT response handling, order-specific EFT reference, complete-config fail-closed behaviour, pending payment status, order-specific WhatsApp click-to-chat summary, integration tests, and `DIRECT_EFT_SETUP.md`.
+- Actual bank details have NOT been entered. Required protected Supabase Edge Function secrets: `DIRECT_EFT_BANK_NAME`, `DIRECT_EFT_ACCOUNT_NAME`, `DIRECT_EFT_ACCOUNT_NUMBER`, `DIRECT_EFT_BRANCH_CODE`, `DIRECT_EFT_ACCOUNT_TYPE`. Do not put real values in GitHub or chat.
+- WhatsApp business number already in checkout: +27 74 488 4234. Current solution is no-cost click-to-chat; automated WhatsApp Business Platform messages are not connected.
+- Supabase `store-checkout` deployed version has not been updated; no function deployment or secrets configuration has been performed. PR #121 draft was closed as superseded by merged PR #127.
+
+### Product image proxy — root cause and source fix
+- Confirmed repository visibility is private. Deployed Supabase `product-image` function v11 still fetched images from GitHub raw/jsDelivr; both return 404 for private repo assets. Active product rows, supplier mappings and WebP files exist.
+- Safe Cloudflare branch alias `https://approved-storefront-preview.get-wired-autoworx-store.pages.dev` returns HTTP 200 for preview routes, a public WebP asset and an approved JPG asset.
+- PR #124 merged: `product-image` source now reads only from the allowlisted Cloudflare Pages asset origin; no raw GitHub or jsDelivr references. Public Pages build contains 4,101 WebP files and only approved JPGs; 800 internal source images are not automatically exposed.
+- Image audit now excludes legacy quarantined/out-of-scope SKUs from HTTP-200 probes, statically verifies slash normalisation, verifies Cloudflare asset availability, and gates live product-image smoke testing until the owner-approved Supabase deployment. Exact-head audit passed. Live Supabase function remains v11 and still requires deployment of the reviewed source fix (no deployment performed).
+- Audit summary: 4,101 WebP assets, 86 active product placeholders without a known WebP, zero invalid/mismatched public image references. These 86 remain image sourcing work; do not invent/approve images.
+
+### Audio Connections supplier mapping
+- Owner confirms authorised dealer relationship, confidential dealer pricing access and direct purchasing intent. Do not request further proof or list dealer authorisation as a blocker.
+- Added `catalogue-review/AUDIO_CONNECTIONS_COMPONENT_CLASSIFICATION_2026-10-30.csv`: all 68 source rows classified; Car Speakers 20, Subwoofers 12, Amplifiers 26, Head Units & Media 6, Signal Processing & Crossovers 4. Brand/model labels preserved as supplied; ambiguous `RA` not expanded.
+- All rows remain review-only/inactive/unlinked; no dealer costs, public catalogue rows, stock or images changed.
+
+### Remaining owner/deployment gates
+1. Owner approval required before deploying reviewed Supabase Edge Functions `product-image` and `store-checkout` to the existing production project. No migrations or database writes are part of these two code changes.
+2. After `store-checkout` deployment, owner enters the five `DIRECT_EFT_*` secrets in Supabase Dashboard and verifies a non-production test order. Payment stays pending until manual bank verification.
+3. After `product-image` deployment, set `GW_PRODUCT_IMAGE_FUNCTION_CDN_DEPLOYED=true` so the live image proxy smoke test is enabled; verify active WebP product image HTTP 200.
+4. Current main-branch Store Production QA still correctly reports the live domain as not updated/button-only. Axxess upload, DNS, production deployment, live stock/price/catalogue changes and payment activation remain on hold pending explicit owner approval.
+5. Old immutable full-repository preview deployment from run 41048356814 remains a residual exposure; branch alias has been safely overwritten. Delete that old deployment only after owner authorises the destructive cleanup.
