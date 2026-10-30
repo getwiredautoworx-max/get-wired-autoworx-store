@@ -3707,3 +3707,37 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Approval manifest committed: catalogue-review/OWNER_APPROVED_GW_SKU_STAGING_2026-10-30.csv (81 rows, 81 unique GW SKUs). The manifest explicitly records no existing product match, image not yet downloaded/approved, price not assessed, and NOT_PUBLISHED.
 - Fresh SELECT-only supplier staging check: 702 Planetworld rows and 68 Audio Connections rows are attached to their correct supplier IDs; all 770 have public names, 240 have manufacturer source URLs (226 Planetworld, 14 Audio Connections), 0 have public descriptions, 0 have approved image URLs, 0 are active, and 0 link to public products. Fresh exact comparison of all 702 Planetworld rows against public.products found 0 supplier-SKU/public-SKU matches, 0 exact public-name matches, and 0 supplier model-code occurrences in existing product names/descriptions.
 - Do not insert the 81 public product records yet: official image assets have not been downloaded and visually approved, final customer descriptions still need to be completed, and the RRP/cost-floor price review remains outstanding. This SKU approval is not product publication, supplier-item activation, price import or stock change.
+
+
+---
+
+## CONTINUATION EXECUTION CHECKPOINT — 2026-10-30 — PR #116 PART SEARCH / NO-AI QA EXTENSION
+
+- Resumed from the existing main-branch handover; did not re-extract supplier workbooks or repeat the ASC stock update.
+- Reconciled current branch state:
+  - PR #116 remains the isolated populated-store preview branch; it is still separate from main and must not be merged automatically.
+  - Existing hosted preview evidence remains run 41032794497 / job 123986312498: 4,187 active products, 103 categories, 34 active ASC public products at zero stock, category/product modal flow, no checkout, no private-address leak, no page errors, 390px mobile and 1280px desktop without horizontal overflow.
+  - Current main remains buttons-only. PR #94 is a stale/diverged Part Search compatibility candidate; PR #99 contains prior Part Search refresh and no-AI request tests but is also divergent. Neither is to be wholesale merged.
+- Direct source inspection of PR #116 preview-store.html confirms:
+  - Header Part Search button and dialog exist.
+  - The dialog includes a no-AI picture-request fallback (“NO AI CREDITS NEEDED”).
+  - Picture requests use the existing Request a Part form and Supabase storage/table path; no OpenAI/Gemini image endpoint was found in the preview source.
+  - Photo upload accepts JPG/PNG/WebP, allows multiple files, and submit handler rejects more than five photos and rejects unsupported/oversized files.
+  - Catalogue load dispatches the `gw:products-loaded` event; Part Search compatibility handlers exist on window and as legacy bare-name wrappers.
+- Direct source inspection of PR #116 category.html confirms the Car Audio category supports audio-area/brand/component grouping. The previous hosted preview QA tested category navigation and product detail, but did not explicitly exercise the audio-specific route or Part Search interaction.
+- Executed a targeted PR #116 workflow change on branch `preview/populated-store-after-asc-stock-removal-2026-10-30`:
+  - Commit: `67e248e3483710e1ca0817fb9b882b181453bb92`.
+  - Extended `.github/workflows/store-preview-browser-qa.yml` to open Part Search, verify the no-AI fallback, open the Request a Part form, verify photo input rules, verify the five-photo enforcement exists, and fail if paid AI image-search endpoints are present.
+  - The workflow commit was successfully written. A workflow run for this exact commit had not yet appeared in the commit-run lookup at checkpoint time. Do not mark the new Part Search/no-AI browser assertions passed until the exact-head run completes and its logs are inspected.
+- Supplier-to-GW identity reconciliation remains honest and source-backed:
+  - 702 Planetworld and 68 Audio Connections rows have valid supplier IDs in private staging; all 770 remain inactive, quote-on-request and unlinked to public products.
+  - Fresh comparison found no exact existing public product/SKU matches for the 702 Planetworld source rows. The 81 proposed GW SKU IDs are collision-checked internal staging candidates only, not inserted public products.
+  - Do not fuzzy-link unrelated existing products. Continue exact manufacturer model/page matching; only create public product rows after exact identity, description, approved image, RRP/cost-floor and availability evidence are complete.
+  - Keep 19 zero-RRP rows quarantined and exclude the 18/19 RRP-under-cost warning rows from automatic price proposals.
+- Current five-workstream execution status:
+  1. Consolidate around PR #116 as the single isolated populated preview path; do not wholesale merge PR #94/#99 or touch main.
+  2. Supplier model-to-GW mapping: 770 staged records reconciled to supplier IDs; 81 new-product candidates collision-checked; 0 public product links so far because existing catalogue has no exact matching audio products. Continue verified manufacturer evidence; no invented links.
+  3. Catalogue build: Part Search/no-AI and audio navigation code are present in preview; supplier product descriptions/images/prices still require exact evidence. Do not publish incomplete supplier records.
+  4. Populated preview: prior hosted preview remains valid for its tested head; new Part Search/no-AI assertions and audio-specific browser coverage are pending exact-head QA.
+  5. Handover: updated with this checkpoint. Continue appending material results here; do not restart or produce another parallel handover.
+- Release boundary unchanged: no ASC stock restoration, no non-ASC stock/price changes, no supplier activation/publication, no Supabase writes, no checkout/payment activation, no Axxess upload, DNS change, Worker configuration change, or production deployment. Launch remains HOLD.
