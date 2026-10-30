@@ -10,7 +10,7 @@ const { chromium } = require('playwright');
       const pageErrors = [];
       page.on('pageerror', error => pageErrors.push(error.message));
       await page.goto('http://127.0.0.1:4173/catalogue-review/car-audio-navigation-prototype.html', { waitUntil: 'domcontentloaded' });
-      await page.waitForFunction(() => document.querySelector('#status')?.textContent.includes('Loaded 702') && document.querySelector('#status')?.textContent.includes('84 manufacturer-verified Hertz records'), { timeout: 15000 });
+      await page.waitForFunction(() => document.querySelector('#status')?.textContent.includes('Loaded 704') && document.querySelector('#status')?.textContent.includes('84 manufacturer-verified Hertz records'), { timeout: 15000 });
 
       const brandCount = await page.locator('#content [data-brand]').count();
       if (brandCount !== 10) throw new Error(`Expected 9 Planetworld brands + staged Hertz; got ${brandCount} at ${width}px`);
@@ -27,6 +27,17 @@ const { chromium } = require('playwright');
       if (!alpineText.includes('Image: not verified') || !alpineText.includes('GW SKU: not assigned')) throw new Error('Unverified image/GW SKU hold labels missing');
 
       await page.locator('#back').click();
+      await page.locator('#home').click();
+      await page.locator('#content [data-brand="Audison"]').click();
+      await page.locator('#content [data-component="Harnesses, Trims & Fitment"]').click();
+      const audisonHarnessCount = await page.locator('#content article.product').count();
+      if (audisonHarnessCount !== 8) throw new Error(`Expected 8 Audison harness/fitment records after reclassification; got ${audisonHarnessCount}`);
+      const audisonText = await page.locator('#content').innerText();
+      if (!audisonText.includes('AFBMW BOOSTER 01') || !audisonText.includes('AFBMW ReAMP 3')) throw new Error('BMW AFBMW harnesses missing from Audison navigation');
+      if (!audisonText.includes('VERIFIED — official manufacturer product page') || !audisonText.includes('Official manufacturer product page')) throw new Error('Audison manufacturer verification/link missing');
+      if (!audisonText.includes('Image: not verified') || !audisonText.includes('GW SKU: not assigned')) throw new Error('Audison image/GW SKU publication hold missing');
+      if (/Dealer Cost|JHB Stock|DBN Stock|CPT Stock|supplier_stock_snapshot|RRP|VAT/i.test(audisonText)) throw new Error('Supplier pricing/stock leaked into Audison review cards');
+
       await page.locator('#home').click();
       await page.locator('#content [data-brand="Hertz"]').click();
       const hertzNotice = await page.locator('#content').innerText();
