@@ -1,3 +1,12 @@
+## ALPINE VERIFICATION UPDATE — 2026-10-30
+
+- Alpine: 58 Planetworld source rows checked; 9 exact individual official product pages, 26 collection-level model matches, 5 official-catalogue matches, 18 unmatched in this pass.
+- Four original high-resolution official image URLs found for R2-W10D2, R2-W12D4, R2-A60F and S2-S40C. Source manifest: `catalogue-review/alpine-high-resolution-image-source-manifest.csv`. No binaries downloaded, no current product image comparison, no public_sku mapping, no approval to publish. R2-W12D4 uses a shared W12D2/W12D4 family image.
+- Planetworld ONE remains at nine exact OneNav page/SKU/application matches; potential ISA-ON115-3LX alias is still quarantined for supplier confirmation.
+- Full audit and constraints are in the latest permanent handover checkpoint. Main storefront remains buttons-only and launch HOLD.
+
+---
+
 ## ADDITIONAL PLANETWORLD ONE VERIFICATION — 2026-10-30
 
 - Exact official OneNav product page + visible supplier SKU + vehicle application matches increased from four to nine: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
