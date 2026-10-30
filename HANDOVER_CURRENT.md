@@ -4272,3 +4272,14 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - The earlier preview robots conflict (both `noindex,nofollow` and `index,follow`) has been corrected on the PR branch; the existing browser QA now asserts exactly one `noindex,nofollow` directive. This correction is not yet treated as verified on the exact current PR head until its check runs complete.
 - No production changes were made. No merge, Supabase deployment/migration/secrets, Axxess package/upload, DNS, banking details, payment activation, or live supplier/stock/price publication occurred.
 - Immediate execution priority: resolve PR #134's dirty divergence by selectively rebasing/porting only its preview/search/privacy changes onto current main, then run exact-head browser QA and verify the hosted preview. Do not merge the stale/diverged branch wholesale. In parallel, production-entry candidate work must be separate from the preview page and must preserve checkout security gates.
+
+## 2026-10-30 CONTINUATION — EXACT-HEAD DEPLOYMENT CHECK RESULTS
+
+- Queried GitHub check-runs for PR #134 exact head `8a23ce565d7237622fdd06e9630f016a5e498c6f`.
+- Cloudflare Pages check run `124077898977`: SUCCESS. Deployed preview at `https://cebd1d64.get-wired-autoworx-store.pages.dev`; branch alias `https://integration-preview-search-s.get-wired-autoworx-store.pages.dev`.
+- Cloudflare Workers build check run `124078351058`: FAILURE. This is a separate Workers service build, not the Pages preview deployment. Its summary did not expose a build error; investigate its build logs before deciding whether it is relevant. Do not treat the Pages preview as a Workers deployment.
+- Netlify redirect/header checks were neutral because no redirect/header rules were processed; Pages remains the actual preview host.
+- GitHub PR-triggered workflow lookup for this exact head returned no runs. Thus the browser QA including the new single-robots-directive assertion has NOT yet been shown to pass on this exact head. The earlier 5 successful workflows remain tied to code head `5287bb47c0ec439e68ca6b473de054227469e916`.
+- PR #134 remains draft/open and GitHub marks it `mergeable=false`, `mergeable_state=dirty`; do not merge as-is. The Pages preview URL is live for owner inspection, but not a production entry.
+- Handover update itself committed as `53569ebb0725b662d49c622d1f9a627fbce798bf`.
+- Next: inspect the Workers build failure's Cloudflare logs and determine whether it is stale/unrelated to the Pages static preview; create a clean current-main integration branch rather than merging the dirty PR; trigger exact-head browser QA on that clean branch; then build the production-entry candidate and package only after its own checks.
