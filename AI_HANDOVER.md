@@ -505,3 +505,29 @@ All artifacts are review-only under `catalogue-review/` on the review branch. Do
 - PRs #121, #125 and #128 remain unmerged. PR #126 and #129 remain open but their changes are included in #125 for integration QA; PR #127 is a closed duplicate of #121.
 - No Axxess upload, DNS, production deployment, Supabase migration/function deployment, supplier activation, public SKU/product creation, price/stock/image publication, or payment activation.
 - Planetworld quantities remain the 25-Oct workbook snapshot, not fresh supplier availability. Current store quantities outside the ASC ledger are not supplier-confirmed. Owner-directed ASC stock reset remains exactly 36 matched SKUs / 7,037 units to zero, with 0 positive ASC stock remaining.
+
+
+## LATEST CATALOGUE + PREVIEW CHECKPOINT — 2026-10-30 13:52 SAST
+
+### Seven additional Alpine official product-page matches
+- Continued exact manufacturer research against the 770-row crosswalk and found seven further exact official Alpine individual product pages: iLX-705D, KAE-HF11DA, KAE-HF9DA, KTX-HF9, RUE-4360, RUX-KNOB2 and UTE-204DAB. The total exact official product-page count is now 75 (up from 68); the crosswalk now has 466 rows still marked not independently verified and 54 with no exact official manufacturer page.
+- Added three official reference-only matches: KAC-001 installation manual, UTE-200BT official South African product catalogue, and KWE-CAM1D accessory reference on the official iLX-705D page. These are not counted as exact individual product pages.
+- KAE-HF9DA remains held: supplier description says iLX-F509, official UK page lists iLX-F905D and an Alpine regional page mentions iLX-F509A. No fitment or SKU publication until exact regional fitment is confirmed.
+- Updated crosswalk and validation test. PR #128 exact-head QA run 41050526460 completed SUCCESS; log confirms 770 source rows, 81 collision-checked proposed GW SKUs, 0 product IDs, 0 publications, source-backed component joins, supplier-routing checks, Deno type-check and responsive review.
+- No new image assets were downloaded/approved; no new GW SKUs generated; no product rows inserted/published.
+
+### Preview integration successor — PR #130
+- PR #125 was closed and replaced by draft PR #130 using the same clean-main integration branch. PR #130 head remains `e4c18fc676681efbea1cda95c3b59e0e09c3af90`; branch `integration/planetworld-preview-current-main-r3-2026-10-30`.
+- Cloudflare Pages bot confirms successful deployment for `e4c18fc`: commit URL `https://41e2bfc2.get-wired-autoworx-store.pages.dev`; branch alias `https://integration-planetworld-prev-njbp.get-wired-autoworx-store.pages.dev`.
+- PR #130 includes the five noindex preview routes, free catalogue search module/unit tests, and seven exact-model Planetworld manufacturer image sources (3 Alpine, 2 Audison, 2 Kicker). PR #129 local browser run 41049753159 confirmed all seven image assets loaded and 68-row/44-positive/24-zero/68-cost-floor checks passed. Its hosted check was stale (four images) because the hosted branch deployment had not caught up.
+- PR #130's latest Cloudflare Pages deployment succeeded, but no new exact-head GitHub Actions workflow run was returned for commit `e4c18fc` after the PR was reopened. Do not claim current hosted browser QA passed. Prior PR #125 browser run on `a558067` passed free catalogue search, store stock/ASC safety, responsive checks, smoke test, public SKU audit and package QA, but failed at Audison image load; the newer PR #129 local run passed all seven images. Current PR #130 hosted verification remains outstanding.
+- PR #126 free catalogue-search and PR #129 image changes are integrated into PR #130; comments were added to both advising not to merge separately. PR #125 is closed. PR #130 remains draft/unmerged.
+
+### Direct EFT + WhatsApp
+- PR #121 head `110cb18519b8d6e54561b0dcdf5b001291999c91` passed all six exact-head workflows, including new `DIRECT_EFT_WHATSAPP_UI_PASS`: order reference/items/total are encoded in WhatsApp; address/bank data excluded; all five EFT fields rendered; payment stays pending.
+- `docs/DIRECT_EFT_SETUP.md` and `scripts/checkout-direct-eft-whatsapp.test.mjs` are on PR #121 branch. No bank secrets configured, no Supabase function deployed, no production payment activation. PR #121 remains draft/unmerged.
+
+### Current constraints
+- PR #128 and #121 remain open/unmerged. PR #130 is the active preview integration candidate. PR #126 and #129 remain open feature branches but their changes are integrated into #130; do not merge duplicates.
+- Planetworld preview still uses the 25-Oct-2026 stock snapshot; do not represent it as current supplier availability. ASC remains zero on all 36 owner-directed ledger matches (7,037 units reset); do not re-run or broaden the reset.
+- No Axxess upload, DNS, production deployment, supplier activation, public SKU/product/image publication, live price/stock changes, Supabase migrations/functions, or payment activation without explicit owner approval.
