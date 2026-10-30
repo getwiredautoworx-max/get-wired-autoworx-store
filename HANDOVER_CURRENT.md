@@ -1,3 +1,12 @@
+## LATEST CATALOGUE REVIEW QA PASS — 2026-10-30
+
+- Latest detailed workflow **41022682276** completed **SUCCESS** at commit `4184e3e3b879cf79483ca7e8ead9ffcde9bf1cb2`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41022682276
+- Supplier routing unit/static tests passed: unmapped or conflicting supplier IDs fail closed; unmapped requests cannot auto-route; offers/procurement require a matched supplier response; owner UI requires explicit supplier selection.
+- Responsive browser QA passed at 360 / 390 / 768 / 1280 px. It covered 10 brand choices, 6 Alpine amplifier records, 84 Hertz manufacturer product records / 3 exceptions, 28 Marine Audio records, 47 Harnesses & Trims records, Audison AFBMW classification and AV10 candidate uncertainty, Kicker 48KMC6 correction, zero JS errors and no horizontal overflow.
+- Latest test is review-only. It does not validate live-store product publication, images, GW SKU mapping, checkout, payments or production deployment.
+
+---
+
 ## SUPPLIER QUOTE MISROUTING SAFEGUARD — IMPLEMENTED IN REVIEW BRANCH, TESTED — 2026-10-30
 
 - Removed the unsafe `create_request` fallback that silently assigned every unmapped quote to the first active supplier (Caelex). Customer requests now resolve only from private `product_supplier_codes.supplier_id` and active `supplier_catalog_items` mappings. Unmapped or conflicting products remain unassigned and return `supplier_resolution=UNMAPPED/AMBIGUOUS`; public customers cannot submit an internal supplier ID.
