@@ -41,7 +41,7 @@ button:disabled{opacity:.65;cursor:default}#search{flex:1;min-width:160px;max-wi
 <script>
 (function(){
 var HERTZ={"Coaxial speakers":22,"Speaker grilles":12,"Standalone subwoofers":12,"Component speaker kits":15,"Amplifiers":8,"Tweeters":4,"Subwoofer enclosures / active sub boxes":6,"Woofers / midbass drivers":4,"Controls & accessories":3,"DSP & signal processors":1};
-var tree=null,hertzReview=null,view="brands",brand=null,component=null;
+var tree=null,hertzReview=null,kickerReview=null,view="brands",brand=null,component=null;
 function $(id){return document.getElementById(id);}
 var content=$("content"),heading=$("heading"),intro=$("intro"),crumb=$("crumb"),back=$("back"),status=$("status"),search=$("search");
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -64,12 +64,15 @@ function showComponents(name){
  content.innerHTML='<div class="grid">'+buttons.join("")+'</div>';
 }
 function productCard(p){
+ var verifiedKicker=kickerReview?.products?.find(function(x){return x.supplier_item_code===p.supplier_item_code;});
  var imageStatus=p.image_status==="NOT VERIFIED"?"not verified":(p.image_status||"not verified");
- var descriptionStatus=p.manufacturer_description_status==="NOT VERIFIED"?"not verified":(p.manufacturer_description_status||"not verified");
+ var descriptionStatus=verifiedKicker?verifiedKicker.manufacturer_description_status:(p.manufacturer_description_status==="NOT VERIFIED"?"not verified":(p.manufacturer_description_status||"not verified"));
  var skuStatus=p.gw_sku_status==="NOT ASSIGNED"?"not assigned":(p.gw_sku_status||"not assigned");
- var displayName=p.display_name||p.supplier_item_name;
- var pageLink=p.official_manufacturer_page?'<div class="meta"><a href="'+esc(p.official_manufacturer_page)+'" target="_blank" rel="noopener">Official manufacturer product page</a></div>':(p.candidate_manufacturer_page?'<div class="meta">Candidate model: '+esc(p.candidate_manufacturer_model)+' — not confirmed · <a href="'+esc(p.candidate_manufacturer_page)+'" target="_blank" rel="noopener">Candidate manufacturer page</a></div>':'');
- var featureBlock=p.manufacturer_description&&String(p.manufacturer_description_status||"").startsWith("VERIFIED")?'<p class="desc">'+esc(p.manufacturer_description)+'</p>':'';
+ var displayName=verifiedKicker?.display_name||p.display_name||p.supplier_item_name;
+ var pageLink=verifiedKicker?'<div class="meta"><a href="'+esc(verifiedKicker.official_manufacturer_page)+'" target="_blank" rel="noopener">'+esc(verifiedKicker.manufacturer_evidence_label)+'</a></div>':(p.official_manufacturer_page?'<div class="meta"><a href="'+esc(p.official_manufacturer_page)+'" target="_blank" rel="noopener">Official manufacturer product page</a></div>':(p.candidate_manufacturer_page?'<div class="meta">Candidate model: '+esc(p.candidate_manufacturer_model)+' — not confirmed · <a href="'+esc(p.candidate_manufacturer_page)+'" target="_blank" rel="noopener">Candidate manufacturer page</a></div>':''));
+ var description=verifiedKicker?.manufacturer_description||p.manufacturer_description;
+ var specs=verifiedKicker?.manufacturer_specifications||"";
+ var featureBlock=verifiedKicker?'<p class="desc">'+esc(description)+'</p><p class="specs">'+esc(specs)+'</p>':(description&&String(p.manufacturer_description_status||"").startsWith("VERIFIED")?'<p class="desc">'+esc(description)+'</p>':'');
  return '<article class="product"><h3>'+esc(displayName)+'</h3><div class="meta">Supplier item code: '+esc(p.supplier_item_code)+'</div><div class="meta">Source: '+esc(p.source_file)+' · '+esc(p.source_sheet)+' row '+esc(p.source_row)+'</div><div class="pending">Image: '+esc(imageStatus)+' · Manufacturer description: '+esc(descriptionStatus)+' · GW SKU: '+esc(skuStatus)+'</div>'+featureBlock+pageLink+'</article>';
 }
 function hertzProductCard(p){
@@ -108,6 +111,6 @@ $("harness").addEventListener("click",function(){showGroup("Harnesses & Trims");
 $("hertz").addEventListener("click",function(){showComponents("Hertz");});
 $("music").addEventListener("click",function(){view="group";heading.textContent="Band Instruments & Studio";intro.textContent="This navigation remains separate from Car Audio.";content.innerHTML='<div class="empty">Separate category route. No band-instrument products are mixed into this Car Audio review.</div>';setState();});
 search.addEventListener("input",function(){var term=search.value.trim().toLowerCase();content.querySelectorAll("button,article").forEach(function(el){el.hidden=!!term&&el.innerText.toLowerCase().indexOf(term)<0;});});
-Promise.all([fetch("./car-audio-navigation-tree-review.json").then(function(r){if(!r.ok)throw new Error("Navigation data HTTP "+r.status);return r.json();}),fetch("./hertz-manufacturer-product-review.json").then(function(r){if(!r.ok)throw new Error("Hertz product review data HTTP "+r.status);return r.json();})]).then(function(data){tree=data[0];hertzReview=data[1];status.textContent="Loaded "+tree.totals.car_audio_source_rows+" Car Audio source rows and "+hertzReview.manufacturer_verified_hertz_records+" manufacturer-verified Hertz records. Review only.";showBrands();}).catch(function(err){status.textContent="Could not load review data: "+err.message;content.innerHTML='<div class="empty">Review data unavailable: '+esc(err.message)+'</div>';});
+Promise.all([fetch("./car-audio-navigation-tree-review.json").then(function(r){if(!r.ok)throw new Error("Navigation data HTTP "+r.status);return r.json();}),fetch("./hertz-manufacturer-product-review.json").then(function(r){if(!r.ok)throw new Error("Hertz product review data HTTP "+r.status);return r.json();}),fetch("./kicker-manufacturer-product-review.json").then(function(r){if(!r.ok)throw new Error("Kicker product review data HTTP "+r.status);return r.json();})]).then(function(data){tree=data[0];hertzReview=data[1];kickerReview=data[2];status.textContent="Loaded "+tree.totals.car_audio_source_rows+" Car Audio source rows, "+hertzReview.manufacturer_verified_hertz_records+" manufacturer-verified Hertz records and "+kickerReview.verified_products+" additional Kicker manufacturer records. Review only.";showBrands();}).catch(function(err){status.textContent="Could not load review data: "+err.message;content.innerHTML='<div class="empty">Review data unavailable: '+esc(err.message)+'</div>';});
 })();
 </script></body></html>
