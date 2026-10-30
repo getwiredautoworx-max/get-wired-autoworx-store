@@ -152,7 +152,7 @@ jobs:
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
-            await hosted.goto('https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
             const hostedAudit=await hosted.evaluate(skus=>{
@@ -186,7 +186,7 @@ jobs:
             await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
             await hosted.evaluate(()=>window.closePartRequest());
             await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
-            await hosted.goto('https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
@@ -197,6 +197,17 @@ jobs:
             if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
+            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
+            const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
+            if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||hostedPlanet.imageSources!==4||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));
+            await hosted.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===4&&imgs.every(img=>img.complete&&img.naturalWidth>0);},{timeout:30000});
+            const hostedPlanetWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(hostedPlanetWidth.scrollWidth>hostedPlanetWidth.innerWidth+1)throw new Error('Hosted Planetworld mobile overflow: '+JSON.stringify(hostedPlanetWidth));
+            await hosted.setViewportSize({width:1280,height:900});
+            const hostedPlanetDesktop=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(hostedPlanetDesktop.scrollWidth>hostedPlanetDesktop.innerWidth+1)throw new Error('Hosted Planetworld desktop overflow: '+JSON.stringify(hostedPlanetDesktop));
+            console.log('HOSTED_PLANETWORLD_PREVIEW_PASS '+JSON.stringify({...hostedPlanet,mobileWidth:hostedPlanetWidth,desktopWidth:hostedPlanetDesktop}));
             await hosted.close();
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
