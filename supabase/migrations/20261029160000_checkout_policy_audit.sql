@@ -3,7 +3,7 @@
 ALTER TABLE public.orders
   ADD COLUMN IF NOT EXISTS policy_acknowledged_at timestamptz,
   ADD COLUMN IF NOT EXISTS policy_version text,
-  ADD COLUMN IF NOT EXISTS policy_acknowledged_by uuid;
+  ADD COLUMN IF NOT EXISTS policy_acknowledged_by uuid REFERENCES auth.users(id);
 
 COMMENT ON COLUMN public.orders.policy_acknowledged_at IS 'Server timestamp when the authenticated customer accepted the current checkout policies.';
 COMMENT ON COLUMN public.orders.policy_version IS 'Version identifier for the Terms, Returns and Privacy documents accepted at checkout.';
