@@ -34,12 +34,12 @@ assert(proposed.every((r) => r.gw_sku_status === "PROPOSED_COLLISION_CHECKED_NOT
 assert(rows.every((r) => !r.public_product_id), "Do not invent or attach public product IDs");
 assert(rows.every((r) => r.publication_status === "NOT PUBLISHED"), "Review rows must remain unpublished");
 
-const supplierPairs = rows.map((r) => r.supplier_id_candidate + "|" + r.supplier_sku);
+const supplierPairs = rows.map((r) => r.supplier_id + "|" + r.supplier_sku);
 assert.equal(new Set(supplierPairs).size, rows.length, "Supplier/model keys must be unique within each proposed supplier");
-assert(rows.every((r) => r.supplier_id_status === "PROPOSED_NOT_REGISTERED"));
+assert(rows.every((r) => r.supplier_id_status === "REGISTERED_INACTIVE"));
 
 const sql = await readFile("catalogue-review/supplier-catalogue-stage-proposal-2026-10-30.sql", "utf8");
-assert(sql.includes("DO NOT APPLY WITHOUT EXPLICIT OWNER APPROVAL"));
+assert(sql.includes("APPLIED 2026-10-30"));
 assert(sql.includes("INSERT INTO gw_private.supplier_connections"));
 assert(sql.includes("INSERT INTO gw_private.supplier_catalog_items"));
 assert(sql.includes("ON CONFLICT (supplier_id, supplier_sku) DO NOTHING"));
