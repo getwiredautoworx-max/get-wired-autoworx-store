@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: supplier-catalogue-extraction-review
+  group: catalogue-review-branch-write
   cancel-in-progress: false
 
 jobs:
@@ -39,6 +39,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "generated catalogue review outputs"
+          git fetch origin catalogue/ingest-review-2026-10-30
+          git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
+          git stash pop
           git add catalogue-review/
           if git diff --cached --quiet; then
             echo "No extraction output changes."
