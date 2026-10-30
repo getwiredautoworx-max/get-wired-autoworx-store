@@ -4,7 +4,7 @@ import { cartCanonical, destinationCanonical, digest, signQuote } from "../_shar
 Deno.test("checkout handler rejects forged or altered delivery quotes before RPC and accepts a valid bound quote", async () => {
   const secret = "checkout-test-secret-with-more-than-32-characters";
   const savedEnv = new Map<string, string | undefined>();
-  for (const key of ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SECRET_KEYS", "DELIVERY_QUOTE_SIGNING_SECRET", "SUPABASE_PUBLISHABLE_KEY"]) savedEnv.set(key, Deno.env.get(key));
+  for (const key of ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SECRET_KEYS", "DELIVERY_QUOTE_SIGNING_SECRET", "SUPABASE_PUBLISHABLE_KEY", "DIRECT_EFT_BANK_NAME", "DIRECT_EFT_ACCOUNT_NAME", "DIRECT_EFT_ACCOUNT_NUMBER", "DIRECT_EFT_BRANCH_CODE", "DIRECT_EFT_ACCOUNT_TYPE"]) savedEnv.set(key, Deno.env.get(key));
   const originalFetch = globalThis.fetch;
   let rpcCalls = 0;
   const product = {
@@ -30,6 +30,11 @@ Deno.test("checkout handler rejects forged or altered delivery quotes before RPC
     Deno.env.delete("SUPABASE_SECRET_KEYS");
     Deno.env.set("DELIVERY_QUOTE_SIGNING_SECRET", secret);
     Deno.env.set("SUPABASE_PUBLISHABLE_KEY", "test-publishable-key");
+    Deno.env.set("DIRECT_EFT_BANK_NAME", "Test Bank");
+    Deno.env.set("DIRECT_EFT_ACCOUNT_NAME", "Get Wired AutoWorx");
+    Deno.env.set("DIRECT_EFT_ACCOUNT_NUMBER", "0000000000");
+    Deno.env.set("DIRECT_EFT_BRANCH_CODE", "000000");
+    Deno.env.set("DIRECT_EFT_ACCOUNT_TYPE", "Business Cheque");
     const items = [{ public_sku: "GW-12345678", quantity: 2 }];
     const destination = { p_delivery_address: "1 Main St", p_city: "Durban", p_province: "KwaZulu-Natal", p_postal_code: "4001" };
     const parcel = { weight_kg: 4, length_cm: 10, width_cm: 10, height_cm: 5 };
@@ -74,6 +79,12 @@ Deno.test("checkout handler rejects forged or altered delivery quotes before RPC
     if (valid.status !== 200 || Number(rpcCalls) !== 1) throw new Error("Valid bound quote did not reach mocked order RPC");
     const result = await valid.json();
     if (result.order_number !== 1001) throw new Error("Valid checkout response was not returned");
+    if (result.payment_instructions?.bank_name !== "Test Bank" || result.payment_instructions?.payment_reference !== "GW-1001") throw new Error("Complete Direct EFT instructions were not returned with the order reference");
+
+    Deno.env.delete("DIRECT_EFT_BRANCH_CODE");
+    const incompleteBankConfig = await submit(base);
+    const incompleteResult = await incompleteBankConfig.json();
+    if (incompleteBankConfig.status !== 200 || incompleteResult.payment_instructions) throw new Error("Partial Direct EFT bank configuration must not be exposed");
   } finally {
     globalThis.fetch = originalFetch;
     for (const [key, value] of savedEnv) {
