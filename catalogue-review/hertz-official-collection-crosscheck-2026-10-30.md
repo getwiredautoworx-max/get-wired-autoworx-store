@@ -181,3 +181,18 @@ All seven are individual product pages, not category/collection references. No p
 ## Fifth follow-up — X 170 exact page (2026-10-30)
 
 Supplier reference 78040250 is confirmed as Hertz X 170 Uno 170 mm coaxial: https://gr.hertz-audio.com/product/car-audio-coaxials-uno-x170/ . Manufacturer page specifies 200 W peak, 50 W continuous, 4 Ω and 60 Hz–21 kHz. Individual image still not downloaded or visually approved.
+
+
+## Sixth follow-up — supplier-brand correction and Audison exact pages (2026-10-30)
+
+| Supplier reference | Manufacturer identity | Official product page | Verification |
+|---|---|---|---|
+| 66772099 | Audison AFBMW BOOSTER 01 | https://audison.com/product/afbmw-booster/ | Exact individual official Audison page. BMW 688 Harman/Kardon booster harness; application exclusions must be retained. |
+| 66772206 | Audison AFBMW ReAMP 3 | https://audison.com/product/afbmw-reamp-3/ | Exact individual official Audison page. BMW RAM / 676 HiFi harness; 688 support is limited and pinouts differ from APBMW ReAMP 1/2. |
+
+**Critical source correction:** the Hertz staging workbook labels these two rows as Hertz, but the manufacturer identifies both as Audison accessories. Do not publish them under a Hertz brand button. The brand field requires supplier correction or owner-approved normalization before import. Compatibility is not generic: confirm the vehicle audio package and RAM/booster architecture. No price, stock, image or product publication approved.
+
+### Remaining exact-page exceptions
+- 78032225 — supplier description only says “Hertz Series Set SPL Woofer”; exact model number remains unidentified. A reseller page confirms the item code and out-of-stock status on that retailer's own page, not current Planetworld stock: https://nxtleveltech.co.za/product/hertz-series-set-spl-woofer
+- 78071121 / 78071126 — DG 250.3 / DG 300.3 grille models; exact manufacturer individual pages not found in this pass. A South African reseller page identifies DG 300.3 and item code 78071126, but this is not manufacturer evidence: https://nxtleveltech.co.za/product/hertz-dieci-series-dg-3003-12inch-speaker-grille
+- 78211040 — HCP HRC is referenced by official Hertz HCP amplifier pages as an optional remote volume control, but no separate exact HRC accessory product page was found. Keep as a family/compatibility reference, not an exact standalone page.
