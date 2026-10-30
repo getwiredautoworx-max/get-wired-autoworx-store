@@ -4382,3 +4382,18 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - Latest branch head after cleanup: f888800290a7c35e5ec3c63cedae1d4746090c0f. Cloudflare Pages deployment for this exact head is IN_PROGRESS (deployment token 99e71ec9-6fe2-46b0-96fe-cdda572bd022). Previous 4f633c1 deployment is verified successful, but does not include the final copy-only cleanup.
 - GitHub Actions checks continue to fail within seconds; log downloads return BlobNotFound and job metadata contains no steps. The exact cause is not established. Treat this as an unresolved CI blocker, not proof of code failure or success.
 - PR remains draft/unmerged. No production, payment, DNS/Axxess, database, live stock, or price changes. ASC remains excluded.
+
+## 2026-10-30 15:50 SAST — PR #135 CI FAILURE INVESTIGATION AND RETRY
+
+- Resumed the 48-hour storefront readiness work. Inspected current PR #135 evidence and the five failed exact-head Actions runs for commit `f888800290a7c35e5ec3c63cedae1d4746090c0f`:
+  - Public Package QA: run 41066178748, job 124098055543 — failure.
+  - Catalogue Image Audit: run 41066178845, job 124098055701 — failure.
+  - Populated Store Preview Browser QA: run 41066178985, job 124098056858 — failure.
+  - Storefront Smoke Test: run 41066178859, mode-detection job 124098055501 failed; smoke job skipped.
+  - Public SKU Exposure Audit: run 41066178926, job 124098056447 — failure.
+- GitHub job-log download returned Azure `BlobNotFound`; the step-summary endpoint returned no step details. Therefore the exact failing step is not established. Do not weaken tests, claim code success, or label this conclusively an application defect. The repeated very-early failures are consistent with an Actions execution/logging problem, but that cause remains unproven.
+- Requested one retry of failed jobs for all five runs; GitHub accepted all five retry requests. Await retry completion and inspect the new run/job IDs and logs before deciding next remediation.
+- Current preview catalogue work remains a draft: 68 Planetworld-derived manufacturer-verified candidates are integrated into the GW-branded preview as quote-only listings, with neutral image placeholders because image approval is not complete. These are not 68 fully imaged or priced products. No supplier costs/SKUs/source paths or supplier stock were published. The earlier separate Planetworld source preview and integrated GW preview must not be conflated.
+- ASC stock reset remains verified: 36 ASC-ledger-matched products have zero stock (7,037 units removed); no products were deleted. PR #134's previous browser evidence found 34 active ASC SKUs at zero stock and two inactive ASC SKUs absent. Do not interpret zero stock as deletion of the ASC catalogue records.
+- No Axxess upload, DNS, production deployment, payment activation, new supplier import, public price/stock change, or Supabase migration/function deployment was performed in this continuation.
+- Next: poll the five accepted retries; if logs become available, repair the first actual failing step. If they again fail before steps/logs are exposed, isolate the repository Actions runner/account failure with a minimal base-branch diagnostic workflow rather than repeatedly rerunning the full suite. In parallel, visually inspect the actual deployed GW product cards and confirm image/text geometry; only approved exact-model images may replace placeholders. Keep PR #135 draft until exact-head browser/package/SKU checks pass and the hosted preview is inspected.
