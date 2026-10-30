@@ -37,7 +37,7 @@
 **Repository:** `getwiredautoworx-max/get-wired-autoworx-store`
 **Master handover:** [`AI_HANDOVER_PERMANENT.md`](AI_HANDOVER_PERMANENT.md)
 **Approved reference storefront:** https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
-**Last checkpoint recorded:** 2026-10-20, continuation run 13.
+**Last checkpoint recorded:** 2026-10-30, supplier catalogue continuation and OneNav verification.
 
 ## MANDATORY HANDOVER PROTOCOL — DO THIS EVERY SESSION
 
@@ -384,3 +384,11 @@ These eight rules are user-authoritative and must be copied into every new hando
 ## SECURITY REVIEW — 2026-10-29
 
 No-upload continuation used existing GitHub and live Supabase source. Four Electrocity PDFs remain unextracted because the available base64 fetch cannot be safely materialized for OCR here. Read-only inspection found active shipping-quote v4 and store-checkout v5, both with JWT verification disabled. Quote endpoint returns live=true without a signed token or server quote ID; checkout forwards client-supplied quote data to an RPC that trusts live=true and matching client-supplied price/fee. Provenance and binding to address/cart/parcel/expiry are not validated. Launch HOLD. Review document: CHECKOUT_DELIVERY_QUOTE_SECURITY_REVIEW_20261029.md. No production changes or deployment credits used. Next: build and test signed, expiring quote tokens/server quote IDs and server-derived parcel checks in a review branch; do not deploy until secret configuration and end-to-end tests pass. Direct EFT only; PI40/PZ33 remain inactive, price 0, stock 0, quote-required/unconfirmed.
+
+
+## LATEST REVIEW-BRANCH POINTER — 2026-10-30
+
+- Review branch: `catalogue/complete-remaining-review-2026-10-30`.
+- Nine Planetworld OneNav source rows now have exact official product page/SKU/application matches: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
+- Potential alias `ISA-ON115-3LX` / `ON115-3LX` remains quarantined for supplier confirmation; no merge/delete. Images and GW SKU assignments remain outstanding.
+- Read the latest top entries in `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` before continuing.
