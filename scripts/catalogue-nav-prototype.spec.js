@@ -40,7 +40,7 @@ fs.mkdirSync('catalogue-review/screenshots',{recursive:true});
     await page.locator('#content [data-brand="Hertz"]').click();
     if(!(await page.locator('#content').innerText()).includes('12 exact official product pages and 12 product-image candidates'))throw new Error('Hertz image verification notice missing');
     await page.locator('#content [data-component="Component speaker kits"]').click();
-    if(await page.locator('#content article.hertz-product').count()!==3)throw new Error('Hertz component speaker kits should show 3 exact verified models');
+    const hertzKitCount=await page.locator('#content article.hertz-product').count(); if(hertzKitCount!==3)throw new Error('Hertz component speaker kits expected 3 cards, got '+hertzKitCount+'; crumb='+await page.locator('#crumb').innerText()+'; content='+await page.locator('#content').innerText());
     if(!(await page.locator('#content').innerText()).includes('MPK 165.3')||!(await page.locator('#content').innerText()).includes('CK 130')||!(await page.locator('#content').innerText()).includes('CK 165'))throw new Error('Hertz component model descriptions missing');
     await page.waitForFunction(()=>Array.from(document.querySelectorAll('#content img.hertz-product-image')).length===3&&Array.from(document.querySelectorAll('#content img.hertz-product-image')).every(img=>img.complete&&img.naturalWidth>0),{timeout:15000});
     const hertzKitImages=await page.locator('#content img.hertz-product-image').evaluateAll(imgs=>imgs.every(img=>img.complete&&img.naturalWidth>0));
