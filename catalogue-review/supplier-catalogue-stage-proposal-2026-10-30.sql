@@ -1,5 +1,6 @@
 -- APPLIED 2026-10-30 to the private Supabase project. This is an idempotent staging seed (ON CONFLICT DO NOTHING), not a migration.
--- Both supplier connections and all 770 supplier_catalog_items are inactive/unlinked/quote-on-request.
+-- Planetworld connection was activated after dealer-onboarding confirmation on 2026-10-30; Audio Connections remains inactive.
+-- All 770 supplier_catalog_items remain inactive/unlinked/quote-on-request.
 -- Do not activate suppliers/items or create public products without separate approval.
 -- This stages supplier source items as inactive, unlinked, quote-on-request records.
 -- It does NOT create public.products rows, assign product IDs, import prices/stock, or publish images.
