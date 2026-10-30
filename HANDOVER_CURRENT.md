@@ -3768,3 +3768,28 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - New PR #116 workflow commit: `1a5ea360e33589cac1d644811e508a0d3c014d32`. Exact-head browser run had not yet appeared in the run lookup at the time of this note.
 - Prior run 41035512271 reached and passed the following assertions before the close-button issue: populated catalogue/ASC stock checks, product detail modal, Part Search dialog, no-AI copy, Request a Part dialog, and photo upload configuration/source checks. Audio-route assertions and hosted checks had not yet been reached in that run.
 - Continue from this branch head; do not restart the preview or modify live data.
+
+
+---
+
+## VERIFIED PR #116 POPULATED PREVIEW + PART SEARCH / NO-AI / AUDIO QA — 2026-10-30
+
+- Exact tested preview branch head: `1a5ea360e33589cac1d644811e508a0d3c014d32`.
+- **Populated Store Preview Browser QA run 41035774818 — SUCCESS**, job 123996103990. Its log contains both `POPULATED_PREVIEW_PASS` and `HOSTED_PREVIEW_PASS`.
+- Local preview test now verifies:
+  - 4,187 live active products and 103 categories load.
+  - 34 active ASC products are present at stock zero; 0 positive ASC stock; 2 inactive ASC ledger products remain absent from the active public query.
+  - Category click and product detail modal open.
+  - Product detail modal closes, header Part Search opens, no-AI photo-request fallback text is present, and Request a Part form opens.
+  - Photo input accepts multiple JPG/PNG images; source enforces a five-photo maximum; no OpenAI/Gemini image-search endpoint is present in preview source.
+  - Car Audio category exposes Car Audio & Video, Home Entertainment and Studio Equipment routes; clicking Car Audio & Video reaches the car audio area route.
+  - Mobile 390px scroll width=390; desktop 1280px scroll width=1280; no page errors.
+- Hosted preview test also passed against `https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/preview-store.html`: 4,187 products, 103 categories, 34 active ASC products all zero, checkout hidden, preview notice present, no private address leak, product modal opens, 390px mobile no overflow and no page errors. Note: the new Part Search/no-AI/audio-specific assertions run against the isolated branch's local build; the hosted test confirms the currently served preview's existing product/category/modal/safety behavior.
+- Exact-head supporting checks:
+  - Cloudflare Pages Public Package QA run 41035774740 — SUCCESS.
+  - Public SKU Exposure Audit run 41035774720 — SUCCESS.
+  - Storefront Smoke Test run 41035774894 — SUCCESS; legacy smoke step skipped as expected because main remains buttons-only.
+- Closed stale/divergent PR #94 and PR #99 as superseded, not merged. Their needed Part Search compatibility, catalogue-load refresh, audio-area navigation and no-AI photo-request behavior are represented in PR #116's isolated preview and covered by the exact-head QA above. This reduces parallel integration candidates to one active populated-preview PR.
+- PR #116 remains draft/unmerged and is not merge-ready: it is 13 commits ahead / 31 behind main. Main remains buttons-only. No production release, Axxess, DNS, PayFast, Supabase write, live price/stock change, supplier publication or Cloudflare Worker configuration change occurred.
+- Supplier product mapping/catalogue publication is still data-gated, not a storefront-code blocker: 770 supplier records are privately staged and inactive; no exact existing public product matches were found for the 702 Planetworld source SKUs; 81 unique proposed GW SKU IDs remain collision-checked internal candidates, with no public product rows inserted. Do not invent matches or publish incomplete product records.
+- The prior hosted preview URL remains valid for owner review. Non-ASC quantities are current store-record values only; supplier_stock is empty and those quantities are not newly supplier-confirmed. Checkout and supplier submissions remain disabled.
