@@ -3504,3 +3504,15 @@ User instruction: resolve Planetworld and Audio Connections catalogue work, exac
 7. Payment integration and final launch checks remain the separate final blocker; leave untouched until catalogue/product presentation is verified and payment changes are explicitly approved.
 
 Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. Review files/prototypes are not customer-facing and must not be merged as production catalogue data without verification.
+
+
+---
+
+## CRITICAL BLOCKER EXECUTION CHECKPOINT — 2026-10-30
+
+- New read-only Supabase schema/data inspection establishes the supplier mapping root cause: `gw_private.product_supplier_codes` has 4,198 rows across 4,198 distinct products and all 4,198 have NULL `supplier_id`; `gw_private.supplier_catalog_items` is empty; `gw_private.supplier_connections` has only Caelex Infolog, Accessories Spares Centre and Electro City (no Planetworld or Audio Connections). The 702 Planetworld Car Audio source rows have zero exact `sku/public_sku` matches. Do not assign the legacy NULL supplier IDs by assumption or create guessed product mappings. No Supabase writes/schema changes.
+- Latest review branch Hertz audit corrects stale progress: 87 source rows; 84 manufacturer-verified Hertz records; 2 source-brand mismatches are Audison; 3 Hertz items remain unresolved (78032225, 78071121, 78071126). Exact manufacturer page/specification references exist for verified rows, but images remain unverified/unapproved and GW SKUs remain unassigned. Source cost fields remain private. Evidence: `catalogue-review/hertz-manufacturer-product-review.json` on review commit `ca62aa98419aede1eb3963b7989767eb3583cf34`.
+- PR #110 head tree `1fb086c1ffb3e0e06ef6a97bfcdca502389ec174` independently confirms 47 Planetworld XLSX files under canonical `suppliers/Planetworld/` and zero XLSX files at the old `catalogue-source/suppliers/planetworld/incoming-xlsx/` path. PR #110 remains draft/unmerged; main is not updated by that review-only move.
+- Car Audio review prototype responsive QA run 41022045101 completed SUCCESS; this is not populated-store acceptance. Sony browser image audit run 41021963315 was still IN_PROGRESS at last poll; no final candidate result claimed.
+- Main storefront remains buttons-only. No public product/image/GW SKU publication, Supabase write, live price/stock change, Axxess/DNS/payment change, PR merge or production deployment. Launch HOLD.
+- Next: poll Sony audit; verify individual official image binaries visually; finish exact model/spec/image crosswalks for Planetworld and Audio Connections; obtain supplier clarification for the three Hertz exceptions; keep all uncertain rows quarantined. Any production supplier connection, supplier-ID backfill, catalogue or product/SKU write requires explicit approval first. Full details: `handover-updates/2026-10-30-critical-blockers-database-mapping-root-cause.md`.
