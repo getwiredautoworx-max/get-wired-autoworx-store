@@ -46,7 +46,8 @@ function $(id){return document.getElementById(id);}
 var content=$("content"),heading=$("heading"),intro=$("intro"),crumb=$("crumb"),back=$("back"),status=$("status"),search=$("search");
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function setState(){back.disabled=view==="brands";crumb.textContent=view==="brands"?"Car Audio & Video":view==="components"?brand:brand+" / "+component;}
-function brandCard(name,count){return '<button class="brand-card" type="button" data-brand="'+esc(name)+'"><span class="wordmark">'+esc(name)+'</span><span class="count">'+count+' source products</span><span class="logo-status">Official logo pending verification</span></button>';}
+const brandLogos={Alpine:"./brand-logo-candidates/alpine-logo-candidate-2.png",Audison:"./brand-logo-candidates/audison-logo-candidate-2.svg",Kicker:"./brand-logo-candidates/kicker-logo-candidate-1.png"};
+function brandCard(name,count){const logo=brandLogos[name];const logoHtml=logo?'<span class="brand-logo-frame logo-'+esc(name.toLowerCase())+'"><img src="'+logo+'" alt="'+esc(name)+' official brand logo"></span>':'<span class="wordmark">'+esc(name)+'</span><span class="logo-status">Official brand logo pending verification</span>';return '<button class="brand-card" type="button" data-brand="'+esc(name)+'">'+logoHtml+'<span class="count">'+count+' source products</span></button>';}
 function showBrands(){
  view="brands";brand=null;component=null;heading.textContent="Car Audio & Video";intro.textContent="Choose a manufacturer, then a component group.";setState();
  var cards=Object.keys(tree.brands).sort().map(function(n){return brandCard(n,tree.brands[n].item_count);});
