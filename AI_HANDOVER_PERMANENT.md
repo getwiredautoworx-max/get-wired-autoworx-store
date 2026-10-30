@@ -1,3 +1,12 @@
+## AUDISON AV 10 D4 II SOURCE-CORRECTION CANDIDATE — 2026-10-30
+
+- Found the official Audison AV 10 D4 II individual product page: https://audison.com/product/av-10-d4-ii/ . It confirms a 250 mm, 4+4 Ω, 1100 W peak / 550 W continuous subwoofer.
+- Supplier row 69040100 (source row 63) contains corrupted text `AV 10 +C170:C209+C170:C209D4 II`; adjacent row 69040105 is the AV 10 D2 II. The official page is now recorded as a **candidate only**, not an exact supplier item-code match. Original source wording remains in the tree and the display label is normalized to “Audison 250 mm shallow subwoofer — model confirmation pending”.
+- The review card shows the candidate page and explicitly says “not confirmed”; manufacturer description remains unverified and image/GW SKU remain on hold. Exact model confirmation still requires visual inspection of the original supplier source cell or Planetworld confirmation.
+- Added Playwright assertions to prevent the corrupted source string from being displayed as a product name or the AV 10 D4 II candidate from being treated as confirmed. Await the latest responsive QA run before claiming this correction tested.
+
+---
+
 ## SUPABASE SUPPLIER-MAPPING ROOT CAUSE — RE-AUDITED READ-ONLY — 2026-10-30
 
 - Corrected the mapping audit with fresh SQL aggregates. Store database: 4,200 `public.products`; 4,198 `gw_private.product_supplier_codes`; all 4,198 legacy rows have `supplier_id IS NULL`; all 4,198 legacy `supplier_sku` values do join `public.products.sku`. This legacy relation is not supplier-attributed and is not the new Planetworld mapping.
