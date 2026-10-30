@@ -176,3 +176,8 @@ These are individual product-page matches, not collection-only matches. Images a
 | 78270030 | HRC BM2 | https://hertz-audio.com/product/hrc-bm2/ | Level adjustment −20 to +6 dB. |
 
 All seven are individual product pages, not category/collection references. No product image has been downloaded or approved.
+
+
+## Fifth follow-up — X 170 exact page (2026-10-30)
+
+Supplier reference 78040250 is confirmed as Hertz X 170 Uno 170 mm coaxial: https://gr.hertz-audio.com/product/car-audio-coaxials-uno-x170/ . Manufacturer page specifies 200 W peak, 50 W continuous, 4 Ω and 60 Hz–21 kHz. Individual image still not downloaded or visually approved.
