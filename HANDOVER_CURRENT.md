@@ -4407,3 +4407,11 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - This repeat across five separate workflows, including independent package, image, browser, smoke-mode and SKU audits, makes a shared GitHub Actions execution/logging issue the leading working hypothesis, but it is not yet proven. Do not spend more time blindly retrying these same jobs. Next diagnostic should be one minimal workflow committed on the base branch with only checkout and a single echo/exit step; inspect its run/job metadata and logs. If that also fails before a step/log appears, pause app-level debugging and resolve GitHub Actions service/permissions/runner availability first.
 - Handover was updated on main with the initial failure IDs and retry request in commit `6bccec4e654258f89355823cd6b71756a48d9691`; this addendum records the completed retry outcome.
 - Storefront release status is unchanged: PR #135 remains draft, no production merge/deploy, Axxess/DNS, payment activation, Supabase runtime change or live stock/price publication. Preview catalogue images and final card geometry still require hosted visual verification.
+
+
+## 2026-10-30 15:54 SAST — BASE-BRANCH MINIMAL RUNNER DIAGNOSTIC ADDED
+
+- Added `.github/workflows/runner-diagnostic.yml` on main in commit `886333a63866165f3a7ca28ca1c916b48ac067c2`. It is deliberately minimal: ubuntu-24.04, checkout, print runner OS/architecture and commit, then exit successfully. No artifacts, secrets, external services, deployments or data writes.
+- The workflow triggers on a push that changes only this diagnostic file and supports manual dispatch. Its purpose is to distinguish a shared runner/Actions execution problem from failures in the five PR #135 application workflows.
+- The available GitHub connector exposes PR-triggered workflow runs only and has no repository-wide workflow-run listing/dispatch action, so the diagnostic's run result cannot yet be retrieved through the current tool surface. Do not claim it passed or failed until an actual run result/log is available.
+- PR #135 remains unmerged/draft; customer preview and production release gates unchanged.
