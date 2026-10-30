@@ -467,3 +467,15 @@ All artifacts are review-only under `catalogue-review/` on the review branch. Do
 4. Planetworld preview stock remains the 2026-10-25 snapshot (44 positive / 24 zero across 68 preview candidates), not a fresh supplier feed. Refresh when a new workbook arrives.
 5. Configure Direct EFT secrets only when owner is ready, directly in Supabase Dashboard; then use a non-production test and explicit deployment approval. WhatsApp remains no-cost click-to-chat, not automated notifications.
 6. No Axxess/DNS/production deployment, live payment activation, supplier price/stock/public product writes or image publication without explicit owner approval.
+
+
+## PREVIEW IMAGE LOAD CORRECTION — 2026-10-30 13:40 SAST
+
+- PR #125 browser run 41049349319 reached the Planetworld image assertion and failed on both Audison static image URLs; both Kicker URLs loaded successfully. This is a real image-source/load issue, not a browser-layout failure.
+- Removed the two non-loading Audison `imageUrl` values from the review page. Audison products now show brand placeholders plus official manufacturer links until verified image assets are available. Retained only the two Kicker model-specific image URLs that loaded successfully.
+- Updated local and hosted browser assertions to expect exactly two Kicker images and require both to load. Updated the preview notice and PR #125 description so no broken Audison images or stale four-image claim remains.
+- Current PR #125 head: `74e98655796e00a217c9fcbd326afff276d7d14a`. Cloudflare Pages bot reports the Pages build for this head is still **in progress**; the hosted branch alias remains `https://integration-planetworld-prev-njbp.get-wired-autoworx-store.pages.dev`. Do not declare the hosted preview ready until this deployment succeeds and the new exact-head browser workflow passes.
+- Previous PR #125 checks on head `a55806738a529275b7c00174c243daf59de50759`: Free Catalogue Search Tests SUCCESS; Storefront Smoke Test SUCCESS; Public SKU Exposure Audit SUCCESS; Cloudflare Pages Public Package QA SUCCESS; Populated Store Preview Browser QA FAILED only at the two Audison image loads. A new exact-head run is required for head `74e9865`.
+- PR #128 supplier mapping reconciliation remains verified: exact joins 702 Planetworld + 68 Audio Connections; zero unclassified; workflow 41049054208 SUCCESS with `SUPPLIER_GW_CROSSWALK_PASS`, routing tests, Deno check and responsive review.
+- PR #121 now also contains `docs/DIRECT_EFT_SETUP.md` with safe five-secret setup and non-production test instructions; no secret values or production changes.
+- No production/Axxess/DNS/payment activation, supplier activation, public product/SKU/image publication, or live price/stock writes were made.
