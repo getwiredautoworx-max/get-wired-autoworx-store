@@ -1,360 +1,94 @@
-## LATEST KICKER EVIDENCE + SUPPLIER ROUTING QA — 2026-10-30
-
-- Latest QA run **41023292662 SUCCESS** at `8bba587f81a878c653b4cbc85b5fb1a8fefbbe6a`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41023292662 . The current Playwright suite now asserts Kicker KEY200.4 (47KEY2004ISO), KEY500.1 (47KEY5001), and Hideaway HS8 (51HS8) manufacturer features and official product links; it also checks the KMC6 source correction. The run passed.
-- Kicker audit: 189 unique source references; 17 standard Car Audio exact individual product pages + 5 Marine exact individual product pages = **22 exact pages**; **64 official collection matches**; **103 standard Car Audio rows still lack an official product page/collection match**. 19 manufacturer evidence upgrades are documented in `planetworld-kicker-evidence-crosscheck-2026-10-30.md`. The KMC6 exact manufacturer code is retained; the conflicting KMC5 source wording is corrected.
-- Supplier routing: fail-closed mapping resolver, explicit owner supplier selection, matched supplier-response requirements for offers/procurement. Node unit/static tests and Deno 2.9.8 type-check pass; no live Supabase deploy or writes.
-- Responsive QA passed at 360/390/768/1280 px: 10 brands, 6 Alpine amplifiers, 84 verified Hertz records, 3 Hertz exceptions, 28 Marine Audio, 47 Harnesses & Trims, zero JS errors and no horizontal overflow.
-- All work remains isolated to `catalogue/complete-remaining-review-2026-10-30`. No product images approved, GW SKUs assigned, supplier price/stock imported, production deployment or payment/DNS/Axxess changes.
-
----
-
-## LATEST KICKER / SUPPLIER ROUTING QA PASS — 2026-10-30
-
-- Latest review workflow **41023292662** completed **SUCCESS** at commit `8bba587f81a878c653b4cbc85b5fb1a8fefbbe6a`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41023292662
-- Supplier routing tests passed: unmapped/conflicting supplier IDs fail closed; unmapped requests cannot auto-route; customer offers/procurement require a matched supplier response; owner UI requires explicit supplier selection.
-- Deno type-check passed for `supabase/functions/supplier-quote/index.ts` (no live Supabase deployment or database write).
-- Responsive QA passed at 360 / 390 / 768 / 1280 px. The new Kicker product-detail assertions passed for KEY200.4 (47KEY2004ISO), KEY500.1 (47KEY5001) and Hideaway HS8 (51HS8), including official product links, manufacturer features and no supplier price/stock leakage. Existing Audison AFBMW, AV10 candidate, KMC6, Hertz and category-routing checks also passed.
-- Kicker now has **17 standard Car Audio exact individual pages + 5 Marine exact individual pages = 22 exact pages** across 189 source rows; 64 official collection matches remain separate and 103 standard rows still need product-page or collection evidence. Images remain unapproved.
-
----
-
-## FINAL REVIEW QA — SUPPLIER ROUTING DENO TYPE-CHECK PASSED — 2026-10-30
-
-- Latest exact-head workflow run **41023224830 SUCCESS** at `db1badd092ca4bf88711f0bfd79bf04b78bfbb67`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41023224830 .
-- Confirmed in the same run: supplier resolver unit tests PASS; static supplier quote routing / owner UI assertions PASS; **Deno 2.9.8 `deno check --no-lock supabase/functions/supplier-quote/index.ts` PASS**; responsive Playwright QA PASS at 360, 390, 768 and 1,280 px.
-- Browser results: 10 brand buttons; 6 Alpine amplifiers; 84 manufacturer-verified Hertz cards; 3 unresolved Hertz holds; 28 Marine Audio; 47 Harnesses & Trims; 0 JS errors; no horizontal overflow.
-- The supplier routing changes are now Deno-type-checked, but still not exercised against a live/staging Supabase database and not deployed. No live database writes, Edge Function deploy, quote creation, payment change or production change.
-- Kicker evidence recheck: 189 unique references; 19 individual/verified pages; 64 official collection matches; 106 without official page/collection evidence. The 16 additions and corrected counts are recorded in the Kicker audit/crosscheck and the preceding handover note.
-
----
-
-## KICKER MODEL AND FEATURE VERIFICATION — 2026-10-30
-
-- Added three exact official KICKER product-page matches: 47KEY2004ISO (KEY200.4 Smart 4-channel amp with ISO harness), 47KEY5001 (KEY500.1 Smart mono amp) and 51HS8 (Hideaway HS8 powered subwoofer).
-- Added manufacturer-confirmed feature descriptions to the review tree and enabled verified descriptions to appear on review cards. Image status remains NOT VERIFIED; GW SKU remains NOT ASSIGNED.
-- Kicker coverage is now **17 exact individual pages for 161 standard Car Audio rows, 5 exact individual pages for 28 Marine Audio rows, 22 exact individual pages overall across 189 source rows**. Standard unresolved rows: 103; collection-only matches remain a separate evidence level.
-- The current detailed Playwright suite now asserts the KEY200.4 / KEY500.1 feature text, official links, no supplier price/stock leakage, and HS8 150 W RMS / 25–120 Hz feature details. Await the next run before claiming these new assertions passed.
-
----
-
-## KICKER MANUFACTURER EVIDENCE RECONCILIATION — 2026-10-30
-
-- Recounted the current `planetworld-kicker-official-model-audit.csv`: **189 unique supplier references**, not the stale 122-row figure previously carried in the summary. Corrected the summary JSON from the actual CSV statuses.
-- Added 16 official KICKER evidence matches: 48CWRT122/124/672/674/82/84 (CompRT collection); 46CK4, 46CK8, 47VK6, 47VK8 and 46PKD1 (Amplifier Install Kits collection); 44DL7S122 and 44VL7S122 (exact individual L7S loaded-enclosure product pages); 45DL7R122 (L7R loaded-enclosure collection); 45L7R102 and 45L7R124 (L7R subwoofer collection).
-- Current Kicker evidence totals: **19 exact individual/verified product pages** (14 standard car-audio + 5 marine), **64 official collection matches** (41 standard car-audio + 23 marine), and **106 rows still without an official individual product page or collection match recorded**. These evidence classes are not image or publication approval.
-- Updated `catalogue-review/planetworld-kicker-official-model-audit.csv`, `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json` and added `catalogue-review/planetworld-kicker-evidence-crosscheck-2026-10-30.md` with exact source links.
-- No product image binary downloaded/approved, no GW SKU assigned, no customer price/live stock imported, no product published, and no Supabase/Axxess/DNS/payment/production changes.
-- Repository hygiene: the new Kicker crosscheck was briefly created on default branch by a missing branch argument, immediately deleted, and verified absent from main. The intended copy is committed only to `catalogue/complete-remaining-review-2026-10-30`. No lasting Kicker review file remains on main.
-
----
-
-## LATEST CATALOGUE REVIEW QA PASS — 2026-10-30
-
-- Latest detailed workflow **41022682276** completed **SUCCESS** at commit `4184e3e3b879cf79483ca7e8ead9ffcde9bf1cb2`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41022682276
-- Supplier routing unit/static tests passed: unmapped or conflicting supplier IDs fail closed; unmapped requests cannot auto-route; offers/procurement require a matched supplier response; owner UI requires explicit supplier selection.
-- Responsive browser QA passed at 360 / 390 / 768 / 1280 px. It covered 10 brand choices, 6 Alpine amplifier records, 84 Hertz manufacturer product records / 3 exceptions, 28 Marine Audio records, 47 Harnesses & Trims records, Audison AFBMW classification and AV10 candidate uncertainty, Kicker 48KMC6 correction, zero JS errors and no horizontal overflow.
-- Latest test is review-only. It does not validate live-store product publication, images, GW SKU mapping, checkout, payments or production deployment.
-
----
-
-## SUPPLIER QUOTE MISROUTING SAFEGUARD — IMPLEMENTED IN REVIEW BRANCH, TESTED — 2026-10-30
-
-- Removed the unsafe `create_request` fallback that silently assigned every unmapped quote to the first active supplier (Caelex). Customer requests now resolve only from private `product_supplier_codes.supplier_id` and active `supplier_catalog_items` mappings. Unmapped or conflicting products remain unassigned and return `supplier_resolution=UNMAPPED/AMBIGUOUS`; public customers cannot submit an internal supplier ID.
-- Owner quote detail now returns active supplier choices. The owner app requires selecting the actual supplier before recording a supplier response and displays when Planetworld / Audio Connections are not registered. Saving a response refreshes the response record and enables the customer-offer step only when a supplier response exists.
-- `record_supplier_response` validates the selected supplier is active and records it on the quote. `create_offer` requires an assigned supplier and a supplier response belonging to that same supplier. `authorize_procurement` now requires PAID status, an active assigned supplier and a matching supplier response before creating a procurement order.
-- Added pure supplier-resolution unit tests and static integration assertions. **Latest exact-head GitHub Actions run 41022797295 SUCCESS** at commit `225bc4bd46d19cc833389eb5ec0e142c05c61a4b`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41022797295 . Both supplier-routing test scripts passed; Playwright review QA passed at 360/390/768/1280 px with 84 Hertz verified cards, 3 unresolved exceptions, 28 Marine Audio and 47 Harnesses & Trims, zero JS errors and no horizontal overflow.
-- Scope is repository/review branch only. **No Supabase Edge Function deployment, database writes, schema changes, supplier connection inserts, quote creation, payment-provider changes or production deployment occurred.** This is not a Deno runtime/integration test. Before deployment, run `deno check` and an authorised staging integration test; register Planetworld and Audio Connections only after owner approval and actual connection details are available.
-
----
-
-## SONY OFFICIAL IMAGE BROWSER AUDIT — EXTERNAL BRANCH RUNNING — 2026-10-30
-
-- An existing workflow `.github/workflows/sony-browser-image-audit.yml` is running as **41021963315** on `catalogue/ingest-review-2026-10-30`, head `5642c012a092f4b009551d45c90596b4b3ca6f8c`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021963315
-- It renders 14 official Sony product pages, records model-related image candidates and downloads candidate image binaries to a review-only folder. It does not publish images to customer products. At the last check it remained in the browser-audit step; no completion or downloaded-image count has been confirmed yet.
-- When it finishes, inspect the generated CSV and candidate binaries visually; do not mark any candidate approved solely because the page returned HTTP 200. Copy only reviewed evidence into this current review branch if useful.
-
----
-
-## AUDISON AV 10 D4 II SOURCE-CORRECTION CANDIDATE — 2026-10-30
-
-- Found the official Audison AV 10 D4 II individual product page: https://audison.com/product/av-10-d4-ii/ . It confirms a 250 mm, 4+4 Ω, 1100 W peak / 550 W continuous subwoofer.
-- Supplier row 69040100 (source row 63) contains corrupted text `AV 10 +C170:C209+C170:C209D4 II`; adjacent row 69040105 is the AV 10 D2 II. The official page is now recorded as a **candidate only**, not an exact supplier item-code match. Original source wording remains in the tree and the display label is normalized to “Audison 250 mm shallow subwoofer — model confirmation pending”.
-- The review card shows the candidate page and explicitly says “not confirmed”; manufacturer description remains unverified and image/GW SKU remain on hold. Exact model confirmation still requires visual inspection of the original supplier source cell or Planetworld confirmation.
-- Added Playwright assertions to prevent the corrupted source string from being displayed as a product name or the AV 10 D4 II candidate from being treated as confirmed. Await the latest responsive QA run before claiming this correction tested.
-
----
-
-## SUPABASE SUPPLIER-MAPPING ROOT CAUSE — RE-AUDITED READ-ONLY — 2026-10-30
-
-- Corrected the mapping audit with fresh SQL aggregates. Store database: 4,200 `public.products`; 4,198 `gw_private.product_supplier_codes`; all 4,198 legacy rows have `supplier_id IS NULL`; all 4,198 legacy `supplier_sku` values do join `public.products.sku`. This legacy relation is not supplier-attributed and is not the new Planetworld mapping.
-- Compared the **702 distinct original Planetworld source SKUs** against `public.products.sku`, `public.products.public_sku`, `gw_private.product_supplier_codes.supplier_sku` and `gw_private.supplier_catalog_items.supplier_sku`: **0 matches in all four checks**. `gw_private.supplier_catalog_items` has 0 rows.
-- `gw_private.product_supplier_codes.supplier_id` and `gw_private.supplier_catalog_items.supplier_id` reference `gw_private.supplier_connections.id`. Only three active connections exist: Caelex Infolog (portal), Accessories Spares Centre (email), and Electro City (manual). Planetworld and Audio Connections are not registered.
-- Updated `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json` and the verification summary JSON. This is now the exact blocker: the existing 4,198 legacy SKU joins do not identify their supplier; no Planetworld source SKU is linked to a product or GW public_sku; no supplier catalogue rows or supplier connections exist for Planetworld/Audio Connections.
-- **No Supabase writes or schema changes.** Do not invent supplier IDs, use `products.sku` as a GW public_sku, or attach product images to a guessed product. Before any write, confirm app-code semantics for legacy `sku` versus `public_sku`, then obtain explicit approval and the real supplier connection details. Keep Planetworld/Audio Connections catalogues in staging until the supplier/product links are validated.
-
----
-
-## KICKER KMC6 CORRECTION — RESPONSIVE QA PASS — 2026-10-30
-
-- Detailed review workflow **41022045101** completed **SUCCESS** after the 48KMC6 correction: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41022045101
-- The Playwright suite passed at 360 / 390 / 768 / 1280 px, including the Marine Audio assertion that 48KMC6 displays as **KMC6 Premium Media Center**, links to the exact official KICKER product page, shows manufacturer verification, and no longer displays the incorrect KMC5 supplier wording. Marine count remains 28.
-- No image binary was downloaded/approved and no GW SKU, price, stock or production record was changed.
-
-## PR #94 STATUS — KEEP SEPARATE FROM CATALOGUE REVIEW
-
-- PR #94 is still **open, draft and unmerged**, head branch `fix/part-search-load-race-smoke-qa-2026-10-23`, head SHA `b7b345cc836fa168ae64be49e3a6756dc3e591f0`, base `main`; GitHub reports `mergeable=false`.
-- PR #94 is a separate Part Search/browser-smoke fix, not the Car Audio catalogue review branch. Its description still says exact-head CI evidence is outstanding and it must remain draft until that specific fix has passing exact-head browser evidence. Do not merge the catalogue review branch into PR #94 or claim PR #94 is resolved based on catalogue QA.
-
----
-
-## KICKER MARINE KMC6 MODEL CONFLICT RESOLVED — 2026-10-30
-
-- Corrected Planetworld supplier item **48KMC6** from the erroneous source description “KMC5” to the exact manufacturer model **KMC6 Premium Marine Media Center** using KICKER's official product page https://www.kicker.com/48KMC6 .
-- The review tree preserves the original supplier wording in `source_description_original`, uses the corrected KMC6 display name, adds the official manufacturer description and page link, and retains the item in the separate Marine Audio category (not Car Audio).
-- Updated the Kicker model audit and verification summary: Marine Kicker exact product pages **5**, collection-only matches **22**, model-code/description conflicts **0** (previously one). No image binary downloaded/approved, no GW SKU assigned, no price/stock changes.
-- Added Playwright assertions to verify KMC6 display, official manufacturer status/link and absence of the old KMC5 wording in the Marine Audio route. The next detailed QA run must pass before this correction is marked fully tested.
-
----
-
-## SMALL-BRAND MODEL EVIDENCE ADVANCE — 2026-10-30
-
-- Rechecked all 21 Focal/JVC/Kenwood/Pioneer source rows and updated `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv`, the summary JSON and new `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-evidence-crosscheck-2026-10-30.md`.
-- Found exact official JVC underlying head-unit pages for KD-R492 (supplier bundle KPE-KDR492) and KD-R891BT (supplier bundle KPE-KDR891). The KPE bundle/harness composition is still unverified; these are not exact supplier SKU matches and must not be treated as complete-bundle image approval.
-- Confirmed Kenwood KDC-1040U and KDC-154UM in an official model-specific manual/specification PDF; confirmed JVC RM-RK258 as an optional remote in official JVC receiver pages. Neither has a standalone accessory/product page or approved image yet.
-- Corroborated JVC/Kenwood E3A-0323-00 as a DC cord assembly through genuine spare-part listings, but no standalone official manufacturer product page was found; receiver compatibility still needs checking.
-- Pioneer TS-G1610F-2 now has a related official TS-G1610F page and specifications, but the “-2” supplier suffix remains unexplained. Focal KIT SUB P20FE remains ambiguous because the kit contents are not confirmed.
-- Evidence breakdown for the 21 rows is now: 5 exact individual official pages; 7 official collection matches; 1 official support page; 2 official model-specific manuals; 1 official optional-accessory mention; 2 underlying official head-unit pages for supplier bundles; 2 ambiguous kit/suffix matches; 1 third-party OEM part-number corroboration; 0 with no model/part evidence at all. These are evidence tiers, not publication approvals.
-- No image binaries downloaded/approved, no GW SKU assigned, no product published, no price/stock imported and no live database/production changes.
-
----
-
-## COMBINED CAR AUDIO NAVIGATION QA PASS — 2026-10-30
-
-- Canonical detailed review workflow **41021768299** completed **SUCCESS** at commit `dc5abcb64069cb08a76e56447ffa857a85b1b274`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021768299
-- Playwright passed at **360 / 390 / 768 / 1280 px**. It validated 10 manufacturer brand choices, 6 Alpine amplifier records, 84 manufacturer-verified Hertz records with 3 exceptions, 28 separately routed Marine Audio records, 47 Harnesses & Trims records, no JavaScript errors and no horizontal overflow.
-- The same passing run also exercised the newly added Audison → Harnesses & Trims route: 8 records, including AFBMW BOOSTER 01 and AFBMW ReAMP 3, with official Audison page links, manufacturer description verified, images still not verified and GW SKUs unassigned. Supplier cost/stock fields did not leak into product cards.
-- Combined review tree is now 704 source rows: 629 brand products (Audison 96), 28 Marine Audio and 47 separate Harnesses & Trims records. Hertz remains 87 records (84 with manufacturer product records; 3 exceptions). This is review-only; no live product publication, image assignment, GW SKU creation, Supabase write or deployment.
-- Earlier failures were stale test assertions/data-load wait conditions; the current detailed workflow passed after the 704-row and Audison reclassification updates. Keep run 41021768299 as the latest verified QA evidence.
-
----
-
-## EXACT-HEAD REVIEW QA CONFIRMED — 2026-10-30
-
-- The review-branch workflow now checks out the triggering commit SHA, preventing tests from silently running against a moving branch head.
-- **Latest exact-head run: 41021714286 — SUCCESS** at commit `2124861cfa6960e91c081ab0d0b67473b3a1dd14`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021714286 . Playwright passed at 360, 390, 768 and 1,280 px with 10 brand choices, 6 Alpine amplifiers, 84 Hertz verified product cards, 3 unresolved Hertz exceptions, 28 Marine Audio records and 47 Harnesses & Trims records. It also passed Audison AFBMW reclassification and manufacturer-link assertions, supplier price/stock privacy checks, image/GW-SKU hold checks, zero browser errors and no horizontal overflow.
-- Earlier intermediate runs failed because the branch's data changed from 702 to 704 source rows while a test was still asserting the earlier count. The exact-commit checkout and current 704-row assertion are now in place; the latest exact-head run is green. Do not repeat the older stale 702-row assertion.
-- This is **review-prototype QA only**. It does not prove the live storefront is populated or that product images/GW SKUs are approved, nor does it test live checkout, payment, stock, database mapping or production deployment.
-- Continue from this branch and latest handover. Next: obtain the three exact Hertz supplier confirmations; visually verify candidate images and source/rights suitability; establish owner-approved supplier-specific public_sku/product_id mapping; complete remaining Planetworld brand product detail/image matching; resolve Audio Connections Starsound/Sony images and price/availability clarifications; then run populated-storefront QA. No production writes/deployments without separate release approval.
-
----
-
-## HERTZ PRODUCT DETAIL RECONCILIATION + COMBINED NAVIGATION QA PASS — 2026-10-30
-
-- Created `catalogue-review/hertz-manufacturer-product-review.json` from the 86 manufacturer-record audit rows, excluding two records that manufacturer evidence identifies as Audison. The file contains **84 verified Hertz product records**, **2 Audison brand corrections**, and the **3 unresolved Hertz exceptions**. It contains no dealer cost, supplier price, regional stock or margin fields.
-- Corrected six source product classifications using exact manufacturer identity: CK 165 L (78000099), MLK 700.3 (78000211), CPK 165 (78000103), CPK 690 (78000105), MLK 165.3 (78000203) are component kits, not grilles/tweeters; DT 24.3 (78030090) is a tweeter, not a manual-review item. The review navigation now groups **15 component kits, 12 grille source rows (10 verified + 2 exceptions), 4 tweeters, 22 coaxials, 12 standalone subwoofers, 6 subwoofer enclosures, 8 amplifiers, 4 woofer/midbass rows (3 verified + generic SPL exception), 3 controls, and 1 DSP**.
-- Hertz review product cards now display exact manufacturer model names, manufacturer descriptions/specifications and individual manufacturer-page links. Supplier reference codes are labelled as references, not GW SKUs. Every card retains image NOT VERIFIED, GW SKU NOT ASSIGNED and NOT PUBLISHED. The three unresolved exceptions appear as HOLD cards, not as guessed products.
-- AFBMW BOOSTER 01 (66772099) and AFBMW ReAMP 3 (66772206) are correctly reclassified to **Audison → Harnesses, Trims & Fitment**. The combined review navigation now totals **704 source rows**: 629 brand products, 28 Marine Audio and 47 separate Harnesses & Trims. Audison is 96 records, with 8 harness/fitment records; Hertz remains 87 branded source rows, excluding the two Audison items.
-- **Verified QA:** GitHub Actions run [41021603499](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021603499) completed SUCCESS at commit `11c94d60282df160409a0fc509bd04b0cec68820`. Playwright passed at 360, 390, 768 and 1,280 px. It checked 10 brand choices, 6 Alpine amplifiers, Audison harness reclassification and manufacturer links, 84 Hertz verified products, 3 Hertz exceptions, 28 Marine Audio records, 47 Harnesses & Trims records, no horizontal overflow, no JS errors, and no supplier price/stock or unapproved images/GW SKUs leaking into the review UI.
-- Later diagnostic/exact-SHA workflow hardening commits were added after this passing run; inspect the newest run before using it as the final exact-head result. The passing run validates the isolated review prototype only, not the live storefront or populated catalogue.
-- **No production changes:** no product import/publication, image assignment, GW SKU assignment, duplicate deletion, Supabase write, live stock/price change, Axxess upload, DNS/payment change or deployment. Launch remains HOLD. Image approval and the three supplier clarifications remain outstanding; the 702/704 Planetworld internal product mapping blocker remains separate and unresolved.
-
----
-
-## AUDISON NAVIGATION RECLASSIFICATION — 2026-10-30
-
-- Reclassified AFBMW BOOSTER 01 (66772099) and AFBMW ReAMP 3 (66772206) from the Hertz-labelled supplier staging workbook into the **Audison → Harnesses, Trims & Fitment** navigation group. Both are confirmed by official Audison manufacturer pages; the source-brand mislabel is explicitly retained in the note.
-- Combined navigation tree now has **704 source rows**: 629 brand products, 28 Marine Audio, 47 separate Harnesses & Trims component records. Audison is now 96 records; its Harnesses & Trims group is 8 records. The Hertz brand staging group is 87 records and excludes the two Audison items.
-- Prototype product cards now read image status, manufacturer-description status and GW SKU status from each review record. The two AFBMW items show verified manufacturer descriptions, but images remain unverified and GW SKUs unassigned. Official manufacturer page links are shown in the review card.
-- Added Playwright assertions for the two Audison records, their component route, verified manufacturer evidence links, and publication guards. Runs **41021332022 / 41021331896 / 41021379789 / 41021379978 / 41021398729** were triggered by the changes; inspect final conclusions before claiming the latest combined navigation test passed. The prior 41021015423 run passed the earlier 87-Hertz/three-exception prototype.
-- Repository metadata confirms visibility is **private**. Supplier review data in the private repository is not publicly exposed by the current repository visibility.
-
----
-
-## REVIEW-BRANCH RESPONSIVE QA PASS — 2026-10-30
-
-- Review-branch workflow run **41021015423** completed **SUCCESS** at commit `6d18f04ce22d477d0eaccd55d678cced56642fb4`.
-- Playwright checks passed at **360 px, 390 px, 768 px and 1280 px**. Verified 10 brand choices, brand → component → product navigation, separate Marine Audio and Harnesses & Trims groups, Hertz staging guard, no supplier price/stock/image/GW SKU leakage, no horizontal overflow and no browser errors.
-- This pass validates the review-branch navigation prototype only. It does not validate live-store checkout, product images, payment integration, database SKU mapping or production deployment.
-- Run URL: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021015423
-
----
-
-## REVIEW-BRANCH QA ASSERTION CORRECTION — 2026-10-30
-
-- First review-branch run **41020880728** installed Playwright/Chromium successfully but failed in the test assertion, not in the browser UI: the test expected the phrase `84 manufacturer records` inside the page content while the prototype uses `84 have individual manufacturer product records; 3 remain unresolved`. The visible prototype warning itself is correct.
-- Corrected `scripts/catalogue-nav-prototype.spec.js` to assert the actual 84/87 and three-exception wording. New run **41021015423** is queued on the same branch at commit `6d18f04ce22d477d0eaccd55d678cced56642fb4`. Do not mark responsive QA complete until this run finishes successfully.
-
----
-
-## HERTZ FINAL EXCEPTION RE-CHECK — 2026-10-30
-
-- Rechecked the three remaining Hertz exceptions against an official Hertz-hosted 2019 mobile-audio catalogue PDF: https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf . It explicitly lists **DSG 250.3** and **DSG 300.3** as optional grilles for DS 25.3 / DS 30.3. The two Planetworld/reseller source strings are **DG 250.3** and **DG 300.3**. This reveals a likely missing-“S” model-string discrepancy, but does not prove the supplier item-code mapping.
-- Official current Hertz pages show MG 250.3 / MG 300.3 are different Mille Legend/Pro grilles with different fitment. Do not substitute MG products for the Dieci/DSG exceptions.
-- Updated `catalogue-review/hertz-final-exceptions-2026-10-30.csv` and the Hertz crosscheck with this evidence and exact supplier confirmation requests. 78071121 and 78071126 remain HOLD pending Planetworld confirmation of DSG model spelling + item-code/EAN mapping + fitment. 78032225 remains HOLD because “Hertz Series Set SPL Woofer” has no exact model number; do not infer SV 200L.
-- No images approved, no GW SKUs, no publication, no supplier stock/price, Supabase, Axxess, DNS, payment or production changes.
-
----
-
-## REVIEW-BRANCH RESPONSIVE QA — 2026-10-30
-
-- Updated `scripts/catalogue-nav-prototype.spec.js` so the Hertz assertion reflects the reconciled 84 manufacturer product records (84/87 Hertz-branded; 3 exceptions), replacing the stale 12-page assertion.
-- Added `.github/workflows/catalogue-nav-prototype-test-review.yml` to test this exact review branch at 360, 390, 768 and 1280 px without writing screenshots or uploading artifacts.
-- Run **41020880728** was automatically queued on this branch at commit `5243a42f2ac67e61fa5fb92c093ef70c2aa0d4dc`. This is not yet a pass; inspect its result before claiming branch QA complete.
-- A separate run **41018692457** passed the existing navigation prototype tests on `catalogue/ingest-review-2026-10-30`; it does not validate the current `complete-remaining-review` branch changes.
-
----
-
-## AUDIO CONNECTIONS — SONY HIGH-RESOLUTION IMAGE SOURCE RESEARCH — 2026-10-30
-
-- Created `catalogue-review/audio-connections-high-resolution-image-candidates-2026-10-30.csv` for all 15 Sony Mobile ES models.
-- Found model-specific high-resolution image URL candidates for **14/15** Sony models. Two direct image URLs are on Sony-owned domains (XS-W104ES and XM-5ES); 12 are distributor/retailer image candidates. XS-680G still has only the low-resolution supplier PDF image and no exact Sony product page.
-- The source PDF reused a single image across XS-W122ES / XS-W124ES and a generic amplifier image across five XM models. The new manifest instead records separate model-specific retailer pages where available; none is approved solely because the page title matches.
-- **No image files were downloaded or visually approved** in this pass. All 14 remain candidate-only pending binary download, visual check, source/rights suitability review and internal GW SKU mapping. No product records or storefront were changed.
-
----
-
-## FINAL HERTZ EXCEPTION QUEUE — 2026-10-30
-
-- Created `catalogue-review/hertz-final-exceptions-2026-10-30.csv` with exactly three unresolved rows and evidence tiers: 78032225 generic SPL woofer (exact model unknown), 78071121 DG 250.3 grille (model string corroborated by reseller, manufacturer page absent), and 78071126 DG 300.3 grille (model + supplier item code corroborated by local reseller, manufacturer page absent).
-- The file records external evidence URLs, what is and is not proven, image status, next action and publication hold. It does not include confidential dealer cost or regional stock.
-- Supplier/owner action needed is limited to three precise confirmations: exact SPL model number/specs; official DG 250.3 reference/image and confirmation of code mapping; official DG 300.3 reference/image and fitment confirmation. Do not assign GW SKUs or publish these three until resolved.
-
----
-
-## HERTZ HRC ACCESSORY RESOLUTION — 2026-10-30
-
-- Resolved the HCP HRC identity blocker using an Elettromedia manufacturer-operated B2B product record: model HRC, supplier item code 78211040, EAN 8018823109017. Added it to the manufacturer-page audit as B2B product-page evidence: https://elettromedia-srl-b2b-sandbox.mybigcommerce.com/hrc/ . It is a sandbox storefront, so retain that qualification; not the primary Hertz consumer page.
-- Do not conflate HRC (78211040), HRC 02 (78211041) or HRC BM2 (78270030). Verify amplifier compatibility before any product display.
-- **Exact manufacturer product record coverage: 86/89 staged rows (including two correctly identified Audison products); 3 remain without a sufficient individual manufacturer product record**: generic SPL woofer 78032225, DG 250.3 grille 78071121 and DG 300.3 grille 78071126. For Hertz-branded items specifically, 84/87 now have individual manufacturer records; three remain unresolved.
-- No image binaries downloaded/approved, no GW SKUs, no product publication, no price/stock changes or production integrations.
-
----
-
-## CAR AUDIO NAVIGATION REVIEW CORRECTION — 2026-10-30
-
-- Updated `catalogue-review/car-audio-navigation-prototype.html` to remove the two Audison AFBMW integration harnesses from Hertz navigation and correct the count from 89 to **87 Hertz-branded source records**.
-- The prototype now distinguishes **84/87 Hertz manufacturer product records verified** from **three unresolved Hertz records** (generic SPL woofer, DG 250.3, DG 300.3). Two AFBMW harness rows are separately flagged as Audison, not Hertz, pending supplier/source brand correction.
-- No product images or GW SKUs were inserted. Prototype remains internal review only; no customer storefront or production deployment changed.
-
----
-
-## AUDISON BRAND CORRECTION — 2026-10-30
-
-- The two AFBMW rows in the Hertz staging workbook are not Hertz products. Manufacturer pages identify 66772099 as **Audison AFBMW BOOSTER 01** and 66772206 as **Audison AFBMW ReAMP 3**. Added exact official Audison pages and descriptions to the audit, but explicitly flagged the source brand mismatch. Do not publish under Hertz until Planetworld corrects the brand or owner approves a clear source normalization.
-- AFBMW BOOSTER 01 is for specified BMW 688 Harman/Kardon booster systems and has exclusions; AFBMW ReAMP 3 interfaces with BMW RAM/676 HiFi systems and 688 support is limited. Preserve exact fitment warnings.
-- **Superseded by the 2026-10-30 HRC resolution: 86/89 manufacturer product records are now documented; three remain without sufficient individual manufacturer product evidence: 78032225 generic SPL woofer, 78071121 DG 250.3 and 78071126 DG 300.3.** Do not mislabel the two Audison products as Hertz. Do not map the generic SPL row to SV 200L without supplier confirmation. DG 300.3 has a local reseller page identifying item code 78071126, but no individual manufacturer page.
-- No image binaries downloaded/approved, no GW SKU assignments, no product imports, no price/stock edits, no duplicate deletions and no production/Supabase/Axxess/DNS/payment changes.
-
----
-
-## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FIFTH FOLLOW-UP)
-
-- Added exact individual manufacturer page for X 170 (supplier reference 78040250): https://gr.hertz-audio.com/product/car-audio-coaxials-uno-x170/ .
-- **Current exact individual-page count: 83/89; six supplier rows remain unresolved**: AFBMW BOOSTER 01 (66772099), AFBMW ReAMP 3 (66772206), generic “Hertz Series Set SPL Woofer” (78032225), DG 250.3 (78071121), DG 300.3 (78071126), and HCP HRC (78211040).
-- The generic SPL description must not be mapped to SV 200L or another SPL model without supplier model confirmation. DG 250.3 and DG 300.3 have reseller corroboration but no exact individual manufacturer page. HCP HRC is now resolved through an Elettromedia manufacturer-operated B2B record. The two AFBMW entries are confirmed Audison, not Hertz.
-- Images are not downloaded or approved. No GW SKU, product publication, duplicate deletion, price/stock changes or production integrations. Continue from these six named unresolved records; no need to repeat previous 83 verifications.
-
----
-
-## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FOURTH FOLLOW-UP)
-
-- Seven more exact individual Hertz pages joined to supplier references: DT 24.3 (78030090), CS 250 S2 (78035058), CS 250 S4 (78035068), X 165 (78040221), X 690 (78040230), X 130 (78040240), and HRC BM2 (78270030).
-- Updated manufacturer model descriptions/specifications and official product URLs in the audit CSV and crosscheck.
-- **Superseded by the 2026-10-30 final reconciliation: 86/89 staged rows have manufacturer product records; 84/87 are Hertz-branded.** The remaining three are generic SPL woofer (78032225), DG 250.3 grille (78071121) and DG 300.3 grille (78071126). The two AFBMW accessories are confirmed Audison; X 170 and HCP HRC are resolved. Do not substitute a family/category listing for an exact model page.
-- Images still not downloaded or visually approved. No GW SKU assignment, product publication, duplicate deletion, price/stock edits or live system changes. Store remains buttons-only and launch HOLD.
-
----
-
-## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (THIRD FOLLOW-UP)
-
-- Added nine more exact individual Hertz manufacturer product pages, joined to supplier item reference codes: K 165 (78000301), K 130 (78000310), K 170 (78000320), C 26 (78030140), C 165 L (78032127), C 165 F (78032137), DS 25.3 (78035400), DS 30.3 (78035410), and S 300 S4 (78035421).
-- Manufacturer descriptions and key technical specifications added to `catalogue-review/hertz-official-model-description-audit.csv`; the crosscheck now records the source links.
-- **Exact individual manufacturer page count: 75/89; remaining without an exact individual page: 14/89.** Counts are by distinct supplier reference code joined to the owner-controlled 89-row workbook. Official individual page evidence only; category pages and family references are not counted.
-- No image binary downloaded or visually approved, no internal GW SKU assignment, no product publication, no duplicate deletion, no price/stock change and no live Supabase/Axxess/DNS/payment action. Main store remains buttons-only and release HOLD.
-- Remaining 14 rows require further exact matching or manual supplier clarification. Do not turn model-family/category references into exact matches. Continue the 14-row reconciliation, then inspect actual image assets against source model names and proceed to the next brand/Audio Connections tasks.
-
----
-
-## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (SECOND FOLLOW-UP)
-
-- Seven more staged Hertz records now have exact individual manufacturer product pages: CPK 690 (78000105), DG 165.3 (78071036), MG 250.3 (78071135), MG 300.3 (78071145), MPG 165.3 (78071181), HRC 02 (78211041), and S8 DSP (78260025).
-- Added exact official URLs and manufacturer descriptions/specifications to `catalogue-review/hertz-official-model-description-audit.csv`; added the match-level evidence to the Hertz crosscheck.
-- **Current reconciled count: 66/89 exact individual official product pages; 23/89 still lack an exact individual page in the audit.** This is an item-code join between the owner-controlled 89-row staging workbook and the review audit, not an import or pricing decision.
-- The seven additional manufacturer pages confirm model identity/specifications only. No product image has been downloaded, visually checked against the supplier row and internal product, or approved. No GW SKUs assigned; no product or image published; no supplier cost/stock fields copied into repository; no live database or production changes.
-- Official pages: CPK 690, DG 165.3, MG 250.3, MG 300.3, MPG 165.3, HRC 02 and S8 DSP. See exact links in the audit/crosscheck.
-- Remaining 23 include the two AFBMW integration adapters, Uno K/X range products with collection-only evidence, standalone DS/S 300 subwoofers, remaining grilles, HCP HRC / Mille HRC BM2 controls, C 26 / C 165 L / C 165 F and the SPL woofer with unresolved exact identity. Keep collection/catalogue evidence separate from exact individual pages.
-
----
-
-## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FOLLOW-UP)
-
-- Reconciled the 89-row owner-controlled Hertz staging workbook against the review-branch exact-page audit by the supplier reference item code (codes are references only, never GW SKUs). The audit contained 50 distinct exact manufacturer-page matches; 39 staged rows had no matching exact-page record.
-- Checked nine of those remaining records against individual official Hertz product pages: CS 200 S4 (78035066), CS 300 S2 (78035078), CS 300 S4 (78035088), DG 130.3 (78071026), CG 130 (78071053), CG 165 (78071073), CG 200 (78071153), CG 250 (78071155), and CG 300 (78071165).
-- Added manufacturer descriptions/specifications and official page references to `catalogue-review/hertz-official-model-description-audit.csv`; extended `catalogue-review/hertz-official-collection-crosscheck-2026-10-30.md` with source links and match level.
-- **Updated count: 59/89 exact individual official pages; 30/89 remain without an exact individual page in the audit.** The prior crosscheck's “25 exact pages / 64 remaining” wording is stale; the current CSV plus source-code reconciliation is the count to use. The 89-row original staging workbook remains unchanged and owner-controlled.
-- Image assets remain NOT VERIFIED / NOT APPROVED for all these rows. No internal public_sku mapping exists for the 702 Planetworld rows; no GW SKUs assigned, no product images or products published, no duplicate rows deleted, and no live price/stock/Supabase/Axxess/DNS/payment changes.
-- Evidence: official Hertz pages for CS 200 S4, CS 300 S2/S4, DG 130.3, CG 130/165/200/250/300; see links in the review crosscheck. Main customer storefront remains buttons-only; release HOLD.
-- Next: verify remaining 30 Hertz models by exact individual page; resolve the two AFBMW adapters, K-series kits, CPK 690, remaining Cento/Uno drivers, remaining grille models, HRC remotes, Mille S8 DSP and the standalone SPL woofer; keep collection-only matches separate. Then continue Planetworld model matching and Audio Connections image/description reconciliation.
+## VERIFIED EXECUTION CHECKPOINT — 2026-10-30 — SUPPLIER CROSSWALK + PR RECONCILIATION
+
+### Consolidated supplier/catalogue candidate
+- Current-main review integration is PR #115, head `77f0a274424b2e2ba0fc39a879ce6a4141038b4a`, draft and mergeable. All six exact-head workflows passed: Cloudflare Pages public-package QA 41030238420; Public SKU Exposure Audit 41030238481; Planetworld Workbook Audit 41030238416; Audio Connections PDF inspection 41030238414; Catalogue & Supplier Routing Review QA 41030238507; Storefront Smoke Test mode gate 41030238422.
+- Recursive tree reconciliation confirms 47 Planetworld XLSX workbooks in canonical `suppliers/Planetworld/`; 0 XLSX remain at `catalogue-source/suppliers/planetworld/incoming-xlsx/`.
+- Latest read-only workbook audit: 47 workbooks, 94 sheets, 3,317 rows, 0 workbook errors, 0 duplicate model/SKU flags, 19 zero-RRP rows. At RRP minus 1%, 18 positive-RRP rows fall below estimated VAT-inclusive cost; at RRP minus 2%, 19 do. All price suggestions remain review-only; no supplier prices or stock were imported/changed.
+- Audio Connections PDFs inspected successfully: 53 Starsound + 15 Sony rows. 14/15 Sony models have exact official model pages; XS-690ES is supplier-marked SOLD OUT; XS-680G has no exact official manufacturer page. Three Starsound rows have no numeric dealer price. Embedded images are low-resolution/shared and none is approved for primary storefront use.
+- Planetworld manufacturer cross-check records 68 exact individual product pages and 121 collection-only matches across the 702 Car Audio source rows. Images are not yet downloaded/approved for those candidates.
+- Review prototype responsive QA passed at 360/390/768/1280 px: 10 brands, 6 Alpine amplifiers, 84 Hertz verified records, 3 unresolved Hertz exceptions, 28 Marine Audio, 47 Harnesses & Trims, 0 JS errors and no horizontal overflow. This is a review prototype, not populated-store acceptance.
+
+### Supplier-to-GW mapping solution prepared
+- Read-only live Supabase search across 4,200 public products found 0 matching audio-brand product rows; exact supplier-code matching also found 0. Existing `gw_private.supplier_connections` contains only ASC, Caelex and Electro City; Planetworld and Audio Connections are not registered. All 4,198 legacy `product_supplier_codes` rows have NULL `supplier_id`; `supplier_catalog_items` is empty.
+- Added a 770-row review crosswalk: 702 Planetworld + 68 Audio Connections source rows. 81 proposed `GW-XXXXXXXX` values were generated for exact individual manufacturer-page matches and collision-checked against current `public.products.public_sku`; 0 collisions. Crosswalk test passed with 0 product IDs and 0 publications.
+- Added two supplier connection proposals with candidate UUIDs and official corporate contact sources: TOMS Sound & Music (Pty) Ltd t/a Planetworld and Audio Connections. These are proposals only, not registered DB IDs; Get Wired dealer relationship, trade terms and supplier-specific contact must be confirmed.
+- Added a separate SQL seed proposal to stage all 770 supplier items inactive, unlinked (`public_product_id=NULL`) and quote-on-request. It is under `catalogue-review/`, is not a migration and has NOT been executed. No Supabase writes, supplier inserts, public products, product_supplier_codes, price/stock changes or image publications.
+- Proposed GW SKU generation method is deterministic FNV-1a 32-bit over supplier/brand/model, formatted `GW-` plus eight uppercase hex characters. It is a collision-checked proposal, not an approved production generator. Owner approval is still required before product rows are created.
+
+### Checkout security candidate
+- PR #113 is the single current-main checkout candidate, draft and mergeable. Exact-head commit `9379a9463b14bbd949ca1016b92bd0b47dc3cd0a` passed all five workflows: Customer Authentication Security Tests 41028523928; Delivery Quote Security Tests 41028524173; Public SKU Exposure Audit 41028523937; Storefront Smoke Test mode gate 41028523993; Axxess package preparation 41028524092.
+- Added `create_store_order_v3` wrapper and migration proposal to record policy version, server timestamp and authenticated user ID on the order in the same transaction; failed audit update rolls back order/stock changes. PGlite migration test printed `CHECKOUT_POLICY_AUDIT_MIGRATION_PASS`. No Supabase migration or Edge Function has been deployed/applied.
+- Duplicate PR #112 was closed in favour of #113.
+
+### Deployment and Actions storage safeguards
+- Cloudflare Pages production/layout/approved-preview workflows now build an explicit `pages-public/` allowlist. Exact-head QA passed: 4,120 customer files and 4,101 WebP images; supplier workbooks, catalogue-review/source folders, source PDFs/CSVs, Supabase, Android and handover files were excluded. No Cloudflare deployment was run. Current main remains buttons-only.
+- GitHub artifact log explicitly reported: `Artifact storage quota has been hit. Usage is recalculated every 6-12 hours.` Planetworld workbook audit itself succeeded; artifact upload was best-effort. The new workbook workflow is artifact-free; recurring monitor/browser/catalogue uploads and optional APK/XLSX uploads are gated by repository variables, with one-day retention for optional APK/XLSX artifacts. Existing artifacts were not deleted by this work and no extra quota was purchased.
+
+### PR branch cleanup
+- Closed stale/superseded PRs: #95, #96, #97, #104, #105, #106, #108, #110, #111, #112, #114, #86, #87, #88, #89. Replacement candidates: #115 for supplier/catalogue/repository reconciliation; #113 for checkout/security. PR #94 remains the separate active Part Search compatibility/QA reference; PR #99 remains the integrated Part Search/audio/no-AI preview candidate.
+- PR #94 and #99 remain dirty/diverged from current main; current main is intentionally buttons-only. Do not wholesale merge/retarget these old populated-store branches. Part Search live Axxess mismatch is not fixed on the hosted Axxess source and must not be claimed fixed without approved upload and hosted verification.
+- PR #115 and #113 remain draft; no merges or production deployments were made.
+
+### Outstanding release gates
+1. Confirm Planetworld and Audio Connections supplier relationships, dealer accounts, trade terms and supplier-specific contacts; then owner-authorise the inactive supplier staging SQL if desired.
+2. Approve the GW SKU generation scheme; create new product rows only after exact descriptions, high-resolution approved images, price/VAT basis and availability are verified. Keep all 81 candidate SKUs uninserted.
+3. Finish remaining manufacturer matches, image acquisition/approval and manual exceptions; do not publish collection-only or no-page records.
+4. Reconcile PR #94/#99 onto an appropriate populated-store preview base without replacing current main's buttons-only gate; then test populated customer journey on desktop/mobile and hosted preview.
+5. Resolve actual Axxess-served Part Search handler mismatch only after explicit Axxess upload approval; no upload made.
+6. PayFast approval/authenticator resolution and end-to-end payment testing remain outstanding.
+7. No Supabase production writes/migrations/deploys, supplier connection inserts, product/price/stock/image publication, Axxess uploads, DNS changes, payment activation or production deployment without explicit owner approval. Launch remains HOLD.
 
 ---
 
 ## READ-ONLY INTERNAL PRODUCT MAPPING AUDIT — 2026-10-30
 
-- Read-only Supabase inspection was performed to test whether the 702 Planetworld source rows can be mapped to existing public products before any image assignment. No database writes or schema changes were made.
-- Results: `gw_private.product_supplier_codes` has 4,198 rows, but `supplier_id` is NULL on all 4,198; exact matches to the 702 Planetworld supplier SKUs = 0. `gw_private.supplier_catalog_items` has 0 rows. Exact matches against `public.products.sku` or `public.products.public_sku` = 0. A fuzzy name/description search for 220 candidate manufacturer models also returned 0.
-- Full evidence: `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json`. Consolidated summary updated at `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`.
-- Consequence: there is no verified internal public_sku/product_id target for the new supplier products. Do not attach images, generate GW SKUs, create product rows, or publish catalogue entries until an owner-approved supplier-specific mapping is established. No Supabase changes were made; existing live catalogue remains untouched.
+- Read-only Supabase checks found 0 exact mappings between the 702 Planetworld supplier SKUs and existing public products. `gw_private.product_supplier_codes` has 4,198 rows, all with NULL `supplier_id`; `gw_private.supplier_catalog_items` has 0 rows; exact matches against `public.products.sku/public_sku` = 0; name/description search for 220 candidate manufacturer models = 0.
+- No database writes or schema changes. This confirms there is no verified internal public_sku/product_id target for the staged products. Do not assign product images or publish supplier rows until an owner-approved supplier-specific mapping exists.
+- Evidence in review branch: `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json`.
 
 ---
 
-## MULTI-BRAND PLANETWORLD MODEL AUDIT UPDATE — 2026-10-30
+## REVIEW-BRANCH MULTI-BRAND AUDIT RESULT — 2026-10-30
 
-- The 702-row Planetworld staging CSV now has official manufacturer page/collection references recorded for 226 source rows. These are model-reference matches, not approved images or published products.
-- Top-level split confirmed from source rows: 627 standard Car Audio brand products across nine brands; 28 Kicker Marine Audio rows separated into Marine Audio; 47 Harness and Trims records separated as installation components. Harness and Trims is not a manufacturer brand button.
-- Kicker (189 rows): 161 standard Car Audio rows have 12 exact official individual product pages, 27 exact model collection matches and 122 unresolved in this pass. The other 28 are Marine Audio: 4 exact individual pages, 23 official marine collection matches and one code/description conflict (`48KMC6` supplier text says KMC5 while official Kicker listing says KMC6). All 28 are labelled Marine Audio in the staging CSV and excluded from standard Car Audio navigation. Full audit: `catalogue-review/planetworld-kicker-official-model-audit.csv`.
-- Audison (94 rows): 41 exact official individual product pages; 49 official range/collection/accessory/configurator matches; two source-text rows need manual OCR review; two unmatched items (`AP SPK OUT 4.9`, `CX690 GRILLES`). Full audit: `catalogue-review/planetworld-audison-official-model-audit.csv`.
-- Smaller brands Focal/JVC/Kenwood/Pioneer (21 rows): five exact official product pages, ten collection matches, one support-page match, two ambiguous model/supplier-prefix matches and three unmatched. `KIT SUB P20FE` is not treated as an exact bundle match to the P20FE bare-subwoofer page; `TS-G1610F-2` suffix remains unresolved. Audit: `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv`.
-- Alpine (58 rows): nine exact pages, 26 collection matches, five official-catalogue matches, 18 unmatched. Four original high-resolution image source URLs recorded, but no binaries downloaded.
-- One/OneNav (290 rows): nine exact official page/SKU/vehicle-application matches; remaining One models are not yet exact-page verified. The `ISA-ON115-3LX` / `ON115-3LX` alias candidate remains quarantined for supplier confirmation; neither row deleted.
-- The consolidated summary is `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`. Four original Alpine high-resolution image URLs are in `catalogue-review/alpine-high-resolution-image-source-manifest.csv`; binaries remain un-downloaded and unapproved.
-- Across Planetworld, no GW SKUs assigned, no image asset approved, no product published, no duplicate row deleted and no live price/stock changed. The 226 source rows with manufacturer references still require exact internal product/public_sku mapping and image comparison before any image can be used.
-- Audio Connections remains at 68 PDF-sourced candidates (53 Starsound + 15 Sony), three Starsound items with no numeric dealer price and Sony XS-690ES supplier-marked SOLD OUT. All unpublished. Exact fallback wording remains recorded but not applied to live products.
-- Main customer storefront remains buttons-only; payment readiness is still the final launch blocker. No merge, production deployment, Supabase, Axxess, DNS or payment changes.
-- Next: continue model matching for remaining One, Kicker, Audison and other rows; locate and retrieve original high-resolution manufacturer images only where exact product and internal public_sku are confirmed; resolve source conflicts with suppliers; then build populated review navigation and run populated-mode desktop/mobile QA.
+- Review branch `catalogue/complete-remaining-review-2026-10-30` now records official manufacturer page/collection references for 226 of 702 Planetworld rows. These are model-reference matches, not approved images or published products.
+- Planetworld split: 627 standard Car Audio brand products, 28 Kicker Marine Audio rows separated, and 47 Harness and Trims components. Kicker: 12 exact pages + 27 collections for standard Car Audio; Marine 28 split into 4 exact pages, 23 collections and one KMC5/KMC6 description conflict. Audison: 41 exact pages, 49 collection/accessory/configurator/range matches, two OCR review rows and two unmatched. Alpine: 9 exact pages, 26 collection, 5 catalogue matches and 18 unmatched. OneNav: 9 exact pages. Focal/JVC/Kenwood/Pioneer: 5 exact pages, 10 collections, 1 support page, 2 ambiguous and 3 unmatched. Amplified 3 unresolved.
+- Four original Alpine high-resolution image URLs found, but no binaries downloaded or approved. No GW SKU assignments, image approvals, product publication, duplicate deletions or live price/stock changes.
+- Audio Connections: 68 PDF-sourced candidates, three Starsound missing numeric prices and Sony XS-690ES supplier-marked SOLD OUT; all unpublished.
+- Main remains buttons-only; no production, Supabase, Axxess, DNS, payment, merge or deployment changes. Payment remains final launch blocker; launch HOLD.
+- Consolidated review summary: `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json` on the review branch.
 
 ---
 
-## ALPINE MODEL AND IMAGE-SOURCE VERIFICATION — 2026-10-30
+## ADDITIONAL REVIEW-BRANCH RESULT — ALPINE — 2026-10-30
 
-- Reconciled all 58 Alpine source rows from Planetworld's One/Alpine car-audio staging. Official manufacturer verification outcomes: 9 exact individual product pages, 26 exact model labels in official product collections (detail pages not individually verified), 5 exact model labels in the official 2024 product catalogue, and 18 with no exact official page/collection/catalogue match found in this pass.
-- Exact individual page matches: HCE-C2100RD, HDZ-653, ILX-F115D, R2-A60F (source item code retains trailing period), R2-W10D2, R2-W12D4, S2-S65, S2-S40C and S2-A55V. Full 58-row review: `catalogue-review/planetworld-alpine-official-model-audit.csv`. Official page/collection references and match status are now written into the corresponding Planetworld staging rows.
-- Located four original high-resolution official image source URLs (R2-W10D2, R2-W12D4, R2-A60F, S2-S40C) and recorded them in `catalogue-review/alpine-high-resolution-image-source-manifest.csv`. No image binary was downloaded or committed. R2-W12D4's source is a shared W12D2/W12D4 family image and does not visually distinguish impedance variant.
-- Image source URL found is NOT equivalent to approved storefront image. No current public_sku/internal product mapping or current-image comparison has been completed, so none of these images is eligible for products.image_url or publication.
-- Combined Planetworld ONE + Alpine exact individual-page matches now total 18 rows (9 OneNav + 9 Alpine); collection/catalogue-level matches are tracked separately. No GW SKUs assigned, no duplicate rows deleted, and no live store changes.
+- 58 Planetworld Alpine source rows cross-checked: 9 exact individual official product pages, 26 official collection model matches, 5 official catalogue model matches and 18 unresolved in this pass.
+- Four original high-resolution official image source URLs located for R2-W10D2, R2-W12D4, R2-A60F and S2-S40C; URLs recorded in the review branch manifest. No binaries downloaded or published. No current image comparison or internal public_sku mapping completed; no product image is eligible for publication. R2-W12D4 image is a shared family image for W12D2/W12D4 and does not distinguish impedance variant.
+- Review branch `catalogue/complete-remaining-review-2026-10-30`; main storefront remains buttons-only, launch HOLD.
 
 ---
 
-## ADDITIONAL VERIFIED PLANETWORLD ONE NAV RESULTS — 2026-10-30
+## ADDITIONAL REVIEW-BRANCH RESULT — PLANETWORLD ONE — 2026-10-30
 
-- Continued exact OneNav manufacturer-page matching against the Planetworld source workbook. Verified nine exact supplier SKU + official product page + vehicle application matches: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
-- `catalogue-review/planetworld-one-official-model-audit.csv` now contains nine exact page matches. `catalogue-review/planetworld-car-audio-staging.csv` now stores official URLs and exact model status for those nine rows. No public/GW SKU is assigned and no image asset is approved.
-- Found one potential supplier-code alias/duplicate pair in the same One workbook: `ISA-ON115-3LX` and `ON115-3LX` have identical descriptions and the same vehicle application; only `ON115-3LX` exactly matches the official page's visible SKU. Logged both source rows and the discrepancy in `catalogue-review/planetworld-one-potential-alias-review.csv`. This is NOT a confirmed duplicate; do not merge or delete either row until Planetworld confirms whether the prefixed code is an alias or a distinct commercial item. No image comparison has been performed.
-- Exact OneNav page-match coverage is nine rows of the 290 One brand rows; remaining One models and the other Planetworld brands still need exact model/image checks. Keep the 702-row catalogue unpublished.
+- Exact official OneNav product page + visible supplier SKU + vehicle application matches increased to nine: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
+- The review branch staging CSV records the nine official URLs; no GW SKU assigned and no image asset approved.
+- Potential supplier alias pair `ISA-ON115-3LX` / `ON115-3LX` has identical source descriptions and vehicle application, but only the unprefixed code matches the official page SKU. Recorded in `catalogue-review/planetworld-one-potential-alias-review.csv`; do not merge or delete until supplier confirms.
+- Current review branch: `catalogue/complete-remaining-review-2026-10-30`. All other release boundaries remain unchanged; launch HOLD.
 
 ---
 
-## CONTINUATION RESULT — 2026-10-30 — AUDIO CONNECTIONS, HERTZ AND ONENAV VERIFICATION
+## REVIEW-BRANCH CONTINUATION RESULT — 2026-10-30
 
-- Work continued in isolated review branch `catalogue/complete-remaining-review-2026-10-30`. Latest project files were read before continuing. No PR merge, production deployment, live catalogue write, Supabase write, Axxess upload, DNS/payment change or release-credit use.
-- Audio Connections page transcription is now in `catalogue-review/audio-connections-product-candidates.csv`: 68 records total (53 Starsound + 15 Sony), retaining source PDF and page. Three Starsound records have no numeric dealer price; the exact owner-approved fallback is recorded as **“Price on Request due to Limited Stock and Availability”** for later approved customer display only. Sony XS-690ES is explicitly SOLD OUT in the supplier PDF and must not be shown as available. The Sony RRP VAT basis remains unconfirmed; the CSV header now records that uncertainty. All 68 rows remain NOT PUBLISHED.
-- Sony manufacturer descriptions in the candidate file were corrected against the authoritative 14/15 exact-page audit `catalogue-review/sony-mobile-es-official-model-audit.csv`. XS-680G remains PDF-only; no exact official page was found. The earlier PDF image audit remains controlling: 21 embedded images are too small for storefront use, with some reused across multiple models; no image is approved or downloaded as a primary asset.
-- Hertz exact manufacturer-page audit `catalogue-review/hertz-official-model-description-audit.csv` now contains 16 exact model matches (12 prior + 4 new: CK 165 L, CPK 165, MPK 163.3 and MPX 165.3). The source report had 89 staged rows; 73 still lack an exact individual product page. Additional collection-level matches are recorded in `catalogue-review/hertz-official-collection-crosscheck-2026-10-30.md`; collection presence is not an individual detail-page or image verification. Do not reduce the 73 count based on collection-only matches.
-- Hertz exact-page delta is separately recorded in `catalogue-review/hertz-exact-page-additions-2026-10-30.csv`. No image assets have been individually downloaded or approved. The remaining 77 image/model verification tasks are not complete.
-- Planetworld ONE/OneNav exact-page work: 4 supplier rows have exact official page + visible SKU + vehicle application matches: OA009-1 (Toyota 280mm), OA014-1 (Prado 2002–2009), OA015-1 (Land Cruiser Pick Up 2012+) and OA312-1 (Hyundai H1 2015–2018). Audit: `catalogue-review/planetworld-one-official-model-audit.csv`. The 702-row Planetworld staging CSV now records the official manufacturer page and exact model status for those four rows. Images are visible on some official pages but were not downloaded or approved. Supplier item codes remain supplier identifiers, not GW SKUs.
-- The 702-row Planetworld staging file retains the earlier source-traceable keyword-candidate pass; its component labels are provisional. The latest verified taxonomy/navigation checkpoint remains the one at the top of this file: 627 brand products across nine brands, 47 Harnesses & Trims rows, 28 Marine Audio rows, and one manual product-type review row. Do not mistake the older staging CSV's keyword bucket for the final navigation tree.
-- Verified workflow evidence: supplier extraction run 41014617113 completed SUCCESS; responsive navigation prototype run 41014374943 completed SUCCESS at 360, 390, 768 and 1,280 px. Those checks validate the review prototype, not a populated customer storefront.
-- Main customer storefront remains buttons-only (8 root / 31 child buttons). No populated catalogue, customer-facing prices, live stock, GW SKU assignment, product image, or final release was approved. Payment remains the final launch blocker; launch HOLD.
-- Next execution: (1) retrieve and visually verify high-resolution official product image assets or request owner/supplier-approved image packs; (2) continue exact manufacturer-page matching for the remaining 73 Hertz records and the 698 unverified Planetworld rows; (3) assign GW SKUs only after internal exact-match confirmation; (4) reconcile duplicate flags using source-file provenance + exact model + description/specs + image; (5) integrate the fully verified dataset into the review navigation and run populated-mode browser/mobile QA. Continue keeping all production data untouched.
+- Review branch `catalogue/complete-remaining-review-2026-10-30` continued from the existing isolated extraction branch; no production merge/deployment or live data changes.
+- Audio Connections: review CSV records 53 Starsound + 15 Sony rows (68 total), with PDF page provenance. Three Starsound rows have no numeric dealer price; owner fallback text recorded for later approved display only. Sony XS-690ES is SOLD OUT per source PDF. Sony RRP VAT basis remains unconfirmed. All 68 rows remain NOT PUBLISHED.
+- Sony model descriptions were corrected against the official audit (14/15 exact manufacturer pages; XS-680G remains PDF-only). The 21 extracted PDF images are low-resolution/reused and are not approved primary images.
+- Hertz audit now records 16 exact individual official model pages (12 prior + 4 new); 73/89 staged rows still need an exact individual manufacturer page. Current official collection matches are separately labelled and do not count as detail-page verification. No Hertz image assets approved.
+- Planetworld ONE: exact official product page + visible SKU + vehicle application verified for OA009-1, OA014-1, OA015-1 and OA312-1. The 702-row source-traceable staging CSV records official page URLs for those four rows; images remain unapproved and supplier codes are not GW SKUs.
+- Existing 702-row Planetworld candidate staging remains review-only. Use the latest high-level taxonomy/navigation checkpoint on the review branch for 627 brand products, 47 Harnesses & Trims, 28 Marine Audio and one manual-review row; the older keyword component_candidate column is not final taxonomy.
+- GitHub Actions evidence: extraction run 41014617113 SUCCESS; responsive prototype run 41014374943 SUCCESS at 360/390/768/1280 px. Prototype QA is not populated-store acceptance.
+- Main storefront remains buttons-only. No live products, prices, stock, Supabase, Axxess, DNS, payment, merge or deploy changed. Payment remains final launch blocker; launch HOLD.
+- Next: high-resolution image assets, remaining Hertz/Planetworld model matching, exact internal SKU mapping, duplicate provenance audit, populated-mode mobile/browser QA.
+
+Review branch handover files updated: `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`. Latest review-branch handover head at checkpoint: `8d9d41d36289c83139cda12e429d449386407cf9`.
 
 ---
 
@@ -374,15 +108,33 @@
 
 ---
 
-## VERIFIED CONTINUATION RESULT — 2026-10-30 08:29 SAST — REVIEW BRANCH
+## CONTINUATION TASK START — 2026-10-30 — COMPLETE REMAINING CATALOGUE WORK
 
-- On isolated branch `catalogue/ingest-review-2026-10-30`, created source-traceable review files: `catalogue-review/planetworld-car-audio-staging.csv` (702 rows; commit `69fd3556c81c4024cfc5ea7e64aaf31124794ec1`) and `catalogue-review/planetworld-car-audio-taxonomy-review.json` (commit `2ba176a54fd8adb343aa768af598beda363e694e`).
-- Brand source counts and the 47 Harness and Trims rows were reconciled from the extracted workbook rows. Harness and Trims is not a manufacturer brand. JBL is not in Car Audio; Hertz is not in the 47 Planetworld source XLSX files. Separate Hertz staging remains unpublished.
-- Component groups are keyword-derived candidates, not validated final classifications. 245 rows remain unclassified/manual review. Every staged row remains NOT PUBLISHED; manufacturer model, image, GW SKU and pricing statuses are unverified/unassigned. No price or stock values were copied into the staging CSV.
-- All Planetworld extraction outputs and the two Audio Connections PDF page-text output remain review-only. Audio Connections exact product rows still require page-by-page reconciliation; blank prices and Sony Sold Out entries must remain unresolved. Use the exact owner-approved customer fallback wording only when later approved for customer display: **“Price on Request due to Limited Stock and Availability”**.
-- Read-back verification succeeded for `HANDOVER_CURRENT.md`, `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and both new staging outputs on this branch. The handover checkpoint is recorded in `HANDOVER_CURRENT.md` (commit `b010a258bb5d502bcb4031618c47f68441ef910b`).
-- No main-branch change, PR merge, product publication, live catalogue/price/stock/category/Supabase change, Axxess upload, DNS/payment change, deployment, or Cloudflare/Netlify credit use. Launch HOLD.
-- Next safest action: continue Audio Connections page-level row reconciliation in review-only files, then exact-model/image verification and GW SKU mapping for Planetworld car-audio items. Do not publish or change the live store until each item is individually verified and the owner-approved release boundary is met.
+- Owner instruction: continue all remaining supplier catalogue, product verification, navigation and testing tasks; update handover after every material success, failure, blocker or scope change.
+- Read current default-branch `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and `suppliers/README.md` before work. Main handover confirms extraction of 47 Planetworld XLSX files / 3,317 rows and 4 Audio Connections PDF pages; no populated customer catalogue is approved.
+- Scope: reconcile Audio Connections STARSOUND and Sony Mobile ES rows; verify Planetworld car-audio model descriptions and brand/component taxonomy; inspect official image candidates only by exact model; create GW SKU mapping only when rules/source support it; prepare populated-catalogue navigation and non-production QA where safely possible.
+- Work branch: create a fresh review-only branch from current main; do not rely on stale review branch without comparing it to current main. Preserve previous staging outputs and provenance.
+- Locked boundaries: do not change live catalogue/product/category/price/stock data, Supabase, production storefront, Axxess, DNS, payment settings, APK distribution, or run Cloudflare/Netlify credit-consuming deploys. Do not merge. Keep ASC product stock excluded. Supplier prices/costs remain confidential. Keep customer store in approved buttons-only mode until product-level verification is complete. Payment readiness remains the final launch gate.
+- Price fallback is owner-approved exact wording: **“Price on Request due to Limited Stock and Availability”**; never infer stock status from a blank price or supplier stock value.
+- Verification standard: preserve supplier file, page/sheet, row, item code and description; no assumed image/model match, no duplicate deletion based only on SKU; clearly label unverified data. Browser tests on buttons-only view do not count as populated-store QA.
+- Task status: STARTED. First next action is page-by-page extraction/reconciliation of Audio Connections source PDFs into a review-only dataset, then exact-model verification for Planetworld Car Audio.
+
+---
+
+## VERIFIED SUPPLIER EXTRACTION CHECKPOINT — 2026-10-30
+
+- Read-only binary extraction is now operational on isolated branch `catalogue/ingest-review-2026-10-30`; no production, Supabase, live catalogue, price, stock, Axxess, DNS, payment, Cloudflare or Netlify changes were made.
+- GitHub Actions run **41013490792** succeeded for initial extraction; refined run **41013665196** succeeded after correcting the description-field mapping and splitting large output into small chunks. The refined run opened **47/47 Planetworld XLSX workbooks**, read **94 sheets**, reported **0 workbook errors**, and extracted **3,317 product rows** from the Products sheets. Outputs: `catalogue-review/extraction-summary.json`, `planetworld-workbook-inventory.json`, seven `planetworld-row-chunks/planetworld-rows-*.csv` files. The full raw row JSON is retained with source workbook, sheet and row provenance.
+- Audio Connections: both tracked PDFs were opened; **4/4 pages** produced text. The source documents are STARSOUND Price Lists 05 AUGUST 2026 (2 pages) and Sony Mobile ES Dealer Price List Sept 26 (2 pages). Output: `catalogue-review/audio-connections-pages-review.csv`. This is text extraction only; no PDF image/page-layout verification, product-image match or live import has occurred. Missing/blank prices remain unresolved, not inferred.
+- Fresh Planetworld row analysis found **702 rows marked Division=Car Audio**. This includes **47 Harness and Trims rows**, which are a component/accessory group and MUST NOT be presented as a manufacturer brand. Remaining source brand counts: One 290, Kicker 189, Audison 94, Alpine 58, JVC Car Audio 13, Kenwood Car Audio 4, Amplified 3, Focal Car Audio 2, Pioneer Car Audio 2. Normalize brand-button labels to One, Kicker, Audison, Alpine, JVC, Kenwood, Amplified, Focal, Pioneer only after review. No Hertz XLSX exists in the 47 Planetworld incoming workbooks; JBL's 26 rows are Division=Musical Instruments, not Car Audio, so do not classify them as car audio.
+- A separate Library workbook `Planetworld_Hertz_Staging_Analysis_2026-10-26.xlsx` was found and inspected: **89 staged rows**, 89 unique item codes, 12 subcategories; only **12/89** have an exact-model official Hertz page located and all 12 still need individual product-image verification; **77/89** have no exact official page/image match yet. Every row is still marked STAGED — NOT PUBLISHED. This Library workbook is not currently in the repository; do not treat it as a supplier source workbook or publish its confidential price/cost fields. The associated classification workbook also has 89 rows.
+- The current main `index-new.html` remains the owner-approved buttons-only storefront: 8 root buttons and 31 child buttons; the Car Audio group currently contains Car Audio/Video, JBL, Hertz, Denon, Home Entertainment, Studio Equipment, Marine Audio and Band Instruments. Those child buttons are static labels, not a completed brand→component→product drilldown. Main `assets/category-tree.json` has 166 rows; Car Audio has 11 child categories and duplicate Amplifiers, Head Units and Speakers entries (different IDs/slugs). Resolve category duplication in a review mapping only; do not write Supabase/live category rows.
+- Existing button-only Playwright verification passed at 360, 390, 768 and 1280 px (run 40921540466 and follow-up 40922110707); that verifies the buttons-only layout, NOT the eventual populated product catalogue. Re-run browser/mobile QA after catalogue navigation is rebuilt.
+- Main source is intentionally blank/buttons-only; do not remove the marker or expose old/ASC product data while product records/images remain unverified. ASC supplier PDFs remain in `suppliers/ASC/`; ASC product stock must remain excluded.
+- Current price fallback: **“Price on Request due to Limited Stock.”** Use only when no approved price is available; do not convert supplier stock-zero to a fabricated price or customer stock claim. Supplier workbook regional quantities are source evidence, not a live stock import.
+- Next execution: (1) derive brand/component staging from the 3,317 source rows with exact source provenance; (2) normalize Car Audio brand/component taxonomy and separate Band Instruments/Home/Studio/Marine; (3) reconcile Sony Mobile ES and STARSOUND model/price/description rows page-by-page; (4) verify official product images by exact model and create GW SKU mapping only after exact source confirmation; (5) complete non-production browser/mobile tests; (6) keep payment as final launch blocker. The isolated extraction branch is review-only and is not merged.
+- Repo visibility returned `private: true` in GitHub Actions run metadata. Keep supplier price files private.
+- Task status: **supplier source extraction verified; catalogue reconciliation, product images/descriptions/GW SKUs, completed brand/component drilldown, populated-mode mobile QA and payment readiness remain incomplete.** Do not claim the store is complete or launch-ready.
 
 ---
 
@@ -4008,3 +3760,75 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Legacy review counts (including 19 zero-RRP, 37/38 potential below-cost and 32 model/SKU flags) are advisory until freshly checked against current source workbooks. They are not project-wide blockers and do not authorise pricing, stock or catalogue mutations.
 - Current supplier-processing checkpoint: 47 Planetworld XLSX files are under `catalogue-source/suppliers/planetworld/incoming-xlsx/`; two Audio Connections PDFs are under `suppliers/Audio Connections/`; canonical `suppliers/Planetworld/` organisation and source-led extraction remain unfinished. Do not claim binary moves, fresh parsing, image relabelling or imports without read-back evidence.
 - Preserve all existing eight locked rules verbatim. No live store/product/price/stock/category/Supabase changes, Axxess/DNS/payment changes, production deployment, or Cloudflare/Netlify credit use without explicit owner approval. Launch remains HOLD.
+
+
+## MONITOR RUN START — 2026-10-30 08:56 SAST
+
+- Started scheduled Get Wired AutoWorx / Planetworld monitor. Latest permanent handover read from `main` at blob `4ee722b38eddce34c64b339aecbba674f8ae49db` before other task work.
+- Run-start status: no supplier workbook, product, price, category, active flag, live database, hosting, payment, DNS or deployment changes made. Background workflows will be checked and their actual conclusions recorded below as inspected.
+- Immediate work sequence: read Planetworld `HANDOVER_CURRENT.md` and its three named reports on `docs/planetworld-blocker-handover-2026-10-26`; inspect PR #95 and its latest audit run/job/artifact; then inspect safe staging workflow state and current price/catalogue blockers. Do not rerun production/deployment jobs or duplicate in-progress work.
+
+
+## MONITOR RUN START — 2026-10-30 09:22 SAST
+
+- Began this scheduled repository and Planetworld monitor. Read the latest `AI_HANDOVER_PERMANENT.md` from `main` (blob `f0e5b04ee1a61f91f4d4845f331efa1f02252ba1`) before other task work.
+- Immediate sequence: record this start; read the Planetworld branch handover and all three current reports; inspect PR #95 and the latest audit run, job and artifact; then inspect current background workflows and safe staging retries. Never duplicate queued/in-progress work or rerun deployment/production jobs.
+- No catalogue, supplier workbook, product, price, category, active flag, live database, hosting, payment, DNS or deployment changes have been made at run start. All candidates remain review-only / DO NOT IMPORT until evidence and owner approval.
+
+
+## MONITOR RUN START — 2026-10-30 09:39 SAST
+
+- Started owner-requested continuation: investigate GitHub Actions storage/quota discrepancy after owner deleted 20+ artifacts (reported at least 2 GB freed); continue supplier confirmation, Planetworld fresh read-only audit, cancelled Sony audit, Cloudflare Workers build failures and hosted customer-journey verification.
+- Read latest permanent handover on `main` (blob `56805583a79bad6c76dd2f283a39e77fa1c7a0f6`) before any other repository work. Preserve all release restrictions: no production/deployment reruns, live data changes, supplier workbook edits/imports, Axxess/DNS/payment changes, or release-credit consumption without explicit approval. Never duplicate queued/in-progress work.
+- Immediate next steps: append run start to current Planetworld handover, inspect Actions storage usage and artifact inventory/retention, then inspect PR #95 and relevant workflow runs/jobs/artifacts. Record verified cause, exact evidence and next action; no assumptions that deleting artifacts immediately resets billed storage.
+
+
+## MONITOR RUN RESULTS — 2026-10-30 09:39 SAST
+
+### GitHub Actions storage investigation
+- Planetworld audit run `40876805256` (head `9274bd3b14771af732fba782822cb775f0e82340`) and job `123457598110` are marked SUCCESS, but job logs prove the final artifact upload failed: `Failed to CreateArtifact: Artifact storage quota has been hit`. Four files were generated and upload attempted; artifact listing is 0. Workflow `.github/workflows/planetworld-workbook-audit.yml` has `continue-on-error: true` on upload, so green job status does not mean deliverable artifacts exist. Audit is stale and not fresh for current PR head.
+- GitHub billing documentation: Actions artifacts and GitHub Packages share pooled storage; Actions cache is a separate per-repository allowance; artifact usage recalculates within 6–12 hours. The failed upload was >18 hours before this run, so ordinary delay alone is not sufficient explanation.
+- GitHub connector inventory exposes two owned repositories. In `get-wired-autoworx-owner-apk-validation`, 10 latest runs contained 11 artifacts totalling 81,850 bytes. In the store repository, 15 latest completed runs returned 0 artifacts. This is only a recent-run sample, not a complete account-wide artifact/package inventory.
+- Connector does not expose account billing usage, GitHub Packages storage, full repository artifact enumeration, or Actions cache inventory. Therefore exact remaining quota consumer cannot yet be proven. Likely remaining explanations to verify in owner Billing & Licensing → Usage are older artifacts elsewhere in either repo, GitHub Packages storage, or a stale account-level storage meter. Do not delete caches for this artifact quota: GitHub documents the cache allowance separately.
+- Exact upload blocker is independently verified; do not claim the quota itself is fixed. Owner UI verification required: Settings → Billing & Licensing → Usage → Actions storage and Packages storage; inspect both repositories' Actions artifacts and package storage. If visible artifacts + Packages do not explain the enforced usage after the 6–12h window, escalate to GitHub Support for account-level meter reconciliation, attaching run `40876805256`, job `123457598110`, exact error, deletion timestamp/count/size, and current usage screenshot.
+
+### Workflow and staging checks
+- PR #95 remains OPEN, UNMERGED, `mergeable=false`, current head `5ee1f89e830263da9c2138430a1ceeffe6d35837`. Latest branch audit remains `40876805256`; no newer run on this branch. No merge/rebase.
+- Sony audit `41015289924` remains CANCELLED with zero jobs. Its workflow is push-only and has no `workflow_dispatch`; no supported safe retry action exists. Do not create an extra push merely to retry without an approved workflow trigger.
+- Car Audio prototype QA run `41021482678` job `123949584243` completed FAILURE; next run `41021603499` job `123949957615` completed SUCCESS on commit `11c94d60282df160409a0fc509bd04b0cec68820`. Do not rerun the successful run.
+- Latest permanent handover task-start commit: `714c8889ed5aacbd0b23e59c5eac3efb4b0bf0ca`. This branch task-start entry commit: `6095a655dc071725c90fc4dd287c7d8a915637aa`.
+
+### Remaining blockers / next action
+- Fresh Planetworld audit still needs one manual workflow dispatch in GitHub Actions because no supported dispatch action is available through the connected GitHub tools. Do not re-run stale successful run `40876805256`; use workflow page, select branch `docs/planetworld-blocker-handover-2026-10-26`, Run workflow once, then verify job summary and artifact. The job summary already publishes audit counts even if artifact storage remains full.
+- Current supplier confirmation has not been received or verified. Do not infer it from reseller/manufacturer sources; supplier email access requires interactive Gmail authorization.
+- Cloudflare Workers/Pages and hosted journey require separate check-run/runtime inspection. No deployment integration was rerun. No production, Axxess, DNS, payment, Supabase, live catalogue, price, stock, active flag, or supplier workbook changes.
+
+
+## FOLLOW-UP STATUS — CLOUDFLARE CHECKS / HOSTED JOURNEY — 2026-10-30
+
+- Queried GitHub check-runs for PR #95 head `5ee1f89e830263da9c2138430a1ceeffe6d35837`: Cloudflare Pages **SUCCESS**, preview `https://33e99bad.get-wired-autoworx-store.pages.dev`, branch preview `https://docs-planetworld-blocker-han.get-wired-autoworx-store.pages.dev`; Workers Builds **FAILURE**, build ID `4009616d-a91f-4b79-b240-8ca5988c6bcc`; Netlify rules checks neutral. Cloudflare Pages success is not production deployment.
+- Latest review prototype commit `11c94d60282df160409a0fc509bd04b0cec68820`: responsive-review job `123949957615` **SUCCESS** (run `41021603499`); Cloudflare Workers Builds **FAILURE**, build ID `061fdd82-642a-4d64-9d7e-0d836ebea4ca`; Cloudflare Pages still **IN_PROGRESS** at inspection (build/deploy ID `51fed864-d628-45e3-9aa4-7fa070672470`). Do not rerun Workers Builds or any deployment integration. GitHub check summary exposes build IDs and dashboard log links but not failure reason; authenticated Cloudflare dashboard log inspection is required. No Cloudflare config change or deployment performed.
+- Hosted customer journey: direct public-domain and Pages preview inspection through available web retrieval returned inaccessible/internal error, so no independent runtime journey test could be completed. Existing handover's latest canonical marker test remains run `40925572349` FAILURE: `www.getwiredauto.co.za` returned HTTP 200 but did not contain the buttons-only marker. Do not claim canonical site updated or customer journey verified. A browser-capable authenticated runtime or owner-provided page response/screenshots is required; no Axxess upload/DNS/deploy.
+- Supplier confirmation: no current supplier reply evidence available. Gmail connector is not connected; connection is required to search existing supplier correspondence and prepare/send a price-clarification request. No supplier communication was sent and no price/stock inferred.
+- Permanent handover latest task start was already recorded in commit `714c8889ed5aacbd0b23e59c5eac3efb4b0bf0ca`; this follow-up records no changes to live data or release boundary.
+
+
+## SONY IMAGE AUDIT SAFE RESTART — 2026-10-30 09:42 SAST
+
+- Confirmed no in-progress Sony image audit or other branch workflow before restart. The prior Sony run `41015289924` was cancelled and returned no jobs; its workflow was push-only with no supported rerun action.
+- Added `workflow_dispatch:` to `.github/workflows/sony-browser-image-audit.yml` on isolated review branch `catalogue/ingest-review-2026-10-30`, commit `5642c012a092f4b009551d45c90596b4b3ca6f8c`. The existing push path filter triggered exactly one safe staging retry.
+- New run `41021963315` is confirmed **IN_PROGRESS**, job `123951111064` (`browser-audit`); checkout was in progress, Playwright/Chromium/image audit pending at last inspection. Do not start a duplicate. Recheck this exact run/job to conclusion and inspect generated CSV/JSON/image candidate outputs. This is staging-only; no supplier workbook, live data, deployment, payment, DNS or Axxess changes.
+
+
+## LIVE MONITOR POLL — 2026-10-30 09:46 SAST
+
+- Sony retry run `41021963315` remains **IN_PROGRESS**, job `123951111064`; checkout and Node/Playwright setup completed successfully, Chromium installation is still in progress, image audit and commit steps are pending. Job-log download currently returns 404 because GitHub has not published downloadable logs while the job is active. Do not duplicate or cancel; recheck same run after completion/timeout.
+- Review-prototype commit `11c94d60282df160409a0fc509bd04b0cec68820`: responsive QA `41021603499` remains **SUCCESS**; Cloudflare Workers Builds remains **FAILURE** (build ID `061fdd82-642a-4d64-9d7e-0d836ebea4ca`); Cloudflare Pages check `51fed864-d628-45e3-9aa4-7fa070672470` remains **IN_PROGRESS** at last poll. No rerun or deployment action.
+- Cloudflare check-run summaries do not contain the underlying Workers build error. The linked authenticated Cloudflare dashboard is the only available log location; no Cloudflare connector/session is available here. Hosted site / Pages preview runtime could not be opened by the available retrieval browser; journey remains UNVERIFIED.
+- Storage quota root cause remains narrowed but not conclusively attributed: artifact upload error confirmed; account billing + Packages usage + complete historical artifact inventory are not exposed through the GitHub connection. Do not claim quota fixed.
+
+
+## SONY AUDIT PROGRESS CHANGE — 2026-10-30 09:48 SAST
+
+- Sony retry run `41021963315` / job `123951111064` advanced: Chromium installation **SUCCESS**; exact-model browser image audit step is now **IN_PROGRESS**; commit step remains pending. No duplicate run. Await the same run's conclusion and inspect output/commit after completion.
+- Cloudflare Pages check for commit `11c94d60282df160409a0fc509bd04b0cec68820` remains **IN_PROGRESS** at last poll; Workers Builds remains **FAILURE**. No deployment integration rerun.
