@@ -8,9 +8,17 @@ const { chromium } = require('playwright');
     for (const width of widths) {
       const page = await browser.newPage({ viewport: { width, height: 900 } });
       const pageErrors = [];
+      const failedRequests = [];
       page.on('pageerror', error => pageErrors.push(error.message));
+      page.on('requestfailed', request => failedRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'request failed')));
+      page.on('response', response => { if (response.url().includes('review.json') || response.url().includes('hertz-manufacturer-product-review.json')) { if (response.status() >= 400) failedRequests.push(response.url() + ' :: HTTP ' + response.status()); } });
       await page.goto('http://127.0.0.1:4173/catalogue-review/car-audio-navigation-prototype.html', { waitUntil: 'domcontentloaded' });
-      await page.waitForFunction(() => document.querySelector('#status')?.textContent.includes('Loaded 704') && document.querySelector('#status')?.textContent.includes('84 manufacturer-verified Hertz records'), { timeout: 15000 });
+      try {
+        await page.waitForFunction(() => document.querySelector('#status')?.textContent.includes('Loaded 704') && document.querySelector('#status')?.textContent.includes('84 manufacturer-verified Hertz records'), { timeout: 15000 });
+      } catch (error) {
+        const statusText = await page.locator('#status').innerText().catch(() => '(no #status element)');
+        throw new Error('Review prototype failed to load. status=' + statusText + '; pageErrors=' + pageErrors.join(' | ') + '; failedRequests=' + failedRequests.join(' | '));
+      }
 
       const brandCount = await page.locator('#content [data-brand]').count();
       if (brandCount !== 10) throw new Error(`Expected 9 Planetworld brands + staged Hertz; got ${brandCount} at ${width}px`);
