@@ -1,6 +1,6 @@
 # Planetworld Kicker — additional official model verification
 Date: 2026-10-30
-Scope: 16 Kicker supplier references upgraded from “no exact official page/collection match” using official KICKER product pages and model collections.
+Scope: 19 Kicker supplier references upgraded from “no exact official page/collection match” using official KICKER product pages and model collections.
 
 ## Individual product pages
 
@@ -47,4 +47,15 @@ This is an evidence classification only. Collection pages may list a model witho
 | 47KEY5001 | https://www.kicker.com/key-5001-1-channel-smart-amplifier | KEY500.1 Smart mono amp, 500 W at 1 Ω / 300 W at 2 Ω / 150 W at 4 Ω, auto EQ, FIT+ integration |
 | 51HS8 | https://www.kicker.com/hideaway?p=62809 | Hideaway HS8 compact powered 8-inch subwoofer, 150 W RMS, 25–120 Hz, remote bass control |
 
-The audit now records **17 standard Car Audio exact individual product pages + 5 Marine exact individual pages = 22 exact individual pages** across the 189 Kicker source rows. Standard Car Audio unresolved count falls from 106 to 103; collection-only matches remain distinct. Product descriptions are now shown in the review cards only where manufacturer verification is recorded. Images remain unapproved and no GW SKU assigned.
+The audit now records **17 standard Car Audio exact individual product pages + 5 Marine exact individual pages = 22 exact individual pages** across the 189 Kicker source rows, plus **64 official collection matches** (41 standard Car Audio + 23 Marine) and **103 standard Car Audio rows still without an official product page or collection match**. Collection-only matches remain distinct. Product descriptions are now shown in the review cards only where manufacturer verification is recorded. Images remain unapproved and no GW SKU assigned.
+
+
+## Three additional individual product pages verified — 2026-10-30
+
+| Supplier model code | Official KICKER product page | Confirmed product |
+|---|---|---|
+| 47KEY2004ISO | https://www.kicker.com/47KEY2004ISO | KEY200.4 Smart 4-channel amplifier with auto-EQ/processor and ISO harness |
+| 47KEY5001 | https://www.kicker.com/key-5001-1-channel-smart-amplifier | KEY500.1 Smart mono amplifier; 500 W at 1 Ω / 300 W at 2 Ω / 150 W at 4 Ω |
+| 51HS8 | https://www.kicker.com/hideaway?p=62809 | Hideaway HS8 powered 8-inch subwoofer; 150 W RMS; 25–120 Hz |
+
+The exact supplier reference **48KMC6** is also verified against https://www.kicker.com/48KMC6. Keep the manufacturer code KMC6; correct the conflicting source wording that said KMC5. The product image remains un-downloaded and unapproved.
