@@ -3835,3 +3835,10 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - This confirms the correct route is not to force-link supplier items to unrelated current GW products. Treat the manufacturer-verified candidates as genuinely new products and retain the collision-checked GW SKU proposals for internal staging. Exact supplier IDs are established, but the 770 supplier rows remain unlinked because no existing public product identity matches.
 - No database writes, schema changes, public product inserts, SKU inserts, supplier item activations, image/description/price/stock changes or publications were performed by this comparison.
 - Remaining catalogue publication evidence: approved exact product images, complete accurate customer descriptions, Planetworld RRP−1%/RRP−2% proposal with cost-floor clearance, Audio Connections price confirmation, and supplier availability. Keep zero-RRP, under-cost and unverified availability rows quarantined.
+
+
+## CONFIDENTIAL SUPPLIER DATA REPOSITORY ACCESS CHECK — 2026-10-30
+
+- GitHub repository metadata was rechecked after supplier workbook staging: `getwiredautoworx-max/get-wired-autoworx-store` now reports `visibility=private`, with admin/push access for the connected owner account.
+- Supplier workbooks and dealer pricing sources therefore remain inside the private GitHub repository; Cloudflare Pages public-package QA continues to enforce the customer-only allowlist and exclude supplier workbooks/catalogue review files.
+- No repository visibility change was made in this check.
