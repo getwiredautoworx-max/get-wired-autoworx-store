@@ -4553,3 +4553,10 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - This is a non-production branch preview. Main customer entry point remains buttons-only; no production domain, Axxess, DNS, payment, Supabase or live stock changes occurred.
 - The separate Cloudflare Workers build check in the PR conversation remains failed, but the Cloudflare Pages preview deployment is explicitly SUCCESS for the exact current PR #136 head. Do not confuse the unrelated Workers service build with the Pages preview status.
 - Automated GitHub Actions browser/package/SKU/security checks still fail before steps (null logs/steps), so deployment success does not equal visual QA acceptance or full launch readiness. Owner can now inspect the live preview on mobile/desktop while Actions account/runner availability is resolved.
+
+
+## 2026-10-30 16:3x SAST — COURIER PRIVACY BRANCH ALSO DEPLOYED TO CLOUDFLARE PAGES PREVIEW
+
+- Cloudflare Pages bot confirmed successful deployment for exact PR #137 head `b8ca7b17a53741609575c5ffbb70c07332cb8afd`.
+- Branch preview URL: `https://fix-courier-collection-origi.get-wired-autoworx-store.pages.dev`; immutable deployment URL: `https://27282d3b.get-wired-autoworx-store.pages.dev`.
+- This preview deploy is not a Supabase Edge Function deployment. The source still requires PR review/merge and a separately approved Supabase deployment with the four collection-origin secrets. No production function or secret was changed.
