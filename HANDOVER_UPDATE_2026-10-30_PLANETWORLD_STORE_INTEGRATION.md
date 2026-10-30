@@ -26,3 +26,11 @@
 
 ## Release boundary
 Preview branch only. No merge, production deploy, Axxess upload, DNS, Supabase writes, public price/stock changes, supplier activation, checkout/payment activation or banking details configured. Production remains HOLD.
+
+
+## Follow-up — direct category navigation
+
+- Added a branded Planetworld navigation block immediately below the main Shop by Category tiles in `preview-store.html`, commit `5f6167e0b5d7a732ba6b065f2134c69133a34b81`.
+- Eight buttons route directly to Car Audio, Home Entertainment, Band & Live Sound, DJ, Studio & Pro Audio, Marine Audio, Installed AV and Musical Instruments; each resets filters and scrolls to the catalogue. Component filters work across collections.
+- Static checks passed for all eight labels, filter/scroll bridge, one noindex directive and all eight inline scripts compiling.
+- The last Cloudflare Pages success remains commit `70353e9`; it predates `5f6167e`. Exact deployment confirmation for the category-entry update and hosted desktop/mobile click-through are still outstanding.
