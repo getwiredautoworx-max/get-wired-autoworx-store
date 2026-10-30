@@ -13,11 +13,13 @@ Deno.test("checkout handler rejects forged or altered delivery quotes before RPC
   };
   globalThis.fetch = (async (input: RequestInfo | URL, _init?: RequestInit) => {
     const url = String(input);
-    if (url.includes("/auth/v1/user")) return new Response(JSON.stringify({ id: "test-customer", email: "checkout@example.com", email_confirmed_at: new Date().toISOString() }), { status: 200, headers: { "Content-Type": "application/json" } });
+    if (url.includes("/auth/v1/user")) return new Response(JSON.stringify({ id: "00000000-0000-4000-8000-000000000001", email: "checkout@example.com", email_confirmed_at: new Date().toISOString() }), { status: 200, headers: { "Content-Type": "application/json" } });
     if (url.includes("/rest/v1/products")) return new Response(JSON.stringify([product]), { status: 200, headers: { "Content-Type": "application/json" } });
-    if (url.includes("/rest/v1/rpc/create_store_order_v2")) {
+    if (url.includes("/rest/v1/rpc/create_store_order_v3")) {
       rpcCalls++;
-      return new Response(JSON.stringify({ order_id: "test-order", order_number: 1001, subtotal: 310.5, packaging_fee: 70, delivery_fee: 85.5, total: 466, payment_status: "pending" }), { status: 200, headers: { "Content-Type": "application/json" } });
+      const requestBody = JSON.parse(String(_init?.body || "{}"));
+      if (requestBody.p_policy_version !== "GW-TERMS-RETURNS-PRIVACY-2026-10-30" || requestBody.p_customer_user_id !== "00000000-0000-4000-8000-000000000001" || requestBody.p_order_payload?.p_terms_accepted !== true) throw new Error("Durable policy audit arguments were not passed to the atomic order RPC");
+      return new Response(JSON.stringify({ order_id: "test-order", order_number: 1001, subtotal: 310.5, packaging_fee: 70, delivery_fee: 85.5, total: 466, payment_status: "pending", policy_version: "GW-TERMS-RETURNS-PRIVACY-2026-10-30", policy_acknowledged_at: "2026-10-30T10:00:00Z" }), { status: 200, headers: { "Content-Type": "application/json" } });
     }
     throw new Error("Unexpected fetch in isolated checkout test: " + url);
   }) as typeof fetch;
