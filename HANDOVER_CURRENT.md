@@ -1,3 +1,12 @@
+## REVIEW-BRANCH RESPONSIVE QA — 2026-10-30
+
+- Updated `scripts/catalogue-nav-prototype.spec.js` so the Hertz assertion reflects the reconciled 84 manufacturer product records (84/87 Hertz-branded; 3 exceptions), replacing the stale 12-page assertion.
+- Added `.github/workflows/catalogue-nav-prototype-test-review.yml` to test this exact review branch at 360, 390, 768 and 1280 px without writing screenshots or uploading artifacts.
+- Run **41020880728** was automatically queued on this branch at commit `5243a42f2ac67e61fa5fb92c093ef70c2aa0d4dc`. This is not yet a pass; inspect its result before claiming branch QA complete.
+- A separate run **41018692457** passed the existing navigation prototype tests on `catalogue/ingest-review-2026-10-30`; it does not validate the current `complete-remaining-review` branch changes.
+
+---
+
 ## AUDIO CONNECTIONS — SONY HIGH-RESOLUTION IMAGE SOURCE RESEARCH — 2026-10-30
 
 - Created `catalogue-review/audio-connections-high-resolution-image-candidates-2026-10-30.csv` for all 15 Sony Mobile ES models.
