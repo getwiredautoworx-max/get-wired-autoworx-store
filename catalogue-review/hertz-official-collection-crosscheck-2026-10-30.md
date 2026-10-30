@@ -129,3 +129,18 @@ Nine further Hertz records were checked against individual official product page
 | 78071165 | CG 300 | https://hertz-audio.com/product/cg-300/ | CS 300 S2/S4-compatible grille |
 
 The audit now has **59 exact individual manufacturer-page matches out of 89 staged records**, leaving **30 without an exact individual page recorded**. Collection listings, catalogue mentions and compatibility references remain separate evidence levels and do not count as individual product pages. These nine image assets have not been downloaded, visually compared, or approved. Supplier item codes remain references only, not GW SKUs; no product publication or database write was performed.
+
+
+## Second follow-up — seven more exact individual pages verified (2026-10-30)
+
+| Reference code | Model | Official individual product page | Verified identity/specification |
+|---|---|---|---|
+| 78000105 | CPK 690 | https://hertz-audio.com/product/cpk-690/ | Cento PRO 6 x 9-inch 2-way system; 360 W peak / 120 W continuous; 4 Ω |
+| 78071036 | DG 165.3 | https://pe.hertz-audio.com/product/dg-165-3/ | Dedicated 165 mm Dieci grille |
+| 78071135 | MG 250.3 | https://id.hertz-audio.com/product/mg-250-3/ | Mille Legend/Pro 250 mm grille |
+| 78071145 | MG 300.3 | https://us.hertz-audio.com/product/mg-300-3-2/ | Mille Legend/Pro 300 mm grille |
+| 78071181 | MPG 165.3 | https://hertz-audio.com/product/mpg-165-3/ | Optional 165 mm Mille PRO woofer grille |
+| 78211041 | HRC 02 | https://hertz-audio.com/product/hrc02/ | Subwoofer remote; −20 to +6 dB level adjustment |
+| 78260025 | S8 DSP | https://us.hertz-audio.com/product/s8-dsp/ | 32-bit 96 kHz/24-bit DSP; 6 input / 8 output channels |
+
+The exact-page audit now contains 66 of the 89 staged reference codes. Twenty-three remain without an exact individual product page in the audit. No image binary was downloaded or approved; these checks do not authorize product publication or GW SKU assignment.
