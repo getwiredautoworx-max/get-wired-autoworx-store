@@ -56,6 +56,16 @@ Status: REVIEW ONLY — NOT PUBLISHED. This document supplements, and does not r
 | DP 4.400 | https://hertz-audio.com/product/dp-4-400/ | 4-channel Class-AB amplifier; 500 W total; 105 W x 4 @ 2 Ω |
 | ML Power 1 | https://hertz-audio.com/product/ml-power-1/ | Mono Class-D amplifier; 1,000 W RMS @ 1 Ω |
 
+## Additional exact shallow-subwoofer product pages verified on 2026-10-30
+
+| Staged model | Official page | Verified summary |
+|---|---|---|
+| MPS 300 S2 | https://hertz-audio.com/product/mps-300-s2/ | 300 mm shallow subwoofer; 2 Ω; 1,000 W peak / 500 W continuous |
+| MPS 300 S4 | https://hertz-audio.com/product/mps-300-s4-2/ | 300 mm shallow subwoofer; 4 Ω; 1,000 W peak / 500 W continuous |
+| MPBX 250 S2 | https://hertz-audio.com/product/mpbx-250-s2-1/ | 250 mm sealed shallow enclosure; 2 Ω; 1,000 W peak / 500 W continuous |
+| MPBX 300 S2 | https://hertz-audio.com/product/mpbx-300-s2-1/ | 300 mm sealed shallow enclosure; 2 Ω; 1,000 W peak / 500 W continuous |
+| DBA 201 F | https://hertz-audio.com/product/dba-201-f-2/ | 200 mm active flat subwoofer; integrated Class-D amplifier; 440 W peak / 220 W RMS |
+
 ## Exact model labels present in current official Hertz collections
 
 These are manufacturer collection-listing matches, not individual product detail-page verification. The matching model strings should be checked against the source item name before any row is promoted.
