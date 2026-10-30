@@ -74,6 +74,36 @@ jobs:
                 visibleCheckout
               };
             },ASC_PUBLIC_SKUS);
+            const freeSearch=await page.evaluate(()=>{
+              const rows=window.gwProducts||[];const module=window.gwCatalogueSearch;
+              const exactProduct=rows.find(p=>p.public_sku&&p.name&&p.category_name);
+              if(!module||!exactProduct)return {loaded:!!module,rows:rows.length};
+              const exact=module.search(rows,exactProduct.public_sku,25);
+              const partial=module.search(rows,exactProduct.public_sku.slice(0,6),25);
+              const category=module.search(rows,exactProduct.category_name,25);
+              const token=String(exactProduct.name).toLowerCase().split(/[^a-z0-9]+/).find(t=>t.length>=5);
+              const typo=token?module.search(rows,token.slice(0,-1)+'x',25):[];
+              return {loaded:true,exact:exact[0]?.p?.id===exactProduct.id,partial:partial.some(x=>x.p.id===exactProduct.id),category:category.length>0&&category.some(x=>String(x.p.category_name||'').toLowerCase()===String(exactProduct.category_name).toLowerCase()),typo:typo.some(x=>x.p.id===exactProduct.id),noMatch:module.search(rows,'gw-no-such-part-xyz',25).length===0};
+            });
+            if(!freeSearch.loaded||!freeSearch.exact||!freeSearch.partial||!freeSearch.category||!freeSearch.typo||!freeSearch.noMatch)throw new Error('Free catalogue search browser integration failed: '+JSON.stringify(freeSearch));
+            console.log('FREE_CATALOGUE_SEARCH_BROWSER_PASS '+JSON.stringify(freeSearch));
+            await page.waitForFunction(()=>typeof document.getElementById('sourcePartForm')?.onsubmit==='function',{timeout:30000});
+            const partRequest=await page.evaluate(()=>{
+              window.__gwOpenedUrls=[];window.__gwPostCalls=[];
+              window.open=(url)=>{window.__gwOpenedUrls.push(String(url));return null;};
+              const originalFetch=window.fetch.bind(window);
+              window.fetch=(input,init={})=>{if(String(init.method||'GET').toUpperCase()!=='GET')window.__gwPostCalls.push(String(input));return originalFetch(input,init);};
+              const set=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value;};
+              set('sourceBrand','Toyota');set('sourceMake','Toyota');set('sourceModel','Hilux');set('sourcePartType','Auto Electrical');set('sourcePartNeeded','Alternator');set('sourceNotes','Preview no-write verification');
+              document.getElementById('sourcePartForm').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+              return {previewMode:document.body.dataset.previewMode,hasForm:!!document.getElementById('sourcePartForm')};
+            });
+            await page.waitForFunction(()=>window.__gwPartRequestPreviewHandoff===true,{timeout:5000});
+            const partRequestResult=await page.evaluate(()=>({url:window.__gwOpenedUrls?.[0]||'',postCalls:window.__gwPostCalls||[],status:document.getElementById('sourceStatus')?.textContent||''}));
+            if(partRequest.previewMode!=='true'||!partRequest.hasForm||!partRequestResult.url.startsWith('https://wa.me/27744884234?text=')||partRequestResult.postCalls.length!==0||!partRequestResult.status.includes('Preview did not submit or store'))throw new Error('Preview part-request must hand off to WhatsApp without Supabase writes: '+JSON.stringify({partRequest,partRequestResult}));
+            console.log('PREVIEW_PART_REQUEST_WHATSAPP_NO_WRITE_PASS');
+            const robots=await page.evaluate(()=>[...document.querySelectorAll('meta[name="robots"]')].map(x=>x.content));
+            if(robots.length!==1||robots[0]!=='noindex,nofollow')throw new Error('Preview store route must have exactly one noindex,nofollow directive: '+JSON.stringify(robots));
             const EXPECTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
             if(audit.categories!==8||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||audit.rootIds.length!==8||audit.rootIds.some(id=>!id))throw new Error('Approved eight-category root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
             const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
