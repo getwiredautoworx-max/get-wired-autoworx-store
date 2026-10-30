@@ -52,7 +52,9 @@ jobs:
             const browser=await chromium.launch({headless:true});
             const page=await browser.newPage({viewport:{width:390,height:844}});
             const pageErrors=[];
+            const pageConsoleErrors=[];
             page.on('pageerror',e=>pageErrors.push(e.message));
+            page.on('console',m=>{if(m.type()==='error')pageConsoleErrors.push(m.text())});
             await page.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await page.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
@@ -133,9 +135,11 @@ jobs:
             if(pwDesktop.scrollWidth>pwDesktop.innerWidth+1)throw new Error('Planetworld desktop overflow: '+JSON.stringify(pwDesktop));
             await planetworld.close();
             // Exercise the dedicated audio-area navigation from the real category page.
-            await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
-            await page.waitForTimeout(1500);
-            const audioDebug=await page.evaluate(()=>({url:location.href,title:document.title,gridError:document.getElementById('grid')?.dataset.error||'',gridDebug:document.getElementById('grid')?.dataset.debug||'',gridText:document.getElementById('grid')?.innerText||'',pageErrors:[]})); 
+            const audioResponse=await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
+            await page.waitForTimeout(3000);
+            const audioDebug=await page.evaluate(()=>({url:location.href,title:document.title,gridError:document.getElementById('grid')?.dataset.error||'',gridDebug:document.getElementById('grid')?.dataset.debug||'',gridText:document.getElementById('grid')?.innerText||''}));
+            console.log('AUDIO_HTTP_STATUS '+audioResponse?.status());
+            console.log('AUDIO_PAGE_ERRORS '+JSON.stringify({pageErrors,pageConsoleErrors})); 
             console.log('AUDIO_CATEGORY_DEBUG '+JSON.stringify(audioDebug));
             if(await page.locator('#grid .card').count()<3)throw new Error('Audio category page did not render three area cards: '+JSON.stringify(audioDebug));
             const audioAreas=await page.locator('#grid').innerText();
