@@ -134,7 +134,10 @@ jobs:
             await planetworld.close();
             // Exercise the dedicated audio-area navigation from the real category page.
             await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
-            await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
+            await page.waitForTimeout(1500);
+            const audioDebug=await page.evaluate(()=>({url:location.href,title:document.title,gridError:document.getElementById('grid')?.dataset.error||'',gridDebug:document.getElementById('grid')?.dataset.debug||'',gridText:document.getElementById('grid')?.innerText||'',pageErrors:[]})); 
+            console.log('AUDIO_CATEGORY_DEBUG '+JSON.stringify(audioDebug));
+            if(await page.locator('#grid .card').count()<3)throw new Error('Audio category page did not render three area cards: '+JSON.stringify(audioDebug));
             const audioAreas=await page.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!audioAreas.includes(label))throw new Error('Audio area navigation missing '+label);
             await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
