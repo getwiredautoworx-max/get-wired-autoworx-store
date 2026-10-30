@@ -1,3 +1,14 @@
+## REVIEW-BRANCH MULTI-BRAND AUDIT RESULT — 2026-10-30
+
+- Review branch `catalogue/complete-remaining-review-2026-10-30` now records official manufacturer page/collection references for 226 of 702 Planetworld rows. These are model-reference matches, not approved images or published products.
+- Planetworld split: 627 standard Car Audio brand products, 28 Kicker Marine Audio rows separated, and 47 Harness and Trims components. Kicker: 12 exact pages + 27 collections for standard Car Audio; Marine 28 split into 4 exact pages, 23 collections and one KMC5/KMC6 description conflict. Audison: 41 exact pages, 49 collection/accessory/configurator/range matches, two OCR review rows and two unmatched. Alpine: 9 exact pages, 26 collection, 5 catalogue matches and 18 unmatched. OneNav: 9 exact pages. Focal/JVC/Kenwood/Pioneer: 5 exact pages, 10 collections, 1 support page, 2 ambiguous and 3 unmatched. Amplified 3 unresolved.
+- Four original Alpine high-resolution image URLs found, but no binaries downloaded or approved. No GW SKU assignments, image approvals, product publication, duplicate deletions or live price/stock changes.
+- Audio Connections: 68 PDF-sourced candidates, three Starsound missing numeric prices and Sony XS-690ES supplier-marked SOLD OUT; all unpublished.
+- Main remains buttons-only; no production, Supabase, Axxess, DNS, payment, merge or deployment changes. Payment remains final launch blocker; launch HOLD.
+- Consolidated review summary: `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json` on the review branch.
+
+---
+
 ## ADDITIONAL REVIEW-BRANCH RESULT — ALPINE — 2026-10-30
 
 - 58 Planetworld Alpine source rows cross-checked: 9 exact individual official product pages, 26 official collection model matches, 5 official catalogue model matches and 18 unresolved in this pass.
