@@ -2245,8 +2245,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit subwoofer/subwoofer-series description."
+            "manufacturer_description_status": "NOT VERIFIED — supplier model mapping pending",
+            "note": "Potential AV 10 D4 II only: source row 63 contains corrupted '+C170:C209' text, but names a 250 mm 4+4 ohm shallow subwoofer; adjacent row 69040105 is AV 10 D2 II and official AV 10 D4 II page exists. Keep candidate separate; verify original source cell or obtain Planetworld confirmation before assigning model.",
+            "display_name": "Audison 250 mm shallow subwoofer — model confirmation pending",
+            "candidate_manufacturer_model": "AV 10 D4 II",
+            "candidate_manufacturer_page": "https://audison.com/product/av-10-d4-ii/"
           },
           {
             "supplier_item_code": "69040105",
