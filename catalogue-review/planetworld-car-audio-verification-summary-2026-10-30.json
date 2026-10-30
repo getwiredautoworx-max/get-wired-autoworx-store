@@ -60,10 +60,15 @@
     "Focal_JVC_Kenwood_Pioneer": {
       "rows": 21,
       "exact_official_product_pages": 5,
-      "official_collection_matches": 10,
+      "official_collection_matches": 7,
       "official_support_page_matches": 1,
+      "official_model_specific_manual_matches": 2,
+      "official_optional_accessory_mentions": 1,
+      "underlying_official_head_unit_pages_for_supplier_bundles": 2,
       "ambiguous_model_or_supplier_prefix_matches": 2,
-      "unmatched": 3,
+      "third_party_oem_part_number_evidence": 1,
+      "unmatched_official_product_page_or_collection_matches": 0,
+      "evidence_note": "No exact customer-publication approval is implied. KPE-KDR492/KPE-KDR891 are supplier bundle SKUs with official underlying JVC head-unit pages but unverified harness composition; TS-G1610F-2 suffix and Focal KIT SUB P20FE kit composition remain unresolved; E3A-0323-00 has third-party OEM part-number corroboration but no official standalone product page.",
       "audit": "catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv"
     },
     "Amplified": {
@@ -76,7 +81,12 @@
     "ISA-ON115-3LX and ON115-3LX share the same description/application; only ON115-3LX matches the visible OneNav page SKU. Supplier confirmation required; neither row deleted.",
     "48KMC6 source description says KMC5 while Kicker official listing says KMC6. Manual correction required.",
     "One Audison AV 10 D4 II description is OCR-corrupted; confirm against original source sheet before assigning a model.",
-    "Audison AP SPK OUT 4.9 and CX690 grilles have no exact official page match in this pass."
+    "Audison AP SPK OUT 4.9 and CX690 grilles have no exact official page match in this pass.",
+    "JVC KPE-KDR492 and KPE-KDR891 supplier bundle codes now resolve to underlying official KD-R492 and KD-R891BT head-unit pages; bundle/harness contents remain unverified, so do not treat the supplier bundle code as the manufacturer model.",
+    "JVC/Kenwood E3A-0323-00 is corroborated as a DC power/wiring cord assembly by third-party genuine spare-part listings; no standalone official manufacturer product page found; confirm receiver compatibility.",
+    "Kenwood KDC-1040U and KDC-154UM are confirmed in an official model-specific manual/specification document; no standalone product page or approved image.",
+    "JVC RM-RK258 is confirmed as an optional remote in official JVC receiver product pages; confirm compatibility and obtain a standalone accessory image.",
+    "Pioneer TS-G1610F-2 remains a suffix mismatch against official TS-G1610F; do not assume -2 means a two-pack."
   ],
   "image_status": {
     "Alpine": {
