@@ -1,3 +1,13 @@
+## COMBINED CAR AUDIO NAVIGATION QA PASS — 2026-10-30
+
+- Canonical detailed review workflow **41021768299** completed **SUCCESS** at commit `dc5abcb64069cb08a76e56447ffa857a85b1b274`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021768299
+- Playwright passed at **360 / 390 / 768 / 1280 px**. It validated 10 manufacturer brand choices, 6 Alpine amplifier records, 84 manufacturer-verified Hertz records with 3 exceptions, 28 separately routed Marine Audio records, 47 Harnesses & Trims records, no JavaScript errors and no horizontal overflow.
+- The same passing run also exercised the newly added Audison → Harnesses & Trims route: 8 records, including AFBMW BOOSTER 01 and AFBMW ReAMP 3, with official Audison page links, manufacturer description verified, images still not verified and GW SKUs unassigned. Supplier cost/stock fields did not leak into product cards.
+- Combined review tree is now 704 source rows: 629 brand products (Audison 96), 28 Marine Audio and 47 separate Harnesses & Trims records. Hertz remains 87 records (84 with manufacturer product records; 3 exceptions). This is review-only; no live product publication, image assignment, GW SKU creation, Supabase write or deployment.
+- Earlier failures were stale test assertions/data-load wait conditions; the current detailed workflow passed after the 704-row and Audison reclassification updates. Keep run 41021768299 as the latest verified QA evidence.
+
+---
+
 ## EXACT-HEAD REVIEW QA CONFIRMED — 2026-10-30
 
 - The review-branch workflow now checks out the triggering commit SHA, preventing tests from silently running against a moving branch head.
