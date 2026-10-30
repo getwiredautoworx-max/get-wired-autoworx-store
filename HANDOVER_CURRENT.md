@@ -3665,3 +3665,21 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Preview is isolated, noindex, checkout/cart and supplier/part-request submissions disabled. Main remains buttons-only; PR #116 remains draft/unmerged. No Axxess, DNS, production deployment, PayFast or production checkout activation.
 - Stock qualification: public.supplier_stock is empty. The remaining active product quantities are the current store-record values and have not been newly confirmed against supplier feeds. The preview banner tells the owner/customer to confirm availability before ordering. Do not describe those non-ASC quantities as freshly supplier-confirmed.
 - Owner should review the preview on phone and desktop. Continue supplier-to-GW mapping/image evidence and current non-ASC stock reconciliation as separate tasks. Do not merge PR #116 or publish supplier prices/catalogue records without the separate approval gates.
+
+
+---
+
+## CONTINUATION READ-BACK + PREVIEW REVALIDATION — 2026-10-30 11:23 SAST
+
+- Resumed from the current main-branch `HANDOVER_CURRENT.md` (blob `d48b8d0430a93374ddb8991a006cf0c735d9dd71`); no restart or duplicate catalogue extraction performed.
+- Re-read the final populated-preview checkpoint and independently fetched the GitHub Actions job records/logs for the existing exact-head verification:
+  - Populated Store Preview Browser QA run `41032794497`, job `123986312498`: SUCCESS.
+  - Public Package QA run `41032794463`, job `123986311840`: SUCCESS.
+  - Storefront Smoke Test run `41032794475`: SUCCESS in mode detection; legacy smoke job correctly SKIPPED because main is buttons-only.
+  - Public SKU Exposure Audit run `41032794521`, job `123986312366`: SUCCESS.
+- Re-read the browser job log itself. Both local and actual hosted preview emitted `POPULATED_PREVIEW_PASS` and `HOSTED_PREVIEW_PASS`. Confirmed 4,187 active products, 103 categories, 34 active ASC SKUs all at zero, 0 positive ASC stock, preview notice present, checkout hidden, no private-address leak, product modal opens, 390px mobile width has no overflow, 1280px desktop width has no overflow, and no browser page errors.
+- Owner preview URL remains `https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/preview-store.html`; commit URL also recorded in the prior checkpoint. This is a review preview only, not a production deployment.
+- Open PR #116 remains a draft populated-preview candidate. PR #94 and #99 remain separate stale/divergent integration candidates and must not be wholesale merged. PR #116 is also not to be merged without owner review and the remaining data/stock qualifications.
+- Important qualification unchanged: public.supplier_stock is empty; non-ASC quantities displayed are current store-record quantities, not newly supplier-confirmed. All 36 ASC ledger matches remain at zero (34 active in public query; 2 inactive and absent).
+- Next execution: inspect current PR #94/#99 file-level differences against the now-tested preview and selectively port only required Part Search/no-AI functionality into the isolated preview branch; then run exact-head tests. In parallel continue the source-backed Planetworld/Audio Connections model, description, component and approved-image crosswalk. Keep all uncertain supplier rows quarantined.
+- No new Supabase writes, live product/price/stock changes, supplier inserts, PR merges, Axxess upload, DNS, payment activation, production deployment, Cloudflare Worker configuration change, or extra paid build/storage usage occurred in this continuation.
