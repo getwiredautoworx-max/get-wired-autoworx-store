@@ -78,13 +78,13 @@ jobs:
             if(hostedAudit.products<1||hostedAudit.ascMatched!==34||hostedAudit.ascPositiveStock!==0||hostedAudit.ascZeroStock!==34)throw new Error('Hosted ASC stock check failed: '+JSON.stringify(hostedAudit));
             if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
-            const firstCard=hosted.locator('#allProductsGrid .product').first();
-          const cardGeometry=await firstCard.evaluate(el=>{const img=el.querySelector('.prodImg,.productImage,.productImagePlaceholder');const card=el.getBoundingClientRect();const media=img?.getBoundingClientRect();return {cardHeight:card.height,mediaHeight:media?.height||0,mediaBottom:media?.bottom||0,cardBottom:card.bottom,overlap:!!media&&media.bottom>card.bottom-1,descriptionPosition:el.querySelector('h3')?.getBoundingClientRect().top||0};});
-          if(!cardGeometry.mediaHeight||cardGeometry.overlap||cardGeometry.descriptionPosition<cardGeometry.mediaBottom-1)throw new Error('Product image/description layout overlaps: '+JSON.stringify(cardGeometry));
-          const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
+            const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
             await hostedCategory.click();
             await hosted.locator('#shop').waitFor({state:'visible',timeout:20000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
+          const firstCard=hosted.locator('#allProductsGrid .product').first();
+          const cardGeometry=await firstCard.evaluate(el=>{const img=el.querySelector('.prodImg,.productImage,.productImagePlaceholder');const card=el.getBoundingClientRect();const media=img?.getBoundingClientRect();return {cardHeight:card.height,mediaHeight:media?.height||0,mediaBottom:media?.bottom||0,cardBottom:card.bottom,overlap:!!media&&media.bottom>card.bottom-1,descriptionPosition:el.querySelector('h3')?.getBoundingClientRect().top||0};});
+          if(!cardGeometry.mediaHeight||cardGeometry.overlap||cardGeometry.descriptionPosition<cardGeometry.mediaBottom-1)throw new Error('Product image/description layout overlaps: '+JSON.stringify(cardGeometry));
             await hosted.locator('#allProductsGrid .product').first().click();
             await hosted.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
             await hosted.locator('#modalClose').click();
