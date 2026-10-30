@@ -63,6 +63,12 @@ jobs:
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
           const initialHtml=await hosted.content();
           if(/Planetworld|Dealer Price|supplier catalogue|accessoriesspares\.co\.za/i.test(initialHtml))throw new Error('Supplier identity, pricing or source reference exposed in hosted storefront HTML');
+            const verifiedCatalogue=await hosted.evaluate(()=>({count:document.querySelectorAll('#gwVerifiedGrid .gwVerifiedCard').length,withImagePlaceholder:document.querySelectorAll('#gwVerifiedGrid .gwVerifiedMedia[role="img"]').length,quoteOnly:[...document.querySelectorAll('#gwVerifiedGrid .gwVerifiedStatus')].every(el=>/Price & availability on request/i.test(el.innerText)),whatsapp:[...document.querySelectorAll('#gwVerifiedGrid a[href*="wa.me"]')].length,supplierLeak:/Planetworld|Dealer Price|supplier catalogue|accessoriesspares\\.co\\.za/i.test(document.getElementById('gwVerifiedCatalogue')?.innerText||'')}));
+            if(verifiedCatalogue.count!==68||verifiedCatalogue.withImagePlaceholder!==68||!verifiedCatalogue.quoteOnly||verifiedCatalogue.whatsapp!==68||verifiedCatalogue.supplierLeak)throw new Error('GW catalogue integration audit failed: '+JSON.stringify(verifiedCatalogue));
+            await hosted.locator('#gwVerifiedSearch').fill('Alpine');
+            const alpineCount=await hosted.locator('#gwVerifiedGrid .gwVerifiedCard').count();
+            if(alpineCount<1||alpineCount>=68)throw new Error('GW catalogue search filter failed: '+alpineCount);
+            await hosted.locator('#gwVerifiedSearch').fill('');
             const hostedAudit=await hosted.evaluate(skus=>{
               const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
               return {
