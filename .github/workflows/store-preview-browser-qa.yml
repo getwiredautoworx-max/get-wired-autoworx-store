@@ -38,6 +38,13 @@ jobs:
           sleep 2
           node <<'NODE'
           const { chromium } = require('playwright');
+          const fs = require('fs');
+          for (const path of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']) {
+            const html = await fs.promises.readFile(path,'utf8');
+            const robots = [...html.matchAll(/<meta\\s+name=[\"']robots[\"']\\s+content=[\"']([^\"']+)[\"'][^>]*>/gi)].map(m=>m[1].toLowerCase());
+            if (robots.length !== 1 || robots[0] !== 'noindex,nofollow') throw new Error('Preview route must have exactly one noindex,nofollow directive: '+path+' '+JSON.stringify(robots));
+          }
+          console.log('PREVIEW_ROBOTS_GUARD_PASS');
           const ASC_PUBLIC_SKUS = [
             'GW-09D1B7AD','GW-1C87D5E5','GW-1CE86A57','GW-1ED91C25','GW-269894FE',
             'GW-2A7A9F1E','GW-2AE829B0','GW-2C508DE3','GW-2C792975','GW-31FC9859',
@@ -137,7 +144,7 @@ jobs:
             if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==4||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
             await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===4&&imgs.every(img=>img.complete);},{timeout:15000});
             const imageLoadAudit=await planetworld.locator('#grid .card img').evaluateAll(imgs=>imgs.map(img=>({src:img.src,loaded:img.naturalWidth>0})));
-            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official Alpine product image did not load: '+JSON.stringify(imageLoadAudit));
+            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official manufacturer product image did not load: '+JSON.stringify(imageLoadAudit));
             const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
             await planetworld.locator('#q').fill('Alpine');
