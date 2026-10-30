@@ -1,0 +1,12 @@
+category_id,name,slug,direct_active_products,name_duplicate_status,action
+f7f2ea3b-f15d-46a7-920b-9d3d9a394c79,AERIALS,aerials,7,UNIQUE NAME,Existing active products present; preserve.
+f9a275f5-d356-4b85-ba41-74fed5677f3f,Amplifiers,car-audio-amplifiers,0,DUPLICATE DISPLAY NAME,Do not delete/merge until product associations and category usage are checked.
+a4b912c4-25c6-4daa-a049-6b67818098ba,Amplifiers,amplifiers,0,DUPLICATE DISPLAY NAME,Do not delete/merge until product associations and category usage are checked.
+0f9921f2-b066-4d2c-8995-4a0912faf6a8,Audio Wiring & Installation,audio-wiring-installation,0,UNIQUE NAME,Potential canonical component group; review mapping only.
+ab07f2e9-ff89-42a7-a3c2-8a0e0551cba1,Crossovers,car-audio-crossovers,0,UNIQUE NAME,Potential canonical component group; review mapping only.
+4da98e3f-d542-4842-b6be-c4a8e109c0dd,Head Units,car-audio-head-units,0,DUPLICATE DISPLAY NAME,Do not delete/merge until product associations and category usage are checked.
+a142d33a-0cb4-4971-9195-d85e5d39f352,Head Units,head-units,0,DUPLICATE DISPLAY NAME,Do not delete/merge until product associations and category usage are checked.
+0f0a134e-b9c1-4deb-9bb0-dec99f636015,Speakers,speakers,0,DUPLICATE DISPLAY NAME,Do not delete/merge until product associations and category usage are checked.
+8cbc5953-a290-45ca-9d7a-1a3a1aa4f3ea,Speakers,car-audio-speakers,0,DUPLICATE DISPLAY NAME,Do not delete/merge until product associations and category usage are checked.
+2e1265cc-fa9b-444e-817a-9a707534e497,Subwoofers,subwoofers,0,UNIQUE NAME,Potential canonical component group; review mapping only.
+64726cde-6d3b-4ca5-b778-9f1699e6602b,Wiring & Accessories,car-audio-wiring-accessories,0,UNIQUE NAME,Potential canonical component group; review mapping only.
