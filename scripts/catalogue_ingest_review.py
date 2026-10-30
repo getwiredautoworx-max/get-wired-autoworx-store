@@ -155,6 +155,44 @@ for path in pdfs:
         pdf_rows.append({"source_file": str(path), "page_number": 0, "page_text": "EXTRACTION_ERROR: " + repr(exc)})
 with (OUT / "audio-connections-pages-review.csv").open("w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=["source_file","page_number","page_text"]); w.writeheader(); w.writerows(pdf_rows)
+# Second pass: extract only small header-positioned workbook images as possible brand-logo candidates.
+logo_dir = OUT / "planetworld-workbook-logo-candidates"
+logo_dir.mkdir(exist_ok=True)
+logo_rows = []
+for path in workbooks:
+    try:
+        image_wb = load_workbook(path, read_only=False, data_only=True)
+        safe_book = re.sub(r"[^a-zA-Z0-9]+", "-", path.stem).strip("-").lower()
+        for ws in image_wb.worksheets:
+            for idx, img in enumerate(getattr(ws, "_images", []), start=1):
+                anchor = getattr(img, "anchor", None)
+                origin = getattr(anchor, "_from", None)
+                row0 = getattr(origin, "row", 9999)
+                col0 = getattr(origin, "col", 9999)
+                width = int(getattr(img, "width", 0) or 0)
+                height = int(getattr(img, "height", 0) or 0)
+                # Logos are usually near the worksheet header; skip large embedded product photos.
+                if row0 > 15 or not (50 <= width <= 1600 and 18 <= height <= 500):
+                    continue
+                ext = str(getattr(img, "format", "png") or "png").lower()
+                if ext not in ("png", "jpeg", "jpg", "gif", "bmp"):
+                    ext = "png"
+                data = img._data()
+                image_name = f"{safe_book}-{re.sub(r'[^a-zA-Z0-9]+','-',ws.title).strip('-').lower()}-image-{idx:02d}.{ext}"
+                (logo_dir / image_name).write_bytes(data)
+                logo_rows.append({
+                    "source_file": str(path), "sheet": ws.title, "anchor_row_1based": row0 + 1,
+                    "anchor_column_1based": col0 + 1, "width": width, "height": height,
+                    "format": ext, "image_file": str(logo_dir / image_name), "bytes": len(data),
+                    "status": "HEADER IMAGE CANDIDATE — must visually confirm it is the exact manufacturer wordmark"
+                })
+        image_wb.close()
+    except Exception as image_exc:
+        logo_rows.append({"source_file": str(path), "status": "IMAGE EXTRACTION ERROR", "error": repr(image_exc)})
+with (OUT / "planetworld-workbook-logo-candidates.csv").open("w", newline="", encoding="utf-8-sig") as f:
+    logo_fields = ["source_file","sheet","anchor_row_1based","anchor_column_1based","width","height","format","image_file","bytes","status","error"]
+    w = csv.DictWriter(f, fieldnames=logo_fields); w.writeheader(); w.writerows(logo_rows)
+
 with (OUT / "audio-connections-image-map-review.csv").open("w", newline="", encoding="utf-8-sig") as f:
     image_fields = ["source_file","page_number","image_file","xref","width","height","extension","byte_length","row_label_candidates_json","error"]
     w = csv.DictWriter(f, fieldnames=image_fields); w.writeheader(); w.writerows(pdf_image_map)
@@ -169,6 +207,7 @@ summary = {
     "audio_connections_pages_extracted": len(pdf_rows),
     "audio_connections_pages_with_text": sum(bool(x["page_text"]) and not x["page_text"].startswith(("EXTRACTION_ERROR:", "PYMUPDF_IMPORT_ERROR:")) for x in pdf_rows),
     "audio_connections_embedded_images_extracted": sum("image_file" in x for x in pdf_image_map),
+    "planetworld_workbook_header_image_candidates": sum("image_file" in x for x in logo_rows),
     "audio_connections_image_map_errors": [x for x in pdf_image_map if "error" in x],
     "important_limit": "Raw source extraction only. No product identity, duplicate, image, GW SKU, category, price validity, stock or customer-facing listing is approved by this report."
 }
