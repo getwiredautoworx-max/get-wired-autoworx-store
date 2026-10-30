@@ -28,7 +28,7 @@ const { chromium } = require('playwright');
     if(await page.locator('#content [data-component]').count()<5)throw new Error('Back navigation did not return to component list');
     await page.locator('#home').click();
     await page.locator('#hertz').click();
-    if(!(await page.locator('#content').innerText()).includes('12 official product pages'))throw new Error('Hertz staged warning missing');
+    if(!(await page.locator('#content').innerText()).includes('84 manufacturer records'))throw new Error('Hertz 84-record verification warning missing');
     await page.locator('#content [data-component="Coaxial speakers"]').click();
     if(!(await page.locator('#content').innerText()).includes('staged only'))throw new Error('Hertz component route must remain staged-only');
     await page.locator('#marine').click();
