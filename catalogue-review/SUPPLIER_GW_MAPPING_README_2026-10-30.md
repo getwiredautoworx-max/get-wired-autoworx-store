@@ -1,17 +1,20 @@
-# Supplier-to-GW mapping proposal — 2026-10-30
+# Supplier-to-GW mapping — 2026-10-30
 
-## What the audit established
-- The 4,200-row live `public.products` catalogue has no matching products for the audio brands in these supplier files.
-- No Planetworld or Audio Connections supplier connection currently exists.
-- The private `supplier_catalog_items` table supports a nullable `public_product_id`, so unmatched supplier products can be staged without inventing a public product ID.
-- The private `product_supplier_codes` table links a supplier SKU to a product, but its primary key is `product_id` (one supplier-code row per product).
+## Verified and staged
+- Live `public.products` contains 4,200 rows; no existing audio-brand products matched these supplier records.
+- Two private supplier connections are now registered **inactive**:
+  - Planetworld / TOMS Sound & Music (Pty) Ltd: `29e1acee-b1a6-5630-83c3-0150ea993479`
+  - Audio Connections: `806ef592-6f25-5116-bee6-335e26f8b609`
+- All 770 supplier source rows are staged in `gw_private.supplier_catalog_items`: 702 Planetworld + 68 Audio Connections.
+- Live read-only verification after the insert: 770 unique supplier/SKU pairs; 0 active rows; 0 linked public product IDs; 770 quote-on-request rows; 0 public descriptions; 0 public image URLs.
+- The seed SQL was applied on 2026-10-30. It is kept as an idempotent record of the staging operation, not as a migration.
 
-## Simplest safe process
-1. Confirm the two supplier relationships and trade terms using the official contact details in `supplier-connection-proposals-2026-10-30.csv`.
-2. If approved, apply the separate review-only SQL proposal. It creates the two supplier connections as **inactive** and stages all 770 source rows with `public_product_id = NULL`, `active = false`, and `quote_on_request = true`.
-3. Use `supplier-gw-crosswalk-2026-10-30.csv` to review manufacturer model matches. It proposes 81 collision-checked GW public SKU values for exact individual manufacturer-page matches. Candidate values are not inserted.
-4. For each approved new product, create the product record with its proposed GW public SKU, exact manufacturer description, approved high-resolution image and owner-approved price/availability. Then set the supplier catalogue row's `public_product_id` and create the corresponding `product_supplier_codes` row.
-5. Keep collection-only, no-page, image-unapproved, price-unconfirmed and supplier-sold-out records inactive/held. Do not publish them.
+## Simplest next steps
+1. Confirm the Get Wired dealer relationships and trade terms with each supplier; keep both supplier connections inactive until confirmed.
+2. Use `supplier-gw-crosswalk-2026-10-30.csv` to review the 81 exact individual manufacturer-page candidates with proposed `GW-XXXXXXXX` values. They are collision-checked but **not inserted** into `public.products`.
+3. Verify exact model descriptions, approved high-resolution images, price/VAT basis and supplier availability.
+4. Only after those checks, create the inactive product records with the approved GW public SKUs, then link the corresponding staged supplier rows by setting `public_product_id` and inserting `product_supplier_codes`.
+5. Keep collection-only, no-page, image-unapproved, price-unconfirmed and supplier-sold-out records inactive/held.
 
 ## Safety
-The SQL is a draft file under `catalogue-review/`, not a migration. It has **not** been executed. No Supabase writes, supplier inserts, product rows, stock, prices, images or publication changes were made.
+No public product rows, product_supplier_codes rows, prices, stock, image URLs, active supplier rows or customer-visible listings were created/changed. The two supplier connections and 770 staged catalogue rows are private and inactive. No Edge Function or production deployment was performed.
