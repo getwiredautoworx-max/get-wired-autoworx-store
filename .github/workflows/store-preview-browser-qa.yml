@@ -80,6 +80,7 @@ jobs:
             await hosted.waitForFunction(expectedCount=>document.getElementById('pwCount')?.innerText.startsWith(expectedCount+' catalogue items'),expected,{timeout:15000});
           }
           await hosted.locator('#planetworldCategoryNav [data-pw-collection="Car Audio & Video"]').click();
+          const pwImages=await hosted.locator('#planetworldCategoryNav .pwNavImage img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc})));if(pwImages.length!==9||pwImages.some(img=>!img.loaded))throw new Error('Planetworld category button imagery failed to load: '+JSON.stringify(pwImages));
           const pwNavWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
           if(pwNavWidth.scrollWidth>pwNavWidth.innerWidth+1)throw new Error('Planetworld category navigation causes mobile horizontal overflow: '+JSON.stringify(pwNavWidth));
           await hosted.waitForFunction(()=>[...document.querySelectorAll('#gwVerifiedGrid .gwVerifiedMedia img')].every(img=>img.complete),{timeout:30000});
