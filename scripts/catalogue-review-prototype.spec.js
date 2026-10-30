@@ -121,7 +121,7 @@ const { chromium } = require('playwright');
       await page.locator('#marine').click();
       if (await page.locator('#content article.product').count() !== 28) throw new Error('Marine Audio must contain exactly 28 separated source records');
       const marineText = await page.locator('#content').innerText();
-      if (!marineText.includes('KMC6 Premium Media Center') || marineText.includes('KMC5 Multimedia Gauge-Style Receiver')) throw new Error('Kicker 48KMC6 marine source description was not corrected to official KMC6 model');
+      if (!marineText.includes('KMC6 Premium Marine Media Center') || marineText.includes('KMC5 Multimedia Gauge-Style Receiver')) throw new Error('Kicker 48KMC6 marine source description was not corrected to official KMC6 model');
       if (!marineText.includes('VERIFIED — official KICKER product page') || !marineText.includes('Official manufacturer product page')) throw new Error('KMC6 manufacturer verification or source link missing');
       await page.locator('#harness').click();
       if (await page.locator('#content article.product').count() !== 47) throw new Error('Harnesses & Trims must contain exactly 47 separated component records');
