@@ -71,7 +71,7 @@ jobs:
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
           const initialHtml=await hosted.content();
           if(!/PLANETWORLD — AUDIO & ENTERTAINMENT CATALOGUE/i.test(initialHtml))throw new Error('Planetworld category navigation branding is missing from the hosted store');
-          if(/Dealer Price|Dealer Cost|accessoriesspares\\.co\\.za/i.test(initialHtml))throw new Error('Dealer pricing or private supplier source reference exposed in hosted storefront HTML');
+          if(/Dealer Price|Dealer Cost|accessoriesspares\.co\.za/i.test(initialHtml))throw new Error('Dealer pricing or private supplier source reference exposed in hosted storefront HTML');
           await hosted.waitForFunction(()=>document.querySelectorAll('#planetworldCategoryNav [data-pw-collection]').length===8&&document.getElementById('pwCount')?.innerText.startsWith('674 catalogue items'),{timeout:60000});
           const pwTargets=[['Car Audio & Video',674],['Home Entertainment',461],['Band & Live Sound',792],['DJ',15],['Studio Equipment',62],['Marine Audio',28],['Installed AV',435],['Musical Instruments',850]];
           for(const [collection,expected] of pwTargets){
@@ -134,7 +134,7 @@ jobs:
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
             const hostedBody=await hosted.locator('body').innerText();
-            if(/Dealer Price|Dealer Cost|accessoriesspares\\.co\\.za/i.test(hostedBody))throw new Error('Dealer pricing or private supplier source reference exposed in hosted storefront');
+            if(/Dealer Price|Dealer Cost|accessoriesspares\.co\.za/i.test(hostedBody))throw new Error('Dealer pricing or private supplier source reference exposed in hosted storefront');
             await hosted.close();
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
