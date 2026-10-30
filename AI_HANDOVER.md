@@ -387,3 +387,9 @@ Next: obtain exact high-resolution image assets, finish remaining Hertz/Planetwo
 - Nine Planetworld OneNav rows now have exact official product page + visible SKU + vehicle-application verification (OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1, ON115-3LX).
 - One potential alias pair (ISA-ON115-3LX / ON115-3LX) is recorded for supplier confirmation; do not merge or delete.
 - Product images remain unapproved; no GW SKUs assigned. Full details in the latest `AI_HANDOVER_PERMANENT.md` checkpoint.
+
+## LATEST ALPINE MODEL/IMAGE SOURCE DELTA — 2026-10-30
+
+- Alpine 58-row audit: 9 exact individual official pages, 26 collection-level model labels, 5 official catalogue model labels, 18 unresolved in this pass.
+- Four original high-resolution image source URLs recorded for R2-W10D2, R2-W12D4, R2-A60F and S2-S40C. Binaries not downloaded; no current-image comparison/public_sku mapping; no publication approval.
+- Full details: `catalogue-review/planetworld-alpine-official-model-audit.csv` and `catalogue-review/alpine-high-resolution-image-source-manifest.csv`.
