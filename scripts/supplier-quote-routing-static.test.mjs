@@ -31,4 +31,18 @@ assert.ok(detail.includes('suppliers:suppliers.data||[]'), "detail response must
 
 assert.ok(admin.includes('id="qrSupplier"'), "owner UI must render a supplier selector");
 assert.ok(admin.includes('supplier_id:document.getElementById(\'qrSupplier\').value'), "owner UI must submit the selected supplier ID");
-console.log("PASS — supplier routing fails closed and owner response UI requires an explicit supplier.");
+const offerStart = edge.indexOf('if(req.method==="POST"&&action==="create_offer")');
+const offerEnd = edge.indexOf('if(req.method==="POST"&&action==="create_payment_link")');
+assert.ok(offerStart >= 0 && offerEnd > offerStart, "create_offer handler must exist");
+const offer = edge.slice(offerStart, offerEnd);
+assert.ok(offer.includes('if(!q.supplier_id)'), "customer offer must require an assigned supplier");
+assert.ok(offer.includes('if(!sr)'), "customer offer must require a supplier response");
+assert.ok(offer.includes('srRow.supplier_id!==q.supplier_id'), "supplier response must match assigned supplier");
+
+const procurementStart = edge.indexOf('if(req.method==="POST"&&action==="authorize_procurement")');
+const procurementEnd = edge.indexOf('if(req.method==="POST"&&action==="create_fulfilment")');
+assert.ok(procurementStart >= 0, "authorize_procurement handler must exist");
+const procurement = edge.slice(procurementStart, procurementEnd > procurementStart ? procurementEnd : edge.length);
+assert.ok(procurement.includes('if(!q.supplier_id)'), "procurement must require an assigned supplier");
+assert.ok(procurement.includes('sr.supplier_id!==q.supplier_id'), "procurement must match supplier response to assigned supplier");
+console.log("PASS — unmapped requests cannot auto-route, offers/procurement require a matched supplier response, and owner UI requires explicit selection.");
