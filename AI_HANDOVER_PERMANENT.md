@@ -1,3 +1,15 @@
+## VERIFIED CONTINUATION RESULT — 2026-10-30 08:29 SAST — REVIEW BRANCH
+
+- On isolated branch `catalogue/ingest-review-2026-10-30`, created source-traceable review files: `catalogue-review/planetworld-car-audio-staging.csv` (702 rows; commit `69fd3556c81c4024cfc5ea7e64aaf31124794ec1`) and `catalogue-review/planetworld-car-audio-taxonomy-review.json` (commit `2ba176a54fd8adb343aa768af598beda363e694e`).
+- Brand source counts and the 47 Harness and Trims rows were reconciled from the extracted workbook rows. Harness and Trims is not a manufacturer brand. JBL is not in Car Audio; Hertz is not in the 47 Planetworld source XLSX files. Separate Hertz staging remains unpublished.
+- Component groups are keyword-derived candidates, not validated final classifications. 245 rows remain unclassified/manual review. Every staged row remains NOT PUBLISHED; manufacturer model, image, GW SKU and pricing statuses are unverified/unassigned. No price or stock values were copied into the staging CSV.
+- All Planetworld extraction outputs and the two Audio Connections PDF page-text output remain review-only. Audio Connections exact product rows still require page-by-page reconciliation; blank prices and Sony Sold Out entries must remain unresolved. Use the exact owner-approved customer fallback wording only when later approved for customer display: **“Price on Request due to Limited Stock and Availability”**.
+- Read-back verification succeeded for `HANDOVER_CURRENT.md`, `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, and both new staging outputs on this branch. The handover checkpoint is recorded in `HANDOVER_CURRENT.md` (commit `b010a258bb5d502bcb4031618c47f68441ef910b`).
+- No main-branch change, PR merge, product publication, live catalogue/price/stock/category/Supabase change, Axxess upload, DNS/payment change, deployment, or Cloudflare/Netlify credit use. Launch HOLD.
+- Next safest action: continue Audio Connections page-level row reconciliation in review-only files, then exact-model/image verification and GW SKU mapping for Planetworld car-audio items. Do not publish or change the live store until each item is individually verified and the owner-approved release boundary is met.
+
+---
+
 ## CONTINUATION TASK START — 2026-10-30 — SUPPLIER CATALOGUE RECOVERY
 
 - Owner instruction: resolve the remaining Planetworld and Audio Connections catalogue work, accurate product images/descriptions/GW SKUs, brand/component navigation, mobile/browser testing; keep payment as the separate final launch blocker. Continue without progress-only interruptions and update the handover after verified outcomes.
