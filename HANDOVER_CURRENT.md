@@ -3842,3 +3842,53 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - GitHub repository metadata was rechecked after supplier workbook staging: `getwiredautoworx-max/get-wired-autoworx-store` now reports `visibility=private`, with admin/push access for the connected owner account.
 - Supplier workbooks and dealer pricing sources therefore remain inside the private GitHub repository; Cloudflare Pages public-package QA continues to enforce the customer-only allowlist and exclude supplier workbooks/catalogue review files.
 - No repository visibility change was made in this check.
+
+
+---
+
+## CONTINUATION — FIVE-WORKSTREAM EXECUTION + 81 VERIFIED SUPPLIER CANDIDATES — 2026-10-30
+
+### 1) PR #116 reconciliation completed safely
+- PR #116's branch was not merged wholesale: it was 17 commits ahead / 39 behind main and modified the existing shared `category.html`, `products.html` and `product.html` pages in preview mode. Merging those replacements into main could have disabled normal customer shopping routes.
+- Rebuilt the integration from current main on branch `integration/populated-preview-reconciled-2026-10-30` and opened PR #117: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/117
+- PR #117 adds only isolated `preview-store.html`, `preview-category.html`, `preview-products.html`, `preview-product.html` and the preview browser-QA workflow. Existing `index-new.html`, `store.html`, `category.html`, `products.html` and `product.html` remain unchanged.
+- Exact-head PR #117 checks:
+  - Populated Store Preview Browser QA run 41041008428 — SUCCESS; log contains `POPULATED_PREVIEW_PASS` and `HOSTED_PREVIEW_PASS`.
+  - Public SKU Exposure Audit run 41041008628 — SUCCESS; customer-facing source uses public_sku only and does not expose internal supplier mappings.
+  - Storefront Smoke Test run 41041008363 — SUCCESS for storefront-mode detection; legacy smoke step skipped as expected because main remains buttons-only.
+  - Browser QA verified 4,187 active products, 103 categories, 34 active ASC products all at zero stock, Part Search/no-AI Request a Part fallback, audio-area route, no checkout, no page errors, 390px mobile and 1280px desktop without horizontal overflow.
+- PR #116 is CLOSED WITHOUT MERGE as superseded by tested PR #117. PR #117 remains open and mergeable for review; it has NOT been merged to main. No production deployment was triggered.
+
+### 2) Supplier identity and product content — 81 candidate SKUs completed in private staging
+- All 81 collision-checked candidate SKUs now have manufacturer-verified product names and descriptions, with exact official manufacturer product-page references recorded in `catalogue-review/MANUFACTURER_VERIFIED_CONTENT_2026-10-30.csv`.
+- Supplier split: 68 Planetworld products (Alpine, Audison, Focal, JVC, Kenwood, Kicker and Pioneer) and 13 Sony Mobile ES products from Audio Connections.
+- Private staging updates in `gw_private.supplier_catalog_items` set `public_name`, `public_description` and `source_url` for those 81 exact supplier/SKU rows.
+- Post-write verification: 81/81 candidate rows have non-empty descriptions and manufacturer source URLs; all remain inactive, quote-on-request, `public_product_id IS NULL`; 0 approved `public_image_url` values. No public products or `product_supplier_codes` rows were inserted.
+- The other supplier rows remain unlinked and incomplete; do not infer matches to unrelated existing GW products.
+
+### 3) Supplier pricing review — proposals only, no price imports
+- Planetworld: 68/68 candidate SKU rows matched exactly to the 2026-10-25 read-only workbook report. All 68 have positive RRP; RRP−1% and RRP−2% proposals both remain above estimated VAT-inclusive dealer cost for every candidate. Minimum gross headroom: R101.65 at RRP−1%, R97.15 at RRP−2%. The detailed confidential review is `catalogue-review/PLANETWORLD_68_CANDIDATE_PRICE_REVIEW_2026-10-30.csv`.
+- The Planetworld workbook stock snapshot is dated 2026-10-25 (44 candidate rows positive, 24 zero). It is not current supplier confirmation and was NOT imported. Keep the wider 19 zero-RRP rows and 18/19 under-cost warning rows quarantined.
+- Audio Connections: 13/13 Sony candidate models have source dealer-price and RRP values in `Sony Mobile ES Dealer Price List Sept 26.pdf`. The source PDF states all prices are VAT-exclusive. RRP−1% and RRP−2% proposals both exceed dealer cost for all 13. Detailed confidential review: `catalogue-review/AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv`.
+- Audio Connections availability is not stated in the price list and its supplier connection remains inactive pending dealer-relationship/trade-term confirmation. No customer price was approved or imported for either supplier.
+
+### 4) Images and availability — still not complete
+- Exact manufacturer pages are now identified for all 81 candidate products, but no high-resolution product image asset has been downloaded, visually approved and assigned. The 13 Sony PDF thumbnails include low-resolution images and reused generic images (including shared subwoofer impedance-variant images and one generic amplifier image); do not use these as customer product images.
+- No `public_image_url` was set for any of the 81 candidates. Image-use permission/approved dealer asset source and exact model-specific high-resolution files remain required.
+- Current supplier availability remains unverified. Planetworld's 2026-10-25 workbook stock snapshot is historical; Audio Connections PDF has no availability statement. No stock quantity was imported or changed.
+
+### 5) Populated preview and release boundary
+- The tested hosted preview remains https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/preview-store.html. It still contains the previously loaded 4,187-product store dataset; the 81 supplier candidates are not yet public products and are not represented as live stock.
+- ASC remains removed from stock: 34 active ASC products at zero stock in the preview. Existing non-ASC quantities remain store-record values, not freshly supplier-confirmed.
+- Release restrictions remain: no ASC stock restoration; no non-ASC stock update; no supplier-item activation; no public product/SKU insert or link; no public image or customer-price import; no checkout/PayFast activation; no Supabase production writes beyond the specifically authorised private supplier-staging content updates; no Axxess upload, DNS change, Cloudflare Worker change or production deployment.
+- Launch remains HOLD.
+
+### Remaining actions (ordered)
+1. Obtain exact high-resolution, model-specific product image assets and approval for the 81 candidates; then populate private image staging without publishing.
+2. Reconfirm current Planetworld dealer price and availability for the 68 candidates; confirm Audio Connections dealer relationship/trade terms, current prices and availability for the 13 Sony candidates.
+3. After image, price and availability clearance, create the 81 inactive GW public product records and link the corresponding private supplier rows. Keep any exceptions held.
+4. Finish the remaining supplier catalogue classification/mapping work: 689 of 770 staged rows are outside this 81-candidate content batch; the earlier workbook audit still has 470 rows flagged REVIEW - UNCLASSIFIED. No automatic publication for these.
+5. Refresh the populated preview with approved supplier catalogue records and confirmed stock, then run the full product/category/mobile browser journey again.
+6. Checkout security, PayFast, final customer journey, Axxess hosting, DNS and production launch remain later release tasks and require the owner's explicit approval.
+
+- Handover source remains this file. Continue from this checkpoint; do not reopen PR #116 or repeat the completed 81-row content and pricing work.
