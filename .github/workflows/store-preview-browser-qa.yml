@@ -90,6 +90,38 @@ jobs:
             if(desktopWidth.scrollWidth>desktopWidth.innerWidth+1)throw new Error('Desktop horizontal overflow: '+JSON.stringify(desktopWidth));
             if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
             console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
+            const hosted=await browser.newPage({viewport:{width:390,height:844}});
+            const hostedErrors=[];
+            hosted.on('pageerror',e=>hostedErrors.push(e.message));
+            await hosted.goto('https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
+            await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            const hostedAudit=await hosted.evaluate(skus=>{
+              const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
+              return {
+                products:rows.length,
+                categories:document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length,
+                ascMatched:asc.length,
+                ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
+                ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
+                previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
+                visibleCheckout:[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0)
+              };
+            },ASC_PUBLIC_SKUS);
+            if(hostedAudit.products<1||hostedAudit.ascMatched!==34||hostedAudit.ascPositiveStock!==0||hostedAudit.ascZeroStock!==34)throw new Error('Hosted ASC stock check failed: '+JSON.stringify(hostedAudit));
+            if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
+            if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
+            const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
+            await hostedCategory.click();
+            await hosted.locator('#shop').waitFor({state:'visible',timeout:20000});
+            await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
+            await hosted.locator('#allProductsGrid .product').first().click();
+            await hosted.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
+            const hostedWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
+            if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
+            console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
+            await hosted.close();
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
