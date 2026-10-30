@@ -3987,3 +3987,16 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
   - Cloudflare Pages Public Package QA — 41046413460
 - PR #121 remains draft/open and unmerged. CI success validates source/tests only; no Supabase Edge Function deploy, secrets setup, Axxess upload, DNS, live checkout change or payment activation.
 - Remaining Direct EFT setup is operational: owner must configure the five `DIRECT_EFT_*` values in Supabase Edge Function secrets and approve a non-production test/deployment. Do not ask for or receive bank account details, online banking credentials, PINs or OTPs in chat.
+
+---
+
+## PROJECT CONTINUATION — PLANETWORLD PREVIEW + CATALOGUE CLASSIFICATION — 2026-10-30
+
+- Created clean-main populated-store and Planetworld preview PR #122: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/122 (branch integration/planetworld-preview-clean-main-r2-2026-10-30).
+- The preview includes 4 isolated store routes and a 68-product Planetworld review page using the latest available 2026-10-25 workbook snapshot: 44 positive-stock / 24 zero-stock candidates, both RRP−1% and RRP−2% review options, and all 68 estimated VAT-inclusive cost-floor checks passing. Dealer costs are excluded.
+- 702 Planetworld Car Audio source rows have been assigned category/component groups in catalogue-review/PLANETWORLD_CAR_AUDIO_COMPONENT_CLASSIFICATION_2026-10-30.csv. 243 vehicle harness/trim rows are grouped as installation components and 2 parking sensor kits are separated. Fine vehicle fitment and detailed subtypes remain review-only where source descriptions are insufficient.
+- Five exact official Alpine image URLs are staged in the preview for HDZ-653, R2-A60F, S2-A55V, S2-S40C and S2-S65. The updated browser workflow now tests that the images load; all other candidates link to their exact manufacturer pages pending image capture/verification.
+- Previous exact-head browser QA passed for 4,187 products, 103 categories, ASC 34 active rows all zero, checkout hidden, no-AI Request a Part, audio area navigation, product modal, 390px mobile and 1280px desktop with no overflow and no page errors. The Planetworld page passed 68 rows, 44/24 stock split, 68 cost-floor passes, official manufacturer links, no dealer-cost exposure and mobile search/layout. Public SKU audit and storefront mode gate passed.
+- Cloudflare Pages preview deployment succeeded for commit 13d13b5 at https://9f72ac78.get-wired-autoworx-store.pages.dev; branch preview URL https://integration-planetworld-prev.get-wired-autoworx-store.pages.dev. A separate Cloudflare Workers build check failed; the Pages deployment succeeded.
+- PRs #117 and #119 were closed as superseded; PR #120 was an intermediate branch and PR #122 is the latest clean-main replacement. No Supabase writes, public product creation, live stock/price changes, image publication, payment activation, Axxess upload, DNS change or production deployment.
+- Continue from PR #122. Refresh Planetworld stock when the next workbook arrives; do not wait for it to continue catalogue/image and remaining supplier work.
