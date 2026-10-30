@@ -7,6 +7,8 @@ on:
     paths:
       - "catalogue-review/car-audio-navigation-prototype.html"
       - "catalogue-review/car-audio-navigation-tree-review.json"
+      - "catalogue-review/band-instruments-navigation-prototype.html"
+      - "catalogue-review/musical-instruments-navigation-tree-review.json"
       - "scripts/catalogue-nav-prototype.spec.js"
       - ".github/workflows/catalogue-nav-prototype-test.yml"
 
