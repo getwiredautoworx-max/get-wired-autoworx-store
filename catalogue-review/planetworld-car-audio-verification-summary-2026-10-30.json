@@ -52,7 +52,7 @@
       "audit": "catalogue-review/planetworld-kicker-official-model-audit.csv",
       "evidence_crosscheck": "catalogue-review/planetworld-kicker-evidence-crosscheck-2026-10-30.md",
       "product_detail_review": "catalogue-review/kicker-manufacturer-product-review.json",
-      "note": "Counts recomputed from 189 unique SKU rows. 51 additional manufacturer evidence matches are recorded across three review batches. Exact individual pages, official collection matches and unresolved rows are distinct evidence tiers. Collection evidence is not image/publication approval."
+      "note": "Counts recomputed from 189 unique SKU rows. 51 additional manufacturer evidence matches are recorded across the current review batches. 23 exact individual product pages, 95 official collection matches and 71 unresolved standard Car Audio rows. Collection evidence is not image/publication approval."
     },
     "Audison": {
       "rows": 96,
