@@ -64,7 +64,7 @@ Deno.serve(async req=>{
         vehicle_details:b.vehicle_details||{},customer_name:name,customer_email:b.customer_email||null,
         customer_phone:b.customer_phone||null,whatsapp_phone:b.whatsapp_phone||b.customer_phone||null,
         delivery_address:b.delivery_address||null,delivery_details:b.delivery_details||{},notes:b.notes||null,
-        supplier_id:s?.id||null,status:"REQUESTED"
+        supplier_id:supplier?.id||null,status:"REQUESTED"
       }).select("id,quote_number,status,created_at").single();
       if(error) throw error;
       await event(q.id,"REQUESTED",{public_sku:p.public_sku,quantity:qty,supplier_selected:!!supplier,supplier_resolution:supplierResolution.reason});
