@@ -8,6 +8,10 @@ on:
       - "scripts/hertz_image_metadata_audit.py"
       - ".github/workflows/hertz-image-metadata-review.yml"
 
+concurrency:
+  group: catalogue-review-branch-write
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -28,6 +32,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "generated catalogue review outputs"
+          git fetch origin catalogue/ingest-review-2026-10-30
+          git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
+          git stash pop
           git add catalogue-review/hertz-official-image-metadata-review.csv catalogue-review/hertz-official-image-metadata-summary.json
           git commit -m "[skip ci] Record Hertz official image metadata candidates"
           git push origin HEAD:catalogue/ingest-review-2026-10-30
