@@ -40,7 +40,8 @@ jobs:
           git fetch origin catalogue/ingest-review-2026-10-30
           git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
           git stash pop
-          git add catalogue-review/sony-browser-image-audit.csv catalogue-review/sony-browser-image-audit-summary.json catalogue-review/sony-browser-image-candidates/
-          if git diff --cached --quiet; then echo "No browser image candidates found."; exit 0; fi
+          git add -f catalogue-review/sony-browser-image-audit.csv catalogue-review/sony-browser-image-audit-summary.json 2>/dev/null || true
+          if [ -d catalogue-review/sony-browser-image-candidates ]; then git add catalogue-review/sony-browser-image-candidates/; fi
+          if git diff --cached --quiet; then echo "No browser image candidates or audit changes to commit."; exit 0; fi
           git commit -m "[skip ci] Record Sony browser image audit candidates"
           git push origin HEAD:catalogue/ingest-review-2026-10-30
