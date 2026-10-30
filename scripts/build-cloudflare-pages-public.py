@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build a customer-only Cloudflare Pages directory; never deploy repository source data."""
 from pathlib import Path
+import os
 import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +13,10 @@ REQUIRED_ROOT_FILES = [
     "terms-and-conditions.html", "product-details.js", "category-navigation.js",
 ]
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
+PREVIEW_ROOT_FILES = [
+    "preview-store.html", "preview-category.html", "preview-products.html",
+    "preview-product.html", "preview-planetworld.html",
+]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
@@ -38,6 +43,13 @@ for name in REQUIRED_ROOT_FILES:
 for name in OPTIONAL_ROOT_FILES:
     if (ROOT / name).is_file():
         copy_file(name)
+
+# Preview routes are included only in the explicitly non-production preview build.
+# The production build remains unchanged unless this opt-in environment flag is set.
+include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
+if include_preview:
+    for name in PREVIEW_ROOT_FILES:
+        copy_file(name)
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
@@ -63,6 +75,17 @@ for required in REQUIRED_ROOT_FILES:
 image_count = sum(1 for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file())
 if image_count == 0:
     raise SystemExit("No WebP product images were copied")
+
+if include_preview:
+    for name in PREVIEW_ROOT_FILES:
+        if not (OUT / name).is_file():
+            raise SystemExit(f"Preview package missing route: {name}")
+    print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
+else:
+    leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
+    if leaked_preview:
+        raise SystemExit(f"Preview-only routes leaked into standard package: {leaked_preview}")
+    print("PAGES_PREVIEW_ROUTES_EXCLUDED_PASS")
 
 print(f"PAGES_PUBLIC_BUILD_PASS files={len(relative_paths)} webp_images={image_count}")
 print("PAGES_PUBLIC_EXCLUDES_PASS suppliers catalogue-review catalogue-source catalogue-audits staging supabase .github")
