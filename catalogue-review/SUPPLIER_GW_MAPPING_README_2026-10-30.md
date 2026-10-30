@@ -1,21 +1,28 @@
-# Supplier-to-GW mapping — 2026-10-30
+# Supplier-to-GW mapping — updated 2026-10-30
 
-## Verified and staged
-- Live `public.products` contains 4,200 rows; no existing audio-brand products matched these supplier records.
-- Two private supplier connections are registered:
-  - **Planetworld / TOMS Sound & Music (Pty) Ltd** — ID `29e1acee-b1a6-5630-83c3-0150ea993479`, **active**. Planetworld's 2026-10-20 welcome email confirms dealer onboarding is complete and the account is ready to trade. Sales contact: Sashini via `salesdesk@planetworld.co.za`.
-  - **Audio Connections** — ID `806ef592-6f25-5116-bee6-335e26f8b609`, **inactive**. No dealer-onboarding confirmation was found in connected email; keep inactive until confirmed.
-- All 770 supplier source rows are staged in `gw_private.supplier_catalog_items`: 702 Planetworld + 68 Audio Connections.
-- Post-write read-only verification: 770 unique supplier/SKU pairs; 0 active catalogue rows; 0 linked public product IDs; 770 quote-on-request rows; 0 public descriptions; 0 public image URLs.
-- The seed SQL was applied on 2026-10-30. It is kept as an idempotent record of the initial staging operation, not as a migration. Planetworld was activated separately after the dealer welcome confirmation; the staged catalogue rows remain inactive.
+## Verified internal staging
+- Current public catalogue: 4,200 products. Exact identity comparison found no existing public product matches for the 702 Planetworld source rows or 68 Audio Connections rows; do not force-link unrelated products.
+- Supplier connections:
+  - **TOMS Sound & Music (Pty) Ltd t/a Planetworld** — ID `29e1acee-b1a6-5630-83c3-0150ea993479`, active. Dealer onboarding is confirmed.
+  - **Audio Connections** — ID `806ef592-6f25-5116-bee6-335e26f8b609`, inactive pending dealer-relationship/trade-term confirmation.
+- All 770 source records remain in private `gw_private.supplier_catalog_items`, inactive, quote-on-request and unlinked.
+- The 81 collision-checked new-product candidates now have exact manufacturer-model identities and manufacturer-based product names/descriptions staged privately:
+  - 68 Planetworld candidates (Alpine, Audison, Focal, JVC, Kenwood, Kicker and Pioneer).
+  - 13 Sony Mobile ES candidates from Audio Connections.
+- Read-only verification after staging: 81/81 candidates have non-empty `public_description` and official manufacturer `source_url`; all remain inactive, `public_product_id IS NULL`, and no `public_image_url` has been set. No public product or SKU rows were inserted.
 
-## Simplest next steps
-1. Use the confirmed Planetworld sales contact for exact product/price/availability and approved high-resolution image requests. Keep the staged catalogue items inactive until each product is verified.
-2. Confirm the Audio Connections dealer relationship and trade terms before activating that supplier.
-3. Use `supplier-gw-crosswalk-2026-10-30.csv` to review the 81 exact individual manufacturer-page candidates with proposed `GW-XXXXXXXX` values. They are collision-checked but **not inserted** into `public.products`.
-4. Verify exact model descriptions, approved high-resolution images, price/VAT basis and supplier availability.
-5. Only after those checks, create the inactive product records with approved GW public SKUs, then link the corresponding staged supplier rows by setting `public_product_id` and inserting `product_supplier_codes`.
-6. Keep collection-only, no-page, image-unapproved, price-unconfirmed and supplier-sold-out records inactive/held.
+## Price review — private, proposal only
+- Planetworld: 68/68 candidate SKUs matched the 2026-10-25 read-only workbook report. All have positive RRP. RRP−1% and RRP−2% proposals both clear estimated VAT-inclusive dealer cost for all 68; smallest gross headroom is R101.65 at −1% and R97.15 at −2%. See `PLANETWORLD_68_CANDIDATE_PRICE_REVIEW_2026-10-30.csv`.
+- The Planetworld source report stock snapshot is dated 2026-10-25 (44 rows positive, 24 rows zero). It is not current stock confirmation and was not imported.
+- Audio Connections: all 13 Sony candidate models have dealer price and RRP values in the September 2026 PDF. The PDF states prices are VAT-exclusive. RRP−1% and RRP−2% proposals both exceed dealer cost for all 13. See `AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv`. No price was imported; supplier relationship remains inactive and availability is not stated.
+- Existing Planetworld quarantine remains: 19 zero-RRP rows excluded, and the wider workbook audit's 18/19 under-cost warnings remain excluded from automatic pricing.
 
-## Safety
-No public product rows, product_supplier_codes rows, prices, stock, image URLs, active supplier catalogue rows or customer-visible listings were created/changed. Planetworld's supplier connection is active because dealer onboarding was confirmed; Audio Connections remains inactive. All 770 catalogue items are private, inactive and unlinked. No Edge Function or production deployment was performed.
+## Still required before publication
+1. Obtain and visually approve exact high-resolution manufacturer/supplier image assets for each candidate. PDF thumbnails and generic/reused images are not acceptable product images. Current approved image URLs: 0.
+2. Confirm current dealer cost/RRP and availability with suppliers; Planetworld price workbook is a 2026-10-25 snapshot, Audio Connections PDF is September 2026 and has no availability.
+3. Confirm Audio Connections trading relationship and trade terms before supplier activation.
+4. Classify the remaining supplier catalogue rows that are still marked unclassified; do not guess across unrelated divisions.
+5. Only after image, current price, availability and supplier terms are verified, create inactive public product records with GW public SKUs and link the corresponding private supplier rows.
+
+## Safety boundary
+No public product inserts, `product_supplier_codes` inserts, supplier-item activation, public image URL writes, customer-price imports, stock updates, checkout/payment changes, Axxess/DNS changes or production deployment were performed. No dealer cost or supplier price data is exposed on the public storefront.
