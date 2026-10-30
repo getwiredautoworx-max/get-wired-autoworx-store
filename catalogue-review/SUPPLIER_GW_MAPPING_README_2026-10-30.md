@@ -26,7 +26,7 @@
 1. Obtain and visually approve exact high-resolution manufacturer/supplier image assets for each candidate. PDF thumbnails and generic/reused images are not acceptable product images. Customer-publication-approved image URLs: 0. The isolated preview now displays 11 official manufacturer image URLs as visual review candidates; these remain preview-only and are not approved for customer publication.
 2. Use the 2026-10-25 Planetworld workbook as the current available preview snapshot (44 positive / 24 zero-stock candidates); refresh when the next workbook arrives. Audio Connections September 2026 price list contains no availability data, so its Sony candidates remain quote-on-request/availability-to-confirm in the review stage.
 3. Keep Audio Connections dealer authorisation recorded as owner-confirmed. Supplier activation and catalogue publication remain separate owner/release approvals; no additional authorisation proof is required.
-4. Resolve remaining manufacturer-identity exceptions (476 rows currently marked not independently verified, including 54 with no exact official manufacturer page) and supplier-description conflicts before product creation; keep unresolved rows unlinked.
+4. Resolve remaining manufacturer-identity exceptions (466 rows currently marked not independently verified, including 54 with no exact official manufacturer page) and supplier-description conflicts before product creation; keep unresolved rows unlinked.
 5. Only after image, current price, availability and supplier terms are verified, create inactive public product records with GW public SKUs and link the corresponding private supplier rows.
 
 ## Safety boundary
@@ -38,3 +38,10 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 - Counts: Car Speakers 20; Subwoofers 12; Amplifiers 26; Head Units & Media 6; Signal Processing & Crossovers 4.
 - Brand names and model references are preserved exactly as supplied. The source abbreviation `RA` is not expanded because its full brand identity is unverified.
 - The 68 rows remain review-only, inactive and unlinked. No supplier prices, public product rows, stock, images or supplier activation were changed.
+
+
+## Additional Alpine manufacturer-page verification — 2026-10-30
+- Located exact official individual product pages for seven more Alpine models: iLX-705D, KAE-HF11DA, KAE-HF9DA, KTX-HF9, RUE-4360, RUX-KNOB2 and UTE-204DAB. The crosswalk now records 75 exact official product-page matches overall (up from 68).
+- Added official reference-only sources for KAC-001 (installation manual), UTE-200BT (official South African product catalogue) and KWE-CAM1D (listed as an accessory on the official iLX-705D page). These three are not counted as exact individual product pages.
+- Fitment exception retained: supplier text describes KAE-HF9DA for iLX-F509, while the official UK product page lists iLX-F905D and a regional Alpine page refers to iLX-F509A. Keep this row held until exact regional fitment is confirmed.
+- No image assets were downloaded or approved, no GW SKUs were generated for these newly matched rows, and no product rows were inserted or published.
