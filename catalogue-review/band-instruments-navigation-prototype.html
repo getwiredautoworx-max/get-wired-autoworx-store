@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Get Wired AutoWorx — Band Instruments Navigation Review</title>
+<style>
+:root{color-scheme:dark;--bg:#101317;--panel:#1a2027;--line:#303a45;--text:#f4f6f8;--muted:#aeb9c4;--accent:#e6a23c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,Segoe UI,Arial,sans-serif}
+header{padding:22px clamp(16px,4vw,42px);border-bottom:1px solid var(--line);background:#151a20}.brand{font-weight:800;letter-spacing:.04em;font-size:clamp(20px,3vw,28px)}.tag{color:var(--muted);font-size:13px;margin-top:3px}
+main{max-width:1180px;margin:auto;padding:20px clamp(14px,3vw,30px) 48px}.notice{border:1px solid #8d6a35;background:#30271b;color:#f7d9a5;border-radius:10px;padding:12px 14px;margin-bottom:18px;font-size:14px}
+h1{font-size:clamp(23px,4vw,32px);margin:10px 0 5px}.muted{color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
+button{font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;min-height:46px}
+button:hover,button:focus-visible{border-color:var(--accent);outline:none}button.primary{background:#4a351d;border-color:#a87834}button:disabled{opacity:.65;cursor:default}
+#search{flex:1;min-width:160px;max-width:360px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#171d23;color:var(--text);font:inherit;min-height:46px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px}.card{text-align:left;min-height:94px;display:flex;flex-direction:column;justify-content:space-between}
+.wordmark{font-weight:800;font-size:18px}.small{font-size:12px;color:var(--muted);margin-top:6px}.logo{font-size:11px;color:var(--muted);margin-top:8px}
+.pill{font-size:11px;border:1px solid var(--line);border-radius:30px;padding:3px 8px;color:var(--muted);white-space:nowrap}
+.component{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left}.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.product{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--panel);min-width:0}.product h3{font-size:15px;margin:0 0 7px;overflow-wrap:anywhere}
+.meta{font-size:12px;color:var(--muted);margin:3px 0;overflow-wrap:anywhere}.pending{color:#f2c47c;font-size:12px;margin-top:9px}
+#status{color:var(--muted);font-size:13px;margin:8px 0}.empty{padding:20px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
+@media(max-width:430px){main{padding-left:12px;padding-right:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:10px}.wordmark{font-size:16px}button{padding:11px 10px}}
+</style></head><body>
+<header><div class="brand">GET WIRED AUTOWORX</div><div class="tag">Sound &amp; Security • Auto Electrical • Spares &amp; Accessories</div></header>
+<main><div class="notice"><strong>INTERNAL REVIEW ONLY — NOT THE LIVE STORE.</strong> This keeps Band Instruments separate from Car Audio. Images, manufacturer descriptions and GW SKUs remain withheld until exact verification.</div>
+<div class="toolbar"><button id="home" class="primary">All music sections</button><button id="back" disabled>Back</button><span id="crumb" class="muted">Music categories</span><input id="search" type="search" placeholder="Search this view…" aria-label="Search this view"></div>
+<h1 id="heading">Band Instruments &amp; Music Equipment</h1><p id="intro" class="muted">Choose a section, then a brand and component group.</p><div id="status">Loading review data…</div><section id="content" aria-live="polite"></section>
+<p class="muted">The source division contains 1,719 rows. Section and component labels are review candidates, not approved customer-facing categories.</p>
+</main>
+<script>
+(function(){
+var tree=null,view="sections",section=null,brand=null,component=null;
+function $(id){return document.getElementById(id);}var content=$("content"),heading=$("heading"),intro=$("intro"),crumb=$("crumb"),back=$("back"),status=$("status"),search=$("search");
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function setState(){back.disabled=view==="sections";crumb.textContent=view==="sections"?"Music categories":view==="brands"?section:view==="components"?section+" / "+brand:brand+" / "+component;}
+function sectionCard(name,count){return '<button class="card" data-section="'+esc(name)+'"><span class="wordmark">'+esc(name)+'</span><span class="small">'+count+' source records</span></button>';}
+function showSections(){view="sections";section=null;brand=null;component=null;heading.textContent="Band Instruments & Music Equipment";intro.textContent="Choose the correct music section. Band instruments stay separate from studio and DJ equipment.";setState();var cards=Object.keys(tree.sections).map(function(n){return sectionCard(n,tree.totals.section_counts[n]);});content.innerHTML='<div class="grid">'+cards.join("")+'</div>';}
+function showBrands(name){view="brands";section=name;brand=null;component=null;heading.textContent=name;intro.textContent="Choose a manufacturer brand.";setState();var brands=tree.sections[name].brands;var cards=Object.keys(brands).sort().map(function(n){return '<button class="card" data-brand="'+esc(n)+'"><span class="wordmark">'+esc(n)+'</span><span class="small">'+brands[n].item_count+' source products</span><span class="logo">Official brand logo pending verification</span></button>';});content.innerHTML='<div class="grid">'+cards.join("")+'</div>';}
+function showComponents(name){view="components";brand=name;component=null;heading.textContent=name;intro.textContent=section+" · select a component group.";setState();var comps=tree.sections[section].brands[name].components;var cards=Object.keys(comps).sort().map(function(n){return '<button class="component" data-component="'+esc(n)+'"><span>'+esc(n)+'</span><span class="pill">'+comps[n].length+'</span></button>';});content.innerHTML='<div class="grid">'+cards.join("")+'</div>';}
+function productCard(p){return '<article class="product"><h3>'+esc(p.supplier_item_name)+'</h3><div class="meta">Supplier item code: '+esc(p.supplier_item_code)+'</div><div class="meta">Source: '+esc(p.source_file)+' · '+esc(p.source_sheet)+' row '+esc(p.source_row)+'</div><div class="pending">Image: not verified · Manufacturer description: not verified · GW SKU: not assigned</div></article>';}
+function showProducts(name){view="products";component=name;heading.textContent=name;intro.textContent=brand+" · "+name+" · internal review records only";setState();var items=tree.sections[section].brands[brand].components[name];content.innerHTML='<div class="products">'+items.map(productCard).join("")+'</div><p class="muted">'+items.length+' source records; no price or stock shown.</p>';}
+$("home").addEventListener("click",showSections);back.addEventListener("click",function(){if(view==="products")showComponents(brand);else if(view==="components")showBrands(section);else showSections();});
+content.addEventListener("click",function(e){var s=e.target.closest("[data-section]");if(s){showBrands(s.dataset.section);return;}var b=e.target.closest("[data-brand]");if(b){showComponents(b.dataset.brand);return;}var c=e.target.closest("[data-component]");if(c)showProducts(c.dataset.component);});
+search.addEventListener("input",function(){var term=search.value.trim().toLowerCase();content.querySelectorAll("button,article").forEach(function(el){el.hidden=!!term&&el.innerText.toLowerCase().indexOf(term)<0;});});
+fetch("./musical-instruments-navigation-tree-review.json").then(function(r){if(!r.ok)throw new Error("Review data HTTP "+r.status);return r.json();}).then(function(data){tree=data;status.textContent="Loaded "+data.totals.product_rows+" music source rows. Review only.";showSections();}).catch(function(err){status.textContent="Could not load review data: "+err.message;content.innerHTML='<div class="empty">Review data unavailable.</div>';});
+})();
+</script></body></html>
