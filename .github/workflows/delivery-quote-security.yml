@@ -35,6 +35,9 @@ jobs:
           grep -Fq 'nonce: claims.nonce' supabase/functions/shipping-quote/index.ts
           grep -Fq 'args.quote.nonce !== claims.nonce' supabase/functions/_shared/delivery-quote.ts
           grep -Fq 'orders_delivery_quote_nonce_uidx' supabase/migrations/20261029150000_delivery_quote_nonce_unique.sql
+          grep -Fq 'create_store_order_v3' supabase/functions/store-checkout/index.ts
+          grep -Fq 'policy_acknowledged_at' supabase/migrations/20261029160000_checkout_policy_audit.sql
+          grep -Fq 'policy_acknowledged_by' supabase/migrations/20261029160000_checkout_policy_audit.sql
       - name: Run behavioral quote-token tests
         run: deno test supabase/functions/_shared/delivery-quote_test.ts
       - name: Set up Node for isolated PostgreSQL migration test
@@ -45,6 +48,7 @@ jobs:
         run: |
           npm install --no-save @electric-sql/pglite
           node supabase/tests/delivery-quote-migration.test.mjs
+          node supabase/tests/checkout-policy-audit-migration.test.mjs
       - name: Run isolated checkout handler integration tests
         run: deno test --allow-env supabase/functions/store-checkout/index.integration_test.ts
       - name: Type-check shipping quote
