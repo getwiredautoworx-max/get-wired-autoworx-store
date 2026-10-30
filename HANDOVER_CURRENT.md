@@ -1,3 +1,14 @@
+## OWNER CORRECTION — DEALER AUTHORISATION CONFIRMED — 2026-10-30
+
+- Owner explicitly confirms they already hold a dealer login and supplier account and are authorised to purchase. Do NOT describe the owner's dealer authorisation or existence of a dealer account as an outstanding blocker.
+- Correct the prior checkpoint wording: supplier identity/account mapping is an internal data-linking task, not a reason to stop catalogue reconciliation. Use the owner's existing dealer-account access as the authority for the supplier relationship; identify which supplier account corresponds to each catalogue using existing repository/source evidence and account records available to the owner. Do not request passwords, OTPs or other credentials in chat.
+- Continue the 770-row Planetworld + Audio Connections crosswalk, exact manufacturer model matching, descriptions, category/component mapping, and image verification independently of database supplier registration.
+- Where trade terms are available in the dealer account, transcribe the relevant terms into review-only evidence; do not invent missing terms. Do not expose dealer credentials or private pricing publicly.
+- Do not create or activate supplier connection records, backfill supplier IDs, insert products/SKUs, publish images/prices/stock, or run Supabase writes without the existing release/owner approval gates. Existing release restrictions remain unchanged; launch HOLD.
+- This correction supersedes any earlier statement that the owner must first prove dealer authorisation before product mapping can proceed.
+
+---
+
 ## VERIFIED EXECUTION CHECKPOINT — 2026-10-30 — SUPPLIER CROSSWALK + PR RECONCILIATION
 
 ### Consolidated supplier/catalogue candidate
