@@ -13,7 +13,7 @@
       ],
       "from": "Speaker grilles",
       "to": "Component speaker kits",
-      "reason": "Manufacturer model pages identify complete CK 165 L and MLK 700.3 component kits."
+      "reason": "Manufacturer pages identify complete CK 165 L and MLK 700.3 component kits; source category was incorrect."
     },
     {
       "codes": [
@@ -23,7 +23,7 @@
       ],
       "from": "Tweeters",
       "to": "Component speaker kits",
-      "reason": "Manufacturer model pages identify complete CPK 165, CPK 690 and MLK 165.3 kits."
+      "reason": "Manufacturer pages identify complete CPK 165, CPK 690 and MLK 165.3 component kits; source category was incorrect."
     },
     {
       "codes": [
@@ -31,31 +31,7 @@
       ],
       "from": "Needs manual product-type verification",
       "to": "Tweeters",
-      "reason": "Exact manufacturer page identifies DT 24.3 tweeter."
-    },
-    {
-      "codes": [
-        "78000099",
-        "78000211"
-      ],
-      "from": "Speaker grilles",
-      "to": "Component speaker kits"
-    },
-    {
-      "codes": [
-        "78000103",
-        "78000105",
-        "78000203"
-      ],
-      "from": "Tweeters",
-      "to": "Component speaker kits"
-    },
-    {
-      "codes": [
-        "78030090"
-      ],
-      "from": "Needs manual product-type verification",
-      "to": "Tweeters"
+      "reason": "Exact manufacturer page identifies DT 24.3 as a tweeter."
     }
   ],
   "products": [
