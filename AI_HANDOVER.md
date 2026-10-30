@@ -393,3 +393,10 @@ Next: obtain exact high-resolution image assets, finish remaining Hertz/Planetwo
 - Alpine 58-row audit: 9 exact individual official pages, 26 collection-level model labels, 5 official catalogue model labels, 18 unresolved in this pass.
 - Four original high-resolution image source URLs recorded for R2-W10D2, R2-W12D4, R2-A60F and S2-S40C. Binaries not downloaded; no current-image comparison/public_sku mapping; no publication approval.
 - Full details: `catalogue-review/planetworld-alpine-official-model-audit.csv` and `catalogue-review/alpine-high-resolution-image-source-manifest.csv`.
+
+## LATEST MULTI-BRAND AUDIT POINTER — 2026-10-30
+
+- 226 of 702 Planetworld source rows now carry official manufacturer page/collection references; no GW SKUs or images approved. Marine 28 rows separated from standard Car Audio; 47 Harness and Trims rows remain installation components.
+- Kicker, Audison, Alpine, OneNav and smaller-brand exact-page/collection match counts and all unresolved source conflicts are recorded at the top of `AI_HANDOVER_PERMANENT.md`.
+- Consolidated audit: `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`.
+- Continue remaining exact-model verification and image acquisition only after internal product/public_sku matching. Keep live store and launch gates unchanged.
