@@ -3973,3 +3973,34 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - PR #128 supplier mapping reconciliation remains verified: exact joins 702 Planetworld + 68 Audio Connections; zero unclassified; workflow 41049054208 SUCCESS with `SUPPLIER_GW_CROSSWALK_PASS`, routing tests, Deno check and responsive review.
 - PR #121 now also contains `docs/DIRECT_EFT_SETUP.md` with safe five-secret setup and non-production test instructions; no secret values or production changes.
 - No production/Axxess/DNS/payment activation, supplier activation, public product/SKU/image publication, or live price/stock writes were made.
+
+
+## CONTINUATION EXECUTION — CURRENT PR AUDIT — 2026-10-30
+
+### PR #122 status
+- PR #122 is CLOSED/MERGED; merge commit 4172c3a43934cdac274aece9891849a5553dabe3. It is no longer the active preview review branch. The current preview successor is PR #125.
+
+### Direct EFT + WhatsApp — PR #121
+- Current PR head: 110cb18519b8d6e54561b0dcdf5b001291999c91. All six exact-head checks SUCCESS: Storefront Smoke Test 41049821722; Cloudflare Pages Public Package QA 41049821597; Axxess package preparation 41049821599; Public SKU Exposure Audit 41049821626; Customer Authentication Security Tests 41049821613; Delivery Quote Security Tests 41049821591. A duplicate workflow batch also completed all six successfully.
+- Reviewed docs/DIRECT_EFT_SETUP.md, checkout handler and integration test. Five secrets are documented for direct Dashboard entry. Tests cover complete/incomplete bank configuration, policy acknowledgement, delivery quote verification and checkout RPC. No actual bank values, credentials or OTPs are stored in Git/chat. The handler returns bank instructions only after successful order RPC and only when all five fields plus order reference are non-empty; payment remains pending.
+- PR #121 remains open/draft/unmerged. Attempt to mark ready for review was rejected by GitHub permissions (FORBIDDEN); no state change was made. No Supabase secrets, Edge Function deployment, Axxess upload, DNS or production payment activation.
+- WhatsApp remains manual click-to-chat via existing business number, not automated Business Platform messaging.
+
+### Populated preview — PR #125
+- Current head 74e98655796e00a217c9fcbd326afff276d7d14a; PR open/draft; GitHub reports mergeable=false. Branch comparison reports divergence (14 ahead / 10 behind); do not merge or retarget wholesale. A clean-main successor/rebase is required.
+- Cloudflare Pages bot confirmed successful deployment for exact head 74e9865: preview https://166f86ae.get-wired-autoworx-store.pages.dev; branch alias https://integration-planetworld-prev-njbp.get-wired-autoworx-store.pages.dev. Cloudflare Workers build for the same source failed separately; Pages is the preview target. External page-opening verification was unavailable in this session, so record provider deployment success, not independent hosted runtime confirmation.
+- Latest browser QA run recorded in prior checkpoint failed because two Audison image URLs did not load. Those URLs were removed; two Kicker manufacturer images remain and the browser assertion was corrected. No exact-head browser workflow result was returned for 74e9865; browser QA must be rerun on a reconciled current-main branch before preview acceptance.
+- Five preview routes remain noindex/nofollow, checkout disabled, no supplier/private pricing output. Planetworld stock is the 2026-10-25 snapshot (44 positive / 24 zero in 68 rows), not fresh current supplier stock. ASC 36 matched products remain zero-stock; do not broaden the reset.
+
+### Supplier component crosswalk — PR #128
+- Current head c82486522c7aac36a52b3c3abb391866158c43f8; PR open/draft. Exact-head Catalogue & Supplier Routing Review QA run 41049054208 passed: 770 source rows, 81 collision-checked proposed GW SKUs, 0 product IDs, 0 publications; exact joins 702/702 Planetworld and 68/68 Audio Connections; zero unclassified component candidates.
+- Current PR fetch reports mergeable=false; compare reports divergence (3 ahead / 8 behind). Rebase/reapply the three review-only files onto current main before considering merge. Do not activate supplier connections or publish products/images/prices/stock.
+- Current review README records 81 private candidate descriptions/source URLs, 0 customer-publication-approved image URLs, 11 manufacturer image URLs as preview-only candidates, and 476 model identity exceptions not independently verified (54 without an exact official manufacturer page). Audio Connections dealer authorisation is owner-confirmed; do not request proof again.
+- Planetworld price review: 68 candidates clear estimated VAT-inclusive cost floor at RRP−1% and RRP−2%, but stock snapshot is 2026-10-25 and prices remain review-only. Audio Connections Sony price list is September 2026 and contains no availability data; do not publish availability claims.
+
+### Next execution priorities
+1. Reconcile PR #125 preview changes onto a clean current-main branch, preserve the current eight-category hierarchy and noindex safeguards, then obtain exact-head browser QA and Pages deploy success before presenting it as accepted.
+2. Reconcile PR #128 review-only files onto current main and rerun exact-head supplier crosswalk QA.
+3. Continue manufacturer identity and high-resolution image review for the 476 exceptions; keep unresolved products unlinked/unpublished.
+4. PR #121 code and CI are complete for review, but GitHub permission prevents changing draft state. Owner/admin review and explicit merge/deployment approval remain; five EFT secrets must be entered directly by an authorised owner in Supabase only after approval, followed by a non-production order test.
+5. Preserve release boundaries: no production/Axxess/DNS deployment, payment activation, further Supabase writes, public product/image/price/stock publication, or automated WhatsApp API setup without separate approval.
