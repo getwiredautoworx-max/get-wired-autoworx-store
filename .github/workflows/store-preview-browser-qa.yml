@@ -133,6 +133,8 @@ jobs:
             await hosted.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
             await hosted.waitForURL(/audio_area=car/,{timeout:15000});
             await hosted.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
+            const brandLogoAudit=await hosted.locator('#grid .brand-mark img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,loaded:img.complete&&img.naturalWidth>0})));if(brandLogoAudit.some(img=>!img.loaded))throw new Error('Manufacturer logo image failed to load: '+JSON.stringify(brandLogoAudit));
+            
             const hostedWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
