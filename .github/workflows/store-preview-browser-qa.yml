@@ -114,6 +114,9 @@ jobs:
             await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:15000});
             const pwAudit=await planetworld.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,snapshotDates:[...new Set(rows.map(p=>p.snapshot))],imageSources:rows.filter(p=>p.imageUrl).length,officialImageSources:rows.filter(p=>p.imageUrl).every(p=>String(p.imageUrl).startsWith('https://finland.alpine-europe.com/fileadmin/')),hasManufacturerLinks:rows.every(p=>String(p.manufacturerPage).startsWith('https://')),dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
             if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==5||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
+            await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===5&&imgs.every(img=>img.complete);},{timeout:25000});
+            const imageLoadAudit=await planetworld.locator('#grid .card img').evaluateAll(imgs=>imgs.map(img=>({src:img.src,loaded:img.naturalWidth>0})));
+            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official Alpine product image did not load: '+JSON.stringify(imageLoadAudit));
             const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
             await planetworld.locator('#q').fill('Alpine');
