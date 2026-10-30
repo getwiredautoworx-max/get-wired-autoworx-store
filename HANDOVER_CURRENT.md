@@ -1,15 +1,15 @@
 ## LATEST SUPABASE SUPPLIER STAGING RESULT — 2026-10-30
 
 - Owner request to establish supplier IDs and supplier catalogue relationships has now been executed in the private `gw_private` schema, using inactive/unlinked staging only.
-- Registered inactive supplier connection:
-  - TOMS Sound & Music (Pty) Ltd t/a Planetworld — ID `29e1acee-b1a6-5630-83c3-0150ea993479`
-  - Audio Connections — ID `806ef592-6f25-5116-bee6-335e26f8b609`
+- Registered supplier connections:
+  - TOMS Sound & Music (Pty) Ltd t/a Planetworld — ID `29e1acee-b1a6-5630-83c3-0150ea993479`, **active** after Planetworld confirmed dealer onboarding complete and account ready to trade by email dated 2026-10-20. Sales contact: Sashini via `salesdesk@planetworld.co.za`.
+  - Audio Connections — ID `806ef592-6f25-5116-bee6-335e26f8b609`, **inactive**; no dealer-onboarding confirmation found in connected email.
 - Staged all **770** source supplier items in `gw_private.supplier_catalog_items`: 702 Planetworld + 68 Audio Connections.
-- Post-write read-only verification: 770 unique supplier/SKU pairs; 0 active supplier items; 0 linked public product IDs; 770 quote-on-request rows; 0 public descriptions; 0 public image URLs. Both supplier connections are inactive and use email/manual contact.
+- Post-write read-only verification: 770 unique supplier/SKU pairs; 0 active supplier items; 0 linked public product IDs; 770 quote-on-request rows; 0 public descriptions; 0 public image URLs. Planetworld supplier connection is active for email/manual ordering; Audio Connections remains inactive. All 770 supplier catalogue items remain inactive.
 - Confirmed unchanged: `public.products` remains 4,200 rows; `gw_private.product_supplier_codes` remains 4,198 rows, all 4,198 with NULL `supplier_id`. No public product rows or product-supplier code rows were inserted or updated.
 - The SQL staging seed is now recorded as applied in `catalogue-review/supplier-catalogue-stage-proposal-2026-10-30.sql`; it is not a migration. The crosswalk now records the actual registered supplier IDs and `REGISTERED_INACTIVE` status. The validation script was updated and a direct post-write crosswalk check passed: 770 rows, 81 unique proposed GW SKUs, 770 unique supplier/SKU pairs, 0 product IDs and 0 publications.
 - The 81 proposed GW public SKUs remain collision-checked candidates only; none has been inserted into `public.products`. Six official high-resolution image source URLs (four Alpine, two Sony) are recorded in the crosswalk; none is downloaded/approved. The Alpine R2-W12D4 source is a shared family image and does not distinguish the impedance variant. Product creation/linking still waits for verified final descriptions, approved high-resolution images, confirmed prices/VAT basis and supplier availability. No stock or price data was written.
-- Supplier relationship and trade terms are not yet confirmed; keep both supplier connections inactive until Get Wired's dealer account/contact is confirmed. No supplier quote API or Edge Function was activated.
+- Planetworld dealer onboarding is confirmed complete; keep its 770 staged catalogue items inactive until each product is verified. Audio Connections dealer relationship and trade terms remain unconfirmed; keep that supplier inactive. No supplier quote API or Edge Function was activated.
 - This private staging operation does not change customer-visible catalogue, live stock/prices, checkout, payment, Axxess, DNS or production hosting.
 
 ---
