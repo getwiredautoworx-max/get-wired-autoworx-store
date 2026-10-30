@@ -479,3 +479,29 @@ All artifacts are review-only under `catalogue-review/` on the review branch. Do
 - PR #128 supplier mapping reconciliation remains verified: exact joins 702 Planetworld + 68 Audio Connections; zero unclassified; workflow 41049054208 SUCCESS with `SUPPLIER_GW_CROSSWALK_PASS`, routing tests, Deno check and responsive review.
 - PR #121 now also contains `docs/DIRECT_EFT_SETUP.md` with safe five-secret setup and non-production test instructions; no secret values or production changes.
 - No production/Axxess/DNS/payment activation, supplier activation, public product/SKU/image publication, or live price/stock writes were made.
+
+
+## ADDITIONAL EXACT-HEAD VERIFICATION — 2026-10-30 13:45 SAST
+
+### Direct EFT + WhatsApp PR #121
+- Added `scripts/checkout-direct-eft-whatsapp.test.mjs` and wired it into `.github/workflows/delivery-quote-security.yml`.
+- Test verifies encoded WhatsApp click-to-chat message includes order reference, item summary and total, and excludes delivery address plus bank details; also verifies the confirmation UI renders all five EFT fields and keeps payment pending.
+- Re-ran PR #121 workflows on head `110cb18519b8d6e54561b0dcdf5b001291999c91`. All six completed SUCCESS: Customer Authentication Security Tests 41049812571; Prepare Axxess upload package 41049812643 (CI only); Delivery Quote Security Tests 41049812607; Public SKU Exposure Audit 41049812559; Storefront Smoke Test 41049812641; Cloudflare Pages Public Package QA 41049812584.
+- Delivery Quote Security log includes `DIRECT_EFT_WHATSAPP_UI_PASS`, `DELIVERY_QUOTE_NONCE_MIGRATION_PASS` and `CHECKOUT_POLICY_AUDIT_MIGRATION_PASS`.
+- PR #121 remains draft/unmerged. No banking secrets entered, no Supabase function deployed, no live payment activation. Owner setup guide is `docs/DIRECT_EFT_SETUP.md` on the PR branch.
+
+### Current-main preview integration — PR #125
+- PR #125 now also includes the free local catalogue search module and unit tests from PR #126, plus the seven exact-model image candidates from PR #129. Comments were added to #126 and #129 explaining that these changes are integrated into #125 for consolidated preview QA; those feature PRs remain open/unmerged pending integration verification.
+- Seven model-specific image sources in the integrated Planetworld page: three Alpine (R2-A60F, R2-W10D2, S2-S40C), two Audison (66755100, 66755105) and two Kicker (46CXA3604, 46CXA6605). The exact shared R2-W12D2/R2-W12D4 family image remains excluded because it does not distinguish the impedance variant.
+- Separate PR #129 local browser audit run 41049753159 confirmed all seven exact-model images loaded and passed the 68-row/44-positive/24-zero/68-cost-floor audit. Its hosted check failed because the branch's hosted deployment was stale and still served the earlier four-image page; do not interpret that as a local image-source failure.
+- Ported the seven-image page and model-specific assertions into PR #125 while preserving exactly one `noindex,nofollow` tag. PR #125 workflow also uses its verified current branch alias `https://integration-planetworld-prev-njbp.get-wired-autoworx-store.pages.dev`, not the old PR #116 URL.
+- Current PR #125 head is `e4c18fc676681efbea1cda95c3b59e0e09c3af90`. Cloudflare Pages bot reports the Pages build for this exact head is **in progress** at this checkpoint. After Pages success, rerun the exact-head GitHub browser workflow and require both local and hosted seven-image checks to pass. No preview acceptance claim until then.
+- Previous PR #125 head `a558067` passed Free Catalogue Search Tests, Storefront Smoke Test, Public SKU Exposure Audit and Cloudflare Pages Public Package QA; browser test failed only because the two Audison image sources failed in that run. Subsequent PR #129 run confirmed the seven-image set loaded locally, and the new consolidated head will be re-tested.
+
+### Supplier mapping PR #128
+- Exact-head QA run 41049054208 remains SUCCESS. The crosswalk has 770/770 source-backed component groups, zero unclassified, 81 proposed GW SKUs, zero public product IDs and zero publications. Audio Connections is correctly marked owner-dealer-confirmed while its database connection remains inactive.
+
+### Safety and outstanding work
+- PRs #121, #125 and #128 remain unmerged. PR #126 and #129 remain open but their changes are included in #125 for integration QA; PR #127 is a closed duplicate of #121.
+- No Axxess upload, DNS, production deployment, Supabase migration/function deployment, supplier activation, public SKU/product creation, price/stock/image publication, or payment activation.
+- Planetworld quantities remain the 25-Oct workbook snapshot, not fresh supplier availability. Current store quantities outside the ASC ledger are not supplier-confirmed. Owner-directed ASC stock reset remains exactly 36 matched SKUs / 7,037 units to zero, with 0 positive ASC stock remaining.
