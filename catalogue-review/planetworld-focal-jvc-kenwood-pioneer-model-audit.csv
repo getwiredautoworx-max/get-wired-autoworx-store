@@ -1,6 +1,6 @@
 brand,supplier_sku_reference_only,source_description,manufacturer_match_status,official_manufacturer_reference,image_status
 Focal Car Audio,HILO V3,Focal HILO V3 Hilo Signal Converter,EXACT OFFICIAL INDIVIDUAL PRODUCT PAGE FOUND,https://www.focal.com/products/hilov3,Not downloaded or approved
-Focal Car Audio,KIT SUB P20FE,Focal KIT SUB P20FE Flax 8inch Subwoofer,EXACT OFFICIAL INDIVIDUAL PRODUCT PAGE FOUND,https://www.focal.com/products/p-20-fe,Not downloaded or approved
+Focal Car Audio,KIT SUB P20FE,Focal KIT SUB P20FE Flax 8inch Subwoofer,P20FE MODEL PAGE FOUND BUT SOURCE CODE HAS 'KIT SUB' PREFIX; VERIFY WHETHER SOURCE SKU IS A BUNDLE OR BARE SUBWOOFER,https://www.focal.com/products/p-20-fe,Do not approve single-driver image until kit contents are confirmed
 JVC Car Audio,CS-DR162,CS-DR162- JVC CS-DR162 6inch coaxial speakers,EXACT OFFICIAL INDIVIDUAL PRODUCT PAGE FOUND,https://www.jvc.com/in/car-entertainment/speakers/cs-dr162/,Not downloaded or approved
 JVC Car Audio,CS-DR6930,JVC CS-DR6930 6x9 3way speakers,EXACT MODEL LABEL IN OFFICIAL PRODUCT COLLECTION; DETAIL PAGE NOT INDIVIDUALLY VERIFIED,https://www.jvc.com/ae/car-entertainment/speakers/,Not downloaded or approved
 JVC Car Audio,CS-DR695HP,JVC CS-DR695HP 6x9 5way speakers,EXACT MODEL LABEL IN OFFICIAL PRODUCT COLLECTION; DETAIL PAGE NOT INDIVIDUALLY VERIFIED,https://www.jvc.com/ae/car-entertainment/speakers/,Not downloaded or approved
