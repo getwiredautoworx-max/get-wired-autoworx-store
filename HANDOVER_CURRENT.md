@@ -4762,3 +4762,16 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - PR #136 and PR #137 remain draft/unmerged. Production remains HOLD. Do not change Axxess, DNS, production Supabase, live stock/prices/catalogue, checkout/payments, banking secrets, or production deployment without explicit owner approval.
 - Required execution discipline from this checkpoint: (1) work on one customer-visible defect at a time; (2) inspect the actual source and make the change, not just a plan; (3) run available static/local checks; (4) verify the exact-head hosted deployment and desktop/mobile customer journey; (5) record commit SHA, evidence, remaining gap and owner action in this file immediately after each material change; (6) report honestly when external runner/deployment access prevents verification. No unsupported readiness percentages or ETAs.
 - Immediate next execution target: verify the current PR #136 branch source and deployment status against the latest commits, then complete hosted click-through for all Planetworld collection tiles and responsive image/card presentation. Next, address the broad catalogue image/description gap using only exact-model verified assets and available manufacturer data. Keep the handover synchronized on both the preview branch and default branch.
+
+
+---
+
+## LATEST EXECUTION RUN 19 — 2026-10-30 19:11 SAST
+
+- Run 19 audit and result: [HANDOVER_UPDATE_2026-10-30_EXECUTION_RUN_19.md](HANDOVER_UPDATE_2026-10-30_EXECUTION_RUN_19.md).
+- Rechecked main and PR #136 preview source. Main `preview-store.html` has conflicting `noindex,nofollow` and `index,follow` robots directives (blob `a11ae9ca9d7d230adc76a417f0d1362b8b348c19`). PR #136 branch source has one preview noindex directive (blob `a2cbf2e019fe1db7aaf1b47fb1838519b03fb670`). Resolve through a clean-main successor; do not merge the diverged PR #136 wholesale.
+- Confirmed PR #136 preview contains the Planetworld catalogue navigation described above, but the 3,317-card image/description gap remains substantial; curated 68 cards have 11 exact-model image sources and 57 placeholders.
+- Confirmed 770 supplier rows remain staged and inactive/unlinked; owner-confirmed Planetworld and Audio Connections dealer relationships are not blockers.
+- Targeted retry of PR #131 browser job accepted: run `41071684208`, new job `124205582275`, status queued at last check. No steps/logs or pass yet. Other recent jobs still failed before steps.
+- No storefront, production, supplier, stock, price, Supabase, Axxess, DNS, payment, or hosting changes in this run. No PR merged.
+- Next action: inspect queued job outcome; if it starts, fix actual failing assertions. Then create a clean-main integration successor for populated Planetworld + no-cost Part Search + courier privacy, resolve duplicate robots tag, run exact-head checks and obtain hosted desktop/mobile acceptance. Production HOLD remains.
