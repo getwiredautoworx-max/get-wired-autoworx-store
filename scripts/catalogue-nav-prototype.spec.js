@@ -33,7 +33,7 @@ fs.mkdirSync('catalogue-review/screenshots',{recursive:true});
     await page.locator('#back').click();
     if(await page.locator('#content [data-component]').count()<5)throw new Error('Back navigation did not return to component list');
     await page.locator('#home').click();
-    await page.locator('#hertz').click();
+    await page.locator('#content [data-brand="Hertz"]').click();
     if(!(await page.locator('#content').innerText()).includes('12 official product pages'))throw new Error('Hertz staged warning missing');
     await page.locator('#content [data-component="Coaxial speakers"]').click();
     if(!(await page.locator('#content').innerText()).includes('staged only'))throw new Error('Hertz component route must remain staged-only');
