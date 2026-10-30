@@ -69,8 +69,9 @@ jobs:
           print('Exported',len(rows),'unmatched products')
           PY
       - name: Upload Excel worksheet
+        if: vars.ENABLE_UNMATCHED_IMAGE_EXPORT_ARTIFACT_UPLOAD == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: Get_Wired_AutoWorx_UNMATCHED_IMAGE_VERIFICATION
           path: Get_Wired_AutoWorx_UNMATCHED_IMAGE_VERIFICATION.xlsx
-          retention-days: 90
+          retention-days: 1

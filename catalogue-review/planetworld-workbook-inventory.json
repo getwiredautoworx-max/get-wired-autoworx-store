@@ -1,0 +1,1694 @@
+[
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/adeo-screens-price-list-2026-10-25.xlsx",
+    "size_bytes": 20781,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 8,
+        "header_row": 1,
+        "candidate_product_rows": 7,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/aiper-price-list-2026-10-25.xlsx",
+    "size_bytes": 20024,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 7,
+        "header_row": 1,
+        "candidate_product_rows": 6,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
+    "size_bytes": 41657,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 59,
+        "header_row": 1,
+        "candidate_product_rows": 58,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alto-professional-price-list-2026-10-25.xlsx",
+    "size_bytes": 25322,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 19,
+        "header_row": 1,
+        "candidate_product_rows": 18,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/amplified-price-list-2026-10-25.xlsx",
+    "size_bytes": 21326,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 10,
+        "header_row": 1,
+        "candidate_product_rows": 9,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/arcam-price-list-2026-10-25.xlsx",
+    "size_bytes": 17947,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 2,
+        "header_row": 1,
+        "candidate_product_rows": 1,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+    "size_bytes": 57077,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 95,
+        "header_row": 1,
+        "candidate_product_rows": 94,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/crossrock-price-list-2026-10-25.xlsx",
+    "size_bytes": 27287,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 24,
+        "header_row": 1,
+        "candidate_product_rows": 23,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/db-price-list-2026-10-25.xlsx",
+    "size_bytes": 32953,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 37,
+        "header_row": 1,
+        "candidate_product_rows": 36,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/dbx-price-list-2026-10-25.xlsx",
+    "size_bytes": 18359,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 3,
+        "header_row": 1,
+        "candidate_product_rows": 2,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/denon-dj-price-list-2026-10-25.xlsx",
+    "size_bytes": 20547,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 8,
+        "header_row": 1,
+        "candidate_product_rows": 7,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/focal-car-audio-price-list-2026-10-25.xlsx",
+    "size_bytes": 18394,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 3,
+        "header_row": 1,
+        "candidate_product_rows": 2,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/harness-and-trims-price-list-2026-10-25.xlsx",
+    "size_bytes": 37278,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 48,
+        "header_row": 1,
+        "candidate_product_rows": 47,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/hdanywhere-price-list-2026-10-25.xlsx",
+    "size_bytes": 33720,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 39,
+        "header_row": 1,
+        "candidate_product_rows": 38,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/ibanez-price-list-2026-10-25.xlsx",
+    "size_bytes": 284223,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 622,
+        "header_row": 1,
+        "candidate_product_rows": 621,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/integra-price-list-2026-10-25.xlsx",
+    "size_bytes": 19254,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 5,
+        "header_row": 1,
+        "candidate_product_rows": 4,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/jabra-price-list-2026-10-25.xlsx",
+    "size_bytes": 208941,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 433,
+        "header_row": 1,
+        "candidate_product_rows": 432,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/jbl-price-list-2026-10-25.xlsx",
+    "size_bytes": 28527,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 27,
+        "header_row": 1,
+        "candidate_product_rows": 26,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/jlab-price-list-2026-10-25.xlsx",
+    "size_bytes": 36854,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 47,
+        "header_row": 1,
+        "candidate_product_rows": 46,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/jvc-car-audio-price-list-2026-10-25.xlsx",
+    "size_bytes": 22917,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 14,
+        "header_row": 1,
+        "candidate_product_rows": 13,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/jvc-projectors-price-list-2026-10-25.xlsx",
+    "size_bytes": 18853,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 3,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kenwood-car-audio-price-list-2026-10-25.xlsx",
+    "size_bytes": 19236,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 5,
+        "header_row": 1,
+        "candidate_product_rows": 4,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+    "size_bytes": 99260,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 191,
+        "header_row": 1,
+        "candidate_product_rows": 190,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/klipsch-price-list-2026-10-25.xlsx",
+    "size_bytes": 58589,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 93,
+        "header_row": 1,
+        "candidate_product_rows": 92,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/m-audio-price-list-2026-10-25.xlsx",
+    "size_bytes": 25087,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 19,
+        "header_row": 1,
+        "candidate_product_rows": 18,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/m-k-sound-price-list-2026-10-25.xlsx",
+    "size_bytes": 37091,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 48,
+        "header_row": 1,
+        "candidate_product_rows": 47,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/mason-price-list-2026-10-25.xlsx",
+    "size_bytes": 37333,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 50,
+        "header_row": 1,
+        "candidate_product_rows": 49,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/medeli-price-list-2026-10-25.xlsx",
+    "size_bytes": 22245,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 12,
+        "header_row": 1,
+        "candidate_product_rows": 11,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/numark-price-list-2026-10-25.xlsx",
+    "size_bytes": 21711,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 11,
+        "header_row": 1,
+        "candidate_product_rows": 10,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/on-stage-price-list-2026-10-25.xlsx",
+    "size_bytes": 90016,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 169,
+        "header_row": 1,
+        "candidate_product_rows": 168,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
+    "size_bytes": 140784,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 291,
+        "header_row": 1,
+        "candidate_product_rows": 290,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/onkyo-price-list-2026-10-25.xlsx",
+    "size_bytes": 22149,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 12,
+        "header_row": 1,
+        "candidate_product_rows": 11,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/p5-price-list-2026-10-25.xlsx",
+    "size_bytes": 19267,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 5,
+        "header_row": 1,
+        "candidate_product_rows": 4,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/paiste-price-list-2026-10-25.xlsx",
+    "size_bytes": 43143,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 63,
+        "header_row": 1,
+        "candidate_product_rows": 62,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/pioneer-car-audio-price-list-2026-10-25.xlsx",
+    "size_bytes": 18380,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 3,
+        "header_row": 1,
+        "candidate_product_rows": 2,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/planetwaves-price-list-2026-10-25.xlsx",
+    "size_bytes": 19564,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 6,
+        "header_row": 1,
+        "candidate_product_rows": 5,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/rane-dj-price-list-2026-10-25.xlsx",
+    "size_bytes": 20027,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 7,
+        "header_row": 1,
+        "candidate_product_rows": 6,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/remo-price-list-2026-10-25.xlsx",
+    "size_bytes": 85750,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 166,
+        "header_row": 1,
+        "candidate_product_rows": 165,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/roborock-price-list-2026-10-25.xlsx",
+    "size_bytes": 26553,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 21,
+        "header_row": 1,
+        "candidate_product_rows": 20,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/shure-price-list-2026-10-25.xlsx",
+    "size_bytes": 58109,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 97,
+        "header_row": 1,
+        "candidate_product_rows": 96,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/sonance-price-list-2026-10-25.xlsx",
+    "size_bytes": 28856,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 29,
+        "header_row": 1,
+        "candidate_product_rows": 28,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/sonos-price-list-2026-10-25.xlsx",
+    "size_bytes": 43853,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 64,
+        "header_row": 1,
+        "candidate_product_rows": 63,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/sound-switch-price-list-2026-10-25.xlsx",
+    "size_bytes": 18412,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 3,
+        "header_row": 1,
+        "candidate_product_rows": 2,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/soundcraft-price-list-2026-10-25.xlsx",
+    "size_bytes": 20906,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 9,
+        "header_row": 1,
+        "candidate_product_rows": 8,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/tama-price-list-2026-10-25.xlsx",
+    "size_bytes": 154456,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 330,
+        "header_row": 1,
+        "candidate_product_rows": 329,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/vogels-price-list-2026-10-25.xlsx",
+    "size_bytes": 53829,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 86,
+        "header_row": 1,
+        "candidate_product_rows": 85,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "catalogue-source/suppliers/planetworld/incoming-xlsx/zoom-price-list-2026-10-25.xlsx",
+    "size_bytes": 41375,
+    "sheets": [
+      {
+        "sheet": "Products",
+        "nonblank_rows": 60,
+        "header_row": 1,
+        "candidate_product_rows": 59,
+        "headers": [
+          "Item Code",
+          "Item Name",
+          "Bundle",
+          "Division",
+          "Brand",
+          "Product Type",
+          "Dealer Price (Excl)",
+          "Retail Price (Excl)",
+          "Retail Price (Incl)",
+          "JHB Stock",
+          "DBN Stock",
+          "CPT Stock"
+        ]
+      },
+      {
+        "sheet": "Filters Applied",
+        "nonblank_rows": 4,
+        "header_row": 1,
+        "candidate_product_rows": 0,
+        "headers": [
+          "Filter",
+          "Value"
+        ]
+      }
+    ]
+  }
+]

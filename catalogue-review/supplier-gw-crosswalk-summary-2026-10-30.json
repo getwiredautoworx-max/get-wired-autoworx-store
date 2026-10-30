@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-30",
+  "planetworld_source_rows": 702,
+  "planetworld_exact_individual_manufacturer_pages": 68,
+  "planetworld_collection_only": 121,
+  "audio_connections_source_rows": 68,
+  "audio_connections_exact_sony_pages": 13,
+  "audio_connections_sold_out": 1,
+  "candidate_gw_skus": 81,
+  "live_product_matches": 0,
+  "candidate_skus_live_collisions": 0,
+  "existing_product_ids": "NONE — all candidate product_id values intentionally blank",
+  "supplier_connections": "TWO PROPOSED UUIDS; NOT INSERTED",
+  "publication_status": "ALL ROWS NOT PUBLISHED",
+  "method": "FNV-1a 32-bit deterministic key over supplier|brand|model; GW- plus 8 uppercase hex characters; collision-checked against current public.products.public_sku. Candidate only; no product rows inserted."
+}

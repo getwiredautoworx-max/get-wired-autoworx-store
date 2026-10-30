@@ -4,8 +4,9 @@
 **Established Since 2012**
 
 **Business:** Get Wired AutoWorx  
-**Address:** 29 Wattlebrook Crescent, Brookdale, Phoenix, Durban, South Africa  
-**Email:** getwiredautoworx@gmail.com  
+**Public contact:** getwiredautoworx@gmail.com  
+**Returns address:** Private; provided to the buyer in writing when a return is authorised or required  
+**Collection:** After payment and notification only; by appointment; no walk-ins; no C.O.D.  
 **Website:** getwiredauto.co.za
 
 ## 1. About Get Wired AutoWorx
@@ -44,7 +45,7 @@ There is **no standard nationwide R15 delivery charge**. Courier/delivery charge
 Delivery dates are estimates and may be affected by supplier, courier or other circumstances outside our reasonable control.
 
 ## 10. Collection / Pickup
-Where collection is offered, customers will be notified when orders are ready and may be required to provide identification/proof of purchase.
+**Collection is by appointment only. No walk-ins and no cash on delivery (C.O.D.).** Customers may collect only after payment has been received and Get Wired AutoWorx has notified them in writing that the order is ready. The customer must arrange/confirm an appointment before arriving and may be required to provide identification/proof of purchase.
 
 ## 11. Delivery Inspection
 Customers should inspect deliveries promptly and photograph damaged packaging/product before installation or use where possible. Customers should retain packaging, labels, accessories, manuals, fittings, seals and proof of purchase until satisfied with the product.
@@ -57,14 +58,8 @@ A customer must contact Get Wired AutoWorx before sending an item back and obtai
 
 Where a return is permitted or required, the item may be inspected by Get Wired AutoWorx and, where appropriate, referred to the applicable supplier, wholesaler, importer, manufacturer or authorised service agent for technical assessment.
 
-### 12.2 Mandatory return address
-**All items returned for repair, warranty assessment, replacement or refund must be couriered directly to:**
-
-**Get Wired AutoWorx**  
-**29 Wattlebrook Crescent**  
-**Brookdale, Phoenix**  
-**Durban, 4068**  
-**South Africa**
+### 12.2 Private return address and written instructions
+**The returns address is private and is not published on this website.** When a return is authorised or required, Get Wired AutoWorx will notify the buyer in writing and provide the applicable return address and instructions. Do not send goods to an address unless those written instructions have been received. This does not limit mandatory statutory rights or remedies.
 
 Customers must use suitable protective packaging and a trackable courier/service. The customer remains responsible for the parcel until it has been safely received and acknowledged by Get Wired AutoWorx, except where applicable law places the risk or return cost on the supplier.
 
@@ -269,6 +264,7 @@ For special-order products, the customer additionally confirms that they have sa
 **Sound & Security • Auto Electrical**  
 **Established Since 2012**
 
-29 Wattlebrook Crescent, Brookdale, Phoenix, Durban, South Africa  
+Returns address supplied privately in writing when a return is authorised or required  
+**Pickup:** After payment and notification only; by appointment; no walk-ins; no C.O.D.  
 **Email:** getwiredautoworx@gmail.com  
 **Website:** getwiredauto.co.za

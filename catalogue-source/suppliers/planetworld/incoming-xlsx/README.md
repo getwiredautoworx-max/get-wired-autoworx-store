@@ -1,7 +1,5 @@
-# Planetworld — Incoming XLSX
+# Planetworld — Incoming XLSX (historical intake path)
 
-Upload incoming Planetworld supplier spreadsheets here only while this repository remains private.
+All 47 XLSX source workbooks were moved byte-for-byte to the canonical `suppliers/Planetworld/` folder on 2026-10-29. This directory is retained for future intake only; it should contain no active source workbooks.
 
-**Confidentiality:** These files may contain dealer costs, recommended retail prices, and stock snapshots. Do not change this repository to public while supplier files are present. Do not commit customer data, credentials, or access tokens.
-
-Keep original source files unchanged. Analysis and proposed catalogue changes should be stored separately for review; do not import or publish prices or stock automatically.
+Supplier spreadsheets may contain confidential dealer costs, recommended retail prices and stock snapshots. Keep this repository private. Preserve original workbooks and keep all analysis/recommendations separate from live catalogue changes.

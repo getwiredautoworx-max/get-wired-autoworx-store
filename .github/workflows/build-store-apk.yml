@@ -31,11 +31,13 @@ jobs:
         run: gradle --no-daemon assembleDebug
 
       - name: Upload APK
+        if: vars.ENABLE_STORE_APK_ARTIFACT_UPLOAD == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: get-wired-autoworx-sales-v0.3.2
           path: apk-sales-intelligence/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+          retention-days: 1
 
       - name: Emulator install and launch validation
         uses: reactivecircus/android-emulator-runner@v2

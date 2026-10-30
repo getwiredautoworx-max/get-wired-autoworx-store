@@ -1,0 +1,35 @@
+{
+  "embedded_images_extracted": 21,
+  "starsound_product_images": 0,
+  "sony_page1_unique_row_images": 7,
+  "sony_page2_unique_row_image": 1,
+  "sony_subwoofer_shared_image_models": [
+    "XS-W122ES",
+    "XS-W124ES"
+  ],
+  "sony_amplifier_shared_image_models": [
+    "XM-1ES",
+    "XM-4ES",
+    "XM-5ES",
+    "XM-6ES",
+    "XM-8ES"
+  ],
+  "resolution_note": "Individual Sony product images extracted from the PDF are approximately 132–190 px wide and 124–192 px high; too small for approval as primary storefront images. The PDF page images are visual reference only.",
+  "exact_image_assignment_rule": "Do not assign the shared subwoofer image to both impedance variants or the shared amplifier image to five amplifier models. Obtain exact high-resolution manufacturer assets first.",
+  "gw_skus_assigned": 0,
+  "customer_visible_products_approved": 0,
+  "high_resolution_image_candidate_research": {
+    "date": "2026-10-30",
+    "sony_models": 15,
+    "model_specific_image_candidates_found": 14,
+    "official_sony_direct_image_urls_found": 2,
+    "distributor_or_retailer_image_candidates": 12,
+    "no_candidate": [
+      "XS-680G"
+    ],
+    "manifest": "catalogue-review/audio-connections-high-resolution-image-candidates-2026-10-30.csv",
+    "downloaded": 0,
+    "visually_approved": 0,
+    "publication_rule": "Candidates only. Download and inspect each image, verify exact model and rights/source suitability, and establish approved GW SKU mapping before attaching to any product."
+  }
+}

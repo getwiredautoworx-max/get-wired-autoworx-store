@@ -1,0 +1,41 @@
+name: Hertz Official Product Image Metadata Review
+
+on:
+  push:
+    branches:
+      - catalogue/ingest-review-2026-10-30
+    paths:
+      - "scripts/hertz_image_metadata_audit.py"
+      - ".github/workflows/hertz-image-metadata-review.yml"
+
+concurrency:
+  group: catalogue-review-branch-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  inspect-official-pages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: catalogue/ingest-review-2026-10-30
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Fetch official Hertz product-page metadata
+        run: python scripts/hertz_image_metadata_audit.py
+      - name: Commit image URL candidates for manual visual review
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "generated catalogue review outputs"
+          git fetch origin catalogue/ingest-review-2026-10-30
+          git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
+          git stash pop
+          git add catalogue-review/hertz-official-image-metadata-review.csv catalogue-review/hertz-official-image-metadata-summary.json
+          git commit -m "[skip ci] Record Hertz official image metadata candidates"
+          git push origin HEAD:catalogue/ingest-review-2026-10-30
