@@ -1,3 +1,12 @@
+## DEPLOYMENT / CI STATUS CORRECTION — PLANETWORLD PREVIEW — 2026-10-30
+
+- Cloudflare Pages bot confirms **successful deployment** for exact storefront/data commit `70353e98b13b0ec3d1ca169a6ca19d4081f97527`. Immutable preview: `https://9dfcf8cc.get-wired-autoworx-store.pages.dev/preview-store.html`; branch preview: `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`. The deployment includes the new Planetworld catalogue section and sanitized JSON.
+- Six GitHub Actions workflows associated with that commit all completed FAILURE before job steps: browser QA run `41092152989`; Pages package QA `41092152990`; catalogue image audit `41092153082`; runner diagnostic `41092153281`; storefront smoke `41092152920` (smoke skipped after detect job failed); public SKU audit `41092153140`. All six active jobs expose `logs_url=null` and `steps=null`. No browser or application test assertions ran. Do not describe this as an application test failure or repeatedly rerun without fixing runner startup.
+- The static source validation recorded above passed; hosted visual QA is still pending. Owner must inspect the deployed page on desktop/mobile, particularly category filters, search, product card layout and WhatsApp enquiry links.
+- Current preview work remains on PR #136 / `gw-store-preview-1030`; draft/unmerged, production HOLD. No customer entry-point switch, Axxess/DNS, production Supabase, live stock/price, supplier activation or checkout/payment changes.
+
+---
+
 ## LATEST OWNER-DIRECTED EXECUTION — PLANETWORLD CATALOGUE INTEGRATED INTO STORE PREVIEW — 2026-10-30
 
 - Owner directed that Planetworld catalogue integration and storefront sales navigation take priority over checkout/bank-account discussion. This work is now implemented on preview branch `gw-store-preview-1030`; no production merge or release was performed.
