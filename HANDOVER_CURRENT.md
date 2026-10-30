@@ -3741,3 +3741,12 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
   4. Populated preview: prior hosted preview remains valid for its tested head; new Part Search/no-AI assertions and audio-specific browser coverage are pending exact-head QA.
   5. Handover: updated with this checkpoint. Continue appending material results here; do not restart or produce another parallel handover.
 - Release boundary unchanged: no ASC stock restoration, no non-ASC stock/price changes, no supplier activation/publication, no Supabase writes, no checkout/payment activation, no Axxess upload, DNS change, Worker configuration change, or production deployment. Launch remains HOLD.
+
+
+## FOLLOW-UP — PREVIEW QA TEST HARNESS CORRECTION + AUDIO ROUTE COVERAGE — 2026-10-30
+
+- The first new PR #116 browser-test attempt (run 41035052691, commit 67e248e3483710e1ca0817fb9b882b181453bb92) failed before browser assertions because the newly added JavaScript regular expression was over-escaped in the workflow heredoc. This was a test-harness syntax error, not a storefront runtime regression.
+- Corrected the regex in commit a11660dfde59fb556a24980e123d29a06683cdd0. Then tightened the photo-input assertion and added an explicit Car Audio root → Car Audio & Video route check in commit 51cea91f0881579d2783ddae42853f10d75be1a5.
+- Exact-head PR workflow run for commit 51cea91f0881579d2783ddae42853f10d75be1a5: Populated Store Preview Browser QA run 41035299270 was IN_PROGRESS at the time of this note; Playwright and Chromium installation completed and the populated-preview browser step had started. Storefront Smoke Test, Public SKU Exposure Audit and Cloudflare Pages Public Package QA were also triggered. Do not mark the new browser coverage passed until run 41035299270 completes and its logs are inspected.
+- Current preview branch head has 13 commits ahead and 31 behind main; this is intentionally isolated and not merge-ready. Main remains buttons-only. Existing hosted preview URL remains the last previously verified deployment; this QA-only commit does not itself constitute a new hosted storefront deployment.
+- Next: retrieve exact-head run 41035299270 result/logs; fix any test assertion or runtime failure on the same isolated branch; once Part Search/no-AI and audio-area checks pass, close only superseded PR #94/#99 if their needed changes are demonstrably covered by the tested preview. Do not merge PR #116 or alter main/production without the owner's review/approval.
