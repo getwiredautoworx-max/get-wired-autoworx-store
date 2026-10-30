@@ -4180,3 +4180,12 @@ No live product/SKU publication, supplier activation, price/stock write, Supabas
 - Preview-only fixes on PR #136 branch `gw-store-preview-1030`: `06b80b886a83e4f2a13468c10e8041f46bedb72f` renders local category snapshot first and fetches featured products independently while removing exact-count overhead; `08aab1131c045caf3aa0a4d2f4a5ccbec993dacc` replaces malformed inline image-error handling; `f52c7efa8ff7583ec1732d785bc903f49f95b6b6` repairs the script boundary and document close.
 - Static V8 validation passed on exact head `f52c7efa8ff7583ec1732d785bc903f49f95b6b6`: all 7 inline scripts compile and loader assertions pass. Cloudflare Pages deployment for this head was still in progress at last check; hosted desktop/mobile acceptance and exact-head CI remain pending. Keep PR #136 draft and production HOLD until deployed visual verification passes.
 - No database/data/policy/grant/migration, stock, price, supplier, checkout, Axxess, DNS, production hosting or payment changes. Detailed result: `catalogue-review/HOMEPAGE_CATEGORIES_SPECIALS_FIX_2026-10-30.md`.
+
+
+## 2026-10-30 — REPAIRED CATEGORY / SPECIALS PREVIEW DEPLOYED; CI STILL BLOCKED
+
+- Cloudflare Pages confirmed successful deployment for exact PR #136 head `f52c7efa8ff7583ec1732d785bc903f49f95b6b6`.
+- Immutable preview: https://c168b29f.get-wired-autoworx-store.pages.dev/preview-store.html; branch alias: https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html.
+- Six fresh exact-head GitHub Actions workflows (smoke, Pages package QA, image audit, populated browser QA, SKU audit, runner diagnostic) all completed FAILURE before steps. Diagnostic job 124179259135 and browser job 124179258439 have no logs or steps. This remains an Actions runner/job-start infrastructure blocker; no browser assertion was executed.
+- Static V8 check passes for all 7 inline scripts. Hosted desktop/mobile visual acceptance remains outstanding. Do not call the customer-facing category/Specials defect finally resolved until categories, subcategories, featured specials and product navigation are confirmed on the deployed preview at desktop and mobile widths.
+- PR #136 remains draft/unmerged; production HOLD and all production/data safeguards remain unchanged. Detailed result: `catalogue-review/HOMEPAGE_CATEGORIES_SPECIALS_FIX_2026-10-30.md`.
