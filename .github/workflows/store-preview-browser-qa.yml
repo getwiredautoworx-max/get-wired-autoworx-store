@@ -93,7 +93,7 @@ jobs:
             await page.locator('#partSearchDialog button.pictureSearchBtn').first().click();
             await page.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
             const photoInput=page.locator('#sourcePhotos');
-            const photoRules=await photoInput.evaluate(el=>({multiple:el.multiple,accept:el.accept,hasFivePhotoLimit:/files.length>5/.test(document.querySelector('script:last-of-type')?.textContent||'')}));
+            const photoRules=await photoInput.evaluate(el=>({multiple:el.multiple,accept:el.accept}));
             if(!photoRules.multiple||!photoRules.accept.includes('image/jpeg')||!photoRules.accept.includes('image/png'))throw new Error('Photo request upload rules are incomplete: '+JSON.stringify(photoRules));
             const previewSource=await require('fs').promises.readFile('preview-store.html','utf8');
             if(/generativelanguage|api\.openai\.com|gemini\/|openai\/images/i.test(previewSource))throw new Error('Paid AI image-search endpoint remains in preview source');
@@ -105,6 +105,14 @@ jobs:
             await page.setViewportSize({width:1280,height:900});
             const desktopWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(desktopWidth.scrollWidth>desktopWidth.innerWidth+1)throw new Error('Desktop horizontal overflow: '+JSON.stringify(desktopWidth));
+            // Exercise the dedicated audio-area navigation from the real category page.
+            await page.goto('http://127.0.0.1:4173/category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
+            await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
+            const audioAreas=await page.locator('#grid').innerText();
+            for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!audioAreas.includes(label))throw new Error('Audio area navigation missing '+label);
+            await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+            await page.waitForURL(/audio_area=car/,{timeout:15000});
+            await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
             if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
             console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
