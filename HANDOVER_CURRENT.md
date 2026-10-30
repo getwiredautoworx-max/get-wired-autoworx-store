@@ -4494,3 +4494,13 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - Static assertions passed for the navigation block, all five owner-requested audio destinations, collection click routing, expanded component filtering, and exactly one `noindex,nofollow` robots directive.
 - Existing safety boundary preserved: all 3,317 rows remain enquiry-only; no dealer cost, supplier price, or supplier stock quantities are exposed; no live catalogue, product, price, stock, Supabase, checkout, Axxess, DNS or production changes.
 - **Not yet verified:** exact-head GitHub Actions/browser QA, latest Cloudflare Pages redeployment, and hosted desktop/mobile click-through. Do not call the change preview-ready until these checks complete. PR #136 remains draft/unmerged and production HOLD remains.
+
+
+## 2026-10-30 — PLANETWORLD NAVIGATION ACCEPTANCE TESTS ADDED
+
+- Updated `.github/workflows/store-preview-browser-qa.yml` on PR #136 branch to test the new Planetworld navigation instead of incorrectly treating the requested visible Planetworld brand as a privacy leak.
+- Hosted browser QA now requires the branded navigation block and all eight collection buttons, then clicks each destination and checks the expected source-row count: Car Audio & Video 674; Home Entertainment 461; Band & Live Sound 792; DJ 15; Studio Equipment 62; Marine Audio 28; Installed AV 435; Musical Instruments 850. It returns to Car Audio after the loop.
+- The blanket global rejection of the word “Planetworld” / “supplier catalogue” was removed. The security guard still rejects dealer price, dealer cost and the private supplier source domain. The separate 68-card GW catalogue continues to have its own no-supplier-identity check.
+- Workflow change commits: `e121294fe5a1d505e6dc8966e7a80f37e97c52cf` and regex correction `53d1d1b6911a1ab33023458ca3e01321aecd8aac`.
+- Static review confirms all eight expected navigation targets and counts are encoded in the hosted test, and the dealer-price/source-domain privacy checks remain. No exact-head workflow run is currently returned for the latest commits; prior runner failures before steps/logs remain unresolved. Latest Pages deployment for this new head is not yet confirmed.
+- PR #136 remains draft/unmerged; preview only. No production or live data/service changes.
