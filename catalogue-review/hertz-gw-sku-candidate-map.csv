@@ -1,0 +1,13 @@
+supplier_ref_internal_only,manufacturer_model,gw_public_sku_candidate,format_validation,collision_check_against_4200_existing_products,db_insert_status,generation_note
+78000023,MPK 165.3,GW-AC0EF896,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78000059,CK 130,GW-BFB4F11A,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78000069,CK 165,GW-F92DDBC9,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78021091,DBX 25.3,GW-B89C4EE1,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78021101,DBX 30.3,GW-EE1B4571,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78022000,CBA 250,GW-84385D69,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78035501,MPS 250 S4,GW-1221C8EE,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78035511,MPS 250 S2,GW-174EC6B3,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78040014,CPX 165,GW-840223C4,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78040044,CPX 690,GW-68265588,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78040143,DCX 130.3,GW-9C4DBC98,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
+78040154,DCX 165.3,GW-ABB56FC6,PASS — ^GW-[A-Z0-9]{8}$,NO COLLISION FOUND,NOT INSERTED — staging only,Deterministic FNV-1a32 hash; seed GETWIRED|HERTZ|supplier_ref|model|0
