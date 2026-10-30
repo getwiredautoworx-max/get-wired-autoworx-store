@@ -12,8 +12,12 @@ on:
       - "scripts/catalogue-nav-prototype.spec.js"
       - ".github/workflows/catalogue-nav-prototype-test.yml"
 
+concurrency:
+  group: catalogue-review-screenshot-write
+  cancel-in-progress: false
+
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   responsive-navigation:
@@ -37,3 +41,17 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
           node scripts/catalogue-nav-prototype.spec.js
+
+      - name: Commit tested navigation screenshots
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "generated navigation screenshots"
+          git fetch origin catalogue/ingest-review-2026-10-30
+          git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
+          git stash pop
+          find catalogue-review/screenshots -type f -print0 | xargs -0 -r git add --
+          if git diff --cached --quiet; then echo "No screenshot changes."; exit 0; fi
+          git commit -m "[skip ci] Add tested mobile and desktop navigation screenshots"
+          git push origin HEAD:catalogue/ingest-review-2026-10-30
