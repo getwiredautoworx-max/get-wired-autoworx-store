@@ -36,7 +36,19 @@ assert(rows.every((r) => r.publication_status === "NOT PUBLISHED"), "Review rows
 
 const supplierPairs = rows.map((r) => r.supplier_id + "|" + r.supplier_sku);
 assert.equal(new Set(supplierPairs).size, rows.length, "Supplier/model keys must be unique within each proposed supplier");
-assert(rows.every((r) => ((r.supplier.includes("Planetworld") && r.supplier_id_status === "REGISTERED_ACTIVE_DEALER_CONFIRMED" && r.supplier_connection_active === "true") || (r.supplier === "Audio Connections" && r.supplier_id_status === "REGISTERED_INACTIVE_RELATIONSHIP_UNCONFIRMED" && r.supplier_connection_active === "false"))));
+assert(rows.every((r) => ((r.supplier.includes("Planetworld") && r.supplier_id_status === "REGISTERED_ACTIVE_DEALER_CONFIRMED" && r.supplier_connection_active === "true") || (r.supplier === "Audio Connections" && r.supplier_id_status === "REGISTERED_INACTIVE_OWNER_DEALER_CONFIRMED" && r.supplier_connection_active === "false"))));
+
+const planetworldComponents = parseCsv(await readFile("catalogue-review/PLANETWORLD_CAR_AUDIO_COMPONENT_CLASSIFICATION_2026-10-30.csv", "utf8"));
+const audioComponents = parseCsv(await readFile("catalogue-review/AUDIO_CONNECTIONS_COMPONENT_CLASSIFICATION_2026-10-30.csv", "utf8"));
+const planetworldByKey = new Map(planetworldComponents.map((r) => [r.source_file + "|" + r.supplier_model_or_sku, r.component_group]));
+const audioByModel = new Map(audioComponents.map((r) => [r.model_candidate.toLowerCase().replace(/[^a-z0-9]/g, ""), r.component_group]));
+const planetworldRows = rows.filter((r) => r.supplier.includes("Planetworld"));
+const audioRows = rows.filter((r) => r.supplier === "Audio Connections");
+assert.equal(planetworldRows.length, 702);
+assert.equal(audioRows.length, 68);
+assert(planetworldRows.every((r) => r.component_candidate === planetworldByKey.get(r.source_file + "|" + r.supplier_sku)), "Planetworld component groups must match the exact source-file/model manifest");
+assert(audioRows.every((r) => r.component_candidate === audioByModel.get(r.manufacturer_model.toLowerCase().replace(/[^a-z0-9]/g, ""))), "Audio Connections component groups must match the exact model manifest");
+assert(rows.every((r) => r.component_candidate && !r.component_candidate.startsWith("Unclassified")), "All supplier rows must have source-backed component groups");
 
 const sql = await readFile("catalogue-review/supplier-catalogue-stage-proposal-2026-10-30.sql", "utf8");
 assert(sql.includes("APPLIED 2026-10-30"));
