@@ -4173,3 +4173,58 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PR #128 and #121 remain open/unmerged. PR #130 is the active preview integration candidate. PR #126 and #129 remain open feature branches but their changes are integrated into #130; do not merge duplicates.
 - Planetworld preview still uses the 25-Oct-2026 stock snapshot; do not represent it as current supplier availability. ASC remains zero on all 36 owner-directed ledger matches (7,037 units reset); do not re-run or broaden the reset.
 - No Axxess upload, DNS, production deployment, supplier activation, public SKU/product/image publication, live price/stock changes, Supabase migrations/functions, or payment activation without explicit owner approval.
+
+
+---
+
+## 2026-10-30 CONTINUATION UPDATE — CLEAN MAINLINE SEARCH INTEGRATION
+
+- Read current `HANDOVER_CURRENT.md` from main before resuming. Latest existing checkpoint: 2026-10-30 13:52 SAST.
+- Rechecked current populated-preview candidate PR #130 branch `integration/planetworld-preview-current-main-r3-2026-10-30`. GitHub compare confirms it is diverged: 16 commits ahead / 24 behind current main. Its head has no workflow runs returned by the current commit-workflow lookup. Do not merge it wholesale or rely on its old hosted preview alias.
+- Rechecked PR #94 historical preview readiness: candidate branch head `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`; no current-head workflow runs returned. It remains a historical Part Search compatibility candidate, not current verified preview evidence.
+- Created clean current-main branch `integration/free-catalogue-search-mainline-2026-10-30` from main SHA `4b312aa94b868ec60dd2dfa6c5a19a121e6fe5f8`.
+- Selectively ported free client-side catalogue search module, 10-assertion unit test, dedicated GitHub Actions test workflow, and integration into the current main populated preview. Added category-name enrichment for searchable category fields. Added `noindex,nofollow` to all five owner-only preview routes.
+- Opened draft PR #132: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/132. Latest head SHA `555b4db29101c5ef7a4bcc872ae4fda1bed77a2d`; 9 commits, 8 changed files before this handover update. Compare against main reports clean `ahead` state (8 commits at compare checkpoint, 0 behind); PR metadata now reports `mergeable=true`.
+- Current commit-workflow lookup returned no PR-triggered workflow runs for PR #132 head at time of check. Therefore unit tests, exact-head browser QA and hosted preview are NOT yet verified. Keep PR draft/unmerged until actual run evidence is available.
+- No Axxess upload, DNS, production deployment, Supabase writes/migrations/function deployment, supplier activation, public product/SKU creation, stock/price/image publication or payment activation. Launch remains HOLD.
+- Next: obtain actual PR #132 Actions results and Pages preview URL; inspect hosted preview on mobile and desktop; then selectively resolve remaining preview/store journey and checkout release gates. Continue keeping Planetworld 2026-10-25 snapshot clearly labelled as historical, and preserve ASC stock reset (36 matched SKUs / 7,037 units at zero).
+
+
+## 2026-10-30 CONTINUATION — BROWSER QA INTEGRATION
+
+- Continued PR #132 on clean branch `integration/free-catalogue-search-mainline-2026-10-30`.
+- Added the new free-search unit suite to the repository's existing base-branch workflow `.github/workflows/store-preview-browser-qa.yml` (this workflow already exists on main and is triggered by changes to preview-store.html and assets/**). The job now runs `node tests/catalogue-search.test.cjs` before Playwright installation.
+- Extended the existing mobile populated-store Playwright journey to verify the free search module loads, category labels are attached to loaded products, and an exact SKU entered into the real storefront search returns the expected product. Existing Part Search fallback, ASC exclusion, category tree, Planetworld preview, image, desktop/mobile overflow and audio navigation assertions remain in the same workflow.
+- Rechecked PR #132 after the change: head branch is 11 commits ahead / 0 behind main; GitHub compare status `ahead`; no merge conflicts reported at the latest check. PR remains draft and unmerged.
+- The available commit-workflow-runs lookup returned an empty list for the latest head. Therefore there is still no verified CI or hosted browser pass. The PR-triggered test evidence must be checked in GitHub Actions itself; do not represent tests as passed.
+- PR #132 currently contains a separate new workflow file as well as the extension to the existing base workflow. The existing workflow is the dependable PR trigger; the new workflow is supplemental and may not run until its workflow definition exists on the base branch.
+- Reconfirmed release blockers from current GitHub issue records: #102 server-authenticated delivery quote security; #103 merchant/payment provider implementation and sandbox verification; #30 paid image-search hardening remains deliberately out of customer path because the current preview uses the free photo-request fallback. No production function/database/deployment action taken.
+- No Axxess, DNS, production deployment, Supabase writes/migrations/function deployment, supplier activation, public SKU/product creation, price/stock/image publication or payment activation.
+- Next execution: inspect actual GitHub Actions result for PR #132; resolve any failing browser assertions from logs; verify the Pages preview; then tackle checkout quote security in a dedicated reviewable branch, retaining the explicit no-production-deploy gate. EFT owner instructions are already documented on the earlier EFT setup PR; do not request bank details in chat.
+
+
+## 2026-10-30 CONTINUATION — EFT STATUS AND CHECKOUT SECURITY GAP
+
+- Confirmed PR #127 (secure Direct EFT instructions and order-specific WhatsApp handoff) is closed and its description states the implementation and tests were merged. The canonical owner instructions are at repository-root `DIRECT_EFT_SETUP.md`. Required five secret names are documented; no bank values are in source. WhatsApp is a no-cost click-to-chat handoff only; automated WhatsApp Business Platform notifications are not implemented.
+- Read-only Supabase inspection of project `ojytykqpvonxvepprgbh`: deployed `store-checkout` is ACTIVE v5, `verify_jwt=false`; deployed `shipping-quote` is ACTIVE v4, `verify_jwt=false`. The deployed checkout source still calls `create_store_order_v2` and trusts browser quote fields (live flag + matching amount) without signed token validation. The deployed database currently has `create_store_order_v2` only; it is SECURITY DEFINER with EXECUTE restricted to service_role (anon/authenticated cannot execute). No `create_store_order_v3` is present in the live database.
+- Current repository `main` has newer checkout source that verifies customer session, checks Terms acceptance, verifies server-side prices and dimensions, validates short-lived HMAC delivery quote tokens bound to cart/destination/parcel/fee, then calls `create_store_order_v3`. The repository also has an integration test covering forged quote, tampering, changed destination/cart/fee, policy acknowledgement, valid quote and incomplete EFT config. This is code-level readiness only; it has not been deployed to production.
+- Identified private collection-origin address embedded in both current repository and deployed `shipping-quote` v4 source. Prepared PR #133 to remove it from source control and require four server-side settings (`COURIER_COLLECTION_ADDRESS`, `COURIER_COLLECTION_CITY`, `COURIER_COLLECTION_PROVINCE`, `COURIER_COLLECTION_POSTAL_CODE`). If any are missing, live carrier requests are skipped and only existing non-live/manual fallback remains.
+- PR #133: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/133; branch `security/remove-hardcoded-courier-origin-2026-10-30`; head `0fc9d8b210e00586fa83edcd7986456ab17903b0`; 5 commits ahead / 0 behind main at compare; changed files: existing browser QA workflow, shared origin helper, shipping-quote handler, Node regression test. Local test passed: `COURIER_COLLECTION_ORIGIN_TESTS_PASS: 4 assertions`. No PR Actions run returned from current commit-workflow lookup; keep draft/unmerged until actual Actions result.
+- No Supabase secrets were read or changed; no production function deployment or database write occurred. Do not expose or repeat the private origin address. Do not deploy until PR review, four server-side origin values configured by owner, `DELIVERY_QUOTE_SIGNING_SECRET` configured (>=32 chars), existing provider secrets confirmed, and explicit owner deployment approval.
+- Current launch blockers: exact-head preview/browser CI for PR #132; CI for PR #133; live Supabase function + SQL v3 deployment and secret setup (owner approval required); non-production checkout tests; payment provider remains unconfigured/unverified. The customer preview can remain separate from production launch.
+
+
+## 2026-10-30 CONTINUATION — LOCAL SEARCH REGRESSION TEST
+
+- Executed the catalogue-search unit test suite in an isolated Node 22 runtime using the exact committed matcher and test assertions: `CATALOGUE_SEARCH_UNIT_TESTS_PASS: 12 assertions`.
+- Corrected the test output label to reflect all 12 assertions. Latest PR #132 head now includes that correction; compare against main reports 14 commits ahead / 0 behind. No PR-triggered workflow runs were returned by the available GitHub run lookup, so this local pass does not replace hosted CI/browser verification.
+- PR #133 collection-origin regression suite independently passed locally: 4 assertions. No live secrets or deployment changed.
+
+
+## 2026-10-30 CONTINUATION — CONSOLIDATED PR / CONFLICT AVOIDANCE
+
+- Avoided parallel PR workflow-file conflicts by consolidating PR #133 courier-origin privacy correction into PR #132's clean current-main integration branch. PR #133 is now superseded and should be closed with a reference to PR #132.
+- PR #132 now also contains `supabase/functions/_shared/collection-origin.js`, `tests/collection-origin.test.cjs`, and a source-only correction to `supabase/functions/shipping-quote/index.ts`: no private collection origin remains in source; four server-side environment settings are required; if any are missing, live carrier calls are skipped.
+- Extended the existing base-branch populated-store browser QA workflow to trigger on the courier-source/test paths and run both local regression suites before Playwright. Removed the duplicate new workflow file to avoid extra CI and because it would not trigger on the PR until merged.
+- Local verification: catalogue search regression suite passed 12 assertions in Node 22; courier origin fail-closed suite passed 4 assertions. Browser QA and hosted preview still await GitHub Actions run evidence.
+- Current PR #132 remains draft/unmerged. The exact-head workflow lookup has returned no runs, so do not state hosted CI passed. No production function deployment, secret configuration, Supabase writes, Axxess/DNS, supplier publication, stock/price changes, or payment activation.
