@@ -62,8 +62,8 @@ jobs:
               const visibleCheckout=[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0);
               return {
                 products:rows.length,
-                categories:document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length,
-                rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) .catContent b')].map(el=>el.textContent.trim()),
+                categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,
+                rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),
                 rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),
                 ascMatched:asc.length,
                 ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
