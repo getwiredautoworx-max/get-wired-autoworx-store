@@ -42,4 +42,4 @@ https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf
 
 ## Outcome
 
-The prior 12 exact official product-page matches remain as recorded in `hertz-official-model-description-audit.csv`. This cross-check adds five exact page matches and multiple current collection-level model matches, reducing the unresolved model research queue. It does not complete the remaining 77 product-image checks and does not authorise publication.
+The prior 12 exact official product-page matches remain as recorded in `hertz-official-model-description-audit.csv`. This cross-check adds four new exact product-page matches (CK 165 L, CPK 165, MPK 163.3 and MPX 165.3); DCX 165.3 was already present in the original 12-page audit and is re-confirmed here. It also records multiple current collection-level model matches, reducing the unresolved model research queue. It does not complete the remaining 77 product-image checks and does not authorise publication.
