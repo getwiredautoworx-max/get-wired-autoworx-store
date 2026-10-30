@@ -11,6 +11,11 @@
   - 13 Sony Mobile ES candidates from Audio Connections.
 - Read-only verification after staging: 81/81 candidates have non-empty `public_description` and official manufacturer `source_url`; all remain inactive, `public_product_id IS NULL`, and no `public_image_url` has been set. No public product or SKU rows were inserted.
 
+## Component classification reconciliation — review-only
+- Exact source-file + model joins reconcile all 702 Planetworld rows to the 702-row component manifest and all 68 Audio Connections rows to the 68-row component manifest: 770/770 exact joins, zero unmatched rows, zero unclassified component candidates.
+- Planetworld component groups use the specific source-backed classes, including Car Amplifiers, Car Speakers, Vehicle Cameras, Vehicle Harnesses & Trims, Marine Audio and Car Audio Accessories. Audio Connections rows use their corresponding speaker, subwoofer, amplifier, head-unit and signal-processing groups.
+- Audio Connections dealer authorisation is owner-confirmed. Its database connection intentionally remains inactive; the crosswalk records `REGISTERED_INACTIVE_OWNER_DEALER_CONFIRMED` rather than the stale `RELATIONSHIP_UNCONFIRMED` label. No activation or public publication is implied.
+
 ## Price review — private, proposal only
 - Planetworld: 68/68 candidate SKUs matched the 2026-10-25 read-only workbook report. All have positive RRP. RRP−1% and RRP−2% proposals both clear estimated VAT-inclusive dealer cost for all 68; smallest gross headroom is R101.65 at −1% and R97.15 at −2%. See `PLANETWORLD_68_CANDIDATE_PRICE_REVIEW_2026-10-30.csv`.
 - The Planetworld source report stock snapshot is dated 2026-10-25 (44 rows positive, 24 rows zero). It is not current stock confirmation and was not imported.
@@ -21,7 +26,7 @@
 1. Obtain and visually approve exact high-resolution manufacturer/supplier image assets for each candidate. PDF thumbnails and generic/reused images are not acceptable product images. Customer-publication-approved image URLs: 0. The isolated preview now displays 11 official manufacturer image URLs as visual review candidates; these remain preview-only and are not approved for customer publication.
 2. Use the 2026-10-25 Planetworld workbook as the current available preview snapshot (44 positive / 24 zero-stock candidates); refresh when the next workbook arrives. Audio Connections September 2026 price list contains no availability data, so its Sony candidates remain quote-on-request/availability-to-confirm in the review stage.
 3. Keep Audio Connections dealer authorisation recorded as owner-confirmed. Supplier activation and catalogue publication remain separate owner/release approvals; no additional authorisation proof is required.
-4. Classify the remaining supplier catalogue rows that are still marked unclassified; do not guess across unrelated divisions.
+4. Resolve remaining manufacturer-identity exceptions (476 rows currently marked not independently verified, including 54 with no exact official manufacturer page) and supplier-description conflicts before product creation; keep unresolved rows unlinked.
 5. Only after image, current price, availability and supplier terms are verified, create inactive public product records with GW public SKUs and link the corresponding private supplier rows.
 
 ## Safety boundary
