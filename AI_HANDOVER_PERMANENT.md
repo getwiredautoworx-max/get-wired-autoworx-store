@@ -1,3 +1,13 @@
+## LATEST KICKER EVIDENCE + SUPPLIER ROUTING QA — 2026-10-30
+
+- Latest QA run **41023292662 SUCCESS** at `8bba587f81a878c653b4cbc85b5fb1a8fefbbe6a`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41023292662 . The current Playwright suite now asserts Kicker KEY200.4 (47KEY2004ISO), KEY500.1 (47KEY5001), and Hideaway HS8 (51HS8) manufacturer features and official product links; it also checks the KMC6 source correction. The run passed.
+- Kicker audit: 189 unique source references; 17 standard Car Audio exact individual product pages + 5 Marine exact individual product pages = **22 exact pages**; **64 official collection matches**; **103 standard Car Audio rows still lack an official product page/collection match**. 19 manufacturer evidence upgrades are documented in `planetworld-kicker-evidence-crosscheck-2026-10-30.md`. The KMC6 exact manufacturer code is retained; the conflicting KMC5 source wording is corrected.
+- Supplier routing: fail-closed mapping resolver, explicit owner supplier selection, matched supplier-response requirements for offers/procurement. Node unit/static tests and Deno 2.9.8 type-check pass; no live Supabase deploy or writes.
+- Responsive QA passed at 360/390/768/1280 px: 10 brands, 6 Alpine amplifiers, 84 verified Hertz records, 3 Hertz exceptions, 28 Marine Audio, 47 Harnesses & Trims, zero JS errors and no horizontal overflow.
+- All work remains isolated to `catalogue/complete-remaining-review-2026-10-30`. No product images approved, GW SKUs assigned, supplier price/stock imported, production deployment or payment/DNS/Axxess changes.
+
+---
+
 ## LATEST KICKER / SUPPLIER ROUTING QA PASS — 2026-10-30
 
 - Latest review workflow **41023292662** completed **SUCCESS** at commit `8bba587f81a878c653b4cbc85b5fb1a8fefbbe6a`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41023292662
