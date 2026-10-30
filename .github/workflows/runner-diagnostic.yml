@@ -1,0 +1,27 @@
+name: Minimal GitHub Actions Runner Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/runner-diagnostic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  runner-diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Confirm runner execution
+        run: |
+          set -eu
+          echo "GW_RUNNER_DIAGNOSTIC_STARTED"
+          echo "RUNNER_OS=$RUNNER_OS"
+          echo "RUNNER_ARCH=$RUNNER_ARCH"
+          git rev-parse --short HEAD
+          echo "GW_RUNNER_DIAGNOSTIC_PASS"
