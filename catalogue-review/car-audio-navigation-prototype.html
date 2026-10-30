@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Wired AutoWorx — Car Audio Navigation Review</title>
+<style>
+:root{color-scheme:dark;--bg:#101317;--panel:#1a2027;--line:#303a45;--text:#f4f6f8;--muted:#aeb9c4;--accent:#e6a23c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,Segoe UI,Arial,sans-serif}
+header{padding:22px clamp(16px,4vw,42px);border-bottom:1px solid var(--line);background:#151a20}
+.brand{font-weight:800;letter-spacing:.04em;font-size:clamp(20px,3vw,28px)}.tag{color:var(--muted);font-size:13px;margin-top:3px}
+main{max-width:1180px;margin:auto;padding:20px clamp(14px,3vw,30px) 48px}
+.notice{border:1px solid #8d6a35;background:#30271b;color:#f7d9a5;border-radius:10px;padding:12px 14px;margin-bottom:18px;font-size:14px}
+h1{font-size:clamp(23px,4vw,32px);margin:10px 0 5px}h2{font-size:20px;margin:22px 0 12px}.muted{color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
+button{font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;min-height:46px}
+button:hover,button:focus-visible{border-color:var(--accent);outline:none}button.primary{background:#4a351d;border-color:#a87834}
+button:disabled{opacity:.65;cursor:default}#search{flex:1;min-width:160px;max-width:360px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#171d23;color:var(--text);font:inherit;min-height:46px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px}
+.brand-card{text-align:left;min-height:100px;display:flex;flex-direction:column;justify-content:space-between}
+.wordmark{font-weight:800;font-size:18px}.logo-status{font-size:11px;color:var(--muted);margin-top:8px}
+.count{font-size:12px;color:var(--muted);margin-top:6px}.component-card{text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pill{font-size:11px;border:1px solid var(--line);border-radius:30px;padding:3px 8px;color:var(--muted);white-space:nowrap}
+.product-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.product{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--panel);min-width:0}
+.product h3{font-size:15px;margin:0 0 7px;overflow-wrap:anywhere}.meta{font-size:12px;color:var(--muted);margin:3px 0;overflow-wrap:anywhere}
+.pending{color:#f2c47c;font-size:12px;margin-top:9px}.sep{margin-top:28px;padding-top:18px;border-top:1px solid var(--line)}
+.empty{padding:20px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}#status{color:var(--muted);font-size:13px;margin:8px 0}
+@media(max-width:430px){main{padding-left:12px;padding-right:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-card{min-height:94px;padding:10px}.wordmark{font-size:16px}button{padding:11px 10px}}
+</style></head><body>
+<header><div class="brand">GET WIRED AUTOWORX</div><div class="tag">Sound &amp; Security • Auto Electrical • Spares &amp; Accessories</div></header>
+<main>
+<div class="notice"><strong>INTERNAL REVIEW ONLY — NOT THE LIVE STORE.</strong> Product pictures, manufacturer descriptions and GW SKUs are deliberately withheld until exact-model verification is complete. No price or stock is displayed.</div>
+<div class="toolbar"><button id="home" class="primary" type="button">All brands</button><button id="back" type="button" disabled>Back</button><span id="crumb" class="muted">Car Audio &amp; Video</span><input id="search" type="search" placeholder="Search this view…" aria-label="Search this view"></div>
+<h1 id="heading">Car Audio &amp; Video</h1><p id="intro" class="muted">Choose a manufacturer, then a component group.</p><div id="status">Loading review data…</div>
+<section id="content" aria-live="polite"></section>
+<section class="sep"><h2>Kept in separate categories</h2><div class="grid" id="separate">
+<button class="brand-card" id="marine"><span class="wordmark">Marine Audio</span><span class="count">28 source records · separate category</span></button>
+<button class="brand-card" id="harness"><span class="wordmark">Harnesses &amp; Trims</span><span class="count">47 source records · component group, not a brand</span></button>
+<button class="brand-card" id="hertz"><span class="wordmark">Hertz</span><span class="count">89 staged records · not published</span><span class="logo-status">Manufacturer logo and product images pending verification</span></button>
+<button class="brand-card" id="music"><span class="wordmark">Band Instruments &amp; Studio</span><span class="count">Separate from Car Audio</span></button>
+</div><p class="muted">JBL and Denon DJ are not included as Car Audio brands in the current Planetworld source division. They remain in their appropriate home/studio/music categories pending final category review.</p></section>
+</main>
+<script>
+(function(){
+var HERTZ={"Coaxial speakers":22,"Speaker grilles":14,"Standalone subwoofers":12,"Component speaker kits":10,"Amplifiers":8,"Tweeters":6,"Subwoofer enclosures / active sub boxes":6,"Woofers / midbass drivers":4,"Controls & accessories":3,"Integration & OEM adapters":2,"Needs manual product-type verification":1,"DSP & signal processors":1};
+var tree=null,view="brands",brand=null,component=null;
+function $(id){return document.getElementById(id);}
+var content=$("content"),heading=$("heading"),intro=$("intro"),crumb=$("crumb"),back=$("back"),status=$("status"),search=$("search");
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function setState(){back.disabled=view==="brands";crumb.textContent=view==="brands"?"Car Audio & Video":view==="components"?brand:brand+" / "+component;}
+function brandCard(name,count){return '<button class="brand-card" type="button" data-brand="'+esc(name)+'"><span class="wordmark">'+esc(name)+'</span><span class="count">'+count+' source products</span><span class="logo-status">Official logo pending verification</span></button>';}
+function showBrands(){
+ view="brands";brand=null;component=null;heading.textContent="Car Audio & Video";intro.textContent="Choose a manufacturer, then a component group.";setState();
+ var cards=Object.keys(tree.brands).sort().map(function(n){return brandCard(n,tree.brands[n].item_count);});
+ cards.push('<button class="brand-card" type="button" data-brand="Hertz"><span class="wordmark">Hertz</span><span class="count">89 staged products</span><span class="logo-status">Staging only — not published</span></button>');
+ content.innerHTML='<div class="grid">'+cards.join("")+'</div>';
+}
+function showComponents(name){
+ view="components";brand=name;component=null;heading.textContent=name;intro.textContent="Select a component group. Records are review-only.";setState();
+ if(name==="Hertz"){
+  var cards=Object.keys(HERTZ).map(function(n){return '<button class="component-card" data-component="'+esc(n)+'"><span>'+esc(n)+'</span><span class="pill">'+HERTZ[n]+'</span></button>';});
+  content.innerHTML='<div class="notice">89 Hertz records are staged in the private Library workbook. All 89 remain unpublished; only 12 official product pages were located and none of their product images has yet been individually verified.</div><div class="grid">'+cards.join("")+'</div>';return;
+ }
+ var comps=tree.brands[name].components;
+ var buttons=Object.keys(comps).sort().map(function(n){return '<button class="component-card" data-component="'+esc(n)+'"><span>'+esc(n)+'</span><span class="pill">'+comps[n].length+'</span></button>';});
+ content.innerHTML='<div class="grid">'+buttons.join("")+'</div>';
+}
+function productCard(p){
+ return '<article class="product"><h3>'+esc(p.supplier_item_name)+'</h3><div class="meta">Supplier item code: '+esc(p.supplier_item_code)+'</div><div class="meta">Source: '+esc(p.source_file)+' · '+esc(p.source_sheet)+' row '+esc(p.source_row)+'</div><div class="pending">Image: not verified · Manufacturer description: not verified · GW SKU: not assigned</div></article>';
+}
+function showProducts(name,comp){
+ view="products";brand=name;component=comp;heading.textContent=comp;intro.textContent=name+' · '+comp+' · internal review records only';setState();
+ var items=tree.brands[name].components[comp]||[];
+ content.innerHTML='<div class="product-list">'+items.map(productCard).join("")+'</div><p class="muted">'+items.length+' source records. No customer-facing price, stock, product image or GW SKU is shown.</p>';
+}
+function showGroup(which){
+ view="group";brand=null;component=null;heading.textContent=which;intro.textContent="Separate navigation group — not a manufacturer brand.";setState();
+ var items=which==="Marine Audio"?tree.separate_divisions.marine_audio:tree.separate_component_groups["Harnesses, Trims & Fitment"];
+ content.innerHTML='<div class="product-list">'+items.map(productCard).join("")+'</div><p class="muted">'+items.length+' source records; review only.</p>';
+}
+$("home").addEventListener("click",showBrands);
+back.addEventListener("click",function(){if(view==="products")showComponents(brand);else showBrands();});
+content.addEventListener("click",function(e){
+ var b=e.target.closest("[data-brand]");if(b){showComponents(b.dataset.brand);return;}
+ var c=e.target.closest("[data-component]");if(c){if(brand==="Hertz"){content.innerHTML='<div class="empty">'+esc(c.dataset.component)+' — staged only. Product-level image and description verification remains outstanding.</div>';return;}showProducts(brand,c.dataset.component);}
+});
+$("marine").addEventListener("click",function(){showGroup("Marine Audio");});
+$("harness").addEventListener("click",function(){showGroup("Harnesses & Trims");});
+$("hertz").addEventListener("click",function(){showComponents("Hertz");});
+$("music").addEventListener("click",function(){view="group";heading.textContent="Band Instruments & Studio";intro.textContent="This navigation remains separate from Car Audio.";content.innerHTML='<div class="empty">Separate category route. No band-instrument products are mixed into this Car Audio review.</div>';setState();});
+search.addEventListener("input",function(){var term=search.value.trim().toLowerCase();content.querySelectorAll("button,article").forEach(function(el){el.hidden=!!term&&el.innerText.toLowerCase().indexOf(term)<0;});});
+fetch("./car-audio-navigation-tree-review.json").then(function(r){if(!r.ok)throw new Error("Review data HTTP "+r.status);return r.json();}).then(function(data){tree=data;status.textContent="Loaded "+data.totals.car_audio_source_rows+" Car Audio source rows. Review only.";showBrands();}).catch(function(err){status.textContent="Could not load review data: "+err.message;content.innerHTML='<div class="empty">Review data unavailable.</div>';});
+})();
+</script></body></html>
