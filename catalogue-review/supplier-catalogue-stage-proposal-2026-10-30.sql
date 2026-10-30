@@ -1,4 +1,6 @@
--- REVIEW-ONLY SEED PROPOSAL. DO NOT APPLY WITHOUT EXPLICIT OWNER APPROVAL.
+-- APPLIED 2026-10-30 to the private Supabase project. This is an idempotent staging seed (ON CONFLICT DO NOTHING), not a migration.
+-- Both supplier connections and all 770 supplier_catalog_items are inactive/unlinked/quote-on-request.
+-- Do not activate suppliers/items or create public products without separate approval.
 -- This stages supplier source items as inactive, unlinked, quote-on-request records.
 -- It does NOT create public.products rows, assign product IDs, import prices/stock, or publish images.
 -- Candidate supplier IDs are deterministic proposal IDs; if a supplier name already exists,
