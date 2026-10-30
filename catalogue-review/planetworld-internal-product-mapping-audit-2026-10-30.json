@@ -1,0 +1,31 @@
+{
+  "status": "READ_ONLY_AUDIT_ONLY_NO_DATABASE_WRITES",
+  "supabase_project": "Store (project ref ojytykqpvonxvepprgbh)",
+  "checked_at": "2026-10-30",
+  "queries": {
+    "gw_private.product_supplier_codes": {
+      "total_rows": 4198,
+      "rows_with_supplier_id_null": 4198,
+      "exact_matches_to_702_planetworld_supplier_skus": 0
+    },
+    "gw_private.supplier_catalog_items": {
+      "total_rows": 0
+    },
+    "gw_private.supplier_connections": {
+      "total_rows": 3,
+      "note": "Supplier connection rows exist, but product_supplier_codes.supplier_id is NULL on all 4,198 rows; no supplier-specific joins can be established from this table."
+    },
+    "public.products": {
+      "total_rows": 4200,
+      "exact_sku_or_public_sku_matches_to_702_planetworld_supplier_skus": 0,
+      "name_or_description_matches_to_220_candidate_manufacturer_models": 0
+    }
+  },
+  "conclusion": "No exact internal public_sku/product_id mapping was found for the Planetworld 702-row staging set. Existing product_supplier_codes data cannot be attributed to a supplier because supplier_id is NULL on all rows. supplier_catalog_items is empty. Do not attach images to products or publish these source rows until an owner-approved supplier-to-public-product mapping exists.",
+  "safety": {
+    "read_only_selects_only": true,
+    "insert_update_delete_or_schema_changes": false,
+    "prices_stock_costs_or_customer_data_retrieved": false
+  },
+  "next_step": "Create or confirm supplier-specific product mappings only under explicit owner approval; do not modify Supabase as part of this review task."
+}
