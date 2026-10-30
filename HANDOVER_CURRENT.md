@@ -4523,3 +4523,13 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - Extended the browser QA workflow with a static source audit over all four preview routes and a hosted category-page robots assertion. Corrected the regex after inspecting the committed workflow source.
 - Static re-read confirms all four pages have exactly one noindex directive and no conflicting `index,follow`. QA source asserts all four routes and seven exact-model images.
 - Latest head `8d83b13f939846000e94fe874d3aa416d740fca2`; PR #136 remains draft/mergeable. Latest five application workflows plus minimal runner diagnostic all again completed FAILURE. Minimal diagnostic run 41070409822/job 124112678110 has `logs_url=null` and `steps=null`, confirming the execution issue remains before step start. No blind reruns.
+
+
+## 2026-10-30 16:3x SAST — COURIER HOME-ADDRESS PRIVACY FIX IN PR #137; LOCAL TEST PASSED
+
+- Main-source inspection found the shipping quote Edge Function was embedding the home collection address directly in the carrier request body. This is a privacy defect for a home-based business.
+- Created clean draft PR #137 on `fix/courier-collection-origin-privacy-1030`, based on current main with no divergence. PR: `https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/137`; head `b8ca7b17a53741609575c5ffbb70c07332cb8afd`.
+- Added `supabase/functions/_shared/collection-origin.js` to read four values only from server-side secrets: `COURIER_COLLECTION_ADDRESS`, `COURIER_COLLECTION_CITY`, `COURIER_COLLECTION_PROVINCE`, `COURIER_COLLECTION_POSTAL_CODE`. The shipping quote function now skips live carrier calls unless all four are configured and passes the resolved secret-backed object; the hard-coded street address is absent from the updated source.
+- Added `tests/collection-origin.test.cjs` for missing, complete/trimmed, partial and whitespace-only values; wired it into `delivery-quote-security.yml`. Ran the exact four assertions locally with Node in an isolated temporary directory: `COURIER_COLLECTION_ORIGIN_TESTS_PASS: 4 assertions`.
+- Exact-head PR #137 GitHub workflows still fail before steps with `logs_url=null` and `steps=null`: Delivery Quote Security run 41070808252/job 124114071463; Public SKU Audit run 41070808152/job 124114070728; Storefront Smoke run 41070808170/job 124114070605 (smoke job skipped). This matches the same private-repository Actions execution blocker seen on PR #136, not a reported test assertion failure.
+- PR #137 remains draft/unmerged; no Supabase secret, migration, function deployment or live courier call was changed. The owner must enter collection-origin values directly in Supabase Dashboard after review; no street address is to be sent in chat or stored in source control.
