@@ -1,7 +1,7 @@
 ## REVIEW-BRANCH QA ASSERTION CORRECTION — 2026-10-30
 
 - First review-branch run **41020880728** installed Playwright/Chromium successfully but failed in the test assertion, not in the browser UI: the test expected the phrase `84 manufacturer records` inside the page content while the prototype uses `84 have individual manufacturer product records; 3 remain unresolved`. The visible prototype warning itself is correct.
-- Corrected `scripts/catalogue-nav-prototype.spec.js` to assert the actual 84/87 and three-exception wording. New run **41021015423** is queued on the same branch at commit `6d18f04ce22d477d0eaccd55d678cced56642fb4`. Do not mark responsive QA complete until this run finishes successfully.
+- Corrected `scripts/catalogue-nav-prototype.spec.js` to assert the actual 84/87 and three-exception wording. New run **41021015423** completed **SUCCESS** on the same branch at commit `6d18f04ce22d477d0eaccd55d678cced56642fb4`; responsive navigation assertions now pass. The result is prototype QA only, not populated-storefront QA.
 
 ---
 
