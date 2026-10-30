@@ -40,8 +40,8 @@ jobs:
           const { chromium } = require('playwright');
           const fs = require('fs');
           for (const path of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']) {
-            const html = await fs.promises.readFile(path,'utf8');
-            const robots = [...html.matchAll(/<meta\\s+name=[\"']robots[\"']\\s+content=[\"']([^\"']+)[\"'][^>]*>/gi)].map(m=>m[1].toLowerCase());
+            const html = fs.readFileSync(path,'utf8');
+            const robots = [...html.matchAll(/<meta\s+name=[\"']robots[\"']\s+content=[\"']([^\"']+)[\"'][^>]*>/gi)].map(m=>m[1].toLowerCase());
             if (robots.length !== 1 || robots[0] !== 'noindex,nofollow') throw new Error('Preview route must have exactly one noindex,nofollow directive: '+path+' '+JSON.stringify(robots));
           }
           console.log('PREVIEW_ROBOTS_GUARD_PASS');
