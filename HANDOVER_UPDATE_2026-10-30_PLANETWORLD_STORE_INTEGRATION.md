@@ -67,3 +67,9 @@ Preview branch only. No merge, production deploy, Axxess upload, DNS, Supabase w
 - Cloudflare Pages confirmed success for `b2006e5`: `https://4c01c196.get-wired-autoworx-store.pages.dev/preview-store.html`; branch alias `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`.
 - Current PR head `5ef1c83` only refines rand formatting with thousands separators. Exact deployment confirmation for that formatter-only commit has not yet appeared; b2006e5 already contains the nine-category sales catalogue, indicative prices and snapshot availability.
 - Final validation: 3,317 records, 3,280 indicative prices, 37 quote-only, 1,727 supplier-snapshot stock recorded, 1,590 no stock recorded; exact Car Audio/Harnesses/Marine split 627/47/28; 9 routes function; 8 scripts compile; no dealer cost or exact stock quantities exposed.
+
+
+## Exact latest Pages deployment
+
+- Cloudflare Pages confirmed successful deployment for `5ef1c83a163d8e87c2dad0e13796e4814f319a8f`, including the rand thousands-separator price formatter.
+- Immutable preview: `https://2fd6b95d.get-wired-autoworx-store.pages.dev/preview-store.html`; branch alias: `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`.
