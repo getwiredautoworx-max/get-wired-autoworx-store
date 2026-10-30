@@ -34,8 +34,8 @@ button:disabled{opacity:.65;cursor:default}#search{flex:1;min-width:160px;max-wi
 <section class="sep"><h2>Kept in separate categories</h2><div class="grid" id="separate">
 <button class="brand-card" id="marine"><span class="wordmark">Marine Audio</span><span class="count">28 source records · separate category</span></button>
 <button class="brand-card" id="harness"><span class="wordmark">Harnesses &amp; Trims</span><span class="count">47 source records · component group, not a brand</span></button>
-<button class="brand-card" id="hertz"><span class="wordmark">Hertz</span><span class="count">89 staged records · not published</span><span class="logo-status">Manufacturer logo and product images pending verification</span></button>
-<button class="brand-card" id="music"><span class="wordmark">Band Instruments &amp; Studio</span><span class="count">Separate from Car Audio</span></button>
+
+<button class="brand-card" id="music"><span class="wordmark">Band Instruments &amp; Music</span><span class="count">Open separate navigation</span></button>
 </div><p class="muted">JBL and Denon DJ are not included as Car Audio brands in the current Planetworld source division. They remain in their appropriate home/studio/music categories pending final category review.</p></section>
 </main>
 <script>
@@ -84,7 +84,6 @@ content.addEventListener("click",function(e){
 });
 $("marine").addEventListener("click",function(){showGroup("Marine Audio");});
 $("harness").addEventListener("click",function(){showGroup("Harnesses & Trims");});
-$("hertz").addEventListener("click",function(){showComponents("Hertz");});
 $("music").addEventListener("click",function(){window.location.href="./band-instruments-navigation-prototype.html";});
 search.addEventListener("input",function(){var term=search.value.trim().toLowerCase();content.querySelectorAll("button,article").forEach(function(el){el.hidden=!!term&&el.innerText.toLowerCase().indexOf(term)<0;});});
 fetch("./car-audio-navigation-tree-review.json").then(function(r){if(!r.ok)throw new Error("Review data HTTP "+r.status);return r.json();}).then(function(data){tree=data;status.textContent="Loaded "+data.totals.car_audio_source_rows+" Car Audio source rows. Review only.";showBrands();}).catch(function(err){status.textContent="Could not load review data: "+err.message;content.innerHTML='<div class="empty">Review data unavailable.</div>';});
