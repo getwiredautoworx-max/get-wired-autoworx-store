@@ -3955,3 +3955,23 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 3. Improve post-order WhatsApp handoff to include order number/reference and a concise item/total summary without including sensitive customer address/payment details. Test encoded links on mobile and desktop.
 4. Keep automated WhatsApp API notifications optional and no-cost baseline first; only implement after owner chooses that route and supplies/configures Meta credentials outside chat.
 5. Continue PR #120 preview acceptance, catalogue classification/image work, checkout security validation, Axxess parity, and final hosted desktop/mobile QA. No Axxess upload, DNS change, Supabase migration/function deployment, live payment activation, stock/price/public catalogue changes or production deployment without explicit owner approval.
+
+
+---
+
+## DIRECT EFT + WHATSAPP IMPLEMENTATION — PR #121 — 2026-10-30
+
+- Opened draft PR #121: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/121
+- Branch: `feature/direct-eft-bank-instructions-whatsapp-order-handoff-2026-10-30`
+- Current head: `8839f5e6de08e193c8e08e802d6bc88d86c5f8ec`; based on main commit `9e540b44c9c20869da9d61625916b2c48ad16fe4`.
+- Changes prepared:
+  - Server-side checkout reads the five `DIRECT_EFT_*` configuration values and returns bank instructions only after successful authenticated order creation and only when every field plus an order reference is present.
+  - Checkout displays the configured bank details and a deterministic `GW-<order number>` reference. If configuration is missing/incomplete, no partial or placeholder account data is shown.
+  - Payment remains pending; customer-provided proof of payment does not auto-confirm an order.
+  - Existing WhatsApp click-to-chat handoff now includes order number, item summary and total, excluding delivery address and bank details.
+  - Integration test covers complete bank configuration and fail-closed handling of incomplete configuration.
+- Six PR checks were running at the latest poll: Customer Authentication Security Tests, Delivery Quote Security Tests, Axxess package preparation, Storefront Smoke Test, Public SKU Exposure Audit and Cloudflare Pages Public Package QA. No pass is claimed until all exact-head checks finish.
+- PR #121 is draft/open and currently mergeable; it has not been merged. No actual bank details have been entered, no Supabase Edge Function secrets configured, no migration/function deployment, no Axxess upload, no DNS change and no production checkout change.
+- Owner setup after review: configure the five bank fields as Supabase Edge Function secrets (never GitHub/source code/chat), verify them in a non-production test order, then owner-authorise deployment. Keep bank account verification manual and payment status pending.
+- WhatsApp currently uses the existing no-cost `wa.me` number `+27 74 488 4234`. PR #121 improves click-to-chat only; automated WhatsApp Business Platform messaging remains optional and requires Meta account/verified number/token/webhook configuration and separate owner approval.
+- Owner's Audio Connections dealer authorisation is confirmed. This supersedes stale statements elsewhere in this file that describe dealer relationship confirmation as outstanding.
