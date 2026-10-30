@@ -4444,3 +4444,10 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - Follow-up polling found five new PR-triggered workflows on head `dc02e2f5b15ebefae0d11c781522a7e912104b73`, all completed FAILURE: Cloudflare Pages Public Package QA run 41067876060; Public SKU Exposure Audit run 41067876168; Storefront Smoke Test run 41067876028; Populated Store Preview Browser QA run 41067876101; Catalogue Image Audit run 41067876095. This supersedes the earlier statement that no new runs were yet visible.
 - PR #135 remains open/draft/unmerged and GitHub currently reports mergeable=true. This does not override the failing checks or owner preview requirement.
 - No claim of test pass or visual acceptance. Need job records/logs for these five latest runs; previous commit's jobs had empty step lists and Azure BlobNotFound logs.
+
+
+## 2026-10-30 16:0x SAST — LATEST PR #135 JOB IDS AND LOG AVAILABILITY
+
+- Latest head `dc02e2f5b15ebefae0d11c781522a7e912104b73` job IDs: Cloudflare Pages Public Package QA 124103991439; Public SKU Exposure Audit 124103991751; Storefront Smoke mode detection 124103991477 (smoke job 124104011619 skipped); Populated Store Preview Browser QA 124103991162; Catalogue Image Audit 124103991293.
+- All five active jobs are completed FAILURE; all five log downloads again return Azure `BlobNotFound`; all job records expose no step list. This is a repeat of the same log/runner evidence gap on the latest PR head. Root cause remains unclassified. Do not continue blind reruns or treat the workflows as passed.
+- PR #135 is open/draft/unmerged; current mergeability is true. Preview source changes are committed, but preview deployment/visual acceptance and successful exact-head CI are still outstanding.
