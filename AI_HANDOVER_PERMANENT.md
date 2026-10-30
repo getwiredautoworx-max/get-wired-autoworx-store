@@ -1,3 +1,45 @@
+## VERIFIED EXECUTION CHECKPOINT — 2026-10-30 — SUPPLIER CROSSWALK + PR RECONCILIATION
+
+### Consolidated supplier/catalogue candidate
+- Current-main review integration is PR #115, head `77f0a274424b2e2ba0fc39a879ce6a4141038b4a`, draft and mergeable. All six exact-head workflows passed: Cloudflare Pages public-package QA 41030238420; Public SKU Exposure Audit 41030238481; Planetworld Workbook Audit 41030238416; Audio Connections PDF inspection 41030238414; Catalogue & Supplier Routing Review QA 41030238507; Storefront Smoke Test mode gate 41030238422.
+- Recursive tree reconciliation confirms 47 Planetworld XLSX workbooks in canonical `suppliers/Planetworld/`; 0 XLSX remain at `catalogue-source/suppliers/planetworld/incoming-xlsx/`.
+- Latest read-only workbook audit: 47 workbooks, 94 sheets, 3,317 rows, 0 workbook errors, 0 duplicate model/SKU flags, 19 zero-RRP rows. At RRP minus 1%, 18 positive-RRP rows fall below estimated VAT-inclusive cost; at RRP minus 2%, 19 do. All price suggestions remain review-only; no supplier prices or stock were imported/changed.
+- Audio Connections PDFs inspected successfully: 53 Starsound + 15 Sony rows. 14/15 Sony models have exact official model pages; XS-690ES is supplier-marked SOLD OUT; XS-680G has no exact official manufacturer page. Three Starsound rows have no numeric dealer price. Embedded images are low-resolution/shared and none is approved for primary storefront use.
+- Planetworld manufacturer cross-check records 68 exact individual product pages and 121 collection-only matches across the 702 Car Audio source rows. Images are not yet downloaded/approved for those candidates.
+- Review prototype responsive QA passed at 360/390/768/1280 px: 10 brands, 6 Alpine amplifiers, 84 Hertz verified records, 3 unresolved Hertz exceptions, 28 Marine Audio, 47 Harnesses & Trims, 0 JS errors and no horizontal overflow. This is a review prototype, not populated-store acceptance.
+
+### Supplier-to-GW mapping solution prepared
+- Read-only live Supabase search across 4,200 public products found 0 matching audio-brand product rows; exact supplier-code matching also found 0. Existing `gw_private.supplier_connections` contains only ASC, Caelex and Electro City; Planetworld and Audio Connections are not registered. All 4,198 legacy `product_supplier_codes` rows have NULL `supplier_id`; `supplier_catalog_items` is empty.
+- Added a 770-row review crosswalk: 702 Planetworld + 68 Audio Connections source rows. 81 proposed `GW-XXXXXXXX` values were generated for exact individual manufacturer-page matches and collision-checked against current `public.products.public_sku`; 0 collisions. Crosswalk test passed with 0 product IDs and 0 publications.
+- Added two supplier connection proposals with candidate UUIDs and official corporate contact sources: TOMS Sound & Music (Pty) Ltd t/a Planetworld and Audio Connections. These are proposals only, not registered DB IDs; Get Wired dealer relationship, trade terms and supplier-specific contact must be confirmed.
+- Added a separate SQL seed proposal to stage all 770 supplier items inactive, unlinked (`public_product_id=NULL`) and quote-on-request. It is under `catalogue-review/`, is not a migration and has NOT been executed. No Supabase writes, supplier inserts, public products, product_supplier_codes, price/stock changes or image publications.
+- Proposed GW SKU generation method is deterministic FNV-1a 32-bit over supplier/brand/model, formatted `GW-` plus eight uppercase hex characters. It is a collision-checked proposal, not an approved production generator. Owner approval is still required before product rows are created.
+
+### Checkout security candidate
+- PR #113 is the single current-main checkout candidate, draft and mergeable. Exact-head commit `9379a9463b14bbd949ca1016b92bd0b47dc3cd0a` passed all five workflows: Customer Authentication Security Tests 41028523928; Delivery Quote Security Tests 41028524173; Public SKU Exposure Audit 41028523937; Storefront Smoke Test mode gate 41028523993; Axxess package preparation 41028524092.
+- Added `create_store_order_v3` wrapper and migration proposal to record policy version, server timestamp and authenticated user ID on the order in the same transaction; failed audit update rolls back order/stock changes. PGlite migration test printed `CHECKOUT_POLICY_AUDIT_MIGRATION_PASS`. No Supabase migration or Edge Function has been deployed/applied.
+- Duplicate PR #112 was closed in favour of #113.
+
+### Deployment and Actions storage safeguards
+- Cloudflare Pages production/layout/approved-preview workflows now build an explicit `pages-public/` allowlist. Exact-head QA passed: 4,120 customer files and 4,101 WebP images; supplier workbooks, catalogue-review/source folders, source PDFs/CSVs, Supabase, Android and handover files were excluded. No Cloudflare deployment was run. Current main remains buttons-only.
+- GitHub artifact log explicitly reported: `Artifact storage quota has been hit. Usage is recalculated every 6-12 hours.` Planetworld workbook audit itself succeeded; artifact upload was best-effort. The new workbook workflow is artifact-free; recurring monitor/browser/catalogue uploads and optional APK/XLSX uploads are gated by repository variables, with one-day retention for optional APK/XLSX artifacts. Existing artifacts were not deleted by this work and no extra quota was purchased.
+
+### PR branch cleanup
+- Closed stale/superseded PRs: #95, #96, #97, #104, #105, #106, #108, #110, #111, #112, #114, #86, #87, #88, #89. Replacement candidates: #115 for supplier/catalogue/repository reconciliation; #113 for checkout/security. PR #94 remains the separate active Part Search compatibility/QA reference; PR #99 remains the integrated Part Search/audio/no-AI preview candidate.
+- PR #94 and #99 remain dirty/diverged from current main; current main is intentionally buttons-only. Do not wholesale merge/retarget these old populated-store branches. Part Search live Axxess mismatch is not fixed on the hosted Axxess source and must not be claimed fixed without approved upload and hosted verification.
+- PR #115 and #113 remain draft; no merges or production deployments were made.
+
+### Outstanding release gates
+1. Confirm Planetworld and Audio Connections supplier relationships, dealer accounts, trade terms and supplier-specific contacts; then owner-authorise the inactive supplier staging SQL if desired.
+2. Approve the GW SKU generation scheme; create new product rows only after exact descriptions, high-resolution approved images, price/VAT basis and availability are verified. Keep all 81 candidate SKUs uninserted.
+3. Finish remaining manufacturer matches, image acquisition/approval and manual exceptions; do not publish collection-only or no-page records.
+4. Reconcile PR #94/#99 onto an appropriate populated-store preview base without replacing current main's buttons-only gate; then test populated customer journey on desktop/mobile and hosted preview.
+5. Resolve actual Axxess-served Part Search handler mismatch only after explicit Axxess upload approval; no upload made.
+6. PayFast approval/authenticator resolution and end-to-end payment testing remain outstanding.
+7. No Supabase production writes/migrations/deploys, supplier connection inserts, product/price/stock/image publication, Axxess uploads, DNS changes, payment activation or production deployment without explicit owner approval. Launch remains HOLD.
+
+---
+
 ## READ-ONLY INTERNAL PRODUCT MAPPING AUDIT — 2026-10-30
 
 - Read-only Supabase checks found 0 exact mappings between the 702 Planetworld supplier SKUs and existing public products. `gw_private.product_supplier_codes` has 4,198 rows, all with NULL `supplier_id`; `gw_private.supplier_catalog_items` has 0 rows; exact matches against `public.products.sku/public_sku` = 0; name/description search for 220 candidate manufacturer models = 0.
