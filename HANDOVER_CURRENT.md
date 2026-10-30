@@ -1,3 +1,12 @@
+## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FOURTH FOLLOW-UP)
+
+- Seven more exact individual Hertz pages joined to supplier references: DT 24.3 (78030090), CS 250 S2 (78035058), CS 250 S4 (78035068), X 165 (78040221), X 690 (78040230), X 130 (78040240), and HRC BM2 (78270030).
+- Updated manufacturer model descriptions/specifications and official product URLs in the audit CSV and crosscheck.
+- **Current exact individual-page count: 82/89; seven staged references remain without exact individual product pages in the audit.** The seven are AFBMW BOOSTER 01 (66772099), AFBMW ReAMP 3 (66772206), Hertz SPL woofer (78032225), X 170 (78040250), DG 250.3 (78071121), DG 300.3 (78071126), and HCP HRC (78211040). Do not substitute a family/category listing or compatibility mention as an exact page.
+- Images still not downloaded or visually approved. No GW SKU assignment, product publication, duplicate deletion, price/stock edits or live system changes. Store remains buttons-only and launch HOLD.
+
+---
+
 ## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (THIRD FOLLOW-UP)
 
 - Added nine more exact individual Hertz manufacturer product pages, joined to supplier item reference codes: K 165 (78000301), K 130 (78000310), K 170 (78000320), C 26 (78030140), C 165 L (78032127), C 165 F (78032137), DS 25.3 (78035400), DS 30.3 (78035410), and S 300 S4 (78035421).
