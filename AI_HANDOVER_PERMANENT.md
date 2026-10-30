@@ -1,3 +1,17 @@
+## CONTINUATION CHECKPOINT — 2026-10-30
+
+- Owner requested handover update to continue from the current point. Continuation task-start record: `HANDOVER_UPDATE_2026-10-30_CONTINUATION_TASK_START.md`, commit `a4cf25bced0de3b636063e1cdb674658b842dd49`.
+- Read both handover files before starting: `AI_HANDOVER_PERMANENT.md` blob SHA `054ad12c0e92234ad2588a59a051dcd33809be57`; `HANDOVER_CURRENT.md` blob SHA `89c2dd1d0abe9b96a7a1db3a40d6c5050294cac5`.
+- Resume from Run 18; no new technical validation or deployment has been performed in this handover-only continuation. The last verified preview remains PR #136 head `4a2fb20263fd8af29401a2d7b7f48dfeb7538e92`, URL `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`, with 68 quote-only cards, 11 exact-model images and 57 placeholders. Preview is not launch acceptance.
+- PR #131 last known head `339cbefd834f48b56fbc8d44d7811b5470971cdf` contains the corrected robots-meta QA regex; its new exact-head workflows failed before steps, so post-fix test success remains unverified.
+- Next execution must re-check current PR heads and workflow runs before making code changes; diagnose GitHub Actions job-start failure and do not blindly rerun jobs. Integrate #131 with #136 only after checking current ancestry and exact-head validation.
+- Continue supplier/catalogue work without asking again for Audio Connections dealer authorisation; owner has confirmed authorised dealer and direct-purchasing access. Planetworld onboarding is also confirmed. Product-level mapping, accurate descriptions, exact approved images, prices/VAT and availability remain review gates.
+- ASC boundary remains: previously audited 34 matching preview rows were all zero after the exact 36-SKU/7,037-unit reset; this does not prove every ASC record is deleted. Protect 11 IASC rows/55 units and 4,101 WebP cache assets.
+- Production HOLD remains. No Axxess upload, DNS, production Supabase write/migration/deployment, live stock/price/catalogue mutation, payment activation, paid hosting use or customer launch is authorised by this handover request.
+- Keep the evidence standard: no “ready” claim without passing exact-head tests, hosted desktop/mobile acceptance and a verified preview URL. After the next substantive run, create a dated results file, update both handovers and read back to verify.
+
+---
+
 ## LATEST EXECUTION RUN 18 RESULT — 2026-10-30
 
 ## Verified work completed
