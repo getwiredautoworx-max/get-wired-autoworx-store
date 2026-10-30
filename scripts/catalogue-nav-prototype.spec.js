@@ -46,7 +46,7 @@ fs.mkdirSync('catalogue-review/screenshots',{recursive:true});
     const hertzKitImages=await page.locator('#content img.hertz-product-image').evaluateAll(imgs=>imgs.every(img=>img.complete&&img.naturalWidth>0));
     if(!hertzKitImages)throw new Error('A Hertz component-kit product image failed to load');
     const hertzKitText=await page.locator('#content').innerText();
-    if(/Retail Price|JHB Stock|DBN Stock|CPT Stock|RRP/i.test(hertzKitText)||!hertzKitText.includes('GW SKU not assigned'))throw new Error('Hertz review-only price/stock/SKU guard failed');
+    if(/Retail Price|JHB Stock|DBN Stock|CPT Stock|RRP/i.test(hertzKitText)||!(/GW SKU candidate: GW-[A-F0-9]{8}/.test(hertzKitText)&&hertzKitText.includes('not inserted into Supabase')))throw new Error('Hertz review-only price/stock/SKU guard failed');
     await page.locator('#back').click();
     await page.locator('#content [data-component="Coaxial speakers"]').click();
     if(await page.locator('#content article.hertz-product').count()!==4)throw new Error('Hertz coaxial speakers should show 4 exact verified models');
