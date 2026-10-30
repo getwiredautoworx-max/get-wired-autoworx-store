@@ -11,7 +11,7 @@
   "source_brand_counts_including_marine": {
     "One": 290,
     "Kicker": 189,
-    "Audison": 94,
+    "Audison": 96,
     "Alpine": 58,
     "JVC Car Audio": 13,
     "Kenwood Car Audio": 4,
@@ -48,12 +48,14 @@
       "audit": "catalogue-review/planetworld-kicker-official-model-audit.csv"
     },
     "Audison": {
-      "rows": 94,
-      "exact_official_product_pages": 41,
+      "rows": 96,
+      "exact_official_product_pages": 43,
       "official_collection_accessory_configurator_or_range_matches": 49,
       "unmatched": 2,
       "source_text_ocr_manual_review": 2,
-      "audit": "catalogue-review/planetworld-audison-official-model-audit.csv"
+      "audit": "catalogue-review/planetworld-audison-official-model-audit.csv plus catalogue-review/hertz-official-model-description-audit.csv",
+      "primary_702_source_rows": 94,
+      "additional_reclassified_rows": 2
     },
     "Focal_JVC_Kenwood_Pioneer": {
       "rows": 21,
@@ -112,5 +114,8 @@
     "conclusion": "No internal public_sku/product_id mapping found; image assets cannot be safely assigned to products.",
     "details": "catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json",
     "database_changes": 0
-  }
+  },
+  "combined_car_audio_source_rows": 704,
+  "additional_reclassified_rows_from_hertz_staging": 2,
+  "note": " Combined navigation tree includes two additional Audison BMW harness records reclassified from the Hertz-labelled staging workbook; primary source audit remains 702 rows."
 }
