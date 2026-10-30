@@ -110,3 +110,22 @@ https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf
 ## Outcome
 
 The official product-page audit now contains 25 exact individual manufacturer pages (12 original + 4 previously added + 9 new matches listed above). 64 of the 89 staged rows still lack an exact individual product page. Collection-level matches are documented separately. None of the 89 product image assets has been downloaded, visually compared with the staged model and internal product, or approved for publication.
+
+
+## Additional exact individual product pages verified — 2026-10-30 (follow-up)
+
+Nine further Hertz records were checked against individual official product pages and added to `hertz-official-model-description-audit.csv`:
+
+| Supplier reference code | Exact model | Official page | Verified detail |
+|---|---|---|---|
+| 78035066 | CS 200 S4 | https://hertz-audio.com/product/cs-200-s4/ | 200 mm, 4 Ω, 300 W peak / 150 W continuous |
+| 78035078 | CS 300 S2 | https://hertz-audio.com/product/cs-300-s2/ | 300 mm, 2 Ω, 700 W peak / 350 W continuous |
+| 78035088 | CS 300 S4 | https://hertz-audio.com/product/cs-300-s4/ | 300 mm, 4 Ω, 700 W peak / 350 W continuous |
+| 78071026 | DG 130.3 | https://hertz-audio.com/product/dg-130-3/ | 130 mm Dieci grille |
+| 78071053 | CG 130 | https://hertz-audio.com/product/cg-130/ | 130 mm Cento grille |
+| 78071073 | CG 165 | https://hertz-audio.com/product/cg-165/ | 165 mm Cento grille |
+| 78071153 | CG 200 | https://hertz-audio.com/product/cg-200/ | CS 200-compatible grille |
+| 78071155 | CG 250 | https://hertz-audio.com/product/cg250/ | CS 250 S2/S4-compatible grille |
+| 78071165 | CG 300 | https://hertz-audio.com/product/cg-300/ | CS 300 S2/S4-compatible grille |
+
+The audit now has **59 exact individual manufacturer-page matches out of 89 staged records**, leaving **30 without an exact individual page recorded**. Collection listings, catalogue mentions and compatibility references remain separate evidence levels and do not count as individual product pages. These nine image assets have not been downloaded, visually compared, or approved. Supplier item codes remain references only, not GW SKUs; no product publication or database write was performed.
