@@ -3941,3 +3941,14 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Public SKU Exposure Audit initially failed only on preview-planetworld.html line 16 because the review-only JSON used the legacy property name sku. Renamed that property to modelNumber and updated its renderer. No actual supplier pricing/cost exposure was reported. The audit must be rerun on the new exact head before acceptance.
 - Populated Store Preview Browser QA run 41045848357 is still in progress at the time of this update.
 - PRs #117 and #119 were closed without merge as superseded by clean-main PR #120. No production or live data changes.
+
+---
+
+## PLANETWORLD CAR AUDIO CLASSIFICATION PASS — 2026-10-30
+
+- Added catalogue-review/PLANETWORLD_CAR_AUDIO_COMPONENT_CLASSIFICATION_2026-10-30.csv with all 702 Planetworld Car Audio source rows assigned a storefront category, component group and provisional subtype.
+- The 702 rows group into 12 source-backed component groups: 42 amplifiers, 65 car-audio accessories, 14 vehicle cameras, 78 speakers, 88 head units/receivers, 28 speaker pods/grilles/enclosures, 11 DSP/signal processors, 99 subwoofers, 243 vehicle harnesses/trims, 25 marine-audio items, 7 audio packages and 2 parking-sensor kits.
+- The previous 245-row manual-classification blocker is resolved at the top-level category/component layer: 243 are grouped under Vehicle Harnesses & Trims (with 81 further subtype assignments from the source descriptions); 2 Third Eye parking-sensor kits are grouped under Vehicle Security / Parking Sensor Kits. A further 162 installation items retain a broad vehicle-specific installation-parts subtype because their descriptions do not support a reliable finer split.
+- This is review-only taxonomy, not a claim that fitment is verified. Vehicle compatibility, exact model identity, image and price clearance still apply before any public product record is created.
+- The 702-row classification file contains no dealer price, cost, margin or stock values. It remains in the private review repository and is excluded from the customer Pages allowlist.
+- PR #120 now includes the classification manifest. Its preview-page QA and public SKU audit passed on the code head before this documentation update; Planetworld 68-row test reported 68 rows, 44 positive / 24 zero, 68 cost-floor passes, no dealer-cost exposure, working search and 390px width without overflow.
