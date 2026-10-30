@@ -85,8 +85,9 @@ boot();
    const supplierOptions=suppliers.map(s=>'<option value="'+esc(s.id)+'" '+(s.id===currentSupplier?'selected':'')+'>'+esc(s.name)+' — '+esc(s.query_channel)+'</option>').join('');
    const missingSuppliers=['Planetworld','Audio Connections'].filter(n=>!suppliers.some(s=>String(s.name).toLowerCase()===n.toLowerCase()));
    const supplierNotice=missingSuppliers.length?'<p class="muted">Not registered yet: '+missingSuppliers.map(esc).join(', ')+'. These suppliers cannot be selected until their connections are approved and registered.</p>':'';
+   const previous=document.getElementById('quoteDetail');if(previous)previous.remove();
    const html=`
-   <div class="card">
+   <div class="card" id="quoteDetail">
     <h3>${esc(q.quote_number)} — ${esc(q.product_name)}</h3>
     <p>Customer: ${esc(q.customer_name)} • ${esc(q.customer_email||q.customer_phone||'')}<br>SKU: ${esc(q.public_sku)} • Qty: ${esc(q.quantity)}</p>
     <h3>Supplier Response</h3>
@@ -110,7 +111,7 @@ boot();
     <input id="qoFreight" type="number" step="0.01" value="0" placeholder="Customer delivery total">
     <input id="qoVat" type="number" step="0.01" value="0" placeholder="Customer VAT total">
     <input id="qoExpiry" type="datetime-local">
-    <button onclick="GWQ.offer('${id}','${r?.id||''}')">APPROVE & CREATE CUSTOMER OFFER</button>
+    <button onclick="GWQ.offer('${id}','${r?.id||''}')" ${r?.id?'':'disabled'}>APPROVE & CREATE CUSTOMER OFFER</button>
     <h3>Lifecycle</h3>
     <select id="qoStatus">
       <option>OWNER_REVIEW</option><option>QUOTED_TO_CUSTOMER</option><option>ACCEPTED_PAYMENT_PENDING</option><option>PAID</option><option>DISPATCHED</option><option>DELIVERED</option><option>EXPIRED</option><option>DECLINED</option><option>CANCELLED</option>
@@ -133,7 +134,12 @@ boot();
   }catch(e){alert(e.message)}
  }
  async function response(id){
-  try{await call('record_supplier_response',{method:'POST',body:{action:'record_supplier_response',quote_id:id,supplier_id:document.getElementById('qrSupplier').value,supplier_reference:document.getElementById('qrRef').value,supplier_cost:Number(document.getElementById('qrCost').value),stock_available:Number(document.getElementById('qrStock').value),availability_text:document.getElementById('qrAvail').value,lead_time_text:document.getElementById('qrLead').value,packaging_cost:Number(document.getElementById('qrPack').value||0),freight_cost:Number(document.getElementById('qrFreight').value||0),vat_amount:Number(document.getElementById('qrVat').value||0),warranty_text:document.getElementById('qrWarranty').value}});document.getElementById('qmsg').textContent='Supplier response saved.';load()}catch(e){alert(e.message)}
+  try{
+   await call('record_supplier_response',{method:'POST',body:{action:'record_supplier_response',quote_id:id,supplier_id:document.getElementById('qrSupplier').value,supplier_reference:document.getElementById('qrRef').value,supplier_cost:Number(document.getElementById('qrCost').value),stock_available:Number(document.getElementById('qrStock').value),availability_text:document.getElementById('qrAvail').value,lead_time_text:document.getElementById('qrLead').value,packaging_cost:Number(document.getElementById('qrPack').value||0),freight_cost:Number(document.getElementById('qrFreight').value||0),vat_amount:Number(document.getElementById('qrVat').value||0),warranty_text:document.getElementById('qrWarranty').value}});
+   await detail(id);
+   const msg=document.getElementById('qmsg');if(msg)msg.textContent='Supplier response saved and supplier assignment recorded.';
+   load();
+  }catch(e){alert(e.message)}
  }
  async function offer(id,sr){try{const price=Number(document.getElementById('qoPrice').value);if(!Number.isFinite(price)||price<0){alert('Enter a valid customer selling price.');return}const ex=document.getElementById('qoExpiry').value;await call('create_offer',{method:'POST',body:{action:'create_offer',quote_id:id,supplier_response_id:sr,unit_selling_price:price,quantity:1,packaging_total:Number(document.getElementById('qoPack').value||0),delivery_total:Number(document.getElementById('qoFreight').value||0),vat_total:Number(document.getElementById('qoVat').value||0),expires_at:ex?new Date(ex).toISOString():null}});alert('Customer offer created and approved.');load()}catch(e){alert(e.message)}}
  async function status(id){try{await call('status',{method:'POST',body:{action:'status',quote_id:id,status:document.getElementById('qoStatus').value}});load()}catch(e){alert(e.message)}}
