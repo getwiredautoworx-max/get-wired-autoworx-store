@@ -206,3 +206,8 @@ Supplier item 78211040 is confirmed as the Hertz **HRC** external subwoofer volu
 - 78032225 — generic “Hertz Series Set SPL Woofer”; item code exists on reseller page, but no exact model number.
 - 78071121 — DG 250.3 grille; third-party retail listings corroborate model, but no individual manufacturer page found.
 - 78071126 — DG 300.3 grille; a local reseller identifies the exact item code and model, but no individual manufacturer page found.
+
+
+## Current reconciled status — 2026-10-30
+
+The chronological counts above are superseded by the current CSV audit: **86/89 staged rows have individual manufacturer product records (84/87 Hertz-branded, plus two Audison products correctly identified as Audison)**. Three remain unresolved: generic SPL woofer 78032225, DG 250.3 grille 78071121 and DG 300.3 grille 78071126. HCP HRC 78211040 is now identified by the Elettromedia manufacturer-operated B2B product record; X 170 and both Audison AFBMW models are also resolved. See the top of `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` for the current status. Images remain unapproved.
