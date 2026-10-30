@@ -75,7 +75,7 @@ const { chromium } = require('playwright');
       await page.locator('#content [data-brand="Kicker"]').click();
       await page.locator('#content [data-component="Speakers & Component Kits"]').click();
       const ksText = await page.locator('#content').innerText();
-      for (const model of ['51KSC404','51KSC504','51KSC6504','51KSC6704','51KSC6904','51KSC69304','51KSS365','51KSS504','51KSS6504','51KSS6704','51KSS6904','51KST2004']) if (!ksText.includes(model)) throw new Error('Kicker KS-series model detail missing: '+model);
+      // 51KSS6704 exists in the manufacturer evidence ledger but is not a row in this supplier workbook/tree; do not assert it as a source listing.\n      for (const model of ['51KSC404','51KSC504','51KSC6504','51KSC6704','51KSC6904','51KSC69304','51KSS365','51KSS504','51KSS6504','51KSS6904','51KST2004']) if (!ksText.includes(model)) throw new Error('Kicker KS-series model detail missing: '+model);
       if (!ksText.includes('Official manufacturer series/collection') || !ksText.includes('Image: not verified') || !ksText.includes('GW SKU: not assigned')) throw new Error('Kicker KS evidence or publication hold label missing');
       await page.locator('#home').click();
       await page.locator('#content [data-brand="Kicker"]').click();
