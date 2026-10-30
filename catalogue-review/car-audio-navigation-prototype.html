@@ -85,7 +85,7 @@ content.addEventListener("click",function(e){
 $("marine").addEventListener("click",function(){showGroup("Marine Audio");});
 $("harness").addEventListener("click",function(){showGroup("Harnesses & Trims");});
 $("hertz").addEventListener("click",function(){showComponents("Hertz");});
-$("music").addEventListener("click",function(){view="group";heading.textContent="Band Instruments & Studio";intro.textContent="This navigation remains separate from Car Audio.";content.innerHTML='<div class="empty">Separate category route. No band-instrument products are mixed into this Car Audio review.</div>';setState();});
+$("music").addEventListener("click",function(){window.location.href="./band-instruments-navigation-prototype.html";});
 search.addEventListener("input",function(){var term=search.value.trim().toLowerCase();content.querySelectorAll("button,article").forEach(function(el){el.hidden=!!term&&el.innerText.toLowerCase().indexOf(term)<0;});});
 fetch("./car-audio-navigation-tree-review.json").then(function(r){if(!r.ok)throw new Error("Review data HTTP "+r.status);return r.json();}).then(function(data){tree=data;status.textContent="Loaded "+data.totals.car_audio_source_rows+" Car Audio source rows. Review only.";showBrands();}).catch(function(err){status.textContent="Could not load review data: "+err.message;content.innerHTML='<div class="empty">Review data unavailable.</div>';});
 })();
