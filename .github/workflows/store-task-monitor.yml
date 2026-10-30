@@ -79,11 +79,12 @@ jobs:
               '\n\n## Expected source evidence\n' +
               evidence.map(x => '- ' + x.path + ': ' + (x.found ? 'FOUND (' + x.sha + ')' : 'MISSING/NOT ACCESSIBLE (HTTP ' + x.status + ')')).join('\n') +
               '\n\nThis monitor is scheduled/on-demand, not a continuously running worker. Missing evidence is a blocker, not permission to reconstruct data from guesses.\n');
-      - name: Upload monitoring evidence
+      - name: Publish monitoring report in job summary (no artifact storage)
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: get-wired-task-monitor-${{ github.run_id }}
-          path: monitor-evidence/
-          if-no-files-found: error
-          retention-days: 14
+        shell: bash
+        run: |
+          if [ -f monitor-evidence/status.md ]; then
+            cat monitor-evidence/status.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Monitoring report was not generated; inspect the preceding capture step." >> "$GITHUB_STEP_SUMMARY"
+          fi
