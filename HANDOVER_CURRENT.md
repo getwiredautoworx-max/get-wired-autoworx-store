@@ -1,3 +1,13 @@
+## SUPPLIER QUOTE MISROUTING SAFEGUARD — IMPLEMENTED IN REVIEW BRANCH, TESTED — 2026-10-30
+
+- Removed the unsafe `create_request` fallback that silently assigned every unmapped quote to the first active supplier (Caelex). Customer requests now resolve only from private `product_supplier_codes.supplier_id` and active `supplier_catalog_items` mappings. Unmapped or conflicting products remain unassigned and return `supplier_resolution=UNMAPPED/AMBIGUOUS`; public customers cannot submit an internal supplier ID.
+- Owner quote detail now returns active supplier choices. The owner app requires selecting the actual supplier before recording a supplier response and displays when Planetworld / Audio Connections are not registered. Saving a response refreshes the response record and enables the customer-offer step only when a supplier response exists.
+- `record_supplier_response` validates the selected supplier is active and records it on the quote. `create_offer` requires an assigned supplier and a supplier response belonging to that same supplier. `authorize_procurement` now requires PAID status, an active assigned supplier and a matching supplier response before creating a procurement order.
+- Added pure supplier-resolution unit tests and static integration assertions. **Latest exact-head GitHub Actions run 41022797295 SUCCESS** at commit `225bc4bd46d19cc833389eb5ec0e142c05c61a4b`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41022797295 . Both supplier-routing test scripts passed; Playwright review QA passed at 360/390/768/1280 px with 84 Hertz verified cards, 3 unresolved exceptions, 28 Marine Audio and 47 Harnesses & Trims, zero JS errors and no horizontal overflow.
+- Scope is repository/review branch only. **No Supabase Edge Function deployment, database writes, schema changes, supplier connection inserts, quote creation, payment-provider changes or production deployment occurred.** This is not a Deno runtime/integration test. Before deployment, run `deno check` and an authorised staging integration test; register Planetworld and Audio Connections only after owner approval and actual connection details are available.
+
+---
+
 ## SONY OFFICIAL IMAGE BROWSER AUDIT — EXTERNAL BRANCH RUNNING — 2026-10-30
 
 - An existing workflow `.github/workflows/sony-browser-image-audit.yml` is running as **41021963315** on `catalogue/ingest-review-2026-10-30`, head `5642c012a092f4b009551d45c90596b4b3ca6f8c`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021963315
