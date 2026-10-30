@@ -1,0 +1,49 @@
+name: ASC Catalogue PDF Extraction (Review Only)
+
+on:
+  push:
+    branches:
+      - cleanup/asc-catalogues-stock-reset-2026-10-30
+    paths:
+      - "suppliers/ASC/**"
+      - "scripts/extract_asc_catalogues.py"
+      - ".github/workflows/asc-catalogue-extract.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: asc-catalogue-review-extraction
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout isolated catalogue review branch
+        uses: actions/checkout@v4
+        with:
+          ref: cleanup/asc-catalogues-stock-reset-2026-10-30
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install PDF extraction and OCR
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+          python -m pip install --disable-pip-version-check pymupdf
+      - name: Extract ASC catalogue pages (review only)
+        run: python scripts/extract_asc_catalogues.py
+      - name: Commit extraction report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalogue-review/asc/
+          if git diff --cached --quiet; then
+            echo "No extraction output changes."
+            exit 0
+          fi
+          git commit -m "[skip ci] Extract ASC catalogue pages for review"
+          git push origin HEAD:cleanup/asc-catalogues-stock-reset-2026-10-30
