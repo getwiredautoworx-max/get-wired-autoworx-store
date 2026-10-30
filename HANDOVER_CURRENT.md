@@ -3952,3 +3952,8 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - This is review-only taxonomy, not a claim that fitment is verified. Vehicle compatibility, exact model identity, image and price clearance still apply before any public product record is created.
 - The 702-row classification file contains no dealer price, cost, margin or stock values. It remains in the private review repository and is excluded from the customer Pages allowlist.
 - PR #120 now includes the classification manifest. Its preview-page QA and public SKU audit passed on the code head before this documentation update; Planetworld 68-row test reported 68 rows, 44 positive / 24 zero, 68 cost-floor passes, no dealer-cost exposure, working search and 390px width without overflow.
+
+### Product image source progress — 2026-10-30
+- Retrieved exact full-size image URLs from the official Alpine product pages for five exact models: HDZ-653, R2-A60F, S2-A55V, S2-S40C and S2-S65. Added these to the review-only Planetworld page with model-specific alt text; no shared impedance-variant image was assigned.
+- The other 63 candidate cards remain brand placeholders with direct official manufacturer page links. The five Alpine image URLs are source-page assets for review only; they are not represented as licensed/approved production assets and have not been copied into the public product image store.
+- Updated the browser audit to assert exactly five official Alpine image-source URLs are present, alongside all prior 68-row, stock, price-floor, non-disclosure and responsive checks.
