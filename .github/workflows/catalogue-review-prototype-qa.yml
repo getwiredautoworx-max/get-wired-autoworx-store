@@ -7,6 +7,7 @@ on:
     paths:
       - "catalogue-review/car-audio-navigation-prototype.html"
       - "catalogue-review/car-audio-navigation-tree-review.json"
+      - "catalogue-review/kicker-manufacturer-product-review.json"
       - "scripts/catalogue-review-prototype.spec.js"
       - "supabase/functions/supplier-quote/index.ts"
       - "supabase/functions/_shared/supplier-routing.mjs"
