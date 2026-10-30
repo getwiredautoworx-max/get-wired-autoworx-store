@@ -38,6 +38,13 @@ jobs:
           sleep 2
           node <<'NODE'
           const { chromium } = require('playwright');
+          const fs = require('fs');
+          for (const path of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']) {
+            const html = fs.readFileSync(path,'utf8');
+            const robots = [...html.matchAll(/<meta\s+name=[\"']robots[\"']\s+content=[\"']([^\"']+)[\"'][^>]*>/gi)].map(m=>m[1].toLowerCase());
+            if (robots.length !== 1 || robots[0] !== 'noindex,nofollow') throw new Error('Preview route must have exactly one noindex,nofollow directive: '+path+' '+JSON.stringify(robots));
+          }
+          console.log('PREVIEW_ROBOTS_GUARD_PASS');
           const ASC_PUBLIC_SKUS = [
             'GW-09D1B7AD','GW-1C87D5E5','GW-1CE86A57','GW-1ED91C25','GW-269894FE',
             'GW-2A7A9F1E','GW-2AE829B0','GW-2C508DE3','GW-2C792975','GW-31FC9859',
@@ -74,6 +81,19 @@ jobs:
                 visibleCheckout
               };
             },ASC_PUBLIC_SKUS);
+            const freeSearch=await page.evaluate(()=>{
+              const rows=window.gwProducts||[];const module=window.gwCatalogueSearch;
+              const exactProduct=rows.find(p=>p.public_sku&&p.name&&p.category_name);
+              if(!module||!exactProduct)return {loaded:!!module,rows:rows.length};
+              const exact=module.search(rows,exactProduct.public_sku,25);
+              const partial=module.search(rows,exactProduct.public_sku.slice(0,6),25);
+              const category=module.search(rows,exactProduct.category_name,25);
+              const token=String(exactProduct.name).toLowerCase().split(/[^a-z0-9]+/).find(t=>t.length>=5);
+              const typo=token?module.search(rows,token.slice(0,-1)+'x',25):[];
+              return {loaded:true,exact:exact[0]?.p?.id===exactProduct.id,partial:partial.some(x=>x.p.id===exactProduct.id),category:category.some(x=>x.p.id===exactProduct.id),typo:typo.some(x=>x.p.id===exactProduct.id),noMatch:module.search(rows,'gw-no-such-part-xyz',25).length===0};
+            });
+            if(!freeSearch.loaded||!freeSearch.exact||!freeSearch.partial||!freeSearch.category||!freeSearch.typo||!freeSearch.noMatch)throw new Error('Free catalogue search browser integration failed: '+JSON.stringify(freeSearch));
+            console.log('FREE_CATALOGUE_SEARCH_BROWSER_PASS '+JSON.stringify(freeSearch));
             const EXPECTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
             if(audit.categories!==8||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||audit.rootIds.length!==8||audit.rootIds.some(id=>!id))throw new Error('Approved eight-category root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
             const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
@@ -124,7 +144,7 @@ jobs:
             if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==4||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
             await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===4&&imgs.every(img=>img.complete);},{timeout:15000});
             const imageLoadAudit=await planetworld.locator('#grid .card img').evaluateAll(imgs=>imgs.map(img=>({src:img.src,loaded:img.naturalWidth>0})));
-            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official Alpine product image did not load: '+JSON.stringify(imageLoadAudit));
+            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official manufacturer product image did not load: '+JSON.stringify(imageLoadAudit));
             const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
             await planetworld.locator('#q').fill('Alpine');
