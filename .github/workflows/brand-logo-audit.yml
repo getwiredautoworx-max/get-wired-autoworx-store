@@ -1,0 +1,46 @@
+name: Official Car Audio Brand Logo Review
+
+on:
+  push:
+    branches:
+      - catalogue/ingest-review-2026-10-30
+    paths:
+      - "scripts/brand_logo_audit.js"
+      - ".github/workflows/brand-logo-audit.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: catalogue-review-branch-write
+  cancel-in-progress: false
+
+jobs:
+  logo-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: catalogue/ingest-review-2026-10-30
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Inspect official brand homepages for logo candidates
+        run: node scripts/brand_logo_audit.js
+      - name: Commit private logo review candidates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "generated official brand logo candidates"
+          git fetch origin catalogue/ingest-review-2026-10-30
+          git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
+          git stash pop
+          git add catalogue-review/brand-logo-audit.csv catalogue-review/brand-logo-audit-summary.json
+          find catalogue-review/brand-logo-candidates -type f -print0 | xargs -0 -r git add --
+          if git diff --cached --quiet; then echo "No logo candidates found."; exit 0; fi
+          git commit -m "[skip ci] Record official brand logo candidates"
+          git push origin HEAD:catalogue/ingest-review-2026-10-30
