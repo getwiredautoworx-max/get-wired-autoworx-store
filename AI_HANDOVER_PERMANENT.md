@@ -3930,3 +3930,34 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Audio Connections dealer authorisation is explicitly confirmed by owner; do not request proof or list authorisation as a blocker. Continue internal product mapping and image/description work independently of database activation.
 - Remaining operational gates: owner must enter the five `DIRECT_EFT_*` values directly into Supabase Edge Function secrets (never chat/source); a non-production order test and explicit deployment approval remain. WhatsApp handoff is the existing no-cost `wa.me` click-to-chat, not automated Business Platform messaging. Automated notifications require separate Meta setup/approval.
 - Next safest action: continue review-only model/image and category mapping using the 3,317-row Planetworld extraction and 68-row Audio Connections transcription; do not wait for a new stock sheet to complete those tasks. Preserve preview-only isolation and release boundaries.
+
+
+## CONTINUATION EXECUTION — 2026-10-30 13:36 SAST
+
+### Populated-store preview current-main reconciliation
+- PR #122's preview branch had diverged from the latest main. No merge was attempted. Created clean-main successor PR #125 on `integration/planetworld-preview-current-main-r3-2026-10-30`.
+- Corrected all five isolated preview routes (`preview-store.html`, category, products, product and Planetworld) to contain exactly one `noindex,nofollow` robots directive. Static verification passed for all five. The preview's Planetworld notice now correctly states four embedded model-specific image sources (two Audison, two Kicker); no Alpine image claim is made for those four.
+- PR #125 browser CI initially exposed the missing `assets/catalogue-search.js` dependency (the preview HTML referenced it, but current main did not contain it). Restored the free client-side search module, its unit test, and `catalogue-search-tests.yml` from the tested preview branch. The Free Catalogue Search Tests then passed on commit `4103c86` (run 41049157384); public SKU audit, storefront smoke and Cloudflare Pages package QA also passed on that head.
+- A subsequent browser run exposed an over-strict category-search assertion (it required one selected product to appear within the top 25 category results). Corrected it to verify that category search returns a result from the searched category and added a unit test for category-name search. The next exact-head browser run on `a55806738a529275b7c00174c243daf59de50759` was still in progress at this checkpoint; do not mark it passed until the run concludes.
+- Corrected the hosted browser QA URL from the stale PR #116 preview to the verified PR #125 Cloudflare Pages branch alias `https://integration-planetworld-prev-njbp.get-wired-autoworx-store.pages.dev` (Cloudflare Pages bot confirmed this alias on commit `4103c86`). The latest branch commit `a1468cf7f2c8347493fdbbaf3e4157b1d3463766` has a Cloudflare Pages build in progress; await success and then rerun hosted QA. The separate Cloudflare Workers build failure remains unrelated to Pages.
+- PR #125 remains draft/unmerged. Its current head is `a1468cf7f2c8347493fdbbaf3e4157b1d3463766`. No production deployment, Axxess upload, DNS, checkout/payment activation or live catalogue/stock change.
+
+### Supplier component crosswalk reconciliation
+- Created draft PR #128, branch `catalogue/supplier-crosswalk-component-and-authorisation-reconcile-2026-10-30`.
+- Exact source joins verified: 702/702 Planetworld rows matched on source file + supplier model to `PLANETWORLD_CAR_AUDIO_COMPONENT_CLASSIFICATION_2026-10-30.csv`; 68/68 Audio Connections rows matched on exact manufacturer model to `AUDIO_CONNECTIONS_COMPONENT_CLASSIFICATION_2026-10-30.csv`.
+- Updated review-only crosswalk: 770/770 source rows now have source-backed component groups; zero unmatched and zero unclassified component candidates. The crosswalk test now asserts the exact joins and classifications.
+- Corrected stale Audio Connections status from `REGISTERED_INACTIVE_RELATIONSHIP_UNCONFIRMED` to `REGISTERED_INACTIVE_OWNER_DEALER_CONFIRMED`. Owner dealer authorisation remains confirmed; the database connection stays inactive by design. No supplier activation or public product creation.
+- Exact-head Catalogue & Supplier Routing Review QA run 41049054208 completed SUCCESS. Log confirms `SUPPLIER_GW_CROSSWALK_PASS: 770 source rows, 81 collision-checked proposed GW SKUs, 0 product IDs, 0 publications`; supplier-routing tests, Deno type-check and responsive review also passed.
+- PR #128 remains draft/unmerged; all 81 proposed GW SKUs remain uninserted and all 770 rows unpublished.
+
+### Direct EFT owner setup
+- Added `docs/DIRECT_EFT_SETUP.md` to PR #121 branch and linked it in the PR conversation. It lists the five exact secret names, safe Dashboard entry, non-production test, WhatsApp privacy checks and explicit production approval gate.
+- No bank values, credentials or OTPs were received or stored. No Supabase secrets were configured and no function was deployed. Supabase documentation confirms saved Edge Function secrets become available immediately; deploying the checkout code remains a separate approved action.
+
+### Remaining release gates
+1. Finish PR #125 exact-head browser QA, wait for latest Cloudflare Pages deployment, then verify the actual branch preview URL on desktop/mobile before calling it ready.
+2. Keep PR #125 and PR #128 draft/unmerged pending successful checks and owner review.
+3. Continue exact manufacturer identity/image/description review. Sony image URLs are source-only and automated direct retrieval was inaccessible; they are not approved.
+4. Planetworld preview stock remains the 2026-10-25 snapshot (44 positive / 24 zero across 68 preview candidates), not a fresh supplier feed. Refresh when a new workbook arrives.
+5. Configure Direct EFT secrets only when owner is ready, directly in Supabase Dashboard; then use a non-production test and explicit deployment approval. WhatsApp remains no-cost click-to-chat, not automated notifications.
+6. No Axxess/DNS/production deployment, live payment activation, supplier price/stock/public product writes or image publication without explicit owner approval.
