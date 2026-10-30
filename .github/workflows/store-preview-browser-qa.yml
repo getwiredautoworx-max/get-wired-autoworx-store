@@ -70,8 +70,16 @@ jobs:
             await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
           const initialHtml=await hosted.content();
-          if(/Planetworld|Dealer Price|supplier catalogue|accessoriesspares\.co\.za/i.test(initialHtml))throw new Error('Supplier identity, pricing or source reference exposed in hosted storefront HTML');
-            await hosted.waitForFunction(()=>[...document.querySelectorAll('#gwVerifiedGrid .gwVerifiedMedia img')].every(img=>img.complete),{timeout:30000});
+          if(!/PLANETWORLD — AUDIO & ENTERTAINMENT CATALOGUE/i.test(initialHtml))throw new Error('Planetworld category navigation branding is missing from the hosted store');
+          if(/Dealer Price|Dealer Cost|accessoriesspares\\.co\\.za/i.test(initialHtml))throw new Error('Dealer pricing or private supplier source reference exposed in hosted storefront HTML');
+          await hosted.waitForFunction(()=>document.querySelectorAll('#planetworldCategoryNav [data-pw-collection]').length===8&&document.getElementById('pwCount')?.innerText.startsWith('674 catalogue items'),{timeout:60000});
+          const pwTargets=[['Car Audio & Video',674],['Home Entertainment',461],['Band & Live Sound',792],['DJ',15],['Studio Equipment',62],['Marine Audio',28],['Installed AV',435],['Musical Instruments',850]];
+          for(const [collection,expected] of pwTargets){
+            await hosted.locator('#planetworldCategoryNav [data-pw-collection="'+collection+'"]').click();
+            await hosted.waitForFunction(expectedCount=>document.getElementById('pwCount')?.innerText.startsWith(expectedCount+' catalogue items'),expected,{timeout:15000});
+          }
+          await hosted.locator('#planetworldCategoryNav [data-pw-collection="Car Audio & Video"]').click();
+          await hosted.waitForFunction(()=>[...document.querySelectorAll('#gwVerifiedGrid .gwVerifiedMedia img')].every(img=>img.complete),{timeout:30000});
             const verifiedCatalogue=await hosted.evaluate(()=>({count:document.querySelectorAll('#gwVerifiedGrid .gwVerifiedCard').length,withImagePlaceholder:document.querySelectorAll('#gwVerifiedGrid .gwVerifiedMedia[role="img"]').length,withImage:document.querySelectorAll('#gwVerifiedGrid .gwVerifiedMedia img').length,loadedImages:[...document.querySelectorAll('#gwVerifiedGrid .gwVerifiedMedia img')].filter(img=>img.complete&&img.naturalWidth>0).length,quoteOnly:[...document.querySelectorAll('#gwVerifiedGrid .gwVerifiedStatus')].every(el=>/Price & availability on request/i.test(el.innerText)),whatsapp:[...document.querySelectorAll('#gwVerifiedGrid a[href*="wa.me"]')].length,supplierLeak:/Planetworld|Dealer Price|supplier catalogue|accessoriesspares\.co\.za/i.test(document.getElementById('gwVerifiedCatalogue')?.innerText||'')}));
             if(verifiedCatalogue.count!==68||verifiedCatalogue.withImage!==11||verifiedCatalogue.loadedImages!==11||verifiedCatalogue.withImagePlaceholder!==57||!verifiedCatalogue.quoteOnly||verifiedCatalogue.whatsapp!==68||verifiedCatalogue.supplierLeak)throw new Error('GW catalogue integration audit failed: '+JSON.stringify(verifiedCatalogue));
             await hosted.locator('#gwVerifiedSearch').fill('Alpine');
@@ -126,7 +134,7 @@ jobs:
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
             const hostedBody=await hosted.locator('body').innerText();
-            if(/Planetworld|Dealer Price|supplier catalogue/i.test(hostedBody))throw new Error('Supplier identity or supplier pricing exposed in hosted storefront');
+            if(/Dealer Price|Dealer Cost|accessoriesspares\\.co\\.za/i.test(hostedBody))throw new Error('Dealer pricing or private supplier source reference exposed in hosted storefront');
             await hosted.close();
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
