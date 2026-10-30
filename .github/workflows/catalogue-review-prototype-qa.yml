@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - catalogue/complete-remaining-review-2026-10-30
+      - integration/latest-consolidated-review-2026-10-30
     paths:
       - "catalogue-review/car-audio-navigation-prototype.html"
       - "catalogue-review/car-audio-navigation-tree-review.json"
