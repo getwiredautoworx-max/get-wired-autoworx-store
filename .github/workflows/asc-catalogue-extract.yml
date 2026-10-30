@@ -33,7 +33,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y tesseract-ocr
-          python -m pip install --disable-pip-version-check pymupdf
+          python -m pip install --disable-pip-version-check pymupdf pillow
       - name: Extract ASC catalogue pages (review only)
         run: python scripts/extract_asc_catalogues.py
       - name: Commit extraction report
