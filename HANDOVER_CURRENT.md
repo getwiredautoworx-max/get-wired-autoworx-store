@@ -4706,3 +4706,24 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 
 - Cloudflare Pages bot has now acknowledged the navigation/browser-QA code commit `61b8854717e02e646633e3e4043886a29f680a93`; status is **Build in progress**. This is not a successful deployment confirmation. The branch preview alias remains `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`; wait for a success result before asking the owner to judge the new buttons.
 - Exact-head GitHub Actions workflow lookup for `61b8854` returned no PR-triggered workflow runs. Do not infer a pass. Earlier jobs failed before steps/logs; root cause remains unresolved.
+
+
+## 2026-10-30 — CATEGORY BUTTON PICTURES AND MANUFACTURER BRAND MARKS
+
+- Owner asked whether navigation buttons show relevant pictures and whether manufacturer category tiles show the manufacturer's logo. Audit found:
+  - Main category/subcategory cards in `preview-category.html` already use category-representative photos.
+  - Audio manufacturer tiles previously showed only two-letter initials (not brand logos).
+  - The newly integrated Planetworld navigation buttons were text-only.
+- Updated `preview-store.html` on `gw-store-preview-1030`:
+  - All nine Planetworld collection buttons now have their own category-representative photo above the label (Car Audio, Harnesses & Trims, Home Entertainment, Band & Live Sound, DJ, Studio & Pro Audio, Marine Audio, Installed AV, Musical Instruments).
+  - Added consistent image-card styling and 4/3/2-column responsive layouts for desktop/tablet/mobile.
+- Updated `preview-category.html`:
+  - Audio brand tiles now request the matching manufacturer's website favicon/brand mark for 25 explicitly mapped audio brands (including JBL, Hertz, Denon, Pioneer, Alpine, Kenwood, Sony, JVC, Rockford Fosgate, Audison, Focal, Yamaha, Marantz, Bose, Shure, Sennheiser and others).
+  - Where a brand has no explicit domain mapping, or its logo image fails to load, a clean two-letter fallback remains. Do not describe fallback monograms as official logos. These are website brand marks/icons, not guaranteed full-size vector wordmarks.
+- Updated browser QA:
+  - Requires all nine Planetworld navigation pictures to load.
+  - Requires any mapped manufacturer logo images rendered on the Car Audio & Video brand page to load.
+  - Existing eight collection route/count checks and mobile overflow check remain.
+- Commits: `021d28e6934f44b7d4866a0d50f37c789f1777d6` (Planetworld category pictures); `ed53b770fc0b4be807ef5c78e2d146fdffb3d9ff` (audio brand marks); `375d4cb3d3a090a8477340b1021773aaa266426d` (category picture QA); `1aac32fbba88f68597b0784026cac898f79fb073` (manufacturer logo QA).
+- Not yet verified on the hosted preview: latest Pages deployment, successful image loads from the live CDN, actual brand-logo coverage for every brand in the live catalogue, and hosted mobile appearance. Do not claim visual acceptance until browser QA passes.
+- Preview only; PR #136 draft/unmerged; no production, supplier price/stock, Supabase, checkout, Axxess or DNS changes.
