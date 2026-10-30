@@ -144,3 +144,20 @@ The audit now has **59 exact individual manufacturer-page matches out of 89 stag
 | 78260025 | S8 DSP | https://us.hertz-audio.com/product/s8-dsp/ | 32-bit 96 kHz/24-bit DSP; 6 input / 8 output channels |
 
 The exact-page audit now contains 66 of the 89 staged reference codes. Twenty-three remain without an exact individual product page in the audit. No image binary was downloaded or approved; these checks do not authorize product publication or GW SKU assignment.
+
+
+## Third follow-up — nine additional exact official product pages (2026-10-30)
+
+| Supplier reference code | Exact model | Official product page | Confirmed specification |
+|---|---|---|---|
+| 78000301 | K 165 | https://hertz-audio.com/product/k-165/ | 300 W peak; 75 W continuous; 4 Ω; 55 Hz–23 kHz. |
+| 78000310 | K 130 | https://hertz-audio.com/product/k-130/ | 220 W peak; 55 W continuous; 4 Ω; 55 Hz–23 kHz. |
+| 78000320 | K 170 | https://hertz-audio.com/product/k-170/ | 280 W peak; 70 W continuous; 4 Ω; 55 Hz–23 kHz. |
+| 78030140 | C 26 | https://us.hertz-audio.com/product/c-26-2/ | 120 W peak; 4 Ω; 1.8–22.5 kHz. |
+| 78032127 | C 165 L | https://us.hertz-audio.com/product/c-165-l-2/ | 240 W peak; 80 W continuous; 4 Ω; 50 Hz–5 kHz. |
+| 78032137 | C 165 F | https://hertz-audio.com/product/c-165-f/ | 180 W peak; 70 W continuous; 4 Ω; 65 Hz–4.5 kHz; 43.5 mm mounting depth. |
+| 78035400 | DS 25.3 | https://hertz-audio.com/product/car-audio-subwoofers-dieci-ds25-3/ | 600 W peak; 150 W continuous; 4 Ω; 32–400 Hz. |
+| 78035410 | DS 30.3 | https://hertz-audio.com/product/ds-30-3/ | 1000 W peak; 250 W continuous; 4 Ω; 28–300 Hz. |
+| 78035421 | S 300 S4 | https://hertz-audio.com/product/s-300-s4/ | 1000 W peak; 250 W continuous; 4 Ω; 89.5 dB sensitivity. |
+
+These are individual product-page matches, not collection-only matches. Images are still not downloaded or visually approved. The 89-row supplier staging workbook remains outside the public repository.
