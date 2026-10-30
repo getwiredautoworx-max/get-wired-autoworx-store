@@ -14,13 +14,30 @@
 
 ---
 
+## VERIFIED SUPPLIER EXTRACTION CHECKPOINT — 2026-10-30
+
+- Read-only binary extraction is now operational on isolated branch `catalogue/ingest-review-2026-10-30`; no production, Supabase, live catalogue, price, stock, Axxess, DNS, payment, Cloudflare or Netlify changes were made.
+- GitHub Actions run **41013490792** succeeded for initial extraction; refined run **41013665196** succeeded after correcting the description-field mapping and splitting large output into small chunks. The refined run opened **47/47 Planetworld XLSX workbooks**, read **94 sheets**, reported **0 workbook errors**, and extracted **3,317 product rows** from the Products sheets. Outputs: `catalogue-review/extraction-summary.json`, `planetworld-workbook-inventory.json`, seven `planetworld-row-chunks/planetworld-rows-*.csv` files. The full raw row JSON is retained with source workbook, sheet and row provenance.
+- Audio Connections: both tracked PDFs were opened; **4/4 pages** produced text. The source documents are STARSOUND Price Lists 05 AUGUST 2026 (2 pages) and Sony Mobile ES Dealer Price List Sept 26 (2 pages). Output: `catalogue-review/audio-connections-pages-review.csv`. This is text extraction only; no PDF image/page-layout verification, product-image match or live import has occurred. Missing/blank prices remain unresolved, not inferred.
+- Fresh Planetworld row analysis found **702 rows marked Division=Car Audio**. This includes **47 Harness and Trims rows**, which are a component/accessory group and MUST NOT be presented as a manufacturer brand. Remaining source brand counts: One 290, Kicker 189, Audison 94, Alpine 58, JVC Car Audio 13, Kenwood Car Audio 4, Amplified 3, Focal Car Audio 2, Pioneer Car Audio 2. Normalize brand-button labels to One, Kicker, Audison, Alpine, JVC, Kenwood, Amplified, Focal, Pioneer only after review. No Hertz XLSX exists in the 47 Planetworld incoming workbooks; JBL's 26 rows are Division=Musical Instruments, not Car Audio, so do not classify them as car audio.
+- A separate Library workbook `Planetworld_Hertz_Staging_Analysis_2026-10-26.xlsx` was found and inspected: **89 staged rows**, 89 unique item codes, 12 subcategories; only **12/89** have an exact-model official Hertz page located and all 12 still need individual product-image verification; **77/89** have no exact official page/image match yet. Every row is still marked STAGED — NOT PUBLISHED. This Library workbook is not currently in the repository; do not treat it as a supplier source workbook or publish its confidential price/cost fields. The associated classification workbook also has 89 rows.
+- The current main `index-new.html` remains the owner-approved buttons-only storefront: 8 root buttons and 31 child buttons; the Car Audio group currently contains Car Audio/Video, JBL, Hertz, Denon, Home Entertainment, Studio Equipment, Marine Audio and Band Instruments. Those child buttons are static labels, not a completed brand→component→product drilldown. Main `assets/category-tree.json` has 166 rows; Car Audio has 11 child categories and duplicate Amplifiers, Head Units and Speakers entries (different IDs/slugs). Resolve category duplication in a review mapping only; do not write Supabase/live category rows.
+- Existing button-only Playwright verification passed at 360, 390, 768 and 1280 px (run 40921540466 and follow-up 40922110707); that verifies the buttons-only layout, NOT the eventual populated product catalogue. Re-run browser/mobile QA after catalogue navigation is rebuilt.
+- Main source is intentionally blank/buttons-only; do not remove the marker or expose old/ASC product data while product records/images remain unverified. ASC supplier PDFs remain in `suppliers/ASC/`; ASC product stock must remain excluded.
+- Current price fallback: **“Price on Request due to Limited Stock.”** Use only when no approved price is available; do not convert supplier stock-zero to a fabricated price or customer stock claim. Supplier workbook regional quantities are source evidence, not a live stock import.
+- Next execution: (1) derive brand/component staging from the 3,317 source rows with exact source provenance; (2) normalize Car Audio brand/component taxonomy and separate Band Instruments/Home/Studio/Marine; (3) reconcile Sony Mobile ES and STARSOUND model/price/description rows page-by-page; (4) verify official product images by exact model and create GW SKU mapping only after exact source confirmation; (5) complete non-production browser/mobile tests; (6) keep payment as final launch blocker. The isolated extraction branch is review-only and is not merged.
+- Repo visibility returned `private: true` in GitHub Actions run metadata. Keep supplier price files private.
+- Task status: **supplier source extraction verified; catalogue reconciliation, product images/descriptions/GW SKUs, completed brand/component drilldown, populated-mode mobile QA and payment readiness remain incomplete.** Do not claim the store is complete or launch-ready.
+
+---
+
 # GET WIRED AUTOWORX — AI HANDOVER / NEXT-AGENT START HERE
 
 **Purpose:** Mandatory entry point for every AI agent or ChatGPT session continuing this repository.
 **Repository:** `getwiredautoworx-max/get-wired-autoworx-store`
 **Master handover:** [`AI_HANDOVER_PERMANENT.md`](AI_HANDOVER_PERMANENT.md)
 **Approved reference storefront:** https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
-**Last checkpoint recorded:** 2026-10-30, supplier catalogue verification continuation.
+**Last checkpoint recorded:** 2026-10-30, supplier catalogue continuation and OneNav verification.
 
 ## MANDATORY HANDOVER PROTOCOL — DO THIS EVERY SESSION
 
@@ -369,39 +386,53 @@ These eight rules are user-authoritative and must be copied into every new hando
 No-upload continuation used existing GitHub and live Supabase source. Four Electrocity PDFs remain unextracted because the available base64 fetch cannot be safely materialized for OCR here. Read-only inspection found active shipping-quote v4 and store-checkout v5, both with JWT verification disabled. Quote endpoint returns live=true without a signed token or server quote ID; checkout forwards client-supplied quote data to an RPC that trusts live=true and matching client-supplied price/fee. Provenance and binding to address/cart/parcel/expiry are not validated. Launch HOLD. Review document: CHECKOUT_DELIVERY_QUOTE_SECURITY_REVIEW_20261029.md. No production changes or deployment credits used. Next: build and test signed, expiring quote tokens/server quote IDs and server-derived parcel checks in a review branch; do not deploy until secret configuration and end-to-end tests pass. Direct EFT only; PI40/PZ33 remain inactive, price 0, stock 0, quote-required/unconfirmed.
 
 
-## LATEST CONTINUATION POINTER — 2026-10-30
+## LATEST REVIEW-BRANCH POINTER — 2026-10-30
 
-Read `HANDOVER_CURRENT.md` and the top checkpoint in `AI_HANDOVER_PERMANENT.md`. Current review branch: `catalogue/complete-remaining-review-2026-10-30`.
+- Review branch: `catalogue/complete-remaining-review-2026-10-30`.
+- Nine Planetworld OneNav source rows now have exact official product page/SKU/application matches: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
+- Potential alias `ISA-ON115-3LX` / `ON115-3LX` remains quarantined for supplier confirmation; no merge/delete. Images and GW SKU assignments remain outstanding.
+- Read the latest top entries in `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` before continuing.
 
-Verified since the previous checkpoint:
-- Audio Connections: 68 source-page candidate rows transcribed; three Starsound items have no numeric price, and Sony XS-690ES is supplier-marked SOLD OUT. All remain unpublished.
-- Hertz: 16 exact official model pages documented; 73 of 89 staged records still lack an exact individual manufacturer page. Collection-list matches are separate from exact page verification.
-- Planetworld ONE: four exact OneNav product-page/SKU/application matches (OA009-1, OA014-1, OA015-1, OA312-1); image assets remain unapproved.
-- Extraction and review navigation prototype workflows passed; this is not populated-store acceptance.
-- Main storefront remains buttons-only; no production or live catalogue changes. Launch remains HOLD.
+## LATEST ALPINE REVIEW POINTER — 2026-10-30
 
-Next: obtain exact high-resolution image assets, finish remaining Hertz/Planetworld model matching, assign GW SKUs only after exact internal match, resolve duplicates using provenance/specs/images, then test populated-mode mobile/browser navigation.
+- Planetworld Alpine 58-row audit now records 9 exact individual official pages, 26 collection matches, 5 catalogue matches, and 18 unresolved items in this pass.
+- Four official high-resolution image URLs were located, but binaries were not downloaded or approved. Do not publish until exact internal public_sku mapping and current-image comparison are complete.
+- Review branch: `catalogue/complete-remaining-review-2026-10-30`. Read the newest current and permanent handovers before continuing.
 
-## LATEST ONE NAV MATCH DELTA — 2026-10-30
+## LATEST MULTI-BRAND CATALOGUE POINTER — 2026-10-30
 
-- Nine Planetworld OneNav rows now have exact official product page + visible SKU + vehicle-application verification (OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1, ON115-3LX).
-- One potential alias pair (ISA-ON115-3LX / ON115-3LX) is recorded for supplier confirmation; do not merge or delete.
-- Product images remain unapproved; no GW SKUs assigned. Full details in the latest `AI_HANDOVER_PERMANENT.md` checkpoint.
+- Isolated review branch: `catalogue/complete-remaining-review-2026-10-30`.
+- 226/702 Planetworld rows now have official manufacturer page/collection references; none are approved for publication until exact internal public_sku and image checks pass.
+- Read latest `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md`; consolidated summary is `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`.
 
-## LATEST ALPINE MODEL/IMAGE SOURCE DELTA — 2026-10-30
 
-- Alpine 58-row audit: 9 exact individual official pages, 26 collection-level model labels, 5 official catalogue model labels, 18 unresolved in this pass.
-- Four original high-resolution image source URLs recorded for R2-W10D2, R2-W12D4, R2-A60F and S2-S40C. Binaries not downloaded; no current-image comparison/public_sku mapping; no publication approval.
-- Full details: `catalogue-review/planetworld-alpine-official-model-audit.csv` and `catalogue-review/alpine-high-resolution-image-source-manifest.csv`.
+## 2026-10-30 execution checkpoint — catalogue/product presentation
 
-## LATEST MULTI-BRAND AUDIT POINTER — 2026-10-30
+Continue from `catalogue/ingest-review-2026-10-30`. User explicitly asked to resolve Planetworld/Audio Connections catalogue completion, exact images/descriptions/GW SKUs, brand/component navigation and mobile/browser testing. Avoid circular status-only updates.
 
-- 226 of 702 Planetworld source rows now carry official manufacturer page/collection references; no GW SKUs or images approved. Marine 28 rows separated from standard Car Audio; 47 Harness and Trims rows remain installation components.
-- Kicker, Audison, Alpine, OneNav and smaller-brand exact-page/collection match counts and all unresolved source conflicts are recorded at the top of `AI_HANDOVER_PERMANENT.md`.
-- Consolidated audit: `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`.
-- Continue remaining exact-model verification and image acquisition only after internal product/public_sku matching. Keep live store and launch gates unchanged.
+Verified review work:
+- Planetworld: 47 XLSX, 94 sheets, 3,317 Products rows extracted with source provenance. Car Audio 702 rows: 627 brand products, 47 Harnesses & Trims, 28 Marine Audio. 486 model tokens extracted; 216 rows lack usable model tokens. No exact model-code matches in current product-image filenames.
+- Musical Instruments: 1,719 rows / 21 brands. Navigation split: Band Instruments 1,273; Studio & Pro Audio 230; Instrument Cases & Accessories 191; DJ Equipment 25. Five component labels need manual review.
+- Separate review-only Car Audio and Band Instruments/Studio/DJ prototypes created. Responsive navigation passed at 360, 390, 768 and 1,280 px in run 41015761561. Later integrated product-card/logo test is still being rechecked; confirm final run before claiming pass.
+- Car Audio category tree: duplicate display-name groups Amplifiers, Head Units, Speakers; each duplicate child currently has zero direct active products. Car Audio parent has 39 active products; AERIALS has 7. Do not merge/delete categories without product-association review.
+- Official Car Audio logos found and added to prototype for Alpine, Audison and Kicker. Focal not located; JVC/Kenwood/Pioneer official sites blocked with 403; Hertz yielded product-line logos only, not the main wordmark; One and Amplified sources not identified. Planetworld workbook scan found no header-logo images.
+- Audio Connections: 68 rows (53 Starsound, 15 Sony). Three Starsound no-price rows use “Price on Request due to Limited Stock and Availability.” Sony XS-690ES is SOLD OUT; exact official page found for 14/15 Sony models; XS-680G unmatched. PDF images are low-resolution/shared and are not approved for customer display. Re-run Sony browser image audit.
+- Hertz staging: 89 rows. Twelve exact official product pages and twelve exact image candidates visually checked; 12 review-only product cards now include official descriptions/specs/images. Remaining 77 Hertz rows unmatched. MPS 250 S2/S4 share the manufacturer's official image but remain distinct impedance variants.
+- Twelve provisional GW SKU candidates generated for the 12 verified Hertz models. Read-only Supabase inspection: `public.products.public_sku` is NOT NULL and unique, has no default or generator trigger; no generator exists in repo/database. There are 4,200 rows / 4,200 unique public SKUs; 2 legacy values are nonstandard. Order function validates `^GW-[A-Z0-9]{8}$`. All 12 candidates passed format and collision checks. They are NOT inserted.
+- No Supabase writes, live stock/catalogue edits, payment/checkout changes, DNS/Axxess, Cloudflare/Netlify, PR merge or production deployment.
 
-## CRITICAL IMAGE ASSIGNMENT GATE — 2026-10-30
+Next actions:
+1. Finish integrated Car Audio/Hertz/logo responsive test and commit/inspect latest screenshots.
+2. Re-run Sony browser image audit; visually check each exact model image before display.
+3. Continue exact Planetworld manufacturer page/image/description matching; never pair by resemblance or supplier code alone.
+4. Continue official logo sourcing; do not substitute line logos or guessed icons.
+5. Keep unverified rows quarantined and retain exact no-price Starsound wording above.
+6. Do not insert provisional GW SKUs or create live product records until owner explicitly authorises Supabase writes. Keep supplier-code mapping private.
+7. Payment integration/final launch checks remain separate final blocker; leave untouched until catalogue presentation is verified and payment changes are approved.
 
-- Read-only Supabase audit found 0 exact mappings between the 702 Planetworld supplier SKUs and existing `public.products.sku/public_sku`; 4,198 supplier-code rows have NULL supplier_id, and supplier_catalog_items is empty.
-- No DB writes. Do not assign manufacturer images or publish new rows until an owner-approved supplier-to-public-product mapping exists. See `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json`.
+All artifacts are review-only under `catalogue-review/` on the review branch. Do not treat them as production catalogue data or merge without verification.
+
+## CRITICAL PUBLIC SKU MAPPING GATE — 2026-10-30
+
+- Read-only Supabase audit found no exact public_sku mapping for the 702 Planetworld supplier codes. Supplier-code table rows have NULL supplier_id and supplier_catalog_items is empty.
+- Do not assign images or publish new supplier products until an owner-approved supplier-specific product mapping is established. Read the latest current/permanent handovers and review-branch audit before continuing.
