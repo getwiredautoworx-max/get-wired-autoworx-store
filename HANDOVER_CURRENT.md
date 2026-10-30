@@ -3975,3 +3975,15 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Owner setup after review: configure the five bank fields as Supabase Edge Function secrets (never GitHub/source code/chat), verify them in a non-production test order, then owner-authorise deployment. Keep bank account verification manual and payment status pending.
 - WhatsApp currently uses the existing no-cost `wa.me` number `+27 74 488 4234`. PR #121 improves click-to-chat only; automated WhatsApp Business Platform messaging remains optional and requires Meta account/verified number/token/webhook configuration and separate owner approval.
 - Owner's Audio Connections dealer authorisation is confirmed. This supersedes stale statements elsewhere in this file that describe dealer relationship confirmation as outstanding.
+
+
+### PR #121 exact-head CI result — 2026-10-30
+- All six exact-head workflows completed **SUCCESS** on `8839f5e6de08e193c8e08e802d6bc88d86c5f8ec`:
+  - Customer Authentication Security Tests — 41046413241
+  - Delivery Quote Security Tests — 41046413197 (job `quote-integrity` SUCCESS; includes isolated checkout handler integration test)
+  - Axxess upload package preparation — 41046413221 (CI/package preparation only; no upload)
+  - Storefront Smoke Test — 41046413229
+  - Public SKU Exposure Audit — 41046413242
+  - Cloudflare Pages Public Package QA — 41046413460
+- PR #121 remains draft/open and unmerged. CI success validates source/tests only; no Supabase Edge Function deploy, secrets setup, Axxess upload, DNS, live checkout change or payment activation.
+- Remaining Direct EFT setup is operational: owner must configure the five `DIRECT_EFT_*` values in Supabase Edge Function secrets and approve a non-production test/deployment. Do not ask for or receive bank account details, online banking credentials, PINs or OTPs in chat.
