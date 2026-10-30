@@ -1,3 +1,12 @@
+## AUDISON BRAND CORRECTION — 2026-10-30
+
+- The two AFBMW rows in the Hertz staging workbook are not Hertz products. Manufacturer pages identify 66772099 as **Audison AFBMW BOOSTER 01** and 66772206 as **Audison AFBMW ReAMP 3**. Added exact official Audison pages and descriptions to the audit, but explicitly flagged the source brand mismatch. Do not publish under Hertz until Planetworld corrects the brand or owner approves a clear source normalization.
+- AFBMW BOOSTER 01 is for specified BMW 688 Harman/Kardon booster systems and has exclusions; AFBMW ReAMP 3 interfaces with BMW RAM/676 HiFi systems and 688 support is limited. Preserve exact fitment warnings.
+- **Manufacturer individual product-page matches now 85/89 across the staged workbook; four remain without a standalone exact official page: 78032225 generic SPL woofer, 78071121 DG 250.3, 78071126 DG 300.3, and 78211040 HCP HRC.** Do not mislabel the two Audison products as Hertz. Do not map the generic SPL row to SV 200L without supplier confirmation. DG 300.3 has a local reseller page identifying item code 78071126, but this is not manufacturer confirmation; HCP HRC is referenced as an optional accessory on official HCP amplifier pages, not a standalone product page.
+- No image binaries downloaded/approved, no GW SKU assignments, no product imports, no price/stock edits, no duplicate deletions and no production/Supabase/Axxess/DNS/payment changes.
+
+---
+
 ## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FIFTH FOLLOW-UP)
 
 - Added exact individual manufacturer page for X 170 (supplier reference 78040250): https://gr.hertz-audio.com/product/car-audio-coaxials-uno-x170/ .
