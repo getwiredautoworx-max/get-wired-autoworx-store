@@ -1,4 +1,4 @@
-name: Publish Restored Main Storefront Preview
+name: Publish Isolated Populated Store Preview
 on:
   push:
     branches:
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish-approved-baseline:
-    name: Deploy restored main source to isolated Pages preview
+    name: Deploy preview routes to non-production Pages branch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current restored main storefront source
@@ -24,7 +24,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build customer-only Pages directory
+      - name: Build customer-only Pages directory with isolated preview routes
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
 
       - name: Publish isolated Cloudflare Pages preview
@@ -32,5 +34,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=approved-storefront-preview
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=populated-store-preview
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
