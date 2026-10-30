@@ -4,6 +4,12 @@ import { readFile } from "node:fs/promises";
 const db = new PGlite();
 try {
   await db.exec(`
+    CREATE ROLE anon;
+    CREATE ROLE authenticated;
+    CREATE ROLE service_role;
+    CREATE SCHEMA auth;
+    CREATE TABLE auth.users (id uuid PRIMARY KEY);
+    INSERT INTO auth.users(id) VALUES ('00000000-0000-4000-8000-000000000001');
     CREATE TABLE public.orders (id uuid PRIMARY KEY);
     CREATE FUNCTION public.create_store_order_v2(
       text, text, text, text, text, text, text, numeric, text, text, jsonb, text, jsonb
