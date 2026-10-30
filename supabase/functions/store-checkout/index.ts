@@ -1,4 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { cartCanonical, validateBoundQuote, validatePickup, type QuoteItem } from "../_shared/delivery-quote.ts";
+import { validateCustomerSession } from "../_shared/customer-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -6,7 +8,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-Deno.serve(async (req: Request) => {
+export async function handleRequest(req: Request): Promise<Response> {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (req.method !== "POST") return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
@@ -14,15 +16,21 @@ Deno.serve(async (req: Request) => {
     const body = await req.json();
     if (!body || typeof body !== "object") throw new Error("Invalid order request.");
 
-    const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method","p_delivery_quote"];
+    const allowed = ["p_customer_name","p_customer_email","p_customer_phone","p_delivery_address","p_city","p_province","p_postal_code","p_delivery_fee","p_payment_method","p_notes","p_items","p_delivery_method","p_delivery_quote","p_terms_accepted"];
     const payload: Record<string, unknown> = {};
     for (const key of allowed) payload[key] = body[key];
 
     if (typeof payload.p_customer_name !== "string" || payload.p_customer_name.trim().length < 2) throw new Error("Customer name is required.");
     if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
     if (payload.p_items.length > 100) throw new Error("Too many cart items.");
+    if (payload.p_terms_accepted !== true) return new Response(JSON.stringify({ error: "Please accept the Terms & Conditions, Returns & Refunds Policy and Privacy Policy before checkout.", code: "POLICY_ACKNOWLEDGEMENT_REQUIRED" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    delete payload.p_terms_accepted;
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const publicApiKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY") || "";
+    const session = await validateCustomerSession(supabaseUrl || "", publicApiKey, req.headers.get("Authorization") || "");
+    if (!session.ok) return new Response(JSON.stringify({ error: session.message, code: session.code }), { status: session.status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    payload.p_customer_email = session.user.email;
     let secret: string | null = null;
     let usesSecretApiKey = false;
     const secretKeysEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
@@ -55,7 +63,7 @@ Deno.serve(async (req: Request) => {
       throw new Error("Every cart item must have a valid public SKU.");
     }
     const productsUrl = new URL(supabaseUrl + "/rest/v1/products");
-    productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price");
+    productsUrl.searchParams.set("select", "public_sku,active,specifications,price,cost_price,weight_kg,length_cm,width_cm,height_cm");
     productsUrl.searchParams.set("public_sku", "in.(" + publicSkus.join(",") + ")");
     productsUrl.searchParams.set("active", "eq.true");
     const productCheck = await fetch(productsUrl, {
@@ -84,6 +92,49 @@ Deno.serve(async (req: Request) => {
       }), { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
+
+    // Delivery rates must carry a short-lived HMAC token minted by shipping-quote.
+    // Never trust browser-supplied live=true, price, or matching delivery fee on its own.
+    const deliveryMethod = String(payload.p_delivery_method || "delivery").toLowerCase();
+    const deliveryFee = Number(payload.p_delivery_fee);
+    if (deliveryMethod === "pickup") {
+      validatePickup(deliveryFee, payload.p_delivery_quote);
+    } else {
+      const quote = payload.p_delivery_quote as Record<string, unknown> | null;
+      const token = typeof quote?.quote_token === "string" ? quote.quote_token : "";
+      const quoteSecret = Deno.env.get("DELIVERY_QUOTE_SIGNING_SECRET");
+      if (!quote || quote.live !== true || !token || !quoteSecret || quoteSecret.length < 32) {
+        return new Response(JSON.stringify({ error: "A secure, current delivery quotation is required. Please request a new quote.", code: "DELIVERY_QUOTE_REQUIRED" }),
+          { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
+      const cartQuantities = new Map<string, number>();
+      // Shared canonicalization enforces the same SKU/quantity rules used when the quote was issued.
+      cartCanonical(items as QuoteItem[]);
+      for (const item of items) {
+        const sku = String(item.public_sku ?? item.sku ?? "").trim().toUpperCase();
+        const qty = Number(item.quantity ?? item.qty);
+        cartQuantities.set(sku, (cartQuantities.get(sku) || 0) + qty);
+      }
+      const productsBySku = new Map((verifiedRows as Array<Record<string, unknown>>).map(product => [String(product.public_sku), product]));
+      let verifiedWeight = 0, verifiedLength = 0, verifiedWidth = 0, verifiedHeight = 0;
+      for (const [sku, qty] of cartQuantities) {
+        const product = productsBySku.get(sku);
+        const w = Number(product?.weight_kg), l = Number(product?.length_cm), wi = Number(product?.width_cm), h = Number(product?.height_cm);
+        if (!product || ![w, l, wi, h].every(Number.isFinite) || w <= 0 || l <= 0 || wi <= 0 || h <= 0) {
+          throw new Error("Verified parcel dimensions are missing or changed; request a fresh manual delivery quotation.");
+        }
+        verifiedWeight += w * qty; verifiedLength = Math.max(verifiedLength, l); verifiedWidth = Math.max(verifiedWidth, wi); verifiedHeight = Math.max(verifiedHeight, h);
+      }
+      const dest = {
+        p_delivery_address: payload.p_delivery_address, p_city: payload.p_city,
+        p_province: payload.p_province, p_postal_code: payload.p_postal_code,
+      };
+      await validateBoundQuote({
+        quote, token, secret: quoteSecret, items: items as QuoteItem[], destination: dest, deliveryFee,
+        parcel: { weight_kg: Number(verifiedWeight.toFixed(3)), length_cm: verifiedLength, width_cm: verifiedWidth, height_cm: verifiedHeight },
+      });
+    }
+
     const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
       method: "POST",
       headers: adminHeaders,
@@ -98,4 +149,6 @@ Deno.serve(async (req: Request) => {
   } catch (error) {
     return new Response(JSON.stringify({ error: error instanceof Error ? error.message : "Checkout request failed." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
   }
-});
+}
+
+if (import.meta.main) Deno.serve(handleRequest);

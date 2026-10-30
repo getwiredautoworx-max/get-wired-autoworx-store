@@ -1,0 +1,31 @@
+name: Customer Authentication Security Tests
+on:
+  pull_request:
+    paths:
+      - 'supabase/functions/_shared/customer-auth*'
+      - 'supabase/functions/store-checkout/**'
+      - 'checkout-v2.html'
+      - '.github/workflows/customer-auth-security.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  customer-auth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Verify server enforcement is wired
+        run: |
+          set -euo pipefail
+          grep -Fq 'validateCustomerSession' supabase/functions/store-checkout/index.ts
+          grep -Fq 'AUTH_REQUIRED' supabase/functions/_shared/customer-auth.ts
+          grep -Fq 'AUTH_EMAIL_REQUIRED' supabase/functions/_shared/customer-auth.ts
+          grep -Fq 'signInBtn' checkout-v2.html
+          grep -Fq 'sessionStorage.getItem(authKey)' checkout-v2.html
+      - name: Test customer session validation
+        run: deno test supabase/functions/_shared/customer-auth_test.ts
+      - name: Type-check checkout function
+        run: deno check supabase/functions/store-checkout/index.ts
