@@ -3892,3 +3892,32 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 6. Checkout security, PayFast, final customer journey, Axxess hosting, DNS and production launch remain later release tasks and require the owner's explicit approval.
 
 - Handover source remains this file. Continue from this checkpoint; do not reopen PR #116 or repeat the completed 81-row content and pricing work.
+
+
+---
+
+## OWNER STATUS REQUEST — CURRENT REMAINING WORK — 2026-10-30
+
+- Re-read the current handover and rechecked live GitHub PR state.
+- PR #116 is confirmed **closed without merge**; do not reopen it.
+- PR #117 is confirmed **open, non-draft and mergeable**, based on `main`, head `5e1090e2c1182623b6380fbd6959eedd733ede28`. It is the sole populated-store preview integration candidate. It has not been merged; the current main storefront remains intentionally unchanged/buttons-only.
+- The isolated hosted populated preview remains available at https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/preview-store.html. Its last recorded exact-head QA passed populated catalogue loading, Part Search/no-AI request flow, audio navigation, ASC zero-stock, and mobile/desktop overflow checks. This preview does not contain the 81 new supplier candidates as public products.
+
+### Current work completed
+1. Supplier staging: 770 supplier/SKU rows remain private and inactive; Planetworld supplier identity is established; Audio Connections connection remains inactive pending dealer trade confirmation.
+2. Candidate content: 81 candidate SKUs have manufacturer-verified names/descriptions and source-page references staged privately (68 Planetworld, 13 Sony/Audio Connections). All remain inactive, unlinked and unpublished.
+3. Price review: review-only calculations exist for all 68 Planetworld and 13 Sony candidates. No customer prices were imported. Planetworld stock snapshot is dated 2026-10-25 and is not current availability confirmation; Audio Connections availability is absent from its price list.
+4. Preview integration: PR #117 safely isolates preview routes and has passed its recorded exact-head QA. PR #116 is superseded and closed.
+
+### Remaining work — actual blockers, not repeated tasks
+1. **Images:** obtain exact high-resolution, model-specific assets for the 81 candidates from approved supplier/manufacturer sources, inspect them, and stage them privately. There are currently 0 approved image URLs. Do not use low-resolution PDF thumbnails or shared variant images.
+2. **Current supplier confirmation:** reconfirm current Planetworld availability and current dealer pricing for the 68 candidates; confirm Audio Connections dealer relationship/trade terms and current price/availability for the 13 Sony candidates. The historical workbook/PDF evidence is not current stock confirmation.
+3. **Safe catalogue record creation:** after image, price/VAT and availability evidence is complete, create only cleared candidate products as inactive records and link their private supplier rows. Hold any candidate that fails one of those checks. No customer publication, activation or stock/price import without the applicable approval.
+4. **Remaining 689 supplier rows:** classify and map the other staged records; 245 Planetworld Car Audio rows still require manual component classification, and the remaining supplier divisions need their own review. Do not auto-link or auto-publish.
+5. **Preview refresh and acceptance:** once cleared product records and confirmed stock are available, refresh the isolated preview and rerun hosted desktop/mobile product, category, search and request-flow tests. Keep ASC stock at zero.
+6. **Separate release gates:** review/merge PR #117 only after owner preview acceptance; checkout/PayFast authentication and end-to-end payment; Axxess-served Part Search correction; hosting/DNS and production deployment. These remain on hold pending explicit approval.
+
+### Release boundary unchanged
+- No ASC stock restoration; no unconfirmed non-ASC stock update; no supplier item activation; no public product/image/price publication; no checkout or PayFast activation; no Axxess upload, DNS change, Cloudflare Worker change or production deployment.
+- Do not claim the store is launch-ready. Launch remains HOLD.
+- Continue from this checkpoint; do not redo the completed 81-row description/pricing work or reopen PR #116.
