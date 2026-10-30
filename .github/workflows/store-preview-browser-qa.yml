@@ -41,7 +41,7 @@ jobs:
           const fs = require('fs');
           for (const route of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']) {
             const html = fs.readFileSync(route,'utf8');
-            const robots = [...html.matchAll(/<meta\\s+name=["']robots["']\\s+content=["']([^"']+)["'][^>]*>/gi)].map(x=>x[1]);
+            const robots = [...html.matchAll(/<meta\s+name=["']robots["']\s+content=["']([^"']+)["'][^>]*>/gi)].map(x=>x[1]);
             if (robots.length !== 1 || robots[0] !== 'noindex,nofollow') throw new Error('Preview route must have exactly one noindex,nofollow directive: '+route+' '+JSON.stringify(robots));
           }
           console.log('PREVIEW_ROBOTS_NOINDEX_PASS');
