@@ -1,3 +1,10 @@
+## Exact-head responsive catalogue QA PASS — 2026-10-30
+
+- Workflow run **41025619381** completed **SUCCESS** at commit `1bd693c4bfe8b72db32115bf0102376f50b5eeea`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41025619381
+- Supplier-routing unit/static tests passed; Deno type-check of `supabase/functions/supplier-quote/index.ts` passed; enriched catalogue review Playwright passed at **360, 390, 768 and 1280 px**.
+- Each viewport verified 10 brand buttons, 6 Alpine amplifier records, 84 manufacturer-verified Hertz products, 3 unresolved Hertz holds, 28 separate Marine Audio rows and 47 Harnesses & Trims rows, with **0 JavaScript errors and no horizontal overflow**. KMC4/KMC6 official marine detail checks now match the exact source labels.
+- This is a **review-prototype QA pass**, not populated live storefront/customer journey verification. It does not approve images or GW SKUs and does not authorize catalogue publication, checkout, production or database changes.
+
 ## Sony official-image audit result — 2026-10-30
 
 - Browser audit run **41023956303** ended **CANCELLED**, not passed. The audit encountered HTTP **403** from Sony's official product pages for every attempted model (XS-163ES, XS-162ES, XS-692ES, XS-160ES, XS-680ES, XS-690ES, XS-W104ES, XS-W122ES, XS-W124ES, XM-1ES, XM-4ES, XM-5ES, XM-6ES); zero image files were downloaded and zero images approved. The run was cancelled before remaining models completed.
