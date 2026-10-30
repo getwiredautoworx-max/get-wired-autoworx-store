@@ -4173,3 +4173,41 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PR #128 and #121 remain open/unmerged. PR #130 is the active preview integration candidate. PR #126 and #129 remain open feature branches but their changes are integrated into #130; do not merge duplicates.
 - Planetworld preview still uses the 25-Oct-2026 stock snapshot; do not represent it as current supplier availability. ASC remains zero on all 36 owner-directed ledger matches (7,037 units reset); do not re-run or broaden the reset.
 - No Axxess upload, DNS, production deployment, supplier activation, public SKU/product/image publication, live price/stock changes, Supabase migrations/functions, or payment activation without explicit owner approval.
+
+
+## OWNER-DIRECTED 48-HOUR EXECUTION CHECKPOINT — 2026-10-30 14:55 SAST
+
+### Verified progress: PR #134 populated preview integration
+- Current preview integration candidate: PR #134, "Integrate tested catalogue search and courier privacy fix".
+- Owner preview URL: https://integration-preview-search-s.get-wiredautoworx-store.pages.dev/preview-store.html ; Planetworld review: https://integration-preview-search-s.get-wiredautoworx-store.pages.dev/preview-planetworld.html . PR records successful Cloudflare Pages deployment for handover-only commit 43a9ad45b7b057ac1224075a5b5fb89f0a5a7c10.
+- Exact code head 5287bb47c0ec439e68ca6b473de054227469e916 has five completed successful workflow runs: Populated Store Preview Browser QA 41058151989; Delivery Quote Security Tests 41058152058; Cloudflare Pages Public Package QA 41058151994; Storefront Smoke Test 41058151979; Public SKU Exposure Audit 41058151998.
+- Browser QA recorded 4,187 products; exactly eight approved category roots; 34 active ASC SKUs at zero stock; Part Search and exact SKU search; product modal; audio navigation; 390px mobile and 1280px desktop without horizontal overflow or page errors. Planetworld review snapshot remains 68 rows (44 positive / 24 zero), seven exact-model manufacturer images loaded, no dealer cost exposure.
+- Search/courier regression suites passed (12 + 4 assertions); delivery quote behavioural tests, migration test, checkout integration and Edge Function type checks passed.
+- Workflow nuance: Storefront Smoke Test run 41058151979 completed SUCCESS, but its smoke job was SKIPPED by workflow condition; do not represent that sub-job as executed. The populated-preview browser QA did execute and pass.
+- A direct open of the preview URLs could not be independently completed from the current assistant network environment; deployment and hosted browser QA evidence are from the PR/workflow records. Owner should inspect the links on their device.
+
+### Owner's 48-hour target
+- Owner requests store ready within 48 hours from 2026-10-30 14:55 SAST (target 2026-11-01 14:55 SAST). Treat this as an execution deadline, not a guarantee. Prioritise a safe limited-scope launch over waiting for all 770 supplier rows to be fully enriched.
+- Do not block an initial launch on automated WhatsApp Business Platform messaging; manual order-specific WhatsApp click-to-chat is implemented.
+- Do not block initial launch on an additional card/payment gateway if the owner approves a Direct EFT-only launch after the full secure checkout test. EFT payment must remain pending until manual bank verification.
+- PR #134 is a preview integration candidate; no production deployment, Supabase function deployment, secret entry, Axxess upload, DNS change, supplier activation, public stock/price/image publication or payment activation has occurred.
+
+### Remaining critical path, in order
+1. Owner preview review of PR #134 deployment. Keep preview noindex and checkout/supplier submissions disabled.
+2. Complete signed, short-lived/server-stored delivery quote v3 end-to-end: bind quote to destination, cart/SKUs/quantities, server-derived parcel details, carrier/service, fee/currency and expiry; verify server-side before order RPC; add negative tamper/replay/expiry/cart/destination tests and pickup positive test. Review SQL migration and function source; no production deployment until owner approval.
+3. Confirm reviewed store-checkout and product-image function source against the current main code, configure the five DIRECT_EFT_* secrets directly in Supabase Dashboard (owner/admin only), deploy only with explicit owner approval, and test a non-production order through pending/manual EFT verification. Never put bank details or secrets in GitHub/chat.
+4. Prepare the exact Axxess package and read-only validation report, including package contents, size, noindex removal only for the approved production routes, domain/SSL plan, and rollback copy. Do not upload or change DNS without explicit release approval.
+5. Catalogue launch scope: use the currently reviewed Planetworld snapshot only with its 2026-10-25 date label; do not claim live supplier availability. Keep ASC at zero for the 34 active preview rows / prior exact 36-row reset scope. Publish only individually verified products with owner price/image approval; defer unresolved manufacturer rows rather than delaying a smaller safe launch.
+6. Final production smoke/customer journey after approved deployment: category/search/product detail/cart, delivery/pickup, Direct EFT instructions, WhatsApp handoff, mobile layout, order pending state, and manual payment reconciliation.
+
+### Unresolved / external gates
+- Issue #102 delivery quote integrity: deployed functions currently trust client-supplied quote object/fee; signed/server-stored quote hardening and approved deployment remain mandatory before enabling delivery checkout.
+- Direct EFT secrets and bank details have not been configured; no non-production end-to-end payment test has been completed.
+- Axxess production package, domain/SSL and DNS cutover have not been executed.
+- Planetworld quantities are a dated snapshot; Audio Connections September 2026 list has no live availability feed. Supplier dealer authorisation for Audio Connections is owner-confirmed and must not be re-requested.
+- No calendar promise is made for production until security, EFT, preview acceptance and Axxess/domain gates are evidenced. The 48-hour objective is to complete the actionable work and present only the specific owner/external release actions that cannot be performed safely by the agent.
+
+### Next immediate execution
+- Work on delivery quote v3 source/tests and inspect existing checkout/security PRs; identify whether a reviewable PR already exists before creating duplicate work.
+- Inspect and prepare the Axxess package without uploading.
+- Refresh this handover after each material test/merge/deployment result. Record commit/run IDs and never conflate merged, deployed, previewed and live states.
