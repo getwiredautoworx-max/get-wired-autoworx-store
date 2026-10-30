@@ -1,3 +1,12 @@
+## HERTZ FINAL EXCEPTION RE-CHECK — 2026-10-30
+
+- Rechecked the three remaining Hertz exceptions against an official Hertz-hosted 2019 mobile-audio catalogue PDF: https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf . It explicitly lists **DSG 250.3** and **DSG 300.3** as optional grilles for DS 25.3 / DS 30.3. The two Planetworld/reseller source strings are **DG 250.3** and **DG 300.3**. This reveals a likely missing-“S” model-string discrepancy, but does not prove the supplier item-code mapping.
+- Official current Hertz pages show MG 250.3 / MG 300.3 are different Mille Legend/Pro grilles with different fitment. Do not substitute MG products for the Dieci/DSG exceptions.
+- Updated `catalogue-review/hertz-final-exceptions-2026-10-30.csv` and the Hertz crosscheck with this evidence and exact supplier confirmation requests. 78071121 and 78071126 remain HOLD pending Planetworld confirmation of DSG model spelling + item-code/EAN mapping + fitment. 78032225 remains HOLD because “Hertz Series Set SPL Woofer” has no exact model number; do not infer SV 200L.
+- No images approved, no GW SKUs, no publication, no supplier stock/price, Supabase, Axxess, DNS, payment or production changes.
+
+---
+
 ## REVIEW-BRANCH RESPONSIVE QA — 2026-10-30
 
 - Updated `scripts/catalogue-nav-prototype.spec.js` so the Hertz assertion reflects the reconciled 84 manufacturer product records (84/87 Hertz-branded; 3 exceptions), replacing the stale 12-page assertion.
