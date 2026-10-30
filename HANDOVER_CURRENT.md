@@ -1,3 +1,30 @@
+## Consolidated technical continuation — Part Search, checkout security, browser QA, supplier mapping — 2026-10-30
+
+### Branch reconciliation
+- Active review candidate is `integration/latest-consolidated-review-2026-10-30`; the earlier `integration/latest-consolidated-2026-10-30` branch is separate and diverged. GitHub compare reports 281 commits ahead / 40 behind from the merge base. Do not merge either branch wholesale. The review branch contains the 702-row Planetworld + 68-row Audio Connections audit work, supplier-routing fail-closed code, Kicker/Hertz review data, and QA workflows. The earlier branch contains the iframe-aware smoke and artifact-free monitor work from PRs #100/#101. Port those changes selectively after reviewing workflow conflicts.
+- Retargeted PRs #94, #104, #105 and #106 to the active review candidate. They remain open and unmerged; GitHub reports them unmergeable because their heads are divergent. Do not force-merge or replace the review branch with their stale bases.
+
+### Part Search PR #94
+- PR #94 still contains the delayed-product-load race fix and Playwright regression for typing a part query before the product list arrives. It is not yet present in the active review candidate's buttons-only `index-new.html`; that page currently intentionally suppresses the catalogue. The PR also modifies `category.html`, `products.html`, and smoke workflows. Selectively port the Part Search runtime fix and its deterministic test when the populated storefront source is restored for review; do not restore catalogue data or publish products as part of this step.
+- Previous live Axxess failure remains `ReferenceError: openPartSearch is not defined`; no Axxess upload is authorized or performed.
+
+### Checkout security and policies
+- Read-only source inspection confirms current active-review `store-checkout/index.ts` has no server-side customer-session verification before privileged service-role order creation. The current `checkout-v2.html` uses the publishable key as its Authorization bearer value, which is not a customer session. Therefore the login requirement is not secured by the current handler. This is a critical security blocker; keep order submission/deployment disabled until fixed and tested.
+- PR #106 supplies a tested auth helper that verifies the bearer token with Supabase Auth, requires a confirmed email, and overwrites the order email with the authenticated account email. PR #104 supplies signed, short-lived delivery quote validation bound to the cart, destination, provider, fee and server-verified parcel dimensions. Both change checkout files/functions and need a deliberate combined implementation; do not merge either branch wholesale. PR #104 requires `DELIVERY_QUOTE_SIGNING_SECRET` (same strong value in both quote and checkout functions, minimum 32 chars) plus provider adapter secrets. These are not provisioned here and no Edge Function has been deployed.
+- PR #105 contains policy acknowledgement and privacy/pickup wording; retain it as a separate selective integration after checkout/auth code is reconciled. Keep payment pending / EFT only; no PayFast/payment activation.
+
+### Populated-store browser QA
+- Responsive review workflow exact-head run **41025415195** passed supplier routing unit/static tests and Deno type-check, then failed only in Playwright on a stale expected KMC6 verification label. Exact record renders `VERIFIED — official KICKER individual product page`; test expected the shorter wording. Corrected the assertion in commit `1bd693c4bfe8b72db32115bf0102376f50b5eeea`.
+- Fresh run **41025619381** is in progress at the corrected commit. Earlier failures 41024725122, 41025141884 and 41025415195 are historical and must not be represented as passing. The review prototype is populated audit data only; it is not the live customer storefront. The production storefront remains buttons-only and no hosted populated-customer journey has been verified.
+
+### Supplier-to-GW SKU mapping
+- Latest read-only audit: 4,198 `gw_private.product_supplier_codes` rows all have `supplier_id IS NULL`; all join to legacy `products.sku`, none to `public_sku`. Zero of 702 Planetworld source item codes match existing product `sku` or `public_sku`. `gw_private.supplier_catalog_items` has 0 rows. Only Caelex Infolog, Accessories Spares Centre and Electro City are registered; Planetworld and Audio Connections are absent. Name/description matching against 220 candidate manufacturer models also returned zero.
+- No defensible automatic Planetworld or Audio Connections GW SKU mapping exists in current data. Do not mint GW SKUs, infer supplier IDs, assign by brand/model alone, or write supplier connections/mapping rows. Owner/supplier confirmation and correct supplier connection IDs are prerequisites. Keep every supplier code distinct from customer-facing GW SKU.
+
+### Safety / next exact actions
+- No production/Axxess/DNS/Cloudflare deployment, payment change, Supabase write, live stock/price/catalogue import, supplier mapping write, or live order has been performed.
+- Next: inspect run 41025619381 logs; fix any genuine remaining assertion/app defects (not by weakening tests); run populated-store QA at 360/390/768/1280 plus desktop browser journey; selectively combine PR #106 auth with PR #104 signed-quote handler and its tests; port PR #105 policy text; port PR #94 Part Search only into the actual populated storefront source; reconcile PR #100/#101 workflow/monitor changes with the catalogue branch; keep mapping blocked until supplier identifiers and owner-approved mappings exist.
+
 ## Kicker QA assertion follow-up — 2026-10-30
 
 - Exact-head run **41025415195** passed supplier-routing unit/static checks and Deno type-check, then failed in responsive Playwright at the KMC6 verification-label assertion. The rendered records confirm the official page link is present; the JSON's exact status is `VERIFIED — official KICKER individual product page`, not the shorter label previously expected. This is another stale assertion, not a missing manufacturer match.
