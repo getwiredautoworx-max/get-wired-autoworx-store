@@ -55,6 +55,7 @@ const { chromium } = require('playwright');
     if(!musicText.includes('GW SKU: not assigned')||!musicText.includes('Image: not verified'))throw new Error('Music image/GW SKU review guards missing');
     await page.locator('#back').click();
     await page.locator('#back').click();
+    await page.locator('#back').click();
     await page.locator('#content [data-section="Studio & Pro Audio"]').click();
     if(!(await page.locator('#content').innerText()).includes('JBL'))throw new Error('JBL should remain in Studio & Pro Audio, not Band Instruments');
     await page.locator('#home').click();
