@@ -404,3 +404,30 @@ No-upload continuation used existing GitHub and live Supabase source. Four Elect
 - Isolated review branch: `catalogue/complete-remaining-review-2026-10-30`.
 - 226/702 Planetworld rows now have official manufacturer page/collection references; none are approved for publication until exact internal public_sku and image checks pass.
 - Read latest `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md`; consolidated summary is `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`.
+
+
+## 2026-10-30 execution checkpoint — catalogue/product presentation
+
+Continue from `catalogue/ingest-review-2026-10-30`. User explicitly asked to resolve Planetworld/Audio Connections catalogue completion, exact images/descriptions/GW SKUs, brand/component navigation and mobile/browser testing. Avoid circular status-only updates.
+
+Verified review work:
+- Planetworld: 47 XLSX, 94 sheets, 3,317 Products rows extracted with source provenance. Car Audio 702 rows: 627 brand products, 47 Harnesses & Trims, 28 Marine Audio. 486 model tokens extracted; 216 rows lack usable model tokens. No exact model-code matches in current product-image filenames.
+- Musical Instruments: 1,719 rows / 21 brands. Navigation split: Band Instruments 1,273; Studio & Pro Audio 230; Instrument Cases & Accessories 191; DJ Equipment 25. Five component labels need manual review.
+- Separate review-only Car Audio and Band Instruments/Studio/DJ prototypes created. Responsive navigation passed at 360, 390, 768 and 1,280 px in run 41015761561. Later integrated product-card/logo test is still being rechecked; confirm final run before claiming pass.
+- Car Audio category tree: duplicate display-name groups Amplifiers, Head Units, Speakers; each duplicate child currently has zero direct active products. Car Audio parent has 39 active products; AERIALS has 7. Do not merge/delete categories without product-association review.
+- Official Car Audio logos found and added to prototype for Alpine, Audison and Kicker. Focal not located; JVC/Kenwood/Pioneer official sites blocked with 403; Hertz yielded product-line logos only, not the main wordmark; One and Amplified sources not identified. Planetworld workbook scan found no header-logo images.
+- Audio Connections: 68 rows (53 Starsound, 15 Sony). Three Starsound no-price rows use “Price on Request due to Limited Stock and Availability.” Sony XS-690ES is SOLD OUT; exact official page found for 14/15 Sony models; XS-680G unmatched. PDF images are low-resolution/shared and are not approved for customer display. Re-run Sony browser image audit.
+- Hertz staging: 89 rows. Twelve exact official product pages and twelve exact image candidates visually checked; 12 review-only product cards now include official descriptions/specs/images. Remaining 77 Hertz rows unmatched. MPS 250 S2/S4 share the manufacturer's official image but remain distinct impedance variants.
+- Twelve provisional GW SKU candidates generated for the 12 verified Hertz models. Read-only Supabase inspection: `public.products.public_sku` is NOT NULL and unique, has no default or generator trigger; no generator exists in repo/database. There are 4,200 rows / 4,200 unique public SKUs; 2 legacy values are nonstandard. Order function validates `^GW-[A-Z0-9]{8}$`. All 12 candidates passed format and collision checks. They are NOT inserted.
+- No Supabase writes, live stock/catalogue edits, payment/checkout changes, DNS/Axxess, Cloudflare/Netlify, PR merge or production deployment.
+
+Next actions:
+1. Finish integrated Car Audio/Hertz/logo responsive test and commit/inspect latest screenshots.
+2. Re-run Sony browser image audit; visually check each exact model image before display.
+3. Continue exact Planetworld manufacturer page/image/description matching; never pair by resemblance or supplier code alone.
+4. Continue official logo sourcing; do not substitute line logos or guessed icons.
+5. Keep unverified rows quarantined and retain exact no-price Starsound wording above.
+6. Do not insert provisional GW SKUs or create live product records until owner explicitly authorises Supabase writes. Keep supplier-code mapping private.
+7. Payment integration/final launch checks remain separate final blocker; leave untouched until catalogue presentation is verified and payment changes are approved.
+
+All artifacts are review-only under `catalogue-review/` on the review branch. Do not treat them as production catalogue data or merge without verification.
