@@ -106,7 +106,7 @@ const { chromium } = require('playwright');
       await page.locator('#home').click();
       await page.locator('#marine').click();
       const marineKickerText = await page.locator('#content').innerText();
-      if (!marineKickerText.includes('KMC4 Marine Dual-Zone Media Center') || !marineKickerText.includes('KMC6 Premium Marine Media Center') || !marineKickerText.includes('25 W x 6 at 4 Ω') || !marineKickerText.includes('IP66')) throw new Error('Kicker KMC4/KMC6 official marine product detail missing');
+      const marineKickerChecks = { kmc4Code: marineKickerText.includes('51KMC4'), kmc4Channels: marineKickerText.includes('four built-in amplifier channels'), kmc6Code: marineKickerText.includes('48KMC6'), kmc6Name: marineKickerText.includes('KMC6 Premium Marine Media Center'), kmc6Power: marineKickerText.includes('25 W x 6 at 4 Ω'), ip66: marineKickerText.includes('IP66') }; if (Object.values(marineKickerChecks).some(value => !value)) throw new Error('Kicker marine manufacturer details incomplete: '+JSON.stringify(marineKickerChecks));
       await page.locator('#home').click();
       await page.locator('#content [data-brand="Hertz"]').click();
       const hertzNotice = await page.locator('#content').innerText();
