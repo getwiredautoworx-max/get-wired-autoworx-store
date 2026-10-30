@@ -14,7 +14,14 @@ const { chromium } = require('playwright');
       page.on('response', response => { if (response.url().includes('review.json') || response.url().includes('hertz-manufacturer-product-review.json')) { if (response.status() >= 400) failedRequests.push(response.url() + ' :: HTTP ' + response.status()); } });
       await page.goto('http://127.0.0.1:4173/catalogue-review/car-audio-navigation-prototype.html', { waitUntil: 'domcontentloaded' });
       try {
-        await page.waitForFunction(() => document.querySelector('#status')?.textContent.includes('Loaded 704') && document.querySelector('#status')?.textContent.includes('84 manufacturer-verified Hertz records'), { timeout: 15000 });
+        await page.waitForFunction(() => {
+        const status = document.querySelector('#status')?.textContent || '';
+        return status.startsWith('Loaded ') || status.startsWith('Could not load review data:');
+      }, { timeout: 15000 });
+      const loadedStatus = await page.locator('#status').innerText();
+      if (!loadedStatus.includes('Loaded 704') || !loadedStatus.includes('84 manufacturer-verified Hertz records')) {
+        throw new Error('Review data did not load as expected: ' + loadedStatus + ' | page errors: ' + pageErrors.join(' | '));
+      }
       } catch (error) {
         const statusText = await page.locator('#status').innerText().catch(() => '(no #status element)');
         throw new Error('Review prototype failed to load. status=' + statusText + '; pageErrors=' + pageErrors.join(' | ') + '; failedRequests=' + failedRequests.join(' | '));
