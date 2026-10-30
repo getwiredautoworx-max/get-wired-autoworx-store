@@ -1,3 +1,11 @@
+## ADDITIONAL REVIEW-BRANCH RESULT — ALPINE — 2026-10-30
+
+- 58 Planetworld Alpine source rows cross-checked: 9 exact individual official product pages, 26 official collection model matches, 5 official catalogue model matches and 18 unresolved in this pass.
+- Four original high-resolution official image source URLs located for R2-W10D2, R2-W12D4, R2-A60F and S2-S40C; URLs recorded in the review branch manifest. No binaries downloaded or published. No current image comparison or internal public_sku mapping completed; no product image is eligible for publication. R2-W12D4 image is a shared family image for W12D2/W12D4 and does not distinguish impedance variant.
+- Review branch `catalogue/complete-remaining-review-2026-10-30`; main storefront remains buttons-only, launch HOLD.
+
+---
+
 ## ADDITIONAL REVIEW-BRANCH RESULT — PLANETWORLD ONE — 2026-10-30
 
 - Exact official OneNav product page + visible supplier SKU + vehicle application matches increased to nine: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
