@@ -1,0 +1,42 @@
+name: Hertz CK165 Image Preview Thumbnail
+
+on:
+  push:
+    branches:
+      - catalogue/ingest-review-2026-10-30
+    paths:
+      - "scripts/create_ck165_image_thumbnail.js"
+      - ".github/workflows/ck165-image-thumbnail.yml"
+
+permissions:
+  contents: write
+concurrency:
+  group: catalogue-review-branch-write
+  cancel-in-progress: false
+
+jobs:
+  thumbnail:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: catalogue/ingest-review-2026-10-30
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install image resize library
+        run: npm install --no-save sharp@0.33.5
+      - name: Create small visual review thumbnail
+        run: node scripts/create_ck165_image_thumbnail.js
+      - name: Commit thumbnail
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "generated CK165 thumbnail"
+          git fetch origin catalogue/ingest-review-2026-10-30
+          git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
+          git stash pop
+          git add catalogue-review/hertz-image-thumbnails/ck-165-candidate-1-preview.jpg
+          git commit -m "[skip ci] Add CK165 image review thumbnail"
+          git push origin HEAD:catalogue/ingest-review-2026-10-30
