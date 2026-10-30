@@ -67,9 +67,24 @@ jobs:
                   { status: response?.status() ?? null, finalUrl: desktop.url() });
                 add('HTTPS_CANONICAL', desktop.url().startsWith('https://') ? 'PASS' : 'FAIL', { finalUrl: desktop.url() });
                 const title = await desktop.title().catch(() => '');
-                const bodyText = await desktop.locator('body').innerText({ timeout: 10000 }).catch(() => '');
+                // store.html is a thin wrapper around index-new.html. The wrapper body can be
+                // intentionally empty because its customer-facing content lives inside iframe#store.
+                // Poll the main document and child frames instead of treating an empty wrapper body
+                // as proof that the storefront itself is blank.
+                let frameTexts = [];
+                const contentDeadline = Date.now() + 15000;
+                while (Date.now() < contentDeadline) {
+                  frameTexts = await Promise.all(desktop.frames().map(async frame => ({
+                    url: frame.url(),
+                    text: await frame.locator('body').innerText({ timeout: 3000 }).catch(() => '')
+                  })));
+                  if (frameTexts.some(frame => frame.text.trim().length > 30)) break;
+                  await desktop.waitForTimeout(500);
+                }
+                const bodyText = frameTexts.map(frame => frame.text).filter(Boolean).join('\n');
                 add('PAGE_CONTENT', title.trim() && bodyText.trim().length > 30 ? 'PASS' : 'FAIL',
-                  { title, bodyTextLength: bodyText.trim().length });
+                  { title, bodyTextLength: bodyText.trim().length, frameCount: frameTexts.length,
+                    contentFrameUrls: frameTexts.filter(frame => frame.text.trim().length > 0).map(frame => frame.url) });
                 await desktop.screenshot({ path: path.join(out, 'desktop-home.png'), fullPage: true }).catch(() => {});
                 const internalLinks = await desktop.locator('a[href]').evaluateAll((els, origin) =>
                   els.map(a => a.href).filter(h => h.startsWith(origin)).slice(0, 20), new URL(base).origin);
