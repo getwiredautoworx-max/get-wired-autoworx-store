@@ -4,6 +4,26 @@ import { validateCustomerSession } from "../_shared/customer-auth.ts";
 
 const POLICY_VERSION = "GW-TERMS-RETURNS-PRIVACY-2026-10-30";
 
+export function buildDirectEftInstructions(
+  getEnv: (name: string) => string | undefined,
+  order: Record<string, unknown>,
+) {
+  const fields = {
+    bank_name: getEnv("DIRECT_EFT_BANK_NAME")?.trim() || "",
+    account_name: getEnv("DIRECT_EFT_ACCOUNT_NAME")?.trim() || "",
+    account_number: getEnv("DIRECT_EFT_ACCOUNT_NUMBER")?.trim() || "",
+    branch_code: getEnv("DIRECT_EFT_BRANCH_CODE")?.trim() || "",
+    account_type: getEnv("DIRECT_EFT_ACCOUNT_TYPE")?.trim() || "",
+  };
+  const orderReference = String(order.order_number ?? order.order_id ?? "").trim();
+  if (Object.values(fields).some(value => !value) || !orderReference) return null;
+  return {
+    ...fields,
+    payment_reference: `GW-${orderReference}`,
+    reference_instructions: "Use this exact reference when making your EFT payment.",
+  };
+}
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -148,6 +168,11 @@ export async function handleRequest(req: Request): Promise<Response> {
     const text = await rpc.text();
     let data: unknown;
     try { data = JSON.parse(text); } catch { data = { error: text }; }
+
+    if (rpc.ok && payload.p_payment_method === "direct_eft" && data && typeof data === "object" && !Array.isArray(data)) {
+      const instructions = buildDirectEftInstructions((name) => Deno.env.get(name), data as Record<string, unknown>);
+      if (instructions) data = { ...(data as Record<string, unknown>), payment_instructions: instructions };
+    }
 
     return new Response(JSON.stringify(data), { status: rpc.status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (error) {
