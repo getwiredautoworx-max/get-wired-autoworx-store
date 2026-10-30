@@ -431,3 +431,8 @@ Next actions:
 7. Payment integration/final launch checks remain separate final blocker; leave untouched until catalogue presentation is verified and payment changes are approved.
 
 All artifacts are review-only under `catalogue-review/` on the review branch. Do not treat them as production catalogue data or merge without verification.
+
+## CRITICAL PUBLIC SKU MAPPING GATE — 2026-10-30
+
+- Read-only Supabase audit found no exact public_sku mapping for the 702 Planetworld supplier codes. Supplier-code table rows have NULL supplier_id and supplier_catalog_items is empty.
+- Do not assign images or publish new supplier products until an owner-approved supplier-specific product mapping is established. Read the latest current/permanent handovers and review-branch audit before continuing.
