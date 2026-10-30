@@ -4219,3 +4219,12 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Executed the catalogue-search unit test suite in an isolated Node 22 runtime using the exact committed matcher and test assertions: `CATALOGUE_SEARCH_UNIT_TESTS_PASS: 12 assertions`.
 - Corrected the test output label to reflect all 12 assertions. Latest PR #132 head now includes that correction; compare against main reports 14 commits ahead / 0 behind. No PR-triggered workflow runs were returned by the available GitHub run lookup, so this local pass does not replace hosted CI/browser verification.
 - PR #133 collection-origin regression suite independently passed locally: 4 assertions. No live secrets or deployment changed.
+
+
+## 2026-10-30 CONTINUATION — CONSOLIDATED PR / CONFLICT AVOIDANCE
+
+- Avoided parallel PR workflow-file conflicts by consolidating PR #133 courier-origin privacy correction into PR #132's clean current-main integration branch. PR #133 is now superseded and should be closed with a reference to PR #132.
+- PR #132 now also contains `supabase/functions/_shared/collection-origin.js`, `tests/collection-origin.test.cjs`, and a source-only correction to `supabase/functions/shipping-quote/index.ts`: no private collection origin remains in source; four server-side environment settings are required; if any are missing, live carrier calls are skipped.
+- Extended the existing base-branch populated-store browser QA workflow to trigger on the courier-source/test paths and run both local regression suites before Playwright. Removed the duplicate new workflow file to avoid extra CI and because it would not trigger on the PR until merged.
+- Local verification: catalogue search regression suite passed 12 assertions in Node 22; courier origin fail-closed suite passed 4 assertions. Browser QA and hosted preview still await GitHub Actions run evidence.
+- Current PR #132 remains draft/unmerged. The exact-head workflow lookup has returned no runs, so do not state hosted CI passed. No production function deployment, secret configuration, Supabase writes, Axxess/DNS, supplier publication, stock/price changes, or payment activation.
