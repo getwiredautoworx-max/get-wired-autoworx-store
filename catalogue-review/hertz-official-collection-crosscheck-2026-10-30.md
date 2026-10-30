@@ -41,6 +41,19 @@ These are manufacturer collection-listing matches, not individual product detail
 | Amplifiers | ML Power 1; CP 4.800; CP 1.2K; CP 1.700; HCP 5D; DP 4.400 | https://hertz-audio.com/collections/car-audio-amplifiers/ |
 | Dieci Power amplifiers | DP 4.300; DP 1.500 | https://nl.hertz-audio.com/collections/car-audio-amplifiers/ |
 
+## Additional current collection and manufacturer-document matches
+
+| Product family | Exact model labels visible in official source | Source | Match level |
+|---|---|---|---|
+| Cento subwoofers | CS 200 S4; CS 250 S2; CS 250 S4; CS 300 S2; CS 300 S4; CG 200; CG 250; CG 300 | https://hertz-audio.com/collections/car-audio-subwoofers-cento/ | Official collection listing |
+| Cento speakers | C 26; C 165 L; C 165 F; CX 100; CX 130; CX 165; CX 570; CX 690; CPX 165; CPX 690; CK 165 L; CPK 690 | https://hertz-audio.com/collections/car-audio-speakers-cento/ | Official collection listing |
+| Dieci speakers and grilles | DCX 100.3; DCX 130.3; DCX 160.3; DCX 165.3; DCX 170.3; DCX 570.3; DCX 690.3; DCX 710.3; DCX 87.3; DSK 130.3; DSK 160.3; DSK 165.3; DSK 170.3; DT 24.3; DG 100.3; DG 130.3; DG 165.3 | https://hertz-audio.com/collections/car-audio-speakers-dieci/ | Official collection listing |
+| Mille / Mille Pro speakers | ML 280.3; MP 28.3; ML 1650.3; MPX 690.3; MPX 165.3; MLK 165.3; MLK 1650.3; MLK 700.3; MPK 130.3; MPK 163.3; MPK 165.3; MPK 165P.3 | https://hertz-audio.com/collections/car-audio-speakers/ | Official collection listing |
+| Mille Pro shallow subwoofers | MPS 250 S2; MPS 250 S4; MPS 300 S2; MPS 300 S4; MPBX 250 S2; MPBX 300 S2 | https://us.hertz-audio.com/collections/car-audio-subwoofers/ and https://hertz-audio.com/news/mille-pro-shallow-subwoofer-box/ | Official collection/news pages; not all individual product pages |
+| DBA active subwoofer | DBA 201 F | https://hertz-audio.com/news/dba-201-f/ | Official manufacturer announcement page; not individual product detail page |
+| Uno speakers | X 130; X 165; X 170; X 690; K 130; K 165; K 170 | https://hertz-audio.com/collections/car-audio-speakers-uno/ | Official collection listing |
+| 2019 legacy models | S 300 S4; additional legacy family specifications | https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf | Official catalogue evidence; verify discontinued/current status separately |
+
 ## Official catalogue evidence
 
 The official 2019 Hertz mobile-audio catalogue PDF also names Uno K 130 / K 165 / K 170 and S 300 S4, with their product family and basic specifications:
