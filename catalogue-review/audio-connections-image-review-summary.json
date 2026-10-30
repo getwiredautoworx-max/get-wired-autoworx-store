@@ -1,0 +1,21 @@
+{
+  "embedded_images_extracted": 21,
+  "starsound_product_images": 0,
+  "sony_page1_unique_row_images": 7,
+  "sony_page2_unique_row_image": 1,
+  "sony_subwoofer_shared_image_models": [
+    "XS-W122ES",
+    "XS-W124ES"
+  ],
+  "sony_amplifier_shared_image_models": [
+    "XM-1ES",
+    "XM-4ES",
+    "XM-5ES",
+    "XM-6ES",
+    "XM-8ES"
+  ],
+  "resolution_note": "Individual Sony product images extracted from the PDF are approximately 132–190 px wide and 124–192 px high; too small for approval as primary storefront images. The PDF page images are visual reference only.",
+  "exact_image_assignment_rule": "Do not assign the shared subwoofer image to both impedance variants or the shared amplifier image to five amplifier models. Obtain exact high-resolution manufacturer assets first.",
+  "gw_skus_assigned": 0,
+  "customer_visible_products_approved": 0
+}
