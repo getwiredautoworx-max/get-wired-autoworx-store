@@ -1,3 +1,15 @@
+## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FOLLOW-UP)
+
+- Reconciled the 89-row owner-controlled Hertz staging workbook against the review-branch exact-page audit by the supplier reference item code (codes are references only, never GW SKUs). The audit contained 50 distinct exact manufacturer-page matches; 39 staged rows had no matching exact-page record.
+- Checked nine of those remaining records against individual official Hertz product pages: CS 200 S4 (78035066), CS 300 S2 (78035078), CS 300 S4 (78035088), DG 130.3 (78071026), CG 130 (78071053), CG 165 (78071073), CG 200 (78071153), CG 250 (78071155), and CG 300 (78071165).
+- Added manufacturer descriptions/specifications and official page references to `catalogue-review/hertz-official-model-description-audit.csv`; extended `catalogue-review/hertz-official-collection-crosscheck-2026-10-30.md` with source links and match level.
+- **Updated count: 59/89 exact individual official pages; 30/89 remain without an exact individual page in the audit.** The prior crosscheck's “25 exact pages / 64 remaining” wording is stale; the current CSV plus source-code reconciliation is the count to use. The 89-row original staging workbook remains unchanged and owner-controlled.
+- Image assets remain NOT VERIFIED / NOT APPROVED for all these rows. No internal public_sku mapping exists for the 702 Planetworld rows; no GW SKUs assigned, no product images or products published, no duplicate rows deleted, and no live price/stock/Supabase/Axxess/DNS/payment changes.
+- Evidence: official Hertz pages for CS 200 S4, CS 300 S2/S4, DG 130.3, CG 130/165/200/250/300; see links in the review crosscheck. Main customer storefront remains buttons-only; release HOLD.
+- Next: verify remaining 30 Hertz models by exact individual page; resolve the two AFBMW adapters, K-series kits, CPK 690, remaining Cento/Uno drivers, remaining grille models, HRC remotes, Mille S8 DSP and the standalone SPL woofer; keep collection-only matches separate. Then continue Planetworld model matching and Audio Connections image/description reconciliation.
+
+---
+
 ## INTERNAL PRODUCT MAPPING BLOCKER — 2026-10-30
 
 - Read-only Supabase audit: 4,198 `gw_private.product_supplier_codes` rows, all with NULL `supplier_id`; 0 exact matches to the 702 Planetworld supplier SKUs. `gw_private.supplier_catalog_items` is empty. 0 exact `public.products.sku/public_sku` matches and 0 name/description matches across 220 candidate manufacturer models.
