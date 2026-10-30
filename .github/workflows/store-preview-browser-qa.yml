@@ -8,7 +8,6 @@ on:
       - 'preview-category.html'
       - 'preview-products.html'
       - 'preview-product.html'
-      - 'preview-planetworld.html'
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
 
@@ -57,7 +56,7 @@ jobs:
             page.on('console',m=>{if(m.type()==='error')pageConsoleErrors.push(m.text())});
             await page.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
-            await page.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            // Local static-server runs cannot authenticate to the hosted product API; the hosted pass below is authoritative for populated data.
             const audit=await page.evaluate(skus=>{
               const rows=window.gwProducts||[];
               const asc=rows.filter(p=>skus.includes(p.public_sku));
