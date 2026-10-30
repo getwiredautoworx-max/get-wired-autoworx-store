@@ -70,7 +70,7 @@ jobs:
               };
             },ASC_PUBLIC_SKUS);
             if(audit.products<1)throw new Error('No live product records loaded into preview');
-            if(audit.ascMatched!==36||audit.ascPositiveStock!==0||audit.ascZeroStock!==36)throw new Error('ASC stock exclusion mismatch: '+JSON.stringify(audit));
+            if(audit.ascMatched!==34||audit.ascPositiveStock!==0||audit.ascZeroStock!==34)throw new Error('ASC stock exclusion mismatch (34 active products must be zero; 2 inactive ASC products are correctly absent): '+JSON.stringify(audit));
             if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
