@@ -1,3 +1,16 @@
+## CONTINUATION TASK START — 2026-10-30 — COMPLETE REMAINING CATALOGUE WORK
+
+- Owner instruction: continue all remaining supplier catalogue, product verification, navigation and testing tasks; update handover after every material success, failure, blocker or scope change.
+- Read current default-branch `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and `suppliers/README.md` before work. Main handover confirms extraction of 47 Planetworld XLSX files / 3,317 rows and 4 Audio Connections PDF pages; no populated customer catalogue is approved.
+- Scope: reconcile Audio Connections STARSOUND and Sony Mobile ES rows; verify Planetworld car-audio model descriptions and brand/component taxonomy; inspect official image candidates only by exact model; create GW SKU mapping only when rules/source support it; prepare populated-catalogue navigation and non-production QA where safely possible.
+- Work branch: create a fresh review-only branch from current main; do not rely on stale review branch without comparing it to current main. Preserve previous staging outputs and provenance.
+- Locked boundaries: do not change live catalogue/product/category/price/stock data, Supabase, production storefront, Axxess, DNS, payment settings, APK distribution, or run Cloudflare/Netlify credit-consuming deploys. Do not merge. Keep ASC product stock excluded. Supplier prices/costs remain confidential. Keep customer store in approved buttons-only mode until product-level verification is complete. Payment readiness remains the final launch gate.
+- Price fallback is owner-approved exact wording: **“Price on Request due to Limited Stock and Availability”**; never infer stock status from a blank price or supplier stock value.
+- Verification standard: preserve supplier file, page/sheet, row, item code and description; no assumed image/model match, no duplicate deletion based only on SKU; clearly label unverified data. Browser tests on buttons-only view do not count as populated-store QA.
+- Task status: STARTED. First next action is page-by-page extraction/reconciliation of Audio Connections source PDFs into a review-only dataset, then exact-model verification for Planetworld Car Audio.
+
+---
+
 ## VERIFIED SUPPLIER EXTRACTION CHECKPOINT — 2026-10-30
 
 - Read-only binary extraction is now operational on isolated branch `catalogue/ingest-review-2026-10-30`; no production, Supabase, live catalogue, price, stock, Axxess, DNS, payment, Cloudflare or Netlify changes were made.
