@@ -4375,3 +4375,10 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 4. Improve image coverage using exact manufacturer product images only after asset provenance and model match are verified. Do not count placeholders as real images.
 5. Complete price/availability policy, owner banking/EFT setup and WhatsApp order journey; keep credentials owner-entered and never request banking secrets in chat.
 6. Keep PR #135 draft until tests pass and owner has reviewed the preview. No production activation without explicit owner approval.
+### 13:48Z continuation — privacy copy cleanup and diagnostic status
+- Additional customer-visible text cleanup committed: generic supplier-network references, supplier-submission wording, and the internal supplier-SKU punctuation note were removed/rephrased in preview-store.html. Product request copy now says Get Wired will check current price/availability. Commit 8ff5dacb3cfa0f2390943de61d96ad17958161d4.
+- PR #135 description now accurately records the 68-card GW catalogue integration, quote-only state, no approved product photos, and outstanding tests.
+- A temporary runner-diagnostic workflow was created then removed because pull_request workflows introduced only on the PR branch are not triggered until their definition exists on the base branch; it provided no runner diagnosis. A temporary echo marker was likewise removed from the package workflow. No diagnostic test result is claimed.
+- Latest branch head after cleanup: f888800290a7c35e5ec3c63cedae1d4746090c0f. Cloudflare Pages deployment for this exact head is IN_PROGRESS (deployment token 99e71ec9-6fe2-46b0-96fe-cdda572bd022). Previous 4f633c1 deployment is verified successful, but does not include the final copy-only cleanup.
+- GitHub Actions checks continue to fail within seconds; log downloads return BlobNotFound and job metadata contains no steps. The exact cause is not established. Treat this as an unresolved CI blocker, not proof of code failure or success.
+- PR remains draft/unmerged. No production, payment, DNS/Axxess, database, live stock, or price changes. ASC remains excluded.
