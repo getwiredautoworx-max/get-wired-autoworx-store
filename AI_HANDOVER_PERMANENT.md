@@ -3769,3 +3769,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Hosted customer journey: direct public-domain and Pages preview inspection through available web retrieval returned inaccessible/internal error, so no independent runtime journey test could be completed. Existing handover's latest canonical marker test remains run `40925572349` FAILURE: `www.getwiredauto.co.za` returned HTTP 200 but did not contain the buttons-only marker. Do not claim canonical site updated or customer journey verified. A browser-capable authenticated runtime or owner-provided page response/screenshots is required; no Axxess upload/DNS/deploy.
 - Supplier confirmation: no current supplier reply evidence available. Gmail connector is not connected; connection is required to search existing supplier correspondence and prepare/send a price-clarification request. No supplier communication was sent and no price/stock inferred.
 - Permanent handover latest task start was already recorded in commit `714c8889ed5aacbd0b23e59c5eac3efb4b0bf0ca`; this follow-up records no changes to live data or release boundary.
+
+
+## SONY IMAGE AUDIT SAFE RESTART — 2026-10-30 09:42 SAST
+
+- Confirmed no in-progress Sony image audit or other branch workflow before restart. The prior Sony run `41015289924` was cancelled and returned no jobs; its workflow was push-only with no supported rerun action.
+- Added `workflow_dispatch:` to `.github/workflows/sony-browser-image-audit.yml` on isolated review branch `catalogue/ingest-review-2026-10-30`, commit `5642c012a092f4b009551d45c90596b4b3ca6f8c`. The existing push path filter triggered exactly one safe staging retry.
+- New run `41021963315` is confirmed **IN_PROGRESS**, job `123951111064` (`browser-audit`); checkout was in progress, Playwright/Chromium/image audit pending at last inspection. Do not start a duplicate. Recheck this exact run/job to conclusion and inspect generated CSV/JSON/image candidate outputs. This is staging-only; no supplier workbook, live data, deployment, payment, DNS or Axxess changes.
