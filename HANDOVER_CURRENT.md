@@ -1,3 +1,10 @@
+## VERIFIED INTERNAL SKU MAPPING BLOCKER — 2026-10-30
+
+- Read-only Supabase audit found 0 exact matches between 702 Planetworld supplier SKUs and `public.products.sku/public_sku`. `gw_private.product_supplier_codes` contains 4,198 rows with NULL `supplier_id` on every row; `gw_private.supplier_catalog_items` is empty; 220 candidate model-name searches returned 0.
+- No Supabase changes. Product image assignment/publication is blocked until owner-approved supplier-specific public_sku mapping exists. Full evidence in the review branch internal mapping audit JSON.
+
+---
+
 ## MULTI-BRAND REVIEW BRANCH UPDATE — 2026-10-30
 
 - 226 of 702 Planetworld rows now have official manufacturer page/collection references on the isolated review branch. Marine 28 rows are separated; 47 Harness and Trims remain installation components.
