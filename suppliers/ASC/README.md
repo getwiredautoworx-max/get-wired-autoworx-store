@@ -1,17 +1,29 @@
-# ASC Supplier References
+# ASC test-catalogue intake
 
-**Owner confirmation (2026-10-27):** all supplier folders in the GitHub supplier library are authorised for catalogue use. Use ASC catalogue material proactively for authorised dealer catalogue review, extraction, matching and analysis. Keep source documents intact. This permission does not by itself authorise changes to live stock, prices, product listings, or production catalogue/database records; obtain explicit owner approval for those writes.
+**Reset checkpoint:** 30 October 2026  
+**Purpose:** Clean intake point for the next owner-supplied ASC test catalogue.
 
+The previous ASC source PDFs, historical guide import payload, ASC stock status report, ASC-only catalogue audit, and scheduled ASC image-sync automation are being removed from the current `main` working tree in the branch:
 
-Store ASC catalogues, monthly Buyer's Guides, price lists and reference documents in this folder.
+`cleanup/asc-catalogues-stock-reset-2026-10-30`
 
-The monthly Buyer's Guides previously stored at the repository root have been moved into this folder to keep supplier source material together.
+## Intake rules
 
-**Interim permission:** ASC has granted Get Wired AutoWorx permission to use its catalogues as an authorised dealer while ASC's IT department investigates a longer-term solution. Catalogue review, extraction and analysis may proceed within that permission. This interim permission does not by itself authorise changes to live stock, prices, product listings, or production catalogue/database records; obtain explicit owner approval for any such writes. Supplier IT integration remains unresolved.
+1. Add only the new test catalogue supplied by the owner after this reset.
+2. Preserve the uploaded original unchanged. Record filename, edition/date, page count and file hash.
+3. Extract product data to a separate staged CSV/XLSX. Do not write directly to `public.products`.
+4. Keep ASC supplier SKU separate from Get Wired AutoWorx internal SKU. Never overwrite another supplier's code.
+5. Preserve source page, category, descriptions, dimensions, electrical specifications and vehicle fitment exactly where printed.
+6. Use catalogue photographs only when exact product-code/photo pairing is clear. Produce image contact sheets for review.
+7. Do not invent cost, selling price, fitment or physical stock. Apply the approved price formula only to a verified dealer cost.
+8. Do not treat catalogue appearance as physical stock. Keep supplier availability distinct from verified premises stock.
+9. Start with a 25-product pilot. Produce the edited images, staged spreadsheet, image-match report and exception list before any import.
+10. Only import after the pilot passes validation and the owner approves the staged result.
 
-Do not upload secrets or customer personal information.
+## Preserved store dependencies
 
+The existing customer-facing image cache under `assets/products_webp/` is intentionally retained during this source reset. The Supabase `product-image` Edge Function uses these files to serve current product images. Removing the cache would break existing storefront imagery before the replacement test-catalogue images have been verified.
 
-## Inventory check — 2026-10-27
+The existing product database, current stock quantities, supplier mappings, storefront code, non-ASC supplier catalogues and current image storage are not part of this GitHub source cleanup.
 
-A recursive tracked-file scan found 35 PDFs in this folder, including product catalogues, monthly Buyer's Guides, stock-arrival/numbered reference PDFs, specialist product sheets, and the October 2026 all-items document. The repository root was verified to contain zero PDFs after the misplaced-root cleanup. The scan checked paths and file types only; it did not inspect every PDF page, verify current pricing/stock, or deduplicate differently named editions. Preserve the source files unchanged unless the owner requests otherwise.
+The generic, unattributed `data/STORE_STOCK_IMPORT_2026-09-16.csv` is held aside because it is not proven to be ASC-specific. It must not be treated as a current stock source.
