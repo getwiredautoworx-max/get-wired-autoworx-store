@@ -4194,7 +4194,7 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 
 ### Remaining critical path, in order
 1. Owner preview review of PR #134 deployment. Keep preview noindex and checkout/supplier submissions disabled.
-2. Complete signed, short-lived/server-stored delivery quote v3 end-to-end: bind quote to destination, cart/SKUs/quantities, server-derived parcel details, carrier/service, fee/currency and expiry; verify server-side before order RPC; add negative tamper/replay/expiry/cart/destination tests and pickup positive test. Review SQL migration and function source; no production deployment until owner approval.
+2. Signed delivery quote v3 source, migrations and tests are already implemented and pass CI on the exact preview code head. Remaining: reconcile the currently deployed Supabase runtime with this reviewed source, configure DELIVERY_QUOTE_SIGNING_SECRET and carrier credentials in Supabase, then perform owner-approved non-production migration/function deployment and end-to-end tests. Do not repeat the implementation work.
 3. Confirm reviewed store-checkout and product-image function source against the current main code, configure the five DIRECT_EFT_* secrets directly in Supabase Dashboard (owner/admin only), deploy only with explicit owner approval, and test a non-production order through pending/manual EFT verification. Never put bank details or secrets in GitHub/chat.
 4. Prepare the exact Axxess package and read-only validation report, including package contents, size, noindex removal only for the approved production routes, domain/SSL plan, and rollback copy. Do not upload or change DNS without explicit release approval.
 5. Catalogue launch scope: use the currently reviewed Planetworld snapshot only with its 2026-10-25 date label; do not claim live supplier availability. Keep ASC at zero for the 34 active preview rows / prior exact 36-row reset scope. Publish only individually verified products with owner price/image approval; defer unresolved manufacturer rows rather than delaying a smaller safe launch.
@@ -4208,7 +4208,8 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - No calendar promise is made for production until security, EFT, preview acceptance and Axxess/domain gates are evidenced. The 48-hour objective is to complete the actionable work and present only the specific owner/external release actions that cannot be performed safely by the agent.
 
 ### Next immediate execution
-- Work on delivery quote v3 source/tests and inspect existing checkout/security PRs; identify whether a reviewable PR already exists before creating duplicate work.
+- Review the already-implemented delivery quote v3 source against the deployed Supabase versions and prepare the non-production deployment checklist; do not duplicate source work.
+- Build a separate production-candidate PR from the tested populated storefront to replace the current button-only customer entry, while retaining checkout disabled until the secure Supabase deployment and EFT tests are approved.
 - Inspect and prepare the Axxess package without uploading.
 - Refresh this handover after each material test/merge/deployment result. Record commit/run IDs and never conflate merged, deployed, previewed and live states.
 
