@@ -3908,3 +3908,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Preview is isolated, noindex, checkout/cart and supplier/part-request submissions disabled. Main remains buttons-only; PR #116 remains draft/unmerged. No Axxess, DNS, production deployment, PayFast or production checkout activation.
 - Stock qualification: public.supplier_stock is empty. The remaining active product quantities are the current store-record values and have not been newly confirmed against supplier feeds. The preview banner tells the owner/customer to confirm availability before ordering. Do not describe those non-ASC quantities as freshly supplier-confirmed.
 - Owner should review the preview on phone and desktop. Continue supplier-to-GW mapping/image evidence and current non-ASC stock reconciliation as separate tasks. Do not merge PR #116 or publish supplier prices/catalogue records without the separate approval gates.
+
+
+## SESSION TASK START — 2026-10-30 13:24 SAST
+
+- Scope: continue the owner-directed populated-store preview and Direct EFT/WhatsApp work; verify current PR heads and exact-head checks, then execute safe GitHub-only work and record evidence.
+- Starting point: current default-branch `AI_HANDOVER_PERMANENT.md` blob `80eabd9798c6a7345e6327c28fda26b88deab211`; current clean-main preview candidate is PR #122 and Direct EFT/WhatsApp candidate is PR #121, as recorded in the current handover.
+- Constraints: keep PRs unmerged unless explicitly approved; no Axxess upload, DNS, production deployment, PayFast activation, Supabase migration/function deployment, supplier price/stock/product writes, or Cloudflare/Netlify preview/redeploy unless specifically authorised. Preserve the owner-directed ASC stock reset (36 exact ASC-ledger matches at zero stock). Do not claim old stock snapshots are current supplier stock.
+- Plan: read exact PR state/head and checks; inspect current preview/browser evidence; advance non-deployment catalogue/checkout review tasks; update this file after material outcomes.
