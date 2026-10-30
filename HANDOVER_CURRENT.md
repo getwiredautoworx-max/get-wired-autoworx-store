@@ -1,3 +1,11 @@
+## INTERNAL PRODUCT MAPPING BLOCKER — 2026-10-30
+
+- Read-only Supabase audit: 4,198 `gw_private.product_supplier_codes` rows, all with NULL `supplier_id`; 0 exact matches to the 702 Planetworld supplier SKUs. `gw_private.supplier_catalog_items` is empty. 0 exact `public.products.sku/public_sku` matches and 0 name/description matches across 220 candidate manufacturer models.
+- No Supabase writes. There is no verified internal public_sku/product_id target for the staged supplier rows. Do not assign images or publish until owner-approved supplier-specific mapping is established.
+- Evidence: `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json`.
+
+---
+
 ## MULTI-BRAND CATALOGUE AUDIT — 2026-10-30
 
 - 702 Planetworld rows now have 226 source rows with official manufacturer page/collection references. This does not mean product images or listings are approved.
