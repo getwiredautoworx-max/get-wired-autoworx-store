@@ -21,4 +21,4 @@ assert.deepEqual(search(products, ""), [], "empty query should return no results
 const unsafe = [{id:"xss",public_sku:"GW-XSS0001",name:"<img src=x onerror=alert(1)> relay",description:"test",stock_quantity:1}];
 assert.ok(ids("no-such-product").length === 0, "no-match queries must return empty results");
 assert.ok(search(unsafe, "relay").length === 1, "search module must return matching data without rendering HTML");
-console.log("CATALOGUE_SEARCH_UNIT_TESTS_PASS: 10 assertions");
+console.log("CATALOGUE_SEARCH_UNIT_TESTS_PASS: 12 assertions");
