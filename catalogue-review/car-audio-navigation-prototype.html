@@ -73,9 +73,11 @@ function productCard(p){
 }
 function showProducts(name,comp){
  view="products";brand=name;component=comp;heading.textContent=comp;intro.textContent=name+' · '+comp+' · internal review records only';setState();
- if(name==="Hertz"){
-  var verified=HERTZ_PRODUCTS.filter(function(p){return p.component_key===comp;});
-  if(!verified.length){content.innerHTML='<div class="empty">No exact manufacturer page/image match has been verified for this Hertz component group yet. The staged source rows remain unpublished.</div>';return;}
+ if(String(name||"").trim().toLowerCase()==="hertz"){
+  var hertzRows=(typeof HERTZ_PRODUCTS!=="undefined"?HERTZ_PRODUCTS:[]);
+  var wanted=String(comp||"").trim().toLowerCase();
+  var verified=hertzRows.filter(function(p){return String(p.component_key||"").trim().toLowerCase()===wanted;});
+  if(!verified.length){content.innerHTML='<div class="empty">No exact manufacturer page/image match has been verified for this Hertz component group yet. The staged source rows remain unpublished. Component: '+esc(comp)+'; available verified groups: '+hertzRows.map(function(p){return p.component_key;}).filter(function(v,i,a){return a.indexOf(v)===i;}).join(' · ')+'</div>';return;}
   content.innerHTML='<div class="product-list">'+verified.map(hertzProductCard).join("")+'</div><div class="notice">'+verified.length+' exact model records with official image candidates visually checked. Review only; no GW SKUs, prices or stock are published.</div>';return;
  }
  var items=tree.brands[name].components[comp]||[];
