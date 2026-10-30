@@ -38,14 +38,20 @@
     "Kicker": {
       "rows": 189,
       "standard_car_audio_rows": 161,
-      "standard_car_audio_exact_product_pages": 12,
-      "standard_car_audio_collection_matches": 27,
-      "standard_car_audio_unresolved": 122,
+      "standard_car_audio_exact_product_pages": 14,
+      "standard_car_audio_collection_matches": 41,
+      "standard_car_audio_unresolved": 106,
       "marine_rows_separated": 28,
       "marine_exact_product_pages": 5,
-      "marine_collection_matches": 22,
-      "marine_model_code_description_conflicts": 0,
-      "audit": "catalogue-review/planetworld-kicker-official-model-audit.csv"
+      "marine_collection_matches": 23,
+      "marine_unresolved": 0,
+      "total_exact_individual_or_verified_product_pages": 19,
+      "total_official_collection_matches": 64,
+      "total_without_official_product_page_or_collection_match": 106,
+      "latest_recheck_additions": 16,
+      "audit": "catalogue-review/planetworld-kicker-official-model-audit.csv",
+      "evidence_crosscheck": "catalogue-review/planetworld-kicker-evidence-crosscheck-2026-10-30.md",
+      "note": "Counts recomputed from all 189 unique SKU rows in the current audit. Earlier 122-row/2-unmatched summary was stale and has been replaced. Exact-page and collection evidence are distinct; no images or products approved for publication."
     },
     "Audison": {
       "rows": 96,
