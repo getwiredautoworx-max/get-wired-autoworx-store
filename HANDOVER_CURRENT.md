@@ -1,3 +1,17 @@
+## CONTINUATION RESULT — 2026-10-30 — SUPPLIER CATALOGUE VERIFICATION
+
+- Review-only branch: `catalogue/complete-remaining-review-2026-10-30`. The permanent handover contains the full detailed checkpoint and file list.
+- Audio Connections: 68 page-sourced candidates transcribed (53 Starsound + 15 Sony) in `catalogue-review/audio-connections-product-candidates.csv`. Three Starsound prices are absent; exact fallback wording recorded for later approved display only. Sony XS-690ES is SOLD OUT in the supplier PDF. Sony RRP VAT basis remains unconfirmed. No rows published.
+- Sony: corrected model descriptions against 14 exact official manufacturer pages; XS-680G remains PDF-only. The 21 embedded PDF images remain too small or reused and are not approved primary images.
+- Hertz: exact official page audit expanded to 16 models; 4 new matches are CK 165 L, CPK 165, MPK 163.3 and MPX 165.3. 73 of 89 staged rows still lack an exact individual manufacturer page. Additional collection-level matches are documented separately and do not count as exact detail-page matches. No Hertz images approved.
+- Planetworld ONE: exact official page + visible SKU + vehicle application verified for OA009-1, OA014-1, OA015-1 and OA312-1. These four rows now include official URLs in the 702-row staging CSV. Their images are not downloaded/approved. Supplier codes are not GW SKUs.
+- Existing 702-row Planetworld staging remains source-traceable and keyword-candidate only. Use the latest top-level taxonomy/navigation checkpoint for the 627 brand / 47 harness / 28 marine / 1 manual-review summary; do not treat the older component_candidate column as final navigation.
+- Workflow evidence rechecked: run 41014617113 extraction SUCCESS; run 41014374943 responsive prototype SUCCESS at 360/390/768/1280 px. This is prototype QA only, not populated storefront QA.
+- Main remains buttons-only. No live product/price/stock/Supabase/Axxess/DNS/payment changes, PR merge or deployment. Launch HOLD; payment remains final blocker.
+- Next: exact high-resolution images, remaining 73 Hertz model pages, remaining Planetworld model verification, GW SKU mapping after exact internal match, duplicate provenance audit, then populated-mode browser/mobile QA.
+
+---
+
 ## VERIFIED CATALOGUE + IMAGE AUDIT CHECKPOINT — 2026-10-30
 
 - **Planetworld source extraction:** isolated review branch `catalogue/ingest-review-2026-10-30`; GitHub Actions run 41014617113 succeeded after adding safe branch-write serialization. All 47/47 XLSX opened, 94 sheets, 0 workbook errors, 3,317 Products-sheet rows. Seven small provenance-preserving CSV chunks and workbook inventory are committed under `catalogue-review/`.
