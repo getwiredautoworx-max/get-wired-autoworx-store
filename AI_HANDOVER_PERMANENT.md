@@ -3732,3 +3732,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Began this scheduled repository and Planetworld monitor. Read the latest `AI_HANDOVER_PERMANENT.md` from `main` (blob `f0e5b04ee1a61f91f4d4845f331efa1f02252ba1`) before other task work.
 - Immediate sequence: record this start; read the Planetworld branch handover and all three current reports; inspect PR #95 and the latest audit run, job and artifact; then inspect current background workflows and safe staging retries. Never duplicate queued/in-progress work or rerun deployment/production jobs.
 - No catalogue, supplier workbook, product, price, category, active flag, live database, hosting, payment, DNS or deployment changes have been made at run start. All candidates remain review-only / DO NOT IMPORT until evidence and owner approval.
+
+
+## MONITOR RUN START — 2026-10-30 09:39 SAST
+
+- Started owner-requested continuation: investigate GitHub Actions storage/quota discrepancy after owner deleted 20+ artifacts (reported at least 2 GB freed); continue supplier confirmation, Planetworld fresh read-only audit, cancelled Sony audit, Cloudflare Workers build failures and hosted customer-journey verification.
+- Read latest permanent handover on `main` (blob `56805583a79bad6c76dd2f283a39e77fa1c7a0f6`) before any other repository work. Preserve all release restrictions: no production/deployment reruns, live data changes, supplier workbook edits/imports, Axxess/DNS/payment changes, or release-credit consumption without explicit approval. Never duplicate queued/in-progress work.
+- Immediate next steps: append run start to current Planetworld handover, inspect Actions storage usage and artifact inventory/retention, then inspect PR #95 and relevant workflow runs/jobs/artifacts. Record verified cause, exact evidence and next action; no assumptions that deleting artifacts immediately resets billed storage.
