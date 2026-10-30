@@ -7,6 +7,8 @@ on:
       - 'supabase/migrations/**'
       - 'checkout-v2.html'
       - 'scripts/checkout-direct-eft-whatsapp.test.mjs'
+      - 'supabase/functions/_shared/collection-origin.js'
+      - 'tests/collection-origin.test.cjs'
       - '.github/workflows/delivery-quote-security.yml'
   workflow_dispatch:
 permissions:
@@ -55,6 +57,8 @@ jobs:
         run: deno test --allow-env supabase/functions/store-checkout/index.integration_test.ts
       - name: Verify Direct EFT and WhatsApp checkout handoff
         run: node scripts/checkout-direct-eft-whatsapp.test.mjs
+      - name: Test courier collection origin privacy guard
+        run: node tests/collection-origin.test.cjs
       - name: Type-check shipping quote
         run: deno check supabase/functions/shipping-quote/index.ts
       - name: Type-check checkout
