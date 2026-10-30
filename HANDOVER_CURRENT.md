@@ -3469,3 +3469,31 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - Source commit: `d393b104a7bbf67ede33e66c089c2ee843fcfc6e`. Permanent-handover branch update: `d6da55731f1fadabd74d1a65aac7e89205cf1e5e`. PR #105 description updated to the same exact wording and explicit fresh-check requirement: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/105
 - PR #105 remains draft/unmerged; this new head has not yet been certified by CI or browser/mobile preview. Do not merge/deploy on source-text verification alone.
 - Next uninterrupted work: continue actual Planetworld + Audio Connections source processing and product mapping; use exact-model + description/specification + image evidence for duplicate decisions. Do not spend further cycles sending status-only messages. Keep release boundary unchanged: no live catalogue/stock/pricing, Supabase, Axxess, DNS, payments or production deployment changes without explicit owner approval.
+
+
+## 2026-10-30 execution checkpoint — catalogue and product presentation
+
+User instruction: resolve Planetworld and Audio Connections catalogue work, exact product images/descriptions/GW SKUs, brand/component navigation, mobile/browser testing; avoid circular progress updates. Continue from branch `catalogue/ingest-review-2026-10-30`.
+
+### Work completed in review branch (not merged/published)
+- Planetworld source extraction: 47 workbooks, 94 sheets, 3,317 Products rows; source file/sheet/row provenance retained.
+- Car Audio: 702 rows (627 brand products, 47 Harnesses & Trims component rows, 28 Marine Audio). Nine Planetworld brand candidates; 486 model tokens found, 216 rows still lack a usable model token. No relevant exact filename match in existing product-image folders.
+- Musical Instruments: 1,719 rows / 21 brands split into Band Instruments 1,273; Studio & Pro Audio 230; Instrument Cases & Accessories 191; DJ Equipment 25. Five component labels need manual review.
+- Review-only navigation prototypes now separate Car Audio from Band Instruments/Studio/DJ. Existing Car Audio category tree has 3 duplicate display-name groups (Amplifiers, Head Units, Speakers); all duplicate child categories currently show zero direct active products. Car Audio parent has 39 active products and AERIALS has 7. No category deletion/merge performed.
+- Responsive navigation tests passed previously at 360, 390, 768 and 1,280 px (run 41015761561). Screenshot workflow is enabled. Latest integrated product-card/logo test still requires final confirmation; do not claim it passed until the final run and screenshot commit succeed.
+- Official Car Audio wordmarks retrieved and integrated in the review prototype for Alpine, Audison and Kicker. Focal logo not located; JVC/Kenwood/Pioneer official sites returned 403; Hertz source exposed only product-line logos, not a verified main Hertz wordmark; One and Amplified official sources remain unidentified. Planetworld workbook scan found zero header-logo candidates.
+- Audio Connections: 68 source rows (53 Starsound, 15 Sony). Three Starsound rows have no numeric price; retain owner wording “Price on Request due to Limited Stock and Availability.” Sony XS-690ES is marked SOLD OUT. Exact official Sony page found for 14/15 models; XS-680G remains unmatched. PDF product images are low-resolution/shared and not approved for customer display. Sony browser image retrieval still needs a fresh run.
+- Hertz staging: 89 rows. Twelve exact official model pages and twelve exact image candidates have now been visually checked. Twelve review-only product cards include manufacturer descriptions/specs and official image candidates; 77 other staged rows remain unmatched. MPS 250 S2/S4 use the same manufacturer image, but remain separate model/impedance variants.
+- Twelve provisional GW public-SKU candidates generated for those verified Hertz models. Read-only Supabase inspection confirmed `public.products.public_sku` is NOT NULL, unique, has no default and no generating trigger; no SKU generator exists in the repository/database. Existing table has 4,200 rows / 4,200 unique public SKUs; 2 legacy values are outside the standard format. Order function validates `^GW-[A-Z0-9]{8}$`. All 12 candidates passed format validation and collision check against existing values. They are staging candidates only and have NOT been inserted into Supabase.
+- No Supabase writes, live catalogue/stock edits, payment/checkout changes, DNS/Axxess changes, Cloudflare/Netlify changes, PR merge or production deployment.
+
+### Continue next
+1. Finish the latest integrated Car Audio/Hertz/logo responsive test and commit current screenshots; inspect final screenshots.
+2. Re-run Sony official-image browser audit; visually verify each exact model image before adding it to product cards.
+3. Continue Planetworld exact manufacturer-page/image/description matching; never pair by resemblance or supplier code alone.
+4. Continue official logo sourcing for missing brands; do not substitute product-line logos or guessed icons.
+5. Keep unverified supplier rows quarantined; use exact “Price on Request due to Limited Stock and Availability” wording for no-price Starsound rows.
+6. Do not insert provisional GW SKU candidates or create live product records until owner explicitly authorises the Supabase write. Preserve private supplier-code mapping; never expose supplier codes to customers.
+7. Payment integration and final launch checks remain the separate final blocker; leave untouched until catalogue/product presentation is verified and payment changes are explicitly approved.
+
+Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. Review files/prototypes are not customer-facing and must not be merged as production catalogue data without verification.
