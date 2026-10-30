@@ -1,6 +1,6 @@
 # Planetworld Kicker — additional official model verification
 Date: 2026-10-30
-Scope: 19 Kicker supplier references upgraded from “no exact official page/collection match” using official KICKER product pages and model collections.
+Scope: 36 Kicker supplier references upgraded from “no exact official page/collection match” using official KICKER product pages and model collections.
 
 ## Individual product pages
 
@@ -32,9 +32,9 @@ Scope: 19 Kicker supplier references upgraded from “no exact official page/col
 
 The current Kicker audit contains **189 unique supplier reference codes**, not the earlier 122-row count. After this recheck:
 
-- 19 exact individual/verified product pages across car audio and marine combined (14 standard car-audio individual pages + 5 marine product pages).
-- 64 official collection matches (41 standard car-audio + 23 marine).
-- 106 rows still have no official individual product page or collection match recorded.
+- 23 exact individual/verified product pages across car audio and marine combined (14 standard car-audio individual pages + 5 marine product pages).
+- 80 official collection matches (41 standard car-audio + 23 marine).
+- 86 rows still have no official individual product page or collection match recorded.
 
 This is an evidence classification only. Collection pages may list a model without an individual detail page. **No image binaries were downloaded or approved, no GW SKU was assigned, no customer price or live stock was imported, and no product was published.** Use the manufacturer page only for identity/specification verification; image assets still require separate visual matching and approval.
 
@@ -59,3 +59,42 @@ The audit now records **17 standard Car Audio exact individual product pages + 5
 | 51HS8 | https://www.kicker.com/hideaway?p=62809 | Hideaway HS8 powered 8-inch subwoofer; 150 W RMS; 25–120 Hz |
 
 The exact supplier reference **48KMC6** is also verified against https://www.kicker.com/48KMC6. Keep the manufacturer code KMC6; correct the conflicting source wording that said KMC5. The product image remains un-downloaded and unapproved.
+
+
+## Seventeen additional Kicker manufacturer matches — 2026-10-30
+
+### KS-Series collection — exact model labels
+Official source: https://www.kicker.com/ks-series
+
+| Supplier model code | Product class | Official evidence |
+|---|---|---|
+| 51KSC404 | 4-inch coaxial speaker pair, 4 Ω | Exact model listed in KS-Series coaxials |
+| 51KSC504 | 5.25-inch coaxial speaker pair, 4 Ω | Exact model listed in KS-Series coaxials |
+| 51KSC6504 | 6.5-inch coaxial speaker pair, 4 Ω | Exact model listed in KS-Series coaxials |
+| 51KSC6704 | 6.75-inch coaxial speaker pair, 4 Ω | Exact model listed in KS-Series coaxials |
+| 51KSC6904 | 6x9-inch coaxial speaker pair, 4 Ω | Exact model listed in KS-Series coaxials |
+| 51KSC69304 | 6x9-inch 3-way coaxial speaker pair, 4 Ω | Exact model listed in KS-Series coaxials |
+| 51KSS365 | 6.5-inch 3-way component speaker system, 4 Ω | Exact model listed in KS-Series components |
+| 51KSS504 | 5.25-inch component speaker system, 4 Ω | Exact model listed in KS-Series components |
+| 51KSS6504 | 6.5-inch component speaker system, 4 Ω | Exact model listed in KS-Series components |
+| 51KSS6704 | 6.75-inch component speaker system, 4 Ω | Exact model listed in KS-Series components |
+| 51KSS6904 | 6x9-inch component speaker system, 4 Ω | Exact model listed in KS-Series components |
+| 51KST2004 | ¾-inch component tweeter pair, 4 Ω | Exact model listed in KS-Series midrange/tweeters |
+
+### CompVR collection — exact model labels
+Official source: https://www.kicker.com/compvr-subwoofers
+
+| Supplier model code | Product class | Official evidence |
+|---|---|---|
+| 52CVR102 | 10-inch 2 Ω DVC subwoofer | Exact model listed in CompVR models |
+| 52CVR104 | 10-inch 4 Ω DVC subwoofer | Exact model listed in CompVR models |
+| 52CVR122 | 12-inch 2 Ω DVC subwoofer | Exact model listed in CompVR models |
+| 52CVR124 | 12-inch 4 Ω DVC subwoofer | Exact model listed in CompVR models |
+
+### Individual marine media-center page
+
+| Supplier model code | Official page | Confirmed identity |
+|---|---|---|
+| 51KMC4 | https://www.kicker.com/51KMC4 | KMC4 Marine Dual-Zone Media Center; 4 channels, up to 160 W built-in peak power, Bluetooth/weather-band tuner, four RCA output sets, IP66 |
+
+The revised Kicker totals are **18 standard Car Audio exact individual product pages + 5 Marine exact individual product pages = 23 exact pages**, **80 official collection matches** (57 standard + 23 Marine), and **86 standard Car Audio rows still without an official page/collection match**. Product images remain un-downloaded/unapproved, and no GW SKUs or public catalogue products were assigned.
