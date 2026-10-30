@@ -1,0 +1,35 @@
+name: Cloudflare Pages Public Package QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/build-cloudflare-pages-public.py"
+      - ".github/workflows/cloudflare-pages-deploy.yml"
+      - ".github/workflows/cloudflare-layout-preview.yml"
+      - ".github/workflows/publish-approved-storefront-preview.yml"
+      - ".github/workflows/cloudflare-public-pages-build-qa.yml"
+      - "index.html"
+      - "store.html"
+      - "index-new.html"
+      - "product.html"
+      - "products.html"
+      - "checkout.html"
+      - "checkout-v2.html"
+      - "category.html"
+      - "returns-refunds.html"
+      - "terms-and-conditions.html"
+      - "privacy-policy.html"
+      - "assets/**"
+permissions:
+  contents: read
+jobs:
+  public-package:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build and verify customer-only Pages directory
+        run: python scripts/build-cloudflare-pages-public.py
