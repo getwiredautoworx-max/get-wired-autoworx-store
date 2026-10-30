@@ -13,6 +13,7 @@ assert.ok(create.includes('from("supplier_catalog_items")'), "create_request mus
 assert.ok(create.includes('supplier_resolution'), "create_request must report mapped/unmapped/ambiguous state");
 assert.ok(!create.includes('order("priority").limit(1)'), "create_request must never default to first active supplier");
 assert.ok(!create.includes('p.specifications?.supplier_id'), "create_request must not trust public product specifications for private routing");
+assert.ok(!create.includes('b.supplier_id'), "public customers must not choose an internal supplier ID");
 
 const responseStart = edge.indexOf('if(req.method==="POST"&&action==="record_supplier_response")');
 const responseEnd = edge.indexOf('if(req.method==="POST"&&action==="create_offer")');
