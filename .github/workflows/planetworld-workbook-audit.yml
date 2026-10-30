@@ -64,14 +64,9 @@ jobs:
               print(f"| {label} | {s.get(key, 'n/a')} |")
           print("\\n**Scope:** review-only. No catalogue, price or stock writes. Zero-RRP rows remain excluded from positive-RRP price-risk counts.")
           PY
-      - name: Upload review-only audit outputs
-        uses: actions/upload-artifact@v4
-        continue-on-error: true
-        with:
-          name: planetworld-workbook-audit
-          path: planetworld-audit-output/
-          if-no-files-found: error
-          retention-days: 14
+      # Detailed source-traceable review outputs are committed under catalogue-review/.
+      # Keep this workflow artifact-free while the repository Actions storage quota recalculates.
+
 
 # 2026-10-26: harmless workflow edit to rerun the read-only audit against current branch inputs.
 
