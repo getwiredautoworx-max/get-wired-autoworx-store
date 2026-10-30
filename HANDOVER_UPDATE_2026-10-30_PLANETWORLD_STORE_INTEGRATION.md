@@ -42,3 +42,11 @@ Preview branch only. No merge, production deploy, Axxess upload, DNS, Supabase w
 - Eight buttons route directly to Car Audio, Home Entertainment, Band & Live Sound, DJ, Studio & Pro Audio, Marine Audio, Installed AV and Musical Instruments; each resets filters and scrolls to the catalogue. Component filters work across collections.
 - Static checks passed for all eight labels, filter/scroll bridge, one noindex directive and all eight inline scripts compiling.
 - The last Cloudflare Pages success remains commit `70353e9`; it predates `5f6167e`. Exact deployment confirmation for the category-entry update and hosted desktop/mobile click-through are still outstanding.
+
+
+## Functional verification follow-up
+
+- Mock-DOM execution of the actual catalogue browser script exercised all eight navigation buttons and confirmed each collection count, brand filters, component filters, search, pagination and scroll-to-catalogue behaviour.
+- Component taxonomy now has 33 browse groups; 236 Car Audio rows remain manual review. Non-Car Audio groups are keyword-derived and labelled as browse aids, not supplier-confirmed categories.
+- Current latest branch Cloudflare Pages build was in progress for `0761c1c`; exact success for the direct category-navigation commit remains pending. PR #136 is diverged from main (46 ahead / 42 behind), mergeable=false; do not merge.
+- Full 3,317-row feed still uses image placeholders and short supplier item names; exact-model image and richer manufacturer description work remains.
