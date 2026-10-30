@@ -1,3 +1,11 @@
+## SONY OFFICIAL IMAGE BROWSER AUDIT — EXTERNAL BRANCH RUNNING — 2026-10-30
+
+- An existing workflow `.github/workflows/sony-browser-image-audit.yml` is running as **41021963315** on `catalogue/ingest-review-2026-10-30`, head `5642c012a092f4b009551d45c90596b4b3ca6f8c`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021963315
+- It renders 14 official Sony product pages, records model-related image candidates and downloads candidate image binaries to a review-only folder. It does not publish images to customer products. At the last check it remained in the browser-audit step; no completion or downloaded-image count has been confirmed yet.
+- When it finishes, inspect the generated CSV and candidate binaries visually; do not mark any candidate approved solely because the page returned HTTP 200. Copy only reviewed evidence into this current review branch if useful.
+
+---
+
 ## AUDISON AV 10 D4 II SOURCE-CORRECTION CANDIDATE — 2026-10-30
 
 - Found the official Audison AV 10 D4 II individual product page: https://audison.com/product/av-10-d4-ii/ . It confirms a 250 mm, 4+4 Ω, 1100 W peak / 550 W continuous subwoofer.
