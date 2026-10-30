@@ -53,6 +53,12 @@ const { chromium } = require('playwright');
       if (!audisonText.includes('Image: not verified') || !audisonText.includes('GW SKU: not assigned')) throw new Error('Audison image/GW SKU publication hold missing');
       if (/Dealer Cost|JHB Stock|DBN Stock|CPT Stock|supplier_stock_snapshot|RRP|VAT/i.test(audisonText)) throw new Error('Supplier pricing/stock leaked into Audison review cards');
 
+      await page.locator('#back').click();
+      await page.locator('#content [data-component="Subwoofers"]').click();
+      const audisonSubText = await page.locator('#content').innerText();
+      if (!audisonSubText.includes('Audison 250 mm shallow subwoofer — model confirmation pending')) throw new Error('OCR-corrupted Audison source description not safely normalized');
+      if (!audisonSubText.includes('Candidate model: AV 10 D4 II — not confirmed') || !audisonSubText.includes('Candidate manufacturer page')) throw new Error('Audison AV10 candidate evidence/uncertainty not shown');
+      if (!audisonSubText.includes('NOT VERIFIED — supplier model mapping pending')) throw new Error('Audison AV10 candidate must remain unverified pending source confirmation');
       await page.locator('#home').click();
       await page.locator('#content [data-brand="Hertz"]').click();
       const hertzNotice = await page.locator('#content').innerText();
