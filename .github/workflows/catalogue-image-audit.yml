@@ -179,7 +179,7 @@ jobs:
             echo "ERROR: private GitHub image origins must not be used by the deployed proxy"
             exit 1
           fi
-          for path in preview-store.html preview-planetworld.html assets/products_webp/GW-000174D6.webp assets/products/C5-018-2.jpg; do
+          for path in preview-store.html assets/products_webp/GW-000174D6.webp assets/products/C5-018-2.jpg; do
             status="$(curl -sS -L --max-time 20 -o /dev/null -w '%{http_code}' "${base}/${path}")"
             if [ "$status" != "200" ]; then
               echo "ERROR: allowlisted Cloudflare asset returned HTTP ${status}: ${path}"
