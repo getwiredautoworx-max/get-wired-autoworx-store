@@ -4560,3 +4560,11 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - Cloudflare Pages bot confirmed successful deployment for exact PR #137 head `b8ca7b17a53741609575c5ffbb70c07332cb8afd`.
 - Branch preview URL: `https://fix-courier-collection-origi.get-wired-autoworx-store.pages.dev`; immutable deployment URL: `https://27282d3b.get-wired-autoworx-store.pages.dev`.
 - This preview deploy is not a Supabase Edge Function deployment. The source still requires PR review/merge and a separately approved Supabase deployment with the four collection-origin secrets. No production function or secret was changed.
+
+
+## 2026-10-30 16:4x SAST — FOUR ADDITIONAL EXACT-MODEL IMAGES ADDED TO THE POPULATED PREVIEW
+
+- Sourced four additional images directly from exact manufacturer product pages and matched them to the existing GW catalogue by model/SKU: Kicker CXA400.1 `GW-E3E19CA3` (46CXA4001); Audison APX 690 `GW-1B6B540E` (69070060); Focal HILO V3 `GW-AF7A2133`; Kicker 43C104 `GW-A518043D`.
+- Updated the integrated 68-row catalogue from 7 to 11 exact-model image sources; 57 rows retain the clear placeholder. No generic or visually similar image was used. Alpine S2-S65 thumbnail was deliberately excluded because the official image returned only 46×35 pixels and is not fit for a product card.
+- Updated hosted browser audit to require all 11 image elements loaded and exactly 57 photo placeholders. Static source recheck passes: 68 rows, 11 images, no dealer price/cost/stock fields, quote-only status, image error fallback, object-fit containment, product text geometry assertion, and noindex policy.
+- Image update commit `17e94006030d2bcc2b4ded20aae396457ff582eb`; QA update commit `4a2fb20263fd8af29401a2d7b7f48dfeb7538e92`. PR #136 description updated; latest image changes await Cloudflare Pages redeploy and hosted visual acceptance.
