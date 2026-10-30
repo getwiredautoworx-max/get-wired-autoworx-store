@@ -8,6 +8,7 @@ on:
       - 'preview-category.html'
       - 'preview-products.html'
       - 'preview-product.html'
+      - 'preview-planetworld.html'
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
 
@@ -107,6 +108,21 @@ jobs:
             await page.setViewportSize({width:1280,height:900});
             const desktopWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(desktopWidth.scrollWidth>desktopWidth.innerWidth+1)throw new Error('Desktop horizontal overflow: '+JSON.stringify(desktopWidth));
+            // Verify the provisional Planetworld snapshot without touching Supabase or exposing dealer cost.
+            const planetworld=await browser.newPage({viewport:{width:390,height:844}});
+            await planetworld.goto('http://127.0.0.1:4173/preview-planetworld.html',{waitUntil:'domcontentloaded'});
+            await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:15000});
+            const pwAudit=await planetworld.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,snapshotDates:[...new Set(rows.map(p=>p.snapshot))],hasManufacturerLinks:rows.every(p=>String(p.manufacturerPage).startsWith('https://')),dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
+            if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
+            const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
+            await planetworld.locator('#q').fill('Alpine');
+            await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0&&document.querySelectorAll('#grid .card').length<68,{timeout:10000});
+            console.log('PLANETWORLD_PROVISIONAL_PREVIEW_PASS '+JSON.stringify({...pwAudit,mobileWidth:pwWidth,searchFilter:true}));
+            await planetworld.setViewportSize({width:1280,height:900});
+            const pwDesktop=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(pwDesktop.scrollWidth>pwDesktop.innerWidth+1)throw new Error('Planetworld desktop overflow: '+JSON.stringify(pwDesktop));
+            await planetworld.close();
             // Exercise the dedicated audio-area navigation from the real category page.
             await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
