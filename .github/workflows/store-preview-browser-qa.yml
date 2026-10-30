@@ -83,6 +83,23 @@ jobs:
             await page.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
             const modalText=await page.locator('#productModal').innerText();
             if(!modalText.trim())throw new Error('Product detail modal did not populate');
+            // Verify Part Search and the no-AI photo-request fallback in the actual preview.
+            const partSearchButton=page.locator('.headerPartSearch').first();
+            await partSearchButton.waitFor({state:'visible',timeout:10000});
+            await partSearchButton.click();
+            await page.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
+            const partSearchCopy=await page.locator('#partSearchDialog').innerText();
+            if(!partSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('No-AI photo-request fallback is missing');
+            await page.locator('#partSearchDialog button.pictureSearchBtn').first().click();
+            await page.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
+            const photoInput=page.locator('#sourcePhotos');
+            const photoRules=await photoInput.evaluate(el=>({multiple:el.multiple,accept:el.accept,hasFivePhotoLimit:/files.length>5/.test(document.querySelector('script:last-of-type')?.textContent||'')}));
+            if(!photoRules.multiple||!photoRules.accept.includes('image/jpeg')||!photoRules.accept.includes('image/png'))throw new Error('Photo request upload rules are incomplete: '+JSON.stringify(photoRules));
+            const previewSource=await require('fs').promises.readFile('preview-store.html','utf8');
+            if(/generativelanguage|api\\.openai\\.com|gemini\\/|openai\\/images/i.test(previewSource))throw new Error('Paid AI image-search endpoint remains in preview source');
+            if(!previewSource.includes('files.length>5'))throw new Error('Five-photo maximum is not enforced in the request handler');
+            await page.locator('#sourcePart .requestModalClose').click();
+            await page.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
             const mobileWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(mobileWidth.scrollWidth>mobileWidth.innerWidth+1)throw new Error('Mobile horizontal overflow: '+JSON.stringify(mobileWidth));
             await page.setViewportSize({width:1280,height:900});
