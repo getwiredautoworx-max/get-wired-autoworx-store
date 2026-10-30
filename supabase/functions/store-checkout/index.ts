@@ -2,6 +2,8 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { cartCanonical, validateBoundQuote, validatePickup, type QuoteItem } from "../_shared/delivery-quote.ts";
 import { validateCustomerSession } from "../_shared/customer-auth.ts";
 
+const POLICY_VERSION = "GW-TERMS-RETURNS-PRIVACY-2026-10-30";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -24,13 +26,15 @@ export async function handleRequest(req: Request): Promise<Response> {
     if (!Array.isArray(payload.p_items) || payload.p_items.length === 0) throw new Error("Cart is empty.");
     if (payload.p_items.length > 100) throw new Error("Too many cart items.");
     if (payload.p_terms_accepted !== true) return new Response(JSON.stringify({ error: "Please accept the Terms & Conditions, Returns & Refunds Policy and Privacy Policy before checkout.", code: "POLICY_ACKNOWLEDGEMENT_REQUIRED" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    delete payload.p_terms_accepted;
+    // Keep the checked acknowledgement in the server-to-server payload for the atomic audit RPC.
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const publicApiKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY") || "";
     const session = await validateCustomerSession(supabaseUrl || "", publicApiKey, req.headers.get("Authorization") || "");
     if (!session.ok) return new Response(JSON.stringify({ error: session.message, code: session.code }), { status: session.status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     payload.p_customer_email = session.user.email;
+    payload.p_customer_user_id = session.user.id;
+    payload.p_policy_version = POLICY_VERSION;
     let secret: string | null = null;
     let usesSecretApiKey = false;
     const secretKeysEnv = Deno.env.get("SUPABASE_SECRET_KEYS");
@@ -135,10 +139,10 @@ export async function handleRequest(req: Request): Promise<Response> {
       });
     }
 
-    const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v2", {
+    const rpc = await fetch(supabaseUrl + "/rest/v1/rpc/create_store_order_v3", {
       method: "POST",
       headers: adminHeaders,
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ p_order_payload: payload, p_policy_version: POLICY_VERSION, p_customer_user_id: session.user.id }),
     });
 
     const text = await rpc.text();
