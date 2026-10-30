@@ -3976,15 +3976,25 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - WhatsApp currently uses the existing no-cost `wa.me` number `+27 74 488 4234`. PR #121 improves click-to-chat only; automated WhatsApp Business Platform messaging remains optional and requires Meta account/verified number/token/webhook configuration and separate owner approval.
 - Owner's Audio Connections dealer authorisation is confirmed. This supersedes stale statements elsewhere in this file that describe dealer relationship confirmation as outstanding.
 
+
+### PR #121 exact-head CI result — 2026-10-30
+- All six exact-head workflows completed **SUCCESS** on `8839f5e6de08e193c8e08e802d6bc88d86c5f8ec`:
+  - Customer Authentication Security Tests — 41046413241
+  - Delivery Quote Security Tests — 41046413197 (job `quote-integrity` SUCCESS; includes isolated checkout handler integration test)
+  - Axxess upload package preparation — 41046413221 (CI/package preparation only; no upload)
+  - Storefront Smoke Test — 41046413229
+  - Public SKU Exposure Audit — 41046413242
+  - Cloudflare Pages Public Package QA — 41046413460
+- PR #121 remains draft/open and unmerged. CI success validates source/tests only; no Supabase Edge Function deploy, secrets setup, Axxess upload, DNS, live checkout change or payment activation.
+- Remaining Direct EFT setup is operational: owner must configure the five `DIRECT_EFT_*` values in Supabase Edge Function secrets and approve a non-production test/deployment. Do not ask for or receive bank account details, online banking credentials, PINs or OTPs in chat.
+
 ---
 
-## CLEAN-MAIN REBASE R2 — 2026-10-30
+## LATEST-MAIN HANDOVER RECONCILIATION — 2026-10-30
 
-- Main advanced after the first clean-main preview PR through two handover-only commits. The first clean-main PR #120 became dirty solely because HANDOVER_CURRENT.md changed on main; its preview/code files did not conflict.
-- Rebuilt on latest main commit ffd1f5411aa05459dea92a583410167bdab6fadb in branch integration/planetworld-preview-clean-main-r2-2026-10-30. Ported the four isolated preview routes, Planetworld 68-product provisional preview, Planetworld 702-row component classification manifest, and browser QA workflow including official image-load assertions.
-- The 68-row preview retains 2026-10-25 stock as provisional: 44 positive, 24 zero; both RRP−1% and RRP−2% proposals pass the estimated VAT-inclusive cost floor; dealer cost excluded.
-- Five exact Alpine official image URLs are staged for HDZ-653, R2-A60F, S2-A55V, S2-S40C and S2-S65. Browser QA will verify they actually load; no production image publication is authorised.
-- 702 Planetworld Car Audio rows now have category/component assignments. 243 harness/trim rows are grouped as installation components; two parking sensor kits are separately grouped. Fine vehicle fitment and remaining subtype exceptions still require source-level verification.
-- Prior code-head QA on the same preview content passed: Planetworld 68-row checks, 4,187 populated store products, 103 categories, 34 active ASC rows all zero, hidden checkout, Part Search no-AI flow, audio area navigation, product modal, mobile 390px and desktop 1280px no overflow, no page errors. Public SKU audit and storefront mode gate passed.
-- The Cloudflare Pages preview deployment succeeded for commit 13d13b5 at https://9f72ac78.get-wired-autoworx-store.pages.dev; the branch preview URL was https://integration-planetworld-prev.get-wired-autoworx-store.pages.dev. The separate Workers build check failed; Pages deployment succeeded.
-- PR #117 and #119 are closed as superseded; PR #120 will be closed after this latest-main replacement PR is open and verified. No Supabase/public product/stock/price/image writes, Axxess, DNS, payment activation or production deployment.
+- Rebased the handover content onto the latest main version after concurrent handover-only updates landed while PR #122 was being prepared. This preserves the newer main notes and avoids a handover-file merge conflict; storefront source files remain isolated preview additions.
+- Current preview work is in PR #122 on branch integration/planetworld-preview-clean-main-r2-2026-10-30.
+- Planetworld provisional preview: 68 exact product candidates, 44 positive-stock and 24 zero-stock rows from 2026-10-25, 68 cost-floor passes, dealer costs excluded. Five official Alpine image sources are staged with browser-load tests pending.
+- Planetworld Car Audio classification: 702 rows grouped by category/component; 243 harness/trim rows are grouped as installation components; two parking sensor kits separated; fine fitment remains unverified where source evidence is insufficient.
+- Preview scope includes 4,187 existing products, 103 categories, ASC zero stock, no checkout, no-AI part photo request and audio area/brand/component navigation. Previously recorded browser checks passed for the same preview code before the five image-load assertions were added.
+- No live database/catalogue/stock/price/image writes, payment activation, Axxess upload, DNS or production deployment.
