@@ -1,6 +1,6 @@
 {
-  "car_audio_source_rows": 702,
-  "brand_product_rows": 627,
+  "car_audio_source_rows": 704,
+  "brand_product_rows": 629,
   "brand_count": 9,
   "harness_component_group": 47,
   "marine_audio_separated": 28,
@@ -8,7 +8,7 @@
   "brand_counts": {
     "Alpine": 58,
     "Amplified": 3,
-    "Audison": 94,
+    "Audison": 96,
     "Focal": 2,
     "JVC": 13,
     "Kenwood": 4,
@@ -18,7 +18,7 @@
   },
   "component_counts": {
     "Amplifiers": 44,
-    "Harnesses, Trims & Fitment": 44,
+    "Harnesses, Trims & Fitment": 46,
     "Cameras & Monitors": 14,
     "Speakers & Component Kits": 68,
     "Head Units & Vehicle Infotainment": 253,
@@ -36,5 +36,5 @@
     "Manual Product-Type Review": 1,
     "Head Unit Parts & Accessories": 2
   },
-  "note": "Review-only taxonomy. Supplier Item Code is not a GW SKU. Images and manufacturer feature descriptions remain unverified. Supplier prices and regional stock are snapshots; 1%/2% below supplier retail are candidates only."
+  "note": "Review-only taxonomy. Combined 704-row count includes two Audison AFBMW harnesses reclassified from the separate Hertz-labelled Planetworld staging workbook. Supplier item codes are not GW SKUs. Images and remaining manufacturer features are unverified. Supplier prices/stock are review-only snapshots."
 }
