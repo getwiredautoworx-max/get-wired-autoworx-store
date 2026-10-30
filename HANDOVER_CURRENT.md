@@ -3975,3 +3975,16 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Owner setup after review: configure the five bank fields as Supabase Edge Function secrets (never GitHub/source code/chat), verify them in a non-production test order, then owner-authorise deployment. Keep bank account verification manual and payment status pending.
 - WhatsApp currently uses the existing no-cost `wa.me` number `+27 74 488 4234`. PR #121 improves click-to-chat only; automated WhatsApp Business Platform messaging remains optional and requires Meta account/verified number/token/webhook configuration and separate owner approval.
 - Owner's Audio Connections dealer authorisation is confirmed. This supersedes stale statements elsewhere in this file that describe dealer relationship confirmation as outstanding.
+
+---
+
+## CLEAN-MAIN REBASE R2 — 2026-10-30
+
+- Main advanced after the first clean-main preview PR through two handover-only commits. The first clean-main PR #120 became dirty solely because HANDOVER_CURRENT.md changed on main; its preview/code files did not conflict.
+- Rebuilt on latest main commit ffd1f5411aa05459dea92a583410167bdab6fadb in branch integration/planetworld-preview-clean-main-r2-2026-10-30. Ported the four isolated preview routes, Planetworld 68-product provisional preview, Planetworld 702-row component classification manifest, and browser QA workflow including official image-load assertions.
+- The 68-row preview retains 2026-10-25 stock as provisional: 44 positive, 24 zero; both RRP−1% and RRP−2% proposals pass the estimated VAT-inclusive cost floor; dealer cost excluded.
+- Five exact Alpine official image URLs are staged for HDZ-653, R2-A60F, S2-A55V, S2-S40C and S2-S65. Browser QA will verify they actually load; no production image publication is authorised.
+- 702 Planetworld Car Audio rows now have category/component assignments. 243 harness/trim rows are grouped as installation components; two parking sensor kits are separately grouped. Fine vehicle fitment and remaining subtype exceptions still require source-level verification.
+- Prior code-head QA on the same preview content passed: Planetworld 68-row checks, 4,187 populated store products, 103 categories, 34 active ASC rows all zero, hidden checkout, Part Search no-AI flow, audio area navigation, product modal, mobile 390px and desktop 1280px no overflow, no page errors. Public SKU audit and storefront mode gate passed.
+- The Cloudflare Pages preview deployment succeeded for commit 13d13b5 at https://9f72ac78.get-wired-autoworx-store.pages.dev; the branch preview URL was https://integration-planetworld-prev.get-wired-autoworx-store.pages.dev. The separate Workers build check failed; Pages deployment succeeded.
+- PR #117 and #119 are closed as superseded; PR #120 will be closed after this latest-main replacement PR is open and verified. No Supabase/public product/stock/price/image writes, Axxess, DNS, payment activation or production deployment.
