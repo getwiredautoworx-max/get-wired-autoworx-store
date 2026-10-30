@@ -26,6 +26,23 @@ Status: REVIEW ONLY — NOT PUBLISHED. This document supplements, and does not r
 | MLK 700.3 | https://hertz-audio.com/product/mlk-700-3/ | 70 mm mid/high Mille Legend kit; 4 Ω; 200 W peak / 100 W continuous |
 | MPX 690.3 | https://hertz-audio.com/product/mpx-690-3/ | 6 x 9-inch 3-way Mille Pro coaxial; 4 Ω; 260 W peak / 130 W continuous |
 
+## Further exact Cento and Dieci product pages verified on 2026-10-30
+
+| Staged model | Official page | Verified summary |
+|---|---|---|
+| CX 100 | https://hertz-audio.com/product/cx-100/ | 100 mm Cento coaxial; 4 Ω; 120 W peak / 40 W continuous |
+| CX 130 | https://hertz-audio.com/product/cx-130/ | 130 mm Cento coaxial; 4 Ω; 150 W peak / 50 W continuous |
+| CX 165 | https://hertz-audio.com/product/cx-165/ | 165 mm Cento coaxial; 4 Ω; 210 W peak / 70 W continuous |
+| CX 570 | https://hertz-audio.com/product/cx-570/ | 5 x 7-inch Cento coaxial; 4 Ω; 210 W peak / 70 W continuous |
+| CX 690 | https://my.hertz-audio.com/product/cx-690/ | 6 x 9-inch Cento 3-way coaxial; 4 Ω; 300 W peak / 100 W continuous |
+| DCX 100.3 | https://hertz-audio.com/product/dcx-100-3/ | 100 mm Dieci coaxial; 4 Ω; 60 W peak / 30 W continuous |
+| DCX 160.3 | https://hertz-audio.com/product/dcx-160-3/ | 160 mm Dieci coaxial; 4 Ω; 120 W peak / 60 W continuous |
+| DCX 170.3 | https://hertz-audio.com/product/dcx-170-3/ | 170 mm shallow Dieci coaxial; 4 Ω; 100 W peak / 50 W continuous |
+| DCX 570.3 | https://hertz-audio.com/product/dcx-570-3/ | 5 x 7-inch Dieci coaxial; 4 Ω; 120 W peak / 60 W continuous |
+| DCX 690.3 | https://hertz-audio.com/product/dcx-690-3/ | 6 x 9-inch Dieci 3-way coaxial; 4 Ω; 180 W peak / 90 W continuous |
+| DCX 710.3 | https://hertz-audio.com/product/dcx-710-3/ | 7 x 10-inch Dieci 3-way coaxial; 4 Ω; 300 W peak / 150 W continuous |
+| DCX 87.3 | https://hertz-audio.com/product/dcx-87-3/ | 87 mm compact Dieci coaxial; 4 Ω; 60 W peak / 30 W continuous |
+
 ## Exact model labels present in current official Hertz collections
 
 These are manufacturer collection-listing matches, not individual product detail-page verification. The matching model strings should be checked against the source item name before any row is promoted.
