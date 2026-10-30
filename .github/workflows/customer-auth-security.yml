@@ -25,6 +25,8 @@ jobs:
           grep -Fq 'AUTH_EMAIL_REQUIRED' supabase/functions/_shared/customer-auth.ts
           grep -Fq 'signInBtn' checkout-v2.html
           grep -Fq 'sessionStorage.getItem(authKey)' checkout-v2.html
+          grep -Fq 'create_store_order_v3' supabase/functions/store-checkout/index.ts
+          grep -Fq 'p_customer_user_id' supabase/functions/store-checkout/index.ts
       - name: Test customer session validation
         run: deno test supabase/functions/_shared/customer-auth_test.ts
       - name: Type-check checkout function
