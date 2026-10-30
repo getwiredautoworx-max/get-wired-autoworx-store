@@ -1,3 +1,12 @@
+## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FIFTH FOLLOW-UP)
+
+- Added exact individual manufacturer page for X 170 (supplier reference 78040250): https://gr.hertz-audio.com/product/car-audio-coaxials-uno-x170/ .
+- **Current exact individual-page count: 83/89; six supplier rows remain unresolved**: AFBMW BOOSTER 01 (66772099), AFBMW ReAMP 3 (66772206), generic “Hertz Series Set SPL Woofer” (78032225), DG 250.3 (78071121), DG 300.3 (78071126), and HCP HRC (78211040).
+- The generic SPL description must not be mapped to SV 200L or another SPL model without supplier model confirmation. DG grille and HCP HRC entries currently have family/compatibility references but no exact individual accessory page. The two AFBMW entries need manufacturer/supplier identification confirmation.
+- Images are not downloaded or approved. No GW SKU, product publication, duplicate deletion, price/stock changes or production integrations. Continue from these six named unresolved records; no need to repeat previous 83 verifications.
+
+---
+
 ## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FOURTH FOLLOW-UP)
 
 - Seven more exact individual Hertz pages joined to supplier references: DT 24.3 (78030090), CS 250 S2 (78035058), CS 250 S4 (78035068), X 165 (78040221), X 690 (78040230), X 130 (78040240), and HRC BM2 (78270030).
