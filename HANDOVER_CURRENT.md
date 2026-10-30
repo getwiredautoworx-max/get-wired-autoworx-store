@@ -4686,3 +4686,10 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - Static assertions passed for the navigation block, all five owner-requested audio destinations, collection click routing, expanded component filtering, and exactly one `noindex,nofollow` robots directive.
 - Existing safety boundary preserved: all 3,317 rows remain enquiry-only; no dealer cost, supplier price, or supplier stock quantities are exposed; no live catalogue, product, price, stock, Supabase, checkout, Axxess, DNS or production changes.
 - **Not yet verified:** exact-head GitHub Actions/browser QA, latest Cloudflare Pages redeployment, and hosted desktop/mobile click-through. Do not call the change preview-ready until these checks complete. PR #136 remains draft/unmerged and production HOLD remains.
+
+
+## 2026-10-30 — PLANETWORLD BROWSER TEST HEADING ASSERTION CORRECTION
+
+- Corrected the new hosted browser QA heading assertion to read the rendered DOM heading with Playwright `innerText()`, rather than matching the raw HTML string. This avoids a false failure because the ampersand is HTML-escaped as `&amp;` in source.
+- Commit: `088d4a8abc3de15f80c16bb730abd68178fa2ada` on `gw-store-preview-1030`.
+- Remaining test logic still checks all eight navigation buttons and exact collection counts, while preserving dealer-price/cost and private-source-domain guards. No exact-head workflow/browser result or latest-head Cloudflare Pages success is confirmed yet.
