@@ -1,3 +1,12 @@
+## HERTZ HRC ACCESSORY RESOLUTION — 2026-10-30
+
+- Resolved the HCP HRC identity blocker using an Elettromedia manufacturer-operated B2B product record: model HRC, supplier item code 78211040, EAN 8018823109017. Added it to the manufacturer-page audit as B2B product-page evidence: https://elettromedia-srl-b2b-sandbox.mybigcommerce.com/hrc/ . It is a sandbox storefront, so retain that qualification; not the primary Hertz consumer page.
+- Do not conflate HRC (78211040), HRC 02 (78211041) or HRC BM2 (78270030). Verify amplifier compatibility before any product display.
+- **Exact manufacturer product record coverage: 86/89 staged rows (including two correctly identified Audison products); 3 remain without a sufficient individual manufacturer product record**: generic SPL woofer 78032225, DG 250.3 grille 78071121 and DG 300.3 grille 78071126. For Hertz-branded items specifically, 84/87 now have individual manufacturer records; three remain unresolved.
+- No image binaries downloaded/approved, no GW SKUs, no product publication, no price/stock changes or production integrations.
+
+---
+
 ## CAR AUDIO NAVIGATION REVIEW CORRECTION — 2026-10-30
 
 - Updated `catalogue-review/car-audio-navigation-prototype.html` to remove the two Audison AFBMW integration harnesses from Hertz navigation and correct the count from 89 to **87 Hertz-branded source records**.
