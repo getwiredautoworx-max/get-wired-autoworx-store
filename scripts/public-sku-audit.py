@@ -5,6 +5,9 @@ import re, sys
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_EXT = {'.html', '.js', '.css', '.json'}
 EXCLUDE = {'.github/scripts/generate_docs.js', '.github/workflows/asc-sku-image-sync.yml', 'HANDOVER.md', 'scripts/public-sku-audit.py', 'android-owner-app/app/src/main/assets/admin_app.html'}
+# These directories are private source/review material and are excluded from the
+# Cloudflare customer deployment by the dedicated public-pages staging allowlist.
+INTERNAL_SOURCE_PREFIXES = ('catalogue-review/', 'catalogue-source/', 'catalogue-audits/', 'suppliers/')
 PATTERNS = [
  (re.compile(r'\bp\.sku\b|\bx\.sku\b'), 'runtime legacy SKU property'),
  (re.compile(r'select=[^\n\r"\']*\bsku\b'), 'REST select of legacy sku'),
@@ -15,7 +18,7 @@ violations = []
 for p in ROOT.rglob("*"):
  if not p.is_file() or p.suffix.lower() not in PUBLIC_EXT: continue
  rel = p.relative_to(ROOT).as_posix()
- if rel in EXCLUDE or rel.startswith('node_modules/'): continue
+ if rel in EXCLUDE or rel.startswith('node_modules/') or rel.startswith(INTERNAL_SOURCE_PREFIXES): continue
  try: text = p.read_text(encoding="utf-8")
  except UnicodeDecodeError: continue
  for rx, label in PATTERNS:
