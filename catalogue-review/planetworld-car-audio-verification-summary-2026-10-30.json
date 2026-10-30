@@ -42,9 +42,9 @@
       "standard_car_audio_collection_matches": 27,
       "standard_car_audio_unresolved": 122,
       "marine_rows_separated": 28,
-      "marine_exact_product_pages": 4,
-      "marine_collection_matches": 23,
-      "marine_model_code_description_conflicts": 1,
+      "marine_exact_product_pages": 5,
+      "marine_collection_matches": 22,
+      "marine_model_code_description_conflicts": 0,
       "audit": "catalogue-review/planetworld-kicker-official-model-audit.csv"
     },
     "Audison": {
@@ -79,7 +79,6 @@
   },
   "known_review_flags": [
     "ISA-ON115-3LX and ON115-3LX share the same description/application; only ON115-3LX matches the visible OneNav page SKU. Supplier confirmation required; neither row deleted.",
-    "48KMC6 source description says KMC5 while Kicker official listing says KMC6. Manual correction required.",
     "One Audison AV 10 D4 II description is OCR-corrupted; confirm against original source sheet before assigning a model.",
     "Audison AP SPK OUT 4.9 and CX690 grilles have no exact official page match in this pass.",
     "JVC KPE-KDR492 and KPE-KDR891 supplier bundle codes now resolve to underlying official KD-R492 and KD-R891BT head-unit pages; bundle/harness contents remain unverified, so do not treat the supplier bundle code as the manufacturer model.",
@@ -127,5 +126,8 @@
   },
   "combined_car_audio_source_rows": 704,
   "additional_reclassified_rows_from_hertz_staging": 2,
-  "note": " Combined navigation tree includes two additional Audison BMW harness records reclassified from the Hertz-labelled staging workbook; primary source audit remains 702 rows."
+  "note": " Combined navigation tree includes two additional Audison BMW harness records reclassified from the Hertz-labelled staging workbook; primary source audit remains 702 rows.",
+  "resolved_review_flags": [
+    "48KMC6 exact item code now verified against https://www.kicker.com/48KMC6 as KMC6; source description KMC5 corrected in review tree while original wording retained for audit."
+  ]
 }
