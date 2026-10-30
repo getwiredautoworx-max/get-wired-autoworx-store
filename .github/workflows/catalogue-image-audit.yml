@@ -169,6 +169,16 @@ jobs:
           grep -F 'String(mapping.supplier_sku).replace(/[\\/]/g, "_")' supabase/functions/product-image/index.ts
           echo "SERVER_SIDE_SUPPLIER_FILENAME_NORMALISATION_PASS"
 
+      - name: Diagnose public WebP source availability from CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          for sku in GW-000174D6 GW-001CED3B; do
+            raw="$(curl -sS -L --max-time 20 -o /dev/null -w '%{http_code}' "https://raw.githubusercontent.com/getwiredautoworx-max/get-wired-autoworx-store/main/assets/products_webp/${sku}.webp")"
+            cdn="$(curl -sS -L --max-time 20 -o /dev/null -w '%{http_code}' "https://cdn.jsdelivr.net/gh/getwiredautoworx-max/get-wired-autoworx-store@main/assets/products_webp/${sku}.webp")"
+            echo "UPSTREAM_WEBP_SOURCE sku=${sku} raw_github=${raw} jsdelivr=${cdn}"
+          done
+
       - name: Smoke test a known active public-SKU WebP image
         shell: bash
         run: |
