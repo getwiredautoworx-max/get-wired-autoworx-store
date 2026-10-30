@@ -1,6 +1,7 @@
 name: Sony Mobile ES Official Product Image Browser Audit
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - catalogue/ingest-review-2026-10-30
