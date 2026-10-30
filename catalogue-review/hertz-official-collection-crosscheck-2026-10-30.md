@@ -161,3 +161,18 @@ The exact-page audit now contains 66 of the 89 staged reference codes. Twenty-th
 | 78035421 | S 300 S4 | https://hertz-audio.com/product/s-300-s4/ | 1000 W peak; 250 W continuous; 4 Ω; 89.5 dB sensitivity. |
 
 These are individual product-page matches, not collection-only matches. Images are still not downloaded or visually approved. The 89-row supplier staging workbook remains outside the public repository.
+
+
+## Fourth follow-up — seven additional exact individual pages (2026-10-30)
+
+| Reference code | Model | Official page | Verified details |
+|---|---|---|---|
+| 78030090 | DT 24.3 | https://hertz-audio.com/product/dt-24-3/ | 80 W peak; 4 Ω; 3–23 kHz. |
+| 78035058 | CS 250 S2 | https://hertz-audio.com/product/cs-250-s2/ | 600 W peak; 300 W continuous; 2 Ω. |
+| 78035068 | CS 250 S4 | https://hertz-audio.com/product/cs-250-s4/ | 600 W peak; 300 W continuous; 4 Ω. |
+| 78040221 | X 165 | https://hertz-audio.com/product/x-165/ | 220 W peak; 55 W continuous; 4 Ω; 60 Hz–21 kHz. |
+| 78040230 | X 690 | https://hertz-audio.com/product/x-690/ | 340 W peak; 85 W continuous; 4 Ω; 45 Hz–22 kHz. |
+| 78040240 | X 130 | https://hertz-audio.com/product/x-130/ | 160 W peak; 40 W continuous; 4 Ω; 60 Hz–21 kHz. |
+| 78270030 | HRC BM2 | https://hertz-audio.com/product/hrc-bm2/ | Level adjustment −20 to +6 dB. |
+
+All seven are individual product pages, not category/collection references. No product image has been downloaded or approved.
