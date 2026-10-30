@@ -3516,3 +3516,10 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Car Audio review prototype responsive QA run 41022045101 completed SUCCESS; this is not populated-store acceptance. Sony browser image audit run 41021963315 was still IN_PROGRESS at last poll; no final candidate result claimed.
 - Main storefront remains buttons-only. No public product/image/GW SKU publication, Supabase write, live price/stock change, Axxess/DNS/payment change, PR merge or production deployment. Launch HOLD.
 - Next: poll Sony audit; verify individual official image binaries visually; finish exact model/spec/image crosswalks for Planetworld and Audio Connections; obtain supplier clarification for the three Hertz exceptions; keep all uncertain rows quarantined. Any production supplier connection, supplier-ID backfill, catalogue or product/SKU write requires explicit approval first. Full details: `handover-updates/2026-10-30-critical-blockers-database-mapping-root-cause.md`.
+
+
+## FOLLOW-UP READ-ONLY SUPPLIER MAP VALIDATION — 2026-10-30
+
+- Further join validation confirms all 4,198 `gw_private.product_supplier_codes` rows join to existing `public.products` rows; there are zero orphan product IDs. Each mapping row has a distinct product ID and a unique supplier_sku value (zero duplicate supplier_sku values), but all 4,198 supplier_id values remain NULL. This confirms the rows are structurally linked to products but cannot be assigned to a supplier based on current database evidence.
+- Planetworld's 702 supplier SKU values have zero exact matches against the 4,198 legacy supplier_sku values and zero exact matches against public product sku/public_sku. Therefore the existing legacy map does not resolve Planetworld. Do not backfill supplier_id or reuse the legacy map without import-source provenance.
+- This was SELECT-only verification. No database writes, schema changes, or catalogue/stock/price changes.
