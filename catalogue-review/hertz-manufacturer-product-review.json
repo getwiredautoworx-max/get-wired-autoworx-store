@@ -5,18 +5,6 @@
   "manufacturer_verified_hertz_records": 84,
   "source_brand_mismatch_records": 2,
   "unresolved_hertz_records": 3,
-  "component_counts_including_exceptions": {
-    "Component speaker kits": 15,
-    "Subwoofer enclosures / active sub boxes": 6,
-    "Standalone subwoofers": 12,
-    "Coaxial speakers": 22,
-    "Woofers / midbass drivers": 3,
-    "Tweeters": 4,
-    "Amplifiers": 8,
-    "Speaker grilles": 10,
-    "Controls & accessories": 3,
-    "DSP & signal processors": 1
-  },
   "classification_corrections": [
     {
       "codes": [
@@ -44,6 +32,30 @@
       "from": "Needs manual product-type verification",
       "to": "Tweeters",
       "reason": "Exact manufacturer page identifies DT 24.3 tweeter."
+    },
+    {
+      "codes": [
+        "78000099",
+        "78000211"
+      ],
+      "from": "Speaker grilles",
+      "to": "Component speaker kits"
+    },
+    {
+      "codes": [
+        "78000103",
+        "78000105",
+        "78000203"
+      ],
+      "from": "Tweeters",
+      "to": "Component speaker kits"
+    },
+    {
+      "codes": [
+        "78030090"
+      ],
+      "from": "Needs manual product-type verification",
+      "to": "Tweeters"
     }
   ],
   "products": [
@@ -1286,5 +1298,29 @@
     "No product images approved or attached.",
     "No products imported or published.",
     "No Supabase/Axxess/DNS/payment/production changes."
-  ]
+  ],
+  "component_counts_verified": {
+    "Component speaker kits": 15,
+    "Subwoofer enclosures / active sub boxes": 6,
+    "Standalone subwoofers": 12,
+    "Coaxial speakers": 22,
+    "Woofers / midbass drivers": 3,
+    "Tweeters": 4,
+    "Amplifiers": 8,
+    "Speaker grilles": 10,
+    "Controls & accessories": 3,
+    "DSP & signal processors": 1
+  },
+  "component_counts_source_including_exceptions": {
+    "Component speaker kits": 15,
+    "Subwoofer enclosures / active sub boxes": 6,
+    "Standalone subwoofers": 12,
+    "Coaxial speakers": 22,
+    "Woofers / midbass drivers": 4,
+    "Tweeters": 4,
+    "Amplifiers": 8,
+    "Speaker grilles": 12,
+    "Controls & accessories": 3,
+    "DSP & signal processors": 1
+  }
 }
