@@ -23,5 +23,9 @@
   "quote_on_request_items": 770,
   "public_descriptions": 0,
   "public_image_urls": 0,
-  "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only"
+  "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only",
+  "official_image_source_urls_found": 6,
+  "official_image_assets_downloaded": 0,
+  "official_image_assets_approved": 0,
+  "image_notes": "Four Alpine original high-resolution official image URLs and two Sony official image URLs are recorded in the crosswalk. R2-W12D4 uses a shared family image that does not distinguish the impedance variant. All assets remain not downloaded/not approved; retailer/PDF images are not approved."
 }
