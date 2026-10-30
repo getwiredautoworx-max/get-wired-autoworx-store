@@ -381,3 +381,9 @@ Verified since the previous checkpoint:
 - Main storefront remains buttons-only; no production or live catalogue changes. Launch remains HOLD.
 
 Next: obtain exact high-resolution image assets, finish remaining Hertz/Planetworld model matching, assign GW SKUs only after exact internal match, resolve duplicates using provenance/specs/images, then test populated-mode mobile/browser navigation.
+
+## LATEST ONE NAV MATCH DELTA — 2026-10-30
+
+- Nine Planetworld OneNav rows now have exact official product page + visible SKU + vehicle-application verification (OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1, ON115-3LX).
+- One potential alias pair (ISA-ON115-3LX / ON115-3LX) is recorded for supplier confirmation; do not merge or delete.
+- Product images remain unapproved; no GW SKUs assigned. Full details in the latest `AI_HANDOVER_PERMANENT.md` checkpoint.
