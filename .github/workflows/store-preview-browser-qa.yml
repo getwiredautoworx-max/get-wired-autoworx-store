@@ -172,7 +172,7 @@ jobs:
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
-            await hosted.goto('https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://integration-planetworld-prev-njbp.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
             const hostedAudit=await hosted.evaluate(skus=>{
@@ -206,7 +206,7 @@ jobs:
             await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
             await hosted.evaluate(()=>window.closePartRequest());
             await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
-            await hosted.goto('https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev/category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://integration-planetworld-prev-njbp.get-wired-autoworx-store.pages.dev/category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
