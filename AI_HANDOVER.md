@@ -392,3 +392,9 @@ No-upload continuation used existing GitHub and live Supabase source. Four Elect
 - Nine Planetworld OneNav source rows now have exact official product page/SKU/application matches: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
 - Potential alias `ISA-ON115-3LX` / `ON115-3LX` remains quarantined for supplier confirmation; no merge/delete. Images and GW SKU assignments remain outstanding.
 - Read the latest top entries in `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` before continuing.
+
+## LATEST ALPINE REVIEW POINTER — 2026-10-30
+
+- Planetworld Alpine 58-row audit now records 9 exact individual official pages, 26 collection matches, 5 catalogue matches, and 18 unresolved items in this pass.
+- Four official high-resolution image URLs were located, but binaries were not downloaded or approved. Do not publish until exact internal public_sku mapping and current-image comparison are complete.
+- Review branch: `catalogue/complete-remaining-review-2026-10-30`. Read the newest current and permanent handovers before continuing.
