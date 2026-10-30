@@ -1,3 +1,16 @@
+## LATEST MAIN-BRANCH CHECKPOINT — 2026-10-30 — TWO VERIFIED INTEGRATIONS MERGED
+
+- Current main head: `5619d9f6d19d29b3e73fd6c663759bde6e3e2215`.
+- **PR #115 merged** as `c36dac5863e3cef7e6f67681e0aa05aad09c0749`: 47 Planetworld workbooks in canonical private supplier folder; 770-row Planetworld/Audio Connections crosswalk; 81 collision-checked proposed GW public SKUs; official supplier connection proposals and inactive/unlinked SQL staging proposal; fail-closed supplier routing; Actions artifact guards; customer-only Cloudflare Pages allowlist. Exact-head CI passed all six workflows on `25a99c249490f00881aed54892790eb25490180a`.
+- **PR #113 merged** as `5619d9f6d19d29b3e73fd6c663759bde6e3e2215`: authenticated checkout, signed delivery quotes, server-enforced Terms/Returns/Privacy acknowledgement and durable order-linked policy audit wrapper/migration. Exact-head CI passed all five workflows on `9379a9463b14bbd949ca1016b92bd0b47dc3cd0a`.
+- These were source/repository merges only. No Supabase migration was applied, no Edge Function was deployed, no supplier connection or supplier catalogue row was inserted, no public product/GW SKU was inserted, and no stock/price/image was changed or published. No Axxess upload, DNS change, PayFast activation or Cloudflare deployment was performed.
+- Cloudflare Pages deploy workflows now stage only the customer-facing allowlist. QA verified 4,120 public files / 4,101 WebP images and excluded supplier workbooks, review/source folders, PDFs/CSVs, SQL, Supabase and handover files. The current storefront source remains buttons-only.
+- GitHub Actions quota log confirmed delayed usage recalculation (6–12 hours) after artifact deletion. Recurring monitor/browser/catalogue artifact uploads and optional APK/XLSX uploads are now disabled by default behind repository variables; Planetworld workbook audit no longer uploads artifacts. No extra storage purchased.
+- PR #115 and #113 are now merged, not draft. Closed duplicate/superseded PRs are recorded below. PR #94 and #99 remain the two open populated-store/Part Search preview candidates; both remain divergent from current main and must not be merged wholesale.
+- **Outstanding release gates:** confirm Get Wired's Planetworld and Audio Connections dealer relationships/trade terms; approve supplier IDs and proposed GW SKU generator; obtain owner approval before applying inactive supplier staging SQL; verify/download/approve high-resolution images and final descriptions/prices/availability; reconcile PR #94/#99 to a safe populated-store preview; test hosted desktop/mobile customer journey; resolve Axxess-served Part Search mismatch only after upload approval; complete PayFast approval/authentication and end-to-end payment tests. Launch remains HOLD.
+
+---
+
 ## VERIFIED EXECUTION CHECKPOINT — 2026-10-30 — SUPPLIER CROSSWALK + PR RECONCILIATION
 
 ### Consolidated supplier/catalogue candidate
