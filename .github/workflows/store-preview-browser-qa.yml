@@ -38,6 +38,13 @@ jobs:
           sleep 2
           node <<'NODE'
           const { chromium } = require('playwright');
+          const fs = require('fs');
+          for (const route of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']) {
+            const html = fs.readFileSync(route,'utf8');
+            const robots = [...html.matchAll(/<meta\\s+name=["']robots["']\\s+content=["']([^"']+)["'][^>]*>/gi)].map(x=>x[1]);
+            if (robots.length !== 1 || robots[0] !== 'noindex,nofollow') throw new Error('Preview route must have exactly one noindex,nofollow directive: '+route+' '+JSON.stringify(robots));
+          }
+          console.log('PREVIEW_ROBOTS_NOINDEX_PASS');
           const ASC_PUBLIC_SKUS = [
             'GW-09D1B7AD','GW-1C87D5E5','GW-1CE86A57','GW-1ED91C25','GW-269894FE',
             'GW-2A7A9F1E','GW-2AE829B0','GW-2C508DE3','GW-2C792975','GW-31FC9859',
