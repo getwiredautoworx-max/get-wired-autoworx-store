@@ -4000,3 +4000,8 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Cloudflare Pages preview deployment succeeded for commit 13d13b5 at https://9f72ac78.get-wired-autoworx-store.pages.dev; branch preview URL https://integration-planetworld-prev.get-wired-autoworx-store.pages.dev. A separate Cloudflare Workers build check failed; the Pages deployment succeeded.
 - PRs #117 and #119 were closed as superseded; PR #120 was an intermediate branch and PR #122 is the latest clean-main replacement. No Supabase writes, public product creation, live stock/price changes, image publication, payment activation, Axxess upload, DNS change or production deployment.
 - Continue from PR #122. Refresh Planetworld stock when the next workbook arrives; do not wait for it to continue catalogue/image and remaining supplier work.
+
+### Additional supplier image sourcing — Audio Connections Sony — 2026-10-30
+- Captured exact official Sony image source URLs for three Audio Connections Sony candidates: XS-160ES (756px), XS-680ES (960px), and XS-W104ES (1200px). Added catalogue-review/AUDIO_CONNECTIONS_SONY_OFFICIAL_IMAGE_SOURCES_2026-10-30.csv on the review branch.
+- These are source URLs only; visual inspection, browser load verification, image rights/source suitability, and Audio Connections trade-term confirmation remain outstanding. No PDF thumbnails or shared impedance-variant images were promoted.
+- Audio Connections source extraction already contains 53 Starsound/Reference Audio/Blackspider rows and 15 Sony rows; 13 Sony models have exact official product pages. Starsound source PDF has no individual product photos. All remain review-only and unlinked from public products.
