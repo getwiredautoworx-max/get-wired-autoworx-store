@@ -1,3 +1,15 @@
+## SMALL-BRAND MODEL EVIDENCE ADVANCE — 2026-10-30
+
+- Rechecked all 21 Focal/JVC/Kenwood/Pioneer source rows and updated `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv`, the summary JSON and new `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-evidence-crosscheck-2026-10-30.md`.
+- Found exact official JVC underlying head-unit pages for KD-R492 (supplier bundle KPE-KDR492) and KD-R891BT (supplier bundle KPE-KDR891). The KPE bundle/harness composition is still unverified; these are not exact supplier SKU matches and must not be treated as complete-bundle image approval.
+- Confirmed Kenwood KDC-1040U and KDC-154UM in an official model-specific manual/specification PDF; confirmed JVC RM-RK258 as an optional remote in official JVC receiver pages. Neither has a standalone accessory/product page or approved image yet.
+- Corroborated JVC/Kenwood E3A-0323-00 as a DC cord assembly through genuine spare-part listings, but no standalone official manufacturer product page was found; receiver compatibility still needs checking.
+- Pioneer TS-G1610F-2 now has a related official TS-G1610F page and specifications, but the “-2” supplier suffix remains unexplained. Focal KIT SUB P20FE remains ambiguous because the kit contents are not confirmed.
+- Evidence breakdown for the 21 rows is now: 5 exact individual official pages; 7 official collection matches; 1 official support page; 2 official model-specific manuals; 1 official optional-accessory mention; 2 underlying official head-unit pages for supplier bundles; 2 ambiguous kit/suffix matches; 1 third-party OEM part-number corroboration; 0 with no model/part evidence at all. These are evidence tiers, not publication approvals.
+- No image binaries downloaded/approved, no GW SKU assigned, no product published, no price/stock imported and no live database/production changes.
+
+---
+
 ## COMBINED CAR AUDIO NAVIGATION QA PASS — 2026-10-30
 
 - Canonical detailed review workflow **41021768299** completed **SUCCESS** at commit `dc5abcb64069cb08a76e56447ffa857a85b1b274`: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41021768299
