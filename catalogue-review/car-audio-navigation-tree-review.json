@@ -170,6 +170,29 @@
             "note": "Explicit harness/adapter/fitment description."
           },
           {
+            "supplier_item_code": "KAC-001",
+            "supplier_item_name": "KAC-001- ACC CNTL MODULE MAESTRO HU",
+            "supplier_product_type": "FG",
+            "component_candidate": "Harnesses, Trims & Fitment",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 12,
+            "retail_price_incl_vat_source": "3799",
+            "candidate_price_1pct_below_source_retail_incl": "3761.01",
+            "candidate_price_2pct_below_source_retail_incl": "3723.02",
+            "supplier_stock_snapshot": {
+              "jhb": "4",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Accessory control module for Maestro head-unit integration."
+          },
+          {
             "supplier_item_code": "LC70-S269SC",
             "supplier_item_name": "LC70-S269SC- S-SERIES LC70 SINGLE DOOR PODS",
             "supplier_product_type": "FG",
@@ -565,6 +588,29 @@
             "note": "Explicit speaker/woofer description."
           },
           {
+            "supplier_item_code": "S2-S69C-LC70",
+            "supplier_item_name": "S2-S69C+S2-S10TW FOR LC70-S269P KIT",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 50,
+            "retail_price_incl_vat_source": "3749",
+            "candidate_price_1pct_below_source_retail_incl": "3711.51",
+            "candidate_price_2pct_below_source_retail_incl": "3674.02",
+            "supplier_stock_snapshot": {
+              "jhb": "10",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Named S2-S69C speaker and tweeter kit for LC70."
+          },
+          {
             "supplier_item_code": "S2-S80C",
             "supplier_item_name": "Alpine S2-S80C S-Series 8-Inch Component Speaker",
             "supplier_product_type": "FG",
@@ -659,6 +705,29 @@
             "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
           },
           {
+            "supplier_item_code": "ILX-F115D",
+            "supplier_item_name": "Alpine iLX-F115D 11inch Halo11 Media Reciever",
+            "supplier_product_type": "FG",
+            "component_candidate": "Head Units & Vehicle Infotainment",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 10,
+            "retail_price_incl_vat_source": "27899",
+            "candidate_price_1pct_below_source_retail_incl": "27620.01",
+            "candidate_price_2pct_below_source_retail_incl": "27341.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Exact model name identifies Alpine iLX-F115D Halo11 media receiver."
+          },
+          {
             "supplier_item_code": "ILX-F905D",
             "supplier_item_name": "ILX-F905D- Alpine iLX-F905D 9inch Halo9 Media Receiver",
             "supplier_product_type": "FG",
@@ -726,100 +795,6 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
-          }
-        ],
-        "Manual Product-Type Review": [
-          {
-            "supplier_item_code": "ILX-F115D",
-            "supplier_item_name": "Alpine iLX-F115D 11inch Halo11 Media Reciever",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 10,
-            "retail_price_incl_vat_source": "27899",
-            "candidate_price_1pct_below_source_retail_incl": "27620.01",
-            "candidate_price_2pct_below_source_retail_incl": "27341.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KAC-001",
-            "supplier_item_name": "KAC-001- ACC CNTL MODULE MAESTRO HU",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 12,
-            "retail_price_incl_vat_source": "3799",
-            "candidate_price_1pct_below_source_retail_incl": "3761.01",
-            "candidate_price_2pct_below_source_retail_incl": "3723.02",
-            "supplier_stock_snapshot": {
-              "jhb": "4",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "LC70-269P",
-            "supplier_item_name": "LC70 PREMIUM SOUND SOLUTION",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 21,
-            "retail_price_incl_vat_source": "21499",
-            "candidate_price_1pct_below_source_retail_incl": "21284.01",
-            "candidate_price_2pct_below_source_retail_incl": "21069.02",
-            "supplier_stock_snapshot": {
-              "jhb": "3",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "S2-S69C-LC70",
-            "supplier_item_name": "S2-S69C+S2-S10TW FOR LC70-S269P KIT",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 50,
-            "retail_price_incl_vat_source": "3749",
-            "candidate_price_1pct_below_source_retail_incl": "3711.51",
-            "candidate_price_2pct_below_source_retail_incl": "3674.02",
-            "supplier_stock_snapshot": {
-              "jhb": "10",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
           }
         ],
         "Accessories": [
@@ -1355,6 +1330,31 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit wiring, cable or installation accessory."
+          }
+        ],
+        "Vehicle-Specific Audio Kits": [
+          {
+            "supplier_item_code": "LC70-269P",
+            "supplier_item_name": "LC70 PREMIUM SOUND SOLUTION",
+            "supplier_product_type": "FG",
+            "component_candidate": "Vehicle-Specific Audio Kits",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/alpine-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 21,
+            "retail_price_incl_vat_source": "21499",
+            "candidate_price_1pct_below_source_retail_incl": "21284.01",
+            "candidate_price_2pct_below_source_retail_incl": "21069.02",
+            "supplier_stock_snapshot": {
+              "jhb": "3",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "LC70-specific premium sound solution; exact kit contents require manufacturer check."
           }
         ]
       }
@@ -2851,6 +2851,29 @@
             "note": "Explicit harness/adapter/fitment description."
           },
           {
+            "supplier_item_code": "66772200",
+            "supplier_item_name": "Audison - APBMW BIAMP 1 - UNDERSEAT T-H SET 450CM/177 in 2PCS",
+            "supplier_product_type": "FG",
+            "component_candidate": "Harnesses, Trims & Fitment",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 38,
+            "retail_price_incl_vat_source": "1049",
+            "candidate_price_1pct_below_source_retail_incl": "1038.51",
+            "candidate_price_2pct_below_source_retail_incl": "1028.02",
+            "supplier_stock_snapshot": {
+              "jhb": "5",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APBMW BIAMP under-seat T-harness set."
+          },
+          {
             "supplier_item_code": "66772201",
             "supplier_item_name": "Audison - APBMW ReAMP 1 - ADAPTER CABLE BMW-42PIN TO AP BIT",
             "supplier_product_type": "FG",
@@ -2872,6 +2895,29 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit harness/adapter/fitment description."
+          },
+          {
+            "supplier_item_code": "66772203",
+            "supplier_item_name": "Audison - APBMW BIAMP 2 - UNDERSEAT T-H SET 450CM/177 in 2PCS",
+            "supplier_product_type": "FG",
+            "component_candidate": "Harnesses, Trims & Fitment",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 40,
+            "retail_price_incl_vat_source": "1799",
+            "candidate_price_1pct_below_source_retail_incl": "1781.01",
+            "candidate_price_2pct_below_source_retail_incl": "1763.02",
+            "supplier_stock_snapshot": {
+              "jhb": "4",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APBMW BIAMP under-seat T-harness set."
           }
         ],
         "Connectivity & Signal Conversion": [
@@ -3154,6 +3200,213 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit speaker/woofer description."
+          },
+          {
+            "supplier_item_code": "69051070",
+            "supplier_item_name": "Audison - APBMW K4E -KIT 2Way TW+MID+ACC for BMW LargeBasket",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 75,
+            "retail_price_incl_vat_source": "4350",
+            "candidate_price_1pct_below_source_retail_incl": "4306.50",
+            "candidate_price_2pct_below_source_retail_incl": "4263.00",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APBMW 2-way tweeter/midrange speaker kit."
+          },
+          {
+            "supplier_item_code": "69051075",
+            "supplier_item_name": "Audison - APBMW K4M -KIT 2Way TW+MID+ACC for BMW SmallBasket",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 76,
+            "retail_price_incl_vat_source": "4500",
+            "candidate_price_1pct_below_source_retail_incl": "4455.00",
+            "candidate_price_2pct_below_source_retail_incl": "4410.00",
+            "supplier_stock_snapshot": {
+              "jhb": "9",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APBMW 2-way tweeter/midrange speaker kit."
+          },
+          {
+            "supplier_item_code": "69070020",
+            "supplier_item_name": "Audison - AV X6.5 - SET 2 WAY COAX 165mm",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 79,
+            "retail_price_incl_vat_source": "4050",
+            "candidate_price_1pct_below_source_retail_incl": "4009.50",
+            "candidate_price_2pct_below_source_retail_incl": "3969.00",
+            "supplier_stock_snapshot": {
+              "jhb": "10",
+              "dbn": "1",
+              "cpt": "2"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "AV X6.5 2-way coaxial speaker set."
+          },
+          {
+            "supplier_item_code": "69070030",
+            "supplier_item_name": "Audison - APX 4 - SET COAX 2Way 100mm",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 81,
+            "retail_price_incl_vat_source": "1575",
+            "candidate_price_1pct_below_source_retail_incl": "1559.25",
+            "candidate_price_2pct_below_source_retail_incl": "1543.50",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APX 4 2-way coaxial speaker set."
+          },
+          {
+            "supplier_item_code": "69070040",
+            "supplier_item_name": "Audison - APX 5 - SET COAX 2Way 130mm",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 82,
+            "retail_price_incl_vat_source": "1799",
+            "candidate_price_1pct_below_source_retail_incl": "1781.01",
+            "candidate_price_2pct_below_source_retail_incl": "1763.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APX 5 2-way coaxial speaker set."
+          },
+          {
+            "supplier_item_code": "69070050",
+            "supplier_item_name": "Audison - APX 6.5 - SET COAX 2Way 165mm",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 83,
+            "retail_price_incl_vat_source": "1800",
+            "candidate_price_1pct_below_source_retail_incl": "1782.00",
+            "candidate_price_2pct_below_source_retail_incl": "1764.00",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APX 6.5 2-way coaxial speaker set."
+          },
+          {
+            "supplier_item_code": "69070070",
+            "supplier_item_name": "Audison - APX 570 - SET COAX 2Way 5 inx7 in",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 85,
+            "retail_price_incl_vat_source": "1875",
+            "candidate_price_1pct_below_source_retail_incl": "1856.25",
+            "candidate_price_2pct_below_source_retail_incl": "1837.50",
+            "supplier_stock_snapshot": {
+              "jhb": "4",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APX 570 2-way coaxial speaker set."
+          },
+          {
+            "supplier_item_code": "69070080",
+            "supplier_item_name": "Audison - APBMW X4E -SET COAX 2Way 100mm for BMW LargeBasket",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 86,
+            "retail_price_incl_vat_source": "3750",
+            "candidate_price_1pct_below_source_retail_incl": "3712.50",
+            "candidate_price_2pct_below_source_retail_incl": "3675.00",
+            "supplier_stock_snapshot": {
+              "jhb": "3",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APBMW X4E 2-way coaxial speaker set."
+          },
+          {
+            "supplier_item_code": "69070085",
+            "supplier_item_name": "Audison - APBMW X4M -SET COAX 2Way 100mm for BMW SmallBasket",
+            "supplier_product_type": "FG",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 87,
+            "retail_price_incl_vat_source": "3900",
+            "candidate_price_1pct_below_source_retail_incl": "3861.00",
+            "candidate_price_2pct_below_source_retail_incl": "3822.00",
+            "supplier_stock_snapshot": {
+              "jhb": "6",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "APBMW X4M 2-way coaxial speaker set."
           }
         ],
         "Wiring & Installation": [
@@ -3271,261 +3524,6 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit wiring, cable or installation accessory."
-          }
-        ],
-        "Manual Product-Type Review": [
-          {
-            "supplier_item_code": "66772200",
-            "supplier_item_name": "Audison - APBMW BIAMP 1 - UNDERSEAT T-H SET 450CM/177 in 2PCS",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 38,
-            "retail_price_incl_vat_source": "1049",
-            "candidate_price_1pct_below_source_retail_incl": "1038.51",
-            "candidate_price_2pct_below_source_retail_incl": "1028.02",
-            "supplier_stock_snapshot": {
-              "jhb": "5",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "66772203",
-            "supplier_item_name": "Audison - APBMW BIAMP 2 - UNDERSEAT T-H SET 450CM/177 in 2PCS",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 40,
-            "retail_price_incl_vat_source": "1799",
-            "candidate_price_1pct_below_source_retail_incl": "1781.01",
-            "candidate_price_2pct_below_source_retail_incl": "1763.02",
-            "supplier_stock_snapshot": {
-              "jhb": "4",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69051070",
-            "supplier_item_name": "Audison - APBMW K4E -KIT 2Way TW+MID+ACC for BMW LargeBasket",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 75,
-            "retail_price_incl_vat_source": "4350",
-            "candidate_price_1pct_below_source_retail_incl": "4306.50",
-            "candidate_price_2pct_below_source_retail_incl": "4263.00",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69051075",
-            "supplier_item_name": "Audison - APBMW K4M -KIT 2Way TW+MID+ACC for BMW SmallBasket",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 76,
-            "retail_price_incl_vat_source": "4500",
-            "candidate_price_1pct_below_source_retail_incl": "4455.00",
-            "candidate_price_2pct_below_source_retail_incl": "4410.00",
-            "supplier_stock_snapshot": {
-              "jhb": "9",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69070020",
-            "supplier_item_name": "Audison - AV X6.5 - SET 2 WAY COAX 165mm",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 79,
-            "retail_price_incl_vat_source": "4050",
-            "candidate_price_1pct_below_source_retail_incl": "4009.50",
-            "candidate_price_2pct_below_source_retail_incl": "3969.00",
-            "supplier_stock_snapshot": {
-              "jhb": "10",
-              "dbn": "1",
-              "cpt": "2"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69070030",
-            "supplier_item_name": "Audison - APX 4 - SET COAX 2Way 100mm",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 81,
-            "retail_price_incl_vat_source": "1575",
-            "candidate_price_1pct_below_source_retail_incl": "1559.25",
-            "candidate_price_2pct_below_source_retail_incl": "1543.50",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69070040",
-            "supplier_item_name": "Audison - APX 5 - SET COAX 2Way 130mm",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 82,
-            "retail_price_incl_vat_source": "1799",
-            "candidate_price_1pct_below_source_retail_incl": "1781.01",
-            "candidate_price_2pct_below_source_retail_incl": "1763.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69070050",
-            "supplier_item_name": "Audison - APX 6.5 - SET COAX 2Way 165mm",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 83,
-            "retail_price_incl_vat_source": "1800",
-            "candidate_price_1pct_below_source_retail_incl": "1782.00",
-            "candidate_price_2pct_below_source_retail_incl": "1764.00",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69070070",
-            "supplier_item_name": "Audison - APX 570 - SET COAX 2Way 5 inx7 in",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 85,
-            "retail_price_incl_vat_source": "1875",
-            "candidate_price_1pct_below_source_retail_incl": "1856.25",
-            "candidate_price_2pct_below_source_retail_incl": "1837.50",
-            "supplier_stock_snapshot": {
-              "jhb": "4",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69070080",
-            "supplier_item_name": "Audison - APBMW X4E -SET COAX 2Way 100mm for BMW LargeBasket",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 86,
-            "retail_price_incl_vat_source": "3750",
-            "candidate_price_1pct_below_source_retail_incl": "3712.50",
-            "candidate_price_2pct_below_source_retail_incl": "3675.00",
-            "supplier_stock_snapshot": {
-              "jhb": "3",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "69070085",
-            "supplier_item_name": "Audison - APBMW X4M -SET COAX 2Way 100mm for BMW SmallBasket",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 87,
-            "retail_price_incl_vat_source": "3900",
-            "candidate_price_1pct_below_source_retail_incl": "3861.00",
-            "candidate_price_2pct_below_source_retail_incl": "3822.00",
-            "supplier_stock_snapshot": {
-              "jhb": "6",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
           }
         ],
         "Crossovers & Equalisers": [
@@ -4089,7 +4087,7 @@
       }
     },
     "Kicker": {
-      "item_count": 163,
+      "item_count": 161,
       "components": {
         "Subwoofers": [
           {
@@ -7070,6 +7068,29 @@
             "note": "Accessory description; retain source wording pending exact model verification."
           },
           {
+            "supplier_item_code": "51KEYCHAIN",
+            "supplier_item_name": "Kicker Performance Audio Silicone 3D Keychain",
+            "supplier_product_type": "FG",
+            "component_candidate": "Accessories",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 147,
+            "retail_price_incl_vat_source": "2399",
+            "candidate_price_1pct_below_source_retail_incl": "2375.01",
+            "candidate_price_2pct_below_source_retail_incl": "2351.02",
+            "supplier_stock_snapshot": {
+              "jhb": "27",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Kicker branded silicone keychain; accessory, not audio equipment."
+          },
+          {
             "supplier_item_code": "52GL710",
             "supplier_item_name": "52GL710- Kicker GL710 Square 10 (250mm) Grille",
             "supplier_product_type": "FG",
@@ -7256,6 +7277,29 @@
             "note": "Explicit wiring, cable or installation accessory."
           },
           {
+            "supplier_item_code": "46GT2",
+            "supplier_item_name": "Ground Termination Block",
+            "supplier_product_type": "FG",
+            "component_candidate": "Wiring & Installation",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 62,
+            "retail_price_incl_vat_source": "749",
+            "candidate_price_1pct_below_source_retail_incl": "741.51",
+            "candidate_price_2pct_below_source_retail_incl": "734.02",
+            "supplier_stock_snapshot": {
+              "jhb": "6",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Ground termination block."
+          },
+          {
             "supplier_item_code": "46KI24",
             "supplier_item_name": "Kicker 46KI24 2ch RCA Interconnect",
             "supplier_product_type": "FG",
@@ -7417,6 +7461,29 @@
             "note": "Explicit wiring, cable or installation accessory."
           },
           {
+            "supplier_item_code": "46PWB4100",
+            "supplier_item_name": "46PWB4100- Kicker 46PWB4100",
+            "supplier_product_type": "FG",
+            "component_candidate": "Wiring & Installation",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 81,
+            "retail_price_incl_vat_source": "6749",
+            "candidate_price_1pct_below_source_retail_incl": "6681.51",
+            "candidate_price_2pct_below_source_retail_incl": "6614.02",
+            "supplier_stock_snapshot": {
+              "jhb": "3",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Kicker PWB4100 4-gauge blue power/ground wire; exact model identified in product reference."
+          },
+          {
             "supplier_item_code": "46PWB8200",
             "supplier_item_name": "46PWB8200- Kicker 46PWB8200 Power Wire",
             "supplier_product_type": "FG",
@@ -7509,307 +7576,6 @@
             "note": "Explicit wiring, cable or installation accessory."
           }
         ],
-        "Manual Product-Type Review": [
-          {
-            "supplier_item_code": "46GT2",
-            "supplier_item_name": "Ground Termination Block",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 62,
-            "retail_price_incl_vat_source": "749",
-            "candidate_price_1pct_below_source_retail_incl": "741.51",
-            "candidate_price_2pct_below_source_retail_incl": "734.02",
-            "supplier_stock_snapshot": {
-              "jhb": "6",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "46PWB4100",
-            "supplier_item_name": "46PWB4100- Kicker 46PWB4100",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 81,
-            "retail_price_incl_vat_source": "6749",
-            "candidate_price_1pct_below_source_retail_incl": "6681.51",
-            "candidate_price_2pct_below_source_retail_incl": "6614.02",
-            "supplier_stock_snapshot": {
-              "jhb": "3",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "47KEYLOC",
-            "supplier_item_name": "47KEYLOC- Kicker 47KEYLOC KEY series powered line-out c",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 90,
-            "retail_price_incl_vat_source": "2399",
-            "candidate_price_1pct_below_source_retail_incl": "2375.01",
-            "candidate_price_2pct_below_source_retail_incl": "2351.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "47KPB2",
-            "supplier_item_name": "47KPB2- KPB2 34-inch (86cm) long Blue",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 92,
-            "retail_price_incl_vat_source": "14999",
-            "candidate_price_1pct_below_source_retail_incl": "14849.01",
-            "candidate_price_2pct_below_source_retail_incl": "14699.02",
-            "supplier_stock_snapshot": {
-              "jhb": "9",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "51KEYCHAIN",
-            "supplier_item_name": "Kicker Performance Audio Silicone 3D Keychain",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 147,
-            "retail_price_incl_vat_source": "2399",
-            "candidate_price_1pct_below_source_retail_incl": "2375.01",
-            "candidate_price_2pct_below_source_retail_incl": "2351.02",
-            "supplier_stock_snapshot": {
-              "jhb": "27",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "51KMC4",
-            "supplier_item_name": "51KMC4- Kicker 51KMC4 KMC4 Weather-Resistant Gauge-Style Media Center w/Bluetooth",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 148,
-            "retail_price_incl_vat_source": "9499",
-            "candidate_price_1pct_below_source_retail_incl": "9404.01",
-            "candidate_price_2pct_below_source_retail_incl": "9309.02",
-            "supplier_stock_snapshot": {
-              "jhb": "10",
-              "dbn": "1",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KEYCOMBO1",
-            "supplier_item_name": "Kicker Key Combo 1",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 184,
-            "retail_price_incl_vat_source": "8249",
-            "candidate_price_1pct_below_source_retail_incl": "8166.51",
-            "candidate_price_2pct_below_source_retail_incl": "8084.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KEYCOMBO2",
-            "supplier_item_name": "Kicker Key Combo 2",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 185,
-            "retail_price_incl_vat_source": "15749",
-            "candidate_price_1pct_below_source_retail_incl": "15591.51",
-            "candidate_price_2pct_below_source_retail_incl": "15434.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KICKBAKCOMBO",
-            "supplier_item_name": "Kicker Combo 2 Bakkie",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 186,
-            "retail_price_incl_vat_source": "17249",
-            "candidate_price_1pct_below_source_retail_incl": "17076.51",
-            "candidate_price_2pct_below_source_retail_incl": "16904.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KICKCOMBO1 - 10",
-            "supplier_item_name": "Kicker Combo 1 - 10 Inch",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 187,
-            "retail_price_incl_vat_source": "10200",
-            "candidate_price_1pct_below_source_retail_incl": "10098.00",
-            "candidate_price_2pct_below_source_retail_incl": "9996.00",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KICKCOMBO2",
-            "supplier_item_name": "Kicker Combo 2",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 188,
-            "retail_price_incl_vat_source": "12749",
-            "candidate_price_1pct_below_source_retail_incl": "12621.51",
-            "candidate_price_2pct_below_source_retail_incl": "12494.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KICKCOMBO2 - 10",
-            "supplier_item_name": "Kicker Combo 2 10 Inch",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 189,
-            "retail_price_incl_vat_source": "12449",
-            "candidate_price_1pct_below_source_retail_incl": "12324.51",
-            "candidate_price_2pct_below_source_retail_incl": "12200.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "KICKCOMBO2-8",
-            "supplier_item_name": "Kicker Combo 2 - 8Inch",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 190,
-            "retail_price_incl_vat_source": "11799",
-            "candidate_price_1pct_below_source_retail_incl": "11681.01",
-            "candidate_price_2pct_below_source_retail_incl": "11563.02",
-            "supplier_stock_snapshot": {
-              "jhb": "0",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          }
-        ],
         "Head Units & Vehicle Infotainment": [
           {
             "supplier_item_code": "46KISLOAD4",
@@ -7837,6 +7603,29 @@
         ],
         "Connectivity & Signal Conversion": [
           {
+            "supplier_item_code": "47KEYLOC",
+            "supplier_item_name": "47KEYLOC- Kicker 47KEYLOC KEY series powered line-out c",
+            "supplier_product_type": "FG",
+            "component_candidate": "Connectivity & Signal Conversion",
+            "classification_confidence": "High",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 90,
+            "retail_price_incl_vat_source": "2399",
+            "candidate_price_1pct_below_source_retail_incl": "2375.01",
+            "candidate_price_2pct_below_source_retail_incl": "2351.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Kicker KEYLOC smart line-out converter; official Kicker integration catalogue."
+          },
+          {
             "supplier_item_code": "51KBTR",
             "supplier_item_name": "51KBTR- Kicker 51KBTR Bluetooth Receiver",
             "supplier_product_type": "FG",
@@ -7858,6 +7647,169 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Connectivity/signal accessory; confirm exact function from manufacturer data."
+          }
+        ],
+        "Audio Upgrade Packages & Bundles": [
+          {
+            "supplier_item_code": "KEYCOMBO1",
+            "supplier_item_name": "Kicker Key Combo 1",
+            "supplier_product_type": "FG",
+            "component_candidate": "Audio Upgrade Packages & Bundles",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 184,
+            "retail_price_incl_vat_source": "8249",
+            "candidate_price_1pct_below_source_retail_incl": "8166.51",
+            "candidate_price_2pct_below_source_retail_incl": "8084.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Supplier bundle; included component models require verification."
+          },
+          {
+            "supplier_item_code": "KEYCOMBO2",
+            "supplier_item_name": "Kicker Key Combo 2",
+            "supplier_product_type": "FG",
+            "component_candidate": "Audio Upgrade Packages & Bundles",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 185,
+            "retail_price_incl_vat_source": "15749",
+            "candidate_price_1pct_below_source_retail_incl": "15591.51",
+            "candidate_price_2pct_below_source_retail_incl": "15434.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Supplier bundle; included component models require verification."
+          },
+          {
+            "supplier_item_code": "KICKBAKCOMBO",
+            "supplier_item_name": "Kicker Combo 2 Bakkie",
+            "supplier_product_type": "FG",
+            "component_candidate": "Audio Upgrade Packages & Bundles",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 186,
+            "retail_price_incl_vat_source": "17249",
+            "candidate_price_1pct_below_source_retail_incl": "17076.51",
+            "candidate_price_2pct_below_source_retail_incl": "16904.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Supplier bundle; included component models require verification."
+          },
+          {
+            "supplier_item_code": "KICKCOMBO1 - 10",
+            "supplier_item_name": "Kicker Combo 1 - 10 Inch",
+            "supplier_product_type": "FG",
+            "component_candidate": "Audio Upgrade Packages & Bundles",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 187,
+            "retail_price_incl_vat_source": "10200",
+            "candidate_price_1pct_below_source_retail_incl": "10098.00",
+            "candidate_price_2pct_below_source_retail_incl": "9996.00",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Supplier bundle; included component models require verification."
+          },
+          {
+            "supplier_item_code": "KICKCOMBO2",
+            "supplier_item_name": "Kicker Combo 2",
+            "supplier_product_type": "FG",
+            "component_candidate": "Audio Upgrade Packages & Bundles",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 188,
+            "retail_price_incl_vat_source": "12749",
+            "candidate_price_1pct_below_source_retail_incl": "12621.51",
+            "candidate_price_2pct_below_source_retail_incl": "12494.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Supplier bundle; included component models require verification."
+          },
+          {
+            "supplier_item_code": "KICKCOMBO2 - 10",
+            "supplier_item_name": "Kicker Combo 2 10 Inch",
+            "supplier_product_type": "FG",
+            "component_candidate": "Audio Upgrade Packages & Bundles",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 189,
+            "retail_price_incl_vat_source": "12449",
+            "candidate_price_1pct_below_source_retail_incl": "12324.51",
+            "candidate_price_2pct_below_source_retail_incl": "12200.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Supplier bundle; included component models require verification."
+          },
+          {
+            "supplier_item_code": "KICKCOMBO2-8",
+            "supplier_item_name": "Kicker Combo 2 - 8Inch",
+            "supplier_product_type": "FG",
+            "component_candidate": "Audio Upgrade Packages & Bundles",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 190,
+            "retail_price_incl_vat_source": "11799",
+            "candidate_price_1pct_below_source_retail_incl": "11681.01",
+            "candidate_price_2pct_below_source_retail_incl": "11563.02",
+            "supplier_stock_snapshot": {
+              "jhb": "0",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Supplier bundle; included component models require verification."
           }
         ]
       }
@@ -7913,13 +7865,13 @@
             "note": "Parking-sensor product; route to automotive accessories/driver assistance."
           }
         ],
-        "Manual Product-Type Review": [
+        "Harnesses, Trims & Fitment": [
           {
             "supplier_item_code": "9I 05",
             "supplier_item_name": "10.1INCH TO 9INCH",
             "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
+            "component_candidate": "Harnesses, Trims & Fitment",
+            "classification_confidence": "Medium",
             "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
             "source_sheet": "Products",
             "source_row": 4,
@@ -7935,125 +7887,8 @@
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
+            "note": "10.1-inch to 9-inch size-conversion/fitment item; confirm compatibility."
           },
-          {
-            "supplier_item_code": "BOX-10",
-            "supplier_item_name": "Nissan Box",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 7,
-            "retail_price_incl_vat_source": "199",
-            "candidate_price_1pct_below_source_retail_incl": "197.01",
-            "candidate_price_2pct_below_source_retail_incl": "195.02",
-            "supplier_stock_snapshot": {
-              "jhb": "279",
-              "dbn": "0",
-              "cpt": "0"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "ON014-F3",
-            "supplier_item_name": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 91,
-            "retail_price_incl_vat_source": "1500",
-            "candidate_price_1pct_below_source_retail_incl": "1485.00",
-            "candidate_price_2pct_below_source_retail_incl": "1470.00",
-            "supplier_stock_snapshot": {
-              "jhb": "21",
-              "dbn": "1",
-              "cpt": "1"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "ON1509-A14",
-            "supplier_item_name": "9 INCH LCD DISPLAY WITH SUPER SILM METALL CAGE",
-            "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 129,
-            "retail_price_incl_vat_source": "9999",
-            "candidate_price_1pct_below_source_retail_incl": "9899.01",
-            "candidate_price_2pct_below_source_retail_incl": "9799.02",
-            "supplier_stock_snapshot": {
-              "jhb": "328",
-              "dbn": "6",
-              "cpt": "18"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "ON669-A14-LCD",
-            "supplier_item_name": "ON669-A14-LCD",
-            "supplier_product_type": "SP",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 219,
-            "retail_price_incl_vat_source": "11999",
-            "candidate_price_1pct_below_source_retail_incl": "11879.01",
-            "candidate_price_2pct_below_source_retail_incl": "11759.02",
-            "supplier_stock_snapshot": {
-              "jhb": "7",
-              "dbn": "0",
-              "cpt": "2"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
-          {
-            "supplier_item_code": "ON669-A14-T",
-            "supplier_item_name": "ON669-A14 Touch Screen",
-            "supplier_product_type": "SP",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
-            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-            "source_sheet": "Products",
-            "source_row": 220,
-            "retail_price_incl_vat_source": "11999",
-            "candidate_price_1pct_below_source_retail_incl": "11879.01",
-            "candidate_price_2pct_below_source_retail_incl": "11759.02",
-            "supplier_stock_snapshot": {
-              "jhb": "7",
-              "dbn": "0",
-              "cpt": "3"
-            },
-            "gw_sku": "",
-            "gw_sku_status": "NOT ASSIGNED",
-            "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          }
-        ],
-        "Harnesses, Trims & Fitment": [
           {
             "supplier_item_code": "AUDI1-HC",
             "supplier_item_name": "Harness and Canbus for Audi",
@@ -8835,6 +8670,31 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit harness/adapter/fitment description."
+          }
+        ],
+        "Manual Product-Type Review": [
+          {
+            "supplier_item_code": "BOX-10",
+            "supplier_item_name": "Nissan Box",
+            "supplier_product_type": "FG",
+            "component_candidate": "Manual Product-Type Review",
+            "classification_confidence": "Low",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 7,
+            "retail_price_incl_vat_source": "199",
+            "candidate_price_1pct_below_source_retail_incl": "197.01",
+            "candidate_price_2pct_below_source_retail_incl": "195.02",
+            "supplier_stock_snapshot": {
+              "jhb": "279",
+              "dbn": "0",
+              "cpt": "0"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "No safe component match from supplier item name; do not auto-publish."
           }
         ],
         "Cameras & Monitors": [
@@ -10568,6 +10428,29 @@
             "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
           },
           {
+            "supplier_item_code": "ON014-F3",
+            "supplier_item_name": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
+            "supplier_product_type": "FG",
+            "component_candidate": "Head Units & Vehicle Infotainment",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 91,
+            "retail_price_incl_vat_source": "1500",
+            "candidate_price_1pct_below_source_retail_incl": "1485.00",
+            "candidate_price_2pct_below_source_retail_incl": "1470.00",
+            "supplier_stock_snapshot": {
+              "jhb": "21",
+              "dbn": "1",
+              "cpt": "1"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "OneNav vehicle-specific 10.1-inch display/infotainment unit; exact fitment still to verify."
+          },
+          {
             "supplier_item_code": "ON014-F4",
             "supplier_item_name": "OneNav Frame for 2018 Toyota Prado",
             "supplier_product_type": "FG",
@@ -11394,6 +11277,29 @@
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit head-unit, media receiver or OneNav/infotainment description."
+          },
+          {
+            "supplier_item_code": "ON1509-A14",
+            "supplier_item_name": "9 INCH LCD DISPLAY WITH SUPER SILM METALL CAGE",
+            "supplier_product_type": "FG",
+            "component_candidate": "Head Units & Vehicle Infotainment",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 129,
+            "retail_price_incl_vat_source": "9999",
+            "candidate_price_1pct_below_source_retail_incl": "9899.01",
+            "candidate_price_2pct_below_source_retail_incl": "9799.02",
+            "supplier_stock_snapshot": {
+              "jhb": "328",
+              "dbn": "6",
+              "cpt": "18"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "9-inch LCD display unit with slim metal cage."
           },
           {
             "supplier_item_code": "ON1509-CS1",
@@ -14548,19 +14454,67 @@
             "manufacturer_description_status": "NOT VERIFIED",
             "note": "Explicit wiring, cable or installation accessory."
           }
+        ],
+        "Head Unit Parts & Accessories": [
+          {
+            "supplier_item_code": "ON669-A14-LCD",
+            "supplier_item_name": "ON669-A14-LCD",
+            "supplier_product_type": "SP",
+            "component_candidate": "Head Unit Parts & Accessories",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 219,
+            "retail_price_incl_vat_source": "11999",
+            "candidate_price_1pct_below_source_retail_incl": "11879.01",
+            "candidate_price_2pct_below_source_retail_incl": "11759.02",
+            "supplier_stock_snapshot": {
+              "jhb": "7",
+              "dbn": "0",
+              "cpt": "2"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Replacement LCD for OneNav display; not a complete head unit."
+          },
+          {
+            "supplier_item_code": "ON669-A14-T",
+            "supplier_item_name": "ON669-A14 Touch Screen",
+            "supplier_product_type": "SP",
+            "component_candidate": "Head Unit Parts & Accessories",
+            "classification_confidence": "Medium",
+            "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
+            "source_sheet": "Products",
+            "source_row": 220,
+            "retail_price_incl_vat_source": "11999",
+            "candidate_price_1pct_below_source_retail_incl": "11879.01",
+            "candidate_price_2pct_below_source_retail_incl": "11759.02",
+            "supplier_stock_snapshot": {
+              "jhb": "7",
+              "dbn": "0",
+              "cpt": "3"
+            },
+            "gw_sku": "",
+            "gw_sku_status": "NOT ASSIGNED",
+            "image_status": "NOT VERIFIED",
+            "manufacturer_description_status": "NOT VERIFIED",
+            "note": "Replacement touch screen for OneNav display."
+          }
         ]
       }
     },
     "Pioneer": {
       "item_count": 2,
       "components": {
-        "Manual Product-Type Review": [
+        "Head Units & Vehicle Infotainment": [
           {
             "supplier_item_code": "DMH-AP6650BT",
             "supplier_item_name": "Pioneer 9 Inches Dsreen Univ",
             "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
+            "component_candidate": "Head Units & Vehicle Infotainment",
+            "classification_confidence": "Medium",
             "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/pioneer-car-audio-price-list-2026-10-25.xlsx",
             "source_sheet": "Products",
             "source_row": 2,
@@ -14576,14 +14530,16 @@
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
-          },
+            "note": "Pioneer 9-inch universal display/media receiver; full model description needs manufacturer verification."
+          }
+        ],
+        "Speakers & Component Kits": [
           {
             "supplier_item_code": "TS-G1610F-2",
             "supplier_item_name": "Pioneer 6.5 inch 280W Dual",
             "supplier_product_type": "FG",
-            "component_candidate": "Manual Product-Type Review",
-            "classification_confidence": "Low",
+            "component_candidate": "Speakers & Component Kits",
+            "classification_confidence": "Medium",
             "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/pioneer-car-audio-price-list-2026-10-25.xlsx",
             "source_sheet": "Products",
             "source_row": 3,
@@ -14599,7 +14555,7 @@
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
             "manufacturer_description_status": "NOT VERIFIED",
-            "note": "No safe component match from supplier item name; do not auto-publish."
+            "note": "Pioneer 6.5-inch dual-cone speaker; exact specs need manufacturer verification."
           }
         ]
       }
@@ -15714,7 +15670,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KM104",
@@ -15738,7 +15694,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KM122",
@@ -15762,7 +15718,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KM124",
@@ -15786,7 +15742,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KM654",
@@ -15810,7 +15766,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KM654L",
@@ -15834,7 +15790,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KM84L",
@@ -15858,7 +15814,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMF104",
@@ -15882,7 +15838,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMF124",
@@ -15906,7 +15862,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMG10W",
@@ -15930,7 +15886,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMG12W",
@@ -15954,7 +15910,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMTC65",
@@ -15978,7 +15934,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMTC65W",
@@ -16002,7 +15958,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMTC8",
@@ -16026,7 +15982,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMTC8W",
@@ -16050,7 +16006,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "45KMTDC65W",
@@ -16074,7 +16030,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "46KMC2",
@@ -16098,7 +16054,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "46KMC3",
@@ -16122,7 +16078,31 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
+      },
+      {
+        "supplier_item_code": "47KPB2",
+        "supplier_item_name": "47KPB2- KPB2 34-inch (86cm) long Blue",
+        "supplier_product_type": "FG",
+        "component_candidate": "Marine Audio — Separate Category",
+        "classification_confidence": "High",
+        "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+        "source_sheet": "Products",
+        "source_row": 92,
+        "retail_price_incl_vat_source": "14999",
+        "candidate_price_1pct_below_source_retail_incl": "14849.01",
+        "candidate_price_2pct_below_source_retail_incl": "14699.02",
+        "supplier_stock_snapshot": {
+          "jhb": "9",
+          "dbn": "0",
+          "cpt": "0"
+        },
+        "gw_sku": "",
+        "gw_sku_status": "NOT ASSIGNED",
+        "image_status": "NOT VERIFIED",
+        "manufacturer_description_status": "NOT VERIFIED",
+        "note": "Kicker 47KPB2 weather-resistant powersports/marine 10-speaker PowerBar.",
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "47PSM32",
@@ -16146,7 +16126,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "48KMA3604",
@@ -16170,7 +16150,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "48KMA6004",
@@ -16194,7 +16174,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "48KMA6006",
@@ -16218,7 +16198,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "48KMA8001",
@@ -16242,7 +16222,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "48KMC6",
@@ -16266,7 +16246,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "48KXMA8004",
@@ -16290,7 +16270,7 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
       },
       {
         "supplier_item_code": "48KXMA9005",
@@ -16314,17 +16294,41 @@
         "image_status": "NOT VERIFIED",
         "manufacturer_description_status": "NOT VERIFIED",
         "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker Marine / Other Marine Brand"
+        "brand": "Kicker"
+      },
+      {
+        "supplier_item_code": "51KMC4",
+        "supplier_item_name": "51KMC4- Kicker 51KMC4 KMC4 Weather-Resistant Gauge-Style Media Center w/Bluetooth",
+        "supplier_product_type": "FG",
+        "component_candidate": "Marine Audio — Separate Category",
+        "classification_confidence": "Medium",
+        "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
+        "source_sheet": "Products",
+        "source_row": 148,
+        "retail_price_incl_vat_source": "9499",
+        "candidate_price_1pct_below_source_retail_incl": "9404.01",
+        "candidate_price_2pct_below_source_retail_incl": "9309.02",
+        "supplier_stock_snapshot": {
+          "jhb": "10",
+          "dbn": "1",
+          "cpt": "0"
+        },
+        "gw_sku": "",
+        "gw_sku_status": "NOT ASSIGNED",
+        "image_status": "NOT VERIFIED",
+        "manufacturer_description_status": "NOT VERIFIED",
+        "note": "Weather-resistant gauge-style media center; hold under Marine Audio pending official page check.",
+        "brand": "Kicker"
       }
     ]
   },
   "totals": {
     "car_audio_source_rows": 702,
-    "brand_product_rows": 629,
+    "brand_product_rows": 627,
     "brand_count": 9,
-    "component_group_harness_trims": 47,
-    "marine_audio_separated": 26,
-    "manual_review": 36,
+    "harness_component_group": 47,
+    "marine_audio_separated": 28,
+    "manual_review": 1,
     "brand_counts": {
       "Alpine": 58,
       "Amplified": 3,
@@ -16332,27 +16336,30 @@
       "Focal": 2,
       "JVC": 13,
       "Kenwood": 4,
-      "Kicker": 163,
+      "Kicker": 161,
       "One": 290,
       "Pioneer": 2
     },
     "component_counts": {
       "Amplifiers": 44,
-      "Harnesses, Trims & Fitment": 40,
+      "Harnesses, Trims & Fitment": 44,
       "Cameras & Monitors": 14,
-      "Speakers & Component Kits": 57,
-      "Head Units & Vehicle Infotainment": 249,
-      "Manual Product-Type Review": 36,
-      "Accessories": 40,
+      "Speakers & Component Kits": 68,
+      "Head Units & Vehicle Infotainment": 253,
+      "Accessories": 41,
       "Subwoofers": 78,
-      "Wiring & Installation": 21,
+      "Wiring & Installation": 23,
+      "Vehicle-Specific Audio Kits": 1,
       "Tweeters": 10,
-      "Connectivity & Signal Conversion": 4,
+      "Connectivity & Signal Conversion": 5,
       "DSP & Signal Processors": 4,
       "Crossovers & Equalisers": 4,
       "Subwoofer Boxes & Active Enclosures": 26,
-      "Parking Sensors & Driver Assistance": 2
+      "Audio Upgrade Packages & Bundles": 7,
+      "Parking Sensors & Driver Assistance": 2,
+      "Manual Product-Type Review": 1,
+      "Head Unit Parts & Accessories": 2
     },
-    "note": "Classification is a review candidate only. Supplier Item Code is not a GW SKU. Images and manufacturer feature descriptions remain unverified. Supplier prices and regional stock are snapshots; 1%/2% below supplier retail are price candidates only."
+    "note": "Review-only taxonomy. Supplier Item Code is not a GW SKU. Images and manufacturer feature descriptions remain unverified. Supplier prices and regional stock are snapshots; 1%/2% below supplier retail are candidates only."
   }
 }
