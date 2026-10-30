@@ -16,9 +16,8 @@ Safe remediation sequence once explicitly approved: (a) register Planetworld and
 
 ### 2. Hertz audit materially advanced; previous handover count was stale
 Latest isolated review branch `catalogue/complete-remaining-review-2026-10-30`, commit `ca62aa98419aede1eb3963b7989767eb3583cf34`, contains `catalogue-review/hertz-manufacturer-product-review.json`:
-- 87 staging source rows.
+- 89 workbook rows in total: 87 Hertz-labelled records (84 manufacturer-verified + 3 unresolved) and 2 records whose source brand label says Hertz but whose exact manufacturer pages confirm Audison. Do not publish those two under Hertz.
 - 84 manufacturer-verified Hertz records.
-- 2 source-brand mismatches are confirmed Audison products; do not publish them under Hertz.
 - 3 Hertz rows remain unresolved and require Planetworld clarification (item codes 78032225, 78071121, 78071126).
 - Manufacturer descriptions/specifications and exact product-page references are documented for verified records.
 - Images remain NOT VERIFIED / NOT APPROVED and GW SKUs remain unassigned. This does not authorize publication.
