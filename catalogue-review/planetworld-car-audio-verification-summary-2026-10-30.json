@@ -99,5 +99,18 @@
     "Do not merge or delete duplicate/alias candidates without source-file provenance, model, description/specification, image comparison and supplier confirmation where needed.",
     "Marine rows are separate from Car Audio navigation; Harness and Trims is not a manufacturer brand button.",
     "No supplier cost/stock data is reproduced in these audit outputs."
-  ]
+  ],
+  "internal_mapping_audit": {
+    "status": "READ_ONLY_NO_WRITES",
+    "project": "Store (ojytykqpvonxvepprgbh)",
+    "product_supplier_codes_rows": 4198,
+    "product_supplier_codes_rows_with_supplier_id_null": 4198,
+    "exact_supplier_code_matches_to_702_planetworld_rows": 0,
+    "supplier_catalog_items_rows": 0,
+    "public_products_exact_sku_or_public_sku_matches": 0,
+    "public_products_name_or_description_matches_to_220_candidate_models": 0,
+    "conclusion": "No internal public_sku/product_id mapping found; image assets cannot be safely assigned to products.",
+    "details": "catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json",
+    "database_changes": 0
+  }
 }
