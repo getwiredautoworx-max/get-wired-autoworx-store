@@ -1,5 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { cartCanonical, destinationCanonical, digest, signQuote, type QuoteItem } from "../_shared/delivery-quote.ts";
+import { collectionOrigin } from "../_shared/collection-origin.js";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -77,7 +78,11 @@ export async function handleRequest(request: Request): Promise<Response> {
     const verified = await authoritativeParcel(supabaseUrl, body.items as Item[]);
     const p = verified.parcel, cartHash = await digest(verified.canonical), destinationHash = await digest(destinationCanonical(body));
     const quotes: any[] = [];
+    // Private collection details are supplied only through server-side secrets.
+    // Skip live carrier calls until all four values are configured.
+    const collection = collectionOrigin((name: string) => Deno.env.get(name));
     for (const provider of providers) {
+      if (!collection) break;
       const url = Deno.env.get(provider.prefix + "_RATES_URL");
       const token = Deno.env.get(provider.prefix + "_API_TOKEN");
       if (!url || !token) continue;
@@ -86,7 +91,7 @@ export async function handleRequest(request: Request): Promise<Response> {
           method: "POST",
           headers: { authorization: "Bearer " + token, "content-type": "application/json", accept: "application/json" },
           body: JSON.stringify({
-            collection: { address: "29 Wattlebrook Crescent, Brookdale, Phoenix, Durban, South Africa", city: "Durban", province: "KwaZulu-Natal", postal_code: "4068" },
+            collection,
             delivery: { city: body.city.trim(), postal_code: body.postal_code.trim(), address: typeof body.address === "string" ? body.address.trim() : "" },
             parcel: p,
           }),
