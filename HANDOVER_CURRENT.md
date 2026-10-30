@@ -4240,3 +4240,26 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Preview ready for owner inspection; production storefront NOT ready/live. The main customer entry is still button-only.
 - Signed quote code and CI tests are complete in source; deployed Supabase runtime remains unremediated until approved deployment.
 - No Axxess package, Axxess upload, DNS, Supabase migration/function deployment, supplier publication, live price/stock update or payment activation was performed in this checkpoint.
+
+
+## RESUMED EXECUTION — PREVIEW INDEXING DEFECT FIXED — 2026-10-30 15:25 SAST
+
+### Work executed in this session
+- Resumed from main commit `8503d5034e2e72405760ec9fdd5fba7e1c52c9b2`; PR #134 remains the populated preview integration candidate, based on main ancestor `e101de378ae8fde4b8bfc9afaf85904574fcd668`.
+- Inspected all 12 PR #134 changed files and current entry-page state. Confirmed main `index-new.html` remains the intentional 5,973-byte buttons-only holding page; `preview-store.html` is the 177 KB populated review storefront with checkout hidden and preview-only banner.
+- Found a real defect missed by the earlier checks: `preview-store.html` contained contradictory robots directives, first `noindex,nofollow`, later `index,follow`. Search-engine behaviour was therefore ambiguous despite preview-only intent.
+- Fixed `preview-store.html` on PR #134 branch by removing the contradictory `index,follow` directive. Verified exact source now contains exactly one robots directive and its value is `noindex,nofollow`.
+- Added a browser QA assertion to `.github/workflows/store-preview-browser-qa.yml` requiring exactly one `noindex,nofollow` robots directive. Corrected the matcher after source inspection so it uses the intended `\s` whitespace expression.
+- Latest PR #134 head: `8a23ce565d7237622fdd06e9630f016a5e498c6f`. Cloudflare Pages check run `124077365797` started 2026-10-30 13:03:33Z and was IN_PROGRESS at last read. Await final deployment result and GitHub browser-QA run before calling this fix verified in CI/hosted preview.
+- PR #134 remains draft/open. No merge to main, no production entry replacement, no Axxess package/upload, no Supabase deployment/secrets/migration, no DNS, no live stock/price changes, and no payment activation.
+
+### Immediate next actions
+1. Confirm Cloudflare Pages check run `124077365797` completes successfully and record its preview URL.
+2. Confirm Populated Store Preview Browser QA runs on exact head `8a23ce565d7237622fdd06e9630f016a5e498c6f`; it must execute all browser steps and pass the new robots assertion.
+3. Review PR #134 final diff and then merge only after successful checks (preview files/workflow/tests only; production entry remains untouched).
+4. Create a separate production-candidate branch from the merged tested code. Do not promote preview markup wholesale: deliberately remove preview notice/noindex and re-enable purchasing only after signed delivery quote runtime deployment, EFT secrets and non-production checkout tests are completed.
+5. Prepare the Axxess release package only from the approved production candidate and verify ZIP contents/hash; actual Axxess upload and DNS require explicit release approval.
+
+### Status correction
+- PR #134's preview indexing defect is now fixed in source and protected by a new regression assertion; its new deployment/CI checks are still pending at checkpoint.
+- The production customer entry is still buttons-only. Store is not production-ready/live yet.
