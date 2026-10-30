@@ -1,0 +1,102 @@
+{
+  "status": "REVIEW_ONLY_NOT_PUBLISHED",
+  "supplier": "Planetworld",
+  "source_rows": 702,
+  "reconciled_top_level_split": {
+    "car_audio_brand_products": 627,
+    "marine_audio_products": 28,
+    "harness_and_trims_components": 47,
+    "manufacturer_brand_count": 9
+  },
+  "source_brand_counts_including_marine": {
+    "One": 290,
+    "Kicker": 189,
+    "Audison": 94,
+    "Alpine": 58,
+    "JVC Car Audio": 13,
+    "Kenwood Car Audio": 4,
+    "Amplified": 3,
+    "Focal Car Audio": 2,
+    "Pioneer Car Audio": 2,
+    "Harness and Trims": 47
+  },
+  "brand_verification": {
+    "One": {
+      "rows": 290,
+      "exact_official_product_pages": 9,
+      "unverified_or_unmatched": 281,
+      "audit": "catalogue-review/planetworld-one-official-model-audit.csv"
+    },
+    "Alpine": {
+      "rows": 58,
+      "exact_official_product_pages": 9,
+      "official_collection_matches": 26,
+      "official_catalogue_matches": 5,
+      "unmatched_in_this_pass": 18,
+      "audit": "catalogue-review/planetworld-alpine-official-model-audit.csv"
+    },
+    "Kicker": {
+      "rows": 189,
+      "standard_car_audio_rows": 161,
+      "standard_car_audio_exact_product_pages": 12,
+      "standard_car_audio_collection_matches": 27,
+      "standard_car_audio_unresolved": 122,
+      "marine_rows_separated": 28,
+      "marine_exact_product_pages": 4,
+      "marine_collection_matches": 23,
+      "marine_model_code_description_conflicts": 1,
+      "audit": "catalogue-review/planetworld-kicker-official-model-audit.csv"
+    },
+    "Audison": {
+      "rows": 94,
+      "exact_official_product_pages": 41,
+      "official_collection_accessory_configurator_or_range_matches": 49,
+      "unmatched": 2,
+      "source_text_ocr_manual_review": 2,
+      "audit": "catalogue-review/planetworld-audison-official-model-audit.csv"
+    },
+    "Focal_JVC_Kenwood_Pioneer": {
+      "rows": 21,
+      "exact_official_product_pages": 6,
+      "official_collection_or_support_matches": 12,
+      "ambiguous_suffix_match": 1,
+      "unmatched": 2,
+      "audit": "catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv"
+    },
+    "Amplified": {
+      "rows": 3,
+      "exact_official_matches": 0,
+      "unmatched": 3
+    }
+  },
+  "known_review_flags": [
+    "ISA-ON115-3LX and ON115-3LX share the same description/application; only ON115-3LX matches the visible OneNav page SKU. Supplier confirmation required; neither row deleted.",
+    "48KMC6 source description says KMC5 while Kicker official listing says KMC6. Manual correction required.",
+    "One Audison AV 10 D4 II description is OCR-corrupted; confirm against original source sheet before assigning a model.",
+    "Audison AP SPK OUT 4.9 and CX690 grilles have no exact official page match in this pass."
+  ],
+  "image_status": {
+    "Alpine": {
+      "original_high_resolution_source_urls_found": 4,
+      "assets_downloaded": 0,
+      "assets_approved": 0,
+      "manifest": "catalogue-review/alpine-high-resolution-image-source-manifest.csv"
+    },
+    "Other_brands": "Official product/collection pages may display images, but original binary assets have not been downloaded or approved."
+  },
+  "release_status": {
+    "gw_skus_assigned": 0,
+    "product_images_published": 0,
+    "customer_products_published": 0,
+    "duplicate_rows_deleted": 0,
+    "live_price_stock_changes": 0,
+    "production_changes": 0
+  },
+  "rules": [
+    "Supplier item codes are source identifiers, not GW SKUs.",
+    "Exact manufacturer page or collection match is not sufficient for image publication; internal public_sku mapping and current-image comparison are required.",
+    "Do not merge or delete duplicate/alias candidates without source-file provenance, model, description/specification, image comparison and supplier confirmation where needed.",
+    "Marine rows are separate from Car Audio navigation; Harness and Trims is not a manufacturer brand button.",
+    "No supplier cost/stock data is reproduced in these audit outputs."
+  ]
+}
