@@ -95,6 +95,7 @@ for start in range(0, len(rows), chunk_size):
         w = csv.DictWriter(f, fieldnames=fields); w.writeheader(); w.writerows(chunk)
 (OUT / "planetworld-workbook-inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2), encoding="utf-8")
 pdf_rows = []
+pdf_image_map = []
 try:
     import fitz
 except Exception as exc:
@@ -105,6 +106,8 @@ else:
 pdfs = sorted((ROOT / "suppliers/Audio Connections").glob("*.pdf"))
 pdf_image_dir = OUT / "audio-connections-page-images"
 pdf_image_dir.mkdir(exist_ok=True)
+pdf_extracted_dir = OUT / "audio-connections-extracted-images"
+pdf_extracted_dir.mkdir(exist_ok=True)
 for path in pdfs:
     if fitz is None:
         pdf_rows.append({"source_file": str(path), "page_number": 0, "page_text": "PYMUPDF_IMPORT_ERROR: " + pdf_import_error})
@@ -116,11 +119,45 @@ for path in pdfs:
             pix = page.get_pixmap(matrix=fitz.Matrix(1.25, 1.25), alpha=False)
             safe_name = re.sub(r"[^a-zA-Z0-9]+", "-", path.stem).strip("-").lower()
             pix.save(pdf_image_dir / f"{safe_name}-page-{i:02d}.png")
+            page_dict = page.get_text("dict")
+            text_spans = []
+            for block in page_dict.get("blocks", []):
+                for line in block.get("lines", []):
+                    for span in line.get("spans", []):
+                        text = str(span.get("text", "")).strip()
+                        if text:
+                            bbox = span.get("bbox", [0,0,0,0])
+                            text_spans.append({"text": text, "bbox": bbox})
+            for image_index, image_info in enumerate(page.get_images(full=True), start=1):
+                xref = image_info[0]
+                try:
+                    extracted = doc.extract_image(xref)
+                    ext = extracted.get("ext", "bin")
+                    image_name = f"{safe_name}-page-{i:02d}-image-{image_index:02d}-xref-{xref}.{ext}"
+                    (pdf_extracted_dir / image_name).write_bytes(extracted["image"])
+                    rects = page.get_image_rects(xref)
+                    mapped_labels = []
+                    for rect in rects:
+                        cy = (rect.y0 + rect.y1) / 2
+                        near = [sp for sp in text_spans if sp["bbox"][0] < 150 and abs(((sp["bbox"][1]+sp["bbox"][3])/2)-cy) < 22]
+                        near.sort(key=lambda sp: sp["bbox"][0])
+                        mapped_labels.append({"rect": [rect.x0,rect.y0,rect.x1,rect.y1], "left_column_text": " ".join(sp["text"] for sp in near)})
+                    pdf_image_map.append({
+                        "source_file": str(path), "page_number": i, "image_file": str(pdf_extracted_dir / image_name),
+                        "xref": xref, "width": extracted.get("width"), "height": extracted.get("height"),
+                        "extension": ext, "byte_length": len(extracted["image"]),
+                        "row_label_candidates_json": json.dumps(mapped_labels, ensure_ascii=False)
+                    })
+                except Exception as image_exc:
+                    pdf_image_map.append({"source_file": str(path), "page_number": i, "xref": xref, "error": repr(image_exc)})
         doc.close()
     except Exception as exc:
         pdf_rows.append({"source_file": str(path), "page_number": 0, "page_text": "EXTRACTION_ERROR: " + repr(exc)})
 with (OUT / "audio-connections-pages-review.csv").open("w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=["source_file","page_number","page_text"]); w.writeheader(); w.writerows(pdf_rows)
+with (OUT / "audio-connections-image-map-review.csv").open("w", newline="", encoding="utf-8-sig") as f:
+    image_fields = ["source_file","page_number","image_file","xref","width","height","extension","byte_length","row_label_candidates_json","error"]
+    w = csv.DictWriter(f, fieldnames=image_fields); w.writeheader(); w.writerows(pdf_image_map)
 summary = {
     "planetworld_workbooks_found": len(workbooks),
     "planetworld_workbooks_opened": sum("sheets" in x for x in inventory),
@@ -131,6 +168,8 @@ summary = {
     "audio_connections_pdfs_found": len(pdfs),
     "audio_connections_pages_extracted": len(pdf_rows),
     "audio_connections_pages_with_text": sum(bool(x["page_text"]) and not x["page_text"].startswith(("EXTRACTION_ERROR:", "PYMUPDF_IMPORT_ERROR:")) for x in pdf_rows),
+    "audio_connections_embedded_images_extracted": sum("image_file" in x for x in pdf_image_map),
+    "audio_connections_image_map_errors": [x for x in pdf_image_map if "error" in x],
     "important_limit": "Raw source extraction only. No product identity, duplicate, image, GW SKU, category, price validity, stock or customer-facing listing is approved by this report."
 }
 (OUT / "extraction-summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
