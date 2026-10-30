@@ -54,89 +54,15 @@ jobs:
             const pageConsoleErrors=[];
             page.on('pageerror',e=>pageErrors.push(e.message));
             page.on('console',m=>{if(m.type()==='error')pageConsoleErrors.push(m.text())});
-            await page.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
-            await page.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
-            // Local static-server runs cannot authenticate to the hosted product API; the hosted pass below is authoritative for populated data.
-            const audit=await page.evaluate(skus=>{
-              const rows=window.gwProducts||[];
-              const asc=rows.filter(p=>skus.includes(p.public_sku));
-              const visibleCheckout=[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0);
-              return {
-                products:rows.length,
-                categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,
-                rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),
-                rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),
-                ascMatched:asc.length,
-                ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
-                ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
-                previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
-                visibleCheckout
-              };
-            },ASC_PUBLIC_SKUS);
-            const EXPECTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
-            if(audit.categories!==8||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||audit.rootIds.length!==8||audit.rootIds.some(id=>!id))throw new Error('Approved eight-category root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
-            const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
-            if(await camping.locator('.children .catWrap').filter({hasText:/4X4 Outdoor/i}).count()!==1)throw new Error('4X4 Outdoor must be nested under Camping, Leisure & Outdoors');
-            if(audit.products<1)throw new Error('No live product records loaded into preview');
-            if(audit.ascMatched!==34||audit.ascPositiveStock!==0||audit.ascZeroStock!==34)throw new Error('ASC stock exclusion mismatch (34 active products must be zero; 2 inactive ASC products are correctly absent): '+JSON.stringify(audit));
-            if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
-            if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
-            if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
-            const category=page.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
-            await category.click();
-            await page.locator('#shop').waitFor({state:'visible',timeout:20000});
-            await page.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
-            const firstProduct=page.locator('#allProductsGrid .product').first();
-            await firstProduct.click();
-            await page.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
-            const modalText=await page.locator('#productModal').innerText();
-            if(!modalText.trim())throw new Error('Product detail modal did not populate');
-            await page.locator('#modalClose').click();
-            await page.locator('#productModal').waitFor({state:'hidden',timeout:10000});
-            // Verify Part Search and the no-AI photo-request fallback in the actual preview.
-            const partSearchButton=page.locator('.headerPartSearch').first();
-            await partSearchButton.waitFor({state:'visible',timeout:10000});
-            await partSearchButton.click();
-            await page.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
-            const partSearchCopy=await page.locator('#partSearchDialog').innerText();
-            if(!partSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('No-AI photo-request fallback is missing');
-            await page.locator('#partSearchDialog button.pictureSearchBtn').first().click();
-            await page.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
-            const photoInput=page.locator('#sourcePhotos');
-            const photoRules=await photoInput.evaluate(el=>({multiple:el.multiple,accept:el.accept}));
-            if(!photoRules.multiple||!photoRules.accept.includes('image/jpeg')||!photoRules.accept.includes('image/png'))throw new Error('Photo request upload rules are incomplete: '+JSON.stringify(photoRules));
-            const previewSource=await require('fs').promises.readFile('preview-store.html','utf8');
-            if(/generativelanguage|api\.openai\.com|gemini\/|openai\/images/i.test(previewSource))throw new Error('Paid AI image-search endpoint remains in preview source');
-            if(!previewSource.includes('files.length>5'))throw new Error('Five-photo maximum is not enforced in the request handler');
-            await page.evaluate(()=>window.closePartRequest());
-            await page.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
-            const mobileWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(mobileWidth.scrollWidth>mobileWidth.innerWidth+1)throw new Error('Mobile horizontal overflow: '+JSON.stringify(mobileWidth));
-            await page.setViewportSize({width:1280,height:900});
-            const desktopWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(desktopWidth.scrollWidth>desktopWidth.innerWidth+1)throw new Error('Desktop horizontal overflow: '+JSON.stringify(desktopWidth));
-            // Supplier-specific catalogue pages are intentionally excluded from the public build.
-            // Exercise the dedicated audio-area navigation from the real category page.
-            const audioResponse=await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
-            await page.waitForTimeout(3000);
-            const audioDebug=await page.evaluate(()=>({url:location.href,title:document.title,gridError:document.getElementById('grid')?.dataset.error||'',gridDebug:document.getElementById('grid')?.dataset.debug||'',gridText:document.getElementById('grid')?.innerText||''}));
-            console.log('AUDIO_HTTP_STATUS '+audioResponse?.status());
-            console.log('AUDIO_PAGE_ERRORS '+JSON.stringify({pageErrors,pageConsoleErrors})); 
-            console.log('AUDIO_CATEGORY_DEBUG '+JSON.stringify(audioDebug));
-            if(await page.locator('#grid .card').count()<3)throw new Error('Audio category page did not render three area cards: '+JSON.stringify(audioDebug));
-            const audioAreas=await page.locator('#grid').innerText();
-            for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!audioAreas.includes(label))throw new Error('Audio area navigation missing '+label);
-            await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-            await page.waitForURL(/audio_area=car/,{timeout:15000});
-            await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
-            if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
-            console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
-            const hosted=await browser.newPage({viewport:{width:390,height:844}});
+            // Use the actual hosted branch preview for all populated-data assertions.
+          const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
             await hosted.goto('https://fix-storefront-polish-mainli.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+          const initialHtml=await hosted.content();
+          if(/Planetworld|Dealer Price|supplier catalogue|accessoriesspares\.co\.za/i.test(initialHtml))throw new Error('Supplier identity, pricing or source reference exposed in hosted storefront HTML');
             const hostedAudit=await hosted.evaluate(skus=>{
               const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
               return {
@@ -152,7 +78,10 @@ jobs:
             if(hostedAudit.products<1||hostedAudit.ascMatched!==34||hostedAudit.ascPositiveStock!==0||hostedAudit.ascZeroStock!==34)throw new Error('Hosted ASC stock check failed: '+JSON.stringify(hostedAudit));
             if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
-            const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
+            const firstCard=hosted.locator('#allProductsGrid .product').first();
+          const cardGeometry=await firstCard.evaluate(el=>{const img=el.querySelector('.prodImg,.productImage,.productImagePlaceholder');const card=el.getBoundingClientRect();const media=img?.getBoundingClientRect();return {cardHeight:card.height,mediaHeight:media?.height||0,mediaBottom:media?.bottom||0,cardBottom:card.bottom,overlap:!!media&&media.bottom>card.bottom-1,descriptionPosition:el.querySelector('h3')?.getBoundingClientRect().top||0};});
+          if(!cardGeometry.mediaHeight||cardGeometry.overlap||cardGeometry.descriptionPosition<cardGeometry.mediaBottom-1)throw new Error('Product image/description layout overlaps: '+JSON.stringify(cardGeometry));
+          const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
             await hostedCategory.click();
             await hosted.locator('#shop').waitFor({state:'visible',timeout:20000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
