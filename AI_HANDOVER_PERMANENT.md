@@ -4008,3 +4008,14 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Legacy review counts (including 19 zero-RRP, 37/38 potential below-cost and 32 model/SKU flags) are advisory until freshly checked against current source workbooks. They are not project-wide blockers and do not authorise pricing, stock or catalogue mutations.
 - Current supplier-processing checkpoint: 47 Planetworld XLSX files are under `catalogue-source/suppliers/planetworld/incoming-xlsx/`; two Audio Connections PDFs are under `suppliers/Audio Connections/`; canonical `suppliers/Planetworld/` organisation and source-led extraction remain unfinished. Do not claim binary moves, fresh parsing, image relabelling or imports without read-back evidence.
 - Preserve all existing eight locked rules verbatim. No live store/product/price/stock/category/Supabase changes, Axxess/DNS/payment changes, production deployment, or Cloudflare/Netlify credit use without explicit owner approval. Launch remains HOLD.
+
+
+## 2026-10-30 — CONSOLIDATED REVIEW BRANCH POINTER / SUPPLIER BLOCKER CORRECTION
+
+- Single active integration workspace: `integration/latest-consolidated-review-2026-10-30`. Continue from its `HANDOVER_CURRENT.md`; do not restart extraction or use PR #74 as active code.
+- Current catalogue/supplier review baseline includes 704 source rows and supplier routing safeguards; the exact-head passing baseline is Actions run 41023292662. A later stale KMC6 test assertion was corrected on the integration branch and exact-head QA run 41024259181 was started; read its final result before claiming green.
+- Hertz count correction: 87 source records; 84 manufacturer-verified Hertz records, 2 source-brand mismatches confirmed as Audison, 3 unresolved. Image approval and GW SKU mapping remain outstanding.
+- Sony official browser audit returned HTTP 403 for all 14 models; no images were obtained. Its commit-step pathspec bug was fixed; retry run 41023956303 must be checked.
+- Supabase read-only mapping check: 4,198/4,198 legacy product_supplier_codes rows have NULL supplier_id; supplier_catalog_items is empty; only Caelex, ASC and Electro City connections are registered. Planetworld and Audio Connections are absent. No supplier mapping writes are authorised or safe without verified supplier details and product-code semantics.
+- Historical PRs are overlapping/stale alternatives, not a set to merge blindly. Consolidate only by selective rebase/cherry-pick with exact-head CI. PR #99/#105/#104 diverge substantially from current review baseline; PR #110 is not mergeable; PR #94 remains draft and unmerged. Do not merge to main or deploy.
+- No production Supabase/database writes, live catalogue/price/stock changes, Axxess/DNS, payment, Cloudflare Workers or production deployment. Launch remains HOLD.
