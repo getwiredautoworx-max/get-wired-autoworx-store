@@ -10,6 +10,18 @@
 
 ---
 
+## LATEST PLANETWORLD CATEGORY ENTRY-POINT UPDATE — 2026-10-30
+
+- The populated preview now has a second, direct entry point from the main **SHOP BY CATEGORY** tiles. Commit `5f6167e0b5d7a732ba6b065f2134c69133a34b81` adds a branded Planetworld navigation block immediately below those tiles.
+- Eight category buttons route into the catalogue and select the matching collection: Car Audio (674), Home Entertainment (461), Band & Live Sound (792), DJ Equipment (15), Studio & Pro Audio (62), Marine Audio (28), Installed AV (435), Musical Instruments (850). DJ, Studio and Band & Live Sound are keyword-based groupings within Musical Instruments.
+- Buttons reset brand/component filters and scroll to the selected catalogue collection. Component filtering is enabled across the listed collections.
+- Static source validation on current `preview-store.html`: all eight category labels present; collection filtering and scroll routing present; exactly one `noindex,nofollow` directive; all 8 inline scripts compile. The catalogue JSON contains 3,317 records, 0 missing titles, and no dealer-cost, retail-price, stock or supplier-SKU fields.
+- The last confirmed Cloudflare Pages deployment is still exact commit `70353e98b13b0ec3d1ca169a6ca19d4081f97527` at `https://9dfcf8cc.get-wired-autoworx-store.pages.dev/preview-store.html`. It contains the full 3,317-row catalogue section, but predates direct category-entry commit `5f6167e`. A Cloudflare Pages success comment for `5f6167e` has NOT yet been observed. Do not claim the latest category buttons are deployed until the bot confirms the exact commit.
+- GitHub Actions workflow lookup returned no PR-triggered runs for commits `5f6167e` or `65ec337`; exact-head browser QA for the new category buttons is therefore still pending. The previous 70353e9 checks all failed before steps/logs (see prior correction).
+- Handover update commit `5ff90c07efebfe6c86f157d56f03ec57e52972e9` recorded the direct category navigation. Continue to keep PR #136 draft/unmerged and production HOLD. No production, Supabase, stock, price, supplier activation, checkout, Axxess or DNS changes.
+
+---
+
 ## DEPLOYMENT / CI STATUS CORRECTION — PLANETWORLD PREVIEW — 2026-10-30
 
 - Cloudflare Pages bot confirms **successful deployment** for exact storefront/data commit `70353e98b13b0ec3d1ca169a6ca19d4081f97527`. Immutable preview: `https://9dfcf8cc.get-wired-autoworx-store.pages.dev/preview-store.html`; branch preview: `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`. The deployment includes the new Planetworld catalogue section and sanitized JSON.
