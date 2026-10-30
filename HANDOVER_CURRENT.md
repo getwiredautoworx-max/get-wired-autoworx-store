@@ -4211,3 +4211,31 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Work on delivery quote v3 source/tests and inspect existing checkout/security PRs; identify whether a reviewable PR already exists before creating duplicate work.
 - Inspect and prepare the Axxess package without uploading.
 - Refresh this handover after each material test/merge/deployment result. Record commit/run IDs and never conflate merged, deployed, previewed and live states.
+
+
+## 48-HOUR PUSH — SOURCE SECURITY AND PRODUCTION ENTRY FINDINGS — 2026-10-30 15:10 SAST
+
+### Correction: delivery quote v3 is already implemented in repository source
+- Re-read current-main source after the earlier checkpoint. `supabase/functions/shipping-quote/index.ts`, `supabase/functions/store-checkout/index.ts`, `supabase/functions/_shared/delivery-quote.ts`, the behavioural tests and migrations are already present on main; do not rebuild this work or create a duplicate PR.
+- Source implementation signs quotes with HMAC using `DELIVERY_QUOTE_SIGNING_SECRET`, limits validity to 10 minutes, binds SKU/quantity cart hash, destination hash, provider/service, amount/currency and server-derived parcel dimensions, verifies the token in the checkout Edge Function, and rejects pickup unless fee=0 and quote=null.
+- `20261029150000_delivery_quote_nonce_unique.sql` adds unique nonce consumption; `20261029160000_checkout_policy_audit.sql` adds the service-role-only `create_store_order_v3` policy-acknowledgement RPC.
+- Exact-head workflow run 41058152058 completed SUCCESS with every step executed: static control checks, Deno behavioural token tests, isolated PostgreSQL nonce + policy migration tests, checkout integration tests, shipping-quote type-check and checkout type-check.
+- Issue #102 was updated with this source/CI evidence. Do NOT close it or claim production secure: deployed Supabase functions remain the older versions (previously observed shipping-quote v4 and store-checkout v5); no production migration/function deployment or signing secret configuration occurred. Remaining delivery gate is owner-approved non-production configuration/deployment and end-to-end verification.
+
+### Critical production-entry finding
+- Current main `index-new.html` is explicitly `data-storefront-mode="buttons-only"` (5,973 bytes) and its description says product catalogue content is intentionally cleared. `store.html` is a 3,180-byte iframe wrapper. The populated 177 KB storefront is currently isolated as `preview-store.html` with `data-preview-mode`; it is not the production entry page.
+- PR #134 supplies the current populated review preview at https://integration-preview-search-s.get-wired-autoworx-store.pages.dev/preview-store.html and Planetworld review at https://integration-preview-search-s.get-wired-autoworx-store.pages.dev/preview-planetworld.html. The preview's checkout/supplier submissions remain disabled.
+- The Axxess package workflow `.github/workflows/prepare-axxess-package.yml` explicitly detects `data-storefront-mode="buttons-only"` and skips package creation when true. Therefore no valid customer storefront package can be claimed ready from current main until a reviewed production-entry candidate replaces the button-only route and passes its own tests. Do not remove the guard or publish preview mode directly; prepare a separate production-candidate branch from the tested populated storefront, adapt preview-only restrictions deliberately, and keep checkout gated until approved secure deployment.
+
+### Revised critical path for 48-hour objective
+1. Owner inspects the PR #134 preview; collect only specific visual/functional acceptance issues.
+2. Build a separate production-candidate PR that promotes the tested populated storefront into the customer entry route, removes preview-only noindex/disabled controls only where appropriate, preserves no-payment-before-verification and customer auth/policy requirements, and includes explicit rollback. Do not merge/deploy without owner release approval.
+3. Re-run exact-head browser QA, smoke, package QA, public SKU exposure and delivery quote security on that production-candidate commit. Ensure the actual smoke job executes rather than being skipped by mode detection.
+4. The source-level signed-quote implementation is ready for deployment review; configure signing secret and deploy/migrate only after owner authorisation, then test on non-production.
+5. Prepare Axxess package from the accepted production-candidate source, verify ZIP and hashes, preserve backup and existing `admin.html`/`cgi-bin`; actual Axxess upload and DNS cutover remain owner-approved release actions.
+6. Direct EFT: five bank secrets remain owner-entered in Supabase Dashboard. Test pending/manual bank verification in non-production; never send bank values in chat or commit them.
+
+### Status discipline
+- Preview ready for owner inspection; production storefront NOT ready/live. The main customer entry is still button-only.
+- Signed quote code and CI tests are complete in source; deployed Supabase runtime remains unremediated until approved deployment.
+- No Axxess package, Axxess upload, DNS, Supabase migration/function deployment, supplier publication, live price/stock update or payment activation was performed in this checkpoint.
