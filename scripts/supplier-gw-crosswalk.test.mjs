@@ -50,6 +50,17 @@ assert(planetworldRows.every((r) => r.component_candidate === planetworldByKey.g
 assert(audioRows.every((r) => r.component_candidate === audioByModel.get(r.manufacturer_model.toLowerCase().replace(/[^a-z0-9]/g, ""))), "Audio Connections component groups must match the exact model manifest");
 assert(rows.every((r) => r.component_candidate && !r.component_candidate.startsWith("Unclassified")), "All supplier rows must have source-backed component groups");
 
+const alpineByModel = new Map(rows.filter((r) => r.brand === "Alpine").map((r) => [r.manufacturer_model, r]));
+for (const model of ["Ilx-705D", "KAE-HF11DA", "KAE-HF9DA", "KTX-HF9", "RUE-4360", "RUX-KNOB2", "UTE-204DAB"]) {
+  const row = alpineByModel.get(model);
+  assert(row && row.manufacturer_match_status.startsWith("EXACT OFFICIAL INDIVIDUAL PRODUCT PAGE FOUND"), "Expected exact official Alpine product page: " + model);
+  assert(row.official_manufacturer_page.startsWith("https://"), "Expected official manufacturer URL: " + model);
+}
+assert(alpineByModel.get("KAE-HF9DA").next_action.includes("fitment"), "KAE-HF9DA fitment discrepancy must remain held");
+assert(alpineByModel.get("KAC-001").manufacturer_match_status === "OFFICIAL MANUAL REFERENCE ONLY");
+assert(alpineByModel.get("UTE-200BT").manufacturer_match_status === "OFFICIAL CATALOGUE REFERENCE ONLY");
+assert(alpineByModel.get("KWE-CAM1D").manufacturer_match_status === "OFFICIAL ACCESSORY REFERENCE ONLY");
+
 const sql = await readFile("catalogue-review/supplier-catalogue-stage-proposal-2026-10-30.sql", "utf8");
 assert(sql.includes("APPLIED 2026-10-30"));
 assert(sql.includes("INSERT INTO gw_private.supplier_connections"));
