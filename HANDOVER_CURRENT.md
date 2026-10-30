@@ -4516,3 +4516,10 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - Workflow change commits: `e121294fe5a1d505e6dc8966e7a80f37e97c52cf` and regex correction `53d1d1b6911a1ab33023458ca3e01321aecd8aac`.
 - Static review confirms all eight expected navigation targets and counts are encoded in the hosted test, and the dealer-price/source-domain privacy checks remain. No exact-head workflow run is currently returned for the latest commits; prior runner failures before steps/logs remain unresolved. Latest Pages deployment for this new head is not yet confirmed.
 - PR #136 remains draft/unmerged; preview only. No production or live data/service changes.
+
+
+## 2026-10-30 — PLANETWORLD BROWSER TEST HEADING ASSERTION CORRECTION
+
+- Corrected the new hosted browser QA heading assertion to read the rendered DOM heading with Playwright `innerText()`, rather than matching the raw HTML string. This avoids a false failure because the ampersand is HTML-escaped as `&amp;` in source.
+- Commit: `088d4a8abc3de15f80c16bb730abd68178fa2ada` on `gw-store-preview-1030`.
+- Remaining test logic still checks all eight navigation buttons and exact collection counts, while preserving dealer-price/cost and private-source-domain guards. No exact-head workflow/browser result or latest-head Cloudflare Pages success is confirmed yet.
