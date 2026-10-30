@@ -43,6 +43,19 @@ Status: REVIEW ONLY — NOT PUBLISHED. This document supplements, and does not r
 | DCX 710.3 | https://hertz-audio.com/product/dcx-710-3/ | 7 x 10-inch Dieci 3-way coaxial; 4 Ω; 300 W peak / 150 W continuous |
 | DCX 87.3 | https://hertz-audio.com/product/dcx-87-3/ | 87 mm compact Dieci coaxial; 4 Ω; 60 W peak / 30 W continuous |
 
+## Exact amplifier product pages verified on 2026-10-30
+
+| Staged model | Official page | Verified summary |
+|---|---|---|
+| HCP 5D | https://hertz-audio.com/product/hcp-5d/ | 5-channel Class-D amplifier; 640 W total; 4 x 55 W + 160 W sub @ 4 Ω, or 4 x 90 W + 280 W sub @ 2 Ω |
+| CP 1.2K | https://hertz-audio.com/product/cp-1-2k/ | Mono Class-D amplifier; 1,200 W RMS @ 2 Ω; 650 W @ 4 Ω |
+| CP 1.700 | https://hertz-audio.com/product/cp-1-700/ | Mono Class-D amplifier; 700 W RMS @ 2 Ω; 400 W @ 4 Ω |
+| CP 4.800 | https://hertz-audio.com/product/cp-4-800/ | 4-channel amplifier; 760 W total; 190 W x 4 @ 2 Ω |
+| DP 1.500 | https://hertz-audio.com/product/dp-1-500/ | Mono Class-D amplifier; 500 W RMS @ 2 Ω |
+| DP 4.300 | https://hertz-audio.com/product/dp-4-300/ | 4-channel Class-AB amplifier; 340 W total; 85 W x 4 @ 2 Ω |
+| DP 4.400 | https://hertz-audio.com/product/dp-4-400/ | 4-channel Class-AB amplifier; 500 W total; 105 W x 4 @ 2 Ω |
+| ML Power 1 | https://hertz-audio.com/product/ml-power-1/ | Mono Class-D amplifier; 1,000 W RMS @ 1 Ω |
+
 ## Exact model labels present in current official Hertz collections
 
 These are manufacturer collection-listing matches, not individual product detail-page verification. The matching model strings should be checked against the source item name before any row is promoted.
