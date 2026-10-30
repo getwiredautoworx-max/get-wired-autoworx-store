@@ -400,3 +400,8 @@ Next: obtain exact high-resolution image assets, finish remaining Hertz/Planetwo
 - Kicker, Audison, Alpine, OneNav and smaller-brand exact-page/collection match counts and all unresolved source conflicts are recorded at the top of `AI_HANDOVER_PERMANENT.md`.
 - Consolidated audit: `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`.
 - Continue remaining exact-model verification and image acquisition only after internal product/public_sku matching. Keep live store and launch gates unchanged.
+
+## CRITICAL IMAGE ASSIGNMENT GATE — 2026-10-30
+
+- Read-only Supabase audit found 0 exact mappings between the 702 Planetworld supplier SKUs and existing `public.products.sku/public_sku`; 4,198 supplier-code rows have NULL supplier_id, and supplier_catalog_items is empty.
+- No DB writes. Do not assign manufacturer images or publish new rows until an owner-approved supplier-to-public-product mapping exists. See `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json`.
