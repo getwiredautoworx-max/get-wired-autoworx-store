@@ -1,3 +1,12 @@
+## AUDIO CONNECTIONS — SONY HIGH-RESOLUTION IMAGE SOURCE RESEARCH — 2026-10-30
+
+- Created `catalogue-review/audio-connections-high-resolution-image-candidates-2026-10-30.csv` for all 15 Sony Mobile ES models.
+- Found model-specific high-resolution image URL candidates for **14/15** Sony models. Two direct image URLs are on Sony-owned domains (XS-W104ES and XM-5ES); 12 are distributor/retailer image candidates. XS-680G still has only the low-resolution supplier PDF image and no exact Sony product page.
+- The source PDF reused a single image across XS-W122ES / XS-W124ES and a generic amplifier image across five XM models. The new manifest instead records separate model-specific retailer pages where available; none is approved solely because the page title matches.
+- **No image files were downloaded or visually approved** in this pass. All 14 remain candidate-only pending binary download, visual check, source/rights suitability review and internal GW SKU mapping. No product records or storefront were changed.
+
+---
+
 ## FINAL HERTZ EXCEPTION QUEUE — 2026-10-30
 
 - Created `catalogue-review/hertz-final-exceptions-2026-10-30.csv` with exactly three unresolved rows and evidence tiers: 78032225 generic SPL woofer (exact model unknown), 78071121 DG 250.3 grille (model string corroborated by reseller, manufacturer page absent), and 78071126 DG 300.3 grille (model + supplier item code corroborated by local reseller, manufacturer page absent).
