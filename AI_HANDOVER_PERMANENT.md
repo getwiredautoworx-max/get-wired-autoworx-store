@@ -1,3 +1,12 @@
+## READ-ONLY INTERNAL PRODUCT MAPPING AUDIT — 2026-10-30
+
+- Read-only Supabase inspection was performed to test whether the 702 Planetworld source rows can be mapped to existing public products before any image assignment. No database writes or schema changes were made.
+- Results: `gw_private.product_supplier_codes` has 4,198 rows, but `supplier_id` is NULL on all 4,198; exact matches to the 702 Planetworld supplier SKUs = 0. `gw_private.supplier_catalog_items` has 0 rows. Exact matches against `public.products.sku` or `public.products.public_sku` = 0. A fuzzy name/description search for 220 candidate manufacturer models also returned 0.
+- Full evidence: `catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json`. Consolidated summary updated at `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`.
+- Consequence: there is no verified internal public_sku/product_id target for the new supplier products. Do not attach images, generate GW SKUs, create product rows, or publish catalogue entries until an owner-approved supplier-specific mapping is established. No Supabase changes were made; existing live catalogue remains untouched.
+
+---
+
 ## MULTI-BRAND PLANETWORLD MODEL AUDIT UPDATE — 2026-10-30
 
 - The 702-row Planetworld staging CSV now has official manufacturer page/collection references recorded for 226 source rows. These are model-reference matches, not approved images or published products.
