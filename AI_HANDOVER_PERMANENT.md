@@ -1,3 +1,16 @@
+## LATEST CATALOGUE BROWSE FUNCTIONAL VERIFICATION — 2026-10-30
+
+- Sanitized Planetworld catalogue now contains 3,317 rows from 47 workbooks / 94 sheets (25-Oct-2026 snapshot), with no dealer-cost, retail-price, stock-quantity, raw-workbook or supplier-SKU fields and no blank titles.
+- Added browseable component groups across all divisions. There are 33 component labels; Car Audio uses the source-backed review taxonomy and retains 236 rows marked `Unclassified – manual review`. Home CI, Home Retail, Installed AV and Musical Instruments use keyword-based browse groupings, not supplier-confirmed product taxonomy.
+- Functional mock-DOM exercise of the actual catalogue browser script passed for all eight navigation destinations: Car Audio & Video 674; Home Entertainment 461; Band & Live Sound 792; DJ 15; Studio Equipment 62; Marine Audio 28; Installed AV 435; Musical Instruments 850. Every destination loaded brand and component filters; Home Entertainment's selected component filter returned 51 matching entries; one load-more action rendered 48 cards; search for “Adeo” returned 7 matches; navigation scrolled to the catalogue.
+- Current preview HTML static checks: 8 inline scripts compile; exactly one `noindex,nofollow` directive; all eight navigation destinations exist in the JSON; responsive nav/grid CSS and separated photo-placeholder/text blocks are present. A 390px overflow assertion has been added to `.github/workflows/store-preview-browser-qa.yml` in commit `61b8854717e02e646633e3e4043886a29f680a93`, but no exact-head Actions run is available yet.
+- The new category nav and component grouping are committed on the draft PR #136 branch. Cloudflare Pages last status observed: build in progress for commit `0761c1c85d1dc10f3cfc14febe661e2088944481`; the prior immutable deployment `9dfcf8cc` predates the direct category navigation. Wait for exact latest deployment success before saying the latest buttons are live.
+- PR #136 comparison against current main reports diverged: 46 commits ahead / 42 behind; mergeable=false. Do not merge or force-push. Preview work is present on the branch; a clean-main successor will be needed before any eventual merge.
+- Remaining catalogue gaps: exact 47-row Harnesses & Trims isolation; 236 manual-review Car Audio classifications; approved exact-model images and fuller manufacturer descriptions for the broad 3,317-row feed. All broad-feed cards remain enquiry-only with placeholders. The 68 curated GW additions remain 11 exact-model images / 57 placeholders.
+- No production changes, Supabase writes, supplier activation, public pricing/stock, checkout/payment, Axxess or DNS changes. Production HOLD remains.
+
+---
+
 ## LATEST PLANETWORLD CATEGORY ENTRY-POINT UPDATE — 2026-10-30
 
 - The populated preview now has a second, direct entry point from the main **SHOP BY CATEGORY** tiles. Commit `5f6167e0b5d7a732ba6b065f2134c69133a34b81` adds a branded Planetworld navigation block immediately below those tiles.
