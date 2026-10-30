@@ -196,3 +196,13 @@ Supplier reference 78040250 is confirmed as Hertz X 170 Uno 170 mm coaxial: http
 - 78032225 — supplier description only says “Hertz Series Set SPL Woofer”; exact model number remains unidentified. A reseller page confirms the item code and out-of-stock status on that retailer's own page, not current Planetworld stock: https://nxtleveltech.co.za/product/hertz-series-set-spl-woofer
 - 78071121 / 78071126 — DG 250.3 / DG 300.3 grille models; exact manufacturer individual pages not found in this pass. A South African reseller page identifies DG 300.3 and item code 78071126, but this is not manufacturer evidence: https://nxtleveltech.co.za/product/hertz-dieci-series-dg-3003-12inch-speaker-grille
 - 78211040 — HCP HRC is referenced by official Hertz HCP amplifier pages as an optional remote volume control, but no separate exact HRC accessory product page was found. Keep as a family/compatibility reference, not an exact standalone page.
+
+
+## Seventh follow-up — HRC exact manufacturer B2B record (2026-10-30)
+
+Supplier item 78211040 is confirmed as the Hertz **HRC** external subwoofer volume remote control. The Elettromedia B2B product page identifies SKU 78211040 and EAN 8018823109017: https://elettromedia-srl-b2b-sandbox.mybigcommerce.com/hrc/ . This is manufacturer-operated B2B evidence, but it is a sandbox storefront rather than the primary Hertz consumer product site. Compatibility is limited to compatible HCP amplifier models; the exact amp must be checked. Do not confuse HRC with HRC 02 (78211041) or HRC BM2 (78270030). Image still not approved.
+
+### Remaining three rows without a sufficient individual manufacturer product record
+- 78032225 — generic “Hertz Series Set SPL Woofer”; item code exists on reseller page, but no exact model number.
+- 78071121 — DG 250.3 grille; third-party retail listings corroborate model, but no individual manufacturer page found.
+- 78071126 — DG 300.3 grille; a local reseller identifies the exact item code and model, but no individual manufacturer page found.
