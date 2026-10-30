@@ -36,7 +36,7 @@ assert(rows.every((r) => r.publication_status === "NOT PUBLISHED"), "Review rows
 
 const supplierPairs = rows.map((r) => r.supplier_id + "|" + r.supplier_sku);
 assert.equal(new Set(supplierPairs).size, rows.length, "Supplier/model keys must be unique within each proposed supplier");
-assert(rows.every((r) => r.supplier_id_status === "REGISTERED_INACTIVE"));
+assert(rows.every((r) => ((r.supplier.includes("Planetworld") && r.supplier_id_status === "REGISTERED_ACTIVE_DEALER_CONFIRMED" && r.supplier_connection_active === "true") || (r.supplier === "Audio Connections" && r.supplier_id_status === "REGISTERED_INACTIVE_RELATIONSHIP_UNCONFIRMED" && r.supplier_connection_active === "false"))));
 
 const sql = await readFile("catalogue-review/supplier-catalogue-stage-proposal-2026-10-30.sql", "utf8");
 assert(sql.includes("APPLIED 2026-10-30"));
