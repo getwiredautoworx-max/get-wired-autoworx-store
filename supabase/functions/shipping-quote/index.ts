@@ -8,6 +8,16 @@ const corsHeaders = {
 };
 
 type Item = QuoteItem;
+export type CollectionOrigin = { address: string; city: string; province: string; postal_code: string };
+export function collectionOrigin(getEnv: (name: string) => string | undefined): CollectionOrigin | null {
+  const origin = {
+    address: getEnv("COURIER_COLLECTION_ADDRESS")?.trim() || "",
+    city: getEnv("COURIER_COLLECTION_CITY")?.trim() || "",
+    province: getEnv("COURIER_COLLECTION_PROVINCE")?.trim() || "",
+    postal_code: getEnv("COURIER_COLLECTION_POSTAL_CODE")?.trim() || "",
+  };
+  return Object.values(origin).every(Boolean) ? origin : null;
+}
 function adminHeaders(): Record<string, string> {
   let secret: string | null = null; let usesSecretApiKey = false;
   const env = Deno.env.get("SUPABASE_SECRET_KEYS");
@@ -77,7 +87,10 @@ export async function handleRequest(request: Request): Promise<Response> {
     const verified = await authoritativeParcel(supabaseUrl, body.items as Item[]);
     const p = verified.parcel, cartHash = await digest(verified.canonical), destinationHash = await digest(destinationCanonical(body));
     const quotes: any[] = [];
+    // Keep private collection origin out of source control. Skip live carrier calls until configured server-side.
+    const collection = collectionOrigin((name) => Deno.env.get(name));
     for (const provider of providers) {
+      if (!collection) break;
       const url = Deno.env.get(provider.prefix + "_RATES_URL");
       const token = Deno.env.get(provider.prefix + "_API_TOKEN");
       if (!url || !token) continue;
@@ -86,7 +99,7 @@ export async function handleRequest(request: Request): Promise<Response> {
           method: "POST",
           headers: { authorization: "Bearer " + token, "content-type": "application/json", accept: "application/json" },
           body: JSON.stringify({
-            collection: { address: "29 Wattlebrook Crescent, Brookdale, Phoenix, Durban, South Africa", city: "Durban", province: "KwaZulu-Natal", postal_code: "4068" },
+            collection,
             delivery: { city: body.city.trim(), postal_code: body.postal_code.trim(), address: typeof body.address === "string" ? body.address.trim() : "" },
             parcel: p,
           }),
