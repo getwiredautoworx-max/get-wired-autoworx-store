@@ -10,7 +10,18 @@
   "live_product_matches": 0,
   "candidate_skus_live_collisions": 0,
   "existing_product_ids": "NONE — all candidate product_id values intentionally blank",
-  "supplier_connections": "TWO PROPOSED UUIDS; NOT INSERTED",
+  "supplier_connections": "2 REGISTERED INACTIVE",
   "publication_status": "ALL ROWS NOT PUBLISHED",
-  "method": "FNV-1a 32-bit deterministic key over supplier|brand|model; GW- plus 8 uppercase hex characters; collision-checked against current public.products.public_sku. Candidate only; no product rows inserted."
+  "method": "FNV-1a 32-bit deterministic key over supplier|brand|model; GW- plus 8 uppercase hex characters; collision-checked against current public.products.public_sku. Candidate only; no product rows inserted.",
+  "supplier_ids": {
+    "planetworld": "29e1acee-b1a6-5630-83c3-0150ea993479",
+    "audio_connections": "806ef592-6f25-5116-bee6-335e26f8b609"
+  },
+  "staged_supplier_catalog_items": 770,
+  "active_supplier_catalog_items": 0,
+  "linked_public_products": 0,
+  "quote_on_request_items": 770,
+  "public_descriptions": 0,
+  "public_image_urls": 0,
+  "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only"
 }
