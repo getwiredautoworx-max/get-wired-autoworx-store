@@ -12,6 +12,20 @@ Status: REVIEW ONLY — NOT PUBLISHED. This document supplements, and does not r
 | MPX 165.3 | https://hertz-audio.com/product/mpx-165-3/ | Exact model page found; coaxial speaker verified |
 | DCX 165.3 | https://hertz-audio.com/product/dcx-165-3/ | Exact model page found; Dieci coaxial speaker verified |
 
+## Additional exact individual product pages verified on 2026-10-30
+
+| Staged model | Official page | Verified summary |
+|---|---|---|
+| DSK 130.3 | https://hertz-audio.com/product/dsk-130-3/ | 130 mm 2-way Dieci component kit; 4 Ω; 120 W peak / 60 W continuous |
+| DSK 165.3 | https://hertz-audio.com/product/dsk-165-3/ | 165 mm 2-way Dieci component kit; 4 Ω; 160 W peak / 80 W continuous |
+| DSK 170.3 | https://hertz-audio.com/product/dsk-170-3/ | 170 mm 2-way Dieci component kit; 4 Ω; 160 W peak / 80 W continuous |
+| ML 1650.3 | https://hertz-audio.com/product/ml-1650-3/ | 165 mm Mille Legend woofer; 4 Ω; 250 W peak / 125 W continuous |
+| ML 280.3 | https://hertz-audio.com/product/ml-280-3/ | 35 mm Mille Legend Tetolon tweeter; 4 Ω; 180 W peak |
+| MP 28.3 | https://hertz-audio.com/product/mp-28-3/ | 35 mm Mille Pro Tetolon tweeter; 4 Ω; 180 W peak |
+| MLK 165.3 | https://hertz-audio.com/product/mlk-165-3/ | 2-way Mille Legend kit; 4 Ω; 300 W peak / 150 W continuous |
+| MLK 700.3 | https://hertz-audio.com/product/mlk-700-3/ | 70 mm mid/high Mille Legend kit; 4 Ω; 200 W peak / 100 W continuous |
+| MPX 690.3 | https://hertz-audio.com/product/mpx-690-3/ | 6 x 9-inch 3-way Mille Pro coaxial; 4 Ω; 260 W peak / 130 W continuous |
+
 ## Exact model labels present in current official Hertz collections
 
 These are manufacturer collection-listing matches, not individual product detail-page verification. The matching model strings should be checked against the source item name before any row is promoted.
@@ -42,4 +56,4 @@ https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf
 
 ## Outcome
 
-The prior 12 exact official product-page matches remain as recorded in `hertz-official-model-description-audit.csv`. This cross-check adds four new exact product-page matches (CK 165 L, CPK 165, MPK 163.3 and MPX 165.3); DCX 165.3 was already present in the original 12-page audit and is re-confirmed here. It also records multiple current collection-level model matches, reducing the unresolved model research queue. It does not complete the remaining 77 product-image checks and does not authorise publication.
+The official product-page audit now contains 25 exact individual manufacturer pages. This cross-check adds four new exact product-page matches (CK 165 L, CPK 165, MPK 163.3 and MPX 165.3); DCX 165.3 was already present in the original 12-page audit and is re-confirmed here. It also records multiple current collection-level model matches, reducing the unresolved model research queue. It does not complete the remaining 77 product-image checks and does not authorise publication.
