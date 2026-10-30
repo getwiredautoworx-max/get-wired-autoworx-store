@@ -156,8 +156,14 @@ Deno.serve(async req=>{
 
     if(req.method==="POST"&&action==="create_offer"){
       const id=String(b.quote_id||""), sr=String(b.supplier_response_id||"");
-      const {data:q,error:qe}=await qdb.from("quote_requests").select("id,quantity").eq("id",id).single();
+      const {data:q,error:qe}=await qdb.from("quote_requests").select("id,quantity,supplier_id").eq("id",id).single();
       if(qe||!q) return json({ok:false,error:"Quote not found."},404);
+      if(!q.supplier_id) return json({ok:false,error:"Assign the actual supplier and record its response before creating a customer offer."},409);
+      if(!sr) return json({ok:false,error:"A verified supplier response is required before creating a customer offer."},409);
+      const {data:srRow,error:sre}=await qdb.from("supplier_quote_responses").select("id,supplier_id")
+        .eq("id",sr).eq("quote_request_id",id).maybeSingle();
+      if(sre) throw sre;
+      if(!srRow||srRow.supplier_id!==q.supplier_id) return json({ok:false,error:"The supplier response does not match the supplier assigned to this quote."},409);
       const unit=Number(b.unit_selling_price), qty=Math.max(1,Math.floor(Number(b.quantity||q.quantity||1)));
       const pack=Number(b.packaging_total||0), freight=Number(b.delivery_total||0), vat=b.vat_total==null?0:Number(b.vat_total);
       if(!Number.isFinite(unit)||unit<0) return json({ok:false,error:"Valid selling price required."},400);
@@ -196,8 +202,18 @@ Deno.serve(async req=>{
       const {data:q,error:qe}=await qdb.from("quote_requests").select("id,status,supplier_id").eq("id",id).single();
       if(qe||!q) return json({ok:false,error:"Quote not found."},404);
       if(q.status!=="PAID") return json({ok:false,error:"Procurement authorization requires confirmed customer payment."},409);
-      const {data:o}=await qdb.from("quote_customer_offers").select("id").eq("quote_request_id",id).order("created_at",{ascending:false}).limit(1).maybeSingle();
+      if(!q.supplier_id) return json({ok:false,error:"Procurement cannot be authorized until an actual supplier is assigned."},409);
+      const {data:activeSupplier,error:ase}=await qdb.from("supplier_connections").select("id")
+        .eq("id",q.supplier_id).eq("active",true).maybeSingle();
+      if(ase) throw ase;
+      if(!activeSupplier) return json({ok:false,error:"Assigned supplier is not active. Procurement authorization blocked."},409);
+      const {data:o}=await qdb.from("quote_customer_offers").select("id,supplier_response_id").eq("quote_request_id",id).order("created_at",{ascending:false}).limit(1).maybeSingle();
       if(!o) return json({ok:false,error:"Customer offer not found."},404);
+      if(!o.supplier_response_id) return json({ok:false,error:"Customer offer has no supplier response. Procurement authorization blocked."},409);
+      const {data:sr,error:sre}=await qdb.from("supplier_quote_responses").select("id,supplier_id")
+        .eq("id",o.supplier_response_id).eq("quote_request_id",id).maybeSingle();
+      if(sre) throw sre;
+      if(!sr||sr.supplier_id!==q.supplier_id) return json({ok:false,error:"Offer supplier response does not match the assigned supplier. Procurement authorization blocked."},409);
       const {data:po,error}=await qdb.from("supplier_procurement_orders").insert({
         quote_request_id:id,supplier_id:q.supplier_id,offer_id:o.id,supplier_order_reference:b.supplier_order_ref||null,
         supplier_order_status:"AUTHORIZED",authorized_by:a.user.id,authorized_at:new Date().toISOString(),
