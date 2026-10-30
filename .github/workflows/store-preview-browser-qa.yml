@@ -40,7 +40,7 @@ jobs:
           const fs = require('node:fs');
           for (const route of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html']) {
             const source = fs.readFileSync(route, 'utf8');
-            const directives = [...source.matchAll(/<meta\\s+name=[\"']robots[\"']\\s+content=[\"']([^\"']+)[\"']/gi)].map(m => m[1].trim().toLowerCase());
+            const directives = [...source.matchAll(/<meta\s+name=[\"']robots[\"']\s+content=[\"']([^\"']+)[\"']/gi)].map(m => m[1].trim().toLowerCase());
             if (directives.length !== 1 || directives[0] !== 'noindex,nofollow') throw new Error('Preview route robots policy mismatch for '+route+': '+JSON.stringify(directives));
           }
           const ASC_PUBLIC_SKUS = [
