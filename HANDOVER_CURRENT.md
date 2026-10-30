@@ -3801,3 +3801,25 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Workflow-only commit: `a2135b36ff929f76fc2c902d3714b860869c805b`.
 - New exact-head Populated Store Preview Browser QA run was not yet listed by the commit-run lookup at this checkpoint. Do not claim the new hosted Part Search/audio checks passed until its completion/logs are reviewed.
 - This is QA coverage only; no storefront runtime files, catalogue rows, stock, prices, supplier records, Supabase data, main branch, DNS, Axxess, payment or production hosting were changed.
+
+
+## VERIFIED HOSTED PART SEARCH + AUDIO NAVIGATION — 2026-10-30
+
+- Latest exact PR #116 workflow-only test commit: `a2135b36ff929f76fc2c902d3714b860869c805b`.
+- **Populated Store Preview Browser QA run 41036089552 — SUCCESS**, job 123997154497. Both `POPULATED_PREVIEW_PASS` and `HOSTED_PREVIEW_PASS` emitted.
+- The hosted Pages preview at `https://preview-populated-store-afte.get-wired-autoworx-store.pages.dev` was explicitly tested for:
+  - Product detail modal open/close.
+  - Header Part Search dialog open.
+  - “NO AI CREDITS NEEDED” photo-request fallback visible.
+  - Request a Part form open/close.
+  - Car Audio & Entertainment category → Car Audio & Video route, with Home Entertainment and Studio Equipment areas also visible.
+  - 4,187 active products, 103 categories, 34 active ASC public products all at zero stock, no positive ASC stock, no checkout, no private-address leak, 390px mobile no overflow and no browser page errors.
+- Exact commit supporting checks all completed SUCCESS:
+  - Populated Store Preview Browser QA 41036089552.
+  - Cloudflare Pages Public Package QA 41036089382.
+  - Storefront Smoke Test 41036089384 (mode-detection success; legacy main-store smoke appropriately skipped because main is buttons-only).
+  - Public SKU Exposure Audit 41036089348.
+- The exact-hosted Part Search/audio checks are now complete; no additional storefront code change was required because these features were already present in the isolated preview. All changes in this sequence were test workflow and handover documentation only.
+- PR #94 and #99 remain closed, not merged. PR #116 is the sole active populated-preview integration candidate. It remains draft/unmerged and isolated from main; current main is intentionally buttons-only. No production deployment, Axxess upload, DNS, PayFast activation, Supabase writes, supplier product publication or live stock/price changes occurred.
+- Supplier product data remains the remaining substantive catalogue gate: 770 private inactive/unlinked staging records; 0 exact existing public-product links for Planetworld; 81 unique collision-checked new-product GW SKU candidates only; product descriptions/images/RRP/cost-floor/availability are not yet complete. Keep 19 zero-RRP and 18/19 under-cost warnings quarantined. Existing non-ASC quantities remain store-record values, not supplier-confirmed stock.
+- Branch comparison at checkpoint: PR #116 branch is 17 commits ahead and 36 commits behind main (status diverged). Do not merge wholesale; main and production release restrictions remain intact.
