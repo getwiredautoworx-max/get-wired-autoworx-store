@@ -1,0 +1,19 @@
+name: Temporary Runner Availability Diagnostic
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/runner-availability-diagnostic.yml"
+permissions:
+  contents: read
+jobs:
+  runner-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Confirm GitHub-hosted runner starts
+        run: |
+          echo "GW_RUNNER_DIAGNOSTIC_STARTED"
+          echo "RUNNER_OS=$RUNNER_OS"
+          echo "RUNNER_ARCH=$RUNNER_ARCH"
+          date -u
