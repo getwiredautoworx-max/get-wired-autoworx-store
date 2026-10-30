@@ -1,3 +1,11 @@
+## CAR AUDIO NAVIGATION REVIEW CORRECTION — 2026-10-30
+
+- Updated `catalogue-review/car-audio-navigation-prototype.html` to remove the two Audison AFBMW integration harnesses from Hertz navigation and correct the count from 89 to **87 Hertz-branded source records**.
+- The prototype now distinguishes **83/87 Hertz individual manufacturer pages verified** from **four unresolved Hertz records** (generic SPL woofer, DG 250.3, DG 300.3, HCP HRC). Two AFBMW harness rows are separately flagged as Audison, not Hertz, pending supplier/source brand correction.
+- No product images or GW SKUs were inserted. Prototype remains internal review only; no customer storefront or production deployment changed.
+
+---
+
 ## AUDISON BRAND CORRECTION — 2026-10-30
 
 - The two AFBMW rows in the Hertz staging workbook are not Hertz products. Manufacturer pages identify 66772099 as **Audison AFBMW BOOSTER 01** and 66772206 as **Audison AFBMW ReAMP 3**. Added exact official Audison pages and descriptions to the audit, but explicitly flagged the source brand mismatch. Do not publish under Hertz until Planetworld corrects the brand or owner approves a clear source normalization.
