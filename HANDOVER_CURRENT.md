@@ -4212,3 +4212,10 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PR #133: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/133; branch `security/remove-hardcoded-courier-origin-2026-10-30`; head `0fc9d8b210e00586fa83edcd7986456ab17903b0`; 5 commits ahead / 0 behind main at compare; changed files: existing browser QA workflow, shared origin helper, shipping-quote handler, Node regression test. Local test passed: `COURIER_COLLECTION_ORIGIN_TESTS_PASS: 4 assertions`. No PR Actions run returned from current commit-workflow lookup; keep draft/unmerged until actual Actions result.
 - No Supabase secrets were read or changed; no production function deployment or database write occurred. Do not expose or repeat the private origin address. Do not deploy until PR review, four server-side origin values configured by owner, `DELIVERY_QUOTE_SIGNING_SECRET` configured (>=32 chars), existing provider secrets confirmed, and explicit owner deployment approval.
 - Current launch blockers: exact-head preview/browser CI for PR #132; CI for PR #133; live Supabase function + SQL v3 deployment and secret setup (owner approval required); non-production checkout tests; payment provider remains unconfigured/unverified. The customer preview can remain separate from production launch.
+
+
+## 2026-10-30 CONTINUATION — LOCAL SEARCH REGRESSION TEST
+
+- Executed the catalogue-search unit test suite in an isolated Node 22 runtime using the exact committed matcher and test assertions: `CATALOGUE_SEARCH_UNIT_TESTS_PASS: 12 assertions`.
+- Corrected the test output label to reflect all 12 assertions. Latest PR #132 head now includes that correction; compare against main reports 14 commits ahead / 0 behind. No PR-triggered workflow runs were returned by the available GitHub run lookup, so this local pass does not replace hosted CI/browser verification.
+- PR #133 collection-origin regression suite independently passed locally: 4 assertions. No live secrets or deployment changed.
