@@ -1,3 +1,20 @@
+## MULTI-BRAND PLANETWORLD MODEL AUDIT UPDATE — 2026-10-30
+
+- The 702-row Planetworld staging CSV now has official manufacturer page/collection references recorded for 226 source rows. These are model-reference matches, not approved images or published products.
+- Top-level split confirmed from source rows: 627 standard Car Audio brand products across nine brands; 28 Kicker Marine Audio rows separated into Marine Audio; 47 Harness and Trims records separated as installation components. Harness and Trims is not a manufacturer brand button.
+- Kicker (189 rows): 161 standard Car Audio rows have 12 exact official individual product pages, 27 exact model collection matches and 122 unresolved in this pass. The other 28 are Marine Audio: 4 exact individual pages, 23 official marine collection matches and one code/description conflict (`48KMC6` supplier text says KMC5 while official Kicker listing says KMC6). All 28 are labelled Marine Audio in the staging CSV and excluded from standard Car Audio navigation. Full audit: `catalogue-review/planetworld-kicker-official-model-audit.csv`.
+- Audison (94 rows): 41 exact official individual product pages; 49 official range/collection/accessory/configurator matches; two source-text rows need manual OCR review; two unmatched items (`AP SPK OUT 4.9`, `CX690 GRILLES`). Full audit: `catalogue-review/planetworld-audison-official-model-audit.csv`.
+- Smaller brands Focal/JVC/Kenwood/Pioneer (21 rows): five exact official product pages, ten collection matches, one support-page match, two ambiguous model/supplier-prefix matches and three unmatched. `KIT SUB P20FE` is not treated as an exact bundle match to the P20FE bare-subwoofer page; `TS-G1610F-2` suffix remains unresolved. Audit: `catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv`.
+- Alpine (58 rows): nine exact pages, 26 collection matches, five official-catalogue matches, 18 unmatched. Four original high-resolution image source URLs recorded, but no binaries downloaded.
+- One/OneNav (290 rows): nine exact official page/SKU/vehicle-application matches; remaining One models are not yet exact-page verified. The `ISA-ON115-3LX` / `ON115-3LX` alias candidate remains quarantined for supplier confirmation; neither row deleted.
+- The consolidated summary is `catalogue-review/planetworld-car-audio-verification-summary-2026-10-30.json`. Four original Alpine high-resolution image URLs are in `catalogue-review/alpine-high-resolution-image-source-manifest.csv`; binaries remain un-downloaded and unapproved.
+- Across Planetworld, no GW SKUs assigned, no image asset approved, no product published, no duplicate row deleted and no live price/stock changed. The 226 source rows with manufacturer references still require exact internal product/public_sku mapping and image comparison before any image can be used.
+- Audio Connections remains at 68 PDF-sourced candidates (53 Starsound + 15 Sony), three Starsound items with no numeric dealer price and Sony XS-690ES supplier-marked SOLD OUT. All unpublished. Exact fallback wording remains recorded but not applied to live products.
+- Main customer storefront remains buttons-only; payment readiness is still the final launch blocker. No merge, production deployment, Supabase, Axxess, DNS or payment changes.
+- Next: continue model matching for remaining One, Kicker, Audison and other rows; locate and retrieve original high-resolution manufacturer images only where exact product and internal public_sku are confirmed; resolve source conflicts with suppliers; then build populated review navigation and run populated-mode desktop/mobile QA.
+
+---
+
 ## ALPINE MODEL AND IMAGE-SOURCE VERIFICATION — 2026-10-30
 
 - Reconciled all 58 Alpine source rows from Planetworld's One/Alpine car-audio staging. Official manufacturer verification outcomes: 9 exact individual product pages, 26 exact model labels in official product collections (detail pages not individually verified), 5 exact model labels in the official 2024 product catalogue, and 18 with no exact official page/collection/catalogue match found in this pass.
