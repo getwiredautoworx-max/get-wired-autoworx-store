@@ -1,3 +1,8 @@
+## Sony official-image audit result — 2026-10-30
+
+- Browser audit run **41023956303** ended **CANCELLED**, not passed. The audit encountered HTTP **403** from Sony's official product pages for every attempted model (XS-163ES, XS-162ES, XS-692ES, XS-160ES, XS-680ES, XS-690ES, XS-W104ES, XS-W122ES, XS-W124ES, XM-1ES, XM-4ES, XM-5ES, XM-6ES); zero image files were downloaded and zero images approved. The run was cancelled before remaining models completed.
+- Treat this as source anti-automation/access restriction, not evidence that the products or images are invalid. Do not bypass access controls. Continue through supplier-provided high-resolution files or permitted manufacturer/distributor media feeds, with exact model visual checks. Existing extracted PDF images remain too low-resolution for primary storefront use.
+
 ## Consolidated technical continuation — Part Search, checkout security, browser QA, supplier mapping — 2026-10-30
 
 ### Branch reconciliation
