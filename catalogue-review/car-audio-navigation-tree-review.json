@@ -16260,7 +16260,7 @@
       },
       {
         "supplier_item_code": "48KMC6",
-        "supplier_item_name": "48KMC6- Kicker Marine KMC5 Multimedia Gauge-Style Receiver BT",
+        "supplier_item_name": "48KMC6 — Kicker Marine KMC6 Premium Media Center",
         "supplier_product_type": "FG",
         "component_candidate": "Marine Audio — Separate Category",
         "classification_confidence": "High",
@@ -16278,9 +16278,12 @@
         "gw_sku": "",
         "gw_sku_status": "NOT ASSIGNED",
         "image_status": "NOT VERIFIED",
-        "manufacturer_description_status": "NOT VERIFIED",
-        "note": "Item name explicitly identifies marine/powersports equipment; keep outside Car Audio.",
-        "brand": "Kicker"
+        "manufacturer_description_status": "VERIFIED — official KICKER product page",
+        "note": "Manufacturer exact model page for item code 48KMC6 identifies KMC6. Original supplier description incorrectly said KMC5; corrected display name to KMC6 while preserving the original source wording in source_description_original. Marine Audio remains a separate category.",
+        "brand": "Kicker",
+        "source_description_original": "48KMC6- Kicker Marine KMC5 Multimedia Gauge-Style Receiver BT",
+        "manufacturer_description": "Premium marine media center with six channels of built-in power, full-colour 3.5-inch LCD, Bluetooth, USB, AM/FM/weather-band and DAB+ tuner, video input, NMEA port, dual-zone control and four sets of RCA outputs.",
+        "official_manufacturer_page": "https://www.kicker.com/48KMC6"
       },
       {
         "supplier_item_code": "48KXMA8004",
