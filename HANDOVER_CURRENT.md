@@ -3750,3 +3750,12 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Exact-head PR workflow run for commit 51cea91f0881579d2783ddae42853f10d75be1a5: Populated Store Preview Browser QA run 41035299270 was IN_PROGRESS at the time of this note; Playwright and Chromium installation completed and the populated-preview browser step had started. Storefront Smoke Test, Public SKU Exposure Audit and Cloudflare Pages Public Package QA were also triggered. Do not mark the new browser coverage passed until run 41035299270 completes and its logs are inspected.
 - Current preview branch head has 13 commits ahead and 31 behind main; this is intentionally isolated and not merge-ready. Main remains buttons-only. Existing hosted preview URL remains the last previously verified deployment; this QA-only commit does not itself constitute a new hosted storefront deployment.
 - Next: retrieve exact-head run 41035299270 result/logs; fix any test assertion or runtime failure on the same isolated branch; once Part Search/no-AI and audio-area checks pass, close only superseded PR #94/#99 if their needed changes are demonstrably covered by the tested preview. Do not merge PR #116 or alter main/production without the owner's review/approval.
+
+
+## FOLLOW-UP — PART SEARCH TEST CLICK-TARGET FIX — 2026-10-30
+
+- The first corrected-regex browser run (41035299270 on commit 51cea91f0881579d2783ddae42853f10d75be1a5) reached the real browser interaction but failed because the test attempted to click the header Part Search button while the product-detail modal was still open and intercepting pointer events. This was a test sequencing issue; the page itself had successfully opened the product detail modal.
+- Corrected test sequence by explicitly closing `#productModal` via `#modalClose` and waiting for it to become hidden before clicking Part Search.
+- New exact-head commit: `12d04ddcf9e813513f3b3e1e79f778f5c91f4f5b`.
+- New Populated Store Preview Browser QA run: `41035512271`; job `123995244830` was in progress at checkpoint. Do not claim Part Search/no-AI/audio checks passed until this run completes and its log is reviewed.
+- This correction changes only the preview browser QA workflow. It does not change storefront code, product data, prices, stock, supplier staging, main branch, hosting configuration or production.
