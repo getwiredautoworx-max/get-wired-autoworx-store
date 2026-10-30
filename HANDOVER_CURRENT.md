@@ -4132,3 +4132,18 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 3. After `product-image` deployment, set `GW_PRODUCT_IMAGE_FUNCTION_CDN_DEPLOYED=true` so the live image proxy smoke test is enabled; verify active WebP product image HTTP 200.
 4. Current main-branch Store Production QA still correctly reports the live domain as not updated/button-only. Axxess upload, DNS, production deployment, live stock/price/catalogue changes and payment activation remain on hold pending explicit owner approval.
 5. Old immutable full-repository preview deployment from run 41048356814 remains a residual exposure; branch alias has been safely overwritten. Delete that old deployment only after owner authorises the destructive cleanup.
+
+
+### Final preview refresh — seven-image version — 2026-10-30
+- PR #129 merged as `dc788d8ad69715bdcb8b43ec259f32393f4d88ed`.
+- Exact-head browser QA run 41050399426 SUCCESS:
+  - local populated preview: 4,187 products, exactly 8 root labels, all 8 root IDs resolved, 4X4 nested correctly, 34 ASC rows all zero, checkout hidden, product modal works, no page errors.
+  - Planetworld: 68 rows; 44 positive / 24 zero; all 68 pass cost-floor; snapshot 2026-10-25; seven exact official images loaded from Alpine/Audison/Kicker; no dealer costs exposed; mobile width 390 no overflow; search filter works.
+  - hosted prior preview: 4,187 products; 34 ASC rows all zero; 68 Planetworld rows; old deployment still has 4 images; no page errors.
+- Safe non-production redeploy run 41050592357 SUCCESS; exact new URL: `https://1b6d65f1.get-wired-autoworx-store.pages.dev`; alias: `https://approved-storefront-preview.get-wired-autoworx-store.pages.dev`. Use `/preview-store.html` and `/preview-planetworld.html` paths.
+- Do not confuse the hosted prior preview's 4 images with the new seven-image local source/merged version; new deployment is the seven-image build.
+
+### Current merged source fixes
+- PR #127 merged: secure Direct EFT instructions, generated order reference, pending/manual payment confirmation, improved order-specific WhatsApp handoff, tests and `DIRECT_EFT_SETUP.md`. Supabase `store-checkout` function has NOT been deployed.
+- PR #124 merged: product-image source now uses the verified allowlisted Cloudflare asset origin. Supabase `product-image` deployed function remains v11 and has NOT been deployed with the new source.
+- The private GitHub repository must remain private; do not revert visibility to public to restore image delivery.
