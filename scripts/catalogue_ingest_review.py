@@ -103,6 +103,8 @@ except Exception as exc:
 else:
     pdf_import_error = ""
 pdfs = sorted((ROOT / "suppliers/Audio Connections").glob("*.pdf"))
+pdf_image_dir = OUT / "audio-connections-page-images"
+pdf_image_dir.mkdir(exist_ok=True)
 for path in pdfs:
     if fitz is None:
         pdf_rows.append({"source_file": str(path), "page_number": 0, "page_text": "PYMUPDF_IMPORT_ERROR: " + pdf_import_error})
@@ -111,6 +113,9 @@ for path in pdfs:
         doc = fitz.open(path)
         for i, page in enumerate(doc, start=1):
             pdf_rows.append({"source_file": str(path), "page_number": i, "page_text": page.get_text("text").strip()})
+            pix = page.get_pixmap(matrix=fitz.Matrix(1.25, 1.25), alpha=False)
+            safe_name = re.sub(r"[^a-zA-Z0-9]+", "-", path.stem).strip("-").lower()
+            pix.save(pdf_image_dir / f"{safe_name}-page-{i:02d}.png")
         doc.close()
     except Exception as exc:
         pdf_rows.append({"source_file": str(path), "page_number": 0, "page_text": "EXTRACTION_ERROR: " + repr(exc)})
