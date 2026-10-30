@@ -1,3 +1,11 @@
+## DEPLOYMENT CONFIRMATION — LATEST PRICE-FORMATTING HEAD — 2026-10-30
+
+- Cloudflare Pages now confirms **Deploy successful** for exact storefront commit `5ef1c83a163d8e87c2dad0e13796e4814f319a8f`, including the rand thousands-separator price formatter. Immutable preview: `https://2fd6b95d.get-wired-autoworx-store.pages.dev/preview-store.html`. Branch alias: `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`.
+- This supersedes the previous b2006e5 deployment URL in the earlier checkpoint. The current PR head may advance with handover-only commits; the storefront code deployed at 5ef1c83 is the latest site implementation.
+- No exact-head GitHub Actions/browser test pass is confirmed. Hosted desktop/mobile visual acceptance remains outstanding. PR #136 remains draft/unmerged and diverged from main; production remains HOLD.
+
+---
+
 ## FINAL SALES-CATALOGUE PREVIEW STATUS — 2026-10-30
 
 - Latest confirmed Cloudflare Pages success is commit `b2006e51836db5224523ebd25a4979aa14ce505f`. Immutable preview: `https://4c01c196.get-wired-autoworx-store.pages.dev/preview-store.html`; branch alias: `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`. This successful deployment includes the full Planetworld browse, nine direct category tiles, indicative prices and dated availability labels.
