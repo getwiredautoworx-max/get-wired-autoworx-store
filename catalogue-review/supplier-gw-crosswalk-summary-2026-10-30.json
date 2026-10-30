@@ -10,7 +10,7 @@
   "live_product_matches": 0,
   "candidate_skus_live_collisions": 0,
   "existing_product_ids": "NONE — all candidate product_id values intentionally blank",
-  "supplier_connections": "2 REGISTERED INACTIVE",
+  "supplier_connections": "2 registered: Planetworld active (dealer onboarding confirmed); Audio Connections inactive (relationship not confirmed)",
   "publication_status": "ALL ROWS NOT PUBLISHED",
   "method": "FNV-1a 32-bit deterministic key over supplier|brand|model; GW- plus 8 uppercase hex characters; collision-checked against current public.products.public_sku. Candidate only; no product rows inserted.",
   "supplier_ids": {
@@ -27,5 +27,18 @@
   "official_image_source_urls_found": 6,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "Four Alpine original high-resolution official image URLs and two Sony official image URLs are recorded in the crosswalk. R2-W12D4 uses a shared family image that does not distinguish the impedance variant. All assets remain not downloaded/not approved; retailer/PDF images are not approved."
+  "image_notes": "Four Alpine original high-resolution official image URLs and two Sony official image URLs are recorded in the crosswalk. R2-W12D4 uses a shared family image that does not distinguish the impedance variant. All assets remain not downloaded/not approved; retailer/PDF images are not approved.",
+  "supplier_connection_statuses": {
+    "planetworld": {
+      "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
+      "active": true,
+      "confirmed_by": "Planetworld dealer-onboarding welcome email, 2026-10-20",
+      "sales_contact": "Sashini via salesdesk@planetworld.co.za"
+    },
+    "audio_connections": {
+      "id": "806ef592-6f25-5116-bee6-335e26f8b609",
+      "active": false,
+      "reason": "No dealer-onboarding confirmation found in connected email"
+    }
+  }
 }
