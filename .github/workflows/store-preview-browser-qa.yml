@@ -37,6 +37,12 @@ jobs:
           sleep 2
           node <<'NODE'
           const { chromium } = require('playwright');
+          const fs = require('node:fs');
+          for (const route of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html']) {
+            const source = fs.readFileSync(route, 'utf8');
+            const directives = [...source.matchAll(/<meta\\s+name=[\"']robots[\"']\\s+content=[\"']([^\"']+)[\"']/gi)].map(m => m[1].trim().toLowerCase());
+            if (directives.length !== 1 || directives[0] !== 'noindex,nofollow') throw new Error('Preview route robots policy mismatch for '+route+': '+JSON.stringify(directives));
+          }
           const ASC_PUBLIC_SKUS = [
             'GW-09D1B7AD','GW-1C87D5E5','GW-1CE86A57','GW-1ED91C25','GW-269894FE',
             'GW-2A7A9F1E','GW-2AE829B0','GW-2C508DE3','GW-2C792975','GW-31FC9859',
@@ -107,6 +113,8 @@ jobs:
             await hosted.evaluate(()=>window.closePartRequest());
             await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
             await hosted.goto('https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
+            const categoryRobots=await hosted.locator('head meta[name="robots"]').evaluateAll(nodes=>nodes.map(n=>(n.content||'').trim().toLowerCase()));
+            if(categoryRobots.length!==1||categoryRobots[0]!=='noindex,nofollow')throw new Error('Hosted category preview robots policy mismatch: '+JSON.stringify(categoryRobots));
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
