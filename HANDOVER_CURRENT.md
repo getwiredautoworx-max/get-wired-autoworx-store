@@ -1,3 +1,16 @@
+## CONTINUATION TASK START — 2026-10-30 — SUPPLIER CATALOGUE RECOVERY
+
+- Owner instruction: resolve the remaining Planetworld and Audio Connections catalogue work, accurate product images/descriptions/GW SKUs, brand/component navigation, mobile/browser testing; keep payment as the separate final launch blocker. Continue without progress-only interruptions and update the handover after verified outcomes.
+- Read `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, the 2026-10-29 catalogue continuation, readiness push, monitor run 12 and `suppliers/README.md` from `main` before this task. Main was observed at `3e362397e249150f4fb992fde199784b6cc42f7c` before the handover write.
+- Verified source inventory: 47 Planetworld XLSX files plus README under `catalogue-source/suppliers/planetworld/incoming-xlsx/`; canonical `suppliers/Planetworld/` still has no XLSX files. Two Audio Connections PDFs (STARSOUND 05 AUGUST 2026 and Sony Mobile ES Sept 26) are present in `suppliers/Audio Connections/`.
+- New access finding: GitHub `fetch_file` with `encoding="base64"` successfully returns a binary XLSX payload (verified on the 20,781-byte Adeo workbook; decoded payload length 28,170). The earlier blanket assumption that the connector cannot access binary content is too broad. This has not yet materialized workbook/PDF bytes into the local parser runtime; next test a safe, isolated extraction route.
+- Main storefront is currently intentionally in the owner-approved buttons-only mode: 8 root category buttons and 31 child/brand buttons; the customer product catalogue is not yet repopulated. Do not remove the buttons-only gate or show incomplete listings until a verified catalogue set is ready.
+- Execution plan: create an isolated review-only source-extraction path for the supplier binaries; parse all Planetworld workbooks and Audio Connections PDFs with source path/sheet/row/page provenance; then isolate the requested car-audio subset for exact model/image/description/GW-SKU verification. Correct brand/component navigation only after the verified dataset exists. Keep band instruments separate. Do not assume image/model matches or delete duplicate flags without file provenance + model + description/specification + image checks.
+- Price fallback for unpriced products follows the latest owner instruction recorded in the 2026-10-29 correction: **“Price on Request due to Limited Stock.”** Do not change any live price/stock or infer a supplier stock status.
+- No Axxess/DNS/payment/Supabase/production/live catalogue/stock/price/category changes, PR merges, or Cloudflare/Netlify credit use. Payment readiness remains last. Task status: STARTED; no supplier extraction, product presentation completion, or launch readiness is claimed yet.
+
+---
+
 ## SCHEDULED CONTINUATION TASK START — 2026-10-28 15:52 SAST
 
 - Read the latest `AI_HANDOVER_PERMANENT.md` (blob `44e98620c05e9babf09dc8366d8932c4506be4a8`) and `HANDOVER_CURRENT.md` (blob `532baf33d80abb044888501dce07cccca1c832be`) before acting.
