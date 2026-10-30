@@ -4173,3 +4173,18 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PR #128 and #121 remain open/unmerged. PR #130 is the active preview integration candidate. PR #126 and #129 remain open feature branches but their changes are integrated into #130; do not merge duplicates.
 - Planetworld preview still uses the 25-Oct-2026 stock snapshot; do not represent it as current supplier availability. ASC remains zero on all 36 owner-directed ledger matches (7,037 units reset); do not re-run or broaden the reset.
 - No Axxess upload, DNS, production deployment, supplier activation, public SKU/product/image publication, live price/stock changes, Supabase migrations/functions, or payment activation without explicit owner approval.
+
+
+---
+
+## 2026-10-30 CONTINUATION UPDATE — CLEAN MAINLINE SEARCH INTEGRATION
+
+- Read current `HANDOVER_CURRENT.md` from main before resuming. Latest existing checkpoint: 2026-10-30 13:52 SAST.
+- Rechecked current populated-preview candidate PR #130 branch `integration/planetworld-preview-current-main-r3-2026-10-30`. GitHub compare confirms it is diverged: 16 commits ahead / 24 behind current main. Its head has no workflow runs returned by the current commit-workflow lookup. Do not merge it wholesale or rely on its old hosted preview alias.
+- Rechecked PR #94 historical preview readiness: candidate branch head `0d9b11b57a2d7cdb67b7b8ee45461365a2ad6f89`; no current-head workflow runs returned. It remains a historical Part Search compatibility candidate, not current verified preview evidence.
+- Created clean current-main branch `integration/free-catalogue-search-mainline-2026-10-30` from main SHA `4b312aa94b868ec60dd2dfa6c5a19a121e6fe5f8`.
+- Selectively ported free client-side catalogue search module, 10-assertion unit test, dedicated GitHub Actions test workflow, and integration into the current main populated preview. Added category-name enrichment for searchable category fields. Added `noindex,nofollow` to all five owner-only preview routes.
+- Opened draft PR #132: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/132. Latest head SHA `555b4db29101c5ef7a4bcc872ae4fda1bed77a2d`; 9 commits, 8 changed files before this handover update. Compare against main reports clean `ahead` state (8 commits at compare checkpoint, 0 behind); PR metadata now reports `mergeable=true`.
+- Current commit-workflow lookup returned no PR-triggered workflow runs for PR #132 head at time of check. Therefore unit tests, exact-head browser QA and hosted preview are NOT yet verified. Keep PR draft/unmerged until actual run evidence is available.
+- No Axxess upload, DNS, production deployment, Supabase writes/migrations/function deployment, supplier activation, public product/SKU creation, stock/price/image publication or payment activation. Launch remains HOLD.
+- Next: obtain actual PR #132 Actions results and Pages preview URL; inspect hosted preview on mobile and desktop; then selectively resolve remaining preview/store journey and checkout release gates. Continue keeping Planetworld 2026-10-25 snapshot clearly labelled as historical, and preserve ASC stock reset (36 matched SKUs / 7,037 units at zero).
