@@ -179,6 +179,20 @@ jobs:
             echo "UPSTREAM_WEBP_SOURCE sku=${sku} raw_github=${raw} jsdelivr=${cdn}"
           done
 
+      - name: Verify public Cloudflare image asset origin for private repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://approved-storefront-preview.get-wired-autoworx-store.pages.dev"
+          for path in preview-store.html preview-planetworld.html assets/products_webp/GW-000174D6.webp assets/products/C5-018-2.jpg; do
+            status="$(curl -sS -L --max-time 20 -o /dev/null -w '%{http_code}' "${base}/${path}")"
+            if [ "$status" != "200" ]; then
+              echo "ERROR: allowlisted Cloudflare asset returned HTTP ${status}: ${path}"
+              exit 1
+            fi
+            echo "CLOUDFLARE_ASSET_ORIGIN_PASS ${path}"
+          done
+
       - name: Smoke test a known active public-SKU WebP image
         shell: bash
         run: |
