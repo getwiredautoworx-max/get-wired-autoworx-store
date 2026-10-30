@@ -34,5 +34,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=populated-store-preview
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=approved-storefront-preview
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
