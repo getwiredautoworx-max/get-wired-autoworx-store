@@ -25,3 +25,12 @@ Homepage category tiles and the Specials section did not load in the Get Wired s
 
 ## Safety
 No Supabase data, RLS, grants, migrations, supplier catalogue rows, live stock, prices, production checkout, Axxess, DNS, production hosting or payment settings were changed. All code fixes are confined to the PR #136 preview branch.
+
+
+## Deployment and CI follow-up — 2026-10-30
+
+- Cloudflare Pages bot confirmed SUCCESS for exact repaired head `f52c7efa8ff7583ec1732d785bc903f49f95b6b6`.
+- Immutable preview: https://c168b29f.get-wired-autoworx-store.pages.dev/preview-store.html
+- Branch preview: https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html
+- Fresh exact-head GitHub Actions checks were created (Storefront Smoke, Cloudflare Pages Public Package QA, Catalogue Image Audit, Populated Store Preview Browser QA, Public SKU Exposure Audit, Minimal Runner Diagnostic); all six completed FAILURE before job steps. Diagnostic job 124179259135 and browser job 124179258439 both report `logs_url=null` and `steps=null`. No browser assertion executed; the Actions runner/job-start issue remains unresolved.
+- Static source validation is green (7/7 inline scripts parse), but no hosted visual/browser acceptance has been completed. Keep PR #136 draft and production HOLD until categories, subcategories, Specials and product navigation are confirmed on desktop and mobile.
