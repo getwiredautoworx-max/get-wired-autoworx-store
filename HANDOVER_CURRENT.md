@@ -3424,3 +3424,11 @@ Read-only inspection of live Supabase `payment-gateway` v2 confirms it defaults 
 - No further deletion of image files or supplier PDFs, no automatic deduplication, no catalogue/price/stock/database/Supabase writes, no ASC stock restoration, no Axxess/DNS/payment changes, no production deployment, and no Cloudflare/Netlify credit use.
 - **Next execution:** build the exact supplier-model → GW-SKU crosswalk using existing SKU/image inventory and source descriptions, preserving uncertain matches as unresolved; then verify candidate images visually and retain originals. Continue Audio Connections model/description/image crosswalk. Keep PR #110 draft/unmerged until mapping and final storefront checks are independently evidenced. Account-wide Actions storage must be checked in GitHub Billing/Usage after the documented 6–12-hour recalculation window; the connected run/artifact tools do not expose account-wide storage usage or the deletion ledger.
 - Release remains **HOLD**. All eight locked permanent rules and existing owner restrictions remain unchanged.
+
+
+## CONTINUATION DETAIL — 2026-10-30 10:00 SAST — IMAGE FILENAME CROSS-CHECK
+
+- Independently parsed the 702-row Planetworld Car Audio review CSV and the 5,210-row repository inventory. The inventory contains 4,902 image assets (including the logo); product image files are named by GW public SKU under `assets/products_webp/GW-*.webp`, not by supplier model.
+- A literal substring scan surfaced one apparent overlap: supplier model `86942` appears inside image filename `GW-F8B86942.webp`. This is only a substring collision with a generated GW SKU, not an exact supplier-model filename match and not a verified product/image mapping. It is explicitly NOT approved for relabelling or customer use based on this evidence.
+- Result: no exact supplier-model → image filename match was established by the inventory scan. The next valid step is a source-data crosswalk that links supplier model/description to an existing GW product SKU, followed by visual inspection of the image itself. Do not infer GW SKUs from filename fragments or hash patterns.
+- This check was read-only. No image files were opened, modified, deleted, moved or relabelled; no catalogue/price/stock/database writes occurred.
