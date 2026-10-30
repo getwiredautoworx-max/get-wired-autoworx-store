@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Run free catalogue search regression tests
+        run: node tests/catalogue-search.test.cjs
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
@@ -58,6 +60,13 @@ jobs:
             await page.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await page.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            const searchReady=await page.evaluate(()=>({module:!!window.gwCatalogueSearch,categoryName:!!window.gwProducts?.[0]?.category_name,sku:window.gwProducts?.find(p=>p.public_sku)?.public_sku||''}));
+            if(!searchReady.module||!searchReady.categoryName||!searchReady.sku)throw new Error('Free catalogue search module/category enrichment missing: '+JSON.stringify(searchReady));
+            await page.locator('#searchInput').fill(searchReady.sku);
+            await page.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:15000});
+            const skuSearch=await page.locator('#allProductsGrid .product').first().innerText();
+            if(!skuSearch.includes(searchReady.sku))throw new Error('Exact SKU search did not return the expected product: '+JSON.stringify({searchReady,skuSearch}));
+            console.log('FREE_CATALOGUE_SEARCH_BROWSER_PASS '+JSON.stringify(searchReady));
             const audit=await page.evaluate(skus=>{
               const rows=window.gwProducts||[];
               const asc=rows.filter(p=>skus.includes(p.public_sku));
