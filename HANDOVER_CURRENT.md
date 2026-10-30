@@ -1,3 +1,8 @@
+## Kicker QA assertion follow-up — 2026-10-30
+
+- Exact-head run **41025415195** passed supplier-routing unit/static checks and Deno type-check, then failed in responsive Playwright at the KMC6 verification-label assertion. The rendered records confirm the official page link is present; the JSON's exact status is `VERIFIED — official KICKER individual product page`, not the shorter label previously expected. This is another stale assertion, not a missing manufacturer match.
+- Corrected the test to match the exact manufacturer evidence status. No catalogue data, supplier prices/stock, images, GW SKUs or production data changed. Await next exact-head run before marking QA green.
+
 ## Kicker QA root cause corrected — 2026-10-30
 
 - Re-examined the exact failing assertion at line 90. The prior correction targeted a later duplicate assertion; the actual failure was the earlier assertion still expecting `KMC6 Premium Media Center` instead of the verified display text `KMC6 Premium Marine Media Center`. Corrected the actual failing assertion now. The manufacturer evidence and marine source rows were already correct; no product data was edited.
