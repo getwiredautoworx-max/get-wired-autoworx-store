@@ -184,7 +184,7 @@ jobs:
           echo "Public-SKU WebP image proxy returned HTTP 200"
 
       - name: Upload audit report
-        if: always()
+        if: always() && vars.ENABLE_CATALOGUE_IMAGE_AUDIT_ARTIFACT_UPLOAD == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: catalogue-image-audit
