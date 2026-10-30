@@ -6474,8 +6474,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit enclosure/active sub-box description."
+            "manufacturer_description_status": "VERIFIED — official KICKER product page",
+            "note": "Exact supplier item code and model confirmed on official KICKER product page. Image remains unverified; no GW SKU assigned.",
+            "display_name": "KICKER Hideaway HS8 compact powered subwoofer",
+            "manufacturer_description": "Compact powered 8-inch subwoofer with built-in 150 W RMS amplifier, 25–120 Hz response, adjustable low-pass crossover, +6 dB bass boost, phase switch and remote bass control.",
+            "official_manufacturer_page": "https://www.kicker.com/hideaway?p=62809"
           }
         ],
         "Amplifiers": [
@@ -6683,8 +6686,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit amplifier description."
+            "manufacturer_description_status": "VERIFIED — official KICKER product page",
+            "note": "Exact supplier item code and model confirmed on official KICKER product page. Image remains unverified; no GW SKU assigned.",
+            "display_name": "KICKER KEY200.4 Smart 4-channel amplifier with ISO T-harness",
+            "manufacturer_description": "200 W total output (50 W x 4), integrated DSP with automatic 40-band EQ, auto time alignment, auto level adjustment and 24 dB/octave crossovers. Includes microphone and universal ISO T-harness; check vehicle/radio compatibility before recommendation.",
+            "official_manufacturer_page": "https://www.kicker.com/47KEY2004ISO"
           },
           {
             "supplier_item_code": "47KEY5001",
@@ -6706,8 +6712,11 @@
             "gw_sku": "",
             "gw_sku_status": "NOT ASSIGNED",
             "image_status": "NOT VERIFIED",
-            "manufacturer_description_status": "NOT VERIFIED",
-            "note": "Explicit amplifier description."
+            "manufacturer_description_status": "VERIFIED — official KICKER product page",
+            "note": "Exact supplier item code and model confirmed on official KICKER product page. Image remains unverified; no GW SKU assigned.",
+            "display_name": "KICKER KEY500.1 Smart mono amplifier",
+            "manufacturer_description": "Smart mono subwoofer amplifier and DSP with 500 W at 1 Ω, 300 W at 2 Ω and 150 W at 4 Ω. Includes automatic EQ, FIT+ integration, variable low-pass/subsonic crossovers and compatible CXARC remote.",
+            "official_manufacturer_page": "https://www.kicker.com/key-5001-1-channel-smart-amplifier"
           },
           {
             "supplier_item_code": "47VK6",
