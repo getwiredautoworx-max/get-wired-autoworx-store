@@ -57,10 +57,11 @@
     },
     "Focal_JVC_Kenwood_Pioneer": {
       "rows": 21,
-      "exact_official_product_pages": 6,
-      "official_collection_or_support_matches": 12,
-      "ambiguous_suffix_match": 1,
-      "unmatched": 2,
+      "exact_official_product_pages": 5,
+      "official_collection_matches": 10,
+      "official_support_page_matches": 1,
+      "ambiguous_model_or_supplier_prefix_matches": 2,
+      "unmatched": 3,
       "audit": "catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv"
     },
     "Amplified": {
