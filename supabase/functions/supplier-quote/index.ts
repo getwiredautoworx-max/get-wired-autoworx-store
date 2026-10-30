@@ -39,7 +39,7 @@ Deno.serve(async req=>{
       const sku=String(b.public_sku||"").trim(), name=String(b.customer_name||"").trim();
       const qty=Math.max(1,Math.floor(Number(b.quantity||1)));
       if(!sku||!name) return json({ok:false,error:"Product SKU and customer name are required."},400);
-      const {data:p,error:pe}=await db.from("products").select("id,public_sku,name,active,specifications").eq("public_sku",sku).eq("active",true).maybeSingle();
+      const {data:p,error:pe}=await db.from("products").select("id,public_sku,name,active").eq("public_sku",sku).eq("active",true).maybeSingle();
       if(pe||!p) return json({ok:false,error:"Product could not be verified."},404);
       const {data:codeMappings,error:cmErr}=await qdb.from("product_supplier_codes")
         .select("supplier_id").eq("product_id",p.id).not("supplier_id","is",null);
