@@ -8,5 +8,7 @@
   "audio_connections_pdfs_found": 2,
   "audio_connections_pages_extracted": 4,
   "audio_connections_pages_with_text": 4,
+  "audio_connections_embedded_images_extracted": 21,
+  "audio_connections_image_map_errors": [],
   "important_limit": "Raw source extraction only. No product identity, duplicate, image, GW SKU, category, price validity, stock or customer-facing listing is approved by this report."
 }
