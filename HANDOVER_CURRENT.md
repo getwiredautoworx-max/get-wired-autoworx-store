@@ -3934,3 +3934,10 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - Actual product image assets remain to be staged; cards link to exact manufacturer product pages pending image asset capture/inspection. This does not block provisional stock/catalogue review.
 - No Supabase writes, public product creation, live price/stock changes, image publication, Axxess, DNS, payment activation or production deployment.
 - Next: open clean-main PR, wait for exact-head browser/security/smoke workflows, then inspect its Cloudflare Pages preview. Close the superseded divergent PR only after clean-main PR is confirmed open and checks are running.
+
+### Exact-head PR #120 checks — current status
+- Clean-main PR #120 is open and GitHub REST reports mergeable=true (mergeable_state=unstable while checks complete).
+- Storefront Smoke Test passed: run 41045848488; storefront mode gate succeeded and legacy smoke was skipped because main is buttons-only.
+- Public SKU Exposure Audit initially failed only on preview-planetworld.html line 16 because the review-only JSON used the legacy property name sku. Renamed that property to modelNumber and updated its renderer. No actual supplier pricing/cost exposure was reported. The audit must be rerun on the new exact head before acceptance.
+- Populated Store Preview Browser QA run 41045848357 is still in progress at the time of this update.
+- PRs #117 and #119 were closed without merge as superseded by clean-main PR #120. No production or live data changes.
