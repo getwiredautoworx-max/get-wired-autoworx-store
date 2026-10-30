@@ -79,7 +79,7 @@ export async function handleRequest(request: Request): Promise<Response> {
     const p = verified.parcel, cartHash = await digest(verified.canonical), destinationHash = await digest(destinationCanonical(body));
     const quotes: any[] = [];
     // Keep private collection origin out of source control. Skip live carrier calls until configured server-side.
-    const collection = collectionOrigin((name) => Deno.env.get(name));
+    const collection = collectionOrigin((name: string) => Deno.env.get(name));
     for (const provider of providers) {
       if (!collection) break;
       const url = Deno.env.get(provider.prefix + "_RATES_URL");
