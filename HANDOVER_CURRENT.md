@@ -1,3 +1,8 @@
+## Kicker QA root cause corrected — 2026-10-30
+
+- Re-examined the exact failing assertion at line 90. The prior correction targeted a later duplicate assertion; the actual failure was the earlier assertion still expecting `KMC6 Premium Media Center` instead of the verified display text `KMC6 Premium Marine Media Center`. Corrected the actual failing assertion now. The manufacturer evidence and marine source rows were already correct; no product data was edited.
+- Latest test-only commit: 23785519c9bd8d275bef7575463b048a58074db6. Fresh exact-head workflow is expected from this push; previous run 41025141884 remains a failure and is superseded only if the new run passes.
+
 ## Kicker QA follow-up — exact rendered-output diagnostics — 2026-10-30
 
 - The first assertion correction alone did not clear run 41025141884; the combined marine-detail assertion still failed. Added diagnostic output to the two marine checks so the next exact-head run records the rendered marine product text if it fails again. This is a test instrumentation change only, not a catalogue or production change.
