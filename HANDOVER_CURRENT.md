@@ -1,3 +1,15 @@
+## REVIEW-BRANCH CONTINUATION CHECKPOINT — 2026-10-30
+
+- Work continued on `catalogue/complete-remaining-review-2026-10-30`, isolated from the main customer storefront.
+- Audio Connections: 68 PDF-sourced candidates (53 Starsound + 15 Sony) recorded. Three Starsound entries have no numeric dealer price; Sony XS-690ES is marked SOLD OUT. Sony RRP VAT basis unconfirmed. All unpublished.
+- Hertz: 16 exact official individual product-page matches documented; 73/89 records remain without an exact individual page. Collection-list matches are not treated as detail-page verification.
+- Planetworld ONE: four exact official OneNav product-page/SKU/vehicle-application matches (OA009-1, OA014-1, OA015-1, OA312-1). Images remain unapproved.
+- Workflow evidence: extraction run 41014617113 SUCCESS; responsive navigation prototype run 41014374943 SUCCESS at 360/390/768/1280 px. Not populated-store acceptance.
+- Main storefront remains buttons-only. No live catalogue, price, stock, Supabase, Axxess, DNS, payment, merge or deployment changes. Launch HOLD.
+- Continue with high-resolution image sourcing, remaining model verification, GW SKU mapping after exact internal matching, duplicate provenance review, then populated-mode mobile/browser testing. Full detail is in the top section of `AI_HANDOVER_PERMANENT.md` on the review branch.
+
+---
+
 ## VERIFIED CATALOGUE + IMAGE AUDIT CHECKPOINT — 2026-10-30
 
 - **Planetworld source extraction:** isolated review branch `catalogue/ingest-review-2026-10-30`; GitHub Actions run 41014617113 succeeded after adding safe branch-write serialization. All 47/47 XLSX opened, 94 sheets, 0 workbook errors, 3,317 Products-sheet rows. Seven small provenance-preserving CSV chunks and workbook inventory are committed under `catalogue-review/`.
