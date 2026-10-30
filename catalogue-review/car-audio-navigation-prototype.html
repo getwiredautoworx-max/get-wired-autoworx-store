@@ -34,7 +34,7 @@ button:disabled{opacity:.65;cursor:default}#search{flex:1;min-width:160px;max-wi
 <section class="sep"><h2>Kept in separate categories</h2><div class="grid" id="separate">
 <button class="brand-card" id="marine"><span class="wordmark">Marine Audio</span><span class="count">28 source records · separate category</span></button>
 <button class="brand-card" id="harness"><span class="wordmark">Harnesses &amp; Trims</span><span class="count">47 source records · component group, not a brand</span></button>
-<button class="brand-card" id="hertz"><span class="wordmark">Hertz</span><span class="count">87 Hertz records · not published</span><span class="logo-status">83 exact product pages · 4 unresolved · images not approved</span></button>
+<button class="brand-card" id="hertz"><span class="wordmark">Hertz</span><span class="count">87 Hertz records · not published</span><span class="logo-status">84 manufacturer records · 3 unresolved · images not approved</span></button>
 <button class="brand-card" id="music"><span class="wordmark">Band Instruments &amp; Studio</span><span class="count">Separate from Car Audio</span></button>
 </div><p class="muted">Two BMW harness records from the Hertz staging workbook have been verified as Audison AFBMW accessories and are excluded from the Hertz count until the supplier source-brand field is corrected. JBL and Denon DJ are not included as Car Audio brands in the current Planetworld source division. They remain in their appropriate home/studio/music categories pending final category review.</p></section>
 </main>
@@ -57,7 +57,7 @@ function showComponents(name){
  view="components";brand=name;component=null;heading.textContent=name;intro.textContent="Select a component group. Records are review-only.";setState();
  if(name==="Hertz"){
   var cards=Object.keys(HERTZ).map(function(n){return '<button class="component-card" data-component="'+esc(n)+'"><span>'+esc(n)+'</span><span class="pill">'+HERTZ[n]+'</span></button>';});
-  content.innerHTML='<div class="notice">87 Hertz-branded records remain staged and unpublished. 83 have exact individual manufacturer product pages; 4 remain unresolved. Two BMW integration-harness rows in the same supplier workbook are confirmed Audison products, not Hertz, and are excluded from this Hertz navigation pending source-brand correction. No product image has been approved.</div><div class="grid">'+cards.join("")+'</div>';return;
+  content.innerHTML='<div class="notice">87 Hertz-branded records remain staged and unpublished. 84 have individual manufacturer product records; 3 remain unresolved. Two BMW integration-harness rows in the same supplier workbook are confirmed Audison products, not Hertz, and are excluded from this Hertz navigation pending source-brand correction. No product image has been approved.</div><div class="grid">'+cards.join("")+'</div>';return;
  }
  var comps=tree.brands[name].components;
  var buttons=Object.keys(comps).sort().map(function(n){return '<button class="component-card" data-component="'+esc(n)+'"><span>'+esc(n)+'</span><span class="pill">'+comps[n].length+'</span></button>';});
