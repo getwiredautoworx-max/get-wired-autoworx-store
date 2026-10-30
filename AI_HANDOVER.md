@@ -20,7 +20,7 @@
 **Repository:** `getwiredautoworx-max/get-wired-autoworx-store`
 **Master handover:** [`AI_HANDOVER_PERMANENT.md`](AI_HANDOVER_PERMANENT.md)
 **Approved reference storefront:** https://1fdda0ab.get-wired-autoworx-store.pages.dev/store
-**Last checkpoint recorded:** 2026-10-20, continuation run 13.
+**Last checkpoint recorded:** 2026-10-30, supplier catalogue verification continuation.
 
 ## MANDATORY HANDOVER PROTOCOL — DO THIS EVERY SESSION
 
@@ -367,3 +367,17 @@ These eight rules are user-authoritative and must be copied into every new hando
 ## SECURITY REVIEW — 2026-10-29
 
 No-upload continuation used existing GitHub and live Supabase source. Four Electrocity PDFs remain unextracted because the available base64 fetch cannot be safely materialized for OCR here. Read-only inspection found active shipping-quote v4 and store-checkout v5, both with JWT verification disabled. Quote endpoint returns live=true without a signed token or server quote ID; checkout forwards client-supplied quote data to an RPC that trusts live=true and matching client-supplied price/fee. Provenance and binding to address/cart/parcel/expiry are not validated. Launch HOLD. Review document: CHECKOUT_DELIVERY_QUOTE_SECURITY_REVIEW_20261029.md. No production changes or deployment credits used. Next: build and test signed, expiring quote tokens/server quote IDs and server-derived parcel checks in a review branch; do not deploy until secret configuration and end-to-end tests pass. Direct EFT only; PI40/PZ33 remain inactive, price 0, stock 0, quote-required/unconfirmed.
+
+
+## LATEST CONTINUATION POINTER — 2026-10-30
+
+Read `HANDOVER_CURRENT.md` and the top checkpoint in `AI_HANDOVER_PERMANENT.md`. Current review branch: `catalogue/complete-remaining-review-2026-10-30`.
+
+Verified since the previous checkpoint:
+- Audio Connections: 68 source-page candidate rows transcribed; three Starsound items have no numeric price, and Sony XS-690ES is supplier-marked SOLD OUT. All remain unpublished.
+- Hertz: 16 exact official model pages documented; 73 of 89 staged records still lack an exact individual manufacturer page. Collection-list matches are separate from exact page verification.
+- Planetworld ONE: four exact OneNav product-page/SKU/application matches (OA009-1, OA014-1, OA015-1, OA312-1); image assets remain unapproved.
+- Extraction and review navigation prototype workflows passed; this is not populated-store acceptance.
+- Main storefront remains buttons-only; no production or live catalogue changes. Launch remains HOLD.
+
+Next: obtain exact high-resolution image assets, finish remaining Hertz/Planetworld model matching, assign GW SKUs only after exact internal match, resolve duplicates using provenance/specs/images, then test populated-mode mobile/browser navigation.
