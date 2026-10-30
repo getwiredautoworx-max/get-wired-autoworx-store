@@ -1,3 +1,13 @@
+## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (THIRD FOLLOW-UP)
+
+- Added nine more exact individual Hertz manufacturer product pages, joined to supplier item reference codes: K 165 (78000301), K 130 (78000310), K 170 (78000320), C 26 (78030140), C 165 L (78032127), C 165 F (78032137), DS 25.3 (78035400), DS 30.3 (78035410), and S 300 S4 (78035421).
+- Manufacturer descriptions and key technical specifications added to `catalogue-review/hertz-official-model-description-audit.csv`; the crosscheck now records the source links.
+- **Exact individual manufacturer page count: 75/89; remaining without an exact individual page: 14/89.** Counts are by distinct supplier reference code joined to the owner-controlled 89-row workbook. Official individual page evidence only; category pages and family references are not counted.
+- No image binary downloaded or visually approved, no internal GW SKU assignment, no product publication, no duplicate deletion, no price/stock change and no live Supabase/Axxess/DNS/payment action. Main store remains buttons-only and release HOLD.
+- Remaining 14 rows require further exact matching or manual supplier clarification. Do not turn model-family/category references into exact matches. Continue the 14-row reconciliation, then inspect actual image assets against source model names and proceed to the next brand/Audio Connections tasks.
+
+---
+
 ## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (SECOND FOLLOW-UP)
 
 - Seven more staged Hertz records now have exact individual manufacturer product pages: CPK 690 (78000105), DG 165.3 (78071036), MG 250.3 (78071135), MG 300.3 (78071145), MPG 165.3 (78071181), HRC 02 (78211041), and S8 DSP (78260025).
