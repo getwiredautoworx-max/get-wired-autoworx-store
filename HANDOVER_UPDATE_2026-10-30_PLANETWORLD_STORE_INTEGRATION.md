@@ -60,3 +60,10 @@ Preview branch only. No merge, production deploy, Axxess upload, DNS, Supabase w
 - Functional tests cover all nine category buttons, 47 Harnesses & Trims items, prices, quote-only items, availability, search and pagination. Static QA: 8 scripts compile; 35 component groups; no sensitive supplier fields; noindex directive count 1.
 - Cloudflare Pages confirmed success for commit `af77019`: `https://b79c5a02.get-wired-autoworx-store.pages.dev/preview-store.html`; branch alias `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`.
 - Remaining: exact-model product images and fuller manufacturer descriptions across the broad 3,317 rows; hosted visual mobile/desktop acceptance; successful exact-head Actions QA; clean-main successor because PR #136 is diverged 46 ahead / 42 behind and not mergeable.
+
+
+## Final deployment and formatting checkpoint
+
+- Cloudflare Pages confirmed success for `b2006e5`: `https://4c01c196.get-wired-autoworx-store.pages.dev/preview-store.html`; branch alias `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`.
+- Current PR head `5ef1c83` only refines rand formatting with thousands separators. Exact deployment confirmation for that formatter-only commit has not yet appeared; b2006e5 already contains the nine-category sales catalogue, indicative prices and snapshot availability.
+- Final validation: 3,317 records, 3,280 indicative prices, 37 quote-only, 1,727 supplier-snapshot stock recorded, 1,590 no stock recorded; exact Car Audio/Harnesses/Marine split 627/47/28; 9 routes function; 8 scripts compile; no dealer cost or exact stock quantities exposed.
