@@ -90,7 +90,7 @@ jobs:
               const category=module.search(rows,exactProduct.category_name,25);
               const token=String(exactProduct.name).toLowerCase().split(/[^a-z0-9]+/).find(t=>t.length>=5);
               const typo=token?module.search(rows,token.slice(0,-1)+'x',25):[];
-              return {loaded:true,exact:exact[0]?.p?.id===exactProduct.id,partial:partial.some(x=>x.p.id===exactProduct.id),category:category.some(x=>x.p.id===exactProduct.id),typo:typo.some(x=>x.p.id===exactProduct.id),noMatch:module.search(rows,'gw-no-such-part-xyz',25).length===0};
+              return {loaded:true,exact:exact[0]?.p?.id===exactProduct.id,partial:partial.some(x=>x.p.id===exactProduct.id),category:category.length>0&&category.some(x=>String(x.p.category_name||'').toLowerCase()===String(exactProduct.category_name).toLowerCase()),typo:typo.some(x=>x.p.id===exactProduct.id),noMatch:module.search(rows,'gw-no-such-part-xyz',25).length===0};
             });
             if(!freeSearch.loaded||!freeSearch.exact||!freeSearch.partial||!freeSearch.category||!freeSearch.typo||!freeSearch.noMatch)throw new Error('Free catalogue search browser integration failed: '+JSON.stringify(freeSearch));
             console.log('FREE_CATALOGUE_SEARCH_BROWSER_PASS '+JSON.stringify(freeSearch));
