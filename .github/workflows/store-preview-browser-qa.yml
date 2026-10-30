@@ -124,6 +124,8 @@ jobs:
             const photoRules=await photoInput.evaluate(el=>({multiple:el.multiple,accept:el.accept}));
             if(!photoRules.multiple||!photoRules.accept.includes('image/jpeg')||!photoRules.accept.includes('image/png'))throw new Error('Photo request upload rules are incomplete: '+JSON.stringify(photoRules));
             const previewSource=await require('fs').promises.readFile('preview-store.html','utf8');
+            const robotsDirectives=[...previewSource.matchAll(/<meta\\s+name=[\"']robots[\"'][^>]*content=[\"']([^\"']+)[\"'][^>]*>/gi)].map(match=>match[1].toLowerCase());
+            if(robotsDirectives.length!==1||robotsDirectives[0]!=='noindex,nofollow')throw new Error('Preview must have exactly one noindex,nofollow robots directive: '+JSON.stringify(robotsDirectives));
             if(/generativelanguage|api\.openai\.com|gemini\/|openai\/images/i.test(previewSource))throw new Error('Paid AI image-search endpoint remains in preview source');
             if(!previewSource.includes('files.length>5'))throw new Error('Five-photo maximum is not enforced in the request handler');
             await page.evaluate(()=>window.closePartRequest());
