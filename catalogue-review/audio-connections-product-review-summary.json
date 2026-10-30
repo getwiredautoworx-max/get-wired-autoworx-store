@@ -1,0 +1,19 @@
+{
+  "sony_models": 15,
+  "starsound_source_rows": 53,
+  "total_rows": 68,
+  "sony_sold_out": [
+    "XS-690ES"
+  ],
+  "sony_dealer_price_missing": [
+    "XS-690ES"
+  ],
+  "starsound_quote_required": [
+    "SSW8\"-8000D2",
+    "SSW-B12-2800 SVC",
+    "SSWF12-5150SVC"
+  ],
+  "starsound_vat": "All Starsound price list values are explicitly VAT exclusive.",
+  "unresolved": "All product images, manufacturer page matches and GW SKUs remain unverified/unassigned. The Sony PDF pictures are visually aligned to the listed model rows but are low-resolution catalogue images; high-resolution manufacturer assets still need to be verified.",
+  "no_live_changes": true
+}
