@@ -10,6 +10,9 @@ on:
       - 'preview-product.html'
       - 'preview-planetworld.html'
       - 'assets/**'
+      - 'supabase/functions/shipping-quote/**'
+      - 'supabase/functions/_shared/collection-origin.js'
+      - 'tests/collection-origin.test.cjs'
       - '.github/workflows/store-preview-browser-qa.yml'
 
 permissions:
@@ -26,6 +29,8 @@ jobs:
           node-version: 22
       - name: Run free catalogue search regression tests
         run: node tests/catalogue-search.test.cjs
+      - name: Test courier collection origin privacy guard
+        run: node tests/collection-origin.test.cjs
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
