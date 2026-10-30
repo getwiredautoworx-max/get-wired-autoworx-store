@@ -50,3 +50,13 @@ Preview branch only. No merge, production deploy, Axxess upload, DNS, Supabase w
 - Component taxonomy now has 33 browse groups; 236 Car Audio rows remain manual review. Non-Car Audio groups are keyword-derived and labelled as browse aids, not supplier-confirmed categories.
 - Current latest branch Cloudflare Pages build was in progress for `0761c1c`; exact success for the direct category-navigation commit remains pending. PR #136 is diverged from main (46 ahead / 42 behind), mergeable=false; do not merge.
 - Full 3,317-row feed still uses image placeholders and short supplier item names; exact-model image and richer manufacturer description work remains.
+
+
+## Sales-catalogue pricing and snapshot availability follow-up
+
+- Exact 47-row Harnesses & Trims group and 28-row Marine Audio group are separated using exact source-file/row joins. Car Audio & Video contains 627 rows; total Car Audio division reconciles to 702.
+- Added indicative customer selling price at 1% below source RRP only when the private cost-floor check passes: 3,280 priced; 37 quote-only (18 below cost floor, 19 zero RRP). No dealer cost or margin is exposed.
+- Added boolean supplier-availability snapshot: 1,727 rows had stock recorded, 1,590 did not, as at 25-Oct-2026. No regional stock quantities are exposed; confirmation required.
+- Functional tests cover all nine category buttons, 47 Harnesses & Trims items, prices, quote-only items, availability, search and pagination. Static QA: 8 scripts compile; 35 component groups; no sensitive supplier fields; noindex directive count 1.
+- Cloudflare Pages confirmed success for commit `af77019`: `https://b79c5a02.get-wired-autoworx-store.pages.dev/preview-store.html`; branch alias `https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html`.
+- Remaining: exact-model product images and fuller manufacturer descriptions across the broad 3,317 rows; hosted visual mobile/desktop acceptance; successful exact-head Actions QA; clean-main successor because PR #136 is diverged 46 ahead / 42 behind and not mergeable.
