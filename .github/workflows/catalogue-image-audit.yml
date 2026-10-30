@@ -1,6 +1,13 @@
 name: Catalogue Image Audit
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/catalogue-image-audit.yml'
+      - 'supabase/functions/product-image/**'
+      - 'assets/products/**'
+      - 'assets/products_webp/**'
   push:
     branches: [main]
     paths:
