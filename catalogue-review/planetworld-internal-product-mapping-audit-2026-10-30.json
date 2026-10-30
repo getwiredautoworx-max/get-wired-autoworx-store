@@ -1,0 +1,55 @@
+{
+  "status": "READ_ONLY_AUDIT_ONLY_NO_DATABASE_WRITES",
+  "supabase_project": "Store (project ref ojytykqpvonxvepprgbh)",
+  "checked_at": "2026-10-30T07:43Z",
+  "queries": {
+    "gw_private.product_supplier_codes": {
+      "total_rows": 4198,
+      "rows_with_supplier_id_null": 4198,
+      "exact_join_to_public_products_sku": 4198,
+      "exact_join_to_public_products_public_sku": 0,
+      "exact_matches_to_702_planetworld_supplier_skus": 0,
+      "note": "All existing legacy supplier_sku values match public.products.sku, but every supplier_id is NULL. This legacy join does not identify the supplier and none of the 702 Planetworld source SKUs match it."
+    },
+    "gw_private.supplier_catalog_items": {
+      "total_rows": 0,
+      "exact_matches_to_702_planetworld_supplier_skus": 0
+    },
+    "gw_private.supplier_connections": {
+      "total_rows": 3,
+      "active_connections": [
+        {
+          "name": "Caelex Infolog",
+          "active": true,
+          "query_channel": "portal"
+        },
+        {
+          "name": "Accessories Spares Centre",
+          "active": true,
+          "query_channel": "email"
+        },
+        {
+          "name": "Electro City",
+          "active": true,
+          "query_channel": "manual"
+        }
+      ],
+      "planetworld_connection_present": false,
+      "audio_connections_connection_present": false,
+      "note": "product_supplier_codes.supplier_id and supplier_catalog_items.supplier_id reference gw_private.supplier_connections.id. No Planetworld or Audio Connections connection is registered."
+    },
+    "public.products": {
+      "total_rows": 4200,
+      "exact_sku_matches_to_702_planetworld_supplier_skus": 0,
+      "exact_public_sku_matches_to_702_planetworld_supplier_skus": 0,
+      "name_or_description_matches_to_220_candidate_manufacturer_models": 0
+    }
+  },
+  "conclusion": "No exact internal public_sku/product_id mapping exists for the 702-row Planetworld staging set. There are 4,198 legacy product_supplier_codes rows and all 4,198 join to products.sku, but all supplier_id values are NULL; none match the 702 Planetworld SKUs. supplier_catalog_items is empty. Only Caelex Infolog, Accessories Spares Centre and Electro City supplier connections exist; Planetworld and Audio Connections are absent. Do not attach images to products or publish these source rows until an owner-approved supplier connection and supplier-to-public-product mapping exists.",
+  "safety": {
+    "read_only_selects_only": true,
+    "insert_update_delete_or_schema_changes": false,
+    "prices_stock_costs_or_customer_data_retrieved": false
+  },
+  "next_step": "Confirm intended semantics of legacy products.sku versus customer-facing public_sku in application code. Then, only after explicit owner approval and supplier credentials/contact details, register Planetworld and Audio Connections in gw_private.supplier_connections and create validated supplier_catalog_items/product_supplier_codes mappings. Do not make these writes during review."
+}

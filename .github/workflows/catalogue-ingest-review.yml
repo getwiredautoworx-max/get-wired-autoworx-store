@@ -1,0 +1,52 @@
+name: Supplier Catalogue Binary Extraction (Review Only)
+
+on:
+  push:
+    branches:
+      - catalogue/ingest-review-2026-10-30
+    paths:
+      - ".github/workflows/catalogue-ingest-review.yml"
+      - "scripts/catalogue_ingest_review.py"
+      - "catalogue-source/suppliers/planetworld/incoming-xlsx/**"
+      - "suppliers/Audio Connections/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalogue-review-branch-write
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated review branch
+        uses: actions/checkout@v4
+        with:
+          ref: catalogue/ingest-review-2026-10-30
+          fetch-depth: 1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install spreadsheet and PDF readers
+        run: python -m pip install --disable-pip-version-check openpyxl pymupdf
+      - name: Extract supplier source files with provenance
+        run: python scripts/catalogue_ingest_review.py
+      - name: Commit review-only extraction outputs (no artifacts)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "generated catalogue review outputs"
+          git fetch origin catalogue/ingest-review-2026-10-30
+          git checkout -B catalogue/ingest-review-2026-10-30 origin/catalogue/ingest-review-2026-10-30
+          git stash pop
+          git add catalogue-review/
+          if git diff --cached --quiet; then
+            echo "No extraction output changes."
+            exit 0
+          fi
+          git commit -m "[skip ci] Record supplier source extraction review outputs"
+          git push origin HEAD:catalogue/ingest-review-2026-10-30

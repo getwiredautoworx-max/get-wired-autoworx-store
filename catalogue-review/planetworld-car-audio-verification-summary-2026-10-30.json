@@ -1,0 +1,151 @@
+{
+  "status": "REVIEW_ONLY_NOT_PUBLISHED",
+  "supplier": "Planetworld",
+  "source_rows": 702,
+  "reconciled_top_level_split": {
+    "car_audio_brand_products": 627,
+    "marine_audio_products": 28,
+    "harness_and_trims_components": 47,
+    "manufacturer_brand_count": 9
+  },
+  "source_brand_counts_including_marine": {
+    "One": 290,
+    "Kicker": 189,
+    "Audison": 96,
+    "Alpine": 58,
+    "JVC Car Audio": 13,
+    "Kenwood Car Audio": 4,
+    "Amplified": 3,
+    "Focal Car Audio": 2,
+    "Pioneer Car Audio": 2,
+    "Harness and Trims": 47
+  },
+  "brand_verification": {
+    "One": {
+      "rows": 290,
+      "exact_official_product_pages": 9,
+      "unverified_or_unmatched": 281,
+      "audit": "catalogue-review/planetworld-one-official-model-audit.csv"
+    },
+    "Alpine": {
+      "rows": 58,
+      "exact_official_product_pages": 9,
+      "official_collection_matches": 26,
+      "official_catalogue_matches": 5,
+      "unmatched_in_this_pass": 18,
+      "audit": "catalogue-review/planetworld-alpine-official-model-audit.csv"
+    },
+    "Kicker": {
+      "rows": 189,
+      "standard_car_audio_rows": 161,
+      "standard_car_audio_exact_product_pages": 18,
+      "standard_car_audio_collection_matches": 72,
+      "standard_car_audio_unresolved": 71,
+      "marine_rows_separated": 28,
+      "marine_exact_product_pages": 5,
+      "marine_collection_matches": 23,
+      "marine_unresolved": 0,
+      "total_exact_individual_or_verified_product_pages": 23,
+      "total_official_collection_matches": 95,
+      "total_without_official_product_page_or_collection_match": 71,
+      "latest_recheck_additions": 51,
+      "audit": "catalogue-review/planetworld-kicker-official-model-audit.csv",
+      "evidence_crosscheck": "catalogue-review/planetworld-kicker-evidence-crosscheck-2026-10-30.md",
+      "product_detail_review": "catalogue-review/kicker-manufacturer-product-review.json",
+      "note": "Counts recomputed from 189 unique SKU rows. 51 additional manufacturer evidence matches are recorded across the current review batches. 23 exact individual product pages, 95 official collection matches and 71 unresolved standard Car Audio rows. Collection evidence is not image/publication approval."
+    },
+    "Audison": {
+      "rows": 96,
+      "exact_official_product_pages": 43,
+      "official_collection_accessory_configurator_or_range_matches": 49,
+      "unmatched": 2,
+      "source_text_ocr_manual_review": 2,
+      "audit": "catalogue-review/planetworld-audison-official-model-audit.csv plus catalogue-review/hertz-official-model-description-audit.csv",
+      "primary_702_source_rows": 94,
+      "additional_reclassified_rows": 2
+    },
+    "Focal_JVC_Kenwood_Pioneer": {
+      "rows": 21,
+      "exact_official_product_pages": 5,
+      "official_collection_matches": 7,
+      "official_support_page_matches": 1,
+      "official_model_specific_manual_matches": 2,
+      "official_optional_accessory_mentions": 1,
+      "underlying_official_head_unit_pages_for_supplier_bundles": 2,
+      "ambiguous_model_or_supplier_prefix_matches": 2,
+      "third_party_oem_part_number_evidence": 1,
+      "unmatched_official_product_page_or_collection_matches": 0,
+      "evidence_note": "No exact customer-publication approval is implied. KPE-KDR492/KPE-KDR891 are supplier bundle SKUs with official underlying JVC head-unit pages but unverified harness composition; TS-G1610F-2 suffix and Focal KIT SUB P20FE kit composition remain unresolved; E3A-0323-00 has third-party OEM part-number corroboration but no official standalone product page.",
+      "audit": "catalogue-review/planetworld-focal-jvc-kenwood-pioneer-model-audit.csv"
+    },
+    "Amplified": {
+      "rows": 3,
+      "exact_official_matches": 0,
+      "unmatched": 3
+    }
+  },
+  "known_review_flags": [
+    "ISA-ON115-3LX and ON115-3LX share the same description/application; only ON115-3LX matches the visible OneNav page SKU. Supplier confirmation required; neither row deleted.",
+    "One Audison AV 10 D4 II description is OCR-corrupted; confirm against original source sheet before assigning a model.",
+    "Audison AP SPK OUT 4.9 and CX690 grilles have no exact official page match in this pass.",
+    "JVC KPE-KDR492 and KPE-KDR891 supplier bundle codes now resolve to underlying official KD-R492 and KD-R891BT head-unit pages; bundle/harness contents remain unverified, so do not treat the supplier bundle code as the manufacturer model.",
+    "JVC/Kenwood E3A-0323-00 is corroborated as a DC power/wiring cord assembly by third-party genuine spare-part listings; no standalone official manufacturer product page found; confirm receiver compatibility.",
+    "Kenwood KDC-1040U and KDC-154UM are confirmed in an official model-specific manual/specification document; no standalone product page or approved image.",
+    "JVC RM-RK258 is confirmed as an optional remote in official JVC receiver product pages; confirm compatibility and obtain a standalone accessory image.",
+    "Pioneer TS-G1610F-2 remains a suffix mismatch against official TS-G1610F; do not assume -2 means a two-pack."
+  ],
+  "image_status": {
+    "Alpine": {
+      "original_high_resolution_source_urls_found": 4,
+      "assets_downloaded": 0,
+      "assets_approved": 0,
+      "manifest": "catalogue-review/alpine-high-resolution-image-source-manifest.csv"
+    },
+    "Other_brands": "Official product/collection pages may display images, but original binary assets have not been downloaded or approved."
+  },
+  "release_status": {
+    "gw_skus_assigned": 0,
+    "product_images_published": 0,
+    "customer_products_published": 0,
+    "duplicate_rows_deleted": 0,
+    "live_price_stock_changes": 0,
+    "production_changes": 0
+  },
+  "rules": [
+    "Supplier item codes are source identifiers, not GW SKUs.",
+    "Exact manufacturer page or collection match is not sufficient for image publication; internal public_sku mapping and current-image comparison are required.",
+    "Do not merge or delete duplicate/alias candidates without source-file provenance, model, description/specification, image comparison and supplier confirmation where needed.",
+    "Marine rows are separate from Car Audio navigation; Harness and Trims is not a manufacturer brand button.",
+    "No supplier cost/stock data is reproduced in these audit outputs."
+  ],
+  "internal_mapping_audit": {
+    "status": "READ_ONLY_NO_WRITES",
+    "project": "Store (ojytykqpvonxvepprgbh)",
+    "products_rows": 4200,
+    "product_supplier_codes_rows": 4198,
+    "product_supplier_codes_rows_with_supplier_id_null": 4198,
+    "existing_legacy_supplier_codes_joining_products_sku": 4198,
+    "exact_supplier_code_matches_to_702_planetworld_rows": 0,
+    "exact_matches_to_products_sku_for_702_planetworld_rows": 0,
+    "exact_matches_to_public_sku_for_702_planetworld_rows": 0,
+    "supplier_catalog_items_rows": 0,
+    "supplier_connections_rows": 3,
+    "existing_supplier_connections": [
+      "Caelex Infolog",
+      "Accessories Spares Centre",
+      "Electro City"
+    ],
+    "planetworld_supplier_connection_present": false,
+    "audio_connections_supplier_connection_present": false,
+    "public_products_name_or_description_matches_to_220_candidate_models": 0,
+    "conclusion": "No Planetworld public_sku/product_id mapping. Existing legacy supplier-code rows all join products.sku but all supplier_id are null; none match the 702 Planetworld source SKUs. No supplier_catalog_items exist and no Planetworld/Audio Connections supplier connections are registered.",
+    "details": "catalogue-review/planetworld-internal-product-mapping-audit-2026-10-30.json",
+    "database_changes": 0
+  },
+  "combined_car_audio_source_rows": 704,
+  "additional_reclassified_rows_from_hertz_staging": 2,
+  "note": " Combined navigation tree includes two additional Audison BMW harness records reclassified from the Hertz-labelled staging workbook; primary source audit remains 702 rows.",
+  "resolved_review_flags": [
+    "48KMC6 exact item code now verified against https://www.kicker.com/48KMC6 as KMC6; source description KMC5 corrected in review tree while original wording retained for audit."
+  ]
+}

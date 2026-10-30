@@ -1,5 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { chooseSupplierCandidate } from "../_shared/supplier-routing.mjs";
 
 const url = Deno.env.get("SUPABASE_URL")!;
 const secret = JSON.parse(Deno.env.get("SUPABASE_SECRET_KEYS")!).default;
@@ -38,22 +39,36 @@ Deno.serve(async req=>{
       const sku=String(b.public_sku||"").trim(), name=String(b.customer_name||"").trim();
       const qty=Math.max(1,Math.floor(Number(b.quantity||1)));
       if(!sku||!name) return json({ok:false,error:"Product SKU and customer name are required."},400);
-      const {data:p,error:pe}=await db.from("products").select("id,public_sku,name,active,specifications").eq("public_sku",sku).eq("active",true).maybeSingle();
+      const {data:p,error:pe}=await db.from("products").select("id,public_sku,name,active").eq("public_sku",sku).eq("active",true).maybeSingle();
       if(pe||!p) return json({ok:false,error:"Product could not be verified."},404);
-      const requestedSupplier=String(b.supplier_id||p.specifications?.supplier_id||"").trim();
-      const {data:s}=requestedSupplier
-        ? await qdb.from("supplier_connections").select("id,name,query_channel").eq("id",requestedSupplier).eq("active",true).maybeSingle()
-        : await qdb.from("supplier_connections").select("id,name,query_channel").eq("active",true).order("priority").limit(1).maybeSingle();
+      const {data:codeMappings,error:cmErr}=await qdb.from("product_supplier_codes")
+        .select("supplier_id").eq("product_id",p.id).not("supplier_id","is",null);
+      if(cmErr) throw cmErr;
+      const {data:catalogMappings,error:smErr}=await qdb.from("supplier_catalog_items")
+        .select("supplier_id").eq("public_product_id",p.id).eq("active",true);
+      if(smErr) throw smErr;
+      const supplierResolution=chooseSupplierCandidate({
+        productSupplierMappings:codeMappings||[],
+        catalogItemMappings:catalogMappings||[]
+      });
+      let supplier=null;
+      if(supplierResolution.supplierId){
+        const {data:matchedSupplier,error:se}=await qdb.from("supplier_connections")
+          .select("id,name,query_channel").eq("id",supplierResolution.supplierId).eq("active",true).maybeSingle();
+        if(se) throw se;
+        if(!matchedSupplier) return json({ok:false,error:"The product supplier mapping points to an inactive or missing supplier. Owner review is required."},409);
+        supplier=matchedSupplier;
+      }
       const {data:q,error}=await qdb.from("quote_requests").insert({
         quote_number:qno(),product_id:p.id,public_sku:p.public_sku,product_name:p.name,quantity:qty,
         vehicle_details:b.vehicle_details||{},customer_name:name,customer_email:b.customer_email||null,
         customer_phone:b.customer_phone||null,whatsapp_phone:b.whatsapp_phone||b.customer_phone||null,
         delivery_address:b.delivery_address||null,delivery_details:b.delivery_details||{},notes:b.notes||null,
-        supplier_id:s?.id||null,status:"REQUESTED"
+        supplier_id:supplier?.id||null,status:"REQUESTED"
       }).select("id,quote_number,status,created_at").single();
       if(error) throw error;
-      await event(q.id,"REQUESTED",{public_sku:p.public_sku,quantity:qty,supplier_selected:!!s});
-      return json({ok:true,quote:q});
+      await event(q.id,"REQUESTED",{public_sku:p.public_sku,quantity:qty,supplier_selected:!!supplier,supplier_resolution:supplierResolution.reason});
+      return json({ok:true,quote:q,supplier_selected:!!supplier,supplier_resolution:supplierResolution.reason});
     }
 
     if((req.method==="GET"||req.method==="POST")&&action==="customer_offer"){
@@ -94,25 +109,37 @@ Deno.serve(async req=>{
 
     if(req.method==="GET"&&action==="detail"){
       const id=u.searchParams.get("id"); if(!id) return json({ok:false,error:"Quote id required."},400);
-      const [q,r,o,m,e,p,f]=await Promise.all([
+      const [q,r,o,m,e,p,f,suppliers]=await Promise.all([
         qdb.from("quote_requests").select("*").eq("id",id).single(),
         qdb.from("supplier_quote_responses").select("*").eq("quote_request_id",id).order("received_at",{ascending:false}),
         qdb.from("quote_customer_offers").select("*").eq("quote_request_id",id).order("created_at",{ascending:false}),
         qdb.from("quote_messages").select("*").eq("quote_request_id",id).order("created_at",{ascending:false}),
         qdb.from("quote_events").select("*").eq("quote_request_id",id).order("created_at",{ascending:false}),
         qdb.from("quote_payment_links").select("*").eq("quote_request_id",id).order("created_at",{ascending:false}),
-        qdb.from("quote_fulfilments").select("*").eq("quote_request_id",id).order("created_at",{ascending:false})
+        qdb.from("quote_fulfilments").select("*").eq("quote_request_id",id).order("created_at",{ascending:false}),
+        qdb.from("supplier_connections").select("id,name,query_channel").eq("active",true).order("priority")
       ]);
-      for(const x of [q,r,o,m,e,p,f]) if(x.error) throw x.error;
-      return json({ok:true,quote:q.data,responses:r.data||[],offers:o.data||[],messages:m.data||[],events:e.data||[],payment_links:p.data||[],fulfilments:f.data||[]});
+      for(const x of [q,r,o,m,e,p,f,suppliers]) if(x.error) throw x.error;
+      return json({ok:true,quote:q.data,responses:r.data||[],offers:o.data||[],messages:m.data||[],events:e.data||[],payment_links:p.data||[],fulfilments:f.data||[],suppliers:suppliers.data||[]});
     }
 
     if(req.method==="POST"&&action==="record_supplier_response"){
       const id=String(b.quote_id||"");
-      const {data:q}=await qdb.from("quote_requests").select("id,supplier_id,quantity").eq("id",id).single();
-      if(!q) return json({ok:false,error:"Quote not found."},404);
+      const {data:q,error:qe}=await qdb.from("quote_requests").select("id,supplier_id,quantity").eq("id",id).single();
+      if(qe||!q) return json({ok:false,error:"Quote not found."},404);
+      const supplierId=String(b.supplier_id||q.supplier_id||"").trim();
+      if(!supplierId) return json({ok:false,error:"Select the actual active supplier before recording a supplier response. Unmapped requests must not be routed automatically."},409);
+      const {data:supplier,error:se}=await qdb.from("supplier_connections")
+        .select("id,name").eq("id",supplierId).eq("active",true).maybeSingle();
+      if(se) throw se;
+      if(!supplier) return json({ok:false,error:"Selected supplier is not registered or active."},409);
+      if(q.supplier_id!==supplier.id){
+        const {error:ue}=await qdb.from("quote_requests")
+          .update({supplier_id:supplier.id,updated_at:new Date().toISOString()}).eq("id",id);
+        if(ue) throw ue;
+      }
       const {data:r,error}=await qdb.from("supplier_quote_responses").insert({
-        quote_request_id:id,supplier_id:q.supplier_id||null,supplier_reference:b.supplier_reference||null,
+        quote_request_id:id,supplier_id:supplier.id,supplier_reference:b.supplier_reference||null,
         supplier_cost:b.supplier_cost??null,stock_available:b.stock_available??null,
         availability_text:b.availability_text||null,lead_time_text:b.lead_time_text||null,
         estimated_dispatch:b.estimated_dispatch||null,packaging_cost:b.packaging_cost||0,
@@ -121,15 +148,22 @@ Deno.serve(async req=>{
         quote_valid_until:b.quote_valid_until||null,raw_response:b.raw_response||{}
       }).select("*").single();
       if(error) throw error;
-      await qdb.from("quote_requests").update({status:"SUPPLIER_RESPONSE",updated_at:new Date().toISOString()}).eq("id",id);
-      await event(id,"SUPPLIER_RESPONSE",{response_id:r.id},a.user.id);
-      return json({ok:true,response:r});
+      const {error:statusError}=await qdb.from("quote_requests").update({status:"SUPPLIER_RESPONSE",updated_at:new Date().toISOString()}).eq("id",id);
+      if(statusError) throw statusError;
+      await event(id,"SUPPLIER_RESPONSE",{response_id:r.id,supplier_id:supplier.id,supplier_name:supplier.name},a.user.id);
+      return json({ok:true,response:r,supplier});
     }
 
     if(req.method==="POST"&&action==="create_offer"){
       const id=String(b.quote_id||""), sr=String(b.supplier_response_id||"");
-      const {data:q,error:qe}=await qdb.from("quote_requests").select("id,quantity").eq("id",id).single();
+      const {data:q,error:qe}=await qdb.from("quote_requests").select("id,quantity,supplier_id").eq("id",id).single();
       if(qe||!q) return json({ok:false,error:"Quote not found."},404);
+      if(!q.supplier_id) return json({ok:false,error:"Assign the actual supplier and record its response before creating a customer offer."},409);
+      if(!sr) return json({ok:false,error:"A verified supplier response is required before creating a customer offer."},409);
+      const {data:srRow,error:sre}=await qdb.from("supplier_quote_responses").select("id,supplier_id")
+        .eq("id",sr).eq("quote_request_id",id).maybeSingle();
+      if(sre) throw sre;
+      if(!srRow||srRow.supplier_id!==q.supplier_id) return json({ok:false,error:"The supplier response does not match the supplier assigned to this quote."},409);
       const unit=Number(b.unit_selling_price), qty=Math.max(1,Math.floor(Number(b.quantity||q.quantity||1)));
       const pack=Number(b.packaging_total||0), freight=Number(b.delivery_total||0), vat=b.vat_total==null?0:Number(b.vat_total);
       if(!Number.isFinite(unit)||unit<0) return json({ok:false,error:"Valid selling price required."},400);
@@ -168,8 +202,18 @@ Deno.serve(async req=>{
       const {data:q,error:qe}=await qdb.from("quote_requests").select("id,status,supplier_id").eq("id",id).single();
       if(qe||!q) return json({ok:false,error:"Quote not found."},404);
       if(q.status!=="PAID") return json({ok:false,error:"Procurement authorization requires confirmed customer payment."},409);
-      const {data:o}=await qdb.from("quote_customer_offers").select("id").eq("quote_request_id",id).order("created_at",{ascending:false}).limit(1).maybeSingle();
+      if(!q.supplier_id) return json({ok:false,error:"Procurement cannot be authorized until an actual supplier is assigned."},409);
+      const {data:activeSupplier,error:ase}=await qdb.from("supplier_connections").select("id")
+        .eq("id",q.supplier_id).eq("active",true).maybeSingle();
+      if(ase) throw ase;
+      if(!activeSupplier) return json({ok:false,error:"Assigned supplier is not active. Procurement authorization blocked."},409);
+      const {data:o}=await qdb.from("quote_customer_offers").select("id,supplier_response_id").eq("quote_request_id",id).order("created_at",{ascending:false}).limit(1).maybeSingle();
       if(!o) return json({ok:false,error:"Customer offer not found."},404);
+      if(!o.supplier_response_id) return json({ok:false,error:"Customer offer has no supplier response. Procurement authorization blocked."},409);
+      const {data:sr,error:sre}=await qdb.from("supplier_quote_responses").select("id,supplier_id")
+        .eq("id",o.supplier_response_id).eq("quote_request_id",id).maybeSingle();
+      if(sre) throw sre;
+      if(!sr||sr.supplier_id!==q.supplier_id) return json({ok:false,error:"Offer supplier response does not match the assigned supplier. Procurement authorization blocked."},409);
       const {data:po,error}=await qdb.from("supplier_procurement_orders").insert({
         quote_request_id:id,supplier_id:q.supplier_id,offer_id:o.id,supplier_order_reference:b.supplier_order_ref||null,
         supplier_order_status:"AUTHORIZED",authorized_by:a.user.id,authorized_at:new Date().toISOString(),

@@ -1,0 +1,14 @@
+{
+  "planetworld_workbooks_found": 47,
+  "planetworld_workbooks_opened": 47,
+  "planetworld_workbook_errors": [],
+  "planetworld_sheets": 94,
+  "planetworld_product_rows": 3317,
+  "planetworld_product_rows_csv_chunks": 7,
+  "audio_connections_pdfs_found": 2,
+  "audio_connections_pages_extracted": 4,
+  "audio_connections_pages_with_text": 4,
+  "audio_connections_embedded_images_extracted": 21,
+  "audio_connections_image_map_errors": [],
+  "important_limit": "Raw source extraction only. No product identity, duplicate, image, GW SKU, category, price validity, stock or customer-facing listing is approved by this report."
+}
