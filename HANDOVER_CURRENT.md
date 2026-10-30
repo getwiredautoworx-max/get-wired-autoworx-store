@@ -1,3 +1,14 @@
+## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (SECOND FOLLOW-UP)
+
+- Seven more staged Hertz records now have exact individual manufacturer product pages: CPK 690 (78000105), DG 165.3 (78071036), MG 250.3 (78071135), MG 300.3 (78071145), MPG 165.3 (78071181), HRC 02 (78211041), and S8 DSP (78260025).
+- Added exact official URLs and manufacturer descriptions/specifications to `catalogue-review/hertz-official-model-description-audit.csv`; added the match-level evidence to the Hertz crosscheck.
+- **Current reconciled count: 66/89 exact individual official product pages; 23/89 still lack an exact individual page in the audit.** This is an item-code join between the owner-controlled 89-row staging workbook and the review audit, not an import or pricing decision.
+- The seven additional manufacturer pages confirm model identity/specifications only. No product image has been downloaded, visually checked against the supplier row and internal product, or approved. No GW SKUs assigned; no product or image published; no supplier cost/stock fields copied into repository; no live database or production changes.
+- Official pages: CPK 690, DG 165.3, MG 250.3, MG 300.3, MPG 165.3, HRC 02 and S8 DSP. See exact links in the audit/crosscheck.
+- Remaining 23 include the two AFBMW integration adapters, Uno K/X range products with collection-only evidence, standalone DS/S 300 subwoofers, remaining grilles, HCP HRC / Mille HRC BM2 controls, C 26 / C 165 L / C 165 F and the SPL woofer with unresolved exact identity. Keep collection/catalogue evidence separate from exact individual pages.
+
+---
+
 ## HERTZ EXACT-PAGE RECONCILIATION — 2026-10-30 (FOLLOW-UP)
 
 - Reconciled the 89-row owner-controlled Hertz staging workbook against the review-branch exact-page audit by the supplier reference item code (codes are references only, never GW SKUs). The audit contained 50 distinct exact manufacturer-page matches; 39 staged rows had no matching exact-page record.
