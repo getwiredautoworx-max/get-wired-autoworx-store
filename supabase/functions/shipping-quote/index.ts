@@ -1,5 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { cartCanonical, destinationCanonical, digest, signQuote, type QuoteItem } from "../_shared/delivery-quote.ts";
+import { collectionOrigin } from "../_shared/collection-origin.js";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -8,16 +9,6 @@ const corsHeaders = {
 };
 
 type Item = QuoteItem;
-export type CollectionOrigin = { address: string; city: string; province: string; postal_code: string };
-export function collectionOrigin(getEnv: (name: string) => string | undefined): CollectionOrigin | null {
-  const origin = {
-    address: getEnv("COURIER_COLLECTION_ADDRESS")?.trim() || "",
-    city: getEnv("COURIER_COLLECTION_CITY")?.trim() || "",
-    province: getEnv("COURIER_COLLECTION_PROVINCE")?.trim() || "",
-    postal_code: getEnv("COURIER_COLLECTION_POSTAL_CODE")?.trim() || "",
-  };
-  return Object.values(origin).every(Boolean) ? origin : null;
-}
 function adminHeaders(): Record<string, string> {
   let secret: string | null = null; let usesSecretApiKey = false;
   const env = Deno.env.get("SUPABASE_SECRET_KEYS");
