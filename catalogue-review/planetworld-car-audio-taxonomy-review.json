@@ -1,0 +1,109 @@
+{
+  "status": "REVIEW_ONLY_NOT_PUBLISHED",
+  "supplier": "Planetworld",
+  "source_division": "Car Audio",
+  "source_row_count": 702,
+  "manufacturer_brands": [
+    {
+      "label": "One",
+      "source_brand": "One",
+      "rows": 290
+    },
+    {
+      "label": "Kicker",
+      "source_brand": "Kicker",
+      "rows": 189
+    },
+    {
+      "label": "Audison",
+      "source_brand": "Audison",
+      "rows": 94
+    },
+    {
+      "label": "Alpine",
+      "source_brand": "Alpine",
+      "rows": 58
+    },
+    {
+      "label": "JVC",
+      "source_brand": "JVC Car Audio",
+      "rows": 13
+    },
+    {
+      "label": "Kenwood",
+      "source_brand": "Kenwood Car Audio",
+      "rows": 4
+    },
+    {
+      "label": "Amplified",
+      "source_brand": "Amplified",
+      "rows": 3
+    },
+    {
+      "label": "Focal",
+      "source_brand": "Focal Car Audio",
+      "rows": 2
+    },
+    {
+      "label": "Pioneer",
+      "source_brand": "Pioneer Car Audio",
+      "rows": 2
+    }
+  ],
+  "component_groups": [
+    {
+      "label": "Amplifiers",
+      "candidate_rows": 51
+    },
+    {
+      "label": "Speakers",
+      "candidate_rows": 66
+    },
+    {
+      "label": "Subwoofers",
+      "candidate_rows": 84
+    },
+    {
+      "label": "Head Units & Media Players",
+      "candidate_rows": 21
+    },
+    {
+      "label": "Infotainment & Displays",
+      "candidate_rows": 8
+    },
+    {
+      "label": "Cameras",
+      "candidate_rows": 12
+    },
+    {
+      "label": "Antennas & GPS",
+      "candidate_rows": 0
+    },
+    {
+      "label": "Processors & Crossovers",
+      "candidate_rows": 3
+    },
+    {
+      "label": "Wiring & Installation Accessories",
+      "candidate_rows": 117
+    },
+    {
+      "label": "Harness & Installation",
+      "candidate_rows": 95
+    },
+    {
+      "label": "Unclassified – manual review",
+      "candidate_rows": 245
+    }
+  ],
+  "rules": [
+    "Harness and Trims (47 source rows) is a component/accessory group, never a manufacturer brand button.",
+    "JBL rows are in Musical Instruments and are excluded from Car Audio.",
+    "No Hertz source XLSX is present in the 47 Planetworld incoming workbooks; separate 89-row Hertz staging workbook remains unpublished and is not treated as a supplier source file.",
+    "Component counts are keyword-derived candidates, not approved final classification; 245 rows require manual review.",
+    "Supplier item code is retained as supplier SKU; no GW SKU assigned.",
+    "No product images matched or verified; no customer listings or pricing/stock values included.",
+    "No publication, live catalogue, price, stock, Supabase, payment, DNS, Axxess or hosting changes."
+  ],
+  "source_output": "catalogue-review/planetworld-car-audio-staging.csv"
+}
