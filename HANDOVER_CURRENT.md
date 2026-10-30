@@ -3759,3 +3759,12 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - New exact-head commit: `12d04ddcf9e813513f3b3e1e79f778f5c91f4f5b`.
 - New Populated Store Preview Browser QA run: `41035512271`; job `123995244830` was in progress at checkpoint. Do not claim Part Search/no-AI/audio checks passed until this run completes and its log is reviewed.
 - This correction changes only the preview browser QA workflow. It does not change storefront code, product data, prices, stock, supplier staging, main branch, hosting configuration or production.
+
+
+## FOLLOW-UP — REQUEST-DIALOG TEST FIX — 2026-10-30
+
+- The Part Search/no-AI browser checks now opened both dialogs correctly, but the next run failed when the test tried to click the Request a Part close button: the sticky preview notice sits above the modal and intercepted pointer events. This is a browser-test interaction issue, not a request-dialog submission or rendering failure.
+- Replaced the intercepted click with the page's existing `window.closePartRequest()` close handler, then retained the explicit hidden-state assertion.
+- New PR #116 workflow commit: `1a5ea360e33589cac1d644811e508a0d3c014d32`. Exact-head browser run had not yet appeared in the run lookup at the time of this note.
+- Prior run 41035512271 reached and passed the following assertions before the close-button issue: populated catalogue/ASC stock checks, product detail modal, Part Search dialog, no-AI copy, Request a Part dialog, and photo upload configuration/source checks. Audio-route assertions and hosted checks had not yet been reached in that run.
+- Continue from this branch head; do not restart the preview or modify live data.
