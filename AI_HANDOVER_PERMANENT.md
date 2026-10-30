@@ -1,3 +1,12 @@
+## ADDITIONAL VERIFIED PLANETWORLD ONE NAV RESULTS — 2026-10-30
+
+- Continued exact OneNav manufacturer-page matching against the Planetworld source workbook. Verified nine exact supplier SKU + official product page + vehicle application matches: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
+- `catalogue-review/planetworld-one-official-model-audit.csv` now contains nine exact page matches. `catalogue-review/planetworld-car-audio-staging.csv` now stores official URLs and exact model status for those nine rows. No public/GW SKU is assigned and no image asset is approved.
+- Found one potential supplier-code alias/duplicate pair in the same One workbook: `ISA-ON115-3LX` and `ON115-3LX` have identical descriptions and the same vehicle application; only `ON115-3LX` exactly matches the official page's visible SKU. Logged both source rows and the discrepancy in `catalogue-review/planetworld-one-potential-alias-review.csv`. This is NOT a confirmed duplicate; do not merge or delete either row until Planetworld confirms whether the prefixed code is an alias or a distinct commercial item. No image comparison has been performed.
+- Exact OneNav page-match coverage is nine rows of the 290 One brand rows; remaining One models and the other Planetworld brands still need exact model/image checks. Keep the 702-row catalogue unpublished.
+
+---
+
 ## CONTINUATION RESULT — 2026-10-30 — AUDIO CONNECTIONS, HERTZ AND ONENAV VERIFICATION
 
 - Work continued in isolated review branch `catalogue/complete-remaining-review-2026-10-30`. Latest project files were read before continuing. No PR merge, production deployment, live catalogue write, Supabase write, Axxess upload, DNS/payment change or release-credit use.
