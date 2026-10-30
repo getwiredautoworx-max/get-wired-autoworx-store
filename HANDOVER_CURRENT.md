@@ -4492,3 +4492,8 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - Preview update commit `0f5a620cb2af2d4be02e78dd4fbf2be5949ed9cb`; browser audit commit `adae9ecdd5f1647fd2df2abd8fb8330292ada706`. PR #136 description updated accordingly; remains draft.
 - Latest exact-head workflow set again failed, including minimal runner diagnostic run 41069425728/job 124108... (job record confirms completed failure; no logs/steps available via current connector). The exact job ID is to be read from the returned run record before further diagnosis; do not claim the seven images have passed current hosted browser verification yet.
 - No public product records, database image_url values, live prices/stock, supplier relationship, or production assets were changed; all image work is preview-only.
+
+
+## 2026-10-30 16:2x SAST — DIAGNOSTIC JOB ID CORRECTION
+
+- The minimal runner diagnostic run `41069425728` failed at job `124109308728` (not the truncated placeholder ID in the preceding image addendum). GitHub returned `logs_url=null` and `steps=null` for this job.
