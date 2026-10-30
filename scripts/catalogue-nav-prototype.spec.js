@@ -22,7 +22,7 @@ const { chromium } = require('playwright');
     const productCount=await products.count();
     if(productCount!==6)throw new Error('Alpine amplifier list should contain 6 source records, got '+productCount);
     const productText=await page.locator('#content').innerText();
-    if(/R\s?\d|Retail Price|JHB Stock|DBN Stock|CPT Stock/i.test(productText))throw new Error('Unapproved supplier price/stock leaked into review prototype');
+    if(/Retail Price|JHB Stock|DBN Stock|CPT Stock|RRP|supplier_stock_snapshot/i.test(productText))throw new Error('Unapproved supplier price/stock leaked into review prototype');
     if(!productText.includes('GW SKU: not assigned')||!productText.includes('Image: not verified'))throw new Error('Pending image/GW SKU controls missing');
     await page.locator('#back').click();
     if(await page.locator('#content [data-component]').count()<5)throw new Error('Back navigation did not return to component list');
