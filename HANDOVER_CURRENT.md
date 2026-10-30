@@ -4283,3 +4283,27 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PR #134 remains draft/open and GitHub marks it `mergeable=false`, `mergeable_state=dirty`; do not merge as-is. The Pages preview URL is live for owner inspection, but not a production entry.
 - Handover update itself committed as `53569ebb0725b662d49c622d1f9a627fbce798bf`.
 - Next: inspect the Workers build failure's Cloudflare logs and determine whether it is stale/unrelated to the Pages static preview; create a clean current-main integration branch rather than merging the dirty PR; trigger exact-head browser QA on that clean branch; then build the production-entry candidate and package only after its own checks.
+
+
+## 2026-10-30 OWNER FEEDBACK — STOREFRONT VISUAL QUALITY AND SUPPLIER CONFIDENTIALITY
+
+Owner identified three unacceptable customer-facing defects: missing product photos, text overlapping product photos, and supplier identity/catalogue link exposed on the store.
+
+### Immediate code correction staged
+- Created draft PR #135: `https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/135`.
+- Branch: `fix/storefront-polish-mainline-2026-10-30`; head `8634a2342170166dfd4c72c42db55f9e3b112402`.
+- Removes the public-facing supplier catalogue link and supplier name from `preview-store.html`.
+- Adds isolated product-card layout rules: fixed image panel, contained image, title/SKU/price/stock/actions flow beneath it, responsive mobile sizing.
+- Replaces a failed/missing image with a consistent branded "PHOTO COMING SOON" panel rather than a broken image or text collision.
+- Initial PR checks: detect-storefront-mode SUCCESS; audit SUCCESS; public-package SUCCESS; populated-preview and Cloudflare Pages deployment were still in progress at time of this note; smoke job SKIPPED. No visual QA pass claimed yet.
+- This is a preview-only code change. It has not been merged; production entry and live hosting remain unchanged.
+
+### Catalogue integration root cause and scope
+- The 2026-10-25 Planetworld data is not currently part of the storefront's public product data. It is retained in internal supplier source/review files; the separate preview page is not a store integration.
+- The 68-row candidate price review file contains 68 rows, but each row is marked `PROPOSAL_ONLY_NOT_APPROVED_NOT_IMPORTED`. It is not a live import dataset.
+- The broader source crosswalk contains 702 Planetworld rows plus 68 Audio Connections rows. Exact matching found no existing public product rows for those supplier SKUs; the current legacy product join does not reliably identify suppliers. Do not force-link unrelated public products.
+- Only seven exact-model product images were previously reported verified; most catalogue items still lack approved/local product image assets. The image fallback cannot manufacture genuine product photography.
+- Internal supplier mapping and source rows must remain private. Public page titles, notices, filenames, labels, product cards, SEO metadata, and customer-facing messages must not identify Planetworld or any other supplier.
+- Required next implementation: integrate a controlled, customer-facing GW catalogue dataset using assigned GW SKUs, verified manufacturer descriptions/images where available, retail-only prices (never dealer costs), and no supplier names or supplier stock-location detail. Items lacking approved photos must use the consistent neutral placeholder; unverified identity/price/fitment stays quote/request-only and must not be presented as confirmed stock.
+- Do not publish supplier dealer costs, supplier names, source workbook paths, supplier SKUs as supplier references, or dated supplier stock snapshots to customers. Keep source provenance in internal records only.
+- No supplier catalogue data, stock, price, or image records were imported/published by PR #135. No production changes were made.
