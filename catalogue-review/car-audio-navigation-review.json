@@ -1,0 +1,105 @@
+{
+  "total_planetworld_product_rows": 3317,
+  "car_audio_division_rows": 702,
+  "car_audio_manufacturer_brand_rows": 655,
+  "brand_button_candidates": {
+    "Alpine": 58,
+    "Amplified": 3,
+    "Audison": 94,
+    "Focal": 2,
+    "COMPONENT GROUP — Harnesses & Trims": 47,
+    "JVC": 13,
+    "Kenwood": 4,
+    "Kicker": 189,
+    "One": 290,
+    "Pioneer": 2
+  },
+  "component_button_candidates": {
+    "Amplifiers": 50,
+    "Harnesses, Trims & Fitment": 247,
+    "Cameras & Monitors": 17,
+    "Speakers & Component Kits": 60,
+    "Manual Product-Type Review": 130,
+    "Head Units & Media Players": 25,
+    "Subwoofers": 81,
+    "Accessories": 37,
+    "Wiring & Installation": 16,
+    "Tweeters": 10,
+    "Crossovers & Equalisers": 4,
+    "Subwoofer Boxes & Active Enclosures": 25
+  },
+  "brand_component_counts": {
+    "Alpine": {
+      "Amplifiers": 6,
+      "Harnesses, Trims & Fitment": 2,
+      "Cameras & Monitors": 2,
+      "Speakers & Component Kits": 15,
+      "Manual Product-Type Review": 11,
+      "Head Units & Media Players": 4,
+      "Subwoofers": 13,
+      "Accessories": 4,
+      "Wiring & Installation": 1
+    },
+    "Amplified": {
+      "Amplifiers": 3
+    },
+    "Audison": {
+      "Tweeters": 7,
+      "Amplifiers": 13,
+      "Subwoofers": 18,
+      "Accessories": 17,
+      "Head Units & Media Players": 1,
+      "Harnesses, Trims & Fitment": 5,
+      "Manual Product-Type Review": 20,
+      "Speakers & Component Kits": 6,
+      "Wiring & Installation": 3,
+      "Crossovers & Equalisers": 4
+    },
+    "Focal": {
+      "Manual Product-Type Review": 1,
+      "Subwoofers": 1
+    },
+    "COMPONENT GROUP — Harnesses & Trims": {
+      "Harnesses, Trims & Fitment": 47
+    },
+    "JVC": {
+      "Speakers & Component Kits": 4,
+      "Wiring & Installation": 1,
+      "Manual Product-Type Review": 1,
+      "Head Units & Media Players": 7
+    },
+    "Kenwood": {
+      "Head Units & Media Players": 2,
+      "Manual Product-Type Review": 2
+    },
+    "Kicker": {
+      "Accessories": 11,
+      "Subwoofers": 49,
+      "Speakers & Component Kits": 35,
+      "Subwoofer Boxes & Active Enclosures": 25,
+      "Manual Product-Type Review": 24,
+      "Amplifiers": 28,
+      "Tweeters": 3,
+      "Wiring & Installation": 10,
+      "Head Units & Media Players": 4
+    },
+    "One": {
+      "Manual Product-Type Review": 69,
+      "Harnesses, Trims & Fitment": 193,
+      "Cameras & Monitors": 15,
+      "Accessories": 5,
+      "Head Units & Media Players": 7,
+      "Wiring & Installation": 1
+    },
+    "Pioneer": {
+      "Manual Product-Type Review": 2
+    }
+  },
+  "harness_and_trims_are_component_not_brand": true,
+  "missing_retail_incl_rows": 0,
+  "zero_stock_in_all_three_regions_snapshot": 190,
+  "rows_with_gw_sku_assigned": 0,
+  "rows_with_verified_manufacturer_image": 0,
+  "rows_with_verified_manufacturer_description": 0,
+  "note": "Review-only classification. Candidate retail prices are 1%/2% below the supplier Retail Price (Incl) field, not approved store prices. Supplier regional quantities are snapshots only, not live store stock. Item Code is a supplier code, not a GW SKU."
+}
