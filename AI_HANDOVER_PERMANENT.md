@@ -1,3 +1,11 @@
+## FINAL HERTZ EXCEPTION QUEUE — 2026-10-30
+
+- Created `catalogue-review/hertz-final-exceptions-2026-10-30.csv` with exactly three unresolved rows and evidence tiers: 78032225 generic SPL woofer (exact model unknown), 78071121 DG 250.3 grille (model string corroborated by reseller, manufacturer page absent), and 78071126 DG 300.3 grille (model + supplier item code corroborated by local reseller, manufacturer page absent).
+- The file records external evidence URLs, what is and is not proven, image status, next action and publication hold. It does not include confidential dealer cost or regional stock.
+- Supplier/owner action needed is limited to three precise confirmations: exact SPL model number/specs; official DG 250.3 reference/image and confirmation of code mapping; official DG 300.3 reference/image and fitment confirmation. Do not assign GW SKUs or publish these three until resolved.
+
+---
+
 ## HERTZ HRC ACCESSORY RESOLUTION — 2026-10-30
 
 - Resolved the HCP HRC identity blocker using an Elettromedia manufacturer-operated B2B product record: model HRC, supplier item code 78211040, EAN 8018823109017. Added it to the manufacturer-page audit as B2B product-page evidence: https://elettromedia-srl-b2b-sandbox.mybigcommerce.com/hrc/ . It is a sandbox storefront, so retain that qualification; not the primary Hertz consumer page.
