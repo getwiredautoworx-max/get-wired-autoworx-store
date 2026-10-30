@@ -1,3 +1,13 @@
+## ALPINE MODEL AND IMAGE-SOURCE VERIFICATION — 2026-10-30
+
+- Reconciled all 58 Alpine source rows from Planetworld's One/Alpine car-audio staging. Official manufacturer verification outcomes: 9 exact individual product pages, 26 exact model labels in official product collections (detail pages not individually verified), 5 exact model labels in the official 2024 product catalogue, and 18 with no exact official page/collection/catalogue match found in this pass.
+- Exact individual page matches: HCE-C2100RD, HDZ-653, ILX-F115D, R2-A60F (source item code retains trailing period), R2-W10D2, R2-W12D4, S2-S65, S2-S40C and S2-A55V. Full 58-row review: `catalogue-review/planetworld-alpine-official-model-audit.csv`. Official page/collection references and match status are now written into the corresponding Planetworld staging rows.
+- Located four original high-resolution official image source URLs (R2-W10D2, R2-W12D4, R2-A60F, S2-S40C) and recorded them in `catalogue-review/alpine-high-resolution-image-source-manifest.csv`. No image binary was downloaded or committed. R2-W12D4's source is a shared W12D2/W12D4 family image and does not visually distinguish impedance variant.
+- Image source URL found is NOT equivalent to approved storefront image. No current public_sku/internal product mapping or current-image comparison has been completed, so none of these images is eligible for products.image_url or publication.
+- Combined Planetworld ONE + Alpine exact individual-page matches now total 18 rows (9 OneNav + 9 Alpine); collection/catalogue-level matches are tracked separately. No GW SKUs assigned, no duplicate rows deleted, and no live store changes.
+
+---
+
 ## ADDITIONAL VERIFIED PLANETWORLD ONE NAV RESULTS — 2026-10-30
 
 - Continued exact OneNav manufacturer-page matching against the Planetworld source workbook. Verified nine exact supplier SKU + official product page + vehicle application matches: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
