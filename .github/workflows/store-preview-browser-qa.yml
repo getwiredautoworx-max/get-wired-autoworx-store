@@ -83,6 +83,8 @@ jobs:
             await page.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
             const modalText=await page.locator('#productModal').innerText();
             if(!modalText.trim())throw new Error('Product detail modal did not populate');
+            await page.locator('#modalClose').click();
+            await page.locator('#productModal').waitFor({state:'hidden',timeout:10000});
             // Verify Part Search and the no-AI photo-request fallback in the actual preview.
             const partSearchButton=page.locator('.headerPartSearch').first();
             await partSearchButton.waitFor({state:'visible',timeout:10000});
