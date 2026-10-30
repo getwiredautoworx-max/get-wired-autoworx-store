@@ -56,4 +56,4 @@ https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf
 
 ## Outcome
 
-The official product-page audit now contains 25 exact individual manufacturer pages. This cross-check adds four new exact product-page matches (CK 165 L, CPK 165, MPK 163.3 and MPX 165.3); DCX 165.3 was already present in the original 12-page audit and is re-confirmed here. It also records multiple current collection-level model matches, reducing the unresolved model research queue. It does not complete the remaining 77 product-image checks and does not authorise publication.
+The official product-page audit now contains 25 exact individual manufacturer pages (12 original + 4 previously added + 9 new matches listed above). 64 of the 89 staged rows still lack an exact individual product page. Collection-level matches are documented separately. None of the 89 product image assets has been downloaded, visually compared with the staged model and internal product, or approved for publication.
