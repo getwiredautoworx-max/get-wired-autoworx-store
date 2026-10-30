@@ -4263,3 +4263,12 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 ### Status correction
 - PR #134's preview indexing defect is now fixed in source and protected by a new regression assertion; its new deployment/CI checks are still pending at checkpoint.
 - The production customer entry is still buttons-only. Store is not production-ready/live yet.
+
+
+## 2026-10-30 CONTINUATION — PR #134 MERGEABILITY AND RELEASE-ENTRY RECHECK
+
+- Re-read PR #134 directly from GitHub. It remains OPEN and DRAFT, with head `8a23ce565d7237622fdd06e9630f016a5e498c6f`, base `main`, 19 commits, 12 changed files, and GitHub reports `mergeable=false`, `mergeable_state=dirty`. It is not safe to merge as-is; its previously successful test evidence applies to earlier exact code head `5287bb47c0ec439e68ca6b473de054227469e916`, while the later handover/robots-fix head still needs its own checks.
+- Reconfirmed current main routing: `index.html` redirects to `store.html`; `store.html` embeds `index-new.html`; `index-new.html` remains a 5,973-byte buttons-only holding page. The populated review page is separate and still preview-only. The Axxess package workflow explicitly skips while the buttons-only marker remains.
+- The earlier preview robots conflict (both `noindex,nofollow` and `index,follow`) has been corrected on the PR branch; the existing browser QA now asserts exactly one `noindex,nofollow` directive. This correction is not yet treated as verified on the exact current PR head until its check runs complete.
+- No production changes were made. No merge, Supabase deployment/migration/secrets, Axxess package/upload, DNS, banking details, payment activation, or live supplier/stock/price publication occurred.
+- Immediate execution priority: resolve PR #134's dirty divergence by selectively rebasing/porting only its preview/search/privacy changes onto current main, then run exact-head browser QA and verify the hosted preview. Do not merge the stale/diverged branch wholesale. In parallel, production-entry candidate work must be separate from the preview page and must preserve checkout security gates.
