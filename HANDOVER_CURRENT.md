@@ -1,3 +1,11 @@
+## ADDITIONAL PLANETWORLD ONE MATCHES — 2026-10-30
+
+- Nine exact official OneNav page/SKU/vehicle application matches now recorded in the review branch: OA009-1, OA011-1, OA013-1, OA014-1, OA015-1, OA018-1, OA312-1, OA411-1 and ON115-3LX.
+- A possible alias pair `ISA-ON115-3LX` / `ON115-3LX` is quarantined for supplier confirmation; no merge/delete. Images remain unapproved and no GW SKUs assigned.
+- Details are in `AI_HANDOVER_PERMANENT.md` and the isolated branch `catalogue/complete-remaining-review-2026-10-30`. Live storefront unchanged.
+
+---
+
 ## REVIEW-BRANCH CONTINUATION CHECKPOINT — 2026-10-30
 
 - Work continued on `catalogue/complete-remaining-review-2026-10-30`, isolated from the main customer storefront.
