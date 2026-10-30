@@ -1,0 +1,53 @@
+name: Delivery Quote Security Tests
+on:
+  pull_request:
+    paths:
+      - 'supabase/functions/shipping-quote/**'
+      - 'supabase/functions/store-checkout/**'
+      - 'supabase/migrations/**'
+      - '.github/workflows/delivery-quote-security.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quote-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Check critical quote-integrity controls exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'DELIVERY_QUOTE_SIGNING_SECRET' supabase/functions/shipping-quote/index.ts
+          grep -Fq 'DELIVERY_QUOTE_SIGNING_SECRET' supabase/functions/store-checkout/index.ts
+          grep -Fq 'authoritativeParcel' supabase/functions/shipping-quote/index.ts
+          grep -Fq 'quote_token' supabase/functions/shipping-quote/index.ts
+          grep -Fq 'crypto.subtle.verify' supabase/functions/_shared/delivery-quote.ts
+          grep -Fq 'validateBoundQuote' supabase/functions/store-checkout/index.ts
+          grep -Fq 'validateBoundQuote' supabase/functions/_shared/delivery-quote.ts
+          grep -Fq 'destination_hash' supabase/functions/shipping-quote/index.ts
+          grep -Fq 'destination_hash' supabase/functions/_shared/delivery-quote.ts
+          grep -Fq 'cart_hash' supabase/functions/shipping-quote/index.ts
+          grep -Fq 'cart_hash' supabase/functions/_shared/delivery-quote.ts
+          grep -Fq 'nonce: claims.nonce' supabase/functions/shipping-quote/index.ts
+          grep -Fq 'args.quote.nonce !== claims.nonce' supabase/functions/_shared/delivery-quote.ts
+          grep -Fq 'orders_delivery_quote_nonce_uidx' supabase/migrations/20261029150000_delivery_quote_nonce_unique.sql
+      - name: Run behavioral quote-token tests
+        run: deno test supabase/functions/_shared/delivery-quote_test.ts
+      - name: Set up Node for isolated PostgreSQL migration test
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate nonce migration in isolated PostgreSQL
+        run: |
+          npm install --no-save @electric-sql/pglite
+          node supabase/tests/delivery-quote-migration.test.mjs
+      - name: Run isolated checkout handler integration tests
+        run: deno test --allow-env supabase/functions/store-checkout/index.integration_test.ts
+      - name: Type-check shipping quote
+        run: deno check supabase/functions/shipping-quote/index.ts
+      - name: Type-check checkout
+        run: deno check supabase/functions/store-checkout/index.ts
