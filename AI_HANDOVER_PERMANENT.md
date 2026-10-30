@@ -1,3 +1,16 @@
+## KICKER KMC6 CORRECTION — RESPONSIVE QA PASS — 2026-10-30
+
+- Detailed review workflow **41022045101** completed **SUCCESS** after the 48KMC6 correction: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41022045101
+- The Playwright suite passed at 360 / 390 / 768 / 1280 px, including the Marine Audio assertion that 48KMC6 displays as **KMC6 Premium Media Center**, links to the exact official KICKER product page, shows manufacturer verification, and no longer displays the incorrect KMC5 supplier wording. Marine count remains 28.
+- No image binary was downloaded/approved and no GW SKU, price, stock or production record was changed.
+
+## PR #94 STATUS — KEEP SEPARATE FROM CATALOGUE REVIEW
+
+- PR #94 is still **open, draft and unmerged**, head branch `fix/part-search-load-race-smoke-qa-2026-10-23`, head SHA `b7b345cc836fa168ae64be49e3a6756dc3e591f0`, base `main`; GitHub reports `mergeable=false`.
+- PR #94 is a separate Part Search/browser-smoke fix, not the Car Audio catalogue review branch. Its description still says exact-head CI evidence is outstanding and it must remain draft until that specific fix has passing exact-head browser evidence. Do not merge the catalogue review branch into PR #94 or claim PR #94 is resolved based on catalogue QA.
+
+---
+
 ## KICKER MARINE KMC6 MODEL CONFLICT RESOLVED — 2026-10-30
 
 - Corrected Planetworld supplier item **48KMC6** from the erroneous source description “KMC5” to the exact manufacturer model **KMC6 Premium Marine Media Center** using KICKER's official product page https://www.kicker.com/48KMC6 .
