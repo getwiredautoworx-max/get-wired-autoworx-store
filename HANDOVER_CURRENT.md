@@ -3823,3 +3823,15 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - PR #94 and #99 remain closed, not merged. PR #116 is the sole active populated-preview integration candidate. It remains draft/unmerged and isolated from main; current main is intentionally buttons-only. No production deployment, Axxess upload, DNS, PayFast activation, Supabase writes, supplier product publication or live stock/price changes occurred.
 - Supplier product data remains the remaining substantive catalogue gate: 770 private inactive/unlinked staging records; 0 exact existing public-product links for Planetworld; 81 unique collision-checked new-product GW SKU candidates only; product descriptions/images/RRP/cost-floor/availability are not yet complete. Keep 19 zero-RRP and 18/19 under-cost warnings quarantined. Existing non-ASC quantities remain store-record values, not supplier-confirmed stock.
 - Branch comparison at checkpoint: PR #116 branch is 17 commits ahead and 36 commits behind main (status diverged). Do not merge wholesale; main and production release restrictions remain intact.
+
+
+## FINAL SUPPLIER-TO-EXISTING-PRODUCT MATCH RECHECK — 2026-10-30
+
+- Ran one consolidated SELECT-only identity comparison across all 770 private staged supplier rows against all 4,200 current `public.products` records, using exact supplier SKU ↔ product SKU/public_sku, exact normalized product name, and supplier SKU occurrence in public product name/description.
+- Results:
+  - Audio Connections: 68 staged rows; 0 exact SKU matches; 0 exact product-name matches; 0 supplier-SKU occurrences in public product name/description; 0 rows with any exact identity evidence.
+  - TOMS Sound & Music t/a Planetworld: 702 staged rows; 0 exact SKU matches; 0 exact product-name matches; 0 supplier-SKU occurrences in public product name/description; 0 rows with any exact identity evidence.
+  - Total: 770 staged rows; 0 exact existing public-product relationships evidenced by the current database.
+- This confirms the correct route is not to force-link supplier items to unrelated current GW products. Treat the manufacturer-verified candidates as genuinely new products and retain the collision-checked GW SKU proposals for internal staging. Exact supplier IDs are established, but the 770 supplier rows remain unlinked because no existing public product identity matches.
+- No database writes, schema changes, public product inserts, SKU inserts, supplier item activations, image/description/price/stock changes or publications were performed by this comparison.
+- Remaining catalogue publication evidence: approved exact product images, complete accurate customer descriptions, Planetworld RRP−1%/RRP−2% proposal with cost-floor clearance, Audio Connections price confirmation, and supplier availability. Keep zero-RRP, under-cost and unverified availability rows quarantined.
