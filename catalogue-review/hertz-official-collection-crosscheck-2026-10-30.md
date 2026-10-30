@@ -211,3 +211,17 @@ Supplier item 78211040 is confirmed as the Hertz **HRC** external subwoofer volu
 ## Current reconciled status — 2026-10-30
 
 The chronological counts above are superseded by the current CSV audit: **86/89 staged rows have individual manufacturer product records (84/87 Hertz-branded, plus two Audison products correctly identified as Audison)**. Three remain unresolved: generic SPL woofer 78032225, DG 250.3 grille 78071121 and DG 300.3 grille 78071126. HCP HRC 78211040 is now identified by the Elettromedia manufacturer-operated B2B product record; X 170 and both Audison AFBMW models are also resolved. See the top of `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` for the current status. Images remain unapproved.
+
+
+## Final exception re-check — official catalogue exposes DG/DSG model-string discrepancy (2026-10-30)
+
+The official Hertz-hosted 2019 mobile-audio catalogue PDF (https://static.hertz-audio.com/media/2021/06/HERTZ_mobile_audio_2019-1.pdf) lists **DSG 250.3** and **DSG 300.3** as optional grilles for the DS 25.3 and DS 30.3 subwoofers. It does not substantiate the source strings “DG 250.3” / “DG 300.3”. Separate official current Hertz product pages for **MG 250.3** and **MG 300.3** identify different Mille Legend/Pro grilles and fitment, so these must not be substituted for the Dieci/DSG items.
+
+| Supplier code | Supplier/reseller string | Official catalogue evidence | Result |
+|---|---|---|---|
+| 78071121 | DG 250.3 | DSG 250.3 optional grille for DS 25.3 | Possible missing “S” typo; supplier-code-to-DSG mapping not proven |
+| 78071126 | DG 300.3 | DSG 300.3 optional grille for DS 30.3 | Possible missing “S” typo; reseller identifies supplier code but manufacturer mapping not proven |
+
+This is a useful narrowed discrepancy, **not a resolved product identity**. Keep both on HOLD until Planetworld confirms the model spelling, supplier item-code mapping and EAN or provides an official product record. Do not use retailer images or assign GW SKUs. Do not confuse DSG 250/300 (Dieci) with MG 250/300 (Mille).
+
+The third exception, 78032225 “Hertz Series Set SPL Woofer”, remains unidentified beyond the generic description and reseller item-code listing. Request exact model number, diameter, impedance and power handling. Do not guess SV 200L.
