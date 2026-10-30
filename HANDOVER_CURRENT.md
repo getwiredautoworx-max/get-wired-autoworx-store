@@ -3921,3 +3921,37 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 - No ASC stock restoration; no unconfirmed non-ASC stock update; no supplier item activation; no public product/image/price publication; no checkout or PayFast activation; no Axxess upload, DNS change, Cloudflare Worker change or production deployment.
 - Do not claim the store is launch-ready. Launch remains HOLD.
 - Continue from this checkpoint; do not redo the completed 81-row description/pricing work or reopen PR #116.
+
+
+---
+
+## OWNER CONTINUATION — DIRECT EFT + WHATSAPP READINESS — 2026-10-30
+
+### Verified current checkout and contact implementation
+- Current-main `checkout-v2.html` already offers **Direct EFT / bank payment** as its only checkout payment option. Orders are recorded with payment status pending; the page does not currently display Get Wired's bank name, account name, account number, branch code or account type. No banking details are present in the checked checkout source.
+- The checkout already has WhatsApp click-to-chat links using the business number **074 4884 234** (`https://wa.me/27744884234`), including manual delivery quote, customer help and post-order handoff links.
+- This is a manual WhatsApp handoff, not an automated WhatsApp Business Platform/API integration. No automated order notification, delivery update or inbound webhook connection is evidenced in the checked source.
+- Therefore the existing Direct EFT and WhatsApp contact routes are partly present; the remaining implementation is to add secure bank-instruction configuration/display and improve order-specific WhatsApp handoff/notifications. Do not describe either as wholly absent.
+- Bank details must NOT be committed to GitHub, embedded in public HTML/JS, placed in public database rows, or sent in chat. Prepare the integration to read bank instructions from protected server-side configuration and return only the approved customer-facing fields after a valid order is created. Never collect banking passwords, PINs, OTPs or online-banking credentials.
+- Do not enable payment confirmation automatically from a customer-uploaded proof-of-payment image. Keep payment status pending until owner/admin verification.
+
+### WhatsApp scope
+- Existing business contact destination verified in source: `+27 74 488 4234`.
+- Keep the no-cost `wa.me` click-to-chat route as the baseline. An automated WhatsApp Business Platform integration is a separate opt-in phase requiring a Meta Business/WhatsApp Business account, verified sending number, approved message templates where applicable, access token and webhook endpoint; do not invent credentials or incur messaging/provider charges.
+- First complete and test the customer-facing WhatsApp order summary handoff using the existing business number. Do not claim automated WhatsApp notifications until a real authenticated integration and delivery test pass.
+
+### Supplier-authorisation correction
+- Owner explicitly confirms authorised dealer access and direct purchasing relationship with Audio Connections, including access to confidential dealer pricing. This is sufficient owner confirmation; do not ask for further proof or list dealer authorisation/trade relationship as a blocker.
+- Any earlier handover text describing Audio Connections authorisation as unconfirmed is superseded. Continue internal supplier ID/product mapping and catalogue review; keep private dealer prices out of public customer data.
+
+### Current preview integration
+- PR #120 (`integration/planetworld-preview-clean-main-2026-10-30`) is open, non-draft and mergeable against current main. Latest exact-head checks on `13d13b587fa636cf27b95de6fae58bb5527bccf3`: Populated Store Preview Browser QA run 41045953100 SUCCESS; Public SKU Exposure Audit run 41045953298 SUCCESS; Storefront Smoke Test run 41045953334 SUCCESS.
+- PR #120 remains preview-only and unmerged. It adds isolated preview routes and Planetworld snapshot review; it does not alter checkout, bank instructions, WhatsApp API integration, production routes or live data.
+- The PR preview QA must not be represented as proof that Direct EFT bank instructions or automated WhatsApp notifications are ready.
+
+### Next execution order
+1. Prepare server-side Direct EFT configuration contract (bank name, account holder, account number, branch code, account type, reference instructions) with strict allowlisted output; keep secrets/configuration out of source control. Add an owner-only setup procedure and a checkout confirmation panel that appears only after successful order creation.
+2. Add tests proving missing/incomplete bank configuration fails closed without exposing partial/placeholder details; valid configuration returns only approved bank fields; order reference is displayed and payment remains pending.
+3. Improve post-order WhatsApp handoff to include order number/reference and a concise item/total summary without including sensitive customer address/payment details. Test encoded links on mobile and desktop.
+4. Keep automated WhatsApp API notifications optional and no-cost baseline first; only implement after owner chooses that route and supplies/configures Meta credentials outside chat.
+5. Continue PR #120 preview acceptance, catalogue classification/image work, checkout security validation, Axxess parity, and final hosted desktop/mobile QA. No Axxess upload, DNS change, Supabase migration/function deployment, live payment activation, stock/price/public catalogue changes or production deployment without explicit owner approval.
