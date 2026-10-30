@@ -3887,7 +3887,7 @@ Review artifacts: `catalogue-review/` on `catalogue/ingest-review-2026-10-30`. R
 1. Obtain exact high-resolution, model-specific product image assets and approval for the 81 candidates; then populate private image staging without publishing.
 2. Reconfirm current Planetworld dealer price and availability for the 68 candidates; confirm Audio Connections dealer relationship/trade terms, current prices and availability for the 13 Sony candidates.
 3. After image, price and availability clearance, create the 81 inactive GW public product records and link the corresponding private supplier rows. Keep any exceptions held.
-4. Finish the remaining supplier catalogue classification/mapping work: 689 of 770 staged rows are outside this 81-candidate content batch; the earlier workbook audit still has 470 rows flagged REVIEW - UNCLASSIFIED. No automatic publication for these.
+4. Finish the remaining supplier catalogue classification/mapping work: 689 of 770 staged rows are outside this 81-candidate content batch; the latest 702-row Car Audio taxonomy review identifies 245 rows still requiring manual component classification; other supplier divisions require separate classification review. The older 470 count is superseded for this Car Audio subset. No automatic publication for these.
 5. Refresh the populated preview with approved supplier catalogue records and confirmed stock, then run the full product/category/mobile browser journey again.
 6. Checkout security, PayFast, final customer journey, Axxess hosting, DNS and production launch remain later release tasks and require the owner's explicit approval.
 
