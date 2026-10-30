@@ -87,7 +87,7 @@ const { chromium } = require('playwright');
       await page.locator('#home').click();
       await page.locator('#marine').click();
       const marineKickerText = await page.locator('#content').innerText();
-      if (!marineKickerText.includes('KMC4 Marine Dual-Zone Media Center') || !marineKickerText.includes('KMC6 Premium Media Center') || !marineKickerText.includes('25 W x 6 at 4 Ω') || !marineKickerText.includes('IP66')) throw new Error('Kicker KMC4/KMC6 official marine product detail missing');
+      if (!marineKickerText.includes('KMC4 Marine Dual-Zone Media Center') || !marineKickerText.includes('KMC6 Premium Marine Media Center') || !marineKickerText.includes('25 W x 6 at 4 Ω') || !marineKickerText.includes('IP66')) throw new Error('Kicker KMC4/KMC6 official marine product detail missing');
       await page.locator('#home').click();
       await page.locator('#content [data-brand="Hertz"]').click();
       const hertzNotice = await page.locator('#content').innerText();
