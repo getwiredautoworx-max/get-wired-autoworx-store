@@ -4437,3 +4437,10 @@ Owner identified three unacceptable customer-facing defects: missing product pho
 - The hosted browser workflow already includes an explicit product-card geometry assertion that checks image media ends before the title begins, plus the 68-card GW catalogue, quote-only, WhatsApp action, supplier-copy privacy, ASC zero-stock, Part Search and mobile-width checks. These remain unverified until a passing exact-head run is accessible.
 - The source layout override in `preview-store.html` separates the product image block from text and constrains/wraps content; no hosted visual acceptance has yet been established. The 68 integrated GW catalogue candidates remain placeholder-image/quote-only listings.
 - Handover-only update on main follows; no Axxess/DNS, production deployment, Supabase/runtime/secrets, checkout/payment activation, live stock/pricing, or supplier-publication changes.
+
+
+## 2026-10-30 16:0x SAST — LATEST PR #135 HEAD STATUS CORRECTION
+
+- Follow-up polling found five new PR-triggered workflows on head `dc02e2f5b15ebefae0d11c781522a7e912104b73`, all completed FAILURE: Cloudflare Pages Public Package QA run 41067876060; Public SKU Exposure Audit run 41067876168; Storefront Smoke Test run 41067876028; Populated Store Preview Browser QA run 41067876101; Catalogue Image Audit run 41067876095. This supersedes the earlier statement that no new runs were yet visible.
+- PR #135 remains open/draft/unmerged and GitHub currently reports mergeable=true. This does not override the failing checks or owner preview requirement.
+- No claim of test pass or visual acceptance. Need job records/logs for these five latest runs; previous commit's jobs had empty step lists and Azure BlobNotFound logs.
