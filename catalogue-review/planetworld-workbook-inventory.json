@@ -7,7 +7,7 @@
         "sheet": "Products",
         "nonblank_rows": 8,
         "header_row": 1,
-        "candidate_data_rows": 7,
+        "candidate_product_rows": 7,
         "headers": [
           "Item Code",
           "Item Name",
@@ -27,7 +27,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -43,7 +43,7 @@
         "sheet": "Products",
         "nonblank_rows": 7,
         "header_row": 1,
-        "candidate_data_rows": 6,
+        "candidate_product_rows": 6,
         "headers": [
           "Item Code",
           "Item Name",
@@ -63,7 +63,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -79,7 +79,7 @@
         "sheet": "Products",
         "nonblank_rows": 59,
         "header_row": 1,
-        "candidate_data_rows": 58,
+        "candidate_product_rows": 58,
         "headers": [
           "Item Code",
           "Item Name",
@@ -99,7 +99,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -115,7 +115,7 @@
         "sheet": "Products",
         "nonblank_rows": 19,
         "header_row": 1,
-        "candidate_data_rows": 18,
+        "candidate_product_rows": 18,
         "headers": [
           "Item Code",
           "Item Name",
@@ -135,7 +135,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -151,7 +151,7 @@
         "sheet": "Products",
         "nonblank_rows": 10,
         "header_row": 1,
-        "candidate_data_rows": 9,
+        "candidate_product_rows": 9,
         "headers": [
           "Item Code",
           "Item Name",
@@ -171,7 +171,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -187,7 +187,7 @@
         "sheet": "Products",
         "nonblank_rows": 2,
         "header_row": 1,
-        "candidate_data_rows": 1,
+        "candidate_product_rows": 1,
         "headers": [
           "Item Code",
           "Item Name",
@@ -207,7 +207,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -223,7 +223,7 @@
         "sheet": "Products",
         "nonblank_rows": 95,
         "header_row": 1,
-        "candidate_data_rows": 94,
+        "candidate_product_rows": 94,
         "headers": [
           "Item Code",
           "Item Name",
@@ -243,7 +243,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -259,7 +259,7 @@
         "sheet": "Products",
         "nonblank_rows": 24,
         "header_row": 1,
-        "candidate_data_rows": 23,
+        "candidate_product_rows": 23,
         "headers": [
           "Item Code",
           "Item Name",
@@ -279,7 +279,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -295,7 +295,7 @@
         "sheet": "Products",
         "nonblank_rows": 37,
         "header_row": 1,
-        "candidate_data_rows": 36,
+        "candidate_product_rows": 36,
         "headers": [
           "Item Code",
           "Item Name",
@@ -315,7 +315,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -331,7 +331,7 @@
         "sheet": "Products",
         "nonblank_rows": 3,
         "header_row": 1,
-        "candidate_data_rows": 2,
+        "candidate_product_rows": 2,
         "headers": [
           "Item Code",
           "Item Name",
@@ -351,7 +351,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -367,7 +367,7 @@
         "sheet": "Products",
         "nonblank_rows": 8,
         "header_row": 1,
-        "candidate_data_rows": 7,
+        "candidate_product_rows": 7,
         "headers": [
           "Item Code",
           "Item Name",
@@ -387,7 +387,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -403,7 +403,7 @@
         "sheet": "Products",
         "nonblank_rows": 3,
         "header_row": 1,
-        "candidate_data_rows": 2,
+        "candidate_product_rows": 2,
         "headers": [
           "Item Code",
           "Item Name",
@@ -423,7 +423,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -439,7 +439,7 @@
         "sheet": "Products",
         "nonblank_rows": 48,
         "header_row": 1,
-        "candidate_data_rows": 47,
+        "candidate_product_rows": 47,
         "headers": [
           "Item Code",
           "Item Name",
@@ -459,7 +459,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -475,7 +475,7 @@
         "sheet": "Products",
         "nonblank_rows": 39,
         "header_row": 1,
-        "candidate_data_rows": 38,
+        "candidate_product_rows": 38,
         "headers": [
           "Item Code",
           "Item Name",
@@ -495,7 +495,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -511,7 +511,7 @@
         "sheet": "Products",
         "nonblank_rows": 622,
         "header_row": 1,
-        "candidate_data_rows": 621,
+        "candidate_product_rows": 621,
         "headers": [
           "Item Code",
           "Item Name",
@@ -531,7 +531,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -547,7 +547,7 @@
         "sheet": "Products",
         "nonblank_rows": 5,
         "header_row": 1,
-        "candidate_data_rows": 4,
+        "candidate_product_rows": 4,
         "headers": [
           "Item Code",
           "Item Name",
@@ -567,7 +567,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -583,7 +583,7 @@
         "sheet": "Products",
         "nonblank_rows": 433,
         "header_row": 1,
-        "candidate_data_rows": 432,
+        "candidate_product_rows": 432,
         "headers": [
           "Item Code",
           "Item Name",
@@ -603,7 +603,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -619,7 +619,7 @@
         "sheet": "Products",
         "nonblank_rows": 27,
         "header_row": 1,
-        "candidate_data_rows": 26,
+        "candidate_product_rows": 26,
         "headers": [
           "Item Code",
           "Item Name",
@@ -639,7 +639,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -655,7 +655,7 @@
         "sheet": "Products",
         "nonblank_rows": 47,
         "header_row": 1,
-        "candidate_data_rows": 46,
+        "candidate_product_rows": 46,
         "headers": [
           "Item Code",
           "Item Name",
@@ -675,7 +675,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -691,7 +691,7 @@
         "sheet": "Products",
         "nonblank_rows": 14,
         "header_row": 1,
-        "candidate_data_rows": 13,
+        "candidate_product_rows": 13,
         "headers": [
           "Item Code",
           "Item Name",
@@ -711,7 +711,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -727,7 +727,7 @@
         "sheet": "Products",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 3,
         "headers": [
           "Item Code",
           "Item Name",
@@ -747,7 +747,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -763,7 +763,7 @@
         "sheet": "Products",
         "nonblank_rows": 5,
         "header_row": 1,
-        "candidate_data_rows": 4,
+        "candidate_product_rows": 4,
         "headers": [
           "Item Code",
           "Item Name",
@@ -783,7 +783,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -799,7 +799,7 @@
         "sheet": "Products",
         "nonblank_rows": 191,
         "header_row": 1,
-        "candidate_data_rows": 190,
+        "candidate_product_rows": 190,
         "headers": [
           "Item Code",
           "Item Name",
@@ -819,7 +819,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -835,7 +835,7 @@
         "sheet": "Products",
         "nonblank_rows": 93,
         "header_row": 1,
-        "candidate_data_rows": 92,
+        "candidate_product_rows": 92,
         "headers": [
           "Item Code",
           "Item Name",
@@ -855,7 +855,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -871,7 +871,7 @@
         "sheet": "Products",
         "nonblank_rows": 19,
         "header_row": 1,
-        "candidate_data_rows": 18,
+        "candidate_product_rows": 18,
         "headers": [
           "Item Code",
           "Item Name",
@@ -891,7 +891,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -907,7 +907,7 @@
         "sheet": "Products",
         "nonblank_rows": 48,
         "header_row": 1,
-        "candidate_data_rows": 47,
+        "candidate_product_rows": 47,
         "headers": [
           "Item Code",
           "Item Name",
@@ -927,7 +927,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -943,7 +943,7 @@
         "sheet": "Products",
         "nonblank_rows": 50,
         "header_row": 1,
-        "candidate_data_rows": 49,
+        "candidate_product_rows": 49,
         "headers": [
           "Item Code",
           "Item Name",
@@ -963,7 +963,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -979,7 +979,7 @@
         "sheet": "Products",
         "nonblank_rows": 12,
         "header_row": 1,
-        "candidate_data_rows": 11,
+        "candidate_product_rows": 11,
         "headers": [
           "Item Code",
           "Item Name",
@@ -999,7 +999,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1015,7 +1015,7 @@
         "sheet": "Products",
         "nonblank_rows": 11,
         "header_row": 1,
-        "candidate_data_rows": 10,
+        "candidate_product_rows": 10,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1035,7 +1035,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1051,7 +1051,7 @@
         "sheet": "Products",
         "nonblank_rows": 169,
         "header_row": 1,
-        "candidate_data_rows": 168,
+        "candidate_product_rows": 168,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1071,7 +1071,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1087,7 +1087,7 @@
         "sheet": "Products",
         "nonblank_rows": 291,
         "header_row": 1,
-        "candidate_data_rows": 290,
+        "candidate_product_rows": 290,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1107,7 +1107,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1123,7 +1123,7 @@
         "sheet": "Products",
         "nonblank_rows": 12,
         "header_row": 1,
-        "candidate_data_rows": 11,
+        "candidate_product_rows": 11,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1143,7 +1143,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1159,7 +1159,7 @@
         "sheet": "Products",
         "nonblank_rows": 5,
         "header_row": 1,
-        "candidate_data_rows": 4,
+        "candidate_product_rows": 4,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1179,7 +1179,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1195,7 +1195,7 @@
         "sheet": "Products",
         "nonblank_rows": 63,
         "header_row": 1,
-        "candidate_data_rows": 62,
+        "candidate_product_rows": 62,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1215,7 +1215,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1231,7 +1231,7 @@
         "sheet": "Products",
         "nonblank_rows": 3,
         "header_row": 1,
-        "candidate_data_rows": 2,
+        "candidate_product_rows": 2,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1251,7 +1251,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1267,7 +1267,7 @@
         "sheet": "Products",
         "nonblank_rows": 6,
         "header_row": 1,
-        "candidate_data_rows": 5,
+        "candidate_product_rows": 5,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1287,7 +1287,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1303,7 +1303,7 @@
         "sheet": "Products",
         "nonblank_rows": 7,
         "header_row": 1,
-        "candidate_data_rows": 6,
+        "candidate_product_rows": 6,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1323,7 +1323,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1339,7 +1339,7 @@
         "sheet": "Products",
         "nonblank_rows": 166,
         "header_row": 1,
-        "candidate_data_rows": 165,
+        "candidate_product_rows": 165,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1359,7 +1359,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1375,7 +1375,7 @@
         "sheet": "Products",
         "nonblank_rows": 21,
         "header_row": 1,
-        "candidate_data_rows": 20,
+        "candidate_product_rows": 20,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1395,7 +1395,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1411,7 +1411,7 @@
         "sheet": "Products",
         "nonblank_rows": 97,
         "header_row": 1,
-        "candidate_data_rows": 96,
+        "candidate_product_rows": 96,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1431,7 +1431,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1447,7 +1447,7 @@
         "sheet": "Products",
         "nonblank_rows": 29,
         "header_row": 1,
-        "candidate_data_rows": 28,
+        "candidate_product_rows": 28,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1467,7 +1467,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1483,7 +1483,7 @@
         "sheet": "Products",
         "nonblank_rows": 64,
         "header_row": 1,
-        "candidate_data_rows": 63,
+        "candidate_product_rows": 63,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1503,7 +1503,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1519,7 +1519,7 @@
         "sheet": "Products",
         "nonblank_rows": 3,
         "header_row": 1,
-        "candidate_data_rows": 2,
+        "candidate_product_rows": 2,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1539,7 +1539,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1555,7 +1555,7 @@
         "sheet": "Products",
         "nonblank_rows": 9,
         "header_row": 1,
-        "candidate_data_rows": 8,
+        "candidate_product_rows": 8,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1575,7 +1575,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1591,7 +1591,7 @@
         "sheet": "Products",
         "nonblank_rows": 330,
         "header_row": 1,
-        "candidate_data_rows": 329,
+        "candidate_product_rows": 329,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1611,7 +1611,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1627,7 +1627,7 @@
         "sheet": "Products",
         "nonblank_rows": 86,
         "header_row": 1,
-        "candidate_data_rows": 85,
+        "candidate_product_rows": 85,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1647,7 +1647,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
@@ -1663,7 +1663,7 @@
         "sheet": "Products",
         "nonblank_rows": 60,
         "header_row": 1,
-        "candidate_data_rows": 59,
+        "candidate_product_rows": 59,
         "headers": [
           "Item Code",
           "Item Name",
@@ -1683,7 +1683,7 @@
         "sheet": "Filters Applied",
         "nonblank_rows": 4,
         "header_row": 1,
-        "candidate_data_rows": 3,
+        "candidate_product_rows": 0,
         "headers": [
           "Filter",
           "Value"
