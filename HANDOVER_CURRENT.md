@@ -1,3 +1,7 @@
+## Kicker QA follow-up — exact rendered-output diagnostics — 2026-10-30
+
+- The first assertion correction alone did not clear run 41025141884; the combined marine-detail assertion still failed. Added diagnostic output to the two marine checks so the next exact-head run records the rendered marine product text if it fails again. This is a test instrumentation change only, not a catalogue or production change.
+
 ## QA correction — Kicker marine assertion — 2026-10-30
 
 - Inspected failed responsive-review job **123960002669** (run **41024725122**). Supplier-routing unit/static tests and Deno type-check passed; the only failing assertion was the Kicker marine product-detail text check.
