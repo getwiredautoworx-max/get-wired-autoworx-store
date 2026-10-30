@@ -64,7 +64,10 @@ function showComponents(name){
  content.innerHTML='<div class="grid">'+buttons.join("")+'</div>';
 }
 function productCard(p){
- return '<article class="product"><h3>'+esc(p.supplier_item_name)+'</h3><div class="meta">Supplier item code: '+esc(p.supplier_item_code)+'</div><div class="meta">Source: '+esc(p.source_file)+' · '+esc(p.source_sheet)+' row '+esc(p.source_row)+'</div><div class="pending">Image: not verified · Manufacturer description: not verified · GW SKU: not assigned</div></article>';
+ var imageStatus=p.image_status==="NOT VERIFIED"?"not verified":(p.image_status||"not verified");
+ var descriptionStatus=p.manufacturer_description_status==="NOT VERIFIED"?"not verified":(p.manufacturer_description_status||"not verified");
+ var skuStatus=p.gw_sku_status==="NOT ASSIGNED"?"not assigned":(p.gw_sku_status||"not assigned");
+ return '<article class="product"><h3>'+esc(p.supplier_item_name)+'</h3><div class="meta">Supplier item code: '+esc(p.supplier_item_code)+'</div><div class="meta">Source: '+esc(p.source_file)+' · '+esc(p.source_sheet)+' row '+esc(p.source_row)+'</div><div class="pending">Image: '+esc(imageStatus)+' · Manufacturer description: '+esc(descriptionStatus)+' · GW SKU: '+esc(skuStatus)+'</div>'+(p.official_manufacturer_page?'<div class="meta"><a href="'+esc(p.official_manufacturer_page)+'" target="_blank" rel="noopener">Official manufacturer product page</a></div>':'')+'</article>';
 }
 function showProducts(name,comp){
  view="products";brand=name;component=comp;heading.textContent=comp;intro.textContent=name+' · '+comp+' · internal review records only';setState();
