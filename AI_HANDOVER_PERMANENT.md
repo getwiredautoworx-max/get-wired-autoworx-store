@@ -3776,3 +3776,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Confirmed no in-progress Sony image audit or other branch workflow before restart. The prior Sony run `41015289924` was cancelled and returned no jobs; its workflow was push-only with no supported rerun action.
 - Added `workflow_dispatch:` to `.github/workflows/sony-browser-image-audit.yml` on isolated review branch `catalogue/ingest-review-2026-10-30`, commit `5642c012a092f4b009551d45c90596b4b3ca6f8c`. The existing push path filter triggered exactly one safe staging retry.
 - New run `41021963315` is confirmed **IN_PROGRESS**, job `123951111064` (`browser-audit`); checkout was in progress, Playwright/Chromium/image audit pending at last inspection. Do not start a duplicate. Recheck this exact run/job to conclusion and inspect generated CSV/JSON/image candidate outputs. This is staging-only; no supplier workbook, live data, deployment, payment, DNS or Axxess changes.
+
+
+## LIVE MONITOR POLL — 2026-10-30 09:46 SAST
+
+- Sony retry run `41021963315` remains **IN_PROGRESS**, job `123951111064`; checkout and Node/Playwright setup completed successfully, Chromium installation is still in progress, image audit and commit steps are pending. Job-log download currently returns 404 because GitHub has not published downloadable logs while the job is active. Do not duplicate or cancel; recheck same run after completion/timeout.
+- Review-prototype commit `11c94d60282df160409a0fc509bd04b0cec68820`: responsive QA `41021603499` remains **SUCCESS**; Cloudflare Workers Builds remains **FAILURE** (build ID `061fdd82-642a-4d64-9d7e-0d836ebea4ca`); Cloudflare Pages check `51fed864-d628-45e3-9aa4-7fa070672470` remains **IN_PROGRESS** at last poll. No rerun or deployment action.
+- Cloudflare check-run summaries do not contain the underlying Workers build error. The linked authenticated Cloudflare dashboard is the only available log location; no Cloudflare connector/session is available here. Hosted site / Pages preview runtime could not be opened by the available retrieval browser; journey remains UNVERIFIED.
+- Storage quota root cause remains narrowed but not conclusively attributed: artifact upload error confirmed; account billing + Packages usage + complete historical artifact inventory are not exposed through the GitHub connection. Do not claim quota fixed.
