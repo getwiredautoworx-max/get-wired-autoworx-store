@@ -4,7 +4,7 @@ const { collectionOrigin } = require("../supabase/functions/_shared/collection-o
 
 const empty = () => undefined;
 assert.equal(collectionOrigin(empty), null, "missing origin must disable live carrier calls");
-assert.equal(collectionOrigin(name => ({
+assert.deepEqual(collectionOrigin(name => ({
   COURIER_COLLECTION_ADDRESS: "  12 Example Road  ",
   COURIER_COLLECTION_CITY: " Durban ",
   COURIER_COLLECTION_PROVINCE: " KwaZulu-Natal ",
