@@ -1,0 +1,316 @@
+{
+  "division": "Musical Instruments",
+  "status": "REVIEW ONLY — NOT PUBLISHED",
+  "sections": {
+    "Studio & Pro Audio": {
+      "brands": {
+        "Alto Professional": {
+          "item_count": 18,
+          "components": {
+            "PA Speakers & Monitors": 15,
+            "Mixers & Consoles": 3
+          }
+        },
+        "Amplified": {
+          "item_count": 3,
+          "components": {
+            "Manual Component Review": 3
+          }
+        },
+        "DBX": {
+          "item_count": 2,
+          "components": {
+            "Manual Component Review": 2
+          }
+        },
+        "JBL": {
+          "item_count": 26,
+          "components": {
+            "PA Speakers & Monitors": 23,
+            "Mixers & Consoles": 1,
+            "Instrument Accessories": 2
+          }
+        },
+        "M-Audio": {
+          "item_count": 18,
+          "components": {
+            "Recording & Audio Interfaces": 10,
+            "PA Speakers & Monitors": 5,
+            "Keyboards & Digital Pianos": 2,
+            "DJ Controllers & Mixers": 1
+          }
+        },
+        "Shure": {
+          "item_count": 96,
+          "components": {
+            "Instrument Cases & Bags": 1,
+            "Microphones & Wireless": 89,
+            "Drums & Percussion": 4,
+            "Recording & Audio Interfaces": 2
+          }
+        },
+        "Soundcraft": {
+          "item_count": 8,
+          "components": {
+            "Mixers & Consoles": 8
+          }
+        },
+        "Zoom": {
+          "item_count": 59,
+          "components": {
+            "Drums & Percussion": 2,
+            "Recording & Audio Interfaces": 28,
+            "Guitars & Basses": 5,
+            "Instrument Cases & Bags": 7,
+            "Microphones & Wireless": 12,
+            "Stands & Hardware": 1,
+            "Mixers & Consoles": 3,
+            "Instrument Amplifiers": 1
+          }
+        }
+      }
+    },
+    "Instrument Cases & Accessories": {
+      "brands": {
+        "Crossrock": {
+          "item_count": 23,
+          "components": {
+            "Instrument Cases & Bags": 23
+          }
+        },
+        "On Stage": {
+          "item_count": 168,
+          "components": {
+            "Stands & Hardware": 34,
+            "PA Speakers & Monitors": 14,
+            "Recording & Audio Interfaces": 4,
+            "Instrument Accessories": 8,
+            "Guitars & Basses": 20,
+            "Drums & Percussion": 10,
+            "Microphones & Wireless": 30,
+            "Instrument Cases & Bags": 14,
+            "Wind & Brass": 5,
+            "Keyboards & Digital Pianos": 26,
+            "Lighting & Control": 3
+          }
+        }
+      }
+    },
+    "Band Instruments": {
+      "brands": {
+        "DB": {
+          "item_count": 36,
+          "components": {
+            "Drums & Percussion": 25,
+            "Cymbals": 3,
+            "Guitars & Basses": 8
+          }
+        },
+        "Ibanez": {
+          "item_count": 621,
+          "components": {
+            "Instrument Cases & Bags": 139,
+            "Guitars & Basses": 393,
+            "Instrument Accessories": 26,
+            "Stands & Hardware": 39,
+            "Drums & Percussion": 10,
+            "Lighting & Control": 12,
+            "Instrument Amplifiers": 2
+          }
+        },
+        "Mason": {
+          "item_count": 49,
+          "components": {
+            "Guitars & Basses": 16,
+            "Drums & Percussion": 5,
+            "Instrument Cases & Bags": 26,
+            "Wind & Brass": 1,
+            "Recording & Audio Interfaces": 1
+          }
+        },
+        "Medeli": {
+          "item_count": 11,
+          "components": {
+            "Keyboards & Digital Pianos": 10,
+            "Drums & Percussion": 1
+          }
+        },
+        "Paiste": {
+          "item_count": 62,
+          "components": {
+            "Cymbals": 52,
+            "Drums & Percussion": 8,
+            "Instrument Cases & Bags": 2
+          }
+        },
+        "Remo": {
+          "item_count": 165,
+          "components": {
+            "Drums & Percussion": 88,
+            "Guitars & Basses": 18,
+            "Drumheads & Percussion": 55,
+            "Drumheads": 4
+          }
+        },
+        "Tama": {
+          "item_count": 329,
+          "components": {
+            "Drums & Percussion": 237,
+            "Stands & Hardware": 23,
+            "Cymbals": 18,
+            "Instrument Cases & Bags": 37,
+            "Guitars & Basses": 9,
+            "Microphones & Wireless": 5
+          }
+        }
+      }
+    },
+    "DJ Equipment": {
+      "brands": {
+        "Denon DJ": {
+          "item_count": 7,
+          "components": {
+            "DJ Controllers & Mixers": 7
+          }
+        },
+        "Numark": {
+          "item_count": 10,
+          "components": {
+            "DJ Controllers & Mixers": 9,
+            "Stands & Hardware": 1
+          }
+        },
+        "Rane DJ": {
+          "item_count": 6,
+          "components": {
+            "DJ Controllers & Mixers": 6
+          }
+        },
+        "Sound Switch": {
+          "item_count": 2,
+          "components": {
+            "DJ Controllers & Mixers": 1,
+            "Lighting & Control": 1
+          }
+        }
+      }
+    }
+  },
+  "totals": {
+    "product_rows": 1719,
+    "brand_count": 21,
+    "section_counts": {
+      "Studio & Pro Audio": 230,
+      "Instrument Cases & Accessories": 191,
+      "Band Instruments": 1273,
+      "DJ Equipment": 25
+    },
+    "brand_counts": {
+      "Alto Professional": 18,
+      "Amplified": 3,
+      "DBX": 2,
+      "JBL": 26,
+      "M-Audio": 18,
+      "Shure": 96,
+      "Soundcraft": 8,
+      "Zoom": 59,
+      "Crossrock": 23,
+      "On Stage": 168,
+      "DB": 36,
+      "Ibanez": 621,
+      "Mason": 49,
+      "Medeli": 11,
+      "Paiste": 62,
+      "Remo": 165,
+      "Tama": 329,
+      "Denon DJ": 7,
+      "Numark": 10,
+      "Rane DJ": 6,
+      "Sound Switch": 2
+    },
+    "component_counts": {
+      "Studio & Pro Audio": {
+        "Alto Professional / PA Speakers & Monitors": 15,
+        "Alto Professional / Mixers & Consoles": 3,
+        "Amplified / Manual Component Review": 3,
+        "DBX / Manual Component Review": 2,
+        "JBL / PA Speakers & Monitors": 23,
+        "JBL / Mixers & Consoles": 1,
+        "JBL / Instrument Accessories": 2,
+        "M-Audio / Recording & Audio Interfaces": 10,
+        "M-Audio / PA Speakers & Monitors": 5,
+        "M-Audio / Keyboards & Digital Pianos": 2,
+        "M-Audio / DJ Controllers & Mixers": 1,
+        "Shure / Instrument Cases & Bags": 1,
+        "Shure / Microphones & Wireless": 89,
+        "Shure / Drums & Percussion": 4,
+        "Shure / Recording & Audio Interfaces": 2,
+        "Soundcraft / Mixers & Consoles": 8,
+        "Zoom / Drums & Percussion": 2,
+        "Zoom / Recording & Audio Interfaces": 28,
+        "Zoom / Guitars & Basses": 5,
+        "Zoom / Instrument Cases & Bags": 7,
+        "Zoom / Microphones & Wireless": 12,
+        "Zoom / Stands & Hardware": 1,
+        "Zoom / Mixers & Consoles": 3,
+        "Zoom / Instrument Amplifiers": 1
+      },
+      "Instrument Cases & Accessories": {
+        "Crossrock / Instrument Cases & Bags": 23,
+        "On Stage / Stands & Hardware": 34,
+        "On Stage / PA Speakers & Monitors": 14,
+        "On Stage / Recording & Audio Interfaces": 4,
+        "On Stage / Instrument Accessories": 8,
+        "On Stage / Guitars & Basses": 20,
+        "On Stage / Drums & Percussion": 10,
+        "On Stage / Microphones & Wireless": 30,
+        "On Stage / Instrument Cases & Bags": 14,
+        "On Stage / Wind & Brass": 5,
+        "On Stage / Keyboards & Digital Pianos": 26,
+        "On Stage / Lighting & Control": 3
+      },
+      "Band Instruments": {
+        "DB / Drums & Percussion": 25,
+        "DB / Cymbals": 3,
+        "DB / Guitars & Basses": 8,
+        "Ibanez / Instrument Cases & Bags": 139,
+        "Ibanez / Guitars & Basses": 393,
+        "Ibanez / Instrument Accessories": 26,
+        "Ibanez / Stands & Hardware": 39,
+        "Ibanez / Drums & Percussion": 10,
+        "Ibanez / Lighting & Control": 12,
+        "Ibanez / Instrument Amplifiers": 2,
+        "Mason / Guitars & Basses": 16,
+        "Mason / Drums & Percussion": 5,
+        "Mason / Instrument Cases & Bags": 26,
+        "Mason / Wind & Brass": 1,
+        "Mason / Recording & Audio Interfaces": 1,
+        "Medeli / Keyboards & Digital Pianos": 10,
+        "Medeli / Drums & Percussion": 1,
+        "Paiste / Cymbals": 52,
+        "Paiste / Drums & Percussion": 8,
+        "Paiste / Instrument Cases & Bags": 2,
+        "Remo / Drums & Percussion": 88,
+        "Remo / Guitars & Basses": 18,
+        "Remo / Drumheads & Percussion": 55,
+        "Remo / Drumheads": 4,
+        "Tama / Drums & Percussion": 237,
+        "Tama / Stands & Hardware": 23,
+        "Tama / Cymbals": 18,
+        "Tama / Instrument Cases & Bags": 37,
+        "Tama / Guitars & Basses": 9,
+        "Tama / Microphones & Wireless": 5
+      },
+      "DJ Equipment": {
+        "Denon DJ / DJ Controllers & Mixers": 7,
+        "Numark / DJ Controllers & Mixers": 9,
+        "Numark / Stands & Hardware": 1,
+        "Rane DJ / DJ Controllers & Mixers": 6,
+        "Sound Switch / DJ Controllers & Mixers": 1,
+        "Sound Switch / Lighting & Control": 1
+      }
+    },
+    "manual_component_review": 5,
+    "note": "Brand/section/component labels are navigation candidates only. All product images, manufacturer descriptions and GW SKUs remain unverified/unassigned."
+  }
+}
