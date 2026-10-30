@@ -1,3 +1,12 @@
+## KICKER MODEL AND FEATURE VERIFICATION — 2026-10-30
+
+- Added three exact official KICKER product-page matches: 47KEY2004ISO (KEY200.4 Smart 4-channel amp with ISO harness), 47KEY5001 (KEY500.1 Smart mono amp) and 51HS8 (Hideaway HS8 powered subwoofer).
+- Added manufacturer-confirmed feature descriptions to the review tree and enabled verified descriptions to appear on review cards. Image status remains NOT VERIFIED; GW SKU remains NOT ASSIGNED.
+- Kicker coverage is now **17 exact individual pages for 161 standard Car Audio rows, 5 exact individual pages for 28 Marine Audio rows, 22 exact individual pages overall across 189 source rows**. Standard unresolved rows: 103; collection-only matches remain a separate evidence level.
+- The current detailed Playwright suite now asserts the KEY200.4 / KEY500.1 feature text, official links, no supplier price/stock leakage, and HS8 150 W RMS / 25–120 Hz feature details. Await the next run before claiming these new assertions passed.
+
+---
+
 ## KICKER MANUFACTURER EVIDENCE RECONCILIATION — 2026-10-30
 
 - Recounted the current `planetworld-kicker-official-model-audit.csv`: **189 unique supplier references**, not the stale 122-row figure previously carried in the summary. Corrected the summary JSON from the actual CSV statuses.
