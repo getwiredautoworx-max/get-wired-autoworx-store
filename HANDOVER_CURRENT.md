@@ -2697,3 +2697,10 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 ### Safety / next actions
 - Current supplier price confirmation for the 18/19 Planetworld cost-floor rows is still absent. Do not apply blanket RRP discounts, infer supplier availability, or treat these estimates as approved prices. The 19 zero-RRP items remain separate.
 - Continue exact model/variant/source-image checks and category refinement from source evidence; keep all unverified matches and image rights explicitly unresolved. No supplier XLSX, duplicate file, live catalogue, price, stock, active flag, Supabase, Axxess, DNS, payment or production data was changed.
+
+
+## MONITOR RUN START — 2026-10-30 09:39 SAST
+
+- Owner-requested continuation started after reading `AI_HANDOVER_PERMANENT.md` on main (task-start commit `714c8889ed5aacbd0b23e59c5eac3efb4b0bf0ca`). Read this branch's latest `HANDOVER_CURRENT.md` (blob `1f0c77acbf461724532a75a25b3f938859ba43df`) and its linked Planetworld evidence reports before other branch work.
+- Scope: investigate the account-level Actions artifact-storage rejection after owner deleted 20+ artifacts / at least 2 GB; inspect current Planetworld audit state, Sony cancelled audit, Cloudflare Workers checks, supplier confirmation and hosted journey. Do not modify supplier workbooks, live product/price/stock data, active flags, Supabase, Axxess, DNS, payment or production; do not merge PRs or run deployment integrations.
+- No workflow retry or new audit dispatch at run start. First determine whether the account storage counter, artifact inventory or workflow-specific artifact upload is the blocker. Current known audit run `40876805256` succeeded on stale head `9274bd3b14771af732fba782822cb775f0e82340` but produced no artifact; inspect exact job and workflow configuration.
