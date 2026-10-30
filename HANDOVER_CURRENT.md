@@ -4656,3 +4656,14 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - Cloudflare Pages bot acknowledged `f52c7ef` with build in progress; successful deployment not yet confirmed. No exact-head Actions results had appeared; prior GitHub Actions runner/job-start failures remain unresolved. Hosted desktop/mobile browser acceptance remains outstanding. Do not call the customer-facing defect resolved until the repaired head deploys and categories, subcategories, Specials and product navigation are visibly tested on desktop and mobile.
 - PR #136 remains draft/unmerged. No Supabase data/policies/grants/migrations, supplier rows, stock, prices, production checkout, Axxess, DNS, production hosting or payment settings changed. Production HOLD remains.
 - Detailed result: `catalogue-review/HOMEPAGE_CATEGORIES_SPECIALS_FIX_2026-10-30.md`; documentation commit `7fe9df3165c6a0b324e0985a7d3504b86367419a`.
+
+
+## 2026-10-30 — REPAIRED CATEGORY / SPECIALS PREVIEW DEPLOYED; CI STILL BLOCKED
+
+- Cloudflare Pages bot confirmed SUCCESS for exact PR #136 head `f52c7efa8ff7583ec1732d785bc903f49f95b6b6`.
+- Immutable preview URL: https://c168b29f.get-wired-autoworx-store.pages.dev/preview-store.html
+- Branch preview URL: https://gw-store-preview-1030.get-wired-autoworx-store.pages.dev/preview-store.html
+- Fresh exact-head GitHub Actions runs were created for Storefront Smoke, Cloudflare Pages Public Package QA, Catalogue Image Audit, Populated Store Preview Browser QA, Public SKU Exposure Audit and Minimal Runner Diagnostic. All six completed FAILURE before any job steps. Diagnostic job 124179259135 and browser job 124179258439 both have `logs_url=null` and `steps=null`; no browser assertions ran. Do not interpret these as storefront assertion failures or blindly rerun while the runner issue is unchanged.
+- Static validation remains passed: all 7 inline scripts compile; category snapshot loads before live categories; featured query is independent of the full catalogue; exact-count overhead removed. Hosted visual acceptance is NOT YET performed. The defect is repaired in deployed preview source but do not claim final resolution until category tiles, subcategories, 8 featured specials and product navigation are verified on desktop and mobile.
+- PR #136 remains draft/unmerged; production HOLD remains. No production, database, stock, price, supplier, checkout, Axxess, DNS or payment changes.
+- Updated detailed result: `catalogue-review/HOMEPAGE_CATEGORIES_SPECIALS_FIX_2026-10-30.md` (deployment/CI addendum commit `f31e49d9d147b918d9ea6f28360a8f0ac1661be6`).
