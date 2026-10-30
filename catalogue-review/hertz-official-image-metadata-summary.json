@@ -1,0 +1,8 @@
+{
+  "models_checked": 12,
+  "pages_fetched": 12,
+  "pages_with_og_image": 0,
+  "pages_with_jsonld_image": 0,
+  "fetch_errors": [],
+  "warning": "Page metadata and image URLs are candidates only. A human/model must visually confirm each image shows the exact model before any product record is approved."
+}
