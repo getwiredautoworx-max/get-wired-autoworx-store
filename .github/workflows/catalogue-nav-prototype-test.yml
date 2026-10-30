@@ -1,0 +1,37 @@
+name: Car Audio Navigation Prototype — Responsive QA
+
+on:
+  push:
+    branches:
+      - catalogue/ingest-review-2026-10-30
+    paths:
+      - "catalogue-review/car-audio-navigation-prototype.html"
+      - "catalogue-review/car-audio-navigation-tree-review.json"
+      - "scripts/catalogue-nav-prototype.spec.js"
+      - ".github/workflows/catalogue-nav-prototype-test.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  responsive-navigation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: catalogue/ingest-review-2026-10-30
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run responsive navigation checks
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/review-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          node scripts/catalogue-nav-prototype.spec.js
