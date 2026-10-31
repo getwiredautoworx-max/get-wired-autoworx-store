@@ -26,12 +26,12 @@ WORKFLOWS = [
     "cloudflare-pages-deploy.yml",
     "live-release-gates.yml",
 ]
-# Only deterministic, read-only QA/audit or artifact packaging workflows may
-# receive one automatic retry. Never retry image sync, category writes, or deploy.
+# Only deterministic, non-production QA/audit or artifact packaging workflows may
+# receive one automatic retry. Production QA is deliberately excluded because it
+# interrogates the live domain; never auto-rerun it.
 AUTO_RETRY_ALLOWLIST = {
     "catalogue-image-audit.yml",
     "public-sku-exposure-audit.yml",
-    "store-production-qa.yml",
     "storefront-smoke.yml",
     "prepare-axxess-package.yml",
 }
@@ -138,7 +138,7 @@ now = now_dt.isoformat()
 report = {
     "generated_at_utc": now,
     "repository": REPO,
-    "mode": "monitor plus bounded failed-job retries for allowlisted QA/audit/packaging workflows",
+    "mode": "monitor plus bounded failed-job retries for allowlisted non-production QA/audit/packaging workflows",
     "queue_source": "automation/task-queue.json",
     "task_queue": queue,
     "latest_workflow_runs": workflow_results,
@@ -150,7 +150,7 @@ report = {
         "maximum_total_attempts": MAX_ATTEMPTS,
         "maximum_failure_age_hours": 6,
         "retryable_conclusions": ["failure", "timed_out"],
-        "excluded": ["ASC exact-SKU image sync", "category snapshot writes", "Cloudflare deployment", "all production deployments"],
+        "excluded": ["ASC exact-SKU image sync", "category snapshot writes", "Cloudflare deployment", "store production QA/live-domain checks", "all production deployments"],
     },
     "monitoring_errors": api_errors,
     "next_actions": [
@@ -166,7 +166,7 @@ lines = [
     "# Background Task Checkpoint", "",
     f"- Generated (UTC): {now}",
     f"- Repository: {REPO}",
-    "- Mode: read-only monitoring plus bounded retry of failed jobs in allowlisted QA/audit/packaging workflows.",
+    "- Mode: read-only monitoring plus bounded retry of failed jobs in allowlisted non-production QA/audit/packaging workflows.",
     f"- Overall status: **{report['overall_status']}**",
     f"- Completed runs needing attention: {len(failed)}",
     f"- Runs still in progress: {len(running)}",
@@ -192,8 +192,8 @@ lines += [
     "## Safety rules", "",
     "- No product, price, category, stock, or image database writes are performed by this controller.",
     "- No production deployment is triggered.",
-    "- Automatic retries are limited to one retry within six hours for allowlisted QA/audit/packaging workflows.",
-    "- Image-sync writes, category snapshot writes, and deployment workflows are excluded from automatic retry.",
+    "- Automatic retries are limited to one retry within six hours for allowlisted non-production QA/audit/packaging workflows.",
+    "- Production QA/live-domain checks, image-sync writes, category snapshot writes, and deployment workflows are excluded from automatic retry.",
     "- Workflow failure is reported, not silently treated as success.",
     "- This checkpoint is a workflow artifact; it does not claim to have updated the permanent handover file.", "",
 ]
