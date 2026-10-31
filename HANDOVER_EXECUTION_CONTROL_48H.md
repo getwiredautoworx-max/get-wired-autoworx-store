@@ -1,3 +1,5 @@
+> **MANDATORY FIRST ACTION FOR EVERY AGENT/SESSION:** Read the root [`AGENTS.md`](AGENTS.md), then the latest [`HANDOVER_CURRENT.md`](HANDOVER_CURRENT.md) entry, then this execution-control file. Verify the actual branch/head and resume the first unfinished task. Do not start with a fresh plan, repeat completed audits, or ask the owner to retrain the session. If this sequence is not completed, work must not proceed.
+
 # 48-Hour Execution Control — Get Wired AutoWorx
 Date: 2026-10-31 SAST
 Status: Active deadline; this is an operating addendum to HANDOVER_CURRENT.md.
