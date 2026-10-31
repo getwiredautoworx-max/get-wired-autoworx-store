@@ -5122,3 +5122,24 @@ G. Checkout/payment and release boundary
 6. Complete real checkout/payment configuration only with owner-approved secure details and separate release approval.
 
 Do not label the store 95%, ready, launch-ready or customer-ready until the weighted score is at least 95% AND all critical preview acceptance gates (exact-head deployment, desktop/mobile browser pass, catalogue presentation, search, WhatsApp handoff and safe checkout journey) have evidence. ASC source and live payment activation must be reported separately if intentionally held outside preview scope.
+
+
+## EXECUTION UPDATE — 2026-10-31 — CURATED PLANETWORLD AUDIO PRESENTATION
+
+- Continued on the single PR #139 branch; no GitHub Actions workflow, rerun, or deployment was triggered because the monthly Actions minutes are exhausted until 1-Nov-2026 and restoration must be confirmed first.
+- Extracted the 68 exact-model curated Planetworld manufacturer references already reviewed in the preview-store source into a dedicated preview-only asset: `assets/planetworld-verified-models-preview.json`. Verified payload: 68 records, all 68 with manufacturer model numbers, 11 with exact manufacturer image URLs; remaining 57 have no verified image and must retain a neutral “Product image not yet verified” placeholder.
+- Updated `preview-audio.html` to load the broad 3,317-row 25-Oct-2026 snapshot and the separate 68-row verified-model reference file. Curated items are included under Car Audio & Video and display manufacturer model, verified description, exact image when available, manufacturer product-page link, and quote/current-price confirmation messaging. The broad catalogue remains intact; this creates a 3,385-record browse/search presentation set when both files load.
+- Updated `scripts/build-cloudflare-pages-public.py` to allowlist the new verified-model JSON only in the explicit preview package. Standard/production package remains unchanged and excludes preview routes/assets.
+- Updated `tests/audio-navigation.test.cjs` with source assertions that the Audio page loads the verified-model asset, renders model/manufacturer references, and that the preview package allowlists the new asset. These tests have NOT been executed; no CI or browser pass is claimed.
+- Latest commits for this work: verified asset `f523c7d6c6b02c45eff0739708ac03b2f23e033c`; preview loader/card integration `de76866cf90e27d80aa11eb87ed677d066f4e836`; package allowlist `f14caec4a8e0f38a834f7b77efd177e5f1ee87ba`; source test update `15fdbbdfcaa18b6cfe966e27995dd97a46f8f660` (current PR head at this checkpoint).
+- Read-back verification confirms all 68 rows are present, 11 exact image URLs exist, Audio source references the verified asset and renders model/description/manufacturer-page fields, builder allowlist includes the asset, and test source includes the new assertions.
+- GitHub PR #139 remains open/draft/unmerged. Current compare against main reports 50 commits ahead and 7 behind; GitHub reports mergeable=false. Do not merge or deploy. Reconcile against latest main only after inspecting the seven new main commits and preserving all preview-only/release boundaries.
+- Current preview deployment and hosted desktop/mobile acceptance remain unverified. No browser, Playwright, Node, package build or hosted QA result is claimed. Actions quota reset is not evidence that minutes have returned; verify allocation before a single controlled run.
+- No production upload, DNS, Supabase production write, live stock/price/catalogue mutation, real checkout/payment activation, or ASC integration occurred. ASC remains separate and awaits fresh owner-supplied source.
+
+### Next execution order
+1. Inspect the seven main-branch commits since merge base `dbe69f61bf468af313c3f3b749a73dc42992126b`; reconcile PR #139 without overwriting the new verified Audio presentation work.
+2. After 1-Nov reset, confirm Actions minutes and runner availability before triggering only one controlled exact-head package/search/browser run; do not start parallel retries.
+3. Verify exact-head Pages preview deployment and run desktop 1366x900 + mobile 390x844 Audio journey, Part Search and preview checkout.
+4. Continue authoritative model/image matching for the remaining 3,317 broad-feed records; never guess images/models. Keep 57 curated image gaps visibly marked.
+5. Keep production HOLD; no merge, live catalogue changes, checkout/payment activation, Axxess or DNS without explicit authorization and acceptance evidence.
