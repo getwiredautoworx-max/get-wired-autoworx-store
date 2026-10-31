@@ -1,3 +1,31 @@
+## INTERIM EXECUTION — SOURCE CONSISTENCY RECHECK — 2026-10-31 17:10 SAST
+
+### Work completed while GitHub Actions allocation is exhausted
+- Re-fetched current main, PR #139, its candidate branch, and the category/catalogue sources. No GitHub Actions workflow was dispatched.
+- Parsed the full dated category-tree snapshot and both Planetworld JSON feeds in-memory; checked page/source references for the store and Audio preview.
+- Confirmed Planetworld snapshot structure: 3,317 broad rows from 47 workbooks / 94 sheets, plus 68 curated exact-model rows. The 68 curated records are embedded in the preview-store source (manufacturer-page/model fields found); the standalone audio route has nine departments. The free local catalogue search module is present and loaded by preview-store. These are source checks, not browser tests.
+- Rechecked the eight approved root IDs: all eight exist and are active. Their raw category names in the dated source are legacy labels ("Electrical", "Alarms & Security", "Car Audio", "Tools & Workshop", "Camping / Leisure / Outdoors" etc.); the customer-facing approved labels are provided separately by the storefront presentation. Do not rewrite source category names or move assignments without evidence/approval.
+- **Correction to the previous handover arithmetic:** a complete recursive recount shows 34 of 85 direct child categories have zero active products in their entire descendant branch, not 31. This count includes both duplicate empty Audio rows individually. The prior 31 figure was incorrect and must not be reused.
+- Category-tree has 166 rows and 58 top-level rows, not only the eight approved roots. In addition to the eight approved roots, many legacy categories remain top-level. It contains one duplicate top-level "Automotive Accessories" row (second row has zero products), and duplicate Audio child labels Amplifiers (2), Head Units (2), Speakers (2). A separate top-level "4X4 Outdoor" row has zero products while the correctly nested "4X4 OUTDOOR" child under Camping / Leisure / Outdoors has 16 direct active products. These are dated snapshot observations, not permission to edit live taxonomy.
+- Security is particularly unpopulated in the snapshot: the approved security root has 2 active products and all 7 direct children have zero products in their descendant branches. Audio has 11 direct children, of which only AERIALS has products (7); all ten other child rows have zero products. The separate Planetworld Audio page is populated by its own dated catalogue and is not proof that the legacy Supabase category assignments are populated.
+- Source consistency checks: preview-store references the free catalogue-search script, the Audio navigation script, and broad Planetworld feed; its curated 68 model/manufacturer records are embedded in the page source. Do not mistake the absence of a separate curated JSON fetch reference for missing curated product content.
+- Current main is `b5872c285ccea07ec480ee73046d36551886a6ab`. PR #139 head is `95637a8c6f09a184255dfffc31916f410ce53b31`. A fresh compare reports 57 commits ahead / 9 behind and status `diverged`; GitHub says non-mergeable. Keep PR #139 draft/unmerged. Do not force-push, merge, or overwrite main. The main-only changes are subsequent handover/documentation checkpoints; reconcile the branch deliberately before any new preview build.
+- No source code was changed in this interim recheck. No live category/product data was changed. No hosted browser test, customer-device test, or exact-head deployment was performed. The GitHub Actions allocation remains exhausted until 1-Nov-2026.
+
+### Next execution order (no Actions required before reset)
+1. Compare the 34 empty branches and duplicate taxonomy rows against the approved buyer-guide/category source and product evidence; prepare preview-only corrections or a precise exception list. Do not edit Supabase.
+2. Verify all nine Planetworld Audio departments and the full department → brand → component → product → WhatsApp quote path from source; confirm the main Audio category entry route and prevent duplicate/dead controls.
+3. Audit all 3,317 broad Planetworld rows for missing model/image fields and identify only exact manufacturer matches; retain neutral placeholders for unmatched rows. No guessed image matching.
+4. Recheck deterministic Part Search mapping for existing-store + broad Planetworld + curated model rows, quote-only handling, and photo-request-to-WhatsApp wording. It is request handoff, not automatic image recognition.
+5. Reconcile PR #139 against latest main in a safe branch without force-push; inspect changed files and resolve conflicts before proposing a new candidate.
+6. On/after 1-Nov reset, verify Actions quota first; then run only the minimum exact-head search/package/browser checks. Verify an exact-head Pages URL and complete desktop 1365px / mobile 390px and 320px interaction tests before any readiness claim.
+
+### Release state
+- Preview integration remains unaccepted and PR #139 remains draft/unmerged.
+- Hosted browser/device acceptance, exact-model image coverage for the broad feed, and taxonomy cleanup remain outstanding.
+- ASC remains a separate supplier task. Axxess/DNS, production deployment, checkout/payments, Supabase writes/migrations, live stock/prices, and supplier activation remain unchanged and on hold.
+---
+
 ## EXECUTION AUDIT — CATEGORY TREE, PART SEARCH & PRODUCT PRESENTATION — 2026-10-31 16:43 SAST
 
 Owner's current priorities: verify all eight main categories and subcategories; resolve Part Search and product-presentation failures; pass desktop and mobile browser testing; update this handover. GitHub Actions monthly minutes are exhausted until 1-Nov-2026. No Actions workflow was dispatched or rerun in this continuation.
