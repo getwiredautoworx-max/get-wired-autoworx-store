@@ -38,7 +38,7 @@
         // A neutral placeholder is intentional until exact SKU/model and image-use rights are verified.
         // Never replace it with a local catalogue image that has not passed that review.
         if (existing && (existing.classList.contains('productImagePlaceholder') ||
-          /product-image-pending\\.svg/i.test(existing.getAttribute('src') || ''))) return;
+          /product-placeholder\.svg/i.test(existing.getAttribute('src') || ''))) return;
 
         function showPlaceholder(img) {
           if (!img) return;
