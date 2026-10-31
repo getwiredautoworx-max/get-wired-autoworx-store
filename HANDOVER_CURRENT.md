@@ -1,3 +1,13 @@
+## AUDIO CUSTOMER NAVIGATION CORRECTION — 2026-10-31
+
+- Added a new preview-only customer-facing Audio department browser in `preview-audio.html` on PR #139 branch, commit `814bfa6938b2b41623efc8c5c0406f82a4610aad`.
+- The page implements the required hierarchy: Audio department → department-specific brand selection → component/product-type selection → product cards. It reads the existing Planetworld preview JSON only; no supplier data is written to Supabase and no live stock/pricing is changed.
+- Department buttons: Car Audio & Video, Home Entertainment, Band & Live Sound, DJ Equipment, Studio Equipment, Marine Audio, Installed AV, Musical Instruments, Harnesses & Trims.
+- Product cards explicitly label indicative prices and availability as the 25-Oct-2026 snapshot and instruct customers to confirm current price/availability.
+- Important limitation: the new page has not yet been wired into the main storefront Audio category card. The attempted large-file replacement of `preview-store.html` was blocked by the tool safety layer, so the page is reachable by direct preview URL only at this stage. Do NOT claim the complete main-store navigation correction is finished.
+- No browser execution, hosted desktop/mobile test, or Pages deployment for this new commit has been verified yet. No banking, production checkout, Supabase, Axxess, DNS, live stock, or supplier import changes were made.
+- ASC remains a separate catalogue task. The current repository audit still found only `suppliers/ASC/README.md` and no new reset-date catalogue source; no ASC import was attempted.
+
 ## LATEST EXECUTION RUN 20 RESULT — 2026-10-30
 
 - Added isolated PR #138 to correct the duplicate/conflicting robots directives in `preview-store.html`. Branch `fix/preview-robots-meta-2026-10-30`, commit `997866c5004b73aa5c4ed3483bf1a39ffb7e0b2f`. Static check confirms exactly one `noindex,nofollow` directive. PR is open/unmerged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/138.
