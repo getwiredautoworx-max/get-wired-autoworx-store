@@ -27,6 +27,8 @@ assert.match(build,/PREVIEW_ASSET_FILES = \["audio-category-navigation\.js", "pl
 assert.ok(packageQa.includes('preview-checkout.html; do'),'preview package QA must assert checkout route inclusion');
 assert.ok(packageQa.includes('Verify preview package includes all seven approved preview routes'),'preview package QA must cover all seven routes');
 const previewCheckout=fs.readFileSync('preview-checkout.html','utf8');
+const previewProduct=fs.readFileSync('preview-product.html','utf8');
+const imageFallback=fs.readFileSync('assets/product-image-fallback.js','utf8');
 assert.match(html,/href="preview-checkout\.html">PROCEED TO CHECKOUT/);
 assert.ok(previewCheckout.includes('Preview mode — no order or payment will be submitted.'));
 assert.ok(!previewCheckout.includes('supabase.co')&&!previewCheckout.includes('fetch('));
@@ -34,6 +36,8 @@ assert.match(previewCheckout,/hasPrice=x\.price!==null&&x\.price!==undefined/,'n
 assert.match(previewCheckout,/Items marked Price on request are excluded from the verified-price subtotal/,'checkout preview must explain unpriced-item subtotal handling');
 assert.ok(previewProduct.includes('assets/product-placeholder.svg'),'product detail image failure must use the packaged neutral placeholder');
 assert.ok(!previewProduct.includes('assets/product-image-pending.svg'),'product detail must not reference an absent placeholder asset');
+assert.match(imageFallback,/product-placeholder\\.svg/i,'shared image fallback must recognize the packaged neutral placeholder');
+assert.match(html,/const PRODUCT_PLACEHOLDER='assets\/product-placeholder\.svg'/,'main preview must use the packaged product placeholder path');
 assert.match(build,/"preview-checkout\.html"/);
 // Preview-only request handoff must be explicit and must not imply automatic photo upload.
 assert.match(html,/STORE PREVIEW.*part requests open WhatsApp only/,'preview banner must explain WhatsApp-only part requests');
