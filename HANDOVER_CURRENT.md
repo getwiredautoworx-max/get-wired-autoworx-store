@@ -1,3 +1,45 @@
+## EXECUTION AUDIT — CATEGORY TREE, PART SEARCH & PRODUCT PRESENTATION — 2026-10-31 16:43 SAST
+
+Owner's current priorities: verify all eight main categories and subcategories; resolve Part Search and product-presentation failures; pass desktop and mobile browser testing; update this handover. GitHub Actions monthly minutes are exhausted until 1-Nov-2026. No Actions workflow was dispatched or rerun in this continuation.
+
+### Candidate identity / release boundary
+- Re-fetched PR #139. It remains open, draft, unmerged. Current PR metadata head returned by GitHub: `95637a8c6f09a184255dfffc31916f410ce53b31`; branch: `integration/planetworld-partsearch-clean-main-2026-10-31`. Do not confuse it with older PR #94 or the older PR #139 checkpoint heads recorded below.
+- Source files were read from the PR #139 branch, including `preview-store.html`, `preview-audio.html`, `assets/audio-category-navigation.js`, `assets/catalogue-search.js`, `tests/catalogue-search.test.cjs`, and the Planetworld JSON feeds.
+- No exact-head Actions runs were returned for head `95637a8...`. Existing PR #139 jobs in the preceding checkpoint failed before runner assignment/steps (`steps: null`); no new test execution is claimed.
+- No production deployment, merge, Axxess/DNS change, Supabase write/migration, live stock/price/catalogue change, payment change, or supplier activation was performed.
+
+### Eight-root category verification
+- The PR branch `assets/category-tree.json` contains 166 category rows and all eight approved root IDs are present and active. The snapshot metadata says it was generated 2026-10-29 09:52:49Z from active Supabase category/product assignments; treat its counts as a dated snapshot, not a live database re-query.
+- Eight approved roots checked: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy.
+- The eight roots have 85 direct child-category rows in the snapshot. 31 child rows have zero active products in their entire descendant branch and are therefore suppressed by the category-page renderer (which filters children to branches with products). Three duplicate sibling labels exist under Car Audio & Entertainment: Amplifiers (2), Head Units (2), Speakers (2).
+- Vehicle Security is the largest structural gap: root is active but only 2 products are assigned to it directly; all 7 child categories (Central Locking, Central Locking Parts, Immobilisers, KNIVES, Remote Controls, Vehicle Alarms, Vehicle Tracking) have zero active products in their descendant branches. This means the child buttons are correctly hidden by the current populated-category filter, but the customer-facing subcategory assortment is not verified/populated.
+- Car Audio & Entertainment has 11 direct child rows; only AERIALS has products (7); the duplicated Amplifiers/Head Units/Speakers and the remaining component rows are empty in this dated tree snapshot. The Planetworld audio route is separate from these legacy Supabase category assignments.
+- Camping, Leisure & Outdoors correctly has 4X4 OUTDOOR as a direct child category, preserving the owner's requirement that 4x4 Outdoor sits under Camping/Leisure/Outdoors.
+- The eight-root names and button-only draft hierarchy in `index-new.html` match the approved eight labels. Its illustrative child buttons are not proof of live category assignments. Do not claim all subcategory/product assignments have passed.
+- Next category work: reconcile the 31 empty child branches and three duplicate Audio labels against the approved buyer-guide/category source and exact product evidence; do not auto-move products or mutate live category assignments without the required source review/approval. Keep the eight root IDs stable.
+
+### Part Search / photo request source audit
+- `assets/catalogue-search.js` is a no-cost deterministic client-side matcher; it makes no AI/API call. `preview-store.html` loads it and the Part Search handler combines `window.gwProducts` with `window.gwPlanetworldSearchRows`.
+- The current Planetworld search feed is 3,317 broad records plus 68 curated model/code records = 3,385 Planetworld search records. The PR description records 10 manual search-engine cases passing (SKU, multi-term, brand/vehicle, category, typo, no-match, alias and Planetworld title/brand), plus HCE-C2100RD manual model lookup. Those are prior manual results, not a fresh execution in this continuation.
+- Part Search renders existing-store matches with View Part and Planetworld matches as quote-only with a 25-Oct-2026 snapshot disclaimer and WhatsApp quote action. Preview part requests are WhatsApp-only and source-guarded from Supabase writes/photo uploads.
+- Important wording/capability distinction: the current “SEARCH BY PICTURE” control does not perform automatic image recognition. It opens a Request a Part form for up to five JPG/PNG/WebP photos and hands the request to WhatsApp for a person to identify. The UI explains “NO AI CREDITS NEEDED”; do not describe this as visual search or AI identification. The former “Failed to retrieve item” image-identification behaviour is not proven fixed by this implementation; real photo handoff remains untested on a customer device.
+- No live Part Search browser interaction or hosted request submission was executed here. Do not claim browser acceptance.
+
+### Product presentation audit
+- The main-store product image helper tries the stored image URL, then the Supabase product-image endpoint, then a SKU-named local WebP, and finally a clear “GW — PHOTO COMING SOON” placeholder. A dedicated product-card CSS patch separates the image block from title/SKU/price/stock content and adjusts mobile image heights. This is source presence only; it has not been browser-verified on this head.
+- Planetworld broad feed contains 3,317 records but no exact model number, supplier SKU or product image URL fields. Do not guess images/models. Broad-feed cards intentionally show a neutral “Product image not yet verified” area; this is still a significant presentation/content gap, not a completed image integration.
+- The curated 68-model set has exact manufacturer product-page references; 11 have exact-model image references and 57 have manufacturer-page fallback links. This is partial enrichment only.
+- The preview audio product page has nine departments and department → brand → component/product-type → product navigation, plus a direct WhatsApp price/availability enquiry. A delayed catalogue-load redraw fix is present in source. The main Audio root's visible “Browse all Audio departments” link is injected by `assets/audio-category-navigation.js`. Static/source inspection confirms the pieces are present; the full click path and layout have not been browser-tested.
+- Product image endpoint responses, real image loading, exact model-image matching, and mobile card rendering remain unverified on the latest candidate. Do not replace missing imagery with unrelated stock photos.
+
+### Desktop/mobile acceptance and next actions
+- No exact-head successful hosted browser test or desktop Chrome/mobile-device acceptance is recorded for head `95637a8...`. The older Pages preview URLs in prior notes belong to earlier commits and must not be presented as this head.
+- Do not consume Actions minutes or retry workflows before the 1-Nov reset. After reset, first verify runner/quota availability, then run only the safe exact-head PR #139 search, package and browser checks. Do not run production QA.
+- Independently, obtain a current exact-head Pages deployment confirmation, then test 1365px desktop and 390px / 320px mobile: all eight roots; populated subcategory navigation; Audio department → brand → component → product → WhatsApp enquiry; Part Search ordinary SKU/name/model/no-match; photo-request WhatsApp handoff; product images/placeholders; no horizontal overflow, console errors or broken click targets.
+- Before that hosted/device acceptance, the store is not browser-tested or launch-ready. Keep PR #139 draft/unmerged and production HOLD. ASC remains a separate task awaiting a new post-reset supplier catalogue.
+
+---
+
 ## 48-HOUR TARGET CONTINUATION — 2026-10-31 16:35 SAST
 
 - Owner instructed continuation of the 48-hour target. Target window runs from the 31-Oct execution push through 2-Nov-2026 16:35 SAST; this is a target, not a readiness guarantee.
