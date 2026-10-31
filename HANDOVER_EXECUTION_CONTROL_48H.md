@@ -1,3 +1,13 @@
+## NO-CREDIT EXECUTION QUEUE UPDATE — 2026-10-31
+
+- Fixed homepage empty-subcategory dead ends: homepage nested menus now use recursive populated-branch counts, matching the preview category-detail route. 4X4 Outdoor remains under Camping / Leisure / Outdoors when populated.
+- Fixed preview checkout's false R0.00 subtotal for null/blank/zero-price cart entries; added customer-facing explanation and regression assertions.
+- Added the full 34-empty-branch exception list to HANDOVER_CURRENT.md. The exact names and duplicates are recorded there; no category records or assignments were changed.
+- Current evidence: 13 local Node matcher assertions passed; four checkout-price cases passed; synthetic empty-branch behavior passed; all 17 inline scripts across seven preview routes compile with zero syntax errors. These are local/source checks, not full repository Audio test or browser acceptance.
+- Continue the no-credit source audit. Do not repeat these verified checks unless the source changes.
+
+---
+
 ## CURRENT CLEAN-CANDIDATE CHECKPOINT — 2026-10-31
 
 - Active branch: `integration/clean-main-planetworld-partsearch-2026-10-31`; latest head `5ea37f54caa65852c1e794564918794714d9adc3`; compare with main: 27 ahead / 0 behind.
@@ -25,7 +35,7 @@ Status: Active deadline; this is an operating addendum to HANDOVER_CURRENT.md.
 8. Never repeat a VERIFIED task unless its source changed, regression appeared, or prior evidence was incomplete. Never call static inspection a test pass.
 
 ## Active execution order
-**P0 — Candidate integration safety.** PR #139 remains draft/diverged/non-mergeable; do not merge or force-push it. Active clean candidate branch is `integration/clean-main-planetworld-partsearch-2026-10-31`, latest verified head `5ea37f54caa65852c1e794564918794714d9adc3`, 27 ahead / 0 behind main as of 2026-10-31. Continue only on this clean branch and re-fetch its head before each write. Merge and launch remain unapproved pending exact-head Node/audio QA, desktop/mobile browser acceptance, image exceptions and SKU-level category mapping.
+**P0 — Candidate integration safety.** PR #139 remains draft/diverged/non-mergeable; do not merge or force-push it. Active clean candidate branch is `integration/clean-main-planetworld-partsearch-2026-10-31`. Source changes through `d260592cf20a0c050de163532015cafeb1406724` are 34 ahead / 0 behind main; the following commits on this branch are handover-only checkpoints. Continue only on this clean branch and re-fetch its head before each write. Merge and launch remain unapproved pending exact-head Node/audio QA, desktop/mobile browser acceptance, remote image confirmation and SKU-level category mapping.
 
 **P1 — Part Search.** Free deterministic matcher exists; preview request handoff is WhatsApp-only and photo attachment is manual. Inspect matcher + tests together. Execute cases for existing-store match, exact Planetworld model, broad title/brand, typo/no-match, quote-only and WhatsApp request. Fix reproduced defects.
 
