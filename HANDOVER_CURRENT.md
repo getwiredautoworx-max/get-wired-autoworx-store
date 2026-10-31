@@ -2734,3 +2734,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Hosted customer journey: direct public-domain and Pages preview inspection through available web retrieval returned inaccessible/internal error, so no independent runtime journey test could be completed. Existing handover's latest canonical marker test remains run `40925572349` FAILURE: `www.getwiredauto.co.za` returned HTTP 200 but did not contain the buttons-only marker. Do not claim canonical site updated or customer journey verified. A browser-capable authenticated runtime or owner-provided page response/screenshots is required; no Axxess upload/DNS/deploy.
 - Supplier confirmation: no current supplier reply evidence available. Gmail connector is not connected; connection is required to search existing supplier correspondence and prepare/send a price-clarification request. No supplier communication was sent and no price/stock inferred.
 - Permanent handover latest task start was already recorded in commit `714c8889ed5aacbd0b23e59c5eac3efb4b0bf0ca`; this follow-up records no changes to live data or release boundary.
+
+
+## MONITOR RUN START — 2026-10-31 08:15 SAST
+
+- Resumed from the permanent handover and the Planetworld monitoring branch. Task-start was recorded before further investigation.
+- Scope for this run: verify the latest Planetworld report inputs, PR #95 state/head/mergeability, latest read-only Planetworld audit run/job/artifacts, all relevant queued/in-progress/background workflows, and the exact source-verification/category/price blockers.
+- Safety: no PR merge, supplier XLSX edit, supplier-data publication/import, live catalogue/price/stock/active-flag change, Supabase production change, Axxess/DNS/payment change, deployment, or release-credit consumption. Keep 19 zero-RRP rows separate for owner audit. Do not rerun a queued/in-progress job or a production/deployment job.
+- Next action: inspect branch reports and current GitHub workflow state; retry only a failed/cancelled/stopped safe staging job where an explicit supported rerun action exists, then verify the retry and record its exact IDs/conclusion.
