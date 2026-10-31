@@ -1,3 +1,23 @@
+## LATEST MONITOR RUN 22 CHECKPOINT — 2026-10-31
+
+- Run 22 task-start record: `HANDOVER_UPDATE_2026-10-31_MONITOR_RUN_22_TASK_START.md` (blob `425f23fac7a67a0409c8dd780179660557732d55`).
+- Detailed result: `HANDOVER_UPDATE_2026-10-31_MONITOR_RUN_22_RESULTS.md`; checkpoint: `HANDOVER_CHECKPOINT_2026-10-31_MONITOR_RUN_22.md`.
+- At run start, read `AI_HANDOVER_PERMANENT.md` blob `eff6a32920c5f10d448616c2d87453f1d424fce7` and `HANDOVER_CURRENT.md` blob `4c121b5c59a9c3709f2db89947b3ad2d4b60cf38`. Full-tree inspection found no prior `HANDOVER_CHECKPOINT_*.md`; a dated checkpoint has now been created.
+- Main head before these handover updates: `486fd8d1e55b3afe18a208255373b4133f500160`.
+- PR #139 remains open/draft/mergeable at exact head `7adcbab2f665b401abd36aa89eb217dfba2ed10c`. Cloudflare Pages bot reports preview deployment success for that exact head: `https://ab164189.get-wired-autoworx-store.pages.dev/preview-store.html`. Audio navigation and no-write checkout simulation are present in preview source; browser acceptance is not verified.
+- Six exact-head PR #139 QA jobs were safely rerun once. All attempt-2 runs failed before steps with `steps=null`: browser `41202823441`, search `41202823429`, smoke `41202823488`, Pages package QA `41202823495`, public SKU audit `41202823519`, catalogue image audit `41202823593`. Smoke's dependent browser job was skipped. Stop further retries until runner allocation is fixed.
+- Background Task Controller `41202829579` attempt 2 also failed before steps. Its script's auto-retry allowlist includes `store-production-qa.yml`, which conflicts with the owner's explicit prohibition on production-workflow reruns. Do not rerun controller until that allowlist entry is removed and its artifact-pruning behavior is reviewed. No controller logic or artifact cleanup ran.
+- Latest production QA `41048090314` attempt 2 failed at the live-domain check: `LIVE_BUTTON_ONLY_NOT_DEPLOYED`; the canonical production homepage is reachable but does not serve the merged button-only storefront. No Axxess upload was performed.
+- Latest live read-only smoke `41203036740` and Live Release Gates `41173188438` failed before steps; not rerun because they target live/release paths. Isolated Cloudflare preview deploy `41183261239` attempt 2 failed before runner allocation and was not retried due credit guard. Cloudflare Workers build for PR #139 head failed; Pages preview succeeded.
+- Category Navigation Chromium latest `38521429939` and Buyer Guide extraction latest `38525300051` both remain successful attempt 1 on 2026-10-14; no newer runs found through 2026-10-31. ASC Exact-SKU Image Sync latest `41030204263` succeeded on 2026-10-30 but was a no-op (86 missing targets, 0 eligible, 0 diagnostic batch, no changes).
+- GitHub Status currently lists Actions operational; its Oct-30 Actions/Pages/Webhooks incident was resolved before these Oct-31 runner failures. Root cause remains unknown: jobs fail before runner/steps/logs. Connector has no account-level Actions usage/billing access. Owner/admin must check Actions minutes/storage/budget, repository Actions permissions and runner availability.
+- Preserve category/pricing rules: eight approved category roots; 198 manual-review category rows all found in expected OCR (193 one-page, 5 multi-page), OCR presence only and no auto-moves; 107/107 October price rows verified no-write. Do not restart catalogue or overwrite live product/pricing/stock.
+- ASC remains separate and blocked by missing new post-reset catalogue; current main has only `suppliers/ASC/README.md`. No historic source reuse. Planetworld remains a dated 25-Oct snapshot with broad-feed image/model/description gaps. Audio Connections dealer authorisation is already owner-confirmed.
+- Production HOLD. No Axxess upload, DNS, production Supabase write/migration/deployment, live stock/price/catalogue mutation, bank/payment secret change, real order, production release or manual Cloudflare/Netlify credit-consuming deployment occurred in Run 22.
+- Next actions: (1) owner/admin resolves Actions runner allocation; (2) remove production QA from controller retry allowlist and review artifact cleanup; (3) rerun safe PR #139 QA only after runner recovery and complete hosted desktop/mobile acceptance; (4) obtain new post-reset ASC catalogue for a separate 25-item pilot; (5) continue evidence review of 198 category rows while preserving 107-row no-write result.
+
+---
+
 ## CONTINUATION CHECKPOINT — 2026-10-30
 
 - Owner requested handover update to continue from the current point. Continuation task-start record: `HANDOVER_UPDATE_2026-10-30_CONTINUATION_TASK_START.md`, commit `a4cf25bced0de3b636063e1cdb674658b842dd49`.
