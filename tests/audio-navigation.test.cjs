@@ -47,6 +47,8 @@ assert.match(html,/exact-model references remain searchable/,'Part Search fallba
 const rootIdsMatch=html.match(/const HOME_CATEGORY_IDS=\[([^\]]+)\]/);
 assert.ok(rootIdsMatch,'homepage must declare its approved root category list');
 assert.equal((rootIdsMatch[1].match(/'[0-9a-f-]{36}'/g)||[]).length,8,'homepage must render exactly eight main category roots; Find a Part is a separate utility tile');
+assert.match(html,/function homeChildren\(id\)\{const out=children\(id\)\.filter\(c=>categoryProductCount\(c\.id\)>0\)/,'homepage subcategory menus must hide empty branches like the category detail route');
+assert.match(html,/if\(four&&categoryProductCount\(four\.id\)>0/,'4X4 Outdoor must remain nested only when its own branch has products');
 const progressive=fs.readFileSync('assets/progressive-store-enhancements.js','utf8');
 assert.match(progressive,/function escapeHtmlText\(value\)/,'saved/recent product text must have a shared HTML text escaper');
 assert.match(progressive,/escapeHtmlText\(p\.public_sku\|\|''\)/,'saved-product SKU must be escaped before HTML insertion');
