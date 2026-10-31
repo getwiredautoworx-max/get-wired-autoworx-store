@@ -86,4 +86,4 @@ jobs:
           name: get-wired-task-monitor-${{ github.run_id }}
           path: monitor-evidence/
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 1
