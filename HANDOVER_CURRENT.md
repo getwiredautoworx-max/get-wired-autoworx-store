@@ -4784,3 +4784,51 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - Targeted retry of PR #131 browser job accepted: run `41071684208`, new job `124205582275`, status queued at last check. No steps/logs or pass yet. Other recent jobs still failed before steps.
 - No storefront, production, supplier, stock, price, Supabase, Axxess, DNS, payment, or hosting changes in this run. No PR merged.
 - Next action: inspect queued job outcome; if it starts, fix actual failing assertions. Then create a clean-main integration successor for populated Planetworld + no-cost Part Search + courier privacy, resolve duplicate robots tag, run exact-head checks and obtain hosted desktop/mobile acceptance. Production HOLD remains.
+
+
+---
+
+## NEW OPERATING DIRECTION — 2026-10-31 — SINGLE RELEASE-CANDIDATE PATH
+
+This section supersedes older sequencing and is the controlling continuation instruction from 2026-10-31 onward. Read this first on every continuation.
+
+### Objective and execution rule
+- Stop producing repeated plans/status promises in place of implementation. Work against one release candidate and one customer journey at a time. Do not start parallel redesigns, reopen settled decisions, or create duplicate branches/PRs without a demonstrated technical need.
+- Priority is the customer-facing storefront and sales journey. Payment credentials, bank details, Axxess production upload/DNS, live stock, supplier price changes, Supabase production writes/migrations, and customer launch remain separate gated tasks and must not be used as excuses to defer storefront work.
+- For each task: inspect current source and latest branch/head first; implement the smallest complete fix; run available checks; verify exact commit/deployment and real desktop/mobile behaviour where possible; record outcome immediately in this file. A source assertion is not browser acceptance; a build acknowledgement is not a successful deployment; a preview is not production.
+- Report only material progress backed by evidence. State failures and blockers plainly. Never invent a percentage, ETA, pass, deployment, or completion claim. If an external system prevents verification, finish all independent work and identify the exact external dependency without repeatedly retrying an unchanged failure.
+
+### Current candidate and evidence snapshot (2026-10-31)
+- Current clean-main integration candidate is PR #139, branch `integration/planetworld-partsearch-clean-main-2026-10-31`, latest recorded head `36d555a50263efe1a40bbf2cc5733051c2ab2bc5`, based on main `399a02dc4041e3f8659a24da628e2ca41e46f788`. PR #139 is open, draft, unmerged. Re-fetch before acting; these refs may advance.
+- Planetworld snapshot: 3,317 records from 47 workbooks; nine browse departments are represented. Keep the owner's department → brand → component/product type → product navigation model. Department buttons must be reachable from the main Car Audio & Entertainment category, not stranded on a separate page. The nine department labels/collections are Car Audio & Video, Harnesses & Trims, Marine Audio, Home Entertainment, Band & Live Sound, DJ, Studio Equipment, Installed AV, and Musical Instruments.
+- Part Search preview indexes 3,385 records (3,317 broad feed plus 68 curated model/code records) using the no-cost local catalogue search. It combines existing store products and Planetworld results. Planetworld entries remain quote/enquiry-only; customer must confirm current price and availability. No AI credit dependency is required for this local search path.
+- Curated set: 68 model/code records have exact manufacturer product-page references; 11 have exact-model image references and 57 still use a clear placeholder/official product-page fallback. Broad 3,317-row feed still lacks model/image/SKU detail for most records. Do not use guessed or unrelated images or descriptions. This remains a significant product-presentation/content gap.
+- Price controls: 3,280/3,317 records have indicative price; 37 remain quote-only (18 cost-floor exceptions and 19 zero-RRP audit rows). No price is to be published as confirmed without the supplier/owner verification required by the existing controls. Supplier stock flags are dated snapshot data only, never live quantities.
+- A nine-department audio browser page and a visible entry link from the main Audio category are present in PR #139 source; static source audit recorded nine structural assertions. Exact-head hosted desktop/mobile click-through remains unverified.
+- Preview checkout is a no-write demonstration: local cart, simulated confirmation, and customer-reviewed WhatsApp enquiry. No order/payment is created. WhatsApp handoff is source-wired but real-device handoff is not yet accepted.
+- Latest recorded GitHub Actions exact-head checks for SHA `36d555a...` failed before runner allocation/first step (runner_id 0, empty/null steps); dependent browser smoke did not execute. This is infrastructure/job-start failure, not a storefront test result. Do not blindly rerun while unchanged. Recheck status once the account quota reset on 2026-11-01 or when a demonstrable runner/configuration change occurs.
+- A previously successful Cloudflare Pages preview URL was recorded for an earlier PR #139 commit, but there is no confirmed deployment evidence in this handover proving that the exact latest head `36d555a...` is live. Do not present the older URL as the latest-head deployment. Verify current deployment commit before sharing it as current.
+- No successful hosted desktop/mobile acceptance is recorded. PR #139 remains draft/unmerged. Production remains HOLD.
+
+### Execution order from now on
+1. **Lock and verify the candidate:** re-fetch PR #139, current head, main base, changed files, current Pages deployment and all latest check runs. Do not assume cached refs or URLs are current.
+2. **Finish Audio/Planetworld customer navigation:** test every department entry from the main Audio category through brand, component/product type and product/enquiry. Correct any broken routes, filter resets, labels or collection-count mismatches. Preserve the nine-department hierarchy above.
+3. **Fix product-card presentation:** ensure image and text occupy separate predictable areas, descriptions never overlay images, placeholders are visually intentional, cards remain aligned, and responsive layout has no horizontal overflow. Prioritise reliable card layout over filling gaps with unverified pictures.
+4. **Improve verified Planetworld product content:** use source workbook/manufacturer evidence to map model codes, accurate titles/descriptions and exact-model official images. Keep ambiguous rows and all zero-RRP/cost-floor exceptions quote-only. Do not publish supplier costs or supplier stock.
+5. **Complete no-cost Part Search and request path:** verify ordinary keyword/model searches, zero-result request, preview no-write behaviour and WhatsApp message composition. Confirm customer can review before sending. Do not activate Supabase writes or photo uploads in preview.
+6. **Verify basket and preview checkout journey:** test add/remove/update cart, totals where supported, simulated confirmation and WhatsApp enquiry. Explicitly label preview checkout as a demo; do not collect payment or create real orders.
+7. **Hosted acceptance:** obtain an exact-head successful Cloudflare Pages deployment, then test the complete journey on desktop Chrome and a real mobile viewport/device. Check console/network failures, images, navigation, search, cart, and WhatsApp handoff. GitHub Actions is supplementary; use safe local/static checks when Actions cannot start, but do not call those browser acceptance.
+8. **Release decision:** only after evidence above, report remaining gaps and request owner acceptance. Keep PR draft/unmerged until exact-head checks and owner review support promotion. Do not deploy to Axxess, change DNS, activate payments, or alter production services without separate explicit approval.
+
+### Separate workstreams and non-negotiable boundaries
+- ASC remains a separate supplier integration task and must not be mixed into Planetworld completion. Do not import ASC stock/catalogue or alter live inventory.
+- Audio Connections, Caelex, Hertz and other suppliers remain separate catalogue workstreams; no unapproved publication, price/stock import or supplier-data exposure.
+- Keep existing stock strictly as test data. No stock reconciliation, cleanup, import or live quantity changes.
+- No production Supabase migrations/writes, checkout/payment activation, bank credential configuration, Axxess upload, DNS change, paid hosting/AI upgrade, or customer launch without explicit owner approval.
+- Maintain low-cost/no-cost execution. Do not expose private supplier workbooks, costs, internal review files or handover documents in customer-facing Pages packages.
+
+### Mandatory handover discipline
+- After every material success, failure, blocker, owner instruction or task switch, update this file with date/time, exact branch and commit SHA, what changed, checks actually run and their result, deployment URL plus deployed SHA if confirmed, what remains, and the next concrete action.
+- Keep this top section current. Add dated execution records below it; do not silently overwrite historical evidence.
+- Read back the saved file after every update and confirm the new entry is present. Update the relevant PR description and any paired handover only when it is safe and useful; never claim a paired file was updated unless its commit is confirmed.
+- Every status report must distinguish: source implemented; static/local checks; hosted deployment; desktop/mobile acceptance; production release. These are separate states.
