@@ -248,3 +248,14 @@ These checks add four model/variant records across additional brands. The offici
 | OneNav ON1509-LX1 | A second reseller listing identifies ON1509-LX1 as the OneNav Evolution 9-inch screen with slim chassis and labels price as request-a-quote / availability as out of stock. https://nxtleveltech.co.za/product/onenav-evolution-9inch-screen-with-slim-chassis | Car Audio → Multimedia Head Units / Screens (provisional) | Description/code now corroborated by two reseller listings, but no official OneNav manufacturer page was found. Another reseller explicitly says images are illustrative; image remains UNVERIFIED and must not be used as an exact match. Do not infer Planetworld price/stock from reseller data. |
 
 No images were downloaded or copied. These are identity/category evidence only, not approved image reuse, supplier pricing, stock, catalogue, or live-product changes.
+
+
+## 2026-10-31 — official manufacturer-source verification update
+
+- **Vogel's 7225154 — exact model/variant now VERIFIED from the official manufacturer brand portal.** The official leaflet identifies SKU 7225154 as the silver PUC 2515S pole, 1,500 mm long, maximum load 80 kg, EAN 8712285318726. Refine the component path to **Installed AV → Display mounting components → Ceiling poles/extensions**; do not classify it as a display panel or complete ceiling mount. Official source: https://brandportal.vogels.com/m/3ad0a329a6b38e66/original/7225154_PUC2515_Leaflet_Document_EN.pdf
+- This is manufacturer identity/specification evidence, **not** current Planetworld price/stock evidence and **not** image-reuse permission. No image was downloaded or copied.
+- **Vogel's PFW4600 remains UNVERIFIED** — no exact official manufacturer page/model match established; do not substitute broader PFW-family imagery.
+- **OneNav ON1509-LX1 remains reseller-only / image UNVERIFIED** — reseller pages corroborate the description but one explicitly marks imagery illustrative; no exact official OneNav source was found.
+- **OneNav ON263-FK2 remains UNVERIFIED** — the official ON263-2LX sibling is not an exact variant match; do not transfer its image, price, or availability.
+- The 2026-10-25 Planetworld workbook rows for these SKUs remain audit-only; official model verification does not validate supplier price, stock, or orderability.
+- Next: obtain Planetworld confirmation for the exact variant and current price/availability of PFW4600, ON1509-LX1, ON263-FK2, and the 7225154 supplier row; keep uncertain models unverified and no-import.
