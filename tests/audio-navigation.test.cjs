@@ -38,4 +38,30 @@ assert.match(html,/no larger than 4MB/,'photo validation error must match the 4 
 assert.match(html,/WhatsApp handoff opened\. Attach any selected photos in the chat/,'preview must tell customers to attach selected photos manually');
 
 
-\n// Eight approved customer-facing root tiles must resolve to the existing category IDs.\nconst categoryNavigation=fs.readFileSync('category-navigation.js','utf8');\nconst categoryTree=JSON.parse(fs.readFileSync('assets/category-tree.json','utf8'));\nconst approvedRoots={\n  'AUTO ELECTRICAL SPARES':['electrical','6cc56033-b0a9-4f25-b207-aeeb341a1c47'],\n  'VEHICLE SECURITY':['alarms-security','8e93d917-8fcc-4427-b364-cdad244f263f'],\n  'CAR AUDIO & ENTERTAINMENT':['car-audio-store','5ab55c53-eee3-41ce-ad48-04ad6df85181'],\n  'AUTOMOTIVE ACCESSORIES':['automotive-accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],\n  'MARINE SPARES & ACCESSORIES':['marine-spares','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],\n  'TOOLS, HARDWARE & CONSUMABLES':['tools-workshop','77297c18-67f6-452e-8918-c55d2ef6231a'],\n  'CAMPING, LEISURE & OUTDOORS':['camping-outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],\n  'TRAILER & CANOPY':['trailer-canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']\n};\nfor(const [label,[key,id]] of Object.entries(approvedRoots)){\n  assert.ok(categoryNavigation.includes("'"+label+"':'"+key+"'"),label+' must map to its approved navigation key');\n  assert.ok(categoryNavigation.includes("'"+key+"':'"+id+"'"),label+' must resolve to its approved category ID');\n  const category=categoryTree.categories.find(c=>c.id===id);\n  assert.ok(category,label+' category ID must exist in the dated read-only category snapshot');\n  assert.equal(category.parent_id,null,label+' must remain a root category in the snapshot');\n}\nconst fourByFour=categoryTree.categories.find(c=>c.id==='182423ec-ea46-43e4-bbe3-b8857b5a1583');\nassert.ok(fourByFour,'4X4 Outdoor child category must exist');\nassert.equal(fourByFour.parent_id,'af2f8625-4f42-45e6-9f21-d571d7415893','4X4 Outdoor must remain nested under Camping / Leisure / Outdoors');\nassert.ok(categoryNavigation.includes("'4X4 OUTDOOR':'4x4-outdoor'"),'4X4 Outdoor tile must route to the nested child key');\n\nconsole.log('AUDIO_NAVIGATION_SOURCE_PASS: main category → 9 departments → brand → component → product list; preview-only assets are allowlisted');
+
+// Eight approved customer-facing root tiles must resolve to the existing category IDs.
+const categoryNavigation=fs.readFileSync('category-navigation.js','utf8');
+const categoryTree=JSON.parse(fs.readFileSync('assets/category-tree.json','utf8'));
+const approvedRoots={
+  'AUTO ELECTRICAL SPARES':['electrical','6cc56033-b0a9-4f25-b207-aeeb341a1c47'],
+  'VEHICLE SECURITY':['alarms-security','8e93d917-8fcc-4427-b364-cdad244f263f'],
+  'CAR AUDIO & ENTERTAINMENT':['car-audio-store','5ab55c53-eee3-41ce-ad48-04ad6df85181'],
+  'AUTOMOTIVE ACCESSORIES':['automotive-accessories','87982093-7d81-4f2e-a8e2-e20cdeef30d8'],
+  'MARINE SPARES & ACCESSORIES':['marine-spares','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],
+  'TOOLS, HARDWARE & CONSUMABLES':['tools-workshop','77297c18-67f6-452e-8918-c55d2ef6231a'],
+  'CAMPING, LEISURE & OUTDOORS':['camping-outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],
+  'TRAILER & CANOPY':['trailer-canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']
+};
+for(const [label,[key,id]] of Object.entries(approvedRoots)){
+  assert.ok(categoryNavigation.includes("'"+label+"':'"+key+"'"),label+' must map to its approved navigation key');
+  assert.ok(categoryNavigation.includes("'"+key+"':'"+id+"'"),label+' must resolve to its approved category ID');
+  const category=categoryTree.categories.find(c=>c.id===id);
+  assert.ok(category,label+' category ID must exist in the dated read-only category snapshot');
+  assert.equal(category.parent_id,null,label+' must remain a root category in the snapshot');
+}
+const fourByFour=categoryTree.categories.find(c=>c.id==='182423ec-ea46-43e4-bbe3-b8857b5a1583');
+assert.ok(fourByFour,'4X4 Outdoor child category must exist');
+assert.equal(fourByFour.parent_id,'af2f8625-4f42-45e6-9f21-d571d7415893','4X4 Outdoor must remain nested under Camping / Leisure / Outdoors');
+assert.ok(categoryNavigation.includes("'4X4 OUTDOOR':'4x4-outdoor'"),'4X4 Outdoor tile must route to the nested child key');
+
+console.log('AUDIO_NAVIGATION_SOURCE_PASS: main category → 9 departments → brand → component → product list; preview-only assets are allowlisted');
