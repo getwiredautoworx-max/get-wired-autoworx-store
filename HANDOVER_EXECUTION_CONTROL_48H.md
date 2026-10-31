@@ -1,3 +1,13 @@
+## CURRENT CLEAN-CANDIDATE CHECKPOINT — 2026-10-31
+
+- Active branch: `integration/clean-main-planetworld-partsearch-2026-10-31`; latest head `5ea37f54caa65852c1e794564918794714d9adc3`; compare with main: 27 ahead / 0 behind.
+- Local Node execution of fetched catalogue matcher/test contents passed 13 assertions. Do not misreport this as GitHub Actions or browser acceptance.
+- Eight-root source count now has a regression assertion; stale nine-root CSS comment corrected.
+- Planetworld counts re-parsed: 3,317 broad rows, 37 without indicative price, zero broad-feed image/model fields; 68 curated exact-model rows, all with model/page, 11 with imageUrl in current curated JSON, 7 exact-model image sources in separate review preview.
+- Continue no-credit source audit. Full browser/device acceptance and the repository Audio test remain open. No Actions, merge, deploy or live-data write.
+
+---
+
 > **MANDATORY FIRST ACTION FOR EVERY AGENT/SESSION:** Read the root [`AGENTS.md`](AGENTS.md), then the latest [`HANDOVER_CURRENT.md`](HANDOVER_CURRENT.md) entry, then this execution-control file. Verify the actual branch/head and resume the first unfinished task. Do not start with a fresh plan, repeat completed audits, or ask the owner to retrain the session. If this sequence is not completed, work must not proceed.
 
 # 48-Hour Execution Control — Get Wired AutoWorx
@@ -15,7 +25,7 @@ Status: Active deadline; this is an operating addendum to HANDOVER_CURRENT.md.
 8. Never repeat a VERIFIED task unless its source changed, regression appeared, or prior evidence was incomplete. Never call static inspection a test pass.
 
 ## Active execution order
-**P0 — Candidate integration safety.** PR #139 is draft/diverged/non-mergeable. Latest previously recorded candidate head: f21afa51ca58b08db102f130bec705a1c5edf247. Compare with current main; if proceeding, create a fresh branch from current main and selectively port reviewed changes. Never force-push or merge PR #139.
+**P0 — Candidate integration safety.** PR #139 remains draft/diverged/non-mergeable; do not merge or force-push it. Active clean candidate branch is `integration/clean-main-planetworld-partsearch-2026-10-31`, latest verified head `5ea37f54caa65852c1e794564918794714d9adc3`, 27 ahead / 0 behind main as of 2026-10-31. Continue only on this clean branch and re-fetch its head before each write. Merge and launch remain unapproved pending exact-head Node/audio QA, desktop/mobile browser acceptance, image exceptions and SKU-level category mapping.
 
 **P1 — Part Search.** Free deterministic matcher exists; preview request handoff is WhatsApp-only and photo attachment is manual. Inspect matcher + tests together. Execute cases for existing-store match, exact Planetworld model, broad title/brand, typo/no-match, quote-only and WhatsApp request. Fix reproduced defects.
 
