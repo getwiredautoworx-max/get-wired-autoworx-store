@@ -1,3 +1,9 @@
+## Verification retry result — 31 October 2026
+- Re-ran the failed exact-head Cloudflare package QA (run 41183373561), free catalogue search tests (41183373770), and storefront smoke workflow (41183373551). All three failed again before runner allocation; jobs still report `steps: null`. The smoke workflow skipped its dependent browser job.
+- Re-ran the isolated preview deployment workflow (run 41183261239); it also failed before runner allocation. No new Pages deployment is confirmed.
+- The exact-head populated browser QA run (41183373544) remains failed before runner allocation and could not be re-run through the available action.
+- These are GitHub Actions execution/runner failures, not test assertion failures. The source-level Audio structural checks remain passed, but desktop/mobile browser acceptance remains unverified.
+
 ## Execution update — Audio hierarchy and isolated preview packaging — 31 October 2026
 
 Latest PR #139 branch head: `dcaeb4860103607d24cd540d7c83acba11da6080`.
