@@ -44,7 +44,7 @@ assert.match(html,/STORE PREVIEW.*part requests open WhatsApp only/,'preview ban
 assert.match(html,/f\.size>4\*1024\*1024/,'photo validation must enforce the stated 4 MB limit');
 assert.match(html,/no larger than 4MB/,'photo validation error must match the 4 MB instruction');
 assert.match(html,/WhatsApp handoff opened\. Attach any selected photos in the chat/,'preview must tell customers to attach selected photos manually');
-assert.match(html,/window\\.gwPlanetworldSearchRows=verifiedSearchRows/,'curated exact-model references must remain searchable if the broad Planetworld feed fails');
+assert.match(html,/window\.gwPlanetworldSearchRows=verifiedSearchRows/,'curated exact-model references must remain searchable if the broad Planetworld feed fails');
 assert.match(html,/exact-model references remain searchable/,'Part Search fallback must explain that curated model references are still available');
 
 
