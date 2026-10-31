@@ -5228,3 +5228,9 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - **Verification level:** GitHub tree/commit comparison confirms the branch is based directly on current main and contains the 17 selected paths only. Automated Node/browser tests have **not** been executed. GitHub Actions minutes remain exhausted until 1-Nov-2026; no workflow was manually dispatched.
 - **Next action:** run the included deterministic Node tests locally or after the Actions quota reset; inspect/fix failures, then perform exact-head desktop/mobile browser acceptance. Do not call this candidate ready until those checks pass.
 - **Do not repeat:** do not re-run the old PR #139 divergence comparison unless its head or main changes. The clean candidate is now independent of PR #139; leave PR #139 open/draft and untouched until the new candidate is reviewed.
+
+
+### Integration candidate follow-up — WhatsApp assertion corrected — 2026-10-31 SAST
+- Source comparison found one stale assertion in `tests/audio-navigation.test.cjs`: it expected `2774484234`, while the integrated store, Audio product links and preview checkout all use `27744884234`.
+- Corrected the test expectation in commit `77cbbc755deca395ea6069bb586e32c19411bec5`. This is a source-level consistency correction only; the Node test has not yet been executed.
+- Next action remains deterministic Node tests, then exact-head browser acceptance after Actions quota reset. No background monitor code or workflow dispatch added.
