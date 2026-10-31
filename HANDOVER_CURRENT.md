@@ -5209,3 +5209,22 @@ G. Checkout/payment and release boundary
 6. Complete real checkout/payment configuration only with owner-approved secure details and separate release approval.
 
 Do not label the store 95%, ready, launch-ready or customer-ready until the weighted score is at least 95% AND all critical preview acceptance gates (exact-head deployment, desktop/mobile browser pass, catalogue presentation, search, WhatsApp handoff and safe checkout journey) have evidence. ASC source and live payment activation must be reported separately if intentionally held outside preview scope.
+
+
+---
+
+## CLEAN-MAIN INTEGRATION CANDIDATE — 2026-10-31 SAST
+
+- **Status:** Clean integration branch created; not merged and not yet browser/CI accepted.
+- **Base:** current main at `f487abadae84b33f215cf38bbc1c1ad2c06fff3a`.
+- **Branch:** `integration/clean-main-planetworld-partsearch-2026-10-31`.
+- **Integration commit:** `e3db5969733a769bee8a0858e5c6b95e86fafbb5`.
+- **Comparison evidence:** current main → integration candidate = 1 commit ahead / 0 behind; exactly 17 changed paths. Main remains unchanged.
+- **Ported from PR #139:** preview storefront Part Search integration, free deterministic matcher, 3,317-row sanitized Planetworld preview feed, 68 curated model-reference records, nine-department Audio browser, preview-only checkout simulation, isolated preview package allowlist, source regression tests, and the related QA workflow assertions.
+- **Preserved from current main:** all current handover/history documents, including this file and `HANDOVER_EXECUTION_CONTROL_48H.md`. No stale PR handover was copied over current main.
+- **Explicitly excluded:** `scripts/background_task_controller.py` and background/task-monitor changes (owner previously said exclude background monitor); old branch-specific deployment workflow; cleanup workflow changes; unrelated artifact-retention edits; PR #139's stale documentation.
+- **Data guard:** Planetworld feed contains 3,317 records; 37 have no indicative price and remain quote-only. Curated references contain 68 exact model records; 11 have image references and 68 have manufacturer-page links. A manufacturer-page link is not treated as an image URL. No missing price or image was fabricated.
+- **Safety:** no production deployment, Axxess/DNS, Supabase write, checkout/payment activation, live stock/price/catalogue import, or PR merge performed.
+- **Verification level:** GitHub tree/commit comparison confirms the branch is based directly on current main and contains the 17 selected paths only. Automated Node/browser tests have **not** been executed. GitHub Actions minutes remain exhausted until 1-Nov-2026; no workflow was manually dispatched.
+- **Next action:** run the included deterministic Node tests locally or after the Actions quota reset; inspect/fix failures, then perform exact-head desktop/mobile browser acceptance. Do not call this candidate ready until those checks pass.
+- **Do not repeat:** do not re-run the old PR #139 divergence comparison unless its head or main changes. The clean candidate is now independent of PR #139; leave PR #139 open/draft and untouched until the new candidate is reviewed.
