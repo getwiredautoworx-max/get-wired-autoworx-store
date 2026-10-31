@@ -5159,3 +5159,9 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - No hosted deployment, Node/Playwright test, desktop/mobile acceptance, or Actions run was performed in this continuation. Do not claim a test pass. Actions minutes remain exhausted until 1-Nov-2026; do not trigger more runs today.
 - No stock, pricing, Supabase, production checkout/payment, Axxess, DNS, supplier import, or live catalogue changes were made. ASC remains separate.
 - Next: after the 1-Nov reset, verify runner allocation first, then run the focused PR #139 source/browser/package checks once on the exact latest head; inspect the resulting exact-head Pages preview and complete desktop/mobile customer-journey acceptance.
+
+
+### Follow-up read-back — 31-Oct-2026 16:43 SAST
+- GitHub read-back confirms the test assertion update and this execution-audit entry are saved on PR #139 branch. Test-file blob: `e6800e4800843c613cb1174821c525dfca311ad7`; handover blob before this follow-up: `9a1d3bbbec70290d509e7199dd375bc39b6a9464`.
+- PR #139 now points to commit `20c71dd176e7a34376ed313c8fb28b8246706158`, remains open/draft/unmerged, and GitHub currently reports `mergeable=false`. The combined commit-status endpoint returned no statuses for this head. Do not merge; inspect the mergeability/conflict state after the next refresh rather than assuming it is a test failure.
+- The updated assertion line was read back and visibly requires all three preview assets. No Actions run was started. The change is committed but not executed; test pass remains unclaimed.
