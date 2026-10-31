@@ -1,3 +1,35 @@
+## NO-CREDIT EXECUTION CHECKPOINT — CLEAN CANDIDATE / SEARCH / TAXONOMY / PLANETWORLD — 2026-10-31
+
+### Active candidate identity
+- Active working branch: `integration/clean-main-planetworld-partsearch-2026-10-31`.
+- Latest verified head: `5ea37f54caa65852c1e794564918794714d9adc3`.
+- Fresh compare with `main`: **27 commits ahead / 0 behind**; merge base equals main `f487abadae84b33f215cf38bbc1c1ad2c06fff3a`. This clean candidate is distinct from PR #139's older diverged branch. PR #139 remains draft/unmerged; do not merge or force-push it.
+
+### Work completed without Actions minutes or paid AI credits
+- Executed the fetched `assets/catalogue-search.js` and `tests/catalogue-search.test.cjs` contents in a temporary Node harness. `node --check` passed and all **13 assertions** passed: exact/partial SKU, multi-term search, brand/vehicle/category fields, typo tolerance, unrelated no-match, alias search, SKU ranking, empty query, safe data handling, Planetworld title/brand and exact HCE-C2100RD model lookup. This is local Node execution of the fetched test contents; it is not a hosted Actions run or browser test.
+- Reconfirmed the homepage source explicitly selects exactly eight approved root IDs. 4X4 Outdoor is included as a child under Camping / Leisure / Outdoors; the extra Find a Part tile is a utility action, not a ninth category.
+- Corrected the stale category-navigation CSS comment that claimed nine root categories. Commit: `434dddf158fd69339dc314a4737e4a142720fbeb`.
+- Added a regression assertion requiring exactly eight entries in `HOME_CATEGORY_IDS`. Commit: `5ea37f54caa65852c1e794564918794714d9adc3`.
+- Parsed the full Planetworld preview data from this candidate: 3,317 broad rows across all nine Audio departments; all have titles and brands; 37 have no indicative price; broad rows contain no dedicated model-number or image URL fields. They must remain title/brand searchable, quote-only where unpriced, and use honest image placeholders.
+- Rechecked the 68 curated manufacturer-reference rows: all 68 have a model number and manufacturer page; **11 have imageUrl fields** in the current curated JSON. The separate 68-row product review page currently renders 7 exact-model image sources. These are candidate image sources, not a claim that every remote image was freshly loaded/visually accepted in this session. Do not copy an image to a different SKU/model without exact matching evidence.
+- Reconfirmed Part Search load order and data flow in source: the no-cost matcher is loaded before the inline Part Search code; core products are assigned to `window.gwProducts` and emit `gw:products-loaded`; broad Planetworld rows plus curated model references populate `window.gwPlanetworldSearchRows`; fallback preserves curated references if the broad feed fails; quote buttons create WhatsApp quote links. Preview photo requests are WhatsApp-only and selected photos must be attached manually; preview mode does not submit/store them.
+- Reconfirmed preview checkout is an explanatory simulation only; it does not submit orders, reserve stock, write Supabase or process payments. The preview package builder uses explicit route/asset allowlists and excludes supplier/review/internal directories.
+
+### Still open — no-credit work continues
+- Execute `tests/audio-navigation.test.cjs` against a complete local checkout; it has not been executed as a repository test in this session. Source inspection confirms nine Audio departments, brand/component/product filters and WhatsApp quote links, but browser acceptance remains outstanding.
+- Run actual full-page desktop/mobile browser interaction tests at 1365/1366px, 390px and 320px on an exact-head preview. The local repo tree is not mounted in this session, so no exact-head full-page browser pass is claimed. Do not substitute an older hosted preview.
+- Broad Planetworld catalogue has no product image URLs/model fields. Keep neutral placeholders and quote flows; exact image/model matching for the broad 3,317 rows remains open. The 11 curated image URLs and 7 displayed image candidates need remote-load/visual confirmation before image acceptance.
+- Category snapshot has 34 of 85 direct child branches with zero products in their descendant branches and multiple legacy/duplicate root/child labels. Existing category authority docs require the complete 4,187-product SKU-level mapping, evidence review and owner approval. This cannot safely be resolved by guessing or renaming/reparenting live categories. No Supabase write was made.
+- Full product/subcategory assignment verification remains blocked by missing complete SKU-level export and approval; do not call the eight-root labels proof of populated subcategories.
+- ASC remains a separate task and owner authorization/source dependency. No supplier stock, price, catalogue, payment, Supabase, Axxess, DNS or production state changed.
+
+### Evidence / safety
+- No GitHub Actions workflow was dispatched. No AI credits were used. No deployment, merge, production upload, checkout/payment activation, Supabase write/migration, live stock/price/catalogue mutation, supplier activation, Axxess or DNS operation occurred.
+- Candidate remains unmerged and unapproved for launch. Actions quota reset must be checked before any workflow after 1-Nov; then run only the minimum exact-head tests.
+- Next single action: finish a no-credit source audit of the nine-department Audio page and preview route/link/package integrity, add only reproduced fixes, then update this handover again.
+
+---
+
 ## CATEGORY TAXONOMY SOURCE GATE CONFIRMED — 2026-10-31 17:52 SAST
 
 - Located and re-read the existing category authority documents on current main: `PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md`, `CATEGORY_MAPPING_REVIEW_2026-10-09.md`, and `assets/store-category-hierarchy.json`.
