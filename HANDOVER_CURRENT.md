@@ -1,3 +1,20 @@
+## NO-CREDIT PRODUCT IMAGE FALLBACK + TEST FIXES — 2026-10-31 19:00 SAST
+
+- Continued the product presentation audit and found a real broken image fallback: `preview-product.html` referenced `assets/product-image-pending.svg`, but the packaged asset is `assets/product-placeholder.svg`. Updated the detail page to use the packaged neutral placeholder. Commit: `54eaaa488c999d2bea100b2d34de0e8cf3e9ae51`.
+- Found the shared `assets/product-image-fallback.js` guard still looked for the obsolete pending filename and its regex was double-escaped, so it could fail to recognize the packaged placeholder and try an unreviewed local SKU image. Corrected the guard to recognize `product-placeholder.svg`. Commit: `060995caec3c230320e5dc8df6f2bccce7268bba`.
+- Corrected the unused preview-store placeholder constant to the actual packaged asset path. Commit: `c5a0efa4fc49210ce0ce62d06d1400f43a860373`.
+- While executing the regression source, found two test defects: `tests/audio-navigation.test.cjs` referenced `previewProduct` without declaring/loading it, and its Part Search fallback regex was double-escaped and therefore did not match the actual source. Added the missing fixture, corrected the regex, and added guards for the detail placeholder, shared fallback guard and preview constant. Commits: `b876332e13821b76339415ccf9ed0d550d92ea34` and `fc98d79dfe0da13d1beb55d7116702793bf4dbca`.
+- Re-fetched all changed files and verified seven image/test source conditions; both inline scripts on the product detail route compile with zero syntax errors.
+- Executed the complete `tests/audio-navigation.test.cjs` source in an in-memory JavaScript harness with virtual repository files and strict assertion shims: **89 assertions passed**. Executed `tests/catalogue-search.test.cjs` with the exact fetched matcher source in the same style of harness: **15 assertions passed**. This validates test logic and fetched source content, but is **not** execution in Node, GitHub Actions, or a browser. No hosted/real browser acceptance is claimed.
+- A route asset-reference scan found the obsolete missing filename in the detail page and the unused main-preview constant; both are now corrected. The binary logo fetch could not be UTF-8 inspected (expected for PNG); the asset is present in the repository and builder allowlist.
+- Latest code checkpoint before this handover entry: `fc98d79dfe0da13d1beb55d7116702793bf4dbca`; compare with `main`: **45 ahead / 0 behind**. The candidate remains unmerged and unapproved for launch.
+- No Actions run, deployment, merge, Supabase write, live catalogue/stock/price change, payment activation, supplier activation, Axxess or DNS operation occurred. GitHub Actions remains untouched until the recorded reset and quota recheck.
+
+### Next no-credit action
+Continue auditing preview product-card/image handling and remaining local asset references, then finish route/link checks. Do not repeat the 89/15 in-memory harness runs unless a source/test file changes. Real Node execution, exact-head hosted preview, desktop/mobile browser acceptance and complete SKU-level category assignment review remain open.
+
+---
+
 ## LIVE SUPABASE READ-ONLY CATEGORY AUDIT — 2026-10-31
 
 Read-only queries against the connected Store project confirmed the live counts; no writes, migrations or updates were issued:
