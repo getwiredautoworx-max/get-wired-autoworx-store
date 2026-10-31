@@ -5343,3 +5343,16 @@ This directive records the owner's explicit expectation: less talking, more comp
 - Important limitation: repository instructions can guide coding agents that load `AGENTS.md` and make the startup requirement conspicuous to humans, but they cannot technically force every future ChatGPT session or an agent that does not load repository instructions to read the files. Do not promise automatic enforcement that the platform does not provide. The reliable mitigation is to keep this repository bootstrap file and persistent project context aligned, and have every session verify the branch and handover before acting.
 - This operation changed documentation only. No tests, Actions, deployment, merge, production, Axxess/DNS, Supabase, payment, supplier, live stock or price operations were performed.
 - Next action remains the latest unfinished candidate task recorded above: continue the Part Search source audit and regression coverage without repeating completed checks. The candidate remains unapproved for merge/launch.
+
+---
+
+## PART SEARCH RESILIENCE FIX — CURATED MODEL FALLBACK — 2026-10-31
+
+- Continued the unfinished Part Search source audit from the active candidate; did not repeat the earlier matcher/category audits.
+- Found a real resilience defect in `preview-store.html`: the 68 curated manufacturer/model references are embedded in the page, but `window.gwPlanetworldSearchRows` was only populated inside the successful broad Planetworld JSON fetch. If that broad feed failed, the exact-model records were unavailable to Part Search despite already being present locally in the page.
+- Fixed the broad-feed failure path to construct the curated verified-model search rows from `window.gwVerifiedCatalogueRows`, assign them to `window.gwPlanetworldSearchRows`, show a clear degraded-mode message, and refresh an already-open Part Search dialog. The broad supplier catalogue can fail without unnecessarily disabling exact manufacturer model/code lookup.
+- Added two regression assertions to `tests/audio-navigation.test.cjs` covering the fallback assignment and customer-facing fallback message.
+- Commits: `preview-store.html` `edbcc0bea572285cc47d9e7d57b4b755f5c1f955`; `tests/audio-navigation.test.cjs` `36bead66279b5090491e1a7a8946523bddda60f4`.
+- Re-fetched both changed files. Six targeted source assertions passed: fallback assignment, manufacturer model/page retention, degraded-mode message, open-dialog refresh, and both regression guards. **This is source-level verification only. The Node test has not been executed and no browser/network-failure simulation has been run.**
+- No Actions workflow, preview deployment, Supabase write, production change, supplier activation, live stock/price/catalogue change, payment, Axxess or DNS operation occurred. Candidate remains unapproved for merge/launch.
+- Next single action: continue the Part Search integration audit for load ordering and request/quote paths; then execute the actual Node regression suite when a local checkout or approved runner is available. Do not repeat the verified fallback source assertions unless these files change.
