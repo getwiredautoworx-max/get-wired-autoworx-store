@@ -533,7 +533,8 @@
       "description": "8-inch single-voice-coil Comp subwoofer with a 4-ohm impedance. Kicker lists 50–100 W RMS recommended amplifier power and 200 W peak handling, with a 30–500 Hz frequency response and compact enclosure requirements.",
       "modelNumber": "43C84",
       "manufacturerPage": "https://www.kicker.com/43C84",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c84/images/480x360-front.jpg"
     },
     {
       "gwSku": "GW-3A16656D",
@@ -590,7 +591,8 @@
       "description": "10-inch CompR dual-voice-coil subwoofer with a 4-ohm configuration. Kicker recommends 400 W RMS amplifier power; the design uses Forced-Air Cooling and an advanced suspension/heat-management system for consistent bass performance in sealed or ported enclosures.",
       "modelNumber": "48CWR104",
       "manufacturerPage": "https://www.kicker.com/comp-r-10-4-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/compr21/p48_cwr104/images/480x360-front.jpg"
     },
     {
       "gwSku": "GW-9BFF6101",
