@@ -1,3 +1,5 @@
+> **Agent/session entry rule:** Before doing any project work, read [`AGENTS.md`](AGENTS.md), then [`HANDOVER_CURRENT.md`](HANDOVER_CURRENT.md) and [`HANDOVER_EXECUTION_CONTROL_48H.md`](HANDOVER_EXECUTION_CONTROL_48H.md). Resume the latest unfinished task; do not restart or ask the owner to repeat recorded requirements.
+
 # Get Wired AutoWorx Store
 
 **Live store:** https://www.getwiredauto.co.za/
