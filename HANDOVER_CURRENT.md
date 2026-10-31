@@ -5143,3 +5143,8 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 3. Verify exact-head Pages preview deployment and run desktop 1366x900 + mobile 390x844 Audio journey, Part Search and preview checkout.
 4. Continue authoritative model/image matching for the remaining 3,317 broad-feed records; never guess images/models. Keep 57 curated image gaps visibly marked.
 5. Keep production HOLD; no merge, live catalogue changes, checkout/payment activation, Axxess or DNS without explicit authorization and acceptance evidence.
+
+
+### Main-branch drift inspection — 31-Oct-2026
+- Inspected the seven commits on main after the PR #139 merge base. They are documentation-only: updates to `HANDOVER_CURRENT.md`, `AI_HANDOVER_PERMANENT.md`, and two new monitor-run-22 handover/checkpoint records plus a task-start record. No storefront source, supplier data, package, workflow or production code changes are in those seven commits.
+- PR #139 remains 50 commits ahead / 7 behind main and mergeable=false. The drift is handover/documentation-only, but the PR branch still requires an ancestry reconciliation before merge; do not bypass GitHub's mergeability state. Preserve both branches' latest handover records when reconciling.
