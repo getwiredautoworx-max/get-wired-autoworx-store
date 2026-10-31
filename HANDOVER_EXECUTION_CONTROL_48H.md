@@ -1,3 +1,11 @@
+## EXACT-HEAD BROWSER ACCEPTANCE MATRIX — 2026-10-31 20:20 SAST
+
+- Added `audits/EXACT_HEAD_BROWSER_ACCEPTANCE_MATRIX_2026-10-31.md` covering all seven preview routes, 1365×900 / 390×844 / 320×740, Part Search, image fallback, photo validation, preview no-write checks and evidence gates.
+- Checklist is not a test pass. Real Node runtime and exact-head browser acceptance remain open.
+- Current candidate head: `f0306244dbd25032e7c322b318c548a2348698df`, 61 ahead / 0 behind main. No Actions/deploy/merge/live writes.
+
+---
+
 ## IMPORT GUIDANCE / SEVEN-ROUTE SOURCE AUDIT — 2026-10-31 20:05 SAST
 
 - Catalogue import rules now list the eight approved customer-facing roots and explicitly mark the older seven-root list as historical/superseded. 4X4 Outdoor remains nested under Camping / Leisure / Outdoors.
