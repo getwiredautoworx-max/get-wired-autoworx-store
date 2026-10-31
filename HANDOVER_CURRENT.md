@@ -6,6 +6,7 @@ Owner's current priorities: verify all eight main categories and subcategories; 
 - Re-fetched PR #139. It remains open, draft, unmerged. Current PR metadata head returned by GitHub: `95637a8c6f09a184255dfffc31916f410ce53b31`; branch: `integration/planetworld-partsearch-clean-main-2026-10-31`. Do not confuse it with older PR #94 or the older PR #139 checkpoint heads recorded below.
 - Source files were read from the PR #139 branch, including `preview-store.html`, `preview-audio.html`, `assets/audio-category-navigation.js`, `assets/catalogue-search.js`, `tests/catalogue-search.test.cjs`, and the Planetworld JSON feeds.
 - No exact-head Actions runs were returned for head `95637a8...`. Existing PR #139 jobs in the preceding checkpoint failed before runner assignment/steps (`steps: null`); no new test execution is claimed.
+- Follow-up compare against the current main head `93dc534db6c278a8d51e1e2f57e1b2f4fd3ea156` reports PR #139 branch `57` commits ahead and `8` behind (merge base `dbe69f61bf468af313c3f3b749a73dc42992126b`); GitHub currently reports `mergeable=false`. The handover update on main did not alter storefront code, but the candidate must be reconciled with the eight newer main commits and re-audited before it can be considered an integration candidate. Do not force-push or merge PR #139.
 - No production deployment, merge, Axxess/DNS change, Supabase write/migration, live stock/price/catalogue change, payment change, or supplier activation was performed.
 
 ### Eight-root category verification
