@@ -1,3 +1,12 @@
+## PLANETWORLD IMAGE COVERAGE CHECKPOINT — 2026-10-31 20:45 SAST
+
+- Planetworld review page now has 13/68 exact-SKU/model image URLs, up from 7. 55 gaps are listed in `audits/PLANETWORLD_IMAGE_GAPS_2026-10-31.csv`. Never use name-only or visually similar image matching.
+- Audio regression source: 133 assertions passed in an in-memory JS harness. Planetworld inline script compiles. Not Node/Actions/browser image-load acceptance.
+- Broad feed: 3,317 rows; 37 without indicative price; no model/image fields. Needs source enrichment.
+- Code/data checkpoint: `b87591ad1454abc5476deb6c0b9d7af620a9dd34`, 69 ahead / 0 behind main. Candidate remains unmerged/unapproved.
+
+---
+
 ## EXACT-HEAD BROWSER ACCEPTANCE MATRIX — 2026-10-31 20:20 SAST
 
 - Added `audits/EXACT_HEAD_BROWSER_ACCEPTANCE_MATRIX_2026-10-31.md` covering all seven preview routes, 1365×900 / 390×844 / 320×740, Part Search, image fallback, photo validation, preview no-write checks and evidence gates.
