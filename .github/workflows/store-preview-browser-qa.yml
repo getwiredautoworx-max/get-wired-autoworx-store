@@ -101,12 +101,12 @@ jobs:
             await page.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
             const partSearchCopy=await page.locator('#partSearchDialog').innerText();
             if(!partSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('No-AI photo-request fallback is missing');
-            await page.waitForFunction(()=>Array.isArray(window.gwPlanetworldSearchRows)&&window.gwPlanetworldSearchRows.length===3317,{timeout:30000});
-            await page.locator('#partSearchQuery').fill('Alpine 4ch Amplifier');
+            await page.waitForFunction(()=>Array.isArray(window.gwPlanetworldSearchRows)&&window.gwPlanetworldSearchRows.length===3385,{timeout:30000});
+            await page.locator('#partSearchQuery').fill('HCE-C2100RD');
             await page.waitForFunction(()=>document.querySelectorAll('#partSearchResults [data-quote-pw]').length>0,{timeout:15000});
             const planetworldSearchText=await page.locator('#partSearchResults').innerText();
-            if(!planetworldSearchText.includes('Planetworld')||!planetworldSearchText.includes('25 Oct 2026 snapshot')||!planetworldSearchText.includes('REQUEST QUOTE'))throw new Error('Planetworld quote-only Part Search integration failed: '+planetworldSearchText);
-            console.log('PLANETWORLD_PART_SEARCH_PASS '+planetworldSearchText.slice(0,500));
+            if(!planetworldSearchText.includes('Model / code: HCE-C2100RD')||!planetworldSearchText.includes('VIEW MANUFACTURER PAGE')||!planetworldSearchText.includes('REQUEST QUOTE'))throw new Error('Verified Planetworld model Part Search integration failed: '+planetworldSearchText);
+            console.log('PLANETWORLD_VERIFIED_MODEL_SEARCH_PASS '+planetworldSearchText.slice(0,500));
 
             await page.locator('#partSearchDialog button.pictureSearchBtn').first().click();
             await page.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
