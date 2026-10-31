@@ -4,6 +4,7 @@ const html=fs.readFileSync('preview-store.html','utf8');
 const audio=fs.readFileSync('preview-audio.html','utf8');
 const nav=fs.readFileSync('assets/audio-category-navigation.js','utf8');
 const build=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
+const packageQa=fs.readFileSync('.github/workflows/cloudflare-public-pages-build-qa.yml','utf8');
 const departments=['Car Audio & Video','Home Entertainment','Band & Live Sound','DJ Equipment','Studio Equipment','Marine Audio','Installed AV','Musical Instruments','Harnesses & Trims'];
 assert.match(html,/<script src="assets\/audio-category-navigation\.js" defer><\/script>/,'main preview must load Audio navigation adapter');
 assert.match(nav,/5ab55c53-eee3-41ce-ad48-04ad6df85181/,'adapter must target the single approved Audio root category');
@@ -19,6 +20,8 @@ assert.match(audio,/wa\.me\/2774484234/,'product enquiry must use the existing b
 assert.match(audio,/25-Oct-2026/,'product enquiry must identify the dated supplier snapshot');
 assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
 assert.match(build,/PREVIEW_ASSET_FILES = \["audio-category-navigation\.js", "planetworld-catalogue-preview\.json"\]/,'preview-only bundle must include its adapter and catalogue JSON');
+assert.ok(packageQa.includes('preview-checkout.html; do'),'preview package QA must assert checkout route inclusion');
+assert.ok(packageQa.includes('Verify preview package includes all seven approved preview routes'),'preview package QA must cover all seven routes');
 const previewCheckout=fs.readFileSync('preview-checkout.html','utf8');
 assert.match(html,/href="preview-checkout\\.html">PROCEED TO CHECKOUT/);
 assert.ok(previewCheckout.includes('Preview mode — no order or payment will be submitted.'));
