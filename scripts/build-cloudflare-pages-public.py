@@ -15,10 +15,10 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html",
 ]
 REQUIRED_ASSET_FILES = [
-    "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
+    "gw-logo.png", "audio-category-navigation.js", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
 ]
 FORBIDDEN_DIRS = {
