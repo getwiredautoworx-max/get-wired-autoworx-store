@@ -1,3 +1,15 @@
+## LIVE SUPABASE READ-ONLY CATEGORY AUDIT — 2026-10-31
+
+Read-only queries against the connected Store project confirmed the live counts; no writes, migrations or updates were issued:
+- `public.products`: 4,200 total; **4,187 active**; all 4,187 active products have a category_id; zero active uncategorized products; 76 distinct category IDs have active products.
+- `public.categories`: 243 total; 166 active; 58 active root rows (legacy taxonomy still exists alongside the eight approved customer-facing roots).
+- Across the eight approved roots, live recursive counts match the dated snapshot: Auto Electrical 1,149 descendant products; Automotive Accessories 874; Camping/Leisure/Outdoors 84; Car Audio 46; Marine 57; Tools/Hardware 1,321; Trailer/Canopy 89; Vehicle Security 2. The 34 empty direct child branches remain as listed above.
+- `public.category_review_queue`: 198 rows, 198 unique SKUs, every row matched exactly one product by `public_sku` or `sku`; zero unmatched, ambiguous or duplicate queue SKUs. All 198 rows have current-category and buyer-guide-subcategory text.
+- The queue contains 21 distinct buyer-guide labels, many visibly OCR/scan-corrupted or mixed with page numbers/model codes (for example `PVC-W PVC-Y C5-030-70...`, `22558877 ... Air Pressure:6-8`, and `HOSES 29`). Only 3 queue rows exactly match an active category name: 2 `REGULATORS` rows and 1 `CYLINDERS` row. Only 100/198 current-category labels exactly match an active category name. Therefore the queue is a useful SKU-matched review subset, not a clean, approved bulk mapping file.
+- Safe conclusion: live category counts are now verified; the remaining mapping work is evidence classification and owner approval, not a database connectivity problem. Do not update category_id, rename categories, or reparent rows until the 4,187-SKU evidence mapping is reviewed and approved. ASC remains separate.
+
+---
+
 ## NO-CREDIT SOURCE ACCEPTANCE PASS — 44 CHECKS — 2026-10-31
 
 - Re-fetched the current candidate's homepage, Audio route/adapter, preview checkout, package builder, preview QA workflow, category tree and progressive enhancement source.
