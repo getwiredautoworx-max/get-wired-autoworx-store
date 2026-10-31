@@ -25,7 +25,8 @@ on:
       - "preview-category.html"
       - "preview-products.html"
       - "preview-product.html"
-      - "preview-planetworld.html preview-audio.html"
+      - "preview-planetworld.html"
+      - "preview-audio.html"
 permissions:
   contents: read
 jobs:
