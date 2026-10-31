@@ -33,8 +33,8 @@ assert.ok(!previewCheckout.includes('supabase.co')&&!previewCheckout.includes('f
 assert.match(build,/"preview-checkout\.html"/);
 // Preview-only request handoff must be explicit and must not imply automatic photo upload.
 assert.match(html,/STORE PREVIEW.*part requests open WhatsApp only/,'preview banner must explain WhatsApp-only part requests');
-assert.match(html,/f\\.size>4\\*1024\\*1024/,'photo validation must enforce the stated 4 MB limit');
+assert.match(html,/f\.size>4\*1024\*1024/,'photo validation must enforce the stated 4 MB limit');
 assert.match(html,/no larger than 4MB/,'photo validation error must match the 4 MB instruction');
-assert.match(html,/WhatsApp handoff opened\\. Attach any selected photos in the chat/,'preview must tell customers to attach selected photos manually');
+assert.match(html,/WhatsApp handoff opened\. Attach any selected photos in the chat/,'preview must tell customers to attach selected photos manually');
 
 console.log('AUDIO_NAVIGATION_SOURCE_PASS: main category → 9 departments → brand → component → product list; preview-only assets are allowlisted');
