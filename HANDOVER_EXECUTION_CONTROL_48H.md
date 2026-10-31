@@ -1,3 +1,13 @@
+## PRODUCT CARD / ASSET / ROUTE AUDIT — 2026-10-31 19:15 SAST
+
+- Confirmed exact-SKU image handling and neutral fallback; no visually similar substitution. Public build allowlist excludes supplier/internal source files and includes product placeholder and WebP assets.
+- Seven preview routes: 27 static local links/assets, 14 unique targets, all present at root/asset-directory level.
+- Repository is already private. GitHub Pages is off; Cloudflare Pages is hosting target.
+- Audio test source: 89 assertions in in-memory harness. Catalogue search source: 15 assertions in in-memory harness. Not Node runtime/Actions/browser tests.
+- Current candidate code checkpoint: `951c017248c1ebefc32232fa2ac2c565a9bed931`, 47 ahead / 0 behind main. Continue no-credit edge-case audit; no deployment, merge or live-data writes.
+
+---
+
 ## PRODUCT IMAGE FALLBACK / TEST FIX CHECKPOINT — 2026-10-31 19:00 SAST
 
 - Product detail now uses the existing packaged neutral placeholder; shared image fallback recognizes the same filename and will not replace it with an unreviewed SKU image.
