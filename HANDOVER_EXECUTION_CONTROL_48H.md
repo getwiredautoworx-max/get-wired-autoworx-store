@@ -41,3 +41,11 @@ Status: Active deadline; this is an operating addendum to HANDOVER_CURRENT.md.
 Task/priority | candidate branch + SHA | reproduced failure/evidence | cause eliminated | changed files | verification + exact result | state (OPEN/BLOCKED-OWNER/VERIFIED) | next single action | do-not-repeat note.
 
 The 48-hour target is a deadline for focused execution, not permission to bypass safety gates or claim readiness without evidence. Continue through the queue; do not reset the clock by writing another plan.
+
+
+## Execution checkpoint — candidate divergence eliminated by comparison — 2026-10-31 SAST
+
+- Compared PR #139 candidate checkpoint f21afa51ca58b08db102f130bec705a1c5edf247 against current main e35d3bb9b6080c79090f925c85bd9155f29b987c: candidate is 61 commits ahead / 17 behind, status diverged; merge base dbe69f61bf468af313c3f3b749a73dc42992126b.
+- Then compared merge base to current main. All 17 main-only commits touch documentation/handover files only: AI_HANDOVER_PERMANENT.md, HANDOVER_CURRENT.md and three dated handover/checkpoint documents, including this execution-control addendum. No storefront source, workflow, catalogue or asset file is changed on main relative to the merge base.
+- This eliminates the hypothesis that main has 17 new storefront-code changes that need porting into the candidate. The divergence is documentation-only on the main side. The candidate side still contains code/workflow/catalogue changes listed in the candidate-vs-main comparison and needs review before integration.
+- Safe next action: obtain exact current PR head + tree and current main tree; construct a fresh branch from current main and port candidate code/config/assets selectively while retaining current main's handover files. Do not merge PR #139 or copy its stale HANDOVER_CURRENT.md over main. No force-push, merge, Actions run or production change performed.
