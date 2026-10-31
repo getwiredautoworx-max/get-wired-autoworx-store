@@ -2836,3 +2836,15 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - The external Cloudflare Workers Builds check for build `8ab6be03-ff5a-457f-acaf-4a8202cd9c73` has now completed FAILURE. No successful Worker deployment is reported by this check. No retry or Worker configuration change was made.
 - All five PR #139 GitHub Actions jobs completed FAILURE with `runner_id=0`, no runner name and zero steps. The new unit/browser workflows therefore did not execute on GitHub-hosted runners. Do not mislabel these as code assertion failures; do not retry until runner allocation changes.
 - PR #139 remains OPEN / DRAFT / UNMERGED; GitHub reports mergeable=true. Pages preview is available, but hosted browser QA and the external Worker-build cause remain unresolved. No production release action was taken.
+
+
+## PLANETWORLD PREVIEW FEED QUALITY AUDIT — 2026-10-31
+
+Read-only audit of the sanitized JSON used by PR #139:
+- 3,317 rows; 3,317 unique internal preview IDs.
+- No missing title, brand, component or collection fields.
+- 3,280 rows have an indicative price; 37 are quote-only with no indicative price. This aligns with the existing held groups (18 cost-floor exceptions + 19 zero-RRP owner-audit rows); keep them quote-only.
+- Dated supplier snapshot flag: 1,727 rows show supplier stock recorded; 1,590 do not. These are 25-Oct-2026 snapshot flags, not live quantities or a live availability promise.
+- 572 repeated brand+title combinations are present. The public preview feed contains no manufacturer model-number, supplier-SKU or image-URL fields, so these repeated descriptions cannot be safely deduplicated or image-matched. Preserve all source rows; do not guess models or merge apparent duplicates.
+- No image/photo/URL field exists in this 3,317-row feed. The broad catalogue therefore still needs exact-model manufacturer image enrichment; the 68-row curated review set's 11 exact-model image references do not imply coverage of the full feed.
+- Card source structure separates the art area from title/details, but browser visual QA remains pending because hosted Actions jobs failed before runner assignment.
