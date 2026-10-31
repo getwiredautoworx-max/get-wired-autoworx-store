@@ -5148,3 +5148,14 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 ### Main-branch drift inspection — 31-Oct-2026
 - Inspected the seven commits on main after the PR #139 merge base. They are documentation-only: updates to `HANDOVER_CURRENT.md`, `AI_HANDOVER_PERMANENT.md`, and two new monitor-run-22 handover/checkpoint records plus a task-start record. No storefront source, supplier data, package, workflow or production code changes are in those seven commits.
 - PR #139 remains 50 commits ahead / 7 behind main and mergeable=false. The drift is handover/documentation-only, but the PR branch still requires an ancestry reconciliation before merge; do not bypass GitHub's mergeability state. Preserve both branches' latest handover records when reconciling.
+
+
+## EXECUTION AUDIT — 2026-10-31 16:41 SAST — 48-HOUR TARGET
+
+- Re-fetched PR #139 and its branch source before acting. PR #139 is open, draft, unmerged; branch `integration/planetworld-partsearch-clean-main-2026-10-31`; latest head observed before this commit: `9996b46e1e2036048b070c8b9924934fec1b3c0f`. No merge or production release.
+- Source inspection confirmed the main storefront Audio root has the department-browser adapter, and the isolated preview package allowlists the Audio page and preview-only catalogue assets. The nine-department → brand → component → product flow and customer-reviewed WhatsApp enquiry are present in source. This remains source inspection, not browser acceptance.
+- Found and fixed a deterministic stale assertion in `tests/audio-navigation.test.cjs`: the build now correctly includes the third preview-only asset `planetworld-verified-models-preview.json`, but the test still expected only the adapter and broad catalogue JSON. Updated the assertion to require all three files. Commit SHA is recorded in the GitHub update result immediately following this entry; this change has not yet been executed because Actions allocation is exhausted.
+- Also inspected `scripts/background_task_controller.py`: `store-production-qa.yml` is absent from `AUTO_RETRY_ALLOWLIST`, so the previously identified automatic production-QA retry hazard is corrected in the current source.
+- No hosted deployment, Node/Playwright test, desktop/mobile acceptance, or Actions run was performed in this continuation. Do not claim a test pass. Actions minutes remain exhausted until 1-Nov-2026; do not trigger more runs today.
+- No stock, pricing, Supabase, production checkout/payment, Axxess, DNS, supplier import, or live catalogue changes were made. ASC remains separate.
+- Next: after the 1-Nov reset, verify runner allocation first, then run the focused PR #139 source/browser/package checks once on the exact latest head; inspect the resulting exact-head Pages preview and complete desktop/mobile customer-journey acceptance.
