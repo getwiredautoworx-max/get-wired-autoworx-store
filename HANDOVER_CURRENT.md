@@ -4964,3 +4964,80 @@ Owner scope: (1) complete Planetworld product presentation, (2) pass hosted desk
 - Significant audit completed; no production or supplier data was modified. No Axxess, DNS, Cloudflare Worker production, Supabase production, live stock, live price, catalogue publication, banking credential or payment activation change occurred.
 - Customer-facing preview is NOT yet genuinely ready. Four hard gaps remain: Planetworld full catalogue presentation (verified images/details), passing hosted desktop/mobile browser acceptance, new ASC source catalogue and pilot integration, and safe end-to-end preview verification of WhatsApp/checkout. Direct EFT server configuration and payment gateway decisions remain separated from the preview work; do not expose or fabricate bank details.
 - Next execution order: obtain/restore a functioning hosted test runner or independent browser runner; finish exact-model Planetworld assets/details without guessing; stage fresh ASC source as a separate 25-item pilot when available; implement/read-only preview checkout simulation with no Supabase writes; then run hosted desktop and mobile journeys including WhatsApp link assertions. Only after these pass should the preview be called ready. Banking and production release remain separate later gates.
+
+
+## READINESS GAP AUDIT AND 95% ACCEPTANCE PLAN — 2026-10-31 10:xx SAST
+
+### Verified repository state at this audit
+- Default branch `main` head: `8ecad0b50db3ede5d0860b3dd05d678f4fc1b593`.
+- Candidate PR #139 remains OPEN / DRAFT / UNMERGED, head `36d555a50263efe1a40bbf2cc5733051c2ab2bc5`, base `main`. No production merge or deployment was performed.
+- Latest exact-head Actions runs at 08:14:36Z all concluded FAILURE: package QA 41183787909, catalogue image audit 41183787891, storefront smoke 41183787881, populated preview browser QA 41183787876, public SKU audit 41183787870, free catalogue search 41183787858. Jobs for package QA, populated browser QA and catalogue search returned one failed job each with `steps=null` and `logs_url=null`. No runner steps executed. This is a job-start/runner allocation failure, not evidence that the application assertions failed. Root cause is not exposed by the available run/job records; do not state that Actions storage quota is definitively the cause.
+- The browser workflow on PR #139 still contains legacy test assumptions and a hard-coded hosted URL from an older Pages deployment. It tests older category/audio routes and does not yet exercise the new `preview-checkout.html` simulation or the exact current candidate deployment. This is a workflow-maintenance gap to fix once a runner can execute; do not treat that workflow as proof of the new checkout.
+- ASC README on main confirms the intake is deliberately reset and requires a new owner-supplied post-reset source catalogue. It prohibits direct writes to `public.products`, requires a 25-product pilot and exact image mapping, and retains the generic unattributed stock file as non-ASC. ASC remains a separate supplier task.
+
+### Readiness scorecard (explicit planning estimate, not a test result)
+The project is NOT at 95% average readiness. For planning only, use equal-weight workstreams until acceptance evidence exists:
+1. Core storefront structure and main category hierarchy — 85% (source exists; hosted regression pass still required).
+2. Audio department → brand → component navigation — 70% (implementation and source checks; no current exact-head browser pass).
+3. Planetworld catalogue presentation — 45% (3,385 search records; 68 curated model references; broad 3,317 feed still lacks exact model/SKU/image/detail completeness; only 11 exact image refs in curated set).
+4. Part Search — 70% (manual search cases and source checks; exact-head hosted QA not executed).
+5. Preview deployment/package — 55% (previous Pages deployments existed for earlier heads; latest exact head not proven deployed; package job did not start).
+6. Desktop/mobile acceptance — 0% (no passing current-head browser test; do not count zero-step failures as a product test).
+7. WhatsApp enquiry/order handoff — 40% (links/message construction exist; no real end-to-end device/browser send handoff verified).
+8. Preview checkout journey — 55% (no-write simulation implemented; no hosted browser acceptance; no order submission by design).
+9. ASC separate integration — 0% (no fresh post-reset source catalogue available in repository intake; cannot responsibly map/import absent source).
+10. Payment/release controls — 50% (Direct EFT source flow exists; PayFast/callback/duplicate protection and final credentials/tests remain; production boundary intentionally held).
+Simple mean of these planning estimates = 47%. This is a transparent execution estimate, not an analytics-derived metric. Re-score only when evidence changes. The current 95% target therefore requires roughly 48 percentage points of average work, not a cosmetic status change.
+
+### Remaining tasks and acceptance gates to reach at least 95% average
+A. Restore executable verification path (highest shared blocker)
+- Diagnose GitHub Actions runner allocation from account-level Actions/billing/usage and runner availability; the connector cannot read account billing/secrets and current job records expose no runner/steps/logs.
+- Avoid repeated blind retries. Confirm Actions quota/billing reset and available runner first; run one controlled workflow dispatch or PR run after runner availability is demonstrated.
+- If hosted Actions remains unavailable, use an independently controlled local/alternate browser runner and record exact commit, commands, output and screenshots/logs. Do not claim hosted CI passed when using a different runner.
+- Correct stale workflow URL/assumptions and add current tests for `preview-audio.html`, `preview-checkout.html`, mobile + desktop widths, cart totals, no-write checkout, and quote-only Planetworld results. Remove outdated hard-coded preview URL in favour of exact deployment output.
+- Acceptance: exact PR head has successful package, source, search, SKU exposure, image audit, smoke, and Playwright runs; browser evidence covers desktop and mobile.
+
+B. Planetworld catalogue presentation
+- Obtain/parse the original supplier workbooks containing authoritative product model/SKU, descriptions, component type and image references; current sanitized 25-Oct snapshot alone cannot fill missing fields.
+- Map all products into the correct one-main-Audio-category hierarchy: Audio → department (Car Audio & Video, Home Entertainment, Band & Live Sound, DJ Equipment, Studio Equipment, Marine Audio, Installed AV, Musical Instruments, Harnesses & Trims) → relevant brand → component/product type → model/product.
+- For each model, use exact manufacturer product image only when model match is proven; where no verified image exists, use a clean neutral placeholder with no text overlay rather than unrelated imagery. Fix image sizing/cropping and card text so descriptions never cover product photos.
+- Resolve 572 ambiguous repeated brand/title pairs using exact source model/SKU; do not merge or invent identifiers. Complete missing descriptions/specs from manufacturer pages or workbook source.
+- Preserve price/stock freeze: 25-Oct data is a dated preview snapshot; do not change live supplier pricing, live stock, or import records.
+- Acceptance: all visible items have clean layout, accurate name/model/brand/component, source traceability, image match or explicit placeholder, and quote/current-price disclaimer where appropriate; run catalogue image/detail audit.
+
+C. Audio hierarchy and all-store navigation
+- Verify the main Audio category card links to the one Audio department browser, not multiple duplicate top-level Audio categories.
+- Verify each department offers only relevant brands; each brand opens the correct component groups and only matching products. No cross-category pollution or generic component lists that do not apply.
+- Test every required department, brand selection, component filter, back navigation and search result. Ensure no product descriptions overlay images and no mobile overflow.
+- Acceptance: full Playwright path passes at 390x844 and desktop 1366x900 against the exact current deployed preview.
+
+D. Preview deployment and customer journeys
+- Build and deploy the exact candidate head to an isolated Cloudflare Pages preview branch; verify deployment commit equals PR head and all routes/assets load (store, audio, Planetworld, checkout simulation).
+- Verify eight top-level categories and 4x4 Outdoor nested under Camping/Leisure/Outdoors; vehicle verification only for vehicle-specific products; terms acknowledgement before buying; login before any real checkout.
+- Verify search, Part Search, product details, cart, local preview checkout simulation, no Supabase writes, no order submission, no stock reservation, and no payment calls.
+- Acceptance: reproducible desktop/mobile browser test report and a single immutable preview URL for the exact accepted head.
+
+E. WhatsApp
+- Test Part Search request, quote request and checkout enquiry links with real encoded product/order data on Android Chrome and desktop browser. Verify correct business number, message contents, no private address/bank detail leakage, and that WhatsApp opens for user review (no auto-send).
+- Acceptance: end-to-end handoff evidence on both device classes; distinguish user-sent WhatsApp message from merely generated link.
+
+F. ASC — keep separate
+- Await/add the fresh post-reset ASC catalogue supplied by owner. Preserve original/hash; stage structured CSV/XLSX; exact code/photo match; build 25-item pilot; record exceptions; obtain owner review before import.
+- Keep ASC supplier SKU separate from internal SKU, supplier availability separate from premises stock, and prices/stock unchanged pending explicit approval. Do not revive old pre-reset files or generic stock CSV.
+- Acceptance: approved pilot and integration plan; no import until owner approval. If source is not supplied, mark as externally blocked rather than fabricating completion.
+
+G. Checkout/payment and release boundary
+- Preview: keep no-write simulation isolated from real checkout and clearly label it as demo. Verify totals and basket behaviour in browser.
+- Real checkout: validate authenticated login, terms, pickup/delivery quote, server-side totals, protected Edge Function, duplicate-order protection, EFT instructions from server, Pending status until manual reconciliation, and WhatsApp order reference. Verify no sensitive data leaks.
+- Payment gateway: obtain owner-approved gateway choice and credentials through secure configuration, configure callbacks/return URLs and idempotency, and run test-mode transactions. Do not invent bank details or expose secrets in source.
+- Production release: separate explicit owner approval for Supabase, Axxess upload, DNS, payment activation, live catalogue/price/stock and production deployment. None changed in this audit.
+
+### Work order / stop conditions
+1. Resolve runner availability or establish an alternate reproducible browser runner; repair stale browser workflow assumptions.
+2. Deploy exact PR head and pass complete desktop/mobile journeys including the preview checkout simulation.
+3. Finish Planetworld model/image/detail presentation from authoritative workbook sources; retain placeholders where matching is unproven.
+4. Verify WhatsApp handoff.
+5. Integrate ASC only when the fresh post-reset source arrives and pilot passes.
+6. Complete real checkout/payment configuration only with owner-approved secure details and separate release approval.
+
+Do not label the store 95%, ready, launch-ready or customer-ready until the weighted score is at least 95% AND all critical preview acceptance gates (exact-head deployment, desktop/mobile browser pass, catalogue presentation, search, WhatsApp handoff and safe checkout journey) have evidence. ASC source and live payment activation must be reported separately if intentionally held outside preview scope.
