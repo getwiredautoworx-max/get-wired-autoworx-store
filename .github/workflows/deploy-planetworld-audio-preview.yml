@@ -6,6 +6,7 @@ on:
     paths:
       - "preview-store.html"
       - "preview-audio.html"
+      - "preview-checkout.html"
       - "assets/audio-category-navigation.js"
       - "assets/planetworld-catalogue-preview.json"
       - "scripts/build-cloudflare-pages-public.py"
