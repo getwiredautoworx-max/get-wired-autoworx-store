@@ -1,3 +1,13 @@
+## PRODUCT IMAGE FALLBACK / TEST FIX CHECKPOINT — 2026-10-31 19:00 SAST
+
+- Product detail now uses the existing packaged neutral placeholder; shared image fallback recognizes the same filename and will not replace it with an unreviewed SKU image.
+- Fixed two defects in the Audio regression test source: missing `previewProduct` fixture and mis-escaped Part Search fallback regex.
+- Full Audio regression source executed in an in-memory harness: 89 assertions passed. Catalogue search test source with fetched matcher: 15 assertions passed. Neither is a Node runtime, Actions, or browser pass.
+- Latest code head before this control-file update: `fc98d79dfe0da13d1beb55d7116702793bf4dbca`, 45 ahead / 0 behind main.
+- Continue remaining no-credit asset/product-card audit; preserve launch gates and do not dispatch Actions until quota reset/recheck.
+
+---
+
 ## NO-CREDIT EXECUTION QUEUE UPDATE — 2026-10-31
 
 - Fixed homepage empty-subcategory dead ends: homepage nested menus now use recursive populated-branch counts, matching the preview category-detail route. 4X4 Outdoor remains under Camping / Leisure / Outdoors when populated.
