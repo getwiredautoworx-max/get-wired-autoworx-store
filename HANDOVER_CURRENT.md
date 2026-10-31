@@ -1,6 +1,12 @@
 ## LATEST EXECUTION UPDATE — 2026-10-31 — 48-HOUR RELEASE PUSH
 
 
+### Latest candidate checkpoint — 31-Oct-2026
+- Exact candidate head before this handover-only update: `11f6261157ada27d2ef12456ce7e1dbff5ca5625`. Current main: `dbe69f61bf468af313c3f3b749a73dc42992126b`. GitHub reports PR #139 mergeable; compare is 44 commits ahead / 0 behind. PR remains draft and unmerged.
+- New exact-head workflow runs on `11f6261157ada27d2ef12456ce7e1dbff5ca5625`: package QA `41202770537`, image audit `41202770569`, SKU audit `41202770648`, search tests `41202770687`, smoke `41202770654`; all completed failure before steps. Package job `124541248...` returned `steps: null`; no test assertion executed. The Actions runner/start issue remains the immediate verification/deployment blocker.
+- No exact-head Cloudflare Pages deployment has been confirmed for this candidate. The older preview URL is not current-head evidence. Desktop/mobile acceptance remains pending.
+
+
 ### Latest browser acceptance coverage added — 31-Oct-2026
 - Extended the Playwright Audio journey in `.github/workflows/store-preview-browser-qa.yml`: delay the Planetworld JSON response by 1.5 seconds, select Car Audio before the data arrives, verify the selected department redraws after load, select a brand and component, confirm product cards render, and inspect the WhatsApp quote URL/message for the correct number, product details, snapshot date and readable line breaks. Mobile and desktop overflow checks remain in the same path.
 - Workflow source update commit: `4391c33ef07eef6cb1a6b1d6f7c0a9b12495ed1e`.
