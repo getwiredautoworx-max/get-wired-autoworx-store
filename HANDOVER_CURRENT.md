@@ -1,3 +1,13 @@
+## CATEGORY TAXONOMY SOURCE GATE CONFIRMED — 2026-10-31 17:52 SAST
+
+- Located and re-read the existing category authority documents on current main: `PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md`, `CATEGORY_MAPPING_REVIEW_2026-10-09.md`, and `assets/store-category-hierarchy.json`.
+- The proposed eight-root hierarchy is explicitly marked PROPOSAL ONLY. The JSON hierarchy is explicitly `STAGING_TAXONOMY_ONLY_NOT_APPROVED_FOR_PRODUCT_IMPORT` with `live_catalogue_enabled=false`. The mapping review contains read-only SQL samples and requires a complete 4,187-product SKU-level export, confidence/evidence review and owner approval before any writes.
+- Therefore the 34 empty child branches, duplicate roots/children and orphan top-level 4X4 row cannot safely be "fixed" by renaming/reparenting category rows or bulk-moving products from names alone. The safe resolution is a full SKU-level mapping report, then owner-approved controlled batch; no current source evidence authorizes the live mutation. No Supabase write or category assignment change has been made.
+- This also confirms why the current dated category snapshot is insufficient to declare the eight-root taxonomy complete: it records only category/product counts as at 29-Oct and does not provide the full product-level mapping evidence required by the existing proposal.
+- Current category task state: structure defects identified and documented; source-authority rules recovered; complete SKU-level export and owner-approved mapping remain blockers. Continue with read-only review and preview-only presentation fixes until those gates are met.
+
+---
+
 ## PREVIEW HANDOFF REGRESSION ASSERTIONS ADDED — 2026-10-31 17:45 SAST
 
 - Extended `tests/audio-navigation.test.cjs` with four source assertions for the preview banner's WhatsApp-only handoff wording, the enforced 4 MB photo limit, matching validation copy, and manual photo attachment instruction.
