@@ -1,3 +1,13 @@
+## PART REQUEST YEAR SELECTOR / EDGE-CASE CHECKPOINT — 2026-10-31 19:30 SAST
+
+- Fixed double-escaped 4-digit year regex in preview vehicle request form; added regression guard.
+- Audio regression source: 90 assertions passed in in-memory JS harness. Catalogue matcher regression source: 15 assertions passed in in-memory JS harness. Preview-store inline scripts: 8 compile with zero syntax errors. Not Node runtime/Actions/browser acceptance.
+- Preview request mode confirmed to take WhatsApp-only path and return before photo Storage / request-table POST. Legacy source modal blocked by preview guard.
+- Eight source files scanned for additional double-escaped regex tokens; none found.
+- Code checkpoint: `2c237105934e200bd5e96f0e217f08f02ea015b1`, 51 ahead / 0 behind main. Continue no-credit data/request audit; no Actions or live writes.
+
+---
+
 ## PRODUCT CARD / ASSET / ROUTE AUDIT — 2026-10-31 19:15 SAST
 
 - Confirmed exact-SKU image handling and neutral fallback; no visually similar substitution. Public build allowlist excludes supplier/internal source files and includes product placeholder and WebP assets.
