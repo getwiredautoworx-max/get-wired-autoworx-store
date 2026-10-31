@@ -54,7 +54,7 @@ const approvedRoots={
 };
 for(const [label,[key,id]] of Object.entries(approvedRoots)){
   assert.ok(categoryNavigation.includes("'"+label+"':'"+key+"'"),label+' must map to its approved navigation key');
-  assert.ok(categoryNavigation.includes("'"+key+"':'"+id+"'"),label+' must resolve to its approved category ID');
+  assert.ok(categoryNavigation.includes(key+":'"+id+"'"),label+' must resolve to its approved category ID');
   const category=categoryTree.categories.find(c=>c.id===id);
   assert.ok(category,label+' category ID must exist in the dated read-only category snapshot');
   assert.equal(category.parent_id,null,label+' must remain a root category in the snapshot');
