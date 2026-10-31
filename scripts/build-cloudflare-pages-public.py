@@ -15,12 +15,13 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-checkout.html",
 ]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
 ]
+PREVIEW_ASSET_FILES = ["audio-category-navigation.js", "planetworld-catalogue-preview.json"]
 FORBIDDEN_DIRS = {
     "suppliers", "catalogue-review", "catalogue-source", "catalogue-audits",
     "staging", "supabase", ".github", "android-owner-app", "apk-sales-intelligence",
@@ -50,6 +51,8 @@ include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
+    for name in PREVIEW_ASSET_FILES:
+        copy_file(f"assets/{name}")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 

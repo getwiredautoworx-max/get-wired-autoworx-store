@@ -11,6 +11,24 @@ on:
           - "no"
           - "yes"
         default: "no"
+      confirm_delete_artifacts:
+        description: "Choose yes to permanently delete matching old APK/build/QA artifacts"
+        required: true
+        type: choice
+        options:
+          - "no"
+          - "yes"
+        default: "no"
+      artifact_retention_days:
+        description: "Only matching artifacts older than this many days are eligible"
+        required: true
+        type: choice
+        options:
+          - "1"
+          - "3"
+          - "7"
+          - "14"
+        default: "7"
 
 permissions:
   actions: write
@@ -85,3 +103,60 @@ jobs:
             echo "Re-run with confirm_delete=yes to continue in another rate-limit-safe batch."
           fi
           echo "Only completed runs whose conclusion was failure were targeted. Successful, cancelled, queued, and in-progress runs were not targeted."
+
+      - name: List and optionally delete old APK, build and QA artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          CONFIRM_DELETE_ARTIFACTS: ${{ inputs.confirm_delete_artifacts }}
+          ARTIFACT_RETENTION_DAYS: ${{ inputs.artifact_retention_days }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$ARTIFACT_RETENTION_DAYS" =~ ^(1|3|7|14)$ ]] || { echo "Invalid artifact retention period"; exit 2; }
+          cutoff_epoch="$(date -u -d "$ARTIFACT_RETENTION_DAYS days ago" +%s)"
+          page=1
+          total_bytes=0
+          artifact_ids=()
+          artifact_names=()
+          artifact_sizes=()
+          while true; do
+            response="$(gh api "repos/$REPOSITORY/actions/artifacts?per_page=100&page=$page")"
+            page_count="$(jq '.artifacts | length' <<< "$response")"
+            while IFS=$'\t' read -r artifact_id artifact_name artifact_size created_at; do
+              [ -n "$artifact_id" ] || continue
+              created_epoch="$(date -u -d "$created_at" +%s)"
+              lower_name="${artifact_name,,}"
+              if [ "$created_epoch" -lt "$cutoff_epoch" ] && [[ "$lower_name" =~ (apk|build|smoke|package|catalogue-image-audit|monitor) ]]; then
+                artifact_ids+=("$artifact_id")
+                artifact_names+=("$artifact_name")
+                artifact_sizes+=("$artifact_size")
+                total_bytes=$((total_bytes + artifact_size))
+              fi
+            done < <(jq -r '.artifacts[] | select(.expired == false) | [.id,.name,.size_in_bytes,.created_at] | @tsv' <<< "$response")
+            [ "$page_count" -lt 100 ] && break
+            page=$((page + 1))
+          done
+          total="${#artifact_ids[@]}"
+          total_mb="$(awk -v bytes="$total_bytes" 'BEGIN { printf "%.1f", bytes/1024/1024 }')"
+          echo "Old build/QA artifact candidates: $total ($total_mb MiB), older than $ARTIFACT_RETENTION_DAYS days."
+          if [ "$total" -eq 0 ]; then echo "Nothing to delete."; exit 0; fi
+          if [ "$CONFIRM_DELETE_ARTIFACTS" != "yes" ]; then
+            echo "SAFE MODE: no artifacts deleted. Re-run with confirm_delete_artifacts=yes to delete these candidates."
+            for i in "${!artifact_ids[@]}"; do
+              echo "${artifact_ids[$i]}  ${artifact_names[$i]}  ${artifact_sizes[$i]} bytes"
+              [ "$i" -ge 29 ] && break
+            done
+            exit 0
+          fi
+          max_per_run=500
+          deleted=0
+          for i in "${!artifact_ids[@]}"; do
+            [ "$deleted" -ge "$max_per_run" ] && break
+            echo "Deleting old artifact ${artifact_ids[$i]} (${artifact_names[$i]})"
+            gh api --method DELETE "repos/$REPOSITORY/actions/artifacts/${artifact_ids[$i]}"
+            deleted=$((deleted + 1))
+          done
+          echo "Old artifacts deleted: $deleted"
+          if [ "$deleted" -lt "$total" ]; then echo "Remaining candidates: $((total - deleted)); rerun cleanup to continue."; fi
+          echo "Only old artifacts whose names contain apk/build/smoke/package/catalogue-image-audit/monitor were eligible."
