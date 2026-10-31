@@ -28,3 +28,8 @@ const planetworld = [{id:"pw-0001",name:"Alpine 4ch Amplifier",public_sku:"",bra
 assert.equal(search(planetworld,"Alpine 4ch Amplifier")[0]?.p?.id,"pw-0001","Planetworld title should be searchable");
 assert.equal(search(planetworld,"Alpine Car Audio")[0]?.p?.id,"pw-0001","Planetworld brand and division fields should be searchable");
 console.log("PLANETWORLD_PART_SEARCH_TESTS_PASS: 2 assertions");
+
+// Manufacturer-reference records expose the model/code field to local search.
+const verified = [{id:"verified-GW-C7A2361D",name:"Alpine HCE-C2100RD HDR multi-view rear camera system",public_sku:"GW-C7A2361D",brand:"Alpine",description:"HDR multi-view rear camera",category_name:"Cameras & Parking",specifications:{modelNumber:"HCE-C2100RD"},supplier:"Planetworld",sourceType:"VerifiedModel",manufacturerModel:"HCE-C2100RD"}];
+assert.equal(search(verified,"HCE-C2100RD")[0]?.p?.id,"verified-GW-C7A2361D","Verified manufacturer model should be searchable");
+console.log("VERIFIED_MODEL_SEARCH_TESTS_PASS: 1 assertion");
