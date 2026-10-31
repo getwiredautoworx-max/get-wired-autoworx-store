@@ -1,3 +1,13 @@
+## AUDIO QA SOURCE-ASSERTION REPAIR — 2026-10-31 17:32 SAST
+
+- Static review of `tests/audio-navigation.test.cjs` found four filename assertions with double-escaped dots in JavaScript regex literals. Those patterns would match a backslash plus a character rather than the intended literal filename dot, so the curated JSON / checkout HTML assertions would fail when the test actually ran.
+- Corrected all four regex literals to escape the dot once. Candidate branch commit: `93699efbc5a504310ef33ef5f12dfc94e6bcf377`.
+- Re-fetched the test and confirmed all four double-escaped regex patterns are gone. Ran eight in-memory source assertions against the candidate's Audio page, build script, and preview store: all eight passed (curated JSON fetch, manufacturer model/page fields, preview route allowlisting, Audio adapter inclusion, and checkout route patterns).
+- These are source-level assertions only. The Node test file was not executed, and no GitHub Actions/browser workflow ran. PR #139 remains draft/unmerged and diverged from current main.
+- No product, catalogue, supplier, Supabase, live stock/price, production, payment, Axxess or DNS data was changed.
+
+---
+
 ## PREVIEW REQUEST-HANDOFF COPY / PHOTO VALIDATION FIX — 2026-10-31 17:25 SAST
 
 - Source review found the preview banner incorrectly stated that "part requests are disabled", although the preview form is intentionally wired to open a WhatsApp handoff. The preview handoff does not submit or store the request; selected photos must be attached manually in the WhatsApp chat.
