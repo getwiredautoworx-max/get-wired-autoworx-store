@@ -5287,3 +5287,13 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 2. Add deterministic regression coverage for confirmed source contracts without changing live data or weakening launch gates.
 3. Prepare a manual desktop/mobile acceptance checklist and record exact expected outcomes for the isolated preview.
 4. Reconcile the candidate against the latest main handover before any PR update/merge; keep the candidate unapproved until real Node and hosted browser tests pass.
+
+
+## NO-CREDIT PRODUCT PRESENTATION SECURITY FIX — 2026-10-31 18:32 SAST
+
+- Read-only review of `assets/progressive-store-enhancements.js` found that saved-product and recently-viewed product panels escaped product names but inserted public SKU text directly into `innerHTML`. This was an avoidable HTML-injection surface if a SKU ever contained markup characters.
+- Added a shared `escapeHtmlText()` helper and applied it to the SKU values in both the saved-products list and recently-viewed strip. No product records, search behaviour, pricing, stock or checkout logic changed.
+- Added three regression assertions to `tests/audio-navigation.test.cjs` to require the helper and both escaped SKU render paths.
+- Re-fetched the changed enhancement script and test file; six targeted source assertions passed (helper, saved SKU, recent SKU, and all three test guards). This is source verification only; the Node test has not yet been executed.
+- Change is isolated to the integration candidate. No GitHub Actions run, deployment, Supabase operation, production edit, supplier/stock update, payment change or Axxess/DNS action occurred.
+
