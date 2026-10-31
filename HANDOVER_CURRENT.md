@@ -5269,3 +5269,21 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 1. After Actions quota reset, confirm available quota/runner before one controlled exact-head run; run both Node tests and package QA.
 2. Deploy this exact candidate head to an isolated preview, record the immutable deployment URL/commit, and run desktop 1365px plus mobile 390px and 320px journeys.
 3. Keep taxonomy defects gated by the complete SKU-level mapping evidence and owner approval; the eight-root proposal and staging JSON are not authority to mutate live category assignments.
+
+
+## NO-CREDIT CATEGORY NAVIGATION AUDIT / REGRESSION COVERAGE — 2026-10-31 18:20 SAST
+
+- Used the dated read-only category snapshot (`assets/category-tree.json`, generated 2026-10-29 09:52:49Z) and the actual navigation bridge to verify the eight approved customer-facing category aliases against their existing category IDs.
+- Verified all eight aliases map to existing root category IDs in that snapshot: Auto Electrical Spares, Vehicle Security, Car Audio & Entertainment, Automotive Accessories, Marine Spares & Accessories, Tools / Hardware / Consumables, Camping / Leisure / Outdoors, and Trailer & Canopy.
+- Verified the 4X4 Outdoor customer-facing alias resolves to category `182423ec-ea46-43e4-bbe3-b8857b5a1583`, whose parent in the snapshot is Camping / Leisure / Outdoors (`af2f8625-4f42-45e6-9f21-d571d7415893`). The snapshot also contains a separate empty top-level 4X4 placeholder; it remains a documented taxonomy cleanup item and was not changed.
+- Added 36 Node regression assertions to `tests/audio-navigation.test.cjs` for the eight root aliases, category ID mappings, snapshot existence/root relationships, and nested 4X4 relationship. Re-fetched and source-checked the test, navigation bridge and JSON snapshot: **36/36 targeted source assertions passed**.
+- Important: this was source-level verification in the connected repository environment, not execution of `node tests/audio-navigation.test.cjs`. The Node test remains queued for actual execution after a local checkout/runtime path or available Actions runner is established.
+- Read-only snapshot audit found 166 active category rows, 58 active roots and 52 repeated active category names in the dated snapshot. These are not authorization to mutate the live taxonomy; the existing full SKU-level evidence and owner-approval gate remains in force. No category rows or product assignments were changed.
+- This work used repository read/write operations only; it did not consume GitHub Actions minutes, deployment credits, supplier API credits or Supabase resources. No workflow was dispatched.
+- Latest change is confined to the clean integration candidate. No main-branch merge, production deployment, Axxess/DNS change, payment activation, live stock/price change, Supabase write, or supplier activation was performed.
+
+### No-allocation work still available before 1-Nov reset
+1. Continue read-only source audits of Part Search, product card rendering, preview routes, mobile breakpoints, broken links and browser console-risk patterns.
+2. Add deterministic regression coverage for confirmed source contracts without changing live data or weakening launch gates.
+3. Prepare a manual desktop/mobile acceptance checklist and record exact expected outcomes for the isolated preview.
+4. Reconcile the candidate against the latest main handover before any PR update/merge; keep the candidate unapproved until real Node and hosted browser tests pass.
