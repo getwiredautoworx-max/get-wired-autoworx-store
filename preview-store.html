@@ -1234,8 +1234,8 @@ function openPartRequest(withImage) { return window.openPartRequest(withImage); 
 document.addEventListener('error',function(event){
  const img=event.target;
  if(!img||!img.classList||!img.classList.contains('productImage'))return;
- const next=img.dataset.backup||img.dataset.localFallback;
- if(next){img.src=next;img.dataset.backup='';img.dataset.localFallback='';return;}
+ if(img.dataset.backup){const next=img.dataset.backup;img.dataset.backup='';img.src=next;return;}
+ if(img.dataset.localFallback){const next=img.dataset.localFallback;img.dataset.localFallback='';img.src=next;return;}
  const fallback=document.createElement('div');
  fallback.className='productImagePlaceholder';
  fallback.setAttribute('role','img');
