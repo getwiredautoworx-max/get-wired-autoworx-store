@@ -17,17 +17,23 @@ Supplier cost is excluding VAT and markup.
 - Store/customer-facing price is the final VAT-inclusive selling price only.
 - Do not expose cost price or the calculation on the storefront.
 
-## Category hierarchy
-Use the seven active top-level store categories:
-1. Alarms & Security
-2. Automotive Accessories
-3. Car Audio
-4. Electrical
-5. Lighting
-6. Marine Spares & Accessories
-7. Tools & Workshop
+## Category hierarchy — current approved customer-facing taxonomy
 
-Subcategories belong under the appropriate active top-level category. If a future catalogue needs a new subcategory, create it under the correct active parent rather than creating another top-level category or duplicate legacy category.
+The current customer-facing store has **exactly eight main categories**:
+1. Auto Electrical Spares
+2. Vehicle Security
+3. Car Audio & Entertainment
+4. Automotive Accessories
+5. Marine Spares & Accessories
+6. Tools, Hardware & Consumables
+7. Camping, Leisure & Outdoors
+8. Trailer & Canopy
+
+4X4 Outdoor is a child under Camping, Leisure & Outdoors, not a ninth main category. Preserve useful specialist subcategories beneath the correct approved root; do not flatten all products into root categories.
+
+The seven-root list in older catalogue/import notes (Alarms & Security, Automotive Accessories, Car Audio, Electrical, Lighting, Marine Spares & Accessories, Tools & Workshop) describes a historical database taxonomy and is **superseded for customer-facing navigation**. It is not permission to rename, activate, deactivate, re-parent or delete live category rows. Keep original ASC/Buyer Guide source category and subcategory in separate source fields, and maintain the proposed Get Wired AutoWorx root/subcategory as a separate review field.
+
+If a future catalogue needs a new customer-facing subcategory, propose it under the correct approved root and preserve its source taxonomy. No live category/product writes without a complete SKU-level evidence map and owner approval.
 
 ## Specials / homepage
 - `featured = true` means the product may appear in the homepage Specials section.
