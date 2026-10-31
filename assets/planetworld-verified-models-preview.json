@@ -524,7 +524,8 @@
       "description": "12-inch single-voice-coil Comp subwoofer rated at 150 W RMS recommended amplifier power and 300 W peak. The 4-ohm driver is designed for sealed or ported enclosures and provides a value-focused bass upgrade.",
       "modelNumber": "43C124",
       "manufacturerPage": "https://www.kicker.com/comp-12-4-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comp16/p43_c124/images/480x360-front.jpg"
     },
     {
       "gwSku": "GW-34B8712E",
@@ -552,7 +553,8 @@
       "description": "Mono Class-D subwoofer amplifier delivering up to 1,200 W to a single bass channel and stable operation at 1 ohm. Includes variable KickEQ bass boost, a 12 dB crossover, 24 dB subsonic filter, high-level input support up to 40 V and RCA pass-through outputs.",
       "modelNumber": "46CXA12001",
       "manufacturerPage": "https://www.kicker.com/CXA12001-1200-Watt-Mono-Class-D-Subwoofer-Amp",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/amps/cx19/_cxa12001/images/480x360-front.jpg"
     },
     {
       "gwSku": "GW-31954ABD",
@@ -610,7 +612,8 @@
       "description": "10-inch shallow-mount CompRT subwoofer with dual 2-ohm voice coils. Kicker recommends 400 W RMS amplifier power and lists 800 W peak handling. The low-profile design is intended for installations with limited mounting depth.",
       "modelNumber": "48CWRT102",
       "manufacturerPage": "https://shop.kicker.com/comp-rt-10-2-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comprt21/p48_cwrt102/images/480x360-front.jpg"
     },
     {
       "gwSku": "GW-4493A427",
