@@ -2848,3 +2848,13 @@ Read-only audit of the sanitized JSON used by PR #139:
 - 572 repeated brand+title combinations are present. The public preview feed contains no manufacturer model-number, supplier-SKU or image-URL fields, so these repeated descriptions cannot be safely deduplicated or image-matched. Preserve all source rows; do not guess models or merge apparent duplicates.
 - No image/photo/URL field exists in this 3,317-row feed. The broad catalogue therefore still needs exact-model manufacturer image enrichment; the 68-row curated review set's 11 exact-model image references do not imply coverage of the full feed.
 - Card source structure separates the art area from title/details, but browser visual QA remains pending because hosted Actions jobs failed before runner assignment.
+
+
+## VERIFIED MODEL / MANUFACTURER REFERENCE ENRICHMENT — 2026-10-31
+
+- Joined the 68 curated manufacturer-reference records in the integrated store preview to the 68 corresponding records in the separate Planetworld curated preview by exact brand + product name (68/68 exact joins).
+- Added all 68 `modelNumber` and official `manufacturerPage` references, plus component labels, to the integrated store's verified catalogue cards. Existing 11 exact manufacturer image URLs were retained; the other 57 cards now provide a clickable official manufacturer product-page link in the image area and below the description rather than a dead placeholder. No new image URLs were guessed or copied.
+- Exposed the 68 curated model records to Part Search, alongside the 3,317 broad catalogue records: 3,385 Planetworld search records total. The Part Search index now includes model/code values, manufacturer page URLs and existing image references. Quote flow remains WhatsApp-only and quote-only.
+- Manual search-module test for `HCE-C2100RD` returns the expected verified Alpine record `verified-GW-C7A2361D`. Static checks confirm 68 model codes, 68 manufacturer links, 11 existing inline images and the 3,385-row combined index. Browser QA now tests the HCE-C2100RD model search and manufacturer-page link.
+- Important limitation: the 3,317 broad catalogue records still have no product-image, manufacturer-model or supplier-SKU fields in their public preview JSON. The 68 curated set improves the first tranche but does not solve exact-model images for the full feed. Do not imply full image coverage.
+- Latest branch head is `a185298ab9402dbd8bc12812b7b05fb729bcc3af`. Cloudflare Pages and Workers Builds checks were still in progress at the latest poll; the prior head `14e7dbf` had a successful Pages preview. Wait for a successful Pages build for `a185298` before sharing the refreshed preview as current.
