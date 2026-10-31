@@ -1,3 +1,13 @@
+## IMPORT GUIDANCE / SEVEN-ROUTE SOURCE AUDIT — 2026-10-31 20:05 SAST
+
+- Catalogue import rules now list the eight approved customer-facing roots and explicitly mark the older seven-root list as historical/superseded. 4X4 Outdoor remains nested under Camping / Leisure / Outdoors.
+- Seven preview routes: 17 inline scripts compile with zero syntax errors. Source breakpoints down to 340–420px on key mobile routes; no browser acceptance claimed.
+- Static local route references and private repository/public-build allowlist were checked. Supplier/internal review directories remain excluded from public output.
+- 4,187-SKU category map remains open: no full candidate export artifact or owner-approved mapping; no database writes.
+- Candidate code/docs head: `8d154e9e2ffa784082a29848789d8863291dcb06`, 58 ahead / 0 behind main. Continue safe no-credit source audit; no Actions/deploy/merge/live writes.
+
+---
+
 ## PRODUCT CARD IMAGE FALLBACK FIX — 2026-10-31 19:45 SAST
 
 - Product image failure sequence now continues correctly: recorded image → image endpoint → exact-SKU local WebP → neutral placeholder. It does not clear the local fallback prematurely.
