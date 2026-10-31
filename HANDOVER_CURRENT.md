@@ -1,3 +1,16 @@
+## EXACT-HEAD BROWSER ACCEPTANCE MATRIX ADDED — 2026-10-31 20:20 SAST
+
+- Added and re-fetched `audits/EXACT_HEAD_BROWSER_ACCEPTANCE_MATRIX_2026-10-31.md`. It specifies desktop 1365×900, mobile 390×844 and narrow mobile 320×740, all seven preview routes, eight-root/Audio/Part Search/product-image/checkout flows, photo validation, preview no-write network checks, and evidence required before readiness claims. Commit: `f0306244dbd25032e7c322b318c548a2348698df`.
+- Matrix is an execution sheet only; it has **not** been run in a browser. It deliberately separates actual Node tests from in-memory source harnesses and hosted browser acceptance.
+- Catalogue import guidance now consistently lists the eight approved customer-facing roots; old seven-root list is labelled historical/superseded. No live taxonomy or product rows changed.
+- Current candidate checkpoint: `f0306244dbd25032e7c322b318c548a2348698df`; compare with `main`: **61 ahead / 0 behind**. Candidate remains unmerged and unapproved for launch.
+- No Actions, deployment, merge, Supabase write/migration, live stock/price/category/catalogue change, payment activation, supplier activation, Axxess or DNS operation occurred.
+
+### Next no-credit action
+Continue the remaining safe Part Search/product-data edge-case audit. After the 1-Nov quota reset, first recheck Actions usage, then execute the two real Node commands and exact-head hosted desktop/mobile browser acceptance using this matrix. Do not infer a pass from the checklist itself.
+
+---
+
 ## NO-CREDIT IMPORT GUIDANCE / FINAL SOURCE PASS — 2026-10-31 20:05 SAST
 
 - Corrected a stale conflict in `CATALOGUE_IMPORT_RULES.md`: its old seven-root database taxonomy is now explicitly marked historical/superseded for customer-facing navigation. The current eight approved store roots are listed; 4X4 Outdoor is explicitly a child under Camping / Leisure / Outdoors. The document now distinguishes source ASC/Buyer Guide taxonomy from the proposed store taxonomy and repeats the no-live-write approval gate. Commit: `8d154e9e2ffa784082a29848789d8863291dcb06`.
