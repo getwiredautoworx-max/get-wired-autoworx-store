@@ -1,3 +1,12 @@
+## LATEST BRANCH STATE RECHECK — 2026-10-31 17:38 SAST
+
+- After the preview-copy and Audio QA source fixes, the candidate branch head is `93699efbc5a504310ef33ef5f12dfc94e6bcf377`.
+- Fresh compare against main now reports `59 ahead / 13 behind`, status `diverged`, merge base `dbe69f61bf468af313c3f3b749a73dc42992126`; PR #139 remains open, draft and non-mergeable. The increased behind count includes the new documentation-only handover checkpoints on main. Do not force-push or merge; branch reconciliation remains a required integration step.
+- The candidate branch now contains two verified preview-only corrections: the part-request banner accurately describes WhatsApp-only handoff/manual photo attachment, and the photo size validator matches its stated 4 MB limit; plus the Audio QA test's four filename regexes are correctly escaped.
+- Current main handover has been re-fetched after each documentation commit. No Actions workflow or hosted browser test was run. Exact-head preview deployment and device acceptance remain unverified.
+
+---
+
 ## AUDIO QA SOURCE-ASSERTION REPAIR — 2026-10-31 17:32 SAST
 
 - Static review of `tests/audio-navigation.test.cjs` found four filename assertions with double-escaped dots in JavaScript regex literals. Those patterns would match a backslash plus a character rather than the intended literal filename dot, so the curated JSON / checkout HTML assertions would fail when the test actually ran.
