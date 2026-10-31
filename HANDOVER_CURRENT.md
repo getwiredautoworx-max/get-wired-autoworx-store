@@ -1,3 +1,13 @@
+## PREVIEW HANDOFF REGRESSION ASSERTIONS ADDED — 2026-10-31 17:45 SAST
+
+- Extended `tests/audio-navigation.test.cjs` with four source assertions for the preview banner's WhatsApp-only handoff wording, the enforced 4 MB photo limit, matching validation copy, and manual photo attachment instruction.
+- During the first edit, two new regex literals were accidentally double-escaped; corrected them immediately and re-fetched the test file. Final static check confirmed zero double-escaped dot/star patterns.
+- Ran 12 in-memory source assertions across the current candidate's preview store, Audio page, build script, package QA and Audio test file. All 12 passed. This verifies source strings and route wiring only; it is not execution of the Node test or browser QA.
+- Latest candidate branch head: `f21afa51ca58b08db102f130bec705a1c5edf247`. Fresh compare: 61 ahead / 14 behind, diverged; PR #139 remains draft and non-mergeable. Main-only handover commits account for the behind-count growth. Reconciliation remains mandatory; do not force-push or merge.
+- No Actions workflow was dispatched. No production or live data was changed.
+
+---
+
 ## LATEST BRANCH STATE RECHECK — 2026-10-31 17:38 SAST
 
 - After the preview-copy and Audio QA source fixes, the candidate branch head is `93699efbc5a504310ef33ef5f12dfc94e6bcf377`.
