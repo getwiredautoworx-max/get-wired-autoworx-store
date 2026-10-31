@@ -4784,3 +4784,29 @@ Run 16 detailed results: HANDOVER_UPDATE_2026-10-30_MONITOR_RUN_16_RESULTS.md (c
 - Targeted retry of PR #131 browser job accepted: run `41071684208`, new job `124205582275`, status queued at last check. No steps/logs or pass yet. Other recent jobs still failed before steps.
 - No storefront, production, supplier, stock, price, Supabase, Axxess, DNS, payment, or hosting changes in this run. No PR merged.
 - Next action: inspect queued job outcome; if it starts, fix actual failing assertions. Then create a clean-main integration successor for populated Planetworld + no-cost Part Search + courier privacy, resolve duplicate robots tag, run exact-head checks and obtain hosted desktop/mobile acceptance. Production HOLD remains.
+
+
+## SIGNIFICANT EXECUTION RESULT — 2026-10-31 08:48 SAST
+
+### Clean-main preview integration
+- Created clean branch `integration/planetworld-partsearch-clean-main-2026-10-31` from current `main` head `399a02dc4041e3f8657e3916bdcfad1eec46f788` (base SHA recorded by GitHub as `399a02dc4041e3f8657e3916bdcfad1eec46f788`). This avoids carrying forward PR #136's 46-ahead / 42-behind divergence.
+- Opened draft PR #139: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/139. Head `14e7dbf0c96bbac6957e3916bdcfad1eec2a7a14`; base `main`; GitHub reports mergeable=true at creation/checkpoint. It remains draft and unmerged.
+- Ported the populated-store Planetworld integration into the clean-main candidate: 3,317 sanitized records from 47 source workbooks, presented in nine collection groupings. JSON fields are limited to id/division/collection/brand/title/component/indicativePrice/hasStock; no supplier SKU, dealer cost or exact stock quantities are exposed.
+- Added the no-cost local search module to the preview store. The Part Search modal now searches both the existing store product feed and all 3,317 Planetworld preview records by title, brand, component and collection. Planetworld matches are clearly quote-only, display the 25-Oct-2026 snapshot disclaimer, and open WhatsApp for a current price/availability quote. No AI credits or paid API calls are used.
+- Preview request flow remains WhatsApp-only and does not write to Supabase or upload photos. All five preview routes now have exactly one `noindex,nofollow` directive.
+- Manual search-engine verification in this session: 10/10 cases passed (exact/partial SKU, multi-term, brand+vehicle, category, typo, no-match, alias, Planetworld title, Planetworld brand/collection). Static integration checks passed. Added automated unit and browser assertions; the browser assertion checks that “Alpine 4ch Amplifier” returns a Planetworld quote result with the dated snapshot notice.
+- GitHub Actions browser/audit/search jobs for PR #139 were QUEUED at the last check; Cloudflare Pages build was IN PROGRESS (build/check id `8d57f793-cc21-4f78-aef8-13381fc4e9a1`). No successful hosted browser result or preview URL has yet been confirmed. Do not call this browser-tested or ready until exact-head jobs pass and the preview URL is verified.
+
+### Supplier source inventory rechecked
+- Repository visibility is PRIVATE (verified from GitHub repository metadata).
+- `suppliers/Planetworld/` contains 47 original XLSX source workbooks. Keep these unchanged; the preview uses the dated 25-Oct snapshot and is not live stock.
+- `suppliers/ASC/` currently contains only its intake README; no current ASC November Buyer’s Guide/stock-arrival PDF or XLSX is present in that folder. ASC remains a separate supplier integration and must not be combined with Planetworld. Previous Gmail attachment metadata alone is not usable source content.
+- `suppliers/Audio Connections/` contains the authorised-dealer reference PDFs `STARSOUND Price Lists 05 AUGUST 2026.pdf` and `Sony Mobile ES Dealer Price List Sept 26.pdf`, plus its README. Owner already confirmed authorised dealer status; do not ask for that confirmation again. PDF extraction/model mapping remains a separate follow-on task.
+- Other supplier directories exist independently. Do not mix their catalogue, pricing or stock data.
+
+### Remaining gaps / controls
+- Planetworld's 3,317 broad cards still lack approved exact-model product images and complete manufacturer descriptions; the new preview does not claim those assets are solved. The 68-row curated preview retains its separate exact-model image evidence and placeholders.
+- The 25-Oct Planetworld snapshot is dated; current price and availability must be confirmed before an order. The 19 zero-RRP rows and 18 cost-floor exceptions remain quote-only/held under the existing audit rules.
+- ASC source documents still need to be made accessible for its separate 25-product pilot and current price/availability reconciliation.
+- No PR merged, no production deployment, no live product/price/stock/category/active-flag write, no supplier import/publication, no Supabase write, no Axxess/DNS/payment change, and no release-credit use occurred.
+- Next: monitor PR #139 Cloudflare Pages and queued GitHub Actions checks; only act on actual failures after runner assignment. Then verify the hosted preview and mobile/desktop journey. Keep PR #136 unmerged; PR #139 is the clean-main candidate pending successful exact-head verification.
