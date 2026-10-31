@@ -1,6 +1,12 @@
 ## LATEST EXECUTION UPDATE — 2026-10-31 — 48-HOUR RELEASE PUSH
 
 
+### Latest browser acceptance coverage added — 31-Oct-2026
+- Extended the Playwright Audio journey in `.github/workflows/store-preview-browser-qa.yml`: delay the Planetworld JSON response by 1.5 seconds, select Car Audio before the data arrives, verify the selected department redraws after load, select a brand and component, confirm product cards render, and inspect the WhatsApp quote URL/message for the correct number, product details, snapshot date and readable line breaks. Mobile and desktop overflow checks remain in the same path.
+- Workflow source update commit: `4391c33ef07eef6cb1a6b1d6f7c0a9b12495ed1e`.
+- Exact-head runs for this update (browser `41202724257`, package `41202724189`, search `41202724269`, smoke `41202724223`, image audit `41202724186`, SKU audit `41202724304`) all failed before steps; job summaries report `steps: null`. No test code executed. This remains the external Actions runner/job-start blocker.
+
+
 ### Follow-up verification — 31-Oct-2026
 - Re-read the branch handover after the merge and confirmed the new operating direction, latest execution record and prior main-branch handover history are all retained.
 - Rechecked current branch against main: PR #139 is open/draft and GitHub reports mergeable; compare result is 40 commits ahead and 0 behind main at the time of this check.
