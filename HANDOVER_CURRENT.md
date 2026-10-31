@@ -1,3 +1,27 @@
+## Execution update — Audio hierarchy and isolated preview packaging — 31 October 2026
+
+Latest PR #139 branch head: `dcaeb4860103607d24cd540d7c83acba11da6080`.
+
+### Implemented in PR #139
+- `preview-store.html` now loads `assets/audio-category-navigation.js`. The script adds a visible “Browse all Audio departments” link inside the existing single Audio root category (category id `5ab55c53-eee3-41ce-ad48-04ad6df85181`).
+- `preview-audio.html` implements department → brand → component/product type → product listing. It contains nine department entries: Car Audio & Video, Home Entertainment, Band & Live Sound, DJ Equipment, Studio Equipment, Marine Audio, Installed AV, Musical Instruments and Harnesses & Trims.
+- `scripts/build-cloudflare-pages-public.py` now allowlists `preview-audio.html` and copies `audio-category-navigation.js` plus `planetworld-catalogue-preview.json` only into the isolated preview package. These two assets remain excluded from the standard production package.
+- Updated the Pages package QA to assert the Audio route and preview-only assets are included in the isolated build and excluded from the standard build.
+- Added `tests/audio-navigation.test.cjs` source acceptance checks and Playwright browser assertions for the main Audio category link, nine departments, brand selection, component selection, and mobile/desktop overflow.
+- A direct static-source audit was executed against the committed files: all 9 structural assertions passed. This is not a substitute for browser execution.
+
+### Deployment and hosted QA blockers
+- Added `.github/workflows/deploy-planetworld-audio-preview.yml` to build and deploy the isolated PR branch to the non-production Cloudflare Pages branch `planetworld-audio-preview`; it does not target production.
+- Exact-head workflow run `41183261239` (“Deploy Planetworld Audio Preview”) failed before runner allocation; the GitHub job returned `steps: null`. The latest exact-head browser, catalogue, package and smoke workflows also failed with `steps: null`, before any test step executed. Therefore no hosted browser result or new Pages deployment is confirmed.
+- Existing Pages URL `b80d4a46.get-wired-autoworx-store.pages.dev` is from an earlier head and must not be represented as this latest build.
+- PR #139 remains draft/unmerged. Do not merge or claim preview acceptance based on static checks alone.
+
+### Separate outstanding dependencies
+- ASC is still a separate workstream. Repository tree and Library search found no post-reset ASC source catalogue; repository currently has only `suppliers/ASC/README.md`. No ASC catalogue integration can be completed without the new owner-supplied source. No historic ASC file, stock feed or import payload was reused.
+- WhatsApp post-order link remains source-configured for +27 74 4884 234; source-level tests exist, but a real customer-device handoff has not been executed.
+- Checkout remains Direct EFT source flow with server-supplied payment instructions after order creation. No bank details or gateway credentials were supplied in this task; PayFast and end-to-end real payment tests remain deferred. No production banking, payment, Supabase, stock, DNS or Axxess changes were made.
+- Preview remains unaccepted until the isolated Pages deployment succeeds and desktop/mobile browser tests execute successfully. Keep the final banking and production-release gates separate.
+
 ## AUDIO CUSTOMER NAVIGATION CORRECTION — 2026-10-31
 
 - Added a new preview-only customer-facing Audio department browser in `preview-audio.html` on PR #139 branch, commit `814bfa6938b2b41623efc8c5c0406f82a4610aad`.
