@@ -4211,3 +4211,11 @@ No live product/SKU publication, supplier activation, price/stock write, Supabas
 - Background tasks: latest 100 runs had no queued/in-progress run. Four safe PR #138 staging runs were retried once at attempt 2 and failed again (runs `41097622223`, `41097621735`, `41097621692`, `41097621649`) on head `997866c5004b73aa5c4ed3483bf1a39ffb7e0b2f`; stop retries until runner/trigger changes. Live Release Gates `41173188438` failed and was not rerun. Background Task Controller failures/cancellations were not rerun because they are orchestration, not safe staging tests. PR #136 current head `5471160387571c8e3d637ad022f284435077c9a4` has no exact-head workflow runs.
 - No PR merges, supplier XLSX edits/imports, live product/price/stock/category/active-flag writes, Supabase writes, deployment, Axxess/DNS/payment changes, or release-credit consumption occurred.
 - Next: owner manually dispatches the Planetworld audit once after storage quota recalculation/clear; owner uploads the November guide/arrival PDFs; continue exact model checks; preserve all holds and October-verified prices.
+
+
+## OWNER DIRECTION / TASK START — 2026-10-31 08:28 SAST
+
+- Resumed after reading the latest permanent handover and the Planetworld branch handover.
+- Owner clarification: **Accessories & Spares Centre (ASC) is a separate supplier-integration task to be included in the Get Wired store.** Do not combine ASC catalogue/pricing work with Planetworld reconciliation or treat ASC PDFs as inputs to Planetworld tasks. Track ASC independently with its own source files, SKU/model mapping, product descriptions, manufacturer images, price/VAT and availability verification, category placement, staging QA and explicit publication gates.
+- This task-start record precedes further work. Existing release/safety boundaries remain unchanged: no supplier workbook edits, supplier imports/publication, live catalogue/price/stock/active-flag changes, PR merges, production deployment, Axxess/DNS/payment changes, or release-credit use without explicit approval.
+- Next action: make the separate ASC scope explicit in both handovers and ensure the current active supplier-pricing blocker is not mislabelled as Planetworld or ASC work. No catalogue data has been changed by this instruction.
