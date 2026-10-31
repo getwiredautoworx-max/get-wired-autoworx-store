@@ -1,3 +1,18 @@
+## NO-CREDIT PRODUCT CARD IMAGE FALLBACK FIX — 2026-10-31 19:45 SAST
+
+- Found a further product-image presentation defect in the main preview: when a recorded external image URL failed, the delegated error handler tried the Supabase image endpoint but cleared the exact-SKU local WebP fallback at the same time. The customer therefore never reached the local image fallback.
+- Changed the error handler to try fallbacks sequentially: recorded image URL → image endpoint → exact-SKU local WebP → neutral “GW — PHOTO COMING SOON” placeholder. It never substitutes a different SKU's image. Added two regression assertions for the endpoint and local fallback stages.
+- Commits: `preview-store.html` `90cfd4b7970dd71e59b4919195c7991dc3a58d7f`; `tests/audio-navigation.test.cjs` `fa3061297756a79b058cab59fd35e43af08ae037`.
+- Re-executed the complete Audio regression source in an in-memory JS harness: **92 assertions passed**. All eight inline scripts in the changed main preview compile without syntax errors. This is still not a Node runtime, hosted Actions run, or browser image-load test.
+- The 15 catalogue-search in-memory assertions remain valid; matcher/test files did not change in this fix.
+- Latest code checkpoint: `fa3061297756a79b058cab59fd35e43af08ae037`; comparison at checkpoint: **55 ahead / 0 behind main**. Candidate remains unmerged/unapproved for launch.
+- No Actions, deployment, merge, Supabase write, live image/product/stock/price change, payment activation, supplier activation, Axxess or DNS operation occurred.
+
+### Next no-credit action
+Continue final source-level edge-case review of product data, category and Part Search, then leave the exact-head manual browser acceptance matrix. Browser image-load and actual desktop/mobile acceptance remain open until an exact-head preview can be tested.
+
+---
+
 ## NO-CREDIT PART REQUEST YEAR SELECTOR FIX — 2026-10-31 19:30 SAST
 
 - Continued Part Search/request-form edge-case audit. Found the vehicle request form's four-digit year extractor used a double-escaped regex (`\\b` / `\\d` in a regex literal), so it searched for literal backslashes instead of word boundaries/digits and could leave the model/year selector empty even when product fitment text contained years.
