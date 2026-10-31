@@ -5234,3 +5234,10 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - Source comparison found one stale assertion in `tests/audio-navigation.test.cjs`: it expected `2774484234`, while the integrated store, Audio product links and preview checkout all use `27744884234`.
 - Corrected the test expectation in commit `77cbbc755deca395ea6069bb586e32c19411bec5`. This is a source-level consistency correction only; the Node test has not yet been executed.
 - Next action remains deterministic Node tests, then exact-head browser acceptance after Actions quota reset. No background monitor code or workflow dispatch added.
+
+
+### Source-level integration inspection — 2026-10-31 SAST
+- Re-fetched candidate source at current branch head and ran 10 explicit content assertions: store loads/calls the free matcher; Audio has all nine departments; Audio loads broad + curated datasets and exposes model/manufacturer links; WhatsApp contact matches store/checkout; preview checkout is non-submitting; seven-route allowlist includes Audio + checkout; browser and package QA workflows reference the relevant tests/routes.
+- Result: **10/10 source-level assertions passed**. This is source inspection, not Node unit-test execution, Playwright, hosted CI, or device acceptance.
+- Current branch head before this handover append: `9691b740313829a0c85548108af20f9d8cd8c87e`; main remains `f487abadae84b33f215cf38bbc1c1ad2c06fff3a`. Candidate is 4 commits ahead / 0 behind at this checkpoint.
+- Next single action: run `node tests/catalogue-search.test.cjs` and `node tests/audio-navigation.test.cjs` in a local Node environment; if local execution is unavailable, run the included CI checks only after Actions quota reset on 1-Nov. Then exact-head desktop/mobile browser QA.
