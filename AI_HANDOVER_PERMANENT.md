@@ -4367,3 +4367,8 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Current exact-head Pages deployment, hosted browser QA, desktop/mobile acceptance and WhatsApp real-device handoff remain unverified. No test/build/deployment pass is claimed.
 - No production upload, DNS, Supabase production write, live stock/price/catalogue change, real payment/checkout, or ASC integration. ASC remains a separate workstream awaiting fresh source.
 - Next: reconcile main safely; after reset verify minutes/runner, then run one controlled exact-head package/search/browser verification; verify preview on desktop/mobile; continue exact model/image enrichment without guessing; maintain production HOLD.
+
+
+### Main-branch drift review — 31-Oct-2026
+- Reviewed all seven commits on main after PR #139's merge base. The changes are limited to handover/checkpoint/task-start documentation; no storefront, supplier data, package, workflow or production source changes were found in that seven-commit delta.
+- PR #139 remains 50 ahead / 7 behind main and GitHub reports mergeable=false. The delta is documentation-only, but branch ancestry still needs a safe reconciliation before merge. Retain the latest handover records from both branches; do not force merge or deploy.
