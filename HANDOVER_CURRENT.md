@@ -1,3 +1,12 @@
+## PREVIEW ROUTE SCRIPT-SYNTAX AUDIT — 2026-10-31
+
+- Parsed all inline scripts on all seven preview routes with JavaScript syntax compilation: `preview-store.html` 8 scripts; `preview-audio.html` 1; `preview-category.html` 2; `preview-products.html` 2; `preview-product.html` 2; `preview-planetworld.html` 1; `preview-checkout.html` 1. **17 scripts, zero syntax errors.** This is syntax validation, not runtime/browser acceptance.
+- Responsive CSS breakpoint source checks: main store 900, 700, 640, 600, 560, 480, 420, 390, 380, 360, 359, 340px; Audio 760, 420px; category 900/500/359px; products 1000/700/480/359px; product detail 800px; Planetworld 900/560/359px; checkout 540px. These establish breakpoint rules exist, not that layout/interaction passed at device widths.
+- Reconfirmed the candidate's preview package builder allowlists all seven preview routes and required Audio/Planetworld preview assets, while standard builds exclude preview-only routes and the public bundle excludes supplier/review/internal directories.
+- Full-page desktop/mobile browser acceptance is still open: no complete local checkout of this candidate is mounted, and an older hosted preview must not be substituted for exact-head evidence.
+
+---
+
 ## NO-CREDIT EXECUTION CHECKPOINT — CLEAN CANDIDATE / SEARCH / TAXONOMY / PLANETWORLD — 2026-10-31
 
 ### Active candidate identity
