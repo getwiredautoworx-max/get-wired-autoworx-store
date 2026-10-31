@@ -42,6 +42,9 @@ assert.match(html,/exact-model references remain searchable/,'Part Search fallba
 
 
 // Eight approved customer-facing root tiles must resolve to the existing category IDs.
+const rootIdsMatch=html.match(/const HOME_CATEGORY_IDS=\[([^\]]+)\]/);
+assert.ok(rootIdsMatch,'homepage must declare its approved root category list');
+assert.equal((rootIdsMatch[1].match(/'[0-9a-f-]{36}'/g)||[]).length,8,'homepage must render exactly eight main category roots; Find a Part is a separate utility tile');
 const progressive=fs.readFileSync('assets/progressive-store-enhancements.js','utf8');
 assert.match(progressive,/function escapeHtmlText\(value\)/,'saved/recent product text must have a shared HTML text escaper');
 assert.match(progressive,/escapeHtmlText\(p\.public_sku\|\|''\)/,'saved-product SKU must be escaped before HTML insertion');
