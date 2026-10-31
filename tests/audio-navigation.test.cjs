@@ -15,4 +15,9 @@ assert.match(audio,/p\.brand===brand/,'products must be scoped to selected brand
 assert.match(audio,/p\.component===component/,'products must be scoped to selected component');
 assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
 assert.match(build,/PREVIEW_ASSET_FILES = \["audio-category-navigation\.js", "planetworld-catalogue-preview\.json"\]/,'preview-only bundle must include its adapter and catalogue JSON');
+const previewCheckout=fs.readFileSync('preview-checkout.html','utf8');
+assert.match(html,/href="preview-checkout\\.html">PROCEED TO CHECKOUT/);
+assert.ok(previewCheckout.includes('Preview mode — no order or payment will be submitted.'));
+assert.ok(!previewCheckout.includes('supabase.co')&&!previewCheckout.includes('fetch('));
+assert.match(build,/"preview-checkout\\.html"/);
 console.log('AUDIO_NAVIGATION_SOURCE_PASS: main category → 9 departments → brand → component → product list; preview-only assets are allowlisted');
