@@ -5297,3 +5297,36 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - Re-fetched the changed enhancement script and test file; six targeted source assertions passed (helper, saved SKU, recent SKU, and all three test guards). This is source verification only; the Node test has not yet been executed.
 - Change is isolated to the integration candidate. No GitHub Actions run, deployment, Supabase operation, production edit, supplier/stock update, payment change or Axxess/DNS action occurred.
 
+---
+
+## OWNER DIRECTIVE — CONTINUITY, EXECUTION AND NO-RESTART RULE — 2026-10-31
+
+The owner has explicitly raised repeated loss of project context, unnecessary progress narration, and restarting/retraining when a new agent or session takes over. This is a project delivery failure. The following operating rules are mandatory for every continuation:
+
+### Single source of truth / session entry
+- Before doing project work, read HANDOVER_CURRENT.md and HANDOVER_EXECUTION_CONTROL_48H.md from the active working branch. Treat them as the persistent project memory and execution authority.
+- Verify the active branch, current HEAD, main comparison and latest task checkpoint before editing. Do not assume a branch, PR, URL, test result or previous next step is still current.
+- Continue from the latest unfinished action. Do not restart audits, repeat completed work, recreate files, reapply commits, or ask the owner to re-explain requirements already recorded here.
+- If the handover is contradictory or a source/branch has changed, resolve the discrepancy by fetching the actual current file/commit and record the correction. Never silently choose an old checkpoint.
+
+### Execution-first communication
+- The default is to execute the next safe, useful task—not send the owner a plan, a list of intentions, or repeated status narration.
+- Do not announce work that has not been performed. Do not claim a task is resolved, tested, ready or complete without recording exact evidence and verification level.
+- Report to the owner only significant verified progress, a material blocker requiring owner input, or a decision that genuinely requires approval. Keep reports short and factual.
+- Do not stop after describing a blocker. Investigate safe alternatives and implement the best available no-cost/no-allocation workaround where possible. If no safe workaround exists, state the exact external dependency and proceed with other independent tasks.
+- Do not ask the owner questions when the answer is already in project handover or prior approved requirements. Ask only when an explicit owner decision or missing source/credential is genuinely required.
+
+### Handover is a live execution record
+- Update this file in the same work session after every material change: completed fix, failed attempt, test result, discovered blocker, branch/owner decision, or task switch. Do not defer the update to a later session.
+- Every entry must record: date; exact branch and commit where known; files changed; what was actually done; evidence/result; what was not tested; safety/release impact; and the single next executable action.
+- Clearly distinguish static/source assertions, actual Node test execution, package/build checks, hosted CI, deployed preview checks, and real desktop/mobile browser/device acceptance. Never substitute one for another.
+- Keep completed history for traceability, but mark superseded branch/head/status facts as historical. The latest dated checkpoint governs only after it has been re-verified against GitHub.
+- Preserve all owner requirements and release boundaries across handovers. No production/Axxess/DNS, payment, Supabase writes, live stock/price/catalogue changes, supplier activation or merge/launch without the required explicit approval.
+
+### No-reset continuation protocol
+- A new agent/session must be able to resume by reading the two handover files, checking the recorded branch/head, and executing the next action—without asking the owner to train it or repeating completed investigation.
+- At the end of a session, leave a concrete resume point: exact file/test/command or repository action to perform next, prerequisites, and expected evidence. Avoid vague entries such as continue testing.
+- Current resume point on this candidate: continue the Part Search source audit and its regression coverage; then product image/card presentation, category subcategory link coverage, preview route/link audit and mobile breakpoint/source audit. Do not claim browser acceptance until an exact-head preview and real browser/device evidence exist. GitHub Actions quota was recorded as exhausted until 1-Nov-2026; recheck quota before dispatching any workflow.
+- The active clean integration candidate remains unapproved for merge or launch. Do not alter the production release boundary to make a progress claim.
+
+This directive records the owner's explicit expectation: less talking, more completed work; persistent memory in the repository; no circular rework; no restarting the project when the agent/session changes.
