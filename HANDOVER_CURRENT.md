@@ -1,3 +1,18 @@
+## NO-CREDIT PART REQUEST YEAR SELECTOR FIX — 2026-10-31 19:30 SAST
+
+- Continued Part Search/request-form edge-case audit. Found the vehicle request form's four-digit year extractor used a double-escaped regex (`\\b` / `\\d` in a regex literal), so it searched for literal backslashes instead of word boundaries/digits and could leave the model/year selector empty even when product fitment text contained years.
+- Corrected the regex to match 19xx/20xx years and added a regression assertion in `tests/audio-navigation.test.cjs`. Commits: `preview-store.html` `b0b1793932bb187039b335dcab7c4628cf150fd7`; test `2c237105934e200bd5e96f0e217f08f02ea015b1`.
+- Re-executed the full Audio regression source in the in-memory JavaScript harness: **90 assertions passed**. Re-executed catalogue search test source with fetched matcher: **15 assertions passed**. Recompiled all eight inline scripts in `preview-store.html`: zero syntax errors. These remain in-memory harness checks, not Node runtime, Actions, or browser/device tests.
+- Scanned eight relevant preview/product JavaScript sources for double-escaped regex tokens (`\\\\b`, `\\\\d`, `\\\\w`, `\\\\s`); no additional occurrences were found.
+- Reconfirmed preview mode is set directly on `<body data-preview-mode="true">`; the request form takes the WhatsApp-only branch, instructs the customer to attach photos manually, and returns before the Supabase Storage / `part_source_requests` POST path. The legacy supplier-source modal is separately blocked by the preview click guard. No live request or photo was submitted.
+- Latest code checkpoint: `2c237105934e200bd5e96f0e217f08f02ea015b1`; branch comparison at checkpoint: 51 ahead / 0 behind main. Candidate remains unmerged and unapproved for launch.
+- No Actions, deployment, Supabase write, production, live stock/price/category/catalogue change, payment activation, supplier activation, Axxess or DNS operation occurred.
+
+### Next no-credit action
+Continue source-level edge-case review of product listing/detail data handling and request handoff; then finalize the manual desktop/mobile acceptance matrix. Real Node execution and exact-head desktop/mobile browser acceptance remain open.
+
+---
+
 ## NO-CREDIT PRODUCT CARD / ASSET / INTERNAL ROUTE AUDIT — 2026-10-31 19:15 SAST
 
 - Rechecked the product listing card path: each image request is keyed to the exact public SKU under `assets/products_webp/`; failed images are hidden into a labelled “Image not available” slot. No generic visually similar product image is substituted. Product detail tries the product's recorded image, the existing SKU image endpoint, then exact-SKU local WebP before the neutral packaged placeholder.
