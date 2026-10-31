@@ -4189,3 +4189,11 @@ No live product/SKU publication, supplier activation, price/stock write, Supabas
 - Six fresh exact-head GitHub Actions workflows (smoke, Pages package QA, image audit, populated browser QA, SKU audit, runner diagnostic) all completed FAILURE before steps. Diagnostic job 124179259135 and browser job 124179258439 have no logs or steps. This remains an Actions runner/job-start infrastructure blocker; no browser assertion was executed.
 - Static V8 check passes for all 7 inline scripts. Hosted desktop/mobile visual acceptance remains outstanding. Do not call the customer-facing category/Specials defect finally resolved until categories, subcategories, featured specials and product navigation are confirmed on the deployed preview at desktop and mobile widths.
 - PR #136 remains draft/unmerged; production HOLD and all production/data safeguards remain unchanged. Detailed result: `catalogue-review/HOMEPAGE_CATEGORIES_SPECIALS_FIX_2026-10-30.md`.
+
+
+## MONITOR RUN START — 2026-10-31 08:15 SAST
+
+- Resumed from the permanent handover and the Planetworld monitoring branch. Task-start was recorded before further investigation.
+- Scope for this run: verify the latest Planetworld report inputs, PR #95 state/head/mergeability, latest read-only Planetworld audit run/job/artifacts, all relevant queued/in-progress/background workflows, and the exact source-verification/category/price blockers.
+- Safety: no PR merge, supplier XLSX edit, supplier-data publication/import, live catalogue/price/stock/active-flag change, Supabase production change, Axxess/DNS/payment change, deployment, or release-credit consumption. Keep 19 zero-RRP rows separate for owner audit. Do not rerun a queued/in-progress job or a production/deployment job.
+- Next action: inspect branch reports and current GitHub workflow state; retry only a failed/cancelled/stopped safe staging job where an explicit supported rerun action exists, then verify the retry and record its exact IDs/conclusion.
