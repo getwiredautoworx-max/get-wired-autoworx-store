@@ -38,3 +38,11 @@
 3. Preserve 107/107 October-verified prices, 9 asterisk-price quote-only/inactive records, 19 Planetworld zero-RRP owner-hold records, and all 198 manual category-review rows.
 4. Continue exact model verification; keep uncertain variants unverified and do not copy manufacturer imagery until image-use permission is established.
 5. Do not merge PR #95, merge/rebase other PRs, change live catalogue/prices/stock/active flags, deploy, or alter Axxess/DNS/payments without explicit owner approval.
+
+
+## OWNER SCOPE CORRECTION — 2026-10-31
+
+- Owner clarified that Accessories & Spares Centre (ASC) must remain a **separate supplier-integration workstream** to be included in the Get Wired store. It is not part of Planetworld catalogue reconciliation.
+- The 2026-10-28 email containing the November Buyer's Guide and stock-arrival PDFs belongs to the ASC workstream. Its attachment-access blocker and the 38 historical September price-scaling SKUs must be tracked under ASC independently, not described as a Planetworld price-feed blocker. Do not use ASC source PDFs to update Planetworld pricing or audit results.
+- Planetworld remains its own workstream: 702 source rows, its own workbook audit, exact manufacturer/model/image verification, category review and non-zero-RRP pricing checks. Keep its 19 zero-RRP owner-audit rows separate.
+- ASC store-integration scope: inventory/source-file intake; exact SKU/model crosswalk; product descriptions and category mapping; manufacturer image-source verification; current dealer cost, VAT and availability checks; preview-only staging and QA. No supplier workbook modification, import/publication, live catalogue/price/stock/active-flag change or production release is authorised by this scope clarification.
