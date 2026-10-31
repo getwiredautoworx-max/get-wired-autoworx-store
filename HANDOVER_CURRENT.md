@@ -1,3 +1,14 @@
+## PREVIEW REQUEST-HANDOFF COPY / PHOTO VALIDATION FIX — 2026-10-31 17:25 SAST
+
+- Source review found the preview banner incorrectly stated that "part requests are disabled", although the preview form is intentionally wired to open a WhatsApp handoff. The preview handoff does not submit or store the request; selected photos must be attached manually in the WhatsApp chat.
+- Corrected the preview banner to state that checkout and online submission are disabled, while part requests open WhatsApp only and photos must be attached manually.
+- Corrected the request form's photo-size validation from 5 MB to 4 MB to match the customer-facing instruction. Updated both the enforcement check and validation error text.
+- Change committed to PR #139 candidate branch `integration/planetworld-partsearch-clean-main-2026-10-31`: `2b963afe06afa341692b19763503acc7b50897b5`.
+- Re-fetched the changed file from that branch and verified: new banner present; 4 MB validation and message present; old 5 MB check and misleading disabled-requests banner absent.
+- Preview-only change; no live request endpoint, Supabase, production, checkout/payment, inventory, price or supplier data was changed. This is source-level verification, not a real WhatsApp/device test. PR #139 remains diverged from current main and draft/unmerged; no workflow was run.
+
+---
+
 ## PLANETWORLD AUDIO / IMAGE COVERAGE RECHECK — 2026-10-31 17:18 SAST
 
 - Parsed all 3,317 rows in the PR #139 Planetworld feed and grouped them by customer-facing collection. All nine departments contain records: Car Audio & Video 627; Home Entertainment 461; Band & Live Sound 792; DJ 15; Studio Equipment 62; Marine Audio 28; Installed AV 435; Musical Instruments 850; Harnesses & Trims 47. Sum reconciles to 3,317.
