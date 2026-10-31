@@ -2764,3 +2764,11 @@ No Axxess, DNS, production Supabase schema/data/secrets, payment activation, sup
 - Owner clarification: **Accessories & Spares Centre (ASC) is a separate supplier-integration task to be included in the Get Wired store.** Do not combine ASC catalogue/pricing work with Planetworld reconciliation or treat ASC PDFs as inputs to Planetworld tasks. Track ASC independently with its own source files, SKU/model mapping, product descriptions, manufacturer images, price/VAT and availability verification, category placement, staging QA and explicit publication gates.
 - This task-start record precedes further work. Existing release/safety boundaries remain unchanged: no supplier workbook edits, supplier imports/publication, live catalogue/price/stock/active-flag changes, PR merges, production deployment, Axxess/DNS/payment changes, or release-credit use without explicit approval.
 - Next action: make the separate ASC scope explicit in both handovers and ensure the current active supplier-pricing blocker is not mislabelled as Planetworld or ASC work. No catalogue data has been changed by this instruction.
+
+
+## CONTINUATION TASK START — 2026-10-31
+
+- Read the latest permanent handover and Planetworld branch handover before resuming.
+- Owner direction carried forward: ASC is a separate supplier-integration workstream to be included in the store; do not mix its November PDFs/38 historical scaling defects with Planetworld's 702-row audit and 19 zero-RRP hold.
+- Run scope: inspect current supplier workstream files/reports and available background workflow status; continue safe documentation/source-review work only. No supplier workbook edits, imports/publication, live catalogue/price/stock/active-flag changes, PR merges, production deploy, Axxess/DNS/payment changes, or release-credit use.
+- Record actual workflow status and material outcomes below immediately; retry only eligible safe staging failures when a supported action exists and never duplicate queued/in-progress runs.
