@@ -20,7 +20,7 @@ assert.match(audio,/p\.brand===brand/,'products must be scoped to selected brand
 assert.match(audio,/p\.component===component/,'products must be scoped to selected component');
 assert.match(audio,/catalogueLoaded=true;if\(department\)draw\(\)/,'catalogue completion must refresh a department selected while loading');
 assert.match(audio,/REQUEST PRICE & AVAILABILITY/,'each Planetworld product card must offer a direct enquiry action');
-assert.match(audio,/wa\.me\/2774484234/,'product enquiry must use the existing business WhatsApp contact');
+assert.match(audio,/wa\.me\/27744884234/,'product enquiry must use the existing business WhatsApp contact');
 assert.match(audio,/25-Oct-2026/,'product enquiry must identify the dated supplier snapshot');
 assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
 assert.match(build,/PREVIEW_ASSET_FILES = \["audio-category-navigation\.js", "planetworld-catalogue-preview\.json", "planetworld-verified-models-preview\.json"\]/,'preview-only bundle must include the Audio adapter, broad catalogue and curated verified-model references');
