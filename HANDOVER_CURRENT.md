@@ -1,3 +1,19 @@
+## PLANETWORLD EXACT-MODEL IMAGE COVERAGE IMPROVED — 2026-10-31 20:45 SAST
+
+- Matched curated image references by **both exact public GW SKU and exact model number** from `assets/planetworld-verified-models-preview.json` into the separate 68-row `preview-planetworld.html` review page. No name-only or visually similar matching was used.
+- Added four exact-SKU/model images in the first pass (Audison APX 690, Focal HILO V3, Kicker 43C104, Kicker 46CXA4001) and two further manufacturer-page image references (JVC KW-M590BT and Pioneer DMH-AP6650BT). The preview now has **13/68** exact-model image references; **55/68** still correctly retain neutral placeholders.
+- Updated both the curated JSON and Planetworld review page for JVC/Pioneer; added regression coverage that verifies every image-bearing curated SKU exists in the review page, model numbers match, and URLs match exactly. Preview commit: `c3a6f68a548e7b4bf54410fc9ae61b7648936925`; curated JSON commit: `664c6d65c54fae9eeccf7b3daba5957fcba1e01e`; regression test commit: `f3ee6e5f1baa586c01d7db752e9ac349ef97e45b`.
+- Executed the full Audio regression source in an in-memory JavaScript harness: **133 assertions passed** after adding the image checks. Planetworld review page inline script compiles with zero syntax errors. This does not verify remote image load success or browser rendering.
+- Created `audits/PLANETWORLD_IMAGE_GAPS_2026-10-31.csv` listing the 55 remaining exact-model rows without a verified image URL, preserving SKU, model, brand, component and manufacturer page. Commit: `b87591ad1454abc5476deb6c0b9d7af620a9dd34`.
+- Broad Planetworld feed remains 3,317 rows with title/brand, 37 without indicative price, and no model-number or image URL fields. These rows need supplier/manufacturer source enrichment; do not invent image/model matches.
+- Latest candidate checkpoint: `b87591ad1454abc5476deb6c0b9d7af620a9dd34`; compare with main: **69 ahead / 0 behind**. Candidate remains unmerged and unapproved for launch.
+- No Actions, deployment, merge, Supabase write, live stock/price/catalogue/category change, payment activation, supplier activation, Axxess or DNS operation occurred.
+
+### Next no-credit action
+Continue exact-model image sourcing for the 55 curated gaps where official manufacturer URLs can be verified; leave all others as placeholders. Continue broad feed/product presentation audit without inventing model numbers or images. Real Node and exact-head browser acceptance remain open.
+
+---
+
 ## EXACT-HEAD BROWSER ACCEPTANCE MATRIX ADDED — 2026-10-31 20:20 SAST
 
 - Added and re-fetched `audits/EXACT_HEAD_BROWSER_ACCEPTANCE_MATRIX_2026-10-31.md`. It specifies desktop 1365×900, mobile 390×844 and narrow mobile 320×740, all seven preview routes, eight-root/Audio/Part Search/product-image/checkout flows, photo validation, preview no-write network checks, and evidence required before readiness claims. Commit: `f0306244dbd25032e7c322b318c548a2348698df`.
