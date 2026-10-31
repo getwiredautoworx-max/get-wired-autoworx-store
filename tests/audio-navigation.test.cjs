@@ -32,6 +32,8 @@ assert.ok(previewCheckout.includes('Preview mode — no order or payment will be
 assert.ok(!previewCheckout.includes('supabase.co')&&!previewCheckout.includes('fetch('));
 assert.match(previewCheckout,/hasPrice=x\.price!==null&&x\.price!==undefined/,'null/blank prices must remain price-on-request, not be counted as R0.00');
 assert.match(previewCheckout,/Items marked Price on request are excluded from the verified-price subtotal/,'checkout preview must explain unpriced-item subtotal handling');
+assert.ok(previewProduct.includes('assets/product-placeholder.svg'),'product detail image failure must use the packaged neutral placeholder');
+assert.ok(!previewProduct.includes('assets/product-image-pending.svg'),'product detail must not reference an absent placeholder asset');
 assert.match(build,/"preview-checkout\.html"/);
 // Preview-only request handoff must be explicit and must not imply automatic photo upload.
 assert.match(html,/STORE PREVIEW.*part requests open WhatsApp only/,'preview banner must explain WhatsApp-only part requests');
