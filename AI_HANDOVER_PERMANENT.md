@@ -4265,7 +4265,7 @@ No live product/SKU publication, supplier activation, price/stock write, Supabas
 ## SIGNIFICANT EXECUTION RESULT — 2026-10-31 08:48 SAST
 
 ### Clean-main preview integration
-- Created clean branch `integration/planetworld-partsearch-clean-main-2026-10-31` from current `main` head `399a02dc4041e3f8657e3916bdcfad1eec46f788` (base SHA recorded by GitHub as `399a02dc4041e3f8657e3916bdcfad1eec46f788`). This avoids carrying forward PR #136's 46-ahead / 42-behind divergence.
+- Created clean branch `integration/planetworld-partsearch-clean-main-2026-10-31` from current `main` head `399a02dc4041e3f8659a24da628e2ca41e46f788` (base SHA recorded by GitHub as `399a02dc4041e3f8659a24da628e2ca41e46f788`). This avoids carrying forward PR #136's 46-ahead / 42-behind divergence.
 - Opened draft PR #139: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/139. Head `14e7dbf0c96bbac6957e3916bdcfad1eec2a7a14`; base `main`; GitHub reports mergeable=true at creation/checkpoint. It remains draft and unmerged.
 - Ported the populated-store Planetworld integration into the clean-main candidate: 3,317 sanitized records from 47 source workbooks, presented in nine collection groupings. JSON fields are limited to id/division/collection/brand/title/component/indicativePrice/hasStock; no supplier SKU, dealer cost or exact stock quantities are exposed.
 - Added the no-cost local search module to the preview store. The Part Search modal now searches both the existing store product feed and all 3,317 Planetworld preview records by title, brand, component and collection. Planetworld matches are clearly quote-only, display the 25-Oct-2026 snapshot disclaimer, and open WhatsApp for a current price/availability quote. No AI credits or paid API calls are used.
@@ -4286,3 +4286,13 @@ No live product/SKU publication, supplier activation, price/stock write, Supabas
 - ASC source documents still need to be made accessible for its separate 25-product pilot and current price/availability reconciliation.
 - No PR merged, no production deployment, no live product/price/stock/category/active-flag write, no supplier import/publication, no Supabase write, no Axxess/DNS/payment change, and no release-credit use occurred.
 - Next: monitor PR #139 Cloudflare Pages and queued GitHub Actions checks; only act on actual failures after runner assignment. Then verify the hosted preview and mobile/desktop journey. Keep PR #136 unmerged; PR #139 is the clean-main candidate pending successful exact-head verification.
+
+
+## PR #139 PREVIEW DEPLOYMENT / CI RESULT — 2026-10-31 08:50 SAST
+
+- Corrected the recorded PR base SHA: PR #139 was created from main commit `399a02dc4041e3f8659a24da628e2ca41e46f788`; its head is `14e7dbf0c96bbac6957e3916bdcfad1eec2a7a14`.
+- Cloudflare Pages reports **Deploy successful** for exact PR #139 head `14e7dbf`. Immutable preview: https://8d57f793.get-wired-autoworx-store.pages.dev . Branch preview: https://integration-planetworld-part.get-wired-autoworx-store.pages.dev . The populated route is `/preview-store.html`. This is a Pages preview, not a production release.
+- GitHub Actions checks `populated-preview`, `audit`, `public-package`, `detect-storefront-mode` and `catalogue-search` all failed immediately before runner assignment: each job has `runner_id=0`, blank runner name and zero steps. Therefore no GitHub browser/unit workflow step ran; these are runner-start failures, not reported assertion failures. The manual 10-case search-engine verification and static integration checks still pass.
+- Netlify redirect/header checks were neutral; Pages changed reported that all files were already uploaded by a previous deploy. No Netlify production action was taken.
+- Cloudflare Workers Builds check `8ab6be03-ff5a-457f-acaf-4a8202cd9c73` was still IN PROGRESS at the last check. Its environment/result is not confirmed; do not infer that a production Worker deployment occurred or that it passed. Recheck this external build status before any release action.
+- PR #139 remains OPEN / DRAFT / UNMERGED. No production deployment was initiated by this task; no live catalogue, price, stock, active flag, Supabase, checkout, payment, Axxess or DNS mutation was made.
