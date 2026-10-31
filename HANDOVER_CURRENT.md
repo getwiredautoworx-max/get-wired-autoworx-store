@@ -5252,3 +5252,20 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - No exact-head preview deployment URL is recorded or verified. Desktop and mobile browser testing therefore remains blocked; do not test an older Pages URL and misattribute it to this candidate.
 - Next execution gate: obtain an exact local checkout or independent runner, run `node tests/audio-navigation.test.cjs`, then deploy this exact commit to an isolated preview and test desktop 1365px plus mobile 390px/320px. GitHub Actions remains untouched until quota reset.
 - Candidate remains unapproved for merge or launch. No production, Axxess/DNS, Supabase, payment, supplier, live price/stock/catalogue or production deployment changes.
+
+
+## AUDIO REGRESSION ASSERTION REPAIR — 2026-10-31 18:02 SAST
+
+- Re-fetched the active clean integration candidate sources and audited the complete Audio navigation regression assertions against the actual preview Audio route.
+- Found one stale test assertion: it expected the exact sequence `catalogueLoaded=true;if(department)draw()`, but the current implementation correctly checks for an empty feed first and then redraws a selected department using `else if(department)draw()`. This made the test assertion inconsistent with the current implementation; it was not evidence of a broken customer route.
+- Corrected only that assertion in `tests/audio-navigation.test.cjs`. Commit: `3de69e0bfe54736ad0461006a68a8c04189afcfd`. The test now asserts the actual redraw branch after the empty-feed guard.
+- Re-fetched the changed test and all dependent source files. Ran 26 targeted source-level assertions in the connected execution environment covering all nine Audio departments, four navigation stages, department/brand/component filters, async redraw, exact model/manufacturer references, WhatsApp enquiry number and dated snapshot, preview package allowlist, seven preview routes, no-write checkout boundary, WhatsApp-only request banner, 4 MB photo limit, and manual photo attachment instruction. Result: **26/26 passed**.
+- Important verification distinction: this was a source-level assertion run, not execution of `node tests/audio-navigation.test.cjs`. The local container still has no repository checkout and GitHub DNS previously prevented clone; no hosted Actions runner was used. The earlier catalogue-search Node regression remains recorded as 13 assertions passed; it has not been rerun against this latest candidate head.
+- GitHub Actions remains untouched pending the 1-Nov-2026 quota reset. No workflow was dispatched or rerun.
+- Desktop/mobile browser acceptance remains outstanding: there is no verified preview deployment URL for this exact updated head and no Playwright/Puppeteer browser runner available in the current local environment.
+- No merge, production deployment, Axxess/DNS change, Supabase write/migration, payment activation, supplier activation, live price/stock/catalogue change, or background-monitor change was made. Candidate remains unapproved for merge or launch.
+
+### Immediate next verification
+1. After Actions quota reset, confirm available quota/runner before one controlled exact-head run; run both Node tests and package QA.
+2. Deploy this exact candidate head to an isolated preview, record the immutable deployment URL/commit, and run desktop 1365px plus mobile 390px and 320px journeys.
+3. Keep taxonomy defects gated by the complete SKU-level mapping evidence and owner approval; the eight-root proposal and staging JSON are not authority to mutate live category assignments.
