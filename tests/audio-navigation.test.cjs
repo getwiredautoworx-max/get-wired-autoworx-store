@@ -44,6 +44,8 @@ assert.match(html,/STORE PREVIEW.*part requests open WhatsApp only/,'preview ban
 assert.match(html,/f\.size>4\*1024\*1024/,'photo validation must enforce the stated 4 MB limit');
 assert.match(html,/no larger than 4MB/,'photo validation error must match the 4 MB instruction');
 assert.ok(html.includes("s.match(/\\b(19\\d{2}|20\\d{2})\\b/g)"),'vehicle request model/year selector must extract four-digit years from product fitment text');
+assert.match(html,/if\(img\.dataset\.backup\)\{const next=img\.dataset\.backup;img\.dataset\.backup='';img\.src=next;return;\}/,'failed product image must try the image endpoint before local fallback');
+assert.match(html,/if\(img\.dataset\.localFallback\)\{const next=img\.dataset\.localFallback;img\.dataset\.localFallback='';img\.src=next;return;\}/,'failed endpoint fallback must continue to exact-SKU local WebP before neutral placeholder');
 assert.match(html,/WhatsApp handoff opened\. Attach any selected photos in the chat/,'preview must tell customers to attach selected photos manually');
 assert.match(html,/window\.gwPlanetworldSearchRows=verifiedSearchRows/,'curated exact-model references must remain searchable if the broad Planetworld feed fails');
 assert.match(html,/exact-model references remain searchable/,'Part Search fallback must explain that curated model references are still available');
