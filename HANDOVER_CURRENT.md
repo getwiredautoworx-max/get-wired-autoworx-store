@@ -1,3 +1,18 @@
+## NO-CREDIT IMPORT GUIDANCE / FINAL SOURCE PASS — 2026-10-31 20:05 SAST
+
+- Corrected a stale conflict in `CATALOGUE_IMPORT_RULES.md`: its old seven-root database taxonomy is now explicitly marked historical/superseded for customer-facing navigation. The current eight approved store roots are listed; 4X4 Outdoor is explicitly a child under Camping / Leisure / Outdoors. The document now distinguishes source ASC/Buyer Guide taxonomy from the proposed store taxonomy and repeats the no-live-write approval gate. Commit: `8d154e9e2ffa784082a29848789d8863291dcb06`.
+- Re-fetched the import rules and verified the eight-root wording and superseded-taxonomy note are present. No database/category records were changed.
+- Recompiled all inline scripts across all seven preview routes after the latest source fixes: **17 scripts, zero syntax errors**. Current source breakpoints are present down to 340px on the main store, 359px on category/products/Planetworld, 420px on Audio and 540px on preview checkout. This is CSS/source inspection, not a real viewport/browser pass.
+- Confirmed all static local links/assets across seven preview routes previously resolve to repository root/asset entries; the repo is private and public build remains an allowlist excluding supplier and internal review directories.
+- Current code/docs checkpoint before this handover entry: `8d154e9e2ffa784082a29848789d8863291dcb06`; compare with main: **58 ahead / 0 behind**. Candidate remains unmerged and unapproved for launch.
+- Full 4,187-SKU category migration mapping is still not complete or approved. Existing read-only category counts and the 198-row review queue are evidence, not a complete SKU mapping. No full export artifact was created in this pass. No live category writes are authorised.
+- No Actions, deployment, merge, Supabase write/migration, live stock/price/catalogue change, payment activation, supplier activation, Axxess or DNS operation occurred.
+
+### Next no-credit action
+Finish remaining Part Search and product-data source edge cases, then keep the exact-head manual acceptance matrix ready for browser testing once an exact-head preview/browser runner is available. Real Node runtime and desktop/mobile browser acceptance remain open.
+
+---
+
 ## NO-CREDIT PRODUCT CARD IMAGE FALLBACK FIX — 2026-10-31 19:45 SAST
 
 - Found a further product-image presentation defect in the main preview: when a recorded external image URL failed, the delegated error handler tried the Supabase image endpoint but cleared the exact-SKU local WebP fallback at the same time. The customer therefore never reached the local image fallback.
