@@ -1,3 +1,23 @@
+## CATEGORY EXCEPTION LIST — EXACT READ-ONLY SNAPSHOT RESULTS — 2026-10-31
+
+Source: `assets/category-tree.json`, generated 2026-10-29 09:52:49Z; 166 active category rows and 58 legacy/top-level rows. This is a dated snapshot, not a live database read.
+
+The 34 direct child branches with zero active products anywhere below them are:
+- **Auto Electrical Spares (6):** Batteries & Accessories; Chargers & Power; Electrical Terminals & Connectors; Fuses & Fuse Holders; Glowplugs; Switches & Relays.
+- **Vehicle Security (7):** Central Locking; Central Locking Parts; Immobilisers; KNIVES; Remote Controls; Vehicle Alarms; Vehicle Tracking. The root has 2 direct products; no child branch is populated in this snapshot.
+- **Car Audio & Entertainment (10 rows):** Amplifiers (2 duplicate rows); Audio Wiring & Installation; Crossovers; Head Units (2 duplicate rows); Speakers (2 duplicate rows); Subwoofers; Wiring & Accessories. Only AERIALS is populated (7 descendant products); the root has 39 direct products.
+- **Automotive Accessories (5):** ATV WINCHES & WHEEL CAPS; Convenience Accessories; Interior Accessories; SPARE PARTS; Towing & Recovery.
+- **Marine Spares & Accessories (3):** Marine Accessories; Marine Rigging; Marine Spares.
+- **Tools, Hardware & Consumables (3):** ABRASIVES; Electrical Tools; Honing Tools.
+- **Camping, Leisure & Outdoors (0 empty):** 4X4 OUTDOOR is correctly nested and has 16 descendant products.
+- **Trailer & Canopy (0 empty).**
+
+Total: 34 empty direct child rows out of 85. Duplicate child labels under Audio: Amplifiers, Head Units and Speakers (two rows each). The dated tree also contains legacy top-level categories and a separate empty top-level 4X4 Outdoor row; do not reparent or delete it without the SKU-level mapping gate.
+
+The preview homepage now suppresses empty child branches in its nested menus, matching the preview category-detail route, while retaining populated 4X4 Outdoor under Camping. This is a presentation-only fix; the category source records and product assignments are unchanged. Complete category assignment repair still requires the 4,187-product SKU export, evidence mapping and owner approval.
+
+---
+
 ## NO-CREDIT FIXES — EMPTY CATEGORY DEAD ENDS & CHECKOUT PRICE ACCURACY — 2026-10-31
 
 - Reproduced a homepage navigation inconsistency: category detail pages suppress child branches with no active products, but the homepage nested menu included every active child, allowing customers to click through to a category-unavailable page. Updated preview-only `homeChildren()` to include only branches with products, using the same recursive product-count rule. The special 4X4 Outdoor child is retained under Camping / Leisure / Outdoors when its branch has products. No category/product assignment was changed. Preview-store commit: `cec91ee242be4de8d5e55561fff1c76287501184`; regression test commit: `d260592cf20a0c050de163532015cafeb1406724`.
