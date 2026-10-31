@@ -1,3 +1,15 @@
+## Preview checkout simulation added — 31 October 2026
+
+Current PR #139 branch head: `36d555a50263efe1a40bbf2cc5733051c2ab2bc5`.
+
+- Added `preview-checkout.html` as a no-write customer checkout demonstration. It reads the browser cart, displays the basket and verified-price subtotal, and provides a preview-only simulation confirmation.
+- The preview cart's “Proceed to Checkout” link now opens `preview-checkout.html`, not the real `checkout-v2.html`. This prevents the customer preview from entering the real order/payment flow.
+- The preview checkout clearly states no order/payment is submitted; it does not call Supabase or write an order. It creates a WhatsApp enquiry draft using the existing business contact number; the customer must still review and send the message in WhatsApp.
+- Added the route to the isolated preview Pages package and to the non-production deployment workflow. Standard production package remains separate.
+- Static-source audit passed 8 checkout/package assertions: cart route, no-order warning, no backend calls, WhatsApp draft URL, preview route packaging, acceptance-test presence, production package separation, and non-production deploy target.
+- This is source-level verification only. No browser execution or hosted deployment has been confirmed because the GitHub Actions jobs continue failing before runner allocation (`steps: null`).
+- Banking details, real payment activation, and production order writes remain intentionally disabled. ASC still lacks the new post-reset catalogue source.
+
 ## Verification retry result — 31 October 2026
 - Re-ran the failed exact-head Cloudflare package QA (run 41183373561), free catalogue search tests (41183373770), and storefront smoke workflow (41183373551). All three failed again before runner allocation; jobs still report `steps: null`. The smoke workflow skipped its dependent browser job.
 - Re-ran the isolated preview deployment workflow (run 41183261239); it also failed before runner allocation. No new Pages deployment is confirmed.
