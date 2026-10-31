@@ -54,8 +54,8 @@
       const style=d.createElement('style');
       style.id='gw-category-presentation';
       style.textContent=`
-        /* Approved homepage design: exactly three columns at every viewport width.
-           Nine active root categories therefore form a 3 x 3 image-led button grid. */
+        /* Approved homepage design: exactly eight main category roots in a three-column grid.
+           The separate Find a Part tile is a utility action, not a ninth category. */
         #categoryGrid.cats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px}
         #categoryGrid .catWrap{min-width:0;height:100%}
         #categoryGrid .catBtn{min-width:0;height:100%;display:flex;flex-direction:column;padding:0}
