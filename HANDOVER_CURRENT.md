@@ -1,3 +1,18 @@
+## NO-CREDIT PRODUCT CARD / ASSET / INTERNAL ROUTE AUDIT — 2026-10-31 19:15 SAST
+
+- Rechecked the product listing card path: each image request is keyed to the exact public SKU under `assets/products_webp/`; failed images are hidden into a labelled “Image not available” slot. No generic visually similar product image is substituted. Product detail tries the product's recorded image, the existing SKU image endpoint, then exact-SKU local WebP before the neutral packaged placeholder.
+- Confirmed the preview package builder copies `assets/products_webp/`, requires `assets/product-placeholder.svg`, and uses a strict customer-file allowlist. Supplier/catalogue-source/review/staging/Supabase/internal directories and spreadsheet/PDF/CSV/SQL/Markdown/ZIP source files are excluded from the public Pages output.
+- Checked all seven preview routes for static local `href` / `src` references: 27 references, 14 unique local targets; every static target resolves to a root file or first-level asset directory in the candidate. Two dynamic template strings were correctly excluded from static existence checks.
+- Verified repository metadata: the GitHub repository is already **private** (`private=true`, `visibility=private`). Cloudflare Pages is the hosting target; GitHub Pages is not enabled. Supplier source directories remain private in the repository and are excluded from the public Pages allowlist.
+- Combined source/test results remain: 89 assertions passed by executing the complete Audio test source in an in-memory JavaScript harness; 15 assertions passed by executing the catalogue-search test source with the exact fetched matcher in an in-memory harness; 17 inline scripts across the seven preview routes previously compiled without syntax errors. None of these are Node-runtime, hosted Actions, or browser/device acceptance.
+- Current code/control checkpoint before this entry: `951c017248c1ebefc32232fa2ac2c565a9bed931`; compare with `main`: **47 ahead / 0 behind**. Candidate remains unmerged and unapproved for launch.
+- No Actions workflow, deployment, merge, Supabase write, live stock/category/price/catalogue mutation, payment activation, supplier activation, Axxess or DNS operation occurred.
+
+### Next no-credit action
+Complete the remaining source-only product card and Part Search edge-case audit; then assemble a concise manual desktop/mobile acceptance matrix for exact-head hosted preview testing. Keep real Node runtime, hosted preview and real desktop/mobile browser acceptance explicitly open until evidence exists.
+
+---
+
 ## NO-CREDIT PRODUCT IMAGE FALLBACK + TEST FIXES — 2026-10-31 19:00 SAST
 
 - Continued the product presentation audit and found a real broken image fallback: `preview-product.html` referenced `assets/product-image-pending.svg`, but the packaged asset is `assets/product-placeholder.svg`. Updated the detail page to use the packaged neutral placeholder. Commit: `54eaaa488c999d2bea100b2d34de0e8cf3e9ae51`.
