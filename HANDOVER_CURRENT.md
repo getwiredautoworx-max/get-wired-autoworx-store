@@ -5241,3 +5241,14 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - Result: **10/10 source-level assertions passed**. This is source inspection, not Node unit-test execution, Playwright, hosted CI, or device acceptance.
 - Current branch head before this handover append: `9691b740313829a0c85548108af20f9d8cd8c87e`; main remains `f487abadae84b33f215cf38bbc1c1ad2c06fff3a`. Candidate is 4 commits ahead / 0 behind at this checkpoint.
 - Next single action: run `node tests/catalogue-search.test.cjs` and `node tests/audio-navigation.test.cjs` in a local Node environment; if local execution is unavailable, run the included CI checks only after Actions quota reset on 1-Nov. Then exact-head desktop/mobile browser QA.
+
+
+## LOCAL TEST EXECUTION CHECKPOINT — 2026-10-31 SAST
+
+- Reconfirmed the candidate remains 6 commits ahead / 0 behind current main at base `f487abadae84b33f215cf38bbc1c1ad2c06fff3a`; no merge or PR promotion was performed.
+- Node.js v22.16.0, npm 10.9.2 and Chromium 144 are present in the local container.
+- Catalogue-search regression execution completed locally: 10 core matcher assertions + 2 Planetworld search assertions + 1 verified-model lookup assertion passed (13 total). The Audio navigation regression test was not executed; it depends on the full candidate checkout and reads several repository files from disk.
+- A shallow clone of the exact branch failed before checkout because the local container could not resolve `github.com`. Playwright, @playwright/test, Puppeteer and puppeteer-core are not installed. Do not treat Chromium availability alone as browser acceptance.
+- No exact-head preview deployment URL is recorded or verified. Desktop and mobile browser testing therefore remains blocked; do not test an older Pages URL and misattribute it to this candidate.
+- Next execution gate: obtain an exact local checkout or independent runner, run `node tests/audio-navigation.test.cjs`, then deploy this exact commit to an isolated preview and test desktop 1365px plus mobile 390px/320px. GitHub Actions remains untouched until quota reset.
+- Candidate remains unapproved for merge or launch. No production, Axxess/DNS, Supabase, payment, supplier, live price/stock/catalogue or production deployment changes.
