@@ -1,3 +1,14 @@
+## NO-CREDIT FIXES — EMPTY CATEGORY DEAD ENDS & CHECKOUT PRICE ACCURACY — 2026-10-31
+
+- Reproduced a homepage navigation inconsistency: category detail pages suppress child branches with no active products, but the homepage nested menu included every active child, allowing customers to click through to a category-unavailable page. Updated preview-only `homeChildren()` to include only branches with products, using the same recursive product-count rule. The special 4X4 Outdoor child is retained under Camping / Leisure / Outdoors when its branch has products. No category/product assignment was changed. Preview-store commit: `cec91ee242be4de8d5e55561fff1c76287501184`; regression test commit: `d260592cf20a0c050de163532015cafeb1406724`.
+- Added the homepage regression assertion requiring exactly eight main category roots; Find a Part remains a separate utility tile. The source still maps the eight approved IDs and the 4X4 Outdoor child.
+- Reproduced a preview-checkout arithmetic issue: `Number(null)` and `Number('')` become zero, so stale/unpriced cart rows could be presented as a verified R0.00 subtotal. Fixed preview checkout to count only nonblank, finite, positive prices and added customer-facing explanation that price-on-request rows are excluded. Checkout commit: `995cdba5ac87f89939eaa66d3ab5e5e409daca9b`; regression-test commit: `777c110077db388e36b94b8b0e36128fb3759421`.
+- Local Node verification: the checkout price guard passed four cases (priced, null, blank and zero); a synthetic category-tree regression check confirmed empty branches are hidden and populated 4X4 Outdoor remains nested under Camping. These are targeted logic checks, not full repository/browser tests.
+- Re-fetched changed sources. Homepage contains eight root IDs and both empty-branch guards; checkout contains the null/blank guard and explanatory copy. Updated preview-store inline scripts compile without syntax errors.
+- Candidate source checkpoint before this documentation update: `d260592cf20a0c050de163532015cafeb1406724`; compare then showed 34 ahead / 0 behind main. No Actions, deployment, Supabase write, live stock/category change, checkout/payment activation or production operation.
+
+---
+
 ## PREVIEW ROUTE SCRIPT-SYNTAX AUDIT — 2026-10-31
 
 - Parsed all inline scripts on all seven preview routes with JavaScript syntax compilation: `preview-store.html` 8 scripts; `preview-audio.html` 1; `preview-category.html` 2; `preview-products.html` 2; `preview-product.html` 2; `preview-planetworld.html` 1; `preview-checkout.html` 1. **17 scripts, zero syntax errors.** This is syntax validation, not runtime/browser acceptance.
