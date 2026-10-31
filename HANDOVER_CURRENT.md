@@ -1,3 +1,16 @@
+## PLANETWORLD AUDIO / IMAGE COVERAGE RECHECK — 2026-10-31 17:18 SAST
+
+- Parsed all 3,317 rows in the PR #139 Planetworld feed and grouped them by customer-facing collection. All nine departments contain records: Car Audio & Video 627; Home Entertainment 461; Band & Live Sound 792; DJ 15; Studio Equipment 62; Marine Audio 28; Installed AV 435; Musical Instruments 850; Harnesses & Trims 47. Sum reconciles to 3,317.
+- Every broad-feed row has a title and brand. 37 rows have no indicative price and must remain quote-only / price-on-request. 1,727 rows have a positive supplier stock flag in the dated 25-Oct snapshot; this is not live stock and must not be represented as current inventory.
+- Source inspection confirms the Audio preview loads both the broad catalogue and curated model-reference JSON, merges curated records into Car Audio & Video, and redraws the selected department after asynchronous loading. It implements the nine department buttons, brand and component filters, product cards, dated-snapshot warning, manufacturer-page links when available, and WhatsApp price/availability request links. The page has responsive CSS breakpoints at 760px and 420px. This is static-source verification only; no real browser/device interaction has been run.
+- Image limitation confirmed: the 68-row curated JSON contains model number, manufacturer product page and component fields, but no `imageUrl` field. The Audio page checks `p.imageUrl` and otherwise displays "Product image not yet verified"; therefore the 68 curated records also fall back to placeholders in this Audio route until a verified image URL is supplied. The four-row Alpine image-source manifest is review-only; the visual-inspection record says only two URLs rendered, zero images approved for publication, and exact internal GW SKU/current-image comparisons remain outstanding. Do not add those URLs to customer cards or attach them to live products yet.
+- The main store embeds curated model/manufacturer reference data separately; absence of a separate curated-feed fetch in preview-store does not mean the data is missing. The dedicated Audio route explicitly fetches the curated JSON and therefore currently has no exact image URL values to render.
+- Existing Audio source test `tests/audio-navigation.test.cjs` checks all nine department names, model/manufacturer fields, collection/brand/component filters, delayed-load redraw, WhatsApp request text, preview-only packaging and the checkout simulation boundary. It is present but has not been executed in this session because GitHub Actions minutes are exhausted and no local Node runtime test was performed.
+- Category-source correction remains: 34/85 direct children have empty descendant branches (not 31); see preceding audit section.
+- No code or catalogue data changed in this recheck. No product image was guessed or published. No supplier price, live stock, product/category record, Supabase, production, payment, Axxess or DNS setting changed.
+
+---
+
 ## INTERIM EXECUTION — SOURCE CONSISTENCY RECHECK — 2026-10-31 17:10 SAST
 
 ### Work completed while GitHub Actions allocation is exhausted
