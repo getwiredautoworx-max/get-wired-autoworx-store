@@ -39,9 +39,10 @@ assert.match(previewCheckout,/Items marked Price on request are excluded from th
 assert.ok(previewProduct.includes('assets/product-placeholder.svg'),'product detail image failure must use the packaged neutral placeholder');
 assert.ok(!previewProduct.includes('assets/product-image-pending.svg'),'product detail must not reference an absent placeholder asset');
 assert.match(imageFallback,/product-placeholder\\.svg/i,'shared image fallback must recognize the packaged neutral placeholder');
-const reviewProductsMatch=previewPlanetworld.match(/const products=(\\[[\\s\\S]*?\\]);/);
-assert.ok(reviewProductsMatch,'Planetworld review preview must declare its exact-model product rows');
-const reviewProducts=JSON.parse(reviewProductsMatch[1]);
+const reviewProductsStart=previewPlanetworld.indexOf('const products=')+'const products='.length;
+const reviewProductsEnd=previewPlanetworld.indexOf('];',reviewProductsStart)+1;
+assert.ok(reviewProductsStart>0&&reviewProductsEnd>reviewProductsStart,'Planetworld review preview must declare its exact-model product rows');
+const reviewProducts=JSON.parse(previewPlanetworld.slice(reviewProductsStart,reviewProductsEnd));
 const verifiedImages=new Map(verifiedPlanetworld.records.filter(p=>p.imageUrl).map(p=>[p.gwSku,p]));
 for(const [sku,source] of verifiedImages){const row=reviewProducts.find(p=>p.gwSku===sku);assert.ok(row,'manufacturer image SKU must exist in Planetworld review page: '+sku);assert.equal(row.modelNumber,source.modelNumber,'manufacturer image model must match exact model code: '+sku);assert.equal(row.imageUrl,source.imageUrl,'review page must use exact-SKU verified manufacturer image: '+sku)}
 assert.equal(reviewProducts.filter(p=>p.imageUrl).length,verifiedImages.size,'review page must show all exact-SKU image sources already verified in the curated model JSON');
