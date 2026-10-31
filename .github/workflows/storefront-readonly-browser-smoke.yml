@@ -123,4 +123,4 @@ jobs:
           name: storefront-smoke-evidence-${{ github.run_id }}
           path: qa-evidence/
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 1
