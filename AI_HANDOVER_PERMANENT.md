@@ -4354,3 +4354,16 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Artifact cleanup/retention changes are now present in PR #139: old artifact deletion requires explicit yes; default is safe mode; candidate age choices are 1/3/7/14 days; future browser-smoke, task-monitor and image-audit artifact retention is 1 day. No artifacts have yet been deleted.
 - External Cloudflare Workers Builds check `92351b05-d2a5-4764-a7d4-2a72b030e9a6` was still IN PROGRESS at last poll. Do not treat it as a pass or successful production Worker deploy.
 - GitHub Actions runner allocation remains unresolved; previous latest-head jobs had runner_id=0 and zero steps. No hosted browser/unit test has run. Keep PR #139 draft/unmerged until the runner issue is cleared and exact-head browser QA passes.
+
+
+## CONTINUATION RECORD — 2026-10-31 — 48-HOUR TARGET / PLANETWORLD AUDIO
+
+- Owner confirmed GitHub Actions monthly minutes are exhausted. Do not trigger workflows, reruns, or CI deployments until the 1-Nov-2026 reset has occurred AND the available allocation/runner is verified. No workflow was triggered in this execution.
+- On PR #139 branch `integration/planetworld-partsearch-clean-main-2026-10-31`, extracted the 68 curated exact-model Planetworld manufacturer references into `assets/planetworld-verified-models-preview.json` (68 model numbers, 11 exact manufacturer image URLs; 57 remain without exact image evidence).
+- Updated `preview-audio.html` to load both the broad 3,317-record dated supplier snapshot and the curated 68 model-reference records. Curated records display model number, manufacturer-verified description, exact image where present, manufacturer page link, and customer-reviewed quote request. Missing images retain a neutral explicit placeholder.
+- Updated preview-only Pages package allowlist and Audio source tests. The standard production package is unchanged. Source read-back confirms wiring and 68/11 counts; tests have not run and browser acceptance is not claimed.
+- Relevant commits: `f523c7d6c6b02c45eff0739708ac03b2f23e033c`, `de76866cf90e27d80aa11eb87ed677d066f4e836`, `f14caec4a8e0f38a834f7b77efd177e5f1ee87ba`, `15fdbbdfcaa18b6cfe966e27995dd97a46f8f660`; handover-current update `9517dc119b46dd7e86c4eada9368d650e16a88f4`.
+- PR #139 is still open/draft/unmerged. Latest compare: 50 commits ahead / 7 behind main; GitHub reports mergeable=false. Inspect/reconcile the seven main commits after merge base `dbe69f61bf468af313c3f3b749a73dc42992126b` before any merge attempt. Do not force merge or deploy.
+- Current exact-head Pages deployment, hosted browser QA, desktop/mobile acceptance and WhatsApp real-device handoff remain unverified. No test/build/deployment pass is claimed.
+- No production upload, DNS, Supabase production write, live stock/price/catalogue change, real payment/checkout, or ASC integration. ASC remains a separate workstream awaiting fresh source.
+- Next: reconcile main safely; after reset verify minutes/runner, then run one controlled exact-head package/search/browser verification; verify preview on desktop/mobile; continue exact model/image enrichment without guessing; maintain production HOLD.
