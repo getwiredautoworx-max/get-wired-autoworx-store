@@ -5330,3 +5330,16 @@ The owner has explicitly raised repeated loss of project context, unnecessary pr
 - The active clean integration candidate remains unapproved for merge or launch. Do not alter the production release boundary to make a progress claim.
 
 This directive records the owner's explicit expectation: less talking, more completed work; persistent memory in the repository; no circular rework; no restarting the project when the agent/session changes.
+
+---
+
+## AGENT ENTRY-POINT ENFORCEMENT ADDED — 2026-10-31
+
+- Owner correctly identified that writing continuation rules only inside the handover has not reliably caused later agents/sessions to read or follow them. A handover statement alone is not an enforcement mechanism; this has been treated as an operational failure, not as an owner training problem.
+- Added root `AGENTS.md` as a prominent agent instruction entry point. It requires agents to read the entry instructions, latest `HANDOVER_CURRENT.md`, and `HANDOVER_EXECUTION_CONTROL_48H.md`, verify branch/HEAD/PR state, and resume the first unfinished task before starting work.
+- Updated `README.md` with a visible mandatory-entry notice linking all three instruction/handover files.
+- Prepended `HANDOVER_EXECUTION_CONTROL_48H.md` with a hard startup gate: no project work until the entry sequence is completed; no fresh planning instead of execution; no repeating verified work or retraining the owner.
+- Re-fetched all three changed/new files from the candidate branch and confirmed the instructions are present. Commits: `AGENTS.md` `1bf983b7408bb72660cd239b3d0995dc05928b7a`; `README.md` `4bf0b610c1d6b0fdc85643b542c6afce56d830b3`; `HANDOVER_EXECUTION_CONTROL_48H.md` `da68b7ab47b7ee030221600fd7e09074b60542fa`.
+- Important limitation: repository instructions can guide coding agents that load `AGENTS.md` and make the startup requirement conspicuous to humans, but they cannot technically force every future ChatGPT session or an agent that does not load repository instructions to read the files. Do not promise automatic enforcement that the platform does not provide. The reliable mitigation is to keep this repository bootstrap file and persistent project context aligned, and have every session verify the branch and handover before acting.
+- This operation changed documentation only. No tests, Actions, deployment, merge, production, Axxess/DNS, Supabase, payment, supplier, live stock or price operations were performed.
+- Next action remains the latest unfinished candidate task recorded above: continue the Part Search source audit and regression coverage without repeating completed checks. The candidate remains unapproved for merge/launch.
