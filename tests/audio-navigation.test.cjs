@@ -40,6 +40,10 @@ assert.match(html,/WhatsApp handoff opened\. Attach any selected photos in the c
 
 
 // Eight approved customer-facing root tiles must resolve to the existing category IDs.
+const progressive=fs.readFileSync('assets/progressive-store-enhancements.js','utf8');
+assert.match(progressive,/function escapeHtmlText\(value\)/,'saved/recent product text must have a shared HTML text escaper');
+assert.match(progressive,/escapeHtmlText\(p\.public_sku\|\|''\)/,'saved-product SKU must be escaped before HTML insertion');
+assert.match(progressive,/escapeHtmlText\(rp\.public_sku\|\|rp\.sku\|\|''\)/,'recent-product SKU must be escaped before HTML insertion');
 const categoryNavigation=fs.readFileSync('category-navigation.js','utf8');
 const categoryTree=JSON.parse(fs.readFileSync('assets/category-tree.json','utf8'));
 const approvedRoots={
