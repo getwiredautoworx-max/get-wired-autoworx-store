@@ -1,3 +1,11 @@
+## PRODUCT CARD IMAGE FALLBACK FIX — 2026-10-31 19:45 SAST
+
+- Product image failure sequence now continues correctly: recorded image → image endpoint → exact-SKU local WebP → neutral placeholder. It does not clear the local fallback prematurely.
+- Audio regression source executed in-memory: 92 assertions passed; eight main preview inline scripts compile. Not Node/Actions/browser acceptance.
+- Code checkpoint: `fa3061297756a79b058cab59fd35e43af08ae037`, 55 ahead / 0 behind main. Continue remaining no-credit audit and prepare exact-head browser acceptance matrix.
+
+---
+
 ## PART REQUEST YEAR SELECTOR / EDGE-CASE CHECKPOINT — 2026-10-31 19:30 SAST
 
 - Fixed double-escaped 4-digit year regex in preview vehicle request form; added regression guard.
