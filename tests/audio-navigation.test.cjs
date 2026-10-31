@@ -1,0 +1,18 @@
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const html=fs.readFileSync('preview-store.html','utf8');
+const audio=fs.readFileSync('preview-audio.html','utf8');
+const nav=fs.readFileSync('assets/audio-category-navigation.js','utf8');
+const build=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
+const departments=['Car Audio & Video','Home Entertainment','Band & Live Sound','DJ Equipment','Studio Equipment','Marine Audio','Installed AV','Musical Instruments','Harnesses & Trims'];
+assert.match(html,/<script src="assets\/audio-category-navigation\.js" defer><\/script>/,'main preview must load Audio navigation adapter');
+assert.match(nav,/5ab55c53-eee3-41ce-ad48-04ad6df85181/,'adapter must target the single approved Audio root category');
+assert.match(nav,/preview-audio\.html/,'main Audio category must link to the customer department browser');
+for(const label of departments) assert.ok(audio.includes(label),`missing Audio department: ${label}`);
+for(const id of ['departments','brands','components','products']) assert.ok(audio.includes('id="'+id+'"'),`missing ${id} stage`);
+assert.match(audio,/p\.collection===department/,'products must be scoped to selected department');
+assert.match(audio,/p\.brand===brand/,'products must be scoped to selected brand');
+assert.match(audio,/p\.component===component/,'products must be scoped to selected component');
+assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
+assert.match(build,/PREVIEW_ASSET_FILES = \["audio-category-navigation\.js", "planetworld-catalogue-preview\.json"\]/,'preview-only bundle must include its adapter and catalogue JSON');
+console.log('AUDIO_NAVIGATION_SOURCE_PASS: main category → 9 departments → brand → component → product list; preview-only assets are allowlisted');
