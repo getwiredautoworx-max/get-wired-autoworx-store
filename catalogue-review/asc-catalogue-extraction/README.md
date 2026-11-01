@@ -26,3 +26,10 @@ Candidate branch note: this folder contains page-level OCR review only; item-lev
 - `asc-product-pilot-review-only.csv` now contains 25 rows; `asc-image-match-review-only.csv` records 25 visually confirmed source-card photo/code pairings. Individual product image crops remain pending.
 - `assets/asc-catalogue-pilot-preview.json` carries these records into the isolated preview only. Price, stock, internal SKU and public SKU are null; cards show price on request and availability to confirm. No live product rows or database writes.
 - 63 additional OCR code tokens remain unverified and quarantined from the pilot.
+
+
+## Source-card crops — 2026-11-01
+
+- 25 crops are stored in `assets/asc-catalogue-pilot/`, one for each visually verified pilot record. Crops include the source photo, printed description and code, with the watermark retained.
+- These are preview/review crops, not final clean product photography. Public live image-use rights must be confirmed before production use.
+- The preview JSON points to these crops; all 25 remain preview-only and have null price, stock and internal/public SKU.
