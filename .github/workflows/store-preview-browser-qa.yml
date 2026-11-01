@@ -110,6 +110,36 @@ jobs:
             if(!modalText.trim())throw new Error('Product detail modal did not populate');
             await page.locator('#modalClose').click();
             await page.locator('#productModal').waitFor({state:'hidden',timeout:10000});
+            // Verify the six ASC catalogue pilot subcategories render the exact 25 source-page records.
+            const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
+            const ascPilotErrors=[];
+            ascPilotPage.on('pageerror',e=>ascPilotErrors.push(e.message));
+            await ascPilotPage.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
+            await ascPilotPage.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            const pilotChecks=[
+              ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
+              ['crankshaft sensor|camshaft sensor','Crankshaft & Camshaft Position Sensors',5],
+              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',4],
+              ['halogen globe|headlight globe','Headlight Globes — Halogen',4],
+              ['carpet mat+toyota','Carpet Mat Sets — Toyota',4],
+              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4]
+            ];
+            const pilotAudit=[];
+            for(const [query,label,expected] of pilotChecks){
+              const result=await ascPilotPage.evaluate(async ({query,label})=>{
+                await window.openAscCatalogueCategory(query,label);
+                const cards=[...document.querySelectorAll('#allProductsGrid [data-asc-preview-id]')];
+                const text=document.getElementById('allProductsGrid')?.innerText||'';
+                return {label,count:cards.length,codes:cards.map(c=>c.querySelector('.sku')?.innerText||''),text};
+              },{query,label});
+              if(result.count!==expected)throw new Error('ASC pilot subcategory count mismatch: '+JSON.stringify({label,expected,result}));
+              if(!result.text.includes('Price on request')||!result.text.includes('Availability to confirm')||!result.text.includes('SOURCE IMAGE MATCHED'))throw new Error('ASC pilot card release guards missing: '+label);
+              if(/ADD TO CART|In stock|Only \d+ left/i.test(result.text))throw new Error('ASC pilot must not imply live stock or checkout: '+label);
+              pilotAudit.push({label,count:result.count});
+            }
+            if(ascPilotErrors.length)throw new Error('ASC pilot page errors: '+ascPilotErrors.join(' | '));
+            console.log('ASC_PILOT_PREVIEW_PASS '+JSON.stringify(pilotAudit));
+            await ascPilotPage.close();
             // Verify Part Search and the no-AI photo-request fallback in the actual preview.
             const partSearchButton=page.locator('.headerPartSearch').first();
             await partSearchButton.waitFor({state:'visible',timeout:10000});
