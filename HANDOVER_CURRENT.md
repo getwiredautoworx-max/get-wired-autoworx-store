@@ -1,3 +1,15 @@
+## LIVE QA RECHECK — 2026-11-01 SAST
+
+- Current PR #142 metadata head is `0f6411556317f76e1719a9a8f51e38bfc69834a0`; older checkpoint references to `ab1fb08` are stale for the live branch.
+- On the live head: Public SKU Exposure Audit run 41287744657, Cloudflare Pages Public Package QA 41287744606, and Catalogue Image Audit 41287744636 passed. Free Catalogue Search Tests 41287744610 and Populated Store Preview Browser QA 41287744635 were still in progress at latest poll.
+- Storefront Smoke Test wrapper run 41287744582 succeeded, but its actual `smoke` job was SKIPPED. This is not checkout/commerce acceptance.
+- The branch's preview deploy workflow checks out the triggering ref and deploys only the isolated `planetworld-audio-preview` Pages branch. A deployment matching the current head and a passing hosted browser re-test are still required before saying the newest candidate is deployed/accepted.
+- Existing preview URL: https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html. Earlier evidence shows preview content can revert from 9 to 5 images, so verify live hosted content rather than assume.
+- No production changes or live data writes. Owner real-phone acceptance and commerce acceptance remain incomplete. ASC authorisation is already granted; the new post-reset ASC source bytes remain unavailable for the 25-product pilot.
+- Continue without asking owner to repeat known authorisation or constraints.
+
+---
+
 ## CONTINUATION CHECKPOINT — 2026-11-01 10:08 SAST
 
 - Re-read `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` before continuing.
