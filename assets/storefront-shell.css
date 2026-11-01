@@ -26,3 +26,23 @@ body{background:radial-gradient(circle at 50% -10%,#0c2944 0,#030914 34%,#02060d
 @media(max-width:900px){.gwTop{display:none}.gwHead{min-height:88px;padding:8px 14px;gap:12px}.gwLogo{height:72px;width:min(360px,48vw)}.gwNav{display:none}.gwPageMain{padding:0 12px}.gwFoot{grid-template-columns:1fr 1fr}.gwMobileNav{display:flex}}
 @media(max-width:600px){.gwHead{flex-wrap:wrap;min-height:78px;padding:7px 12px;gap:8px}.gwLogo{height:60px;width:calc(100% - 100px);max-width:260px}.gwHead .gwSearch{order:3;flex-basis:100%;max-width:none;margin:0}.gwHead .gwSearch input{padding:10px 14px;font-size:14px}.gwHead .gwCart,.gwHead .gwBack,.gwHead .gwAction{font-size:11px;padding:8px}.gwFoot{grid-template-columns:1fr 1fr;gap:12px}.gwFooter{padding:18px 12px 90px}}
 @media(max-width:390px){.gwHead{gap:6px}.gwLogo{width:calc(100% - 92px)}.gwFoot{grid-template-columns:1fr}}
+
+/* Brighter shared storefront shell with strong text contrast. */
+:root{color-scheme:light;--gw-navy:#f3f6fa;--gw-panel:#fff;--gw-blue:#087fce;--gw-red:#e21d2f;--gw-white:#173650;--gw-line:#d5e0e9}
+html,body{background:#f3f6fa!important;color:#173650!important}
+.gwTop{background:#eaf0f6!important;color:#173650!important;border-bottom:1px solid #cbdbe7!important}
+.gwTop .rating{color:#704f00!important;font-weight:800}.gwTop .rating b{color:#173650!important}
+.gwHeader{background:rgba(255,255,255,.98)!important;border-bottom:1px solid #d5e0e9!important}
+.gwNav{background:#eaf0f6!important;border-bottom:1px solid #cbdbe7!important}.gwNav a{color:#173650!important}
+.gwFooter{background:#f3f6fa!important;color:#314b60!important}.gwFoot{border-top-color:#cbdbe7!important;color:#314b60!important}.gwFoot a{color:#075f9c!important}
+.gwMobileNav{background:#fff!important;border-top:1px solid #cbdbe7!important}.gwMobileNav a{color:#173650!important}.gwMobileNav b{color:#087fce!important}
+.gwHead .gwSearch input,.search input,#topSearch,.tools input,.tools select{background:#fff!important;color:#173650!important;border-color:#1688d0!important}
+.gwHead .gwCart,.gwHead .gwBack,.gwHead .gwAction,.back,.cart{background:#fff!important;color:#173650!important;border-color:#9dbbd0!important}
+.crumb,.count,.title p,.muted,.stock,.sku,.product .sku,.detail .sku,.gwVerifiedSku,.gwVerifiedModel,.partSearchResult small{color:#425d72!important;text-shadow:none!important;opacity:1!important}
+.title{border-bottom-color:#d5e0e9!important}.title h1,.name,.product h3,.section h2,.product .name{color:#12344f!important}
+.price{color:#12344f!important}.desc{color:#314b60!important}
+.spec{background:#f7fafc!important;color:#173650!important;border-color:#d5e0e9!important}
+.hero,.img,.prodImg,.detailImg{background:#edf3f8!important;border:1px solid #d5e0e9!important}
+.empty,.error{background:#fff!important;color:#425d72!important;border-color:#d5e0e9!important}
+.product button,.detailActions button,.add{background:#087fce!important;color:#fff!important}
+#gwPreviewNotice{background:#fff4cf!important;color:#5a4300!important;border-color:#e0c36e!important}
