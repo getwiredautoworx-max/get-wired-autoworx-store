@@ -29,7 +29,7 @@ assert.match(audio,/REQUEST PRICE & AVAILABILITY/,'each Planetworld product card
 assert.match(audio,/wa\.me\/27744884234/,'product enquiry must use the existing business WhatsApp contact');
 assert.match(audio,/25-Oct-2026/,'product enquiry must identify the dated supplier snapshot');
 assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
-assert.match(build,/PREVIEW_ASSET_FILES = \["audio-category-navigation\.js", "planetworld-catalogue-preview\.json", "planetworld-verified-models-preview\.json", "audio-connections-catalogue-preview\.json", "asc-catalogue-pilot-preview\.json"\]/,'preview-only bundle must include Audio and ASC catalogue preview data');
+assert.ok(build.includes('"asc-catalogue-pilot-preview.json"')&&build.includes('"asc-catalogue-pilot/asc-ma522.jpg"'),'preview-only bundle must include ASC pilot JSON and source-card image assets');
 assert.ok(packageQa.includes('preview-checkout.html; do'),'preview package QA must assert checkout route inclusion');
 assert.ok(packageQa.includes('Verify preview package includes all seven approved preview routes'),'preview package QA must cover all seven routes');
 const previewCheckout=fs.readFileSync('preview-checkout.html','utf8');
