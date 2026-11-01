@@ -5220,3 +5220,12 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - Quota status: the connected GitHub API access does not expose the account's remaining included Actions minutes/billing usage. The successful 1-Nov runner is encouraging evidence that runner allocation is no longer universally blocked, but remaining quota and the earlier 0.5GB artifact-storage pressure are not confirmed resolved. Check account Billing & licensing / Actions usage and artifact storage before a batch of workflows. Use one targeted test after reconciliation rather than rerunning the whole workflow suite.
 - Local environment check: Node.js v22.16.0, npm 10.9.2 and Git 2.47.3 are installed. However, this session has not yet obtained a verified local checkout of the private repository, so no Node regression test is claimed executed locally.
 - The prior 48-hour checkpoint file is available at `HANDOVER_UPDATE_2026-11-01_48H_TARGET_CHECKPOINT.md`. No production, Axxess, DNS, Supabase, live stock/prices, payment, or supplier activation changes made. ASC remains separate.
+
+
+## 48-HOUR TARGET — LIVE BRANCH COMPARISON CORRECTION — 2026-11-01
+
+- Rechecked PR #139 against the actual current `main` after the handover update. Current `main` is `f43bcc3b52f117406c228e5ca61d1eafba9e720b`; candidate `integration/planetworld-partsearch-clean-main-2026-10-31` is still open/draft and GitHub reports it is not mergeable.
+- Current compare result is `diverged`, **61 commits ahead / 20 behind** (not 18 behind as stated in the earlier 05:25 entry); merge base remains `dbe69f61bf468af313c3f3b749a73dc42992126b`.
+- No merge, force-push, or production change performed. Treat the candidate's 61 commits as unreviewed integration scope until reconciled against current main. Next safe sequence: inspect the 20 main-only commits and candidate file overlap; create a fresh integration branch from current main; selectively port only reviewed storefront/catalogue changes; run the two Node regression suites locally if the source and dependencies can be obtained; then perform one exact-head hosted desktop/mobile QA attempt only after checking billing/storage.
+- Actions availability remains partially confirmed: scheduled runner `41256265742` succeeded on 1-Nov, but exact remaining minutes and artifact storage are not exposed by the connected API. Do not claim full quota restored from one successful scheduled run.
+- Readiness remains unverified; no launch/merge approval. ASC is separate and production/Axxess/DNS/Supabase/live stock/prices/payments remain unchanged.
