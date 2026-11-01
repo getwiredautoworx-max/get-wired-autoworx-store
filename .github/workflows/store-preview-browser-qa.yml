@@ -113,12 +113,11 @@ jobs:
             await page.waitForURL(/preview-category\.html\?id=/,{timeout:15000});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             const categoryLinks=await page.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
-            if(!categoryLinks.some(href=>href.startsWith('preview-products.html?category=')))throw new Error('Category landing page did not offer a product-listing route: '+JSON.stringify(categoryLinks));
-            const productRoute=categoryLinks.find(href=>href.startsWith('preview-products.html?category='));
-            await page.goto(new URL(productRoute,'http://127.0.0.1:4173/').toString(),{waitUntil:'domcontentloaded'});
+            if(!categoryLinks.some(href=>href.startsWith('preview-category.html?id=')||href.startsWith('preview-products.html?category=')))throw new Error('Category landing page did not offer subcategory/product routes: '+JSON.stringify(categoryLinks));
+            const firstSubcategory=categoryLinks.find(href=>href.startsWith('preview-category.html?id='));
+            if(!firstSubcategory)throw new Error('Category landing page did not expose a dedicated subcategory page');
+            await page.goto(new URL(firstSubcategory,'http://127.0.0.1:4173/').toString(),{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
-            const productRouteCards=await page.locator('#grid .card').count();
-            if(productRouteCards<1)throw new Error('Subcategory product page did not render products');
             await page.goto('http://127.0.0.1:4173/preview-category.html?id=f7f2ea3b-f15d-46a7-920b-9d3d9a394c79',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             await page.locator('#grid .card').filter({hasText:'Vehicle-Specific Aerials'}).click();
