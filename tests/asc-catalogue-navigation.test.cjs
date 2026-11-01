@@ -70,7 +70,7 @@ if(codeCandidates.split(/\r?\n/).filter(Boolean).length<20||!codeCandidates.incl
 const pilot=fs.readFileSync('catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv','utf8').trim().split(/\r?\n/);
 if(pilot.length!==26) throw new Error('ASC review pilot must contain one header and 25 visually verified source-page records');
 const imageMatches=fs.readFileSync('catalogue-review/asc-catalogue-extraction/asc-image-match-review-only.csv','utf8').trim().split(/\r?\n/);
-if(imageMatches.length!==26||!imageMatches[1].includes('SOURCE_CARD_PAIRING_VISUALLY_CONFIRMED')) throw new Error('ASC pilot image pairing review register must contain 25 source-card matches');
+if(imageMatches.length!==26||!imageMatches[1].includes('SOURCE_CARD_CROP_REVIEWED')) throw new Error('ASC pilot image pairing review register must contain 25 source-card matches');
 const pilotData=JSON.parse(fs.readFileSync('assets/asc-catalogue-pilot-preview.json','utf8'));
 if(pilotData.record_count!==25||pilotData.records.length!==25) throw new Error('ASC preview pilot must contain exactly 25 records');
 for(const p of pilotData.records){
