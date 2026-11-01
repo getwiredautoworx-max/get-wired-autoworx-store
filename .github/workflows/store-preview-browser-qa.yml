@@ -5,6 +5,10 @@ on:
     branches: [integration/current-main-refresh-2026-11-01]
     paths:
       - 'preview-store.html'
+      - 'preview-category.html'
+      - 'preview-products.html'
+      - 'preview-product.html'
+      - 'preview-planetworld.html'
       - 'preview-audio.html'
       - 'tests/audio-navigation.test.cjs'
       - 'tests/asc-catalogue-navigation.test.cjs'
