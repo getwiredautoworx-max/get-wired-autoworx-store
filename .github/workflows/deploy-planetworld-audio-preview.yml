@@ -51,7 +51,7 @@ jobs:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
       - name: Stamp exact source SHA for hosted QA synchronization
-        run: printf '%s\\n' "$GITHUB_SHA" > pages-public/gw-preview-sha.txt
+        run: printf '%s' "$GITHUB_SHA" > pages-public/gw-preview-sha.txt
       - name: Deploy isolated non-production Pages branch
         uses: cloudflare/wrangler-action@v4
         with:
