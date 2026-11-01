@@ -34,7 +34,7 @@ jobs:
           BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
           ready=0
           for attempt in $(seq 1 24); do
-            code=$(curl -sS -o /tmp/store.html -w '%{http_code}' "$BASE/store.html" || true)
+            code=$(curl --connect-timeout 5 --max-time 10 -sS -o /tmp/store.html -w '%{http_code}' "$BASE/store.html" || true)
             if [ "$code" = '200' ] && grep -qi 'Get Wired AutoWorx' /tmp/store.html; then
               ready=1
               break
@@ -45,7 +45,7 @@ jobs:
             echo "Branch preview did not become ready; last HTTP status: ${code:-none}"
             exit 1
           fi
-          preview_code=$(curl -sS -o /tmp/preview-store.html -w '%{http_code}' "$BASE/preview-store.html")
+          preview_code=$(curl --connect-timeout 5 --max-time 10 -sS -o /tmp/preview-store.html -w '%{http_code}' "$BASE/preview-store.html")
           test "$preview_code" = '200' || { echo "Preview storefront route returned $preview_code"; exit 1; }
           echo "PAGES_BRANCH_PREVIEW_RESPONDS_PASS"
 
@@ -57,7 +57,7 @@ jobs:
           check_absent() {
             path="$1"
             marker="$2"
-            curl -sS --path-as-is "$BASE$path" -o /tmp/guard-body -D /tmp/guard-headers
+            curl --connect-timeout 5 --max-time 10 -sS --path-as-is "$BASE$path" -o /tmp/guard-body -D /tmp/guard-headers
             if grep -aEqi "$marker" /tmp/guard-body; then
               echo "PUBLIC_DATA_EXPOSURE: $path contains blocked marker $marker"
               exit 1
