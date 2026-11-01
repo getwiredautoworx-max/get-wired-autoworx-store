@@ -51,7 +51,6 @@ jobs:
         run: |
           set -euo pipefail
           DEPLOY_BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
-          BRANCH_BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
           expected="$GITHUB_SHA"
           ready=0
           for attempt in $(seq 1 24); do
@@ -71,7 +70,7 @@ jobs:
               exit 1
             fi
           }
-          for base in "$DEPLOY_BASE" "$BRANCH_BASE"; do
+          for base in "$DEPLOY_BASE"; do
             check_absent "$base" '/assets/planetworld-catalogue-preview.json' 'sourceWorkbooks|indicativePrice|hasStock|sourceFile'
             check_absent "$base" '/assets/audio-connections-catalogue-preview.json' 'indicativePrice|sourceFile|dealer'
             check_absent "$base" '/assets/electrocity-catalogue-preview.json' 'sourceFile|sourcePage|source_file|source_page|supplierCost|dealerCost|stockQuantity|stock_quantity'
