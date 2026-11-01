@@ -1,3 +1,17 @@
+## OWNER DECISION / AI HANDOVER UPDATE — 2026-11-01 SAST
+
+- Owner expressed clear disappointment with ChatGPT's delivery and confidence, citing repeated unmet expectations, lack of tangible verified results, and unreliable time estimates. Owner is considering transferring the build lead to Gemini and Grok.
+- ChatGPT recommended that the owner let Gemini or Grok take the lead now, with independent review, rather than continue relying on ChatGPT as lead developer. This is the owner's option; no transfer has yet been confirmed and no external agent has been granted repository access by this conversation.
+- Suggested division if the owner proceeds: Gemini leads repository inspection and storefront fixes; Grok independently reviews changes and regressions; ChatGPT may be used only as an independent verifier against the owner's acceptance criteria, if requested.
+- ChatGPT previously stated a 4–6 hour target (tentatively 02:00 SAST on 2-Nov). **Retract this as a commitment or reliable ETA.** It was not supported by continuous autonomous execution or verified completion evidence. Do not repeat that estimate as a promise. No background work should be implied between user messages.
+- If another agent takes over, its first task is to read this file and inspect the actual current repository, open PRs, workflow runs, exact candidate SHA and preview deployment. Do not assume PR #142, #149, or any previously mentioned preview is current or accepted; verify live GitHub state before acting.
+- Incoming agent must produce evidence, not progress narration: exact commit SHA; changed-file summary; exact-head test results and run links; deployment run and hosted preview URL tied to that SHA; hosted browser checks for approved bright storefront shell, category → source-faithful subcategory → product → detail navigation, correct taxonomy (oil filler cap must not appear under ignition looms), product image loading/fallback, readable text/contrast, and 360/390px mobile layout.
+- Preserve all existing release boundaries: no production merge/deploy, Axxess upload, DNS changes, checkout/payment activation, Supabase production writes, live stock/catalogue/category/price changes, supplier activation/import, or destructive branch/PR cleanup without explicit owner approval. Existing store stock remains testing data only. Payment readiness remains a separate gate; Instant EFT may be considered for non-production testing only within previously recorded owner-approved scope.
+- No repository code, storefront, catalogue, production configuration, branch, PR state, or deployment was changed as a result of this conversation. This update records the owner's feedback and proposed handover approach only.
+- Owner's latest instruction: update this handover file with this conversation. Completed by this documentation-only commit.
+
+---
+
 ## OWNER ESCALATION — PREVIEW STILL SHOWS OLD STOREFRONT — 2026-11-01 SAST
 
 - Owner reports the preview still loads the old storefront and reasonably doubts the store will be ready for live testing by 2026-11-02, let alone today. Treat the deadline as **at risk / not credibly achievable on current evidence**. Do not reassure with an unsupported ETA.
