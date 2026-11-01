@@ -93,7 +93,7 @@ jobs:
             echo "Hosted preview did not deploy the latest candidate source SHA $expected."
             exit 1
           fi
-          echo "HOSTED_PREVIEW_EXACT_SHA_PASS $expected"PASS $expected"
+          echo "HOSTED_PREVIEW_EXACT_SHA_PASS $expected"
 
       - name: Run read-only populated preview browser checks
         shell: bash
