@@ -1,3 +1,54 @@
+## CURRENT EXECUTION CHECKPOINT — 2026-11-01 (SAST)
+
+### Closure and continuity rule — effective immediately
+A task is CLOSED only when its original acceptance objective is achieved and independently verified, and the evidence plus commit/URL/test reference is recorded here. A task remains IN PROGRESS when work is underway. A task is BLOCKED only when a named external dependency or safety gate prevents completion. Closed work is not reopened without new failure evidence. A successful wrapper, skipped job, source assertion, or preview deployment must never be represented as a successful customer-facing interaction. Do not create duplicate priorities for already-closed work. Update this file after each meaningful status change, owner input, blocker, or task switch.
+
+### Verified current integration candidate
+- Repository: `getwiredautoworx-max/get-wired-autoworx-store`; default branch `main`.
+- PR #140 is OPEN, DRAFT, UNMERGED; exact candidate head `da463960345fda06c300f969920209c37da2986e`. It is the current clean-main integration candidate; PR #139 is not the active candidate.
+- PR #140: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/140
+- Exact-head passing checks: Populated Store Preview Browser QA (41269869771), Free Catalogue Search Tests (41269869777), Cloudflare Pages Public Package QA (41269869799), Public SKU Exposure Audit (41269869793), Catalogue Image Audit (41269869973).
+- Storefront Smoke workflow run 41269869780 succeeded only as a wrapper; its actual smoke job was SKIPPED in buttons-only mode. Do not count this as a smoke pass.
+- Exact-head Cloudflare Pages preview deployments succeeded:
+  - https://b1a08506.get-wired-autoworx-store.pages.dev
+  - https://integration-planetworld-part-5nfg.get-wired-autoworx-store.pages.dev
+- This verifies targeted automated checks and a non-production preview deployment only. It does not establish full smoke coverage, real-device owner acceptance, production readiness, or launch approval.
+
+### Current task states
+- **CLOSED — PR #140 exact-head targeted automated checks:** five named QA/test/audit workflows passed on the exact head listed above. Evidence is in the PR description and linked Actions runs.
+- **CLOSED — PR #140 exact-head Pages deployment:** both preview URLs above are evidenced for the same exact head.
+- **IN PROGRESS — hosted desktop/mobile acceptance:** complete real interaction checks are still required at desktop and narrow mobile widths, including Part Search, Audio department → brand → component → product → WhatsApp handoff, category navigation, product details, and overflow/error checks. The wrapper smoke job was skipped; do not substitute it.
+- **IN PROGRESS — candidate review:** PR #140 remains draft/unmerged and requires owner review/approval. No merge or production release is authorised.
+- **BLOCKED — live eight-root category remapping:** current live category audit is read-only; 4,187 active products need a complete SKU-level evidence mapping against the approved source and owner approval before any category writes. Existing proposal is not authority to mutate live categories. Keep current live assignments unchanged.
+- **IN PROGRESS — Planetworld catalogue enrichment:** 3,317 broad dated snapshot rows are quote/preview data. Do not invent model/image matches. Existing curated reference rows do not prove complete image coverage. Reconcile image audit discrepancies before claiming image completeness. Supplier price and availability must be reconfirmed; dated 25-Oct stock is not live inventory.
+- **BLOCKED — ASC price/catalogue reconciliation:** ASC is ALREADY AUTHORISED by the owner; do not ask for authorisation again. Exact current November Buyer’s Guide and stock-arrival source documents are still needed to validate 38 historical price-scaling SKUs against current cost, VAT basis, stock and effective dates. Request/await the source files only if the connected mail source cannot retrieve the attachment bytes. Do not use September values as current and do not change prices/stock without exact evidence and approval.
+- **IN PROGRESS — workflow safety correction:** main branch background controller still has a production-QA workflow in its auto-retry allowlist. A safety fix exists on another branch but is not yet effective on main. Do not run the controller, retry production/live/deploy workflows, or merge a broad PR just to obtain this fix. Prepare and independently review a minimal isolated correction.
+- **BLOCKED — production launch:** production deployment, Axxess upload, DNS, Supabase writes/migrations, live stock/prices, supplier activation, checkout/payments remain outside the authorised scope. Payment readiness remains intentionally deferred. Do not change these without explicit owner approval.
+
+### Additional verified live audit (read-only)
+- 4,200 products total; 4,187 active and 13 inactive.
+- 243 category rows; 66 top-level rows.
+- Zero active products with NULL category_id; zero invalid non-NULL category IDs; zero active products with blank image_url. A nonblank URL does not prove the image loads or depicts the correct model.
+- The eight desired customer-facing roots remain: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy. 4x4 Outdoor must remain nested under Camping, Leisure & Outdoors.
+- These counts do not prove that all eight roots/subcategories have correct product assignments. Do not bulk-reparent or rename live categories from labels alone.
+
+### Actions / resource position
+- PR #140 exact-head workflows above completed successfully, so runner capacity was available for those runs on 1-Nov. This does NOT establish that the monthly Actions quota/storage is fully restored.
+- Background monitor run 41281780859 completed; 9 workflow runs inspected, 3 completed non-successfully, 0 running, 0 retry actions requested, 0 monitor errors.
+- 417 artifacts totalling 8.86 MiB were inventoried; none were deleted. Do not claim storage was freed.
+- Do not rerun protected production/live/deployment workflows. Avoid unnecessary deployment retries or credit-consuming work.
+
+### Next execution sequence
+1. Read this checkpoint first; re-fetch PR #140 exact head and main before any code work.
+2. Perform actual hosted browser interaction on both desktop and mobile against the exact PR #140 Pages deployment; record viewport, route, actions, observed results and errors. If browser tooling is unavailable, mark this specific task BLOCKED rather than claiming a pass.
+3. Independently review PR #140 changed files and checks; keep draft/unmerged until owner approval. No merge by assumption.
+4. Isolate and fix the background controller production-workflow auto-retry safety defect on a dedicated minimal branch; test the allowlist statically and with a safe local/unit test. Do not execute the controller or any production workflow.
+5. Continue read-only category evidence work and prepare a SKU-level mapping report; no Supabase writes.
+6. Continue Planetworld exact-model/image audit using official manufacturer evidence only; reconcile the 5-versus-11 image audit discrepancy before any completeness claim.
+7. Obtain/review current ASC November source documents; ASC authorisation is already granted, but source evidence for the 38 historical price-scaling SKUs remains outstanding.
+8. Keep payment, production, Axxess, DNS, Supabase writes, live stock/prices and supplier activation on HOLD pending explicit approval.
+
+---
 ## CATEGORY TAXONOMY SOURCE GATE CONFIRMED — 2026-10-31 17:52 SAST
 
 - Located and re-read the existing category authority documents on current main: `PROPOSED_FINAL_CATEGORY_TREE_AND_MAPPING_PLAN_2026-10-11.md`, `CATEGORY_MAPPING_REVIEW_2026-10-09.md`, and `assets/store-category-hierarchy.json`.
