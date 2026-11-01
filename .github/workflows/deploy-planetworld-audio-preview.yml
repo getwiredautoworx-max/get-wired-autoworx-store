@@ -112,5 +112,10 @@ jobs:
           done
           curl -H 'Cache-Control: no-cache' -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS "$BASE/assets/storefront-shell.css?gw_preview_guard=$GITHUB_RUN_ID" -o /tmp/gw-shell.css
           grep -qi 'color-scheme:light' /tmp/gw-shell.css
+          curl -H 'Cache-Control: no-cache' -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS "$BASE/preview-store.html?gw_preview_guard=$GITHUB_RUN_ID" -o /tmp/gw-preview-store.html
+          grep -Fq "preview-category.html?id=" /tmp/gw-preview-store.html
+          grep -Fq "root_category_id" /tmp/gw-preview-store.html
+          grep -Fq "preview-audio.html" /tmp/gw-preview-store.html
+          grep -Fq "previewParams.get('asc_label')" /tmp/gw-preview-store.html
           grep -qi '#f3f6fa' /tmp/gw-shell.css
           echo "HOSTED_BRIGHT_STOREFRONT_ROOT_AND_SHARED_SHELL_PASS"
