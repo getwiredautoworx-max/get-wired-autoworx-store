@@ -5229,3 +5229,91 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - No merge, force-push, or production change performed. Treat the candidate's 61 commits as unreviewed integration scope until reconciled against current main. Next safe sequence: inspect the 20 main-only commits and candidate file overlap; create a fresh integration branch from current main; selectively port only reviewed storefront/catalogue changes; run the two Node regression suites locally if the source and dependencies can be obtained; then perform one exact-head hosted desktop/mobile QA attempt only after checking billing/storage.
 - Actions availability remains partially confirmed: scheduled runner `41256265742` succeeded on 1-Nov, but exact remaining minutes and artifact storage are not exposed by the connected API. Do not claim full quota restored from one successful scheduled run.
 - Readiness remains unverified; no launch/merge approval. ASC is separate and production/Axxess/DNS/Supabase/live stock/prices/payments remain unchanged.
+
+
+## 48-HOUR TARGET — CLEAN-MAIN CANDIDATE AND EXACT-HEAD QA — 2026-11-01 05:23 SAST
+
+- Created a new isolated integration branch `integration/planetworld-partsearch-clean-main-2026-11-01` from current `main` commit `165dd719a815c7b2e3b3d2964c50c8cf5d0c08be`. It contains one focused port commit `f58117bc535f5ac7c4c0240ebd0abdfa0fef6d86`; compare against main is cleanly `ahead 1 / behind 0` (merge base is current main).
+- Opened draft PR #140: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/140. It ports 20 reviewed storefront/test/build files from PR #139: catalogue search JS and tests, Planetworld dated preview data and curated model references, Audio category adapter and nine-department Audio browser, preview-only checkout/product/category routes, isolated public Pages build, and focused QA workflows.
+- Deliberately excluded all divergent handover documents, the artifact-cleanup workflow, task-monitor workflow and background controller source. Current main handover was preserved. PR #139 remains untouched and unmerged.
+- PR #140 exact-head commit `f58117bc535f5ac7c4c0240ebd0abdfa0fef6d86` automatically triggered six GitHub Actions workflows; at the last check all had started and were `in_progress`, rather than failing before runner assignment:
+  - Free Catalogue Search Tests: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939836
+  - Populated Store Preview Browser QA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939813
+  - Storefront Smoke Test: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939844
+  - Cloudflare Pages Public Package QA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939899
+  - Catalogue Image Audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939830
+  - Public SKU Exposure Audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939814
+- This is a material improvement in runner allocation, but tests are not yet counted as passed while in progress. No local Node test execution is claimed. Exact monthly minutes and artifact storage remain unavailable through the connected API.
+- Acceptance gates remain: wait for the six exact-head results; fix failures on the candidate branch; verify exact-head Cloudflare Pages deployment and real desktop/mobile browser behavior; check all eight root categories and Audio department → brand → component → product chain; verify Part Search and WhatsApp quote-only disclaimers. Keep PR draft/unmerged until critical gates pass.
+- Safety boundary unchanged: no production deployment, Axxess, DNS, Supabase, live stock/pricing, payment activation, supplier activation or ASC integration change. Planetworld remains dated preview data, not live inventory.
+
+
+## 48-HOUR TARGET — EXACT-HEAD TEST RESULTS UPDATE — 2026-11-01 05:24 SAST
+
+- Exact PR #140 head `f58117bc535f5ac7c4c0240ebd0abdfa0fef6d86` has now passed five targeted hosted checks:
+  1. Free Catalogue Search Tests — run `41268939836`: SUCCESS. Node regression assertions and populated-preview integration/safe-rendering checks executed successfully.
+  2. Cloudflare Pages Public Package QA — run `41268939899`: SUCCESS. Standard customer-only package and isolated preview package built; seven approved preview routes verified.
+  3. Catalogue Image Audit — run `41268939830`: SUCCESS. Source/image mapping audit and origin/path checks passed; the optional deployed image-function smoke test was skipped because owner approval was not present.
+  4. Public SKU Exposure Audit — run `41268939814`: SUCCESS. Customer-facing source audit passed.
+  5. Storefront Smoke Test — run `41268939844`: SUCCESS, but its smoke subjob was skipped because this branch is detected as the buttons-only storefront mode. This is not a populated-store browser pass.
+- Populated Store Preview Browser QA — run `41268939813` — remains `in_progress`. Playwright installed; Chromium installation was still running at the last check. Audio hierarchy source/package checks and read-only browser checks had not yet executed. Do not count browser/mobile QA as passed until this job completes successfully and its actual assertions are inspected.
+- Exact-head hosted runner allocation is now working. Remaining monthly minutes and artifact-storage usage are still not exposed by the connected API; artifact uploads were skipped in the completed jobs above, so this does not establish that storage pressure is cleared.
+- PR #140 remains draft and unmerged. Do not merge until the populated browser job finishes, exact-head preview is available, and desktop/mobile behavior is verified. Production and supplier boundaries remain unchanged.
+
+
+## 48-HOUR TARGET — BROWSER QA FAILURE TRIAGE AND PATCH — 2026-11-01 05:25 SAST
+
+- The first PR #140 exact-head browser workflow `41268939813` completed FAILURE after successfully installing Playwright and Chromium. Its Audio hierarchy source check failed before the actual read-only browser check ran. The assertion expected the catalogue-loading refresh string via a regex; this assertion has now been changed to a direct source-string check on the candidate branch.
+- During the same failure-log inspection, the Audio product enquiry link was found to contain a malformed WhatsApp contact (`27744884234`) inconsistent with the existing approved store contact (`2774484234`). Corrected `preview-audio.html` to use `https://wa.me/2774484234` and updated the source assertion. This is a confirmed code correction; re-test is pending.
+- New candidate head: `83e9f2695498fe8f3f36c5153fd92a454d8887f5`. The branch remains based directly on main with no divergence; PR #140 is still draft. Six exact-head workflows have restarted on the corrected head: search tests `41269041001`, populated browser QA `41269040930`, smoke `41269040983`, package QA `41269041191`, image audit `41269040951`, and SKU audit `41269041139`. Do not count the new head as passing until results finish.
+- Previous exact-head results remain useful but do not substitute for retesting the corrected head: catalogue search tests, package QA, image audit and SKU audit passed on `f58117b`; the smoke workflow passed with its smoke subjob skipped due buttons-only mode. The populated browser job failed on a source assertion, so actual browser checks were skipped.
+- No hosted desktop/mobile browser pass is confirmed yet. Once the corrected Audio source checks pass, inspect the actual browser QA step output and its coverage before claiming desktop/mobile verification. If the workflow is source-only or lacks both viewport sizes, add targeted browser assertions or explicitly record that gap.
+- Production, payment, supplier, stock, DNS, Axxess, Supabase and ASC boundaries remain unchanged.
+
+
+## 48-HOUR TARGET — NON-PRODUCTION DEPLOYMENT AND QA FIXES — 2026-11-01 05:27 SAST
+
+- Non-production Cloudflare Pages deployment succeeded via run `41269123243` on candidate commit `ddb47881bdbc9301c6cd35e374a8371bd2f3e98b`. Exact deployment URL: https://9c84eee8.get-wired-autoworx-store.pages.dev ; branch alias: https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev . The package build included the seven approved preview routes; it explicitly excluded supplier/source/audit/staging/Supabase/.github directories. This is a preview deployment only, not production.
+- The first browser source assertion was wrong because the real page uses `catalogueLoaded=true;if(!broad.length&&!verified.length)...else if(department)draw()`. The test now asserts those actual source branches rather than the nonexistent simplified string.
+- Corrected the Audio WhatsApp number in `preview-audio.html` from the malformed `27744884234` to the existing approved contact `2774484234`. Also corrected the Playwright workflow's expected quote URL to the approved number and replaced its stale hardcoded preview URL with the current non-production branch alias.
+- The corrected source/test changes and preview workflow corrections have been committed on the clean-main candidate. Latest branch head is `1793b26b9092fba14b93121aee5e246c926984cc`; the newest exact-head workflow runs are starting. Wait for these exact-head results rather than using the failed prior-head run as a final verdict.
+- Prior-head checks on `ddb4788`: catalogue search, package QA, SKU audit, image audit and smoke workflow succeeded; the smoke subjob was skipped by the buttons-only detection. The populated browser QA failed at the inaccurate source assertion before local or hosted browser checks, so no browser pass is claimed yet.
+- Outstanding: confirm newest-head Node regression, source assertions, local desktop/mobile browser suite, hosted preview suite against the deployed branch alias, nine Audio departments → brand → component → product and quote handoff, all eight root categories, Part Search/model lookup, and mobile/desktop overflow. The hosted preview deployment is one commit behind latest head only because the later commits adjusted tests/workflow assertions, not storefront runtime files; redeploy after any further storefront runtime change.
+- No merge or production change. ASC remains separate. No live stock/pricing, checkout/payment activation, Supabase or Axxess/DNS changes.
+
+
+## 48-HOUR TARGET — AUDIO ROOT LINK VISIBILITY FIX — 2026-11-01 05:28 SAST
+
+- Exact-head browser QA on `1793b26` passed all source checks and then executed the actual local browser suite. It confirmed the eight root labels and IDs, 4X4 Outdoor nesting, 4,187 loaded products, ASC preview stock exclusion, hidden preview checkout, Part Search model lookup for `HCE-C2100RD`, seven official manufacturer images loading, no dealer cost exposure, no browser console/page errors, and mobile width of 390px with no overflow on the Planetworld page.
+- The run then failed when the Audio department link was not visible: the navigation adapter had appended it inside `.children`, whose CSS is `display:none` until the category is expanded. The customer requirement is a visible route from the main Audio category card. Corrected `assets/audio-category-navigation.js` to append the visible “Browse all Audio departments” link directly to the Audio root card.
+- This is a runtime storefront change; a new non-production Cloudflare Pages deployment and exact-head browser run have been triggered by the latest branch commit `2c0b14bf871d766f68f10d68a5c1009c142899f3`. Do not use the previous preview URL as evidence of this latest fix until the deployment workflow for the new head succeeds.
+- The latest confirmed run on the prior head also proved the no-AI Part Search path and manufacturer/model search are working locally; the failure occurred later in the Audio root-link visibility check. Desktop/mobile overflow assertions for the main store and Audio hierarchy have not yet been reached in a successful run.
+- No merge or production changes. Continue with exact-head deploy, rerun browser QA, fix any next failure, then verify hosted alias and desktop/mobile behavior. Keep PR #140 draft until all critical gates pass.
+
+
+## 48-HOUR TARGET — LATEST PREVIEW DEPLOYMENT CONFIRMED — 2026-11-01 05:29 SAST
+
+- Deployment workflow run `41269338145` succeeded for the Audio root-link visibility fix on candidate head `2c0b14bf871d766f68f10d68a5c1009c142899f3`.
+- New exact deployment URL: https://b47bb277.get-wired-autoworx-store.pages.dev ; branch alias: https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev . Build evidence: `PAGES_PUBLIC_BUILD_PASS files=4131 webp_images=4101`; preview package explicitly included all seven approved preview routes and excluded supplier/source/audit/staging/Supabase/.github content.
+- Exact-head populated browser QA run `41269341894` has passed Playwright/Chromium installation and the full Audio hierarchy source/package checks; the actual read-only browser suite is in progress. The other five targeted workflows on this head have completed successfully: search tests `41269341925`, package QA `41269341846`, image audit `41269341942`, SKU audit `41269341910`, and smoke workflow `41269341848` (smoke subjob skipped due buttons-only detection).
+- Current critical blocker is the remaining browser run. It must confirm the newly visible Audio department link, the nine-department → brand → component → product path, corrected WhatsApp contact, mobile and desktop overflow, Part Search, and hosted preview checks against the new branch alias. No pass is claimed until run `41269341894` finishes.
+- No production deployment; the successful deployment is isolated to the `planetworld-audio-preview` branch. All release/supplier boundaries remain unchanged.
+
+
+## 48-HOUR TARGET — IMAGE LOADING DEFECT TRIAGE — 2026-11-01 05:30 SAST
+
+- The next browser attempt on `2c0b14b` passed the corrected Audio hierarchy source check and proceeded into the actual local browser suite. It verified Part Search model lookup, 68 curated model records, 44 snapshot-positive / 24 zero-stock preview rows, no dealer-cost exposure, and mobile width `390/390`.
+- It then failed because two official Audison CDN images did not load in the hosted Chromium run: model references `66755100` (AF M12.14 bit) and `66755105` (AF M8.14 bit). Their official product pages are retained as manufacturer links, but the flaky direct image URLs have been cleared so customers see the explicit “Product image not yet verified” placeholder rather than broken image icons. The other five exact manufacturer image URLs remain in use.
+- Updated the browser QA assertions to expect five confirmed loading images and the five matching model references. The new candidate head is `e8bb9e2e1ce707731ca4cd56fb6abbf255eb01b8`. Because the preview JSON changed, the non-production preview deployment and exact-head QA workflows should rerun; verify their run IDs and results before relying on the fix.
+- The Audio root-card link visibility fix was already included in the last successful preview deployment (`b47bb277.get-wired-autoworx-store.pages.dev` / alias `planetworld-audio-preview.get-wired-autoworx-store.pages.dev`), but the image-data correction must be deployed before the final hosted check.
+- PR #140 remains draft/unmerged. Remaining browser gates: root Audio link visible; nine-department → brand → component → product flow; WhatsApp quote uses approved `2774484234`; no mobile/desktop overflow; all eight root categories; hosted preview Part Search, stock exclusion, product detail and checkout-hidden assertions; no console errors.
+- No production or live supplier/stock/price/payment changes. ASC remains separate.
+
+
+## 48-HOUR TARGET — PREVIEW IMAGE AUDIT SOURCE CORRECTION — 2026-11-01 05:32 SAST
+
+- Follow-up investigation established that the failing image assertion was reading the dedicated `preview-planetworld.html` review page's embedded 68-record array, not only `assets/planetworld-verified-models-preview.json`. The two unstable Audison image URLs were therefore removed from both affected preview surfaces. Their official manufacturer detail links remain; the page's existing initials/brand placeholder is used when an image URL is not verified to load.
+- Updated `deploy-planetworld-audio-preview.yml` so changes to `assets/planetworld-verified-models-preview.json` and `preview-planetworld.html` trigger a new non-production preview deployment. The earlier deployment trigger had omitted both of these data/page paths; that has been corrected.
+- Latest candidate head: `45596eba252b9d27ed5afb2b953cc8adf9fe0e19`. Await its deployment and browser QA results. The previous browser run `41269475193` failed at the image-count assertion because it still saw seven embedded URLs; it had not yet reached the Audio hierarchy, mobile/desktop overflow or hosted preview assertions.
+- Current desired behavior is honest fallback rather than broken image icons for the two Audison products. Five exact image references remain in the dedicated 68-product review preview and should be verified to load; manufacturer links remain for all curated records.
+- PR #140 stays draft/unmerged; no production or live data changes. ASC, payment activation, Axxess, DNS, Supabase, supplier stock/pricing remain untouched.
