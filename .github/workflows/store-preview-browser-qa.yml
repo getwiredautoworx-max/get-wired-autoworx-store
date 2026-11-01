@@ -1,6 +1,14 @@
 name: Populated Store Preview Browser QA
 
 on:
+  push:
+    branches: [integration/current-main-refresh-2026-11-01]
+    paths:
+      - 'preview-store.html'
+      - 'tests/audio-navigation.test.cjs'
+      - 'tests/asc-catalogue-navigation.test.cjs'
+      - 'assets/**'
+      - '.github/workflows/store-preview-browser-qa.yml'
   pull_request:
     branches: [main]
     paths:
