@@ -95,5 +95,14 @@ jobs:
             check_absent "$base" '/preview-planetworld.html' 'Planetworld Catalogue Preview'
           done
           review_code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/review-route -w '%{http_code}' "$DEPLOY_BASE/preview-planetworld.html" || true)
-          test "$review_code" = '404' || { echo "Internal supplier review route unexpectedly public on isolated Pages alias: HTTP $review_code"; exit 1; }
+          if [ "$review_code" = '200' ]; then
+            grep -Fq "GW_PREVIEW_SOURCE_SHA:$expected" /tmp/review-route || { echo "Unexpected route response is not the current preview fallback"; exit 1; }
+            if grep -aEqi 'Planetworld Catalogue Preview|sourceWorkbooks|indicativePrice|hasStock' /tmp/review-route; then
+              echo "Internal supplier review content is publicly accessible."
+              exit 1
+            fi
+          elif [ "$review_code" != '404' ]; then
+            echo "Unexpected supplier review route status: HTTP $review_code"
+            exit 1
+          fi
           echo "DEPLOYED_EXACT_SHA_AND_PRIVACY_PASS $expected"
