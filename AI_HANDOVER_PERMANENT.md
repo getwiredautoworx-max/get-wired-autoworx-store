@@ -4393,3 +4393,20 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Scope: read the current main handover, `HANDOVER_CURRENT.md`, and the Planetworld branch handover plus its three named audit reports; inspect all current background workflows, PR #95, and the latest Planetworld audit run/job/artifact.
 - Safety: no PR merges, supplier XLSX edits, supplier imports/publication, live product/price/stock/active-flag changes, deployment, Axxess/DNS/payment changes, or release-credit use. Retry only failed/cancelled safe staging tasks when a supported rerun action exists; never duplicate queued/in-progress work.
 - This task-start checkpoint was appended before further inspection. Results and any retry verification will be recorded as they occur.
+
+
+## 2026-11-01 AUTOMATION CHECKPOINT — SAFE QA RETRIES STARTED
+
+- PR #139 current metadata: OPEN / DRAFT / UNMERGED / mergeable=false; current head `f21afa51ca58b08db102f130bec705a1c5edf247`.
+- The six previous safe staging QA runs had completed FAILURE before any job steps on older exact head `7adcbab2f665b401abd36aa89eb217dfba2ed10c`. Confirmed all six were completed (not queued/in progress), then used the supported failed-jobs rerun action once per run. Retry requests were accepted:
+  - Browser QA `41202823441`, job `124774542248` — now IN_PROGRESS; checkout/setup passed; Chromium installation in progress.
+  - Free Catalogue Search `41202823429`, job `124774548625` — acceptance tests and populated-preview integration checks PASSED; post-job cleanup still in progress.
+  - Storefront Smoke `41202823488`, job `124774564264` — detect-storefront-mode job now IN_PROGRESS; smoke dependent was previously skipped and is not yet verified.
+  - Pages Public Package QA `41202823495`, job `124774578388` — setup/checkout in progress; package assertions pending.
+  - Public SKU Exposure Audit `41202823519`, job `124774583064` — checkout in progress; audit pending.
+  - Catalogue Image Audit `41202823593`, job `124774587849` — checkout in progress; audit pending.
+- These retries execute the older `7adcbab...` commit, not current PR head `f21afa...`; they are an Actions-runner recovery diagnostic, not exact-current-head acceptance. No rerun was made for Background Task Controller `41202829579` because its allowlist previously included production QA; no live/release/production job was rerun. Preview deployment run `41183261239` was not retried because it can consume Cloudflare build credits.
+- Rechecked PR #95: CLOSED / UNMERGED / mergeable=false, head `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`; no merge/rebase.
+- Planetworld audit run `40876805256`, job `123457598110`: job conclusion SUCCESS, all seven work steps completed, but artifact list is empty. Job log explicitly reports `Failed to CreateArtifact: Artifact storage quota has been hit`. This is not a refreshed downloadable audit. No rerun was attempted because the run itself succeeded and the connector exposes no workflow_dispatch action.
+- Exact owner action for a fresh read-only Planetworld audit: GitHub → Actions → **Planetworld Workbook Audit (Read Only)** → choose branch `docs/planetworld-blocker-handover-2026-10-26` → **Run workflow** once, then verify run head, job summary and output artifact. Do not rerun successful run `40876805256`.
+- No supplier workbook, price, catalogue, stock, active flag, Supabase, Axxess, DNS, payment, production deployment or customer-facing data was changed. Current PR retry results remain pending; next action is poll these six run IDs, record each final conclusion, and only then assess current-head QA options.
