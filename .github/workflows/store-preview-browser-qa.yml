@@ -65,14 +65,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --no-tags --depth=2 origin "$GITHUB_SHA"
-          changed="$(git diff --name-only "$GITHUB_SHA^" "$GITHUB_SHA")"
-          if ! grep -Eq '^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)' <<< "$changed"; then
-            echo "No storefront package source changed; reusing the latest deployed candidate artifact."
+          git fetch --no-tags --depth=20 origin "$GITHUB_SHA"
+          expected=""
+          deployable_regex='^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)'
+          for candidate in $(git rev-list -n 20 "$GITHUB_SHA"); do
+            changed="$(git diff --name-only "$candidate^" "$candidate" 2>/dev/null || true)"
+            if grep -Eq "$deployable_regex" <<< "$changed"; then
+              expected="$candidate"
+              break
+            fi
+          done
+          if [ -z "$expected" ]; then
+            echo "No storefront package source changed in the recent candidate commits; reusing the latest deployed artifact."
             exit 0
           fi
-          BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
-          expected="$GITHUB_SHA"
+          BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
           ready=0
           for attempt in $(seq 1 36); do
             code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/hosted-preview.html -w '%{http_code}' "$BASE/preview-store.html" || true)
@@ -83,10 +90,10 @@ jobs:
             sleep 5
           done
           if [ "$ready" != '1' ]; then
-            echo "Hosted preview did not deploy the exact candidate SHA $expected."
+            echo "Hosted preview did not deploy the latest candidate source SHA $expected."
             exit 1
           fi
-          echo "HOSTED_PREVIEW_EXACT_SHA_PASS $expected"
+          echo "HOSTED_PREVIEW_EXACT_SHA_PASS $expected"PASS $expected"
 
       - name: Run read-only populated preview browser checks
         shell: bash
