@@ -112,6 +112,8 @@ jobs:
             await category.click();
             await page.waitForURL(/preview-category\.html\?id=/,{timeout:15000});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
+            const categoryShell=await page.evaluate(()=>({header:getComputedStyle(document.querySelector('.header')).backgroundColor,card:getComputedStyle(document.querySelector('.card')).backgroundColor}));
+            if(!categoryShell.header.includes('255')||!categoryShell.card.includes('255'))throw new Error('Dedicated category page did not inherit the bright shared shell: '+JSON.stringify(categoryShell));
             const categoryLinks=await page.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
             if(!categoryLinks.some(href=>href.startsWith('preview-category.html?id=')||href.startsWith('preview-products.html?category=')))throw new Error('Category landing page did not offer subcategory/product routes: '+JSON.stringify(categoryLinks));
             const firstSubcategory=categoryLinks.find(href=>href.startsWith('preview-category.html?id='));
