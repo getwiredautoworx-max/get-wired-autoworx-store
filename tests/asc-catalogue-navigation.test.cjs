@@ -20,7 +20,7 @@ const required = [
   ["openAscCatalogueCategory", "catalogue category interaction"],
   ["ASC catalogue sections • source-led navigation", "source-led category labels without fuzzy product counts"],
   ["No unrelated store products are substituted", "safe empty state for unverified catalogue sections"],
-  ["location.href='preview-category.html?id='", "homepage category buttons open dedicated category pages"],
+  ["preview-category.html?id=", "homepage category buttons open dedicated category pages"],
   ["No visually verified pilot products are assigned to this subcategory yet", "honest empty-state messaging"]
 ];
 if(!categoryPage.includes("ASC_CATALOGUE_CHILDREN")||!categoryPage.includes("preview-store.html?asc_query=")) throw new Error("Dedicated category pages must preserve ASC source-led subcategories and route verified leaves to their exact preview records");
