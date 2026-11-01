@@ -1,3 +1,20 @@
+## OWNER ESCALATION — PREVIEW STILL SHOWS OLD STOREFRONT — 2026-11-01 SAST
+
+- Owner reports the preview still loads the old storefront and reasonably doubts the store will be ready for live testing by 2026-11-02, let alone today. Treat the deadline as **at risk / not credibly achievable on current evidence**. Do not reassure with an unsupported ETA.
+- **Process failure acknowledged:** previous continuation sent the owner back to the old PR #142 preview URL after the owner had requested the approved bright shell. This repeated the same work loop instead of validating which exact deployed artifact the link served. The old URL is not an acceptable preview for approval of the new storefront.
+- **Current truth / no false readiness:** PR #142 preview at `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html` is the previously QA-tested storefront, not proof that the new approved bright shell is deployed. PR #145 is open/draft/unmerged, and its preview data-exposure guard failed with HTTP 308 on the recorded attempt; its placeholder-only image policy may also regress previously verified image fallback. Do not label PR #145 accepted or live-test ready without resolving these defects and checking the actual hosted URL.
+- **Required next method (no circular rebuilds):**
+  1. Start from the exact candidate PR/head and list its changed files; do not start another redesign or repeat already-passing old-preview tests.
+  2. Resolve the preview guard's HTTP 308 failure and verify deployed package contents/privacy before sharing the new preview.
+  3. Deploy the chosen candidate to the isolated Pages preview from the exact triggering SHA; record deployment run, commit SHA, and URL.
+  4. Open the deployed URL itself and run browser checks against the hosted artifact—not just source/branch tests—for the bright approved shell, category → subcategory → product flow, catalogue-correct grouping (oil filler cap must not appear under ignition looms), actual image/placeholders behavior, readable text, and 390px mobile layout.
+  5. Only repeat the failing/new-candidate checks; do not rerun successful old-head checks as if they validate the new shell.
+  6. Update this handover after each material result, including failures and blockers, with exact SHA/run/URL and the next concrete action. Never send an old URL as the new preview.
+- **Acceptance boundary:** no merge or production/Axxess/DNS/checkout/payment/Supabase/live stock/catalogue/price changes without explicit approval. “Ready for live testing” requires the new hosted candidate to pass the deployed-artifact checks and the owner to confirm it on a phone; checkout/payment readiness remains a separate deferred gate.
+- **Deadline status:** not currently evidenced as test-ready for 2026-11-02. Prioritize closing the new-shell deployment/hosted verification chain before further catalogue expansion. If the chain cannot be verified, report the blocker plainly rather than inventing completion or an ETA.
+
+---
+
 ## LATEST CONTINUATION — MONITOR RUN 23 — 2026-11-01 15:22 SAST
 
 - Detailed results: [HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_RESULTS.md](HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_RESULTS.md); checkpoint: [HANDOVER_CHECKPOINT_2026-11-01_MONITOR_RUN_23.md](HANDOVER_CHECKPOINT_2026-11-01_MONITOR_RUN_23.md); task start: [HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_TASK_START.md](HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_TASK_START.md).
