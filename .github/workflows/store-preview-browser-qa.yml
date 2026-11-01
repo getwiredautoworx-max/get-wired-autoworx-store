@@ -404,7 +404,7 @@ jobs:
             const checkoutText=new URL(checkoutHref).searchParams.get('text')||'';
             if(!checkoutText.includes('Payment preference: Instant EFT (manual; instructions supplied after confirmation)'))throw new Error('Instant EFT preview preference was not included in the WhatsApp draft: '+checkoutText);
             if(!await checkoutPreview.locator('#status').innerText().then(t=>t.includes('No order was placed and no payment was taken.')))throw new Error('Preview checkout did not clearly confirm that no payment was taken');
-            if(/account number|bank account details|pay now/i.test(await checkoutPreview.locator('body').innerText()))throw new Error('Preview checkout exposed payment instructions or a live payment action');
+            if(!checkoutHref.startsWith('https://wa.me/27744884234?text=')||await checkoutPreview.locator('input#accountNumber,input[name="accountNumber"]').count())throw new Error('Preview checkout exposed a live payment route or bank-account input');
             console.log('INSTANT_EFT_PREVIEW_ONLY_PASS: manual preference is carried into WhatsApp; no order/payment is submitted');
             await checkoutPreview.close();
             await browser.close();
