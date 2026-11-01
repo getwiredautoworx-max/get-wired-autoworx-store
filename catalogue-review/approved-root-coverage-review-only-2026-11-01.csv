@@ -1,4 +1,3 @@
-# READ-ONLY REVIEW ONLY — generated 2026-11-01 SAST; no live product data changed.
 public_sku,product_name,current_category,current_parent,current_category_id,current_category_active,review_status,review_reason,next_action
 "GW-4D3C610E","10mmx10M Roll Cotton Braided Fuel Hose","Air Filters","Spare Parts","e83f9321-3d4a-40ca-9f4a-0e3faaeeff0d","true","OUTSIDE_APPROVED_ROOT_NOT_IN_QUEUE","Active product sits outside the eight approved root trees and is not in the existing manual review queue.","Trace the original supplier catalogue/buyer's guide; do not auto-move or change live data."
 "GW-562B77A6","3.2mmx10M Roll Vacuum/Plain Fuel Hose","Air Filters","Spare Parts","e83f9321-3d4a-40ca-9f4a-0e3faaeeff0d","true","OUTSIDE_APPROVED_ROOT_NOT_IN_QUEUE","Active product sits outside the eight approved root trees and is not in the existing manual review queue.","Trace the original supplier catalogue/buyer's guide; do not auto-move or change live data."
