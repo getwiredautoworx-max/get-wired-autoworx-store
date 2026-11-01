@@ -10,6 +10,7 @@ const required = [
   ["Car Mats", "car mats category"],
   ["data-asc-query", "virtual catalogue filter controls"],
   ["openAscCatalogueCategory", "catalogue category interaction"],
+  ["wrap.classList.toggle('open')", "expandable root-category navigation"],
   ["No matching active store listings have been verified yet", "honest empty-state messaging"]
 ];
 for (const [needle,label] of required) {
