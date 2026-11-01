@@ -18,6 +18,8 @@ const store=read('store.html');
 const category=read('category.html');
 const previewCategory=read('preview-category.html');
 const previewProducts=read('preview-products.html');
+const previewProduct=read('preview-product.html');
+const electrocityData=JSON.parse(read('assets/electrocity-catalogue-preview.json'));
 const previewHome=read('preview-store.html');
 const planetworld=read('preview-planetworld.html');
 const audioPreview=read('preview-audio.html');
@@ -58,6 +60,9 @@ const quarantinedOilFillerSkus=['GW-22B30765','GW-21132FDF','GW-0E5E3109','GW-E9
 assert(quarantinedOilFillerSkus.every(sku=>previewHome.includes(sku))&&previewHome.includes('function isPreviewCategoryQuarantined(p)')&&previewHome.includes('&&!isPreviewCategoryQuarantined(p)'), 'nine confirmed oil-filler-cap SKUs must be excluded from category browse lists without changing live data');
 assert(previewProducts.includes('PREVIEW_CATEGORY_QUARANTINE_SKUS')&&previewProducts.includes('terms.length?terms.every(term=>hay.includes(term)):!PREVIEW_CATEGORY_QUARANTINE_SKUS.has(String(p.public_sku||\'\'))'),'category product lists must hide the nine miscategorized oil-filler SKUs by default while preserving explicit search');
 assert(previewCategory.includes('quarantineCounts')&&previewCategory.includes("'c7980122-f760-4e65-b0e0-aecce4181f05':6"),'category landing counts must exclude all six oil-filler SKUs from Ignition Spares');
+assert(electrocityData.records.length===33&&['Ignition Modules','Ignition Coils','Ignition Looms','Converters'].every(cat=>electrocityData.records.some(r=>r.category===cat)),'Electrocity preview must preserve the four supplier catalogue sections and all 33 source-text records');
+assert(previewCategory.includes("electrocityCategory:'Ignition Modules'")&&previewCategory.includes("electrocityCategory:'Ignition Coils'")&&previewCategory.includes("electrocityCategory:'Ignition Looms'")&&previewCategory.includes("electrocityCategory:'Converters'"),'category landing pages must present Electrocity catalogue subcategories separately');
+assert(previewProducts.includes('electrocity_category')&&previewProducts.includes('electrocity_id=')&&previewProduct.includes('electrocity_id')&&previewProduct.includes('Catalogue reference:'),'Electrocity category, listing and product detail routes must form a complete click-through path');
 assert(previewHome.includes("assets/product-image-pending.svg"),'ASC preview cards must use neutral placeholders');
 for(const p of ['products.html','preview-products.html','product.html','preview-product.html']){
  const s=read(p);
