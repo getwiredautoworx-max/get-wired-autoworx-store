@@ -1,3 +1,15 @@
+## EXECUTION UPDATE — CONTINUITY RULE IMPLEMENTED; CONTROLLER SAFETY FIX ISOLATED — 2026-11-01 (SAST)
+
+- **CLOSED — handover continuity checkpoint:** the closure rule and current verified PR #140 state are now recorded at the top of this file. Commit: `1d41b53071b8c17c03615ea4531d94eb7250e596`. The file was re-fetched after commit and the new checkpoint was confirmed at line 1.
+- **IN PROGRESS — background controller safety correction:** confirmed main's `scripts/background_task_controller.py` incorrectly included `store-production-qa.yml` in `AUTO_RETRY_ALLOWLIST`. Created isolated branch `safety/remove-production-qa-auto-retry-2026-11-01`; removed only that allowlist entry; retained the workflow in the monitored workflow list; added `tests/test_background_controller_policy.py` to assert production QA, live-release-gates and Cloudflare deployment workflows cannot be retried.
+- Exact branch head: `cc9966b07c4070e7649e400394953517c9d7822c`. Re-fetched the exact branch controller and test files. Static content check confirms the production QA workflow is absent from the allowlist and the regression assertions are present.
+- Opened draft PR #141: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/141. It is unmerged and not yet mergeable. The new Python unittest has NOT been executed; no test pass is claimed. Do not run the background controller or any production/live/deployment workflow. Do not merge until test execution and diff review.
+- No Actions workflow was dispatched. No artifacts were deleted. No production, Axxess, DNS, Supabase, live catalogue, stock, price, supplier activation, checkout or payment changes were made.
+- **Correction to previous status wording:** PR #140's targeted checks and Pages deployment remain CLOSED for the exact head only; full hosted interaction/real-device acceptance remains IN PROGRESS. The smoke wrapper's actual smoke job was skipped.
+- Next safe work: execute the new regression test in a safe test-only workflow or available local Python environment; inspect PR #141 complete diff; continue exact-head hosted browser interaction for PR #140. If no browser execution tool is available, report that limitation rather than mark browser acceptance passed.
+
+---
+
 ## CURRENT EXECUTION CHECKPOINT — 2026-11-01 (SAST)
 
 ### Closure and continuity rule — effective immediately
