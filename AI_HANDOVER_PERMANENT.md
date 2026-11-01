@@ -4468,3 +4468,23 @@ Read-only audit of the sanitized JSON used by PR #139:
 3. Continue exact model/variant and manufacturer-image review; resolve the 5-versus-11 image-source count and verify the current-head Planetworld audio-preview route without triggering unapproved Cloudflare deployment credits.
 4. Produce an evidence-backed proposal for the 198 manual category-review rows and live legacy-root consolidation; no automatic moves or live writes.
 5. Keep PR #140 draft/unmerged pending owner review, real-phone acceptance and explicit release approval. Do not change live data, import supplier data, deploy production, alter Axxess/DNS/payments or spend release credits.
+
+
+## 2026-11-01 BACKGROUND WORKFLOW MONITOR ADDENDUM
+
+- PR #140 exact-head PR-triggered checks listed above are all completed; no queued/in-progress PR #140 check was returned.
+- Separate `Deploy Planetworld Audio Preview` failures were confirmed on the older `integration/planetworld-partsearch-clean-main-2026-10-31` branch:
+  - Latest known run `41212401700`, job `124569946722`: FAILURE; job has no step data and log fetch returns GitHub 404 BlobNotFound.
+  - Attempt-2 run `41183261239`, job `124485622210`: FAILURE; no step data and log fetch returns 404 BlobNotFound.
+  - These are preview-deployment jobs and may consume Cloudflare credits. Do not rerun. No successful exact-head `Deploy Planetworld Audio Preview` run for PR #140's `...2026-11-01` branch was positively identified. The separate hosted Planetworld page remains potentially stale.
+- Live/production workflow checks remain failed and were not rerun:
+  - Live Smoke Test `41203036740`, job `124542481997`: FAILURE.
+  - Live Release Gates `41173188438`, job `124455266307` (**Public HTTPS, live navigation and safe checkout**): FAILURE.
+  - Production QA `41048090314`, job `124037248225`: FAILURE at **Verify canonical production domain is reachable**; later live checks were skipped.
+  - These are live/production checks, not safe staging retries.
+- Background Task Controller jobs remain failed and were not rerun because the controller's production-QA allowlist safety correction is not merged/verified on main:
+  - `41202829579` / job `124544275428`: FAILURE.
+  - `41175963383` / job `124463466700`: FAILURE.
+  - `41175960637` / job `124463458308`: FAILURE.
+  - `41173196916` / job `124455288932`: FAILURE.
+- No production/deployment retry, live data write, PR merge or release-credit-consuming action was initiated during this monitor run.
