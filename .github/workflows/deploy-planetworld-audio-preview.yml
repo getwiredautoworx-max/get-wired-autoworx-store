@@ -2,7 +2,7 @@ name: Deploy Planetworld Audio Preview
 on:
   push:
     branches:
-      - integration/current-main-refresh-2026-11-01
+      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
     paths:
       - "preview-store.html"
       - "assets/storefront-shell.css"
