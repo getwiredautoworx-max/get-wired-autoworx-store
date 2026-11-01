@@ -30,6 +30,7 @@ for(const p of ['index-new.html','category.html','products.html','product.html',
 
 assert(fs.existsSync('assets/product-image-pending.svg'),'placeholder asset missing');
 assert(pagesBuilder.includes('"product-image-pending.svg"')&&pagesBuilder.includes('SKU WebP images must not be included'),'preview Pages package must ship placeholders without SKU photos');
+assert(pagesBuilder.includes('"catalogue-search.js"')&&pagesBuilder.includes('"product-details.js"'),'preview Pages package must include the Part Search and product detail dependencies');
 assert(pagesBuilder.includes('"checkout.html", "checkout-v2.html", "category.html", "products.html", "product.html"'),'preview Pages package must omit production checkout and product routes');
 assert(!pagesBuilder.includes('asc-catalogue-pilot/asc-ma522.jpg'),'preview Pages package must not ship supplier source-card crops');
 assert(store.includes('src="preview-store.html"')&&store.includes('noindex,nofollow'),'test entry must load the no-checkout preview storefront only');
