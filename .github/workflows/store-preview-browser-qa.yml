@@ -266,11 +266,17 @@ jobs:
             if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
             console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
-            const hostedErrors=[];
+            const hostedErrors=[],hostedConsoleErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
-            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/',{waitUntil:'domcontentloaded',timeout:60000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
-            await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            hosted.on('console',m=>{if(m.type()==='error')hostedConsoleErrors.push(m.text())});
+            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            try {
+              await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:45000});
+              await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:45000});
+            } catch (error) {
+              const diagnostic=await hosted.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,hasGrid:!!document.getElementById('categoryGrid'),gridChildren:document.querySelectorAll('#categoryGrid .catWrap').length,productCount:Array.isArray(window.gwProducts)?window.gwProducts.length:null,bodyText:document.body.innerText.slice(0,900)}));
+              throw new Error('Hosted preview data/navigation did not load: '+JSON.stringify({diagnostic,hostedErrors,hostedConsoleErrors,error:error.message}));
+            }
             // Confirm one exact-SKU product photo loads and a product without a source image ends on the packaged placeholder.
             const imageProbe=await browser.newPage({viewport:{width:390,height:844}});
             await imageProbe.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-product.html?id=bfc23c23-7738-40a9-9c73-77b30112d677',{waitUntil:'domcontentloaded',timeout:60000});
