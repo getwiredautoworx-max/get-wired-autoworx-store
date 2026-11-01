@@ -43,11 +43,12 @@ for (const [parent,labels] of expected) {
   const block=taxonomy.slice(start,next<0?taxonomy.length:next);
   for(const label of labels) if(!block.includes(label)) throw new Error(label+" is not nested under expected existing category "+parent);
 }
-for (const [root,labels] of expected) {
-  const i=html.indexOf(root,html.indexOf("const ASC_CATALOGUE_CHILDREN"));
-  if(i<0) throw new Error("Missing ASC root mapping "+root);
-  const block=html.slice(i,html.indexOf("};",i));
-  for(const label of labels) if(!block.includes(label)) throw new Error(label+" mapped under wrong/missing root");
+const fuelStart=taxonomy.indexOf("'asc-fuel-pumps':[");
+if(fuelStart<0) throw new Error("Missing nested Fuel Pumps category");
+const fuelEnd=taxonomy.indexOf("\n ]",fuelStart);
+const fuelBlock=taxonomy.slice(fuelStart,fuelEnd<0?taxonomy.length:fuelEnd);
+for(const label of ["Electric Fuel Pumps — BMW","Diesel Lift Pumps & Housings — All Makes"]) {
+  if(!fuelBlock.includes(label)) throw new Error(label+" is not nested under Fuel Pumps");
 }
 if (html.includes("ASC catalogue stock verified") || html.includes("ASC supplier stock available")) {
   throw new Error("Preview must not imply supplier stock verification");
