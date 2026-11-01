@@ -35,6 +35,9 @@ assert.ok(packageQa.includes('Verify preview package includes all seven approved
 const previewCheckout=fs.readFileSync('preview-checkout.html','utf8');
 assert.match(html,/href="preview-checkout\.html">PROCEED TO CHECKOUT/);
 assert.ok(previewCheckout.includes('Preview mode — no order or payment will be submitted.'));
+assert.ok(previewCheckout.includes('id="paymentMethod"')&&previewCheckout.includes('Instant EFT (manual'));
+assert.ok(previewCheckout.includes('No bank account, account number or payment link is shown.'));
+assert.ok(previewCheckout.includes('Payment preference: '+String.fromCharCode(39)+'+payment'));
 assert.ok(!previewCheckout.includes('supabase.co')&&!previewCheckout.includes('fetch('));
 assert.match(build,/"preview-checkout\.html"/);
 // Preview-only request handoff must be explicit and must not imply automatic photo upload.
