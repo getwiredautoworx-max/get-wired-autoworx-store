@@ -4,6 +4,7 @@ const vm=require('node:vm');
 const html=fs.readFileSync('preview-store.html','utf8');
 const audio=fs.readFileSync('preview-audio.html','utf8');
 const nav=fs.readFileSync('assets/audio-category-navigation.js','utf8');
+const verifiedModels=JSON.parse(fs.readFileSync('assets/planetworld-verified-models-preview.json','utf8')).records;
 for(const [index,match] of [...audio.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)].entries()){
   if(match[1].trim()) new vm.Script(match[1],{filename:'preview-audio.inline-script-'+index+'.js'});
 }
@@ -13,6 +14,10 @@ const build=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
 const packageQa=fs.readFileSync('.github/workflows/cloudflare-public-pages-build-qa.yml','utf8');
 assert.match(audio,/planetworld-verified-models-preview\.json/,'Audio browser must load curated exact-model references');
 assert.match(audio,/manufacturerPage/,'verified model cards must link to manufacturer details');
+assert.equal(verifiedModels.length,68,'curated manufacturer reference set must contain 68 reviewed models');
+const approvedImageHosts=['https://finland.alpine-europe.com/fileadmin/','https://static.audison.com/media/','https://www.kicker.com/','https://dam.focal-naim.com/'];
+assert.equal(verifiedModels.filter(p=>p.imageUrl).length,9,'only nine exact official model images are currently verified');
+assert.ok(verifiedModels.filter(p=>p.imageUrl).every(p=>approvedImageHosts.some(prefix=>p.imageUrl.startsWith(prefix))),'all exact model images must use an approved manufacturer host');
 assert.match(audio,/modelNumber/,'verified model cards must display manufacturer model numbers');
 assert.match(audio,/Boolean\(p\.verifiedModel\)/,'official product photos are allowed only for exact verified model references');
 assert.match(audio,/approvedImagePrefixes\.some\(prefix=>candidateImage\.startsWith\(prefix\)\)/,'official product photos must pass the manufacturer-host allowlist');
