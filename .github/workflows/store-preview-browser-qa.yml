@@ -181,7 +181,7 @@ jobs:
             await audioShop.locator('#products .quoteLink').first().waitFor({state:'visible',timeout:15000});
             const quoteHref=await audioShop.locator('#products .quoteLink').first().getAttribute('href');
             const quoteText=new URL(quoteHref).searchParams.get('text')||'';
-            if(!quoteHref.startsWith('https://wa.me/27744884234?text=')||!quoteText.includes('Department: Car Audio & Video')||!quoteText.includes('Product:')||!quoteText.includes('25-Oct-2026')||!quoteText.includes('\n'))throw new Error('Audio product WhatsApp quote draft is incomplete: '+quoteText);
+            if(!quoteHref.startsWith('https://wa.me/2774484234?text=')||!quoteText.includes('Department: Car Audio & Video')||!quoteText.includes('Product:')||!quoteText.includes('25-Oct-2026')||!quoteText.includes('\n'))throw new Error('Audio product WhatsApp quote draft is incomplete: '+quoteText);
             const audioOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(audioOverflow.scrollWidth>audioOverflow.innerWidth+1)throw new Error('Audio navigation mobile overflow: '+JSON.stringify(audioOverflow));
             await audioShop.setViewportSize({width:1366,height:900});
