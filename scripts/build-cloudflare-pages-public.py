@@ -23,6 +23,7 @@ REQUIRED_ASSET_FILES = [
 ]
 PREVIEW_ASSET_FILES = [
     "audio-category-navigation.js",
+    "catalogue-search.js",
     "planetworld-catalogue-preview.json",
     "planetworld-verified-models-preview.json",
     "audio-connections-catalogue-preview.json",
@@ -48,7 +49,7 @@ OUT.mkdir(parents=True)
 
 # Preview mode publishes only the guarded storefront entry, legal pages and
 # explicitly approved preview routes. Production checkout/product routes are omitted.
-PREVIEW_BASE_ROOT_FILES = ["index.html", "store.html", "returns-refunds.html", "terms-and-conditions.html"]
+PREVIEW_BASE_ROOT_FILES = ["index.html", "store.html", "product-details.js", "returns-refunds.html", "terms-and-conditions.html"]
 include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_BASE_ROOT_FILES:
