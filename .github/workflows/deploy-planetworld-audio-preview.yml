@@ -31,7 +31,7 @@ permissions:
   contents: read
   deployments: write
 concurrency:
-  group: planetworld-audio-preview
+  group: planetworld-audio-preview-integration
   cancel-in-progress: false
 jobs:
   deploy-preview:
