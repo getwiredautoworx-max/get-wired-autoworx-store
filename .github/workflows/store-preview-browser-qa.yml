@@ -369,21 +369,29 @@ jobs:
             if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.unsafeCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
             const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
+            const categoryRoute=await hostedCategory.getAttribute('data-route');
+            if(!categoryRoute||!categoryRoute.includes('preview-category.html?id='))throw new Error('Homepage category button must navigate to its full category landing page');
             await hostedCategory.click();
-            await hosted.locator('#shop').waitFor({state:'visible',timeout:20000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
-            await hosted.locator('#allProductsGrid .product').first().click();
-            await hosted.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
-            await hosted.locator('#modalClose').click();
-            await hosted.locator('#productModal').waitFor({state:'hidden',timeout:10000});
-            await hosted.locator('.headerPartSearch').click();
-            await hosted.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
-            const hostedSearchCopy=await hosted.locator('#partSearchDialog').innerText();
+            await hosted.waitForURL(/preview-category\\.html\\?id=/,{timeout:15000});
+            const rootCategoryText=await hosted.locator('body').innerText();
+            if(!rootCategoryText.includes('Auto Electrical Spares'))throw new Error('Auto Electrical Spares category landing page did not open');
+            const ignitionCategoryLink=hosted.locator('a[href*="id=c7980122-f760-4e65-b0e0-aecce4181f05"]').first();
+            await ignitionCategoryLink.waitFor({state:'visible',timeout:20000});
+            await ignitionCategoryLink.click();
+            await hosted.waitForURL(/preview-category\\.html\\?id=c7980122-f760-4e65-b0e0-aecce4181f05/,{timeout:15000});
+            const ignitionCategoryText=await hosted.locator('body').innerText();
+            if(!['Ignition Modules','Ignition Coils','Ignition Looms'].every(label=>ignitionCategoryText.includes(label)))throw new Error('Ignition Spares landing page does not preserve supplier subcategories');
+            const hostedPartSearch=await browser.newPage({viewport:{width:390,height:844}});
+            await hostedPartSearch.goto('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hostedPartSearch.locator('.headerPartSearch').click();
+            await hostedPartSearch.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
+            const hostedSearchCopy=await hostedPartSearch.locator('#partSearchDialog').innerText();
             if(!hostedSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('Hosted no-AI photo-request fallback is missing');
-            await hosted.locator('#partSearchDialog button.pictureSearchBtn').first().click();
-            await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
-            await hosted.evaluate(()=>window.closePartRequest());
-            await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
+            await hostedPartSearch.locator('#partSearchDialog button.pictureSearchBtn').first().click();
+            await hostedPartSearch.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
+            await hostedPartSearch.evaluate(()=>window.closePartRequest());
+            await hostedPartSearch.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
+            await hostedPartSearch.close();
             const hostedPilotChecks=[
               ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
               ['crankshaft sensor|camshaft sensor','Crankshaft & Camshaft Position Sensors',5],
