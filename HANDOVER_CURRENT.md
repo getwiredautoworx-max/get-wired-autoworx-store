@@ -5512,3 +5512,19 @@ Top-level category counts below are direct-root product counts, not descendant t
 - Updated `suppliers/ASC/README.md` in commit `0474e0a62340651f57d06e385a4164a7a26b8ddc` to state the granted permission, distinguish it from technical integration, prevent accidental restoration of pre-reset sources, and preserve the staging-only / no-live-write boundaries.
 - Current ASC execution state: permission confirmed; clean intake point verified; processing rules and 25-product pilot defined; **awaiting the new test catalogue file itself**. This is the only immediate source-intake dependency. Once it appears in the repository or current conversation, proceed directly with file hash/page count, extraction and 25-product staging pilot without asking the owner to reconfirm permission.
 - No ASC file restoration, product import, Supabase write, stock/price change, image-cache change, production deployment, Axxess upload or DNS/payment change was made.
+
+
+## CONTINUATION — CURRENT PR #140 / ASC INTAKE RECONCILIATION — 2026-11-01
+
+### Current PR #140 exact-head recheck
+- Re-fetched PR #140: OPEN, DRAFT, unmerged, mergeable=true; head remains `da463960345fda06c300f969920209c37da2986e` on `integration/planetworld-partsearch-clean-main-2026-11-01`.
+- Re-fetched workflow runs attached to that exact SHA. All six targeted workflows are completed SUCCESS: Catalogue Image Audit (`41269869973`), Storefront Smoke workflow (`41269869780`), Public SKU Exposure Audit (`41269869793`), Cloudflare Pages Public Package QA (`41269869799`), Free Catalogue Search Tests (`41269869777`), and Populated Store Preview Browser QA (`41269869771`). Preserve the qualification: the smoke workflow wrapper succeeded but its actual smoke job was SKIPPED because buttons-only mode was detected.
+- Exact-head Cloudflare Pages deployment success remains recorded by the Pages bot for `da463960...`: https://b1a08506.get-wired-autoworx-store.pages.dev . It is preview-only; real-phone acceptance is not replaced by the bot's deployment result.
+- Fresh compare now reports 13 commits ahead / 10 behind, status `diverged`, merge base `fc735645dabeaabc7fdfb908a7d376dd6be9909f`. Reverse comparison confirms the main-only file changes are documentation-only: `HANDOVER_CURRENT.md`, `LIVE_CATEGORY_AUDIT_2026-11-01.md`, and `suppliers/ASC/README.md`. No storefront code/workflow/catalogue source file is main-only. Do not force-push or merge; preserve these current-main documents when a deliberate integration reconciliation is prepared.
+- No workflow was rerun, no new deployment was triggered, and no merge was performed.
+
+### ASC permission and intake
+- ASC catalogue-use permission is **GRANTED (interim)**. Do not list supplier authorisation as a blocker again.
+- ASC reset PR #118 is merged. The post-reset main intake currently contains only the ASC README; the former cleanup branch and older Library files are pre-reset historical sources. A post-reset owner-supplied test catalogue has not been located in the current repository or connected Library search.
+- ASC README was corrected in commit `0474e0a62340651f57d06e385a4164a7a26b8ddc`; current handover correction is recorded above. Catalogue extraction/pilot work can begin immediately when the new test source is supplied. Until then, do not restore old source PDFs or invent a replacement test source.
+- Technical integration remains separate from permission and is still open with ASC IT. No live stock/price/import/database/production change is authorised by catalogue-use permission alone.
