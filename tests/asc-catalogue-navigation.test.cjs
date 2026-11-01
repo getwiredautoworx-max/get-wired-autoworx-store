@@ -15,9 +15,10 @@ const required = [
   ["Carpet Mat Sets — Toyota", "vehicle-specific mat subcategory"],
   ["Electric Fuel Pumps — BMW", "vehicle-specific fuel-pump subcategory"],
   ["Diesel Lift Pumps & Housings — All Makes", "diesel lift-pump subcategory"],
-  ["ascQueryMatches", "AND/OR catalogue product matching"],
   ["data-asc-query", "virtual catalogue filter controls"],
   ["openAscCatalogueCategory", "catalogue category interaction"],
+  ["ASC catalogue sections • source-led navigation", "source-led category labels without fuzzy product counts"],
+  ["No unrelated store products are substituted", "safe empty state for unverified catalogue sections"],
   ["wrap.classList.toggle('open')", "expandable root-category navigation"],
   ["No verified pilot records for this subcategory yet", "honest empty-state messaging"]
 ];
@@ -73,9 +74,9 @@ const imageMatches=fs.readFileSync('catalogue-review/asc-catalogue-extraction/as
 if(imageMatches.length!==26||!imageMatches[1].includes('SOURCE_CARD_CROP_REVIEWED')) throw new Error('ASC pilot image pairing review register must contain 25 source-card matches');
 const pilotData=JSON.parse(fs.readFileSync('assets/asc-catalogue-pilot-preview.json','utf8'));
 const builder=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
-if(pilotData.record_count!==25||pilotData.records.length!==25) throw new Error('ASC preview pilot must contain exactly 25 records');
+if(pilotData.record_count!==25||pilotData.records.length!==25) throw new Error('ASC preview pilot must contain exactly 25 records backed by the completed review registers');
 for(const p of pilotData.records){
- if(!p.preview_only||p.release_status!=='REVIEW_ONLY_NOT_LIVE'||![3,4].includes(p.source_page)||!p.catalogue_reference||!p.source_file||Object.prototype.hasOwnProperty.call(p,'supplier_sku')) throw new Error('ASC pilot row missing source evidence or preview-only guard');
+ if(!p.preview_only||p.release_status!=='REVIEW_ONLY_NOT_LIVE'||p.source_page!==3||!p.catalogue_reference||!p.source_file||Object.prototype.hasOwnProperty.call(p,'supplier_sku')) throw new Error('ASC pilot row missing source evidence or preview-only guard');
  if(p.price!==null||p.stock_quantity!==null||p.internal_sku!==null||p.public_sku!==null) throw new Error('ASC pilot must not invent price, stock or internal/public SKU');
  if(!p.image_url||p.image_crop_status!=='SOURCE_CARD_CROP_REVIEWED'||!fs.existsSync(p.image_url)) throw new Error('ASC pilot source-card crop missing or not reviewed');
  if(!builder.includes(p.image_url.replace('assets/',''))) throw new Error('ASC pilot crop is not included in preview asset allowlist: '+p.image_url);
@@ -83,5 +84,17 @@ for(const p of pilotData.records){
 if(!html.includes("async function openAscCatalogueCategory")||!html.includes("ascPilotCard")||!html.includes("asc-catalogue-pilot-preview.json")) throw new Error('ASC pilot is not wired into storefront subcategory preview');
 if(!builder.includes('"asc-catalogue-pilot-preview.json"')) throw new Error('ASC preview JSON is not in the preview-only asset allowlist');
 for(const file of ['asc-image-match-review-only.csv','asc-exceptions-review-only.csv']) if(!fs.existsSync('catalogue-review/asc-catalogue-extraction/'+file)) throw new Error('Missing ASC review register '+file);
+
+
+const openStart=html.indexOf("async function openAscCatalogueCategory");
+const openEnd=html.indexOf("\n}",openStart)+2;
+const openBlock=html.slice(openStart,openEnd);
+if(!openStart||openEnd<2||/products\\.filter|show\\(matches\\)/.test(openBlock)) throw new Error("ASC catalogue navigation must not mix fuzzy-matched general-store products into source subcategories");
+if(!openBlock.includes("(ascPilotCache.records||[]).filter(p=>p.subcategory===label)")||!openBlock.includes("No unrelated store products are substituted")) throw new Error("ASC subcategory must show only exact verified pilot rows or an honest empty state");
+if(!html.includes("product-placeholder|product-image-pending")||!html.includes("functions/v1/product-image?sku=")) throw new Error("Homepage product-image helper must bypass placeholder URLs and try the exact-SKU image endpoint");
+const productsPage=fs.readFileSync("preview-products.html","utf8");
+const detailPage=fs.readFileSync("preview-product.html","utf8");
+if(!productsPage.includes("function productImageData(p)")||!productsPage.includes("data-fallback")||!productsPage.includes("functions/v1/product-image?sku=")) throw new Error("Category product cards must use the verified image fallback chain");
+if(!detailPage.includes("const unusableImage=")||!detailPage.includes("functions/v1/product-image?sku=")) throw new Error("Product detail must bypass generic placeholder URLs");
 
 console.log("ASC_CATALOGUE_NAVIGATION_PASS: six source families, 72 OCR pages and review-only staging verified; no unverified product rows promoted.");
