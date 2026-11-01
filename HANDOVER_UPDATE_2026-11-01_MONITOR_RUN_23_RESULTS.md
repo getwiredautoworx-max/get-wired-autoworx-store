@@ -1,0 +1,33 @@
+# Monitor Run 23 — Results — 2026-11-01 15:22 SAST
+
+## Task start and current candidate
+- Task-start entry: `HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_TASK_START.md`.
+- Read the permanent handover, current handover, latest checkpoint and latest update before acting.
+- **Active candidate remains PR #142**, branch `integration/current-main-refresh-2026-11-01`, open/draft/unmerged. Current PR head is `ca6beb9ab148c0cf4293747d757ae5f4778f51be`; that last commit changes only `HANDOVER_CURRENT.md`. Storefront source code was tested on `81cf1b73b6433009484828e06429ea2a4fd518ad`.
+- Successful non-production Pages deployment: run `41308059922`, code `2840ef805a9a3ceef7da34b12fa9775634147418`, unique preview `https://c26aad29.get-wired-autoworx-store.pages.dev/preview-store.html`; stable branch alias `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html`.
+- Hosted populated browser QA passed: run `41308138459` on test code `81cf1b73b6433009484828e06429ea2a4fd518ad`. Verified 4,187 active products loaded for preview; the eight approved root labels; 75 ASC contents sections plus the Fuel Pumps parent (76 navigation nodes); 50 visually reviewed ASC pilot products across 12 subcategories and all 50 source-card crops loaded; 9 official Planetworld image sources loaded; Part Search found Alpine HCE-C2100RD; exact-SKU photo and missing-image placeholder fallback; the 9 known oil-filler-cap SKUs absent from wrong category browse lists; Audio hierarchy 9 departments / 15 brands / 12 product types; no page errors and no horizontal overflow at 360, 390, 1280 and 1366 px. Checkout and submission remain disabled. These are preview tests, not production-release approval.
+- Non-fatal browser warning remains: the first wide Supabase product query logged `TypeError: Failed to fetch`, then the core-field fallback loaded the products successfully. This should be diagnosed; do not describe the browser console as entirely clean.
+
+## Category-root coverage audit — read-only
+- Live Supabase SELECT-only audit: 4,187 active products total; 3,622 are inside the eight approved active root trees; 565 are outside.
+- Of the 565 outside-root products, 37 already appear in the existing category review queue; **528 were not queued**.
+- Added review-only CSV `catalogue-review/approved-root-coverage-review-only-2026-11-01.csv` (528 rows, no supplier SKU, price, stock or image URL) and companion note `catalogue-review/approved-root-coverage-review-only-2026-11-01.md`.
+- Largest unqueued legacy categories: Spare Parts 126; Mirrors 56; Door Parts 51; Suspension 44; Thermostats & Pipes 44; Wipers 44; Exhaust Tail Pieces 42; Brake Parts 38. These names are not automatic category approval. Trace original catalogue/Buyer’s Guide evidence; no keyword-based moves and no live database writes.
+- Separate oil-filler-cap audit still holds 9 SKUs out of customer category browsing in the preview. Live category assignments remain unchanged.
+
+## GitHub Actions and background tasks
+- Staging Category Navigation Chromium Acceptance: run `38521429939`, attempt 1, success (2026-10-14). No newer run was present in the recent workflow history; do not rerun a successful task.
+- Buyer Guide Extraction: run `38525300051`, attempt 1, success (2026-10-14). It extracted OCR/text to the audit branch only. No newer run was present in the recent workflow history.
+- ASC Exact-SKU Image Sync: run `41030204263`, attempt 1, success (2026-10-30), but no-op: 86 missing-image targets, 0 eligible targets, 0 diagnostic-batch items, no file changes. Do not rerun without new eligible source data/authorization.
+- Background Task Controller: run `41310431666`, attempt 1, success on main commit `a27726d1f7ee920247fa9e497667765569a282df`. It checked 9 workflow runs, reported 3 completed non-successes and requested 0 retries. Artifact inventory: 416 artifacts / 9,283,871 bytes (8.85 MiB); cleanup deleted 0 checkpoints, 0 obsolete APK/build artifacts, 0 duplicate storefront packages and 0 stale QA/evidence artifacts. The observed Actions artifact inventory does not explain the previously reported 500 MB storage usage; Packages or another storage pool remains unverified.
+- **Safety fix committed to main:** `scripts/background_task_controller.py`, commit `31c5e69b7822886f8333ae78abe180170f6c26fd`. Production QA remains monitored but `store-production-qa.yml` has been removed from `AUTO_RETRY_ALLOWLIST`; the controller comment now explicitly prohibits live-domain/production QA retries. Read-back confirmed the production workflow is monitored but not retryable. No production workflow was rerun. PR #143 remains open/draft with additional policy regression tests.
+- Live Release Gates: run `41310395135`, attempt 1, failed. Live HTTP checks returned 200, but the source hash for `checkout-v2.html` did not match; Playwright 1.55 cannot install Chromium on ubuntu-26.04; the separate payment gate remains unconfirmed because PayFast/PayJustNow is not integrated and Direct EFT is the only configured method. Do not rerun this live/release workflow. Fix runner compatibility in a reviewed workflow change and keep payment readiness as a separate release blocker.
+- Public Preview Data Exposure Guard on PR #145: run `41306630899`, rerun attempt 2 failed at the same deterministic branch-preview HTTP 308. Supplier/privacy checks were skipped, so this is **not** a privacy-pass. Do not rerun unchanged. PR #145 is not the active candidate; it currently enforces placeholder-only images, unlike PR #142’s exact-SKU fallback and reviewed ASC image preview. If retained, change its guard to validate a local isolated package or a verified preview URL before another run.
+- No production deployment, Axxess upload, DNS/payment changes, Supabase writes, live catalogue/price/stock/image updates or Cloudflare/Netlify deployment was performed during this run.
+
+## Next precise actions
+1. Keep PR #142 as the single storefront candidate. Owner testing should use the verified preview URL above or the stable preview alias, **not** the live `www.getwiredauto.co.za` domain; production intentionally remains unchanged pending explicit release approval.
+2. Reconcile the 528 new outside-root products from the review-only CSV against original supplier catalogues/Buyer’s Guides. Do not auto-move them or alter live rows.
+3. Diagnose the non-fatal Supabase wide-query failure and retain the core-field fallback.
+4. Fix or supersede PR #145’s deterministic HTTP 308 guard; do not weaken privacy checks or deploy a branch merely to make the test pass.
+5. Keep the production release gate on HOLD until browser workflow compatibility, source hash, payment integration/readiness and explicit owner release approval are resolved.
