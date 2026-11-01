@@ -119,6 +119,11 @@ jobs:
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             const productRouteCards=await page.locator('#grid .card').count();
             if(productRouteCards<1)throw new Error('Subcategory product page did not render products');
+            await page.goto('http://127.0.0.1:4173/preview-category.html?id=f7f2ea3b-f15d-46a7-920b-9d3d9a394c79',{waitUntil:'domcontentloaded'});
+            await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
+            await page.locator('#grid .card').filter({hasText:'Vehicle-Specific Aerials'}).click();
+            await page.waitForURL(/preview-store\\.html\\?asc_query=/,{timeout:15000});
+            await page.waitForFunction(()=>document.querySelectorAll('#allProductsGrid [data-asc-preview-id]').length===4,{timeout:30000});
             // Verify all 12 ASC catalogue pilot subcategories render the exact 50 visually reviewed source-page records.
             const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
             const ascPilotErrors=[];
