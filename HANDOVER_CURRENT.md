@@ -358,3 +358,11 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Audio page source checks PASS: new JSON fetch present; supplier-specific source-date text present; exact quote-only fallback present; missing heading IDs now exist; browse section is revealed for a selected department. These are source/static checks only, not a browser test.
 - PR #142 remains open/draft/unmerged; latest head `4dd201877d688337f0079d70512d3f8c8699348d`. Hosted preview deployment and exact-head browser QA are still NOT verified; available hosted verifier returned an access error, and no run ID was obtained. Do not claim the page is live or browser-accepted.
 - No live Supabase/catalogue/price/stock write, supplier activation, production deployment, merge, checkout/payment, Axxess or DNS change. Production remains HOLD.
+
+
+## OWNER PRICING CLARIFICATION — 2026-11-01
+
+- Owner confirmed: **Sony's printed RRP already includes VAT**.
+- Sony proposal therefore remains `round(printed RRP × 0.98, 2)`, with no additional VAT multiplier. The resulting customer price is VAT-inclusive and 2% below the printed RRP.
+- Updated the preview JSON price notes, private pricing audit VAT-basis field, and preparation notes. No Sony proposed prices changed; only the incorrect “VAT basis unconfirmed” caveat was removed.
+- This clarification does not authorize a live price import, catalogue publication, supplier activation, stock change, production deployment or merge. PR #142 remains a draft preview candidate pending exact-head browser QA and other release gates.
