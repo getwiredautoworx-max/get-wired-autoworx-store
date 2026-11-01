@@ -2,7 +2,7 @@ name: Populated Store Preview Browser QA
 
 on:
   push:
-    branches: [integration/current-main-refresh-2026-11-01]
+    branches: [integration/current-main-refresh-2026-11-01, fix/approved-bright-shell-category-product-ux-2026-11-01-v3]
     paths:
       - 'index-new.html'
       - 'category.html'
