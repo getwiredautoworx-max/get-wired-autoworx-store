@@ -185,7 +185,7 @@ jobs:
             await audioShop.locator('#gw-audio-departments-link').waitFor({state:'visible',timeout:10000});
             await audioShop.locator('#gw-audio-departments-link').click();
             await audioShop.waitForURL(/preview-audio\.html/,{timeout:10000});
-            await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .tile').length===9,{timeout:30000});
+            await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .audioTile').length===9,{timeout:30000});
             await audioShop.locator('#departments button').filter({hasText:'Car Audio & Video'}).click();
             // Select the department before the delayed catalogue response completes; it must redraw after load.
             await audioShop.waitForFunction(()=>document.querySelectorAll('#products .product').length>0,{timeout:30000});
