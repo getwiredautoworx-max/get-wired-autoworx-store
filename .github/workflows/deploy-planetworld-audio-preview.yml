@@ -2,7 +2,7 @@ name: Deploy Planetworld Audio Preview
 on:
   push:
     branches:
-      - integration/planetworld-partsearch-clean-main-2026-10-31
+      - integration/planetworld-partsearch-clean-main-2026-11-01
     paths:
       - "preview-store.html"
       - "preview-audio.html"
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: integration/planetworld-partsearch-clean-main-2026-10-31
+          ref: integration/planetworld-partsearch-clean-main-2026-11-01
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
