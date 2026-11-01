@@ -9,6 +9,8 @@ on:
       - 'preview-products.html'
       - 'preview-product.html'
       - 'preview-planetworld.html'
+      - 'preview-audio.html'
+      - 'tests/audio-navigation.test.cjs'
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
 
@@ -28,6 +30,8 @@ jobs:
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Run Audio hierarchy source and package checks
+        run: node tests/audio-navigation.test.cjs
       - name: Run read-only populated preview browser checks
         shell: bash
         run: |
@@ -101,6 +105,13 @@ jobs:
             await page.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
             const partSearchCopy=await page.locator('#partSearchDialog').innerText();
             if(!partSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('No-AI photo-request fallback is missing');
+            await page.waitForFunction(()=>Array.isArray(window.gwPlanetworldSearchRows)&&window.gwPlanetworldSearchRows.length===3385,{timeout:30000});
+            await page.locator('#partSearchQuery').fill('HCE-C2100RD');
+            await page.waitForFunction(()=>document.querySelectorAll('#partSearchResults [data-quote-pw]').length>0,{timeout:15000});
+            const planetworldSearchText=await page.locator('#partSearchResults').innerText();
+            if(!planetworldSearchText.includes('Model / code: HCE-C2100RD')||!planetworldSearchText.includes('VIEW MANUFACTURER PAGE')||!planetworldSearchText.includes('REQUEST QUOTE'))throw new Error('Verified Planetworld model Part Search integration failed: '+planetworldSearchText);
+            console.log('PLANETWORLD_VERIFIED_MODEL_SEARCH_PASS '+planetworldSearchText.slice(0,500));
+
             await page.locator('#partSearchDialog button.pictureSearchBtn').first().click();
             await page.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
             const photoInput=page.locator('#sourcePhotos');
@@ -120,9 +131,9 @@ jobs:
             const planetworld=await browser.newPage({viewport:{width:390,height:844}});
             await planetworld.goto('http://127.0.0.1:4173/preview-planetworld.html',{waitUntil:'domcontentloaded'});
             await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:15000});
-            const pwAudit=await planetworld.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,snapshotDates:[...new Set(rows.map(p=>p.snapshot))],imageSources:rows.filter(p=>p.imageUrl).length,imageModels:rows.filter(p=>p.imageUrl).map(p=>p.modelNumber).sort(),officialImageSources:rows.filter(p=>p.imageUrl).every(p=>['https://static.audison.com/media/','https://www.kicker.com/','https://finland.alpine-europe.com/fileadmin/'].some(prefix=>String(p.imageUrl).startsWith(prefix))),hasManufacturerLinks:rows.every(p=>String(p.manufacturerPage).startsWith('https://')),dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
-            if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==7||JSON.stringify(pwAudit.imageModels)!==JSON.stringify(['46CXA3604','46CXA6605','66755100','66755105','R2-A60F.','R2-W10D2','S2-S40C'].sort())||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
-            await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===7&&imgs.every(img=>img.complete);},{timeout:15000});
+            const pwAudit=await planetworld.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,snapshotDates:[...new Set(rows.map(p=>p.snapshot))],imageSources:rows.filter(p=>p.imageUrl).length,imageModels:rows.filter(p=>p.imageUrl).map(p=>p.modelNumber).sort(),officialImageSources:rows.filter(p=>p.imageUrl).every(p=>['https://static.audison.com/media/','https://www.kicker.com/','https://finland.alpine-europe.com/fileadmin/','https://dam.focal-naim.com/'].some(prefix=>String(p.imageUrl).startsWith(prefix))),hasManufacturerLinks:rows.every(p=>String(p.manufacturerPage).startsWith('https://')),dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
+            if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==9||JSON.stringify(pwAudit.imageModels)!==JSON.stringify(['43C104','46CXA3604','46CXA4001','46CXA6605','69070060','HILO V3','R2-A60F.','R2-W10D2','S2-S40C'].sort())||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
+            await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===9&&imgs.every(img=>img.complete);},{timeout:15000});
             const imageLoadAudit=await planetworld.locator('#grid .card img').evaluateAll(imgs=>imgs.map(img=>({src:img.src,loaded:img.naturalWidth>0})));
             if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official manufacturer product image did not load: '+JSON.stringify(imageLoadAudit));
             const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
@@ -147,12 +158,43 @@ jobs:
             await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
             await page.waitForURL(/audio_area=car/,{timeout:15000});
             await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
+            // Verify the required main-store Audio → departments → brand → component journey.
+            const audioShop=await browser.newPage({viewport:{width:390,height:844}});
+            await audioShop.route('**/assets/planetworld-catalogue-preview.json',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
+            await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
+            await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap').length>=8,{timeout:60000});
+            await audioShop.locator('#categoryGrid > .catWrap[data-filter="5ab55c53-eee3-41ce-ad48-04ad6df85181"] > .catBtn').click();
+            await audioShop.locator('#gw-audio-departments-link').waitFor({state:'visible',timeout:10000});
+            await audioShop.locator('#gw-audio-departments-link').click();
+            await audioShop.waitForURL(/preview-audio\.html/,{timeout:10000});
+            await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .tile').length===9,{timeout:30000});
+            await audioShop.locator('#departments button').filter({hasText:'Car Audio & Video'}).click();
+            // Select the department before the delayed catalogue response completes; it must redraw after load.
+            await audioShop.waitForFunction(()=>document.querySelectorAll('#products .product').length>0,{timeout:30000});
+            await audioShop.locator('#brands button').first().waitFor({state:'visible',timeout:15000});
+            const brandCount=await audioShop.locator('#brands button').count();
+            if(brandCount<2)throw new Error('Car Audio department has no selectable brand list');
+            await audioShop.locator('#brands button').nth(1).click();
+            const componentCount=await audioShop.locator('#components button').count();
+            if(componentCount<2)throw new Error('Selected audio brand has no component/product-type grouping');
+            await audioShop.locator('#components button').first().click();
+            await audioShop.locator('#products .quoteLink').first().waitFor({state:'visible',timeout:15000});
+            const quoteHref=await audioShop.locator('#products .quoteLink').first().getAttribute('href');
+            const quoteText=new URL(quoteHref).searchParams.get('text')||'';
+            if(!quoteHref.startsWith('https://wa.me/27744884234?text=')||!quoteText.includes('Department: Car Audio & Video')||!quoteText.includes('Product:')||!quoteText.includes('25-Oct-2026')||!quoteText.includes('\n'))throw new Error('Audio product WhatsApp quote draft is incomplete: '+quoteText);
+            const audioOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(audioOverflow.scrollWidth>audioOverflow.innerWidth+1)throw new Error('Audio navigation mobile overflow: '+JSON.stringify(audioOverflow));
+            await audioShop.setViewportSize({width:1366,height:900});
+            const audioDesktopOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(audioDesktopOverflow.scrollWidth>audioDesktopOverflow.innerWidth+1)throw new Error('Audio navigation desktop overflow: '+JSON.stringify(audioDesktopOverflow));
+            console.log('AUDIO_HIERARCHY_PASS '+JSON.stringify({departments:9,brands:brandCount,components:componentCount,mobile:audioOverflow,desktop:audioDesktopOverflow}));
+            await audioShop.close();
             if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
             console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
-            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
             const hostedAudit=await hosted.evaluate(skus=>{
@@ -186,7 +228,7 @@ jobs:
             await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
             await hosted.evaluate(()=>window.closePartRequest());
             await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
-            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
@@ -197,10 +239,10 @@ jobs:
             if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
-            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
             const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
-            if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||![4,7].includes(hostedPlanet.imageSources)||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));
+            if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||![4,5,7,9].includes(hostedPlanet.imageSources)||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));
             await hosted.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length>=4&&imgs.every(img=>img.complete&&img.naturalWidth>0);},{timeout:30000});
             const hostedPlanetWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedPlanetWidth.scrollWidth>hostedPlanetWidth.innerWidth+1)throw new Error('Hosted Planetworld mobile overflow: '+JSON.stringify(hostedPlanetWidth));

@@ -1,0 +1,41 @@
+name: Deploy Planetworld Audio Preview
+on:
+  push:
+    branches:
+      - integration/current-main-refresh-2026-11-01
+    paths:
+      - "preview-store.html"
+      - "preview-audio.html"
+      - "preview-planetworld.html"
+      - "preview-checkout.html"
+      - "assets/audio-category-navigation.js"
+      - "assets/planetworld-catalogue-preview.json"
+      - "assets/planetworld-verified-models-preview.json"
+      - "scripts/build-cloudflare-pages-public.py"
+permissions:
+  contents: read
+  deployments: write
+concurrency:
+  group: planetworld-audio-preview
+  cancel-in-progress: false
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build isolated customer preview package
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: python scripts/build-cloudflare-pages-public.py
+      - name: Deploy isolated non-production Pages branch
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=planetworld-audio-preview
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
