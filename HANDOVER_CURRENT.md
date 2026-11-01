@@ -5308,3 +5308,12 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - The Audio root-card link visibility fix was already included in the last successful preview deployment (`b47bb277.get-wired-autoworx-store.pages.dev` / alias `planetworld-audio-preview.get-wired-autoworx-store.pages.dev`), but the image-data correction must be deployed before the final hosted check.
 - PR #140 remains draft/unmerged. Remaining browser gates: root Audio link visible; nine-department → brand → component → product flow; WhatsApp quote uses approved `2774484234`; no mobile/desktop overflow; all eight root categories; hosted preview Part Search, stock exclusion, product detail and checkout-hidden assertions; no console errors.
 - No production or live supplier/stock/price/payment changes. ASC remains separate.
+
+
+## 48-HOUR TARGET — PREVIEW IMAGE AUDIT SOURCE CORRECTION — 2026-11-01 05:32 SAST
+
+- Follow-up investigation established that the failing image assertion was reading the dedicated `preview-planetworld.html` review page's embedded 68-record array, not only `assets/planetworld-verified-models-preview.json`. The two unstable Audison image URLs were therefore removed from both affected preview surfaces. Their official manufacturer detail links remain; the page's existing initials/brand placeholder is used when an image URL is not verified to load.
+- Updated `deploy-planetworld-audio-preview.yml` so changes to `assets/planetworld-verified-models-preview.json` and `preview-planetworld.html` trigger a new non-production preview deployment. The earlier deployment trigger had omitted both of these data/page paths; that has been corrected.
+- Latest candidate head: `45596eba252b9d27ed5afb2b953cc8adf9fe0e19`. Await its deployment and browser QA results. The previous browser run `41269475193` failed at the image-count assertion because it still saw seven embedded URLs; it had not yet reached the Audio hierarchy, mobile/desktop overflow or hosted preview assertions.
+- Current desired behavior is honest fallback rather than broken image icons for the two Audison products. Five exact image references remain in the dedicated 68-product review preview and should be verified to load; manufacturer links remain for all curated records.
+- PR #140 stays draft/unmerged; no production or live data changes. ASC, payment activation, Axxess, DNS, Supabase, supplier stock/pricing remain untouched.
