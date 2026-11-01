@@ -1,3 +1,10 @@
+## TEST STATUS CORRECTION — PR #141 LOCAL REGRESSION — 2026-11-01 (SAST)
+
+- This entry supersedes the earlier sentence in the preceding PR #141 diff checkpoint stating that the new test was still unexecuted. The committed regression-test logic has since been executed locally and passed 1/1 against the exact re-fetched policy declarations. It has not been run in GitHub Actions.
+- Exact PR #141 head lookup returned 0 PR-triggered workflow run(s); no Actions test result is available for that head.
+
+---
+
 ## CONTINUATION UPDATE — PR #141 SAFETY TEST EXECUTED LOCALLY — 2026-11-01 (SAST)
 
 - Re-fetched PR #141 branch source and committed regression test. Executed the committed unittest logic locally against the exact AST policy declarations re-fetched from `scripts/background_task_controller.py`; result: **1 test passed**. Assertions confirm production QA remains monitored but cannot be auto-retried, and live-release-gates / Cloudflare deployment workflows are excluded from the retry allowlist.
