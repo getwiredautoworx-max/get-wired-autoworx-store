@@ -18,7 +18,7 @@ PREVIEW_ROOT_FILES = [
     "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-checkout.html",
 ]
 REQUIRED_ASSET_FILES = [
-    "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
+    "gw-logo.png", "storefront-shell.css", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
 ]
 PREVIEW_ASSET_FILES = ["audio-category-navigation.js", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json", "asc-catalogue-pilot-preview.json"]
