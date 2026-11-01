@@ -1,38 +1,13 @@
 name: Public Preview Data Exposure Guard
 
 on:
-  push:
-    branches:
-      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
-    paths:
-      - '_redirects'
-      - '.assetsignore'
-      - 'wrangler.toml'
-      - 'functions/**'
-      - 'scripts/build-cloudflare-pages-public.py'
-  workflow_run:
-    workflows:
-      - Deploy Planetworld Audio Preview
-    types:
-      - completed
-    branches:
-      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
-  pull_request:
-    branches:
-      - main
-      - integration/current-main-refresh-2026-11-01
-    paths:
-      - '.assetsignore'
-      - 'wrangler.toml'
-      - 'functions/**'
-      - '.github/workflows/public-preview-data-exposure-guard.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   deployed-preview-privacy:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
