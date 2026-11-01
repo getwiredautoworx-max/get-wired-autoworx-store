@@ -42,6 +42,10 @@ for(const [id,label] of roots){
 }
 assert((index.match(/category\.html\?id=/g)||[]).length===8,'expected exactly eight main category links');
 assert(index.includes("window.top.location.href='category.html?id="),'main category links must escape the homepage iframe to a full category page');
+const ascStart=previewHome.indexOf('const ASC_CATALOGUE_CHILDREN=');
+const ascEnd=previewHome.indexOf('};',ascStart)+2;
+const ascHeadings=(previewHome.slice(ascStart,ascEnd).match(/name:'[^']+'/g)||[]);
+assert(ascHeadings.length===76,'ASC navigation must include all 75 contents-page sections plus the Fuel Pumps parent tile');
 assert(previewHome.includes("preview-category.html?id="),'preview homepage must route main categories to category landing pages');
 assert(previewHome.includes("c.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'?'preview-audio.html'"),'Audio root must open its dedicated department hierarchy');
 assert(previewHome.includes("function productImageMarkup(p,alt){return '<img src=\"'+PRODUCT_PLACEHOLDER"),'preview product cards must use neutral placeholders');
