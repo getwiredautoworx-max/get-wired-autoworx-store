@@ -154,7 +154,7 @@ jobs:
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
             const category=page.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
-            await Promise.all([page.waitForURL(/preview-category\.html\?id=/,{timeout:20000}),category.click()]);
+            await Promise.all([page.waitForURL(/preview-category\.html\?id=/,{timeout:20000,waitUntil:'domcontentloaded'}),category.click()]);
             await page.locator('#grid a.card').first().waitFor({state:'visible',timeout:30000});
             if(await page.locator('#grid a.card').count()<1)throw new Error('Root category page did not show subcategory buttons');
             // Verify all eight category landing pages render their own subcategory/dept buttons on mobile.
@@ -174,19 +174,19 @@ jobs:
             const storeFrame=mainStore.frameLocator('#store');
             const firstMainCategory=storeFrame.locator('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > .catBtn');
             await firstMainCategory.waitFor({state:'visible',timeout:30000});
-            await Promise.all([mainStore.waitForURL(/preview-category\.html\?id=/,{timeout:20000}),firstMainCategory.click()]);
+            await Promise.all([mainStore.waitForURL(/preview-category\.html\?id=/,{timeout:20000,waitUntil:'domcontentloaded'}),firstMainCategory.click()]);
             await mainStore.locator('#grid .card').first().waitFor({state:'visible',timeout:30000});
             await mainStore.goto('http://127.0.0.1:4173/preview-products.html?category=4f440d20-ac97-4ff7-ac6c-703a46499fa9',{waitUntil:'domcontentloaded'});
             const mainProductLink=mainStore.locator('#grid a[href^="preview-product.html"]').first();
             await mainProductLink.waitFor({state:'visible',timeout:30000});
-            await Promise.all([mainStore.waitForURL(/preview-product\.html\?id=/,{timeout:20000}),mainProductLink.click()]);
+            await Promise.all([mainStore.waitForURL(/preview-product\.html\?id=/,{timeout:20000,waitUntil:'domcontentloaded'}),mainProductLink.click()]);
             await mainStore.locator('#root .product').waitFor({state:'visible',timeout:30000});
             await mainStore.close();
             // Open a known populated subcategory listing, then a product detail page in preview mode.
             await page.goto('http://127.0.0.1:4173/preview-products.html?category=4f440d20-ac97-4ff7-ac6c-703a46499fa9',{waitUntil:'domcontentloaded'});
             await page.locator('.grid a[href^="preview-product.html"]').first().waitFor({state:'visible',timeout:30000});
             await page.locator('.grid a[href^="preview-product.html"]').first().click();
-            await page.waitForURL(/preview-product\.html\?id=/,{timeout:20000});
+            await page.waitForURL(/preview-product\.html\?id=/,{timeout:20000,waitUntil:'domcontentloaded'});
             await page.locator('#root .product').waitFor({state:'visible',timeout:30000});
             // Verify the twelve ASC catalogue pilot subcategories render all 50 source-page records.
             const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
@@ -297,7 +297,7 @@ jobs:
             await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap').length>=8,{timeout:60000});
             const audioRoot=audioShop.locator('#categoryGrid > .catWrap[data-filter="5ab55c53-eee3-41ce-ad48-04ad6df85181"] > .catBtn');
-            await Promise.all([audioShop.waitForURL(/preview-audio\.html/,{timeout:20000}),audioRoot.click()]);
+            await Promise.all([audioShop.waitForURL(/preview-audio\.html/,{timeout:20000,waitUntil:'domcontentloaded'}),audioRoot.click()]);
             await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .audioTile').length===9,{timeout:30000});
             audioShop.on('pageerror',e=>console.log('AUDIO_SHOP_PAGE_ERROR '+e.message));
             console.log('AUDIO_SHOP_PAGE_DEBUG '+JSON.stringify(await audioShop.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,tileCount:document.querySelectorAll('#departments .audioTile').length,departmentHtml:document.getElementById('departments')?.innerHTML||'',scripts:[...document.scripts].map(x=>({src:x.src,inlineLength:x.textContent.length}))})))+' pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors));
