@@ -8,6 +8,7 @@ on:
       - 'preview-audio.html'
       - 'tests/audio-navigation.test.cjs'
       - 'tests/asc-catalogue-navigation.test.cjs'
+      - 'scripts/build-cloudflare-pages-public.py'
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
   pull_request:
@@ -33,6 +34,10 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+      - name: Build the exact isolated preview package
+        run: python3 scripts/build-cloudflare-pages-public.py
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: '1'
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -48,7 +53,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
+          python3 -m http.server 4173 --directory pages-public --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
           sleep 2
@@ -350,7 +355,7 @@ jobs:
             const hostedPilotNarrow=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedPilotNarrow.scrollWidth>hostedPilotNarrow.innerWidth+1)throw new Error('Hosted ASC pilot 360px overflow: '+JSON.stringify(hostedPilotNarrow));
             console.log('HOSTED_ASC_PILOT_PASS '+JSON.stringify({categories:hostedPilotAudit, mobile:hostedPilotWidth, narrow:hostedPilotNarrow}));
-            await hosted.goto('https://65eca525.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
@@ -364,7 +369,7 @@ jobs:
             if(hostedNarrowWidth.scrollWidth>hostedNarrowWidth.innerWidth+1)throw new Error('Hosted 360px phone overflow: '+JSON.stringify(hostedNarrowWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
-            await hosted.goto('https://65eca525.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
             const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
             if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||hostedPlanet.imageSources!==9||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));
