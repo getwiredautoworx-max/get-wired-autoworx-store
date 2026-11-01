@@ -3,7 +3,7 @@
   "sourceRecordCount": 68,
   "previewRecordCount": 66,
   "status": "PREVIEW_ONLY_NOT_LIVE_NO_STOCK_SYNC_NO_SUPPLIER_ACTIVATION",
-  "pricingNote": "Sony: printed RRP less 2%; RRP VAT basis is not stated and must be confirmed before live import. Other Audio Connections brands: dealer price ex VAT × 1.15 VAT × 1.35 markup. Missing source prices use the exact quote-only wording. Supplier dealer costs and source RRPs are excluded from this customer-facing JSON.",
+  "pricingNote": "Sony: printed RRP is VAT-inclusive as confirmed by the owner; proposed price is 2% below VAT-inclusive RRP. Other Audio Connections brands: dealer price ex VAT × 1.15 VAT × 1.35 markup. Missing source prices use the exact quote-only wording. Supplier dealer costs and source RRPs are excluded from this customer-facing JSON.",
   "availabilityNote": "Neither PDF provides current stock availability. No stock quantity or in-stock claim is published.",
   "imageNote": "No primary product images approved. The embedded PDF images are low-resolution or absent; cards use the preview placeholder.",
   "excludedRows": [
@@ -35,7 +35,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 1,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -58,7 +58,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 1,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -81,7 +81,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 1,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -104,7 +104,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 1,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -127,7 +127,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 1,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -150,7 +150,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -173,7 +173,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -196,7 +196,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -219,7 +219,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -242,7 +242,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -265,7 +265,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -288,7 +288,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
@@ -311,7 +311,7 @@
       "sourceFile": "Sony Mobile ES Dealer Price List Sept 26.pdf",
       "sourcePage": 2,
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
-      "priceNote": "Proposed 2% below printed RRP; supplier must confirm the RRP VAT basis before live price import.",
+      "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": ""
