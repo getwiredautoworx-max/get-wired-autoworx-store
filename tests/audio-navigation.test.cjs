@@ -44,3 +44,13 @@ assert.match(nav,/gw-product-code-contrast/,'preview adapter must install the pr
 assert.match(nav,/#f1f5f9/,'dark-theme SKU text must use a high-contrast near-white foreground');
 assert.match(nav,/font-weight:700/,'dark-theme SKU text must remain legible at normal phone brightness');
 assert.match(nav,/font-size:12px/,'mobile SKU text must not be reduced to the previous 10px size');
+
+assert.ok(!html.includes('PLANETWORLD — AUDIO & ENTERTAINMENT CATALOGUE'),'supplier must not appear as a homepage category or banner');
+assert.ok(!html.includes('id="planetworldBrowse"'),'supplier catalogue browser must not be embedded on the homepage');
+assert.match(html,/id="audio-catalogue-search-data"/,'homepage Part Search may load catalogue data without exposing supplier navigation');
+assert.match(html,/Supplier catalogue ·/,'Part Search must describe the source generically, not expose supplier identity');
+assert.ok(!audio.includes('Planetworld'),'Audio customer journey must not expose supplier identity');
+assert.match(audio,/25-Oct-2026/,'Audio page must retain the dated snapshot disclosure');
+const home=fs.readFileSync('index-new.html','utf8');
+assert.match(home,/Car Audio \/ Video[\s\S]*Home Entertainment[\s\S]*Studio Equipment/,'Audio root must expose departments, not supplier brands as sibling categories');
+assert.ok(!/Car Audio &amp; Entertainment[\s\S]{0,500}JBL[\s\S]{0,100}Hertz[\s\S]{0,100}Denon/.test(home),'JBL, Hertz and Denon must be brand filters within Audio departments, not category siblings');
