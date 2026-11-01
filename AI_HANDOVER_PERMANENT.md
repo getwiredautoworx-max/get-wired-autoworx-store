@@ -4521,3 +4521,28 @@ Read-only audit of the sanitized JSON used by PR #139:
 - No code merge, deployment, workflow retry, artifact deletion, supplier import, live catalogue/category/price/stock write, Supabase write, checkout/payment activation, Axxess upload or DNS change was performed.
 - Remaining owner-dependent acceptance for the 2-Nov target: real-phone/desktop visual acceptance of the preview and provision of the November ASC PDF attachment bytes. ASC authorisation is already granted; do not ask again. Payment readiness remains deferred and production remains HOLD.
 - Next safe execution: continue source-level exact-model/image reconciliation and SKU-level category evidence review; keep Planetworld 19 zero-RRP rows quarantined; preserve staged supplier rows inactive/unlinked. Re-check current branch heads and exact-head runs before any later integration action.
+
+
+## 17:00 TEST-READY DEADLINE CONTINUATION — 2026-11-01 10:10 SAST
+
+### Candidate QA and hosted-preview regression
+- PR #142 candidate merge-ref for commit `c080dede6a58b44b52c0a3665303b1655112b803` was `d87457dadf3295b052b5eb9e7de9b91d3031b8d1`. On that exact PR test merge-ref, local populated-preview checks passed: 4,187 products, eight approved root labels, 34 ASC-matched products all zero stock, 390px mobile / 1280px desktop without overflow, product modal, no page errors; Part Search and public package checks passed; public SKU exposure audit passed; image audit passed. Storefront wrapper passed but commerce smoke subjob was SKIPPED (buttons-only storefront), not a checkout pass.
+- Exact browser run `41287572770` FAILED at the hosted Planetworld image assertion: hosted page returned 5 image sources, while local candidate page returned 9. This failure is valid and must remain visible; do not report that exact run as passed.
+- Prior exact deployment `41287394205` and hosted browser QA `41287397982` had passed with 9 images on the hosted preview, but a later hosted QA run found the alias had reverted to 5. Therefore a new deployment and hosted re-test are required before claiming stable hosted-preview acceptance.
+
+### Corrective deployment isolation
+- Root cause located: legacy branch `integration/planetworld-partsearch-clean-main-2026-11-01` retained a push-triggered Cloudflare preview workflow pinned to that old branch and shared the `planetworld-audio-preview` Pages alias. It could overwrite the current candidate preview with stale five-image content.
+- Disabled that legacy workflow's push branch filter (now only matches `disabled/legacy-preview-deploy`) and removed its self-trigger path. Change committed to legacy branch as `6e76237299f2781bf11f1f420d57d50735ead8ae`; re-fetched file confirms disabled filter and no self-trigger path. No production deployment.
+- Triggered a fresh deploy from current candidate branch by updating only an HTML comment in `preview-store.html`; commit `0f6411556317f76e1719a9a8f51e38bfc69834a0`. This is a non-production preview-only change. Its deployment and exact-head hosted QA still require verification; do not claim complete until both pass.
+
+### Read-only live-data checks (no writes)
+- `public.category_review_queue`: 198 records; 9 have missing/blank product names and 10 have weak/empty/SPECIAL-only buyer-guide classification. This queue is not a safe automatic category-write list. Live category mapping remains read-only pending SKU-level source evidence and owner approval.
+- Current top-level direct active-product assignments are uneven/legacy: Automotive Accessories 288; Spare Parts 136; Tools & Workshop 133; Trailer & Canopy 64; Car Audio 39; Camping/Leisure/Outdoors 9; Marine Spares & Accessories 5; Electrical 3; Alarms & Security 2. Preview hierarchy is independently tested with the approved eight labels; do not rewrite live categories to force this preview tree.
+- Current `gw_private.supplier_catalog_items`: 770 staged rows (Planetworld 702, Audio Connections 68); zero active rows and zero linked public products. Current `supplier_connections` shows ASC connection active but 0 ASC catalogue rows. Do not infer catalogue items, prices or stock from connection-active flags.
+- Old `public.asc_stock_verification` entries found in read-only inspection are dated 2026-09-16; they are stale and must not be used as current supplier availability.
+- Library/conversation file check found no new post-reset November ASC test catalogue PDF. Only older ASC catalogues (uploaded 2026-09-19 / 2026-10-01) were available; handover reset explicitly says not to substitute those historical files for the new test intake. ASC catalogue-use authorisation is already granted and must not be requested again. The 25-product pilot and historical scaling-SKU reconciliation remain blocked on the new source bytes.
+
+### Release gates and deadline
+- Current PR #142 remains draft/unmerged; current PR #143 safety change remains draft/unmerged. Do not merge or launch without owner approval. Rebase/refresh branches against latest main before any later merge; main has advanced with handover-only commits.
+- 17:00 SAST 1-Nov target is **test-ready preview handover**, not live checkout/payment readiness. Commerce checkout remains intentionally disabled/buttons-only. Production, Axxess, DNS, payments, live category/price/stock, Supabase writes and supplier activation remain protected.
+- Immediate work: verify deployment triggered by `0f6411556317f76e1719a9a8f51e38bfc69834a0`; rerun exact-head hosted browser QA until the alias confirms all 9 images and no other regression; record exact run IDs and hosted URL. Then complete owner real-phone acceptance and document any remaining owner-only inputs.
