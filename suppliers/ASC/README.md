@@ -2,7 +2,7 @@
 
 **Supplier catalogue-use permission:** GRANTED (interim; owner-confirmed 27 October 2026).  
 **Technical integration:** OPEN — ASC IT's longer-term technical solution remains separate from catalogue-use permission.  
-**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; page-level OCR is complete and the taxonomy preview is implemented. OCR has produced 63 OCR code candidates are indexed as unverified. A separate 25-product page-3 pilot has now been visually checked against the source catalogue cards; individual image crops remain pending.
+**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; page-level OCR is complete and the taxonomy preview is implemented. OCR has produced 63 OCR code candidates are indexed as unverified. A separate 25-product page-3 pilot has now been visually checked against the source catalogue cards; individual source-card crops have now been generated and reviewed.
 
 ## What is authorised
 
@@ -91,3 +91,8 @@ The six original PDFs are now included in the active PR #142 candidate branch by
 ## 25-product source-page pilot — 2026-11-01
 
 The first 25 pilot rows are taken from page 3 of each of the six current source catalogues (4 aerials, 5 sensors, 4 ignition switches, 4 halogen globes, 4 Toyota carpet mats and 4 BMW electric fuel pumps). Exact source codes and descriptions were checked against the rendered page images. The image-match register records 25 source-card pairings; no crop has been published. Preview-only JSON is `assets/asc-catalogue-pilot-preview.json`, allowlisted only in the isolated preview build. It has null price/stock and no internal/public SKU. The live catalogue and database remain unchanged.
+
+
+## Source-card image crops — 2026-11-01
+
+25 full source-card review crops were generated from page 3 of the six authorised ASC PDFs. Each crop retains the original ASC watermark and printed description/code. They are included only in the isolated Pages preview asset allowlist; no production image library or live product records were changed. These crops are for preview/review, not final cleaned customer product photography. Confirm live image-use rights before launch.
