@@ -102,7 +102,7 @@ const openEnd=html.indexOf("\n}",openStart)+2;
 const openBlock=html.slice(openStart,openEnd);
 if(!openStart||openEnd<2||/products\.filter|show\(matches\)/.test(openBlock)) throw new Error("ASC catalogue navigation must not mix fuzzy-matched general-store products into source subcategories");
 if(!openBlock.includes("(ascPilotCache.records||[]).filter(p=>p.subcategory===label)")||!openBlock.includes("No unrelated store products are substituted")) throw new Error("ASC subcategory must show only exact verified pilot rows or an honest empty state");
-if(!html.includes("product-placeholder|product-image-pending")||!html.includes("functions/v1/product-image?sku=")) throw new Error("Homepage product-image helper must bypass placeholder URLs and try the exact-SKU image endpoint");
+if(!html.includes("assets/products_webp/")||!html.includes("assets/product-placeholder.svg")||html.includes("functions/v1/product-image?sku=")) throw new Error("Homepage product-image helper must use exact-SKU local WebP assets with a neutral placeholder fallback");
 const productsPage=fs.readFileSync("preview-products.html","utf8");
 const categoryReviewHoldSkus=["GW-21132FDF","GW-E93CDF1E","GW-AA085120","GW-22B30765","GW-0E5E3109","GW-125D2F26","GW-FF7B49CB","GW-FC14A84E","GW-0B8032C4"];
 for(const sku of categoryReviewHoldSkus){

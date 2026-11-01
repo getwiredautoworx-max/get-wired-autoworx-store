@@ -122,13 +122,21 @@ jobs:
             const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
             if(await camping.locator('.children .catWrap').filter({hasText:/4X4 Outdoor/i}).count()!==1)throw new Error('4X4 Outdoor must be nested under Camping, Leisure & Outdoors');
             if(audit.products<1)throw new Error('No live product records loaded into preview');
+            const imageAudit=await page.evaluate(async()=>{
+              const samples=['GW-EBA53965','GW-F323915E','GW-DCDD840E','GW-B4F502E6','GW-5107B32F'];
+              const results=[];
+              for(const sku of samples){const img=new Image();img.src='assets/products_webp/'+encodeURIComponent(sku)+'.webp';try{await img.decode();results.push({sku,width:img.naturalWidth,height:img.naturalHeight})}catch{results.push({sku,width:0,height:0})}}
+              return results;
+            });
+            if(imageAudit.some(x=>x.width<1||x.height<1))throw new Error('Local product WebP images failed to load: '+JSON.stringify(imageAudit));
+            console.log('PRODUCT_WEBP_IMAGE_LOAD_PASS '+JSON.stringify(imageAudit));
             if(audit.ascMatched!==34||audit.ascPositiveStock!==0||audit.ascZeroStock!==34)throw new Error('ASC stock exclusion mismatch (34 active products must be zero; 2 inactive ASC products are correctly absent): '+JSON.stringify(audit));
             if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
             const category=page.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
             await category.click();
-            await page.waitForURL(/preview-category\.html\?id=/,{timeout:15000});
+            await page.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:15000});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             const categoryShell=await page.evaluate(()=>({header:getComputedStyle(document.querySelector('.gwHeader')).backgroundColor,card:getComputedStyle(document.querySelector('.card')).backgroundColor}));
             if(!categoryShell.header.includes('255')||!categoryShell.card.includes('255'))throw new Error('Dedicated category page did not inherit the bright shared shell: '+JSON.stringify(categoryShell));
@@ -141,7 +149,7 @@ jobs:
             await page.goto('http://127.0.0.1:4173/preview-category.html?id=f7f2ea3b-f15d-46a7-920b-9d3d9a394c79',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             await page.locator('#grid .card').filter({hasText:'Vehicle-Specific Aerials'}).click();
-            await page.waitForURL(/preview-store\.html\?asc_query=/,{timeout:15000});
+            await page.waitForURL(/preview-store\.html\?asc_query=/,{waitUntil:'domcontentloaded',timeout:15000});
             await page.waitForFunction(()=>document.querySelectorAll('#allProductsGrid [data-asc-preview-id]').length===4,{timeout:30000});
             // Verify all 12 ASC catalogue pilot subcategories render the exact 50 visually reviewed source-page records.
             const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
@@ -245,7 +253,7 @@ jobs:
             const audioAreas=await page.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!audioAreas.includes(label))throw new Error('Audio area navigation missing '+label);
             await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-            await page.waitForURL(/audio_area=car/,{timeout:15000});
+            await page.waitForURL(/audio_area=car/,{waitUntil:'domcontentloaded',timeout:15000});
             await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
             // Verify the required main-store Audio → departments → brand → component journey.
             const audioShop=await browser.newPage({viewport:{width:390,height:844}});
@@ -256,7 +264,7 @@ jobs:
             await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap').length>=8,{timeout:60000});
             await audioShop.locator('#categoryGrid > .catWrap[data-filter="5ab55c53-eee3-41ce-ad48-04ad6df85181"] > .catBtn').click();
-            await audioShop.waitForURL(/preview-audio\.html/,{timeout:15000});
+            await audioShop.waitForURL(/preview-audio\.html/,{waitUntil:'domcontentloaded',timeout:15000});
             audioShop.on('pageerror',e=>console.log('AUDIO_SHOP_PAGE_ERROR '+e.message));
             console.log('AUDIO_SHOP_PAGE_DEBUG '+JSON.stringify(await audioShop.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,tileCount:document.querySelectorAll('#departments .audioTile').length,departmentHtml:document.getElementById('departments')?.innerHTML||'',scripts:[...document.scripts].map(x=>({src:x.src,inlineLength:x.textContent.length}))})))+' pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors));
             await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .audioTile').length===9,{timeout:30000}).catch(()=>{throw new Error('Audio department tiles did not render; pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors))});
@@ -342,7 +350,7 @@ jobs:
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
             const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
             await hostedCategory.click();
-            await hosted.waitForURL(/preview-category\.html\?id=/,{timeout:20000});
+            await hosted.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:20000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             const hostedSubcategoryLinks=await hosted.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
             if(!hostedSubcategoryLinks.some(href=>href.startsWith('preview-category.html?id=')))throw new Error('Hosted category page did not expose subcategory buttons: '+JSON.stringify(hostedSubcategoryLinks));
@@ -397,7 +405,7 @@ jobs:
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
             await hosted.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-            await hosted.waitForURL(/audio_area=car/,{timeout:15000});
+            await hosted.waitForURL(/audio_area=car/,{waitUntil:'domcontentloaded',timeout:15000});
             await hosted.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
             const hostedWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth,bodyScrollWidth:document.body.scrollWidth,offenders:[...document.querySelectorAll('body *')].map(el=>{const r=el.getBoundingClientRect();return {tag:el.tagName,id:el.id,className:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,overflow:getComputedStyle(el).overflowX}}).filter(x=>x.right>innerWidth+2||x.left< -2||x.width>innerWidth+2).sort((a,b)=>b.width-a.width).slice(0,12)}));
             if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
