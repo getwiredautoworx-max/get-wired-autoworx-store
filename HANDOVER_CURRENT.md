@@ -1,3 +1,13 @@
+## CONTINUATION UPDATE — PR #141 SAFETY TEST EXECUTED LOCALLY — 2026-11-01 (SAST)
+
+- Re-fetched PR #141 branch source and committed regression test. Executed the committed unittest logic locally against the exact AST policy declarations re-fetched from `scripts/background_task_controller.py`; result: **1 test passed**. Assertions confirm production QA remains monitored but cannot be auto-retried, and live-release-gates / Cloudflare deployment workflows are excluded from the retry allowlist.
+- Scope of this result: isolated local policy regression execution only. No GitHub Actions workflow, background controller, production workflow, deployment, or remote retry was executed.
+- PR #141 remains draft/unmerged pending final independent diff review and owner approval. The safety change is not effective on main until an approved merge.
+- PR #140 hosted desktop/mobile interaction remains unverified; its smoke wrapper had skipped the actual smoke job. Do not claim browser acceptance passed.
+- No supplier, catalogue, stock, price, category, Supabase, checkout/payment, Axxess, DNS, or production changes made.
+
+---
+
 ## FINAL PR #141 DIFF RECHECK — 2026-11-01 (SAST)
 
 - Re-fetched GitHub's actual PR #141 file diff after the correction. Final diff is exactly two files: one deletion of `store-production-qa.yml` from `AUTO_RETRY_ALLOWLIST`, plus the 31-line regression test. `WORKFLOWS` monitor list is unchanged and still includes production QA. No unrelated files are changed.
