@@ -1,0 +1,50 @@
+[
+  {
+    "source_file": "ASC- Aerials (1).pdf",
+    "page_count": 7,
+    "text_pages": 7,
+    "ocr_pages": 7,
+    "total_text_characters": 2536,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "ASC- Automotive Sensors (1).pdf",
+    "page_count": 9,
+    "text_pages": 9,
+    "ocr_pages": 9,
+    "total_text_characters": 4024,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "ASC- Automotive Switches (1).pdf",
+    "page_count": 22,
+    "text_pages": 22,
+    "ocr_pages": 22,
+    "total_text_characters": 9693,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "ASC- Automotive globes (1).pdf",
+    "page_count": 11,
+    "text_pages": 11,
+    "ocr_pages": 11,
+    "total_text_characters": 4027,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "ASC- Car Mats (1).pdf",
+    "page_count": 11,
+    "text_pages": 11,
+    "ocr_pages": 11,
+    "total_text_characters": 4120,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "ASC- Fuel Pumps (1).pdf",
+    "page_count": 12,
+    "text_pages": 12,
+    "ocr_pages": 12,
+    "total_text_characters": 5884,
+    "extraction_status": "review-text-extracted"
+  }
+]
