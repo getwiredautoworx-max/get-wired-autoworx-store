@@ -1,3 +1,12 @@
+## EXECUTION CORRECTION — CONTROLLER MONITORING PRESERVED — 2026-11-01 (SAST)
+
+- Reviewed PR #141's actual GitHub file diff and caught an unintended first edit that removed `store-production-qa.yml` from both the monitor list and retry allowlist. Corrected the branch before merge: production QA is now still monitored, but absent from `AUTO_RETRY_ALLOWLIST`.
+- Corrected exact PR #141 head: `4b05b5b2c06f4e6cc11f1ceae07ff7e923ba6ec2`. PR #141 description now states the verified behavior. PR remains draft/unmerged.
+- This correction is explicitly recorded so no agent relies on the earlier intermediate branch head `cc9966b` or assumes the initial diff was correct.
+- Test remains unexecuted; no workflow was dispatched. Do not merge until regression test execution and final diff review.
+
+---
+
 ## EXECUTION UPDATE — CONTINUITY RULE IMPLEMENTED; CONTROLLER SAFETY FIX ISOLATED — 2026-11-01 (SAST)
 
 - **CLOSED — handover continuity checkpoint:** the closure rule and current verified PR #140 state are now recorded at the top of this file. Commit: `1d41b53071b8c17c03615ea4531d94eb7250e596`. The file was re-fetched after commit and the new checkpoint was confirmed at line 1.
