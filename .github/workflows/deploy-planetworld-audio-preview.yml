@@ -10,6 +10,7 @@ on:
       - "preview-store.html"
       - "assets/storefront-shell.css"
       - "assets/audio-connections-catalogue-preview.json"
+      - "assets/electrocity-catalogue-preview.json"
       - "assets/product-image-pending.svg"
       - "assets/gw-logo.png"
       - "index-new.html"
@@ -90,6 +91,7 @@ jobs:
           for base in "$DEPLOY_BASE" "$BRANCH_BASE"; do
             check_absent "$base" '/assets/planetworld-catalogue-preview.json' 'sourceWorkbooks|indicativePrice|hasStock|sourceFile'
             check_absent "$base" '/assets/audio-connections-catalogue-preview.json' 'indicativePrice|sourceFile|dealer'
+            check_absent "$base" '/assets/electrocity-catalogue-preview.json' 'sourceFile|sourcePage|source_file|source_page|supplierCost|dealerCost|stockQuantity|stock_quantity'
             check_absent "$base" '/assets/asc-catalogue-pilot-preview.json' 'source_file|internal_sku|source_image_pairing|image_url'
             check_absent "$base" '/HANDOVER_CURRENT.md' 'Current Execution Handover'
             check_absent "$base" '/preview-planetworld.html' 'Planetworld Catalogue Preview'
