@@ -1,29 +1,37 @@
-# ASC test-catalogue intake
+# ASC supplier catalogue intake
 
-**Reset checkpoint:** 30 October 2026  
-**Purpose:** Clean intake point for the next owner-supplied ASC test catalogue.
+**Supplier catalogue-use permission:** GRANTED (interim; owner-confirmed 27 October 2026).  
+**Technical integration:** OPEN — ASC IT's longer-term technical solution remains separate from catalogue-use permission.  
+**Current intake state:** Awaiting the new owner-supplied test catalogue requested after the 30 October source reset.
 
-The previous ASC source PDFs, historical guide import payload, ASC stock status report, ASC-only catalogue audit, and scheduled ASC image-sync automation are being removed from the current `main` working tree in the branch:
+## What is authorised
 
-`cleanup/asc-catalogues-stock-reset-2026-10-30`
+The owner confirmed that Get Wired AutoWorx is an ASC authorised dealer and ASC granted interim permission to use its catalogues. Catalogue preparation, extraction, internal review and preview/test presentation may proceed within that interim permission.
 
-## Intake rules
+This permission does not authorise live stock or price reconciliation/changes, product imports, database writes, public activation, checkout/payment changes or production deployment. Those remain separate release gates.
 
-1. Add only the new test catalogue supplied by the owner after this reset.
-2. Preserve the uploaded original unchanged. Record filename, edition/date, page count and file hash.
-3. Extract product data to a separate staged CSV/XLSX. Do not write directly to `public.products`.
-4. Keep ASC supplier SKU separate from Get Wired AutoWorx internal SKU. Never overwrite another supplier's code.
-5. Preserve source page, category, descriptions, dimensions, electrical specifications and vehicle fitment exactly where printed.
-6. Use catalogue photographs only when exact product-code/photo pairing is clear. Produce image contact sheets for review.
-7. Do not invent cost, selling price, fitment or physical stock. Apply the approved price formula only to a verified dealer cost.
-8. Do not treat catalogue appearance as physical stock. Keep supplier availability distinct from verified premises stock.
-9. Start with a 25-product pilot. Produce the edited images, staged spreadsheet, image-match report and exception list before any import.
-10. Only import after the pilot passes validation and the owner approves the staged result.
+## What belongs here
+
+- New ASC product-family catalogues supplied for the post-reset test intake.
+- ASC product/vehicle application catalogues and catalogue supplements.
+- The original supplier file, preserved unchanged, plus a separate extraction manifest and review-only staged outputs.
+
+Do not restore historical catalogues removed by the 30 October reset as if they were the new test source. The reset PR #118 was merged on 30 October 2026. The historical files still visible on old branches or in the Library predate that reset and are not the new test catalogue.
+
+## Processing rules
+
+1. Preserve each newly supplied original unchanged. Record filename, edition/date, page count and SHA-256.
+2. Extract products to review-only CSV/XLSX. Do not write directly to `public.products`.
+3. Keep ASC supplier SKU separate from Get Wired AutoWorx internal SKU. Never overwrite another supplier's code.
+4. Preserve source page, ASC category, description, dimensions, electrical specifications and vehicle fitment exactly where printed.
+5. Match product images only when exact product-code/photo pairing is clear. Produce image contact sheets for review.
+6. Do not invent cost, selling price, fitment or physical stock. Apply the approved price formula only to verified dealer cost.
+7. Catalogue appearance is not proof of physical stock. Keep supplier orderability distinct from verified premises stock.
+8. Start with a 25-product pilot. Produce staged rows, image-match report, duplicate report and exception list.
+9. After pilot validation, obtain owner approval before any import or live change.
 
 ## Preserved store dependencies
 
-The existing customer-facing image cache under `assets/products_webp/` is intentionally retained during this source reset. The Supabase `product-image` Edge Function uses these files to serve current product images. Removing the cache would break existing storefront imagery before the replacement test-catalogue images have been verified.
+The existing customer-facing image cache under `assets/products_webp/` is intentionally retained. The Supabase `product-image` Edge Function uses these files to serve current product images.
 
-The existing product database, current stock quantities, supplier mappings, storefront code, non-ASC supplier catalogues and current image storage are not part of this GitHub source cleanup.
-
-The generic, unattributed `data/STORE_STOCK_IMPORT_2026-09-16.csv` is held aside because it is not proven to be ASC-specific. It must not be treated as a current stock source.
+The existing product database, current stock quantities, supplier mappings, storefront code, non-ASC supplier catalogues and current image storage are not part of the ASC test-catalogue intake. Do not modify them as part of source preparation.
