@@ -87,6 +87,12 @@ if(!builder.includes('"asc-catalogue-pilot-preview.json"')) throw new Error('ASC
 for(const file of ['asc-image-match-review-only.csv','asc-exceptions-review-only.csv']) if(!fs.existsSync('catalogue-review/asc-catalogue-extraction/'+file)) throw new Error('Missing ASC review register '+file);
 
 
+const navStart=html.indexOf("const ASC_CATALOGUE_CHILDREN={");
+const navEnd=html.indexOf("\n};\n// ASC catalogue sections",navStart);
+const navBlock=html.slice(navStart,navEnd);
+const navIds=[...navBlock.matchAll(/id:'(asc-[^']+)'/g)].map(x=>x[1]);
+const navCounts={aerial:navIds.filter(x=>x.startsWith('asc-aerial-')).length,sensor:navIds.filter(x=>x.startsWith('asc-sensor-')).length,switches:navIds.filter(x=>x.startsWith('asc-switch-')).length,globes:navIds.filter(x=>x.startsWith('asc-globe-')).length,mats:navIds.filter(x=>x.startsWith('asc-mat-')).length,fuel:navIds.filter(x=>x.startsWith('asc-fuel-')).length-1};
+if(!navStart||navEnd<0||navIds.length!==76||new Set(navIds).size!==76||JSON.stringify(navCounts)!==JSON.stringify({aerial:6,sensor:11,switches:16,globes:10,mats:14,fuel:18})) throw new Error("ASC catalogue navigation must preserve all 75 source contents sections plus the Fuel Pumps parent: "+JSON.stringify(navCounts));
 const openStart=html.indexOf("async function openAscCatalogueCategory");
 const openEnd=html.indexOf("\n}",openStart)+2;
 const openBlock=html.slice(openStart,openEnd);
