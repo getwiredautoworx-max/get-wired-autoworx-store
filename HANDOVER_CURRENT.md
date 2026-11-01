@@ -242,3 +242,47 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Exact preview deployment workflow run `41289722924` completed successfully for code commit `7dced9f5f4464c7645d7cca4995f0ba0d4ff9ca8`. Cloudflare PR preview bot also reported successful deployment for handover head `634f1a9` at https://de446e1c.get-wired-autoworx-store.pages.dev .
 - The Playwright populated-browser QA and Node regression test workflow have not yet produced a new exact-head result for this correction. Static source read-back is not a substitute for those tests. Do not mark browser acceptance closed.
 - PR #142 remains draft/unmerged and mergeable=false. Latest PR head at time of this note is `634f1a9c0eddc7fb4c59e0a729905d02ebcf2792`. Production remains untouched.
+
+
+## CONTINUATION CHECKPOINT — STOREWIDE SHELL ROLLOUT — 2026-11-01 (SAST)
+
+### Owner's latest directive
+- All customer-facing pages must use the same storefront shell as the homepage. This is a storewide requirement, not an Audio-only styling request.
+- Continue from the existing candidate and this handover. Do not restart completed work or ask the owner to repeat known decisions.
+
+### Work completed in this continuation
+- Created reusable shared stylesheet `assets/storefront-shell.css` from the homepage shell (commit `c5f0f191da08d8f560f4267d655cf55386e8f7f3`).
+- Applied the common shell to 14 customer-facing routes/pages: `preview-store.html`, `preview-audio.html`, `index-new.html`, `category.html`, `product.html`, `products.html`, `preview-category.html`, `preview-product.html`, `preview-products.html`, `preview-checkout.html`, `checkout-v2.html`, `returns-refunds.html`, `terms-and-conditions.html`, and `privacy-policy.html`.
+- Preserved page-specific content and scripts while standardising the branded top bar/header/logo, navigation, responsive page layout, footer and mobile navigation.
+- `preview-audio.html` already has matching homepage shell styling and card treatment from commits `60239cb1e7cff9a06b2998bab145c43c86c25f07` and `23923014660db7e12d5909d6a3a9d6729d596173`.
+- Main category-navigation page `index-new.html` is also covered; `store.html` continues to load it.
+- Follow-up commit `28ba14bbfc95be11ab15a2acdcc25aab6a16781e` removed a duplicate legacy header from `preview-checkout.html`.
+- Updated this handover in commit `762f6ba489a9b2951b48ae68a8891cd9b476c3a4` before this checkpoint.
+
+### Static audit result
+- Source read-back covered all 14 listed pages.
+- All 14 contain a branded header, footer and mobile navigation. Every non-homepage page loads `assets/storefront-shell.css` or, for Audio, contains equivalent homepage shell styling.
+- This is a static source audit only. It does NOT establish visual consistency or functional acceptance.
+
+### Required next execution — do not mark complete until evidenced
+1. Re-fetch PR #142, its current branch head/base, and current `HANDOVER_CURRENT.md` before editing; this checkpoint is documentation, not proof that the branch head remains unchanged.
+2. Check every customer-facing route at desktop and narrow mobile widths against `preview-store.html`. Confirm no duplicate headers, inconsistent spacing/typography/colours, clipped content, horizontal overflow or mobile-nav overlap. Include checkout and policy pages.
+3. Run functional navigation checks: homepage category links; Audio department → brand → component/product; product/category links; search and Part Search; cart controls; back/change-department controls; legal-page links. Do not submit a real order or enable checkout/payment.
+4. Inspect checkout routes only in their existing safe preview/buttons-only state. Verify shell integration has not made hidden/disabled commerce controls active.
+5. Run the available Node regression tests, then the populated desktop/mobile Playwright/browser QA against the exact current PR #142 head. Record exact run IDs, commit SHA and outcomes. A source assertion, workflow wrapper success or skipped commerce job is not a pass for the skipped behavior.
+6. Establish a fresh preview-only deployment for the exact tested head using an existing safe PR preview workflow if available. Verify the resulting URL and actual rendered pages. Do not trigger production deployment or use paid/manual deployment.
+7. If any issue is found, fix it, update the tests and handover, then rerun affected checks on the new exact head. Continue through safe fixes without pausing for routine approval.
+8. Keep PR #142 draft/unmerged pending exact-head QA and owner acceptance. Record any owner-only real-phone visual acceptance as outstanding rather than claiming it on the owner's behalf.
+
+### Explicitly excluded / protected
+- Admin/owner tools, Android owner app and supplier-only `preview-planetworld.html` are not customer-facing storefront pages and are excluded from this shell rollout.
+- No merge, production deployment, Axxess upload, DNS change, Supabase write/migration, live category/catalogue/price/stock mutation, supplier activation, checkout/payment activation, or production workflow retry is authorised.
+- Keep ASC authorisation as already granted; do not ask again. Keep the November ASC source-PDF byte dependency separate from this visual-shell task.
+- Keep the 19 Planetworld zero-RRP rows quarantined and do not expose dealer costs or supplier identity in customer-facing UI.
+
+### Current release status
+- Storewide shell rollout: **implemented; static audit passed; visual and functional acceptance outstanding**.
+- Audio supplier-neutral taxonomy correction: implemented; exact-head browser/regression re-test remains outstanding as recorded above.
+- Product-code contrast correction: implemented and previously passed populated browser QA on its recorded head; do not assume later shell changes have been covered by that older run.
+- PR #142 remains draft/unmerged until current-head checks and owner acceptance are complete.
+- Production/customer launch remains **HOLD**. Do not describe the store as ready based on static source checks.
