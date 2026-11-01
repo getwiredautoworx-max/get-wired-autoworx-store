@@ -68,7 +68,7 @@ if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
-        if name not in {"planetworld-catalogue-preview.json", "asc-catalogue-pilot-preview.json"}:
+        if name not in {"planetworld-catalogue-preview.json", "asc-catalogue-pilot-preview.json", "audio-connections-catalogue-preview.json"}:
             copy_file(f"assets/{name}")
 
     # Publish only customer-safe display fields. Supplier pricing/availability,
@@ -86,6 +86,19 @@ if include_preview:
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(json.dumps(public_planetworld, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
+    audio_connections = json.loads((ROOT / "assets/audio-connections-catalogue-preview.json").read_text(encoding="utf-8"))
+    public_audio_connections = {
+        "previewRecordCount": len(audio_connections.get("records", [])),
+        "status": "Preview catalogue; confirm current price and availability before ordering.",
+        "records": [
+            {key: row.get(key) for key in ("id", "division", "collection", "brand", "title", "component", "modelNumber", "description", "manufacturerPage")}
+            for row in audio_connections.get("records", [])
+        ],
+    }
+    dst = OUT / "assets/audio-connections-catalogue-preview.json"
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(json.dumps(public_audio_connections, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
     asc = json.loads((ROOT / "assets/asc-catalogue-pilot-preview.json").read_text(encoding="utf-8"))
     public_asc = {
         "record_count": len(asc.get("records", [])),
@@ -100,10 +113,10 @@ if include_preview:
     dst.write_text(json.dumps(public_asc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     forbidden_public_keys = {
         "sourceWorkbooks", "sourceSheets", "sourceRows", "indicativePrice", "hasStock",
-        "source_file", "source_page", "source_image_pairing", "internal_sku",
-        "public_sku", "image_url", "image_crop_status", "dealer_cost",
+        "source_file", "sourceFile", "source_page", "sourcePage", "source_image_pairing", "internal_sku",
+        "public_sku", "image_url", "image_crop_status", "dealer_cost", "indicativePrice", "hasStock", "priceNote", "availabilityNote", "excludedRows", "sourceRecordCount",
     }
-    for label, dataset in (("Planetworld", public_planetworld), ("ASC", public_asc)):
+    for label, dataset in (("Planetworld", public_planetworld), ("Audio Connections", public_audio_connections), ("ASC", public_asc)):
         for row in dataset.get("records", []):
             leaked = forbidden_public_keys.intersection(row)
             if leaked:
