@@ -5289,3 +5289,12 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - This is a runtime storefront change; a new non-production Cloudflare Pages deployment and exact-head browser run have been triggered by the latest branch commit `2c0b14bf871d766f68f10d68a5c1009c142899f3`. Do not use the previous preview URL as evidence of this latest fix until the deployment workflow for the new head succeeds.
 - The latest confirmed run on the prior head also proved the no-AI Part Search path and manufacturer/model search are working locally; the failure occurred later in the Audio root-link visibility check. Desktop/mobile overflow assertions for the main store and Audio hierarchy have not yet been reached in a successful run.
 - No merge or production changes. Continue with exact-head deploy, rerun browser QA, fix any next failure, then verify hosted alias and desktop/mobile behavior. Keep PR #140 draft until all critical gates pass.
+
+
+## 48-HOUR TARGET — LATEST PREVIEW DEPLOYMENT CONFIRMED — 2026-11-01 05:29 SAST
+
+- Deployment workflow run `41269338145` succeeded for the Audio root-link visibility fix on candidate head `2c0b14bf871d766f68f10d68a5c1009c142899f3`.
+- New exact deployment URL: https://b47bb277.get-wired-autoworx-store.pages.dev ; branch alias: https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev . Build evidence: `PAGES_PUBLIC_BUILD_PASS files=4131 webp_images=4101`; preview package explicitly included all seven approved preview routes and excluded supplier/source/audit/staging/Supabase/.github content.
+- Exact-head populated browser QA run `41269341894` has passed Playwright/Chromium installation and the full Audio hierarchy source/package checks; the actual read-only browser suite is in progress. The other five targeted workflows on this head have completed successfully: search tests `41269341925`, package QA `41269341846`, image audit `41269341942`, SKU audit `41269341910`, and smoke workflow `41269341848` (smoke subjob skipped due buttons-only detection).
+- Current critical blocker is the remaining browser run. It must confirm the newly visible Audio department link, the nine-department → brand → component → product path, corrected WhatsApp contact, mobile and desktop overflow, Part Search, and hosted preview checks against the new branch alias. No pass is claimed until run `41269341894` finishes.
+- No production deployment; the successful deployment is isolated to the `planetworld-audio-preview` branch. All release/supplier boundaries remain unchanged.
