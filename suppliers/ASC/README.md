@@ -67,3 +67,17 @@ The catalogue contents pages identify these section counts:
 | Fuel Pumps | 12 | 18 |
 
 The storefront's virtual ASC navigation now reflects the catalogue contents-page headings, including vehicle-specific mat and fuel-pump groups. This is a category-navigation structure only. OCR text and all product codes/specifications must be checked against the original page images before any product is admitted to the 25-product pilot. OCR-derived records are not authoritative source truth.
+
+
+### Existing storefront category alignment
+
+To avoid duplicate parent tiles, the preview attaches the ASC contents headings to the existing storefront category IDs where those categories already exist:
+
+- Aerials sections → existing Aerials category under Car Audio & Entertainment.
+- Sensor sections → existing Automotive Sensors category under Auto Electrical Spares.
+- Switch sections → existing Automotive Switches category under Auto Electrical Spares.
+- Globe sections → existing Lighting category under Auto Electrical Spares.
+- Car Mat sections → existing Car Mats category under Automotive Accessories.
+- Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
+
+This is a non-database preview overlay. No live category rows or parent relationships were modified.
