@@ -2,7 +2,7 @@
 
 **Supplier catalogue-use permission:** GRANTED (interim; owner-confirmed 27 October 2026).  
 **Technical integration:** OPEN — ASC IT's longer-term technical solution remains separate from catalogue-use permission.  
-**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; page-level OCR is complete and the taxonomy preview is implemented. OCR has produced 63 unverified code candidates; no product has yet passed exact SKU/photo verification, so the 25-product pilot remains an empty review template.
+**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; page-level OCR is complete and the taxonomy preview is implemented. OCR has produced 63 OCR code candidates are indexed as unverified. A separate 25-product page-3 pilot has now been visually checked against the source catalogue cards; individual image crops remain pending.
 
 ## What is authorised
 
@@ -53,7 +53,7 @@ These replace the earlier “awaiting new source bytes” status. Their family n
 
 ## Extracted catalogue structure — 2026-11-01
 
-All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`. A separate OCR token index contains 63 possible code strings, all marked `UNVERIFIED_OCR_CANDIDATE`; it is a review aid, not a SKU list. The 25-product pilot CSV remains header-only until each record can be checked against the original page image.
+All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`. A separate OCR token index contains 63 possible code strings, all marked `UNVERIFIED_OCR_CANDIDATE`; it is a review aid, not a SKU list. The 25-product pilot CSV now contains 25 exact page-3 descriptions, supplier codes and printed applications. The image-match register confirms the product photo and code are paired on the same source card; individual crops are pending. The pilot remains preview-only with no price, stock, internal SKU or public SKU.
 
 The catalogue contents pages identify these section counts:
 
@@ -86,3 +86,8 @@ This is a non-database preview overlay. No live category rows or parent relation
 ## Candidate branch mirror — 2026-11-01
 
 The six original PDFs are now included in the active PR #142 candidate branch by reusing the exact Git blob objects from main. A source manifest records each file size and Git blob SHA. Git blob SHA is not a SHA-256 digest. The candidate branch also mirrors the OCR review files and contains separate pilot, image-match and exception review registers. No ASC product records have been published or imported.
+
+
+## 25-product source-page pilot — 2026-11-01
+
+The first 25 pilot rows are taken from page 3 of each of the six current source catalogues (4 aerials, 5 sensors, 4 ignition switches, 4 halogen globes, 4 Toyota carpet mats and 4 BMW electric fuel pumps). Exact source codes and descriptions were checked against the rendered page images. The image-match register records 25 source-card pairings; no crop has been published. Preview-only JSON is `assets/asc-catalogue-pilot-preview.json`, allowlisted only in the isolated preview build. It has null price/stock and no internal/public SKU. The live catalogue and database remain unchanged.
