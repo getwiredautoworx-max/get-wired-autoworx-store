@@ -299,12 +299,12 @@ jobs:
               for(const [query,label,expected] of checks){
                 await window.openAscCatalogueCategory(query,label);
                 const cards=[...document.querySelectorAll('#allProductsGrid [data-asc-preview-id]')];
-                const text=document.getElementById('allProductsGrid')?.innerText||'';
-                results.push({label,count:cards.length,expected,guarded:text.includes('Price on request')&&text.includes('Availability to confirm')&&text.includes('SOURCE IMAGE MATCHED')});
+                const pilotText=cards.map(c=>c.innerText).join('\n');
+                results.push({label,count:cards.length,expected,guarded:pilotText.includes('Price on request')&&pilotText.includes('Availability to confirm')&&pilotText.includes('SOURCE IMAGE MATCHED'),noStock:!(/ADD TO CART|In stock|Only \d+ left/i.test(pilotText))});
               }
               return results;
             },hostedPilotChecks);
-            for(const result of hostedPilotAudit)if(result.count!==result.expected||!result.guarded)throw new Error('Hosted ASC pilot preview failed: '+JSON.stringify(result));
+            for(const result of hostedPilotAudit)if(result.count!==result.expected||!result.guarded||!result.noStock)throw new Error('Hosted ASC pilot preview failed: '+JSON.stringify(result));
             const hostedPilotWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedPilotWidth.scrollWidth>hostedPilotWidth.innerWidth+1)throw new Error('Hosted ASC pilot mobile overflow: '+JSON.stringify(hostedPilotWidth));
             await hosted.setViewportSize({width:360,height:800});
