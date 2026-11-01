@@ -10,6 +10,7 @@ on:
       - 'product.html'
       - 'preview-store.html'
       - 'preview-audio.html'
+      - 'preview-checkout.html'
       - 'tests/audio-navigation.test.cjs'
       - 'tests/asc-catalogue-navigation.test.cjs'
       - 'assets/**'
