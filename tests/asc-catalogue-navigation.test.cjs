@@ -75,6 +75,7 @@ if(imageMatches.length!==51||!imageMatches[1].includes('SOURCE_CARD_CROP_REVIEWE
 const pilotData=JSON.parse(fs.readFileSync('assets/asc-catalogue-pilot-preview.json','utf8'));
 const builder=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
 if(!builder.includes('shutil.copy2(OUT / "preview-store.html", OUT / "index.html")')) throw new Error('Isolated preview root must open the approved storefront shell without changing production index.html');
+if(!builder.includes('"catalogue-search.js"')) throw new Error('Preview package must include the free local catalogue search engine used by Part Search');
 if(pilotData.record_count!==50||pilotData.records.length!==50) throw new Error('ASC preview pilot must contain exactly 50 records backed by the completed review registers');
 for(const p of pilotData.records){
  if(!p.preview_only||p.release_status!=='REVIEW_ONLY_NOT_LIVE'||![3,4].includes(p.source_page)||!p.catalogue_reference||!p.source_file||Object.prototype.hasOwnProperty.call(p,'supplier_sku')) throw new Error('ASC pilot row missing source evidence or preview-only guard');
