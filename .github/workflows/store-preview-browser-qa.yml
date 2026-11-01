@@ -16,6 +16,7 @@ on:
       - 'tests/asc-catalogue-navigation.test.cjs'
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
+      - '.github/workflows/deploy-planetworld-audio-preview.yml'
   pull_request:
     branches: [main, integration/current-main-refresh-2026-11-01]
     paths:
