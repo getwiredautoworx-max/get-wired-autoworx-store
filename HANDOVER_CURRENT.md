@@ -440,3 +440,42 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - New isolated preview deployment run `41301420749` completed SUCCESS; build output: 4,159 files, 4,101 WebP product images, and the internal supplier/catalogue review directories remained excluded. Exact deployment URL: `https://65eca525.get-wired-autoworx-store.pages.dev/preview-store.html`.
 - Latest browser QA run `41301535408` is in progress against that exact deployment. It includes source-card image decode checks for all six ASC subcategories, no-price/no-stock guards, and 390px/360px mobile checks. Confirm the final conclusion before claiming final preview acceptance.
 - Current PR #142 head at this handover entry: `39fcb70dc03009054803f1ba3372d7a168f97224`; remains draft/open/unmerged. Keep all protected production boundaries unchanged.
+
+## STOREFRONT CORRECTION PASS 2 — 2026-11-01 (SAST)
+
+- Current correction branch: `fix/approved-bright-shell-category-product-ux-2026-11-01-v3`, created directly from the then-current `integration/current-main-refresh-2026-11-01` head. Initial compare confirmed identical base before edits.
+- `index-new.html`: all eight owner-approved root buttons now navigate to `category.html?id=<root UUID>`; existing category page reads the active category hierarchy and directs leaf categories to product listings.
+- `assets/storefront-shell.css`: appended a light, brighter treatment for the common top bar/header/navigation/footer, panels, category/product surfaces, rating, product codes, descriptions, price, search controls and mobile navigation. Existing page markup retains the common shell.
+- `assets/product-image-fallback.js`: automatic SKU WebP/JPG substitutions disabled.
+- `products.html` and `preview-products.html`: product cards use the neutral `assets/product-image-pending.svg` asset.
+- `product.html` and `preview-product.html`: product detail image source is fixed to the neutral placeholder; database image URLs, edge image endpoint and local SKU image fallback are no longer used.
+- Added `assets/product-image-pending.svg`.
+- Existing category tree snapshot confirms the eight root UUIDs are present and active; direct active product counts: 3, 2, 39, 288, 5, 133, 9, 64. This does not count descendants and is not live stock validation.
+- The earlier PR #144 audit failure was observed on its stale merge candidate and flagged supplier_sku text in preview-store.html and assets/asc-catalogue-pilot-preview.json. The latest integration base used for this pass no longer contains those exact tokens in either file on read-back. Re-run the audit on this pass; do not relax the audit or rewrite supplier identifiers.
+- **Still unverified:** browser click-through, exact visual match to owner's reference image, responsive 390px rendering, Supabase category/product fetch success, and full customer journey. No readiness claim.
+- Draft/unmerged only; no production deploy, Axxess/DNS, Supabase writes, live stock/price/catalogue mutation, or checkout/payment activation.
+
+- Follow-up included the actual populated `preview-store.html` homepage: each of its eight root category cards now navigates to `preview-category.html?id=<root UUID>`, instead of only expanding an in-place accordion. Existing preview category pages route subcategories to preview product listings.
+- The populated preview homepage's normal product cards and ASC pilot cards now retain the neutral image placeholder; its image URL / edge / local-SKU fallback chain is removed.
+- Added `tests/storefront-category-routing.test.cjs` for eight-root route mapping, category ID presence, four product route image policies, light shell contrast, and placeholder asset.
+- Updated `.github/workflows/store-preview-browser-qa.yml` so pull requests targeting the current integration branch run the preview browser suite and new source regression test.
+- PR #145 now includes the populated preview homepage and test/workflow updates; remains draft/unmerged. Recheck Actions results after GitHub schedules the run.
+
+
+## OWNER CORRECTION QA CONTINUATION — 2026-11-01 SAST
+
+- Owner reiterated that execution must continue rather than stop at status notifications. The current correction candidate is PR #145 on `fix/approved-bright-shell-category-product-ux-2026-11-01-v3`.
+- Re-read the branch source before triggering exact-head verification. The candidate includes eight homepage category route mappings, brighter shared shell CSS, neutral product placeholders on populated and standard product routes, and the category-routing regression test.
+- Triggered a fresh PR browser QA run by a harmless HTML comment-only update to `preview-store.html`; no storefront behaviour or data changed in this trigger.
+- Required acceptance remains: all eight category click-throughs, subcategory-to-products navigation, product detail route, placeholder persistence, shared shell consistency, contrast legibility, and desktop/390px mobile visual checks. Do not claim accepted until the exact-head hosted/browser jobs complete successfully.
+- PR #145 remains draft/unmerged. No production deployment, Axxess/DNS, Supabase writes, live stock/catalogue/price changes, supplier activation, checkout/payment activation, or production release.
+
+
+## SHARED SHELL LOAD DEFECT FIX + PR145 QA — 2026-11-01 SAST
+
+- Source audit of the PR #145 correction branch found `preview-store.html` and `preview-planetworld.html` did not load `assets/storefront-shell.css`. This explained why the approved brighter shared storefront shell was not consistently applied to those preview routes.
+- Fixed both pages by adding the shared stylesheet link in their document heads. Commits: preview homepage `c4b074bdf51faad30db52d07ab8191368b15cd09`; Planetworld preview `9d4cf309c6be93566c36ae9e8cd01c595eb90657`.
+- Re-read the branch files and reran targeted source assertions: **9/9 PASS** — eight homepage root URLs; eight category IDs in both category pages; populated preview root navigation; neutral placeholders across four product routes plus Audio and Planetworld previews; SKU image fallback disabled; shared shell linked on all ten customer-facing routes; light theme/rating/description contrast rules present; regression test includes root/placeholder assertions; homepage links use full category navigation.
+- GitHub Actions for the exact preview-homepage fix commit: browser QA run `41304693835` in progress (Chromium installation completed/underway at last read; routing-placeholder regression and browser click-through pending); free catalogue search run `41304693838` SUCCESS; public SKU exposure audit run `41304693894` SUCCESS.
+- These are source checks and hosted CI checks, not owner phone acceptance. Record the final browser run conclusion and exact preview deployment before calling the storefront accepted.
+- PR #145 remains draft/unmerged. No production deployment, Axxess/DNS, Supabase writes, live stock/catalogue/price changes, supplier activation, checkout/payment activation, or production release.

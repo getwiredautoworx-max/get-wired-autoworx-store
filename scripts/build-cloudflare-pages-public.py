@@ -21,7 +21,14 @@ REQUIRED_ASSET_FILES = [
     "gw-logo.png", "storefront-shell.css", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
 ]
-PREVIEW_ASSET_FILES = ["audio-category-navigation.js","planetworld-catalogue-preview.json","planetworld-verified-models-preview.json","audio-connections-catalogue-preview.json","asc-catalogue-pilot-preview.json","asc-catalogue-pilot/asc-01080.jpg","asc-catalogue-pilot/asc-02883.jpg","asc-catalogue-pilot/asc-03822.jpg","asc-catalogue-pilot/asc-09103.jpg","asc-catalogue-pilot/asc-09396.jpg","asc-catalogue-pilot/asc-21849.jpg","asc-catalogue-pilot/asc-9005-cbl-h.jpg","asc-catalogue-pilot/asc-9005-h.jpg","asc-catalogue-pilot/asc-9005-nb.jpg","asc-catalogue-pilot/asc-9005xs.jpg","asc-catalogue-pilot/asc-cs-112048.jpg","asc-catalogue-pilot/asc-csc105.jpg","asc-catalogue-pilot/asc-csc106.jpg","asc-catalogue-pilot/asc-f1-012.jpg","asc-catalogue-pilot/asc-f1-019.jpg","asc-catalogue-pilot/asc-f1-060.jpg","asc-catalogue-pilot/asc-f1-067.jpg","asc-catalogue-pilot/asc-m7-avan01.jpg","asc-catalogue-pilot/asc-m7-con01.jpg","asc-catalogue-pilot/asc-m7-cor01.jpg","asc-catalogue-pilot/asc-m7-cor02.jpg","asc-catalogue-pilot/asc-ma522.jpg","asc-catalogue-pilot/asc-ma553.jpg","asc-catalogue-pilot/asc-ma559r.jpg","asc-catalogue-pilot/asc-ma570.jpg"]
+PREVIEW_ASSET_FILES = [
+    "audio-category-navigation.js",
+    "planetworld-catalogue-preview.json",
+    "planetworld-verified-models-preview.json",
+    "audio-connections-catalogue-preview.json",
+    "asc-catalogue-pilot-preview.json",
+    "product-image-pending.svg",
+]
 FORBIDDEN_DIRS = {
     "suppliers", "catalogue-review", "catalogue-source", "catalogue-audits",
     "staging", "supabase", ".github", "android-owner-app", "apk-sales-intelligence",
@@ -39,15 +46,22 @@ if OUT.exists():
     shutil.rmtree(OUT)
 OUT.mkdir(parents=True)
 
-for name in REQUIRED_ROOT_FILES:
-    copy_file(name)
+# Preview mode publishes only the guarded storefront entry, legal pages and
+# explicitly approved preview routes. Production checkout/product routes are omitted.
+PREVIEW_BASE_ROOT_FILES = ["index.html", "store.html", "returns-refunds.html", "terms-and-conditions.html"]
+include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
+if include_preview:
+    for name in PREVIEW_BASE_ROOT_FILES:
+        copy_file(name)
+else:
+    for name in REQUIRED_ROOT_FILES:
+        copy_file(name)
 for name in OPTIONAL_ROOT_FILES:
     if (ROOT / name).is_file():
         copy_file(name)
 
 # Preview routes are included only in the explicitly non-production preview build.
 # The production build remains unchanged unless this opt-in environment flag is set.
-include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
@@ -56,10 +70,26 @@ if include_preview:
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
-image_source = ROOT / "assets" / "products_webp"
-if not image_source.is_dir():
-    raise SystemExit("Required storefront WebP image directory missing: assets/products_webp")
-shutil.copytree(image_source, OUT / "assets" / "products_webp")
+# The preview storefront deliberately uses neutral image placeholders. Do not ship
+# the full SKU WebP catalogue in a preview package; the standard production build
+# retains the existing image-copy behaviour unchanged.
+image_count = 0
+if not include_preview:
+    image_source = ROOT / "assets" / "products_webp"
+    if not image_source.is_dir():
+        raise SystemExit("Required storefront WebP image directory missing: assets/products_webp")
+    shutil.copytree(image_source, OUT / "assets" / "products_webp")
+    image_count = sum(1 for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file())
+    if image_count == 0:
+        raise SystemExit("No WebP product images were copied")
+else:
+    if not (OUT / "assets" / "product-image-pending.svg").is_file():
+        raise SystemExit("Preview package missing neutral product-image placeholder")
+    if (OUT / "assets" / "products_webp").exists():
+        raise SystemExit("SKU WebP images must not be included in the placeholder-only preview")
+    if (OUT / "assets" / "asc-catalogue-pilot").exists():
+        raise SystemExit("ASC source-card crops must not be exposed in the customer preview")
+    print("PAGES_PREVIEW_PRODUCT_WEBP_EXCLUDED_PASS neutral placeholders are used")
 
 # The output is an allowlist, not a copy of the repository root. Assert that no
 # internal source/review directories or supplier documents entered the package.
@@ -71,15 +101,15 @@ for rel in relative_paths:
     if rel.lower().endswith((".xlsx", ".xls", ".pdf", ".csv", ".sql", ".md", ".zip")):
         raise SystemExit(f"Non-customer source file leaked into Pages output: {rel}")
 
-for required in REQUIRED_ROOT_FILES:
+required_root_files = PREVIEW_BASE_ROOT_FILES if include_preview else REQUIRED_ROOT_FILES
+for required in required_root_files:
     if not (OUT / required).is_file():
         raise SystemExit(f"Public Pages package missing required page: {required}")
 
-image_count = sum(1 for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file())
-if image_count == 0:
-    raise SystemExit("No WebP product images were copied")
-
 if include_preview:
+    for forbidden in ("checkout.html", "checkout-v2.html", "category.html", "products.html", "product.html"):
+        if (OUT / forbidden).exists():
+            raise SystemExit(f"Preview package must not include production route: {forbidden}")
     for name in PREVIEW_ROOT_FILES:
         if not (OUT / name).is_file():
             raise SystemExit(f"Preview package missing route: {name}")

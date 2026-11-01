@@ -4,6 +4,10 @@ on:
   push:
     branches: [integration/current-main-refresh-2026-11-01]
     paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'products.html'
+      - 'product.html'
       - 'preview-store.html'
       - 'preview-audio.html'
       - 'tests/audio-navigation.test.cjs'
@@ -11,7 +15,7 @@ on:
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
   pull_request:
-    branches: [main]
+    branches: [main, integration/current-main-refresh-2026-11-01]
     paths:
       - 'preview-store.html'
       - 'preview-category.html'
@@ -40,15 +44,21 @@ jobs:
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Run storefront category routing and image placeholder regression checks
+        run: node tests/storefront-category-routing.test.cjs
       - name: Run Audio hierarchy source and package checks
         run: node tests/audio-navigation.test.cjs
       - name: Run ASC catalogue navigation checks
         run: node tests/asc-catalogue-navigation.test.cjs
+      - name: Build isolated customer-only preview package
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: python3 scripts/build-cloudflare-pages-public.py
       - name: Run read-only populated preview browser checks
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory pages-public >/tmp/gw-preview-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
           sleep 2
@@ -100,17 +110,41 @@ jobs:
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
             const category=page.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
-            await category.click();
-            await page.locator('#shop').waitFor({state:'visible',timeout:20000});
-            await page.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
-            const firstProduct=page.locator('#allProductsGrid .product').first();
-            await firstProduct.click();
-            await page.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
-            const modalText=await page.locator('#productModal').innerText();
-            if(!modalText.trim())throw new Error('Product detail modal did not populate');
-            await page.locator('#modalClose').click();
-            await page.locator('#productModal').waitFor({state:'hidden',timeout:10000});
-            // Verify the six ASC catalogue pilot subcategories render the exact 25 source-page records.
+            await Promise.all([page.waitForURL(/preview-category\.html\?id=/,{timeout:20000}),category.click()]);
+            await page.locator('#grid a.card').first().waitFor({state:'visible',timeout:30000});
+            if(await page.locator('#grid a.card').count()<1)throw new Error('Root category page did not show subcategory buttons');
+            // Verify all eight category landing pages render their own subcategory/dept buttons on mobile.
+            const categorySweep=await browser.newPage({viewport:{width:390,height:844}});
+            const categorySweepIds=['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79'];
+            const categorySweepResults=[];
+            for(const id of categorySweepIds){
+              await categorySweep.goto('http://127.0.0.1:4173/preview-category.html?id='+id,{waitUntil:'domcontentloaded'});
+              await categorySweep.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
+              categorySweepResults.push({id,subcategories:await categorySweep.locator('#grid .card').count()});
+            }
+            await categorySweep.close();
+            console.log('CATEGORY_PAGE_SWEEP_PASS '+JSON.stringify(categorySweepResults));
+            // Verify store.html shows the approved bright preview and opens full category/listing/detail pages.
+            const mainStore=await browser.newPage({viewport:{width:390,height:844}});
+            await mainStore.goto('http://127.0.0.1:4173/store.html',{waitUntil:'domcontentloaded'});
+            const storeFrame=mainStore.frameLocator('#store');
+            const firstMainCategory=storeFrame.locator('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > .catBtn');
+            await firstMainCategory.waitFor({state:'visible',timeout:30000});
+            await Promise.all([mainStore.waitForURL(/preview-category\.html\?id=/,{timeout:20000}),firstMainCategory.click()]);
+            await mainStore.locator('#grid .card').first().waitFor({state:'visible',timeout:30000});
+            await mainStore.goto('http://127.0.0.1:4173/preview-products.html?category=4f440d20-ac97-4ff7-ac6c-703a46499fa9',{waitUntil:'domcontentloaded'});
+            const mainProductLink=mainStore.locator('#grid a[href^="preview-product.html"]').first();
+            await mainProductLink.waitFor({state:'visible',timeout:30000});
+            await Promise.all([mainStore.waitForURL(/preview-product\.html\?id=/,{timeout:20000}),mainProductLink.click()]);
+            await mainStore.locator('#root .product').waitFor({state:'visible',timeout:30000});
+            await mainStore.close();
+            // Open a known populated subcategory listing, then a product detail page in preview mode.
+            await page.goto('http://127.0.0.1:4173/preview-products.html?category=4f440d20-ac97-4ff7-ac6c-703a46499fa9',{waitUntil:'domcontentloaded'});
+            await page.locator('.grid a[href^="preview-product.html"]').first().waitFor({state:'visible',timeout:30000});
+            await page.locator('.grid a[href^="preview-product.html"]').first().click();
+            await page.waitForURL(/preview-product\.html\?id=/,{timeout:20000});
+            await page.locator('#root .product').waitFor({state:'visible',timeout:30000});
+            // Verify the twelve ASC catalogue pilot subcategories render all 50 source-page records.
             const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
             const ascPilotErrors=[];
             ascPilotPage.on('pageerror',e=>ascPilotErrors.push(e.message));
@@ -118,11 +152,17 @@ jobs:
             await ascPilotPage.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
             const pilotChecks=[
               ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
+              ['universal aerial|roof aerial|pillar aerial','Universal, Roof & Pillar Mount Aerials',4],
               ['crankshaft sensor|camshaft sensor','Crankshaft & Camshaft Position Sensors',5],
-              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',4],
+              ['air flow sensor|air mass sensor|maf sensor','Air Flow & Air Mass Sensors',4],
+              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',8],
               ['halogen globe|headlight globe','Headlight Globes — Halogen',4],
+              ['hid globe|hid kit|ballast','HID Globes, Kits & Ballasts',4],
               ['carpet mat+toyota','Carpet Mat Sets — Toyota',4],
-              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4]
+              ['carpet mat+vw|carpet mat+audi','Carpet Mat Sets — VW & Audi',1],
+              ['carpet mat+bmw','Carpet Mat Sets — BMW',3],
+              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4],
+              ['electric fuel pump+ford|electric fuel pump+mazda','Electric Fuel Pumps — Ford & Mazda',5]
             ];
             const pilotAudit=[];
             for(const [query,label,expected] of pilotChecks){
@@ -141,6 +181,9 @@ jobs:
             if(ascPilotErrors.length)throw new Error('ASC pilot page errors: '+ascPilotErrors.join(' | '));
             console.log('ASC_PILOT_PREVIEW_PASS '+JSON.stringify(pilotAudit));
             await ascPilotPage.close();
+            // Return to the homepage after route tests before exercising homepage Part Search.
+            await page.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
+            await page.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:30000});
             // Verify Part Search and the no-AI photo-request fallback in the actual preview.
             const partSearchButton=page.locator('.headerPartSearch').first();
             await partSearchButton.waitFor({state:'visible',timeout:10000});
@@ -180,9 +223,9 @@ jobs:
             await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:15000});
             const pwAudit=await planetworld.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,snapshotDates:[...new Set(rows.map(p=>p.snapshot))],imageSources:rows.filter(p=>p.imageUrl).length,imageModels:rows.filter(p=>p.imageUrl).map(p=>p.modelNumber).sort(),officialImageSources:rows.filter(p=>p.imageUrl).every(p=>['https://static.audison.com/media/','https://www.kicker.com/','https://finland.alpine-europe.com/fileadmin/','https://dam.focal-naim.com/'].some(prefix=>String(p.imageUrl).startsWith(prefix))),hasManufacturerLinks:rows.every(p=>String(p.manufacturerPage).startsWith('https://')),dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
             if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==9||JSON.stringify(pwAudit.imageModels)!==JSON.stringify(['43C104','46CXA3604','46CXA4001','46CXA6605','69070060','HILO V3','R2-A60F.','R2-W10D2','S2-S40C'].sort())||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
-            await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===9&&imgs.every(img=>img.complete);},{timeout:15000});
+            await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===68&&imgs.every(img=>img.complete&&img.naturalWidth>0&&img.getAttribute('src')==='assets/product-image-pending.svg');},{timeout:30000});
             const imageLoadAudit=await planetworld.locator('#grid .card img').evaluateAll(imgs=>imgs.map(img=>({src:img.src,loaded:img.naturalWidth>0})));
-            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official manufacturer product image did not load: '+JSON.stringify(imageLoadAudit));
+            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('A neutral Planetworld product-image placeholder did not load: '+JSON.stringify(imageLoadAudit));
             const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
             await planetworld.setViewportSize({width:360,height:800});
@@ -216,10 +259,9 @@ jobs:
             await audioShop.route('**/assets/planetworld-catalogue-preview.json',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
             await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap').length>=8,{timeout:60000});
-            await audioShop.locator('#categoryGrid > .catWrap[data-filter="5ab55c53-eee3-41ce-ad48-04ad6df85181"] > .catBtn').click();
-            await audioShop.locator('#gw-audio-departments-link').waitFor({state:'visible',timeout:10000});
-            await audioShop.locator('#gw-audio-departments-link').click();
-            await audioShop.waitForURL(/preview-audio\.html/,{timeout:10000});
+            const audioRoot=audioShop.locator('#categoryGrid > .catWrap[data-filter="5ab55c53-eee3-41ce-ad48-04ad6df85181"] > .catBtn');
+            await Promise.all([audioShop.waitForURL(/preview-audio\.html/,{timeout:20000}),audioRoot.click()]);
+            await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .audioTile').length===9,{timeout:30000});
             audioShop.on('pageerror',e=>console.log('AUDIO_SHOP_PAGE_ERROR '+e.message));
             console.log('AUDIO_SHOP_PAGE_DEBUG '+JSON.stringify(await audioShop.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,tileCount:document.querySelectorAll('#departments .audioTile').length,departmentHtml:document.getElementById('departments')?.innerHTML||'',scripts:[...document.scripts].map(x=>({src:x.src,inlineLength:x.textContent.length}))})))+' pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors));
             await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .audioTile').length===9,{timeout:30000}).catch(()=>{throw new Error('Audio department tiles did not render; pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors))});
@@ -327,11 +369,11 @@ jobs:
             if(hostedNarrowWidth.scrollWidth>hostedNarrowWidth.innerWidth+1)throw new Error('Hosted 360px phone overflow: '+JSON.stringify(hostedNarrowWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
-            await hosted.goto('https://65eca525.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('http://127.0.0.1:4173/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
             const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
             if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||hostedPlanet.imageSources!==9||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));
-            await hosted.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===9&&imgs.every(img=>img.complete&&img.naturalWidth>0);},{timeout:30000});
+            await hosted.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===68&&imgs.every(img=>img.complete&&img.naturalWidth>0&&img.getAttribute('src')==='assets/product-image-pending.svg');},{timeout:30000});
             const hostedPlanetWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedPlanetWidth.scrollWidth>hostedPlanetWidth.innerWidth+1)throw new Error('Hosted Planetworld mobile overflow: '+JSON.stringify(hostedPlanetWidth));
             await hosted.setViewportSize({width:1280,height:900});
