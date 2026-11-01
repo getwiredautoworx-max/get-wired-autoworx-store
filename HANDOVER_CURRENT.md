@@ -5528,3 +5528,36 @@ Top-level category counts below are direct-root product counts, not descendant t
 - ASC reset PR #118 is merged. The post-reset main intake currently contains only the ASC README; the former cleanup branch and older Library files are pre-reset historical sources. A post-reset owner-supplied test catalogue has not been located in the current repository or connected Library search.
 - ASC README was corrected in commit `0474e0a62340651f57d06e385a4164a7a26b8ddc`; current handover correction is recorded above. Catalogue extraction/pilot work can begin immediately when the new test source is supplied. Until then, do not restore old source PDFs or invent a replacement test source.
 - Technical integration remains separate from permission and is still open with ASC IT. No live stock/price/import/database/production change is authorised by catalogue-use permission alone.
+
+
+## CONTINUATION — PRIVATE REPOSITORY / PR #140 EXECUTION EVIDENCE — 2026-11-01
+
+### Repository privacy
+- Rechecked the repository metadata through GitHub: `getwiredautoworx-max/get-wired-autoworx-store` now reports `visibility=private` and `private=true`. This is verified current state; no visibility change was made during this continuation.
+- This addresses the earlier owner requirement to keep supplier price lists and store source private before further supplier uploads. Continue to keep customer-facing Pages preview content limited to the explicit public build allowlist; do not expose supplier source folders, internal review files, raw workbooks or supplier cost files in public packages.
+
+### PR #140 exact-head job-level verification
+- Rechecked PR #140: OPEN, DRAFT, unmerged; head `da463960345fda06c300f969920209c37da2986e`; branch `integration/planetworld-partsearch-clean-main-2026-11-01`.
+- Fetched the job and step results for all six workflow runs attached to that exact commit. Five substantive jobs completed SUCCESS, including:
+  - Catalogue Image Audit — audit job SUCCESS.
+  - Public SKU Exposure Audit — audit job SUCCESS.
+  - Cloudflare Pages Public Package QA — build, standard-package exclusion checks, isolated preview build and seven-route allowlist checks all SUCCESS.
+  - Free Catalogue Search Tests — Node acceptance test and populated-preview integration/safe-rendering checks SUCCESS.
+  - Populated Store Preview Browser QA — Playwright/Chromium installation, Audio hierarchy/package checks and read-only populated preview browser checks SUCCESS.
+- Important qualification: Storefront Smoke Test workflow is not a passing smoke test. Its mode-detection job succeeded, but the actual `smoke` job was SKIPPED because `index-new.html` is in buttons-only mode. Do not count this as successful storefront smoke coverage.
+- The image audit job's audit checks succeeded; its optional artifact upload step was skipped. No evidence from this run authorises production image-cache changes or live image-function smoke tests.
+- The exact-head Pages preview remains `https://b1a08506.get-wired-autoworx-store.pages.dev` (preview-only). Browser QA step succeeded against the preview route set; this is hosted automated browser evidence, not owner real-phone acceptance.
+
+### Current-main divergence and safe integration decision
+- Fresh compare from current `main` to PR #140 exact head: PR candidate is 13 commits ahead and 11 behind; status `diverged`; merge base `fc735645dabeaabc7fdfb908a7d376dd6be9909f`.
+- Reverse compare confirms all 11 main-only commits affect exactly three documentation paths: `HANDOVER_CURRENT.md`, `LIVE_CATEGORY_AUDIT_2026-11-01.md`, and `suppliers/ASC/README.md`. No main-only storefront code, workflow or catalogue-source file was reported.
+- This is a narrow documentation-only divergence, but do not merge or force-push blindly. Preserve all three current-main documents when preparing the deliberate integration reconciliation. Keep PR #140 draft/unmerged until that reconciliation and owner visual acceptance are complete.
+- No workflows were rerun in this continuation. No new deployment was triggered. No production, Supabase, product/category, stock/price, payment, Axxess or DNS change was made.
+
+### Remaining acceptance gates
+1. Reconcile PR #140 with the three documentation-only main changes on a safe candidate branch, then re-run only the minimum required exact-head checks after checking available Actions quota.
+2. Complete owner real-phone acceptance of the exact hosted preview; automated browser QA does not replace physical-device sign-off.
+3. Keep the buttons-only smoke test explicitly open; determine the correct customer storefront entry point/mode before treating that workflow as applicable.
+4. Continue read-only SKU/category evidence mapping; no live category assignments or products may be changed without the required full SKU-level evidence and owner approval.
+5. ASC catalogue-use permission remains GRANTED (interim); the new post-reset ASC test catalogue is still absent. Do not restore the 35 pre-reset PDFs as a substitute. Proceed with the 25-product pilot immediately when the new source is supplied.
+
