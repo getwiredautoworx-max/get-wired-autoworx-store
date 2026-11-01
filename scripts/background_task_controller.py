@@ -26,12 +26,11 @@ WORKFLOWS = [
     "cloudflare-pages-deploy.yml",
     "live-release-gates.yml",
 ]
-# Only deterministic, read-only QA/audit or artifact packaging workflows may
-# receive one automatic retry. Never retry image sync, category writes, or deploy.
+# Only deterministic, non-production, read-only QA/audit or artifact packaging workflows may
+# receive one automatic retry. Never retry live-domain/production QA, image sync, category writes, or deploy.
 AUTO_RETRY_ALLOWLIST = {
     "catalogue-image-audit.yml",
     "public-sku-exposure-audit.yml",
-    "store-production-qa.yml",
     "storefront-smoke.yml",
     "prepare-axxess-package.yml",
 }
