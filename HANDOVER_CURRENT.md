@@ -5246,3 +5246,16 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - This is a material improvement in runner allocation, but tests are not yet counted as passed while in progress. No local Node test execution is claimed. Exact monthly minutes and artifact storage remain unavailable through the connected API.
 - Acceptance gates remain: wait for the six exact-head results; fix failures on the candidate branch; verify exact-head Cloudflare Pages deployment and real desktop/mobile browser behavior; check all eight root categories and Audio department → brand → component → product chain; verify Part Search and WhatsApp quote-only disclaimers. Keep PR draft/unmerged until critical gates pass.
 - Safety boundary unchanged: no production deployment, Axxess, DNS, Supabase, live stock/pricing, payment activation, supplier activation or ASC integration change. Planetworld remains dated preview data, not live inventory.
+
+
+## 48-HOUR TARGET — EXACT-HEAD TEST RESULTS UPDATE — 2026-11-01 05:24 SAST
+
+- Exact PR #140 head `f58117bc535f5ac7c4c0240ebd0abdfa0fef6d86` has now passed five targeted hosted checks:
+  1. Free Catalogue Search Tests — run `41268939836`: SUCCESS. Node regression assertions and populated-preview integration/safe-rendering checks executed successfully.
+  2. Cloudflare Pages Public Package QA — run `41268939899`: SUCCESS. Standard customer-only package and isolated preview package built; seven approved preview routes verified.
+  3. Catalogue Image Audit — run `41268939830`: SUCCESS. Source/image mapping audit and origin/path checks passed; the optional deployed image-function smoke test was skipped because owner approval was not present.
+  4. Public SKU Exposure Audit — run `41268939814`: SUCCESS. Customer-facing source audit passed.
+  5. Storefront Smoke Test — run `41268939844`: SUCCESS, but its smoke subjob was skipped because this branch is detected as the buttons-only storefront mode. This is not a populated-store browser pass.
+- Populated Store Preview Browser QA — run `41268939813` — remains `in_progress`. Playwright installed; Chromium installation was still running at the last check. Audio hierarchy source/package checks and read-only browser checks had not yet executed. Do not count browser/mobile QA as passed until this job completes successfully and its actual assertions are inspected.
+- Exact-head hosted runner allocation is now working. Remaining monthly minutes and artifact-storage usage are still not exposed by the connected API; artifact uploads were skipped in the completed jobs above, so this does not establish that storage pressure is cleared.
+- PR #140 remains draft and unmerged. Do not merge until the populated browser job finishes, exact-head preview is available, and desktop/mobile behavior is verified. Production and supplier boundaries remain unchanged.
