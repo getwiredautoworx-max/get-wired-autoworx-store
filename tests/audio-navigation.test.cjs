@@ -38,3 +38,9 @@ assert.match(html,/no larger than 4MB/,'photo validation error must match the 4 
 assert.match(html,/WhatsApp handoff opened\. Attach any selected photos in the chat/,'preview must tell customers to attach selected photos manually');
 
 console.log('AUDIO_NAVIGATION_SOURCE_PASS: main category → 9 departments → brand → component → product list; preview-only assets are allowlisted');
+
+// Owner-requested dark-theme product-code readability regression.
+assert.match(nav,/gw-product-code-contrast/,'preview adapter must install the product-code contrast correction');
+assert.match(nav,/#f1f5f9/,'dark-theme SKU text must use a high-contrast near-white foreground');
+assert.match(nav,/font-weight:700/,'dark-theme SKU text must remain legible at normal phone brightness');
+assert.match(nav,/font-size:12px/,'mobile SKU text must not be reduced to the previous 10px size');
