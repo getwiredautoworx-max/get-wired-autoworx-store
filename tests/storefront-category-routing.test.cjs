@@ -17,6 +17,7 @@ const index=read('index-new.html');
 const store=read('store.html');
 const category=read('category.html');
 const previewCategory=read('preview-category.html');
+const previewProducts=read('preview-products.html');
 const previewHome=read('preview-store.html');
 const planetworld=read('preview-planetworld.html');
 const audioPreview=read('preview-audio.html');
@@ -55,6 +56,8 @@ assert(previewHome.includes("c.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'?'prev
 assert(previewHome.includes('function productImageUrl(p)')&&previewHome.includes('p&&p.public_sku')&&previewHome.includes('/functions/v1/product-image?sku=')&&previewHome.includes('PRODUCT_PLACEHOLDER')&&previewHome.includes('onerror='),'homepage cards must use exact-SKU image lookup only, then neutral fallback; unverified image_url values are not trusted');
 const quarantinedOilFillerSkus=['GW-22B30765','GW-21132FDF','GW-0E5E3109','GW-E93CDF1E','GW-AA085120','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4'];
 assert(quarantinedOilFillerSkus.every(sku=>previewHome.includes(sku))&&previewHome.includes('function isPreviewCategoryQuarantined(p)')&&previewHome.includes('&&!isPreviewCategoryQuarantined(p)'), 'nine confirmed oil-filler-cap SKUs must be excluded from category browse lists without changing live data');
+assert(previewProducts.includes('PREVIEW_CATEGORY_QUARANTINE_SKUS')&&previewProducts.includes('terms.length?terms.every(term=>hay.includes(term)):!PREVIEW_CATEGORY_QUARANTINE_SKUS.has(String(p.public_sku||\'\'))'),'category product lists must hide the nine miscategorized oil-filler SKUs by default while preserving explicit search');
+assert(previewCategory.includes('quarantineCounts')&&previewCategory.includes("'c7980122-f760-4e65-b0e0-aecce4181f05':6"),'category landing counts must exclude all six oil-filler SKUs from Ignition Spares');
 assert(previewHome.includes("assets/product-image-pending.svg"),'ASC preview cards must use neutral placeholders');
 for(const p of ['products.html','preview-products.html','product.html','preview-product.html']){
  const s=read(p);
