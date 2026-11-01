@@ -1,3 +1,22 @@
+## STOREWIDE SHARED STOREFRONT SHELL ROLLOUT — 2026-11-01 (SAST)
+
+- **Owner directive:** every customer-facing store page must use the same storefront shell as the homepage; page-specific content may vary, but the branded top bar/header/logo, navigation, typography/colour system, footer and responsive mobile navigation must remain consistent.
+- Added shared reusable stylesheet `assets/storefront-shell.css` (commit `c5f0f191da08d8f560f4267d655cf55386e8f7f3`).
+- Applied the shared shell to customer-facing pages while preserving their page-specific content and scripts:
+  - Main category-navigation route: `index-new.html`
+  - Category, product-list and product detail routes: `category.html`, `products.html`, `product.html`
+  - Preview equivalents: `preview-category.html`, `preview-products.html`, `preview-product.html`
+  - Preview and account checkout routes: `preview-checkout.html`, `checkout-v2.html`
+  - Customer policy pages: `returns-refunds.html`, `terms-and-conditions.html`, `privacy-policy.html`
+  - Audio route `preview-audio.html` already uses the homepage stylesheet/shell treatment from commits `60239cb1e7cff9a06b2998bab145c43c86c25f07` and `23923014660db7e12d5909d6a3a9d6729d596173`.
+- Homepage remains `preview-store.html`. Its existing exact shell is the visual reference. Store entry wrapper `store.html` continues to load `index-new.html`, which now also has the common shell.
+- **Static read-back audit:** all 14 checked customer-facing pages have a branded header, footer, and mobile navigation; all non-homepage pages either load the shared stylesheet or (Audio) contain the same homepage shell styling. Checks were source-level only.
+- **Still required before calling complete:** render and compare all routes at desktop and mobile widths; verify that search/cart/back controls, category/product navigation, checkout form interactions, and legal-page links remain functional; run exact-head browser QA and confirm a fresh preview deployment. No browser/render test has yet been completed for this rollout.
+- **Excluded by design:** admin/owner tools, Android owner app, and `preview-planetworld.html` supplier-only review worksheet are not customer storefront pages.
+- **Protected boundaries:** no merge, production deploy, Axxess/DNS changes, Supabase writes, live catalogue/price/stock imports, or payment/checkout activation authorised by this visual-shell task.
+
+---
+
 ## AUDIO PAGE STOREFRONT DESIGN ALIGNMENT — 2026-11-01 (SAST)
 
 - **Owner defect confirmed:** `preview-audio.html` used a separate minimal light-grey page with its own header and no matching homepage footer/mobile navigation. The prior supplier taxonomy correction did not satisfy the requirement that Audio be visually part of the same store.
