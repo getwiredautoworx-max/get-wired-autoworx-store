@@ -1445,7 +1445,7 @@ document.getElementById('mobileCartLink').onclick=e=>{e.preventDefault();documen
   if(p.sourceType==='VerifiedModel'){
    return '<div class="partSearchResult"><div><b>'+escapeHtml(p.name)+'</b><small>Model / code: '+escapeHtml(p.manufacturerModel)+' · Manufacturer reference page available · Price and availability on request</small><a href="'+escapeHtml(p.manufacturerPage)+'" target="_blank" rel="noopener">VIEW MANUFACTURER PAGE</a></div><button type="button" data-quote-pw="'+escapeHtml(p.id)+'">REQUEST QUOTE</button></div>';
   }
-  if(p.supplier==='Planetworld'){
+  if(p.supplier==='catalogue'){
    const indicative=p.indicativePrice==null?'Price on request':'Indicative '+money(p.indicativePrice);
    const snapshot=p.snapshotHasStock?'25 Oct 2026 snapshot: supplier stock recorded':'25 Oct 2026 snapshot: no supplier stock recorded';
    return '<div class="partSearchResult"><div><b>'+escapeHtml(p.name)+'</b><small>Supplier catalogue · '+escapeHtml(p.brand||'')+' · '+escapeHtml(p.category_name||'')+' · '+escapeHtml(p.description||'')+' · '+escapeHtml(indicative)+' · '+escapeHtml(snapshot)+'; not live — confirm current price and availability</small></div><button type="button" data-quote-pw="'+escapeHtml(p.id)+'">REQUEST QUOTE</button></div>';
