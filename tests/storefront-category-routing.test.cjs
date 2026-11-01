@@ -53,6 +53,8 @@ assert(ascHeadings.length===76,'ASC navigation must include all 75 contents-page
 assert(previewHome.includes("preview-category.html?id="),'preview homepage must route main categories to category landing pages');
 assert(previewHome.includes("c.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'?'preview-audio.html'"),'Audio root must open its dedicated department hierarchy');
 assert(previewHome.includes('function productImageUrl(p)')&&previewHome.includes('p&&p.public_sku')&&previewHome.includes('/functions/v1/product-image?sku=')&&previewHome.includes('PRODUCT_PLACEHOLDER')&&previewHome.includes('onerror='),'homepage cards must use exact-SKU image lookup only, then neutral fallback; unverified image_url values are not trusted');
+const quarantinedOilFillerSkus=['GW-22B30765','GW-21132FDF','GW-0E5E3109','GW-E93CDF1E','GW-AA085120','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4'];
+assert(quarantinedOilFillerSkus.every(sku=>previewHome.includes(sku))&&previewHome.includes('function isPreviewCategoryQuarantined(p)')&&previewHome.includes('&&!isPreviewCategoryQuarantined(p)'), 'nine confirmed oil-filler-cap SKUs must be excluded from category browse lists without changing live data');
 assert(previewHome.includes("assets/product-image-pending.svg"),'ASC preview cards must use neutral placeholders');
 for(const p of ['products.html','preview-products.html','product.html','preview-product.html']){
  const s=read(p);
