@@ -5662,3 +5662,38 @@ Top-level category counts below are direct-root product counts, not descendant t
 - Read permanent handover first; task-start entry was appended to `AI_HANDOVER_PERMANENT.md` in commit `9f3074c70362bb276795bbbf177b44372a96ae14`.
 - Current handover initial blob read: `7ca1ddc17f297befe59c750cae3fe61e3bcd732e`.
 - This run will check the latest Planetworld report filenames on `docs/planetworld-blocker-handover-2026-10-26`, PR #95, relevant workflow/job/artifact states and available safe staging retries; then record outcomes. No protected action is authorised.
+
+
+## 2026-11-01 CONTINUATION RUN — VERIFIED MONITORING AND PLANETWORLD BLOCKERS
+
+### Background workflow monitor — actual result
+- Scheduled Background Task Controller run **41281780859**, commit/head `4cd30bff2a609b0f1172c528bc6c93f8fb4f1cd0`, job **124774994970**: job conclusion **SUCCESS**. Steps: checkout, controller syntax validation and checkpoint construction all SUCCESS; artifact-pruning step ran; checkpoint artifact publication was SKIPPED. No artifact was produced by this run.
+- Controller log's actual report: `overall_status=attention_required`; **9 workflow runs checked**, **3 completed runs non-successful**, **0 currently running**, **0 retry actions requested**, **0 monitoring errors**. No claim of continuous monitoring.
+- The artifact inventory step counted **417 retained artifacts totalling 9,286,653 bytes (8.86 MiB)**. The 25 largest listed artifacts were old `planetworld-workbook-audit` outputs dated 26-Oct. Cleanup totals were all zero (0 checkpoints, 0 APK/build, 0 duplicate packages, 0 stale QA/evidence); no artifact was deleted. The run therefore does not prove Actions storage quota is fixed; it only proves this inventory and cleanup pass completed.
+- Latest PR #140 exact-head checks (head `da463960345fda06c300f969920209c37da2986e`) remain completed: browser QA, catalogue search, Pages package QA, public SKU audit and image audit SUCCESS; smoke workflow wrapper SUCCESS with actual smoke job SKIPPED because storefront mode is buttons-only. No queued/in-progress PR #140 jobs were found. No safe failed job on this exact candidate required a retry in this run. Older PR #139 retries are already concluded and are not duplicated.
+- Live Smoke Test `41203036740`, Live Release Gates `41173188438`, Production QA `41048090314`, and Cloudflare Planetworld audio-preview deployment failures remain protected; none was retried. No production/deployment job or credit-consuming deploy was initiated.
+
+### Planetworld reports and PR #95 — fresh repository read
+- PR #95 is **CLOSED / UNMERGED**, head `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`; GitHub confirms it was superseded by PR #115. No merge or re-open.
+- Read the branch `docs/planetworld-blocker-handover-2026-10-26` source reports:
+  - `catalogue-source/suppliers/planetworld/NONZERO_RRP_CONTINUATION_REVIEW_2026-10-26.md` (blob `8379f2b4b81bc693b69c6509113169c77525eef1`): prior 3,298 non-zero-RRP review scope, 18 rows below estimated VAT-inclusive cost at RRP−1%, 19 at RRP−2% (19 distinct SKUs), 0 duplicate model/SKU flags after excluding the identical JBL duplicate workbook. The extreme cost-floor rows are source-review flags, not approved discounts.
+  - `catalogue-source/suppliers/planetworld/ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md` (blob `3793e56d3526aaeed5c20ce5f761f09f98d3e3f1`): 19 zero-RRP rows remain separately reserved for owner audit; no inference of out-of-stock or special-order status.
+  - `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` (blob `9bf102c116cd0c544c2ef96e08054036a96a8ad8`): selected exact-model matches and unresolved variants/images; no image copying or reuse-rights approval.
+  - Also read `CATEGORY_IMAGE_REVIEW_2026-10-28.md` (blob `f5ea61096309da546359a8ec1bf056db4e638ef1`): 3,298 row segment review remains heuristic; exact variant/image and owner category mapping still required.
+- These are historical triage reports (26–28 Oct), not a refreshed current-source audit. They must not be presented as today's supplier pricing or stock.
+- Current `main` workflow `.github/workflows/planetworld-workbook-audit.yml` and script `scripts/planetworld_workbook_audit.py` were read. The workflow is manual-dispatch capable, scans canonical `suppliers/Planetworld/`, publishes counts in the job summary and intentionally has no artifact upload step. Its old PR #95 branch counterpart scans the retired `catalogue-source/.../incoming-xlsx` path and is not the workflow to use.
+- No fresh Planetworld Workbook Audit run was found in the latest 100 repository workflow runs inspected; no workflow-dispatch action is exposed by the connected GitHub tools. Do not rerun the successful old audit or create dummy commits. Exact owner UI action: GitHub repository → Actions → **Planetworld Workbook Audit (Read Only)** → Run workflow → select `main` → run once. Then inspect the new run's commit, job summary and audit logs. This is a manual trigger blocker, not a supplier-file blocker.
+- No current supplier workbook was modified, no price/stock/publication data was imported, and no 19 zero-RRP items were touched.
+
+### ASC source and pricing blocker
+- Existing ASC authorisation is recognised; ASC remains a separate supplier task. The 38 historical price-scaling rows still cannot be confirmed against current November supplier data because the November Buyer's Guide and stock-arrival PDFs remain email attachments inaccessible through the connected Gmail actions (thread/message metadata exposes attachment names/IDs, but no attachment-download action is available in this session). Do not use September values as current or change any price.
+- Required next input: make the November Buyer's Guide and relevant stock-arrival PDFs available as chat/Library files. Then exact-match the 38 SKUs and record current cost, VAT basis, stock, effective/expiry date and description. No live edits before source verification and owner approval.
+
+### Current protected state and next actions
+1. Owner runs the artifact-free Planetworld audit on `main` once; record the exact run ID/head and its summary. Keep the 19 zero-RRP rows separate.
+2. Make ASC November source PDFs accessible; reconcile all 38 historical scaling flags against current supplier rows.
+3. Continue exact manufacturer/variant and authorized image-source verification; reconcile the 5-versus-11 image-source count on PR #140. Keep uncertain OneNav variants unverified.
+4. Continue evidence review for 198 category rows and the live legacy-root hierarchy; no auto-moves.
+5. Keep PR #140 draft/unmerged pending documentation reconciliation, exact-host Planetworld preview verification and owner real-phone acceptance.
+
+No PR was merged; no supplier XLSX was changed; no live products, prices, stock, active flags or categories were changed; no Axxess, DNS, checkout/payment, Supabase production or production deployment action occurred.
