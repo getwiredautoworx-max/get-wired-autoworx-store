@@ -2,7 +2,7 @@
 
 **Supplier catalogue-use permission:** GRANTED (interim; owner-confirmed 27 October 2026).  
 **Technical integration:** OPEN — ASC IT's longer-term technical solution remains separate from catalogue-use permission.  
-**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; product-level extraction, taxonomy review and the 25-product pilot are in progress.
+**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; page-level OCR is complete and the taxonomy preview is implemented. OCR has produced 63 unverified code candidates; no product has yet passed exact SKU/photo verification, so the 25-product pilot remains an empty review template.
 
 ## What is authorised
 
@@ -20,7 +20,7 @@ Do not restore historical catalogues removed by the 30 October reset as if they 
 
 ## Processing rules
 
-1. Preserve each newly supplied original unchanged. Record filename, edition/date, page count and SHA-256.
+1. Preserve each newly supplied original unchanged. Record filename, edition/date, page count and SHA-256 where the original bytes are available; the current source manifest records Git blob IDs and explicitly does not label them as SHA-256.
 2. Extract products to review-only CSV/XLSX. Do not write directly to `public.products`.
 3. Keep ASC supplier SKU separate from Get Wired AutoWorx internal SKU. Never overwrite another supplier's code.
 4. Preserve source page, ASC category, description, dimensions, electrical specifications and vehicle fitment exactly where printed.
@@ -53,7 +53,7 @@ These replace the earlier “awaiting new source bytes” status. Their family n
 
 ## Extracted catalogue structure — 2026-11-01
 
-All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`.
+All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`. A separate OCR token index contains 63 possible code strings, all marked `UNVERIFIED_OCR_CANDIDATE`; it is a review aid, not a SKU list. The 25-product pilot CSV remains header-only until each record can be checked against the original page image.
 
 The catalogue contents pages identify these section counts:
 
@@ -81,3 +81,8 @@ To avoid duplicate parent tiles, the preview attaches the ASC contents headings 
 - Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
+
+
+## Candidate branch mirror — 2026-11-01
+
+The six original PDFs are now included in the active PR #142 candidate branch by reusing the exact Git blob objects from main. A source manifest records each file size and Git blob SHA. Git blob SHA is not a SHA-256 digest. The candidate branch also mirrors the OCR review files and contains separate pilot, image-match and exception review registers. No ASC product records have been published or imported.
