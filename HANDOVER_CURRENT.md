@@ -1,3 +1,34 @@
+## READ-ONLY SUPABASE SUPPLIER-CATALOG AUDIT + FINAL QA CHECKPOINT — 2026-11-01 (SAST)
+
+### PR #142 — refreshed storefront integration
+- Candidate branch `integration/current-main-refresh-2026-11-01`; latest tested head before this handover checkpoint: `276c2c50215257f8bd6ee2c3b5a5467bd3188659`. PR #142 remains OPEN/DRAFT/UNMERGED and mergeable; it was 1 commit ahead / 0 behind main before this handover-only commit.
+- Exact-head checks: Populated Store Preview Browser QA PASS (41286587680); Free Catalogue Search Tests PASS (41286587698); Cloudflare Pages Public Package QA PASS (41286587715); Public SKU Exposure Audit PASS (41286587672); Catalogue Image Audit PASS (41286587713). Storefront mode wrapper PASS (41286587716), but actual commerce smoke job SKIPPED because `index-new.html` is intentionally buttons-only. Do not count skipped commerce smoke as passed.
+- Browser run confirms 8 preview root labels, 4X4 nested under Camping, 3,385 Part Search rows and Alpine HCE-C2100RD search, Audio hierarchy 9 departments / 10 brands / 12 components, canonical WhatsApp number, Audio HTTP 200/no page or console errors, product modal and quote flow, mobile 390px and desktop 1280/1366px no overflow. Existing hosted preview checks: 4,187 products, 34 ASC-matched rows all zero stock, checkout hidden, 68 Planetworld dated review rows (44 positive / 24 zero), 5 official image sources loaded, dealer cost not exposed.
+- Exact run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41286587680
+- Stable hosted preview URL remains https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html. This is not a new PR #142 exact-head deployment. No new Cloudflare deployment was triggered to avoid unnecessary usage.
+
+### PR #143 — production QA auto-retry safety
+- Candidate branch `safety/current-main-production-retry-guard-2026-11-01`; latest tested head before this handover checkpoint: `77923b30d9ba507809009d48c59893c21d82f123`. PR #143 remains OPEN/DRAFT/UNMERGED and mergeable; it is 1 commit ahead / 0 behind main before this handover-only commit.
+- Three-file change removes `store-production-qa.yml` from the background controller's automatic retry allowlist while retaining it in monitored workflows, adds an AST regression test, and adds a pull-request-only Python test workflow. Exact-head run 41286605357 PASS; log reports `Ran 1 test in 0.003s; OK`.
+- No controller was run after the change; no production/live/deploy workflow was invoked. PR: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/143
+
+### Corrective live supplier-catalog snapshot — read-only, no writes
+A fresh read-only audit of Supabase project `ojytykqpvonxvepprgbh` found that the current database is no longer in the older 0-row supplier-catalog state recorded in historic reports. Current snapshot:
+- `gw_private.supplier_catalog_items`: **770 rows** created together on 2026-10-30 09:14 UTC — Planetworld 702; Audio Connections 68.
+- All 770 have `active=false`, `public_product_id IS NULL`, and `quote_on_request=true`; zero duplicate supplier SKUs within either supplier group. No public product is linked or activated by these rows.
+- Planetworld: 634/702 descriptions blank; 226 source URLs; 0 public image URLs. Audio Connections: 55/68 descriptions blank; 14 source URLs; 0 public image URLs.
+- Supplier connection flags: Planetworld active=true; Audio Connections active=false; ASC active=true but has 0 supplier-catalog rows. These are connection-level flags, not product activation; do not change them without owner approval.
+- `gw_private.product_supplier_codes`: 4,198 rows; all 4,198 still have `supplier_id IS NULL`.
+- This is a read-only observation of existing state, not an import or change made in this continuation. It supersedes historical notes that said `supplier_catalog_items` was empty. Keep all 770 staged items inactive/unlinked and do not infer prices, stock or customer-ready descriptions from these rows.
+
+### Protected release state
+- Main storefront remains buttons-only. Live category hierarchy remains a separate evidence-led task; the 4,187 active product mapping must be reviewed at SKU level before any category writes.
+- ASC authorisation remains granted; November PDF attachment bytes still need to be made available before the 25-product pilot and 38 historical scaling-SKU reconciliation.
+- Planetworld 25-Oct snapshot is not live availability; 19 zero-RRP rows remain separate; exact model/image coverage is incomplete.
+- No live product/category/stock/price/Supabase writes, supplier item activation, Axxess upload, DNS, checkout/payment activation, production deployment, artifact deletion or production workflow retry occurred.
+
+---
+
 ## LATEST CONTINUATION — PR #142 CURRENT-MAIN QA PASS + PR #143 CONTROLLER SAFETY — 2026-11-01 (SAST)
 
 - **PR #142 refreshed integration candidate:** branch `integration/current-main-refresh-2026-11-01`; latest tested head before this handover-only checkpoint: `b0f1fb856a941548a358b5edffded12b49b71bb2`. PR #142 remains open/draft/unmerged. It is 1 commit ahead / 0 behind main at the time of verification and contains 20 reviewed preview/search/audio/test files.
