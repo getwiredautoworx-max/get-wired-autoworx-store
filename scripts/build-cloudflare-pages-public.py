@@ -21,7 +21,7 @@ REQUIRED_ASSET_FILES = [
     "gw-logo.png", "storefront-shell.css", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
 ]
-PREVIEW_ASSET_FILES = ["audio-category-navigation.js", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json", "asc-catalogue-pilot-preview.json"]
+PREVIEW_ASSET_FILES = ["audio-category-navigation.js","planetworld-catalogue-preview.json","planetworld-verified-models-preview.json","audio-connections-catalogue-preview.json","asc-catalogue-pilot-preview.json","asc-catalogue-pilot/asc-01080.jpg","asc-catalogue-pilot/asc-02883.jpg","asc-catalogue-pilot/asc-03822.jpg","asc-catalogue-pilot/asc-09103.jpg","asc-catalogue-pilot/asc-09396.jpg","asc-catalogue-pilot/asc-21849.jpg","asc-catalogue-pilot/asc-9005-cbl-h.jpg","asc-catalogue-pilot/asc-9005-h.jpg","asc-catalogue-pilot/asc-9005-nb.jpg","asc-catalogue-pilot/asc-9005xs.jpg","asc-catalogue-pilot/asc-cs-112048.jpg","asc-catalogue-pilot/asc-csc105.jpg","asc-catalogue-pilot/asc-csc106.jpg","asc-catalogue-pilot/asc-f1-012.jpg","asc-catalogue-pilot/asc-f1-019.jpg","asc-catalogue-pilot/asc-f1-060.jpg","asc-catalogue-pilot/asc-f1-067.jpg","asc-catalogue-pilot/asc-m7-avan01.jpg","asc-catalogue-pilot/asc-m7-con01.jpg","asc-catalogue-pilot/asc-m7-cor01.jpg","asc-catalogue-pilot/asc-m7-cor02.jpg","asc-catalogue-pilot/asc-ma522.jpg","asc-catalogue-pilot/asc-ma553.jpg","asc-catalogue-pilot/asc-ma559r.jpg","asc-catalogue-pilot/asc-ma570.jpg"]
 FORBIDDEN_DIRS = {
     "suppliers", "catalogue-review", "catalogue-source", "catalogue-audits",
     "staging", "supabase", ".github", "android-owner-app", "apk-sales-intelligence",
