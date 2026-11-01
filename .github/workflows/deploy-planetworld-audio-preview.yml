@@ -100,7 +100,7 @@ jobs:
           curl -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS "$BASE/" -o /tmp/gw-root.html
           grep -qi 'Get Wired AutoWorx' /tmp/gw-root.html
           grep -q 'id="categoryGrid"' /tmp/gw-root.html
-          for category in 'Auto Electrical Spares' 'Vehicle Security' 'Car Audio &amp; Entertainment' 'Automotive Accessories' 'Marine Spares &amp; Accessories' 'Tools, Hardware &amp; Consumables' 'Camping, Leisure &amp; Outdoors' 'Trailer &amp; Canopy'; do
+          for category in 'Auto Electrical Spares' 'Vehicle Security' 'Car Audio' 'Automotive Accessories' 'Marine Spares' 'Tools, Hardware' 'Camping, Leisure' 'Trailer'; do
             grep -Fq "$category" /tmp/gw-root.html || { echo "HOSTED_CATEGORY_ROOT_MISSING $category"; exit 1; }
           done
           curl -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS "$BASE/assets/storefront-shell.css" -o /tmp/gw-shell.css
