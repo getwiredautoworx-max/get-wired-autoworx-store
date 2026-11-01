@@ -163,3 +163,8 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - No code merge, deployment, workflow retry, artifact deletion, supplier import, live catalogue/category/price/stock write, Supabase write, checkout/payment activation, Axxess upload or DNS change was performed.
 - Remaining owner-dependent acceptance for the 2-Nov target: real-phone/desktop visual acceptance of the preview and provision of the November ASC PDF attachment bytes. ASC authorisation is already granted; do not ask again. Payment readiness remains deferred and production remains HOLD.
 - Next safe execution: continue source-level exact-model/image reconciliation and SKU-level category evidence review; keep Planetworld 19 zero-RRP rows quarantined; preserve staged supplier rows inactive/unlinked. Re-check current branch heads and exact-head runs before any later integration action.
+
+
+### PR branch ancestry recheck after this handover update
+- Rechecked both integration branches after the handover commits. Main advanced with documentation-only handover updates; PR #142 and PR #143 now show main-only commits behind their branch heads. Their PR change sets remain limited to the 20 preview/search/audio files (#142) and the 3 controller-policy files (#143); neither PR changes the handover files.
+- Do not merge either PR solely on the earlier ancestry result. Before any merge, refresh/update the branch against latest main and rerun exact-head checks; preserve the current handover and supplier/category audit files. Both remain draft/unmerged.
