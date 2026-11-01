@@ -17,8 +17,8 @@
       "source_file": "ASC- Aerials (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-ma522.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -26,7 +26,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-ma553",
@@ -41,8 +43,8 @@
       "source_file": "ASC- Aerials (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-ma553.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -50,7 +52,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-ma559r",
@@ -65,8 +69,8 @@
       "source_file": "ASC- Aerials (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-ma559r.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -74,7 +78,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-ma570",
@@ -89,8 +95,8 @@
       "source_file": "ASC- Aerials (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-ma570.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -98,7 +104,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-01080",
@@ -113,8 +121,8 @@
       "source_file": "ASC- Automotive Sensors (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-01080.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -122,7 +130,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-02883",
@@ -137,8 +147,8 @@
       "source_file": "ASC- Automotive Sensors (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-02883.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -146,7 +156,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-03822",
@@ -161,8 +173,8 @@
       "source_file": "ASC- Automotive Sensors (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-03822.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -170,7 +182,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-09103",
@@ -185,8 +199,8 @@
       "source_file": "ASC- Automotive Sensors (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-09103.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -194,7 +208,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-09396",
@@ -209,8 +225,8 @@
       "source_file": "ASC- Automotive Sensors (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-09396.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -218,7 +234,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-21849",
@@ -233,8 +251,8 @@
       "source_file": "ASC- Automotive Switches (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-21849.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -242,7 +260,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-cs-112048",
@@ -257,8 +277,8 @@
       "source_file": "ASC- Automotive Switches (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-cs-112048.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -266,7 +286,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-csc105",
@@ -281,8 +303,8 @@
       "source_file": "ASC- Automotive Switches (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-csc105.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -290,7 +312,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-csc106",
@@ -305,8 +329,8 @@
       "source_file": "ASC- Automotive Switches (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-csc106.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -314,7 +338,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-9005-cbl-h",
@@ -329,8 +355,8 @@
       "source_file": "ASC- Automotive globes (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005-cbl-h.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -338,7 +364,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-9005-h",
@@ -353,8 +381,8 @@
       "source_file": "ASC- Automotive globes (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005-h.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -362,7 +390,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-9005-nb",
@@ -377,8 +407,8 @@
       "source_file": "ASC- Automotive globes (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005-nb.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -386,7 +416,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-9005xs",
@@ -401,8 +433,8 @@
       "source_file": "ASC- Automotive globes (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-9005xs.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -410,7 +442,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-m7-avan01",
@@ -425,8 +459,8 @@
       "source_file": "ASC- Car Mats (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-m7-avan01.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -434,7 +468,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-m7-con01",
@@ -449,8 +485,8 @@
       "source_file": "ASC- Car Mats (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-m7-con01.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -458,7 +494,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-m7-cor01",
@@ -473,8 +511,8 @@
       "source_file": "ASC- Car Mats (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-m7-cor01.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -482,7 +520,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-m7-cor02",
@@ -497,8 +537,8 @@
       "source_file": "ASC- Car Mats (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-m7-cor02.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -506,7 +546,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-f1-012",
@@ -521,8 +563,8 @@
       "source_file": "ASC- Fuel Pumps (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-012.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -530,7 +572,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-f1-019",
@@ -545,8 +589,8 @@
       "source_file": "ASC- Fuel Pumps (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-019.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -554,7 +598,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-f1-060",
@@ -569,8 +615,8 @@
       "source_file": "ASC- Fuel Pumps (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-060.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -578,7 +624,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     },
     {
       "id": "asc-preview-f1-067",
@@ -593,8 +641,8 @@
       "source_file": "ASC- Fuel Pumps (1).pdf",
       "source_page": 3,
       "source_image_pairing": "VISUALLY_CONFIRMED_IN_SOURCE_CATALOGUE_CARD",
-      "image_url": null,
-      "image_crop_status": "PENDING",
+      "image_url": "assets/asc-catalogue-pilot/asc-f1-067.jpg",
+      "image_crop_status": "SOURCE_CARD_CROP_REVIEWED",
       "price": null,
       "price_display": "Price on request — no price is printed in this catalogue",
       "stock_quantity": null,
@@ -602,7 +650,9 @@
       "internal_sku": null,
       "public_sku": null,
       "preview_only": true,
-      "release_status": "REVIEW_ONLY_NOT_LIVE"
+      "release_status": "REVIEW_ONLY_NOT_LIVE",
+      "image_crop_type": "full_source_card_review_crop",
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
     }
   ]
 }
