@@ -10,7 +10,13 @@ on:
       - 'wrangler.toml'
       - 'functions/**'
       - 'scripts/build-cloudflare-pages-public.py'
-      - '.github/workflows/public-preview-data-exposure-guard.yml'
+  workflow_run:
+    workflows:
+      - Deploy Planetworld Audio Preview
+    types:
+      - completed
+    branches:
+      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
   pull_request:
     branches:
       - main
@@ -26,6 +32,7 @@ permissions:
 
 jobs:
   deployed-preview-privacy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
