@@ -1,8 +1,14 @@
 const fs=require('node:fs');
 const assert=require('node:assert/strict');
+const vm=require('node:vm');
 const html=fs.readFileSync('preview-store.html','utf8');
 const audio=fs.readFileSync('preview-audio.html','utf8');
 const nav=fs.readFileSync('assets/audio-category-navigation.js','utf8');
+for(const [index,match] of [...audio.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)].entries()){
+  if(match[1].trim()) new vm.Script(match[1],{filename:'preview-audio.inline-script-'+index+'.js'});
+}
+assert.match(audio,/d\\.className="audioTile"/,'Audio departments must render tile cards');
+assert.match(audio,/card\\.className="audioProduct"/,'Audio product cards must use the tested audioProduct class');
 const build=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
 const packageQa=fs.readFileSync('.github/workflows/cloudflare-public-pages-build-qa.yml','utf8');
 assert.match(audio,/planetworld-verified-models-preview\.json/,'Audio browser must load curated exact-model references');
