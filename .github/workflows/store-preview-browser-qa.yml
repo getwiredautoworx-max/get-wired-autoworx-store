@@ -1,10 +1,30 @@
 name: Populated Store Preview Browser QA
 
 on:
+  push:
+    branches:
+      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
+    paths:
+      - 'preview-store.html'
+      - 'preview-category.html'
+      - 'preview-products.html'
+      - 'preview-product.html'
+      - 'preview-audio.html'
+      - 'preview-checkout.html'
+      - 'category.html'
+      - 'products.html'
+      - 'product.html'
+      - 'assets/**'
+      - 'scripts/build-cloudflare-pages-public.py'
+      - 'scripts/electrocity_catalogue_extract.py'
+      - 'tests/**'
+      - '.github/workflows/store-preview-browser-qa.yml'
+      - '.github/workflows/deploy-planetworld-audio-preview.yml'
+      - '.github/workflows/electrocity-catalogue-extract.yml'
   workflow_dispatch:
 
 concurrency:
-  group: store-preview-browser-qa-${{ github.workflow }}
+  group: store-preview-browser-qa-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
