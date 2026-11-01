@@ -461,3 +461,23 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Hosted populated-preview browser QA run 41328853827 FAILED after the deployment. Before the failure, local browser checks passed: 4,187 products, eight approved roots, 34 ASC-matched records with stock removed/zeroed for preview, checkout hidden, 390px/360px mobile widths without horizontal overflow, five product WebP assets loaded, twelve ASC catalogue groupings rendered with 51 matched pilot records in total, 68 Planetworld review rows and nine official manufacturer images loaded, and local Audio hierarchy showed 9 departments / 15 brands / 12 component groupings.
 - Failure occurred at a Playwright `page.waitForURL` navigation timeout (20 seconds) during the later hosted QA journey. This means the hosted navigation path has not passed end-to-end acceptance. Inspect the precise navigation click/route assertion, correct the storefront behavior or stale selector as evidence dictates, then rerun the exact-head deployment + hosted QA. Do not mark ready until it passes and owner checks phone rendering.
 - The deployed preview is publicly reachable and useful for owner review, but it is **not accepted/test-ready yet**. Production remains HOLD.
+
+
+## PR #149 EXACT-HEAD VERIFICATION — 2026-11-01 19:xx SAST
+
+- Inspected PR #149 directly. Current head: `0ecf3ff8c30d48da40fec95ac7803ca1419f14d9`; base: `main` at `1ffe9a91b84eca755162e009d233b8d57ada28fe`. PR is open, draft, unmerged; GitHub reports mergeable=true.
+- Exact-head Actions runs returned for this SHA:
+  - Populated Store Preview Browser QA `41329191133`: SUCCESS, but **hosted deployment wait was SKIPPED**. Local Audio hierarchy source/package checks, ASC catalogue navigation checks and read-only populated-preview browser checks passed. This is not hosted-preview acceptance.
+  - Cloudflare Pages Public Package QA `41329191082`: SUCCESS. Standard customer package and isolated preview package checks passed; preview package includes seven approved preview routes.
+  - Catalogue & Supplier Routing Review `41329191098`: SUCCESS.
+  - Button-Only Storefront Smoke Test `41329191093`: SUCCESS.
+  - Catalogue Image Audit `41329191087`: SUCCESS.
+  - Public SKU Exposure Audit `41329191110`: SUCCESS.
+  - Storefront Smoke Test `41329191045`: SUCCESS.
+  - Customer Authentication Security Tests `41329191080`: SUCCESS.
+  - Free Catalogue Search Tests `41329191096`: SUCCESS.
+  - Delivery Quote Security Tests `41329191134`: SUCCESS.
+  - Prepare Axxess upload package `41329191065`: SUCCESS; package assembled and artifact uploaded. This is a build artifact only, **not an Axxess upload**.
+- Important limitation: the current PR #149 browser workflow did not wait for or verify a deployed preview because its deployment-wait step was skipped. Do not claim current-head hosted browser acceptance, customer test readiness or launch readiness from these green source/package checks.
+- Next concrete action: trigger/deploy this exact PR #149 head to an isolated Cloudflare Pages preview using the existing non-production deploy workflow, then run hosted browser QA against the exact deployment SHA. Verify category → subcategory → products → product detail, image loading, contrast and 360/390px mobile. Correct failures and rerun. Keep PR draft/unmerged and production HOLD until hosted checks and owner phone acceptance pass.
+- No production/Axxess upload, DNS, payment, Supabase write, live catalogue/category/price/stock change or supplier activation was performed.
