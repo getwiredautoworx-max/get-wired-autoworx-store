@@ -61,7 +61,8 @@ assert(previewCheckout.includes('Instant EFT — manual transfer'),'preview chec
 assert(previewCheckout.includes('PayFast — setup pending')&&previewCheckout.includes('PayJustNow — setup pending'),'other payment gateways must remain visibly deferred');
 assert(previewCheckout.includes('no order or payment will be submitted')&&previewCheckout.includes('No bank details are displayed'),'preview EFT option must remain non-transactional and disclose no bank details');
 assert(audioPreview.includes('class="brightTheme"')&&audioPreview.includes('assets/storefront-shell.css'),'Audio page must use the brighter shared storefront shell');
-assert(!audioPreview.includes('safe(p.imageUrl)'),'Audio product preview must not render supplier image URLs as product photos');
+assert(audioPreview.includes('Boolean(p.verifiedModel)')&&audioPreview.includes('approvedImagePrefixes.some(prefix=>candidateImage.startsWith(prefix))'),'Audio cards may render only exact verified manufacturer image URLs from the allowlist');
+assert(audioPreview.includes('assets/product-image-pending.svg')&&audioPreview.includes('this.src=\\'assets/product-image-pending.svg\\''),'Audio cards must fall back to the neutral placeholder when a verified image fails');
 assert(planetworld.includes('assets/product-image-pending.svg'),'Planetworld product cards must use neutral placeholders');
 assert(!planetworld.includes('esc(p.imageUrl)'),'Planetworld must not render supplier image URLs as product photos');
 assert(css.includes('color-scheme:light'),'shared shell must use light colour scheme');
