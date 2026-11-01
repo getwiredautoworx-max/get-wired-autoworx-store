@@ -30,7 +30,6 @@ WORKFLOWS = [
 AUTO_RETRY_ALLOWLIST = {
     "catalogue-image-audit.yml",
     "public-sku-exposure-audit.yml",
-    "store-production-qa.yml",
     "storefront-smoke.yml",
     "prepare-axxess-package.yml",
 }
