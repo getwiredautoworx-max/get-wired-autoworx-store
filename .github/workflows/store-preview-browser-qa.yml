@@ -67,7 +67,7 @@ jobs:
           git fetch --no-tags --depth=2 origin "$GITHUB_SHA"
           changed="$(git diff --name-only "$GITHUB_SHA^" "$GITHUB_SHA")"
           if ! grep -Eq '^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)' <<< "$changed"; then
-            echo "No deployable storefront/package source changed; using the latest verified hosted artifact."
+            echo "No storefront package source changed; reusing the latest deployed candidate artifact."
             exit 0
           fi
           BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
