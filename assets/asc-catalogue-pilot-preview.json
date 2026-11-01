@@ -6,7 +6,6 @@
   "records": [
     {
       "id": "asc-preview-ma522",
-      "supplier_sku": "MA522",
       "title": "Aerial – Opel / Mercedes W124 / Honda Ballade",
       "source_description": "AERIAL OPEL/MERC.W124/HONDA BALLADE",
       "fitment_as_printed": "Opel / Mercedes W124 / Honda Ballade",
@@ -28,11 +27,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "MA522"
     },
     {
       "id": "asc-preview-ma553",
-      "supplier_sku": "MA553",
       "title": "Aerial – Nissan Early 1 Tonner",
       "source_description": "AERIAL NISSAN EARLY 1 TONNER",
       "fitment_as_printed": "Nissan Early 1 Tonner",
@@ -54,11 +53,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "MA553"
     },
     {
       "id": "asc-preview-ma559r",
-      "supplier_sku": "MA559R",
       "title": "Aerial – Mazda 323 / Bantam / Rustler",
       "source_description": "AERIAL MAZDA 323/BANTAM/RUSTLER",
       "fitment_as_printed": "Mazda 323 / Bantam / Rustler",
@@ -80,11 +79,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "MA559R"
     },
     {
       "id": "asc-preview-ma570",
-      "supplier_sku": "MA570",
       "title": "Aerial Roof Mount – Nissan Sentra",
       "source_description": "AERIAL ROOF MOUNT NISSAN SENTRA",
       "fitment_as_printed": "Nissan Sentra",
@@ -106,11 +105,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "MA570"
     },
     {
       "id": "asc-preview-01080",
-      "supplier_sku": "01080",
       "title": "Camshaft Position Sensor – Golf / Jetta IV / Beetle 2",
       "source_description": "CAMSHAFT POSITION SENSOR GOLF-JETTA IV-BEETLE 2",
       "fitment_as_printed": "Golf / Jetta IV / Beetle 2",
@@ -132,11 +131,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "01080"
     },
     {
       "id": "asc-preview-02883",
-      "supplier_sku": "02883",
       "title": "Crankshaft Position Sensor – Golf / Jetta IV",
       "source_description": "CRANKSHAFT POSITION SENSOR GOLF-JETTA IV",
       "fitment_as_printed": "Golf / Jetta IV",
@@ -158,11 +157,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "02883"
     },
     {
       "id": "asc-preview-03822",
-      "supplier_sku": "03822",
       "title": "Crankshaft Position Sensor – Opel Corsa (B-C) / Astra (F)",
       "source_description": "CRANKSHAFT POSITION SENSOR OPEL CORSA (B-C) ASTRA (F)",
       "fitment_as_printed": "Opel Corsa (B-C) / Astra (F)",
@@ -184,11 +183,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "03822"
     },
     {
       "id": "asc-preview-09103",
-      "supplier_sku": "09103",
       "title": "Crankshaft Position Sensor – Golf / Jetta 4 1.6 / 1.8 / 2.0",
       "source_description": "CRANKSHAFT POSITION SENSOR GOLF JETTA 4 1.6 1.8 2.0",
       "fitment_as_printed": "Golf / Jetta 4 1.6 / 1.8 / 2.0",
@@ -210,11 +209,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "09103"
     },
     {
       "id": "asc-preview-09396",
-      "supplier_sku": "09396",
       "title": "Camshaft Position Sensor – Golf / Jetta / Tiguan / Touareg / Touran",
       "source_description": "CAMSHAFT POSITION SENSOR GOLF-JETTA-TIGUAN-TOUAREG-TOURAN",
       "fitment_as_printed": "Golf / Jetta / Tiguan / Touareg / Touran",
@@ -236,11 +235,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "09396"
     },
     {
       "id": "asc-preview-21849",
-      "supplier_sku": "21849",
       "title": "Ignition Switch – E90/92 86–96",
       "source_description": "IGNITION SWITCH E90/92 86-96",
       "fitment_as_printed": "E90/92 86–96",
@@ -262,11 +261,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "21849"
     },
     {
       "id": "asc-preview-cs-112048",
-      "supplier_sku": "CS-112048",
       "title": "Ignition Loom Switch – Toyota Corolla RWD / Vent / S",
       "source_description": "IGNITION LOOM SWITCH TOYOTA COR.RWD/VENT/S",
       "fitment_as_printed": "Toyota Cor. RWD / Vent / S",
@@ -288,11 +287,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "CS-112048"
     },
     {
       "id": "asc-preview-csc105",
-      "supplier_sku": "CSC105",
       "title": "Ignition Switch – Mazda B1600",
       "source_description": "IGNITION SWITCH MAZDA B1600",
       "fitment_as_printed": "Mazda B1600",
@@ -314,11 +313,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "CSC105"
     },
     {
       "id": "asc-preview-csc106",
-      "supplier_sku": "CSC106",
       "title": "Ignition Switch – Isuzu KB20",
       "source_description": "IGNITION SWITCH ISUZU KB20",
       "fitment_as_printed": "Isuzu KB20",
@@ -340,11 +339,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "CSC106"
     },
     {
       "id": "asc-preview-9005-cbl-h",
-      "supplier_sku": "9005-CBL-H",
       "title": "Halogen Bulb 60W 12V Cool Blue",
       "source_description": "HALOGEN BULB 60W 12V COOL BLUE",
       "fitment_as_printed": "",
@@ -366,11 +365,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "9005-CBL-H"
     },
     {
       "id": "asc-preview-9005-h",
-      "supplier_sku": "9005-H",
       "title": "Globe 60W 12V HB3",
       "source_description": "GLOBE 60W 12V HB3",
       "fitment_as_printed": "",
@@ -392,11 +391,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "9005-H"
     },
     {
       "id": "asc-preview-9005-nb",
-      "supplier_sku": "9005-NB",
       "title": "12V 60W Quartz Globe 30% Brighter",
       "source_description": "12V 60W QUARTZ GLOBE 30% BRIGHTER",
       "fitment_as_printed": "",
@@ -418,11 +417,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "9005-NB"
     },
     {
       "id": "asc-preview-9005xs",
-      "supplier_sku": "9005XS",
       "title": "Globe Halogen 65W 12V E1",
       "source_description": "GLOBE HALOGEN 65W 12V E1",
       "fitment_as_printed": "",
@@ -444,11 +443,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "9005XS"
     },
     {
       "id": "asc-preview-m7-avan01",
-      "supplier_sku": "M7-AVAN01",
       "title": "Carpet Set – Avanza Black 4pcs",
       "source_description": "CARPET SET AVANZA BLACK 4PCS",
       "fitment_as_printed": "Toyota Avanza",
@@ -470,11 +469,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "M7-AVAN01"
     },
     {
       "id": "asc-preview-m7-con01",
-      "supplier_sku": "M7-CON01",
       "title": "Carpet Set – Tazz Black 4pcs All Models",
       "source_description": "CARPET SET TAZZ BLACK 4PCS ALL MODELS",
       "fitment_as_printed": "Toyota Tazz — all models",
@@ -496,11 +495,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "M7-CON01"
     },
     {
       "id": "asc-preview-m7-cor01",
-      "supplier_sku": "M7-COR01",
       "title": "Carpet Set – Corolla Black 4pcs Quest / Professional 2012 onward",
       "source_description": "CARPET SET COROLLA BLACK 4PCS QUEST/PROFESSIONAL 2012 ON",
       "fitment_as_printed": "Toyota Corolla Quest / Professional 2012 onward",
@@ -522,11 +521,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "M7-COR01"
     },
     {
       "id": "asc-preview-m7-cor02",
-      "supplier_sku": "M7-COR02",
       "title": "Carpet Set – Corolla Black 4pcs 2022 onward",
       "source_description": "CARPET SET COROLLA BLACK 4PCS 2022-",
       "fitment_as_printed": "Toyota Corolla 2022 onward",
@@ -548,11 +547,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "M7-COR02"
     },
     {
       "id": "asc-preview-f1-012",
-      "supplier_sku": "F1-012",
       "title": "Electric Fuel Pump – BMW",
       "source_description": "FUEL PUMP ELECTRIC BMW",
       "fitment_as_printed": "BMW",
@@ -574,11 +573,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "F1-012"
     },
     {
       "id": "asc-preview-f1-019",
-      "supplier_sku": "F1-019",
       "title": "Electric Fuel Pump – BMW / Peugeot / VW",
       "source_description": "FUEL PUMP ELECTRIC BMW.PEUGEOT.VW",
       "fitment_as_printed": "BMW / Peugeot / VW",
@@ -600,11 +599,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "F1-019"
     },
     {
       "id": "asc-preview-f1-060",
-      "supplier_sku": "F1-060",
       "title": "Electric Fuel Pump – BMW / VW",
       "source_description": "FUEL PUMP ELECTRIC BMW.VW",
       "fitment_as_printed": "BMW / VW",
@@ -626,11 +625,11 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "F1-060"
     },
     {
       "id": "asc-preview-f1-067",
-      "supplier_sku": "F1-067",
       "title": "Electric Fuel Pump – BMW",
       "source_description": "FUEL PUMP ELECTRIC BMW",
       "fitment_as_printed": "BMW",
@@ -652,7 +651,8 @@
       "preview_only": true,
       "release_status": "REVIEW_ONLY_NOT_LIVE",
       "image_crop_type": "full_source_card_review_crop",
-      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED"
+      "image_use_status": "PREVIEW_ONLY_WATERMARK_RETAINED_LIVE_RIGHTS_REVIEW_REQUIRED",
+      "catalogue_reference": "F1-067"
     }
   ]
 }
