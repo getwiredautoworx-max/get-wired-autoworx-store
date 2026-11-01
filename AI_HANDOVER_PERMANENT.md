@@ -4385,3 +4385,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Artifact cleanup/retention changes are now present in PR #139: old artifact deletion requires explicit yes; default is safe mode; candidate age choices are 1/3/7/14 days; future browser-smoke, task-monitor and image-audit artifact retention is 1 day. No artifacts have yet been deleted.
 - External Cloudflare Workers Builds check `92351b05-d2a5-4764-a7d4-2a72b030e9a6` was still IN PROGRESS at last poll. Do not treat it as a pass or successful production Worker deploy.
 - GitHub Actions runner allocation remains unresolved; previous latest-head jobs had runner_id=0 and zero steps. No hosted browser/unit test has run. Keep PR #139 draft/unmerged until the runner issue is cleared and exact-head browser QA passes.
+
+
+## AUTOMATION TASK START — 2026-11-01 08:33 SAST
+
+- Resumed from the latest `AI_HANDOVER_PERMANENT.md` on `main` (blob SHA `817534dcfe5ec11c139f010080fbf82e8ad1b6cb`).
+- Scope: read the current main handover, `HANDOVER_CURRENT.md`, and the Planetworld branch handover plus its three named audit reports; inspect all current background workflows, PR #95, and the latest Planetworld audit run/job/artifact.
+- Safety: no PR merges, supplier XLSX edits, supplier imports/publication, live product/price/stock/active-flag changes, deployment, Axxess/DNS/payment changes, or release-credit use. Retry only failed/cancelled safe staging tasks when a supported rerun action exists; never duplicate queued/in-progress work.
+- This task-start checkpoint was appended before further inspection. Results and any retry verification will be recorded as they occur.
