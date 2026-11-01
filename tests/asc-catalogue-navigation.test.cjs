@@ -20,7 +20,7 @@ const required = [
   ["ASC catalogue sections • source-led navigation", "source-led category labels without fuzzy product counts"],
   ["No unrelated store products are substituted", "safe empty state for unverified catalogue sections"],
   ["wrap.classList.toggle('open')", "expandable root-category navigation"],
-  ["No verified pilot records for this subcategory yet", "honest empty-state messaging"]
+  ["No visually verified pilot products are assigned to this subcategory yet", "honest empty-state messaging"]
 ];
 for (const [needle,label] of required) {
   if (!html.includes(needle)) throw new Error("Missing " + label + " (" + needle + ")");
