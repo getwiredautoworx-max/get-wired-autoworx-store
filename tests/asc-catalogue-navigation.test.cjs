@@ -102,6 +102,8 @@ if(!productsPage.includes("heldCategoryItems=products.filter")||!productsPage.in
 
 const detailPage=fs.readFileSync("preview-product.html","utf8");
 if(!productsPage.includes("function productImageData(p)")||!productsPage.includes("data-fallback")||!productsPage.includes("functions/v1/product-image?sku=")) throw new Error("Category product cards must use the verified image fallback chain");
+if(!productsPage.includes("assets/product-placeholder.svg")||productsPage.includes("assets/product-image-pending.svg")) throw new Error("Category product cards must use a placeholder asset included in the public preview package");
 if(!detailPage.includes("const unusableImage=")||!detailPage.includes("functions/v1/product-image?sku=")) throw new Error("Product detail must bypass generic placeholder URLs");
+if(!detailPage.includes("assets/product-placeholder.svg")||detailPage.includes("assets/product-image-pending.svg")) throw new Error("Product detail must use the packaged final image fallback");
 
 console.log("ASC_CATALOGUE_NAVIGATION_PASS: six source families, 72 OCR pages and review-only staging verified; no unverified product rows promoted.");
