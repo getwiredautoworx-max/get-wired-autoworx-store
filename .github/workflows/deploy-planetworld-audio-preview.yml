@@ -1,4 +1,4 @@
-name: Deploy Planetworld Audio Preview
+name: Deploy Approved Bright Store Preview
 on:
   push:
     branches:
@@ -60,13 +60,13 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=planetworld-audio-preview
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=fix-approved-bright-shell-ca-yf6k
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify exact deployed SHA and customer-only package privacy
         shell: bash
         run: |
           set -euo pipefail
-          DEPLOY_BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
+          DEPLOY_BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
           BRANCH_BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
           expected="$GITHUB_SHA"
           ready=0
