@@ -14,6 +14,9 @@ const packageQa=fs.readFileSync('.github/workflows/cloudflare-public-pages-build
 assert.match(audio,/planetworld-verified-models-preview\.json/,'Audio browser must load curated exact-model references');
 assert.match(audio,/manufacturerPage/,'verified model cards must link to manufacturer details');
 assert.match(audio,/modelNumber/,'verified model cards must display manufacturer model numbers');
+assert.match(audio,/Boolean\(p\.verifiedModel\)/,'official product photos are allowed only for exact verified model references');
+assert.match(audio,/approvedImagePrefixes\.some\(prefix=>candidateImage\.startsWith\(prefix\)\)/,'official product photos must pass the manufacturer-host allowlist');
+assert.match(audio,/assets\/product-image-pending\.svg/,'unverified or unavailable product images must use the neutral placeholder');
 assert.match(build,/planetworld-verified-models-preview\.json/,'isolated preview package must include curated model references');
 const departments=['Car Audio & Video','Home Entertainment','Band & Live Sound','DJ Equipment','Studio Equipment','Marine Audio','Installed AV','Musical Instruments','Harnesses & Trims'];
 assert.match(html,/<script src="assets\/audio-category-navigation\.js" defer><\/script>/,'main preview must load Audio navigation adapter');
@@ -30,8 +33,8 @@ assert.match(audio,/wa\.me\/27744884234/,'product enquiry must use the existing 
 assert.match(audio,/25-Oct-2026/,'product enquiry must identify the dated supplier snapshot');
 assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
 assert.ok(build.includes('"asc-catalogue-pilot-preview.json"')&&build.includes('"product-image-pending.svg"')&&!build.includes('"asc-catalogue-pilot/asc-ma522.jpg"'),'preview-only bundle must include ASC pilot metadata and neutral placeholders, not supplier source-card images');
-assert.ok(packageQa.includes('preview-checkout.html; do'),'preview package QA must assert checkout route inclusion');
-assert.ok(packageQa.includes('Verify preview package includes all seven approved preview routes'),'preview package QA must cover all seven routes');
+assert.ok(packageQa.includes('preview-audio.html preview-checkout.html; do'),'preview package QA must assert six customer preview routes and exclude the internal Planetworld review page');
+assert.ok(packageQa.includes('Verify preview package includes all six approved preview routes'),'preview package QA must cover six customer routes and omit the supplier review route');
 const previewCheckout=fs.readFileSync('preview-checkout.html','utf8');
 assert.match(html,/href="preview-checkout\.html">PROCEED TO CHECKOUT/);
 assert.ok(previewCheckout.includes('Preview mode — no order or payment will be submitted.'));
