@@ -60,6 +60,7 @@ jobs:
       - name: Build isolated customer-only preview package
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
+          GW_INCLUDE_PRODUCT_IMAGES: "1"
         run: python3 scripts/build-cloudflare-pages-public.py
       - name: Wait for hosted preview to match exact source SHA when storefront code changed
         shell: bash
@@ -146,6 +147,19 @@ jobs:
             const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
             if(await camping.locator('.children .catWrap').filter({hasText:/4X4 Outdoor/i}).count()!==1)throw new Error('4X4 Outdoor must be nested under Camping, Leisure & Outdoors');
             if(audit.products<1)throw new Error('No live product records loaded into preview');
+            const imageAudit=await page.evaluate(async()=>{
+              const samples=['GW-EBA53965','GW-F323915E','GW-DCDD840E','GW-B4F502E6','GW-5107B32F'];
+              const results=[];
+              for(const sku of samples){
+                const img=new Image();
+                img.src='assets/products_webp/'+encodeURIComponent(sku)+'.webp';
+                try{await img.decode();results.push({sku,width:img.naturalWidth,height:img.naturalHeight});}
+                catch{results.push({sku,width:0,height:0});}
+              }
+              return results;
+            });
+            if(imageAudit.some(x=>x.width<1||x.height<1))throw new Error('Local product WebP images failed to load: '+JSON.stringify(imageAudit));
+            console.log('PRODUCT_WEBP_IMAGE_LOAD_PASS '+JSON.stringify(imageAudit));
             if(audit.ascMatched!==34||audit.ascPositiveStock!==0||audit.ascZeroStock!==34)throw new Error('ASC stock exclusion mismatch (34 active products must be zero; 2 inactive ASC products are correctly absent): '+JSON.stringify(audit));
             if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');

@@ -25,6 +25,7 @@ const planetworld=read('preview-planetworld.html');
 const audioPreview=read('preview-audio.html');
 const previewCheckout=read('preview-checkout.html');
 const pagesBuilder=read('scripts/build-cloudflare-pages-public.py');
+const srcProductDetails=read('product-details.js');
 const css=read('assets/storefront-shell.css');
 const redirects=read('_redirects');
 for(const p of ['index-new.html','category.html','products.html','product.html','preview-store.html','preview-audio.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']){
@@ -34,7 +35,7 @@ for(const p of ['index-new.html','category.html','products.html','product.html',
 }
 
 assert(fs.existsSync('assets/product-image-pending.svg'),'placeholder asset missing');
-assert(pagesBuilder.includes('"product-image-pending.svg"')&&pagesBuilder.includes('SKU WebP images must not be included'),'preview Pages package must ship placeholders without SKU photos');
+assert(pagesBuilder.includes('GW_INCLUDE_PRODUCT_IMAGES')&&pagesBuilder.includes('PAGES_PREVIEW_PRODUCT_IMAGES_INCLUDED')&&pagesBuilder.includes('image_count < 4000'),'preview Pages package must include the complete exact-SKU WebP set when explicitly enabled');
 assert(pagesBuilder.includes('"catalogue-search.js"')&&pagesBuilder.includes('"product-details.js"'),'preview Pages package must include the Part Search and product detail dependencies');
 assert(pagesBuilder.includes('"checkout.html", "checkout-v2.html", "category.html", "products.html", "product.html"'),'preview Pages package must omit production checkout and product routes');
 assert(!pagesBuilder.includes('asc-catalogue-pilot/asc-ma522.jpg'),'preview Pages package must not ship supplier source-card crops');
@@ -55,7 +56,7 @@ const ascHeadings=(previewHome.slice(ascStart,ascEnd).match(/name:'[^']+'/g)||[]
 assert(ascHeadings.length===76,'ASC navigation must include all 75 contents-page sections plus the Fuel Pumps parent tile');
 assert(previewHome.includes("preview-category.html?id="),'preview homepage must route main categories to category landing pages');
 assert(previewHome.includes("c.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'?'preview-audio.html'"),'Audio root must open its dedicated department hierarchy');
-assert(previewHome.includes('function productImageUrl(p)')&&previewHome.includes('p&&p.public_sku')&&previewHome.includes('/functions/v1/product-image?sku=')&&previewHome.includes('PRODUCT_PLACEHOLDER')&&previewHome.includes('onerror='),'homepage cards must use exact-SKU image lookup only, then neutral fallback; unverified image_url values are not trusted');
+assert(previewHome.includes('function productImageUrl(p)')&&previewHome.includes('assets/products_webp/')&&previewHome.includes('p&&p.public_sku')&&!previewHome.includes('/functions/v1/product-image?sku=')&&previewHome.includes('PRODUCT_PLACEHOLDER')&&previewHome.includes('onerror='),'homepage cards must use local exact-SKU WebP assets, then neutral fallback; no unauthenticated GitHub/Supabase image proxy');
 const quarantinedOilFillerSkus=['GW-22B30765','GW-21132FDF','GW-0E5E3109','GW-E93CDF1E','GW-AA085120','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4'];
 assert(quarantinedOilFillerSkus.every(sku=>previewHome.includes(sku))&&previewHome.includes('function isPreviewCategoryQuarantined(p)')&&previewHome.includes('&&!isPreviewCategoryQuarantined(p)'), 'nine confirmed oil-filler-cap SKUs must be excluded from category browse lists without changing live data');
 assert(previewProducts.includes('PREVIEW_CATEGORY_QUARANTINE_SKUS')&&previewProducts.includes('terms.length?terms.every(term=>hay.includes(term)):!PREVIEW_CATEGORY_QUARANTINE_SKUS.has(String(p.public_sku||\'\'))'),'category product lists must hide the nine miscategorized oil-filler SKUs by default while preserving explicit search');
@@ -64,10 +65,11 @@ assert(electrocityData.records.length===33&&['Ignition Modules','Ignition Coils'
 assert(previewCategory.includes("electrocityCategory:'Ignition Modules'")&&previewCategory.includes("electrocityCategory:'Ignition Coils'")&&previewCategory.includes("electrocityCategory:'Ignition Looms'")&&previewCategory.includes("electrocityCategory:'Converters'"),'category landing pages must present Electrocity catalogue subcategories separately');
 assert(previewProducts.includes('electrocity_category')&&previewProducts.includes('electrocity_id=')&&previewProduct.includes('electrocity_id')&&previewProduct.includes('Catalogue reference:'),'Electrocity category, listing and product detail routes must form a complete click-through path');
 assert(previewHome.includes("assets/product-image-pending.svg"),'ASC preview cards must use neutral placeholders');
+assert(srcProductDetails.includes('assets/products_webp/')&&!srcProductDetails.includes('p.image_url'),'product detail modal must use local exact-SKU WebP assets');
 for(const p of ['products.html','preview-products.html','product.html','preview-product.html']){
  const s=read(p);
  assert(s.includes('assets/product-image-pending.svg'),p+' must reference neutral placeholder');
- assert(s.includes('/functions/v1/product-image?sku=')&&s.includes('assets/product-image-pending.svg'),p+' must use exact-SKU image lookup with a neutral fallback');
+ assert(s.includes('assets/products_webp/')&&!s.includes('/functions/v1/product-image?sku='),p+' must use local exact-SKU WebP assets rather than the broken unauthenticated proxy');
 }
 assert(audioPreview.includes('assets/product-image-pending.svg'),'Audio product preview cards must use neutral placeholders');
 assert(previewCheckout.includes('Instant EFT — manual transfer'),'preview checkout must offer Instant EFT as the initial test method');

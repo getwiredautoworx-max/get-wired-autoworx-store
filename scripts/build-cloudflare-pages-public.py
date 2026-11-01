@@ -138,26 +138,34 @@ if include_preview:
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
-# The preview storefront deliberately uses neutral image placeholders. Do not ship
-# the full SKU WebP catalogue in a preview package; the standard production build
-# retains the existing image-copy behaviour unchanged.
+# Product photos are public customer-facing assets, unlike supplier source cards and price files.
+# The private GitHub repository remains private; only exact-SKU WebP assets are copied
+# into the isolated customer preview when explicitly enabled by its deployment workflow.
+include_product_images = (not include_preview) or os.environ.get("GW_INCLUDE_PRODUCT_IMAGES") == "1"
 image_count = 0
-if not include_preview:
+image_bytes = 0
+if include_product_images:
     image_source = ROOT / "assets" / "products_webp"
     if not image_source.is_dir():
         raise SystemExit("Required storefront WebP image directory missing: assets/products_webp")
     shutil.copytree(image_source, OUT / "assets" / "products_webp")
-    image_count = sum(1 for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file())
+    image_files = [p for p in (OUT / "assets" / "products_webp").rglob("*.webp") if p.is_file()]
+    image_count = len(image_files)
+    image_bytes = sum(p.stat().st_size for p in image_files)
     if image_count == 0:
         raise SystemExit("No WebP product images were copied")
+    if include_preview and image_count < 4000:
+        raise SystemExit(f"Preview image package is incomplete: only {image_count} WebP images copied")
+    if include_preview:
+        print(f"PAGES_PREVIEW_PRODUCT_IMAGES_INCLUDED count={image_count} bytes={image_bytes}")
 else:
     if not (OUT / "assets" / "product-image-pending.svg").is_file():
         raise SystemExit("Preview package missing neutral product-image placeholder")
     if (OUT / "assets" / "products_webp").exists():
-        raise SystemExit("SKU WebP images must not be included in the placeholder-only preview")
+        raise SystemExit("Product WebP assets should only be included with GW_INCLUDE_PRODUCT_IMAGES=1")
     if (OUT / "assets" / "asc-catalogue-pilot").exists():
         raise SystemExit("ASC source-card crops must not be exposed in the customer preview")
-    print("PAGES_PREVIEW_PRODUCT_WEBP_EXCLUDED_PASS neutral placeholders are used")
+    print("PAGES_PREVIEW_PRODUCT_IMAGES_EXCLUDED_PASS neutral placeholders are used")
 
 # The output is an allowlist, not a copy of the repository root. Assert that no
 # internal source/review directories or supplier documents entered the package.
