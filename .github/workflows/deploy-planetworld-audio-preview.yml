@@ -1,40 +1,6 @@
 name: Deploy Approved Bright Store Preview
 on:
-  push:
-    branches:
-      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
-    paths:
-      - "_redirects"
-      - ".assetsignore"
-      - "store.html"
-      - "preview-store.html"
-      - "assets/storefront-shell.css"
-      - "assets/audio-connections-catalogue-preview.json"
-      - "assets/electrocity-catalogue-preview.json"
-      - "assets/product-image-pending.svg"
-      - "assets/gw-logo.png"
-      - "index-new.html"
-      - "preview-category.html"
-      - "preview-products.html"
-      - "preview-product.html"
-      - "category.html"
-      - "products.html"
-      - "product.html"
-      - "checkout-v2.html"
-      - "returns-refunds.html"
-      - "terms-and-conditions.html"
-      - "privacy-policy.html"
-      - ".github/workflows/deploy-planetworld-audio-preview.yml"
-      - "preview-audio.html"
-      - "preview-planetworld.html"
-      - "preview-checkout.html"
-      - "assets/audio-category-navigation.js"
-      - "assets/planetworld-catalogue-preview.json"
-      - "assets/planetworld-verified-models-preview.json"
-      - "assets/asc-catalogue-pilot-preview.json"
-      - "assets/asc-catalogue-pilot/*.jpg"
-      - "scripts/build-cloudflare-pages-public.py"
-      - ".github/workflows/deploy-planetworld-audio-preview.yml"
+  workflow_dispatch:
 permissions:
   contents: read
   deployments: write
