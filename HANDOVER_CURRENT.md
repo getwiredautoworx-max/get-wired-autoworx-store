@@ -151,3 +151,15 @@ Head `b6567ff104b37c747437ac29fa33c3f02066a98a`:
 
 ## Historical record
 The complete pre-refresh chronological log is retained unchanged in `HANDOVER_ARCHIVE_2026-11-01_PRE_REFRESH.md`. Keep it as historical evidence; use this compact file for current execution state.
+
+
+## CONTINUATION CHECKPOINT — 2026-11-01 10:05 SAST — 2 NOVEMBER TARGET
+
+- Owner instruction: continue store tasks while retaining the 2-Nov-2026 target. Work continued from the current committed handover; no restart of completed tasks.
+- Re-fetched and read `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` before execution.
+- Current `main` head verified as `c7f66eb0b68f2cd5ea98d21e6840da37f1183d7c`.
+- PR #142 branch `integration/current-main-refresh-2026-11-01` re-compared against current main: **3 commits ahead / 0 behind**; it remains aligned with current main and carries the 20-file preview/search/audio candidate. No refresh/rebase required. Exact-head evidence remains the five substantive passing QA checks recorded above; commerce smoke subjob remains SKIPPED in buttons-only mode. Existing stable preview `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html` is not a new exact-head deployment.
+- PR #143 branch `safety/current-main-production-retry-guard-2026-11-01` re-compared against current main: **1 commit ahead / 0 behind**. Exact policy test run `41286506319` was independently checked; job `policy-tests` and all listed steps completed SUCCESS. Change removes `store-production-qa.yml` from the automatic retry allowlist while retaining monitoring. PR remains draft/unmerged; no controller or production workflow was run.
+- No code merge, deployment, workflow retry, artifact deletion, supplier import, live catalogue/category/price/stock write, Supabase write, checkout/payment activation, Axxess upload or DNS change was performed.
+- Remaining owner-dependent acceptance for the 2-Nov target: real-phone/desktop visual acceptance of the preview and provision of the November ASC PDF attachment bytes. ASC authorisation is already granted; do not ask again. Payment readiness remains deferred and production remains HOLD.
+- Next safe execution: continue source-level exact-model/image reconciliation and SKU-level category evidence review; keep Planetworld 19 zero-RRP rows quarantined; preserve staged supplier rows inactive/unlinked. Re-check current branch heads and exact-head runs before any later integration action.
