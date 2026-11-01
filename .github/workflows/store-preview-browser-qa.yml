@@ -124,6 +124,10 @@ jobs:
             await page.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
             const mobileWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(mobileWidth.scrollWidth>mobileWidth.innerWidth+1)throw new Error('Mobile horizontal overflow: '+JSON.stringify(mobileWidth));
+            await page.setViewportSize({width:360,height:800});
+            const narrowMobileWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(narrowMobileWidth.scrollWidth>narrowMobileWidth.innerWidth+1)throw new Error('360px phone horizontal overflow: '+JSON.stringify(narrowMobileWidth));
+            await page.setViewportSize({width:390,height:844});
             await page.setViewportSize({width:1280,height:900});
             const desktopWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(desktopWidth.scrollWidth>desktopWidth.innerWidth+1)throw new Error('Desktop horizontal overflow: '+JSON.stringify(desktopWidth));
@@ -138,6 +142,9 @@ jobs:
             if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official manufacturer product image did not load: '+JSON.stringify(imageLoadAudit));
             const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
+            await planetworld.setViewportSize({width:360,height:800});
+            const pwNarrowWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(pwNarrowWidth.scrollWidth>pwNarrowWidth.innerWidth+1)throw new Error('Planetworld 360px phone overflow: '+JSON.stringify(pwNarrowWidth));
             await planetworld.locator('#q').fill('Alpine');
             await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0&&document.querySelectorAll('#grid .card').length<68,{timeout:10000});
             console.log('PLANETWORLD_PROVISIONAL_PREVIEW_PASS '+JSON.stringify({...pwAudit,mobileWidth:pwWidth,searchFilter:true}));
@@ -184,6 +191,9 @@ jobs:
             if(!quoteHref.startsWith('https://wa.me/27744884234?text=')||!quoteText.includes('Department: Car Audio & Video')||!quoteText.includes('Product:')||!quoteText.includes('25-Oct-2026')||!quoteText.includes('\n'))throw new Error('Audio product WhatsApp quote draft is incomplete: '+quoteText);
             const audioOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(audioOverflow.scrollWidth>audioOverflow.innerWidth+1)throw new Error('Audio navigation mobile overflow: '+JSON.stringify(audioOverflow));
+            await audioShop.setViewportSize({width:360,height:800});
+            const audioNarrowOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(audioNarrowOverflow.scrollWidth>audioNarrowOverflow.innerWidth+1)throw new Error('Audio navigation 360px phone overflow: '+JSON.stringify(audioNarrowOverflow));
             await audioShop.setViewportSize({width:1366,height:900});
             const audioDesktopOverflow=await audioShop.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(audioDesktopOverflow.scrollWidth>audioDesktopOverflow.innerWidth+1)throw new Error('Audio navigation desktop overflow: '+JSON.stringify(audioDesktopOverflow));
@@ -237,6 +247,9 @@ jobs:
             await hosted.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
             const hostedWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
+            await hosted.setViewportSize({width:360,height:800});
+            const hostedNarrowWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(hostedNarrowWidth.scrollWidth>hostedNarrowWidth.innerWidth+1)throw new Error('Hosted 360px phone overflow: '+JSON.stringify(hostedNarrowWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
             await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
