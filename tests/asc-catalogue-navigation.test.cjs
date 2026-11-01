@@ -28,13 +28,13 @@ const objectStart=html.indexOf("const ASC_CATALOGUE_CHILDREN");
 const objectEnd=html.indexOf("};",objectStart);
 const taxonomy=html.slice(objectStart,objectEnd);
 const expected = [
-  ["'6cc56033-b0a9-4f25-b207-aeeb341a1c47'", ["Fuel Pumps"]],
-  ["'f7f2ea3b-f15d-46a7-920b-9d3d9a394c79'", ["Vehicle-Specific Aerials"]],
-  ["'3a1191ad-5fb8-4eb1-9ec0-6ddc598ea272'", ["Crankshaft & Camshaft Position Sensors"]],
-  ["'2cb1bdff-652a-4aa5-9b06-b85d3ec44191'", ["Ignition Switches & Barrel Sets"]],
-  ["'cfd3e001-9292-459f-b0e5-9502f160eb5c'", ["HID Globes, Kits & Ballasts"]],
-  ["'c910bc35-2f87-465e-b7c5-f6b27c133146'", ["Carpet Mat Sets — Toyota"]],
-  ["'asc-fuel-pumps'", ["Electric Fuel Pumps — BMW", "Diesel Lift Pumps & Housings — All Makes"]]
+  ["'6cc56033-b0a9-4f25-b207-aeeb341a1c47':[", ["Fuel Pumps"]],
+  ["'f7f2ea3b-f15d-46a7-920b-9d3d9a394c79':[", ["Vehicle-Specific Aerials"]],
+  ["'3a1191ad-5fb8-4eb1-9ec0-6ddc598ea272':[", ["Crankshaft & Camshaft Position Sensors"]],
+  ["'2cb1bdff-652a-4aa5-9b06-b85d3ec44191':[", ["Ignition Switches & Barrel Sets"]],
+  ["'cfd3e001-9292-459f-b0e5-9502f160eb5c':[", ["HID Globes, Kits & Ballasts"]],
+  ["'c910bc35-2f87-465e-b7c5-f6b27c133146':[", ["Carpet Mat Sets — Toyota"]],
+  ["'asc-fuel-pumps':[", ["Electric Fuel Pumps — BMW", "Diesel Lift Pumps & Housings — All Makes"]]
 ];
 for (const [parent,labels] of expected) {
   const start=taxonomy.indexOf(parent);
