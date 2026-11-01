@@ -39,7 +39,8 @@ jobs:
           fi
   smoke:
     needs: detect-storefront-mode
-    if: needs.detect-storefront-mode.outputs.button_only != 'true'
+    # This legacy live-store smoke suite is for main/release only. PR candidates use the dedicated exact-SHA preview browser QA; running this legacy iframe suite against the preview candidate's new category-navigation shell tests the wrong app entry point.
+    if: github.event_name == 'push' && needs.detect-storefront-mode.outputs.button_only != 'true' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release/verified-price-checkout-2026-10-13' || github.ref == 'refs/heads/fix/current-main-price-gate-2026-10-13')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
