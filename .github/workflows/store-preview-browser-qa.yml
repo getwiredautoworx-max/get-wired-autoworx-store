@@ -364,17 +364,37 @@ jobs:
             if(hostedNarrowWidth.scrollWidth>hostedNarrowWidth.innerWidth+1)throw new Error('Hosted 360px phone overflow: '+JSON.stringify(hostedNarrowWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
-            await hosted.goto('http://127.0.0.1:4173/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
-            const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
-            if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||hostedPlanet.imageSources!==9||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));
-            await hosted.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===68&&imgs.every(img=>img.complete&&img.naturalWidth>0&&img.getAttribute('src')==='assets/product-image-pending.svg');},{timeout:30000});
-            const hostedPlanetWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(hostedPlanetWidth.scrollWidth>hostedPlanetWidth.innerWidth+1)throw new Error('Hosted Planetworld mobile overflow: '+JSON.stringify(hostedPlanetWidth));
-            await hosted.setViewportSize({width:1280,height:900});
-            const hostedPlanetDesktop=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(hostedPlanetDesktop.scrollWidth>hostedPlanetDesktop.innerWidth+1)throw new Error('Hosted Planetworld desktop overflow: '+JSON.stringify(hostedPlanetDesktop));
-            console.log('HOSTED_PLANETWORLD_PREVIEW_PASS '+JSON.stringify({...hostedPlanet,mobileWidth:hostedPlanetWidth,desktopWidth:hostedPlanetDesktop}));
+            const hostedReviewRoute=await hosted.request.get('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-planetworld.html');
+            if(hostedReviewRoute.status()!==404)throw new Error('Hosted supplier review route must not be public: '+hostedReviewRoute.status());
+            const hostedSafeData=await hosted.evaluate(async()=>{const [pw,asc,ac]=await Promise.all(['planetworld-catalogue-preview.json','asc-catalogue-pilot-preview.json','audio-connections-catalogue-preview.json'].map(n=>fetch('assets/'+n).then(r=>{if(!r.ok)throw new Error('Missing sanitized public data '+n);return r.json()})));return {pw,asc,ac}});
+            const forbiddenKeys=['sourceWorkbooks','sourceSheets','sourceRows','indicativePrice','hasStock','sourceFile','sourcePage','source_file','source_page','source_image_pairing','internal_sku','public_sku','image_url','imageUrl','priceNote','availabilityNote','dealer_cost'];
+            for(const [name,data] of Object.entries({planetworld:hostedSafeData.pw,asc:hostedSafeData.asc,audioConnections:hostedSafeData.ac})){
+              for(const row of data.records||[])if(forbiddenKeys.some(k=>Object.prototype.hasOwnProperty.call(row,k)))throw new Error('Hosted '+name+' dataset leaks a restricted field');
+            }
+            if((hostedSafeData.asc.records||[]).length!==50||(hostedSafeData.ac.records||[]).length<1||(hostedSafeData.pw.records||[]).length<1)throw new Error('Hosted sanitized supplier preview data is incomplete');
+            console.log('HOSTED_SANITIZED_SUPPLIER_DATA_PASS '+JSON.stringify({planetworldRows:hostedSafeData.pw.records.length,ascRows:hostedSafeData.asc.records.length,audioConnectionsRows:hostedSafeData.ac.records.length,reviewRouteStatus:hostedReviewRoute.status()}));
+            const checkoutTest=await browser.newPage({viewport:{width:390,height:844}});
+            await checkoutTest.goto('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await checkoutTest.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            const cartResult=await checkoutTest.evaluate(()=>{
+              const p=window.gwProducts.find(x=>Number(x.stock_quantity)>0&&typeof priceVerified==='function'&&priceVerified(x));
+              if(!p||typeof window.add!=='function')return {ok:false,reason:'No verified-price test item or local cart action'};
+              window.add(p.id);
+              const rows=JSON.parse(localStorage.getItem('gw_cart')||'[]');
+              return {ok:rows.some(x=>x.id===p.id),name:p.name,sku:p.public_sku,cartCount:rows.length};
+            });
+            if(!cartResult.ok)throw new Error('Preview local cart test failed: '+JSON.stringify(cartResult));
+            await checkoutTest.locator('.checkoutNow').click();
+            await checkoutTest.waitForURL(/preview-checkout\.html/,{timeout:15000});
+            const eftAudit=await checkoutTest.evaluate(()=>{
+              const select=document.getElementById('paymentMethod');
+              return {method:select?.value,options:[...select.options].map(x=>({value:x.value,disabled:x.disabled})),notice:document.querySelector('.notice')?.innerText||'',whatsappHref:document.getElementById('whatsapp')?.href||'',bankDetailsVisible:/account number|bank account|branch code/i.test(document.body.innerText)};
+            });
+            if(eftAudit.method!=='instant-eft'||!eftAudit.options.some(x=>x.value==='payfast'&&x.disabled)||!eftAudit.options.some(x=>x.value==='payjustnow'&&x.disabled)||!eftAudit.notice.includes('no order or payment will be submitted')||eftAudit.bankDetailsVisible)throw new Error('Instant EFT preview checkout safety test failed: '+JSON.stringify(eftAudit));
+            await checkoutTest.locator('#simulate').click();
+            if(!(await checkoutTest.locator('#status').innerText()).includes('No order was placed'))throw new Error('Preview checkout simulation did not remain non-transactional');
+            console.log('INSTANT_EFT_PREVIEW_CHECKOUT_PASS '+JSON.stringify({cartResult,eftAudit}));
+            await checkoutTest.close();
             await hosted.close();
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
