@@ -9,6 +9,7 @@ on:
       - "preview-checkout.html"
       - "assets/audio-category-navigation.js"
       - "assets/planetworld-catalogue-preview.json"
+      - "assets/planetworld-verified-models-preview.json"
       - "scripts/build-cloudflare-pages-public.py"
       - ".github/workflows/deploy-planetworld-audio-preview.yml"
 permissions:
