@@ -1,3 +1,13 @@
+## OWNER VISUAL FEEDBACK — PRODUCT CODE CONTRAST — 2026-11-01 SAST
+
+- Owner is happy with the store overall so far, but reports product codes are too dark against the dark background and are barely legible.
+- **Priority UI fix:** increase product-code text contrast against the dark theme so codes are clearly readable on desktop and mobile. Use a light/high-contrast foreground (for example, near-white or a theme-approved light neutral) and verify contrast in every relevant product card/detail/search result where product codes appear. Preserve the dark background and existing overall visual design.
+- Acceptance: product codes are immediately legible at normal phone brightness and normal text size; no layout regressions or accidental changes to prices, stock, catalogue content, or production configuration. Prefer a targeted CSS/theme-token change with regression coverage where feasible.
+- Status: owner-reported defect recorded; implementation and preview verification still outstanding. Do not claim fixed until the change is tested on the isolated preview and owner can confirm on phone.
+- Scope guard: no production deployment, merge, Axxess/DNS change, live catalogue/category/price/stock write, supplier activation, checkout/payment activation, or Supabase production write without explicit approval.
+
+---
+
 ## CATEGORY REVIEW QUEUE — READ-ONLY TRIAGE COMPLETED — 2026-11-01
 
 - Queried `public.category_review_queue` read-only: 198 rows; **0 blank product names** (corrects an older handover note that said 9); 10 weak/blank/`SPECIAL` guide classifications.
