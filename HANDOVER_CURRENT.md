@@ -5697,3 +5697,10 @@ Top-level category counts below are direct-root product counts, not descendant t
 5. Keep PR #140 draft/unmerged pending documentation reconciliation, exact-host Planetworld preview verification and owner real-phone acceptance.
 
 No PR was merged; no supplier XLSX was changed; no live products, prices, stock, active flags or categories were changed; no Axxess, DNS, checkout/payment, Supabase production or production deployment action occurred.
+
+
+## 2026-11-01 CONTROLLER SAFETY DEFECT FOUND DURING SOURCE REVIEW
+- Inspected current-main `scripts/background_task_controller.py` after the scheduled run. Its `AUTO_RETRY_ALLOWLIST` still contains `store-production-qa.yml` (alongside read-only QA and packaging workflows). This conflicts with the owner's permanent rule: **never rerun production/deployment jobs**. The latest controller run `41281780859` happened to request 0 retries, but the code remains unsafe for future runs.
+- The permanent handover previously recorded a removal of this entry on a PR branch (commit `2367127e2e3bd9ee84eb1c6658eb4c239736677f`), but the fix is not on current `main`. Do not treat it as effective. Do not manually invoke the controller or merge the PR wholesale. Before any future controller execution is relied upon, reconcile and verify that `store-production-qa.yml`, `live-release-gates.yml`, and every deploy/release workflow are excluded from automatic retries. A safe code fix should be separately reviewed and exact-head tested without triggering Cloudflare/Axxess deployments or release credits.
+- The latest direct run-list read confirms Live Release Gates run **41278878960** (main head `93c88da45627290179ee48db1d50f8bc25e3e910`) is completed FAILURE. This is a protected live/release workflow and was not rerun. Current PR #140 safe audit jobs remain successful as already recorded.
+- The main task queue `automation/task-queue.json` still marks category review pending and image gaps needs_review; priority-1 source reconciliation is blocked on manual source-page evidence. Do not use the controller's generated counts as proof these manual tasks are resolved.
