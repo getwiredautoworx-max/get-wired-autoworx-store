@@ -395,6 +395,18 @@ jobs:
             if(hostedPlanetDesktop.scrollWidth>hostedPlanetDesktop.innerWidth+1)throw new Error('Hosted Planetworld desktop overflow: '+JSON.stringify(hostedPlanetDesktop));
             console.log('HOSTED_PLANETWORLD_PREVIEW_PASS '+JSON.stringify({...hostedPlanet,mobileWidth:hostedPlanetWidth,desktopWidth:hostedPlanetDesktop}));
             await hosted.close();
+            const checkoutPreview=await browser.newPage({viewport:{width:390,height:844}});
+            await checkoutPreview.goto('http://127.0.0.1:4173/preview-checkout.html',{waitUntil:'domcontentloaded'});
+            await checkoutPreview.locator('#paymentMethod').selectOption({label:'Instant EFT (manual — details confirmed after quote)'});
+            await checkoutPreview.locator('#customerName').fill('Preview Tester');
+            await checkoutPreview.locator('#simulate').click();
+            const checkoutHref=await checkoutPreview.locator('#whatsapp').getAttribute('href');
+            const checkoutText=new URL(checkoutHref).searchParams.get('text')||'';
+            if(!checkoutText.includes('Payment preference: Instant EFT (manual; instructions supplied after confirmation)'))throw new Error('Instant EFT preview preference was not included in the WhatsApp draft: '+checkoutText);
+            if(!await checkoutPreview.locator('#status').innerText().then(t=>t.includes('No order was placed and no payment was taken.')))throw new Error('Preview checkout did not clearly confirm that no payment was taken');
+            if(/account number|bank account details|pay now/i.test(await checkoutPreview.locator('body').innerText()))throw new Error('Preview checkout exposed payment instructions or a live payment action');
+            console.log('INSTANT_EFT_PREVIEW_ONLY_PASS: manual preference is carried into WhatsApp; no order/payment is submitted');
+            await checkoutPreview.close();
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
