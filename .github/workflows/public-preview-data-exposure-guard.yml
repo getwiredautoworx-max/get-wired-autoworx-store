@@ -72,4 +72,4 @@ jobs:
           check_absent '/HANDOVER_CURRENT.md' 'Current Execution Handover'
           check_absent '/suppliers/Audio%20Connections/Sony%20Mobile%20ES%20Dealer%20Price%20List%20Sept%2026.pdf' '%PDF-'
           check_absent '/ASC-%20Aerials%20(1).pdf' '%PDF-'
-          echo "PUBLIC_PREVIEW_DATA_EXPOSURE_GUARD_PASS_SANITIZED_PACKAGE_V2"
+          echo "PUBLIC_PREVIEW_DATA_EXPOSURE_GUARD_PASS_SANITIZED_PACKAGE_V3"
