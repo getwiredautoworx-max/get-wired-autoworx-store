@@ -1,0 +1,43 @@
+name: Electrocity Catalogue Text Extraction Review Only
+on:
+  push:
+    branches:
+      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
+    paths:
+      - 'suppliers/Electrocity/**'
+      - 'scripts/electrocity_catalogue_extract.py'
+      - '.github/workflows/electrocity-catalogue-extract.yml'
+permissions:
+  contents: write
+jobs:
+  extract-review-text:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install OCR engine and PDF reader
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends tesseract-ocr
+          python -m pip install --disable-pip-version-check pymupdf
+      - name: Extract source-page text into review-only files
+        run: python scripts/electrocity_catalogue_extract.py
+      - name: Commit review-only extraction output
+        env:
+          GH_BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalogue-review/electrocity-catalogue-extraction
+          if git diff --cached --quiet; then
+            echo "No extraction changes to commit."
+          else
+            git commit -m "Extract Electrocity catalogue source-page text for review"
+            git pull --rebase origin "$GH_BRANCH"
+            git push origin "HEAD:$GH_BRANCH"
+          fi
