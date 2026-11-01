@@ -15,6 +15,7 @@ on:
       - 'scripts/build-cloudflare-pages-public.py'
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
+      - '.github/workflows/deploy-planetworld-audio-preview.yml'
   pull_request:
     branches: [main]
     paths:
@@ -57,7 +58,7 @@ jobs:
         run: |
           set -euo pipefail
           BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
-          for attempt in $(seq 1 30); do
+          for attempt in $(seq 1 60); do
             deployed=$(curl -fsSL -H 'Cache-Control: no-cache' "$BASE/gw-preview-sha.txt?gw_preview_guard=$GITHUB_RUN_ID-$attempt" 2>/dev/null || true)
             if [[ "$deployed" == "$GW_EXPECTED_PREVIEW_SHA" ]]; then echo "EXACT_PREVIEW_SHA_PASS $deployed"; exit 0; fi
             sleep 5
