@@ -29,6 +29,8 @@ on:
       - "assets/planetworld-verified-models-preview.json"
       - "assets/asc-catalogue-pilot-preview.json"
       - "assets/asc-catalogue-pilot/*.jpg"
+      - "tests/asc-catalogue-navigation.test.cjs"
+      - "tests/audio-navigation.test.cjs"
       - "scripts/build-cloudflare-pages-public.py"
 permissions:
   contents: read
