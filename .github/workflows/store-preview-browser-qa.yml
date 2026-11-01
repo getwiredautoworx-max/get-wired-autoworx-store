@@ -6,6 +6,7 @@ on:
     paths:
       - 'preview-store.html'
       - 'preview-audio.html'
+      - 'scripts/asc_pilot_contact_sheets.py'
       - 'tests/audio-navigation.test.cjs'
       - 'tests/asc-catalogue-navigation.test.cjs'
       - 'assets/**'
