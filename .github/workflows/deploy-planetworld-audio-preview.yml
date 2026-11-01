@@ -80,7 +80,8 @@ jobs:
             marker="$2"
             curl -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS --path-as-is "$BASE$path" -o /tmp/gw-private-body
             if grep -aEqi "$marker" /tmp/gw-private-body; then
-              echo "PUBLIC_DATA_EXPOSURE: $path"
+              matches=$(grep -aEin "$marker" /tmp/gw-private-body | head -5 || true)
+              echo "PUBLIC_DATA_EXPOSURE: $path :: $matches"
               exit 1
             fi
           }
