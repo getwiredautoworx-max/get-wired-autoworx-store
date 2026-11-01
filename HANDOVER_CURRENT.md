@@ -289,3 +289,11 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Owner must still perform real-phone visual/interaction acceptance. Axxess DirectAdmin hosting renewal is due 1-Nov-2026; no evidence of renewal/payment is available in this record, so owner must verify account renewal before production-domain use. A command-line check of root/www domain from this execution environment could not resolve the host; this is inconclusive and is not evidence that public DNS is broken.
 - PR #142 and #143 remain draft/unmerged. Latest main has advanced with handover-only commits; before any merge, refresh each candidate once against the latest main and rerun exact-head checks. Do not merge or launch without owner acceptance.
 - Production remains HOLD: no production deployment, Axxess upload, DNS changes, checkout/payment activation, live catalogue/category/price/stock writes, supplier activation/import, Supabase production writes, or artifact deletion.
+
+
+## CATEGORY QUEUE FRESH RECHECK — 2026-11-01 SAST
+
+- Re-ran read-only counts against `public.category_review_queue`: 198 total, 0 missing/blank product names, 0 blank classifications, 10 `SPECIAL` rows. This supersedes the prior 9-missing-name figure in the earlier 10:10 checkpoint; all 10 SPECIAL SKUs join to a live product name.
+- Added ten candidate directions and evidence limits to `LIVE_CATEGORY_AUDIT_2026-11-01.md` (commit `d16e737cd3a485174a1f58576af739b4f3214f47`). Most have clear name-based candidate roots; D9-009B tank cover remains unresolved. All remain suggestions only; supplier/source-page evidence and owner approval are required before live category writes.
+- PR #142 exact-head acceptance remains run 41287744635 PASS and deployment run 41287741168 PASS on head `0f6411556317f76e1719a9a8f51e38bfc69834a0`; all 9 Planetworld manufacturer images loaded. PR #143 policy regression run 41287786249 PASS on head `a31528d1012110ad6c0062a10c2b0373d6744fbd`.
+- Main advances with documentation/audit commits. Both PRs remain draft/unmerged; refresh against latest main and rerun checks only at the point of owner-approved merge. Do not create repeated handover-only rebases during test-ready acceptance.
