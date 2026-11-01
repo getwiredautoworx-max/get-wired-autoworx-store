@@ -322,8 +322,12 @@ jobs:
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
             const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
             await hostedCategory.click();
-            await hosted.locator('#shop').waitFor({state:'visible',timeout:20000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
+            await hosted.waitForURL(/preview-category\\.html\\?id=/,{timeout:20000});
+            await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
+            const hostedSubcategoryLinks=await hosted.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
+            if(!hostedSubcategoryLinks.some(href=>href.startsWith('preview-category.html?id=')))throw new Error('Hosted category page did not expose subcategory buttons: '+JSON.stringify(hostedSubcategoryLinks));
+            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=hosted-product-modal',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
             await hosted.locator('#allProductsGrid .product').first().click();
             await hosted.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
             await hosted.locator('#modalClose').click();
