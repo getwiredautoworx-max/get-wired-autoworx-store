@@ -2,7 +2,7 @@
 
 **Supplier catalogue-use permission:** GRANTED (interim; owner-confirmed 27 October 2026).  
 **Technical integration:** OPEN — ASC IT's longer-term technical solution remains separate from catalogue-use permission.  
-**Current intake state:** Awaiting the new owner-supplied test catalogue requested after the 30 October source reset.
+**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; product-level extraction, taxonomy review and the 25-product pilot are in progress.
 
 ## What is authorised
 
@@ -12,7 +12,7 @@ This permission does not authorise live stock or price reconciliation/changes, p
 
 ## What belongs here
 
-- New ASC product-family catalogues supplied for the post-reset test intake.
+- New ASC product-family catalogues supplied for the post-reset test intake (currently Aerials, Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats and Fuel Pumps).
 - ASC product/vehicle application catalogues and catalogue supplements.
 - The original supplier file, preserved unchanged, plus a separate extraction manifest and review-only staged outputs.
 
@@ -35,3 +35,17 @@ Do not restore historical catalogues removed by the 30 October reset as if they 
 The existing customer-facing image cache under `assets/products_webp/` is intentionally retained. The Supabase `product-image` Edge Function uses these files to serve current product images.
 
 The existing product database, current stock quantities, supplier mappings, storefront code, non-ASC supplier catalogues and current image storage are not part of the ASC test-catalogue intake. Do not modify them as part of source preparation.
+
+
+## Post-reset source intake — 2026-11-01
+
+The following six source PDFs were uploaded to this folder in commit `2b631210759a469e9cca23a03c42aa9ff43d998a` at 09:58 SAST on 1 November 2026, after the 30 October reset:
+
+- `ASC- Aerials (1).pdf`
+- `ASC- Automotive Sensors (1).pdf`
+- `ASC- Automotive Switches (1).pdf`
+- `ASC- Automotive globes (1).pdf`
+- `ASC- Car Mats (1).pdf`
+- `ASC- Fuel Pumps (1).pdf`
+
+These replace the earlier “awaiting new source bytes” status. Their family names have been added to the non-production storefront navigation as a catalogue-led taxonomy. This is a navigation/layout integration only: no product rows, prices, images, stock quantities, supplier activation or database records have been created or changed. Exact product extraction and the ASC 25-product evidence pilot remain separate verification tasks. Keep every PDF intact and use only verified source data when building the pilot.
