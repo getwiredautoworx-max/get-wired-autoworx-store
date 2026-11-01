@@ -93,6 +93,13 @@ if(!openStart||openEnd<2||/products\.filter|show\(matches\)/.test(openBlock)) th
 if(!openBlock.includes("(ascPilotCache.records||[]).filter(p=>p.subcategory===label)")||!openBlock.includes("No unrelated store products are substituted")) throw new Error("ASC subcategory must show only exact verified pilot rows or an honest empty state");
 if(!html.includes("product-placeholder|product-image-pending")||!html.includes("functions/v1/product-image?sku=")) throw new Error("Homepage product-image helper must bypass placeholder URLs and try the exact-SKU image endpoint");
 const productsPage=fs.readFileSync("preview-products.html","utf8");
+const categoryReviewHoldSkus=["GW-21132FDF","GW-E93CDF1E","GW-AA085120","GW-22B30765","GW-0E5E3109","GW-125D2F26","GW-FF7B49CB","GW-FC14A84E","GW-0B8032C4"];
+for(const sku of categoryReviewHoldSkus){
+ if(!html.includes("'"+sku+"'")||!productsPage.includes("'"+sku+"'")) throw new Error("Known misclassified oil-filler-cap SKU is not held from category browsing: "+sku);
+}
+if(!html.includes("function showCategory(list)")||!html.includes("showCategory(products.filter")) throw new Error("Homepage category navigation does not apply the source-category review hold");
+if(!productsPage.includes("heldCategoryItems=products.filter")||!productsPage.includes("No category assignments have been changed")) throw new Error("Category product page must explain review-held products without mutating category assignments");
+
 const detailPage=fs.readFileSync("preview-product.html","utf8");
 if(!productsPage.includes("function productImageData(p)")||!productsPage.includes("data-fallback")||!productsPage.includes("functions/v1/product-image?sku=")) throw new Error("Category product cards must use the verified image fallback chain");
 if(!detailPage.includes("const unusableImage=")||!detailPage.includes("functions/v1/product-image?sku=")) throw new Error("Product detail must bypass generic placeholder URLs");
