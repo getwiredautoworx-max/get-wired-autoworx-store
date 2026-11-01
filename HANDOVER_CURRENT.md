@@ -440,3 +440,14 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - New isolated preview deployment run `41301420749` completed SUCCESS; build output: 4,159 files, 4,101 WebP product images, and the internal supplier/catalogue review directories remained excluded. Exact deployment URL: `https://65eca525.get-wired-autoworx-store.pages.dev/preview-store.html`.
 - Latest browser QA run `41301535408` is in progress against that exact deployment. It includes source-card image decode checks for all six ASC subcategories, no-price/no-stock guards, and 390px/360px mobile checks. Confirm the final conclusion before claiming final preview acceptance.
 - Current PR #142 head at this handover entry: `39fcb70dc03009054803f1ba3372d7a168f97224`; remains draft/open/unmerged. Keep all protected production boundaries unchanged.
+
+
+## OWNER-REQUESTED STOREFRONT DEFECT CORRECTION — 2026-11-01 (SAST)
+
+- Correction branch: `fix/approved-bright-shell-category-product-ux-2026-11-01`. All edits are isolated from the default branch and production.
+- Changed `index-new.html`: each of the eight approved main category buttons now routes to its populated `category.html?id=...` page, where the category-tree snapshot supplies real subcategories and product listings. This replaces the previous inert expand-only buttons.
+- Changed `assets/storefront-shell.css`: brighter light-grey/white shared surfaces, dark readable text, higher-contrast Google Rating/SKU/product text, and light mobile navigation.
+- Changed `assets/product-image-fallback.js`: disabled automatic SKU-image substitution.
+- Changed `products.html`, `preview-products.html`, `product.html`, and `preview-product.html`: product image slots now use the neutral `assets/product-image-pending.svg` placeholder rather than SKU WebP, database image URL, edge image, or local fallback.
+- **Not yet verified:** no browser rendering or click-through test has been run on this new correction head. Category-tree JSON, product data availability, mobile layout, and all eight category links still require exact-head QA. The category/product detail pages' CSS consistency must be visually checked after the shared light theme.
+- **Do not call ready:** this is a code correction candidate only. No PR merge, production deployment, Axxess/DNS, Supabase writes, stock/price/catalogue import, or checkout/payment activation occurred.
