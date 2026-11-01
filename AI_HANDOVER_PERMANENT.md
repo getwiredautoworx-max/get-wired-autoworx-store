@@ -4509,3 +4509,15 @@ Read-only audit of the sanitized JSON used by PR #139:
 ## 2026-11-01 ADDITIONAL SAFETY FINDING — BACKGROUND CONTROLLER
 - Current-main `scripts/background_task_controller.py` was inspected. `AUTO_RETRY_ALLOWLIST` still includes `store-production-qa.yml`, violating the owner's prohibition on production QA/deployment reruns. The PR-branch correction `2367127e2e3bd9ee84eb1c6658eb4c239736677f` is not effective on main. Latest controller run `41281780859` requested zero retries, but future controller execution is not safe to rely on until this is corrected and verified. Do not manually invoke it or merge the PR wholesale.
 - Live Release Gates run `41278878960` is completed FAILURE and was not rerun. The detailed finding and safe remediation constraints are in `HANDOVER_CURRENT.md` commit `39d5018320af841712fb3a692a8b3491fac5f295`.
+
+
+## CONTINUATION CHECKPOINT — 2026-11-01 10:05 SAST — 2 NOVEMBER TARGET
+
+- Owner instruction: continue store tasks while retaining the 2-Nov-2026 target. Work continued from the current committed handover; no restart of completed tasks.
+- Re-fetched and read `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` before execution.
+- Current `main` head verified as `c7f66eb0b68f2cd5ea98d21e6840da37f1183d7c`.
+- PR #142 branch `integration/current-main-refresh-2026-11-01` re-compared against current main: **3 commits ahead / 0 behind**; it remains aligned with current main and carries the 20-file preview/search/audio candidate. No refresh/rebase required. Exact-head evidence remains the five substantive passing QA checks recorded above; commerce smoke subjob remains SKIPPED in buttons-only mode. Existing stable preview `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html` is not a new exact-head deployment.
+- PR #143 branch `safety/current-main-production-retry-guard-2026-11-01` re-compared against current main: **1 commit ahead / 0 behind**. Exact policy test run `41286506319` was independently checked; job `policy-tests` and all listed steps completed SUCCESS. Change removes `store-production-qa.yml` from the automatic retry allowlist while retaining monitoring. PR remains draft/unmerged; no controller or production workflow was run.
+- No code merge, deployment, workflow retry, artifact deletion, supplier import, live catalogue/category/price/stock write, Supabase write, checkout/payment activation, Axxess upload or DNS change was performed.
+- Remaining owner-dependent acceptance for the 2-Nov target: real-phone/desktop visual acceptance of the preview and provision of the November ASC PDF attachment bytes. ASC authorisation is already granted; do not ask again. Payment readiness remains deferred and production remains HOLD.
+- Next safe execution: continue source-level exact-model/image reconciliation and SKU-level category evidence review; keep Planetworld 19 zero-RRP rows quarantined; preserve staged supplier rows inactive/unlinked. Re-check current branch heads and exact-head runs before any later integration action.
