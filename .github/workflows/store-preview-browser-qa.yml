@@ -219,27 +219,16 @@ jobs:
             await page.setViewportSize({width:1280,height:900});
             const desktopWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(desktopWidth.scrollWidth>desktopWidth.innerWidth+1)throw new Error('Desktop horizontal overflow: '+JSON.stringify(desktopWidth));
-            // Verify the provisional Planetworld snapshot without touching Supabase or exposing dealer cost.
-            const planetworld=await browser.newPage({viewport:{width:390,height:844}});
-            await planetworld.goto('http://127.0.0.1:4173/preview-planetworld.html',{waitUntil:'domcontentloaded'});
-            await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:15000});
-            const pwAudit=await planetworld.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,snapshotDates:[...new Set(rows.map(p=>p.snapshot))],imageSources:rows.filter(p=>p.imageUrl).length,imageModels:rows.filter(p=>p.imageUrl).map(p=>p.modelNumber).sort(),officialImageSources:rows.filter(p=>p.imageUrl).every(p=>['https://static.audison.com/media/','https://www.kicker.com/','https://finland.alpine-europe.com/fileadmin/','https://dam.focal-naim.com/'].some(prefix=>String(p.imageUrl).startsWith(prefix))),hasManufacturerLinks:rows.every(p=>String(p.manufacturerPage).startsWith('https://')),dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
-            if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==9||JSON.stringify(pwAudit.imageModels)!==JSON.stringify(['43C104','46CXA3604','46CXA4001','46CXA6605','69070060','HILO V3','R2-A60F.','R2-W10D2','S2-S40C'].sort())||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
-            await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===68&&imgs.every(img=>img.complete&&img.naturalWidth>0&&img.getAttribute('src')==='assets/product-image-pending.svg');},{timeout:30000});
-            const imageLoadAudit=await planetworld.locator('#grid .card img').evaluateAll(imgs=>imgs.map(img=>({src:img.src,loaded:img.naturalWidth>0})));
-            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('A neutral Planetworld product-image placeholder did not load: '+JSON.stringify(imageLoadAudit));
-            const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
-            await planetworld.setViewportSize({width:360,height:800});
-            const pwNarrowWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(pwNarrowWidth.scrollWidth>pwNarrowWidth.innerWidth+1)throw new Error('Planetworld 360px phone overflow: '+JSON.stringify(pwNarrowWidth));
-            await planetworld.locator('#q').fill('Alpine');
-            await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0&&document.querySelectorAll('#grid .card').length<68,{timeout:10000});
-            console.log('PLANETWORLD_PROVISIONAL_PREVIEW_PASS '+JSON.stringify({...pwAudit,mobileWidth:pwWidth,searchFilter:true}));
-            await planetworld.setViewportSize({width:1280,height:900});
-            const pwDesktop=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(pwDesktop.scrollWidth>pwDesktop.innerWidth+1)throw new Error('Planetworld desktop overflow: '+JSON.stringify(pwDesktop));
-            await planetworld.close();
+            // Supplier review pages must not be public; customer preview JSON must be allowlisted.
+            const supplierReviewRoute=await page.request.get('http://127.0.0.1:4173/preview-planetworld.html');
+            if(supplierReviewRoute.status()!==404)throw new Error('Internal Planetworld review page must not be published');
+            const safePlanetworld=await page.evaluate(async()=>{const r=await fetch('/assets/planetworld-catalogue-preview.json');if(!r.ok)throw new Error('Sanitized Planetworld display data missing');return r.json()});
+            const pwAudit={rows:safePlanetworld.records?.length||0,privateFields:(safePlanetworld.records||[]).some(p=>['indicativePrice','hasStock','sourceFile','sourcePage','dealerCost'].some(k=>Object.prototype.hasOwnProperty.call(p,k)))};
+            if(pwAudit.rows<1||pwAudit.privateFields)throw new Error('Sanitized Planetworld public dataset failed: '+JSON.stringify(pwAudit));
+            const safeAsc=await page.evaluate(async()=>{const r=await fetch('/assets/asc-catalogue-pilot-preview.json');if(!r.ok)throw new Error('Sanitized ASC display data missing');return r.json()});
+            const ascPrivateFields=(safeAsc.records||[]).some(p=>['source_file','source_page','source_image_pairing','internal_sku','public_sku','image_url'].some(k=>Object.prototype.hasOwnProperty.call(p,k)));
+            if((safeAsc.records||[]).length!==50||ascPrivateFields)throw new Error('Sanitized ASC public dataset failed');
+            console.log('SANITIZED_SUPPLIER_PREVIEW_DATA_PASS '+JSON.stringify({planetworldRows:pwAudit.rows,ascRows:safeAsc.records.length,privateFields:false,reviewRouteStatus:supplierReviewRoute.status()}));
             // Exercise the dedicated audio-area navigation from the real category page.
             const audioResponse=await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
             await page.waitForTimeout(3000);
@@ -297,7 +286,7 @@ jobs:
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
-            await hosted.goto('https://65eca525.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
             const hostedAudit=await hosted.evaluate(skus=>{
