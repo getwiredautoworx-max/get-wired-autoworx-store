@@ -48,7 +48,7 @@ The following six source PDFs were uploaded to this folder in commit `2b63121075
 - `ASC- Car Mats (1).pdf`
 - `ASC- Fuel Pumps (1).pdf`
 
-These replace the earlier “awaiting new source bytes” status. Their family names have been added to the non-production storefront navigation as a catalogue-led taxonomy. This is a navigation/layout integration only: no product rows, prices, images, stock quantities, supplier activation or database records have been created or changed. Automated review-only PDF text extraction has been added; exact product/SKU reconciliation, image matching and the ASC 25-product evidence pilot remain separate verification tasks. Keep every PDF intact and use only verified source data when building the pilot.
+These replace the earlier “awaiting new source bytes” status. Their family names have been added to the non-production storefront navigation as a catalogue-led taxonomy. This is a navigation/layout integration only: no product rows, prices, images, stock quantities, supplier activation or database records have been created or changed. Automated review-only PDF text extraction has been added; exact product/SKU reconciliation, image matching and the ASC 50-record evidence pilot remain separate verification tasks. Keep every PDF intact and use only verified source data when building the pilot.
 
 
 ## Extracted catalogue structure — 2026-11-01
@@ -66,7 +66,7 @@ The catalogue contents pages identify these section counts:
 | Car Mats | 11 | 14 |
 | Fuel Pumps | 12 | 18 |
 
-The storefront's virtual ASC navigation now reflects the catalogue contents-page headings, including vehicle-specific mat and fuel-pump groups. This is a category-navigation structure only. OCR text and all product codes/specifications must be checked against the original page images before any product is admitted to the 25-product pilot. OCR-derived records are not authoritative source truth.
+The storefront's virtual ASC navigation now reflects the catalogue contents-page headings, including vehicle-specific mat and fuel-pump groups. This is a category-navigation structure only. OCR text and all product codes/specifications must be checked against the original page images before any product is admitted to the 50-record pilot. OCR-derived records are not authoritative source truth.
 
 
 ### Existing storefront category alignment
@@ -88,7 +88,7 @@ This is a non-database preview overlay. No live category rows or parent relation
 The six original PDFs are now included in the active PR #142 candidate branch by reusing the exact Git blob objects from main. A source manifest records each file size and Git blob SHA. Git blob SHA is not a SHA-256 digest. The candidate branch also mirrors the OCR review files and contains separate pilot, image-match and exception review registers. No ASC product records have been published or imported.
 
 
-## 25-product source-page pilot — 2026-11-01
+## 50-product source-page pilot — 2026-11-01
 
 The 50 pilot rows are taken from pages 3 and 4 of the six current source catalogues. Exact source codes, descriptions and printed applications were checked against the rendered page images. The pilot spans 12 subcategories: vehicle-specific and universal aerials; crank/cam and air-flow sensors; ignition switches; halogen and HID globes; Toyota, VW/Audi and BMW carpet mats; and BMW and Ford/Mazda electric fuel pumps. The image-match register records 50 source-card pairings. Preview-only JSON is `assets/asc-catalogue-pilot-preview.json`, allowlisted only in the isolated preview build. It has null price/stock and no internal/public SKU. The live catalogue and database remain unchanged.
 
