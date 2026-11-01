@@ -259,9 +259,34 @@ jobs:
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
-            await hosted.goto('https://65eca525.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
             await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            // Confirm one exact-SKU product photo loads and a product without a source image ends on the packaged placeholder.
+            const imageProbe=await browser.newPage({viewport:{width:390,height:844}});
+            await imageProbe.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/preview-product.html?id=bfc23c23-7738-40a9-9c73-77b30112d677',{waitUntil:'domcontentloaded',timeout:60000});
+            await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete;},{timeout:30000});
+            const realImage=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth,placeholder:img.currentSrc.includes('product-placeholder.svg')}));
+            if(realImage.naturalWidth<=0||realImage.placeholder)throw new Error('Exact-SKU product image did not load: '+JSON.stringify(realImage));
+            await imageProbe.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/preview-product.html?id=532c9bdb-08ac-4647-b5e6-b51b192ec9a9',{waitUntil:'domcontentloaded',timeout:60000});
+            await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.currentSrc.includes('product-placeholder.svg');},{timeout:30000});
+            const missingImageFallback=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth}));
+            if(missingImageFallback.naturalWidth<=0)throw new Error('Missing product image did not resolve to packaged placeholder: '+JSON.stringify(missingImageFallback));
+            await imageProbe.close();
+            // Ensure known oil-filler-cap records never appear in electrical/ignition or tool category listings.
+            const categoryProbe=await browser.newPage({viewport:{width:390,height:844}});
+            await categoryProbe.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/',{waitUntil:'domcontentloaded',timeout:60000});
+            await categoryProbe.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            const heldSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765'];
+            await categoryProbe.locator('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > .catBtn').click();
+            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
+            const electricalHeld=await categoryProbe.evaluate(skus=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>skus.includes(x)),heldSkus.filter(x=>x!=='GW-22B30765'));
+            if(electricalHeld.length)throw new Error('Misclassified oil-filler-cap products remain in electrical categories: '+electricalHeld.join(','));
+            await categoryProbe.locator('#categoryGrid > .catWrap[data-filter="77297c18-67f6-452e-8918-c55d2ef6231a"] > .catBtn').click();
+            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
+            const toolsHeld=await categoryProbe.evaluate(()=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>x==='GW-22B30765'));
+            if(toolsHeld.length)throw new Error('Misclassified oil-filler-cap product remains in tools category');
+            await categoryProbe.close();
             const hostedAudit=await hosted.evaluate(skus=>{
               const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
               return {
@@ -296,10 +321,16 @@ jobs:
             const hostedPilotChecks=[
               ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
               ['crankshaft sensor|camshaft sensor','Crankshaft & Camshaft Position Sensors',5],
-              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',4],
+              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',8],
               ['halogen globe|headlight globe','Headlight Globes — Halogen',4],
               ['carpet mat+toyota','Carpet Mat Sets — Toyota',4],
-              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4]
+              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4],
+              ['universal aerial|roof aerial|pillar aerial','Universal, Roof & Pillar Mount Aerials',4],
+              ['air flow sensor|air mass sensor','Air Flow & Air Mass Sensors',4],
+              ['hid globe|hid kit|ballast','HID Globes, Kits & Ballasts',4],
+              ['carpet mat+vw|carpet mat+audi','Carpet Mat Sets — VW & Audi',1],
+              ['carpet mat+bmw','Carpet Mat Sets — BMW',3],
+              ['electric fuel pump+ford|fuel pump+ford|fuel pump+mazda','Electric Fuel Pumps — Ford & Mazda',5]
             ];
             const hostedPilotAudit=await hosted.evaluate(async checks=>{
               const results=[];
