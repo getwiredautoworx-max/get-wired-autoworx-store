@@ -5354,3 +5354,24 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - Non-production Pages deployment: run `41269583534` succeeded and deployed the preview runtime/data correction to https://b47bb277.get-wired-autoworx-store.pages.dev ; alias https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev . The build reports 4,131 files / 4,101 WebP images and includes all seven approved preview routes while excluding supplier/source/audit/staging/Supabase/.github content.
 - Current PR #140 remains draft/unmerged. The candidate has been synced with main handover content and is 12 commits ahead / 0 behind immediately before this results entry. Append this result to the candidate branch too before final merge review; any handover-only sync must not be described as a storefront code change.
 - Readiness assessment: **preview acceptance gates now pass on the tested source tree**. This does not authorize production launch or prove live payment readiness, live stock/prices, ASC integration, or production Axxess/DNS. Keep all these outside the release until explicitly approved and separately verified.
+
+
+## 48-HOUR TARGET — CONTINUATION CHECKPOINT — 2026-11-01 05:40 SAST
+
+### Verified starting point
+- Re-fetched `HANDOVER_CURRENT.md` from current `main` before continuing. Its latest recorded QA checkpoint states that PR #140 candidate head `97d10941814eb277101e3e585581cde6ffe97cd8` passed six targeted workflows, including populated-store browser QA run `41269741832`, catalogue search `41269741838`, package QA `41269741817`, image audit `41269741816`, SKU audit `41269741886`, and smoke workflow `41269741823` (the smoke subjob was skipped by buttons-only mode).
+- The same checkpoint records a successful isolated Pages deployment at https://b47bb277.get-wired-autoworx-store.pages.dev and alias https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev. These are preview-only results, not production-launch approval.
+- PR #140 remains draft/unmerged. Do not treat the recorded candidate SHA as current until the PR head and workflow results are re-fetched immediately before any further merge/deploy decision.
+
+### Remaining work, ordered to avoid repeat cycles
+1. **Refresh exact state once:** fetch current PR #140 head, compare it with current `main`, and inspect only workflow runs attached to that exact head. Do not rerun successful workflows without a code change or an explicit need to revalidate a changed head.
+2. **Reconcile taxonomy evidence:** eight-root presentation/browser checks have passed, but the dated category snapshot still contains 34 direct child branches with no active products in their descendants, duplicate Audio child labels, legacy top-level categories and an orphan top-level 4X4 row. The category proposal is explicitly staging-only. Produce a SKU-level mapping/exception report from the complete 4,187-product export and approved buyer-guide evidence; do not mutate Supabase categories or product assignments without evidence and owner approval.
+3. **Resolve catalogue presentation gaps safely:** broad Planetworld rows still lack exact model/image fields. Keep neutral placeholders for unmatched records; use only verified exact-model manufacturer references. Do not guess images, models, prices or current stock.
+4. **Close external acceptance checks:** the recorded automated browser run passed desktop/mobile checks at the stated widths, but WhatsApp handoff on a real phone and a customer-side review of the preview URL remain external acceptance items. Preview checkout intentionally remains a simulation.
+5. **Close launch dependencies separately:** ASC authorisation/integration; live checkout/payment credentials and secure checkout acceptance; production deployment/domain/Axxess verification. These are not prerequisites for source-only work and remain HOLD until explicitly authorised.
+6. **After each meaningful result:** append evidence to this handover, including commit SHA, run IDs, preview URL and exact blockers. Avoid a second handover-only commit unless needed to preserve an actual status change.
+
+### Actions and safety
+- The latest recorded exact-head QA checkpoint is successful, so do not claim Actions are still exhausted based only on the previous month's note. Current remaining minutes/storage have not been independently verified in this continuation.
+- No new Actions workflow, deployment, merge, live catalogue edit, Supabase write, supplier activation, Axxess upload, DNS change, or payment/stock change was performed during this checkpoint.
+- Release state: **preview acceptance recorded as passed on the tested source tree; production launch remains HOLD** pending the dependencies above and current-head revalidation if the PR has changed.
