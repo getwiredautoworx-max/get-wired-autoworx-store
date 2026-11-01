@@ -1,35 +1,7 @@
 name: Populated Store Preview Browser QA
 
 on:
-  push:
-    branches: [integration/current-main-refresh-2026-11-01, fix/approved-bright-shell-category-product-ux-2026-11-01-v3]
-    paths:
-      - 'index-new.html'
-      - 'category.html'
-      - 'products.html'
-      - 'product.html'
-      - 'preview-store.html'
-      - 'preview-audio.html'
-      - 'preview-checkout.html'
-      - 'tests/storefront-category-routing.test.cjs'
-      - 'tests/audio-navigation.test.cjs'
-      - 'tests/asc-catalogue-navigation.test.cjs'
-      - 'assets/**'
-      - '.github/workflows/store-preview-browser-qa.yml'
-      - '.github/workflows/deploy-planetworld-audio-preview.yml'
-  pull_request:
-    branches: [main, integration/current-main-refresh-2026-11-01]
-    paths:
-      - 'preview-store.html'
-      - 'preview-category.html'
-      - 'preview-products.html'
-      - 'preview-product.html'
-      - 'preview-planetworld.html'
-      - 'preview-audio.html'
-      - 'tests/audio-navigation.test.cjs'
-      - 'tests/asc-catalogue-navigation.test.cjs'
-      - 'assets/**'
-      - '.github/workflows/store-preview-browser-qa.yml'
+  workflow_dispatch:
 
 concurrency:
   group: store-preview-browser-qa-${{ github.workflow }}
