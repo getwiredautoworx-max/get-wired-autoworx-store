@@ -366,3 +366,15 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Sony proposal therefore remains `round(printed RRP × 0.98, 2)`, with no additional VAT multiplier. The resulting customer price is VAT-inclusive and 2% below the printed RRP.
 - Updated the preview JSON price notes, private pricing audit VAT-basis field, and preparation notes. No Sony proposed prices changed; only the incorrect “VAT basis unconfirmed” caveat was removed.
 - This clarification does not authorize a live price import, catalogue publication, supplier activation, stock change, production deployment or merge. PR #142 remains a draft preview candidate pending exact-head browser QA and other release gates.
+
+
+## ASC CATALOGUE CONTINUATION — 2026-11-01 13:00 SAST
+
+- Owner direction: continue execution through completion rather than stopping for routine progress narration. ASC supplier-use authorisation has already been granted; do not ask again.
+- Six post-reset ASC source PDFs are present on main under `suppliers/ASC/`: Aerials (7 pages), Automotive Sensors (9), Automotive Switches (22), Automotive Globes (11), Car Mats (11), Fuel Pumps (12). Original PDFs remain unchanged.
+- ASC text extraction workflow run 41299129947 completed SUCCESS on main commit `e6c6982a9e8fb5016b2450932e93769abbb21b8d`. It generated page-level OCR/text review output only (72 pages). OCR is not SKU/product verification; do not treat OCR text as approved product data.
+- PR #142 current candidate branch `integration/current-main-refresh-2026-11-01`, head `5b52989086587c435aa259398a205e6990322311`, remains open/draft/unmerged. Its preview storefront contains catalogue-led ASC virtual navigation for the six catalogue families and source-derived subcategory groupings. The navigation test step passed in browser QA run 41299098987; that overall browser job failed later during the populated-preview browser checks, so the overall run is NOT a pass.
+- Newer candidate runs at checkpoint: browser QA 41299348381 and 41299331907 in progress; browser QA 41299360051 queued; isolated Pages preview deployment 41299360056 pending. Verify their exact head and final conclusions before claiming preview/browser acceptance.
+- Remaining actual ASC product work: visually verify exact product descriptions/codes and source page references; build a conservative 25-product test-only pilot with matched images where exact identity is supported; quarantine unreadable/ambiguous rows for manual review. Do not invent SKUs, fitment, prices, images or availability from OCR.
+- No ASC product rows, prices, images, stock, supplier activation, live category changes, Supabase writes, checkout/payment activation, Axxess upload, DNS or production deployment have been performed. Current stock may be used only as testing data. Production remains HOLD.
+- Execution instruction: proceed autonomously with safe repository/preview tasks; no routine “next step” announcements. Ask the owner only for genuinely missing input or explicit approval required by protected release boundaries.
