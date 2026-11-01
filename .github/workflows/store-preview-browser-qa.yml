@@ -268,6 +268,9 @@ jobs:
             const safeAsc=await page.evaluate(async()=>{const r=await fetch('/assets/asc-catalogue-pilot-preview.json');if(!r.ok)throw new Error('Sanitized ASC display data missing');return r.json()});
             const ascPrivateFields=(safeAsc.records||[]).some(p=>['source_file','source_page','source_image_pairing','internal_sku','public_sku','image_url'].some(k=>Object.prototype.hasOwnProperty.call(p,k)));
             if((safeAsc.records||[]).length!==50||ascPrivateFields)throw new Error('Sanitized ASC public dataset failed');
+            const safeElectrocity=await page.evaluate(async()=>{const r=await fetch('/assets/electrocity-catalogue-preview.json');if(!r.ok)throw new Error('Sanitized Electrocity display data missing');return r.json()});
+            const electrocityPrivateFields=(safeElectrocity.records||[]).some(p=>['sourceFile','sourcePage','source_file','source_page','supplierCost','dealerCost','stockQuantity','stock_quantity'].some(k=>Object.prototype.hasOwnProperty.call(p,k)));
+            if((safeElectrocity.records||[]).length!==33||electrocityPrivateFields)throw new Error('Sanitized Electrocity public dataset failed');
             console.log('SANITIZED_SUPPLIER_PREVIEW_DATA_PASS '+JSON.stringify({planetworldRows:pwAudit.rows,ascRows:safeAsc.records.length,privateFields:false,reviewRouteStatus:supplierReviewRoute.status()}));
             // Exercise the dedicated audio-area navigation from the real category page.
             const audioResponse=await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
@@ -409,13 +412,13 @@ jobs:
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
             const hostedReviewRoute=await hosted.request.get('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-planetworld.html');
             const hostedReviewBody=await hostedReviewRoute.text();if(![200,404].includes(hostedReviewRoute.status())||(hostedReviewRoute.status()===200&&/Planetworld Catalogue Preview|sourceWorkbooks|indicativePrice|hasStock/i.test(hostedReviewBody)))throw new Error('Hosted supplier review route is not safely excluded/fallback-only: '+hostedReviewRoute.status());
-            const hostedSafeData=await hosted.evaluate(async()=>{const [pw,asc,ac]=await Promise.all(['planetworld-catalogue-preview.json','asc-catalogue-pilot-preview.json','audio-connections-catalogue-preview.json'].map(n=>fetch('assets/'+n).then(r=>{if(!r.ok)throw new Error('Missing sanitized public data '+n);return r.json()})));return {pw,asc,ac}});
+            const hostedSafeData=await hosted.evaluate(async()=>{const [pw,asc,ac,ec]=await Promise.all(['planetworld-catalogue-preview.json','asc-catalogue-pilot-preview.json','audio-connections-catalogue-preview.json','electrocity-catalogue-preview.json'].map(n=>fetch('assets/'+n).then(r=>{if(!r.ok)throw new Error('Missing sanitized public data '+n);return r.json()})));return {pw,asc,ac,ec}});
             const forbiddenKeys=['sourceWorkbooks','sourceSheets','sourceRows','indicativePrice','hasStock','sourceFile','sourcePage','source_file','source_page','source_image_pairing','internal_sku','public_sku','image_url','imageUrl','priceNote','availabilityNote','dealer_cost'];
-            for(const [name,data] of Object.entries({planetworld:hostedSafeData.pw,asc:hostedSafeData.asc,audioConnections:hostedSafeData.ac})){
+            for(const [name,data] of Object.entries({planetworld:hostedSafeData.pw,asc:hostedSafeData.asc,audioConnections:hostedSafeData.ac,electrocity:hostedSafeData.ec})){
               for(const row of data.records||[])if(forbiddenKeys.some(k=>Object.prototype.hasOwnProperty.call(row,k)))throw new Error('Hosted '+name+' dataset leaks a restricted field');
             }
-            if((hostedSafeData.asc.records||[]).length!==50||(hostedSafeData.ac.records||[]).length<1||(hostedSafeData.pw.records||[]).length<1)throw new Error('Hosted sanitized supplier preview data is incomplete');
-            console.log('HOSTED_SANITIZED_SUPPLIER_DATA_PASS '+JSON.stringify({planetworldRows:hostedSafeData.pw.records.length,ascRows:hostedSafeData.asc.records.length,audioConnectionsRows:hostedSafeData.ac.records.length,reviewRouteStatus:hostedReviewRoute.status()}));
+            if((hostedSafeData.asc.records||[]).length!==50||(hostedSafeData.ac.records||[]).length<1||(hostedSafeData.pw.records||[]).length<1||(hostedSafeData.ec.records||[]).length!==33)throw new Error('Hosted sanitized supplier preview data is incomplete');
+            console.log('HOSTED_SANITIZED_SUPPLIER_DATA_PASS '+JSON.stringify({planetworldRows:hostedSafeData.pw.records.length,ascRows:hostedSafeData.asc.records.length,audioConnectionsRows:hostedSafeData.ac.records.length,electrocityRows:hostedSafeData.ec.records.length,reviewRouteStatus:hostedReviewRoute.status()}));
             const checkoutTest=await browser.newPage({viewport:{width:390,height:844}});
             await checkoutTest.goto('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
             await checkoutTest.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
