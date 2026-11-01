@@ -110,7 +110,7 @@ jobs:
             if(!modalText.trim())throw new Error('Product detail modal did not populate');
             await page.locator('#modalClose').click();
             await page.locator('#productModal').waitFor({state:'hidden',timeout:10000});
-            // Verify the six ASC catalogue pilot subcategories render the exact 25 source-page records.
+            // Verify all 12 ASC catalogue pilot subcategories render the exact 50 visually reviewed source-page records.
             const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
             const ascPilotErrors=[];
             ascPilotPage.on('pageerror',e=>ascPilotErrors.push(e.message));
@@ -119,10 +119,16 @@ jobs:
             const pilotChecks=[
               ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
               ['crankshaft sensor|camshaft sensor','Crankshaft & Camshaft Position Sensors',5],
-              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',4],
+              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',8],
               ['halogen globe|headlight globe','Headlight Globes — Halogen',4],
               ['carpet mat+toyota','Carpet Mat Sets — Toyota',4],
-              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4]
+              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4],
+              ['universal aerial|roof aerial|pillar aerial','Universal, Roof & Pillar Mount Aerials',4],
+              ['air flow sensor|air mass sensor','Air Flow & Air Mass Sensors',4],
+              ['hid globe|hid kit|ballast','HID Globes, Kits & Ballasts',4],
+              ['carpet mat+vw|carpet mat+audi','Carpet Mat Sets — VW & Audi',1],
+              ['carpet mat+bmw','Carpet Mat Sets — BMW',3],
+              ['electric fuel pump+ford|fuel pump+ford|fuel pump+mazda','Electric Fuel Pumps — Ford & Mazda',5]
             ];
             const pilotAudit=[];
             for(const [query,label,expected] of pilotChecks){
