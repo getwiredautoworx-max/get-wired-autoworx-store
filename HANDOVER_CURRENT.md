@@ -1,3 +1,15 @@
+## HOSTED PREVIEW DEPLOYED FROM CURRENT PR #142 BRANCH — 2026-11-01 (SAST)
+
+- **Corrected preview deployment workflow:** found the workflow trigger had been moved to PR #142's branch while checkout remained pinned to the old PR #140 branch. The first auto-run 41287217117 therefore checked out `integration/planetworld-partsearch-clean-main-2026-11-01`, not the triggering branch; it uploaded 0 files and redeployed the prior 5-image preview. This was preview-only, not production.
+- Fixed `.github/workflows/deploy-planetworld-audio-preview.yml` to checkout the triggering ref (`${{ github.ref }}`) and removed the workflow file itself from its own path trigger to avoid self-triggering. Exact candidate head: `5ebe8fcda0a30ed9a2dd407f3384ffc605f432bf`.
+- **CLOSED — correct current-branch Pages preview deployment:** run 41287394205 SUCCESS. Logs confirm checkout `refs/heads/integration/current-main-refresh-2026-11-01`, package build success, 0 files uploaded (4,131 already present), deployment complete, alias https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev. This is a non-production preview deployment only.
+- **CLOSED — hosted preview acceptance after deployment:** browser QA run 41287397982 SUCCESS. Hosted Planetworld review now reports 68 rows, 44 positive / 24 zero in the 25-Oct snapshot, **9 image sources** (up from 5), dealer cost not exposed, mobile 390px and desktop 1280px no overflow. Hosted store preview: 4,187 products, 34 ASC-matched rows all zero stock, checkout hidden, mobile width 390, product modal works, no page errors.
+- **PR #142 exact-head checks on `5ebe8fcda0a30ed9a2dd407f3384ffc605f432bf`:** Populated Store Preview Browser QA PASS 41287397982; Free Catalogue Search PASS 41287397964; Cloudflare Pages Package QA PASS 41287398066; Catalogue Image Audit PASS 41287398053; Public SKU Exposure Audit PASS 41287398009; preview deployment PASS 41287394205. Storefront Smoke Test wrapper 41287398004 succeeded but actual commerce smoke job remains SKIPPED because main `index-new.html` is intentionally buttons-only.
+- PR #142 remains open/draft/mergeable/unmerged. PR #143 remains open/draft/mergeable/unmerged; its latest safety policy branch head `8e729b6bedde80742ecca79637342d107e649548` passed isolated regression workflow 41287145706. Neither PR is approved to merge.
+- This handover-only update advances main. PR #142 and PR #143 will consequently show one documentation-only main commit behind until refreshed again before any merge. Preserve this current handover, archive and supplier audit files when refreshing. No production deploy, live database write, supplier activation, checkout/payment activation, Axxess or DNS change occurred.
+
+---
+
 ## LATEST CURRENT-MAIN REBASE + FINAL CANDIDATE TESTS — 2026-11-01 (SAST)
 
 - Main head at this checkpoint: `7fde2eebca463a485f6fc66d4e5532901e8a6137`. Both active candidate branches were refreshed from that exact main head, preserving the latest 2-Nov target and handover updates.
