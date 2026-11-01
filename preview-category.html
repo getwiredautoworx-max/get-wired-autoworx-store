@@ -69,17 +69,109 @@ function artFor(label){
  const photo=match?match[1]:'photo-1492144534655-ae79c964c9d7';
  return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=720&q=82';
 }
+const ASC_CATALOGUE_CHILDREN={
+ '6cc56033-b0a9-4f25-b207-aeeb341a1c47':[
+  {id:'asc-fuel-pumps',name:'Fuel Pumps',ascQuery:'fuel pump'}
+ ],
+ 'f7f2ea3b-f15d-46a7-920b-9d3d9a394c79':[
+  {id:'asc-aerial-vehicle',name:'Vehicle-Specific Aerials',ascQuery:'vehicle-specific aerial|vehicle aerial'},
+  {id:'asc-aerial-universal',name:'Universal, Roof & Pillar Mount Aerials',ascQuery:'universal aerial|roof aerial|pillar aerial'},
+  {id:'asc-aerial-electronic',name:'Electronic, Automatic & Amplified Aerials',ascQuery:'electronic aerial|automatic aerial|amplified aerial'},
+  {id:'asc-aerial-shark-fin',name:'Shark Fin & Imitation Aerials',ascQuery:'shark fin aerial|imitation aerial'},
+  {id:'asc-aerial-masts',name:'Aerial Masts, Bases & Mounts',ascQuery:'aerial mast|aerial base|aerial mount'},
+  {id:'asc-aerial-adaptors',name:'Extensions, Adaptors & Plugs',ascQuery:'aerial extension|aerial adaptor|aerial plug'}
+ ],
+ '3a1191ad-5fb8-4eb1-9ec0-6ddc598ea272':[
+  {id:'asc-sensor-crank-cam',name:'Crankshaft & Camshaft Position Sensors',ascQuery:'crankshaft sensor|camshaft sensor'},
+  {id:'asc-sensor-throttle',name:'Throttle Position Sensors',ascQuery:'throttle position sensor|throttle sensor'},
+  {id:'asc-sensor-airflow',name:'Air Flow & Air Mass Sensors',ascQuery:'air flow sensor|air mass sensor|maf sensor'},
+  {id:'asc-sensor-map',name:'MAP, Manifold & Intake Air Sensors',ascQuery:'map sensor|manifold pressure sensor|intake air sensor'},
+  {id:'asc-sensor-oxygen',name:'Oxygen (Lambda) Sensors',ascQuery:'oxygen sensor|lambda sensor'},
+  {id:'asc-sensor-knock',name:'Knock Sensors',ascQuery:'knock sensor'},
+  {id:'asc-sensor-speed-abs',name:'Speed & ABS Sensors',ascQuery:'speed sensor|abs sensor'},
+  {id:'asc-sensor-temperature',name:'Temperature Senders & Sensors',ascQuery:'temperature sender|temperature sensor'},
+  {id:'asc-sensor-fuel-oil-level',name:'Fuel, Oil & Level Sensors',ascQuery:'fuel level sensor|oil level sensor'},
+  {id:'asc-sensor-reverse-parking',name:'Reverse & Parking Sensors',ascQuery:'reverse sensor|parking sensor'},
+  {id:'asc-sensor-other',name:'Other Engine Management Sensors',ascQuery:'brake booster sensor|gearbox sensor|hall sender'}
+ ],
+ '2cb1bdff-652a-4aa5-9b06-b85d3ec44191':[
+  {id:'asc-switch-ignition',name:'Ignition Switches & Barrel Sets',ascQuery:'ignition switch|barrel set'},
+  {id:'asc-switch-combination',name:'Combination & Indicator Stalk Switches',ascQuery:'combination switch|indicator stalk'},
+  {id:'asc-switch-wiper',name:'Wiper Switches',ascQuery:'wiper switch'},
+  {id:'asc-switch-headlamp',name:'Headlamp, Dimmer & Hazard Switches',ascQuery:'headlamp switch|dimmer switch|hazard switch'},
+  {id:'asc-switch-window',name:'Power Window Switches',ascQuery:'power window switch'},
+  {id:'asc-switch-oil-pressure',name:'Oil Pressure Switches',ascQuery:'oil pressure switch'},
+  {id:'asc-switch-fan-thermo',name:'Radiator Fan & Thermo Switches',ascQuery:'radiator fan switch|thermo switch'},
+  {id:'asc-switch-reverse',name:'Reverse Light Switches',ascQuery:'reverse light switch'},
+  {id:'asc-switch-stop',name:'Stop Light Switches',ascQuery:'stop light switch|brake light switch'},
+  {id:'asc-switch-door-bonnet-boot',name:'Door, Bonnet & Boot Switches',ascQuery:'door switch|bonnet switch|boot switch'},
+  {id:'asc-switch-rocker',name:'Rocker Switches',ascQuery:'rocker switch'},
+  {id:'asc-switch-toggle-push',name:'Toggle, Push & Button Switches',ascQuery:'toggle switch|push switch|button switch'},
+  {id:'asc-switch-starter-solenoid',name:'Starter & Solenoid Switches',ascQuery:'starter switch|solenoid switch'},
+  {id:'asc-switch-isolators',name:'Battery Isolators & Cut-Off Switches',ascQuery:'battery isolator|cut-off switch'},
+  {id:'asc-switch-panels',name:'Switch Panels, Covers & Accessories',ascQuery:'switch panel'},
+  {id:'asc-switch-marine',name:'Marine & Specialist Switches',ascQuery:'marine switch|specialist switch'}
+ ],
+ 'cfd3e001-9292-459f-b0e5-9502f160eb5c':[
+  {id:'asc-globe-halogen',name:'Headlight Globes — Halogen',ascQuery:'halogen globe|headlight globe'},
+  {id:'asc-globe-hid',name:'HID Globes, Kits & Ballasts',ascQuery:'hid globe|hid kit|ballast'},
+  {id:'asc-globe-led',name:'LED Globes',ascQuery:'led globe'},
+  {id:'asc-globe-fog-drl-signal',name:'Fog, DRL & Signal Globes',ascQuery:'fog globe|drl globe|signal globe'},
+  {id:'asc-globe-wedge',name:'Wedge Globes',ascQuery:'wedge globe'},
+  {id:'asc-globe-bayonet',name:'Bayonet Globes — Indicator, Stop & Tail',ascQuery:'bayonet globe|indicator globe|stop globe|tail globe'},
+  {id:'asc-globe-festoon',name:'Festoon Globes',ascQuery:'festoon globe'},
+  {id:'asc-globe-dash',name:'Dash & Instrument Panel Globes',ascQuery:'dash globe|instrument panel globe'},
+  {id:'asc-globe-commercial',name:'24V & 48V Commercial Globes',ascQuery:'24v globe|48v globe'},
+  {id:'asc-globe-holders',name:'Globe Holders, Harnesses & Plugs',ascQuery:'globe holder|globe harness|globe plug'}
+ ],
+ 'c910bc35-2f87-465e-b7c5-f6b27c133146':[
+  {id:'asc-mat-toyota',name:'Carpet Mat Sets — Toyota',ascQuery:'carpet mat+toyota'},
+  {id:'asc-mat-vw-audi',name:'Carpet Mat Sets — VW & Audi',ascQuery:'carpet mat+vw|carpet mat+audi'},
+  {id:'asc-mat-bmw',name:'Carpet Mat Sets — BMW',ascQuery:'carpet mat+bmw'},
+  {id:'asc-mat-hyundai-kia',name:'Carpet Mat Sets — Hyundai & Kia',ascQuery:'carpet mat+hyundai|carpet mat+kia'},
+  {id:'asc-mat-ford-mazda',name:'Carpet Mat Sets — Ford & Mazda',ascQuery:'carpet mat+ford|carpet mat+mazda'},
+  {id:'asc-mat-nissan-renault',name:'Carpet Mat Sets — Nissan & Renault',ascQuery:'carpet mat+nissan|carpet mat+renault'},
+  {id:'asc-mat-gwm-haval',name:'Carpet Mat Sets — GWM & Haval',ascQuery:'carpet mat+gwm|carpet mat+haval'},
+  {id:'asc-mat-chery-jetour-geely',name:'Carpet Mat Sets — Chery, Jetour & Geely',ascQuery:'carpet mat+chery|carpet mat+jetour|carpet mat+geely'},
+  {id:'asc-mat-suzuki',name:'Carpet Mat Sets — Suzuki',ascQuery:'carpet mat+suzuki'},
+  {id:'asc-mat-other',name:'Carpet Mat Sets — Other Makes',ascQuery:'carpet mat'},
+  {id:'asc-mat-tpe',name:'TPE Moulded Mat Sets',ascQuery:'tpe mat|moulded mat'},
+  {id:'asc-mat-rubber-pvc',name:'Rubber & PVC Mat Sets',ascQuery:'rubber mat|pvc mat'},
+  {id:'asc-mat-universal-styling',name:'Universal & Styling Mat Sets',ascQuery:'universal mat|styling mat'},
+  {id:'asc-mat-door-bin',name:'Universal, Door & Bin Mats',ascQuery:'door mat|bin mat'}
+ ],
+ 'asc-fuel-pumps':[
+  {id:'asc-fuel-bmw',name:'Electric Fuel Pumps — BMW',ascQuery:'electric fuel pump+bmw|fuel pump+bmw'},
+  {id:'asc-fuel-vw-audi',name:'Electric Fuel Pumps — VW & Audi',ascQuery:'electric fuel pump+vw|electric fuel pump+audi'},
+  {id:'asc-fuel-ford-mazda',name:'Electric Fuel Pumps — Ford & Mazda',ascQuery:'electric fuel pump+ford|electric fuel pump+mazda'},
+  {id:'asc-fuel-toyota-lexus',name:'Electric Fuel Pumps — Toyota & Lexus',ascQuery:'electric fuel pump+toyota|electric fuel pump+lexus'},
+  {id:'asc-fuel-nissan-datsun',name:'Electric Fuel Pumps — Nissan & Datsun',ascQuery:'electric fuel pump+nissan|electric fuel pump+datsun'},
+  {id:'asc-fuel-opel-chevrolet',name:'Electric Fuel Pumps — Opel & Chevrolet',ascQuery:'electric fuel pump+opel|electric fuel pump+chevrolet'},
+  {id:'asc-fuel-mercedes',name:'Electric Fuel Pumps — Mercedes-Benz',ascQuery:'electric fuel pump+mercedes'},
+  {id:'asc-fuel-renault-peugeot-citroen',name:'Electric Fuel Pumps — Renault, Peugeot & Citroën',ascQuery:'electric fuel pump+renault|electric fuel pump+peugeot|electric fuel pump+citroen'},
+  {id:'asc-fuel-hyundai-kia',name:'Electric Fuel Pumps — Hyundai & Kia',ascQuery:'electric fuel pump+hyundai|electric fuel pump+kia'},
+  {id:'asc-fuel-fiat-alfa',name:'Electric Fuel Pumps — Fiat & Alfa Romeo',ascQuery:'electric fuel pump+fiat|electric fuel pump+alfa'},
+  {id:'asc-fuel-daewoo-gm-cadillac',name:'Electric Fuel Pumps — Daewoo, GM & Cadillac',ascQuery:'electric fuel pump+daewoo|electric fuel pump+gm|electric fuel pump+cadillac'},
+  {id:'asc-fuel-honda-suzuki',name:'Electric Fuel Pumps — Honda & Suzuki',ascQuery:'electric fuel pump+honda|electric fuel pump+suzuki'},
+  {id:'asc-fuel-land-rover',name:'Electric Fuel Pumps — Land Rover',ascQuery:'electric fuel pump+land rover'},
+  {id:'asc-fuel-universal',name:'Electric Fuel Pumps — Universal & Multi-Fit',ascQuery:'electric fuel pump+universal|multi-fit fuel pump'},
+  {id:'asc-fuel-assemblies',name:'Electric Pump Assemblies with Housing — All Makes',ascQuery:'electric pump assembly|fuel pump assembly'},
+  {id:'asc-fuel-mechanical',name:'Mechanical Fuel Pumps — All Makes',ascQuery:'mechanical fuel pump'},
+  {id:'asc-fuel-diesel-lift',name:'Diesel Lift Pumps & Housings — All Makes',ascQuery:'diesel lift pump'},
+  {id:'asc-fuel-relays',name:'Fuel Pump Relays — All Makes',ascQuery:'fuel pump relay'}
+ ]
+};
 function render(items,title,sub){
  document.getElementById('heading').textContent=title;
  document.getElementById('subtitle').textContent=sub;
  document.getElementById('count').textContent=items.length+' options';
  document.getElementById('grid').innerHTML=items.length?items.map(c=>{
   const label=c.label||c.name;
-  const href=c.audioArea?'preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioArea):(c.audioBrand?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand):(c.audioGroup?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup):(c.isAllProducts?'preview-products.html?category='+encodeURIComponent(c.id):'preview-category.html?id='+encodeURIComponent(c.id))));
+  const href=c.ascQuery?(ASC_CATALOGUE_CHILDREN[c.id]?'preview-category.html?id='+encodeURIComponent(c.id):'preview-store.html?asc_query='+encodeURIComponent(c.ascQuery)+'&asc_label='+encodeURIComponent(label)):c.audioArea?'preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioArea):(c.audioBrand?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand):(c.audioGroup?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup):(c.isAllProducts?'preview-products.html?category='+encodeURIComponent(c.id):'preview-category.html?id='+encodeURIComponent(c.id))));
   const artMarkup=c.audioBrand?'<span class="brand-mark" aria-hidden="true">'+esc(String(label).slice(0,2).toUpperCase())+'</span>':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.style.background=\'linear-gradient(135deg,#dcebf6,#edf5fb)\'">';return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
  }).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>';
 }
-async function main(){try{const response=await fetch('assets/category-tree.json',{cache:'no-cache'});if(!response.ok)throw Error('Category snapshot load failed ('+response.status+')');const snapshot=await response.json();const cats=(Array.isArray(snapshot.categories)?snapshot.categories:[]).filter(c=>c.active!==false);if(!cats.length)throw Error('Category snapshot is empty');const direct=new Map(cats.map(c=>[c.id,Number(c.direct_active_products||0)]));const byId=new Map(cats.map(c=>[c.id,c]));const memo=new Map();function total(c,seen=new Set()){if(memo.has(c.id))return memo.get(c.id);if(seen.has(c.id))return direct.get(c.id)||0;const next=new Set(seen);next.add(c.id);const n=(direct.get(c.id)||0)+cats.filter(x=>x.parent_id===c.id).reduce((sum,ch)=>sum+total(ch,next),0);memo.set(c.id,n);return n}document.getElementById('grid').dataset.debug=JSON.stringify({activeCategories:cats.length,activeProducts:cats.reduce((n,c)=>n+(Number(c.direct_active_products)||0),0),rootChecks:ROOTS.map(([label,cid])=>{const c=byId.get(cid);return {label,found:!!c,direct:direct.get(cid)||0,total:c?total(c):null}})});let current=id?byId.get(id):slug?cats.find(c=>c.slug===slug):null;
+async function main(){try{const response=await fetch('assets/category-tree.json',{cache:'no-cache'});if(!response.ok)throw Error('Category snapshot load failed ('+response.status+')');const snapshot=await response.json();const cats=(Array.isArray(snapshot.categories)?snapshot.categories:[]).filter(c=>c.active!==false);if(!cats.length)throw Error('Category snapshot is empty');const direct=new Map(cats.map(c=>[c.id,Number(c.direct_active_products||0)]));const byId=new Map(cats.map(c=>[c.id,c]));const memo=new Map();function total(c,seen=new Set()){if(memo.has(c.id))return memo.get(c.id);if(seen.has(c.id))return direct.get(c.id)||0;const next=new Set(seen);next.add(c.id);const n=(direct.get(c.id)||0)+cats.filter(x=>x.parent_id===c.id).reduce((sum,ch)=>sum+total(ch,next),0);memo.set(c.id,n);return n}document.getElementById('grid').dataset.debug=JSON.stringify({activeCategories:cats.length,activeProducts:cats.reduce((n,c)=>n+(Number(c.direct_active_products)||0),0),rootChecks:ROOTS.map(([label,cid])=>{const c=byId.get(cid);return {label,found:!!c,direct:direct.get(cid)||0,total:c?total(c):null}})});let current=id?(byId.get(id)||(ASC_CATALOGUE_CHILDREN[id]?{id,name:id==='asc-fuel-pumps'?'Fuel Pumps':'ASC Catalogue',active:true}:null)):slug?cats.find(c=>c.slug===slug):null;
 if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&!audioArea){
  const groups=[
   {id:current.id,label:'Car Audio & Video',audioArea:'car',description:'Car stereos, head units, speakers, amplifiers and multimedia'},
@@ -107,6 +199,12 @@ if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&audioArea){
  document.getElementById('crumb').textContent=areaTitle+' / Brands';
  render(brands,areaTitle+' — CHOOSE A BRAND',items.length?'Only brands explicitly present in product specifications are listed. Products without a recorded brand are kept under “Brand not specified”.':'No current catalogue products match this area.');
  if(!items.length){document.getElementById('grid').innerHTML='<div class="empty">No products are currently matched to this area. Use “CAN’T FIND IT? SOURCE A PART” to ask us to source the item.</div>'}
+ return;
+}
+if(current&&ASC_CATALOGUE_CHILDREN[current.id]){
+ const databaseChildren=cats.filter(x=>x.parent_id===current.id&&total(x)>0).map(x=>({...x,count:total(x)}));
+ const catalogueChildren=ASC_CATALOGUE_CHILDREN[current.id].map(x=>({...x,label:x.name}));
+ render([...databaseChildren,...catalogueChildren],current.name,'Choose a source-led catalogue sub-category. Unverified sections open a request path; unrelated products are never substituted.');
  return;
 }
 if(!current){const roots=ROOTS.map(([label,cid])=>{const c=byId.get(cid);return c&&total(c)>0?{...c,label,count:total(c)}:null}).filter(Boolean);render(roots,'SHOP BY CATEGORY','Choose a main category to continue.');return}if(total(current)===0){render([],'CATEGORY UNAVAILABLE','There are no active products assigned to this category yet. Please choose another category or use Search / WhatsApp.');return}document.title=current.name+' | Get Wired AutoWorx';document.getElementById('crumb').textContent=current.name;const children=cats.filter(c=>c.parent_id===current.id&&total(c)>0);const items=[];if((direct.get(current.id)||0)>0)items.push({id:current.id,label:'View '+(direct.get(current.id)||0)+' products in '+current.name,isAllProducts:true});children.forEach(c=>items.push({...c,count:total(c)}));if(children.length){render(items,current.name,'Choose products assigned directly to this category or browse a populated sub-category.');return}location.replace('preview-products.html?category='+encodeURIComponent(current.id))}catch(e){console.error('Category navigation load failed',e);document.getElementById('grid').dataset.error=String(e);document.getElementById('grid').innerHTML='<div class="error">Unable to load this category right now. Please try again.</div>'}}
