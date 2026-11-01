@@ -87,6 +87,8 @@ jobs:
           check_absent '/HANDOVER_CURRENT.md' 'Current Execution Handover'
           check_absent '/suppliers/ASC/' '%PDF-'
           check_absent '/ASC-%20Aerials%20(1).pdf' '%PDF-'
+          check_absent '/preview-store.html' 'ASC[- ]+(Aerials|Fuel Pumps|Automotive Sensors|Automotive Switches|Automotive globes|Car Mats)'
+          check_absent '/preview-category.html' 'ASC[- ]+(Aerials|Fuel Pumps|Automotive Sensors|Automotive Switches|Automotive globes|Car Mats)'
           echo "DEPLOYED_PREVIEW_PRIVATE_SOURCE_BLOCKED_PASS"
       - name: Verify hosted storefront entry point and bright shared shell
         shell: bash
