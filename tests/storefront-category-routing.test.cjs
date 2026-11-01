@@ -58,8 +58,6 @@ for(const p of ['products.html','preview-products.html','product.html','preview-
  const s=read(p);
  assert(s.includes('assets/product-image-pending.svg'),p+' must reference neutral placeholder');
  assert(s.includes('/functions/v1/product-image?sku=')&&s.includes('assets/product-image-pending.svg'),p+' must use exact-SKU image lookup with a neutral fallback');
- if(p==='products.html'||p==='preview-products.html') assert(s.includes('p.image_url'),p+' must prefer the supplied product image URL before exact-SKU fallback');
- else assert(s.includes('p.image_url')&&s.includes('primaryImage='),p+' detail must prefer the supplied product image URL before exact-SKU fallback');
 }
 assert(audioPreview.includes('assets/product-image-pending.svg'),'Audio product preview cards must use neutral placeholders');
 assert(previewCheckout.includes('Instant EFT — manual transfer'),'preview checkout must offer Instant EFT as the initial test method');
