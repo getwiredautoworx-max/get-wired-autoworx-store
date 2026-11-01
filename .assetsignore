@@ -10,3 +10,45 @@ node_modules
 node_modules/**
 .wrangler
 .wrangler/**
+
+# Never publish internal supplier, buyer, catalogue-review or operational source material.
+/suppliers/
+/suppliers/**
+/catalogue-review/
+/catalogue-review/**
+/catalogue-source/
+/catalogue-source/**
+/catalogue-audits/
+/catalogue-audits/**
+/staging/
+/staging/**
+/supabase/
+/supabase/**
+/android-owner-app/
+/android-owner-app/**
+/apk-sales-intelligence/
+/apk-sales-intelligence/**
+/tests/
+/tests/**
+/scripts/
+/scripts/**
+/pages-public/
+/pages-public/**
+
+# Do not serve supplier source documents, pricing audits, handovers or exports.
+**/*.pdf
+**/*.xlsx
+**/*.xls
+**/*.csv
+**/*.sql
+**/*.zip
+**/*.docx
+**/*.pptx
+**/*.rtf
+**/*.md
+
+# These preview-only supplier datasets contain indicative prices and/or dated availability.
+/assets/planetworld-catalogue-preview.json
+/assets/audio-connections-catalogue-preview.json
+/assets/asc-catalogue-pilot-preview.json
+/preview-planetworld.html
