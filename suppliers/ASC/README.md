@@ -2,7 +2,7 @@
 
 **Supplier catalogue-use permission:** GRANTED (interim; owner-confirmed 27 October 2026).  
 **Technical integration:** OPEN — ASC IT's longer-term technical solution remains separate from catalogue-use permission.  
-**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; page-level OCR is complete and the taxonomy preview is implemented. OCR has produced 63 OCR code candidates are indexed as unverified. A separate 25-product page-3 pilot has now been visually checked against the source catalogue cards; individual source-card crops have now been generated and reviewed.
+**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; page-level OCR is complete and the taxonomy preview is implemented. OCR has produced 63 OCR code candidates are indexed as unverified. A 50-record pages-3-and-4 pilot has now been visually checked against the source catalogue cards; 50 individual source-card crops have been generated and reviewed. The full contents-page taxonomy (75 catalogue sections plus the Fuel Pumps parent) is represented in the isolated preview.
 
 ## What is authorised
 
@@ -27,7 +27,7 @@ Do not restore historical catalogues removed by the 30 October reset as if they 
 5. Match product images only when exact product-code/photo pairing is clear. Produce image contact sheets for review.
 6. Do not invent cost, selling price, fitment or physical stock. Apply the approved price formula only to verified dealer cost.
 7. Catalogue appearance is not proof of physical stock. Keep supplier orderability distinct from verified premises stock.
-8. Start with a 25-product pilot. Produce staged rows, image-match report, duplicate report and exception list.
+8. Maintain the 50-record visually verified pilot as preview-only. Expand only after each additional source page has its own product-code, description, fitment and image-pairing review.
 9. After pilot validation, obtain owner approval before any import or live change.
 
 ## Preserved store dependencies
@@ -53,7 +53,7 @@ These replace the earlier “awaiting new source bytes” status. Their family n
 
 ## Extracted catalogue structure — 2026-11-01
 
-All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`. A separate OCR token index contains 63 possible code strings, all marked `UNVERIFIED_OCR_CANDIDATE`; it is a review aid, not a SKU list. The 25-product pilot CSV now contains 25 exact page-3 descriptions, supplier codes and printed applications. The image-match register confirms the product photo and code are paired on the same source card; individual crops are pending. The pilot remains preview-only with no price, stock, internal SKU or public SKU.
+All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`. A separate OCR token index contains 63 possible code strings, all marked `UNVERIFIED_OCR_CANDIDATE`; it is a review aid, not a SKU list. The 50-product pilot CSV contains exact descriptions, supplier codes and printed applications from pages 3 and 4 across the six source PDFs. The 50-row image-match register confirms each product photo and code are paired on the same source card; individual crops are included in the isolated preview only. The pilot remains preview-only with no price, stock, internal SKU or public SKU.
 
 The catalogue contents pages identify these section counts:
 
@@ -90,9 +90,9 @@ The six original PDFs are now included in the active PR #142 candidate branch by
 
 ## 25-product source-page pilot — 2026-11-01
 
-The first 25 pilot rows are taken from page 3 of each of the six current source catalogues (4 aerials, 5 sensors, 4 ignition switches, 4 halogen globes, 4 Toyota carpet mats and 4 BMW electric fuel pumps). Exact source codes and descriptions were checked against the rendered page images. The image-match register records 25 source-card pairings; no crop has been published. Preview-only JSON is `assets/asc-catalogue-pilot-preview.json`, allowlisted only in the isolated preview build. It has null price/stock and no internal/public SKU. The live catalogue and database remain unchanged.
+The 50 pilot rows are taken from pages 3 and 4 of the six current source catalogues. Exact source codes, descriptions and printed applications were checked against the rendered page images. The pilot spans 12 subcategories: vehicle-specific and universal aerials; crank/cam and air-flow sensors; ignition switches; halogen and HID globes; Toyota, VW/Audi and BMW carpet mats; and BMW and Ford/Mazda electric fuel pumps. The image-match register records 50 source-card pairings. Preview-only JSON is `assets/asc-catalogue-pilot-preview.json`, allowlisted only in the isolated preview build. It has null price/stock and no internal/public SKU. The live catalogue and database remain unchanged.
 
 
 ## Source-card image crops — 2026-11-01
 
-25 full source-card review crops were generated from page 3 of the six authorised ASC PDFs. Each crop retains the original ASC watermark and printed description/code. They are included only in the isolated Pages preview asset allowlist; no production image library or live product records were changed. These crops are for preview/review, not final cleaned customer product photography. Confirm live image-use rights before launch.
+50 full source-card review crops were generated from pages 3 and 4 of the six authorised ASC PDFs. Each crop retains the original ASC watermark and printed description/code. They are included only in the isolated Pages preview asset allowlist; no production image library or live product records were changed. These crops are for preview/review, not final cleaned customer product photography. Confirm live image-use rights before launch.
