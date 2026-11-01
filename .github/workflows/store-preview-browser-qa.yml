@@ -286,6 +286,31 @@ jobs:
             await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
             await hosted.evaluate(()=>window.closePartRequest());
             await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
+            const hostedPilotChecks=[
+              ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
+              ['crankshaft sensor|camshaft sensor','Crankshaft & Camshaft Position Sensors',5],
+              ['ignition switch|barrel set','Ignition Switches & Barrel Sets',4],
+              ['halogen globe|headlight globe','Headlight Globes — Halogen',4],
+              ['carpet mat+toyota','Carpet Mat Sets — Toyota',4],
+              ['electric fuel pump+bmw|fuel pump+bmw','Electric Fuel Pumps — BMW',4]
+            ];
+            const hostedPilotAudit=await hosted.evaluate(async checks=>{
+              const results=[];
+              for(const [query,label,expected] of checks){
+                await window.openAscCatalogueCategory(query,label);
+                const cards=[...document.querySelectorAll('#allProductsGrid [data-asc-preview-id]')];
+                const text=document.getElementById('allProductsGrid')?.innerText||'';
+                results.push({label,count:cards.length,expected,guarded:text.includes('Price on request')&&text.includes('Availability to confirm')&&text.includes('SOURCE IMAGE MATCHED')});
+              }
+              return results;
+            },hostedPilotChecks);
+            for(const result of hostedPilotAudit)if(result.count!==result.expected||!result.guarded)throw new Error('Hosted ASC pilot preview failed: '+JSON.stringify(result));
+            const hostedPilotWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(hostedPilotWidth.scrollWidth>hostedPilotWidth.innerWidth+1)throw new Error('Hosted ASC pilot mobile overflow: '+JSON.stringify(hostedPilotWidth));
+            await hosted.setViewportSize({width:360,height:800});
+            const hostedPilotNarrow=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(hostedPilotNarrow.scrollWidth>hostedPilotNarrow.innerWidth+1)throw new Error('Hosted ASC pilot 360px overflow: '+JSON.stringify(hostedPilotNarrow));
+            console.log('HOSTED_ASC_PILOT_PASS '+JSON.stringify({categories:hostedPilotAudit, mobile:hostedPilotWidth, narrow:hostedPilotNarrow}));
             await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
