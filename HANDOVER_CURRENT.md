@@ -366,3 +366,11 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - The customer-facing Audio page was also corrected to remove supplier names from its explanatory/source fallback copy. The Audio navigation source test was updated to account for the Audio Connections catalogue source already included in the preview package.
 - Browser QA runs `41298965858`, `41299030145`, `41299040031`, etc. were used to iterate. Run `41298965858` passed the Audio source and ASC navigation tests but failed a browser assertion because root category clicks did not also reveal products; the handler was corrected in candidate commit `19cae40ee93f89354aa43182dcc94af7412f8748`. Latest exact-head browser QA is still in progress; record its final run ID/conclusion before claiming the updated hierarchy passed.
 - Preview deployments are isolated Cloudflare Pages only. No ASC product records, prices, stock, images, database categories, supplier activation or live imports were created or changed. The 25-product pilot, duplicate review, exact SKU/source-page matching and image matching remain outstanding and require manual source-page checks.
+
+
+### ASC taxonomy parent alignment correction — 2026-11-01
+
+- To avoid duplicate parent tiles, the candidate now attaches catalogue subcategories to existing category IDs: Aerials → existing AERIALS under Car Audio; Sensors → existing SENSORS under Auto Electrical; Switches → existing SWITCHES under Auto Electrical; Globes → existing Lighting under Auto Electrical; Car Mats → existing Car Mats under Automotive Accessories.
+- Fuel Pumps is the only new virtual family node under Auto Electrical Spares because the approved homepage root has no corresponding direct child. Its 18 contents-page groups are nested below it.
+- This correction is preview-only. No live category rows or parent relationships were changed.
+- Latest candidate preview source is on PR #142 branch; exact-head regression run `41299417211` has passed the Audio source and ASC taxonomy source checks and is still running the full populated browser regression. Record the final conclusion before marking preview acceptance complete.
