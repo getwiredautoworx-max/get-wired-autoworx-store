@@ -1,6 +1,14 @@
 name: Public Preview Data Exposure Guard
 
 on:
+  push:
+    branches:
+      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
+    paths:
+      - '.assetsignore'
+      - 'wrangler.toml'
+      - 'functions/**'
+      - '.github/workflows/public-preview-data-exposure-guard.yml'
   pull_request:
     branches:
       - main
