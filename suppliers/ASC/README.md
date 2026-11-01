@@ -49,3 +49,21 @@ The following six source PDFs were uploaded to this folder in commit `2b63121075
 - `ASC- Fuel Pumps (1).pdf`
 
 These replace the earlier “awaiting new source bytes” status. Their family names have been added to the non-production storefront navigation as a catalogue-led taxonomy. This is a navigation/layout integration only: no product rows, prices, images, stock quantities, supplier activation or database records have been created or changed. Automated review-only PDF text extraction has been added; exact product/SKU reconciliation, image matching and the ASC 25-product evidence pilot remain separate verification tasks. Keep every PDF intact and use only verified source data when building the pilot.
+
+
+## Extracted catalogue structure — 2026-11-01
+
+All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`.
+
+The catalogue contents pages identify these section counts:
+
+| Source catalogue | Pages | Contents sections |
+|---|---:|---:|
+| Aerials | 7 | 6 |
+| Automotive Sensors | 9 | 11 |
+| Automotive Switches | 22 | 16 |
+| Automotive Globes | 11 | 10 |
+| Car Mats | 11 | 14 |
+| Fuel Pumps | 12 | 18 |
+
+The storefront's virtual ASC navigation now reflects the catalogue contents-page headings, including vehicle-specific mat and fuel-pump groups. This is a category-navigation structure only. OCR text and all product codes/specifications must be checked against the original page images before any product is admitted to the 25-product pilot. OCR-derived records are not authoritative source truth.
