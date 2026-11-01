@@ -28,6 +28,7 @@ PREVIEW_ASSET_FILES = [
     "planetworld-catalogue-preview.json",
     "planetworld-verified-models-preview.json",
     "audio-connections-catalogue-preview.json",
+    "electrocity-catalogue-preview.json",
     "asc-catalogue-pilot-preview.json",
     "product-image-pending.svg",
 ]
@@ -98,6 +99,18 @@ if include_preview:
     dst = OUT / "assets/audio-connections-catalogue-preview.json"
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(json.dumps(public_audio_connections, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+    electrocity = json.loads((ROOT / "assets/electrocity-catalogue-preview.json").read_text(encoding="utf-8"))
+    public_electrocity = {
+        "notice": "Catalogue references only. Price and current availability must be confirmed before ordering; no stock or supplier pricing is represented.",
+        "records": [
+            {key: row.get(key) for key in ("id", "category", "catalogueReference", "modelCode", "title", "application", "priceLabel", "availabilityLabel", "quoteOnly")}
+            for row in electrocity.get("records", [])
+        ],
+    }
+    dst = OUT / "assets/electrocity-catalogue-preview.json"
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(json.dumps(public_electrocity, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     asc = json.loads((ROOT / "assets/asc-catalogue-pilot-preview.json").read_text(encoding="utf-8"))
     public_asc = {
