@@ -66,7 +66,7 @@ const verifiedImageModels=fs.readFileSync('assets/planetworld-verified-models-pr
 const imageRoutes=['preview-store.html','products.html','preview-products.html','product.html','preview-product.html','product-details.js'];
 for(const route of imageRoutes){const source=fs.readFileSync(route,'utf8');assert.ok(source.includes('assets/products_webp/'),route+' must use exact-SKU local WebP product images');assert.ok(!source.includes('/functions/v1/product-image?sku='),route+' must not depend on the unauthenticated Supabase/GitHub image proxy');}
 assert.ok(imagePreview.includes('https://static.audison.com/media/2023/03/AUDISON_APX-690_VISTA-IN-PIANTA_2022_07_13_JPG.jpg')&&verifiedImageModels.includes('https://static.audison.com/media/2023/03/AUDISON_APX-690_VISTA-IN-PIANTA_2022_07_13_JPG.jpg'),'Audison APX 690 must use the working official manufacturer image URL');
-assert.ok(!imagePreview.includes('https://static.audison.com/media/2023/03/AUDISON_APX-690_VISTA-IN-PIANTA_2022_07_13_JPG.jpg')&&!verifiedImageModels.includes('https://static.audison.com/media/2023/03/AUDISON_APX-690_VISTA-IN-PIANTA_2022_07_13_JPG.jpg'),'remove unavailable Audison static image URL');
+for(const brokenAudisonUrl of ['https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg','https://static.audison.com/media/2022/10/1389791669_APX-690_PROSP_def_800_444.jpg'])assert.ok(!imagePreview.includes(brokenAudisonUrl)&&!verifiedImageModels.includes(brokenAudisonUrl),'remove unavailable Audison image URL: '+brokenAudisonUrl);
 
 const home=fs.readFileSync('index-new.html','utf8');
 assert.match(home,/Car Audio \/ Video[\s\S]*Home Entertainment[\s\S]*Studio Equipment/,'Audio root must expose departments, not supplier brands as sibling categories');

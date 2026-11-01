@@ -414,6 +414,9 @@ jobs:
             if(hostedNarrowWidth.scrollWidth>hostedNarrowWidth.innerWidth+1)throw new Error('Hosted 360px phone overflow: '+JSON.stringify(hostedNarrowWidth));
             if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
             console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
+            const hostedProductImageAudit=await hosted.evaluate(async()=>{const samples=['GW-EBA53965','GW-F323915E','GW-DCDD840E','GW-B4F502E6','GW-5107B32F'];const results=[];for(const sku of samples){const img=new Image();img.src='assets/products_webp/'+encodeURIComponent(sku)+'.webp';try{await img.decode();results.push({sku,width:img.naturalWidth,height:img.naturalHeight})}catch{results.push({sku,width:0,height:0})}}return results;});
+            if(hostedProductImageAudit.some(x=>x.width<1||x.height<1))throw new Error('Hosted product WebP image assets failed to load: '+JSON.stringify(hostedProductImageAudit));
+            console.log('HOSTED_PRODUCT_WEBP_IMAGE_LOAD_PASS '+JSON.stringify(hostedProductImageAudit));
             await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
             const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
