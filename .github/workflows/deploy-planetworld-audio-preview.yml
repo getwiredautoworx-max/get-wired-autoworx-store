@@ -66,30 +66,34 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
+          DEPLOY_BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
+          BRANCH_BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
           expected="$GITHUB_SHA"
           ready=0
           for attempt in $(seq 1 24); do
-            code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/deployed-store.html -w '%{http_code}' "$BASE/preview-store.html" || true)
+            code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/deployed-store.html -w '%{http_code}' "$DEPLOY_BASE/preview-store.html" || true)
             if [ "$code" = '200' ] && grep -Fq "GW_PREVIEW_SOURCE_SHA:$expected" /tmp/deployed-store.html; then
               ready=1
               break
             fi
             sleep 5
           done
-          test "$ready" = '1' || { echo "Hosted preview did not serve exact SHA $expected"; exit 1; }
+          test "$ready" = '1' || { echo "Isolated Pages alias did not serve exact SHA $expected"; exit 1; }
           check_absent() {
-            path="$1"; marker="$2"
-            curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS "$BASE$path" -o /tmp/privacy-body
+            base="$1"; path="$2"; marker="$3"
+            curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS "$base$path" -o /tmp/privacy-body
             if grep -aEqi "$marker" /tmp/privacy-body; then
-              echo "Public data exposure detected at $path ($marker)"
+              echo "Public data exposure detected at $base$path ($marker)"
               exit 1
             fi
           }
-          check_absent '/assets/planetworld-catalogue-preview.json' 'sourceWorkbooks|indicativePrice|hasStock|sourceFile'
-          check_absent '/assets/audio-connections-catalogue-preview.json' 'indicativePrice|sourceFile|dealer'
-          check_absent '/assets/asc-catalogue-pilot-preview.json' 'source_file|internal_sku|source_image_pairing|image_url'
-          check_absent '/HANDOVER_CURRENT.md' 'Current Execution Handover'
-          review_code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/review-route -w '%{http_code}' "$BASE/preview-planetworld.html" || true)
-          test "$review_code" = '404' || { echo "Internal supplier review route unexpectedly public: HTTP $review_code"; exit 1; }
+          for base in "$DEPLOY_BASE" "$BRANCH_BASE"; do
+            check_absent "$base" '/assets/planetworld-catalogue-preview.json' 'sourceWorkbooks|indicativePrice|hasStock|sourceFile'
+            check_absent "$base" '/assets/audio-connections-catalogue-preview.json' 'indicativePrice|sourceFile|dealer'
+            check_absent "$base" '/assets/asc-catalogue-pilot-preview.json' 'source_file|internal_sku|source_image_pairing|image_url'
+            check_absent "$base" '/HANDOVER_CURRENT.md' 'Current Execution Handover'
+            check_absent "$base" '/preview-planetworld.html' 'Planetworld Catalogue Preview'
+          done
+          review_code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/review-route -w '%{http_code}' "$DEPLOY_BASE/preview-planetworld.html" || true)
+          test "$review_code" = '404' || { echo "Internal supplier review route unexpectedly public on isolated Pages alias: HTTP $review_code"; exit 1; }
           echo "DEPLOYED_EXACT_SHA_AND_PRIVACY_PASS $expected"
