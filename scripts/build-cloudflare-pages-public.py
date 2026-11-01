@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build a customer-only Cloudflare Pages directory; never deploy repository source data."""
 from pathlib import Path
+import json
 import os
 import shutil
 
@@ -67,7 +68,37 @@ if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
-        copy_file(f"assets/{name}")
+        if name not in {"planetworld-catalogue-preview.json", "asc-catalogue-pilot-preview.json"}:
+            copy_file(f"assets/{name}")
+
+    # Publish only customer-safe display fields. Supplier pricing/availability,
+    # internal identifiers, source-page metadata and crops remain private.
+    planetworld = json.loads((ROOT / "assets/planetworld-catalogue-preview.json").read_text(encoding="utf-8"))
+    public_planetworld = {
+        "recordCount": len(planetworld.get("records", [])),
+        "status": "Preview catalogue; confirm current price and availability before ordering.",
+        "records": [
+            {key: row.get(key) for key in ("id", "division", "collection", "brand", "title", "component")}
+            for row in planetworld.get("records", [])
+        ],
+    }
+    dst = OUT / "assets/planetworld-catalogue-preview.json"
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(json.dumps(public_planetworld, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+    asc = json.loads((ROOT / "assets/asc-catalogue-pilot-preview.json").read_text(encoding="utf-8"))
+    public_asc = {
+        "record_count": len(asc.get("records", [])),
+        "notice": "Preview-only catalogue references. Price and availability must be confirmed.",
+        "records": [
+            {key: row.get(key) for key in ("id", "title", "fitment_as_printed", "category", "subcategory", "catalogue_reference", "root_category")}
+            for row in asc.get("records", [])
+        ],
+    }
+    dst = OUT / "assets/asc-catalogue-pilot-preview.json"
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(json.dumps(public_asc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print("PAGES_PREVIEW_SUPPLIER_DATA_SANITIZED_PASS")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
