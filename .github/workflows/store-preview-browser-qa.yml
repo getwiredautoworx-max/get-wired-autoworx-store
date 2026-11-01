@@ -192,6 +192,7 @@ jobs:
             const partSearchCopy=await page.locator('#partSearchDialog').innerText();
             if(!partSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('No-AI photo-request fallback is missing');
             await page.waitForFunction(()=>Array.isArray(window.gwPlanetworldSearchRows)&&window.gwPlanetworldSearchRows.length===3385,{timeout:30000});
+            await page.waitForFunction(()=>Array.isArray(window.gwVerifiedCatalogueRows)&&window.gwVerifiedCatalogueRows.some(p=>(p.modelNumber||'').toUpperCase()==='HCE-C2100RD'),{timeout:30000});
             await page.locator('#partSearchQuery').fill('HCE-C2100RD');
             await page.waitForFunction(()=>document.querySelectorAll('#partSearchResults [data-quote-pw]').length>0,{timeout:15000});
             const planetworldSearchText=await page.locator('#partSearchResults').innerText();
