@@ -2,7 +2,7 @@ name: Populated Store Preview Browser QA
 
 on:
   push:
-    branches: [integration/current-main-refresh-2026-11-01]
+    branches: [integration/clean-main-asc-audio-2026-11-01]
     paths:
       - 'preview-store.html'
       - 'preview-category.html'
@@ -49,12 +49,29 @@ jobs:
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Wait for the exact candidate preview deployment
+        if: github.event_name == 'push'
+        env:
+          GW_EXPECTED_PREVIEW_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
+          for attempt in $(seq 1 30); do
+            deployed=$(curl -fsSL -H 'Cache-Control: no-cache' "$BASE/gw-preview-sha.txt?gw_preview_guard=$GITHUB_RUN_ID-$attempt" 2>/dev/null || true)
+            if [[ "$deployed" == "$GW_EXPECTED_PREVIEW_SHA" ]]; then echo "EXACT_PREVIEW_SHA_PASS $deployed"; exit 0; fi
+            sleep 5
+          done
+          echo "EXACT_PREVIEW_SHA_FAIL expected=$GW_EXPECTED_PREVIEW_SHA actual=${deployed:-missing}"
+          exit 1
       - name: Run Audio hierarchy source and package checks
         run: node tests/audio-navigation.test.cjs
       - name: Run ASC catalogue navigation checks
         run: node tests/asc-catalogue-navigation.test.cjs
       - name: Run read-only populated preview browser checks
         shell: bash
+        env:
+          GW_RUN_HOSTED_QA: ${{ github.event_name == 'push' && 'true' || 'false' }}
         run: |
           set -euo pipefail
           python3 -m http.server 4173 --directory pages-public --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
@@ -269,6 +286,7 @@ jobs:
             await audioShop.close();
             if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
             console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
+            if (process.env.GW_RUN_HOSTED_QA === 'true') {
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[],hostedConsoleErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
@@ -399,6 +417,9 @@ jobs:
             if(hostedPlanetDesktop.scrollWidth>hostedPlanetDesktop.innerWidth+1)throw new Error('Hosted Planetworld desktop overflow: '+JSON.stringify(hostedPlanetDesktop));
             console.log('HOSTED_PLANETWORLD_PREVIEW_PASS '+JSON.stringify({...hostedPlanet,mobileWidth:hostedPlanetWidth,desktopWidth:hostedPlanetDesktop}));
             await hosted.close();
+            } else {
+              console.log('HOSTED_QA_SKIPPED_ON_PULL_REQUEST: hosted checks run only after exact-SHA preview deployment');
+            }
             const checkoutPreview=await browser.newPage({viewport:{width:390,height:844}});
             await checkoutPreview.goto('http://127.0.0.1:4173/preview-checkout.html',{waitUntil:'domcontentloaded'});
             await checkoutPreview.locator('#paymentMethod').selectOption({label:'Instant EFT (manual — details confirmed after quote)'});
