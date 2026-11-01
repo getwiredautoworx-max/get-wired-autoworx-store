@@ -365,7 +365,7 @@ jobs:
             if(hostedAudit.oilFillerFound!==9||hostedAudit.oilFillerQuarantined!==9||hostedAudit.oilCategoryCounts.some(x=>x.browseCount!==x.raw-x.quarantined))throw new Error('Hosted oil-filler category quarantine failed: '+JSON.stringify(hostedAudit));
             if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.unsafeCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
-            const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
+            const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').filter({hasText:'Auto Electrical Spares'}).first();
             const categoryRoute=await hostedCategory.getAttribute('data-route');
             if(!categoryRoute||!categoryRoute.includes('preview-category.html?id='))throw new Error('Homepage category button must navigate to its full category landing page');
             await hostedCategory.click();
