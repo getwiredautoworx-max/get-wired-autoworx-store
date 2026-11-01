@@ -5229,3 +5229,20 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - No merge, force-push, or production change performed. Treat the candidate's 61 commits as unreviewed integration scope until reconciled against current main. Next safe sequence: inspect the 20 main-only commits and candidate file overlap; create a fresh integration branch from current main; selectively port only reviewed storefront/catalogue changes; run the two Node regression suites locally if the source and dependencies can be obtained; then perform one exact-head hosted desktop/mobile QA attempt only after checking billing/storage.
 - Actions availability remains partially confirmed: scheduled runner `41256265742` succeeded on 1-Nov, but exact remaining minutes and artifact storage are not exposed by the connected API. Do not claim full quota restored from one successful scheduled run.
 - Readiness remains unverified; no launch/merge approval. ASC is separate and production/Axxess/DNS/Supabase/live stock/prices/payments remain unchanged.
+
+
+## 48-HOUR TARGET — CLEAN-MAIN CANDIDATE AND EXACT-HEAD QA — 2026-11-01 05:23 SAST
+
+- Created a new isolated integration branch `integration/planetworld-partsearch-clean-main-2026-11-01` from current `main` commit `165dd719a815c7b2e3b3d2964c50c8cf5d0c08be`. It contains one focused port commit `f58117bc535f5ac7c4c0240ebd0abdfa0fef6d86`; compare against main is cleanly `ahead 1 / behind 0` (merge base is current main).
+- Opened draft PR #140: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/140. It ports 20 reviewed storefront/test/build files from PR #139: catalogue search JS and tests, Planetworld dated preview data and curated model references, Audio category adapter and nine-department Audio browser, preview-only checkout/product/category routes, isolated public Pages build, and focused QA workflows.
+- Deliberately excluded all divergent handover documents, the artifact-cleanup workflow, task-monitor workflow and background controller source. Current main handover was preserved. PR #139 remains untouched and unmerged.
+- PR #140 exact-head commit `f58117bc535f5ac7c4c0240ebd0abdfa0fef6d86` automatically triggered six GitHub Actions workflows; at the last check all had started and were `in_progress`, rather than failing before runner assignment:
+  - Free Catalogue Search Tests: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939836
+  - Populated Store Preview Browser QA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939813
+  - Storefront Smoke Test: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939844
+  - Cloudflare Pages Public Package QA: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939899
+  - Catalogue Image Audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939830
+  - Public SKU Exposure Audit: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41268939814
+- This is a material improvement in runner allocation, but tests are not yet counted as passed while in progress. No local Node test execution is claimed. Exact monthly minutes and artifact storage remain unavailable through the connected API.
+- Acceptance gates remain: wait for the six exact-head results; fix failures on the candidate branch; verify exact-head Cloudflare Pages deployment and real desktop/mobile browser behavior; check all eight root categories and Audio department → brand → component → product chain; verify Part Search and WhatsApp quote-only disclaimers. Keep PR draft/unmerged until critical gates pass.
+- Safety boundary unchanged: no production deployment, Axxess, DNS, Supabase, live stock/pricing, payment activation, supplier activation or ASC integration change. Planetworld remains dated preview data, not live inventory.
