@@ -273,7 +273,8 @@ jobs:
             const hostedErrors=[],hostedConsoleErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
             hosted.on('console',m=>{if(m.type()==='error')hostedConsoleErrors.push(m.text())});
-            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.setExtraHTTPHeaders({'Cache-Control':'no-cache'});
+            await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html?gw_preview_qa=hosted-home-20261101',{waitUntil:'domcontentloaded',timeout:60000});
             try {
               await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:45000});
               await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:45000});
