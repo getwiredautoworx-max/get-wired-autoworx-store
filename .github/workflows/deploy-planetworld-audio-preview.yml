@@ -1,5 +1,21 @@
 name: Deploy Approved Bright Store Preview
 on:
+  push:
+    branches:
+      - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
+    paths:
+      - 'preview-store.html'
+      - 'preview-category.html'
+      - 'preview-products.html'
+      - 'preview-product.html'
+      - 'preview-audio.html'
+      - 'preview-checkout.html'
+      - 'category.html'
+      - 'products.html'
+      - 'product.html'
+      - 'assets/**'
+      - 'scripts/build-cloudflare-pages-public.py'
+      - '.github/workflows/deploy-planetworld-audio-preview.yml'
   workflow_dispatch:
 permissions:
   contents: read
