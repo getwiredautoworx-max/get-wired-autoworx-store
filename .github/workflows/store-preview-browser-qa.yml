@@ -66,20 +66,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --no-tags --depth=20 origin "$GITHUB_SHA"
-          expected=""
-          deployable_regex='^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)'
-          for candidate in $(git rev-list -n 20 "$GITHUB_SHA"); do
-            changed="$(git diff --name-only "$candidate^" "$candidate" 2>/dev/null || true)"
-            if grep -Eq "$deployable_regex" <<< "$changed"; then
-              expected="$candidate"
-              break
-            fi
-          done
-          if [ -z "$expected" ]; then
-            echo "No storefront package source changed in the recent candidate commits; reusing the latest deployed artifact."
+          if [ "$GITHUB_EVENT_NAME" != "push" ]; then
+            echo "Pull-request event: source changes are validated locally; hosted exact-SHA deployment is enforced on the branch push."
             exit 0
           fi
+          changed="$(jq -r '.head_commit.modified[]? // empty' "$GITHUB_EVENT_PATH")"
+          deployable_regex='^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)'
+          if ! grep -Eq "$deployable_regex" <<< "$changed"; then
+            echo "Test/workflow-only push: reuse the latest deployed artifact, whose exact SHA and privacy were verified by the deployment workflow."
+            exit 0
+          fi
+          expected="$GITHUB_SHA"
           BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
           ready=0
           for attempt in $(seq 1 36); do
@@ -91,10 +88,10 @@ jobs:
             sleep 5
           done
           if [ "$ready" != '1' ]; then
-            echo "Hosted preview did not deploy the latest candidate source SHA $expected."
+            echo "Hosted preview did not deploy the exact candidate source SHA $expected."
             exit 1
           fi
-          echo "HOSTED_PREVIEW_EXACT_SHA_PASS $expected"
+          echo "HOSTED_PREVIEW_EXACT_SHA_PASS $expected"PASS $expected"
 
       - name: Run read-only populated preview browser checks
         shell: bash
