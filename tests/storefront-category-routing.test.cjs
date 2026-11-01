@@ -53,8 +53,7 @@ assert(previewHome.includes("assets/product-image-pending.svg"),'ASC preview car
 for(const p of ['products.html','preview-products.html','product.html','preview-product.html']){
  const s=read(p);
  assert(s.includes('assets/product-image-pending.svg'),p+' must reference neutral placeholder');
- assert(!s.includes('assets/products_webp/'),p+' must not load local SKU images');
- assert(!s.includes('/functions/v1/product-image?sku='),p+' must not load edge SKU images');
+ assert(s.includes('/functions/v1/product-image?sku=')&&s.includes('assets/product-image-pending.svg'),p+' must use exact-SKU image lookup with a neutral fallback');
 }
 assert(audioPreview.includes('assets/product-image-pending.svg'),'Audio product preview cards must use neutral placeholders');
 assert(audioPreview.includes('class="brightTheme"')&&audioPreview.includes('assets/storefront-shell.css'),'Audio page must use the brighter shared storefront shell');
