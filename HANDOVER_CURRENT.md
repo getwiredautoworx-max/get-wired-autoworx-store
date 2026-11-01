@@ -1,3 +1,15 @@
+## FINAL CATALOGUE IMAGE PRESENTATION FIX + EXACT-HEAD QA — 2026-11-01 (SAST)
+
+- **CLOSED — four omitted official Planetworld product images:** found that `assets/planetworld-verified-models-preview.json` already held 9 manufacturer image references, while the embedded 68-row `preview-planetworld.html` review page displayed only 5. Added the four omitted exact-model images: Audison 69070060 / APX 690; Focal HILO V3; Kicker 43C104; Kicker 46CXA4001. Updated the browser QA to require all 9 sources, allow the Focal official DAM host, and verify all 9 images load.
+- **CLOSED — exact-head image/browser verification:** PR #142 branch head `0e8626872ea62e8b78fd3bb6f06a6e54b7b0248e`; Populated Store Preview Browser QA PASS run 41286881055. Log reports 68 rows, 44 positive / 24 zero on the 25-Oct snapshot, 9 image sources, exact 9-model list, official sources true, manufacturer links true, dealer cost not exposed, mobile 390px no overflow, and search filter pass. The workflow then waits for all 9 images to complete and verifies each has nonzero natural width; the overall job passed.
+- **PR #142 exact-head supporting CI:** Catalogue Search PASS 41286881051; Cloudflare Pages Public Package QA PASS 41286881084; Catalogue Image Audit PASS 41286881050; Public SKU Exposure Audit PASS 41286881059. Storefront mode wrapper PASS 41286881081, but actual commerce smoke job SKIPPED because main's `index-new.html` is intentionally buttons-only. Do not count skipped smoke as a pass.
+- **Preview deployment caveat:** local PR #142 candidate now has 9 images and the exact-head browser workflow passed, but the existing hosted stable preview `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html` still reports 5 images. No new Cloudflare Pages deployment was triggered because the existing deploy workflow is pinned to the older PR #140 branch and unnecessary Cloudflare usage is being avoided. Do not claim hosted stable preview now displays 9 until a new safe preview deployment is verified.
+- PR #142 remains draft/unmerged; current code branch was 3 commits ahead / 0 behind main before this handover-only update. No production deployment or live catalogue change.
+- PR #143 controller safety branch remains draft/unmerged; its current-main policy test passed (run 41286792449 on head `370ef243e52805f839d81be8bd90a1937cf3f4e0`). No controller or production workflow was executed.
+- This corrects the prior 5-image local preview count. Hosted stable preview remains at 5; local candidate count is now 9.
+
+---
+
 ## READ-ONLY SUPABASE SUPPLIER-CATALOG AUDIT + FINAL QA CHECKPOINT — 2026-11-01 (SAST)
 
 ### PR #142 — refreshed storefront integration
