@@ -1,3 +1,20 @@
+## 17:00 TEST-READY PUSH — VERIFIED CURRENT CANDIDATE — 2026-11-01 SAST
+
+- Current PR #142 head verified from GitHub API: `0f6411556317f76e1719a9a8f51e38bfc69834a0`; PR remains open/draft/unmerged.
+- **CLOSED — candidate-specific isolated preview deployment:** Deploy Planetworld Audio Preview run 41287741168 completed SUCCESS on this exact head; build and Cloudflare Pages deploy steps both passed. Deployment is scoped to the non-production `planetworld-audio-preview` Pages branch. This does not deploy production.
+- **CLOSED — exact-head populated browser QA:** run 41287744635 completed SUCCESS on the exact head; Playwright installed Chromium and both Audio hierarchy/package checks and read-only populated preview browser checks passed.
+- **CLOSED — exact-head free search tests:** run 41287744610 SUCCESS.
+- **CLOSED — exact-head public package QA:** run 41287744606 SUCCESS.
+- **CLOSED — exact-head public SKU exposure audit:** run 41287744657 SUCCESS.
+- **CLOSED — exact-head catalogue image audit:** run 41287744636 SUCCESS.
+- **NOT PASSED / still intentionally gated — commerce checkout smoke:** wrapper run 41287744582 is SUCCESS but its actual `smoke` job is SKIPPED because production `index-new.html` remains buttons-only and preview checkout/order submission is intentionally disabled. Do not label checkout or payment readiness passed.
+- Hosted preview link: https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html. Candidate-specific deployment and browser QA both succeeded; still require owner to open it on their real phone and confirm visual/interaction acceptance.
+- Remaining owner/source-dependent items: real-phone acceptance; new post-reset ASC catalogue attachment bytes for 25-product test-only pilot (ASC authorisation already granted); category mapping of all 4,187 products remains an evidence/owner-review task, with no live reparenting. Keep 19 zero-RRP Planetworld rows quarantined.
+- No merge, production deployment, Axxess upload, DNS changes, live catalogue/category/price/stock writes, supplier activation, Supabase production write, checkout/payment activation, or artifact deletion performed.
+- Execution policy: continue to close all safe tasks autonomously; ask the owner only for phone acceptance and missing ASC source bytes. Do not stop to narrate routine next steps.
+
+---
+
 ## LIVE QA RECHECK — 2026-11-01 SAST
 
 - Current PR #142 metadata head is `0f6411556317f76e1719a9a8f51e38bfc69834a0`; older checkpoint references to `ab1fb08` are stale for the live branch.
