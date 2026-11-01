@@ -5476,3 +5476,15 @@ Top-level category counts below are direct-root product counts, not descendant t
 - Added current live SQL evidence: 0 active products without category_id, 0 invalid category links, and 0 active products with blank image_url. Image URL presence is not equivalent to image correctness/load success.
 - Explicitly corrects stale 166-category / 58-top-level figures and preserves the no-write rule. No Supabase changes were made.
 - New audit report commit: `2cd2ac9f0b91d9930af88ae67e978df75525c2a8`.
+
+
+## CONTINUATION — PR #140 ACCEPTANCE RECORD CLEANED UP — 2026-11-01 SAST
+
+- Updated PR #140 description to contain one consolidated exact-head acceptance section, removing duplicate evidence text.
+- PR remains OPEN / DRAFT; exact tested head remains `da463960345fda06c300f969920209c37da2986e`.
+- GitHub currently reports `mergeable=true` after the PR description refresh. No merge was performed.
+- Exact-head Pages preview success and all five targeted passing jobs plus the smoke-workflow skipped-job distinction are now also recorded directly in the PR description.
+- Live category audit report committed at `2cd2ac9f0b91d9930af88ae67e978df75525c2a8`; linked above. Handover current commit before this continuation: `1bfc58d3a10070de9676c245ce644dd199fd4186`.
+- The preview deployment URL was not fetched by the available network clients in this session (DNS resolution unavailable in the web/container fetchers). This does not negate the Cloudflare Pages bot's exact-commit successful deployment record; it means visual acceptance on a real phone remains open.
+- GitHub Actions billing/remaining minutes and storage usage are not exposed by the connected GitHub actions tools available here. Exact workflow successes above prove the selected runs executed, but do not establish remaining monthly quota.
+- Continue the 2-November target without repeating passed exact-head tests: real-device preview acceptance, final PR review/owner approval, complete SKU-level evidence mapping, and supplier/payment/production owner gates.
