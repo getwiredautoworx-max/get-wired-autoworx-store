@@ -1,3 +1,12 @@
+## FINAL PR #141 DIFF RECHECK — 2026-11-01 (SAST)
+
+- Re-fetched GitHub's actual PR #141 file diff after the correction. Final diff is exactly two files: one deletion of `store-production-qa.yml` from `AUTO_RETRY_ALLOWLIST`, plus the 31-line regression test. `WORKFLOWS` monitor list is unchanged and still includes production QA. No unrelated files are changed.
+- Exact current PR #141 head: `4b05b5b2c06f4e6cc11f1ceae07ff7e923ba6ec2`; PR is draft, open, unmerged, and GitHub reports mergeable. Exact-head workflow-run lookup currently returns no PR-triggered runs. The new test is still unexecuted.
+- The two PR #140 Pages URLs could not be opened by the available web page reader. This is not evidence that the sites are down; it means hosted interactive browser acceptance remains unverified in this session. Do not mark desktop/mobile acceptance CLOSED.
+- No further actions or deployment retries were started.
+
+---
+
 ## EXECUTION CORRECTION — CONTROLLER MONITORING PRESERVED — 2026-11-01 (SAST)
 
 - Reviewed PR #141's actual GitHub file diff and caught an unintended first edit that removed `store-production-qa.yml` from both the monitor list and retry allowlist. Corrected the branch before merge: production QA is now still monitored, but absent from `AUTO_RETRY_ALLOWLIST`.
