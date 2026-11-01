@@ -1,3 +1,15 @@
+## ACTIVE CANDIDATE REPAIR CHECKPOINT — 2026-11-01 SAST
+
+- Active consolidation candidate: PR #149, branch `integration/clean-main-asc-audio-2026-11-01`. Latest source repairs are in progress; do not merge or claim acceptance until checks pass on the final deployed SHA and owner confirms on phone.
+- Exact-head checks on earlier candidate SHA `c3ea7ebca7458bcb59aedb78189351564f88e51f`: Public SKU Exposure Audit PASS (run 41325830122); Catalogue Image Audit PASS (41325830067); Cloudflare Pages Public Package QA PASS (41325830482); Free Catalogue Search PASS (41325830132); Customer Authentication Security PASS (41325830098); Delivery Quote Security PASS (41325830167); supplier responsive review PASS (41325830115). These results predate the latest source/test corrections and are not final-head acceptance.
+- Earlier populated-preview QA exposed a real broken Audison APX 690 image reference. Replaced the failing source with the second official Audison APX 690 product image URL from Audison's product page. Re-run the image audit and hosted browser QA on the final deployed SHA.
+- Earlier storefront smoke failed because its gate still expected price/Part Search controls in `index-new.html` and referenced obsolete RPC `create_store_order_v2`. The actual customer preview is `preview-store.html`; the server handler calls `create_store_order_v3`. Updated the smoke assertions to check the correct preview storefront and current RPC while retaining the verified-price checks in product, checkout and server code.
+- Restored the candidate's eight-category/audio-department navigation in `index-new.html` after a temporary safety rollback caused the audio hierarchy regression test to fail. This remains PR-only; no production merge or deployment was made. The production branch remains unchanged.
+- Next required checks: final-head Storefront Smoke Test, Audio hierarchy and ASC navigation source checks, exact-SHA preview deployment marker, hosted bright-shell/category/subcategory/product/image/privacy/360–390px QA, and responsive checks.
+- No production deployment, Axxess upload, DNS change, checkout/payment activation, Supabase write, live catalogue/price/stock mutation, supplier activation or branch deletion was performed. Keep all production controls on HOLD.
+
+---
+
 ## OWNER ESCALATION — PREVIEW STILL SHOWS OLD STOREFRONT — 2026-11-01 SAST
 
 - Owner reports the preview still loads the old storefront and reasonably doubts the store will be ready for live testing by 2026-11-02, let alone today. Treat the deadline as **at risk / not credibly achievable on current evidence**. Do not reassure with an unsupported ETA.
