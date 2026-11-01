@@ -5333,3 +5333,24 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - Latest candidate head is `8920c814ada40fd729eec1c7b98dfd4210d8f40b`. Latest main handover has been merged into the candidate via a merge commit so the branch is now `ahead 10 / behind 0` against main; the current handover file is preserved rather than omitted. The browser workflow is being rerun on the new head.
 - The deployment on `45596eb` succeeded to https://b47bb277.get-wired-autoworx-store.pages.dev (alias https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev) and includes the two unreliable Audison image URLs cleared from the dedicated review page; their official manufacturer links remain.
 - Do not mark the overall browser workflow passed until the new exact-head run finishes through the hosted Planetworld image-load checks, desktop width, filtering, and all remaining assertions. PR #140 remains draft/unmerged. No production, ASC, stock, price, payment, Supabase, Axxess or DNS change.
+
+
+## 48-HOUR TARGET — CRITICAL PREVIEW ACCEPTANCE GATES PASSED — 2026-11-01 05:36 SAST
+
+- Exact current PR #140 head before this handover update: `97d10941814eb277101e3e585581cde6ffe97cd8`. All six targeted hosted workflows on that head have completed successfully:
+  - Populated Store Preview Browser QA: run `41269741832` — SUCCESS, including local and hosted Chromium browser checks: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41269741832
+  - Free Catalogue Search Tests: `41269741838` — SUCCESS.
+  - Cloudflare Pages Public Package QA: `41269741817` — SUCCESS.
+  - Catalogue Image Audit: `41269741816` — SUCCESS.
+  - Public SKU Exposure Audit: `41269741886` — SUCCESS.
+  - Storefront Smoke Test: `41269741823` — SUCCESS, with its separate smoke subjob skipped by the workflow's buttons-only mode detection; the populated Playwright browser suite passed independently.
+- Browser evidence on the tested source tree:
+  - Exact eight main root categories and IDs; 4X4 Outdoor correctly nested under Camping, Leisure & Outdoors.
+  - 4,187 product records loaded. The 34 audited ASC public SKUs were all zero-stock preview entries, and checkout remained hidden. Preview banner clearly says ASC stock removed, online submission disabled and photo attachments are manual in WhatsApp. No private street address or browser console/page errors were found.
+  - Product detail modal opened and closed; Part Search found verified Planetworld model `HCE-C2100RD`, displayed its manufacturer reference and quote-only actions, and no-AI photo request fallback passed.
+  - Audio navigation passed: main Audio root card exposes the department link; nine departments, then brand and component/product-type selection and WhatsApp quote draft were exercised. The approved contact is `2774484234`. Mobile width 390/390 and desktop width 1366/1366 for the Audio browser; main populated store mobile 390/390 and desktop 1280/1280.
+  - Planetworld review preview: 68 curated records; 44 snapshot-positive and 24 zero-stock rows; all 68 review-only cost-floor flags; no dealer cost exposed. Five exact manufacturer images loaded and matched models `46CXA3604`, `46CXA6605`, `R2-A60F.`, `R2-W10D2`, `S2-S40C`; mobile 390/390, desktop 1280/1280, search filtering passed. The two unstable Audison image URLs were removed from the preview display and their official manufacturer detail links retained, so no broken image icons are shown.
+  - Hosted branch preview passed the same populated-store and Planetworld review safety checks, with checkout hidden, 34 ASC preview records at zero stock, no dealer-cost exposure, no private-address leak, and no horizontal overflow.
+- Non-production Pages deployment: run `41269583534` succeeded and deployed the preview runtime/data correction to https://b47bb277.get-wired-autoworx-store.pages.dev ; alias https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev . The build reports 4,131 files / 4,101 WebP images and includes all seven approved preview routes while excluding supplier/source/audit/staging/Supabase/.github content.
+- Current PR #140 remains draft/unmerged. The candidate has been synced with main handover content and is 12 commits ahead / 0 behind immediately before this results entry. Append this result to the candidate branch too before final merge review; any handover-only sync must not be described as a storefront code change.
+- Readiness assessment: **preview acceptance gates now pass on the tested source tree**. This does not authorize production launch or prove live payment readiness, live stock/prices, ASC integration, or production Axxess/DNS. Keep all these outside the release until explicitly approved and separately verified.
