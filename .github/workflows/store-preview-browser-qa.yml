@@ -178,6 +178,9 @@ jobs:
             await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
             // Verify the required main-store Audio → departments → brand → component journey.
             const audioShop=await browser.newPage({viewport:{width:390,height:844}});
+            const audioShopErrors=[],audioShopConsoleErrors=[];
+            audioShop.on('pageerror',e=>audioShopErrors.push(e.message));
+            audioShop.on('console',m=>{if(m.type()==='error')audioShopConsoleErrors.push(m.text())});
             await audioShop.route('**/assets/planetworld-catalogue-preview.json',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
             await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap').length>=8,{timeout:60000});
@@ -186,7 +189,7 @@ jobs:
             await audioShop.locator('#gw-audio-departments-link').click();
             await audioShop.waitForURL(/preview-audio\.html/,{timeout:10000});
             audioShop.on('pageerror',e=>console.log('AUDIO_SHOP_PAGE_ERROR '+e.message));
-            console.log('AUDIO_SHOP_PAGE_DEBUG '+JSON.stringify(await audioShop.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,tileCount:document.querySelectorAll('#departments .audioTile').length,departmentHtml:document.getElementById('departments')?.innerHTML||''}))));
+            console.log('AUDIO_SHOP_PAGE_DEBUG '+JSON.stringify(await audioShop.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,tileCount:document.querySelectorAll('#departments .audioTile').length,departmentHtml:document.getElementById('departments')?.innerHTML||'',scripts:[...document.scripts].map(x=>({src:x.src,inlineLength:x.textContent.length})),pageErrors:audioShopErrors,consoleErrors:audioShopConsoleErrors}))));
             await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .audioTile').length===9,{timeout:30000});
             await audioShop.locator('#departments button').filter({hasText:'Car Audio & Video'}).click();
             // Select the department before the delayed catalogue response completes; it must redraw after load.
