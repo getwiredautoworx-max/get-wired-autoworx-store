@@ -33,6 +33,10 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+      - name: Render private ASC pilot contact sheets for internal review
+        run: |
+          python3 -m pip install --quiet pymupdf pillow
+          python3 scripts/asc_pilot_contact_sheets.py | tee /tmp/asc-pilot-contact-sheets.log
       - uses: actions/setup-node@v4
         with:
           node-version: 22
