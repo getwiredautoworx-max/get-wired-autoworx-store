@@ -162,6 +162,12 @@ for required in required_root_files:
         raise SystemExit(f"Public Pages package missing required page: {required}")
 
 if include_preview:
+    source_sha = os.environ.get("GITHUB_SHA", "")
+    if source_sha:
+        preview_entry = OUT / "preview-store.html"
+        with preview_entry.open("a", encoding="utf-8") as stream:
+            stream.write(f"\\n<!-- GW_PREVIEW_SOURCE_SHA:{source_sha} -->\\n")
+if include_preview:
     for forbidden in ("checkout.html", "checkout-v2.html", "category.html", "products.html", "product.html"):
         if (OUT / forbidden).exists():
             raise SystemExit(f"Preview package must not include production route: {forbidden}")
