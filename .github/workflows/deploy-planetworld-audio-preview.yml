@@ -27,6 +27,7 @@ on:
       - "assets/asc-catalogue-pilot-preview.json"
       - "assets/asc-catalogue-pilot/*.jpg"
       - "scripts/build-cloudflare-pages-public.py"
+      - ".github/workflows/deploy-planetworld-audio-preview.yml"
 permissions:
   contents: read
   deployments: write
