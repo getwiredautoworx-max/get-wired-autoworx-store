@@ -1,3 +1,15 @@
+## CONTINUATION CHECKPOINT — 2026-11-01 10:08 SAST
+
+- Re-read `HANDOVER_CURRENT.md` and `AI_HANDOVER_PERMANENT.md` before continuing.
+- Rechecked PR #142 via GitHub: currently reported head `ab1fb08f4aa6b3efbfddc3eb06fda45c63852d12`, open/draft/unmerged. Exact-head workflow-run lookup confirms six completed successful checks: Populated Store Preview Browser QA, Free Catalogue Search Tests, Cloudflare Pages Public Package QA, Catalogue Image Audit, Public SKU Exposure Audit, and Storefront Smoke Test wrapper. The wrapper's success is not evidence that the commerce subjob ran; do not represent it as customer checkout acceptance.
+- PR #142 description lists prior verified hosted deployment at `https://d5a13042.get-wired-autoworx-store.pages.dev/preview-store.html` and stable alias `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html`. Separately, the handover records deployment/browser acceptance for head `5ebe8fcda0a30ed9a2dd407f3384ffc605f432bf` (run 41287394205 deploy, run 41287397982 browser QA). Do not imply the newer `ab1fb08` head has its own verified hosted deployment until that is checked.
+- PR #143 remains a separate open/draft/unmerged safety change preventing automatic retries of production QA; its isolated regression test was recorded as passing. Do not run the background controller or production/live workflows.
+- ASC catalogue authorisation is already granted. The outstanding ASC pilot dependency is the actual new post-reset catalogue source bytes; continue with existing test-only data and do not ask for authorisation again.
+- Immediate remaining acceptance gates: verify the newest PR #142 candidate is deployed to a safe preview without unnecessary paid usage; real-phone owner acceptance; ensure commerce smoke isn't incorrectly counted as passed; evidence-led category mapping; access the new ASC catalogue source for the 25-product test pilot and historical scaling-SKU reconciliation. Production remains HOLD.
+- No production deployment, merge, Axxess upload, DNS change, live catalogue/category/price/stock mutation, supplier activation, Supabase production write, checkout/payment activation, or artifact deletion was performed during this continuation.
+
+---
+
 ## HOSTED PREVIEW DEPLOYED FROM CURRENT PR #142 BRANCH — 2026-11-01 (SAST)
 
 - **Corrected preview deployment workflow:** found the workflow trigger had been moved to PR #142's branch while checkout remained pinned to the old PR #140 branch. The first auto-run 41287217117 therefore checked out `integration/planetworld-partsearch-clean-main-2026-11-01`, not the triggering branch; it uploaded 0 files and redeployed the prior 5-image preview. This was preview-only, not production.
