@@ -70,7 +70,7 @@ jobs:
             echo "Pull-request event: source changes are validated locally; hosted exact-SHA deployment is enforced on the branch push."
             exit 0
           fi
-          changed="$(jq -r '.head_commit.modified[]? // empty' "$GITHUB_EVENT_PATH")"
+          changed="$(jq -r '(.head_commit.added[]?, .head_commit.modified[]?, .head_commit.removed[]?)' "$GITHUB_EVENT_PATH")"
           deployable_regex='^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)'
           if ! grep -Eq "$deployable_regex" <<< "$changed"; then
             echo "Test/workflow-only push: reuse the latest deployed artifact, whose exact SHA and privacy were verified by the deployment workflow."
