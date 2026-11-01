@@ -6,7 +6,7 @@
   function openProduct(p){
     let m=document.getElementById('gwProductModal');
     if(!m){m=document.createElement('div');m.id='gwProductModal';m.innerHTML='<div class="gwModalBox"><button class="gwClose">×</button><div id="gwProductDetail"></div></div>';document.body.appendChild(m);m.addEventListener('click',e=>{if(e.target===m||e.target.classList.contains('gwClose'))m.classList.remove('open')})}
-    const img=p.public_sku?'<img src="assets/products_webp/'+encodeURIComponent(p.public_sku)+'.webp" alt="'+esc(p.name)+'" onerror="this.onerror=null;this.src=\\'assets/product-image-pending.svg\\'">':'<img src="assets/product-image-pending.svg" alt="Product image pending">';
+    const img=p.public_sku?'<img src="assets/products_webp/'+encodeURIComponent(p.public_sku)+'.webp" alt="'+esc(p.name)+'" onerror="this.onerror=null;this.src=&quot;assets/product-image-pending.svg&quot;">':'<img src="assets/product-image-pending.svg" alt="Product image pending">';
     const spec=p.specifications?'<section><b>SPECIFICATIONS</b><p>'+esc(text(p.specifications))+'</p></section>':'';
     const desc=p.description?'<section><b>PRODUCT INFORMATION</b><p>'+esc(p.description)+'</p></section>':'';
     const wa='https://wa.me/27744884234?text='+encodeURIComponent('Hi Get Wired AutoWorx, I am interested in '+p.name+' (SKU '+(p.public_sku||'')+'). Price: '+money(p.price));
