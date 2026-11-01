@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install OCR engine
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - name: Install PDF text extraction library
         run: python -m pip install --disable-pip-version-check pymupdf
       - name: Extract source-page text into review-only files
@@ -31,5 +33,6 @@ jobs:
             echo "No extraction changes to commit."
           else
             git commit -m "Extract ASC catalogue source-page text for review"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
