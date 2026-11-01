@@ -5431,3 +5431,38 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - The Pages URLs were not independently rendered by the web preview fetcher in this session; rely on the Cloudflare deployment bot's exact-commit success record for deployment existence, and keep final external-device visual acceptance separate.
 - PR #140 remains open and draft, 13 commits ahead, mergeable=true; no merge was performed. Preserve owner review/approval requirement.
 - Next execution should not repeat exact-head tests or re-run deployment blindly: exact-head QA and Pages deploy success are already evidenced. Continue with review of remaining catalogue/taxonomy/product presentation and safe PR integration preparation. No production changes or owner-gated supplier/payment actions.
+
+
+## READ-ONLY LIVE CATALOGUE / CATEGORY RE-AUDIT — 2026-11-01 SAST
+
+Read-only SQL was executed against the existing project database. No INSERT, UPDATE, DELETE, DDL, stock, price or category mutation was run.
+
+### Current live counts (supersede stale category-count snapshots)
+- Products: 4,200 total; 4,187 active; 13 inactive.
+- Categories: 243 rows; 66 top-level categories.
+- Active products with NULL category_id: 0.
+- Products with non-NULL category_id that does not resolve to categories.id: 0.
+- Active products with NULL/blank image_url: 0 (this checks URL presence only, not whether remote image files load or match the SKU).
+- Duplicate category labels: 65 distinct normalized labels occur more than once. This is a label-duplication count, not a count of duplicate rows or proof that all duplicates should be deleted.
+- Important correction: earlier reports using 166 category rows / 58 top-level categories are stale relative to the current live database. The current live audit returns 243 / 66. Previous 4,187 product count remains the active count, while total rows now 4,200.
+
+### Live root distribution
+Top-level category counts below are direct-root product counts, not descendant totals:
+- Automotive Accessories: 288 direct active products across 3 root rows.
+- Spare Parts: 136 direct active products.
+- Tools & Workshop: 133 direct active products across 2 root rows.
+- Trailer & Canopy: 64 direct active products.
+- Car Audio: 39 direct active products across 2 root rows.
+- Camping / Leisure / Outdoors: 9 direct active products.
+- Marine Spares & Accessories: 5 direct active products.
+- Electrical: 3 direct active products across 2 root rows.
+- Alarms & Security: 2 direct active products across 2 root rows.
+- Legacy top-level 4X4 Outdoor: 0 direct active products.
+- Remaining legacy/specialist top-level categories: 0 direct active products in their root rows, though some have active products in descendants or could represent specialist classification candidates.
+
+### Evidence and safety conclusion
+- The live category tree is still materially different from the approved eight-root proposal. Four of the exact proposed root labels exist in the current live root set; other intended roots are represented by legacy alternatives/specialist categories and require SKU-level mapping, not name-only renaming.
+- Existing examples in CATEGORY_MAPPING_REVIEW remain relevant: mechanical brake/cooling parts must not be routed to electrical solely due supplier metadata; hand tools should map to tools; aerials require product-use evidence.
+- Duplicate category labels, duplicate root rows, specialist roots and category branches with products are not automatically safe to consolidate. Build a deterministic SKU-level proposed mapping with source evidence and explicit exception reasons, then obtain owner approval before any category writes.
+- No live category assignments, prices, stock, supplier data, checkout or Supabase configuration were changed.
+- Supabase changelog review: upcoming Nov 10 2026 removal of four legacy CBC-mode TLS 1.2 cipher suites affects Supabase HTTP API clients that only negotiate those obsolete suites. The project preview uses the Supabase HTTP API; retain a note to check TLS compatibility on older devices/clients before Nov 10. This is a compatibility watch, not a confirmed failure. Source: https://supabase.com/changelog/cbc-tls-ciphers-deprecated
