@@ -419,6 +419,20 @@ jobs:
             }
             if((hostedSafeData.asc.records||[]).length!==50||(hostedSafeData.ac.records||[]).length<1||(hostedSafeData.pw.records||[]).length<1||(hostedSafeData.ec.records||[]).length!==33)throw new Error('Hosted sanitized supplier preview data is incomplete');
             console.log('HOSTED_SANITIZED_SUPPLIER_DATA_PASS '+JSON.stringify({planetworldRows:hostedSafeData.pw.records.length,ascRows:hostedSafeData.asc.records.length,audioConnectionsRows:hostedSafeData.ac.records.length,electrocityRows:hostedSafeData.ec.records.length,reviewRouteStatus:hostedReviewRoute.status()}));
+            const electrocityTest=await browser.newPage({viewport:{width:390,height:844}});
+            await electrocityTest.goto('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-category.html?id=c7980122-f760-4e65-b0e0-aecce4181f05',{waitUntil:'domcontentloaded',timeout:60000});
+            await electrocityTest.locator('a[href*="electrocity_category=Ignition%20Looms"]').waitFor({state:'visible',timeout:30000});
+            await electrocityTest.locator('a[href*="electrocity_category=Ignition%20Looms"]').click();
+            await electrocityTest.waitForURL(/electrocity_category=Ignition%20Looms/,{timeout:15000});
+            await electrocityTest.locator('.card').first().waitFor({state:'visible',timeout:30000});
+            const loomCards=await electrocityTest.locator('.card').count();
+            if(loomCards!==3)throw new Error('Electrocity Ignition Looms subcategory should contain exactly three catalogue references; got '+loomCards);
+            await electrocityTest.locator('.card a').first().click();
+            await electrocityTest.waitForURL(/electrocity_id=/,{timeout:15000});
+            const loomDetail=await electrocityTest.locator('#root').innerText();
+            if(!loomDetail.includes('Ignition Loom CS-112040')||!loomDetail.includes('Catalogue reference: 435013')||!loomDetail.includes('Availability to confirm')||await electrocityTest.locator('#add').count())throw new Error('Electrocity product detail is not quote-only/source-faithful: '+loomDetail.slice(0,700));
+            console.log('ELECTROCITY_CATEGORY_SUBCATEGORY_PRODUCT_PASS '+JSON.stringify({loomCards,detail:loomDetail.slice(0,350)}));
+            await electrocityTest.close();
             const checkoutTest=await browser.newPage({viewport:{width:390,height:844}});
             await checkoutTest.goto('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
             await checkoutTest.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
