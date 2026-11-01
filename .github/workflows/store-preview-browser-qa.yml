@@ -246,7 +246,7 @@ jobs:
             await page.waitForFunction(()=>Array.isArray(window.gwPlanetworldSearchRows)&&window.gwPlanetworldSearchRows.length===3385,{timeout:30000});
             await page.waitForFunction(()=>Array.isArray(window.gwVerifiedCatalogueRows)&&window.gwVerifiedCatalogueRows.some(p=>(p.modelNumber||'').toUpperCase()==='HCE-C2100RD'),{timeout:30000});
             await page.locator('#partSearchQuery').fill('HCE-C2100RD');
-            await page.waitForFunction(()=>document.querySelectorAll('#partSearchResults [data-quote-pw]').length>0,{timeout:15000});
+            await page.waitForFunction(()=>document.querySelectorAll('#partSearchResults [data-quote-pw]').length>0,{timeout:15000,waitUntil:'domcontentloaded'});
             const planetworldSearchText=await page.locator('#partSearchResults').innerText();
             if(!planetworldSearchText.includes('Model / code: HCE-C2100RD')||!planetworldSearchText.includes('VIEW MANUFACTURER PAGE')||!planetworldSearchText.includes('REQUEST QUOTE'))throw new Error('Verified Planetworld model Part Search integration failed: '+planetworldSearchText);
             console.log('PLANETWORLD_VERIFIED_MODEL_SEARCH_PASS '+planetworldSearchText.slice(0,500));
@@ -294,8 +294,8 @@ jobs:
             const audioAreas=await page.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!audioAreas.includes(label))throw new Error('Audio area navigation missing '+label);
             await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-            await page.waitForURL(/audio_area=car/,{timeout:15000});
-            await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
+            await page.waitForURL(/audio_area=car/,{timeout:15000,waitUntil:'domcontentloaded'});
+            await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000,waitUntil:'domcontentloaded'});
             // Verify the required main-store Audio → departments → brand → component journey.
             const audioShop=await browser.newPage({viewport:{width:390,height:844}});
             const audioShopErrors=[],audioShopConsoleErrors=[];
@@ -369,13 +369,13 @@ jobs:
             const categoryRoute=await hostedCategory.getAttribute('data-route');
             if(!categoryRoute||!categoryRoute.includes('preview-category.html?id='))throw new Error('Homepage category button must navigate to its full category landing page');
             await hostedCategory.click();
-            await hosted.waitForURL(/preview-category\.html\?id=/,{timeout:15000});
+            await hosted.waitForURL(/preview-category\.html\?id=/,{timeout:15000,waitUntil:'domcontentloaded'});
             const rootCategoryText=await hosted.locator('body').innerText();
             if(!rootCategoryText.includes('Auto Electrical Spares'))throw new Error('Auto Electrical Spares category landing page did not open');
             const ignitionCategoryLink=hosted.locator('a[href*="id=c7980122-f760-4e65-b0e0-aecce4181f05"]').first();
             await ignitionCategoryLink.waitFor({state:'visible',timeout:20000});
             await ignitionCategoryLink.click();
-            await hosted.waitForURL(/preview-category\.html\?id=c7980122-f760-4e65-b0e0-aecce4181f05/,{timeout:15000});
+            await hosted.waitForURL(/preview-category\.html\?id=c7980122-f760-4e65-b0e0-aecce4181f05/,{timeout:15000,waitUntil:'domcontentloaded'});
             const ignitionCategoryText=await hosted.locator('body').innerText();
             if(!['Ignition Modules','Ignition Coils','Ignition Looms'].every(label=>ignitionCategoryText.includes(label)))throw new Error('Ignition Spares landing page does not preserve supplier subcategories');
             const hostedPartSearch=await browser.newPage({viewport:{width:390,height:844}});
@@ -421,7 +421,7 @@ jobs:
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
             await hosted.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
             await hosted.waitForURL(/audio_area=car/,{waitUntil:'domcontentloaded',timeout:15000});
-            await hosted.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
+            await hosted.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000,waitUntil:'domcontentloaded'});
             const hostedWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth,bodyScrollWidth:document.body.scrollWidth,offenders:[...document.querySelectorAll('body *')].map(el=>{const r=el.getBoundingClientRect();return {tag:el.tagName,id:el.id,className:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,overflow:getComputedStyle(el).overflowX}}).filter(x=>x.right>innerWidth+2||x.left< -2||x.width>innerWidth+2).sort((a,b)=>b.width-a.width).slice(0,12)}));
             if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
             await hosted.setViewportSize({width:360,height:800});
@@ -442,12 +442,12 @@ jobs:
             await electrocityTest.goto('https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev/preview-category.html?id=c7980122-f760-4e65-b0e0-aecce4181f05',{waitUntil:'domcontentloaded',timeout:60000});
             await electrocityTest.locator('a[href*="electrocity_category=Ignition%20Looms"]').waitFor({state:'visible',timeout:30000});
             await electrocityTest.locator('a[href*="electrocity_category=Ignition%20Looms"]').click();
-            await electrocityTest.waitForURL(/electrocity_category=Ignition%20Looms/,{timeout:15000});
+            await electrocityTest.waitForURL(/electrocity_category=Ignition%20Looms/,{timeout:15000,waitUntil:'domcontentloaded'});
             await electrocityTest.locator('.card').first().waitFor({state:'visible',timeout:30000});
             const loomCards=await electrocityTest.locator('.card').count();
             if(loomCards!==3)throw new Error('Electrocity Ignition Looms subcategory should contain exactly three catalogue references; got '+loomCards);
             await electrocityTest.locator('.card a').first().click();
-            await electrocityTest.waitForURL(/electrocity_id=/,{timeout:15000});
+            await electrocityTest.waitForURL(/electrocity_id=/,{timeout:15000,waitUntil:'domcontentloaded'});
             const loomDetail=await electrocityTest.locator('#root').innerText();
             if(!loomDetail.includes('Ignition Loom CS-112040')||!loomDetail.includes('Catalogue reference: 435013')||!loomDetail.includes('Availability to confirm')||await electrocityTest.locator('#add').count())throw new Error('Electrocity product detail is not quote-only/source-faithful: '+loomDetail.slice(0,700));
             console.log('ELECTROCITY_CATEGORY_SUBCATEGORY_PRODUCT_PASS '+JSON.stringify({loomCards,detail:loomDetail.slice(0,350)}));
@@ -464,7 +464,7 @@ jobs:
             });
             if(!cartResult.ok)throw new Error('Preview local cart test failed: '+JSON.stringify(cartResult));
             await checkoutTest.locator('.checkoutNow').click();
-            await checkoutTest.waitForURL(/preview-checkout\.html/,{timeout:15000});
+            await checkoutTest.waitForURL(/preview-checkout\.html/,{timeout:15000,waitUntil:'domcontentloaded'});
             const eftAudit=await checkoutTest.evaluate(()=>{
               const select=document.getElementById('paymentMethod');
               return {method:select?.value,options:[...select.options].map(x=>({value:x.value,disabled:x.disabled})),notice:document.querySelector('.notice')?.innerText||'',whatsappHref:document.getElementById('whatsapp')?.href||'',bankDetailsVisible:/account number|bank account|branch code/i.test(document.body.innerText)};
