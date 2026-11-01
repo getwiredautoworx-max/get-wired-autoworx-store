@@ -1,3 +1,14 @@
+## AUDIO PAGE STOREFRONT DESIGN ALIGNMENT — 2026-11-01 (SAST)
+
+- **Owner defect confirmed:** `preview-audio.html` used a separate minimal light-grey page with its own header and no matching homepage footer/mobile navigation. The prior supplier taxonomy correction did not satisfy the requirement that Audio be visually part of the same store.
+- **Corrected candidate:** rebuilt `preview-audio.html` using the exact shared homepage stylesheet and matching storefront top bar, branded header/logo, navigation, page-width/section/title system, footer, and fixed mobile navigation. Audio content now uses matching storefront cards and responsive grid styling; department → brand → product type → product flow retained. Added a working “change department” control.
+- **Latest Audio page commits:** `60239cb1e7cff9a06b2998bab145c43c86c25f07` (shared shell/style) and `23923014660db7e12d5909d6a3a9d6729d596173` (matching department/product card classes and change-department handler). Current candidate branch: `integration/current-main-refresh-2026-11-01`, PR #142.
+- **Source-level checks:** shared homepage CSS/header/footer/mobile-nav present; department container precedes brand/product selectors; snapshot date disclosure retained; matching shared card classes and department-reset handler present.
+- **Not yet verified:** no browser render, desktop/mobile screenshot comparison, audio data-load check, or exact-head automated QA has run after these commits. No new preview deployment has been confirmed. Do not call this defect fully closed until exact-head desktop/mobile browser QA passes and preview URL is checked.
+- **Protected boundaries unchanged:** PR #142 remains draft/unmerged. No production deployment, Axxess/DNS, Supabase writes, live category/catalogue/price/stock changes, or checkout/payment activation.
+
+---
+
 ## LATEST CURRENT-MAIN REBASE + FINAL CANDIDATE TESTS — 2026-11-01 (SAST)
 
 - Main head at this checkpoint: `7fde2eebca463a485f6fc66d4e5532901e8a6137`. Both active candidate branches were refreshed from that exact main head, preserving the latest 2-Nov target and handover updates.
