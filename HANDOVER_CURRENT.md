@@ -485,3 +485,17 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Latest deployment + narrowed privacy/root guard run `41323835652` is in progress at this update. Do not mark the current deployed candidate fully accepted until its privacy and hosted root/shared-shell steps finish.
 - Stable non-production preview: https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html.
 - Remaining acceptance: owner must check the latest hosted preview on a real phone; checkout remains disabled and no Instant EFT transaction is enabled. The preview supports WhatsApp-only part requests; manual Instant EFT remains a separate test/owner-instruction gate. No production merge/deploy, Axxess/DNS, payment credential, Supabase production write, live category/price/stock change or supplier activation/import occurred.
+
+
+## DEPLOYED PREVIEW ROOT/PRIVACY PASS + INSTANT EFT TEST PREFERENCE — 2026-11-01 18:04 SAST
+
+- Latest active branch head at this update: `ac63c1b3e274ec0a56595274f74ed8984c59ae1c` plus follow-on browser-test-only commits; PR #142 remains the only active storefront candidate.
+- Read-only category audit route added to the preview store so held-SKU regression tests can inspect all descendants of a root without changing the customer navigation flow. Customer root buttons still open dedicated category/subcategory pages.
+- Preview checkout now offers `Instant EFT (manual)` as the first test preference. The preference is included in the WhatsApp enquiry draft. No bank details, account inputs, live payment link, Supabase write, order submission or stock reservation are enabled. PayFast/PayJustNow remain deferred.
+- Static tests updated to assert that Instant EFT remains a non-submitting WhatsApp preference. Browser test exercises the dropdown, WhatsApp summary and no-payment confirmation.
+- **Latest preview deployment run `41324269548`: SUCCESS.** Deployed ASC preview privacy check PASS (50 records; internal source metadata excluded; source PDFs/handover blocked). Hosted root and bright shared shell check PASS, including all eight approved root labels and shared light CSS.
+- Public SKU exposure audit run `41324269462`: PASS.
+- Populated browser QA run `41324293006` on head `c9c3a7666f22ed5c5f353fe7f32fff5e4c335c53`: Audio and ASC source/package checks PASS; populated browser run was still in progress at this handover update. It includes the updated descendant held-SKU audit route and Instant EFT preview checkout test. Do not mark it passed until run completes.
+- Prior browser failure `41324043287` was caused by the old test still clicking categories as same-page expanders after the customer flow had correctly changed to dedicated pages. The test was rewritten to use the read-only descendant audit route; no customer navigation rollback was made.
+- Current stable non-production preview: https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html.
+- Still not production/transaction-ready: 565 existing products remain outside the eight approved roots pending evidence/owner review; ASC's 50-record pilot is not a full supplier-catalogue import; real phone acceptance is outstanding; Instant EFT is a manual enquiry preference only, not an active bank-transfer checkout. No production merge/deploy, Axxess/DNS, live stock/price/category write, supplier activation, or Supabase production write occurred.
