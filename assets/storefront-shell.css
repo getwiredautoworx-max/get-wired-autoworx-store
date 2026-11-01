@@ -46,3 +46,16 @@ html,body{background:#f3f6fa!important;color:#173650!important}
 .empty,.error{background:#fff!important;color:#425d72!important;border-color:#d5e0e9!important}
 .product button,.detailActions button,.add{background:#087fce!important;color:#fff!important}
 #gwPreviewNotice{background:#fff4cf!important;color:#5a4300!important;border-color:#e0c36e!important}
+
+/* Shared light treatment for the dedicated category, product-list and product-detail routes. */
+.header{background:rgba(255,255,255,.98)!important;border-bottom:1px solid #d5e0e9!important;color:#173650!important}
+.head{color:#173650!important}
+.back{background:#fff!important;color:#173650!important;border-color:#9dbbd0!important}
+.search input,.tools input,.tools select{background:#fff!important;color:#173650!important;border-color:#1688d0!important}
+.wrap,.gwPageMain{color:#173650!important}
+.crumb,.count,.title p,.card-count,.muted{color:#425d72!important}
+.title{border-bottom-color:#d5e0e9!important}
+.title h1,.grid .card h2,.card h2,.card .name{color:#12344f!important}
+.grid .card,.card{background:#fff!important;border:1px solid #d5e0e9!important;color:#173650!important}
+.card-art{background:linear-gradient(135deg,#eaf5fc,#d8eaf6)!important}
+.arrow{color:#087fce!important}
