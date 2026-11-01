@@ -1,0 +1,66 @@
+name: Public Preview Data Exposure Guard
+
+on:
+  pull_request:
+    branches:
+      - main
+      - integration/current-main-refresh-2026-11-01
+    paths:
+      - '.assetsignore'
+      - 'wrangler.toml'
+      - 'functions/**'
+      - '.github/workflows/public-preview-data-exposure-guard.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  deployed-preview-privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wait for the branch Pages preview to respond
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
+          ready=0
+          for attempt in $(seq 1 24); do
+            code=$(curl -sS -o /tmp/store.html -w '%{http_code}' "$BASE/store.html" || true)
+            if [ "$code" = '200' ] && grep -qi 'Get Wired AutoWorx' /tmp/store.html; then
+              ready=1
+              break
+            fi
+            sleep 5
+          done
+          if [ "$ready" != '1' ]; then
+            echo "Branch preview did not become ready; last HTTP status: ${code:-none}"
+            exit 1
+          fi
+          preview_code=$(curl -sS -o /tmp/preview-store.html -w '%{http_code}' "$BASE/preview-store.html")
+          test "$preview_code" = '200' || { echo "Preview storefront route returned $preview_code"; exit 1; }
+          echo "PAGES_BRANCH_PREVIEW_RESPONDS_PASS"
+
+      - name: Verify supplier source, pricing and handover files are not publicly served
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
+          check_absent() {
+            path="$1"
+            marker="$2"
+            curl -sS --path-as-is "$BASE$path" -o /tmp/guard-body -D /tmp/guard-headers
+            if grep -aEqi "$marker" /tmp/guard-body; then
+              echo "PUBLIC_DATA_EXPOSURE: $path contains blocked marker $marker"
+              exit 1
+            fi
+            echo "BLOCKED_OR_NOT_PUBLISHED_PASS $path"
+          }
+          check_absent '/assets/planetworld-catalogue-preview.json' 'sourceWorkbooks|indicativePrice|hasStock'
+          check_absent '/assets/audio-connections-catalogue-preview.json' 'indicativePrice|sourceFile|dealer'
+          check_absent '/assets/asc-catalogue-pilot-preview.json' 'source_file|internal_sku|source_image_pairing'
+          check_absent '/preview-planetworld.html' 'Planetworld Catalogue Preview'
+          check_absent '/HANDOVER_CURRENT.md' 'Current Execution Handover'
+          check_absent '/suppliers/Audio%20Connections/Sony%20Mobile%20ES%20Dealer%20Price%20List%20Sept%2026.pdf' '%PDF-'
+          check_absent '/ASC-%20Aerials%20(1).pdf' '%PDF-'
+          echo "PUBLIC_PREVIEW_DATA_EXPOSURE_GUARD_PASS"
