@@ -54,3 +54,21 @@ if (html.includes("ASC catalogue stock verified") || html.includes("ASC supplier
   throw new Error("Preview must not imply supplier stock verification");
 }
 console.log("ASC_CATALOGUE_NAVIGATION_PASS: six source families mapped into existing approved storefront categories; virtual catalogue filters and unverified-data messaging present.");
+
+const sourceFiles=[
+ 'ASC- Aerials (1).pdf','ASC- Automotive Sensors (1).pdf','ASC- Automotive Switches (1).pdf',
+ 'ASC- Automotive globes (1).pdf','ASC- Car Mats (1).pdf','ASC- Fuel Pumps (1).pdf'
+];
+for(const file of sourceFiles) if(!fs.existsSync('suppliers/ASC/'+file)) throw new Error('Missing original ASC source PDF '+file);
+const manifest=JSON.parse(fs.readFileSync('catalogue-review/asc-catalogue-extraction/asc-source-manifest.json','utf8'));
+if(manifest.source_count!==6||manifest.sources.length!==6) throw new Error('ASC source manifest must contain six originals');
+const summary=JSON.parse(fs.readFileSync('catalogue-review/asc-catalogue-extraction/asc-extraction-summary.json','utf8'));
+if(summary.length!==6||summary.reduce((n,x)=>n+Number(x.page_count||0),0)!==72) throw new Error('ASC extraction summary must cover all 72 source pages');
+const pageReview=fs.readFileSync('catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv','utf8');
+if(!pageReview.includes('ASC- Aerials (1).pdf')||!pageReview.includes('ASC- Fuel Pumps (1).pdf')) throw new Error('ASC page-level OCR review is incomplete');
+const codeCandidates=fs.readFileSync('catalogue-review/asc-catalogue-extraction/asc-ocr-code-candidates-review-only.csv','utf8');
+if(codeCandidates.split(/\\r?\\n/).filter(Boolean).length<20||!codeCandidates.includes('UNVERIFIED_OCR_CANDIDATE')) throw new Error('ASC OCR candidate index missing or not marked unverified');
+const pilot=fs.readFileSync('catalogue-review/asc-catalogue-extraction/asc-product-pilot-review-only.csv','utf8').trim().split(/\\r?\\n/);
+if(pilot.length!==1) throw new Error('Unverified OCR must not be promoted into approved product rows');
+for(const file of ['asc-image-match-review-only.csv','asc-exceptions-review-only.csv']) if(!fs.existsSync('catalogue-review/asc-catalogue-extraction/'+file)) throw new Error('Missing ASC review register '+file);
+
