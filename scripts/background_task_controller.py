@@ -20,6 +20,7 @@ WORKFLOWS = [
     "catalogue-image-audit.yml",
     "public-sku-exposure-audit.yml",
     "refresh-category-snapshot.yml",
+    "store-production-qa.yml",
     "storefront-smoke.yml",
     "prepare-axxess-package.yml",
     "cloudflare-pages-deploy.yml",
