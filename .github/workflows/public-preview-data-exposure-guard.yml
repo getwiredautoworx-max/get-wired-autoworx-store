@@ -8,6 +8,7 @@ on:
       - '.assetsignore'
       - 'wrangler.toml'
       - 'functions/**'
+      - 'scripts/build-cloudflare-pages-public.py'
       - '.github/workflows/public-preview-data-exposure-guard.yml'
   pull_request:
     branches:
