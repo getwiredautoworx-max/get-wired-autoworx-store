@@ -332,3 +332,14 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Searched the connected Gmail account for recent ASC attachments. Found one ASC sender thread dated 2026-10-28 (`sales11@accessoriesspares.co.za`, subject `Fw: STOCK ARRIVALS/BUYERS GUIDE`) with attachments including `November Buyer's Guide.pdf`, `1003-New Arrivals.pdf`, `1004-Stock Arrivals.pdf`, `1005-Stock Arrivals.pdf`, `1006-Stock Arrivals.pdf`, `1007-Stock Arrivals.pdf`, `ASC_Shock_Your_Mind_All_Items_Oct2026.pdf`, and `ASC_Customer_Rewards_Oct2026.pdf`.
 - Searched specifically for ASC attachments received after 2026-10-30; no matching post-reset attachment emails were found. The 2026-10-28 guide predates the 30-Oct source reset and must not silently be treated as the requested new post-reset test source. Gmail connector exposes attachment metadata but not attachment bytes in the available actions.
 - Owner input needed for ASC pilot: upload the intended new post-reset catalogue PDF bytes. If the 2026-10-28 `November Buyer's Guide.pdf` is actually the intended test source despite predating the reset, owner must explicitly confirm that and upload that exact PDF. Do not ask for ASC authorisation; it is already granted.
+
+
+
+## PRODUCT-CODE CONTRAST FIX COMMITTED TO PREVIEW CANDIDATE — 2026-11-01 11:00 SAST
+
+- Owner-reported defect: product codes/SKUs were difficult to read against the dark storefront background.
+- **Code change committed** to existing candidate branch `integration/current-main-refresh-2026-11-01`: commit `8569cbe359c373b35e4db550f147ff6cf969538b`, file `preview-store.html`.
+- Added a final-cascade, preview-only CSS override for product-card SKUs, product-detail SKUs, verified-catalogue SKU/model labels and Part Search result metadata. Foreground is now near-white (`#e2edf7`), bold, fully opaque, with a subtle dark text shadow. Dark backgrounds and product/catalogue data are unchanged.
+- This is an isolated preview candidate change; no production file, catalogue, price, stock, category, supplier, payment or Supabase data was changed.
+- **Verification status:** source insertion and target selectors confirmed by read-back before commit. No workflow run was returned for the new commit at the time of this update; browser/contrast regression and hosted preview verification remain outstanding. Do not claim the visual defect is fixed until exact-head preview QA passes and the owner confirms on phone.
+- Continue next with exact-head PR checks / local static regression, then the shared storefront-shell and Audio navigation defects recorded in the current owner instructions. Keep all PRs draft/unmerged and production HOLD.
