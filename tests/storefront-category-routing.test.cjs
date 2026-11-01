@@ -20,6 +20,7 @@ const previewCategory=read('preview-category.html');
 const previewHome=read('preview-store.html');
 const planetworld=read('preview-planetworld.html');
 const audioPreview=read('preview-audio.html');
+const previewCheckout=read('preview-checkout.html');
 const pagesBuilder=read('scripts/build-cloudflare-pages-public.py');
 const css=read('assets/storefront-shell.css');
 for(const p of ['index-new.html','category.html','products.html','product.html','preview-store.html','preview-audio.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']){
@@ -56,6 +57,9 @@ for(const p of ['products.html','preview-products.html','product.html','preview-
  assert(s.includes('/functions/v1/product-image?sku=')&&s.includes('assets/product-image-pending.svg'),p+' must use exact-SKU image lookup with a neutral fallback');
 }
 assert(audioPreview.includes('assets/product-image-pending.svg'),'Audio product preview cards must use neutral placeholders');
+assert(previewCheckout.includes('Instant EFT — manual transfer'),'preview checkout must offer Instant EFT as the initial test method');
+assert(previewCheckout.includes('PayFast — setup pending')&&previewCheckout.includes('PayJustNow — setup pending'),'other payment gateways must remain visibly deferred');
+assert(previewCheckout.includes('no order or payment will be submitted')&&previewCheckout.includes('No bank details are displayed'),'preview EFT option must remain non-transactional and disclose no bank details');
 assert(audioPreview.includes('class="brightTheme"')&&audioPreview.includes('assets/storefront-shell.css'),'Audio page must use the brighter shared storefront shell');
 assert(!audioPreview.includes('safe(p.imageUrl)'),'Audio product preview must not render supplier image URLs as product photos');
 assert(planetworld.includes('assets/product-image-pending.svg'),'Planetworld product cards must use neutral placeholders');
