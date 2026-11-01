@@ -1,0 +1,42 @@
+[
+  {
+    "source_file": "(1)IGNITION MODULES.pdf",
+    "source_relative_path": "Ignition Looms-Coils-Modules/(1)IGNITION MODULES.pdf",
+    "source_sha256": "bd02e1eddd128f36780b9d5dd20e882b3043393702d343524a9c828d63e3fadc",
+    "page_count": 5,
+    "text_pages": 5,
+    "ocr_pages": 0,
+    "total_text_characters": 4017,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "IGNITION COILS.pdf",
+    "source_relative_path": "Ignition Looms-Coils-Modules/IGNITION COILS.pdf",
+    "source_sha256": "7ba67bb7e07482ff6ea23ccc1bfb49fe2c0e2d38c1f4b49cf654d8d27cefa599",
+    "page_count": 1,
+    "text_pages": 1,
+    "ocr_pages": 0,
+    "total_text_characters": 496,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "IGNITION LOOMS.pdf",
+    "source_relative_path": "Ignition Looms-Coils-Modules/IGNITION LOOMS.pdf",
+    "source_sha256": "97787459711da62265f5374f5cdb203b8d1f86631dbe8b4422f7599709605051",
+    "page_count": 1,
+    "text_pages": 1,
+    "ocr_pages": 0,
+    "total_text_characters": 417,
+    "extraction_status": "review-text-extracted"
+  },
+  {
+    "source_file": "converters.pdf",
+    "source_relative_path": "converters.pdf",
+    "source_sha256": "757c318831b1d446e8de0b89ada719db630f12cbdedf1f492ff955744c5e6d41",
+    "page_count": 1,
+    "text_pages": 1,
+    "ocr_pages": 0,
+    "total_text_characters": 465,
+    "extraction_status": "review-text-extracted"
+  }
+]
