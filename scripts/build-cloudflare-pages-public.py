@@ -53,6 +53,9 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
+    # The isolated preview domain root must open the approved storefront shell.
+    # This is output-only: production builds (GW_INCLUDE_PREVIEW_ROUTES != 1) keep index.html unchanged.
+    shutil.copy2(OUT / "preview-store.html", OUT / "index.html")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
