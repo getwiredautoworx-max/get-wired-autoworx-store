@@ -5,6 +5,7 @@ on:
     paths:
       - 'suppliers/ASC/*.pdf'
       - 'scripts/asc_contact_sheets.py'
+      - 'scripts/asc_product_card_crops.py'
       - '.github/workflows/asc-page-contact-sheets.yml'
 permissions:
   contents: write
@@ -21,13 +22,15 @@ jobs:
         run: python -m pip install --disable-pip-version-check pymupdf pillow
       - name: Render review-only page contact sheets
         run: python scripts/asc_contact_sheets.py
-      - name: Commit private review sheets to candidate branch
+      - name: Crop the 25 ASC source cards for internal preview
+        run: python scripts/asc_product_card_crops.py | tee /tmp/asc-product-crops.log
+      - name: Commit private review sheets and preview-only crops to candidate branch
         env:
           BRANCH: integration/current-main-refresh-2026-11-01
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalogue-review/asc-catalogue-extraction/contact-sheets-base64
+          git add catalogue-review/asc-catalogue-extraction/contact-sheets-base64 assets/asc-catalogue-pilot
           if git diff --cached --quiet; then
             echo "No contact-sheet changes."
           else
