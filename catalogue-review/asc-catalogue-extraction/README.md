@@ -18,3 +18,11 @@ Every OCR-derived value requires manual visual verification against the original
 
 
 Candidate branch note: this folder contains page-level OCR review only; item-level product verification is separate.
+
+
+## 25-product pilot update — 2026-11-01
+
+- 25 exact product descriptions, ASC codes and printed applications were visually checked against page 3 of the six original catalogues: 4 Aerials, 5 Sensors, 4 Ignition Switches, 4 Halogen Globes, 4 Toyota Carpet Mats, 4 BMW Electric Fuel Pumps.
+- `asc-product-pilot-review-only.csv` now contains 25 rows; `asc-image-match-review-only.csv` records 25 visually confirmed source-card photo/code pairings. Individual product image crops remain pending.
+- `assets/asc-catalogue-pilot-preview.json` carries these records into the isolated preview only. Price, stock, internal SKU and public SKU are null; cards show price on request and availability to confirm. No live product rows or database writes.
+- 63 additional OCR code tokens remain unverified and quarantined from the pilot.
