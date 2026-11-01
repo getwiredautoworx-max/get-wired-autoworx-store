@@ -21,7 +21,7 @@ REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
 ]
-PREVIEW_ASSET_FILES = ["audio-category-navigation.js", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json"]
+PREVIEW_ASSET_FILES = ["audio-category-navigation.js", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json"]
 FORBIDDEN_DIRS = {
     "suppliers", "catalogue-review", "catalogue-source", "catalogue-audits",
     "staging", "supabase", ".github", "android-owner-app", "apk-sales-intelligence",
