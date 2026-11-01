@@ -110,15 +110,15 @@ jobs:
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
             const category=page.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
             await category.click();
-            await page.locator('#shop').waitFor({state:'visible',timeout:20000});
-            await page.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
-            const firstProduct=page.locator('#allProductsGrid .product').first();
-            await firstProduct.click();
-            await page.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
-            const modalText=await page.locator('#productModal').innerText();
-            if(!modalText.trim())throw new Error('Product detail modal did not populate');
-            await page.locator('#modalClose').click();
-            await page.locator('#productModal').waitFor({state:'hidden',timeout:10000});
+            await page.waitForURL(/preview-category\\.html\\?id=/,{timeout:15000});
+            await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
+            const categoryLinks=await page.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
+            if(!categoryLinks.some(href=>href.startsWith('preview-products.html?category=')))throw new Error('Category landing page did not offer a product-listing route: '+JSON.stringify(categoryLinks));
+            const productRoute=categoryLinks.find(href=>href.startsWith('preview-products.html?category='));
+            await page.goto(new URL(productRoute,'http://127.0.0.1:4173/').toString(),{waitUntil:'domcontentloaded'});
+            await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
+            const productRouteCards=await page.locator('#grid .card').count();
+            if(productRouteCards<1)throw new Error('Subcategory product page did not render products');
             // Verify all 12 ASC catalogue pilot subcategories render the exact 50 visually reviewed source-page records.
             const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
             const ascPilotErrors=[];
@@ -232,9 +232,7 @@ jobs:
             await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
             await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap').length>=8,{timeout:60000});
             await audioShop.locator('#categoryGrid > .catWrap[data-filter="5ab55c53-eee3-41ce-ad48-04ad6df85181"] > .catBtn').click();
-            await audioShop.locator('#gw-audio-departments-link').waitFor({state:'visible',timeout:10000});
-            await audioShop.locator('#gw-audio-departments-link').click();
-            await audioShop.waitForURL(/preview-audio\.html/,{timeout:10000});
+            await audioShop.waitForURL(/preview-audio\.html/,{timeout:15000});
             audioShop.on('pageerror',e=>console.log('AUDIO_SHOP_PAGE_ERROR '+e.message));
             console.log('AUDIO_SHOP_PAGE_DEBUG '+JSON.stringify(await audioShop.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,tileCount:document.querySelectorAll('#departments .audioTile').length,departmentHtml:document.getElementById('departments')?.innerHTML||'',scripts:[...document.scripts].map(x=>({src:x.src,inlineLength:x.textContent.length}))})))+' pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors));
             await audioShop.waitForFunction(()=>document.querySelectorAll('#departments .audioTile').length===9,{timeout:30000}).catch(()=>{throw new Error('Audio department tiles did not render; pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors))});
