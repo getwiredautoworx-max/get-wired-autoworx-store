@@ -4,6 +4,7 @@ on:
     branches:
       - fix/approved-bright-shell-category-product-ux-2026-11-01-v3
     paths:
+      - "_redirects"
       - "preview-store.html"
       - "assets/storefront-shell.css"
       - "index-new.html"

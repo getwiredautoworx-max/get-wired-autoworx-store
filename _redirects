@@ -1,0 +1,15 @@
+# Block internal supplier, catalogue-review and operational source material on the Pages Git-integration preview.
+# Cloudflare Pages applies _redirects before serving a matching static asset.
+# The allowlisted Actions deployment also copies this file for consistent protection.
+/assets/planetworld-catalogue-preview.json /index.html 302
+/assets/audio-connections-catalogue-preview.json /index.html 302
+/assets/asc-catalogue-pilot-preview.json /index.html 302
+/preview-planetworld.html /index.html 302
+/HANDOVER_CURRENT.md /index.html 302
+/HANDOVER.md /index.html 302
+/suppliers/* /index.html 302
+/catalogue-review/* /index.html 302
+/catalogue-source/* /index.html 302
+/catalogue-audits/* /index.html 302
+/staging/* /index.html 302
+/supabase/* /index.html 302

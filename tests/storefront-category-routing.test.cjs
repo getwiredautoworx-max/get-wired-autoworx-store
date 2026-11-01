@@ -23,6 +23,7 @@ const audioPreview=read('preview-audio.html');
 const previewCheckout=read('preview-checkout.html');
 const pagesBuilder=read('scripts/build-cloudflare-pages-public.py');
 const css=read('assets/storefront-shell.css');
+const redirects=read('_redirects');
 for(const p of ['index-new.html','category.html','products.html','product.html','preview-store.html','preview-audio.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html']){
  const html=read(p);
  const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
@@ -73,4 +74,7 @@ assert(css.includes('color-scheme:light'),'shared shell must use light colour sc
 assert(css.includes('background:#f3f6fa!important'),'shared shell must use brighter page background');
 assert(css.includes('.gwTop .rating'),'Google Rating contrast rule missing');
 assert(previewHome.includes('.brightTheme .ratingbox{background:#fff!important'),'Google Rating on populated homepage must use a light, high-contrast panel');
+for(const path of ['/assets/planetworld-catalogue-preview.json','/assets/audio-connections-catalogue-preview.json','/assets/asc-catalogue-pilot-preview.json','/preview-planetworld.html','/HANDOVER_CURRENT.md','/suppliers/*','/catalogue-review/*','/catalogue-source/*','/catalogue-audits/*','/staging/*','/supabase/*']){
+ assert(redirects.includes(path+' /index.html 302'),'Cloudflare Pages must redirect protected source path '+path);
+}
 console.log('STOREFRONT CATEGORY / PLACEHOLDER / LIGHT-SHELL SOURCE TESTS: PASS (8 root routes, 4 product routes, preview root route, image policy, contrast rules)');
