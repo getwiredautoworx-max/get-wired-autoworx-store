@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const html = fs.readFileSync('preview-store.html','utf8');
+const categoryPage = fs.readFileSync('preview-category.html','utf8');
 const required = [
   ["ASC_CATALOGUE_CHILDREN", "ASC family navigation data"],
   ["Automotive Sensors", "sensor category"],
@@ -19,9 +20,11 @@ const required = [
   ["openAscCatalogueCategory", "catalogue category interaction"],
   ["ASC catalogue sections • source-led navigation", "source-led category labels without fuzzy product counts"],
   ["No unrelated store products are substituted", "safe empty state for unverified catalogue sections"],
-  ["wrap.classList.toggle('open')", "expandable root-category navigation"],
+  ["location.href='preview-category.html?id='", "homepage category buttons open dedicated category pages"],
   ["No visually verified pilot products are assigned to this subcategory yet", "honest empty-state messaging"]
 ];
+if(!categoryPage.includes("ASC_CATALOGUE_CHILDREN")||!categoryPage.includes("preview-store.html?asc_query=")) throw new Error("Dedicated category pages must preserve ASC source-led subcategories and route verified leaves to their exact preview records");
+if(!html.includes("new URLSearchParams(location.search)")||!html.includes("previewParams.get('asc_label')")) throw new Error("ASC subcategory links must open the matching preview-only catalogue records");
 for (const [needle,label] of required) {
   if (!html.includes(needle)) throw new Error("Missing " + label + " (" + needle + ")");
 }
