@@ -5375,3 +5375,45 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - The latest recorded exact-head QA checkpoint is successful, so do not claim Actions are still exhausted based only on the previous month's note. Current remaining minutes/storage have not been independently verified in this continuation.
 - No new Actions workflow, deployment, merge, live catalogue edit, Supabase write, supplier activation, Axxess upload, DNS change, or payment/stock change was performed during this checkpoint.
 - Release state: **preview acceptance recorded as passed on the tested source tree; production launch remains HOLD** pending the dependencies above and current-head revalidation if the PR has changed.
+
+
+## 48-HOUR TARGET — EXACT-HEAD QA RECONCILIATION — 2026-11-01 SAST
+
+### Exact current PR #140 state
+- Re-fetched PR #140 metadata directly from GitHub. It is OPEN, DRAFT, unmerged, base `main`, head branch `integration/planetworld-partsearch-clean-main-2026-11-01`, exact head `da463960345fda06c300f969920209c37da2986e`.
+- Exact-head workflow runs attached to `da463960345fda06c300f969920209c37da2986e` all completed with conclusion SUCCESS:
+  - Populated Store Preview Browser QA: run `41269869771`, job `populated-preview` SUCCESS.
+  - Free Catalogue Search Tests: run `41269869777`, job `catalogue-search` SUCCESS.
+  - Cloudflare Pages Public Package QA: run `41269869799`, job `public-package` SUCCESS.
+  - Public SKU Exposure Audit: run `41269869793`, job `audit` SUCCESS.
+  - Storefront Smoke Test: run `41269869780`, workflow SUCCESS; `detect-storefront-mode` SUCCESS and `smoke` SKIPPED because buttons-only mode was detected. Do not report the skipped smoke job as passed.
+  - Catalogue Image Audit: run `41269869973`, job `audit` SUCCESS.
+- This exact-head successful image audit and populated browser QA supersede the earlier recorded failed image-count assertion on the prior candidate head. The older success record for SHA `97d1094...` is not the evidence used for this reconciliation.
+- Run links:
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41269869771
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41269869777
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41269869799
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41269869793
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41269869780
+  - https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41269869973
+
+### Integration comparison and decision
+- Compared current `main` against exact PR head. Candidate is 13 commits ahead / 1 behind; GitHub reports `diverged`, mergeable=true, PR remains draft.
+- Reverse comparison confirms the sole main-only commit since the merge base changes only `HANDOVER_CURRENT.md` (21 additions, no storefront/workflow/catalogue code). The PR changed-file list contains 20 storefront, preview, test and workflow files and does not include `HANDOVER_CURRENT.md`.
+- Therefore the remaining divergence is a handover-only main commit, not missing storefront code. Do not blindly merge, force-push, or overwrite main's handover. Preserve the main handover when integration is approved. No merge was performed in this checkpoint.
+- The previous successful Pages deployment recorded at https://b47bb277.get-wired-autoworx-store.pages.dev and alias https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev is a preview deployment from an earlier commit; do not claim that deployment is built from exact head `da463960...` until a deployment run/commit mapping confirms it.
+
+### 2 November 2026 target — execution queue
+1. **P0 — Complete integration release review:** review the exact 20-file PR diff and preserve current main handover; establish an exact-head non-production Pages deployment and verify its commit/URL. Then prepare PR #140 for owner review; merge only after required review/approval and no regressions.
+2. **P1 — Category mapping evidence pack:** derive a SKU-level mapping/exception report for all 4,187 records using authoritative product/buyer-guide evidence; resolve duplicate Audio labels, legacy top-level category rows, empty child branches and orphan top-level 4X4. Keep proposal/staging taxonomy unapproved and make no Supabase/product assignment writes.
+3. **P1 — Product presentation:** exact-match and verify more Planetworld images/model identifiers where source evidence exists; leave unmatched rows with neutral placeholders and quote-only handling. No guessed image, model, price or current stock.
+4. **P1 — External mobile acceptance:** on a real phone, open the preview, exercise Audio navigation, Part Search and WhatsApp quote handoff; verify the prefilled recipient/message, but distinguish opening WhatsApp from a message actually sent. Record owner/customer acceptance separately.
+5. **P2 — Launch dependencies:** obtain ASC authorisation and source files for the separate ASC task; obtain explicit payment/security acceptance and production Axxess/domain/DNS authorisation. These remain owner-gated, not code-only tasks.
+6. **Quota:** six targeted exact-head workflows above did run successfully on 1-Nov. No Actions billing/remaining-minutes figure was available from the GitHub connector in this checkpoint; do not invent remaining minutes or storage.
+
+### Verified / open status
+- VERIFIED: exact-head catalogue-search tests, populated local/hosted browser QA job, public package QA, SKU exposure audit, catalogue image audit.
+- PARTIAL: Storefront Smoke workflow wrapper succeeded but its actual smoke job was skipped; exact-head Pages deployment is not yet tied to a deployment run.
+- OPEN: PR #140 integration approval, SKU-level category mapping, broader exact product images, real-phone WhatsApp/customer acceptance.
+- BLOCKED-OWNER: ASC authorisation/source files, live payment credentials and security sign-off, production Axxess/DNS/deployment approval.
+- Safety unchanged: no production deployment, merge, Axxess upload, DNS change, Supabase write, live stock/price/catalogue update, payment activation or supplier activation performed.
