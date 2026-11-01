@@ -98,6 +98,16 @@ if include_preview:
     dst = OUT / "assets/asc-catalogue-pilot-preview.json"
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(json.dumps(public_asc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    forbidden_public_keys = {
+        "sourceWorkbooks", "sourceSheets", "sourceRows", "indicativePrice", "hasStock",
+        "source_file", "source_page", "source_image_pairing", "internal_sku",
+        "public_sku", "image_url", "image_crop_status", "dealer_cost",
+    }
+    for label, dataset in (("Planetworld", public_planetworld), ("ASC", public_asc)):
+        for row in dataset.get("records", []):
+            leaked = forbidden_public_keys.intersection(row)
+            if leaked:
+                raise SystemExit(f"{label} public preview contains private fields: {sorted(leaked)}")
     print("PAGES_PREVIEW_SUPPLIER_DATA_SANITIZED_PASS")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
