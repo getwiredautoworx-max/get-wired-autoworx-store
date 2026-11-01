@@ -294,15 +294,13 @@ jobs:
             await imageProbe.close();
             // Ensure known oil-filler-cap records never appear in electrical/ignition or tool category listings.
             const categoryProbe=await browser.newPage({viewport:{width:390,height:844}});
-            await categoryProbe.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/',{waitUntil:'domcontentloaded',timeout:60000});
-            await categoryProbe.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
             const heldSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765'];
-            await categoryProbe.locator('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > .catBtn').click();
-            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
+            await categoryProbe.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47',{waitUntil:'domcontentloaded',timeout:60000});
+            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
             const electricalHeld=await categoryProbe.evaluate(skus=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>skus.includes(x)),heldSkus.filter(x=>x!=='GW-22B30765'));
             if(electricalHeld.length)throw new Error('Misclassified oil-filler-cap products remain in electrical categories: '+electricalHeld.join(','));
-            await categoryProbe.locator('#categoryGrid > .catWrap[data-filter="77297c18-67f6-452e-8918-c55d2ef6231a"] > .catBtn').click();
-            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
+            await categoryProbe.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html?root_category_id=77297c18-67f6-452e-8918-c55d2ef6231a',{waitUntil:'domcontentloaded',timeout:60000});
+            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
             const toolsHeld=await categoryProbe.evaluate(()=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>x==='GW-22B30765'));
             if(toolsHeld.length)throw new Error('Misclassified oil-filler-cap product remains in tools category');
             await categoryProbe.close();
