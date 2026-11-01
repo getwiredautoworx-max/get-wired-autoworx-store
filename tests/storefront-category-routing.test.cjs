@@ -35,6 +35,8 @@ assert(pagesBuilder.includes('"catalogue-search.js"')&&pagesBuilder.includes('"p
 assert(pagesBuilder.includes('"checkout.html", "checkout-v2.html", "category.html", "products.html", "product.html"'),'preview Pages package must omit production checkout and product routes');
 assert(!pagesBuilder.includes('asc-catalogue-pilot/asc-ma522.jpg'),'preview Pages package must not ship supplier source-card crops');
 assert(store.includes('src="preview-store.html"')&&store.includes('noindex,nofollow'),'test entry must load the no-checkout preview storefront only');
+assert(previewHome.includes('href="preview-checkout.html">PROCEED TO CHECKOUT')&&!previewHome.includes('window.add=function(){return false;}'),'preview must permit browser-local cart checkout simulation without a production checkout override');
+assert(previewHome.includes('preview-checkout.html')&&previewHome.includes('window.openSupplierSource=function()'),'preview cart must remain routed to the non-transactional checkout page');
 assert(!store.includes('checkout-fab'),'preview entry must not expose a floating checkout control');
 for(const [id,label] of roots){
  assert(index.includes(`category.html?id=${id}`),`main storefront route missing: ${label}`);
