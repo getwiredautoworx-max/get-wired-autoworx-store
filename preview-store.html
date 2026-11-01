@@ -1337,7 +1337,7 @@ function card(p){const stock=Number(p.stock_quantity||0);const img=productImageM
   {id:'asc-fuel-relays',name:'Fuel Pump Relays — All Makes',ascQuery:'fuel pump relay'}
  ]
 };
-function ascQueryMatches(p,query){const hay=(String(p.name||'')+' '+String(p.description||'')+' '+String(p.public_sku||'')).toLowerCase();const groups=String(query||'').toLowerCase().split('|').map(g=>g.split('+').map(t=>t.trim()).filter(Boolean)).filter(g=>g.length);return groups.some(group=>group.every(term=>hay.includes(term)))}
+
 function homeChildren(id){const out=children(id);if(id==='af2f8625-4f42-45e6-9f21-d571d7415893'){const four=categories.find(c=>c.id==='182423ec-ea46-43e4-bbe3-b8857b5a1583'&&c.active);if(four&&!out.some(c=>c.id===four.id))out.push(four)}(ASC_CATALOGUE_CHILDREN[id]||[]).forEach(c=>out.push(c));return out}function categoryArt(c){
  const raw=String((HOME_CATEGORY_LABELS[c.id]||c.name)||'').replace(/&amp;/g,'&').trim();
  const n=raw.toLowerCase();
@@ -1380,8 +1380,10 @@ function applyShopControls(list,scroll=true){
 }
 let ascPilotCache=null;
 function ascPilotCard(p){const photo='<img class="ascPilotSourceImage" src="assets/product-image-pending.svg" alt="Product image pending for '+esc(p.title)+'" loading="lazy">';return '<article class="product" data-asc-preview-id="'+esc(p.id)+'"><div class="prodImg">'+photo+'</div><h3>'+esc(p.title)+'</h3><p class="sku">Reference: '+esc(p.catalogue_reference)+'</p>'+(p.fitment_as_printed?'<p class="sku">Application: '+esc(p.fitment_as_printed)+'</p>':'')+'<div class="price">Price on request</div><div class="stockBadge confirm">Availability to confirm</div><button type="button" onclick="window.openPartSearch()">REQUEST THIS PART</button></article>'}
-async function openAscCatalogueCategory(query,label){
- const matches=products.filter(p=>ascQueryMatches(p,query));
+async function openAscCatalogueCategory(_query,label){
+ // Do not infer supplier subcategory membership from loose product-name keywords.
+ // Only visually reviewed ASC source-page pilot records may appear in this virtual leaf.
+ const matches=[];
  show(matches);
  const grid=document.getElementById('allProductsGrid');
  if(!grid)return;
