@@ -2,7 +2,7 @@
 
 **Supplier catalogue-use permission:** GRANTED (interim; owner-confirmed 27 October 2026).  
 **Technical integration:** OPEN — ASC IT's longer-term technical solution remains separate from catalogue-use permission.  
-**Current intake state:** Awaiting the new owner-supplied test catalogue requested after the 30 October source reset.
+**Current intake state (updated 1 November 2026):** Six new ASC catalogue PDFs were uploaded to this folder at 09:58 SAST, after the 30 October source reset. They are now the current post-reset test intake. Source PDFs remain unchanged; product-level extraction, taxonomy review and the 25-product pilot are in progress.
 
 ## What is authorised
 
@@ -12,7 +12,7 @@ This permission does not authorise live stock or price reconciliation/changes, p
 
 ## What belongs here
 
-- New ASC product-family catalogues supplied for the post-reset test intake.
+- New ASC product-family catalogues supplied for the post-reset test intake (currently Aerials, Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats and Fuel Pumps).
 - ASC product/vehicle application catalogues and catalogue supplements.
 - The original supplier file, preserved unchanged, plus a separate extraction manifest and review-only staged outputs.
 
@@ -35,3 +35,49 @@ Do not restore historical catalogues removed by the 30 October reset as if they 
 The existing customer-facing image cache under `assets/products_webp/` is intentionally retained. The Supabase `product-image` Edge Function uses these files to serve current product images.
 
 The existing product database, current stock quantities, supplier mappings, storefront code, non-ASC supplier catalogues and current image storage are not part of the ASC test-catalogue intake. Do not modify them as part of source preparation.
+
+
+## Post-reset source intake — 2026-11-01
+
+The following six source PDFs were uploaded to this folder in commit `2b631210759a469e9cca23a03c42aa9ff43d998a` at 09:58 SAST on 1 November 2026, after the 30 October reset:
+
+- `ASC- Aerials (1).pdf`
+- `ASC- Automotive Sensors (1).pdf`
+- `ASC- Automotive Switches (1).pdf`
+- `ASC- Automotive globes (1).pdf`
+- `ASC- Car Mats (1).pdf`
+- `ASC- Fuel Pumps (1).pdf`
+
+These replace the earlier “awaiting new source bytes” status. Their family names have been added to the non-production storefront navigation as a catalogue-led taxonomy. This is a navigation/layout integration only: no product rows, prices, images, stock quantities, supplier activation or database records have been created or changed. Automated review-only PDF text extraction has been added; exact product/SKU reconciliation, image matching and the ASC 25-product evidence pilot remain separate verification tasks. Keep every PDF intact and use only verified source data when building the pilot.
+
+
+## Extracted catalogue structure — 2026-11-01
+
+All six PDFs are scanned image documents. A review-only OCR pass was run across all **72 pages**; page text is saved in `catalogue-review/asc-catalogue-extraction/asc-page-text-review-only.csv`, with page-level source references. The extraction summary is in `asc-extraction-summary.json`.
+
+The catalogue contents pages identify these section counts:
+
+| Source catalogue | Pages | Contents sections |
+|---|---:|---:|
+| Aerials | 7 | 6 |
+| Automotive Sensors | 9 | 11 |
+| Automotive Switches | 22 | 16 |
+| Automotive Globes | 11 | 10 |
+| Car Mats | 11 | 14 |
+| Fuel Pumps | 12 | 18 |
+
+The storefront's virtual ASC navigation now reflects the catalogue contents-page headings, including vehicle-specific mat and fuel-pump groups. This is a category-navigation structure only. OCR text and all product codes/specifications must be checked against the original page images before any product is admitted to the 25-product pilot. OCR-derived records are not authoritative source truth.
+
+
+### Existing storefront category alignment
+
+To avoid duplicate parent tiles, the preview attaches the ASC contents headings to the existing storefront category IDs where those categories already exist:
+
+- Aerials sections → existing Aerials category under Car Audio & Entertainment.
+- Sensor sections → existing Automotive Sensors category under Auto Electrical Spares.
+- Switch sections → existing Automotive Switches category under Auto Electrical Spares.
+- Globe sections → existing Lighting category under Auto Electrical Spares.
+- Car Mat sections → existing Car Mats category under Automotive Accessories.
+- Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
+
+This is a non-database preview overlay. No live category rows or parent relationships were modified.
