@@ -325,7 +325,7 @@ jobs:
               const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
               const oilSkus=['GW-22B30765','GW-21132FDF','GW-0E5E3109','GW-E93CDF1E','GW-AA085120','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4'];
               const oilRows=rows.filter(p=>oilSkus.includes(p.public_sku));
-              const categoryChecks=['ff803cb3-b5e0-4d37-a1e1-41898ad0c00c','9cb78a57-342e-40fa-a4e4-a8f1fd40e6d2','c7980122-f760-4e65-b0e0-aecce4181f05'].map(id=>{const raw=rows.filter(p=>p.category_id===id).length;const quarantined=rows.filter(p=>p.category_id===id&&isPreviewCategoryQuarantined(p)).length;return {id,raw,quarantined,browseCount:categoryProductCount(id)}});
+              const categoryChecks=['ff803cb3-b5e0-4d37-a1e1-41898ad0c00c','9cb78a57-342e-40fa-a4e4-a8f1fd40e6d2','c7980122-f760-4e65-b0e0-aecce4181f05'].map(id=>{const idsForCategory=ids(id);const raw=rows.filter(p=>idsForCategory.includes(p.category_id)).length;const quarantined=rows.filter(p=>idsForCategory.includes(p.category_id)&&isPreviewCategoryQuarantined(p)).length;return {id,raw,quarantined,browseCount:categoryProductCount(id)}});
               return {
                 products:rows.length,
                 oilFillerFound:oilRows.length,
