@@ -1516,6 +1516,8 @@ document.getElementById('mobileCartLink').onclick=e=>{e.preventDefault();documen
  const previewParams=new URLSearchParams(location.search);
  const ascLabel=previewParams.get('asc_label');
  if(ascLabel)await openAscCatalogueCategory(previewParams.get('asc_query')||'',ascLabel);
+ const auditRootId=previewParams.get('root_category_id');
+ if(auditRootId)showCategory(products.filter(p=>ids(auditRootId).includes(p.category_id)));
  const featuredRows=await featuredTask;
  if(featuredRows.length)render('featuredGrid',featuredRows.slice(0,4));
  else render('featuredGrid',products.filter(p=>p.featured).slice(0,4));
