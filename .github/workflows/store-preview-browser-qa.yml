@@ -130,10 +130,11 @@ jobs:
                 await window.openAscCatalogueCategory(query,label);
                 const cards=[...document.querySelectorAll('#allProductsGrid [data-asc-preview-id]')];
                 const pilotText=cards.map(c=>c.innerText).join('\n');
-                return {label,count:cards.length,codes:cards.map(c=>c.querySelector('.sku')?.innerText||''),pilotText};
+                const imagesLoaded=await Promise.all(cards.map(async c=>{const img=c.querySelector('img.ascPilotSourceImage');if(!img)return false;try{await img.decode();return img.naturalWidth>0;}catch{return false;}}));
+                return {label,count:cards.length,codes:cards.map(c=>c.querySelector('.sku')?.innerText||''),pilotText,imagesLoaded};
               },{query,label});
               if(result.count!==expected)throw new Error('ASC pilot subcategory count mismatch: '+JSON.stringify({label,expected,result}));
-              if(!result.pilotText.includes('Price on request')||!result.pilotText.includes('Availability to confirm')||!result.pilotText.includes('SOURCE IMAGE MATCHED'))throw new Error('ASC pilot card release guards missing: '+label);
+              if(!result.pilotText.includes('Price on request')||!result.pilotText.includes('Availability to confirm')||result.imagesLoaded.length!==expected||result.imagesLoaded.some(x=>!x))throw new Error('ASC pilot card release guards missing: '+label);
               if(/ADD TO CART|In stock|Only \d+ left/i.test(result.pilotText))throw new Error('ASC pilot must not imply live stock or checkout: '+label);
               pilotAudit.push({label,count:result.count});
             }
@@ -300,7 +301,8 @@ jobs:
                 await window.openAscCatalogueCategory(query,label);
                 const cards=[...document.querySelectorAll('#allProductsGrid [data-asc-preview-id]')];
                 const pilotText=cards.map(c=>c.innerText).join('\n');
-                results.push({label,count:cards.length,expected,guarded:pilotText.includes('Price on request')&&pilotText.includes('Availability to confirm')&&pilotText.includes('SOURCE IMAGE MATCHED'),noStock:!(/ADD TO CART|In stock|Only \d+ left/i.test(pilotText))});
+                const imagesLoaded=await Promise.all(cards.map(async c=>{const img=c.querySelector('img.ascPilotSourceImage');if(!img)return false;try{await img.decode();return img.naturalWidth>0;}catch{return false;}}));
+                results.push({label,count:cards.length,expected,guarded:pilotText.includes('Price on request')&&pilotText.includes('Availability to confirm')&&imagesLoaded.length===expected&&imagesLoaded.every(Boolean),noStock:!(/ADD TO CART|In stock|Only \d+ left/i.test(pilotText))});
               }
               return results;
             },hostedPilotChecks);
