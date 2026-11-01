@@ -1,3 +1,13 @@
+## CATEGORY REVIEW QUEUE — READ-ONLY TRIAGE COMPLETED — 2026-11-01
+
+- Queried `public.category_review_queue` read-only: 198 rows; **0 blank product names** (corrects an older handover note that said 9); 10 weak/blank/`SPECIAL` guide classifications.
+- Prepared a private, review-only SKU-level proposal: `catalogue-audits/category-review-queue-proposal-2026-11-01.csv` and accompanying README. 63 rows receive conservative keyword-assisted root suggestions; 135 remain `MANUAL_REVIEW`. Every row requires owner review. High confidence is still not permission to write.
+- Mechanical/service parts (brakes, clutch cylinders, hoses, filters, pumps, engine/cooling parts) are not forced into the approved eight roots. 4X4 winch spares are proposed under Camping, with 4X4 retained as a nested child. No prices, dealer costs or stock are included.
+- This covers only the 198 flagged queue rows, not the full 4,187-active-product SKU mapping. No Supabase rows were changed.
+- Current live state remains read-only and production HOLD.
+
+---
+
 ## 17:00 TEST-READY PUSH — VERIFIED CURRENT CANDIDATE — 2026-11-01 SAST
 
 - Current PR #142 head verified from GitHub API: `0f6411556317f76e1719a9a8f51e38bfc69834a0`; PR remains open/draft/unmerged.
