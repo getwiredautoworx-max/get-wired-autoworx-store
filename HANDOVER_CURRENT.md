@@ -490,3 +490,36 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - **Important test/deployment distinction:** the browser workflow also tests an older hosted preview URL hard-coded in its hosted-check section (`65eca525.get-wired-autoworx-store.pages.dev`), not the newly deployed `13859fd4` PR #145 URL. The exact PR #145 candidate itself is browser-tested as a locally built package; the new hosted URL has deployment confirmation but has not yet been independently browser-click-tested in this run. A web fetch attempt could not access the Pages host. Owner should review the newly deployed URL on desktop and phone.
 - Separate Cloudflare Workers build for `bbd0c96` failed. This is distinct from the successful Cloudflare Pages preview deployment. Do not treat the Worker build as a Pages deployment failure or claim the Worker route is updated.
 - No production deployment, Axxess upload, DNS change, Supabase write, live catalogue/category/price/stock change, supplier activation, checkout/payment activation, or production release occurred. Preserve all existing release holds.
+
+
+## STOREFRONT UX CORRECTION — VERIFIED TEST CHECKPOINT (2026-11-01 SAST)
+
+**Current review branch:** `fix/approved-bright-shell-category-product-ux-2026-11-01-v3`  
+**Review PR:** https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/145 (OPEN / DRAFT / UNMERGED)  
+**Code head tested:** `bbd0c96fa4022fe3c0bc6b582dae6fc691cac530`  
+**Base:** `integration/current-main-refresh-2026-11-01`; compare confirmed 0 commits behind.
+
+### Implemented
+- `store.html` now loads the approved bright `preview-store.html` storefront in a full-screen iframe. The entry is explicitly noindex and has no floating checkout control; the preview guard keeps order/payment actions disabled.
+- The eight homepage category roots open full landing pages. Audio opens its dedicated bright `preview-audio.html` department hierarchy; the other roots open `preview-category.html`. Category navigation exits the iframe to a full page.
+- The four customer product listing/detail routes, populated homepage cards, Audio preview cards and Planetworld preview cards retain the neutral `assets/product-image-pending.svg` placeholder. Automatic SKU image fallback is disabled.
+- Google Rating, SKU/model codes, product names and descriptions have high-contrast text on light surfaces. Audio uses the shared storefront stylesheet plus matching light-theme overrides.
+- Preview-only Cloudflare package builder includes the required preview dependencies and placeholder asset; it excludes SKU WebP photos, ASC source-card crops, and production checkout/category/product routes. Browser QA serves the built `pages-public` package, not the raw repository root.
+
+### Verified browser and data checks
+- All eight category landing pages rendered their own subcategory/dept buttons at 390px: 12, 2, 5, 15, 2, 19, 5 and 3 respectively.
+- Actual `store.html` iframe click-through to category, product listing and product detail passed.
+- Audio hierarchy passed: 9 departments, 15 brands, 12 component groups; no horizontal overflow at 390px mobile or 1366px desktop.
+- Store preview populated with 4,187 product records and eight root categories. Part Search / verified Planetworld model lookup passed.
+- ASC pilot: 50 reviewed records across 12 subcategories; 72 source OCR pages. This remains review-only staging; no unverified catalogue rows were promoted to live stock.
+- Planetworld preview: 68 curated rows passed the pricing-floor audit; dealer cost is not exposed. All 68 product image slots render the neutral placeholder. Mobile/desktop overflow checks passed.
+- Exact-head GitHub checks passed:
+  - Store Preview Browser QA: run `41305842754`
+  - Free Catalogue Search acceptance: run `41305842760`
+  - Public SKU Exposure Audit: run `41305842809`
+- Inline JavaScript syntax regression checks cover the storefront, category, listing, product, Audio and Planetworld preview pages.
+
+### Release and privacy boundary
+- PR #145 remains draft and unmerged. No Axxess upload, DNS change, production deployment, Supabase write, live stock/price/catalogue import, or checkout/payment activation occurred.
+- **No public Pages preview was deployed.** The preview data bundle still contains Planetworld indicative-price and supplier-availability metadata. Do not publish that bundle publicly until it is sanitized or the owner explicitly approves that disclosure. The CI-built package was used only inside the private GitHub Actions test run.
+- This is a verified test candidate, not a production/customer-launch readiness claim. Owner visual acceptance and an approved preview-publication decision remain outstanding.
