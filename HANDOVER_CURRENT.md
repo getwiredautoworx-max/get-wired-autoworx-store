@@ -5209,3 +5209,14 @@ G. Checkout/payment and release boundary
 6. Complete real checkout/payment configuration only with owner-approved secure details and separate release approval.
 
 Do not label the store 95%, ready, launch-ready or customer-ready until the weighted score is at least 95% AND all critical preview acceptance gates (exact-head deployment, desktop/mobile browser pass, catalogue presentation, search, WhatsApp handoff and safe checkout journey) have evidence. ASC source and live payment activation must be reported separately if intentionally held outside preview scope.
+
+
+## 48-HOUR TARGET CONTINUATION — ACTIONS RUNNER RECHECK — 2026-11-01 05:25 SAST
+
+- Confirmed the latest main branch commit is `5cfdedba8f81b1954954edc2e2cfeb915f5bb9fa`; this is the handover checkpoint commit added at the start of this continuation.
+- GitHub Actions evidence after the 1-Nov reset: run `41256265742` (Background Task Controller, main, commit `f487abadae84b33f215cf38bbc1c1ad2c06fff3a`) completed successfully at 00:20 UTC. Its GitHub-hosted Ubuntu runner was assigned, checked out the repository, validated controller syntax, built the task checkpoint, and pruned obsolete generated artifacts. This proves a runner started successfully after the reset; it does NOT reveal the account's exact remaining monthly minutes or prove all PR test workflows can run.
+- The latest observed PR #139 test jobs are still failures from 31-Oct (e.g. run `41202823429` Free Catalogue Search Tests and `41202823441` Populated Store Preview Browser QA on `7adcbab...`). No fresh exact-head PR #139 Node/browser result has been confirmed as of this checkpoint. Do not equate the successful scheduled controller with successful storefront QA.
+- Current PR #139 comparison remains diverged: candidate branch 61 ahead / 18 behind `main`; merge base `dbe69f61bf468af313c3f3b749a73dc42992126b`. Candidate must be reconciled safely before new exact-head QA. Do not force-push or merge.
+- Quota status: the connected GitHub API access does not expose the account's remaining included Actions minutes/billing usage. The successful 1-Nov runner is encouraging evidence that runner allocation is no longer universally blocked, but remaining quota and the earlier 0.5GB artifact-storage pressure are not confirmed resolved. Check account Billing & licensing / Actions usage and artifact storage before a batch of workflows. Use one targeted test after reconciliation rather than rerunning the whole workflow suite.
+- Local environment check: Node.js v22.16.0, npm 10.9.2 and Git 2.47.3 are installed. However, this session has not yet obtained a verified local checkout of the private repository, so no Node regression test is claimed executed locally.
+- The prior 48-hour checkpoint file is available at `HANDOVER_UPDATE_2026-11-01_48H_TARGET_CHECKPOINT.md`. No production, Axxess, DNS, Supabase, live stock/prices, payment, or supplier activation changes made. ASC remains separate.
