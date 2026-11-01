@@ -2,7 +2,7 @@ name: Deploy Planetworld Audio Preview
 on:
   push:
     branches:
-      - integration/planetworld-partsearch-clean-main-2026-11-01
+      - disabled/legacy-preview-deploy
     paths:
       - "preview-store.html"
       - "preview-audio.html"
@@ -12,7 +12,6 @@ on:
       - "assets/planetworld-catalogue-preview.json"
       - "assets/planetworld-verified-models-preview.json"
       - "scripts/build-cloudflare-pages-public.py"
-      - ".github/workflows/deploy-planetworld-audio-preview.yml"
 permissions:
   contents: read
   deployments: write
