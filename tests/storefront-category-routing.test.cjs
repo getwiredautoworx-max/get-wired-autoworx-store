@@ -51,12 +51,14 @@ const ascHeadings=(previewHome.slice(ascStart,ascEnd).match(/name:'[^']+'/g)||[]
 assert(ascHeadings.length===76,'ASC navigation must include all 75 contents-page sections plus the Fuel Pumps parent tile');
 assert(previewHome.includes("preview-category.html?id="),'preview homepage must route main categories to category landing pages');
 assert(previewHome.includes("c.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'?'preview-audio.html'"),'Audio root must open its dedicated department hierarchy');
-assert(previewHome.includes('function productImageUrl(p)')&&previewHome.includes('/functions/v1/product-image?sku='),'homepage cards must use exact-SKU image lookup with neutral fallback');
+assert(previewHome.includes('function productImageUrl(p)')&&previewHome.includes('p&&p.image_url')&&previewHome.includes('/functions/v1/product-image?sku=')&&previewHome.includes('data-fallback'),'homepage cards must prefer supplied product images, then exact-SKU lookup, then neutral fallback');
 assert(previewHome.includes("assets/product-image-pending.svg"),'ASC preview cards must use neutral placeholders');
 for(const p of ['products.html','preview-products.html','product.html','preview-product.html']){
  const s=read(p);
  assert(s.includes('assets/product-image-pending.svg'),p+' must reference neutral placeholder');
  assert(s.includes('/functions/v1/product-image?sku=')&&s.includes('assets/product-image-pending.svg'),p+' must use exact-SKU image lookup with a neutral fallback');
+ if(p==='products.html'||p==='preview-products.html') assert(s.includes('p.image_url'),p+' must prefer the supplied product image URL before exact-SKU fallback');
+ else assert(s.includes('p.image_url')&&s.includes('primaryImage='),p+' detail must prefer the supplied product image URL before exact-SKU fallback');
 }
 assert(audioPreview.includes('assets/product-image-pending.svg'),'Audio product preview cards must use neutral placeholders');
 assert(previewCheckout.includes('Instant EFT — manual transfer'),'preview checkout must offer Instant EFT as the initial test method');
