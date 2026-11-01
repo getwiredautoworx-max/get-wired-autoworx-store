@@ -134,7 +134,7 @@ jobs:
               },{query,label});
               if(result.count!==expected)throw new Error('ASC pilot subcategory count mismatch: '+JSON.stringify({label,expected,result}));
               if(!result.pilotText.includes('Price on request')||!result.pilotText.includes('Availability to confirm')||!result.pilotText.includes('SOURCE IMAGE MATCHED'))throw new Error('ASC pilot card release guards missing: '+label);
-              if(/ADD TO CART|In stock|Only \d+ left/i.test(result.text))throw new Error('ASC pilot must not imply live stock or checkout: '+label);
+              if(/ADD TO CART|In stock|Only \d+ left/i.test(result.pilotText))throw new Error('ASC pilot must not imply live stock or checkout: '+label);
               pilotAudit.push({label,count:result.count});
             }
             if(ascPilotErrors.length)throw new Error('ASC pilot page errors: '+ascPilotErrors.join(' | '));
