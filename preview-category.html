@@ -75,7 +75,7 @@ function render(items,title,sub){
  document.getElementById('count').textContent=items.length+' options';
  document.getElementById('grid').innerHTML=items.length?items.map(c=>{
   const label=c.label||c.name;
-  const href=c.audioArea?'preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioArea):(c.audioBrand?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand):(c.audioGroup?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup):(c.isAllProducts?'preview-products.html?category='+encodeURIComponent(c.id):'preview-category.html?id='+encodeURIComponent(c.id))));
+  const href=c.electrocityCategory?'preview-products.html?electrocity_category='+encodeURIComponent(c.electrocityCategory):(c.audioArea?'preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioArea):(c.audioBrand?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand):(c.audioGroup?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup):(c.isAllProducts?'preview-products.html?category='+encodeURIComponent(c.id):'preview-category.html?id='+encodeURIComponent(c.id)))));
   const artMarkup=c.audioBrand?'<span class="brand-mark" aria-hidden="true">'+esc(String(label).slice(0,2).toUpperCase())+'</span>':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.style.background=\'linear-gradient(135deg,#dcebf6,#edf5fb)\'">';return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
  }).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>';
 }
@@ -107,6 +107,22 @@ if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&audioArea){
  document.getElementById('crumb').textContent=areaTitle+' / Brands';
  render(brands,areaTitle+' — CHOOSE A BRAND',items.length?'Only brands explicitly present in product specifications are listed. Products without a recorded brand are kept under “Brand not specified”.':'No current catalogue products match this area.');
  if(!items.length){document.getElementById('grid').innerHTML='<div class="empty">No products are currently matched to this area. Use “CAN’T FIND IT? SOURCE A PART” to ask us to source the item.</div>'}
+ return;
+}
+if(current&&current.id==='c7980122-f760-4e65-b0e0-aecce4181f05'){
+ const groups=[
+  {id:'ec-ignition-modules',label:'Ignition Modules',electrocityCategory:'Ignition Modules',count:26,description:'26 catalogue references • price and availability on request'},
+  {id:'ec-ignition-coils',label:'Ignition Coils',electrocityCategory:'Ignition Coils',count:2,description:'2 catalogue references • price and availability on request'},
+  {id:'ec-ignition-looms',label:'Ignition Looms',electrocityCategory:'Ignition Looms',count:3,description:'3 catalogue references • price and availability on request'}
+ ];
+ render(groups,current.name,'Browse the supplier catalogue groups separately. These are catalogue references, not live stock.');
+ return;
+}
+if(current&&current.id==='9cb78a57-342e-40fa-a4e4-a8f1fd40e6d2'){
+ const groups=[
+  {id:'ec-converters',label:'24V to 12V Step-Down Converters',electrocityCategory:'Converters',count:2,description:'10A and 15A catalogue references • price and availability on request'}
+ ];
+ render(groups,current.name,'Browse the supplier catalogue groups separately. These are catalogue references, not live stock.');
  return;
 }
 if(!current){const roots=ROOTS.map(([label,cid])=>{const c=byId.get(cid);return c&&total(c)>0?{...c,label,count:total(c)}:null}).filter(Boolean);render(roots,'SHOP BY CATEGORY','Choose a main category to continue.');return}if(total(current)===0){render([],'CATEGORY UNAVAILABLE','There are no active products assigned to this category yet. Please choose another category or use Search / WhatsApp.');return}document.title=current.name+' | Get Wired AutoWorx';document.getElementById('crumb').textContent=current.name;const children=cats.filter(c=>c.parent_id===current.id&&total(c)>0);const items=[];if((direct.get(current.id)||0)>0)items.push({id:current.id,label:'View '+(direct.get(current.id)||0)+' products in '+current.name,isAllProducts:true});children.forEach(c=>items.push({...c,count:total(c)}));if(children.length){render(items,current.name,'Choose products assigned directly to this category or browse a populated sub-category.');return}location.replace('preview-products.html?category='+encodeURIComponent(current.id))}catch(e){console.error('Category navigation load failed',e);document.getElementById('grid').dataset.error=String(e);document.getElementById('grid').innerHTML='<div class="error">Unable to load this category right now. Please try again.</div>'}}
