@@ -75,7 +75,7 @@ const pilotData=JSON.parse(fs.readFileSync('assets/asc-catalogue-pilot-preview.j
 const builder=fs.readFileSync('scripts/build-cloudflare-pages-public.py','utf8');
 if(pilotData.record_count!==25||pilotData.records.length!==25) throw new Error('ASC preview pilot must contain exactly 25 records');
 for(const p of pilotData.records){
- if(!p.preview_only||p.release_status!=='REVIEW_ONLY_NOT_LIVE'||p.source_page!==3||!p.supplier_sku||!p.source_file) throw new Error('ASC pilot row missing source evidence or preview-only guard');
+ if(!p.preview_only||p.release_status!=='REVIEW_ONLY_NOT_LIVE'||p.source_page!==3||!p.catalogue_reference||!p.source_file) throw new Error('ASC pilot row missing source evidence or preview-only guard');
  if(p.price!==null||p.stock_quantity!==null||p.internal_sku!==null||p.public_sku!==null) throw new Error('ASC pilot must not invent price, stock or internal/public SKU');
  if(!p.image_url||p.image_crop_status!=='SOURCE_CARD_CROP_REVIEWED'||!fs.existsSync(p.image_url)) throw new Error('ASC pilot source-card crop missing or not reviewed');
  if(!builder.includes(p.image_url.replace('assets/',''))) throw new Error('ASC pilot crop is not included in preview asset allowlist: '+p.image_url);
