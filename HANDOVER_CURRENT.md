@@ -1,3 +1,18 @@
+## LATEST CONTINUATION — MONITOR RUN 23 — 2026-11-01 15:22 SAST
+
+- Detailed results: [HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_RESULTS.md](HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_RESULTS.md); checkpoint: [HANDOVER_CHECKPOINT_2026-11-01_MONITOR_RUN_23.md](HANDOVER_CHECKPOINT_2026-11-01_MONITOR_RUN_23.md); task start: [HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_TASK_START.md](HANDOVER_UPDATE_2026-11-01_MONITOR_RUN_23_TASK_START.md).
+- **Active candidate:** PR #142, branch `integration/current-main-refresh-2026-11-01`, open/draft/unmerged. Current PR head `ca6beb9ab148c0cf4293747d757ae5f4778f51be` is handover-only after the tested code head `81cf1b73b6433009484828e06429ea2a4fd518ad`.
+- **Verified non-production preview:** deploy run `41308059922`, URL `https://c26aad29.get-wired-autoworx-store.pages.dev/preview-store.html`; stable alias `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html`. Hosted browser QA `41308138459` passed 4,187 product load, eight approved root labels, 50 ASC source-card crops across 12 subcategories, nine Planetworld official-image sources, exact-SKU image/fallback checks, oil-filler-cap quarantine, Part Search, Audio hierarchy, and 360/390/1280/1366px overflow checks. Checkout remains disabled. A non-fatal wide Supabase query failed once and core-field fallback loaded the data; investigate before release.
+- **New category coverage blocker:** read-only live Supabase audit: 4,187 active products; 3,622 within approved roots; 565 outside; 37 already in the existing queue and **528 not queued**. Review-only export: `catalogue-review/approved-root-coverage-review-only-2026-11-01.csv`; summary: `catalogue-review/approved-root-coverage-review-only-2026-11-01.md`. Do not auto-move or write live category changes.
+- Nine oil-filler-cap SKUs remain held out of incorrect preview category browsing only; live category rows unchanged.
+- **Controller safety fix on main:** commit `31c5e69b7822886f8333ae78abe180170f6c26fd` removes `store-production-qa.yml` from automatic retry allowlist while keeping it monitored. Controller run `41310431666` succeeded, checked nine workflows, requested zero retries, and inventoried 416 artifacts / 8.85 MiB; no artifacts were deleted. This inventory does not explain the earlier 500 MB storage reading; Packages/other storage still needs verification.
+- Category Navigation run `38521429939` and Buyer Guide Extraction run `38525300051` remain successful on 2026-10-14. ASC Exact-SKU Image Sync `41030204263` succeeded on 2026-10-30 but was a no-op (86 missing targets, zero eligible). No rerun.
+- Live Release Gates `41310395135` failed: Playwright 1.55 cannot install Chromium on ubuntu-26.04, checkout source hash differs, and payment readiness remains unconfirmed (Direct EFT only). Not rerun because this is a live/release workflow.
+- PR #145 Public Preview Data Exposure Guard `41306630899` attempt 2 failed again with HTTP 308 before privacy checks; do not rerun unchanged. PR #145 is not the selected candidate and its placeholder-only image policy regresses the verified PR #142 image fallback. No production/Axxess/DNS/payment/Supabase writes or Cloudflare/Netlify deployment was performed in this run.
+- **Release state:** production remains on hold and may continue to show the old storefront until explicit owner approval. Use the preview URL above for testing; do not treat the preview QA pass as production readiness.
+
+---
+
 ## OWNER VISUAL FEEDBACK — PRODUCT CODE CONTRAST — 2026-11-01 SAST
 
 - Owner is happy with the store overall so far, but reports product codes are too dark against the dark background and are barely legible.
