@@ -15,7 +15,6 @@ const required = [
   ["Carpet Mat Sets — Toyota", "vehicle-specific mat subcategory"],
   ["Electric Fuel Pumps — BMW", "vehicle-specific fuel-pump subcategory"],
   ["Diesel Lift Pumps & Housings — All Makes", "diesel lift-pump subcategory"],
-  ["ascQueryMatches", "AND/OR catalogue product matching"],
   ["data-asc-query", "virtual catalogue filter controls"],
   ["openAscCatalogueCategory", "catalogue category interaction"],
   ["wrap.classList.toggle('open')", "expandable root-category navigation"],
@@ -24,6 +23,7 @@ const required = [
 for (const [needle,label] of required) {
   if (!html.includes(needle)) throw new Error("Missing " + label + " (" + needle + ")");
 }
+if (html.includes("ascQueryMatches") || !html.includes("const matches=[];")) throw new Error("ASC leaf categories must use only source-verified pilot records; fuzzy keyword assignment is prohibited");
 const objectStart=html.indexOf("const ASC_CATALOGUE_CHILDREN");
 const objectEnd=html.indexOf("};",objectStart);
 const taxonomy=html.slice(objectStart,objectEnd);
