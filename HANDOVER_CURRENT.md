@@ -5488,3 +5488,16 @@ Top-level category counts below are direct-root product counts, not descendant t
 - The preview deployment URL was not fetched by the available network clients in this session (DNS resolution unavailable in the web/container fetchers). This does not negate the Cloudflare Pages bot's exact-commit successful deployment record; it means visual acceptance on a real phone remains open.
 - GitHub Actions billing/remaining minutes and storage usage are not exposed by the connected GitHub actions tools available here. Exact workflow successes above prove the selected runs executed, but do not establish remaining monthly quota.
 - Continue the 2-November target without repeating passed exact-head tests: real-device preview acceptance, final PR review/owner approval, complete SKU-level evidence mapping, and supplier/payment/production owner gates.
+
+
+## CORRECTION — ASC INTERIM CATALOGUE AUTHORISATION ALREADY GRANTED — 2026-11-01
+
+- **Correction to the previous handover status:** ASC catalogue-use authorisation is NOT pending. The owner explicitly confirmed on **27-Oct-2026 at 17:02 SAST** that ASC had granted Get Wired AutoWorx interim permission to use its catalogues because the business is an authorised dealer, while ASC IT was still seeking a longer-term solution.
+- At **17:05 SAST on 27-Oct-2026**, the owner further confirmed that essentially all supplier folders in GitHub were authorised for project use.
+- The 27-Oct record already distinguished the two separate matters: **catalogue-use permission was granted; technical integration remained unresolved**. The later 1-Nov checkpoint incorrectly reverted to saying “obtain ASC authorisation”. That wording is wrong and is withdrawn.
+- Correct ASC status:
+  1. **Supplier/dealer catalogue-use permission: GRANTED (interim), owner-confirmed 27-Oct-2026.**
+  2. **ASC technical integration / longer-term IT solution: OPEN**, pending ASC-side technical arrangements and/or source/interface details. Do not describe this as missing supplier authorisation.
+  3. Catalogue use is authorised within the interim permission communicated by the owner. This does not itself authorise changes to live stock, prices, product records, imports, checkout, production, or any other previously restricted release boundary.
+- Execution rule: proceed with permitted ASC catalogue preparation and preview/test integration work under the granted interim permission. Keep all live stock/price reconciliation, imports, production activation and database writes on hold unless separately approved. Record any specific ASC technical dependency accurately rather than reopening the already-granted authorisation gate.
+- This correction supersedes the erroneous ASC status in the “2 November 2026 target — execution queue” and “Verified / open status” sections above. The next agent must read and preserve this correction before acting.
