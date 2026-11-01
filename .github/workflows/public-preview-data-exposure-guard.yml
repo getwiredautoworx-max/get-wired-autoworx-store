@@ -58,6 +58,23 @@ jobs:
           test "$preview_code" = '200' || { echo "Preview storefront route returned $preview_code"; exit 1; }
           echo "PAGES_BRANCH_PREVIEW_RESPONDS_PASS"
 
+      - name: Wait until the new deployment blocks the raw supplier catalogue dataset
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
+          ready=0
+          for attempt in $(seq 1 24); do
+            curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS "$BASE/assets/planetworld-catalogue-preview.json" -o /tmp/guard-planetworld.json
+            if ! grep -aEqi 'sourceWorkbooks|indicativePrice|hasStock' /tmp/guard-planetworld.json; then
+              ready=1
+              break
+            fi
+            sleep 5
+          done
+          test "$ready" = '1' || { echo "New Pages deployment has not yet blocked raw supplier catalogue data"; exit 1; }
+          echo "DEPLOYED_PREVIEW_SUPPLIER_DATA_BLOCKED_PASS"
+
       - name: Verify supplier source, pricing and handover files are not publicly served
         shell: bash
         run: |
