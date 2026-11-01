@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 import shutil
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "pages-public"
@@ -52,7 +53,36 @@ if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
-        copy_file(f"assets/{name}")
+        if name == "asc-catalogue-pilot-preview.json":
+            # Publish only customer-safe catalogue fields; keep source-page and
+            # internal supplier mapping metadata out of the public Pages package.
+            source = ROOT / "assets" / name
+            if not source.is_file():
+                raise SystemExit(f"Required preview asset missing: assets/{name}")
+            payload = json.loads(source.read_text(encoding="utf-8"))
+            safe_fields = ("id", "title", "catalogue_reference", "fitment_as_printed",
+                           "subcategory", "image_url")
+            public_payload = {
+                "title": "ASC catalogue preview — request availability",
+                "record_count": len(payload.get("records", [])),
+                "records": [
+                    {key: record[key] for key in safe_fields if key in record}
+                    for record in payload.get("records", [])
+                ],
+            }
+            target = OUT / "assets" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(json.dumps(public_payload, ensure_ascii=False, separators=(",", ":")),
+                              encoding="utf-8")
+            forbidden = ("source_file", "source_page", "internal_sku", "supplier_sku",
+                         "source_image_pairing", "dealer_cost", "indicative_price")
+            public_text = target.read_text(encoding="utf-8").lower()
+            leaked = [field for field in forbidden if field in public_text]
+            if leaked:
+                raise SystemExit(f"ASC preview sanitization failed; forbidden fields remain: {leaked}")
+            print(f"ASC_PUBLIC_PREVIEW_SANITIZED_PASS records={public_payload['record_count']}")
+        else:
+            copy_file(f"assets/{name}")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
