@@ -5466,3 +5466,13 @@ Top-level category counts below are direct-root product counts, not descendant t
 - Duplicate category labels, duplicate root rows, specialist roots and category branches with products are not automatically safe to consolidate. Build a deterministic SKU-level proposed mapping with source evidence and explicit exception reasons, then obtain owner approval before any category writes.
 - No live category assignments, prices, stock, supplier data, checkout or Supabase configuration were changed.
 - Supabase changelog review: upcoming Nov 10 2026 removal of four legacy CBC-mode TLS 1.2 cipher suites affects Supabase HTTP API clients that only negotiate those obsolete suites. The project preview uses the Supabase HTTP API; retain a note to check TLS compatibility on older devices/clients before Nov 10. This is a compatibility watch, not a confirmed failure. Source: https://supabase.com/changelog/cbc-tls-ciphers-deprecated
+
+
+## COMPLETED — LIVE CATEGORY AUDIT REPORT CREATED — 2026-11-01 SAST
+
+- Created and committed `LIVE_CATEGORY_AUDIT_2026-11-01.md` at repository root.
+- Report link: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/blob/main/LIVE_CATEGORY_AUDIT_2026-11-01.md
+- Contains fresh read-only live counts (4,200 total / 4,187 active products; 243 categories; 66 top-level rows), direct-root counts, high-volume leaves, SKU exception examples and a safe evidence-led mapping procedure.
+- Added current live SQL evidence: 0 active products without category_id, 0 invalid category links, and 0 active products with blank image_url. Image URL presence is not equivalent to image correctness/load success.
+- Explicitly corrects stale 166-category / 58-top-level figures and preserves the no-write rule. No Supabase changes were made.
+- New audit report commit: `2cd2ac9f0b91d9930af88ae67e978df75525c2a8`.
