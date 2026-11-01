@@ -59,6 +59,32 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python3 scripts/build-cloudflare-pages-public.py
+      - name: Wait for hosted preview to match exact source SHA when storefront code changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed="$(git show --format= --name-only HEAD)"
+          if ! grep -Eq '^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)' <<< "$changed"; then
+            echo "No deployable storefront/package source changed; using the latest verified hosted artifact."
+            exit 0
+          fi
+          BASE='https://fix-approved-bright-shell-ca-yf6k.get-wired-autoworx-store.pages.dev'
+          expected="$GITHUB_SHA"
+          ready=0
+          for attempt in $(seq 1 36); do
+            code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/hosted-preview.html -w '%{http_code}' "$BASE/preview-store.html" || true)
+            if [ "$code" = '200' ] && grep -Fq "GW_PREVIEW_SOURCE_SHA:$expected" /tmp/hosted-preview.html; then
+              ready=1
+              break
+            fi
+            sleep 5
+          done
+          if [ "$ready" != '1' ]; then
+            echo "Hosted preview did not deploy the exact candidate SHA $expected."
+            exit 1
+          fi
+          echo "HOSTED_PREVIEW_EXACT_SHA_PASS $expected"
+
       - name: Run read-only populated preview browser checks
         shell: bash
         run: |
