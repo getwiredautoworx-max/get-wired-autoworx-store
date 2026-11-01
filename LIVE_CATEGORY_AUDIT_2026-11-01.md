@@ -94,3 +94,23 @@ Earlier reviewed examples remain valid for evidence-led review:
 ## Release boundary
 
 This report does not authorise changes to live category rows, product category_id values, stock, prices, supplier catalogues, checkout, payments, DNS, Axxess or production deployment. Existing stock and price data remain unchanged.
+
+
+## Fresh review-queue triage — read-only snapshot, 1 November 2026
+
+A fresh read-only query of `public.category_review_queue` now returns 198 rows, **0 missing/blank product names**, **0 blank classifications**, and **10 rows classified only as `SPECIAL`**. This supersedes the earlier checkpoint that reported nine missing names; all ten `SPECIAL` rows join to a live product name by SKU.
+
+| SKU | Product name | Candidate direction from name only | Status |
+|---|---|---|---|
+| 6007-13 | Rod Fishing Rod Holder Mount Rubber Suction Mount | Marine Spares & Accessories → Fishing Accessories / Rod Holders | Candidate; confirm source application |
+| 6007-14 | Heavy Duty Fishing Holder With Gutter | Marine Spares & Accessories → Fishing Accessories / Rod Holders | Candidate; confirm source application |
+| 6007-6L-PG | Bicycle Rack 4 Carrier Plastic Gear | Automotive Accessories → Carriers & Racks | Candidate; confirm vehicle fitment |
+| C3-504 | Wax High Golden Soft Wax High Coat Gloss Shine Clear Safe 230G | Tools, Hardware & Consumables → Car Care / Cleaning | Candidate |
+| D9-009B | Black Tank Cover Black 2012 | Unresolved; possible vehicle/canopy accessory | Manual source lookup required |
+| D9-FR2201 | Fender Vent Set Ranger T9 2022- | Automotive Accessories → Exterior Styling / Body Trim | Candidate; confirm model fitment |
+| D9-NN1513 | Dress Up Kit Exterior Nissan Navara 2015-2018 Rbs Style | Automotive Accessories → Exterior Styling / Body Kits | Candidate; confirm model fitment |
+| JG0160BEIP | Visbella Jelly Cleaning Mint 160G Bottle | Tools, Hardware & Consumables → Cleaning Supplies | Candidate |
+| JG0160YWIP | Visbella Jelly Cleaning Lemon 160G Bottle | Tools, Hardware & Consumables → Cleaning Supplies | Candidate |
+| M305 | Cleaning 300Ml Plyfit Spray Paint Metallic Gold | Tools, Hardware & Consumables → Paints & Consumables | Candidate |
+
+These are triage suggestions from product names/descriptions only, not approved category assignments. Supplier/source-page evidence and owner approval remain required before any live category writes. No database changes were made.
