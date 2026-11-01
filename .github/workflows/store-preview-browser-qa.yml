@@ -369,13 +369,13 @@ jobs:
             const categoryRoute=await hostedCategory.getAttribute('data-route');
             if(!categoryRoute||!categoryRoute.includes('preview-category.html?id='))throw new Error('Homepage category button must navigate to its full category landing page');
             await hostedCategory.click();
-            await hosted.waitForURL(/preview-category\\.html\\?id=/,{timeout:15000});
+            await hosted.waitForURL(/preview-category\.html\?id=/,{timeout:15000});
             const rootCategoryText=await hosted.locator('body').innerText();
             if(!rootCategoryText.includes('Auto Electrical Spares'))throw new Error('Auto Electrical Spares category landing page did not open');
             const ignitionCategoryLink=hosted.locator('a[href*="id=c7980122-f760-4e65-b0e0-aecce4181f05"]').first();
             await ignitionCategoryLink.waitFor({state:'visible',timeout:20000});
             await ignitionCategoryLink.click();
-            await hosted.waitForURL(/preview-category\\.html\\?id=c7980122-f760-4e65-b0e0-aecce4181f05/,{timeout:15000});
+            await hosted.waitForURL(/preview-category\.html\?id=c7980122-f760-4e65-b0e0-aecce4181f05/,{timeout:15000});
             const ignitionCategoryText=await hosted.locator('body').innerText();
             if(!['Ignition Modules','Ignition Coils','Ignition Looms'].every(label=>ignitionCategoryText.includes(label)))throw new Error('Ignition Spares landing page does not preserve supplier subcategories');
             const hostedPartSearch=await browser.newPage({viewport:{width:390,height:844}});
