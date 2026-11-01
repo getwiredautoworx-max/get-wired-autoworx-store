@@ -54,3 +54,37 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=planetworld-audio-preview
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify deployed preview package privacy
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
+          code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 20 -sS -o /tmp/asc-public.json -w '%{http_code}' "$BASE/assets/asc-catalogue-pilot-preview.json")
+          test "$code" = '200' || { echo "ASC public preview returned HTTP $code"; exit 1; }
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload=json.loads(Path('/tmp/asc-public.json').read_text(encoding='utf-8'))
+          forbidden={'source_file','source_page','internal_sku','supplier_sku','source_image_pairing','image_crop_status','image_use_status','dealer_cost','indicative_price','public_sku'}
+          bad=sorted({key for row in payload.get('records',[]) for key in row if key in forbidden})
+          if bad:
+              raise SystemExit(f"PUBLIC_PREVIEW_PRIVACY_FAIL fields={bad}")
+          required={'id','title','catalogue_reference','fitment_as_printed','subcategory','image_url'}
+          for row in payload.get('records',[]):
+              if not required.issubset(row):
+                  raise SystemExit(f"PUBLIC_PREVIEW_SHAPE_FAIL missing={sorted(required-set(row))}")
+          print(f"DEPLOYED_ASC_PREVIEW_PRIVACY_PASS records={len(payload.get('records',[]))}")
+          PY
+          check_absent() {
+            path="$1"
+            marker="$2"
+            curl -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS --path-as-is "$BASE$path" -o /tmp/gw-private-body
+            if grep -aEqi "$marker" /tmp/gw-private-body; then
+              echo "PUBLIC_DATA_EXPOSURE: $path"
+              exit 1
+            fi
+          }
+          check_absent '/HANDOVER_CURRENT.md' 'Current Execution Handover'
+          check_absent '/suppliers/ASC/' '%PDF-'
+          check_absent '/ASC-%20Aerials%20(1).pdf' '%PDF-'
+          echo "DEPLOYED_PREVIEW_PRIVATE_SOURCE_BLOCKED_PASS"
