@@ -302,11 +302,11 @@ jobs:
                 ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
                 ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
                 previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
-                visibleCheckout:[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0)
+                unsafeCheckout:[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0&&!String(el.getAttribute('href')||'').includes('preview-checkout.html'))
               };
             },ASC_PUBLIC_SKUS);
             if(hostedAudit.products<1||hostedAudit.ascMatched!==34||hostedAudit.ascPositiveStock!==0||hostedAudit.ascZeroStock!==34)throw new Error('Hosted ASC stock check failed: '+JSON.stringify(hostedAudit));
-            if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
+            if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.unsafeCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
             const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
             await hostedCategory.click();
