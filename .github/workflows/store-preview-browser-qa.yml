@@ -265,11 +265,11 @@ jobs:
             // Confirm one exact-SKU product photo loads and a product without a source image ends on the packaged placeholder.
             const imageProbe=await browser.newPage({viewport:{width:390,height:844}});
             await imageProbe.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/preview-product.html?id=bfc23c23-7738-40a9-9c73-77b30112d677',{waitUntil:'domcontentloaded',timeout:60000});
-            await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete;},{timeout:30000});
+            await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0;},{timeout:30000});
             const realImage=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth,placeholder:img.currentSrc.includes('product-placeholder.svg')}));
             if(realImage.naturalWidth<=0||realImage.placeholder)throw new Error('Exact-SKU product image did not load: '+JSON.stringify(realImage));
             await imageProbe.goto('https://integration-current-main-ref.get-wired-autoworx-store.pages.dev/preview-product.html?id=532c9bdb-08ac-4647-b5e6-b51b192ec9a9',{waitUntil:'domcontentloaded',timeout:60000});
-            await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.currentSrc.includes('product-placeholder.svg');},{timeout:30000});
+            await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0&&img.currentSrc.includes('product-placeholder.svg');},{timeout:30000});
             const missingImageFallback=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth}));
             if(missingImageFallback.naturalWidth<=0)throw new Error('Missing product image did not resolve to packaged placeholder: '+JSON.stringify(missingImageFallback));
             await imageProbe.close();
