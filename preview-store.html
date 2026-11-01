@@ -1395,19 +1395,20 @@ function ascPilotCard(p){return '<article class="product" data-asc-preview-id="'
 async function openAscCatalogueCategory(query,label){
  const matches=products.filter(p=>ascQueryMatches(p,query));
  show(matches);
- if(matches.length)return;
  const grid=document.getElementById('allProductsGrid');
- if(grid){
-  try{
-   if(!ascPilotCache){const response=await fetch('assets/asc-catalogue-pilot-preview.json');if(!response.ok)throw new Error('ASC pilot preview unavailable');ascPilotCache=await response.json();}
-   const pilot=(ascPilotCache.records||[]).filter(p=>p.subcategory===label);
-   if(pilot.length){
-    grid.innerHTML=pilot.map(ascPilotCard).join('');
-    const count=document.getElementById('shopResultCount');if(count)count.textContent=pilot.length+' preview-only catalogue records';
-    const pc=document.getElementById('productCount');if(pc)pc.textContent=pilot.length+' catalogue pilot items';
-    return;
-   }
-  }catch(error){console.error('ASC catalogue preview unavailable',error);}
+ if(!grid)return;
+ try{
+  if(!ascPilotCache){const response=await fetch('assets/asc-catalogue-pilot-preview.json');if(!response.ok)throw new Error('ASC pilot preview unavailable');ascPilotCache=await response.json();}
+  const pilot=(ascPilotCache.records||[]).filter(p=>p.subcategory===label);
+  if(pilot.length){
+   if(!matches.length)grid.innerHTML='';
+   grid.insertAdjacentHTML('beforeend',pilot.map(ascPilotCard).join(''));
+   const count=document.getElementById('shopResultCount');if(count)count.textContent=(matches.length?matches.length+' active test listings + ':'')+pilot.length+' preview-only catalogue records';
+   const pc=document.getElementById('productCount');if(pc)pc.textContent=(matches.length+pilot.length)+' items ('+pilot.length+' preview-only)';
+   return;
+  }
+ }catch(error){console.error('ASC catalogue preview unavailable',error);}
+ if(!matches.length){
   grid.innerHTML='<div class="searchStatus"><b>'+esc(label)+'</b><br>ASC catalogue reference is available. No verified pilot records for this subcategory yet. Request the exact part and vehicle/application through Part Search.</div><button class="primary" type="button" onclick="window.openPartSearch()">REQUEST / FIND THIS PART</button>';
   const count=document.getElementById('shopResultCount');if(count)count.textContent='Catalogue reference • no verified store matches';
   const pc=document.getElementById('productCount');if(pc)pc.textContent='Request by catalogue';
