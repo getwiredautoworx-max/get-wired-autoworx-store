@@ -64,7 +64,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          changed="$(git show --format= --name-only HEAD)"
+          git fetch --no-tags --depth=2 origin "$GITHUB_SHA"
+          changed="$(git diff --name-only "$GITHUB_SHA^" "$GITHUB_SHA")"
           if ! grep -Eq '^(preview-store\.html|preview-category\.html|preview-products\.html|preview-product\.html|preview-audio\.html|preview-checkout\.html|category\.html|products\.html|product\.html|assets/|scripts/build-cloudflare-pages-public\.py|\.github/workflows/deploy-planetworld-audio-preview\.yml)' <<< "$changed"; then
             echo "No deployable storefront/package source changed; using the latest verified hosted artifact."
             exit 0
