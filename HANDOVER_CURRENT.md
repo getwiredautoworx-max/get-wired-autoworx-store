@@ -286,3 +286,14 @@ The complete pre-refresh chronological log is retained unchanged in `HANDOVER_AR
 - Product-code contrast correction: implemented and previously passed populated browser QA on its recorded head; do not assume later shell changes have been covered by that older run.
 - PR #142 remains draft/unmerged until current-head checks and owner acceptance are complete.
 - Production/customer launch remains **HOLD**. Do not describe the store as ready based on static source checks.
+
+
+## CURRENT PREVIEW DEPLOYMENT — 2026-11-01 11:05 SAST
+
+- Exact candidate branch: `integration/current-main-refresh-2026-11-01`.
+- Exact deployed head: `8569cbe359c373b35e4db550f147ff6cf969538b`.
+- Cloudflare isolated preview deployment workflow run `41291288662`: **SUCCESS**. Job `124802904794` completed build and deploy steps successfully. Build output: `PAGES_PREVIEW_ROUTES_INCLUDED` for all seven approved preview routes; `PAGES_PUBLIC_BUILD_PASS files=4131 webp_images=4101`; excluded supplier/source/private directories. Cloudflare reported exact deployment URL `https://7bb0cbcc.get-wired-autoworx-store.pages.dev` and stable alias `https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev`.
+- Owner review links: `/preview-store.html` and `/preview-audio.html` on the exact deployment URL above.
+- Product-code contrast correction is included in this deployed head. The deployment is verified; direct rendered browser/phone QA for this exact head has not yet been completed in this continuation. Do not equate successful deployment with browser acceptance.
+- Storewide shell source rollout and Audio supplier-neutral hierarchy are present in the candidate as recorded above. Re-run current-head responsive/browser tests against this deployment before calling the preview fully test-accepted.
+- Preview remains isolated/non-production. No production deployment, Axxess upload, DNS, checkout/payment activation, live Supabase/catalogue/stock/price writes or supplier activation occurred. PR #142 remains draft/unmerged.
