@@ -38,6 +38,15 @@ jobs:
             echo "No extraction changes to commit."
           else
             git commit -m "Extract Electrocity catalogue source-page text for review"
-            git pull --rebase origin "$GH_BRANCH"
-            git push origin "HEAD:$GH_BRANCH"
+            pushed=0
+            for attempt in 1 2 3; do
+              git fetch origin "$GH_BRANCH"
+              git rebase "origin/$GH_BRANCH"
+              if git push origin "HEAD:$GH_BRANCH"; then
+                pushed=1
+                break
+              fi
+              sleep $((attempt * 3))
+            done
+            test "$pushed" = "1" || { echo "Could not push OCR review output after three branch-race retries"; exit 1; }
           fi
