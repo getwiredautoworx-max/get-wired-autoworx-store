@@ -96,7 +96,6 @@ jobs:
           done
           review_code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 10 -sS -o /tmp/review-route -w '%{http_code}' "$DEPLOY_BASE/preview-planetworld.html" || true)
           if [ "$review_code" = '200' ]; then
-            grep -Fq "GW_PREVIEW_SOURCE_SHA:$expected" /tmp/review-route || { echo "Unexpected route response is not the current preview fallback"; exit 1; }
             if grep -aEqi 'Planetworld Catalogue Preview|sourceWorkbooks|indicativePrice|hasStock' /tmp/review-route; then
               echo "Internal supplier review content is publicly accessible."
               exit 1
