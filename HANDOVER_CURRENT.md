@@ -5317,3 +5317,19 @@ Do not label the store 95%, ready, launch-ready or customer-ready until the weig
 - Latest candidate head: `45596eba252b9d27ed5afb2b953cc8adf9fe0e19`. Await its deployment and browser QA results. The previous browser run `41269475193` failed at the image-count assertion because it still saw seven embedded URLs; it had not yet reached the Audio hierarchy, mobile/desktop overflow or hosted preview assertions.
 - Current desired behavior is honest fallback rather than broken image icons for the two Audison products. Five exact image references remain in the dedicated 68-product review preview and should be verified to load; manufacturer links remain for all curated records.
 - PR #140 stays draft/unmerged; no production or live data changes. ASC, payment activation, Axxess, DNS, Supabase, supplier stock/pricing remain untouched.
+
+
+## 48-HOUR TARGET — FULL LOCAL + HOSTED STORE PASS; FINAL IMAGE ASSERTION FIX — 2026-11-01 05:34 SAST
+
+- The latest browser run on code head `45596eb` passed the full local populated-store browser checks and the hosted store preview checks:
+  - Eight root categories and stable category IDs matched exactly.
+  - 4X4 Outdoor was nested under Camping, Leisure & Outdoors.
+  - 4,187 products loaded; 34 listed ASC public SKUs were present only as zero-stock preview records; checkout remained hidden; no private street address leaked.
+  - Product detail modal opened/closed; Part Search model lookup for `HCE-C2100RD` returned the correct manufacturer page and quote-only action.
+  - The no-AI photo-request fallback passed.
+  - Local mobile/desktop widths: 390/390 and 1280/1280; Audio hierarchy had nine departments, 10 brands and 12 components, with mobile 390/390 and desktop 1366/1366 and the quote flow exercised.
+  - Hosted preview store passed with 4,187 products, eight-category rendering (the hosted category page's category tile count is 103 because that page includes nested categories), 34 ASC records at zero stock, hidden checkout, product modal, no-AI photo request, no page errors, and mobile width 390/390.
+- The run then failed only at the hosted Planetworld audit's allowed-image-count assertion: it expected 4 or 7 images, but the new fallback correction intentionally yields 5 verified images. The page audit itself showed 68 rows, 44 positive-stock snapshot rows, 24 zero-stock rows, 68 review-only cost-floor flags, five image URLs, and no dealer-cost exposure. Updated the assertion to accept 5 verified images.
+- Latest candidate head is `8920c814ada40fd729eec1c7b98dfd4210d8f40b`. Latest main handover has been merged into the candidate via a merge commit so the branch is now `ahead 10 / behind 0` against main; the current handover file is preserved rather than omitted. The browser workflow is being rerun on the new head.
+- The deployment on `45596eb` succeeded to https://b47bb277.get-wired-autoworx-store.pages.dev (alias https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev) and includes the two unreliable Audison image URLs cleared from the dedicated review page; their official manufacturer links remain.
+- Do not mark the overall browser workflow passed until the new exact-head run finishes through the hosted Planetworld image-load checks, desktop width, filtering, and all remaining assertions. PR #140 remains draft/unmerged. No production, ASC, stock, price, payment, Supabase, Axxess or DNS change.
