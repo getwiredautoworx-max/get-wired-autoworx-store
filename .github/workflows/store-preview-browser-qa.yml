@@ -29,6 +29,10 @@ on:
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
 
+concurrency:
+  group: store-preview-browser-qa-${{ github.workflow }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
