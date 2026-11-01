@@ -22,8 +22,12 @@ jobs:
         run: python -m pip install --disable-pip-version-check pymupdf pillow
       - name: Render review-only page contact sheets
         run: python scripts/asc_contact_sheets.py
-      - name: Crop the 25 ASC source cards for internal preview
-        run: python scripts/asc_product_card_crops.py | tee /tmp/asc-product-crops.log
+      - name: Crop the 50 ASC source cards for internal preview
+        run: |
+          python scripts/asc_product_card_crops.py | tee /tmp/asc-product-crops.log
+          echo "ASC_CROP_FILES=$(find assets/asc-catalogue-pilot -maxdepth 1 -type f -name '*.jpg' | wc -l)"
+          test -f assets/asc-catalogue-pilot/asc-a1-003.jpg
+          test -f assets/asc-catalogue-pilot/asc-f1-028.jpg
       - name: Commit private review sheets and preview-only crops to candidate branch
         env:
           BRANCH: integration/current-main-refresh-2026-11-01
