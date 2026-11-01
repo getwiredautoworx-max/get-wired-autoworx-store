@@ -4410,3 +4410,61 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Planetworld audit run `40876805256`, job `123457598110`: job conclusion SUCCESS, all seven work steps completed, but artifact list is empty. Job log explicitly reports `Failed to CreateArtifact: Artifact storage quota has been hit`. This is not a refreshed downloadable audit. No rerun was attempted because the run itself succeeded and the connector exposes no workflow_dispatch action.
 - Exact owner action for a fresh read-only Planetworld audit: GitHub → Actions → **Planetworld Workbook Audit (Read Only)** → choose branch `docs/planetworld-blocker-handover-2026-10-26` → **Run workflow** once, then verify run head, job summary and output artifact. Do not rerun successful run `40876805256`.
 - No supplier workbook, price, catalogue, stock, active flag, Supabase, Axxess, DNS, payment, production deployment or customer-facing data was changed. Current PR retry results remain pending; next action is poll these six run IDs, record each final conclusion, and only then assess current-head QA options.
+
+
+## 2026-11-01 — PR #140 EXACT-HEAD QA, LIVE SOURCE RECHECK AND BLOCKERS
+
+### Current preview candidate — PR #140
+- PR #140 is OPEN / DRAFT / UNMERGED / mergeable=true. Current head: `da463960345fda06c300f969920209c37da2986e`; base: `fc735645dabeaabc7fdfb908a7d376dd6be9909f`. Keep draft; no merge authorised.
+- Cloudflare Pages Git integration reports SUCCESS for exact head `da46396`: `https://b1a08506.get-wired-autoworx-store.pages.dev`; branch alias `https://integration-planetworld-part-5nfg.get-wired-autoworx-store.pages.dev`. This is a non-production preview, not a live release.
+- Exact-head GitHub checks verified:
+  - Browser QA run `41269869771`, job `124740251613`: SUCCESS. Logs show 4,187 populated products, all eight intended preview root labels found, 9 Audio departments / 10 brands / 12 components, no page errors, mobile 390px and desktop 1366px without horizontal overflow. Hosted preview reports 68 curated Planetworld review rows, 44 with stock in the dated snapshot, 24 with zero stock, 5 image sources, and no dealer-cost exposure. HCE-C2100RD model search passed.
+  - Free Catalogue Search run `41269869777`, job `124740251505`: SUCCESS; 10 search assertions + 2 Planetworld assertions + 1 verified-model assertion; preview integration check passed.
+  - Cloudflare Pages Public Package QA run `41269869799`, job `124740251589`: SUCCESS. Standard customer package excludes preview routes; isolated preview package includes all seven approved preview routes.
+  - Public SKU Exposure Audit run `41269869793`, job `124740251610`: SUCCESS.
+  - Catalogue Image Audit run `41269869973`, job `124740252343`: SUCCESS for active-SKU mapping, slash normalisation and public asset-origin checks. Audit upload step SKIPPED; run has zero artifacts. This is not a downloadable audit report and does not grant image-use permission.
+  - Storefront Smoke Test run `41269869780`: wrapper SUCCESS; `detect-storefront-mode` found `buttons-only`; actual `smoke` job SKIPPED. Do not report a smoke test pass.
+- Browser QA's Planetworld page check navigated to the separate `planetworld-audio-preview.get-wired-autoworx-store.pages.dev` host, not the PR #140 Pages URL. The current PR #140 package contains the route, but a successful exact-head deployment/test of that separate audio-preview host was not identified. Treat that specific hosted Planetworld page as a remaining verification gap. Current observed image count is 5, which must be reconciled with the earlier 11-image note before any image-coverage claim.
+- Cloudflare Workers Builds comment for exact head `da46396` reports FAILURE (build `92063dc0-2fbb-4442-9a7c-a456a14a36db`); the Pages preview is independently successful. Do not retry this deployment/build workflow or push further changes to the branch without owner approval because the branch includes a push-triggered Cloudflare Pages preview deploy workflow and may consume Cloudflare build credits.
+- No production deployment, PR merge, supplier import, Supabase write, live product/price/stock/active-flag change, Axxess/DNS/payment change or manual Cloudflare release was performed.
+
+### Older PR #139 retry conclusion
+- PR #139 remains OPEN / DRAFT / UNMERGED / mergeable=false at current head `f21afa51ca58b08db102f130bec705a1c5edf247`.
+- The six safe staging runs previously failed before runner assignment on older head `7adcbab2f665b401abd36aa89eb217dfba2ed10c`; the supported failed-jobs rerun was issued once for each completed run. Attempt-3 conclusions:
+  - `41202823429` catalogue search: SUCCESS.
+  - `41202823495` Pages package QA: SUCCESS.
+  - `41202823519` public SKU exposure audit: SUCCESS.
+  - `41202823593` catalogue image audit: SUCCESS; upload step SKIPPED and no artifact.
+  - `41202823488` smoke wrapper: SUCCESS; actual smoke job SKIPPED because buttons-only mode was detected.
+  - `41202823441` browser QA: FAILURE at the Audio source assertion before browser checks. The test expected an outdated WhatsApp URL pattern; the actual generated URL matched the configured business contact. This is a test-expectation defect, not a demonstrated storefront failure.
+- These retries prove runners executed again, but they are on the old `7adcbab...` head and do not certify PR #139's current `f21afa...` head. PR #140 is the newer clean-main candidate with exact-head browser/search/package/SKU/image checks. Do not repeat the old PR #139 retries.
+
+### PR #95 and Planetworld audit refresh
+- PR #95 remains CLOSED / UNMERGED / mergeable=false at head `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`. No merge/rebase.
+- Latest positively identified old audit remains run `40876805256`, job `123457598110`: job SUCCESS, but artifact list is empty and the log confirms `Failed to CreateArtifact: Artifact storage quota has been hit`. Do not rerun this successful old run.
+- Important improvement: current `main` now contains an artifact-free `Planetworld Workbook Audit (Read Only)` workflow and script. The workflow has `workflow_dispatch`, scans the canonical `suppliers/Planetworld/` source folder (47 original XLSX files), and publishes counts in the job summary; it no longer uploads an artifact. The old workflow version on `docs/planetworld-blocker-handover-2026-10-26` still scans the retired `catalogue-source/...` path and attempts an artifact upload; do not use that old version for the refresh.
+- No GitHub connector action supports `workflow_dispatch`. Exact owner UI action for a fresh current-source audit: GitHub repository → Actions → **Planetworld Workbook Audit (Read Only)** → **Run workflow** → select branch `main` → run once; then inspect the audit job summary/logs. No dummy commit or duplicate run was created.
+
+### Planetworld pricing and manufacturer review
+- No new Planetworld supplier price/stock email after the 2026-10-25 workbook snapshot was found. The 25-Oct source remains historical pending supplier refresh.
+- Prior review counts remain provisional: 47 workbooks / 96 sheets / 3,343 source rows before identical-workbook exclusion; 3,317 rows after exclusion; 3,298 positive-RRP rows; 19 zero-RRP owner-hold rows; 18 positive-RRP rows below estimated VAT-inclusive cost at RRP−1% and 19 at RRP−2% (19 distinct SKUs). These flags are not confirmed supplier price errors and are not approval to discount. Keep the 19 zero-RRP rows separate and keep all below-cost rows out of automatic price reduction.
+- New official model evidence: Vogel's official TÜV list identifies `PFW4600` as a BLACK WALL MOUNT TILT, article `7046000`, max load 75 kg (official source: `https://downloads.vogels.com/en/TUV-Products-overview-PROF.pdf`). Model identity is now VERIFIED; the supplier description mismatch is resolved toward **Home CI → TV Mounts & Stands → Tilting Wall Mount**. Exact product image and image-use permission remain UNVERIFIED; no image copied.
+- OneNav `ON1509-LX1` remains UNVERIFIED (no exact official model page located; reseller-only evidence). `ON263-FK2` remains UNVERIFIED: official OneNav page SKU `ON263-2LX` is a Ranger XLS 9-inch head unit, not an exact match for the supplier's `ON263-FK2` fitment-kit row. Do not substitute the sibling SKU or copy imagery.
+- The current PR #140 hosted review page shows 68 curated model-reference rows, but only 5 image URLs were observed in its browser audit. Earlier handover stated 11 exact image references; reconcile the actual current JSON/source mapping before claiming coverage. Full 3,317-row exact model/image coverage remains incomplete. No guessed image or category match is approved.
+
+### ASC and price-scaling workstream — kept separate from Planetworld
+- ASC authorisation/integration approval remains confirmed; do not ask the owner to authorise ASC again. ASC remains a separate supplier workstream.
+- Gmail contains a 2026-10-28 email from Accessories & Spares with `November Buyer's Guide.pdf`, `1003-New Arrivals.pdf` through `1007-Stock Arrivals.pdf`, and October ASC PDFs. The Gmail connector returns attachment metadata only; the PDFs are not in the Library and no attachment-download action is available. The email body itself contains no current SKU prices. Do not infer prices from attachment names.
+- The 38 historical September price-scaling rows remain unverified for current price/stock/effective date; the 38-SKU request tracker still has blank current fields / WAITING status. Upload the November guide and relevant arrival PDFs to the Library/chat, then exact-match all 38 SKUs and record current supplier cost, VAT basis, stock, effective/expiry date and description. Do not use expired September values or change prices until matched.
+
+### Read-only live database integrity recheck — 2026-11-01
+- The 107-row October-difference report was rechecked against live Supabase: 107/107 SKUs present; 107/107 live costs match October printed costs; 107/107 prices still equal the audited formula; 107/107 formula checks pass; all 107 remain active. Older `review_status=REVIEW` remains superseded. No price write needed or permitted.
+- The nine exact September asterisk-price SKUs `M501WCC`, `A1-002`, `A1-003`, `MA330`, `MA342`, `MA342/2`, `N-FC001`, `WP25`, `N-CP002` all remain `price=0.00`, `cost_price=0.00`, `active=false`. Each has `stock_quantity=5`, which is test data, not supplier-confirmed availability. Keep all nine quote-only/inactive. Two additional zero-price glowplug rows are also inactive; do not conflate them with the nine asterisked September items.
+- Read-only category/product recheck: 4,200 products / 4,187 active / 13 inactive; 243 category rows / 66 top-level rows; 198 manual category-review rows; zero active products with NULL category_id; zero active products with blank image_url. The live category tree still does not implement a clean unique eight-root hierarchy. The PR #140 preview's eight root labels do not certify the live database. No product was moved and no category write was made.
+
+### Next actions
+1. Owner runs the artifact-free Planetworld Workbook Audit from GitHub Actions on branch `main` once; inspect the job summary and refresh counts.
+2. Upload the ASC November Buyer's Guide and relevant stock-arrival PDFs so the 38 historical price-scaling SKUs can be reconciled to current source values.
+3. Continue exact model/variant and manufacturer-image review; resolve the 5-versus-11 image-source count and verify the current-head Planetworld audio-preview route without triggering unapproved Cloudflare deployment credits.
+4. Produce an evidence-backed proposal for the 198 manual category-review rows and live legacy-root consolidation; no automatic moves or live writes.
+5. Keep PR #140 draft/unmerged pending owner review, real-phone acceptance and explicit release approval. Do not change live data, import supplier data, deploy production, alter Axxess/DNS/payments or spend release credits.
