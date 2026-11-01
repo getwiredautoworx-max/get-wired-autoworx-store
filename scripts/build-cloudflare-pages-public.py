@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 import shutil
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "pages-public"
@@ -14,13 +15,14 @@ REQUIRED_ROOT_FILES = [
 ]
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
-    "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html",
+    "_headers", "preview-store.html", "preview-category.html", "preview-products.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "preview-checkout.html",
 ]
 REQUIRED_ASSET_FILES = [
-    "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
+    "gw-logo.png", "storefront-shell.css", "catalogue-search.js", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
 ]
+PREVIEW_ASSET_FILES = ["audio-category-navigation.js","planetworld-catalogue-preview.json","planetworld-verified-models-preview.json","audio-connections-catalogue-preview.json","asc-catalogue-pilot-preview.json","asc-catalogue-pilot/asc-01080.jpg","asc-catalogue-pilot/asc-02883.jpg","asc-catalogue-pilot/asc-03822.jpg","asc-catalogue-pilot/asc-09103.jpg","asc-catalogue-pilot/asc-09396.jpg","asc-catalogue-pilot/asc-21849.jpg","asc-catalogue-pilot/asc-9005-cbl-h.jpg","asc-catalogue-pilot/asc-9005-h.jpg","asc-catalogue-pilot/asc-9005-nb.jpg","asc-catalogue-pilot/asc-9005xs.jpg","asc-catalogue-pilot/asc-cs-112048.jpg","asc-catalogue-pilot/asc-csc105.jpg","asc-catalogue-pilot/asc-csc106.jpg","asc-catalogue-pilot/asc-f1-012.jpg","asc-catalogue-pilot/asc-f1-019.jpg","asc-catalogue-pilot/asc-f1-060.jpg","asc-catalogue-pilot/asc-f1-067.jpg","asc-catalogue-pilot/asc-m7-avan01.jpg","asc-catalogue-pilot/asc-m7-con01.jpg","asc-catalogue-pilot/asc-m7-cor01.jpg","asc-catalogue-pilot/asc-m7-cor02.jpg","asc-catalogue-pilot/asc-ma522.jpg","asc-catalogue-pilot/asc-ma553.jpg","asc-catalogue-pilot/asc-ma559r.jpg","asc-catalogue-pilot/asc-ma570.jpg","asc-catalogue-pilot/asc-a1-003.jpg","asc-catalogue-pilot/asc-a1-004.jpg","asc-catalogue-pilot/asc-ma314.jpg","asc-catalogue-pilot/asc-ma314bl.jpg","asc-catalogue-pilot/asc-02761.jpg","asc-catalogue-pilot/asc-04818.jpg","asc-catalogue-pilot/asc-14163.jpg","asc-catalogue-pilot/asc-29601.jpg","asc-catalogue-pilot/asc-ig-fr01.jpg","asc-catalogue-pilot/asc-ig-hn04.jpg","asc-catalogue-pilot/asc-ig-izt.jpg","asc-catalogue-pilot/asc-ig-np300.jpg","asc-catalogue-pilot/asc-h1865w-h.jpg","asc-catalogue-pilot/asc-h1960-55w-h.jpg","asc-catalogue-pilot/asc-h355w-cbl.jpg","asc-catalogue-pilot/asc-h355w-h.jpg","asc-catalogue-pilot/asc-m7-gf1.jpg","asc-catalogue-pilot/asc-m7-bme36.jpg","asc-catalogue-pilot/asc-m7-bme46.jpg","asc-catalogue-pilot/asc-m7-bme87.jpg","asc-catalogue-pilot/asc-f1-001.jpg","asc-catalogue-pilot/asc-f1-001-e.jpg","asc-catalogue-pilot/asc-f1-009.jpg","asc-catalogue-pilot/asc-f1-017.jpg","asc-catalogue-pilot/asc-f1-028.jpg"]
 FORBIDDEN_DIRS = {
     "suppliers", "catalogue-review", "catalogue-source", "catalogue-audits",
     "staging", "supabase", ".github", "android-owner-app", "apk-sales-intelligence",
@@ -50,6 +52,41 @@ include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
+    for name in PREVIEW_ASSET_FILES:
+        if name == "asc-catalogue-pilot-preview.json":
+            # Publish only customer-safe catalogue fields; keep source-page and
+            # internal supplier mapping metadata out of the public Pages package.
+            source = ROOT / "assets" / name
+            if not source.is_file():
+                raise SystemExit(f"Required preview asset missing: assets/{name}")
+            payload = json.loads(source.read_text(encoding="utf-8"))
+            safe_fields = ("id", "title", "catalogue_reference", "fitment_as_printed",
+                           "subcategory", "image_url")
+            public_payload = {
+                "title": "ASC catalogue preview — request availability",
+                "record_count": len(payload.get("records", [])),
+                "records": [
+                    {key: record[key] for key in safe_fields if key in record}
+                    for record in payload.get("records", [])
+                ],
+            }
+            target = OUT / "assets" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(json.dumps(public_payload, ensure_ascii=False, separators=(",", ":")),
+                              encoding="utf-8")
+            forbidden = ("source_file", "source_page", "internal_sku", "supplier_sku",
+                         "source_image_pairing", "image_crop_status", "image_use_status",
+                         "dealer_cost", "indicative_price", "public_sku")
+            public_text = target.read_text(encoding="utf-8").lower()
+            leaked = [field for field in forbidden if field in public_text]
+            if leaked:
+                raise SystemExit(f"ASC preview sanitization failed; forbidden fields remain: {leaked}")
+            print(f"ASC_PUBLIC_PREVIEW_SANITIZED_PASS records={public_payload['record_count']}")
+        else:
+            copy_file(f"assets/{name}")
+    # The isolated preview domain root must open the approved storefront shell.
+    # This is output-only: production builds (GW_INCLUDE_PREVIEW_ROUTES != 1) keep index.html unchanged.
+    shutil.copy2(OUT / "preview-store.html", OUT / "index.html")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 

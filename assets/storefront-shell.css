@@ -1,0 +1,61 @@
+/* Shared Get Wired AutoWorx storefront shell — aligned to the approved dark homepage shell. */
+:root{color-scheme:dark;--gw-navy:#02060d;--gw-panel:#071222;--gw-blue:#087fe0;--gw-red:#ff1c2d;--gw-white:#f5f8fc;--gw-line:#123f60}
+*{box-sizing:border-box}
+body{background:radial-gradient(circle at 50% -10%,#0c2944 0,#030914 34%,#02060d 70%);color:#f5f8fc;font-family:Arial,Helvetica,sans-serif}
+.gwTop{height:34px;background:#010308;color:#f5f8fc;border-bottom:1px solid #0d3555;display:flex;align-items:center;justify-content:space-between;padding:0 5%;font-size:12px}
+.gwTop .rating{color:#ffd84d}
+.gwHeader{position:sticky;top:0;z-index:40;background:rgba(2,6,13,.97);border-bottom:1px solid #0c3b60;backdrop-filter:blur(12px)}
+.gwHead{max-width:1400px;margin:auto;min-height:105px;display:flex;align-items:center;gap:22px;padding:12px 24px}
+.gwLogo{height:88px;width:min(430px,52vw);object-fit:contain;display:block}
+.gwHead .gwSearch{flex:1;max-width:620px;margin-left:auto}
+.gwHead .gwSearch input{width:100%;background:#050d18;color:#fff;border:2px solid #087fe0;border-radius:28px;padding:15px 20px;font-size:15px;box-sizing:border-box}
+.gwHead .gwCart,.gwHead .gwBack,.gwHead .gwAction{border:1px solid #28658c;border-radius:8px;padding:10px 13px;background:#071321;color:#eaf4ff;font-weight:900;text-decoration:none;white-space:nowrap;cursor:pointer}
+.gwNav{background:#050b14;border-bottom:1px solid #123f60}
+.gwNavIn{max-width:1400px;margin:auto;display:flex;gap:30px;padding:12px 24px;font-weight:700;font-size:13px}
+.gwNav a{color:#eaf4ff;text-decoration:none}
+.gwPageMain{max-width:1400px;margin:18px auto;padding:0 20px}
+.gwFooter{max-width:1400px;margin:40px auto 0;padding:30px 20px 80px;background:transparent;border:0;color:#b9c8d6}
+.gwFoot{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;border-top:1px solid #123f60;padding-top:25px;color:#b9c8d6}
+.gwFoot a{color:#66caff}
+.gwMobileNav{display:none;position:fixed;z-index:50;bottom:0;left:0;right:0;background:#050b14;border-top:1px solid #123f60;justify-content:space-around;padding:8px 2px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -5px 22px #0008}
+.gwMobileNav a{flex:1;color:#fff;text-decoration:none;font-size:10px;text-align:center;line-height:1.15}
+.gwMobileNav b{display:block;font-size:21px;color:#fff}
+.gwMobileNav a:first-child,.gwMobileNav a:first-child b{color:#ff4054}
+#gwPreviewNotice{background:#30270f;color:#ffe8b0;padding:8px 14px;font-size:12px;text-align:center;border-bottom:1px solid #8b6825}
+.sku,.product .sku,.detail .sku,.gwVerifiedSku,.gwVerifiedModel,.partSearchResult small{color:#e2edf7!important;font-weight:700!important;opacity:1!important;text-shadow:0 1px 1px rgba(0,0,0,.65)}
+@media(max-width:900px){.gwTop{display:none}.gwHead{min-height:88px;padding:8px 14px;gap:12px}.gwLogo{height:72px;width:min(360px,48vw)}.gwNav{display:none}.gwPageMain{padding:0 12px}.gwFoot{grid-template-columns:1fr 1fr}.gwMobileNav{display:flex}}
+@media(max-width:600px){.gwHead{flex-wrap:wrap;min-height:78px;padding:7px 12px;gap:8px}.gwLogo{height:60px;width:calc(100% - 100px);max-width:260px}.gwHead .gwSearch{order:3;flex-basis:100%;max-width:none;margin:0}.gwHead .gwSearch input{padding:10px 14px;font-size:14px}.gwHead .gwCart,.gwHead .gwBack,.gwHead .gwAction{font-size:11px;padding:8px}.gwFoot{grid-template-columns:1fr 1fr;gap:12px}.gwFooter{padding:18px 12px 90px}}
+@media(max-width:390px){.gwHead{gap:6px}.gwLogo{width:calc(100% - 92px)}.gwFoot{grid-template-columns:1fr}}
+
+/* Brighter shared storefront shell with strong text contrast. */
+:root{color-scheme:light;--gw-navy:#f3f6fa;--gw-panel:#fff;--gw-blue:#087fce;--gw-red:#e21d2f;--gw-white:#173650;--gw-line:#d5e0e9}
+html,body{background:#f3f6fa!important;color:#173650!important}
+.gwTop{background:#eaf0f6!important;color:#173650!important;border-bottom:1px solid #cbdbe7!important}
+.gwTop .rating{color:#704f00!important;font-weight:800}.gwTop .rating b{color:#173650!important}
+.gwHeader{background:rgba(255,255,255,.98)!important;border-bottom:1px solid #d5e0e9!important}
+.gwNav{background:#eaf0f6!important;border-bottom:1px solid #cbdbe7!important}.gwNav a{color:#173650!important}
+.gwFooter{background:#f3f6fa!important;color:#314b60!important}.gwFoot{border-top-color:#cbdbe7!important;color:#314b60!important}.gwFoot a{color:#075f9c!important}
+.gwMobileNav{background:#fff!important;border-top:1px solid #cbdbe7!important}.gwMobileNav a{color:#173650!important}.gwMobileNav b{color:#087fce!important}
+.gwHead .gwSearch input,.search input,#topSearch,.tools input,.tools select{background:#fff!important;color:#173650!important;border-color:#1688d0!important}
+.gwHead .gwCart,.gwHead .gwBack,.gwHead .gwAction,.back,.cart{background:#fff!important;color:#173650!important;border-color:#9dbbd0!important}
+.crumb,.count,.title p,.muted,.stock,.sku,.product .sku,.detail .sku,.gwVerifiedSku,.gwVerifiedModel,.partSearchResult small{color:#425d72!important;text-shadow:none!important;opacity:1!important}
+.title{border-bottom-color:#d5e0e9!important}.title h1,.name,.product h3,.section h2,.product .name{color:#12344f!important}
+.price{color:#12344f!important}.desc{color:#314b60!important}
+.spec{background:#f7fafc!important;color:#173650!important;border-color:#d5e0e9!important}
+.hero,.img,.prodImg,.detailImg{background:#edf3f8!important;border:1px solid #d5e0e9!important}
+.empty,.error{background:#fff!important;color:#425d72!important;border-color:#d5e0e9!important}
+.product button,.detailActions button,.add{background:#087fce!important;color:#fff!important}
+#gwPreviewNotice{background:#fff4cf!important;color:#5a4300!important;border-color:#e0c36e!important}
+
+/* Shared light treatment for the dedicated category, product-list and product-detail routes. */
+.header{background:rgba(255,255,255,.98)!important;border-bottom:1px solid #d5e0e9!important;color:#173650!important}
+.head{color:#173650!important}
+.back{background:#fff!important;color:#173650!important;border-color:#9dbbd0!important}
+.search input,.tools input,.tools select{background:#fff!important;color:#173650!important;border-color:#1688d0!important}
+.wrap,.gwPageMain{color:#173650!important}
+.crumb,.count,.title p,.card-count,.muted{color:#425d72!important}
+.title{border-bottom-color:#d5e0e9!important}
+.title h1,.grid .card h2,.card h2,.card .name{color:#12344f!important}
+.grid .card,.card{background:#fff!important;border:1px solid #d5e0e9!important;color:#173650!important}
+.card-art{background:linear-gradient(135deg,#eaf5fc,#d8eaf6)!important}
+.arrow{color:#087fce!important}
