@@ -4,7 +4,7 @@ const vm=require('node:vm');
 const html=fs.readFileSync('preview-store.html','utf8');
 const audio=fs.readFileSync('preview-audio.html','utf8');
 const nav=fs.readFileSync('assets/audio-category-navigation.js','utf8');
-for(const [index,match] of [...audio.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)].entries()){
+for(const [index,match] of [...audio.matchAll(/<script[^>]*>([\\s\\S]*?)<\\/script>/gi)].entries()){
   if(match[1].trim()) new vm.Script(match[1],{filename:'preview-audio.inline-script-'+index+'.js'});
 }
 assert.match(audio,/d\\.className="audioTile"/,'Audio departments must render tile cards');
