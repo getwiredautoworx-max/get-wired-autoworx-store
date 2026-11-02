@@ -88,3 +88,18 @@ Append new dated outcomes below this line; never modify or remove the protected 
 - Removed all prior handover-named files, including `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, legacy dated handovers, task-start/results/checkpoint notes, and files in `handover-runs/` and `handover-updates/`.
 - Final recursive Git tree verification returned exactly one handover-named file: `HANDOVER_2026-11-02_OWNER_CONTINUATION.md` (blob `e9a5c7d97182e5c5125552fd3c2b71deb79ade82` before this cleanup note was appended). Tree SHA at verification: `9d20f4ac49c1f1fbecef06b90ccd9e268c9c3ead`.
 - This new file is the sole retained handover and preserves the owner's standing-instructions block. Do not edit/remove that block without explicit owner permission.
+
+
+## 2026-11-02 REPOSITORY CLEANUP — TASK START
+- Owner requested cleanup of old/outdated repository files and APK/build leftovers.
+- Baseline inspected at `main` commit `bb43160e273f2de7bd6f428ed7a865932a654b29`: 5,263 tracked files, 366,264,573 bytes across file entries; 4,928 image assets; 47 supplier XLSX files.
+- No `.apk`, `.aab`, or `.ipa` files are tracked in the current tree. One root ZIP (`Get_Wired_AutoWorx_STORE_WITH_WATERMARKED_PRODUCT_IMAGES.zip`, 8.89 MiB) is explicitly protected by earlier owner instruction and will be retained. Supplier catalogues, images, prices, source extracts, and storefront files are not cleanup targets without evidence.
+- Cleanup is being prepared on a separate maintenance branch so `main` and its automatic deployment path remain untouched; production remains on HOLD.
+
+## 2026-11-02 REPOSITORY CLEANUP — RESULT ON MAINTENANCE BRANCH
+- Exact tree review found no tracked APK/AAB/IPA files and no committed build-output directories; therefore no APKs or build outputs were deleted.
+- Removed only four obsolete non-storefront files: `READY.txt`, `UPDATE_COMPLETE`, `READY_FOR_STORE_VISIT.txt` (stale readiness marker), and `SESSION_CONTINUATION_2026-09-16.md` (superseded session note). This cleanup does not imply readiness.
+- Updated `.gitignore` to prevent future commits of Android APK/AAB packages, Gradle cache, and Android app build output.
+- Retained the explicitly protected root ZIP, all product/catalogue images, supplier PDFs/XLSX, storefront/payment/configuration files, deployment triggers, and audit/reconciliation evidence.
+- Repository baseline: 5,263 tracked files / 366,264,573 bytes in current tree; one ZIP (8.89 MiB); two tracked files over 5 MiB (the protected ZIP and ASC automotive switches PDF at 7.32 MiB). No APKs found.
+- Changes are isolated to `maintenance/repository-cleanup-2026-11-02`; `main` was not changed and no production deployment was triggered by this task. PR will remain unmerged pending owner review because production remains on HOLD.

@@ -1,2 +1,8 @@
 # Generated customer-only Cloudflare Pages output; rebuild from the allowlist script.
 pages-public/
+
+# Android build outputs: keep source/configuration in Git, not generated packages or local build caches.
+*.apk
+*.aab
+.gradle/
+android/app/build/
