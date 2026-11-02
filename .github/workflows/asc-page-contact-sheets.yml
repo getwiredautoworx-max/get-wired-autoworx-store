@@ -1,0 +1,45 @@
+name: ASC Catalogue Page Contact Sheets (Private Review Only)
+on:
+  push:
+    branches: [integration/clean-main-asc-audio-2026-11-01]
+    paths:
+      - 'suppliers/ASC/*.pdf'
+      - 'scripts/asc_contact_sheets.py'
+      - 'scripts/asc_product_card_crops.py'
+permissions:
+  contents: write
+jobs:
+  render-private-review-sheets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install PDF rendering dependencies
+        run: python -m pip install --disable-pip-version-check pymupdf pillow
+      - name: Render review-only page contact sheets
+        run: python scripts/asc_contact_sheets.py
+      - name: Crop the 50 ASC source cards for internal preview
+        run: |
+          pwd
+          python scripts/asc_product_card_crops.py
+          echo "ASC_CROP_FILES=$(find assets/asc-catalogue-pilot -maxdepth 1 -type f -name '*.jpg' | wc -l)"
+          ls -l assets/asc-catalogue-pilot | tail -35
+          test -f assets/asc-catalogue-pilot/asc-a1-003.jpg
+          test -f assets/asc-catalogue-pilot/asc-f1-028.jpg
+      - name: Commit private review sheets and preview-only crops to candidate branch
+        env:
+          BRANCH: integration/clean-main-asc-audio-2026-11-01
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalogue-review/asc-catalogue-extraction/contact-sheets-base64 assets/asc-catalogue-pilot
+          if git diff --cached --quiet; then
+            echo "No contact-sheet changes."
+          else
+            git commit -m "Create private ASC catalogue page contact sheets"
+            git pull --rebase origin "$BRANCH"
+            git push origin HEAD:"$BRANCH"
+          fi
