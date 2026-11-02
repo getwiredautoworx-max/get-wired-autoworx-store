@@ -313,3 +313,9 @@ This section supersedes earlier operational notes above wherever they describe t
 
 ### Continuation rule
 Start with the first task that can be executed safely using available connected tools. Do not repeat completed migrations, function deployments, PR #153, ASC source extraction or the existing 50-row preview implementation. After each meaningful change, record exact SHA/run ID, outcome and evidence here. A task is complete only when the stated verification exists. The owner wants execution and tangible results, not repeated plans or status-only messages.
+
+
+## 2026-11-02 SCHEDULED MONITOR — TASK START (15:13 SAST)
+- Read the sole retained handover on the current `main` ref before acting. The former `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and dated checkpoint/update files were intentionally removed under the owner's 2 November repository-cleanup instruction; do not recreate them or treat them as current. This sole continuation file is authoritative.
+- Scope this run to read-only workflow/PR/source review and safe non-production code work. Production remains HOLD. No production workflow reruns, deployment, Axxess, DNS, payment credential, live data, supplier publication, or credit-consuming deployment action is authorized.
+- Task start: 2026-11-02 15:13 SAST. In-progress: refresh workflow states/attempts, inspect open candidate PRs and current ASC/payment/category blockers, then append verified outcomes and exact identifiers here.
