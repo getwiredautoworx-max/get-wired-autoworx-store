@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       button_only: ${{ steps.mode.outputs.button_only }}
+      bright_home: ${{ steps.mode.outputs.bright_home }}
     steps:
       - uses: actions/checkout@v4
       - id: mode
@@ -37,9 +38,14 @@ jobs:
           else
             echo "button_only=false" >> "$GITHUB_OUTPUT"
           fi
+          if grep -Fq 'id="categoryGrid"' index-new.html && grep -Fq 'preview-category.html?id=' index-new.html; then
+            echo "bright_home=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "bright_home=false" >> "$GITHUB_OUTPUT"
+          fi
   smoke:
     needs: detect-storefront-mode
-    if: needs.detect-storefront-mode.outputs.button_only != 'true'
+    if: needs.detect-storefront-mode.outputs.button_only != 'true' && needs.detect-storefront-mode.outputs.bright_home != 'true'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -384,3 +390,32 @@ jobs:
           NODE
 
 # Audit trigger: 2026-10-14 — execute the existing smoke checks without changing test behavior.
+
+  bright-home-smoke:
+    needs: detect-storefront-mode
+    if: needs.detect-storefront-mode.outputs.bright_home == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate bright category homepage and approved navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+          home = Path("index-new.html").read_text(encoding="utf-8")
+          entry = Path("index.html").read_text(encoding="utf-8")
+          category = Path("preview-category.html").read_text(encoding="utf-8")
+          ids = re.findall(r'preview-category[.]html[?]id=([0-9a-f-]{36})', home)
+          root_block = re.search(r'const ROOTS=(.*?);', category, re.S).group(1)
+          roots = re.findall(r'[0-9a-f-]{36}', root_block)
+          assert len(set(ids)) == 8, "Duplicate category destination"
+          assert set(ids) == set(roots), "Homepage destinations differ from approved category ROOTS"
+          assert "index-new.html" in entry, "Root index does not route to new homepage"
+          assert "@media(max-width:520px)" in home, "Mobile layout breakpoint missing"
+          assert "STORE PREVIEW" in home, "Preview-only notice missing"
+          assert "checkout" not in home.lower() or "disabled" in home.lower(), "Review checkout safety notice"
+          print("BRIGHT_HOME_STATIC_QA_PASS: 8 approved category links, root redirect, mobile breakpoint, preview notice")
+          PY

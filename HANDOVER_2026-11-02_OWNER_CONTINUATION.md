@@ -486,3 +486,38 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - No payment/delivery task should be described as the primary next milestone while the customer-facing storefront remains incorrect or unpopulated.
 - This priority correction does not authorize publishing supplier content, changing live stock/prices/categories, removing supplier watermarks/rights notices, or deploying to production. Product images must be lawfully usable; retain source provenance and do not falsely claim image rights.
 - Execution discipline: reuse the completed ASC taxonomy and 50-record pilot evidence; do not repeat extraction already done. Selectively reconstruct on current main; do not merge stale PR #149 wholesale. Maintain the private supplier-SKU-to-GW-SKU mapping outside customer-facing assets.
+
+
+## 2026-11-02 EXECUTION UPDATE — BRIGHT CATEGORY LANDING PAGE
+- Created clean branch `fix/bright-functional-storefront-2026-11-02` from current `main`.
+- Replaced the button-only dark `index-new.html` landing page with a bright, responsive, mobile-first category homepage. It retains the eight approved root categories and links each to the existing `preview-category.html` route using the exact category UUIDs already declared in that route.
+- Added a category filter, brand/tagline, Established Since 2012, rating display, and the owner's approved pickup/no-walk-in/no-COD notice. Added a clear preview-only notice; checkout/live ordering remains disabled.
+- Changed `index.html` to route the root entry point to `index-new.html`, rather than the previously configured `store.html` old shell. This is a branch-only candidate change; it has NOT been deployed to Cloudflare Pages, Axxess or production.
+- Commits: `0de408d7aa040719965f064afb16b64423a200aa` (bright landing page) and `6695aa8ebfa57c353dc5e4509cf067e4a655259d` (root route).
+- Verified by source comparison that all eight UUIDs in the new homepage exactly match the eight ROOTS entries in `preview-category.html`.
+- NOT YET VERIFIED: browser rendering, mobile overflow, destination category population, product listing, image correctness, and workflow checks. The existing `storefront-smoke.yml` contains legacy assertions against the old `index-new.html` implementation and must be updated to test the new homepage rather than silently skipped or allowed to fail. Do not call this storefront ready.
+- Next work: update the smoke workflow for the new route, run exact-branch tests, then port the approved ASC taxonomy/pilot into customer-facing category navigation without exposing supplier SKUs or old Buyer Guide stock. Keep production HOLD.
+
+- Opened draft PR #157 for the four-file storefront landing-page change: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/157. PR head: `a89dd022a515a62a17dc769488d828b59cc22157`; base main at PR creation: `f7c84ec23c0ca3f4f7609eb2bdda5f0a42c8d1d8`. It is draft, open, unmerged and currently reported mergeable=false; do not merge.
+- Updated `.github/workflows/storefront-smoke.yml` to recognize the new bright category-home contract and run a dedicated static check for eight exact root-category links, route redirect, mobile breakpoint and preview notice. Existing legacy storefront smoke remains for the previous page mode. Workflow run results were not yet available at the time of this note.
+- This is a focused repair to the entry point only. The eight category links lead to the existing category route, but populated product listings, ASC source-taxonomy integration, exact product image QA, hosted preview/browser QA and owner phone acceptance are still open.
+
+
+## 2026-11-02 PREVIEW DEPLOYMENT — URLS READY, CONTENT QA IN PROGRESS
+- The focused storefront change is draft PR #157: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/157
+- Exact candidate source deployed to isolated Cloudflare Pages branch using workflow run `41483482192`, which completed SUCCESS. Wrangler confirmed:
+  - immutable deployment URL: https://a3968c96.get-wired-autoworx-store.pages.dev
+  - stable preview alias: https://approved-storefront-preview.get-wired-autoworx-store.pages.dev
+  - deployed source SHA: `6554e8d6bdf0c63d9666e00bd71cfb036a47fd88`
+- Netlify Deploy Preview #157 also reached state READY for commit `66644b2b67c72ef83611de2445fcccec6f608740`:
+  - https://deploy-preview-157--get-wired-autoworx-store.netlify.app
+  - immutable permalink: https://6ae8bcdcc9cca7882fd05cb4--get-wired-autoworx-store.netlify.app
+  - deploy ID `6ae8bcdcc9cca7882fd05cb4`
+- Candidate workflow evidence at SHA `6554e8d6bdf0c63d9666e00bd71cfb036a47fd88`: Storefront Smoke Test SUCCESS; Cloudflare Pages Public Package QA SUCCESS; Public SKU Exposure Audit SUCCESS. The preview package build confirmed 4,126 public files and 4,101 WebP product images, and confirmed exclusion of suppliers, catalogue-review, catalogue-source, catalogue-audits, staging, Supabase and .github directories.
+- A separate Playwright browser QA run against the deployed Cloudflare preview initially failed when navigating repeatedly through the Car Audio category on one page (`net::ERR_ABORTED`). Test was corrected to use a fresh browser page per category and `waitUntil: commit`; rerun is in progress. Do not claim browser QA passed until the rerun is green.
+- IMPORTANT CONTENT LIMITATION: the existing `assets/category-tree.json` is a snapshot generated `2026-10-29T09:52:49Z` of active Supabase category rows/product assignments. The category and product preview routes still query current store product records and are not yet a verified replacement catalogue built from the approved ASC/Planetworld/Audio Connections source catalogues. Do not describe the preview as fully catalogue-integrated or ready for customer orders. The ASC pilot remains review-only. Keep the old ASC Buyer Guide data out of any approved publication.
+- Production remains HOLD. These URLs are non-production review previews only. The preview banner disables checkout/supplier submissions; do not activate live order/payment flows.
+
+- Final isolated preview Playwright QA rerun completed SUCCESS: workflow run `41483868642` at candidate workflow commit `a80f7884d56fb098a80243c5d851dda824eed654`. It exercised the deployed Cloudflare preview at 360px, 390px and 1280px, confirmed all eight category routes returned successfully and rendered headings, confirmed no horizontal overflow, and detected no uncaught page errors. The first attempt's cross-page navigation abort was resolved by using a separate browser page for each category.
+- The Cloudflare deployment URL and alias above are verified from Wrangler's successful deployment output. The Netlify Deploy Preview URL above is verified READY for the same storefront source (only later QA/handover workflow files differ).
+- This confirms the homepage and eight category routes render and navigate at the tested sizes. It does NOT verify product image-to-SKU matching, old ASC Buyer Guide exclusion from the current active-product records, current stock/prices, all product-detail pages, or owner acceptance on the actual phone. Those remain explicit catalogue/content work, not release blockers hidden by a green layout test.

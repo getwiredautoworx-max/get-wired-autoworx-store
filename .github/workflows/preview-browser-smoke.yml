@@ -1,0 +1,72 @@
+name: Isolated Storefront Preview Browser QA
+on:
+  push:
+    branches:
+      - fix/bright-functional-storefront-2026-11-02
+    paths:
+      - '.github/workflows/preview-browser-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Check deployed isolated preview on desktop, phone and all eight categories
+        env:
+          STORE_URL: https://approved-storefront-preview.get-wired-autoworx-store.pages.dev
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const base = process.env.STORE_URL;
+            const ids = [
+              '6cc56033-b0a9-4f25-b207-aeeb341a1c47',
+              '8e93d917-8fcc-4427-b364-cdad244f263f',
+              '5ab55c53-eee3-41ce-ad48-04ad6df85181',
+              '87982093-7d81-4f2e-a8e2-e20cdeef30d8',
+              '38b382c1-6ee0-4b3c-86ad-399094bc40cc',
+              '77297c18-67f6-452e-8918-c55d2ef6231a',
+              'af2f8625-4f42-45e6-9f21-d571d7415893',
+              '63a71fd9-df45-43f0-b61d-ad622daa9d79'
+            ];
+            try {
+              for (const width of [360,390,1280]) {
+                const page = await browser.newPage({viewport:{width,height:900}});
+                const errors=[];
+                page.on('pageerror',e=>errors.push(String(e)));
+                const response=await page.goto(base,{waitUntil:'domcontentloaded',timeout:45000});
+                if(!response || response.status()>=400) throw new Error('Home HTTP failure '+width+' '+response?.status());
+                await page.waitForSelector('#categoryGrid .category');
+                if(await page.locator('#categoryGrid .category').count()!==8) throw new Error('Expected eight root categories');
+                const dim=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
+                if(dim.scroll>dim.width+2) throw new Error('Horizontal overflow '+JSON.stringify(dim));
+                for(const id of ids){
+                  const categoryPage=await browser.newPage({viewport:{width,height:900}});
+                  categoryPage.on('pageerror',e=>errors.push(String(e)));
+                  let r;
+                  try {
+                    r=await categoryPage.goto(base+'/preview-category.html?id='+id,{waitUntil:'commit',timeout:45000});
+                    await categoryPage.locator('#heading').waitFor({timeout:20000});
+                    const heading=await categoryPage.locator('#heading').innerText();
+                    if(!heading.trim()) throw new Error('Empty category heading '+id);
+                    if(!r || r.status()>=400) throw new Error('Category route HTTP failure '+id+' '+r?.status());
+                  } finally { await categoryPage.close(); }
+                }
+                if(errors.length) throw new Error('Browser JS errors: '+errors.join('; '));
+                console.log('PREVIEW_BROWSER_PASS '+width+'px: homepage, eight category routes, no horizontal overflow, no page errors');
+                await page.close();
+              }
+            } finally { await browser.close(); }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE

@@ -1,14 +1,5 @@
 name: Button-Only Storefront Smoke Test
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'index-new.html'
-  pull_request:
-    branches: [main]
-    paths:
-      - 'index-new.html'
-      - '.github/workflows/button-only-storefront-smoke.yml'
   workflow_dispatch:
 jobs:
   button-only:
