@@ -5,7 +5,6 @@ Status: STAGING/DOCUMENTATION TASKS AUTHORIZED; production release remains HOLD.
 ## Purpose
 Read this file and the current handover before doing work:
 - [Current handover checkpoint](HANDOVER_CURRENT.md)
-- [Full chronological handover](HANDOVER.md)
 - [Repository](https://github.com/getwiredautoworx-max/get-wired-autoworx-store)
 - [Live store](https://www.getwiredauto.co.za/)
 
