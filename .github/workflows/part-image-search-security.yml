@@ -1,6 +1,14 @@
 name: Part Image Search Security Tests
 
 on:
+  push:
+    branches:
+      - "fix/part-image-search-durable-abuse-controls-2026-11-02"
+    paths:
+      - "supabase/functions/part-image-search/**"
+      - "supabase/migrations/*part_image_search_rate_limit.sql"
+      - "tests/part-image-search-security.test.mjs"
+      - ".github/workflows/part-image-search-security.yml"
   pull_request:
     paths:
       - "supabase/functions/part-image-search/**"
