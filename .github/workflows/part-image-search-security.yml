@@ -1,0 +1,22 @@
+name: Part Image Search Security Tests
+
+on:
+  pull_request:
+    paths:
+      - "supabase/functions/part-image-search/**"
+      - "supabase/migrations/*part_image_search_rate_limit.sql"
+      - "tests/part-image-search-security.test.mjs"
+      - ".github/workflows/part-image-search-security.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --experimental-default-type=module --test tests/part-image-search-security.test.mjs
