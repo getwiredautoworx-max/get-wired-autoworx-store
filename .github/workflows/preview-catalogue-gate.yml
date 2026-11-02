@@ -21,4 +21,4 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify unapproved products cannot render in preview
-        run: python -m unittest tests.test_preview_catalogue_gate -v
+        run: python tests/test_preview_catalogue_gate.py -v
