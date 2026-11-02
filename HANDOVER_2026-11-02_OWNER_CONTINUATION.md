@@ -261,3 +261,55 @@ Project ref: `ojytykqpvonxvepprgbh` (`Store`, eu-west-1).
   - Supabase Auth leaked-password protection is disabled. Recommended account-level hardening remains outstanding; connected tools do not expose the Auth password-security setting.
 - Performance advisor flagged four unindexed foreign keys, including the new `orders_policy_acknowledged_by` reference, and numerous unused indexes / multiple permissive RLS policies. No unrelated index or policy changes were made during checkout deployment.
 - Do not represent these unrelated advisor findings as resolved. Prioritize enabling leaked-password protection and review the new policy acknowledgement FK index in a separate controlled change.
+
+
+## 2026-11-02 OWNER CONTINUATION POINT — REMAINING TASKS AFTER CHECKOUT DEPLOYMENT
+
+This section supersedes earlier operational notes above wherever they describe the Supabase checkout functions or migrations as not yet deployed. Historical audit notes are retained for traceability; use the later verified deployment record and this continuation point as the current state. The protected owner-instructions block remains unchanged.
+
+### Completed since the earlier handover checkpoints
+- Owner asked what remains, then requested this handover be updated to continue from that point.
+- The owner explicitly authorized deployment of the reviewed checkout migrations and corrected Edge Functions to the existing Supabase Store project. This was **not** production storefront or payment-provider launch approval.
+- Database migrations `delivery_quote_nonce_unique` (`20261102130448`) and `checkout_policy_audit` (`20261102130454`) were applied and verified on project `ojytykqpvonxvepprgbh`.
+- `shipping-quote` is deployed ACTIVE at version **5** and `store-checkout` is deployed ACTIVE at version **6**. Both were read back from Supabase after deployment.
+- PR #153 was merged to main at `4ef21215b45a264fd9dd22b8c74ca9f77601f592`. Source alignment and static checks were verified.
+- The hard-coded private courier collection address was removed. Carrier requests now require all four private `COURIER_COLLECTION_*` secrets. Missing values disable live carrier requests instead of exposing an address.
+- Checkout source now validates customer session/confirmed email, policy acknowledgement, current prices, pickup or signed delivery quote, and invokes service-role-only `create_store_order_v3`. Direct EFT response requires all five bank secrets and an order reference; payment remains pending for manual verification.
+- These deployments are **not** behavioural test evidence. No customer order, live transaction, bank detail, secret value or payment-provider activation was performed.
+
+### Remaining tasks — current order of execution
+
+#### A. Supabase secrets and checkout verification
+1. Owner action: in Supabase Dashboard → project `Store` → Edge Functions → Secrets, configure `DELIVERY_QUOTE_SIGNING_SECRET` (random, minimum 32 characters) and the four private courier fields: `COURIER_COLLECTION_ADDRESS`, `COURIER_COLLECTION_CITY`, `COURIER_COLLECTION_PROVINCE`, `COURIER_COLLECTION_POSTAL_CODE`. Do not paste these values into ChatGPT or GitHub.
+2. Owner action when Direct EFT is ready: configure `DIRECT_EFT_BANK_NAME`, `DIRECT_EFT_ACCOUNT_NAME`, `DIRECT_EFT_ACCOUNT_NUMBER`, `DIRECT_EFT_BRANCH_CODE`, `DIRECT_EFT_ACCOUNT_TYPE` in the same secure dashboard. Never commit or chat bank details. If the owner is not ready to configure bank details, keep EFT instruction display disabled/pending.
+3. Run GitHub Actions workflow **Delivery Quote Security Tests** and record the actual run ID, tested SHA and result. Connected GitHub actions did not expose workflow dispatch at the last check; if still unavailable, owner must start it from Actions UI.
+4. Perform controlled non-production behavioural tests: authenticated pickup checkout; rejection of unauthenticated/unconfirmed customer; required policy acknowledgement; tampered/expired/replayed delivery quote rejection; valid signed quote; order reference; pending Direct EFT state; WhatsApp handoff excluding bank details and private address. No real payment or customer-facing order.
+5. Verify runtime secret presence by successful endpoint behaviour, not by asking for secret values. Do not mark checkout/payment test-ready until the actual endpoint tests pass.
+
+#### B. Storefront deployment and acceptance
+1. Resolve the known old-storefront mismatch. Do not assume a green code test means the canonical domain or preview serves the intended build.
+2. Identify one current-main storefront candidate and exact commit SHA. Reconcile stale competing PRs before choosing an integration path; do not wholesale-merge stale PR #149.
+3. Obtain a verified non-production hosted preview with its actual deployment URL and deployed SHA. PR #151's ASC preview workflow is manual-only; connected GitHub actions previously did not expose workflow dispatch. If the workflow is still not dispatchable through the connector, owner must start **Deploy ASC Catalogue Non-Production Preview** on branch `integration/asc-source-taxonomy-review-2026-11-02`; record the URL and SHA returned by the deployment.
+4. Test desktop and mobile (including 360px and 390px widths): page shell consistency, category/subcategory navigation, product images, legibility/contrast, no horizontal overflow, no console/page errors, terms-before-buying, login-before-checkout, signup/email confirmation and order submission.
+5. Owner must inspect and accept the actual preview on the Android phone. Do not claim preview acceptance before this happens.
+
+#### C. Catalogue and commercial verification
+1. Continue ASC beyond the existing **50-record review-only pilot**. Preserve original catalogue headings, subcategories and ordering; verify every item against source filename/page/code/model and exact image. The 63 OCR tokens remain unverified. No automatic/fuzzy category moves.
+2. Do not treat October ASC guides as the post-reset November source. Obtain the correct November Buyer’s Guide/stock-arrival PDFs and reconcile the 38 historical price-scaling SKUs against printed cost, VAT basis, stock and effective date.
+3. Continue Planetworld current-main read-only workbook audit. The historical audit is not current pricing evidence. Owner previously needed to run **Planetworld Workbook Audit (Read Only)** from GitHub Actions UI; record the run/job summary. Keep the 19 zero-RRP products inactive/quote-only and confirm every price against current printed RRP, dealer cost, VAT and effective date before proposing changes.
+4. Integrate Audio Connections catalogue data using owner-confirmed dealer authorization; verify model-to-GW SKU, exact image, description, current price/VAT and availability. Do not expose supplier names to customers.
+5. Visually review the 198 category-review rows and 528 products outside approved roots; retain source provenance and protected 107/107 October price results. No live category, price, stock or active-flag changes without separate approval.
+
+#### D. Security and release
+1. Enable Supabase Auth leaked-password protection through the account dashboard when owner access permits; review the new `orders_policy_acknowledged_by` foreign-key index and remaining advisor warnings in a separate controlled change. Do not revoke intentional admin-gated functions or make broad RLS/index changes blindly.
+2. Resolve part-image-search endpoint security work and complete customer-facing policy/privacy checks.
+3. Run regression tests against the exact final candidate SHA and verify that the hosted preview serves that same SHA.
+4. Production remains **HOLD**. No Axxess upload, DNS change, public production deployment, payment-provider activation, live catalogue/price/stock changes or production release workflow unless the owner gives separate explicit approval. Checkout deployment authorization above does not grant any of those permissions.
+
+### Immediate owner input — only what is genuinely required
+- Configure the delivery signing and courier collection secrets securely in Supabase as described in section A. The owner does not need to disclose any secret values in chat.
+- Start the manual ASC non-production preview workflow only if the owner wants the 50-record catalogue preview hosted now and the connected GitHub workflow controls remain unavailable.
+- Provide the post-reset November ASC source PDFs if they are not already uploaded to the repository/Library.
+
+### Continuation rule
+Start with the first task that can be executed safely using available connected tools. Do not repeat completed migrations, function deployments, PR #153, ASC source extraction or the existing 50-row preview implementation. After each meaningful change, record exact SHA/run ID, outcome and evidence here. A task is complete only when the stated verification exists. The owner wants execution and tangible results, not repeated plans or status-only messages.
