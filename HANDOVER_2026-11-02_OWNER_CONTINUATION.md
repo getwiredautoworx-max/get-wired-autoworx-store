@@ -626,3 +626,11 @@ Owner directive (2026-11-02): Complete the full ASC catalogue integration in the
 - Explicitly authorize production release after all technical evidence and owner acceptance.
 
 Progress rule: remove an item only after evidence on the exact current head. No status notification is a substitute for implementation. Production remains HOLD.
+
+
+## 2026-11-02 — Exact-head continuation check (latest)
+- Rechecked PR #162 at head `12bda42674fe3b5e12199569b9c252e7a47200d8` against base `27a21f66cade81989806d5a86d9d6beafcea3006`. PR remains OPEN, DRAFT, UNMERGED; no merge or production release is authorized.
+- Eight pull-request workflows attached to this exact head all completed with failure: Button-Only Storefront Smoke Test (run 41518215115); Public SKU Exposure Audit (41518214846); Cloudflare Pages Public Package QA (41518214859); Storefront Smoke Test (41518215170; detector failed and smoke skipped); Catalogue & Supplier Routing Review — QA (41518214939); Populated Store Preview Browser QA (41518215229); ASC Catalogue Preview Browser QA (41518215081); Preview Approved Catalogue Gate (41518214840).
+- GitHub's run/job metadata was retrievable, but step summaries were empty and workflow log blobs returned unavailable (404 BlobNotFound in the earlier retrieval). Therefore failure causes are NOT diagnosed; no claim that tests were fixed or passed.
+- PR description confirms the ASC content is still only a review-only 50-record / 50-image pilot. It is not the full ASC catalogue integration requested by the owner. Source taxonomy is present in review artefacts; products are not yet approved for public/live catalogue, pricing, stock or checkout.
+- Immediate technical blocker: establish reproducible local test failures and fix root causes before another readiness claim. Then rerun exact-head QA and verify a hosted preview serving that exact head. Preserve production HOLD and all owner-only gates.
