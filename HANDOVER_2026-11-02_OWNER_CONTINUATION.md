@@ -253,3 +253,11 @@ Project ref: `ojytykqpvonxvepprgbh` (`Store`, eu-west-1).
 - Direct EFT bank details are intentionally not yet set. When ready, enter these as Edge Function secrets in Supabase Dashboard: `DIRECT_EFT_BANK_NAME`, `DIRECT_EFT_ACCOUNT_NAME`, `DIRECT_EFT_ACCOUNT_NUMBER`, `DIRECT_EFT_BRANCH_CODE`, `DIRECT_EFT_ACCOUNT_TYPE`. Never place these values in GitHub or chat. The UI shows a pending-transfer message until all five are present.
 - Existing `payment-gateway` remains version 2 (Peach Payments) and is not activated. PayFast merchant approval remains pending. No payment provider activation, bank details, live transaction, customer order, production storefront deployment or DNS change occurred.
 - Next safe verification: run Delivery Quote Security Tests workflow from GitHub Actions (workflow name `Delivery Quote Security Tests`) and exercise authenticated pickup checkout in a controlled test account; then configure secrets privately and test a signed delivery quote. No real customer payment/order test without explicit separate approval.
+
+
+## 2026-11-02 POST-DEPLOY DATABASE ADVISOR REVIEW
+- Supabase security advisor returned three warning categories:
+  - `admin_list_orders` and `admin_update_order` are SECURITY DEFINER and executable by authenticated role. Read-only inspection confirms both functions explicitly reject missing `auth.uid()` and require an enabled row in `public.veyron_admin_users` before reading/updating orders. This is intentional admin gating; retain as a reviewed warning, do not revoke blindly.
+  - Supabase Auth leaked-password protection is disabled. Recommended account-level hardening remains outstanding; connected tools do not expose the Auth password-security setting.
+- Performance advisor flagged four unindexed foreign keys, including the new `orders_policy_acknowledged_by` reference, and numerous unused indexes / multiple permissive RLS policies. No unrelated index or policy changes were made during checkout deployment.
+- Do not represent these unrelated advisor findings as resolved. Prioritize enabling leaked-password protection and review the new policy acknowledgement FK index in a separate controlled change.
