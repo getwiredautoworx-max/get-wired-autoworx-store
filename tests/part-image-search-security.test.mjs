@@ -104,10 +104,12 @@ test("durable limiter fails closed when the RPC is unavailable or malformed", as
 
 test("endpoint rejects missing origin and runs durable limiting before paid inference", async () => {
   const source = await readFile(new URL("../supabase/functions/part-image-search/index.ts", import.meta.url), "utf8");
+  const helper = await readFile(new URL("../supabase/functions/part-image-search/security.mjs", import.meta.url), "utf8");
   assert.match(source, /if \(!isAllowedOrigin\(requestOrigin\)\) return json\(\{ error: "Origin not allowed\." \}, 403\)/);
-  assert.ok(source.indexOf("consumeDurableRateLimit(db, keyHash)") < source.indexOf('fetch("https://api.openai.com/v1/chat/completions"'));
-  assert.ok(source.indexOf('if (!OPENAI_API_KEY)') < source.indexOf('fetch("https://api.openai.com/v1/chat/completions"'));
-  assert.match(source, /AbortSignal\.timeout\(25_000\)/);
+  assert.ok(source.indexOf("consumeDurableRateLimit(db, keyHash)") < source.indexOf("requestVision({"));
+  assert.ok(source.indexOf('if (!OPENAI_API_KEY)') < source.indexOf("requestVision({"));
+  assert.match(helper, /fetchImpl\(/);
+  assert.match(helper, /AbortSignal\.timeout\(25_000\)/);
 });
 
 test("migration restricts the rate-limit table and RPC to service_role", async () => {
