@@ -61,7 +61,7 @@ jobs:
         shell: bash
         env:
           GW_RUN_HOSTED_QA: 'true'
-          GW_EXPECTED_PREVIEW_SHA: ${{ github.sha }}
+          GW_EXPECTED_PREVIEW_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           set -euo pipefail
           python3 -m http.server 4173 --directory pages-public --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
