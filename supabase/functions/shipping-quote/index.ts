@@ -77,7 +77,17 @@ export async function handleRequest(request: Request): Promise<Response> {
     const verified = await authoritativeParcel(supabaseUrl, body.items as Item[]);
     const p = verified.parcel, cartHash = await digest(verified.canonical), destinationHash = await digest(destinationCanonical(body));
     const quotes: any[] = [];
-    for (const provider of providers) {
+    // The merchant collection address is private operational data. Never hard-code it
+    // in a public repository; live carrier requests stay disabled until all four values
+    // are configured as Supabase function secrets.
+    const collection = {
+      address: Deno.env.get("COURIER_COLLECTION_ADDRESS")?.trim() || "",
+      city: Deno.env.get("COURIER_COLLECTION_CITY")?.trim() || "",
+      province: Deno.env.get("COURIER_COLLECTION_PROVINCE")?.trim() || "",
+      postal_code: Deno.env.get("COURIER_COLLECTION_POSTAL_CODE")?.trim() || "",
+    };
+    const collectionConfigured = Object.values(collection).every(Boolean);
+    if (collectionConfigured) for (const provider of providers) {
       const url = Deno.env.get(provider.prefix + "_RATES_URL");
       const token = Deno.env.get(provider.prefix + "_API_TOKEN");
       if (!url || !token) continue;
@@ -86,8 +96,8 @@ export async function handleRequest(request: Request): Promise<Response> {
           method: "POST",
           headers: { authorization: "Bearer " + token, "content-type": "application/json", accept: "application/json" },
           body: JSON.stringify({
-            collection: { address: "29 Wattlebrook Crescent, Brookdale, Phoenix, Durban, South Africa", city: "Durban", province: "KwaZulu-Natal", postal_code: "4068" },
-            delivery: { city: body.city.trim(), postal_code: body.postal_code.trim(), address: typeof body.address === "string" ? body.address.trim() : "" },
+            collection,
+            delivery: { city: body.city.trim(), province: body.province.trim(), postal_code: body.postal_code.trim(), address: body.address.trim() },
             parcel: p,
           }),
           signal: AbortSignal.timeout(10000),
