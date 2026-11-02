@@ -503,3 +503,18 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Opening PR #158 automatically triggered a Cloudflare Workers Builds check; it was not manually dispatched. Do not retry or trigger further Cloudflare builds. Check its final result before making deployment claims.
 - PR #158 is not mergeable at current checkpoint. Main base reported by PR metadata is `c4196c94d4bf71066a923d69210792efd9173e87`; the review branch was created from earlier `f7c84ec23c0ca3f4f7609eb2bdda5f0a42c8d1d8`, so rebase/selective reconciliation is required before merge consideration.
 - No main changes, merge, database/product/price/stock changes or production deployment occurred.
+
+
+## 2026-11-02 STOREFRONT PREVIEW LEGACY-STOCK GATE — STAGED
+- Owner instruction: continue without status-only notifications until the storefront can confidently be offered for owner testing.
+- Inspected the bright storefront candidate in PR #157 and its customer-facing preview routes. Found a critical mismatch: `preview-products.html` still queried all `active=true` rows from the live Supabase `products` table, and `preview-product.html` allowed direct lookup of any active row by ID. This meant the static “ASC STOCK REMOVED” banner did not enforce removal; old/uncurated product rows could still appear in the preview.
+- Created isolated draft PR #159: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/159
+- Branch: `fix/preview-approved-catalogue-gate-2026-11-02`; head `83b1fb700bd136f9d2773cfbace78e89742066c3`; PR base main SHA `c4196c94d4bf71066a923d69210792efd9173e87`. PR currently reports mergeable=false; draft/open/unmerged. It is based on the PR #157 storefront candidate, so it carries that candidate's history and must be reconciled against current main before any integration.
+- Changed `preview-products.html`: after loading category navigation metadata, the preview now fails closed and displays an explicit held-catalogue message instead of querying/rendering legacy product rows.
+- Changed `preview-product.html`: direct product-detail URLs now fail closed before any product lookup, with a clear explanation that source, GW SKU, description and exact image verification are required.
+- Replaced misleading preview notice text: unverified legacy stock is hidden; checkout/supplier submissions remain disabled.
+- Added `tests/test_preview_catalogue_gate.py` and `.github/workflows/preview-catalogue-gate.yml` to assert both listing and detail routes stop before product API calls.
+- Latest observed workflow lookup for head `83b1fb700bd136f9d2773cfbace78e89742066c3` returned no PR-triggered workflow runs. Regression CI is therefore PENDING / NOT VERIFIED; do not claim tests passed.
+- No Supabase reads/writes were performed as part of the code change, no product/stock/price/category data changed, no deployment or merge occurred, and no production action was taken.
+- This closes the legacy-product leak at source level once integrated, but it intentionally leaves product listings empty until approved-source records are visually verified and staged. It is not a populated customer test catalogue yet.
+- Next execution: reconcile PR #159 with current main without importing unrelated PR #157 changes; get a real regression check result; visually inspect the six ASC source PDFs and verify a bounded sample of product text + exact image matches; only then build a small approved-source preview manifest. Keep production HOLD and do not deploy without explicit owner approval.
