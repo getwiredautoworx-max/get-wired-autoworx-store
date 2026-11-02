@@ -96,3 +96,12 @@ Review-only files staged on the current-main integration branch:
 - `asc-source-manifest.json` — original file sizes and Git blob IDs; SHA-256 digests have not been computed.
 
 **Limitations:** the 50 images are watermarked source-card review crops, not final clean product photography; live image-use rights still require confirmation. The source PDFs do not provide verified supplier price or stock. No Get Wired SKU has been assigned in this pilot. No live catalogue, price, stock, category, database, or supplier activation changes have been made. The candidate storefront implementation remains a separate review item and must pass exact-head preview/desktop/mobile QA and owner acceptance before any merge.
+
+
+## Isolated customer-facing preview route — 2026-11-02
+
+A standalone responsive review route is now staged at `/asc-catalogue-preview.html` on the integration branch. It loads `assets/asc-catalogue-preview-data.json` and the 50 visually matched, watermark-retaining review crops under `assets/asc-catalogue-pilot/`. It exposes the three store roots that have ASC pilot material (Auto Electrical Spares, Car Audio & Entertainment, Automotive Accessories), then original source subcategory buttons, then only the exact pilot records mapped to each source heading. Unreviewed headings show an explicit empty state; there is no fuzzy fallback, cart, checkout, public SKU or price.
+
+The route and its data/images are included only in the opt-in non-production Cloudflare Pages package when `GW_INCLUDE_PREVIEW_ROUTES=1`. The standard production package excludes this route and the ASC pilot image/data assets. The package QA explicitly checks both sides of that boundary and verifies the 50 image files. Dedicated desktop/mobile Playwright QA checks exact subcategory filtering, image loading, search, empty state and horizontal overflow.
+
+This is a review route, not yet merged to main or deployed to the hosted preview. Supplier image-use rights, prices/stock and GW SKU allocation remain unverified; owner acceptance is still required before any live integration.
