@@ -53,6 +53,8 @@ jobs:
           node supabase/tests/checkout-policy-audit-migration.test.mjs
       - name: Run isolated checkout handler integration tests
         run: deno test --allow-env supabase/functions/store-checkout/index.integration_test.ts
+      - name: Verify courier collection address is private configuration
+        run: node scripts/shipping-quote-private-collection.test.mjs
       - name: Verify Direct EFT and WhatsApp checkout handoff
         run: node scripts/checkout-direct-eft-whatsapp.test.mjs
       - name: Type-check shipping quote
