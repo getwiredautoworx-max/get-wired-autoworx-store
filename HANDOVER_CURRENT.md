@@ -16,10 +16,10 @@ Updated: 2026-11-02 (SAST)
 
 - Repository: `getwiredautoworx-max/get-wired-autoworx-store`
 - Only active draft candidate: PR #149, branch `integration/clean-main-asc-audio-2026-11-01`
-- Last tested storefront-code head: `fd517f74baf9bf87928f088b72f76229041ea8d3`
+- Last tested storefront-code head: `fd517f74baf9bf87928f088b72f76229041ea8d3`. Current PR head at this update: `7e781f39ee3bbbf69f9e07632d884bb90bb7187c` (handover/README cleanup only; no storefront code changed after the tested code head).
 - PR #142 and PR #145 are closed/superseded. Do not reopen them or create competing PRs.
 - PR #149 remains open/draft/unmerged. Do not merge or deploy production. If PR #149 closes, do not reopen it, create a replacement, merge anything, or push more commits without explicit owner approval.
-- At last check PR #149 reported `mergeable=true` but `mergeable_state=unstable`. The PR API base snapshot was `1ffe9a91b84eca755162e009d233b8d57ada28fe`, while the current `main` head was `5512772ef5765893f98f8384fdc9386abd07cb69`. Do not rebase/merge across that discrepancy without owner approval; reconcile it before any merge decision.
+- After the handover cleanup, PR #149 reports `mergeable=false` and `mergeable_state=dirty`. The PR API base snapshot is `1ffe9a91b84eca755162e009d233b8d57ada28fe`, while the current `main` head is `5512772ef5765893f98f8384fdc9386abd07cb69`. Do not rebase/merge across that discrepancy without owner approval; reconcile it before any merge decision.
 
 ## Verified isolated preview
 
