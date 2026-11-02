@@ -1,0 +1,55 @@
+name: Deploy Isolated Store Test Preview
+
+on:
+  push:
+    branches:
+      - integration/current-storefront-plus-asc-preview-2026-11-02
+    paths:
+      - "index.html"
+      - "store.html"
+      - "preview-*.html"
+      - "asc-catalogue-preview.html"
+      - "assets/asc-catalogue-preview-data.json"
+      - "assets/asc-catalogue-pilot/**"
+      - "scripts/build-cloudflare-pages-public.py"
+      - ".github/workflows/deploy-store-test-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: get-wired-store-test-preview
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy isolated non-production Pages branch
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build allowlisted non-production preview
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: |
+          set -euo pipefail
+          python scripts/build-cloudflare-pages-public.py
+          test -s pages-public/index.html
+          test -s pages-public/asc-catalogue-preview.html
+          test -s pages-public/assets/asc-catalogue-preview-data.json
+          test "$(find pages-public/assets/asc-catalogue-pilot -maxdepth 1 -type f -name '*.jpg' | wc -l)" -eq 50
+          grep -qi 'noindex' pages-public/index.html
+      - name: Deploy to isolated Cloudflare Pages preview branch only
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=store-test-preview
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
