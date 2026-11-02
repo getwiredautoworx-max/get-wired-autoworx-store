@@ -583,3 +583,9 @@ C. Give explicit production-release approval after preview acceptance, exact-hea
 
 ### Progress accounting rule
 Maintain a numbered open-task register. Remove a task immediately when its evidence is verified; do not renumber completed tasks as open. Continue reducing assistant-owned tasks until only the three owner-attention items above remain. Never label the project ready while any required hosted verification or owner acceptance is outstanding.
+
+
+### Additional exact-head smoke coverage change
+- Updated `.github/workflows/button-only-storefront-smoke.yml` to trigger for changes to both `index-new.html` and the integrated root `index.html`, including pull requests targeting main. This adds a dedicated Playwright check of the buttons-only storefront rather than relying on the full-cart smoke workflow, which correctly skips when it detects buttons-only mode.
+- Change commit: `4d057bff43731ef3fbc13ada16c3adc7525f352e`.
+- The connector's commit-run lookup returned no run for this latest head at the time of update; do not mark this new check passed until a run is visible and successful.
