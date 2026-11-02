@@ -1,22 +1,73 @@
-name: ASC Catalogue Preview Regression
+name: ASC Catalogue Preview Browser QA
 on:
   pull_request:
     branches: [main]
     paths:
       - 'asc-catalogue-preview.html'
       - 'assets/asc-catalogue-preview-data.json'
+      - 'assets/asc-catalogue-pilot/**'
       - 'tests/asc-catalogue-preview.test.cjs'
       - '.github/workflows/asc-catalogue-preview.yml'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  review-preview:
-    runs-on: ubuntu-latest
+  browser-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - name: Validate ASC preview data and category isolation
-        run: node tests/asc-catalogue-preview.test.cjs
+          node-version: 22
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run ASC preview desktop and mobile browser checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/asc-catalogue-preview.test.cjs
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/asc-preview-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          sleep 2
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const errors=[];
+            for(const viewport of [{width:1365,height:900},{width:390,height:844}]){
+              const page=await browser.newPage({viewport});
+              page.on('pageerror',e=>errors.push(String(e)));
+              await page.goto('http://127.0.0.1:4173/asc-catalogue-preview.html',{waitUntil:'domcontentloaded'});
+              await page.waitForSelector('#roots button');
+              await page.waitForSelector('#subs button');
+              const roots=await page.locator('#roots button').allTextContents();
+              if(roots.length!==3)throw new Error('ASC preview root mapping count unexpected: '+JSON.stringify(roots));
+              await page.locator('#roots button').filter({hasText:'Car Audio & Entertainment'}).click();
+              await page.locator('#subs button').filter({hasText:'Vehicle-Specific Aerials'}).click();
+              await page.waitForFunction(()=>document.querySelectorAll('#products .card').length===4);
+              const aerialAudit=await page.locator('#products .card').evaluateAll(cards=>cards.map(c=>({title:c.querySelector('h3')?.innerText,img:c.querySelector('img')?.naturalWidth,src:c.querySelector('img')?.getAttribute('src')})));
+              if(aerialAudit.length!==4||aerialAudit.some(x=>!x.img||!x.src.includes('asc-')))throw new Error('Aerial exact subcategory/image check failed: '+JSON.stringify(aerialAudit));
+              await page.locator('#search').fill('Nissan Sentra');
+              if(await page.locator('#products .card').count()!==1)throw new Error('Search did not isolate exact fitment record');
+              await page.locator('#roots button').filter({hasText:'Auto Electrical Spares'}).click();
+              await page.locator('#subs button').filter({hasText:'Throttle Position Sensors'}).click();
+              const empty=await page.locator('#products').innerText();
+              if(!empty.includes('No visually approved pilot products'))throw new Error('Unverified/empty source heading did not show safe empty state');
+              const overflow=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth}));
+              if(overflow.document>overflow.viewport+1)throw new Error('Horizontal overflow: '+JSON.stringify(overflow));
+              const imageFailures=await page.evaluate(async()=>{
+                const r=await fetch('assets/asc-catalogue-preview-data.json');const d=await r.json();
+                return await Promise.all(d.records.map(p=>new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(null);i.onerror=()=>resolve(p.image_url);i.src=p.image_url;})));
+              });
+              if(imageFailures.some(Boolean))throw new Error('ASC pilot image assets failed: '+JSON.stringify(imageFailures.filter(Boolean)));
+              await page.close();
+            }
+            if(errors.length)throw new Error('Browser errors: '+errors.join(' | '));
+            await browser.close();
+            console.log('ASC_PREVIEW_BROWSER_PASS desktop=1365 mobile=390 images=50 exact_subcategory=PASS empty_state=PASS search=PASS');
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
