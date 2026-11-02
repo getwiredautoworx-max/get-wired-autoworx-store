@@ -82,3 +82,9 @@ Production remains **HOLD**. No PR merge, production deployment, Axxess upload, 
 ## Handover maintenance
 Append new dated outcomes below this line; never modify or remove the protected owner-instructions block above without the owner's explicit permission.
 
+
+## 2026-11-02 HANDOVER CLEANUP — VERIFIED
+- Owner directed removal of all previous handover files from the repository.
+- Removed all prior handover-named files, including `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, legacy dated handovers, task-start/results/checkpoint notes, and files in `handover-runs/` and `handover-updates/`.
+- Final recursive Git tree verification returned exactly one handover-named file: `HANDOVER_2026-11-02_OWNER_CONTINUATION.md` (blob `e9a5c7d97182e5c5125552fd3c2b71deb79ade82` before this cleanup note was appended). Tree SHA at verification: `9d20f4ac49c1f1fbecef06b90ccd9e268c9c3ead`.
+- This new file is the sole retained handover and preserves the owner's standing-instructions block. Do not edit/remove that block without explicit owner permission.
