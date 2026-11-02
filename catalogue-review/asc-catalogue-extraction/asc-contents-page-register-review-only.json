@@ -1,0 +1,78 @@
+{
+  "title": "ASC post-reset catalogue contents-page register",
+  "created": "2026-11-02",
+  "status": "REVIEW_ONLY_NOT_PRODUCT_DATA",
+  "source_scope": "Exactly the six post-reset ASC PDFs in suppliers/ASC; contents-page OCR only.",
+  "rules": [
+    "OCR text is preserved verbatim as extracted; it is not silently corrected.",
+    "No product rows, supplier SKUs, GW SKUs, descriptions, fitments, prices, stock or image matches are asserted by this register.",
+    "Section names, item counts and page references must be checked visually against the original scanned PDF before product-level extraction.",
+    "Only these six post-reset catalogues are in scope; historical Buyer’s Guides are excluded."
+  ],
+  "catalogues": [
+    {
+      "source_file": "ASC- Aerials (1).pdf",
+      "contents_page": 2,
+      "section_count_from_catalogue_readme": 6,
+      "store_root": "Car Audio & Entertainment",
+      "existing_category": "Aerials",
+      "ocr_verbatim": "Contents\n\nVehicle-Specific Aerials 23 items 3\nUniversal, Roof & Pillar Mount Aerials 17 tems 4\nElectronic, Automatic & Amplified Aerials ¢ items 5\nShark Fin & Imitation Aerials 13 items 5\n‘Aerial Masts, Bases & Mounts § items 6\nExtensions, Adaptors & Plugs 11 items 6",
+      "visual_review": "PENDING"
+    },
+    {
+      "source_file": "ASC- Automotive Sensors (1).pdf",
+      "contents_page": 2,
+      "section_count_from_catalogue_readme": 11,
+      "store_root": "Auto Electrical Spares",
+      "existing_category": "Automotive Sensors",
+      "ocr_verbatim": "Contents\n\nCrankshaft & Camshaft Position Sensors 14 items 3\nThrottle Position Sensors 4 ives 3\nAir Flow & Air Mass Sensors 6 items 4\nMAP, Manifold & Intake Air Sensors 10 items 4\n‘Oxygen (Lambda) Sensors. items 5\nKnock Sensors 3 items 5\nSpeed & ABS Sensors 11 items 5\n‘Temperature Senders & Sensors 26 items 6\nFuel, Oil & Level Sensors 5 items 8\nReverse & Parking Sensors 4 ters 8\n‘Other Engine Management Sensors 5 items 9",
+      "visual_review": "PENDING"
+    },
+    {
+      "source_file": "ASC- Automotive Switches (1).pdf",
+      "contents_page": 2,
+      "section_count_from_catalogue_readme": 16,
+      "store_root": "Auto Electrical Spares",
+      "existing_category": "Automotive Switches",
+      "ocr_verbatim": "Contents\n\nAUTOMOTIVE SWITCHES\n\nIgnition Switches & Barrel Sets 51 items 3\nCombination & Indicator Stalk Switches 52 items 5\nWiper Switches 7 items 8\nHeadlamp, Dimmer & Hazard Switches 10 items 8\nPower Window Switches 27 iteins 9\nil Pressure Switches 24 items 10\nRadiator Fan & Thermo Switches 5 items 12\nReverse Light Switches 11 items 13\nStop Light Switches 17 items 14\nDoor, Bonnet & Boot Switches 4 tems 15\nRocker Switches 2 items 15\n‘Toggle, Push & Button Switches 22 item: 17\nStarter & Solenoid Switches 9 items 18\nBattery Isolators & Cut-Off Switches 19 items 19\nSwitch Panels, Covers & Accessories 24 \\\\tems 20\nMarine & Specialist Switches 19 items 21",
+      "visual_review": "PENDING"
+    },
+    {
+      "source_file": "ASC- Automotive globes (1).pdf",
+      "contents_page": 2,
+      "section_count_from_catalogue_readme": 10,
+      "store_root": "Auto Electrical Spares",
+      "existing_category": "Lighting",
+      "ocr_verbatim": "Contents\nHeadlight Globes — Halogen + item: 3\nHID Globes, Kits & Ballasts 23 items 4\nLED Globes 19 items 6\nFog, DRL & Signal Globes. 8 items 7\nWedge Globes 12 items 7\nBayonet Globes — Indicator, Stop & Tail 14 items 8\nFestoon Globes ¢ items 8\nDash & Instrument Panel Globes ¢ items 9\n24V & 48V Commercial Globes 13 items 9\nGlobe Holders, Harnesses & Plugs 25 items 10",
+      "visual_review": "PENDING"
+    },
+    {
+      "source_file": "ASC- Car Mats (1).pdf",
+      "contents_page": 2,
+      "section_count_from_catalogue_readme": 14,
+      "store_root": "Automotive Accessories",
+      "existing_category": "Car Mats",
+      "ocr_verbatim": "Contents\n\nCarpet Mat Sets — Toyota 14 items 3\nCarpet Mat Sets — VW & Audi 19 items 3\nCarpet Mat Sets — BMW 16 items 4\nCarpet Mat Sets — Hyundai & Kia 14 items 5\nCarpet Mat Sets — Ford & Mazda 5 item: 6\nCarpet Mat Sets — Nissan & Renault 5 itern: 6\nCarpet Mat Sets — GWM & Haval ¢ items. 7\nCarpet Mat Sets — Chery, Jetour & Geely 10 items 7\nCarpet Mat Sets — Suzuki 4 items 8\nCarpet Mat Sets — Other Makes items 8\nTPE Moulded Mat Sets 14 itern: 8\nRubber & PVC Mat Sets 12 items 9\nUniversal & Styling Mat Sets items 10\nUniversal, Door & Bin Mats ¢ items 10",
+      "visual_review": "PENDING"
+    },
+    {
+      "source_file": "ASC- Fuel Pumps (1).pdf",
+      "contents_page": 2,
+      "section_count_from_catalogue_readme": 18,
+      "store_root": "Auto Electrical Spares",
+      "existing_category": "Preview-only Fuel Pumps",
+      "ocr_verbatim": "Contents\nElectric Fuel Pumps — BMW 11 items 3\nElectric Fuel Pumps — VW & Audi 9 items 3\nElectric Fuel Pumps — Ford & Mazda 10 tems 4\nElectric Fuel Pumps — Toyota & Lexus 10 tems 5\nElectric Fuel Pumps — Nissan & Datsun 5 items 5\nElectric Fuel Pumps — Opel & Chevrolet. ¢ items 6\nElectric Fuel Pumps — Mercedes-Benz 4 items 6\nElectric Fuel Pumps — Renault, Peugeot & Citro&n  ¢ items 7\nElectric Fuel Pumps — Hyundai & Kia item 7\nElectric Fuel Pumps — Fiat & Alfa Romeo 3 teins 7\nElectric Fuel Pumps — Daewoo, GM & Cadillac 5 items 7\nElectric Fuel Pumps — Honda & Suzuki 2 items 8\nElectric Fuel Pumps — Land Rover + tem 8\nElectric Fuel Pumps — Universal & Multi-Fit 4 items 8\nCOMPLETE PUMP ASSEMBLIES\nElectric Pump Assemblies with Housing — All Makes 12 items 9\nMECHANICAL FUEL PUMPS\nMechanical Fuel Pumps — All Makes. 11 items 9\nDIESEL LIFT PUMPS\nDiesel Lift Pumps & Housings — All Makes 22 items 10\nFUEL PUMP RELAYS\nFuel Pump Relays — All Makes 6 item: 12",
+      "visual_review": "PENDING"
+    }
+  ],
+  "summary": {
+    "source_pdf_count": 6,
+    "source_pages_total": 72,
+    "contents_pages_registered": 6,
+    "section_count_total_from_existing_readme": 75,
+    "product_rows_created": 0,
+    "sku_records_verified": 0,
+    "image_matches_approved": 0,
+    "live_data_changed": false
+  }
+}
