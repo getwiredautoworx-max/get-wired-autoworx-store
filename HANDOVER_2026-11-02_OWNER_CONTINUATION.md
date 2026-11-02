@@ -166,3 +166,25 @@ Append new dated outcomes below this line; never modify or remove the protected 
 - Confirmed README on main points to this sole handover file and the execution brief. The earlier AI_HANDOVER_PERMANENT.md and HANDOVER_CURRENT.md names are obsolete and must not be treated as current.
 - Next execution boundary: the only immediate external action required to obtain the hosted ASC preview is an owner-started manual GitHub Actions run of **Deploy ASC Catalogue Non-Production Preview** on branch `integration/asc-source-taxonomy-review-2026-11-02`. After it succeeds, verify the actual returned URL and deployed SHA, then conduct phone/desktop acceptance. This is a non-production preview only; it does not authorize merge or production publication.
 - No production deployment, Axxess upload, DNS/payment change, Supabase write, live product/category/price/stock update, supplier activation, branch deletion or artifact deletion was performed.
+
+
+## 2026-11-02 ASSISTANT DELIVERY COMMITMENTS — OWNER REQUESTED
+The owner explicitly requested that the assistant's latest commitments be added to this handover. This section records operating commitments, not a guarantee of completion by a date. The protected OWNER'S STANDING INSTRUCTIONS block above remains unchanged.
+
+### Commitments
+1. **No more invented deadlines or guarantees.** Do not promise a completion time or claim certainty where completion depends on unresolved technical work, external services, owner actions, or acceptance. Do not replace missed targets with another speculative ETA.
+2. **Evidence-led execution.** Make tangible, verifiable changes wherever the available repository and tools permit. A status message, plan, checklist, or repeated explanation is not delivery.
+3. **Single release path.** Work from the current handover and current main; identify one candidate release path and reconcile competing branches rather than creating parallel storefront versions or restarting completed work.
+4. **Do not repeat resolved work.** Check recorded commits, tests and outcomes before acting. Reuse successful exact-head results only while the tested code is unchanged; rerun only when a relevant change invalidates them.
+5. **Close tasks with proof.** Record the exact commit/head, test or workflow run, result, and any remaining limitation. Mark a task complete only after its stated acceptance evidence exists. Read back handover edits to verify they were saved.
+6. **No status-only notifications.** Continue with safe, available work instead of announcing what will be done next. Contact the owner only when a specific owner action, decision, credential, source file, or acceptance is genuinely required; state exactly what is needed and why.
+7. **Find a safe workaround when blocked.** Investigate alternative paths that do not breach release boundaries. Do not stop at describing a blocker, but do not bypass approvals, fabricate evidence, or make risky production changes to appear productive.
+8. **Protect production and owner assets.** Production remains HOLD. No production deployment, Axxess upload, DNS change, payment activation, Supabase production write, live catalogue/price/stock/category change, supplier publication, destructive cleanup, or credit-consuming release retry without explicit owner approval.
+9. **Honest finish line.** The store is not declared ready until the approved storefront is on a verified hosted preview at an identified deployed SHA; desktop and mobile customer flows and checkout/signup/order tests pass; catalogue and pricing evidence is verified; and the owner accepts the preview. Production launch remains a separate decision requiring explicit approval.
+10. **Maintain this handover.** Append material outcomes and blockers promptly. Preserve the owner's protected instruction block verbatim; do not edit or remove it without permission.
+
+### Current practical limitation — not represented as resolved
+The ASC non-production deployment workflow still requires the owner to start **Deploy ASC Catalogue Non-Production Preview** in GitHub Actions on branch `integration/asc-source-taxonomy-review-2026-11-02`. The available connected GitHub actions do not expose workflow dispatch. The assistant must not invent a hosted URL or claim deployment/phone acceptance until the workflow succeeds and the returned URL and deployed SHA are checked. This owner action is a specific external dependency, not a reason to repeat completed ASC extraction or preview QA.
+
+### Accountability note
+The assistant previously gave repeated target dates and time estimates without delivering a verified, owner-accepted store. Those estimates are not guarantees and must not be restated as commitments. The owner has asked for results rather than further forecasts.
