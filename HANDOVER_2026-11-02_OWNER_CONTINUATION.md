@@ -365,3 +365,8 @@ Start with the first task that can be executed safely using available connected 
 3. Owner approval to integrate PR #151's ASC pilot/workflow after reconciling its 16-commit divergence; only then make the manual preview workflow available on default branch and request separate Cloudflare preview-deployment approval.
 4. Owner approval for PR #152 before controlled category snapshot refresh.
 5. Complete authenticated live checkout and delivery-quote behavior verification before any payment-readiness claim. Production/Axxess/DNS/payment activation remain on hold.
+
+
+## 2026-11-02 PR DIVERGENCE COUNT CORRECTION (15:32 SAST)
+- Recomputed against main head `9dbdbf5005a5af0ed03996e9a18b9870e877ea31`: PR #151 is 29 commits ahead / 17 behind; PR #152 is 6 ahead / 10 behind; PR #154 is 4 ahead / 1 behind. All are diverged from current main; none was merged.
+- This documentation-only correction adds one main commit. Expected counts immediately after it: PR #151 29 ahead / 18 behind; PR #152 6 ahead / 11 behind; PR #154 4 ahead / 2 behind. Recheck exact counts before any future merge. No merge or deployment is authorized by this note.
