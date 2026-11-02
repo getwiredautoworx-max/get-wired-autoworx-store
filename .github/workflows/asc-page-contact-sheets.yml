@@ -1,12 +1,11 @@
 name: ASC Catalogue Page Contact Sheets (Private Review Only)
 on:
   push:
-    branches: [integration/current-main-refresh-2026-11-01]
+    branches: [integration/clean-main-asc-audio-2026-11-01]
     paths:
       - 'suppliers/ASC/*.pdf'
       - 'scripts/asc_contact_sheets.py'
       - 'scripts/asc_product_card_crops.py'
-      - '.github/workflows/asc-page-contact-sheets.yml'
 permissions:
   contents: write
 jobs:
@@ -32,7 +31,7 @@ jobs:
           test -f assets/asc-catalogue-pilot/asc-f1-028.jpg
       - name: Commit private review sheets and preview-only crops to candidate branch
         env:
-          BRANCH: integration/current-main-refresh-2026-11-01
+          BRANCH: integration/clean-main-asc-audio-2026-11-01
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
