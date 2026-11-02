@@ -553,3 +553,33 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Current count at creation: **12**.
 - On each verified completion, append the evidence (commit/run/job/URL or owner decision), mark that task resolved and reduce the outstanding count by one. Do not retain resolved tasks in the outstanding list. Never mark a task complete merely because a workflow was created, a PR opened, a test skipped, or a local build passed.
 - The target state is **3 remaining tasks: 10, 11 and 12**, all requiring owner attention. Tasks 1–9 are assistant execution responsibilities.
+
+
+---
+
+## ACTIVE EXECUTION REGISTER — 2026-11-02 21:55 SAST
+This section supersedes older progress summaries where they conflict. Keep the protected owner instructions above unchanged.
+
+### Current integration candidate
+- PR #162: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/162
+- Current observed head at register update: `304beeeab4e78de675c86c82f4ac0d51f52529a3` (re-check before any merge or claim).
+- Seven workflow runs are complete with overall conclusion SUCCESS on that head: Public SKU Exposure Audit, Preview Approved Catalogue Gate, Catalogue & Supplier Routing Review QA, ASC Catalogue Preview Browser QA, Populated Store Preview Browser QA, Cloudflare Pages Public Package QA, Storefront Smoke Test workflow.
+- Important: the Storefront Smoke Test workflow's `detect-storefront-mode` passed but its `smoke` job was SKIPPED. Do not count the skipped smoke job as a pass. Other six workflow jobs passed.
+- PR #162 includes current bright eight-category storefront root, fail-closed product routes, and a review-only ASC pilot: six source PDFs, 72 pages, 75 source headings, 76 taxonomy subcategories, 50 visually matched records/images. This is not full ASC catalogue integration and is not live stock.
+- Preview pilot remains review-only: no customer pricing, stock, GW SKU, cart or checkout. Source watermark/image-rights review remains open.
+- Dedicated isolated deployment workflow exists at `.github/workflows/deploy-store-test-preview.yml`, targeting Cloudflare Pages branch `store-test-preview` only. Hosted deployment has not yet been verified. Required repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` have not been confirmed through available connector evidence. Never change this workflow to production branch.
+
+### Remaining assistant execution (not owner tasks)
+1. Resolve why Storefront Smoke Test detector skips the smoke job; inspect its workflow and correct its mode detection for the current bright buttons-only root without weakening assertions. Run it on the exact PR head.
+2. Verify the isolated Cloudflare Pages deployment workflow actually starts on the integration branch and completes; diagnose missing secrets/permissions or trigger behavior. Do not invent preview URL; verify the returned deployment URL and HTTP/browser behavior at mobile and desktop widths.
+3. Run end-to-end preview checks on hosted deployment: root category buttons/subcategories, ASC preview taxonomy filters/search/images, fail-closed product routes, no old ASC Buyer’s Guide stock, no supplier names/prices/SKUs exposed outside the review-only source references, no checkout/payment activation.
+4. Continue full ASC source catalogue processing from supplied source files only; 50-product pilot is not completion. Preserve all 8 root categories and original ASC heading order. Match every item and image to source page, do not infer uncertain SKU/model/fitment, keep unapproved items out of live catalogue.
+5. Reconcile PR #162 with current main and remove superseded draft branches/PRs only after exact-head comparison proves no unique work will be lost. No automatic merge.
+
+### Only three owner-attention items at final handover
+A. Review and accept the customer-facing hosted test preview on the owner's phone; report defects or approve the preview candidate (not production).
+B. Supply/confirm final payment onboarding outcome and EFT/WhatsApp business details when ready; until then checkout/payment stays disabled or test-only.
+C. Give explicit production-release approval after preview acceptance, exact-head tests, payment/policy confirmation and release checklist are complete. No production action before this.
+
+### Progress accounting rule
+Maintain a numbered open-task register. Remove a task immediately when its evidence is verified; do not renumber completed tasks as open. Continue reducing assistant-owned tasks until only the three owner-attention items above remain. Never label the project ready while any required hosted verification or owner acceptance is outstanding.
