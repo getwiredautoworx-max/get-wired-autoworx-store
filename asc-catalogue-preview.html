@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f7fb"><title>ASC Catalogue Preview | Get Wired AutoWorx</title>
+<style>
+:root{color-scheme:light;--ink:#172638;--muted:#5d6c7b;--line:#d8e0e8;--blue:#087fc1;--blue-dark:#075b8d;--panel:#fff;--bg:#f4f7fb;--soft:#eaf3f9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Arial,Helvetica,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:22px 16px 18px;text-align:center}header .eyebrow{color:var(--blue-dark);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(24px,4vw,34px);margin:6px 0;color:#142a3e}header p{margin:0;color:var(--muted)}
+main{max-width:1200px;margin:0 auto;padding:18px 16px 48px}.notice{padding:12px 14px;border:1px solid #e6c77a;background:#fff8e6;color:#5c4818;border-radius:9px;margin-bottom:18px;font-size:13px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px}.toolbar input{flex:1;min-width:220px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff;color:var(--ink)}
+.section-title{font-size:18px;margin:18px 0 10px}.roots,.subs{display:flex;gap:8px;flex-wrap:wrap}.roots button,.subs button{border:1px solid #bfd1df;background:#fff;color:#19364d;border-radius:8px;padding:10px 13px;font-weight:700;cursor:pointer}.roots button[aria-pressed=true],.subs button[aria-pressed=true]{background:var(--blue-dark);border-color:var(--blue-dark);color:#fff}
+.subs{padding:12px;background:#eaf1f6;border-radius:10px;min-height:48px}.subs button{font-size:13px;padding:8px 10px}
+.results-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 0 10px}.results-head h2{font-size:18px;margin:0}.count{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}.photo{height:190px;background:#fff;display:flex;align-items:center;justify-content:center;padding:8px;border-bottom:1px solid var(--line)}.photo img{max-width:100%;max-height:100%;object-fit:contain}.body{padding:12px}.body h3{font-size:15px;line-height:1.35;margin:0 0 7px}.fitment{color:var(--muted);font-size:12px;min-height:32px}.ref{font-size:12px;font-weight:700;color:#24516f;margin-top:8px}.price{font-size:12px;margin-top:8px;color:#6b4d0c}.source{font-size:11px;color:#74818d;margin-top:7px}.empty{background:#fff;border:1px dashed #aab9c6;border-radius:10px;padding:24px;text-align:center;color:var(--muted)}
+footer{margin-top:22px;color:#778491;font-size:11px;text-align:center}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:170px}}
+@media(max-width:620px){main{padding:12px 10px 36px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.photo{height:145px}.body{padding:9px}.body h3{font-size:13px}.roots button{flex:1 1 45%}}
+@media(max-width:360px){.grid{grid-template-columns:1fr 1fr}.photo{height:125px}}
+</style></head>
+<body><header><div class="eyebrow">Get Wired AutoWorx · Supplier catalogue review</div><h1>ASC Catalogue Preview</h1><p>Source-led categories, original catalogue headings and visually matched pilot products</p></header>
+<main><div class="notice" id="notice">Loading preview data…</div>
+<div class="toolbar"><input id="search" type="search" placeholder="Search product name, vehicle fitment or catalogue code" aria-label="Search ASC preview"></div>
+<h2 class="section-title">1. Store category</h2><div class="roots" id="roots"></div>
+<h2 class="section-title">2. Original ASC subcategory</h2><div class="subs" id="subs"></div>
+<div class="results-head"><h2 id="heading">3. Reviewed products</h2><span class="count" id="count"></span></div><div class="grid" id="products"></div>
+<footer>Review-only preview · No live stock or prices · No cart or checkout · ASC supplier codes shown for review only</footer></main>
+<script>
+(async()=>{const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let data;try{const r=await fetch('assets/asc-catalogue-preview-data.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);data=await r.json();}catch(e){$('notice').textContent='Preview data could not be loaded: '+e.message;return;}
+$('notice').textContent=data.notice;
+const groups=data.taxonomy.groups;const records=data.records;let root=null,sub=null;
+const roots=[...new Set(groups.map(g=>g.store_root_category))];
+function renderRoots(){ $('roots').innerHTML=roots.map(r=>'<button type="button" data-root="'+esc(r)+'" aria-pressed="'+(root===r)+'">'+esc(r)+'</button>').join('');$('roots').querySelectorAll('button').forEach(b=>b.onclick=()=>{root=b.dataset.root;sub=null;render();});}
+function currentGroups(){return groups.filter(g=>g.store_root_category===root);}
+function renderSubs(){const nodes=currentGroups().flatMap(g=>g.sections.map(s=>({id:s.id,name:s.name,group:g})));$('subs').innerHTML=nodes.map(s=>'<button type="button" data-sub="'+esc(s.id)+'" aria-pressed="'+(sub===s.id)+'">'+esc(s.name)+'</button>').join('');$('subs').querySelectorAll('button').forEach(b=>b.onclick=()=>{sub=b.dataset.sub;render();});}
+function renderProducts(){const q=$('search').value.trim().toLowerCase();const allowed=new Set(currentGroups().flatMap(g=>g.sections.map(s=>s.id)));const list=records.filter(p=>allowed.has(p.subcategory_id)&&(!sub||p.subcategory_id===sub)&&(!q||[p.title,p.source_description,p.fitment_as_printed,p.catalogue_reference].join(' ').toLowerCase().includes(q)));$('count').textContent=list.length+' reviewed pilot item'+(list.length===1?'':'s');$('products').innerHTML=list.length?list.map(p=>'<article class="card"><div class="photo"><img loading="lazy" src="'+esc(p.image_url)+'" alt="'+esc(p.title)+'"></div><div class="body"><h3>'+esc(p.title)+'</h3><div class="fitment">'+esc(p.fitment_as_printed||'Fitment not printed')+'</div><div class="ref">Catalogue reference: '+esc(p.catalogue_reference)+'</div><div class="price">Price on request · availability to be confirmed</div><div class="source">'+esc(p.subcategory)+' · Source page '+esc(p.source_page)+'</div></div></article>').join(''):'<div class="empty">No visually approved pilot products are available under this source heading yet. Other catalogue headings are intentionally not populated with unrelated products.</div>';}
+function render(){renderRoots();renderSubs();renderProducts();$('heading').textContent='3. '+(sub?(currentGroups().flatMap(g=>g.sections).find(s=>s.id===sub)?.name||'Reviewed products'):'Reviewed products');}
+$('search').addEventListener('input',renderProducts);root=roots[0]||null;render();
+})();</script></body></html>
