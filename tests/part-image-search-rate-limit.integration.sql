@@ -1,6 +1,6 @@
 \set ON_ERROR_STOP on
 
-DO $$
+DO $body$
 BEGIN
   IF has_table_privilege('anon', 'gw_private.part_image_search_rate_limits', 'SELECT') OR
      has_table_privilege('authenticated', 'gw_private.part_image_search_rate_limits', 'SELECT') THEN
@@ -14,10 +14,10 @@ BEGIN
     RAISE EXCEPTION 'service_role must execute the rate-limit RPC';
   END IF;
 END
-$$;
+$body$;
 
 SET ROLE service_role;
-DO $$
+DO $body$
 DECLARE
   v_allowed boolean;
   v_remaining integer;
@@ -36,7 +36,7 @@ BEGIN
   END IF;
 
 END
-$;
+$body$;
 RESET ROLE;
 
 UPDATE gw_private.part_image_search_rate_limits
@@ -45,7 +45,7 @@ SET window_started_at = clock_timestamp() - interval '61 seconds',
 WHERE ip_hash = repeat('a', 64);
 
 SET ROLE service_role;
-DO $
+DO $body$
 DECLARE
   v_allowed boolean;
   v_remaining integer;
@@ -56,7 +56,7 @@ BEGIN
     RAISE EXCEPTION 'Expired window should reset the request counter';
   END IF;
 END
-$;
+$body$;
 RESET ROLE;
 
 -- A call should opportunistically delete at most 500 expired rows per pass.
@@ -71,7 +71,7 @@ SET window_started_at = EXCLUDED.window_started_at,
 SELECT allowed
 FROM gw_private.consume_part_image_search_rate_limit(repeat('f', 64), 60, 8);
 
-DO $$
+DO $body$
 DECLARE
   v_expired integer;
 BEGIN
@@ -82,4 +82,4 @@ BEGIN
     RAISE EXCEPTION 'Expected one expired row after bounded 500-row cleanup, found %', v_expired;
   END IF;
 END
-$$;
+$body$;
