@@ -221,3 +221,35 @@ The assistant previously gave repeated target dates and time estimates without d
 - PR #152 remains draft/open/unmerged. The latest observed combined commit status for the initial PR head was empty and the workflow-run lookup returned no PR-triggered runs. CI is therefore still **PENDING / NOT VERIFIED**. Do not merge or refresh the category snapshot until a real test result exists.
 - Existing payment UI source review confirms checkout selects Direct EFT, displays all five configured bank fields plus `GW-<order number>`, and explicitly keeps payment status Pending until owner/admin verifies the deposit. WhatsApp handoff includes order reference/items/total and excludes bank details and delivery address. This is repository-source review only; deployed `store-checkout` remains version 5 and does not include this behavior.
 - The source-side Direct EFT path is therefore prepared, but customer-facing bank instructions cannot be relied on until the reviewed function/migration set is deployed to an approved environment and all five secrets are configured there.
+
+
+## 2026-11-02 OWNER AUTHORIZATION EXECUTED — CHECKOUT DEPLOYMENT
+Owner explicitly authorized the reviewed checkout migrations and corrected functions to be deployed to the existing Store Supabase project. This authorization was acted on.
+
+### Database migrations — applied and verified
+Project ref: `ojytykqpvonxvepprgbh` (`Store`, eu-west-1).
+- Applied `delivery_quote_nonce_unique` (migration version `20261102130448`).
+- Applied `checkout_policy_audit` (migration version `20261102130454`).
+- Preflight before applying: `public.orders` and `delivery_quote` existed; `create_store_order_v2` expected signature existed; zero existing duplicate quote nonce groups.
+- Post-apply SQL verification: `create_store_order_v3(jsonb,text,uuid)` exists; anonymous and authenticated roles cannot execute it; service_role can execute it; all three policy audit columns exist; unique nonce index exists.
+
+### Edge Functions — deployed and read back
+- `shipping-quote`: deployed version **5**, ACTIVE, `verify_jwt=false` (public quote endpoint; server-side secrets required).
+- `store-checkout`: deployed version **6**, ACTIVE, `verify_jwt=false` (function validates the authenticated customer bearer session itself).
+- Deployment included the required shared source modules. Supabase read-back confirmed both deployed versions and source contents.
+- `shipping-quote` no longer contains the private collection address. Live carrier requests are enabled only when all four private function secrets are configured: `COURIER_COLLECTION_ADDRESS`, `COURIER_COLLECTION_CITY`, `COURIER_COLLECTION_PROVINCE`, `COURIER_COLLECTION_POSTAL_CODE`. If missing, it skips live carrier requests rather than exposing a hard-coded address. PAXI published rates remain explicitly non-live/provisional.
+- `store-checkout` validates customer session and confirmed email, policy acknowledgement, current product prices, pickup zero-fee rules or signed delivery quote binding, and calls the service-role-only `create_store_order_v3`. Direct EFT details are returned only when all five bank secrets and an order reference exist; payment remains pending until manually verified.
+- Static source verification passed for the key controls (private-address removal, collection secret guard, signed quote issuance/validation, customer auth, policy acknowledgement, nonce binding, service-role RPC and all-or-nothing EFT fields). This is not a substitute for a live endpoint/checkout test.
+
+### Repository alignment
+- PR #153 merged: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/153
+- Merge commit: `4ef21215b45a264fd9dd22b8c74ca9f77601f592`.
+- Main read-back confirmed the private collection secret guard in shipping quote and `create_store_order_v3` usage in checkout.
+
+### Still pending — do not mark payment/checkout test-ready
+- GitHub Delivery Quote Security Tests did not return a workflow run/check in the connected GitHub view. No claim of behavioural CI success.
+- Connected Supabase tools expose deployment/read-back but do not expose Edge Function invocation or Edge Function secret management. Therefore live endpoint tests and runtime secret presence could not be confirmed here.
+- Before live courier quoting works, configure `DELIVERY_QUOTE_SIGNING_SECRET` (random secret, minimum 32 characters) and all four `COURIER_COLLECTION_*` values in Supabase Dashboard → Edge Functions → Secrets. Keep collection address private; do not paste it into chat or GitHub.
+- Direct EFT bank details are intentionally not yet set. When ready, enter these as Edge Function secrets in Supabase Dashboard: `DIRECT_EFT_BANK_NAME`, `DIRECT_EFT_ACCOUNT_NAME`, `DIRECT_EFT_ACCOUNT_NUMBER`, `DIRECT_EFT_BRANCH_CODE`, `DIRECT_EFT_ACCOUNT_TYPE`. Never place these values in GitHub or chat. The UI shows a pending-transfer message until all five are present.
+- Existing `payment-gateway` remains version 2 (Peach Payments) and is not activated. PayFast merchant approval remains pending. No payment provider activation, bank details, live transaction, customer order, production storefront deployment or DNS change occurred.
+- Next safe verification: run Delivery Quote Security Tests workflow from GitHub Actions (workflow name `Delivery Quote Security Tests`) and exercise authenticated pickup checkout in a controlled test account; then configure secrets privately and test a signed delivery quote. No real customer payment/order test without explicit separate approval.
