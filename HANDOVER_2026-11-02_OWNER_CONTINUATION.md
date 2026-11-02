@@ -518,3 +518,11 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - No Supabase reads/writes were performed as part of the code change, no product/stock/price/category data changed, no deployment or merge occurred, and no production action was taken.
 - This closes the legacy-product leak at source level once integrated, but it intentionally leaves product listings empty until approved-source records are visually verified and staged. It is not a populated customer test catalogue yet.
 - Next execution: reconcile PR #159 with current main without importing unrelated PR #157 changes; get a real regression check result; visually inspect the six ASC source PDFs and verify a bounded sample of product text + exact image matches; only then build a small approved-source preview manifest. Keep production HOLD and do not deploy without explicit owner approval.
+
+
+## 2026-11-02 PREVIEW GATE CI FAILURE — ROOT CAUSE FIXED, RERUN NOT YET OBSERVED
+- Regression workflow run 41493023704 failed on head 83b1fb700bd136f9d2773cfbace78e89742066c3; job 125440653520. The product-detail test passed. The listing test failed because its static assertion searched for a comment string that was not present in the guarded function; this was a test assertion error, not a runtime product leak.
+- Corrected the listing test anchor to the actual fail-closed comment and committed e67d9b8b3332ae7e9f648c353f5f5a769499e3f2.
+- Touched the workflow file to trigger a fresh run; latest branch head is 27a21f66cade81989806d5a86d9d6beafcea3006. At the latest Actions API lookup, only the two earlier failed runs were returned; no run for the corrected head had appeared. The corrected regression is therefore NOT yet CI-verified.
+- Do not count either failed run as success. Do not merge PR #159. Reconcile the PR's 19-commit/10-file divergence from current main before integration.
+- The GitHub repository's six ASC source PDFs are not directly readable as binary through the connected GitHub file action; base64 retrieval returned empty content for the PDF. The prior OCR files are text-only. Visual page review must use an accessible PDF/image source; do not fabricate product rows or image matches from OCR.
