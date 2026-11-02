@@ -1,0 +1,17 @@
+name: ASC Taxonomy Reconstruction Tests
+on:
+  pull_request:
+    paths:
+      - 'catalogue-review/asc-catalogue-extraction/asc-catalogue-taxonomy-review-only.json'
+      - 'tests/asc-catalogue-taxonomy-current-main.test.cjs'
+      - '.github/workflows/asc-taxonomy-current-main.yml'
+jobs:
+  taxonomy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate reconstructed ASC taxonomy
+        run: node tests/asc-catalogue-taxonomy-current-main.test.cjs
