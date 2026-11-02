@@ -8,12 +8,16 @@ on:
       - "supabase/functions/part-image-search/**"
       - "supabase/migrations/*part_image_search_rate_limit.sql"
       - "tests/part-image-search-security.test.mjs"
+      - "tests/part-image-search-rate-limit.integration.sql"
+      - "tests/part-image-search-rate-limit-concurrency.sh"
       - ".github/workflows/part-image-search-security.yml"
   pull_request:
     paths:
       - "supabase/functions/part-image-search/**"
       - "supabase/migrations/*part_image_search_rate_limit.sql"
       - "tests/part-image-search-security.test.mjs"
+      - "tests/part-image-search-rate-limit.integration.sql"
+      - "tests/part-image-search-rate-limit-concurrency.sh"
       - ".github/workflows/part-image-search-security.yml"
 
 permissions:
