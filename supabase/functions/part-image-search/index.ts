@@ -6,7 +6,7 @@ import {
   isAllowedOrigin,
   readJsonLimited,
   validateImagePayload
-} from "./security.js";
+} from "./security.mjs";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "https://ojytykqpvonxvepprgbh.supabase.co";
 const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY") || "";
