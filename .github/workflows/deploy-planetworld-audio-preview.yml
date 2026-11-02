@@ -60,13 +60,13 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=planetworld-audio-preview
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=integration-clean-main-asc-a
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify deployed preview package privacy
         shell: bash
         run: |
           set -euo pipefail
-          BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
+          BASE='https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev'
           code=$(curl -H 'Cache-Control: no-cache' -L --max-redirs 5 --connect-timeout 5 --max-time 20 -sS -o /tmp/asc-public.json -w '%{http_code}' "$BASE/assets/asc-catalogue-pilot-preview.json?gw_preview_guard=$GITHUB_RUN_ID")
           test "$code" = '200' || { echo "ASC public preview returned HTTP $code"; exit 1; }
           python - <<'PY'
@@ -107,7 +107,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE='https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev'
+          BASE='https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev'
           for route in '/' '/preview-store.html' '/index-new.html' '/products.html' '/product.html'; do
             code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS -o /tmp/gw-route.html -w '%{http_code}' "$BASE$route")
             test "$code" = '200' || { echo "HOSTED_ROUTE_FAIL $route HTTP=$code"; exit 1; }
