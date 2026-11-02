@@ -325,7 +325,9 @@ jobs:
               const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
               return {
                 products:rows.length,
-                categories:document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length,
+                categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,
+                rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),
+                rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),
                 ascMatched:asc.length,
                 ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
                 ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
@@ -333,10 +335,12 @@ jobs:
                 visibleCheckout:[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0)
               };
             },ASC_PUBLIC_SKUS);
+            const EXPECTED_HOSTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
+            if(hostedAudit.categories!==8||JSON.stringify(hostedAudit.rootLabels)!==JSON.stringify(EXPECTED_HOSTED_ROOTS)||hostedAudit.rootIds.length!==8||hostedAudit.rootIds.some(id=>!id))throw new Error('Hosted root hierarchy mismatch: '+JSON.stringify({categories:hostedAudit.categories,labels:hostedAudit.rootLabels,ids:hostedAudit.rootIds}));
             if(hostedAudit.products<1||hostedAudit.ascMatched!==34||hostedAudit.ascPositiveStock!==0||hostedAudit.ascZeroStock!==34)throw new Error('Hosted ASC stock check failed: '+JSON.stringify(hostedAudit));
             if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
-            const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
+            const hostedCategory=hosted.locator('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > button.catBtn');
             await hostedCategory.click();
             await hosted.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:20000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});

@@ -1476,8 +1476,20 @@ document.getElementById('mobileCartLink').onclick=e=>{e.preventDefault();documen
  })();
  categoryTask.then(rows=>{
   if(rows&&rows.length){
-   const oldCounts=new Map(categories.map(c=>[c.id,Number(c.direct_active_products||0)]));
-   categories=rows.map(c=>({...c,direct_active_products:oldCounts.get(c.id)||0}));
+   // Keep the reviewed snapshot taxonomy as the navigation backbone. Live API rows
+   // enrich it, but an incomplete active-category response must not hide an approved root.
+   const snapshotRows=categories.slice();
+   const snapshotById=new Map(snapshotRows.map(c=>[c.id,c]));
+   const oldCounts=new Map(snapshotRows.map(c=>[c.id,Number(c.direct_active_products||0)]));
+   const liveById=new Map(rows.map(c=>[c.id,c]));
+   const merged=rows.map(c=>({...snapshotById.get(c.id),...c,direct_active_products:oldCounts.get(c.id)||0}));
+   for(const id of HOME_CATEGORY_IDS){
+    if(!liveById.has(id)){
+     const fallback=snapshotById.get(id);
+     if(fallback)merged.push({...fallback,active:true});
+    }
+   }
+   categories=merged;
    renderCats();
   }
  });
