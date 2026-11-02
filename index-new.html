@@ -1,17 +1,61 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02060d"><title>Get Wired AutoWorx | Store Categories</title><meta name="description" content="Get Wired AutoWorx category navigation. Product catalogue content is intentionally cleared while buttons are rebuilt and verified.">
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f8fc">
+<title>Get Wired AutoWorx | Automotive Parts & Accessories</title>
+<meta name="description" content="Browse Get Wired AutoWorx auto electrical, vehicle security, car audio, marine, tools, camping and trailer products. Established since 2012.">
 <style>
-:root{color-scheme:dark;--bg:#02060d;--panel:#071525;--blue:#078fe9;--white:#f5f8fc;--line:#16476a}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--white);font:16px Arial,Helvetica,sans-serif}header{padding:20px 16px;text-align:center;border-bottom:1px solid var(--line);background:#030a13}.logo{display:block;max-width:min(320px,80vw);max-height:100px;object-fit:contain;margin:0 auto 12px}h1{font-size:clamp(20px,4vw,30px);margin:8px 0;color:var(--white)}p{margin:6px 0 0;color:#aab7c8;font-size:13px}main{max-width:1100px;margin:0 auto;padding:18px 14px 48px}.categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.group{min-width:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}button{font:700 15px Arial,Helvetica,sans-serif;cursor:pointer}.category{width:100%;min-height:66px;border:0;padding:15px;background:#071525;color:#fff;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:10px}.category:focus-visible,.child:focus-visible{outline:3px solid #fff;outline-offset:-3px}.category:hover{background:#0b2942}.symbol{color:#21aaff;font-size:22px}.children{display:none;padding:10px;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}.group.open .children{display:grid}.child{min-height:44px;padding:10px 8px;border:1px solid #28658c;border-radius:7px;background:#04101d;color:#eaf4ff}.child:hover{background:#0b2942}.note{margin:18px 0 0;text-align:center;color:#7f95aa;font-size:12px}@media(max-width:480px){.categories{grid-template-columns:1fr}.children{grid-template-columns:1fr 1fr}.category{min-height:60px}}
-</style></head><body data-storefront-mode="buttons-only">
-<!-- Button-only storefront reset active; catalogue content stays suppressed pending verified reload. -->\n<!-- Button-only reset: product catalogue content intentionally suppressed pending verified reload. --><header><img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx" onerror="this.hidden=true"><h1>Get Wired AutoWorx</h1><p>Sound &amp; Security • Auto Electrical • Spares &amp; Accessories</p></header>
-<main><div class="categories" aria-label="Store categories">
-<section class="group"><button class="category" aria-expanded="false">Auto Electrical Spares <span class="symbol">+</span></button><div class="children"><button class="child">Alternators &amp; Starters</button><button class="child">Batteries &amp; Charging</button><button class="child">Electrical Parts</button><button class="child">Vehicle Lighting</button></div></section>
-<section class="group"><button class="category" aria-expanded="false">Vehicle Security <span class="symbol">+</span></button><div class="children"><button class="child">Alarms</button><button class="child">Immobilisers</button><button class="child">Central Locking</button><button class="child">Tracking &amp; Safety</button></div></section>
-<section class="group"><button class="category" aria-expanded="false">Car Audio &amp; Entertainment <span class="symbol">+</span></button><div class="children"><button class="child">Car Audio / Video</button><button class="child">JBL</button><button class="child">Hertz</button><button class="child">Denon</button><button class="child">Home Entertainment</button><button class="child">Studio Equipment</button><button class="child">Marine Audio</button><button class="child">Band Instruments</button></div></section>
-<section class="group"><button class="category" aria-expanded="false">Automotive Accessories <span class="symbol">+</span></button><div class="children"><button class="child">Interior Accessories</button><button class="child">Exterior Accessories</button><button class="child">Convenience &amp; Care</button></div></section>
-<section class="group"><button class="category" aria-expanded="false">Marine Spares &amp; Accessories <span class="symbol">+</span></button><div class="children"><button class="child">Marine Electrical</button><button class="child">Marine Audio</button><button class="child">Marine Accessories</button></div></section>
-<section class="group"><button class="category" aria-expanded="false">Tools, Hardware &amp; Consumables <span class="symbol">+</span></button><div class="children"><button class="child">Tools</button><button class="child">Hardware</button><button class="child">Consumables</button></div></section>
-<section class="group"><button class="category" aria-expanded="false">Camping, Leisure &amp; Outdoors <span class="symbol">+</span></button><div class="children"><button class="child">4x4 Outdoor</button><button class="child">Camping</button><button class="child">Leisure</button><button class="child">Outdoor Accessories</button></div></section>
-<section class="group"><button class="category" aria-expanded="false">Trailer &amp; Canopy <span class="symbol">+</span></button><div class="children"><button class="child">Trailer Parts</button><button class="child">Canopy Accessories</button></div></section>
-</div></main>
-<script>document.querySelectorAll('.category').forEach(button=>button.addEventListener('click',()=>{const group=button.closest('.group');const open=!group.classList.contains('open');document.querySelectorAll('.group').forEach(item=>{item.classList.remove('open');const b=item.querySelector('.category');b.setAttribute('aria-expanded','false');b.querySelector('.symbol').textContent='+'});if(open){group.classList.add('open');button.setAttribute('aria-expanded','true');button.querySelector('.symbol').textContent='−'}}));</script></body></html>
+:root{color-scheme:light;--ink:#15283b;--muted:#52677b;--blue:#087fc5;--blue2:#e8f4fc;--line:#d5e1eb;--paper:#fff;--bg:#f3f7fb;--accent:#e34a3c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Arial,Helvetica,sans-serif}
+.preview{background:#fff4d7;color:#664900;text-align:center;padding:8px 12px;font-size:12px;font-weight:700;border-bottom:1px solid #ead49b}
+header{background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 12px #18334a0d}
+.head{max-width:1200px;margin:auto;padding:16px 22px;display:flex;align-items:center;gap:20px}
+.logo{width:min(300px,38vw);max-height:82px;object-fit:contain}
+.brand{min-width:0}.brand h1{font-size:clamp(19px,3vw,27px);line-height:1.15;margin:0;color:#123653}.brand p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.rating{margin-left:auto;text-align:right;white-space:nowrap;color:#6b4d00;font-size:13px}.rating strong{color:#d28b00;font-size:19px}
+main{max-width:1200px;margin:auto;padding:24px 22px 56px}
+.hero{background:linear-gradient(115deg,#e5f3fc,#fff 70%);border:1px solid #cfe3f2;border-radius:18px;padding:clamp(22px,5vw,42px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.hero h2{font-size:clamp(25px,4vw,39px);line-height:1.1;margin:0 0 10px;color:#123653}.hero p{margin:0;color:#425a70;max-width:650px}
+.since{display:inline-block;margin-top:15px;background:#123653;color:#fff;padding:7px 13px;border-radius:5px;font-size:12px;font-weight:800;letter-spacing:.5px}
+.heroMark{font-size:48px;color:#087fc5;opacity:.85}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:30px 0 14px}.sectionHead h2{font-size:23px;margin:0;color:#183b58}.sectionHead p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.search{width:min(100%,320px);border:1px solid #c5d5e2;border-radius:9px;padding:11px 13px;background:#fff;color:var(--ink);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.category{display:flex;min-height:132px;flex-direction:column;justify-content:space-between;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:13px;padding:17px;box-shadow:0 3px 12px #1c40550a;transition:transform .15s,border-color .15s,box-shadow .15s}
+.category:hover,.category:focus-visible{transform:translateY(-2px);border-color:#78b7df;box-shadow:0 8px 20px #1c405518;outline:none}
+.category .icon{font-size:25px;color:var(--blue)}.category strong{font-size:16px;line-height:1.25}.category small{color:var(--blue);font-weight:700;font-size:12px}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.promise div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}.promise b{display:block;color:#183b58}.promise span{font-size:12px;color:var(--muted)}
+footer{background:#fff;border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);font-size:12px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rating{display:none}}
+@media(max-width:520px){.head{padding:13px 15px;gap:12px}.logo{width:92px;max-height:64px}.brand p{font-size:11px}.heroMark{display:none}main{padding:16px 14px 40px}.sectionHead{align-items:stretch;flex-direction:column}.search{width:100%}.grid{gap:9px}.category{min-height:122px;padding:13px}.category strong{font-size:14px}.promise{grid-template-columns:1fr;gap:8px}}
+</style>
+</head>
+<body>
+<div class="preview">STORE PREVIEW • Catalogue browsing only • Checkout and live ordering remain disabled</div>
+<header><div class="head">
+<img class="logo" src="assets/gw-logo.png" alt="Get Wired AutoWorx" onerror="this.style.display='none'">
+<div class="brand"><h1>Get Wired AutoWorx</h1><p>Sound &amp; Security • Auto Electrical • Spares &amp; Accessories</p></div>
+<div class="rating"><strong>★ 4.7</strong><br>Customer rating</div>
+</div></header>
+<main>
+<section class="hero"><div><h2>Your 1 Stop Automotive Shopping Experience</h2><p>Explore automotive electrical parts, vehicle security, sound, accessories and outdoor essentials. Need help finding the right part? Contact us for fitment assistance.</p><span class="since">ESTABLISHED SINCE 2012</span></div><div class="heroMark" aria-hidden="true">⚙</div></section>
+<div class="sectionHead"><div><h2>Shop by category</h2><p>Choose a department to browse its catalogue.</p></div><input id="categorySearch" class="search" type="search" placeholder="Find a category…" aria-label="Find a category"></div>
+<section class="grid" id="categoryGrid" aria-label="Store categories">
+<a class="category" href="preview-category.html?id=6cc56033-b0a9-4f25-b207-aeeb341a1c47"><span class="icon">⚡</span><strong>Auto Electrical Spares</strong><small>Browse department →</small></a>
+<a class="category" href="preview-category.html?id=8e93d917-8fcc-4427-b364-cdad244f263f"><span class="icon">🔒</span><strong>Vehicle Security</strong><small>Browse department →</small></a>
+<a class="category" href="preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181"><span class="icon">♫</span><strong>Car Audio &amp; Entertainment</strong><small>Browse department →</small></a>
+<a class="category" href="preview-category.html?id=87982093-7d81-4f2e-a8e2-e20cdeef30d8"><span class="icon">🚘</span><strong>Automotive Accessories</strong><small>Browse department →</small></a>
+<a class="category" href="preview-category.html?id=38b382c1-6ee0-4b3c-86ad-399094bc40cc"><span class="icon">⚓</span><strong>Marine Spares &amp; Accessories</strong><small>Browse department →</small></a>
+<a class="category" href="preview-category.html?id=77297c18-67f6-452e-8918-c55d2ef6231a"><span class="icon">🛠</span><strong>Tools, Hardware &amp; Consumables</strong><small>Browse department →</small></a>
+<a class="category" href="preview-category.html?id=af2f8625-4f42-45e6-9f21-d571d7415893"><span class="icon">🏕</span><strong>Camping, Leisure &amp; Outdoors</strong><small>Browse department →</small></a>
+<a class="category" href="preview-category.html?id=63a71fd9-df45-43f0-b61d-ad622daa9d79"><span class="icon">🚚</span><strong>Trailer &amp; Canopy</strong><small>Browse department →</small></a>
+</section>
+<section class="promise" aria-label="Store information"><div><b>BEST PRICES</b><span>Value across our range</span></div><div><b>BEST WORKMANSHIP</b><span>Automotive sound and security experience</span></div><div><b>GUARANTEED!</b><span>Contact us for product and fitment support</span></div></section>
+</main>
+<footer>Get Wired AutoWorx • Sound &amp; Security • Auto Electrical • Spares &amp; Accessories<br>Pickup by appointment only • No walk-ins • No cash on delivery</footer>
+<script>
+const search=document.getElementById('categorySearch');search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();document.querySelectorAll('#categoryGrid .category').forEach(card=>{card.hidden=!card.innerText.toLowerCase().includes(q)})});
+</script>
+</body></html>
