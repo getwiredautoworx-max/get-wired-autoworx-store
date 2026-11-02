@@ -486,3 +486,14 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - No payment/delivery task should be described as the primary next milestone while the customer-facing storefront remains incorrect or unpopulated.
 - This priority correction does not authorize publishing supplier content, changing live stock/prices/categories, removing supplier watermarks/rights notices, or deploying to production. Product images must be lawfully usable; retain source provenance and do not falsely claim image rights.
 - Execution discipline: reuse the completed ASC taxonomy and 50-record pilot evidence; do not repeat extraction already done. Selectively reconstruct on current main; do not merge stale PR #149 wholesale. Maintain the private supplier-SKU-to-GW-SKU mapping outside customer-facing assets.
+
+
+## 2026-11-02 EXECUTION UPDATE — BRIGHT CATEGORY LANDING PAGE
+- Created clean branch `fix/bright-functional-storefront-2026-11-02` from current `main`.
+- Replaced the button-only dark `index-new.html` landing page with a bright, responsive, mobile-first category homepage. It retains the eight approved root categories and links each to the existing `preview-category.html` route using the exact category UUIDs already declared in that route.
+- Added a category filter, brand/tagline, Established Since 2012, rating display, and the owner's approved pickup/no-walk-in/no-COD notice. Added a clear preview-only notice; checkout/live ordering remains disabled.
+- Changed `index.html` to route the root entry point to `index-new.html`, rather than the previously configured `store.html` old shell. This is a branch-only candidate change; it has NOT been deployed to Cloudflare Pages, Axxess or production.
+- Commits: `0de408d7aa040719965f064afb16b64423a200aa` (bright landing page) and `6695aa8ebfa57c353dc5e4509cf067e4a655259d` (root route).
+- Verified by source comparison that all eight UUIDs in the new homepage exactly match the eight ROOTS entries in `preview-category.html`.
+- NOT YET VERIFIED: browser rendering, mobile overflow, destination category population, product listing, image correctness, and workflow checks. The existing `storefront-smoke.yml` contains legacy assertions against the old `index-new.html` implementation and must be updated to test the new homepage rather than silently skipped or allowed to fail. Do not call this storefront ready.
+- Next work: update the smoke workflow for the new route, run exact-branch tests, then port the approved ASC taxonomy/pilot into customer-facing category navigation without exposing supplier SKUs or old Buyer Guide stock. Keep production HOLD.
