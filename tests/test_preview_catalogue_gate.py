@@ -36,5 +36,20 @@ class PreviewCatalogueGateTests(unittest.TestCase):
         self.assertIn("Auto Electrical Spares", source)
         self.assertIn("Trailer &amp; Canopy", source)
 
+    def test_homepage_exposes_exactly_eight_approved_root_categories(self):
+        source = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(source.count('class="category"'), 8)
+        for label in (
+            "Auto Electrical Spares",
+            "Vehicle Security",
+            "Car Audio &amp; Entertainment",
+            "Automotive Accessories",
+            "Marine Spares &amp; Accessories",
+            "Tools, Hardware &amp; Consumables",
+            "Camping, Leisure &amp; Outdoors",
+            "Trailer &amp; Canopy",
+        ):
+            self.assertIn(label, source)
+
 if __name__ == "__main__":
     unittest.main()
