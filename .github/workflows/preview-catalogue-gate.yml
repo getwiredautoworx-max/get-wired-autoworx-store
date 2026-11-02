@@ -1,0 +1,24 @@
+name: Preview Approved Catalogue Gate
+on:
+  push:
+    branches:
+      - fix/bright-functional-storefront-2026-11-02
+  pull_request:
+    branches: [main]
+    paths:
+      - 'preview-products.html'
+      - 'preview-product.html'
+      - 'tests/test_preview_catalogue_gate.py'
+      - '.github/workflows/preview-catalogue-gate.yml'
+permissions:
+  contents: read
+jobs:
+  fail-closed-regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify unapproved products cannot render in preview
+        run: python tests/test_preview_catalogue_gate.py -v
