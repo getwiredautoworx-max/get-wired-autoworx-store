@@ -59,8 +59,14 @@ export async function readJsonLimited(request, maxBytes = MAX_BODY_BYTES) {
 
 export function validateImagePayload(base64, mime) {
   if (!ALLOWED_MIME.has(mime)) return { ok: false, error: "Upload a JPG, PNG or WebP photo." };
-  if (typeof base64 !== "string" || !base64 || base64.length > Math.ceil(MAX_IMAGE_BYTES / 3) * 4 + 4 ||
-      !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(base64)) {
+  if (typeof base64 !== "string" || !base64 || base64.length % 4 !== 0 ||
+      base64.length > Math.ceil(MAX_IMAGE_BYTES / 3) * 4 ||
+      !/^[A-Za-z0-9+/]*={0,2}$/.test(base64)) {
+    return { ok: false, error: "Image is empty or too large. Use a photo under 4 MB." };
+  }
+  const padding = base64.endsWith("==") ? 2 : base64.endsWith("=") ? 1 : 0;
+  const estimatedBytes = (base64.length / 4) * 3 - padding;
+  if (estimatedBytes <= 0 || estimatedBytes > MAX_IMAGE_BYTES) {
     return { ok: false, error: "Image is empty or too large. Use a photo under 4 MB." };
   }
 
