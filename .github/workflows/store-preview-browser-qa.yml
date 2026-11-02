@@ -300,7 +300,6 @@ jobs:
             const hostedErrors=[],hostedConsoleErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
             hosted.on('console',m=>{if(m.type()==='error')hostedConsoleErrors.push(m.text())});
-            await hosted.setExtraHTTPHeaders({'Cache-Control':'no-cache'});
             await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?gw_preview_qa=hosted-home-20261101',{waitUntil:'domcontentloaded',timeout:60000});
             try {
               await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:45000});
@@ -340,7 +339,6 @@ jobs:
             await imageProbe.close();
             // Ensure known oil-filler-cap records never appear in electrical/ignition or tool category listings.
             const categoryProbe=await browser.newPage({viewport:{width:390,height:844}});
-            await categoryProbe.setExtraHTTPHeaders({'Cache-Control':'no-cache'});
             const heldSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765'];
             await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=20261101',{waitUntil:'domcontentloaded',timeout:60000});
             await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
@@ -375,7 +373,7 @@ jobs:
             if(categoryButtonAudit.filter!=='6cc56033-b0a9-4f25-b207-aeeb341a1c47')throw new Error('Hosted root category button is missing its route ID: '+JSON.stringify(categoryButtonAudit));
             await hosted.evaluate(()=>{window.closePartSearch?.();window.closePartRequest?.();});
             await hostedCategory.locator('.catContent').click();
-            await hosted.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:20000}).catch(async error=>{
+            await hosted.waitForURL(/preview-category(?:\.html)?\?id=/,{waitUntil:'domcontentloaded',timeout:20000}).catch(async error=>{
               const diagnostic=await hosted.evaluate(()=>({url:location.href,readyState:document.readyState,button:document.querySelector('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > button.catBtn')?.outerHTML.slice(0,500)}));
               throw new Error('Hosted category navigation failed after clicking category content: '+JSON.stringify({categoryButtonAudit,diagnostic,hostedErrors,hostedConsoleErrors,error:error.message}));
             });
