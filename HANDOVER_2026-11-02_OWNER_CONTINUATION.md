@@ -495,3 +495,11 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - This is a taxonomy/source index only, not a populated product manifest. The OCR has material recognition errors (for example item counts and some headings), so original scanned PDF pages must be visually reviewed before product-level extraction or claims.
 - Main's ASC README still says the 25-product pilot is in progress, but main's tracked extraction directory contains only OCR page text/summary and no pilot register. Do not treat that README sentence as proof that a current pilot exists on main. PR #151 is a separate stale evidence branch and must be reconciled selectively.
 - Next technical gate: inspect the six source PDF page images and build a visual-review product register for a bounded pilot; preserve page order and exact product-code/photo pairing. No products may enter customer preview until their source text and image pairing are visually verified.
+
+
+## 2026-11-02 ASC TAXONOMY RECONSTRUCTION
+- PR #151 contains the prior 50-row visually reviewed ASC pilot and image-match register on a stale branch. The current-main branch now contains the 76-ID taxonomy JSON only; binary crops and product CSVs were intentionally not copied separately.
+- Added review-only contents-page register, taxonomy regression test, and isolated workflow in PR #158. Head `a33dc6cdc3194728fff2dcf001e31b9466be919f`; draft/open/unmerged. No GitHub Actions test run is present yet; commit status is pending with zero status contexts. Do not mark the test passed.
+- Opening PR #158 automatically triggered a Cloudflare Workers Builds check; it was not manually dispatched. Do not retry or trigger further Cloudflare builds. Check its final result before making deployment claims.
+- PR #158 is not mergeable at current checkpoint. Main base reported by PR metadata is `c4196c94d4bf71066a923d69210792efd9173e87`; the review branch was created from earlier `f7c84ec23c0ca3f4f7609eb2bdda5f0a42c8d1d8`, so rebase/selective reconciliation is required before merge consideration.
+- No main changes, merge, database/product/price/stock changes or production deployment occurred.
