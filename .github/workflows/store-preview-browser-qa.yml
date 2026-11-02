@@ -26,6 +26,8 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Build the exact isolated preview package
         run: python3 scripts/build-cloudflare-pages-public.py
         env:
