@@ -111,3 +111,45 @@ export async function consumeDurableRateLimit(db, keyHash) {
   if (!row || typeof row.allowed !== "boolean") throw new Error("Shared picture-search rate limit returned an invalid response.");
   return row;
 }
+export async function requestVision({ apiKey, model, mime, base64, fetchImpl = fetch }) {
+  if (!apiKey) return { ok: false, status: 503, error: "AI picture search is not configured yet. Please use Request a Part." };
+  const visionPrompt = `Identify the visible automotive/electrical/accessory/marine/tool part in this photo for a South African parts shop. Do not guess an exact vehicle fitment from appearance alone. Read visible labels or numbers if legible. Return JSON only with this shape: {"part_name":"short likely generic name","part_type":"category","keywords":["specific searchable terms"],"visible_text":["readable brand or part number"],"vehicle_hint":"only if clearly supported, otherwise empty","confidence":"high|medium|low","notes":"brief uncertainty or useful distinguishing detail"}. If unclear, say so and suggest what extra angle or measurement is needed. Never invent a part number.`;
+  try {
+    const response = await fetchImpl("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: { "authorization": "Bearer " + apiKey, "content-type": "application/json" },
+      body: JSON.stringify({
+        model,
+        temperature: 0.1,
+        max_tokens: 450,
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: "You identify physical automotive and electrical parts cautiously. Output valid JSON only." },
+          { role: "user", content: [
+            { type: "text", text: visionPrompt },
+            { type: "image_url", image_url: { url: "data:" + mime + ";base64," + base64, detail: "high" } }
+          ]}
+        ]
+      }),
+      signal: AbortSignal.timeout(25_000)
+    });
+    if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        return { ok: false, status: 502, error: "AI provider authentication failed. Please contact the store administrator." };
+      }
+      if (response.status === 429) {
+        return { ok: false, status: 429, error: "AI picture search is temporarily busy or its usage limit has been reached. Please try later." };
+      }
+      return { ok: false, status: 502, error: "The image could not be analysed right now. Please try again or use Request a Part." };
+    }
+    const payload = await response.json();
+    try {
+      return { ok: true, identification: JSON.parse(payload.choices?.[0]?.message?.content || "{}") };
+    } catch {
+      return { ok: false, status: 502, error: "The image analysis returned an unreadable result. Please try another photo." };
+    }
+  } catch {
+    return { ok: false, status: 502, error: "The image could not be analysed right now. Please try again or use Request a Part." };
+  }
+}
+
