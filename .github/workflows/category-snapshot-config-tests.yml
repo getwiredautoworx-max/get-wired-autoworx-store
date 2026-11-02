@@ -6,7 +6,7 @@ on:
       - 'tests/test_refresh_category_snapshot_config.py'
       - '.github/workflows/category-snapshot-config-tests.yml'
   push:
-    branches: [main]
+    branches: [main, fix/category-snapshot-config-2026-11-02]
     paths:
       - 'scripts/refresh_category_snapshot.py'
       - 'tests/test_refresh_category_snapshot_config.py'
