@@ -41,7 +41,7 @@ jobs:
             for(const viewport of [{width:1365,height:900},{width:390,height:844}]){
               const page=await browser.newPage({viewport});
               page.on('pageerror',e=>errors.push(String(e)));
-              await page.goto('http://127.0.0.1:4173/asc-catalogue-preview.html',{waitUntil:'domcontentloaded'});
+              await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});await page.locator('#grid .card').filter({hasText:'ASC Catalogue — Aerials'}).waitFor();await page.locator('#grid .card').filter({hasText:'ASC Catalogue — Aerials'}).click();await page.waitForURL(/asc-catalogue-preview\\.html\\?root=Car%20Audio/);await page.waitForFunction(()=>document.querySelector('#roots button[aria-pressed="true"]')?.textContent.includes('Car Audio & Entertainment'));
               await page.waitForSelector('#roots button');
               await page.waitForSelector('#subs button');
               const roots=await page.locator('#roots button').allTextContents();
