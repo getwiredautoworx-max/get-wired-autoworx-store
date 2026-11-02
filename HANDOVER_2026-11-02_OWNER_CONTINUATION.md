@@ -88,3 +88,9 @@ Append new dated outcomes below this line; never modify or remove the protected 
 - Removed all prior handover-named files, including `AI_HANDOVER.md`, `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, legacy dated handovers, task-start/results/checkpoint notes, and files in `handover-runs/` and `handover-updates/`.
 - Final recursive Git tree verification returned exactly one handover-named file: `HANDOVER_2026-11-02_OWNER_CONTINUATION.md` (blob `e9a5c7d97182e5c5125552fd3c2b71deb79ade82` before this cleanup note was appended). Tree SHA at verification: `9d20f4ac49c1f1fbecef06b90ccd9e268c9c3ead`.
 - This new file is the sole retained handover and preserves the owner's standing-instructions block. Do not edit/remove that block without explicit owner permission.
+
+
+## 2026-11-02 ASC INTEGRATION — TASK START
+- Owner instruction: continue ASC catalogue integration, preserving each source catalogue's original headings/subcategories and mapping into the eight approved store roots; no live catalogue, price, stock, category or supplier activation changes.
+- Read-only checkpoint: PR #149 remains draft/open/unmerged; GitHub reports head `148cc9060c3bf7543a0f8a65a16e214b52be663e`, base `1ffe9a91b84eca755162e009d233b8d57ada28fe`, 41 commits, 126 changed files, mergeable=true. Its body describes 20 ahead / 0 behind and 127 changed files, which conflicts with metadata; verify against current main before any integration decision.
+- Starting focused review of source taxonomy, pilot evidence consistency, category mapping and test coverage. Production remains HOLD.
