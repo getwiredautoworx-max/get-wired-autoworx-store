@@ -52,11 +52,16 @@ jobs:
                 const dim=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
                 if(dim.scroll>dim.width+2) throw new Error('Horizontal overflow '+JSON.stringify(dim));
                 for(const id of ids){
-                  const r=await page.goto(base+'/preview-category.html?id='+id,{waitUntil:'domcontentloaded',timeout:45000});
-                  if(!r || r.status()>=400) throw new Error('Category route failed '+id+' '+r?.status());
-                  await page.locator('#heading').waitFor();
-                  const heading=await page.locator('#heading').innerText();
-                  if(!heading.trim()) throw new Error('Empty category heading '+id);
+                  const categoryPage=await browser.newPage({viewport:{width,height:900}});
+                  categoryPage.on('pageerror',e=>errors.push(String(e)));
+                  let r;
+                  try {
+                    r=await categoryPage.goto(base+'/preview-category.html?id='+id,{waitUntil:'commit',timeout:45000});
+                    await categoryPage.locator('#heading').waitFor({timeout:20000});
+                    const heading=await categoryPage.locator('#heading').innerText();
+                    if(!heading.trim()) throw new Error('Empty category heading '+id);
+                    if(!r || r.status()>=400) throw new Error('Category route HTTP failure '+id+' '+r?.status());
+                  } finally { await categoryPage.close(); }
                 }
                 if(errors.length) throw new Error('Browser JS errors: '+errors.join('; '));
                 console.log('PREVIEW_BROWSER_PASS '+width+'px: homepage, eight category routes, no horizontal overflow, no page errors');
