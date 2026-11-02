@@ -528,3 +528,28 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Workflow builds the allowlisted package with preview routes enabled, checks noindex and the 50 pilot JPGs, then deploys using existing `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
 - GitHub API listing of branch workflow runs returned only the 7 pull_request runs and did not show a push-triggered deployment run. Therefore deployment has NOT been confirmed. Next: inspect latest PR checks and workflow run listing after commit; if the push workflow is not scheduled, use repository Actions UI to dispatch the existing non-production workflow only. Do not switch target to production.
 - Current integration head advanced from `ca417baf69ec69f7e1d75b999ecdb89d20583f34` to `52b5a1695dfc2008648b88019c4169421cff58b0`; all prior exact-head test evidence applies to the prior SHA only until rerun on this new head.
+
+
+## MASTER TASK BURN-DOWN — 2026-11-02
+**Baseline: 12 outstanding tasks.** This is the single numbered register. Remove a task from the outstanding count only when its completion evidence is recorded here; do not renumber remaining tasks. The final three are reserved for owner attention and must not be represented as assistant-completable work.
+
+### Assistant execution tasks (1–9)
+1. **Deploy isolated test preview** — trigger the dedicated workflow and verify the exact deployed commit and URL. Current: workflow added; deployment not yet observed.
+2. **Rerun exact-head automated checks** — all required workflows must complete on the final integration SHA; skipped checks are not passes. Current: prior SHA passed several checks; current SHA needs fresh evidence.
+3. **Hosted desktop/mobile QA** — verify the deployed preview on desktop and 360/390px mobile, including navigation, categories, images, contrast, no horizontal overflow, no console/page errors, and noindex.
+4. **Fix category snapshot config discovery** — implement and test config lookup for the button-only shell; no live refresh/write.
+5. **Complete ASC catalogue integration preparation** — process every approved current ASC catalogue into the preserved category/subcategory/order structure; reconcile source pages, images, models and GW SKU proposals; exclude obsolete Buyer’s Guide stock. The 50-product pilot alone is not completion.
+6. **Reconcile 38 ASC historical price-scaling SKUs** — match to current printed cost, VAT basis, stock and effective date; leave unverified items inactive/quote-only.
+7. **Run and record current Planetworld read-only audit** — obtain current-main audit evidence; keep zero-RRP items separate and do not alter prices.
+8. **Verify non-production customer journey** — signup, email confirmation, login, terms gate, order submission and payment handoff/test behaviour; no live payment activation or credentials.
+9. **Prepare coordinated release candidate and resolve canonical-domain mismatch** — document exact Axxess-first release steps, hashes and rollback checks; do not execute production changes.
+
+### Final owner-attention tasks (10–12)
+10. **Supply the post-reset November ASC source PDFs and initiate the read-only Planetworld audit from GitHub Actions UI** — these are the two outstanding source/evidence inputs that cannot be truthfully manufactured by the assistant.
+11. **Test the verified hosted preview on the owner's phone and accept/reject it** — record defects; acceptance is not inferred from automated tests.
+12. **Give explicit production-release authorization** — only after tasks 1–11 are evidenced and the owner accepts the preview. No production deployment, Axxess upload, DNS, payment, Supabase or live catalogue changes before this.
+
+### Burn-down rule
+- Current count at creation: **12**.
+- On each verified completion, append the evidence (commit/run/job/URL or owner decision), mark that task resolved and reduce the outstanding count by one. Do not retain resolved tasks in the outstanding list. Never mark a task complete merely because a workflow was created, a PR opened, a test skipped, or a local build passed.
+- The target state is **3 remaining tasks: 10, 11 and 12**, all requiring owner attention. Tasks 1–9 are assistant execution responsibilities.
