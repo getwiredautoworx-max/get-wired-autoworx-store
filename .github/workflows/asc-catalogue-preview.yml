@@ -1,0 +1,22 @@
+name: ASC Catalogue Preview Regression
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'asc-catalogue-preview.html'
+      - 'assets/asc-catalogue-preview-data.json'
+      - 'tests/asc-catalogue-preview.test.cjs'
+      - '.github/workflows/asc-catalogue-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate ASC preview data and category isolation
+        run: node tests/asc-catalogue-preview.test.cjs
