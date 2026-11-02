@@ -526,3 +526,12 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Touched the workflow file to trigger a fresh run; latest branch head is 27a21f66cade81989806d5a86d9d6beafcea3006. At the latest Actions API lookup, only the two earlier failed runs were returned; no run for the corrected head had appeared. The corrected regression is therefore NOT yet CI-verified.
 - Do not count either failed run as success. Do not merge PR #159. Reconcile the PR's 19-commit/10-file divergence from current main before integration.
 - The GitHub repository's six ASC source PDFs are not directly readable as binary through the connected GitHub file action; base64 retrieval returned empty content for the PDF. The prior OCR files are text-only. Visual page review must use an accessible PDF/image source; do not fabricate product rows or image matches from OCR.
+
+
+## 2026-11-02 CLEAN CURRENT-MAIN PREVIEW GATE — CI PASS
+- Rebuilt the fail-closed change as a focused branch directly based on the then-current main, rather than carrying the stale bright-storefront candidate branch. Branch: fix/main-preview-catalogue-gate-2026-11-02.
+- Opened focused draft PR #160: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/160. Head 025dd2e3c0998a1be16444a4787ac6e664a7c0d0; base main SHA 27a21f66cade81989806d5a86d9d6beafcea3006. Four files changed (two preview routes, regression test, workflow). No merge performed; PR metadata currently reports mergeable=false and draft=true. Review/reconcile before integration.
+- Exact-head CI PASS: workflow run 41493578112, job 125442578555, commit 025dd2e3c0998a1be16444a4787ac6e664a7c0d0. Both tests passed: listing route stops before any product API query; direct product detail stops before product lookup.
+- Closed superseded draft PR #159 as unmerged; it inherited unrelated storefront candidate history. PR #160 is the single focused code-change path for this guard.
+- Scope is intentionally limited: it suppresses unverified legacy products in preview routes. It does not populate approved catalogue records, visually verify ASC PDFs, prove exact image matching, or make the store ready for customer orders.
+- No production deployment, Supabase write, live stock/price/category change, supplier publication or checkout activation.
