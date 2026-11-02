@@ -518,3 +518,13 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - The same PR update triggered `Populated Store Preview Browser QA` run `41503975245` (run 481), `Public SKU Exposure Audit` run `41503975158` (run 1286), `Storefront Smoke Test` run `41503975410` (run 1484), and `Cloudflare Pages Public Package QA` run `41503975369` (run 233). At checkpoint these were queued/in progress; no pass/fail conclusion is claimed.
 - Commit `a4de7c2423a9046bc57fdc99e5a2b871652cb74b` is the code/test head when these runs were observed. The later handover-only update must not be represented as tested unless checks are confirmed against the final PR head.
 - The exact-hosted preview URL and Cloudflare deployment completion have not yet been verified. A running browser QA job is not proof of a deployed preview or owner acceptance.
+
+
+## 2026-11-02 ISOLATED TEST PREVIEW DEPLOYMENT PATH
+- Added `.github/workflows/deploy-store-test-preview.yml` on integration branch `integration/current-storefront-plus-asc-preview-2026-11-02`.
+- Commit: `52b5a1695dfc2008648b88019c4169421cff58b0`.
+- Trigger: push to the integration branch when storefront/preview/package paths change, plus manual workflow dispatch.
+- Deployment target is Cloudflare Pages project `get-wired-autoworx-store`, branch `store-test-preview`; it does not target production branch or canonical domain.
+- Workflow builds the allowlisted package with preview routes enabled, checks noindex and the 50 pilot JPGs, then deploys using existing `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
+- GitHub API listing of branch workflow runs returned only the 7 pull_request runs and did not show a push-triggered deployment run. Therefore deployment has NOT been confirmed. Next: inspect latest PR checks and workflow run listing after commit; if the push workflow is not scheduled, use repository Actions UI to dispatch the existing non-production workflow only. Do not switch target to production.
+- Current integration head advanced from `ca417baf69ec69f7e1d75b999ecdb89d20583f34` to `52b5a1695dfc2008648b88019c4169421cff58b0`; all prior exact-head test evidence applies to the prior SHA only until rerun on this new head.
