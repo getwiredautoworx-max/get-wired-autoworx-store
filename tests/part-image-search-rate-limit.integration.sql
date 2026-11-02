@@ -35,18 +35,28 @@ BEGIN
     RAISE EXCEPTION 'Ninth request should be denied with zero remaining';
   END IF;
 
-  UPDATE gw_private.part_image_search_rate_limits
-  SET window_started_at = clock_timestamp() - interval '61 seconds',
-      expires_at = clock_timestamp() + interval '60 seconds'
-  WHERE ip_hash = repeat('a', 64);
+END
+$;
+RESET ROLE;
 
+UPDATE gw_private.part_image_search_rate_limits
+SET window_started_at = clock_timestamp() - interval '61 seconds',
+    expires_at = clock_timestamp() + interval '60 seconds'
+WHERE ip_hash = repeat('a', 64);
+
+SET ROLE service_role;
+DO $
+DECLARE
+  v_allowed boolean;
+  v_remaining integer;
+BEGIN
   SELECT allowed, remaining INTO v_allowed, v_remaining
   FROM gw_private.consume_part_image_search_rate_limit(repeat('a', 64), 60, 8);
   IF NOT v_allowed OR v_remaining <> 7 THEN
     RAISE EXCEPTION 'Expired window should reset the request counter';
   END IF;
 END
-$$;
+$;
 RESET ROLE;
 
 -- A call should opportunistically delete at most 500 expired rows per pass.
