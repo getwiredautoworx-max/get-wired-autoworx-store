@@ -602,3 +602,27 @@ Maintain a numbered open-task register. Remove a task immediately when its evide
 
 
 Owner directive (2026-11-02): Complete the full ASC catalogue integration in the approved store category/subcategory hierarchy and original catalogue order. Current 50-item pilot is not completion. Preserve all six source PDFs; verify every product and image against source pages; do not invent fitment, SKUs, prices or stock; keep supplier details internal. Record verified progress and exceptions here. Production remains on hold.
+
+
+## 2026-11-02 CONTINUATION CHECKPOINT — STANDALONE WORK / SOURCE RECONCILIATION
+- Rechecked PR #162: OPEN, DRAFT, UNMERGED; exact head `97f785196963218e1f61d49af807da2e37689664`. Do not merge or deploy production.
+- All eight PR workflow runs associated with this exact head completed FAILURE: populated preview QA, public SKU audit, supplier-routing QA, button-only smoke, storefront smoke detector, ASC browser QA, public-package QA and approved-catalogue gate. Storefront smoke's separate smoke job was SKIPPED. Job-log retrieval returned GitHub 404 BlobNotFound, so root causes remain undiagnosed; no green result may be carried forward.
+- Rechecked ASC extraction README: current repository intake remains six PDFs / 72 scanned pages / OCR review only; no full product/image catalogue has been created. The 50 visually matched pilot records are not full integration.
+- Checked the user's Library PDF inventory and found additional ASC source files not represented in the six-file repository intake: `ASC- Fuses.pdf` (13 pages), `ASC- Marine & Towing and Trailer.pdf` (25 pages), `ASC Lubricants Chemicals and Cleaning Equipment.pdf`, and `ASC- KT Wheel Covers.pdf`. These are present in Library, but approval/currentness relative to the post-reset six-file source set is not established. Preserve them; do not silently add them to the approved product intake or discard them. Resolve source-set authority before publication.
+- Confirmed the Library copies of ASC Automotive Globes, Car Mats, Fuel Pumps, Fuses and Marine/Towing/Trailer are scanned image PDFs with no embedded text layer; they require page-image review/OCR. No product claims were promoted from OCR or from historical Get Wired catalogue/Buyer’s Guide PDFs.
+
+### Standalone assistant-owned work queue — continue in this order
+1. Diagnose the eight exact-head workflow failures using available job/log evidence; where GitHub logs are expired/unavailable, reproduce each check locally from the exact PR head and fix the actual failing assertion/configuration (do not weaken gates).
+2. Verify the isolated Cloudflare Pages test-preview deployment trigger, secrets/permissions, exact deployed commit and URL; no production target.
+3. Run hosted desktop/mobile QA against the verified preview and record defects/results.
+4. Complete ASC source-set reconciliation and page-by-page extraction/image matching for every owner-approved current catalogue; preserve category order, assign no invented GW SKUs, and exclude legacy Buyer’s Guide stock.
+5. Reconcile remaining catalogue/price/image provenance, including the outstanding 38 historical price-scaling SKU audit; keep uncertain records inactive/review-only.
+6. Complete customer journey test-only verification (signup/email/login/terms/order/payment handoff) without enabling live payments.
+7. Prepare exact-head release/rollback evidence and canonical-domain resolution; no production action.
+
+### Owner-only gates (do not transfer to assistant-complete)
+- Review and accept/reject the verified hosted preview on owner's phone.
+- Supply/confirm final payment onboarding outcome and EFT/WhatsApp business details when ready.
+- Explicitly authorize production release after all technical evidence and owner acceptance.
+
+Progress rule: remove an item only after evidence on the exact current head. No status notification is a substitute for implementation. Production remains HOLD.
