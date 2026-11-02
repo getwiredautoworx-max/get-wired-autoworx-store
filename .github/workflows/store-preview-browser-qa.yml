@@ -19,6 +19,7 @@ on:
 
 permissions:
   contents: read
+  statuses: read
 
 jobs:
   populated-preview:
@@ -41,17 +42,26 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Wait for the exact candidate preview deployment
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GW_EXPECTED_PREVIEW_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         shell: bash
         run: |
           set -euo pipefail
-          BASE='https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev'
+          preview_url=''
+          deployed=''
           for attempt in $(seq 1 60); do
-            deployed=$(curl -fsSL -H 'Cache-Control: no-cache' "$BASE/gw-preview-sha.txt?gw_preview_guard=$GITHUB_RUN_ID-$attempt" 2>/dev/null || true)
-            if [[ "$deployed" == "$GW_EXPECTED_PREVIEW_SHA" ]]; then echo "EXACT_PREVIEW_SHA_PASS $deployed"; exit 0; fi
+            preview_url=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GW_EXPECTED_PREVIEW_SHA/statuses" --jq '[.[] | select(.context=="gw-pages-preview-url")][0].target_url // ""' 2>/dev/null || true)
+            if [[ -n "$preview_url" ]]; then
+              deployed=$(curl -fsSL -H 'Cache-Control: no-cache' "$preview_url/gw-preview-sha.txt?gw_preview_guard=$GITHUB_RUN_ID-$attempt" 2>/dev/null || true)
+              if [[ "$deployed" == "$GW_EXPECTED_PREVIEW_SHA" ]]; then
+                echo "EXACT_PREVIEW_SHA_PASS $deployed"
+                echo "GW_PREVIEW_URL=$preview_url" >> "$GITHUB_ENV"
+                exit 0
+              fi
+            fi
             sleep 5
           done
-          echo "EXACT_PREVIEW_SHA_FAIL expected=$GW_EXPECTED_PREVIEW_SHA actual=${deployed:-missing}"
+          echo "EXACT_PREVIEW_SHA_FAIL expected=$GW_EXPECTED_PREVIEW_SHA actual=${deployed:-missing} preview_url=${preview_url:-missing}"
           exit 1
       - name: Run Audio hierarchy source and package checks
         run: node tests/audio-navigation.test.cjs
@@ -285,12 +295,13 @@ jobs:
             if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
             console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
             if (process.env.GW_RUN_HOSTED_QA === 'true') {
+            if(!process.env.GW_PREVIEW_URL)throw new Error('Exact hosted preview URL was not supplied by the verified deployment');
             const hosted=await browser.newPage({viewport:{width:390,height:844}});
             const hostedErrors=[],hostedConsoleErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
             hosted.on('console',m=>{if(m.type()==='error')hostedConsoleErrors.push(m.text())});
             await hosted.setExtraHTTPHeaders({'Cache-Control':'no-cache'});
-            await hosted.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-store.html?gw_preview_qa=hosted-home-20261101',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?gw_preview_qa=hosted-home-20261101',{waitUntil:'domcontentloaded',timeout:60000});
             try {
               await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:45000});
               await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:45000});
@@ -317,12 +328,12 @@ jobs:
             }
             // Confirm one exact-SKU product photo loads and a product without a source image ends on the packaged placeholder.
             const imageProbe=await browser.newPage({viewport:{width:390,height:844}});
-            await imageProbe.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-product.html?id=bfc23c23-7738-40a9-9c73-77b30112d677',{waitUntil:'domcontentloaded',timeout:60000});
+            await imageProbe.goto(process.env.GW_PREVIEW_URL+'/preview-product.html?id=bfc23c23-7738-40a9-9c73-77b30112d677',{waitUntil:'domcontentloaded',timeout:60000});
             await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0;},{timeout:30000});
             const realImage=await imageProbe.locator('.hero img').evaluate(img=>{const sku=(document.querySelector('.sku')?.innerText||'').replace(/^SKU:\s*/,'').trim();return {sku,src:img.currentSrc,naturalWidth:img.naturalWidth,placeholder:img.currentSrc.includes('product-placeholder.svg'),exactSku:img.currentSrc.includes('/assets/products_webp/'+encodeURIComponent(sku)+'.webp')};});
             if(realImage.naturalWidth<=0||realImage.placeholder||!realImage.exactSku)throw new Error('Detail page image did not load from its exact-SKU local WebP: '+JSON.stringify(realImage));
             console.log('HOSTED_DETAIL_EXACT_SKU_IMAGE_PASS '+JSON.stringify(realImage));
-            await imageProbe.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-product.html?id=532c9bdb-08ac-4647-b5e6-b51b192ec9a9',{waitUntil:'domcontentloaded',timeout:60000});
+            await imageProbe.goto(process.env.GW_PREVIEW_URL+'/preview-product.html?id=532c9bdb-08ac-4647-b5e6-b51b192ec9a9',{waitUntil:'domcontentloaded',timeout:60000});
             await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0&&img.currentSrc.includes('product-placeholder.svg');},{timeout:30000});
             const missingImageFallback=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth}));
             if(missingImageFallback.naturalWidth<=0)throw new Error('Missing product image did not resolve to packaged placeholder: '+JSON.stringify(missingImageFallback));
@@ -331,11 +342,11 @@ jobs:
             const categoryProbe=await browser.newPage({viewport:{width:390,height:844}});
             await categoryProbe.setExtraHTTPHeaders({'Cache-Control':'no-cache'});
             const heldSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765'];
-            await categoryProbe.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=20261101',{waitUntil:'domcontentloaded',timeout:60000});
+            await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=20261101',{waitUntil:'domcontentloaded',timeout:60000});
             await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
             const electricalHeld=await categoryProbe.evaluate(skus=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>skus.includes(x)),heldSkus.filter(x=>x!=='GW-22B30765'));
             if(electricalHeld.length)throw new Error('Misclassified oil-filler-cap products remain in electrical categories: '+electricalHeld.join(','));
-            await categoryProbe.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-store.html?root_category_id=77297c18-67f6-452e-8918-c55d2ef6231a&gw_preview_qa=20261101',{waitUntil:'domcontentloaded',timeout:60000});
+            await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=77297c18-67f6-452e-8918-c55d2ef6231a&gw_preview_qa=20261101',{waitUntil:'domcontentloaded',timeout:60000});
             await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
             const toolsHeld=await categoryProbe.evaluate(()=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>x==='GW-22B30765'));
             if(toolsHeld.length)throw new Error('Misclassified oil-filler-cap product remains in tools category');
@@ -371,7 +382,7 @@ jobs:
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             const hostedSubcategoryLinks=await hosted.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
             if(!hostedSubcategoryLinks.some(href=>href.startsWith('preview-category.html?id=')))throw new Error('Hosted category page did not expose subcategory buttons: '+JSON.stringify(hostedSubcategoryLinks));
-            await hosted.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=hosted-product-modal',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=hosted-product-modal',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
             const listingImageAudit=await hosted.locator('#allProductsGrid .product').evaluateAll(async cards=>{
               const results=[];
@@ -435,7 +446,7 @@ jobs:
             const hostedPilotNarrow=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedPilotNarrow.scrollWidth>hostedPilotNarrow.innerWidth+1)throw new Error('Hosted ASC pilot 360px overflow: '+JSON.stringify(hostedPilotNarrow));
             console.log('HOSTED_ASC_PILOT_PASS '+JSON.stringify({categories:hostedPilotAudit, mobile:hostedPilotWidth, narrow:hostedPilotNarrow}));
-            await hosted.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
@@ -455,7 +466,7 @@ jobs:
             const hostedProductImageAudit=await hosted.evaluate(async()=>{const samples=['GW-EBA53965','GW-F323915E','GW-DCDD840E','GW-B4F502E6','GW-5107B32F'];const results=[];for(const sku of samples){const img=new Image();img.src='assets/products_webp/'+encodeURIComponent(sku)+'.webp';try{await img.decode();results.push({sku,width:img.naturalWidth,height:img.naturalHeight})}catch{results.push({sku,width:0,height:0})}}return results;});
             if(hostedProductImageAudit.some(x=>x.width<1||x.height<1))throw new Error('Hosted product WebP image assets failed to load: '+JSON.stringify(hostedProductImageAudit));
             console.log('HOSTED_PRODUCT_WEBP_IMAGE_LOAD_PASS '+JSON.stringify(hostedProductImageAudit));
-            await hosted.goto('https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
             const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
             if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||hostedPlanet.imageSources!==9||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));

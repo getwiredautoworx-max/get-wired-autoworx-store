@@ -36,6 +36,7 @@ on:
 permissions:
   contents: read
   deployments: write
+  statuses: write
 concurrency:
   group: planetworld-audio-preview-integration
   cancel-in-progress: false
@@ -56,6 +57,7 @@ jobs:
       - name: Stamp exact source SHA for hosted QA synchronization
         run: printf '%s' "$GITHUB_SHA" > pages-public/gw-preview-sha.txt
       - name: Deploy isolated non-production Pages branch
+        id: deploy-preview
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -64,9 +66,12 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify deployed preview package privacy
         shell: bash
+        env:
+          GW_PREVIEW_BASE_URL: ${{ steps.deploy-preview.outputs.pages-deployment-alias-url }}
         run: |
           set -euo pipefail
-          BASE='https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev'
+          BASE="$GW_PREVIEW_BASE_URL"
+          test -n "$BASE" || { echo "PREVIEW_ALIAS_OUTPUT_MISSING"; exit 1; }
           code=$(curl -H 'Cache-Control: no-cache' -L --max-redirs 5 --connect-timeout 5 --max-time 20 -sS -o /tmp/asc-public.json -w '%{http_code}' "$BASE/assets/asc-catalogue-pilot-preview.json?gw_preview_guard=$GITHUB_RUN_ID")
           test "$code" = '200' || { echo "ASC public preview returned HTTP $code"; exit 1; }
           python - <<'PY'
@@ -105,9 +110,11 @@ jobs:
           echo "DEPLOYED_PREVIEW_PRIVATE_SOURCE_BLOCKED_PASS"
       - name: Verify hosted storefront entry point and bright shared shell
         shell: bash
+        env:
+          GW_PREVIEW_BASE_URL: ${{ steps.deploy-preview.outputs.pages-deployment-alias-url }}
         run: |
           set -euo pipefail
-          BASE='https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev'
+          BASE="$GW_PREVIEW_BASE_URL"
           for route in '/' '/preview-store.html' '/index-new.html' '/products.html' '/product.html'; do
             code=$(curl -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS -o /tmp/gw-route.html -w '%{http_code}' "$BASE$route")
             test "$code" = '200' || { echo "HOSTED_ROUTE_FAIL $route HTTP=$code"; exit 1; }
@@ -132,3 +139,15 @@ jobs:
           done
           grep -qi '#f3f6fa' /tmp/gw-shell.css
           echo "HOSTED_BRIGHT_STOREFRONT_ROOT_AND_SHARED_SHELL_PASS"
+      - name: Publish exact preview URL for hosted QA
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GW_PREVIEW_BASE_URL: ${{ steps.deploy-preview.outputs.pages-deployment-alias-url }}
+        run: |
+          set -euo pipefail
+          test -n "$GW_PREVIEW_BASE_URL" || { echo "PREVIEW_ALIAS_OUTPUT_MISSING"; exit 1; }
+          gh api "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" \
+            -f state=success \
+            -f context='gw-pages-preview-url' \
+            -f description='Exact-head isolated Pages preview verified' \
+            -f target_url="$GW_PREVIEW_BASE_URL"
