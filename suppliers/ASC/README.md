@@ -105,3 +105,8 @@ A standalone responsive review route is now staged at `/asc-catalogue-preview.ht
 The route and its data/images are included only in the opt-in non-production Cloudflare Pages package when `GW_INCLUDE_PREVIEW_ROUTES=1`. The standard production package excludes this route and the ASC pilot image/data assets. The package QA explicitly checks both sides of that boundary and verifies the 50 image files. Dedicated desktop/mobile Playwright QA checks exact subcategory filtering, image loading, search, empty state and horizontal overflow.
 
 This is a review route, not yet merged to main or deployed to the hosted preview. Supplier image-use rights, prices/stock and GW SKU allocation remain unverified; owner acceptance is still required before any live integration.
+
+
+### Non-production deployment
+
+A manual-only GitHub Actions workflow is provided at `.github/workflows/deploy-asc-catalogue-preview.yml`. To publish this exact review branch, select that workflow in Actions, choose branch `integration/asc-source-taxonomy-review-2026-11-02`, and run it. It builds with `GW_INCLUDE_PREVIEW_ROUTES=1` and deploys only to the Cloudflare Pages branch `asc-catalogue-preview`; it does not deploy to `main` or production. The workflow requires the existing `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets. A hosted URL must be taken from the successful deployment output rather than assumed.
