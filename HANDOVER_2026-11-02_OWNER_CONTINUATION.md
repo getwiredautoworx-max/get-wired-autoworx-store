@@ -451,3 +451,14 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 ## 2026-11-02 CHECK-RUN CLOSEOUT
 - PR #156 Cloudflare Pages preview check subsequently completed **SUCCESS** (check \`125384680934\`); \`inspect\` workflow run \`41476655400\` also SUCCESS. This confirms build/preview pipeline completion only; no customer acceptance, product listing, exact image or live data change.
 - PR #155 Cloudflare Pages preview check completed **SUCCESS** (check \`125382772716\`); security workflow run \`41476234758\` remains SUCCESS. Auxiliary Cloudflare Workers Builds check \`125384129033\` remains **FAILURE**, cause not established. Do not retry without diagnosis and owner approval if a deployment retry would consume credits.
+
+
+## 2026-11-02 OWNER AUTHORIZATION EXECUTED — PRODUCT IMAGE FUNCTION
+- Owner explicitly authorized deployment of the corrected \`product-image\` Edge Function and instructed: **do not waste Supabase credits**.
+- Deployed once to existing Supabase project \`Store\` (\`ojytykqpvonxvepprgbh\`, eu-west-1). Function is ACTIVE at **version 12**, \`verify_jwt=false\` preserved.
+- Deployment source was the current repository \`supabase/functions/product-image/index.ts\`. It now fetches only from the explicitly approved Cloudflare Pages preview asset origin \`https://approved-storefront-preview.get-wired-autoworx-store.pages.dev\`, with public WebP assets tried before private supplier-code JPG fallback. It no longer fetches product images from private GitHub raw URLs or jsDelivr.
+- Builder source readback confirms the Cloudflare Pages public package copies \`assets/products_webp\` into the output and excludes internal supplier/catalogue/source folders. This is the intended public asset origin.
+- Supabase readback after deployment confirms ACTIVE v12, unchanged \`verify_jwt=false\`, exact preview-origin reference, no GitHub raw/jsDelivr sources, and WebP-first lookup. Deployed function hash: \`7fdbfb3e2910bc523a939d08454ebdbfeef203ed1b46deaeacc695e296dfbf69\`.
+- Credit restraint: performed one deployment and one readback only. No schema/database migration, SQL query, log query, repeated deployment, bulk image request or catalogue write was performed. No expensive repeated tests or retries.
+- **Verification boundary:** deployment/readback is confirmed; a live customer image request and post-deploy 404-rate reduction have NOT been tested because that would invoke the function and query the Store database. Do not claim the 2,083 historical 404s are resolved until a low-volume, owner-approved spot check is possible. No further Supabase requests should be made without a clear diagnostic need.
+- This authorization covers this function deployment only. It does not approve public storefront deployment, DNS, payment activation, catalogue/stock/price writes, or other function/migration deployments.
