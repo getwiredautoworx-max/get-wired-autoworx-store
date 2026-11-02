@@ -188,3 +188,16 @@ The ASC non-production deployment workflow still requires the owner to start **D
 
 ### Accountability note
 The assistant previously gave repeated target dates and time estimates without delivering a verified, owner-accepted store. Those estimates are not guarantees and must not be restated as commitments. The owner has asked for results rather than further forecasts.
+
+
+## 2026-11-02 CATEGORY SNAPSHOT CONFIG FIX — STAGED, CI NOT YET VERIFIED
+- Owner instruction: continue execution toward a store that is ready for the owner to enter payment details and configure payment processing; do not treat this as authorization to activate live payments or publish production.
+- Reproduced the documented failure path by inspection: `index-new.html` is intentionally buttons-only and contains no public Supabase configuration, while `scripts/refresh_category_snapshot.py` previously searched only that file and aborted before making a snapshot.
+- Created isolated branch `fix/category-snapshot-config-2026-11-02` from main head `4867ae8799dce3a035b9c2bf80fa3f739e0f4131`.
+- Updated `scripts/refresh_category_snapshot.py` to resolve explicit `SUPABASE_URL` / `SUPABASE_KEY` environment variables first, then inspect `index-new.html`, `checkout-v2.html`, and `index.html`. The checkout client fallback handles the current combined JavaScript constant declaration. Missing configuration now returns an actionable error.
+- Added `tests/test_refresh_category_snapshot_config.py` covering environment precedence, fallback when the category shell is empty, and missing-config failure.
+- Added isolated PR regression workflow `.github/workflows/category-snapshot-config-tests.yml`; added a pre-refresh test step to `.github/workflows/refresh-category-snapshot.yml`.
+- Opened draft PR #152: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/152. Current PR head at creation: `2d5e27cb287aaf50c3de6747678fd1c6bfa1c970`; base main was `27006f956f117d01d1911fdc8b6f2a131d63698e`. PR reports mergeable=true after metadata refresh.
+- **Validation is pending:** no PR workflow run or status check was returned at checkpoint; do not call the tests passed. Do not merge PR #152 or trigger a category snapshot refresh until the isolated regression workflow passes and the code is reviewed.
+- No Supabase API request, snapshot refresh, product/category write, storefront edit, deployment, payment change, DNS change or production action was performed.
+- Next safe execution: obtain a real CI result for PR #152 (without rerunning production workflows); then continue the payment-readiness review on non-production source only, specifically server-side delivery quote validation, order creation, payment-session/webhook verification, and account/email/order flow. Keep Direct EFT as a manual/test-only option until owner supplies approved bank details and confirms how customers should receive them. PayFast remains pending merchant approval. Never invent or store bank details in source code.
