@@ -1,21 +1,6 @@
 name: Populated Store Preview Browser QA
 
 on:
-  push:
-    branches: [integration/clean-main-asc-audio-2026-11-01]
-    paths:
-      - 'preview-store.html'
-      - 'preview-category.html'
-      - 'preview-products.html'
-      - 'preview-product.html'
-      - 'preview-planetworld.html'
-      - 'preview-audio.html'
-      - 'tests/audio-navigation.test.cjs'
-      - 'tests/asc-catalogue-navigation.test.cjs'
-      - 'scripts/build-cloudflare-pages-public.py'
-      - 'assets/**'
-      - '.github/workflows/store-preview-browser-qa.yml'
-      - '.github/workflows/deploy-planetworld-audio-preview.yml'
   pull_request:
     branches: [main]
     paths:
@@ -29,6 +14,8 @@ on:
       - 'tests/asc-catalogue-navigation.test.cjs'
       - 'assets/**'
       - '.github/workflows/store-preview-browser-qa.yml'
+      - '.github/workflows/deploy-planetworld-audio-preview.yml'
+      - '.github/workflows/asc-page-contact-sheets.yml'
 
 permissions:
   contents: read
@@ -51,9 +38,8 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Wait for the exact candidate preview deployment
-        if: github.event_name == 'push'
         env:
-          GW_EXPECTED_PREVIEW_SHA: ${{ github.sha }}
+          GW_EXPECTED_PREVIEW_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         shell: bash
         run: |
           set -euo pipefail
@@ -72,7 +58,7 @@ jobs:
       - name: Run read-only populated preview browser checks
         shell: bash
         env:
-          GW_RUN_HOSTED_QA: ${{ github.event_name == 'push' && 'true' || 'false' }}
+          GW_RUN_HOSTED_QA: 'true'
         run: |
           set -euo pipefail
           python3 -m http.server 4173 --directory pages-public --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
