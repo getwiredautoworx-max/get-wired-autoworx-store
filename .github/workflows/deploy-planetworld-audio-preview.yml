@@ -19,6 +19,7 @@ on:
       - "privacy-policy.html"
       - ".github/workflows/deploy-planetworld-audio-preview.yml"
       - ".github/workflows/store-preview-browser-qa.yml"
+      - ".github/workflows/asc-page-contact-sheets.yml"
       - "preview-audio.html"
       - "preview-planetworld.html"
       - "preview-checkout.html"
