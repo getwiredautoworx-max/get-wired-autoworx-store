@@ -446,3 +446,8 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Do not repeat the 19 unit tests, disposable PostgreSQL integration, concurrent test, Sony 15-row extraction, or exact-SKU matching; reuse their recorded evidence unless code/source changes invalidate it.
 - Diagnose the auxiliary Cloudflare Workers Builds failure on PR #155 without retrying release/deployment workflows or consuming further credits.
 - Continue other safe catalogue staging and code review while awaiting only the explicit owner approvals/source inputs above.
+
+
+## 2026-11-02 CHECK-RUN CLOSEOUT
+- PR #156 Cloudflare Pages preview check subsequently completed **SUCCESS** (check \`125384680934\`); \`inspect\` workflow run \`41476655400\` also SUCCESS. This confirms build/preview pipeline completion only; no customer acceptance, product listing, exact image or live data change.
+- PR #155 Cloudflare Pages preview check completed **SUCCESS** (check \`125382772716\`); security workflow run \`41476234758\` remains SUCCESS. Auxiliary Cloudflare Workers Builds check \`125384129033\` remains **FAILURE**, cause not established. Do not retry without diagnosis and owner approval if a deployment retry would consume credits.
