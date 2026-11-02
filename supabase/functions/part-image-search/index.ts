@@ -5,6 +5,7 @@ import {
   hashClientIp,
   isAllowedOrigin,
   readJsonLimited,
+  requestVision,
   validateImagePayload
 } from "./security.mjs";
 
@@ -89,40 +90,12 @@ Deno.serve(async (req: Request) => {
     return json({ error: "Picture search is temporarily unavailable. Please use Request a Part." }, 503, requestOrigin);
   }
 
-  const visionPrompt = `Identify the visible automotive/electrical/accessory/marine/tool part in this photo for a South African parts shop. Do not guess an exact vehicle fitment from appearance alone. Read visible labels or numbers if legible. Return JSON only with this shape: {"part_name":"short likely generic name","part_type":"category","keywords":["specific searchable terms"],"visible_text":["readable brand or part number"],"vehicle_hint":"only if clearly supported, otherwise empty","confidence":"high|medium|low","notes":"brief uncertainty or useful distinguishing detail"}. If unclear, say so and suggest what extra angle or measurement is needed. Never invent a part number.`;
-  let identification: any;
-  try {
-    const aiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: { "authorization": "Bearer " + OPENAI_API_KEY, "content-type": "application/json" },
-      body: JSON.stringify({
-        model: MODEL,
-        temperature: 0.1,
-        max_tokens: 450,
-        response_format: { type: "json_object" },
-        messages: [
-          { role: "system", content: "You identify physical automotive and electrical parts cautiously. Output valid JSON only." },
-          { role: "user", content: [
-            { type: "text", text: visionPrompt },
-            { type: "image_url", image_url: { url: "data:" + mime + ";base64," + base64, detail: "high" } }
-          ]}
-        ]
-      }),
-      signal: AbortSignal.timeout(25_000)
-    });
-    if (!aiResponse.ok) {
-      console.error("OpenAI image analysis failed", aiResponse.status);
-      if (aiResponse.status === 401 || aiResponse.status === 403) return json({ error: "AI provider authentication failed. Please contact the store administrator." }, 502, requestOrigin);
-      if (aiResponse.status === 429) return json({ error: "AI picture search is temporarily busy or its usage limit has been reached. Please try later." }, 429, requestOrigin);
-      return json({ error: "The image could not be analysed right now. Please try again or use Request a Part." }, 502, requestOrigin);
-    }
-    const ai = await aiResponse.json();
-    try { identification = JSON.parse(ai.choices?.[0]?.message?.content || "{}"); }
-    catch { return json({ error: "The image analysis returned an unreadable result. Please try another photo." }, 502, requestOrigin); }
-  } catch (error) {
-    console.error("OpenAI image analysis timed out or failed", error instanceof Error ? error.message : "unknown error");
-    return json({ error: "The image could not be analysed right now. Please try again or use Request a Part." }, 502, requestOrigin);
+  const vision = await requestVision({ apiKey: OPENAI_API_KEY, model: MODEL, mime, base64 });
+  if (!vision.ok) {
+    if (vision.status === 502) console.error("OpenAI image analysis failed or returned an invalid response");
+    return json({ error: vision.error }, vision.status, requestOrigin);
   }
+  const identification: any = vision.identification;
 
   identification = {
     part_name: clean(identification.part_name, 120) || "Part not confidently identified",
