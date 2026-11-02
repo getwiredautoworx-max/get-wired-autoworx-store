@@ -589,3 +589,13 @@ Maintain a numbered open-task register. Remove a task immediately when its evide
 - Updated `.github/workflows/button-only-storefront-smoke.yml` to trigger for changes to both `index-new.html` and the integrated root `index.html`, including pull requests targeting main. This adds a dedicated Playwright check of the buttons-only storefront rather than relying on the full-cart smoke workflow, which correctly skips when it detects buttons-only mode.
 - Change commit: `4d057bff43731ef3fbc13ada16c3adc7525f352e`.
 - The connector's commit-run lookup returned no run for this latest head at the time of update; do not mark this new check passed until a run is visible and successful.
+
+
+## 2026-11-02 EXECUTION UPDATE — smoke test corrected to match integrated root
+- Commit: `10c2f4118f1c1db4e72c97d8f801d65070f2e491`.
+- The dedicated storefront browser workflow was incorrectly opening the obsolete `index-new.html` buttons-only shell and asserting accordion buttons, even though PR #162's actual integrated root is the bright eight-category `index.html` preview.
+- Corrected the Playwright check to load `index.html`, assert all eight approved category labels and order, validate category preview routes, test category-search filtering/restoration, check four viewport widths (360/390/768/1280), and reject horizontal overflow or browser page errors.
+- This is a test-definition correction, not a passed test. The connector returned no workflow runs for commit `10c2f4118f1c1db4e72c97d8f801d65070f2e491`; exact-head test status remains unverified. No task is removed from the outstanding register on this evidence alone.
+- Rechecked PR #162 at head `d457e40fac2dd6adcec2ed1c8403860cefa51c81`: eight pull-request workflow runs were reported failed, including the button-only test, ASC preview browser QA, public package QA, SKU audit, populated preview QA, approved catalogue gate, supplier-routing QA, and storefront detector. Job records returned no step details, so root causes for those failures are not yet diagnosed. Do not represent earlier green results as current-head evidence.
+- The integrated root currently contains the eight approved categories and links to `preview-category.html`; it is a bright customer-facing preview shell. The previous smoke test was materially misaligned with this implementation and has now been rewritten to test the actual root.
+- Production remains on HOLD; no production, DNS, Axxess, Supabase, stock, price, payment or live catalogue changes were made.
