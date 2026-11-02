@@ -497,3 +497,140 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - `OWNER_APPROVED_GW_SKU_STAGING_2026-10-30.csv` records candidates as staging-only/not inserted/not published; image assets are not downloaded/approved. It is not a live product feed.
 - Immediate next engineering gate: establish a provenance-aware, non-production preview catalogue source that only includes items admitted from the post-reset approved source set, with private supplier-SKU crosswalk and public GW SKU only. Until that source exists and is tested, do not render arbitrary active Supabase products under an “ASC stock removed” claim. Do not change live product records, active flags, stock, prices, or supplier tables.
 - Next execution sequence: (1) inspect and validate the current preview/public build source selection and remove any misleading assertion if it cannot be enforced; (2) build a versioned review-only catalogue manifest from the six ASC PDFs with source file/page/heading, exact SKU/model, GW SKU, image-match status and eligibility; (3) manually resolve OCR uncertainty and image pairing before any item enters the preview manifest; (4) add a preview-only allowlist gate and tests proving old/unapproved source records cannot leak into catalogue routes; (5) repeat desktop/mobile hosted QA on exact commit and obtain owner acceptance. No production actions.
+
+
+## 2026-11-02 EXECUTION CONTINUATION — PR #161
+- Re-read this handover and protected owner instruction block before changes. Latest inspected main base: `27a21f66cade81989806d5a86d9d6beafcea3006`.
+- Confirmed root `index.html` redirected immediately to legacy `store.html`, explaining why the old storefront shell continued to load even when newer preview pages existed.
+- Confirmed product listing and detail pages could expose arbitrary active Supabase product rows without approved-source provenance. The old ASC-stock notice was not an enforcement mechanism.
+- Created fresh current-main branch `fix/bright-storefront-current-main-2026-11-02` and draft PR #161: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/161
+- Changes: root entry now uses the bright eight-category preview homepage; adds `noindex,follow` while preview-only; product listing and direct-detail routes fail closed before product API queries so unverified legacy stock cannot leak into preview.
+- Reused existing regression tests and workflow `tests/test_preview_catalogue_gate.py` / `.github/workflows/preview-catalogue-gate.yml`; no duplicate tests were added.
+- Commits: `eadb95be4ce5fd33da7e7fcc033376f79b84331a` (entry point), `55470bf906424286383077a9c08a2c07ba87991b` (listing gate), `b63b68300bbb04ecce0dc9186ad6602c5f201ae5` (detail gate / PR head).
+- PR #161 is OPEN / DRAFT / UNMERGED. Exact-head regression workflow, hosted preview deployment, and owner mobile acceptance are not yet verified. Do not claim store readiness.
+- Important limitation: this safe gate hides all unverified legacy products; it does not yet populate the approved ASC/Planetworld/Audio Connections catalogues. ASC taxonomy PR #158 is taxonomy/register/tests only; 50-record pilot and its image crops remain on stale PR #151 and must be ported together, not as broken references. No catalogue data was published by PR #161.
+- No Supabase calls, database writes, live product/price/stock/category changes, supplier activation, payment changes, DNS changes, deployment, PR merge, or production release performed. Production remains HOLD.
+- Next safe actions: inspect PR #161 exact-head checks and deployment preview; then selectively port ASC pilot data and matching image assets onto current main with its exact provenance and regression tests. Keep Planetworld/Audio Connections supplier rows review-only until exact image/SKU/price/stock verification is complete.
+
+
+## 2026-11-02 PR #161 VALIDATION RUNS — IN PROGRESS CHECKPOINT
+- PR #161 exact preview-gate change initially triggered run `41503917092` (workflow `Preview Approved Catalogue Gate`, run 5); the subsequent test-file update triggered run `41503975173` (run 7). At checkpoint, run 7 job `125478363632` was IN_PROGRESS at checkout; test step had not yet executed.
+- The same PR update triggered `Populated Store Preview Browser QA` run `41503975245` (run 481), `Public SKU Exposure Audit` run `41503975158` (run 1286), `Storefront Smoke Test` run `41503975410` (run 1484), and `Cloudflare Pages Public Package QA` run `41503975369` (run 233). At checkpoint these were queued/in progress; no pass/fail conclusion is claimed.
+- Commit `a4de7c2423a9046bc57fdc99e5a2b871652cb74b` is the code/test head when these runs were observed. The later handover-only update must not be represented as tested unless checks are confirmed against the final PR head.
+- The exact-hosted preview URL and Cloudflare deployment completion have not yet been verified. A running browser QA job is not proof of a deployed preview or owner acceptance.
+
+
+## 2026-11-02 ISOLATED TEST PREVIEW DEPLOYMENT PATH
+- Added `.github/workflows/deploy-store-test-preview.yml` on integration branch `integration/current-storefront-plus-asc-preview-2026-11-02`.
+- Commit: `52b5a1695dfc2008648b88019c4169421cff58b0`.
+- Trigger: push to the integration branch when storefront/preview/package paths change, plus manual workflow dispatch.
+- Deployment target is Cloudflare Pages project `get-wired-autoworx-store`, branch `store-test-preview`; it does not target production branch or canonical domain.
+- Workflow builds the allowlisted package with preview routes enabled, checks noindex and the 50 pilot JPGs, then deploys using existing `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets.
+- GitHub API listing of branch workflow runs returned only the 7 pull_request runs and did not show a push-triggered deployment run. Therefore deployment has NOT been confirmed. Next: inspect latest PR checks and workflow run listing after commit; if the push workflow is not scheduled, use repository Actions UI to dispatch the existing non-production workflow only. Do not switch target to production.
+- Current integration head advanced from `ca417baf69ec69f7e1d75b999ecdb89d20583f34` to `52b5a1695dfc2008648b88019c4169421cff58b0`; all prior exact-head test evidence applies to the prior SHA only until rerun on this new head.
+
+
+## MASTER TASK BURN-DOWN — 2026-11-02
+**Baseline: 12 outstanding tasks.** This is the single numbered register. Remove a task from the outstanding count only when its completion evidence is recorded here; do not renumber remaining tasks. The final three are reserved for owner attention and must not be represented as assistant-completable work.
+
+### Assistant execution tasks (1–9)
+1. **Deploy isolated test preview** — trigger the dedicated workflow and verify the exact deployed commit and URL. Current: workflow added; deployment not yet observed.
+2. **Rerun exact-head automated checks** — all required workflows must complete on the final integration SHA; skipped checks are not passes. Current: prior SHA passed several checks; current SHA needs fresh evidence.
+3. **Hosted desktop/mobile QA** — verify the deployed preview on desktop and 360/390px mobile, including navigation, categories, images, contrast, no horizontal overflow, no console/page errors, and noindex.
+4. **Fix category snapshot config discovery** — implement and test config lookup for the button-only shell; no live refresh/write.
+5. **Complete ASC catalogue integration preparation** — process every approved current ASC catalogue into the preserved category/subcategory/order structure; reconcile source pages, images, models and GW SKU proposals; exclude obsolete Buyer’s Guide stock. The 50-product pilot alone is not completion.
+6. **Reconcile 38 ASC historical price-scaling SKUs** — match to current printed cost, VAT basis, stock and effective date; leave unverified items inactive/quote-only.
+7. **Run and record current Planetworld read-only audit** — obtain current-main audit evidence; keep zero-RRP items separate and do not alter prices.
+8. **Verify non-production customer journey** — signup, email confirmation, login, terms gate, order submission and payment handoff/test behaviour; no live payment activation or credentials.
+9. **Prepare coordinated release candidate and resolve canonical-domain mismatch** — document exact Axxess-first release steps, hashes and rollback checks; do not execute production changes.
+
+### Final owner-attention tasks (10–12)
+10. **Supply the post-reset November ASC source PDFs and initiate the read-only Planetworld audit from GitHub Actions UI** — these are the two outstanding source/evidence inputs that cannot be truthfully manufactured by the assistant.
+11. **Test the verified hosted preview on the owner's phone and accept/reject it** — record defects; acceptance is not inferred from automated tests.
+12. **Give explicit production-release authorization** — only after tasks 1–11 are evidenced and the owner accepts the preview. No production deployment, Axxess upload, DNS, payment, Supabase or live catalogue changes before this.
+
+### Burn-down rule
+- Current count at creation: **12**.
+- On each verified completion, append the evidence (commit/run/job/URL or owner decision), mark that task resolved and reduce the outstanding count by one. Do not retain resolved tasks in the outstanding list. Never mark a task complete merely because a workflow was created, a PR opened, a test skipped, or a local build passed.
+- The target state is **3 remaining tasks: 10, 11 and 12**, all requiring owner attention. Tasks 1–9 are assistant execution responsibilities.
+
+
+---
+
+## ACTIVE EXECUTION REGISTER — 2026-11-02 21:55 SAST
+This section supersedes older progress summaries where they conflict. Keep the protected owner instructions above unchanged.
+
+### Current integration candidate
+- PR #162: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/162
+- Current observed head at register update: `304beeeab4e78de675c86c82f4ac0d51f52529a3` (re-check before any merge or claim).
+- Seven workflow runs are complete with overall conclusion SUCCESS on that head: Public SKU Exposure Audit, Preview Approved Catalogue Gate, Catalogue & Supplier Routing Review QA, ASC Catalogue Preview Browser QA, Populated Store Preview Browser QA, Cloudflare Pages Public Package QA, Storefront Smoke Test workflow.
+- Important: the Storefront Smoke Test workflow's `detect-storefront-mode` passed but its `smoke` job was SKIPPED. Do not count the skipped smoke job as a pass. Other six workflow jobs passed.
+- PR #162 includes current bright eight-category storefront root, fail-closed product routes, and a review-only ASC pilot: six source PDFs, 72 pages, 75 source headings, 76 taxonomy subcategories, 50 visually matched records/images. This is not full ASC catalogue integration and is not live stock.
+- Preview pilot remains review-only: no customer pricing, stock, GW SKU, cart or checkout. Source watermark/image-rights review remains open.
+- Dedicated isolated deployment workflow exists at `.github/workflows/deploy-store-test-preview.yml`, targeting Cloudflare Pages branch `store-test-preview` only. Hosted deployment has not yet been verified. Required repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` have not been confirmed through available connector evidence. Never change this workflow to production branch.
+
+### Remaining assistant execution (not owner tasks)
+1. Resolve why Storefront Smoke Test detector skips the smoke job; inspect its workflow and correct its mode detection for the current bright buttons-only root without weakening assertions. Run it on the exact PR head.
+2. Verify the isolated Cloudflare Pages deployment workflow actually starts on the integration branch and completes; diagnose missing secrets/permissions or trigger behavior. Do not invent preview URL; verify the returned deployment URL and HTTP/browser behavior at mobile and desktop widths.
+3. Run end-to-end preview checks on hosted deployment: root category buttons/subcategories, ASC preview taxonomy filters/search/images, fail-closed product routes, no old ASC Buyer’s Guide stock, no supplier names/prices/SKUs exposed outside the review-only source references, no checkout/payment activation.
+4. Continue full ASC source catalogue processing from supplied source files only; 50-product pilot is not completion. Preserve all 8 root categories and original ASC heading order. Match every item and image to source page, do not infer uncertain SKU/model/fitment, keep unapproved items out of live catalogue.
+5. Reconcile PR #162 with current main and remove superseded draft branches/PRs only after exact-head comparison proves no unique work will be lost. No automatic merge.
+
+### Only three owner-attention items at final handover
+A. Review and accept the customer-facing hosted test preview on the owner's phone; report defects or approve the preview candidate (not production).
+B. Supply/confirm final payment onboarding outcome and EFT/WhatsApp business details when ready; until then checkout/payment stays disabled or test-only.
+C. Give explicit production-release approval after preview acceptance, exact-head tests, payment/policy confirmation and release checklist are complete. No production action before this.
+
+### Progress accounting rule
+Maintain a numbered open-task register. Remove a task immediately when its evidence is verified; do not renumber completed tasks as open. Continue reducing assistant-owned tasks until only the three owner-attention items above remain. Never label the project ready while any required hosted verification or owner acceptance is outstanding.
+
+
+### Additional exact-head smoke coverage change
+- Updated `.github/workflows/button-only-storefront-smoke.yml` to trigger for changes to both `index-new.html` and the integrated root `index.html`, including pull requests targeting main. This adds a dedicated Playwright check of the buttons-only storefront rather than relying on the full-cart smoke workflow, which correctly skips when it detects buttons-only mode.
+- Change commit: `4d057bff43731ef3fbc13ada16c3adc7525f352e`.
+- The connector's commit-run lookup returned no run for this latest head at the time of update; do not mark this new check passed until a run is visible and successful.
+
+
+## 2026-11-02 EXECUTION UPDATE — smoke test corrected to match integrated root
+- Commit: `10c2f4118f1c1db4e72c97d8f801d65070f2e491`.
+- The dedicated storefront browser workflow was incorrectly opening the obsolete `index-new.html` buttons-only shell and asserting accordion buttons, even though PR #162's actual integrated root is the bright eight-category `index.html` preview.
+- Corrected the Playwright check to load `index.html`, assert all eight approved category labels and order, validate category preview routes, test category-search filtering/restoration, check four viewport widths (360/390/768/1280), and reject horizontal overflow or browser page errors.
+- This is a test-definition correction, not a passed test. The connector returned no workflow runs for commit `10c2f4118f1c1db4e72c97d8f801d65070f2e491`; exact-head test status remains unverified. No task is removed from the outstanding register on this evidence alone.
+- Rechecked PR #162 at head `d457e40fac2dd6adcec2ed1c8403860cefa51c81`: eight pull-request workflow runs were reported failed, including the button-only test, ASC preview browser QA, public package QA, SKU audit, populated preview QA, approved catalogue gate, supplier-routing QA, and storefront detector. Job records returned no step details, so root causes for those failures are not yet diagnosed. Do not represent earlier green results as current-head evidence.
+- The integrated root currently contains the eight approved categories and links to `preview-category.html`; it is a bright customer-facing preview shell. The previous smoke test was materially misaligned with this implementation and has now been rewritten to test the actual root.
+- Production remains on HOLD; no production, DNS, Axxess, Supabase, stock, price, payment or live catalogue changes were made.
+
+
+Owner directive (2026-11-02): Complete the full ASC catalogue integration in the approved store category/subcategory hierarchy and original catalogue order. Current 50-item pilot is not completion. Preserve all six source PDFs; verify every product and image against source pages; do not invent fitment, SKUs, prices or stock; keep supplier details internal. Record verified progress and exceptions here. Production remains on hold.
+
+
+## 2026-11-02 CONTINUATION CHECKPOINT — STANDALONE WORK / SOURCE RECONCILIATION
+- Rechecked PR #162: OPEN, DRAFT, UNMERGED; exact head `97f785196963218e1f61d49af807da2e37689664`. Do not merge or deploy production.
+- All eight PR workflow runs associated with this exact head completed FAILURE: populated preview QA, public SKU audit, supplier-routing QA, button-only smoke, storefront smoke detector, ASC browser QA, public-package QA and approved-catalogue gate. Storefront smoke's separate smoke job was SKIPPED. Job-log retrieval returned GitHub 404 BlobNotFound, so root causes remain undiagnosed; no green result may be carried forward.
+- Rechecked ASC extraction README: current repository intake remains six PDFs / 72 scanned pages / OCR review only; no full product/image catalogue has been created. The 50 visually matched pilot records are not full integration.
+- Checked the user's Library PDF inventory and found additional ASC source files not represented in the six-file repository intake: `ASC- Fuses.pdf` (13 pages), `ASC- Marine & Towing and Trailer.pdf` (25 pages), `ASC Lubricants Chemicals and Cleaning Equipment.pdf`, and `ASC- KT Wheel Covers.pdf`. These are present in Library, but approval/currentness relative to the post-reset six-file source set is not established. Preserve them; do not silently add them to the approved product intake or discard them. Resolve source-set authority before publication.
+- Confirmed the Library copies of ASC Automotive Globes, Car Mats, Fuel Pumps, Fuses and Marine/Towing/Trailer are scanned image PDFs with no embedded text layer; they require page-image review/OCR. No product claims were promoted from OCR or from historical Get Wired catalogue/Buyer’s Guide PDFs.
+
+### Standalone assistant-owned work queue — continue in this order
+1. Diagnose the eight exact-head workflow failures using available job/log evidence; where GitHub logs are expired/unavailable, reproduce each check locally from the exact PR head and fix the actual failing assertion/configuration (do not weaken gates).
+2. Verify the isolated Cloudflare Pages test-preview deployment trigger, secrets/permissions, exact deployed commit and URL; no production target.
+3. Run hosted desktop/mobile QA against the verified preview and record defects/results.
+4. Complete ASC source-set reconciliation and page-by-page extraction/image matching for every owner-approved current catalogue; preserve category order, assign no invented GW SKUs, and exclude legacy Buyer’s Guide stock.
+5. Reconcile remaining catalogue/price/image provenance, including the outstanding 38 historical price-scaling SKU audit; keep uncertain records inactive/review-only.
+6. Complete customer journey test-only verification (signup/email/login/terms/order/payment handoff) without enabling live payments.
+7. Prepare exact-head release/rollback evidence and canonical-domain resolution; no production action.
+
+### Owner-only gates (do not transfer to assistant-complete)
+- Review and accept/reject the verified hosted preview on owner's phone.
+- Supply/confirm final payment onboarding outcome and EFT/WhatsApp business details when ready.
+- Explicitly authorize production release after all technical evidence and owner acceptance.
+
+Progress rule: remove an item only after evidence on the exact current head. No status notification is a substitute for implementation. Production remains HOLD.
+
+
+## 2026-11-02 — Exact-head continuation check (latest)
+- Rechecked PR #162 at head `12bda42674fe3b5e12199569b9c252e7a47200d8` against base `27a21f66cade81989806d5a86d9d6beafcea3006`. PR remains OPEN, DRAFT, UNMERGED; no merge or production release is authorized.
+- Eight pull-request workflows attached to this exact head all completed with failure: Button-Only Storefront Smoke Test (run 41518215115); Public SKU Exposure Audit (41518214846); Cloudflare Pages Public Package QA (41518214859); Storefront Smoke Test (41518215170; detector failed and smoke skipped); Catalogue & Supplier Routing Review — QA (41518214939); Populated Store Preview Browser QA (41518215229); ASC Catalogue Preview Browser QA (41518215081); Preview Approved Catalogue Gate (41518214840).
+- GitHub's run/job metadata was retrievable, but step summaries were empty and workflow log blobs returned unavailable (404 BlobNotFound in the earlier retrieval). Therefore failure causes are NOT diagnosed; no claim that tests were fixed or passed.
+- PR description confirms the ASC content is still only a review-only 50-record / 50-image pilot. It is not the full ASC catalogue integration requested by the owner. Source taxonomy is present in review artefacts; products are not yet approved for public/live catalogue, pricing, stock or checkout.
+- Immediate technical blocker: establish reproducible local test failures and fix root causes before another readiness claim. Then rerun exact-head QA and verify a hosted preview serving that exact head. Preserve production HOLD and all owner-only gates.
