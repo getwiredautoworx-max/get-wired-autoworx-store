@@ -408,7 +408,7 @@ jobs:
           home = Path("index-new.html").read_text(encoding="utf-8")
           entry = Path("index.html").read_text(encoding="utf-8")
           category = Path("preview-category.html").read_text(encoding="utf-8")
-          ids = re.findall(r'preview-category\\.html\\?id=([0-9a-f-]{36})', home)
+          ids = re.findall(r'preview-category\.html\\?id=([0-9a-f-]{36})', home)
           roots = re.findall(r"\\['[^']+',\\s*'([0-9a-f-]{36})'\\]", re.search(r'const ROOTS=(.*?);', category, re.S).group(1))
           assert len(ids) == 8, f"Expected 8 category destinations, found {len(ids)}"
           assert len(set(ids)) == 8, "Duplicate category destination"
