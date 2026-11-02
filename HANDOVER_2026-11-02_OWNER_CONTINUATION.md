@@ -535,3 +535,14 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Closed superseded draft PR #159 as unmerged; it inherited unrelated storefront candidate history. PR #160 is the single focused code-change path for this guard.
 - Scope is intentionally limited: it suppresses unverified legacy products in preview routes. It does not populate approved catalogue records, visually verify ASC PDFs, prove exact image matching, or make the store ready for customer orders.
 - No production deployment, Supabase write, live stock/price/category change, supplier publication or checkout activation.
+
+
+## 2026-11-02 UNIFIED STOREFRONT CANDIDATE — LATEST EXACT-HEAD REGRESSION PASS
+- To keep one candidate path, ported the fail-closed preview listing/detail guard and its regression workflow into PR #157's bright-home branch. Latest head: d367fc4af6206f991b61ce86328c4ec141aa5319.
+- Latest gate CI PASS: workflow run 41494015032, job 125444114434. Both source-level tests passed on the same head.
+- Updated PR #157 body with precise validation and limitations. It remains draft/open/unmerged and reports mergeable=false. No merge or production deploy.
+- Closed PR #160 as superseded, unmerged. PR #159 was already closed unmerged. PR #157 is now the single candidate path for bright homepage + preview suppression.
+- Earlier browser QA run 41483868642 tested the older deployed candidate at 360px, 390px and 1280px; it predates this latest gate commit and cannot be reused as exact-head hosted QA.
+- Cloudflare Pages bot comment for the latest commit d367fc4 still reported build in progress at last check. The ready Netlify Deploy Preview #157 is tied to older commit 66644b2b67c72ef83611de2445fcccec6f608740, not this latest head. Latest hosted deployment URL/SHA and exact-head browser QA remain unverified.
+- Current source PDFs could not be visually inspected from the connected GitHub binary-file action (base64 fetch returned empty content); library search did not surface the six exact post-reset ASC PDFs. OCR text alone is insufficient to safely create customer-facing product records. Do not guess or use legacy active products.
+- Store is NOT ready for owner product-catalogue testing yet: the guard correctly suppresses all unverified product records, leaving the catalogue held. Remaining hard blockers are accessible original ASC PDF pages for visual review, exact image/SKU pairing, approved manifest build, and a fresh hosted preview/browser QA on the final exact head. Production remains HOLD.
