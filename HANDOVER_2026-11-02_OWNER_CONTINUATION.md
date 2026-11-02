@@ -149,3 +149,20 @@ Append new dated outcomes below this line; never modify or remove the protected 
 - Exact code-head QA at `2f61e0cdb0a160efd4df17c8256de64bf8f2caa5`: ASC Preview Browser QA `41403181567` SUCCESS; Pages Package QA `41403181582` SUCCESS; Public SKU Exposure Audit `41403181554` SUCCESS; Storefront Smoke Test `41403181565` SUCCESS for mode detection (full live browser smoke skipped because main remains buttons-only). Category routing QA `41403181597` and populated-store preview browser QA `41403181619` were separate checks and still running at last observation; not a prerequisite claim for ASC route QA.
 - One intermediate ASC browser run failed because the category link's URL wait did not use DOMContentLoaded; corrected the matcher/wait and reran. The exact code-head run above passed. Do not repeat the already-resolved source extraction, taxonomy staging, image copy, or preview route implementation.
 - Next owner action: manually run the isolated non-production deployment workflow on the integration branch, then check the hosted route on desktop and real phone. Following hosted acceptance, continue source visual review for catalogue headings beyond the 50 pilot products. Image-use rights, current dealer pricing/stock, and GW SKU assignment remain unverified; do not publish live or merge until the owner accepts the preview and those commercial details are verified. Production remains HOLD.
+
+
+## 2026-11-02 EXECUTION CHECKPOINT — CURRENT SESSION
+- Re-read the sole current owner handover and checked the live GitHub PR list, changed-file manifests, current README and exact-head workflow runs. No task already recorded as completed was repeated.
+- Confirmed current PR #151 is a current-main-based ASC preview implementation. Its exact code-bearing head `2f61e0cdb0a160efd4df17c8256de64bf8f2caa5` has SUCCESS results for:
+  - ASC Catalogue Preview Browser QA: run `41403181567`
+  - Cloudflare Pages Public Package QA: run `41403181582`
+  - Public SKU Exposure Audit: run `41403181554`
+  - Populated Store Preview Browser QA: run `41403181619`
+  - Catalogue & Supplier Routing Review QA: run `41403181597`
+  - Storefront Smoke Test: run `41403181565`; mode detection passed, but full live storefront smoke was skipped because main remains buttons-only.
+- Confirmed PR #151 changed-file manifest contains the 50 reviewed ASC image assets, taxonomy/data/review registers, ASC preview route, category-preview links and isolated non-production deploy workflow. The workflow is manual-only and targets Pages branch `asc-catalogue-preview`; it requires existing Cloudflare secrets. The connected GitHub action set exposes no workflow-dispatch operation, so this session cannot start that manual workflow. No URL may be guessed; the deployment output must supply it.
+- Confirmed PR #149 is not a safe integration path: current handover records 41 ahead / 86 behind and conflicting PR metadata/body; no merge performed.
+- Confirmed PR #150 is the repository-cleanup candidate; its changed files remove only obsolete status/session markers and add APK/AAB/build-output ignores. It remains unmerged; no destructive cleanup or merge performed.
+- Confirmed README on main points to this sole handover file and the execution brief. The earlier AI_HANDOVER_PERMANENT.md and HANDOVER_CURRENT.md names are obsolete and must not be treated as current.
+- Next execution boundary: the only immediate external action required to obtain the hosted ASC preview is an owner-started manual GitHub Actions run of **Deploy ASC Catalogue Non-Production Preview** on branch `integration/asc-source-taxonomy-review-2026-11-02`. After it succeeds, verify the actual returned URL and deployed SHA, then conduct phone/desktop acceptance. This is a non-production preview only; it does not authorize merge or production publication.
+- No production deployment, Axxess upload, DNS/payment change, Supabase write, live product/category/price/stock update, supplier activation, branch deletion or artifact deletion was performed.
