@@ -81,3 +81,18 @@ To avoid duplicate parent tiles, the preview attaches the ASC contents headings 
 - Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
+
+
+## 50-record visual source-card pilot — 2026-11-02 reconciliation
+
+The candidate integration branch's evidence has now been staged separately from the older 25-record main-branch status. The review registers contain **50 records** from pages 3 and 4 across all six post-reset PDFs: 25 page-3 records and 25 page-4 records. The source-card image-match register contains 50 matching rows. The candidate preview taxonomy contains 75 catalogue contents headings plus the additional virtual Fuel Pumps parent (76 navigation nodes total). This resolves the earlier 25-versus-50 documentation mismatch: 25 was the earlier main-branch checkpoint; 50 is the later candidate-branch pilot. It does not establish that 50 products are fully integrated into main or approved for live publication.
+
+Review-only files staged on the current-main integration branch:
+- `catalogue-review/asc-catalogue-extraction/asc-catalogue-taxonomy-review-only.json` — six catalogue families, 72 pages, 75 contents headings, plus the Fuel Pumps preview parent; query hints are not permission to fuzzy-match unrelated store products.
+- `asc-product-pilot-review-only.csv` — 50 visually checked page-3/page-4 records.
+- `asc-image-match-review-only.csv` — 50 source-card image/code pairing review rows.
+- `asc-ocr-code-candidates-review-only.csv` — OCR candidates remain explicitly unverified and quarantined.
+- `asc-exceptions-review-only.csv` — no exception rows were recorded in the candidate register; absence of exceptions is not proof of completeness.
+- `asc-source-manifest.json` — original file sizes and Git blob IDs; SHA-256 digests have not been computed.
+
+**Limitations:** the 50 images are watermarked source-card review crops, not final clean product photography; live image-use rights still require confirmation. The source PDFs do not provide verified supplier price or stock. No Get Wired SKU has been assigned in this pilot. No live catalogue, price, stock, category, database, or supplier activation changes have been made. The candidate storefront implementation remains a separate review item and must pass exact-head preview/desktop/mobile QA and owner acceptance before any merge.
