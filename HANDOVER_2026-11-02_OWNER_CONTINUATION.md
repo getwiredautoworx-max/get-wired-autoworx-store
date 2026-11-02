@@ -501,3 +501,19 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Opened draft PR #157 for the four-file storefront landing-page change: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/157. PR head: `a89dd022a515a62a17dc769488d828b59cc22157`; base main at PR creation: `f7c84ec23c0ca3f4f7609eb2bdda5f0a42c8d1d8`. It is draft, open, unmerged and currently reported mergeable=false; do not merge.
 - Updated `.github/workflows/storefront-smoke.yml` to recognize the new bright category-home contract and run a dedicated static check for eight exact root-category links, route redirect, mobile breakpoint and preview notice. Existing legacy storefront smoke remains for the previous page mode. Workflow run results were not yet available at the time of this note.
 - This is a focused repair to the entry point only. The eight category links lead to the existing category route, but populated product listings, ASC source-taxonomy integration, exact product image QA, hosted preview/browser QA and owner phone acceptance are still open.
+
+
+## 2026-11-02 PREVIEW DEPLOYMENT — URLS READY, CONTENT QA IN PROGRESS
+- The focused storefront change is draft PR #157: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/157
+- Exact candidate source deployed to isolated Cloudflare Pages branch using workflow run `41483482192`, which completed SUCCESS. Wrangler confirmed:
+  - immutable deployment URL: https://a3968c96.get-wired-autoworx-store.pages.dev
+  - stable preview alias: https://approved-storefront-preview.get-wired-autoworx-store.pages.dev
+  - deployed source SHA: `6554e8d6bdf0c63d9666e00bd71cfb036a47fd88`
+- Netlify Deploy Preview #157 also reached state READY for commit `66644b2b67c72ef83611de2445fcccec6f608740`:
+  - https://deploy-preview-157--get-wired-autoworx-store.netlify.app
+  - immutable permalink: https://6ae8bcdcc9cca7882fd05cb4--get-wired-autoworx-store.netlify.app
+  - deploy ID `6ae8bcdcc9cca7882fd05cb4`
+- Candidate workflow evidence at SHA `6554e8d6bdf0c63d9666e00bd71cfb036a47fd88`: Storefront Smoke Test SUCCESS; Cloudflare Pages Public Package QA SUCCESS; Public SKU Exposure Audit SUCCESS. The preview package build confirmed 4,126 public files and 4,101 WebP product images, and confirmed exclusion of suppliers, catalogue-review, catalogue-source, catalogue-audits, staging, Supabase and .github directories.
+- A separate Playwright browser QA run against the deployed Cloudflare preview initially failed when navigating repeatedly through the Car Audio category on one page (`net::ERR_ABORTED`). Test was corrected to use a fresh browser page per category and `waitUntil: commit`; rerun is in progress. Do not claim browser QA passed until the rerun is green.
+- IMPORTANT CONTENT LIMITATION: the existing `assets/category-tree.json` is a snapshot generated `2026-10-29T09:52:49Z` of active Supabase category rows/product assignments. The category and product preview routes still query current store product records and are not yet a verified replacement catalogue built from the approved ASC/Planetworld/Audio Connections source catalogues. Do not describe the preview as fully catalogue-integrated or ready for customer orders. The ASC pilot remains review-only. Keep the old ASC Buyer Guide data out of any approved publication.
+- Production remains HOLD. These URLs are non-production review previews only. The preview banner disables checkout/supplier submissions; do not activate live order/payment flows.
