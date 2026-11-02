@@ -9,7 +9,7 @@ import {
   isAllowedOrigin,
   readJsonLimited,
   validateImagePayload
-} from "../supabase/functions/part-image-search/security.js";
+} from "../supabase/functions/part-image-search/security.mjs";
 
 const b64 = bytes => Buffer.from(bytes).toString("base64");
 
