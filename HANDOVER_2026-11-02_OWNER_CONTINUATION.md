@@ -511,3 +511,10 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Important limitation: this safe gate hides all unverified legacy products; it does not yet populate the approved ASC/Planetworld/Audio Connections catalogues. ASC taxonomy PR #158 is taxonomy/register/tests only; 50-record pilot and its image crops remain on stale PR #151 and must be ported together, not as broken references. No catalogue data was published by PR #161.
 - No Supabase calls, database writes, live product/price/stock/category changes, supplier activation, payment changes, DNS changes, deployment, PR merge, or production release performed. Production remains HOLD.
 - Next safe actions: inspect PR #161 exact-head checks and deployment preview; then selectively port ASC pilot data and matching image assets onto current main with its exact provenance and regression tests. Keep Planetworld/Audio Connections supplier rows review-only until exact image/SKU/price/stock verification is complete.
+
+
+## 2026-11-02 PR #161 VALIDATION RUNS — IN PROGRESS CHECKPOINT
+- PR #161 exact preview-gate change initially triggered run `41503917092` (workflow `Preview Approved Catalogue Gate`, run 5); the subsequent test-file update triggered run `41503975173` (run 7). At checkpoint, run 7 job `125478363632` was IN_PROGRESS at checkout; test step had not yet executed.
+- The same PR update triggered `Populated Store Preview Browser QA` run `41503975245` (run 481), `Public SKU Exposure Audit` run `41503975158` (run 1286), `Storefront Smoke Test` run `41503975410` (run 1484), and `Cloudflare Pages Public Package QA` run `41503975369` (run 233). At checkpoint these were queued/in progress; no pass/fail conclusion is claimed.
+- Commit `a4de7c2423a9046bc57fdc99e5a2b871652cb74b` is the code/test head when these runs were observed. The later handover-only update must not be represented as tested unless checks are confirmed against the final PR head.
+- The exact-hosted preview URL and Cloudflare deployment completion have not yet been verified. A running browser QA job is not proof of a deployed preview or owner acceptance.
