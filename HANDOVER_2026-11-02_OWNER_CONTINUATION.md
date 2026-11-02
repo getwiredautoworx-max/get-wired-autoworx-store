@@ -409,3 +409,40 @@ Start with the first task that can be executed safely using available connected 
 
 ### Continuation
 Do not merge PR #155 or apply its migration merely because its 14 unit tests pass. First close the runtime SQL/concurrency and endpoint mock-test gaps, then seek owner approval for the migration/function deployment as a separate gate. Continue other safe code/review tasks without repeating the already completed checkout migration/function deployment or ASC source taxonomy/pilot extraction.
+
+
+## 2026-11-02 CONTINUATION UPDATE — ISSUE #30 TESTS AND AUDIO CONNECTIONS STAGING
+
+### Part-image-search hardening — expanded verification
+- PR #155 latest head remains \`dbc33e98c4f09ca6e7bf324057ffa5b5891ee5f3\`, draft/open/unmerged, mergeable=true at last readback.
+- Added mockable OpenAI vision request helper and tests for missing API key (503 without upstream call), mocked success, malformed response, 401/403, 429, 5xx and network failure.
+- Added disposable PostgreSQL 16 CI integration: migration applied successfully in CI only; verifies client roles cannot read/execute, service_role can execute, eight requests allowed / ninth denied, expired window resets, and cleanup deletes at most 500 expired rows.
+- Added concurrent test: 16 simultaneous calls against one HMAC key yielded exactly 8 allowed and 8 denied.
+- Final security workflow run \`41476234758\` / job \`125382419583\` completed SUCCESS: **19 Node tests passed, 0 failed; PostgreSQL migration and integration tests passed; concurrent rate limit passed**.
+- Cloudflare Pages PR preview check completed SUCCESS. Auxiliary Cloudflare Workers Builds check \`125384129033\` completed FAILURE; cause not established and no retry started. General storefront smoke was SKIPPED because main is still buttons-only. No claim of hosted edge endpoint behavior or customer preview acceptance.
+- No migration was applied to the Store Supabase project; no Edge Function was deployed; no secret or OpenAI billing configuration changed. PR #155 remains draft. Do not merge or deploy until owner approval and remaining live endpoint verification.
+- Issue #30 was updated with final CI evidence.
+
+### Audio Connections — Sony Mobile ES source intake
+- Repository source folder contains \`Sony Mobile ES Dealer Price List Sept 26.pdf\` (2 pages, September 2026), plus \`STARSOUND Price Lists 05 AUGUST 2026.pdf\`. No newer Audio Connections catalogue or current November dealer list was found in the latest Library search.
+- The September Sony source provides 15 models: 7 speaker/grille records, 3 subwoofers and 5 amplifiers. It states Price Ex and RRP, but does not state the RRP VAT basis; it warns prices may change with exchange rates. It includes no product photographs.
+- Read-only Store Supabase matching on SKU, public SKU, product name/description and private supplier-code mapping found zero exact Sony Mobile ES model matches. No live records changed.
+- Staged the 15 source rows in draft PR #156: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/156
+- Branch: \`staging/audio-connections-sony-mobile-es-sept-2026-2026-11-02\`; head \`8947d8a862ab8b6f6316a7d3788908154c28d2f0\`. Changed files: README and \`staging/sony-mobile-es-sept-2026-review.csv\`.
+- CSV readback verified 15 data rows, 16 columns in every row, 15 unique source models. \`XS-690ES\` is explicitly marked Sold Out and inactive/review-only. \`XS-W122ES\` and \`XS-W124ES\` require variant verification because the source repeats headline specs.
+- All rows remain REVIEW_ONLY. No GW SKU, exact image, current stock, live selling price, product record, customer-facing listing or supplier activation was created. Supplier name remains internal.
+- PR #156 is draft/open/unmerged, mergeable=true at last readback. Its Cloudflare Pages preview was still IN_PROGRESS at last check; no preview acceptance claimed.
+
+### Owner approval and source inputs still needed
+1. **Product image 404 fix:** approve or decline deployment of the corrected repository \`product-image\` Edge Function to the existing Store Supabase project. Earlier handover evidence recorded 2,083 404s. A later 2.5-hour log query returned no matching request rows, which does not prove resolution. Do not deploy without explicit approval.
+2. **Part-image-search:** owner approval required before applying PR #155 migration to the Store project or deploying its Edge Function. CI is strong disposable evidence but not hosted Supabase runtime proof.
+3. **Delivery checkout:** configure delivery signing and courier collection secrets privately in Supabase; Direct EFT bank fields remain optional until owner is ready. Never request secret values in chat.
+4. **ASC:** supply post-reset November Buyer’s Guide/stock-arrival source bytes if they exist outside the Library/repository. Existing six ASC family PDFs are not a substitute for a missing November Buyer’s Guide.
+5. **Audio Connections:** obtain a current dealer price list and product images/catalogue for Sony Mobile ES and remaining brands; September 2026 price data is review-only. Verify exact model/image, GW SKU, VAT basis and stock before any listing.
+6. PR #151, #152 and #154 remain separate review/approval gates. Do not merge them merely to close outstanding work.
+7. Production remains HOLD: no Axxess upload, DNS, public storefront deployment, payment-provider activation, live catalogue/price/stock changes or release workflow without separate explicit owner approval.
+
+### Continue from here
+- Do not repeat the 19 unit tests, disposable PostgreSQL integration, concurrent test, Sony 15-row extraction, or exact-SKU matching; reuse their recorded evidence unless code/source changes invalidate it.
+- Diagnose the auxiliary Cloudflare Workers Builds failure on PR #155 without retrying release/deployment workflows or consuming further credits.
+- Continue other safe catalogue staging and code review while awaiting only the explicit owner approvals/source inputs above.
