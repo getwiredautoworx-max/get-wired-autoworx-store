@@ -61,6 +61,7 @@ jobs:
         shell: bash
         env:
           GW_RUN_HOSTED_QA: 'true'
+          GW_EXPECTED_PREVIEW_SHA: \${{ github.sha }}
         run: |
           set -euo pipefail
           python3 -m http.server 4173 --directory pages-public --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
@@ -293,6 +294,23 @@ jobs:
             try {
               await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:45000});
               await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:45000});
+              const deployedMarker=await hosted.evaluate(async()=>{const response=await fetch('/gw-preview-sha.txt?gw_hosted_marker='+Date.now(),{cache:'no-store'});return {status:response.status,sha:(await response.text()).trim()};});
+              if(deployedMarker.status!==200||deployedMarker.sha!==process.env.GW_EXPECTED_PREVIEW_SHA)throw new Error('Hosted preview SHA changed or does not match this QA run: '+JSON.stringify({deployedMarker,expected:process.env.GW_EXPECTED_PREVIEW_SHA}));
+              console.log('HOSTED_EXACT_SHA_PASS '+JSON.stringify(deployedMarker));
+              await hosted.waitForFunction(()=>document.querySelectorAll('#featuredGrid .product').length>0,{timeout:20000});
+              const homeImageAudit=await hosted.locator('#featuredGrid .product').evaluateAll(async cards=>{
+                const results=[];
+                for(let index=0;index<cards.length;index++){
+                  const card=cards[index],sku=(card.querySelector('.sku')?.innerText||'').replace(/^SKU:\s*/,'').trim(),img=card.querySelector('img.productImage');
+                  if(!sku||!img)continue;
+                  img.loading='eager';
+                  try{await img.decode()}catch{}
+                  results.push({index,sku,src:img.currentSrc,width:img.naturalWidth,exactSku:img.currentSrc.includes('/assets/products_webp/'+encodeURIComponent(sku)+'.webp')});
+                }
+                return results;
+              });
+              if(!homeImageAudit.some(x=>x.exactSku&&x.width>0))throw new Error('Homepage featured cards did not load an exact-SKU local image: '+JSON.stringify(homeImageAudit));
+              console.log('HOSTED_HOME_EXACT_SKU_IMAGE_PASS '+JSON.stringify(homeImageAudit.filter(x=>x.exactSku&&x.width>0)));
             } catch (error) {
               const diagnostic=await hosted.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,hasGrid:!!document.getElementById('categoryGrid'),gridChildren:document.querySelectorAll('#categoryGrid .catWrap').length,productCount:Array.isArray(window.gwProducts)?window.gwProducts.length:null,bodyText:document.body.innerText.slice(0,900)}));
               throw new Error('Hosted preview data/navigation did not load: '+JSON.stringify({diagnostic,hostedErrors,hostedConsoleErrors,error:error.message}));
@@ -301,8 +319,9 @@ jobs:
             const imageProbe=await browser.newPage({viewport:{width:390,height:844}});
             await imageProbe.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-product.html?id=bfc23c23-7738-40a9-9c73-77b30112d677',{waitUntil:'domcontentloaded',timeout:60000});
             await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0;},{timeout:30000});
-            const realImage=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth,placeholder:img.currentSrc.includes('product-placeholder.svg')}));
-            if(realImage.naturalWidth<=0||realImage.placeholder)throw new Error('Exact-SKU product image did not load: '+JSON.stringify(realImage));
+            const realImage=await imageProbe.locator('.hero img').evaluate(img=>{const sku=(document.querySelector('.sku')?.innerText||'').replace(/^SKU:\s*/,'').trim();return {sku,src:img.currentSrc,naturalWidth:img.naturalWidth,placeholder:img.currentSrc.includes('product-placeholder.svg'),exactSku:img.currentSrc.includes('/assets/products_webp/'+encodeURIComponent(sku)+'.webp')};});
+            if(realImage.naturalWidth<=0||realImage.placeholder||!realImage.exactSku)throw new Error('Detail page image did not load from its exact-SKU local WebP: '+JSON.stringify(realImage));
+            console.log('HOSTED_DETAIL_EXACT_SKU_IMAGE_PASS '+JSON.stringify(realImage));
             await imageProbe.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-product.html?id=532c9bdb-08ac-4647-b5e6-b51b192ec9a9',{waitUntil:'domcontentloaded',timeout:60000});
             await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0&&img.currentSrc.includes('product-placeholder.svg');},{timeout:30000});
             const missingImageFallback=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth}));
@@ -341,15 +360,39 @@ jobs:
             if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
             const hostedCategory=hosted.locator('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > button.catBtn');
-            await hostedCategory.click();
-            await hosted.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:20000});
+            const categoryButtonAudit=await hostedCategory.evaluate(el=>({filter:el.dataset.filter||'',text:el.innerText,tag:el.tagName,disabled:el.disabled,wrapperFilter:el.parentElement?.dataset.filter||''}));
+            if(categoryButtonAudit.filter!=='6cc56033-b0a9-4f25-b207-aeeb341a1c47')throw new Error('Hosted root category button is missing its route ID: '+JSON.stringify(categoryButtonAudit));
+            await hosted.evaluate(()=>{window.closePartSearch?.();window.closePartRequest?.();});
+            await hostedCategory.locator('.catContent').click();
+            await hosted.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:20000}).catch(async error=>{
+              const diagnostic=await hosted.evaluate(()=>({url:location.href,readyState:document.readyState,button:document.querySelector('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > button.catBtn')?.outerHTML.slice(0,500)}));
+              throw new Error('Hosted category navigation failed after clicking category content: '+JSON.stringify({categoryButtonAudit,diagnostic,error:error.message}));
+            });
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             const hostedSubcategoryLinks=await hosted.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
             if(!hostedSubcategoryLinks.some(href=>href.startsWith('preview-category.html?id=')))throw new Error('Hosted category page did not expose subcategory buttons: '+JSON.stringify(hostedSubcategoryLinks));
             await hosted.goto('https://planetworld-audio-preview.get-wired-autoworx-store.pages.dev/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=hosted-product-modal',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
-            await hosted.locator('#allProductsGrid .product').first().click();
+            const listingImageAudit=await hosted.locator('#allProductsGrid .product').evaluateAll(async cards=>{
+              const results=[];
+              for(let index=0;index<Math.min(cards.length,20);index++){
+                const card=cards[index],sku=(card.querySelector('.sku')?.innerText||'').replace(/^SKU:\s*/,'').trim(),img=card.querySelector('img.productImage');
+                if(!sku||!img)continue;
+                img.loading='eager';
+                try{await img.decode()}catch{}
+                results.push({index,sku,src:img.currentSrc,width:img.naturalWidth,exactSku:img.currentSrc.includes('/assets/products_webp/'+encodeURIComponent(sku)+'.webp')});
+              }
+              return results;
+            });
+            const listingImage=listingImageAudit.find(x=>x.exactSku&&x.width>0);
+            if(!listingImage)throw new Error('Hosted product listing did not load an exact-SKU local image: '+JSON.stringify(listingImageAudit));
+            console.log('HOSTED_LIST_EXACT_SKU_IMAGE_PASS '+JSON.stringify(listingImage));
+            await hosted.locator('#allProductsGrid .product').nth(listingImage.index).click();
             await hosted.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
+            await hosted.locator('#detailMainImg').waitFor({state:'visible',timeout:10000});
+            const modalImage=await hosted.locator('#detailMainImg').evaluate(img=>{const sku=(document.querySelector('#detailContent .sku')?.innerText||'').replace(/^SKU:\s*/,'').trim();return {sku,src:img.currentSrc,width:img.naturalWidth,exactSku:img.currentSrc.includes('/assets/products_webp/'+encodeURIComponent(sku)+'.webp')};});
+            if(!modalImage.exactSku||modalImage.width<=0)throw new Error('Hosted product modal image is not the exact-SKU local WebP: '+JSON.stringify(modalImage));
+            console.log('HOSTED_MODAL_EXACT_SKU_IMAGE_PASS '+JSON.stringify(modalImage));
             await hosted.locator('#modalClose').click();
             await hosted.locator('#productModal').waitFor({state:'hidden',timeout:10000});
             await hosted.locator('.headerPartSearch').click();
