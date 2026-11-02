@@ -1,0 +1,38 @@
+name: Deploy ASC Catalogue Non-Production Preview
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  deployments: write
+concurrency:
+  group: asc-catalogue-nonproduction-preview
+  cancel-in-progress: false
+jobs:
+  deploy-asc-preview:
+    name: Publish isolated ASC review preview only
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout the selected integration branch commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Set up Python for allowlisted Pages package
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build non-production preview package
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: |
+          python scripts/build-cloudflare-pages-public.py
+          test -s pages-public/asc-catalogue-preview.html
+          test -s pages-public/assets/asc-catalogue-preview-data.json
+          test "$(find pages-public/assets/asc-catalogue-pilot -maxdepth 1 -type f -name "*.jpg" | wc -l)" -eq 50
+      - name: Deploy only to the ASC preview branch (never production)
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=asc-catalogue-preview
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

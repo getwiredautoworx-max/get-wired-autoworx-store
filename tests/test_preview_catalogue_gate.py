@@ -28,5 +28,28 @@ class PreviewCatalogueGateTests(unittest.TestCase):
         self.assertLess(stop, lookup)
         self.assertIn("Unverified legacy stock is hidden", source)
 
+    def test_root_entry_is_bright_preview_not_legacy_redirect(self):
+        source = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("url=store.html", source.lower())
+        self.assertNotIn("location.replace('store.html')", source)
+        self.assertIn('name="robots" content="noindex,follow"', source)
+        self.assertIn("Auto Electrical Spares", source)
+        self.assertIn("Trailer &amp; Canopy", source)
+
+    def test_homepage_exposes_exactly_eight_approved_root_categories(self):
+        source = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(source.count('class="category"'), 8)
+        for label in (
+            "Auto Electrical Spares",
+            "Vehicle Security",
+            "Car Audio &amp; Entertainment",
+            "Automotive Accessories",
+            "Marine Spares &amp; Accessories",
+            "Tools, Hardware &amp; Consumables",
+            "Camping, Leisure &amp; Outdoors",
+            "Trailer &amp; Canopy",
+        ):
+            self.assertIn(label, source)
+
 if __name__ == "__main__":
     unittest.main()
