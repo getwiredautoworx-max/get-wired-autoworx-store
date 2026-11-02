@@ -370,3 +370,42 @@ Start with the first task that can be executed safely using available connected 
 ## 2026-11-02 PR DIVERGENCE COUNT CORRECTION (15:32 SAST)
 - Recomputed against main head `9dbdbf5005a5af0ed03996e9a18b9870e877ea31`: PR #151 is 29 commits ahead / 17 behind; PR #152 is 6 ahead / 10 behind; PR #154 is 4 ahead / 1 behind. All are diverged from current main; none was merged.
 - This documentation-only correction adds one main commit. Expected counts immediately after it: PR #151 29 ahead / 18 behind; PR #152 6 ahead / 11 behind; PR #154 4 ahead / 2 behind. Recheck exact counts before any future merge. No merge or deployment is authorized by this note.
+
+
+## 2026-11-02 CONTINUATION EXECUTION — PART-IMAGE-SEARCH HARDENING (17:43 SAST onward)
+
+### Handover read and current blockers
+- Read this sole retained handover before continuing. No deleted handover files were recreated.
+- Confirmed the latest known deployed Supabase \`product-image\` function remains ACTIVE v11, while repository source uses the approved Cloudflare Pages asset origin. The handover's earlier 2,083 product-image 404s remain the last positive evidence. A read-only query for the subsequent 2.5-hour interval (2026-11-02 13:13Z–15:43Z) returned no matching \`/functions/v1/product-image\` request rows; this is not proof the 404 issue is fixed or that requests have stopped permanently.
+- No deployment of \`product-image\` was performed. Owner approval is still required before replacing deployed v11 with repository source and verifying affected SKUs return HTTP 200.
+- Supabase function inventory readback still lists \`part-image-search\` ACTIVE v2. No new ASC November Buyer’s Guide/stock-arrival PDF was found in the Library search. The six post-reset ASC family PDFs named in \`suppliers/ASC/README.md\` remain the available post-reset intake; do not confuse these with a missing November Buyer’s Guide or restore old pre-reset catalogues.
+- Library contains an Audio Connections Starsound price list dated 5 August 2026. This is historical, not a current November price source; do not use it to set live prices without a current dealer price list.
+- PR #151 remains draft/open and is not merged; PR #152 remains draft/open; PR #154 remains draft/open; PR #155 is the new part-image-search hardening draft. No PR merge or production deployment was performed in this continuation.
+
+### Issue #30 — durable part-image-search abuse controls staged
+- Created branch \`fix/part-image-search-durable-abuse-controls-2026-11-02\` from main \`135794014ef6f74132999cb34082f7dc83926fbd\`.
+- Opened draft PR #155: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/155
+- Latest branch head: \`b652add2fe6399132e9940ac9ccf89d2b37f22f5\`; PR compares 13 commits ahead / 0 behind the main base at creation; mergeable=true at last readback; draft remains true.
+- Changed-file inventory (6):
+  1. \`.github/workflows/part-image-search-security.yml\`
+  2. \`supabase/functions/part-image-search/README.md\`
+  3. \`supabase/functions/part-image-search/index.ts\`
+  4. \`supabase/functions/part-image-search/security.mjs\`
+  5. \`supabase/migrations/20261102160000_part_image_search_rate_limit.sql\`
+  6. \`tests/part-image-search-security.test.mjs\`
+- Migration stages private \`gw_private.part_image_search_rate_limits\` table plus atomic \`service_role\`-only RPC, HMAC-hashed client IP identifiers (no raw IP stored), eight requests per 60 seconds, expiry and bounded opportunistic cleanup. Table RLS is enabled and direct client roles are revoked.
+- Edge Function now requires an approved Origin, trusts only Cloudflare's \`cf-connecting-ip\`, enforces a streamed 5.6 MB JSON body limit and 4 MB decoded-image limit, checks strict base64 and JPEG/PNG/WebP magic bytes, calls the durable shared limiter before OpenAI inference, fails closed if the limiter is unavailable, and retains a 25-second upstream timeout with sanitized errors.
+- First test run \`41475234714\` exposed a stack overflow in the large-base64 validator (13 passed / 1 failed). Corrected validation to estimate decoded size before a linear base64 syntax check and added branch-push workflow triggering.
+- Follow-up workflow run \`41475372871\`, job \`125379419522\`, completed **SUCCESS: 14 passed / 0 failed** on the corrected branch. Log readback confirmed all 14 tests passed. PR body and issue #30 were updated with the evidence.
+- Exact-head other checks: \`detect-storefront-mode\` SUCCESS; \`quote-integrity\` SUCCESS; general \`test\` SUCCESS; \`smoke\` SKIPPED because main is buttons-only. Netlify header/redirect/page checks were neutral. Cloudflare Pages check \`125379411455\` was still IN_PROGRESS at last readback; it is an automatically triggered PR preview/build check, not an owner-approved production release. Do not claim hosted preview acceptance from this.
+- Static tests are not runtime PostgreSQL validation. Outstanding for issue #30: apply migration only after owner approval; test the RPC against PostgreSQL including concurrent requests and expiry cleanup; add complete mocked endpoint tests for missing OpenAI key/no upstream request and provider 401/429/5xx/success; verify concurrency/load behavior; inspect customer disclosure on the actual preview. No migration was applied, no secret was configured, no function was deployed, and no paid OpenAI inference was enabled.
+
+### Other owner-input gates remain
+1. Owner approval required before deploying repository \`product-image\` function to Supabase Store.
+2. Owner must configure delivery signing/courier secrets privately in Supabase to enable delivery quote behavior; Direct EFT bank fields are optional until owner is ready.
+3. Owner must provide the post-reset November ASC Buyer’s Guide/stock-arrival source bytes if they are available outside the repository/Library; no such guide was located in the latest Library search.
+4. Owner review/approval remains required for PR #151 integration and a separate Cloudflare non-production ASC preview deployment; PR #152 category snapshot refresh and PR #154 controller safety merge remain gated.
+5. Production remains HOLD. No Axxess, DNS, payment-provider activation, live catalogue/price/stock changes, migration deployment or production storefront release was performed in this continuation.
+
+### Continuation
+Do not merge PR #155 or apply its migration merely because its 14 unit tests pass. First close the runtime SQL/concurrency and endpoint mock-test gaps, then seek owner approval for the migration/function deployment as a separate gate. Continue other safe code/review tasks without repeating the already completed checkout migration/function deployment or ASC source taxonomy/pilot extraction.
