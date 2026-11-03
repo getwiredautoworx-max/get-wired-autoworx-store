@@ -510,7 +510,9 @@
       "manufacturerListedModel": "SSW-12-6300",
       "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND_SOURCE_ALIAS_OR_SPEC_REVIEW",
       "manufacturerSpecificationNote": "Official page confirms exact model; source list says 300W while official page states 400W RMS. Resolve with supplier before final description.",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "specificationConflict": "Supplier price list says 300 W; the official Starsound product page lists 400 W RMS. Confirm the correct rating before publication.",
+      "specificationReviewStatus": "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED"
     },
     {
       "id": "ac-022",
@@ -832,7 +834,9 @@
       "manufacturerSpecificationNote": "Official page lists 1800W RMS at 1Ω; supplier list says 1700RMS. Confirm source wattage before final description.",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSA-R-22000.1",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "specificationConflict": "Supplier price list says 1700 RMS; the official Starsound product page lists 1800 W RMS at 1 Ω. Confirm the correct rating before publication.",
+      "specificationReviewStatus": "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED"
     },
     {
       "id": "ac-036",
@@ -879,7 +883,9 @@
       "manufacturerSpecificationNote": "Official page lists 65W RMS per channel at 4Ω; supplier list says 60RM. Confirm source wattage before final description.",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSA-R-5000.4",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "specificationConflict": "Supplier source text says 60 RM; the official Starsound product page lists 65 W RMS per channel at 4 Ω. Confirm the correct rating before publication.",
+      "specificationReviewStatus": "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED"
     },
     {
       "id": "ac-038",
@@ -955,7 +961,9 @@
       "manufacturerListedModel": "SSA-ATOM-13800.4",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerSpecificationNote": "Official page lists 80W x4 at 4Ω; supplier list says 100RMS. Confirm source wattage before final description.",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "specificationConflict": "Supplier price list says 100 RMS; the official Starsound product page lists 80 W × 4 at 4 Ω. Confirm the correct rating before publication.",
+      "specificationReviewStatus": "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED"
     },
     {
       "id": "ac-041",
