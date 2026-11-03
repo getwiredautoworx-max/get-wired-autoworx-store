@@ -45,7 +45,16 @@ assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
 assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,33);
-assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,16);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,17);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'exact_model_retailer_image_review_only').length,3);
+assert.equal(verifiedModels.records.filter(row => !row.imageUrl).length,35);
+const alpineHalo = verifiedModels.records.find(row => row.modelNumber === 'ILX-F115D');
+assert.ok(alpineHalo && alpineHalo.imageUrl.startsWith('https://www.alpine.pt/'));
+assert.equal(alpineHalo.imageStatus,'official_manufacturer_image_verified_review_only');
+for (const model of ['HCE-C2100RD','HDZ-653','R2-W12D4']) {
+  const row = verifiedModels.records.find(item => item.modelNumber === model);
+  assert.ok(row && row.imageUrl && row.imageStatus === 'exact_model_retailer_image_review_only', 'exact-model retailer review image for '+model);
+}
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
 for (const model of ['66750650','66750800','66751501','66752000','66753000','66755030','66755100','66755105','66755107','66755110','66755115','66755156','66755157','66771820','69020020','69020021']) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
