@@ -7,14 +7,39 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
-HTML = ROOT / "index-new.html"
 SNAPSHOT = ROOT / "assets" / "category-tree.json"
-html = HTML.read_text(encoding="utf-8")
-url_match = re.search(r"SUPABASE_URL\s*=\s*['\"]([^'\"]+)", html)
-key_match = re.search(r"SUPABASE_KEY\s*=\s*['\"]([^'\"]+)", html)
-if not url_match or not key_match:
-    raise RuntimeError("Could not read the existing public Supabase connection from index-new.html")
-SUPABASE_URL, SUPABASE_KEY = url_match.group(1), key_match.group(1)
+
+
+def extract_public_config(html_sources):
+    """Return the public Supabase URL/key from any supported storefront page."""
+    url_pattern = re.compile(r"\bSUPABASE_URL\s*=\s*['\"]([^'\"]+)")
+    key_pattern = re.compile(r"\b(?:SUPABASE_KEY|KEY)\s*=\s*['\"]([^'\"]+)")
+    for source in html_sources:
+        url_match = url_pattern.search(source)
+        key_match = key_pattern.search(source)
+        if url_match and key_match:
+            return url_match.group(1), key_match.group(1)
+    raise RuntimeError(
+        "Could not find the public Supabase URL/key in products.html, "
+        "index-new.html, store.html or category.html"
+    )
+
+
+def read_public_config(root):
+    # The buttons-only homepage is intentionally static and has no Supabase client.
+    # products.html owns the current public read-only config.
+    candidates = ("products.html", "index-new.html", "store.html", "category.html")
+    sources = []
+    for filename in candidates:
+        path = root / filename
+        try:
+            sources.append(path.read_text(encoding="utf-8"))
+        except OSError:
+            continue
+    return extract_public_config(sources)
+
+
+SUPABASE_URL, SUPABASE_KEY = read_public_config(ROOT)
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": "Bearer " + SUPABASE_KEY,
