@@ -15,7 +15,7 @@
       "id": "storefront-restoration-and-preview",
       "priority": 1,
       "status": "clean_current_main_candidate_created_asc_hierarchy_integrated_static_review_pending",
-      "description": "Fresh candidate from main 826724bb714f4d04a6995018f52dc36d4412d07d selectively restores the approved bright storefront and adds owner-correct catalogue navigation. Functional testing remains deferred until owner banking-details step.",
+      "description": "Fresh candidate reconciled with current main 8c6ff927957706b5b7598bc24779b54423ad15c5. It selectively restores the approved bright storefront and adds owner-correct catalogue navigation. Functional testing remains deferred until owner banking-details step.",
       "next_action": "Review exact diff and static source assertions; keep draft and no deployment. Functional/browser QA only after owner adds banking details.",
       "automatic": false
     },

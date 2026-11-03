@@ -733,21 +733,22 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Branch commits: Audio JSON `82e9b8f5aa7ad1cc8a545a1a5d88cab7576878f8`; preview renderer `e93b0e1131480df8a7a6e9e37ce1316230f4fdc9`; crosswalk `48ece9dd16a6b80b858705a8490706584c4414b0`; summary `1469cccb29fc0300b7cd726da1dffb6908449958`; preparation note `3e36a6cc6a19d701364362ad7a11bc4dd987b5b3`.
 
 
+## 2026-11-03 09:20 SAST — PROTECTED OCTOBER PRICE RECHECK / ACTIVE-STATE BLOCKER
+- Read the 107-row October effective-status ledger from branch `audit/buyer-guide-extraction` (blob `fb61c9b7419a2f056324919c108bb59c42c860d7`). Fresh read-only Supabase query against project `ojytykqpvonxvepprgbh` returned all 107 exact product IDs: **107/107 live costs still equal the October printed costs; 107/107 live prices still equal the audited formula; 107/107 formula checks PASS. No price changes are needed or permitted.**
+- **New discrepancy/blocker:** the same 107 product rows now all report `active=false`, contrary to the 31-Oct read-only record that all 107 were active. All 107 share one `updated_at` timestamp, `2026-11-03 05:59:44.246869+00` (07:59:44 SAST), indicating a bulk status change. Current product-table totals: 4,200 rows; 3,294 active; 906 inactive. A 05:55–06:05 UTC Supabase log search found no matching write event. No active flag was changed by this run. **Do not reactivate/deactivate anything without explicit owner approval; investigate the source of this bulk change.**
+- Fresh read-only query of the nine September asterisk-price SKUs confirms all nine remain `active=false`, `price=0.00`, `cost_price=0.00`; `stock_quantity=5` remains unverified supplier stock. Keep them quote-only/inactive; no changes made.
+- Next action: identify the process responsible for the 07:59 SAST bulk deactivation and obtain owner direction before any active-flag correction. Preserve all 107 October costs and formula prices unchanged.
+- Outcome: SUCCESS for price/cost verification; BLOCKED for unexpected active-state discrepancy. Read-only only; no writes.
+
+
 ## 2026-11-03 — ASC CATALOGUE HIERARCHY INTEGRATION CANDIDATE
-- Created a clean integration branch from current main `826724bb714f4d04a6995018f52dc36d4412d07d`: `integration/asc-catalogue-hierarchy-2026-11-03`. This avoids merging stale PR #162/#163 history.
+- Created clean integration branch `integration/asc-catalogue-hierarchy-2026-11-03` from main `826724bb714f4d04a6995018f52dc36d4412d07d`, then reconciled the candidate with the latest main `8c6ff927957706b5b7598bc24779b54423ad15c5` while retaining the latest main handover/task-queue updates. This avoids merging stale PR #162/#163 history.
 - Selectively restored the approved full storefront candidate `index-new.html` and brighter `store.html` shell, then added catalogue-led navigation to the actual iframe storefront entrypoint. Preview storefront metadata is `noindex,nofollow`; canonical/live-domain and OG URL declarations were removed from the preview document.
 - Owner hierarchy implemented in source: Aerials → Car Audio & Entertainment; Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats, Fuel Pumps → Auto Electrical Spares. Automotive Accessories contains a Car Care & Accessories folder, beneath which Chemicals & Lubricants is a reserved catalogue button.
 - Every available catalogue is its own button. Selecting it opens original contents-page section buttons in source order. Only the exact 50 visually reviewed pilot items appear beneath matching source headings; other sections show an explicit empty state. No fuzzy fallback, supplier price/stock, internal/public GW SKU, cart or checkout exists on the catalogue review route.
-- The 50 watermarked image crops and review data are included only in the opt-in non-production Pages package. The standard Pages build excludes the route/data/images; source PDFs, OCR/review CSVs and supplier folders remain excluded by the public package allowlist.
-- Car Mats preview mapping corrected to Auto Electrical Spares. The existing three-product Car Mats category under Automotive Accessories is left unchanged; no live category/product assignment moved.
+- The 50 watermarked image crops and review data are included only in the opt-in non-production Pages package. The standard Pages build strips the ASC preview navigation and excludes the route/data/images; source PDFs, OCR/review CSVs and supplier folders remain excluded by the public package allowlist.
+- Car Mats preview mapping corrected to Auto Electrical Spares. The existing three-product Car Mats category under Automotive Accessories is left unchanged; no live category/product assignment moved. Existing category tiles that overlap the catalogue names are labelled “Existing Store Products” to distinguish them from catalogue buttons.
 - Chemicals & Lubricants source catalogue is still not present in the six post-reset PDFs. The UI reserves the required nested button and displays a truthful source-pending state; older Buyer’s Guides are not substituted for the requested catalogue.
 - Functional/browser tests, click-through tests, workflow runs, hosted deployments, merges, Supabase writes, live category/product/price/stock changes, supplier activation, payment actions, Axxess/DNS or production deployment were NOT performed. Functional testing remains deferred until owner banking details are added; production remains HOLD.
-- Next: static readback/diff verification and draft PR review. Do not run functional tests or deploy until the owner banking-details gate is met and separate deployment approval is obtained.
-
-
-### ASC candidate commit and readback record
-- Implementation commit: `1ee3096eebe1b9f773f58c2d030c02aaa565046a`.
-- Follow-up category-label clarity commit: `68ab744309ce56b2a1af371db13dfb7806f43f7d`.
-- Static GitHub readback confirmed six catalogue definitions with source-section counts 6/11/16/10/14/18 (75 total), 50 review-only records, Car Mats taxonomy root corrected to Auto Electrical Spares, and noindex metadata on the storefront shell and catalogue preview route.
-- Existing store categories that overlap the new catalogue buttons are labelled “Existing Store Products” in the category tree UI to distinguish them from the separate source catalogue buttons. The existing category assignments remain unchanged.
-- This readback is static source verification only; it does not confirm click behaviour, image rendering in a browser, hosted preview availability or owner acceptance.
+- Implementation commits before main reconciliation: `1ee3096eebe1b9f773f58c2d030c02aaa565046a` and `68ab744309ce56b2a1af371db13dfb7806f43f7d`. Handover/readback note commit: `b3d1d79b6b5e44b3aae78c3a1cb6eeb37f20ad53`.
+- Next: verify the reconciled draft PR diff and static readback. Do not run functional tests or deploy until the owner banking-details gate is met and separate deployment approval is obtained.
