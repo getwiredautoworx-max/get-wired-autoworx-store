@@ -93,7 +93,9 @@
       "description": "Digital MOST interface for retaining integration with a vehicle's original infotainment system. Audison documents a MOST optical input, S/PDIF stereo PCM optical output and USB configuration; OEM volume, balance, tone and service signals such as hands-free, navigation and parking sensors are retained where supported. It does not decode proprietary Dolby/DTS multichannel formats.",
       "modelNumber": "66750650",
       "manufacturerPage": "https://audison.com/product/bit-dmi/",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "imageUrl": "https://static.audison.com/media/2022/10/1403776758_BIT-DMI_EMO-1_def.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-E83DE640",
@@ -102,7 +104,9 @@
       "description": "Automotive Bluetooth 5.0 receiver with Hi-Res Audio Wireless certification. Supports LDAC streaming up to 24-bit/96 kHz on compatible Android devices, AAC on iOS, hands-free calling, RCA analogue outputs and Toslink optical digital connections, including optical pass-through.",
       "modelNumber": "66750800",
       "manufacturerPage": "https://audison.com/product/b-con/",
-      "component": "Radios & Multimedia"
+      "component": "Radios & Multimedia",
+      "imageUrl": "https://static.audison.com/media/2022/10/AUDISON_B-CON_PROSP.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-F965C965",
@@ -111,7 +115,9 @@
       "description": "High-definition car-audio DSP with 24-bit/96 kHz processing, 12 input channels and 13 output channels. Audison documents analogue and optical digital inputs, multi-channel signal routing, crossover filters, parametric equalisation and time alignment for OEM or aftermarket system integration.",
       "modelNumber": "66751501",
       "manufacturerPage": "https://audison.com/product/bit-one-hd-virtuoso/",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "imageUrl": "https://static.audison.com/media/2021/12/BIT-ONE-HD_revC_EMO.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-AC0030BA",
@@ -145,20 +151,22 @@
       "brand": "Audison",
       "name": "AF M12.14 bit 12-channel DSP amplifier",
       "description": "Twelve-channel Class-D DSP amplifier rated at 12 × 60 W RMS at 4 ohms or 12 × 90 W RMS at 2 ohms. It combines 24-bit/96 kHz DSP processing with a 40 kHz audio band, bridgeable channel pairs and OEM/aftermarket input integration.",
-      "imageUrl": "",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M12.14-bit_EMO-LATO-FUSIBILE_2024.png",
       "modelNumber": "66755100",
       "manufacturerPage": "https://audison.com/product/af-m12-14-bit/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-ED176A31",
       "brand": "Audison",
       "name": "AF M8.14 bit 8-channel DSP amplifier",
       "description": "Eight-channel Class-D DSP amplifier rated at 8 × 90 W RMS at 4 ohms or 8 × 140 W RMS at 2 ohms. The integrated DSP operates at 24-bit/96 kHz with audio bandwidth up to 40 kHz; six processed preamp outputs extend system configuration options.",
-      "imageUrl": "",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M814-BIT_EMO-LATO-FUSIBILI_2024.png",
       "modelNumber": "66755105",
       "manufacturerPage": "https://audison.com/product/af-m8-14-bit/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-0D9576AB",
@@ -167,7 +175,9 @@
       "description": "Eight-channel Class-D DSP amplifier rated at 8 × 65 W RMS at 4 ohms or 8 × 100 W RMS at 2 ohms. Its integrated 24-bit/96 kHz DSP supports a 40 kHz audio band and bridgeable channel pairs for flexible system layouts.",
       "modelNumber": "66755107",
       "manufacturerPage": "https://audison.com/product/af-c8-14-bit/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-C814bit_EMO-LATO-FUSIBILI_2024.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-6525B0FB",
