@@ -1,33 +1,51 @@
 #!/usr/bin/env python3
-"""Fail CI if supplier SKU identifiers leak into customer-facing storefront source."""
+"""Fail CI if private supplier identifiers leak into either customer-facing Pages package."""
 from pathlib import Path
-import re, sys
+import os
+import re
+import runpy
+import sys
+
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_EXT = {'.html', '.js', '.css', '.json'}
-EXCLUDE = {'.github/scripts/generate_docs.js', '.github/workflows/asc-sku-image-sync.yml', 'HANDOVER.md', 'scripts/public-sku-audit.py', 'android-owner-app/app/src/main/assets/admin_app.html'}
-# These directories are private source/review material and are excluded from the
-# Cloudflare customer deployment by the dedicated public-pages staging allowlist.
-INTERNAL_SOURCE_PREFIXES = ('catalogue-review/', 'catalogue-source/', 'catalogue-audits/', 'suppliers/')
 PATTERNS = [
- (re.compile(r'\bp\.sku\b|\bx\.sku\b'), 'runtime legacy SKU property'),
- (re.compile(r'select=[^\n\r"\']*\bsku\b'), 'REST select of legacy sku'),
- (re.compile(r'\bsupplier_sku\b', re.I), 'supplier_sku identifier'),
- (re.compile(r'accessoriesspares\.co\.za', re.I), 'supplier website reference'),
+    (re.compile(r'\\bp\\.sku\\b|\\bx\\.sku\\b'), 'runtime legacy SKU property'),
+    (re.compile(r'select=[^\\n\\r"\\']*\\bsku\\b'), 'REST select of legacy sku'),
+    (re.compile(r'\\bsupplier_sku\\b', re.I), 'supplier_sku identifier'),
+    (re.compile(r'accessoriesspares\\.co\\.za', re.I), 'supplier website reference'),
 ]
-violations = []
-for p in ROOT.rglob("*"):
- if not p.is_file() or p.suffix.lower() not in PUBLIC_EXT: continue
- rel = p.relative_to(ROOT).as_posix()
- if rel in EXCLUDE or rel.startswith('node_modules/') or rel.startswith(INTERNAL_SOURCE_PREFIXES): continue
- try: text = p.read_text(encoding="utf-8")
- except UnicodeDecodeError: continue
- for rx, label in PATTERNS:
-  for m in rx.finditer(text):
-   line = text.count("\n", 0, m.start()) + 1
-   violations.append(f"{rel}:{line}: {label}")
+
+def audit_package(label: str, include_preview: bool) -> list[str]:
+    # Audit exactly what the Pages allowlist would publish, not private repository
+    # source/review documents which are intentionally never customer-facing.
+    if include_preview:
+        os.environ['GW_INCLUDE_PREVIEW_ROUTES'] = '1'
+    else:
+        os.environ.pop('GW_INCLUDE_PREVIEW_ROUTES', None)
+    runpy.run_path(str(ROOT / 'scripts' / 'build-cloudflare-pages-public.py'), run_name='__main__')
+    package = ROOT / 'pages-public'
+    violations = []
+    for path in package.rglob('*'):
+        if not path.is_file() or path.suffix.lower() not in PUBLIC_EXT:
+            continue
+        try:
+            source = path.read_text(encoding='utf-8')
+        except UnicodeDecodeError:
+            continue
+        for pattern, description in PATTERNS:
+            for match in pattern.finditer(source):
+                line = source.count('\\n', 0, match.start()) + 1
+                relative = path.relative_to(package).as_posix()
+                violations.append(f'{label}/{relative}:{line}: {description}')
+    return violations
+
+violations = audit_package('standard', False)
+violations.extend(audit_package('preview', True))
+os.environ.pop('GW_INCLUDE_PREVIEW_ROUTES', None)
+
 if violations:
- print("PUBLIC SKU EXPOSURE AUDIT: FAILED")
- print("\n".join(violations[:100]))
- sys.exit(1)
-print("PUBLIC SKU EXPOSURE AUDIT: PASSED")
-print("Customer-facing source uses public_sku only; internal supplier mapping remains excluded.")
+    print('PUBLIC SKU EXPOSURE AUDIT: FAILED')
+    print('\\n'.join(violations[:100]))
+    sys.exit(1)
+print('PUBLIC SKU EXPOSURE AUDIT: PASSED')
+print('Standard and non-production preview Pages packages contain no private supplier SKU identifiers.')
