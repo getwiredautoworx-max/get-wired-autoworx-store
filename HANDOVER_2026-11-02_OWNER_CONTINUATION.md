@@ -1201,3 +1201,11 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Audio Connections source audit: 66 preview rows from 68 source rows (13 Sony, 53 other-brand); 13 proposed collision-checked Sony GW SKUs and 53 non-Sony rows without proposed GW SKUs; four Sony image URLs, all review-only; three retained rows with no source price. Two source rows remain excluded pending review (Sony XS-690ES sold out; XS-680G identity/image unresolved). Starsound August 2026 prices are explicitly VAT-exclusive; Sony September 2026 has separate Price Ex and RRP columns. Neither source establishes current availability.
 - All supplier records/prices/images remain preview/review-only. No supplier activation, public product import, live stock/price/category changes, Supabase writes, Axxess/DNS/payment change, production merge or deployment was performed.
 - **Next execution:** reconcile Planetworld's 702 Car Audio rows and 68 exact-model enrichments against source workbook rows; then complete Audio Connections' 53 non-Sony GW SKU, image, description and source-price reconciliation. Do not start ASC or Electro-city until owner acceptance of both pilot suppliers.
+
+
+### Supplier pilot execution update — 2026-11-03
+- Opened draft PR #170 from `supplier-standard-planetworld-audio-connections-2026-11-03`, based on PR #168's approved candidate branch. PR #168 remains the active storefront baseline and was not moved by this supplier work.
+- Added the permanent Supplier Integration Standard and the Planetworld/Audio Connections pilot audit.
+- Corrected the 13 Sony Mobile ES review price calculations to use the owner's confirmed VAT-inclusive RRP. The Sony PDF itself only labels Price Ex and RRP; it does not state the RRP VAT basis. The August Starsound list explicitly states VAT-exclusive prices. Corrected figures remain proposals only.
+- Refined the audio navigation classifier: 168 rows now map to Harnesses, Trims & Fitment (47 dedicated source rows + 121 exact title/specification matches); generic cables, RCA interconnects and fuse holders no longer get swept into that group. Regression assertions added; not yet executed.
+- Current PR #170 head after these changes must be rechecked before any staging build/preview claim. PR #170 remains draft and unmerged; no production or live-data changes.
