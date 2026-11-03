@@ -482,7 +482,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
+      "manufacturerListedModel": "SSW-12-6300",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
     },
     {
       "id": "ac-022",
@@ -503,7 +506,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
+      "manufacturerListedModel": "SSW-12-7300",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
     },
     {
       "id": "ac-023",
@@ -587,7 +593,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
+      "manufacturerListedModel": "SSW-F10-4150SVC",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
     },
     {
       "id": "ac-027",
@@ -608,7 +617,10 @@
       "priceOnRequestText": "Price on Request due to Limited Stock and Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
+      "manufacturerListedModel": "SSW-F12-5150SVC",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
     },
     {
       "id": "ac-028",
@@ -839,7 +851,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
+      "manufacturerListedModel": "SSA-Hornet-7600.4",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
     },
     {
       "id": "ac-039",
@@ -860,7 +875,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
+      "manufacturerListedModel": "SSA-J-10000.4",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; exact model listing; individual page not found"
     },
     {
       "id": "ac-040",
@@ -881,7 +899,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
+      "manufacturerListedModel": "SSA-Atom-13800.4",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
     },
     {
       "id": "ac-041",
@@ -1244,14 +1265,14 @@
       "id": "ac-058",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
-      "brand": "Black Spider",
-      "title": "Black Spider Bullet Lynx",
+      "brand": "BlackSpider",
+      "title": "BlackSpider Lynx 4-inch 2500W Aluminium Bullet Tweeter",
       "component": "Tweeters",
       "indicativePrice": 263.92,
       "hasStock": false,
       "modelNumber": "BULLET LYNX",
-      "description": "Black Spider Bullet Lynx",
-      "manufacturerPage": "",
+      "description": "4-inch aluminium bullet horn tweeter; 550 W RMS, 2,500 W maximum, 4-ohm impedance, 95 dB sensitivity and 2 kHz–20 kHz frequency response. Supplied as a pair.",
+      "manufacturerPage": "https://blackspider.co.za/product/blackspider-lynx-4-%E2%80%B3-2500w-aluminium-bullet-tweeter/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -1259,7 +1280,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_MODEL_PAGE_FOUND"
     },
     {
       "id": "ac-059",
