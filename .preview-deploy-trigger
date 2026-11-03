@@ -1,5 +1,5 @@
 Candidate source branch: integration/new-three-category-catalogue-preview-2026-11-03
-Source PR #166 code/documentation head at sync: 2752f3f766d8e00b35a4df49c4d9cf7256b44493
+Source PR #166 code/documentation head at sync: 2fe4a461838ccaae26bd143b764ca1320635a77f
 This trigger marker is informational only. Do not deploy until a separate .preview-deploy-request file is created after hosted runner recovery.
 Build GW_INCLUDE_PREVIEW_ROUTES=1 and deploy only to Cloudflare Pages branch approved-storefront-preview.
 Production deployment is prohibited.
