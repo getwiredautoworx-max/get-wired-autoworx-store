@@ -833,3 +833,45 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - GitHub compare confirms the integration branch is 26 commits ahead and 0 behind main. No stale-base rebase is currently required.
 - Data read-back confirms all six catalogue-to-PDF mappings and section counts (6, 11, 16, 10, 14, 18); route read-back confirms the full-catalogue PDF link is present.
 - The package QA attempt ran against code commit 63f0a7286bad9ce3e7a3bee260f818e26dc552b5, after the builder, route, data, test and workflow changes. Its runner and targeted retry both failed before steps. Subsequent commits were documentation-only (supplier README and handover). No successful build/test/deployment/browser verification is available yet.
+
+
+## 2026-11-03 — Planetworld + Audio Connections catalogue integration continued
+
+### Owner instruction
+Continue the Planetworld and Audio Connections catalogue upload/integration under the Audio category. Keep supplier names private. This work is preview-only; do not modify live prices, stock, product/category rows, supplier activation, payment/checkout, Supabase, Axxess, DNS or production deployment.
+
+### Source preservation
+- Confirmed 47 original Planetworld XLSX workbooks remain in `suppliers/Planetworld/`.
+- Confirmed the original Starsound 05 August 2026 and Sony Mobile ES September 2026 PDFs remain in `suppliers/Audio Connections/`.
+- Supplier source files are unchanged and were not copied into the public Pages package.
+
+### Implemented on `integration/planetworld-audio-catalogues-2026-11-03`
+- Added the combined noindex `preview-audio.html` route and linked it from **Car Audio & Entertainment → Browse All Audio Catalogues** in the current bright storefront candidate.
+- Added three preview-only data files:
+  - `assets/planetworld-catalogue-preview.json`: 3,317 source rows from 47 workbooks / 94 sheets; nine collections/departments.
+  - `assets/planetworld-verified-models-preview.json`: 68 manufacturer-verified product candidates.
+  - `assets/audio-connections-catalogue-preview.json`: 66 review-only records from 68 source rows; 2 excluded for documented reasons.
+- Department buttons cover Car Audio & Video, Home Entertainment, Band & Live Sound, DJ, Studio Equipment, Marine Audio, Installed AV, Musical Instruments, and Harnesses & Trims.
+- Added product/brand/model search, brand and component filters, and load-more pagination.
+- Enriched broad Planetworld records only where a verified model is an exact leading model token; do not match accessories that merely mention another product model later in their title.
+- Suppressed exact duplicate rows in the browse display only; retained all 3,317 source rows in the source-derived JSON.
+- Applied the exact owner-approved price-on-request text to all 37 unpriced Planetworld rows. The three Audio Connections unpriced records already carry the same exact text.
+- Current image coverage in the combined preview: 9 exact-model Planetworld manufacturer image candidates + 4 Audio Connections candidates = 13 review-only URLs. No generic placeholder image is substituted for a missing exact product image.
+- Updated `scripts/build-cloudflare-pages-public.py` to include the audio route and three JSON files only in the opt-in `GW_INCLUDE_PREVIEW_ROUTES=1` package. The standard customer/public package excludes these files.
+- Updated `.github/workflows/cloudflare-public-pages-build-qa.yml` to verify the route/data files are absent from the standard package, present in the opt-in preview package, and run `tests/audio-catalogue-preview.test.cjs` alongside the ASC structural test.
+- Added `tests/audio-catalogue-preview.test.cjs` covering row counts, collection counts, price-on-request wording, image candidate counts, privacy fields, category placement, search, pagination, exact model matching and duplicate suppression.
+- Updated `catalogue-review/SUPPLIER_GW_MAPPING_README_2026-10-30.md` with the new integration scope and remaining image/identity gates.
+
+### Data facts and safeguards
+- Planetworld: 3,280 indicative price proposals are from the 25-Oct-2026 RRP snapshot at 1% below RRP where the private cost-floor check passed; 37 rows show “Price on Request due to Limited Stock and Availability.” The 702-row Car Audio division is represented as 627 Car Audio & Video + 47 Harnesses & Trims + 28 Marine Audio.
+- Audio Connections: 66 included review rows (13 Sony and 53 other-brand records); XS-690ES remains excluded as sold out, XS-680G remains excluded pending exact accessory/image identity. The source PDFs do not establish current availability.
+- Supplier identities and dealer costs are not exposed on the customer-facing preview route. Source supplier SKUs are not displayed; candidate GW SKUs remain clearly proposed/review-only where present.
+- No live product, SKU, category, price, stock, supplier-connection, supplier-activation or database records were inserted or modified.
+
+### Exact remaining work
+1. Run the exact-head Pages package QA and both structural tests; GitHub runner startup has failed before steps on previous attempts, so do not mark this pass without an actual completed run.
+2. Confirm a hosted non-production preview deployment for the exact updated commit and verify the audio route/data load on desktop and mobile. Functional checkout testing remains deferred until owner banking details are added.
+3. Continue exact high-resolution image review/download/approval for the Planetworld and Audio Connections catalogue records; currently only 13 manufacturer image URLs are candidates, not approved local assets.
+4. Add approved brand-logo artwork to the brand buttons; current brand filters are text buttons.
+5. Finish remaining model identity/description exceptions and refresh dated supplier price/availability data before any customer-publication or live product creation.
+6. Keep PR #165 draft/unmerged and production HOLD until the owner inspects the integrated preview and explicitly accepts it. No production action is authorized.
