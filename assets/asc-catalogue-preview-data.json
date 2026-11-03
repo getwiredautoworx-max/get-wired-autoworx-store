@@ -4,7 +4,7 @@
   "catalogues": [
     {
       "name": "Aerials",
-      "root": "Car Audio & Entertainment",
+      "root": "Car Audio",
       "sections": [
         {
           "id": "asc-aerial-vehicle",
@@ -35,7 +35,7 @@
     },
     {
       "name": "Automotive Sensors",
-      "root": "Auto Electrical Spares",
+      "root": "Auto Electrical Parts & Spares",
       "sections": [
         {
           "id": "asc-sensor-crank-cam",
@@ -86,7 +86,7 @@
     },
     {
       "name": "Automotive Switches",
-      "root": "Auto Electrical Spares",
+      "root": "Auto Electrical Parts & Spares",
       "sections": [
         {
           "id": "asc-switch-ignition",
@@ -157,7 +157,7 @@
     },
     {
       "name": "Automotive Globes",
-      "root": "Auto Electrical Spares",
+      "root": "Auto Electrical Parts & Spares",
       "sections": [
         {
           "id": "asc-globe-halogen",
@@ -267,7 +267,7 @@
     },
     {
       "name": "Fuel Pumps",
-      "root": "Auto Electrical Spares",
+      "root": "Auto Electrical Parts & Spares",
       "sections": [
         {
           "id": "asc-fuel-bmw",
