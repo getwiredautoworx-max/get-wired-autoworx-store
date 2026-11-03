@@ -1377,3 +1377,10 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - The earlier PR description still referenced a stale preview candidate and stale evidence counts. A refreshed checkpoint was added as PR conversation comment `6610074880`; the attempt to replace the PR body was rejected by the integration safety gate, so the body itself remains stale and should be reconciled later through an approved route.
 - No Cloudflare Pages deployment record for this exact SHA was available through the connected tools in this session. Do not reuse an older preview URL as proof of this head.
 - Current branch data work is saved in audit commit `ac402aaa9fe284d7d44d575b06dd20db12dc6c42` and handover/PR-head commit `f72c414c873ec29a29bb0e49e9e9f856ad040d6b`.
+
+
+## 2026-11-03 — Independent retail cross-check (not manufacturer proof)
+- Exact-model web research found independent retailer corroboration for Starsound SSW-8-8000D2 (Autostyle + IS Motorsport), SSS-6501PRO (four local retailers; their max-power claims conflict), and SSA-SB-2000.1 (Max Motorsport). It also found a possible Reference Audio RABTR03 / RA-BTR03 alias at Makro and installation-kit code variants at Carsoundandmore.
+- These are explicitly recorded in the pilot audit as independent retail evidence only. They do not close official manufacturer reference gaps, establish supplier price/stock, authorize a model alias, approve a retailer image or grant publication rights. In particular, SSS-6501PRO retailer max-power claims conflict (250 W vs 650 W), and similar Starsound amplifier suffixes (SSA-R vs SSATI) are not treated as the same product.
+- No manufacturer reference gap was closed and no image/spec/SKU/price/publication state was promoted. Audit commit: `d2fef6c0c916cb6abdc7e0f969bb478c60c8457b`.
+- Continue seeking exact supplier/manufacturer records and reconcile model spellings with the original Audio Connections source PDF before assigning GW SKU candidates or writing customer-facing descriptions.
