@@ -44,11 +44,18 @@ assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio'
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,17);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,21);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,8);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
 for (const model of ['66750650','66750800','66751501','66755100','66755105','66755107','69020020','69020021']) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://static.audison.com/'), 'official Audison image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
+}
+for (const model of ['43C124','43C84','46CXA12001','48CWR104']) {
+  const row = verifiedModels.records.find(item => item.modelNumber === model);
+  assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://www.kicker.com/'), 'official Kicker image link for '+model);
+  assert.equal(row.imageStatus,'official_manufacturer_page_image_link_review_only');
 }
 for (const obj of [planet,audio]) {
   const raw=JSON.stringify(obj);
