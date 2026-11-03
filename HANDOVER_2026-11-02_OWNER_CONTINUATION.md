@@ -847,3 +847,8 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 
 - Model-list correction: report now explicitly includes all 14 exact-page Sony models, including XS-690ES; latest report correction commit `976f4f71da299c0043f97e60ba476bc5f1476da8`.
 - Deployment distinction: the earlier Cloudflare Pages PR preview for code commit `f72316d7543a7d57c24900178c193657a4825c22` remains the known successful static Pages preview. Subsequent PR-head commits `734ab00` and `ccc7dd6` show failed/in-progress Cloudflare Workers build-integration comments with no preview URL; this is not evidence that the Pages preview or catalogue data was deployed. Do not claim the newer PR head has a verified hosted preview. Avoid further deployment-triggering commits until the build path is understood.
+
+## Sony product-image source capture — 2026-11-03
+- Added `catalogue-review/SONY_OFFICIAL_IMAGE_ASSET_MAP_2026-11-03.csv` at commit `620b2fc9835be556ca8d14d3c8aacf3073134092`.
+- Captured exact model-specific official Sony South Africa image URLs for XS-W104ES (1200px), XS-162ES (1200px), XM-1ES (330px), and XS-W124ES (330px). The URLs are source leads only: binary downloads have not succeeded, and none of these assets is marked approved or copied into the repository.
+- This establishes an official-image acquisition path for these models. Continue by extracting high-resolution assets for the remaining Sony models, prioritizing the 1200px gallery rendition; do not substitute a generic family image or a 330px thumbnail when a better rendition is available.
