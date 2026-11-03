@@ -44,6 +44,11 @@
   "owner_clarification_checked_at": "2026-11-03",
   "owner_clarifications": [
     "Audio Connections dealer authorisation is owner-confirmed; do not request further dealer-status proof. Supplier activation remains a separate release approval.",
-    "Sony printed RRP is VAT-inclusive as owner-confirmed; dealer price is VAT-exclusive. The review proposal is printed RRP × 0.98, with no additional VAT multiplier."
-  ]
+    "Sony printed RRP is VAT-inclusive as owner-confirmed; dealer price is VAT-exclusive. The review proposal is printed RRP × 0.98, with no additional VAT multiplier.",
+    "Eight non-Sony Audio Connections models now have official brand-page evidence: seven Starsound models listed on official category pages (not individual product pages) and one exact BlackSpider Lynx product page. Forty-five other non-Sony models still have no exact official listing/page; none received a GW SKU from this review."
+  ],
+  "audio_connections_additional_official_category_listing_models": 7,
+  "audio_connections_additional_exact_official_product_pages": 1,
+  "audio_connections_remaining_non_sony_models_without_official_listing_or_page": 45,
+  "audio_connections_official_page_checked_at": "2026-11-03"
 }
