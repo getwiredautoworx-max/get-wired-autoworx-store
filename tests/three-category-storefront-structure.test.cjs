@@ -15,8 +15,8 @@ assert.ok(starsoundUsb450 && starsoundUsb450.manufacturerPage === 'https://stars
 assert.ok(starsoundUsb450.imageUrl === 'https://starsound.co.za/wp-content/uploads/2023/12/SSUSB450BTDD-788x788.png', 'Starsound USB450BTDD must use the direct official image URL as a review candidate');
 assert.equal(starsoundUsb450.imageStatus, 'OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
 assert.equal(starsoundUsb450.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE', 'official image candidates must remain preview-only until approved');
-assert.equal(audio.records.filter(p => p.imageUrl).length, 8, 'four Sony and four Starsound direct image URLs are review candidates');
-assert.ok(audio.records.filter(p => p.imageUrl).every(p => p.imageStatus.includes('REVIEW_CANDIDATE_NOT_APPROVED')), 'no supplier image URL is treated as approved');
+assert.equal(audio.records.filter(p => p.imageUrl).length, 22, '22 direct official image URLs are review candidates');
+assert.ok(audio.records.filter(p => p.imageUrl).every(p => p.imageApprovalStatus === 'REVIEW_CANDIDATE_NOT_APPROVED'), 'no supplier image URL is treated as approved');
 for (const [model,url] of [
   ['USB230','https://starsound.co.za/product/ssusb-230btce/'],
   ['SS7655BT','https://starsound.co.za/product-category/car-radios/?category-view-mode=list'],
@@ -32,6 +32,7 @@ for (const [model,url] of [
 }
 assert.equal(verifiedModels.records.length, 68, 'Planetworld verified-model enrichment must retain all 68 exact source candidates');
 assert.equal(verifiedModels.records.filter(p => p.imageUrl).length, 62, '62 exact-model image URLs are currently review candidates');
+assert.ok(verifiedModels.records.filter(p => p.imageUrl).every(p => p.imageApprovalStatus === 'REVIEW_CANDIDATE_NOT_APPROVED'), 'all Planetworld manufacturer image URLs remain review-only');
 assert.equal(verifiedModels.records.filter(p => !p.imageUrl).length, 6, 'six exact-model image gaps must remain held');
 assert.ok(verifiedModels.records.filter(p => !p.imageUrl).every(p => p.imageStatus && p.imageReviewNote), 'all unresolved image gaps must have an explicit source/permission reason');
 const jvcImageGap = verifiedModels.records.find(p => p.modelNumber === 'KW-M590BT');
