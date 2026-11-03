@@ -52,6 +52,11 @@ const lifestyleProducts = planet.records.filter(p => p.division === 'Home Retail
 assert.ok(lifestyleProducts.length > 0, 'Planetworld Home Retail includes vacuum/pool products for Lifestyle');
 assert.ok(lifestyleProducts.every(p => p.collection === 'Home Entertainment'), 'Lifestyle products must be separated from Home Entertainment by division');
 assert.ok(planet.records.some(p => p.division === 'Home CI' && p.collection === 'Home Entertainment'), 'Home Entertainment collection remains populated by Home CI');
+assert.ok(audioPage.includes('["Car Audio & Video","Car Audio"]'), 'the single Car Audio department button must be labelled Car Audio & Video');
+assert.ok(!audioPage.includes('["Car Audio","Car Audio"]'), 'duplicate Car Audio department label must not return');
+assert.ok(audioPage.includes('if(/^(car audio|car audio & video|car audio and video|all car audio products)$/.test(raw))return "";'), 'Car Audio collection labels must not be duplicated as product-type buttons');
+assert.ok(audioPage.includes('if(/harness|trim|fascia|fitment|iso2car|vehicle interface|installation|wiring/.test(all))return "Harnesses, Trims & Fitment";'), 'harnesses and trims must be classified from component and product text');
+assert.ok(audioPage.includes('filter(label=>!/^(car audio|car audio & video|car audio and video|all car audio products)$/i.test(label))'), 'department labels must be excluded from product-type buttons');
 assert.ok(audioPage.includes('["Lifestyle","Lifestyle"]'), 'Lifestyle must be a selectable catalogue department');
 assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/b/bc/JBL_logo.svg"'), 'JBL brand button must use the JBL logo');
 assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/b/b3/Denon_Logo.svg"'), 'Denon brand button must use the Denon logo');
