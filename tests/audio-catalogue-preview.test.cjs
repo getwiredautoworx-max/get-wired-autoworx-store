@@ -28,6 +28,8 @@ assert.deepEqual(planet.collections, {
   'Marine Audio': 28
 });
 assert.equal(planet.records.filter(row => row.division === 'Car Audio').length, 702);
+assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio":p.collection===department'), 'Car Audio button must include the complete Car Audio division, including harnesses/trims and marine-audio source rows');
+assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse Car Audio Catalogue','Car Audio')"));
 for (const row of planet.records) {
   assert.ok(row.title && row.brand && row.collection && row.component, 'Planetworld row has required browse fields');
   assert.equal(Object.hasOwn(row, 'supplierSku'), false, 'supplier SKU must not be public');
@@ -76,7 +78,7 @@ assert.ok(!route.includes('Planetworld'), 'supplier identity must remain private
 assert.ok(!route.includes('Audio Connections'), 'supplier identity must remain private');
 assert.ok(!JSON.stringify(planet).includes('Planetworld'), 'supplier identity must remain private in public catalogue data');
 assert.ok(!JSON.stringify(audioConnections).includes('Audio Connections'), 'supplier identity must remain private in public catalogue data');
-assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse Car Audio Catalogue','Car Audio & Video')"));
+assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse Car Audio Catalogue','Car Audio')"));
 assert.ok(home.includes("audioDepartmentNode('gw-audio-home','Browse Home Entertainment Catalogue','Home Entertainment')"));
 assert.ok(home.includes("audioDepartmentNode('gw-audio-band','Browse Band & Live Sound Catalogue','Band & Live Sound')"));
 assert.ok(home.includes("audioDepartmentNode('gw-audio-dj','Browse DJ Equipment Catalogue','DJ')"));
