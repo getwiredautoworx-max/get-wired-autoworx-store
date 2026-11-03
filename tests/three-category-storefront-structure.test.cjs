@@ -33,6 +33,9 @@ for (const [model,url] of [
 assert.equal(verifiedModels.records.length, 68, 'Planetworld verified-model enrichment must retain all 68 exact source candidates');
 assert.equal(verifiedModels.records.filter(p => p.imageUrl).length, 62, '62 exact-model image URLs are currently review candidates');
 assert.equal(verifiedModels.records.filter(p => !p.imageUrl).length, 6, 'six exact-model image gaps must remain held');
+assert.ok(verifiedModels.records.filter(p => !p.imageUrl).every(p => p.imageStatus && p.imageReviewNote), 'all unresolved image gaps must have an explicit source/permission reason');
+const jvcImageGap = verifiedModels.records.find(p => p.modelNumber === 'KW-M590BT');
+assert.ok(jvcImageGap.imageStatus.includes('WRITTEN_DISTRIBUTION_PERMISSION_REQUIRED'), 'JVC dealer image pack must remain held until distribution rights are confirmed');
 const focalP20 = verifiedModels.records.find(p => p.modelNumber === 'KIT SUB P20FE');
 assert.ok(focalP20 && focalP20.imageUrl === 'https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg', 'Focal P20 FE must use the exact official image URL candidate');
 assert.equal(focalP20.imageStatus, 'OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
