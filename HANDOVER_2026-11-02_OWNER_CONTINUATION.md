@@ -852,3 +852,5 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Added `catalogue-review/SONY_OFFICIAL_IMAGE_ASSET_MAP_2026-11-03.csv` at commit `620b2fc9835be556ca8d14d3c8aacf3073134092`.
 - Captured exact model-specific official Sony South Africa image URLs for XS-W104ES (1200px), XS-162ES (1200px), XM-1ES (330px), and XS-W124ES (330px). The URLs are source leads only: binary downloads have not succeeded, and none of these assets is marked approved or copied into the repository.
 - This establishes an official-image acquisition path for these models. Continue by extracting high-resolution assets for the remaining Sony models, prioritizing the 1200px gallery rendition; do not substitute a generic family image or a 330px thumbnail when a better rendition is available.
+
+- Additional exact Sony South Africa image source captured for XS-680ES (960px) from its official product page; appended to `SONY_OFFICIAL_IMAGE_ASSET_MAP_2026-11-03.csv` in commit `3f9eec3ce5cedf9e969f61118b87130a9be0fea6`. Still a source URL only; no binary downloaded or approved.
