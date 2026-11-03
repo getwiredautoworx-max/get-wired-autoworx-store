@@ -582,7 +582,9 @@
       "description": "6.8-inch WSVGA capacitive-touch multimedia receiver with wired Apple CarPlay and Android Auto, USB smartphone mirroring, built-in DAB+ radio, Bluetooth hands-free/audio streaming and rear-camera input with parking guidelines. Includes 13-band EQ, digital time alignment, 2.5 V front/rear/subwoofer pre-outs and a short chassis; rated at 22 W × 4 continuous and 50 W × 4 maximum.",
       "modelNumber": "DMX5023DABS",
       "manufacturerPage": "https://www.kenwood.eu/car/navigation_multimedia/multimedia/DMX5023DABS",
-      "component": "Radios & Multimedia"
+      "component": "Radios & Multimedia",
+      "imageUrl": "https://www.kenwoodstore.it/cdn/shop/files/DMX5023_AA_Front_2.png?v=1724938798&width=1024",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-A518043D",
@@ -719,7 +721,9 @@
       "description": "9-inch wide touchscreen multimedia receiver with a floating display design. The Pioneer owner's manual specifies 50 W × 4 maximum output, 22 W × 4 continuous output, a 13-band graphic equaliser and 4 V pre-outs. Check phone compatibility and regional feature availability before installation.",
       "modelNumber": "DMH-AP6650BT",
       "manufacturerPage": "https://pioneercarentertainment.com/products/dmh-ap6650bt/",
-      "component": "Radios & Multimedia"
+      "component": "Radios & Multimedia",
+      "imageUrl": "https://www.pioneermalaysia.com/image/cache/data/theme/products/DMH-AP6650BT/product-image-3_260126145604-1000x1000_0.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     }
   ]
 }
