@@ -1271,8 +1271,8 @@ function homeChildren(id){
    'Cameras & Monitors':'camera',
    'Signal Processing & Crossovers':'signal'
   };
-  out.forEach(c=>{const search=componentSearch[c.name];if(search)Object.assign(c,{isAudioDepartment:true,audioDepartment:'Car Audio & Video',audioSearch:search,audioLabel:c.name});});
-  out.push(ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio'),audioDepartmentNode('gw-audio-car','Browse All Car Audio Catalogue','Car Audio & Video'));
+  out.forEach(c=>{const search=componentSearch[c.name];if(search)Object.assign(c,{isAudioDepartment:true,audioDepartment:'Car Audio',audioSearch:search,audioLabel:c.name});});
+  out.push(ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio'),audioDepartmentNode('gw-audio-car','Browse All Car Audio Catalogue','Car Audio'));
 }
  if(id==='ba263c9f-d038-48bd-bca0-944f3ebdc5e9')out.push(ascCatalogueNode('gw-asc-sensors','Automotive Sensors','Auto Electrical Parts & Spares'),ascCatalogueNode('gw-asc-switches','Automotive Switches','Auto Electrical Parts & Spares'),ascCatalogueNode('gw-asc-globes','Automotive Globes','Auto Electrical Parts & Spares'),ascCatalogueNode('gw-asc-fuel-pumps','Fuel Pumps','Auto Electrical Parts & Spares'));
  if(id==='f98e7589-20a0-4825-9707-2680d29e5cb6')out.push(ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Car Care & Accessories','Car Mats'),ascCatalogueNode('gw-asc-chemicals-lubricants','Chemicals & Lubricants','Car Care & Accessories'));
