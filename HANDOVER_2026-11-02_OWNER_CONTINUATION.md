@@ -1162,3 +1162,7 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 ### Correction — shared shell actions use existing hash links
 - The shared shell markup already links to `index-new.html#cartPanel` and `index-new.html#part-search`; the homepage now listens for those hash fragments on DOMContentLoaded and opens the matching cart/part-search overlay. This replaces the query-parameter approach described in the immediately preceding note; no subpage URL rewrites are required.
 - Regression assertion added for both hash-triggered actions. Browser verification remains pending.
+
+### Audio taxonomy correction
+- Removed the source pseudo-brand `Harness and Trims` from the Car Audio manufacturer-brand button list. Those 47 records remain available under the `Harnesses, Trims & Fitment` component group, not as a brand.
+- Regression assertion added to prevent this classification from returning. This is a preview-only source classification correction; no public product or live category changes.
