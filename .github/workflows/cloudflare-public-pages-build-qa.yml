@@ -79,4 +79,5 @@ jobs:
           test -s pages-public/assets/audio-connections-catalogue-preview.json
           node tests/asc-catalogue-preview.test.cjs
           node tests/audio-catalogue-preview.test.cjs
+          node tests/three-category-storefront-structure.test.cjs
           echo "PAGES_NONPRODUCTION_PREVIEW_ALLOWLIST_PASS"
