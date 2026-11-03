@@ -37,7 +37,8 @@
       "brandNote": "",
       "gwSku": "GW-15ED092F",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-002",
@@ -60,7 +61,8 @@
       "brandNote": "",
       "gwSku": "GW-75B4E0B0",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-003",
@@ -83,7 +85,8 @@
       "brandNote": "",
       "gwSku": "GW-278BCEF6",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-004",
@@ -106,7 +109,8 @@
       "brandNote": "",
       "gwSku": "GW-C96B794A",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-005",
@@ -129,7 +133,8 @@
       "brandNote": "",
       "gwSku": "GW-1A7AB005",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-006",
@@ -152,7 +157,8 @@
       "brandNote": "",
       "gwSku": "GW-79892A2D",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-007",
@@ -175,7 +181,8 @@
       "brandNote": "",
       "gwSku": "GW-4E9C9939",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-008",
@@ -198,7 +205,8 @@
       "brandNote": "",
       "gwSku": "GW-2867F5CB",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-009",
@@ -221,7 +229,8 @@
       "brandNote": "",
       "gwSku": "GW-D2335F32",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-010",
@@ -244,7 +253,8 @@
       "brandNote": "",
       "gwSku": "GW-4BDFD8BD",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-011",
@@ -267,7 +277,8 @@
       "brandNote": "",
       "gwSku": "GW-B4F5275E",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-012",
@@ -290,7 +301,8 @@
       "brandNote": "",
       "gwSku": "GW-34E5B953",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-013",
@@ -313,7 +325,8 @@
       "brandNote": "",
       "gwSku": "GW-423595E9",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-014",
@@ -334,7 +347,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-015",
@@ -355,7 +369,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Official product page identifies SSUSB-230BTCE; supplier source uses USB230 EXT MIC. Alias/variant review remains open.",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-016",
@@ -376,7 +391,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageStatus": "OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-017",
@@ -398,7 +414,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Official Starsound car-radio listing includes SSMP5-7655BT; source alias and exact variant review remain open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list"
+      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-018",
@@ -420,7 +437,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Official Starsound car-radio listing includes SSDVD-9900BT; exact image/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list"
+      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-019",
@@ -442,7 +460,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Official Starsound car-radio listing includes SSMP5-7670BTAC; source alias and exact variant review remain open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list"
+      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-020",
@@ -464,7 +483,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Official Starsound subwoofer listing includes SSW-12W-5200; source alias/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/"
+      "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-021",
@@ -489,7 +509,8 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-6300",
       "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND_SOURCE_ALIAS_OR_SPEC_REVIEW",
-      "manufacturerSpecificationNote": "Official page confirms exact model; source list says 300W while official page states 400W RMS. Resolve with supplier before final description."
+      "manufacturerSpecificationNote": "Official page confirms exact model; source list says 300W while official page states 400W RMS. Resolve with supplier before final description.",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-022",
@@ -513,7 +534,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-7300",
-      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND"
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-023",
@@ -534,7 +556,8 @@
       "priceOnRequestText": "Price on Request due to Limited Stock and Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-024",
@@ -555,7 +578,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-025",
@@ -578,7 +602,8 @@
       "brandNote": "Official Starsound individual product page located for SSW-B12-2800; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSW-B12-2800"
+      "manufacturerListedModel": "SSW-B12-2800",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-026",
@@ -602,7 +627,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-F10-4150SVC",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-027",
@@ -626,7 +652,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-F12-5150SVC",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-028",
@@ -647,7 +674,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-029",
@@ -668,7 +696,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-030",
@@ -689,7 +718,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-031",
@@ -710,7 +740,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-032",
@@ -731,7 +762,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-033",
@@ -752,7 +784,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-034",
@@ -773,7 +806,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-035",
@@ -797,7 +831,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerSpecificationNote": "Official page lists 1800W RMS at 1Ω; supplier list says 1700RMS. Confirm source wattage before final description.",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSA-R-22000.1"
+      "manufacturerListedModel": "SSA-R-22000.1",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-036",
@@ -818,7 +853,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-037",
@@ -842,7 +878,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerSpecificationNote": "Official page lists 65W RMS per channel at 4Ω; supplier list says 60RM. Confirm source wattage before final description.",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSA-R-5000.4"
+      "manufacturerListedModel": "SSA-R-5000.4",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-038",
@@ -866,7 +903,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-Hornet-7600.4",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-039",
@@ -890,7 +928,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-J-10000.4",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; exact model listing; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; exact model listing; individual page not found",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-040",
@@ -915,7 +954,8 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-ATOM-13800.4",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerSpecificationNote": "Official page lists 80W x4 at 4Ω; supplier list says 100RMS. Confirm source wattage before final description."
+      "manufacturerSpecificationNote": "Official page lists 80W x4 at 4Ω; supplier list says 100RMS. Confirm source wattage before final description.",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-041",
@@ -936,7 +976,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-042",
@@ -960,7 +1001,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerSpecificationNote": "Official page confirms 80W x4 at 4Ω, consistent with the source list's 80RMS shorthand.",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSA-M4-80.4"
+      "manufacturerListedModel": "SSA-M4-80.4",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-043",
@@ -983,7 +1025,8 @@
       "brandNote": "Official Starsound individual product page located for SSS-5502; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSS-5502"
+      "manufacturerListedModel": "SSS-5502",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-044",
@@ -1004,7 +1047,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-045",
@@ -1027,7 +1071,8 @@
       "brandNote": "Official Starsound individual product page located for SSS-6601; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSS-6601"
+      "manufacturerListedModel": "SSS-6601",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-046",
@@ -1050,7 +1095,8 @@
       "brandNote": "Official Starsound individual product page located for SSS-6602; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSS-6602"
+      "manufacturerListedModel": "SSS-6602",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-047",
@@ -1073,7 +1119,8 @@
       "brandNote": "Official Starsound individual product page located for SSS-6903; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSS-6903"
+      "manufacturerListedModel": "SSS-6903",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-048",
@@ -1096,7 +1143,8 @@
       "brandNote": "Official Starsound individual product page located for SSD-620; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSD-620"
+      "manufacturerListedModel": "SSD-620",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-049",
@@ -1117,7 +1165,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-050",
@@ -1138,7 +1187,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-051",
@@ -1159,7 +1209,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-052",
@@ -1180,7 +1231,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-053",
@@ -1201,7 +1253,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-054",
@@ -1222,7 +1275,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-055",
@@ -1243,7 +1297,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-056",
@@ -1264,7 +1319,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-057",
@@ -1285,7 +1341,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Source abbreviation retained; full brand expansion not verified.",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-058",
@@ -1307,7 +1364,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "manufacturerMatchStatus": "EXACT_OFFICIAL_MODEL_PAGE_FOUND"
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_MODEL_PAGE_FOUND",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-059",
@@ -1328,7 +1386,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-060",
@@ -1351,7 +1410,8 @@
       "brandNote": "Official Starsound individual product page located for SST-350; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SST-350"
+      "manufacturerListedModel": "SST-350",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-061",
@@ -1374,7 +1434,8 @@
       "brandNote": "Official Starsound individual product page located for SST-850; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SST-850"
+      "manufacturerListedModel": "SST-850",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-062",
@@ -1395,7 +1456,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Source abbreviation retained; full brand expansion not verified.",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-063",
@@ -1418,7 +1480,8 @@
       "brandNote": "Official Starsound individual product page located for SSA-EQ-5100; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSA-EQ-5100"
+      "manufacturerListedModel": "SSA-EQ-5100",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-064",
@@ -1439,7 +1502,8 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
     },
     {
       "id": "ac-065",
@@ -1463,7 +1527,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND_SOURCE_ALIAS_OR_SPEC_REVIEW",
       "manufacturerListedModel": "SSA-2900 (SKU SSA-EQ-2900)",
-      "manufacturerSpecificationNote": "Source label is CROSSOVER 2900; official page displays SSA-2900 / SKU SSA-EQ-2900 and identifies a 2/3-way electronic crossover."
+      "manufacturerSpecificationNote": "Source label is CROSSOVER 2900; official page displays SSA-2900 / SKU SSA-EQ-2900 and identifies a 2/3-way electronic crossover.",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-066",
@@ -1486,7 +1551,8 @@
       "brandNote": "Official Starsound individual product page located for SSA-2950; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "manufacturerListedModel": "SSA-2950"
+      "manufacturerListedModel": "SSA-2950",
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
     }
   ]
 }
