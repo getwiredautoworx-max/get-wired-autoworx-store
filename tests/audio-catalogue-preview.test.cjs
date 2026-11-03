@@ -29,7 +29,7 @@ assert.deepEqual(planet.collections, {
 });
 assert.equal(planet.records.filter(row => row.division === 'Car Audio').length, 702);
 assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio":p.collection===department'), 'Car Audio button must include the complete Car Audio division, including harnesses/trims and marine-audio source rows');
-assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse Car Audio Catalogue','Car Audio')"));
+assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse All Car Audio Catalogue','Car Audio & Video')"));
 for (const row of planet.records) {
   assert.ok(row.title && row.brand && row.collection && row.component, 'Planetworld row has required browse fields');
   assert.equal(Object.hasOwn(row, 'supplierSku'), false, 'supplier SKU must not be public');
@@ -88,6 +88,18 @@ assert.ok(home.includes("c.name==='Pool Cleaners'"));
 assert.ok(home.includes("audioSearch:'vacuum'"));
 assert.ok(home.includes("audioSearch:'pool'"));
 assert.ok(home.includes("id==='e3d19d20-fb46-426c-9f64-221d863add0b'"));
+const carAudioShortcuts = {
+  'Speakers & Component Kits':'speaker',
+  'Subwoofers':'subwoofer',
+  'Amplifiers':'amplifier',
+  'Head Units & Media Players':'head unit',
+  'Harnesses, Trims & Fitment':'harness',
+  'Cameras & Monitors':'camera',
+  'Signal Processing & Crossovers':'signal'
+};
+for (const [label,search] of Object.entries(carAudioShortcuts)) {
+  assert.ok(home.includes("'"+label+"':'"+search+"'"), 'Car Audio component button must filter '+label);
+}
 assert.ok(home.includes("id==='1a13bc42-4f54-44f6-9658-36d141b77f4b'"));
 assert.ok(home.includes('href="preview-audio.html"'));
 assert.ok(home.includes("5ab55c53-eee3-41ce-ad48-04ad6df85181"), 'link belongs under Car Audio & Entertainment');
