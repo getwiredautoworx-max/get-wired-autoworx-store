@@ -93,3 +93,8 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 ### Remaining Planetworld image gaps — 2026-11-03
 - Focal P20 FE now has a direct official 1000×1000 image URL candidate. The 68-model set has 62 image URLs and six gaps.
 - Five Alpine official pages expose only 46×35 thumbnails; JVC KW-M590BT's official dealer image pack requires written distribution authorisation. No low-resolution or unauthorised images were used.
+
+
+### Reference Audio brand-level evidence — 2026-11-03
+- Official Reference Audio site confirms the brand name for RABTR03, RA AWG4 and RA SUPER RAST20. The brand expansion is now applied internally.
+- No exact product pages were found; the brand homepage is not counted as a product reference. Retailer pages are not substituted for manufacturer evidence.
