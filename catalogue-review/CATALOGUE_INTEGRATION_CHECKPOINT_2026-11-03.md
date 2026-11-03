@@ -40,3 +40,6 @@ Owner-directed rebuild of the new three-root taxonomy. Supplier sources remain p
 
 ## Release boundary
 Production remains HOLD. No Axxess upload, DNS change, production deployment, live price/stock write, payment change or checkout go-live is authorized by this review checkpoint.
+
+## Image-source extraction attempt
+- Located an exact Sony South Africa XM-1ES product-page image asset link: `https://www.sony.com/image/3ee4e04c604e410a05740c6697045026?bgc=FFFFFF&bgcolor=FFFFFF&fmt=pjpeg&wid=330` (330 px rendition; the same page exposes a 165 px rendition). The Sony page labels the image as XM-1ES. The binary download attempt failed, so this URL is evidence for the next capture step only; no image file was added and no image is approved for store publication. Source page: https://www.sony.com/za/electronics/mobile-es-series/xm-1es.
