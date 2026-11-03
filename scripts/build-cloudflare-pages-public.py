@@ -28,15 +28,6 @@ PREVIEW_ROOT_FILES = [
     "preview-product.html", "preview-planetworld.html", "preview-audio.html", "asc-catalogue-preview.html",
 ]
 PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json"]
-PREVIEW_SOURCE_PDFS = [
-    ("suppliers/ASC/ASC- Aerials (1).pdf", "assets/asc-catalogue-source/ASC-Aerials.pdf"),
-    ("suppliers/ASC/ASC- Automotive Sensors (1).pdf", "assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf"),
-    ("suppliers/ASC/ASC- Automotive Switches (1).pdf", "assets/asc-catalogue-source/ASC-Automotive-Switches.pdf"),
-    ("suppliers/ASC/ASC- Automotive globes (1).pdf", "assets/asc-catalogue-source/ASC-Automotive-Globes.pdf"),
-    ("suppliers/ASC/ASC- Car Mats (1).pdf", "assets/asc-catalogue-source/ASC-Car-Mats.pdf"),
-    ("suppliers/ASC/ASC- Fuel Pumps (1).pdf", "assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf"),
-]
-PREVIEW_SOURCE_PDF_OUTPUTS = {destination for _, destination in PREVIEW_SOURCE_PDFS}
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
@@ -64,9 +55,11 @@ for name in OPTIONAL_ROOT_FILES:
     if (ROOT / name).is_file():
         copy_file(name)
 
-# Preview routes are included only in the explicitly non-production preview build.
-# The production build remains unchanged unless this opt-in environment flag is set.
-include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
+# Cloudflare supplies CF_PAGES_BRANCH. Include owner-preview routes on non-main
+# branches automatically; main always receives the clean production package.
+# The explicit flag remains available for local/manual preview builds.
+branch = os.environ.get("CF_PAGES_BRANCH")
+include_preview = (branch is not None and branch != "main") or os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if not include_preview:
     storefront = OUT / "index-new.html"
     html = storefront.read_text(encoding="utf-8")
@@ -81,13 +74,6 @@ if include_preview:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
-    for source, destination in PREVIEW_SOURCE_PDFS:
-        src = ROOT / source
-        if not src.is_file():
-            raise SystemExit(f"Required original ASC catalogue missing: {source}")
-        dst = OUT / destination
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
     pilot_images = ROOT / "assets" / "asc-catalogue-pilot"
     if not pilot_images.is_dir():
         raise SystemExit("Preview package missing reviewed catalogue images: assets/asc-catalogue-pilot")
@@ -108,8 +94,7 @@ for rel in relative_paths:
     if first in FORBIDDEN_DIRS:
         raise SystemExit(f"Internal source directory leaked into Pages output: {rel}")
     if rel.lower().endswith((".xlsx", ".xls", ".pdf", ".csv", ".sql", ".md", ".zip")):
-        if not (include_preview and rel in PREVIEW_SOURCE_PDF_OUTPUTS):
-            raise SystemExit(f"Non-customer source file leaked into Pages output: {rel}")
+        raise SystemExit(f"Non-customer source file leaked into Pages output: {rel}")
 
 for required in REQUIRED_ROOT_FILES:
     if not (OUT / required).is_file():
@@ -126,14 +111,11 @@ if include_preview:
     for name in PREVIEW_ASSET_FILES:
         if not (OUT / "assets" / name).is_file():
             raise SystemExit(f"Preview package missing catalogue data: assets/{name}")
-    source_pdf_count = sum(1 for rel in PREVIEW_SOURCE_PDF_OUTPUTS if (OUT / rel).is_file())
-    if source_pdf_count != 6:
-        raise SystemExit(f"Expected all 6 original ASC catalogues in preview, found {source_pdf_count}")
     pilot_count = sum(1 for p in (OUT / "assets" / "asc-catalogue-pilot").glob("*.jpg") if p.is_file())
     if pilot_count != 50:
         raise SystemExit(f"Expected 50 reviewed catalogue images, found {pilot_count}")
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
-    print(f"CATALOGUE_PREVIEW_ASSETS_PASS images={pilot_count} source_pdfs={source_pdf_count}")
+    print(f"CATALOGUE_PREVIEW_ASSETS_PASS images={pilot_count} source_pdfs=0")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:
