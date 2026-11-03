@@ -50,3 +50,9 @@ This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CON
 - GitHub's log endpoint returned a missing log blob for the job, consistent with no runner output. The local container also cannot resolve github.com, so a local clone/test run is unavailable from this execution environment.
 - No deploy was attempted, no deployment marker was created, no merge occurred, and no production or live-data change was made. This remains an infrastructure execution blocker, not proof that application code failed tests.
 - Next required action is to restore repository/account GitHub Actions runner allocation or provide a trusted environment with repository checkout/network access. Once available, execute the existing public-package build, all catalogue/category Node tests, and public SKU/privacy audit on the exact PR head; then verify a dedicated non-production preview against that same commit. Until then, preview readiness is NOT VERIFIED.
+
+
+## Runner recovery diagnostic added — 2026-11-03
+- Added `.github/workflows/runner-diagnostic-current-branch.yml` on the candidate branch at commit `c239878aedff4c963af3c7c03d3b4c425703d965`. It is restricted to the candidate branch / PR path and is intended to confirm runner execution and validate the three-root category structure plus non-empty Planetworld and Audio Connections preview catalogues.
+- The GitHub connector's PR-only workflow-run/status queries returned no associated PR run/status for this push commit; they do not expose a confirmed execution result for this push-triggered diagnostic. Therefore runner recovery is still **not verified** and the diagnostic must not be described as passed.
+- No deployment or production action was taken. Keep PR #168 draft/unmerged until an actual run, tests, and same-head non-production preview are evidenced.
