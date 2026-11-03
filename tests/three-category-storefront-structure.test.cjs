@@ -13,6 +13,7 @@ const audioPage = read('preview-audio.html');
 const ascPage = read('asc-catalogue-preview.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 const ownerPreview = read('owner-preview.html');
+const categoryCleanup = read('assets/category-cleanup.js');
 const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
@@ -21,6 +22,9 @@ assert.deepEqual(roots, [
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
   ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
+assert.ok(home.includes('Category API returned an incomplete active hierarchy'), 'category loader must fall back when Supabase category rows are empty or incomplete');
+assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store'})"), 'approved local category snapshot fallback must remain available');
+assert.ok(categoryCleanup.includes("const mainRootIds=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']"), 'all three approved roots must survive category cleanup without products');
 for (const [id,label] of roots) {
   assert.ok(home.includes(id) && home.includes(label), 'storefront root '+label);
   assert.ok(categoryPage.includes(id) && categoryPage.includes(label), 'category page root '+label);
