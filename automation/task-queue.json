@@ -14,65 +14,65 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "basic_loading_resolved_preview_build_pass_functional_testing_deferred",
-      "description": "Owner confirms storefront loads. ASC pilot preview links have been added to the matching three store roots on PR #162; functional testing is explicitly deferred until last, after owner adds banking details. Exact-head browser QA is not to be run before that step.",
-      "next_action": "Continue non-functional category/source/catalogue reconciliation. Do not run end-to-end/functional browser or checkout tests until the owner has added banking details and all non-functional tasks are complete. Do not repeat loading-only checks or trigger Workers/production deployment.",
-      "automatic": true
+      "status": "owner_confirms_loading_restoration_candidate_open_diverged_14_commits",
+      "description": "Owner confirms storefront loads. PR #163 restores the earlier full storefront with brighter styling and includes the ASC/Audio Connections/Hertz preview work, but it is 58 commits ahead and 14 behind current main; its 92-file diff means the PR description's CSS-only scope is not accurate. PR #162 is also draft/unmerged. No functional testing before banking details.",
+      "next_action": "Prepare a clean current-main integration candidate by selectively reconciling the approved storefront restoration and required preview/catalogue files; inspect exact diffs and preserve all release gates. Do not merge stale PRs, test clicks/routes, trigger Workers or production deployment.",
+      "automatic": false
     },
     {
       "id": "storefront-eight-category-navigation",
       "priority": 2,
-      "status": "preview_links_added_static_readback_pass_functional_check_deferred",
-      "description": "Added neutral catalogue preview links under Auto Electrical Spares (34 pilot items), Car Audio & Entertainment (8 aerial items) and Automotive Accessories (8 car-mat items) on PR #162. Preview cards do not expose supplier identity or supplier SKU. Functional category navigation testing is deferred until last after owner adds banking details.",
-      "next_action": "Continue static taxonomy/source reconciliation and complete remaining catalogue family mapping; do not test clicks/routes yet.",
+      "status": "eight_root_static_audit_pass_preview_link_code_candidate_pending_reconciliation",
+      "description": "Static audit confirms exactly eight approved root labels and matching root map; 4X4 OUTDOOR remains a child under Camping / Leisure / Outdoors. PR #162/163 candidate adds ASC catalogue preview links under Auto Electrical Spares (34), Car Audio & Entertainment (8) and Automotive Accessories (8). Functional navigation remains deferred.",
+      "next_action": "Carry the exact category mapping and neutral preview links into the clean current-main candidate; no click/route tests until the owner banking-details step.",
       "automatic": false
     },
     {
       "id": "approved-supplier-catalogue-reconciliation",
       "priority": 3,
-      "status": "partial_preview_integrated_source_bytes_needed_for_current_pricing",
-      "description": "50-record ASC review-only pilot is integrated into the matching three category preview entry points on PR #162; six source PDFs cover 72 pages and 75 headings. November ASC email attachments are identified (1003-1007 arrivals and November Buyer's Guide), but attachment bytes are not downloadable through connected Gmail. Audio Connections has 68 source rows / 66 preview rows; Planetworld has 3,317 historical snapshot rows / 68 exact-model candidates. No supplier data is live.",
-      "next_action": "Continue private source reconciliation. Obtain the six November ASC PDF bytes from the owner when possible; do not substitute old catalogues or publish supplier data. Prepare image/description/GW-SKU crosswalks for Audio Connections and Planetworld; keep all preview-only until current evidence and approval.",
+      "status": "partial_preview_integrated_source_bytes_and_image_rights_pending",
+      "description": "ASC review-only pilot has 50 records/50 matched images across 12 source subcategories; Audio Connections has 68 private rows/66 preview rows and 13 Sony GW SKU candidates staged privately; Hertz preview has 12 private rows; Planetworld has a 3,317-row historical snapshot and 68 exact-model candidates. None is a live supplier feed.",
+      "next_action": "Continue private source/image/description/SKU reconciliation using evidence already in repository. November ASC PDF bytes are still unavailable through Gmail; request the six PDFs only when the remaining local source evidence is exhausted. Do not publish or activate suppliers.",
       "automatic": false
     },
     {
       "id": "planetworld-current-audit-and-price-verification",
       "priority": 4,
       "status": "blocked_owner_audit_dispatch_and_supplier_confirmation",
-      "description": "Planetworld current-main read-only audit is not refreshed. Historical 2026-10-25 audit has 18 distinct positive-RRP cost-floor rows at RRP-1%, 19 at RRP-2% (90011904 is 2%-only), plus 19 separate zero-RRP owner-hold rows.",
-      "next_action": "Owner runs Planetworld Workbook Audit (Read Only) from Actions on main once; then verify job summary/logs. Obtain current Planetworld price, VAT, stock and effective-date confirmation for the non-zero-RRP exceptions before any price proposal.",
+      "description": "Current-main read-only Planetworld audit has not been freshly run. Historical 25-Oct audit flags 18 distinct positive-RRP cost-floor rows at RRP−1%, 19 at RRP−2% (90011904 is 2%-only), plus 19 zero-RRP owner-hold rows.",
+      "next_action": "Owner runs Planetworld Workbook Audit (Read Only) on main once through Actions; then inspect the resulting run/job summary. Obtain current supplier price, VAT, stock and effective-date confirmation before proposing changes.",
       "automatic": false
     },
     {
       "id": "audio-connections-model-sku-image-review",
       "priority": 5,
       "status": "private_crosswalk_corrected_13_sony_gw_candidates_images_pending",
-      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have collision-checked GW SKU candidates staged privately (not inserted); 55 other rows do not have candidate GW SKUs in this staging set. Three official Sony image-source URLs are captured but none is approved. The owner-confirmed dealer connection remains inactive pending separate activation approval.",
-      "next_action": "Complete exact model/variant image checks and permission review for the three Sony URLs; obtain high-resolution exact images and current dealer price/availability confirmation. Keep all rows private and unpublished; do not re-request dealer authorization or activate the supplier.",
+      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have collision-checked GW SKU candidates staged privately (not inserted); 55 other rows lack candidate GW SKUs in this staging set. Three official Sony image-source URLs are captured but none is approved. Dealer authorization is owner-confirmed; supplier activation remains intentionally off.",
+      "next_action": "Complete exact model/variant image checks and permission review for the three Sony URLs; seek high-resolution exact images and current dealer price/availability evidence. Do not re-request authorization or activate the supplier.",
       "automatic": true
     },
     {
       "id": "category-review-198-rows",
       "priority": 6,
       "status": "pending_visual_source_page_review",
-      "description": "Static source audit confirms the homepage and category-page map use exactly the eight approved roots; 4X4 OUTDOOR remains a child of Camping / Leisure / Outdoors (16 direct active products in the 29-Oct snapshot). The 198 historical OCR candidate rows still require source-page review; no automatic category moves.",
-      "next_action": "Continue non-functional source/category reconciliation using exact source-page evidence. Do not run functional navigation tests until last, after owner adds banking details.",
+      "description": "The 198 historical OCR candidate rows still require source-page review. OCR presence is not visual approval; no automatic category moves. Eight approved roots and 4X4 placement have passed static audit.",
+      "next_action": "Continue exact-SKU source-page review against original guides where available; preserve source page/heading provenance and never auto-move products.",
       "automatic": false
     },
     {
       "id": "protected-october-and-asterisk-pricing",
       "priority": 7,
       "status": "verified_preserve_no_write",
-      "description": "Preserve 107/107 October rows with updated source-image verification, live cost matching October printed cost and formula PASS. Preserve nine asterisk-price records as quote-only/inactive.",
-      "next_action": "Do not change the 107 October prices because of old review_status flags. Keep all nine asterisk-price rows inactive with zero price/cost and quote-only handling; only revisit with new exact supplier evidence and separate approval.",
+      "description": "Preserve 107/107 October rows with verified cost/source/formula evidence. Preserve nine asterisk-price records as quote-only/inactive.",
+      "next_action": "Do not alter protected October prices or activate the nine quote-only rows without new exact supplier evidence and separate approval.",
       "automatic": false
     },
     {
       "id": "exact-head-qa-owner-acceptance-and-release-gate",
       "priority": 8,
       "status": "deferred_until_last_after_owner_banking_details",
-      "description": "Functional testing is explicitly last, after the owner adds banking details and non-functional catalogue/category tasks are complete. No functional/end-to-end/browser/checkout testing before then. Production remains HOLD.",
-      "next_action": "When owner confirms banking details are added and all non-functional work is complete, run exact-head desktop/mobile functional tests and record evidence; obtain owner acceptance separately. No merge, Axxess/DNS change, live data change or production release without separate explicit approval.",
+      "description": "Functional testing is last, after banking details are added and non-functional catalogue/category work is complete. Production remains HOLD.",
+      "next_action": "Only after owner confirms banking details are added, perform exact-head desktop/mobile functional tests and obtain owner acceptance. No merge, Axxess/DNS, live data or production release without separate explicit approval.",
       "automatic": false
     }
   ]
