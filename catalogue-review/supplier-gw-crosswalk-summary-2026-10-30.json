@@ -27,7 +27,7 @@
   "official_image_source_urls_found": 13,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "Crosswalk records 13 official image-source URLs: four Alpine and one Focal for Planetworld; four Sony and four Starsound for Audio Connections. The Audio Connections preview currently has eight direct image URL candidates (four Sony and four Starsound). No official image asset has been downloaded or approved; retailer/PDF images are not approved.",
+  "image_notes": "Crosswalk records 13 official image-source URLs: four Alpine and one Focal for Planetworld; four Sony and four Starsound for Audio Connections. The Planetworld 68-model set has 62 image URL candidates and six documented gaps; the Audio Connections preview has eight direct image URL candidates and 58 missing. No official image asset has been downloaded or approved.",
   "supplier_connection_statuses": {
     "planetworld": {
       "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
@@ -53,5 +53,6 @@
   "audio_connections_preview_image_url_approved": 0,
   "planetworld_verified_model_image_urls": 62,
   "planetworld_verified_model_image_gaps": 6,
-  "audio_connections_preview_image_url_missing": 58
+  "audio_connections_preview_image_url_missing": 58,
+  "planetworld_image_gap_notes": "Five Alpine models have official pages but only 46x35 thumbnails; JVC KW-M590BT has an official nine-image gallery but its dealer marketing pack requires written distribution permission. No low-resolution or unapproved image used."
 }
