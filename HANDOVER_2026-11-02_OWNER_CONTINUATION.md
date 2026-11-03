@@ -863,3 +863,13 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Added standard-library regression tests for both the config lookup and homepage → category → leaf-product navigation (4 config tests and 3 navigation tests).
 - Commits: homepage routing b52e09196a99b890d8aff9e2a5c6c725bc931707; snapshot config fix 4e125414c9697f9bd225a8dc6e8ad924af3b37ec; snapshot config tests c143667dfd274d0cd4d4ad37528b1ba860217dc4; navigation tests e98af0c553dee9081b03142f65e90a4e71956b1d.
 - Exact source read-back confirms all 15 child buttons carry IDs and the delegated navigation handler is committed. No public products, prices, stock, categories or payment data were written; no production deployment or merge was performed. Cloudflare preview and CI for the latest head are pending verification.
+
+
+## 2026-11-03 — QA EXPECTATIONS CORRECTED TO CURRENT OWNER TAXONOMY
+- Found a stale repository smoke-test assertion requiring 8 homepage roots, contradicting the current owner-approved 3-root category structure. Updated .github/workflows/button-only-storefront-smoke.yml to require exactly 3 roots and all 15 current first-level subcategory buttons.
+- Extended browser smoke coverage to exercise homepage expansion → Car Audio → component subcategories → Amplifiers product-list route at 360, 390, 768 and 1280px. Added execution of the new Python source regression tests to that workflow.
+- Made requests an on-demand import inside the snapshot network function so the config-parsing tests use only Python's standard library.
+- Commits: test dependency adjustment 3a45ac551d3c550f5a5f2753be0402e661177388; smoke test taxonomy + drill-down f01353140507cf9c17c3cfa0fac2e307fc955cdc; browser URL-regex correction ceed8ed2c47ba0ce057a4eb15e296b6f8ea0d2ee.
+- Source read-back confirms the browser URL matchers use escaped literal dots/question marks, the workflow now tests the current 3-root taxonomy, and the smoke path clicks through to the product-list URL.
+- A lightweight local logic check passed for Supabase URL/key extraction and delegated category-button parsing. Full repository Python/Playwright execution remains pending; previous GitHub Actions runs on this PR repeatedly failed before job steps and their log blobs were unavailable. The Pages preview deployment for commit ceed8ed is currently reported IN PROGRESS; do not claim hosted verification until the deployment finishes and browser QA passes.
+- No public database/category/product/stock/price/payment writes, merge, or production deployment were made.
