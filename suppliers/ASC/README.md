@@ -99,3 +99,12 @@ This candidate uses a noindex owner-review route. The 50 watermarked source-card
 
 
 Owner correction (3 November 2026): Car Mats belongs under **Automotive Accessories → Car Care & Accessories**, not Auto Electrical Spares. The existing Car Mats store category and the ASC Car Mats catalogue button are both nested there in the review storefront. Production category/product assignments are not changed.
+
+
+## Complete original catalogues in the owner preview — 2026-11-03
+
+The six original post-reset PDFs remain unchanged in `suppliers/ASC/`. The non-production catalogue preview now copies each complete original PDF into its matching catalogue page as a **View complete original catalogue (PDF)** link, while retaining the original contents-page section buttons and the visually reviewed pilot cards beneath their matching sections. This makes the full catalogue browsable even where the 50-record pilot has not yet populated every section.
+
+Preview-only copies are placed under `assets/asc-catalogue-source/` in the opt-in Pages preview package. The standard customer/public package explicitly excludes the ASC preview route and all six PDF copies. The source originals remain in `suppliers/ASC/`; no supplier files are renamed or altered. Car Mats remains under Automotive Accessories → Car Care & Accessories; Aerials remains under Car Audio & Entertainment; Sensors, Switches, Globes and Fuel Pumps remain under Auto Electrical Spares.
+
+The package workflow now checks all six PDF copies and runs the ASC catalogue structural test after building the opt-in preview package. Until the workflow executes successfully and a new hosted preview is confirmed against its exact commit, do not describe this correction as deployed or visually verified.
