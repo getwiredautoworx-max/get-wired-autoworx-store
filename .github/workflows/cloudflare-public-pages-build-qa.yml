@@ -81,4 +81,5 @@ jobs:
           node tests/asc-catalogue-preview.test.cjs
           node tests/audio-catalogue-preview.test.cjs
           node tests/three-category-storefront-structure.test.cjs
+          python3 scripts/public-sku-audit.py
           echo "PAGES_NONPRODUCTION_PREVIEW_ALLOWLIST_PASS"
