@@ -16,8 +16,8 @@
 
 ### Exact-model enrichment set
 - 68 curated model records across Alpine (9), Audison (41), Focal (2), JVC (2), Kenwood (1), Kicker (12) and Pioneer (1).
-- 61 of the 68 curated model records currently have an image URL; seven do not.
-- The 61 URLs are source candidates/review references, not blanket approval for customer publication. Existing image status values vary and some records have no explicit status.
+- 62 of the 68 curated model records currently have an image URL; six do not.
+- The 62 URLs are source candidates/review references, not blanket approval for customer publication. Existing image status values vary and some records have no explicit status.
 - GW SKU candidates exist for these curated model records, but remain staged/review-only until exact source join, collision check and owner approval.
 - The 68 model records must be joined to the correct exact product variant in the source workbook. Do not attach a model's image/description/SKU to an accessory merely because its title mentions that model later.
 
@@ -38,7 +38,7 @@
 
 ### GW SKU, image and price coverage
 - 13 Sony rows have proposed collision-checked GW SKU candidates; 53 other-brand rows have no proposed GW SKU yet.
-- Four Sony image URLs are present as official-source review candidates; none is approved for customer publication. The other 62 preview rows have no image URL.
+- Eight direct image URLs are present in the 66-row Audio Connections preview (four Sony and four Starsound); none is approved for customer publication. The other 58 rows have no image URL.
 - Three retained preview rows have no source price; keep them quote-only using the approved customer-facing fallback.
 - Starsound proposed selling prices currently use dealer cost ex VAT × 1.15 × 1.35 as a review estimate. This is not an approved retail price; verify the cost basis, current quote and full landed-cost margin before recommendation.
 - Sony price proposals are based on a 2% reduction from the printed RRP; keep provisional until VAT basis and current dealer cost are confirmed. Dealer price is not customer price.
@@ -81,7 +81,7 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - Manufacturer reference status in the current preview: 27 official references across 66 retained rows — 13 Sony product/specification pages; for non-Sony rows, one exact Starsound SSUSB-450BTDD product page, one Starsound USB230 alias product page, 11 Starsound category listings and one exact BlackSpider Lynx product page. Fourteen of 53 non-Sony rows have a reference; 39 remain without one. Category listings and alias pages are references only, not proof that images/variants are approved.
 - The 13 Sony price proposals were corrected on this branch. **The Sony PDF labels columns “Price Ex” and “RRP” but does not state the RRP VAT basis in its text. The owner has separately confirmed that Sony RRP includes VAT.** Therefore the 1–2% proposal must be calculated directly from VAT-inclusive RRP; do not add VAT a second time to the RRP. Dealer cost is VAT-exclusive. The corrected review CSV calculates gross profit exclusive of VAT and remains unapproved/unimported.
 - The August 2026 Starsound source explicitly says all prices are VAT-exclusive. Three retained non-Sony records have no source price and remain quote-only; current availability is not stated.
-- No Audio Connections product image is approved. Sony PDF thumbnails, reused impedance-variant images, and a generic amplifier image reused across several models are not acceptable customer images. The preview currently has five direct image URL candidates (four Sony and one Starsound SSUSB-450BTDD); all are review-only. The crosswalk records seven official image-source URLs in total (four Alpine, two Sony, one Starsound); none has been downloaded or approved.
+- No Audio Connections product image is approved. Sony PDF thumbnails, reused impedance-variant images, and a generic amplifier image reused across several models are not acceptable customer images. The preview currently has eight direct image URL candidates (four Sony and four Starsound); all are review-only. The crosswalk records 13 official image-source URLs in total (four Alpine, one Focal, four Sony and four Starsound); none has been downloaded or approved.
 
 ### Corrections committed on the pilot branch
 - Updated `catalogue-review/AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv` to use the owner-confirmed VAT-inclusive Sony RRP basis, correct customer-price proposals, VAT-inclusive dealer cost floor and gross profit exclusive of VAT.
