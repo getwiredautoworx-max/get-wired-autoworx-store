@@ -1310,3 +1310,10 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - After the seven additional official Starsound references, 35 of 53 non-Sony rows now have a product-page or category-listing reference; 18 remain without exact product references. The 18 are 15 Starsound source models/accessory codes and three Reference Audio models.
 - Created `catalogue-review/AUDIO_CONNECTIONS_OPEN_EVIDENCE_REQUEST_2026-11-03.md` listing the exact 18 held models, five source-versus-manufacturer specification conflicts, three quote-only products, image rights and current commercial/availability evidence needed.
 - This request is an internal checklist only; no email was sent. Retailer listings and similar model codes are not substituted for exact manufacturer evidence.
+
+
+### 2026-11-03 — Owner specification-selection rule adopted
+- Owner instruction: **always use the higher output specification** when supplier and manufacturer sources differ, because wholesalers may receive updated software/manufacturing information earlier. This is now a standing rule for every supplier and category, not just Audio Connections.
+- Preserve the lower/source figure and all provenance internally; do not silently overwrite source evidence. Compare equivalent ratings and retain impedance/channel context. Do not turn RMS into peak or infer per-channel/total output. Where rating basis is unclear, use only the exact higher-source wording and flag its ambiguity.
+- Applied to four Audio Connections preview records: SSW12-6300 now displays 400 W RMS; SSA-ATOM13800.4 retains the higher supplier-listed “100 RMS” wording (not rephrased as 100 W × 4); SSAR 22000.1 displays 1800 W RMS at 1 Ω; SSA-R 5000.4 displays 65 W RMS per channel at 4 Ω. Original discrepancies remain in internal notes and are tagged OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT.
+- Preview JSON update commit: a3a1aa163636fbcc5a15ccef90fd91fae4b40de3. No price, stock, SKU assignment, image approval, live data, or production setting changed. The four records remain PREVIEW_ONLY_NOT_LIVE.
