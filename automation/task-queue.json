@@ -15,8 +15,8 @@
       "id": "storefront-restoration-and-preview",
       "priority": 1,
       "status": "draft_pr_open_51_ahead_0_behind_runner_unavailable_no_deployment",
-      "description": "PR #166 remains draft/open and is now 51 commits ahead / 0 behind main. Static structure/package QA has been added, but the latest exact-head package QA run failed before runner assignment. The dedicated Cloudflare preview workflow was corrected to checkout the trigger SHA; its run and one retry also failed before runner assignment. No current preview deployment exists.",
-      "next_action": "Wait for a hosted runner to be assigned; do not keep retrying runner_id=0 failures. Once available, run the single consolidated non-functional package QA on exact PR head, then deploy the isolated noindex Cloudflare preview and verify its deployed SHA. Functional/browser/checkout tests remain held until owner adds banking details.",
+      "description": "PR #166 remains draft/open and is now 51 commits ahead / 0 behind main. Static structure/package QA has been added, but the latest exact-head package QA run failed before runner assignment. The dedicated Cloudflare preview workflow was corrected to checkout the trigger SHA; its run and one retry also failed before runner assignment. No current preview deployment exists. Current PR head is ad5770b5df55c26a624fedcd0842d143de0e681a (51 ahead/0 behind). Latest package QA attempt was on prior code head 943adbd and failed before runner assignment; current exact head remains untested. No current preview deployment.",
+      "next_action": "Once GitHub assigns a runner, run consolidated static/package QA against ad5770b5df55c26a624fedcd0842d143de0e681a. Then deploy and verify exact SHA on isolated noindex Pages branch. Do not claim readiness or deploy production before tests and owner acceptance.",
       "automatic": false
     },
     {
