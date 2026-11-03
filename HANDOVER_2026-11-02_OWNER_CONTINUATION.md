@@ -854,3 +854,12 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - This establishes an official-image acquisition path for these models. Continue by extracting high-resolution assets for the remaining Sony models, prioritizing the 1200px gallery rendition; do not substitute a generic family image or a 330px thumbnail when a better rendition is available.
 
 - Additional exact Sony South Africa image source captured for XS-680ES (960px) from its official product page; appended to `SONY_OFFICIAL_IMAGE_ASSET_MAP_2026-11-03.csv` in commit `3f9eec3ce5cedf9e969f61118b87130a9be0fea6`. Still a source URL only; no binary downloaded or approved.
+
+
+## 2026-11-03 — HOMEPAGE SUBCATEGORY ROUTING AND SNAPSHOT CONFIG FIX
+- Root cause of the owner's latest report was confirmed in the active index-new.html: top-level buttons had expansion handlers, but none of the .catBtn[data-filter] subcategory buttons had a click handler. The subcategory controls therefore did nothing. This was distinct from the previously fixed empty-leaf route in category.html.
+- Added delegated click routing from every homepage subcategory button to category.html?id=<category UUID>. The existing category page then shows child choices or routes leaf categories to products.html?category=<UUID>. Exact source read-back confirms the handler is present for all 15 homepage subcategory buttons.
+- Fixed scripts/refresh_category_snapshot.py: the intentionally static index-new.html does not contain Supabase client configuration. The refresh script now searches the current products.html public read-only config first, then the other storefront pages; it accepts the actual KEY declaration used by the products page as well as SUPABASE_KEY.
+- Added standard-library regression tests for both the config lookup and homepage → category → leaf-product navigation (4 config tests and 3 navigation tests).
+- Commits: homepage routing b52e09196a99b890d8aff9e2a5c6c725bc931707; snapshot config fix 4e125414c9697f9bd225a8dc6e8ad924af3b37ec; snapshot config tests c143667dfd274d0cd4d4ad37528b1ba860217dc4; navigation tests e98af0c553dee9081b03142f65e90a4e71956b1d.
+- Exact source read-back confirms all 15 child buttons carry IDs and the delegated navigation handler is committed. No public products, prices, stock, categories or payment data were written; no production deployment or merge was performed. Cloudflare preview and CI for the latest head are pending verification.
