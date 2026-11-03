@@ -892,3 +892,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Extended catalogue-review/SONY_OFFICIAL_IMAGE_ASSET_MAP_2026-11-03.csv with exact official Sony Africa product image URLs for XS-160ES (1200px gallery asset) and XM-4ES (480px transparent product asset).
 - Both rows remain SOURCE_URL_CAPTURED_NOT_DOWNLOADED. No image binary was saved, dimensions/content were not independently verified from a downloaded file, and neither model is marked image-approved or published. This does not close the image gate.
 - Map update commit: 260369fbc6bd59e3b098e61ff74e282da4a90022.
+
+
+## 2026-11-03 — LOCAL CHROMIUM NAVIGATION CHECK
+- GitHub-hosted runners were unavailable, so ran a local Playwright/Chromium check against the exact homepage button markup and delegated click-handler copied from the branch, plus the exact category-page navigation script with the current category snapshot fixture.
+- Homepage at 360, 390, 768 and 1280px: 3 main buttons, 15 child buttons, first group expands, no horizontal overflow in the harness, no page errors.
+- Car Audio category at 360, 390, 768 and 1280px: all 7 current component subcategories rendered, no horizontal overflow in the harness, no page errors.
+- Exact handler logic confirmed the Car Audio button sends its category UUID to category.html; exact category script confirmed the empty Amplifiers leaf redirects to products.html?category=1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca.
+- This is a local behavior/render check with mocked category JSON and a lightweight HTML/CSS harness, not a hosted-page test or full visual acceptance. The deployed Pages preview still needs owner phone acceptance; Actions runner allocation remains unresolved.
