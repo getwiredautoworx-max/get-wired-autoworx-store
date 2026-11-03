@@ -172,3 +172,7 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - Keep both original figures and provenance in the internal audit; preserve rating basis, impedance and channel context. Do not equate RMS with peak, or per-channel with total output. If the higher rating's basis is unclear, retain the exact wording and flag ambiguity rather than inventing detail.
 - Applied to the four conflicting Audio Connections records: SSW12-6300 → 400 W RMS; SSA-ATOM13800.4 → supplier's higher “100 RMS” wording (not represented as 100 W × 4); SSAR 22000.1 → 1800 W RMS at 1 Ω; SSA-R 5000.4 → 65 W RMS/channel at 4 Ω. Lower figures and source/manufacturer discrepancies remain preserved internally.
 - JSON commit a3a1aa163636fbcc5a15ccef90fd91fae4b40de3. All four remain preview-only; no live data or production changes.
+
+
+### Owner clarification — SSA-ATOM13800.4 RMS/PMPO
+The owner clarified the supplier's 100 RMS notation as **100 W RMS nominal output per channel × 4 channels**. The 13,800 W model designation is PMPO maximum/marketing output, interpreted as 3,450 W PMPO per channel (13,800 ÷ 4). PMPO must not be presented as RMS or converted using an invented universal ratio. The preview title/description now state 100 W RMS × 4 channels. The official Starsound page's 80 W × 4 at 4 Ω is retained in the discrepancy record; confirm supplier impedance and test conditions before final publication. The record remains preview-only. Correction commit: `d52abadc6f2eb925fa70cd43dfce1560c4a9e333`.
