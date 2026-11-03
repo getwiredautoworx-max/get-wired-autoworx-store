@@ -1228,3 +1228,9 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Verified Starsound's exact official product page for SSUSB-450BTDD and captured its direct official image URL from the product page.
 - Added the page and image URL to the preview as a not-approved review candidate; product remains preview-only and its GW candidate remains held. The image did not load in the research fetch (cache miss), so visual rendering is still to be checked on the hosted preview.
 - Added a regression assertion for exact page, direct image URL and preview-only status.
+
+
+### Audio Connections official Starsound source references — 2026-11-03
+- Added seven more official Starsound references: USB230 alias product page plus official category listing references for six other models. Along with the exact USB450BTDD page, eight of 53 non-Sony records now have a manufacturer reference; 45 still have none.
+- Only USB450BTDD has a direct official image URL candidate at present; it remains unapproved and external retrieval returned cache miss. No image was added to other rows.
+- All remain preview-only; 53 non-Sony candidate GW SKUs remain held/unassigned.
