@@ -30,7 +30,7 @@ PREVIEW_ROOT_FILES = [
 PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json"]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
-    "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
+    "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json", "storefront-subpage-shell.css",
 ]
 FORBIDDEN_DIRS = {
     "suppliers", "catalogue-review", "catalogue-source", "catalogue-audits",
