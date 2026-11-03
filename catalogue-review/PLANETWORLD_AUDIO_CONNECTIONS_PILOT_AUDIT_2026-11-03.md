@@ -95,3 +95,11 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - Read-only check against the 702 Planetworld Car Audio rows: **168 records** now match the approved Harnesses, Trims & Fitment grouping (47 dedicated source-collection rows + 121 exact product-text matches). The grouping includes OneNav vehicle-specific fitment kits but excludes generic TOSLINK cables, RCA interconnects and fuse holders.
 - Added regression assertions for the 168-row count, vehicle fitment kit inclusion and generic cable/fuse-holder exclusion. The test file has been updated but the Node test has not yet been executed; GitHub Actions runner allocation remains a separate verification gate.
 - This is a preview navigation classification only. Supplier source rows, live categories, prices, stock and database records were not changed.
+
+
+### Audio Connections non-Sony GW candidate collision check — 2026-11-03
+- Generated 53 deterministic internal GW SKU candidate codes for the 53 non-Sony Audio Connections source rows using the existing FNV-1a `Audio Connections|brand|model` convention.
+- Verified 53/53 are unique within the new set, do not collide with the previous 81 proposed codes, and return zero exact matches against current `public.products.public_sku` in a read-only query.
+- These 53 values are recorded in the new crosswalk columns `gw_sku_candidate_review` and `gw_sku_candidate_status`; the official proposed field remains blank and `gw_sku_status` remains `NOT_ASSIGNED_HOLD`. This prevents unverified products from being treated as assigned/published SKUs.
+- Two RA source rows remain held because the brand abbreviation is unverified. The remaining rows still require exact model/variant, description and image review. A collision-free code is not proof of product identity.
+- Combined collision-checked candidate set: 68 Planetworld + 13 Sony proposed candidates + 53 non-Sony held candidates = 134 unique codes, zero collisions with current live public SKUs. No public SKU/product rows were inserted or updated.
