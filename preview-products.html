@@ -70,6 +70,7 @@ function render(){
  }
 }
 document.getElementById('grid').addEventListener('click',e=>{const b=e.target.closest('[data-add-id]');if(!b||b.disabled)return;const p=products.find(x=>x.id===b.dataset.addId);if(p)add(p)});
+function isLegacyAscBuyerGuide(p){return ['September Buyer\'s Guide','October Buyer\'s Guide'].includes(String(p&&p.specifications&&p.specifications.source||'').trim())}
 async function main(){
  if(!category){location.replace('preview-category.html');return}
  try{
@@ -93,6 +94,7 @@ async function main(){
   }else{
    products=await apiAll('products?select=id,name,public_sku,description,price,stock_quantity,image_url,specifications,active&category_id=eq.'+encodeURIComponent(category)+'&active=eq.true&order=name.asc');
   }
+  products=products.filter(p=>!isLegacyAscBuyerGuide(p));
   if(audioBrand){const target=audioBrand==='__unspecified__'?'Brand not specified':audioBrand;products=products.filter(item=>productBrand(item)===target)}
   render();
   if(audioGroup&&products.length===0){const note=document.createElement('p');note.className='empty';note.textContent='No current products matched this grouping. No stock has been reclassified. Use “CAN’T FIND IT? SOURCE A PART” to request an item or browse All Car Audio Products.';document.getElementById('grid').appendChild(note)}
