@@ -193,3 +193,11 @@ Record the exact commit SHA, staging deployment ID, preview URL, test run IDs an
 **Explicit production approval (separate):** `NOT GRANTED / GRANTED WITH SCOPE`
 
 No production merge, live data write, supplier activation, Axxess upload, DNS/payment change or checkout go-live is implied by pilot acceptance.
+
+
+## 13. Owner rule — higher output specifications
+
+- When the same product/model has differing output figures in supplier and manufacturer materials, the owner instructs us to use the **higher stated output specification** in customer-facing preview descriptions because wholesalers may have earlier access to updated software and manufacturing revisions.
+- Preserve both original figures, their sources, dates and any measurement/impedance/channel context in the internal evidence record. Mark the selected figure as owner-directed; do not silently rewrite source evidence.
+- Compare like with like wherever possible (RMS against RMS, same impedance, channel count and measurement conditions). Never convert a per-channel figure into total output, or RMS into peak, without explicit evidence. If the higher figure's basis is unclear, keep the wording limited to the exact source notation and flag the ambiguity for owner review rather than inventing detail.
+- Apply this owner rule consistently to all future suppliers and catalogue categories unless the owner changes it.
