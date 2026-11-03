@@ -16,6 +16,7 @@ const ownerPreview = read('owner-preview.html');
 const categoryCleanup = read('assets/category-cleanup.js');
 const shellCss = read('assets/storefront-subpage-shell.css');
 const previewCategory = read('preview-category.html');
+const returns = read('returns-refunds.html');
 const shellPages = ['category.html','products.html','product.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html','preview-audio.html','asc-catalogue-preview.html','returns-refunds.html','terms-and-conditions.html','privacy-policy.html','checkout-v2.html'].map(read);
 const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)

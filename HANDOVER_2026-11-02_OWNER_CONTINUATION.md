@@ -1166,3 +1166,7 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 ### Audio taxonomy correction
 - Removed the source pseudo-brand `Harness and Trims` from the Car Audio manufacturer-brand button list. Those 47 records remain available under the `Harnesses, Trims & Fitment` component group, not as a brand.
 - Regression assertion added to prevent this classification from returning. This is a preview-only source classification correction; no public product or live category changes.
+
+### Regression-test fixture correction
+- The expanded shell test now explicitly loads `returns-refunds.html` into its `returns` fixture before asserting the preserved main wrapper. This removes an undefined-variable failure in the test itself; it does not change storefront behavior.
+- Re-run the structural test through the next Cloudflare Pages staging build. GitHub Actions runner failures remain pre-step allocation failures, not test results.
