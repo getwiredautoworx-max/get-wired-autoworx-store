@@ -76,4 +76,4 @@ assert(sql.includes("ON CONFLICT (supplier_id, supplier_sku) DO NOTHING"));
 assert(sql.includes("false,\n  true"), "Staged items must be inactive and quote-on-request");
 assert(!/INSERT\s+INTO\s+public\.products/i.test(sql), "Proposal must not create public product rows");
 assert(!/UPDATE\s+public\.products/i.test(sql), "Proposal must not update public product rows");
-console.log("SUPPLIER_GW_CROSSWALK_PASS: 770 source rows, 81 collision-checked proposed GW SKUs, 0 product IDs, 0 publications");
+console.log("SUPPLIER_GW_CROSSWALK_PASS: 770 source rows, 81 proposed + 53 held collision-checked GW SKU candidates, 0 product IDs, 0 publications");
