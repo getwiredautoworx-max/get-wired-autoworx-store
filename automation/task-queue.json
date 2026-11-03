@@ -14,17 +14,17 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "static_checks_passed_pr_ref_refresh_required_ci_runner_assignment_blocked",
-      "description": "Current candidate head 2694f1462fc75a5fd5a5f64f553c92a488c66c18 has 13/13 direct source/data assertions passing; all required storefront files, six ASC source PDFs, 50 pilot images and 4,101 WebP assets exist. GitHub Actions job 125839064696 failed before runner assignment (runner_id=0, zero steps); no Node/browser/package test executed. No exact-head non-production Pages preview deployed. The source branch includes latest code and handover, but GitHub hidden PR #166 head stayed pinned at 2694f146 despite later branch commits. Replace the draft PR from the complete current branch head so the review points at the exact candidate. Official GitHub status currently says Actions operational, while this job's runner_id remains 0/zero steps; likely repo/account runner/quota configuration, not confirmed global outage.",
-      "next_action": "Create replacement draft PR from current complete branch head, close PR #166 as superseded, then await runner assignment recovery. Do not deploy preview or merge while CI is unexecuted.",
+      "status": "canonical_draft_pr168_open_static_checks_passed_ci_runner_unavailable_preview_not_deployed",
+      "description": "Canonical review is PR #168 on integration/three-category-catalogue-preview-final-2026-11-03 at exact head 77322ca93f13a6dfa4e3ebffb02d290aff0c5aa9. Stale PR #166 is closed. 13/13 direct source/data checks passed, but exact-head Actions run 41614133122 failed before runner assignment (runner_id=0, zero steps, no logs); no Node/package/browser tests or preview deployment.",
+      "next_action": "Owner/repo admin must inspect Actions billing/spending limits or runner provisioning; after a real runner starts, execute one exact-head Cloudflare package QA, then request isolated non-production Pages preview and verify deployed SHA. Keep functional/browser/checkout testing deferred until banking details; production HOLD.",
       "automatic": false
     },
     {
       "id": "storefront-three-category-navigation",
       "priority": 2,
-      "status": "three_roots_and_deferred_qa_expectations_reconciled_static_checks_pass",
+      "status": "three_roots_and_full_car_audio_division_integrated_static_validation_passed",
       "description": "Three owner-approved roots and all requested children are mapped; manual smoke and populated-preview workflow root assertions now use the new three-root hierarchy. The buttons-only legacy workflow is manual-only and expects three roots. 13/13 source/data assertions passed, but no browser test executed. Car Audio button now routes to the full Planetworld Car Audio division (702 source rows / 699 unique browse rows) plus Audio Connections review records; the separate department and Lifestyle links remain available.",
-      "next_action": "Retain current three-root hierarchy; wait for runner recovery to execute non-functional structural/package QA and obtain exact-head non-production preview. No production merge.",
+      "next_action": "No category restructuring remains in this candidate. Next validation is exact-head package QA and non-production preview after runner allocation recovery; keep production unchanged.",
       "automatic": false
     },
     {
