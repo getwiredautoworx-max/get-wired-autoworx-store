@@ -110,3 +110,10 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - Corrected the verified-only card builder. Eleven models merge into a broad catalogue row by exact leading model token; the other 57 remain separate verified-model cards. Those 57 previously had `indicativePrice:null` despite having an exact source price-review row; they now carry the matching RRP−1% indicative proposal and the dated 25-Oct-2026 snapshot label.
 - No historic stock is represented as current availability. The cards remain review-only, and no dealer cost, supplier SKU or live stock was added to the customer-facing data.
 - Regression assertions added for 68/68 positive indicative prices and the dated price label. Node test execution remains pending.
+
+
+### Audio Connections first non-Sony official product image candidate — 2026-11-03
+- Verified the exact Starsound **SSUSB-450BTDD** product page and its direct official image asset from the manufacturer page.
+- Added the official product-page link and 788×788 image URL to the preview row as a review candidate. The asset is explicitly marked `OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED`; it is not approved for customer publication and the product remains `PREVIEW_ONLY_NOT_LIVE`.
+- Updated the corresponding crosswalk row and regression assertions. The candidate GW SKU remains held, not assigned, pending image review and owner approval.
+- External image retrieval returned a cache miss in the research environment, so successful image rendering/visual QA remains unverified. No other supplier image is inferred from this one.
