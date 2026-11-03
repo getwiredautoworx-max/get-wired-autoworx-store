@@ -1117,3 +1117,17 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Latest Cloudflare Pages build: failed for `642745e`; next build awaits this batched correction.
 - Exact-head successful preview and desktop/mobile browser QA: outstanding.
 - Owner acceptance: outstanding. Store is not marked ready.
+
+
+### 2026-11-03 — Exact-head Cloudflare Pages staging build succeeded
+- Cloudflare Pages bot confirmed **Deploy successful** for exact candidate commit `d4739de98ad9131ecaa20397a755f3e720cab4bf`.
+- Deployment record: `2fc2049c-b01c-4513-830e-c2315b6e7790`.
+- Direct preview: https://2fc2049c.get-wired-autoworx-store.pages.dev
+- Branch preview: https://integration-three-category-c.get-wired-autoworx-store.pages.dev
+- Owner preview route: https://2fc2049c.get-wired-autoworx-store.pages.dev/owner-preview.html
+- Audio catalogue route: https://2fc2049c.get-wired-autoworx-store.pages.dev/preview-audio.html
+- ASC catalogue route: https://2fc2049c.get-wired-autoworx-store.pages.dev/asc-catalogue-preview.html
+- The Pages build command in `scripts/build-cloudflare-pages-public.py` runs `tests/three-category-storefront-structure.test.cjs` before packaging, and emits `qa-build-result.json` with the Pages commit SHA on preview builds. Pages reported successful for this exact commit after the four stale assertions were corrected. The available web/page reader and container network could not fetch pages.dev endpoints from this session, so the deployed QA marker and visual rendering were not independently read back.
+- GitHub runner recovery run `41657951966`, job `125993213921`, failed before any steps/logs. Do not repeat blind reruns; no hosted Chromium/Playwright result is claimed.
+- Exact deployment and preview are now available for owner inspection. Desktop/mobile interactive browser QA and owner acceptance remain outstanding. Keep checkout disabled and payment testing deferred.
+- No PR merge, production deployment, Axxess upload, live Supabase write, live stock/price change, DNS or payment credential change was made.
