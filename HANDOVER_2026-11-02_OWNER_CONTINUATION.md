@@ -880,4 +880,4 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 ## 2026-11-03 — CLEAN SQUASHED REVIEW PR
 - Created replacement draft PR #167: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/167 from `integration/clean-three-category-catalogue-preview-2026-11-03`.
 - The replacement branch was created from current main and the complete three-category catalogue-preview tree was squashed into one integration commit, eliminating the 65-commit history in PR #166. Handover/task-queue documentation updates are being added as separate follow-up commits; no source production code was merged.
-- PR #167 supersedes PR #166. Keep PR #167 draft and production HOLD. The previous PR #166 is being closed to avoid duplicate candidate reviews.
+- PR #167 supersedes PR #166. Keep PR #167 draft and production HOLD. The previous PR #166 has been closed unmerged to avoid duplicate candidate reviews; PR #167 is the sole active review candidate.
