@@ -44,10 +44,10 @@ assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio'
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,33);
-assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,17);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,36);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,20);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'exact_model_retailer_image_review_only').length,3);
-assert.equal(verifiedModels.records.filter(row => !row.imageUrl).length,35);
+assert.equal(verifiedModels.records.filter(row => !row.imageUrl).length,32);
 const alpineHalo = verifiedModels.records.find(row => row.modelNumber === 'ILX-F115D');
 assert.ok(alpineHalo && alpineHalo.imageUrl.startsWith('https://www.alpine.pt/'));
 assert.equal(alpineHalo.imageStatus,'official_manufacturer_image_verified_review_only');
