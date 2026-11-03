@@ -1368,3 +1368,12 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - This corrects the older ambiguous count: 18 of the 19 are non-Sony (15 Starsound + 3 Reference Audio); the remaining row is excluded Sony XS-680G. The 36 page and 16 listing counts are not mutually exclusive, so don't add them as a partition.
 - Fresh exact-model manufacturer-site searching did not produce verifiable new individual product-page evidence for the remaining rows. No retailer-only or similar-model substitution was accepted; no image/specification/SKU was promoted. Audit update commit: `ac402aaa9fe284d7d44d575b06dd20db12dc6c42`.
 - Existing image coverage is unchanged: 22 image URL candidates, 17 exact Starsound candidates, four Sony and one SSUSB-450BTDD; 44/66 retained rows still lack image URLs. All are review-only and usage permission/publication approval is not established.
+
+
+
+## 2026-11-03 — Exact PR head verification checkpoint
+- Re-read PR #170 metadata after the latest audit/handover commits. Confirmed PR head exactly equals `f72c414c873ec29a29bb0e49e9e9f856ad040d6b`; PR remains OPEN, DRAFT, UNMERGED and mergeable. Base is `integration/three-category-catalogue-preview-final-2026-11-03`.
+- Queried GitHub Actions runs associated with that exact commit: none returned. Queried combined commit statuses: none returned. This is not a test pass and not evidence that a runner executed.
+- The earlier PR description still referenced a stale preview candidate and stale evidence counts. A refreshed checkpoint was added as PR conversation comment `6610074880`; the attempt to replace the PR body was rejected by the integration safety gate, so the body itself remains stale and should be reconciled later through an approved route.
+- No Cloudflare Pages deployment record for this exact SHA was available through the connected tools in this session. Do not reuse an older preview URL as proof of this head.
+- Current branch data work is saved in audit commit `ac402aaa9fe284d7d44d575b06dd20db12dc6c42` and handover/PR-head commit `f72c414c873ec29a29bb0e49e9e9f856ad040d6b`.
