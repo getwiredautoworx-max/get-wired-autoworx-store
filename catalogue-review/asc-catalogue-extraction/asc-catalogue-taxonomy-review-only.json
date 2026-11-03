@@ -1,0 +1,716 @@
+{
+  "schema_version": 1,
+  "title": "ASC post-reset catalogue taxonomy — review only",
+  "generated_from": "PR #149 source-led preview taxonomy; six original PDFs in suppliers/ASC/",
+  "source_catalogues": [
+    {
+      "file": "ASC- Aerials (1).pdf",
+      "pages": 7,
+      "contents_sections": 6,
+      "store_root_category": "Car Audio & Entertainment",
+      "existing_store_category": "Aerials"
+    },
+    {
+      "file": "ASC- Automotive Sensors (1).pdf",
+      "pages": 9,
+      "contents_sections": 11,
+      "store_root_category": "Auto Electrical Spares",
+      "existing_store_category": "Automotive Sensors"
+    },
+    {
+      "file": "ASC- Automotive Switches (1).pdf",
+      "pages": 22,
+      "contents_sections": 16,
+      "store_root_category": "Auto Electrical Spares",
+      "existing_store_category": "Automotive Switches"
+    },
+    {
+      "file": "ASC- Automotive globes (1).pdf",
+      "pages": 11,
+      "contents_sections": 10,
+      "store_root_category": "Auto Electrical Spares",
+      "existing_store_category": "Lighting"
+    },
+    {
+      "file": "ASC- Car Mats (1).pdf",
+      "pages": 11,
+      "contents_sections": 14,
+      "store_root_category": "Car Care & Accessories",
+      "existing_store_category": "Car Care & Accessories → Car Mats"
+    },
+    {
+      "file": "ASC- Fuel Pumps (1).pdf",
+      "pages": 12,
+      "contents_sections": 18,
+      "store_root_category": "Auto Electrical Spares",
+      "existing_store_category": "Preview-only Fuel Pumps"
+    }
+  ],
+  "source_page_total": 72,
+  "source_heading_total": 75,
+  "groups": [
+    {
+      "store_parent_id": "6cc56033-b0a9-4f25-b207-aeeb341a1c47",
+      "store_root_category": "Auto Electrical Spares",
+      "source_parent": null,
+      "sections": [
+        {
+          "id": "asc-fuel-pumps",
+          "name": "Fuel Pumps",
+          "query_hints": [
+            "fuel pump"
+          ]
+        }
+      ]
+    },
+    {
+      "store_parent_id": "f7f2ea3b-f15d-46a7-920b-9d3d9a394c79",
+      "store_root_category": "Car Audio & Entertainment",
+      "source_parent": null,
+      "sections": [
+        {
+          "id": "asc-aerial-vehicle",
+          "name": "Vehicle-Specific Aerials",
+          "query_hints": [
+            "vehicle-specific aerial",
+            "vehicle aerial"
+          ]
+        },
+        {
+          "id": "asc-aerial-universal",
+          "name": "Universal, Roof & Pillar Mount Aerials",
+          "query_hints": [
+            "universal aerial",
+            "roof aerial",
+            "pillar aerial"
+          ]
+        },
+        {
+          "id": "asc-aerial-electronic",
+          "name": "Electronic, Automatic & Amplified Aerials",
+          "query_hints": [
+            "electronic aerial",
+            "automatic aerial",
+            "amplified aerial"
+          ]
+        },
+        {
+          "id": "asc-aerial-shark-fin",
+          "name": "Shark Fin & Imitation Aerials",
+          "query_hints": [
+            "shark fin aerial",
+            "imitation aerial"
+          ]
+        },
+        {
+          "id": "asc-aerial-masts",
+          "name": "Aerial Masts, Bases & Mounts",
+          "query_hints": [
+            "aerial mast",
+            "aerial base",
+            "aerial mount"
+          ]
+        },
+        {
+          "id": "asc-aerial-adaptors",
+          "name": "Extensions, Adaptors & Plugs",
+          "query_hints": [
+            "aerial extension",
+            "aerial adaptor",
+            "aerial plug"
+          ]
+        }
+      ]
+    },
+    {
+      "store_parent_id": "3a1191ad-5fb8-4eb1-9ec0-6ddc598ea272",
+      "store_root_category": "Auto Electrical Spares",
+      "source_parent": null,
+      "sections": [
+        {
+          "id": "asc-sensor-crank-cam",
+          "name": "Crankshaft & Camshaft Position Sensors",
+          "query_hints": [
+            "crankshaft sensor",
+            "camshaft sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-throttle",
+          "name": "Throttle Position Sensors",
+          "query_hints": [
+            "throttle position sensor",
+            "throttle sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-airflow",
+          "name": "Air Flow & Air Mass Sensors",
+          "query_hints": [
+            "air flow sensor",
+            "air mass sensor",
+            "maf sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-map",
+          "name": "MAP, Manifold & Intake Air Sensors",
+          "query_hints": [
+            "map sensor",
+            "manifold pressure sensor",
+            "intake air sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-oxygen",
+          "name": "Oxygen (Lambda) Sensors",
+          "query_hints": [
+            "oxygen sensor",
+            "lambda sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-knock",
+          "name": "Knock Sensors",
+          "query_hints": [
+            "knock sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-speed-abs",
+          "name": "Speed & ABS Sensors",
+          "query_hints": [
+            "speed sensor",
+            "abs sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-temperature",
+          "name": "Temperature Senders & Sensors",
+          "query_hints": [
+            "temperature sender",
+            "temperature sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-fuel-oil-level",
+          "name": "Fuel, Oil & Level Sensors",
+          "query_hints": [
+            "fuel level sensor",
+            "oil level sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-reverse-parking",
+          "name": "Reverse & Parking Sensors",
+          "query_hints": [
+            "reverse sensor",
+            "parking sensor"
+          ]
+        },
+        {
+          "id": "asc-sensor-other",
+          "name": "Other Engine Management Sensors",
+          "query_hints": [
+            "brake booster sensor",
+            "gearbox sensor",
+            "hall sender"
+          ]
+        }
+      ]
+    },
+    {
+      "store_parent_id": "2cb1bdff-652a-4aa5-9b06-b85d3ec44191",
+      "store_root_category": "Auto Electrical Spares",
+      "source_parent": null,
+      "sections": [
+        {
+          "id": "asc-switch-ignition",
+          "name": "Ignition Switches & Barrel Sets",
+          "query_hints": [
+            "ignition switch",
+            "barrel set"
+          ]
+        },
+        {
+          "id": "asc-switch-combination",
+          "name": "Combination & Indicator Stalk Switches",
+          "query_hints": [
+            "combination switch",
+            "indicator stalk"
+          ]
+        },
+        {
+          "id": "asc-switch-wiper",
+          "name": "Wiper Switches",
+          "query_hints": [
+            "wiper switch"
+          ]
+        },
+        {
+          "id": "asc-switch-headlamp",
+          "name": "Headlamp, Dimmer & Hazard Switches",
+          "query_hints": [
+            "headlamp switch",
+            "dimmer switch",
+            "hazard switch"
+          ]
+        },
+        {
+          "id": "asc-switch-window",
+          "name": "Power Window Switches",
+          "query_hints": [
+            "power window switch"
+          ]
+        },
+        {
+          "id": "asc-switch-oil-pressure",
+          "name": "Oil Pressure Switches",
+          "query_hints": [
+            "oil pressure switch"
+          ]
+        },
+        {
+          "id": "asc-switch-fan-thermo",
+          "name": "Radiator Fan & Thermo Switches",
+          "query_hints": [
+            "radiator fan switch",
+            "thermo switch"
+          ]
+        },
+        {
+          "id": "asc-switch-reverse",
+          "name": "Reverse Light Switches",
+          "query_hints": [
+            "reverse light switch"
+          ]
+        },
+        {
+          "id": "asc-switch-stop",
+          "name": "Stop Light Switches",
+          "query_hints": [
+            "stop light switch",
+            "brake light switch"
+          ]
+        },
+        {
+          "id": "asc-switch-door-bonnet-boot",
+          "name": "Door, Bonnet & Boot Switches",
+          "query_hints": [
+            "door switch",
+            "bonnet switch",
+            "boot switch"
+          ]
+        },
+        {
+          "id": "asc-switch-rocker",
+          "name": "Rocker Switches",
+          "query_hints": [
+            "rocker switch"
+          ]
+        },
+        {
+          "id": "asc-switch-toggle-push",
+          "name": "Toggle, Push & Button Switches",
+          "query_hints": [
+            "toggle switch",
+            "push switch",
+            "button switch"
+          ]
+        },
+        {
+          "id": "asc-switch-starter-solenoid",
+          "name": "Starter & Solenoid Switches",
+          "query_hints": [
+            "starter switch",
+            "solenoid switch"
+          ]
+        },
+        {
+          "id": "asc-switch-isolators",
+          "name": "Battery Isolators & Cut-Off Switches",
+          "query_hints": [
+            "battery isolator",
+            "cut-off switch"
+          ]
+        },
+        {
+          "id": "asc-switch-panels",
+          "name": "Switch Panels, Covers & Accessories",
+          "query_hints": [
+            "switch panel"
+          ]
+        },
+        {
+          "id": "asc-switch-marine",
+          "name": "Marine & Specialist Switches",
+          "query_hints": [
+            "marine switch",
+            "specialist switch"
+          ]
+        }
+      ]
+    },
+    {
+      "store_parent_id": "cfd3e001-9292-459f-b0e5-9502f160eb5c",
+      "store_root_category": "Auto Electrical Spares",
+      "source_parent": null,
+      "sections": [
+        {
+          "id": "asc-globe-halogen",
+          "name": "Headlight Globes — Halogen",
+          "query_hints": [
+            "halogen globe",
+            "headlight globe"
+          ]
+        },
+        {
+          "id": "asc-globe-hid",
+          "name": "HID Globes, Kits & Ballasts",
+          "query_hints": [
+            "hid globe",
+            "hid kit",
+            "ballast"
+          ]
+        },
+        {
+          "id": "asc-globe-led",
+          "name": "LED Globes",
+          "query_hints": [
+            "led globe"
+          ]
+        },
+        {
+          "id": "asc-globe-fog-drl-signal",
+          "name": "Fog, DRL & Signal Globes",
+          "query_hints": [
+            "fog globe",
+            "drl globe",
+            "signal globe"
+          ]
+        },
+        {
+          "id": "asc-globe-wedge",
+          "name": "Wedge Globes",
+          "query_hints": [
+            "wedge globe"
+          ]
+        },
+        {
+          "id": "asc-globe-bayonet",
+          "name": "Bayonet Globes — Indicator, Stop & Tail",
+          "query_hints": [
+            "bayonet globe",
+            "indicator globe",
+            "stop globe",
+            "tail globe"
+          ]
+        },
+        {
+          "id": "asc-globe-festoon",
+          "name": "Festoon Globes",
+          "query_hints": [
+            "festoon globe"
+          ]
+        },
+        {
+          "id": "asc-globe-dash",
+          "name": "Dash & Instrument Panel Globes",
+          "query_hints": [
+            "dash globe",
+            "instrument panel globe"
+          ]
+        },
+        {
+          "id": "asc-globe-commercial",
+          "name": "24V & 48V Commercial Globes",
+          "query_hints": [
+            "24v globe",
+            "48v globe"
+          ]
+        },
+        {
+          "id": "asc-globe-holders",
+          "name": "Globe Holders, Harnesses & Plugs",
+          "query_hints": [
+            "globe holder",
+            "globe harness",
+            "globe plug"
+          ]
+        }
+      ]
+    },
+    {
+      "store_parent_id": "c910bc35-2f87-465e-b7c5-f6b27c133146",
+      "store_root_category": "Car Care & Accessories",
+      "source_parent": null,
+      "sections": [
+        {
+          "id": "asc-mat-toyota",
+          "name": "Carpet Mat Sets — Toyota",
+          "query_hints": [
+            "carpet mat+toyota"
+          ]
+        },
+        {
+          "id": "asc-mat-vw-audi",
+          "name": "Carpet Mat Sets — VW & Audi",
+          "query_hints": [
+            "carpet mat+vw",
+            "carpet mat+audi"
+          ]
+        },
+        {
+          "id": "asc-mat-bmw",
+          "name": "Carpet Mat Sets — BMW",
+          "query_hints": [
+            "carpet mat+bmw"
+          ]
+        },
+        {
+          "id": "asc-mat-hyundai-kia",
+          "name": "Carpet Mat Sets — Hyundai & Kia",
+          "query_hints": [
+            "carpet mat+hyundai",
+            "carpet mat+kia"
+          ]
+        },
+        {
+          "id": "asc-mat-ford-mazda",
+          "name": "Carpet Mat Sets — Ford & Mazda",
+          "query_hints": [
+            "carpet mat+ford",
+            "carpet mat+mazda"
+          ]
+        },
+        {
+          "id": "asc-mat-nissan-renault",
+          "name": "Carpet Mat Sets — Nissan & Renault",
+          "query_hints": [
+            "carpet mat+nissan",
+            "carpet mat+renault"
+          ]
+        },
+        {
+          "id": "asc-mat-gwm-haval",
+          "name": "Carpet Mat Sets — GWM & Haval",
+          "query_hints": [
+            "carpet mat+gwm",
+            "carpet mat+haval"
+          ]
+        },
+        {
+          "id": "asc-mat-chery-jetour-geely",
+          "name": "Carpet Mat Sets — Chery, Jetour & Geely",
+          "query_hints": [
+            "carpet mat+chery",
+            "carpet mat+jetour",
+            "carpet mat+geely"
+          ]
+        },
+        {
+          "id": "asc-mat-suzuki",
+          "name": "Carpet Mat Sets — Suzuki",
+          "query_hints": [
+            "carpet mat+suzuki"
+          ]
+        },
+        {
+          "id": "asc-mat-other",
+          "name": "Carpet Mat Sets — Other Makes",
+          "query_hints": [
+            "carpet mat"
+          ]
+        },
+        {
+          "id": "asc-mat-tpe",
+          "name": "TPE Moulded Mat Sets",
+          "query_hints": [
+            "tpe mat",
+            "moulded mat"
+          ]
+        },
+        {
+          "id": "asc-mat-rubber-pvc",
+          "name": "Rubber & PVC Mat Sets",
+          "query_hints": [
+            "rubber mat",
+            "pvc mat"
+          ]
+        },
+        {
+          "id": "asc-mat-universal-styling",
+          "name": "Universal & Styling Mat Sets",
+          "query_hints": [
+            "universal mat",
+            "styling mat"
+          ]
+        },
+        {
+          "id": "asc-mat-door-bin",
+          "name": "Universal, Door & Bin Mats",
+          "query_hints": [
+            "door mat",
+            "bin mat"
+          ]
+        }
+      ]
+    },
+    {
+      "store_parent_id": "asc-fuel-pumps",
+      "store_root_category": "Auto Electrical Spares",
+      "source_parent": "Fuel Pumps",
+      "sections": [
+        {
+          "id": "asc-fuel-bmw",
+          "name": "Electric Fuel Pumps — BMW",
+          "query_hints": [
+            "electric fuel pump+bmw",
+            "fuel pump+bmw"
+          ]
+        },
+        {
+          "id": "asc-fuel-vw-audi",
+          "name": "Electric Fuel Pumps — VW & Audi",
+          "query_hints": [
+            "electric fuel pump+vw",
+            "electric fuel pump+audi"
+          ]
+        },
+        {
+          "id": "asc-fuel-ford-mazda",
+          "name": "Electric Fuel Pumps — Ford & Mazda",
+          "query_hints": [
+            "electric fuel pump+ford",
+            "electric fuel pump+mazda"
+          ]
+        },
+        {
+          "id": "asc-fuel-toyota-lexus",
+          "name": "Electric Fuel Pumps — Toyota & Lexus",
+          "query_hints": [
+            "electric fuel pump+toyota",
+            "electric fuel pump+lexus"
+          ]
+        },
+        {
+          "id": "asc-fuel-nissan-datsun",
+          "name": "Electric Fuel Pumps — Nissan & Datsun",
+          "query_hints": [
+            "electric fuel pump+nissan",
+            "electric fuel pump+datsun"
+          ]
+        },
+        {
+          "id": "asc-fuel-opel-chevrolet",
+          "name": "Electric Fuel Pumps — Opel & Chevrolet",
+          "query_hints": [
+            "electric fuel pump+opel",
+            "electric fuel pump+chevrolet"
+          ]
+        },
+        {
+          "id": "asc-fuel-mercedes",
+          "name": "Electric Fuel Pumps — Mercedes-Benz",
+          "query_hints": [
+            "electric fuel pump+mercedes"
+          ]
+        },
+        {
+          "id": "asc-fuel-renault-peugeot-citroen",
+          "name": "Electric Fuel Pumps — Renault, Peugeot & Citroën",
+          "query_hints": [
+            "electric fuel pump+renault",
+            "electric fuel pump+peugeot",
+            "electric fuel pump+citroen"
+          ]
+        },
+        {
+          "id": "asc-fuel-hyundai-kia",
+          "name": "Electric Fuel Pumps — Hyundai & Kia",
+          "query_hints": [
+            "electric fuel pump+hyundai",
+            "electric fuel pump+kia"
+          ]
+        },
+        {
+          "id": "asc-fuel-fiat-alfa",
+          "name": "Electric Fuel Pumps — Fiat & Alfa Romeo",
+          "query_hints": [
+            "electric fuel pump+fiat",
+            "electric fuel pump+alfa"
+          ]
+        },
+        {
+          "id": "asc-fuel-daewoo-gm-cadillac",
+          "name": "Electric Fuel Pumps — Daewoo, GM & Cadillac",
+          "query_hints": [
+            "electric fuel pump+daewoo",
+            "electric fuel pump+gm",
+            "electric fuel pump+cadillac"
+          ]
+        },
+        {
+          "id": "asc-fuel-honda-suzuki",
+          "name": "Electric Fuel Pumps — Honda & Suzuki",
+          "query_hints": [
+            "electric fuel pump+honda",
+            "electric fuel pump+suzuki"
+          ]
+        },
+        {
+          "id": "asc-fuel-land-rover",
+          "name": "Electric Fuel Pumps — Land Rover",
+          "query_hints": [
+            "electric fuel pump+land rover"
+          ]
+        },
+        {
+          "id": "asc-fuel-universal",
+          "name": "Electric Fuel Pumps — Universal & Multi-Fit",
+          "query_hints": [
+            "electric fuel pump+universal",
+            "multi-fit fuel pump"
+          ]
+        },
+        {
+          "id": "asc-fuel-assemblies",
+          "name": "Electric Pump Assemblies with Housing — All Makes",
+          "query_hints": [
+            "electric pump assembly",
+            "fuel pump assembly"
+          ]
+        },
+        {
+          "id": "asc-fuel-mechanical",
+          "name": "Mechanical Fuel Pumps — All Makes",
+          "query_hints": [
+            "mechanical fuel pump"
+          ]
+        },
+        {
+          "id": "asc-fuel-diesel-lift",
+          "name": "Diesel Lift Pumps & Housings — All Makes",
+          "query_hints": [
+            "diesel lift pump"
+          ]
+        },
+        {
+          "id": "asc-fuel-relays",
+          "name": "Fuel Pump Relays — All Makes",
+          "query_hints": [
+            "fuel pump relay"
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Review-only source taxonomy; source-led labels and suggested parent mappings are preserved.",
+    "Fuel Pumps is a virtual preview-only parent beneath Auto Electrical Spares, not a live category.",
+    "Query hints are navigation/search hints only; never fuzzy-match or auto-move general-store products.",
+    "Only exact visually verified ASC pilot rows may appear in a corresponding source subcategory; otherwise show an empty state.",
+    "No supplier price, stock, internal SKU, or live availability is asserted.",
+    "Owner hierarchy correction 2026-11-03: Aerials → Car Audio & Entertainment; Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats and Fuel Pumps → Auto Electrical Spares. Chemicals & Lubricants → Car Care & Accessories; its source catalogue PDF is not in the six-file post-reset intake."
+  ]
+}
