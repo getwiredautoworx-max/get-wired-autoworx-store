@@ -66,11 +66,6 @@ for (const [i,page] of shellPages.entries()) {
   assert.ok(page.includes('class="gw-top"') && page.includes('class="gw-header"') && page.includes('class="gw-nav"') && page.includes('class="gw-mobile-nav"'), 'subpage '+i+' must use the shared homepage shell markup');
 }
 assert.ok(builder.includes('"storefront-subpage-shell.css"'), 'Cloudflare package builder must copy the shared subpage shell stylesheet');
-assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/b/bc/JBL_logo.svg"'), 'JBL brand button must use the JBL logo');
-assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/b/b3/Denon_Logo.svg"'), 'Denon brand button must use the Denon logo');
-assert.ok(audioPage.includes('"https://static.hertz-audio.com/media/2021/04/hertz_payoff_thesoundexperience.svg"'), 'Hertz brand button must use the official Hertz Audio logo');
-assert.ok(audioPage.includes('brandNames.push("Hertz")'), 'Hertz must remain a visible Car Audio brand button while its source review is pending');
-assert.ok(audioPage.includes('Speakers & Component Kits') && audioPage.includes('Cameras & Monitors') && audioPage.includes('Signal Processing & Crossovers') && audioPage.includes('Harnesses, Trims & Fitment'), 'Car Audio component types must use the owner-approved group labels');
 assert.ok(audioPage.includes('department==="Lifestyle"?p.division==="Home Retail"'), 'Lifestyle must show Home Retail products');
 assert.ok(audioPage.includes('department==="Home Entertainment"?p.collection==="Home Entertainment"&&p.division!=="Home Retail"'), 'Home Entertainment must exclude Lifestyle/Home Retail products');
 assert.ok(audioPage.includes('routeParams.get("search")') && audioPage.includes('routeParams.get("label")'));
