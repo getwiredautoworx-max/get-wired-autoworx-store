@@ -1231,6 +1231,6 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 
 
 ### Audio Connections official Starsound source references — 2026-11-03
-- Added seven more official Starsound references: USB230 alias product page plus official category listing references for six other models. Along with the exact USB450BTDD page, eight of 53 non-Sony records now have a manufacturer reference; 45 still have none.
+- Added seven more official Starsound references: USB230 alias product page plus official category listing references for six other models. Along with the exact USB450BTDD page, 14 of 53 non-Sony records now have a manufacturer reference (one exact Starsound page, one USB230 alias page, 11 category listings and one BlackSpider page); 39 still have none. The audio preview has five direct image URL candidates, all unapproved.
 - Only USB450BTDD has a direct official image URL candidate at present; it remains unapproved and external retrieval returned cache miss. No image was added to other rows.
 - All remain preview-only; 53 non-Sony candidate GW SKUs remain held/unassigned.
