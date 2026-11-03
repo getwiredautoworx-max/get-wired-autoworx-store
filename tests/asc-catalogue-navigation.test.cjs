@@ -117,4 +117,23 @@ if(!productsPage.includes("assets/product-placeholder.svg")||productsPage.includ
 if(!detailPage.includes("assets/products_webp/")||!detailPage.includes("assets/product-placeholder.svg")||detailPage.includes("functions/v1/product-image?sku=")) throw new Error("Product detail must use exact-SKU local WebP images with a packaged placeholder fallback");
 if(!detailPage.includes("assets/product-placeholder.svg")||detailPage.includes("assets/product-image-pending.svg")) throw new Error("Product detail must use the packaged final image fallback");
 
+
+const legacyGuard=require('../assets/legacy-catalogue-guard.js');
+const legacyFixtures=[
+ {public_sku:'GW-OLD-SEPT',specifications:{source:"September Buyer's Guide"}},
+ {public_sku:'GW-OLD-OCT',specifications:{source_file:"October Buyer's Guide.pdf"}},
+ {public_sku:'GW-1893682C',specifications:{}},
+ {public_sku:'GW-CURRENT-ASC',specifications:{source:'Approved ASC catalogue'}},
+ {public_sku:'GW-OTHER',specifications:{}}
+];
+const keptLegacyFixtureRows=legacyGuard.filter(legacyFixtures);
+if(keptLegacyFixtureRows.length!==2||keptLegacyFixtureRows.some(p=>legacyGuard.isLegacyBuyerGuideRecord(p))) throw new Error('Legacy Buyers Guide quarantine did not exclude source-tagged and source-missing legacy ASC rows');
+for(const [file,htmlText] of [['preview-store.html',html],['preview-category.html',categoryPage],['preview-products.html',productsPage],['preview-product.html',detailPage]]){
+ if(!htmlText.includes('assets/legacy-catalogue-guard.js')||!htmlText.includes('GWLegacyCatalogueGuard.filter')) throw new Error(file+' must apply the legacy Buyers Guide quarantine before product rendering');
+}
+const refreshedTree=JSON.parse(fs.readFileSync('assets/category-tree.json','utf8'));
+if(!refreshedTree.generated_at.startsWith('2026-11-03')||refreshedTree.categories.some(c=>!Number.isInteger(Number(c.direct_active_products))||Number(c.direct_active_products)<0)) throw new Error('Category counts are not refreshed/valid for the 2026-11-03 active catalogue snapshot');
+if(!builder.includes('"legacy-catalogue-guard.js"')) throw new Error('Legacy catalogue quarantine helper is missing from the isolated public package allowlist');
+console.log('LEGACY_BUYERS_GUIDE_QUARANTINE_PASS: source-tagged September/October guide rows and the audited source-missing ASC row are excluded in every product-rendering preview route.');
+
 console.log("ASC_CATALOGUE_NAVIGATION_PASS: six source families, 72 OCR pages and review-only staging verified; no unverified product rows promoted.");
