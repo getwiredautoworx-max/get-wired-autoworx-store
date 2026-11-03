@@ -39,8 +39,8 @@ for (const row of planet.records) {
 assert.equal(verified.recordCount, 68);
 assert.equal(verified.records.length, 68);
 assert.equal(new Set(verified.records.map(row => row.gwSku)).size, 68, 'curated GW candidate SKUs must be unique');
-const verifiedImageCount = verified.records.filter(row => row.imageUrl).length;
-assert.equal(verifiedImageCount, 33, 'only exact-model image candidates may be counted');
+const modelImageCandidateCount = verified.records.filter(row => row.imageUrl).length;
+assert.equal(modelImageCandidateCount, 33, 'only exact-model image candidates may be counted');
 
 assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
@@ -55,7 +55,7 @@ for (const row of audioConnections.records) {
   assert.equal(Object.hasOwn(row, 'supplierSku'), false);
 }
 
-const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length;
+const imageCount = modelImageCandidateCount + audioConnections.records.filter(row => row.imageUrl).length;
 assert.equal(imageCount, 37);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
