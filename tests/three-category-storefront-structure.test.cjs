@@ -22,6 +22,8 @@ assert.deepEqual(roots, [
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
   ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
+assert.ok(home.indexOf("categories=await snapshot();renderCats();")<home.indexOf("apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc')"), 'approved local category tree must render before remote Supabase refresh');
+assert.ok(home.includes('setTimeout(()=>controller.abort(),7000)'), 'remote category refresh must be bounded so it cannot hold category rendering');
 assert.ok(home.includes('Category API returned an incomplete active hierarchy'), 'category loader must fall back when Supabase category rows are empty or incomplete');
 assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store'})"), 'approved local category snapshot fallback must remain available');
 assert.ok(categoryCleanup.includes("const mainRootIds=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']"), 'all three approved roots must survive category cleanup without products');
