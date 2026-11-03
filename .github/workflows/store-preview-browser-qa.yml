@@ -38,7 +38,7 @@ jobs:
             if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION'))throw new Error('Owner preview warning banner missing');
             const frame=page.frameLocator('#store');
             await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:60000});
-            await frame.waitForFunction(()=>window.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
+            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
             const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
             const expected=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
             if(JSON.stringify(roots)!==JSON.stringify(expected))throw new Error('Three approved category roots mismatch: '+JSON.stringify(roots));
