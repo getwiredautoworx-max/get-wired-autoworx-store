@@ -752,3 +752,10 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Functional/browser tests, click-through tests, workflow runs, hosted deployments, merges, Supabase writes, live category/product/price/stock changes, supplier activation, payment actions, Axxess/DNS or production deployment were NOT performed. Functional testing remains deferred until owner banking details are added; production remains HOLD.
 - Implementation commits before main reconciliation: `1ee3096eebe1b9f773f58c2d030c02aaa565046a` and `68ab744309ce56b2a1af371db13dfb7806f43f7d`. Handover/readback note commit: `b3d1d79b6b5e44b3aae78c3a1cb6eeb37f20ad53`.
 - Next: verify the reconciled draft PR diff and static readback. Do not run functional tests or deploy until the owner banking-details gate is met and separate deployment approval is obtained.
+
+
+### Draft pull request opened — 2026-11-03
+- Draft PR #165: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/165
+- Branch is reconciled with latest main and reports 4 commits ahead / 0 behind at PR creation. PR remains draft/unmerged. No hosted preview was deployed.
+- The candidate is a static source integration only. The dedicated Node structural test file is present but has NOT been executed; functional/browser testing remains deferred until owner banking details are added.
+- Outstanding source item: the separate Chemicals & Lubricants catalogue PDF is not in the six-file post-reset intake and was not found in the initial Library search. The hierarchy button displays a source-pending state; no Buyer’s Guide was substituted.
