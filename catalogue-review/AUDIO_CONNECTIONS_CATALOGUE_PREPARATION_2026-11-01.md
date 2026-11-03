@@ -36,3 +36,10 @@
 - All four remain image-source candidates only. No image binary has been downloaded or approved for customer publication. Visual/load, exact model/variant and usage-permission review remains outstanding.
 - The supplier-to-GW-SKU crosswalk contains 13 collision-checked Sony GW SKU candidates in private staging only; no product insert, public SKU, supplier activation or live catalogue change occurred.
 - Sony price basis remains: dealer price ex VAT; printed RRP VAT-inclusive as owner-confirmed; review price = printed RRP × 0.98, no extra VAT multiplier. Current availability is not stated in the September 2026 PDF.
+
+
+## 2026-11-03 — OWNER PREVIEW SKU / IMAGE LINKAGE
+- The 66-row owner-review JSON now carries 13 proposed collision-checked Get Wired SKUs for the exact-model Sony candidates, matched by manufacturer model to the private staging crosswalk. These are staging candidates only; no public product rows were inserted. The other 53 Audio Connections records have no proposed GW SKU in this set and remain held.
+- Four official Sony image-source candidates (XS-160ES, XS-680ES, XS-W104ES, XM-5ES) are linked to the matching review records. None is downloaded or approved for customer publication; 62 of the 66 records have no image source and remain text-only.
+- Removed supplier-name and source-file fields from the customer-style preview JSON. The noindex Audio & Entertainment review page now displays proposed Get Wired SKUs where available, uses the four official image candidates for owner review, and renders no generic image placeholders. Records without image candidates have no image block.
+- The review page remains noindex and is not included in the public Pages build. No public category link, supplier activation, stock/price update or live product write occurred.
