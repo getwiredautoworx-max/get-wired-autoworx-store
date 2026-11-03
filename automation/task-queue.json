@@ -14,9 +14,9 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "draft_pr_open_runner_startup_failure_repeat_no_tests",
-      "description": "PR #166 is draft/open on the three-category catalogue candidate. Initial PR workflows all ended before runner steps (runner_id=0, empty step lists); no application tests or browser tests executed. No retry or deployment was started. Latest exact-head PR workflows (runs 41609523569, 41609523563, 41609523495, 41609523590, 41609523642, 41609523614, 41609523713) again failed before any runner steps (runner_id=0; zero steps); no application tests executed.",
-      "next_action": "Do not retry the same workflows. Wait for GitHub runner recovery, then one non-functional package/structural check on the then-current exact head. Keep functional/browser tests deferred until owner adds banking details. Obtain a verified non-production preview and owner acceptance; production stays HOLD.",
+      "status": "draft_pr_open_static_qa_not_executed_runner_unavailable",
+      "description": "PR #166 head e0b6131e7e07f2a9ece008d1f85fb9f43480f2a8 is open/draft, 37 commits ahead and 0 behind main. Added a static three-category structure test and expanded Pages package QA to include all seven preview routes. Automatic browser/functional QA triggers are disabled pending owner banking details. GitHub runner_id remains 0; no tests executed.",
+      "next_action": "Wait for GitHub runner availability, then run static/package QA on exact latest PR head once. Verify a noindex non-production deployment and exact SHA. Keep browser/checkout tests held until owner adds banking details; production stays HOLD.",
       "automatic": false
     },
     {
@@ -30,9 +30,9 @@
     {
       "id": "approved-supplier-catalogue-reconciliation",
       "priority": 3,
-      "status": "asc_audio_connections_planetworld_preview_data_integrated_draft_only",
+      "status": "preview_integrated_review_only_identity_image_price_availability_not_approved",
       "description": "ASC preview: six original PDFs, 75 source sections, 50 exact reviewed pilot records/images. Audio Connections: 66 review records from 68 source rows. Planetworld: 3,317 source rows, including 627 Car Audio & Video rows. All preview-only; no live imports, stock, current price or supplier activation. 13 image-source candidates remain unapproved. Lifestyle preview filters now expose vacuum and pool-cleaner records from the historical Home Entertainment workbook snapshot. Read-only DB check: 770 private REVIEW_ONLY staging rows (702 Planetworld + 68 Audio Connections), public products=0, categories=27.",
-      "next_action": "Continue exact-model/image/current-price/availability verification; reconcile the preview datasets with the private staging records. Keep all 770 private rows REVIEW_ONLY and supplier identities/dealer costs private. Do not publish until owner review and source verification.",
+      "next_action": "Reconcile exact-model identities, image rights, current supplier availability and final retail pricing. Keep 770 private staging rows REVIEW_ONLY and public products at 0 until owner approves source-quality completion and publication.",
       "automatic": false
     },
     {
