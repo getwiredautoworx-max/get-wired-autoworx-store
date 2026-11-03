@@ -952,3 +952,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Current fix commits on PR #168 draft branch: storefront c9193b4; regression test 61c1766; this handover update follows. The preview must be rebuilt from the latest commit and category tiles checked in a real browser before calling this resolved.
 - GitHub Actions remains failing before runner allocation; this blocks automated Node/Playwright runs, not the Cloudflare Pages Git integration. The last known Pages comment was still building an earlier commit; a successful deployment for this newest commit has not yet been confirmed. Do not send the owner an old immutable preview as proof of the new fix.
 - Production HOLD; no merge, production deploy, Supabase writes, live stock/pricing changes or checkout activation.
+
+
+## 2026-11-03 — CATEGORY SCRIPT PARSE-ERROR FIX
+- Further diagnosis of the current `index-new.html` found a malformed JavaScript string terminator in `catNode()`'s `c.isAudioDepartment` branch: the return string ended `</div>;}` instead of `</div>';}`. This is a whole-inline-script parse blocker, explaining why no category renderer could execute even with the local-first category snapshot.
+- Corrected the exact terminator and committed `index-new.html` as `2a5adb28497417c92dea8962b8b06883fa1b272b` on the existing PR #168 draft branch. Re-read source to confirm the replacement is present.
+- Cloudflare Pages automatically started a preview build for `2a5adb2`, deployment ID `45efd9d7-1f93-4e8a-a836-8eb23dfec70b`. Build was IN PROGRESS at handover update time. The separate Workers build failed and is not the Pages preview.
+- GitHub Actions has no workflow run associated with this commit. Do not claim the category fix is live until Pages reports success and the owner-preview route is checked in a browser. Static script syntax validation and deployed UI verification remain outstanding; do not infer success from the source edit alone.
+- PR #168 remains draft/unmerged. Production HOLD; no merge, production deployment, Supabase writes, live catalogue/price/stock changes, or checkout activation.
