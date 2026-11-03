@@ -15,6 +15,19 @@ assert.ok(starsoundUsb450 && starsoundUsb450.manufacturerPage === 'https://stars
 assert.ok(starsoundUsb450.imageUrl === 'https://starsound.co.za/wp-content/uploads/2023/12/SSUSB450BTDD-788x788.png', 'Starsound USB450BTDD must use the direct official image URL as a review candidate');
 assert.equal(starsoundUsb450.imageStatus, 'OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
 assert.equal(starsoundUsb450.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE', 'official image candidates must remain preview-only until approved');
+for (const [model,url] of [
+  ['USB230','https://starsound.co.za/product/ssusb-230btce/'],
+  ['SS7655BT','https://starsound.co.za/product-category/car-radios/?category-view-mode=list'],
+  ['DVD9900BT','https://starsound.co.za/product-category/car-radios/?category-view-mode=list'],
+  ['SS7670','https://starsound.co.za/product-category/car-radios/?category-view-mode=list'],
+  ['SSW12" 5200','https://starsound.co.za/product-category/subwoofers/'],
+  ['SSW12-6300','https://starsound.co.za/product-category/subwoofers/'],
+  ['SSW12-7300','https://starsound.co.za/product-category/subwoofers/']
+]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && (row.manufacturerPage === url || row.manufacturerListingPage === url), 'official Starsound reference for '+model);
+  assert.equal(row.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE');
+}
 assert.equal(verifiedModels.records.length, 68, 'Planetworld verified-model enrichment must retain all 68 exact source candidates');
 assert.ok(verifiedModels.records.every(p => Number(p.indicativePrice) > 0 && p.priceProposalStatus === 'REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED'), 'all 68 verified-only model cards must carry a positive review-only indicative price');
 assert.ok(audioPage.includes('indicativePrice:p.indicativePrice??null'), 'unmatched verified-only model cards must retain their source-backed indicative price');
