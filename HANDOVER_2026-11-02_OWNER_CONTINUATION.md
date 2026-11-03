@@ -806,3 +806,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - All five completed QA/audit workflows failed before runner execution: jobs reported `runner_id=0`, empty step lists and no application logs. The two remaining jobs also completed with zero steps. This is a GitHub runner startup failure; it is **not** a passing test and does not establish an application defect. No retries were started.
 - No functional browser/click-through test actually ran. No Axxess upload package was uploaded, no deployment occurred, and no production/live database/catalogue/payment change was made. Keep PR #166 draft and production HOLD.
 - Next: wait for runner availability and run one targeted non-functional package/structural verification on the latest exact head; do not rerun the Storefront Smoke Test or any functional workflow until owner banking details are added. Obtain a verified opt-in non-production preview URL and exact deployed SHA before owner phone review.
+
+
+## 2026-11-03 — LIFESTYLE FILTERS AND LIVE/STAGING COUNT RECHECK
+- Added direct preview filtering to the existing **Lifestyle → Vacuum Cleaners** and **Lifestyle → Pool Cleaners** category buttons. They open the matching Home Entertainment source records using the historical Planetworld snapshot: 21 unique vacuum-related rows and six pool-related rows (cleaners, vacuum and skimmer) after exact duplicate suppression. The main category tree remains unchanged.
+- Added structural assertions that both Lifestyle source groups exist in the Planetworld snapshot and both direct filter links are present.
+- Fresh read-only Supabase counts: `public.categories=27` (three roots plus 24 active descendants); `public.products=0`; `gw_private.catalogue_product_staging=770`. The private staging breakdown remains 702 Planetworld + 68 Audio Connections, all `REVIEW_ONLY`. No public product rows have been created. This private staging is distinct from the 3,317-row Planetworld workbook browse snapshot and 66-row Audio Connections preview subset.
+- No Supabase writes made. No tests executed, no retries, no browser/functional checks and no deployment. Keep PR #166 draft and production HOLD.
