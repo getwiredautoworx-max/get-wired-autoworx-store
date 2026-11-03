@@ -1263,3 +1263,9 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Static read-back after the latest data commits confirms 66 Audio Connections records, 12 unique image URLs and seven exact Starsound image candidates. Preview JSON commit 36a4b9b3f6cad6bb985e44a35c293dce83e76d6f; crosswalk commit 916e1f9f33e7a3702fe0027567bed66a31793102. Follow-up PR #170 comment ID 6608914070 records the four additions and specification conflicts.
 - No test run or hosted visual verification is claimed. PR #170 remains draft/unmerged. Handover append will advance its branch; verify the exact new SHA's staging build before any preview acceptance. No live catalogue, SKU assignment, price, stock, Supabase, supplier activation, production, Axxess, DNS or payment changes.
 - Next: continue exact-model image and source-description reconciliation across the remaining 46 non-Sony records; resolve four source/manufacturer specification conflicts and the 5200 alias; then complete the Planetworld Car Audio 702-row category/component mapping. Do not start ASC or Electro-city before owner acceptance of both pilots.
+
+
+### Planetworld image gap resolution notes — 2026-11-03
+- Added a direct official Focal P20 FE image URL as a review candidate; Planetworld's 68-model set now has 62 image URLs and six gaps.
+- Five Alpine product pages expose only 46×35 thumbnails, which are too small for customer product cards. JVC KW-M590BT has an official nine-image gallery, but its dealer marketing pack is subject to written distribution permission; no image used pending permission.
+- All six remaining gaps now carry explicit image-status/reason fields. No placeholders or low-resolution images were substituted.
