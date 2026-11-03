@@ -74,7 +74,7 @@ assert.ok(builder.includes('"preview-audio.html"') && builder.includes('"asc-cat
 assert.ok(builder.includes('"owner-preview.html"'), 'safe owner preview must be in the opt-in package allowlist');
 assert.ok(ownerPreview.includes('src="index-new.html"'), 'owner preview must use the current storefront shell');
 assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
-assert.ok(ownerPreview.includes('Checkout and order submission are disabled'));
+assert.ok(ownerPreview.includes('Checkout, order submission and Supabase write actions are blocked'));
 assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
 assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc_catalogues=6 planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
