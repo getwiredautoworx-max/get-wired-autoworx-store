@@ -89,4 +89,6 @@ assert(sql.includes("false,\n  true"), "Staged items must be inactive and quote-
 assert(!/INSERT\s+INTO\s+public\.products/i.test(sql), "Proposal must not create public product rows");
 assert(!/UPDATE\s+public\.products/i.test(sql), "Proposal must not update public product rows");
 assert.equal(rows.filter((r) => r.image_url_candidate).length, 84, "All 84 preview image URLs must be reconciled to the crosswalk");
+assert.equal(new Set(rows.flatMap(r => [r.image_url_candidate, r.official_image_source_url].filter(Boolean))).size, 86, "Crosswalk should retain 86 unique official image source URLs including alternatives");
+assert(rows.filter(r => r.image_url_candidate).every(r => r.image_approval_status === "REVIEW_CANDIDATE_NOT_APPROVED"), "No supplier image candidate may be treated as approved");
 console.log("SUPPLIER_GW_CROSSWALK_PASS: 770 source rows, 81 proposed + 53 held collision-checked GW SKU candidates, 86 unique image URLs, 0 product IDs, 0 publications");
