@@ -225,7 +225,9 @@
       "description": "Analogue input expansion board for compatible Audison AF bit DSP amplifiers. It adds four high-voltage analogue inputs to the amplifier's native eight, supporting input sensitivity up to 32 VRMS for integration with higher-voltage OEM systems.",
       "modelNumber": "66755157",
       "manufacturerPage": "https://audison.com/product/f4in/",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F4IN-1.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-6404BB95",
@@ -234,7 +236,9 @@
       "description": "Connection cable designed to link Audison AP5.9 bit or AP4.9 bit amplifiers to the AP4 D or AP1 D amplifier. Confirm the amplifier pairing and cable fitment before ordering.",
       "modelNumber": "66771820",
       "manufacturerPage": "https://audison.com/product/apl2/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://static.audison.com/media/2022/10/Audison_Prima_APL2.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-F2D5E7C5",
@@ -243,7 +247,9 @@
       "description": "Plug-and-play T-harness for installing compatible Audison AP bit or AF bit amplifiers in specified BMW vehicles with Hi-Fi 676 or low-level Harman/Kardon 674 systems. The harness uses the vehicle's 42-pin connector. ReAMP 1, ReAMP 2 and AFBMW ReAMP 3 have different pinouts and are not interchangeable; vehicle/system verification is essential.",
       "modelNumber": "66772201",
       "manufacturerPage": "https://audison.com/product/apbmw-reamp-1/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://static.audison.com/media/2022/10/MG_5173a-web.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-95CF26BF",
@@ -252,7 +258,9 @@
       "description": "Plug-and-play T-harness for compatible BMW and MINI vehicles without a factory amplifier. It routes the OEM front-speaker signal to an AP bit amplifier and returns amplified outputs to the front midrange speakers and under-seat subwoofer without cutting the factory wiring. Manufacturer specifies a pair of 450 cm cables; vehicle compatibility must be checked before sale.",
       "modelNumber": "66772203",
       "manufacturerPage": "https://audison.com/product/apbmw-biamp-2/",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW_BIAMP2.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-D1C8ED40",
@@ -261,7 +269,9 @@
       "description": "28 mm Tetolon-fibre dome tweeter set with a CCAW voice coil and neodymium magnet. Audison lists 180 W peak handling, 4-ohm impedance, 92 dB sensitivity and a 1.2–22 kHz frequency response. The set includes protective grilles.",
       "modelNumber": "69010020",
       "manufacturerPage": "https://audison.com/product/av-1-1/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/02/Audison_Voce_AV_1.1.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-5060536B",
@@ -270,7 +280,9 @@
       "description": "High-resolution 28 mm Tetolon-dome tweeter set from the Audison VOCE II range. The manufacturer describes a redesigned rear chamber and magnetic assembly for improved damping and lower crossover operation, with response extending up to 40 kHz. Installation faceplates and grilles are included.",
       "modelNumber": "69010021",
       "manufacturerPage": "https://audison.com/product/av-1-1-ii/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2025/01/AUDISON_AV-11-II_MESH-GRILLE_EMO_2024_10_16-copia-2-2.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-E543202D",
@@ -301,7 +313,9 @@
       "description": "165 mm (6.5-inch) 4-ohm woofer from the Audison VOCE range. Manufacturer specifications list 200 W peak / 100 W continuous handling, 91 dB sensitivity and a 50 Hz–7 kHz response. The design uses a cotton-fibre pressed-paper cone, butyl-rubber surround and CCAW voice coil.",
       "modelNumber": "69030020",
       "manufacturerPage": "https://audison.com/product/av-6-5/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/p_1315389334_AV65a_771_800.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-A93B7539",
@@ -310,7 +324,9 @@
       "description": "165 mm (6.5-inch) VOCE II mid-bass woofer rated at 150 W continuous / 300 W peak, 4 ohms and 91 dB sensitivity. Features include a 40 mm CCAW voice coil, semi-pressed pulp cone with cotton fibres, die-cast aluminium basket and both OEM-style and Faston connectors.",
       "modelNumber": "69030021",
       "manufacturerPage": "https://audison.com/product/av-6-5-p-ii/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2025/01/AUDISON_AV-65-P-II_EMO-CONO_2024_10_16-copia.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-C8678B08",
@@ -319,7 +335,9 @@
       "description": "Loaded 8-inch subwoofer enclosure with dual 4-ohm voice coils, 250 W continuous / 500 W peak handling and an 8.5-litre sealed cabinet. Audison's reversible 2S² design supports down-firing or up-firing installation; the SSP terminal block allows quick impedance configuration and disconnection.",
       "modelNumber": "69035010",
       "manufacturerPage": "https://audison.com/product/apbx-8-ds/",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APBX-8-DS_EMO-B_2022_11_28_JPG-108.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-E633A44B",
@@ -328,7 +346,9 @@
       "description": "Two-way 130 mm (5-inch) component kit comprising an AP 1 tweeter, AP 5 woofer and crossover. Audison lists 75 W continuous / 225 W peak handling at 4 ohms, with a tweeter-level adjustment and compact OEM-oriented installation components.",
       "modelNumber": "69051040",
       "manufacturerPage": "https://audison.com/product/apk-130/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-130_2022_12_13_JPG-55.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-D305752A",
