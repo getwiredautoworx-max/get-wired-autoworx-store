@@ -53,6 +53,11 @@ const planetworldRows = rows.filter((r) => r.supplier.includes("Planetworld"));
 const audioRows = rows.filter((r) => r.supplier === "Audio Connections");
 assert.equal(planetworldRows.length, 702);
 assert.equal(audioRows.length, 68);
+const audioManufacturerRefs = audioRows.filter(r => r.official_manufacturer_page || r.official_manufacturer_listing);
+assert.equal(audioManufacturerRefs.length, 27, "Expected 27 official manufacturer product/listing references across Audio Connections");
+assert.equal(audioManufacturerRefs.filter(r => r.brand !== "Sony").length, 14, "Expected 14 non-Sony official references");
+assert.equal(audioRows.filter(r => r.image_url_candidate).length, 5, "Only five direct image URLs are currently review candidates");
+assert(audioManufacturerRefs.filter(r => r.brand !== "Sony").every(r => !r.proposed_gw_public_sku && r.gw_sku_status === "NOT_ASSIGNED_HOLD"), "Manufacturer references do not automatically approve or assign non-Sony GW SKUs");
 for (const model of ["USB230","SS7655BT","DVD9900BT","SS7670",'SSW12" 5200',"SSW12-6300","SSW12-7300"]) {
   const row = audioRows.find(r => r.supplier_sku === model);
   assert(row && (row.official_manufacturer_page || row.official_manufacturer_listing), "Official Starsound reference required for " + model);
