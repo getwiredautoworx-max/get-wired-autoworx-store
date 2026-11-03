@@ -69,6 +69,7 @@ assert.ok(builder.includes('"storefront-subpage-shell.css"'), 'Cloudflare packag
 assert.ok(audioPage.includes('department==="Lifestyle"?p.division==="Home Retail"'), 'Lifestyle must show Home Retail products');
 assert.ok(audioPage.includes('department==="Home Entertainment"?p.collection==="Home Entertainment"&&p.division!=="Home Retail"'), 'Home Entertainment must exclude Lifestyle/Home Retail products');
 assert.ok(audioPage.includes('routeParams.get("search")') && audioPage.includes('routeParams.get("label")'));
+assert.ok(audioPage.includes('department=requestedDepartment;brand="All brands";component="All product types"'), 'direct audio subcategory links must initialise brand and component filters to show matching products');
 assert.ok(audioPage.includes('routeParams.get("department")'));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(ascPage));
