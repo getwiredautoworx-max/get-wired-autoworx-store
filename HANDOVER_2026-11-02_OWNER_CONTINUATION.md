@@ -838,3 +838,13 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - These manufacturer images are review candidates only. They are not promoted into the public production catalogue and require the owner's image/publication approval. Exact model numbers and manufacturer-page links remain attached to each record.
 - Static structural test now asserts the 68 model-reference count, 17 image count and eight new exact-model image mappings. This test has not executed because GitHub hosted runners remain unavailable (runner_id=0).
 - Main branch remains without the preview-only `planetworld-verified-models-preview.json` file; image enrichment is isolated on the integration branch.
+
+
+## 2026-11-03 — EXACT-HEAD RECONCILIATION AND PREVIEW DEPLOYMENT RETRY
+- Reconciled the integration branch with current main after the main-tree restoration commits; PR #166 now compares **51 commits ahead / 0 behind**. The candidate tree retains the preview-only verified-model image dataset; main was verified not to contain that preview-only file.
+- Isolated Cloudflare Pages preview workflow `.github/workflows/publish-approved-storefront-preview.yml` previously checked out `main` even when the trigger branch was pushed. Corrected the dedicated `approved-storefront-preview-trigger` branch workflow to check out `github.sha`, so the intended Pages preview would build the candidate source, not stale main.
+- Triggered isolated Pages preview run `41611368443` and retried its failed job once. Both attempts failed before runner assignment (runner ID 0 / no runner name / no steps). Wrangler did not execute; **no new preview deployment was created**. The previously published preview alias from 2 November is stale and must not be represented as the current candidate.
+- Latest exact PR-head Cloudflare package QA run `41612392059` also failed before executing any step. Structural tests and public SKU audit remain unexecuted; no pass is claimed.
+- GitHub Actions billing/quota details are not exposed through the connected repository API, so the precise account-side cause of zero runner assignment is not confirmed. Do not assume it is an application failure or repeat retries without evidence of runner recovery.
+- Current catalogue image review set: 68 exact-model manufacturer records, 17 image URLs (eight newly matched official Audison product images), 51 still without verified images. All new images remain review-only.
+- No production deployment, Supabase write, live product import, stock/price update, payment activation, Axxess upload or DNS change. Public products remain 0; private staging remains 770 REVIEW_ONLY; category count remains 27.
