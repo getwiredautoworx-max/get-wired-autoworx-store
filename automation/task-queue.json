@@ -46,17 +46,17 @@
     {
       "id": "audio-connections-model-sku-image-review",
       "priority": 5,
-      "status": "in_progress_private_review_only",
-      "description": "Audio Connections authorization is owner-confirmed. 68 supplier rows remain private/inactive/quote-on-request; three Sony Mobile ES official image URLs are staged with permission pending; 15 Sony provenance rows are recorded.",
-      "next_action": "Continue exact model/variant/manufacturer-image checks, private GW-SKU mapping, image permission, current dealer cost/VAT and availability review. Do not activate, link to public products or expose supplier names.",
+      "status": "private_crosswalk_corrected_13_sony_gw_candidates_images_pending",
+      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have collision-checked GW SKU candidates staged privately (not inserted); 55 other rows do not have candidate GW SKUs in this staging set. Three official Sony image-source URLs are captured but none is approved. The owner-confirmed dealer connection remains inactive pending separate activation approval.",
+      "next_action": "Complete exact model/variant image checks and permission review for the three Sony URLs; obtain high-resolution exact images and current dealer price/availability confirmation. Keep all rows private and unpublished; do not re-request dealer authorization or activate the supplier.",
       "automatic": true
     },
     {
       "id": "category-review-198-rows",
       "priority": 6,
       "status": "pending_visual_source_page_review",
-      "description": "198 category-review rows have exact-SKU OCR matches (193 one-page, 5 multiple-page); OCR is triage, not visual approval. Eleven keyword suggestions were suppressed where source headings supported the current leaf.",
-      "next_action": "Visually inspect original source PDF pages and headings for the 198 rows; preserve the eight approved roots and source taxonomy. Never auto-move a product.",
+      "description": "Static source audit confirms the homepage and category-page map use exactly the eight approved roots; 4X4 OUTDOOR remains a child of Camping / Leisure / Outdoors (16 direct active products in the 29-Oct snapshot). The 198 historical OCR candidate rows still require source-page review; no automatic category moves.",
+      "next_action": "Continue non-functional source/category reconciliation using exact source-page evidence. Do not run functional navigation tests until last, after owner adds banking details.",
       "automatic": false
     },
     {
