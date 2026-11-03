@@ -1180,3 +1180,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Code commit for `preview-audio.html`: `efdabde63abf98d15a62800e5a715a9b292eef98`. Regression test commit: `24f5dd9d170bd80f3d3d622cf374e82abcbbe195` (current branch head before this handover append).
 - **Verification status:** code and regression assertions are committed on PR #168's working branch only. The regression test has not yet been executed, and a successful Cloudflare Pages deployment for this exact updated head has not yet been confirmed. Do not claim the issue is fully resolved until the exact-head staging build passes and the owner-facing preview is inspected.
 - PR #168 remains draft and unmerged; PR #169 remains excluded. Production remains HOLD. No live database, stock, price, payment, DNS, Axxess or production changes were made.
+
+
+### Audio navigation implementation refinement — 2026-11-03
+- Follow-up code commit `5e0719a7c0d394575bdde40f15882a5dfe80e12f` ensures product text is checked for harness/trim/fitment indicators before any category-like component label is suppressed. This prevents a row whose component field is accidentally set to “Car Audio & Video” from hiding a harness/trim item whose title or description identifies it as an installation accessory.
+- Read-only catalogue audit at this head: 3,317 Planetworld records and 66 Audio Connections review records; 219 Car Audio division rows currently match the broadened harness/trim/fitment grouping across title/component/collection/model/description fields. This is a preview filter only; no catalogue rows or live classifications were changed.
+- The structural test file contains the new regression assertions, read back at blob `64183fd5b05f5219d8ffaaebf4ac4c812172ea45`. Static code/data checks performed in this session confirm the new department label, duplicate-category suppression and harness/trim classifier are present. The Node test suite has not yet executed.
+- Cloudflare Pages reported the exact code head `5e0719a` as **Build in progress** (deployment record `81d5e7b3-44b4-4662-9715-c751afc62221`) when checked. The handover append will advance the branch again and trigger a new exact-head staging build; check the newest commit's build before declaring resolved.
+- No production or live-data changes; PR #168 remains draft/unmerged, PR #169 excluded, production HOLD.
