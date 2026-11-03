@@ -12,6 +12,8 @@ const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json')
 const audioPage = read('preview-audio.html');
 const ascPage = read('asc-catalogue-preview.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
+const ownerPreview = read('owner-preview.html');
+const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
 assert.deepEqual(roots, [
@@ -64,4 +66,11 @@ for (const obj of [planet,audio]) {
 }
 assert.ok(!/Planetworld|Audio Connections/i.test(audioPage));
 assert.ok(builder.includes('"preview-audio.html"') && builder.includes('"asc-catalogue-preview.html"'));
-console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc_catalogues=6 planetworld_rows=3317 audio_connections_rows=66');
+
+assert.ok(builder.includes('"owner-preview.html"'), 'safe owner preview must be in the opt-in package allowlist');
+assert.ok(ownerPreview.includes('src="index-new.html"'), 'owner preview must use the current storefront shell');
+assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
+assert.ok(ownerPreview.includes('Checkout and order submission are disabled'));
+assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
+assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
+console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc_catalogues=6 planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
