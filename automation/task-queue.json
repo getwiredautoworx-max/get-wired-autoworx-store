@@ -38,17 +38,17 @@
     {
       "id": "planetworld-current-audit-and-price-verification",
       "priority": 4,
-      "status": "blocked_owner_audit_dispatch_and_supplier_confirmation",
-      "description": "Current-main read-only Planetworld audit has not been freshly run. Historical 25-Oct audit flags 18 distinct positive-RRP cost-floor rows at RRP−1%, 19 at RRP−2% (90011904 is 2%-only), plus 19 zero-RRP owner-hold rows.",
-      "next_action": "Owner runs Planetworld Workbook Audit (Read Only) on main once through Actions; then inspect the resulting run/job summary. Obtain current supplier price, VAT, stock and effective-date confirmation before proposing changes.",
+      "status": "private_image_crosswalk_expanded_review_page_sanitized_current_audit_pending",
+      "description": "Private Planetworld/Audio image crosswalk now records 14 distinct official manufacturer image-source URLs (10 Planetworld, 4 Sony); zero images are downloaded/approved. The 68-model Car Audio review page has supplier identity, supplier SKU label, stale stock quantities, unapproved price proposals and generic image placeholders removed. The 25-Oct workbook remains historical only.",
+      "next_action": "Continue exact model/variant visual and usage-permission review of the 14 image URLs; obtain current Planetworld workbook/stock and price effective-date confirmation. Owner still needs to run the read-only Planetworld Workbook Audit from Actions on main; do not use 25-Oct stock as current or publish proposal prices.",
       "automatic": false
     },
     {
       "id": "audio-connections-model-sku-image-review",
       "priority": 5,
       "status": "private_crosswalk_corrected_13_sony_gw_candidates_images_pending",
-      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have collision-checked GW SKU candidates staged privately (not inserted); 55 other rows lack candidate GW SKUs in this staging set. Three official Sony image-source URLs are captured but none is approved. Dealer authorization is owner-confirmed; supplier activation remains intentionally off.",
-      "next_action": "Complete exact model/variant image checks and permission review for the three Sony URLs; seek high-resolution exact images and current dealer price/availability evidence. Do not re-request authorization or activate the supplier.",
+      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have collision-checked GW SKU candidates staged privately (not inserted); 55 other rows do not have candidate GW SKUs in this staging set. Four official Sony image-source URLs are captured but none is approved. The owner-confirmed dealer connection remains inactive pending separate activation approval.",
+      "next_action": "Complete visual/load, exact model/variant and usage-permission review for the four official Sony image URLs; obtain high-resolution exact images and current dealer price/availability confirmation. Keep all rows private and unpublished; do not re-request dealer authorization or activate the supplier.",
       "automatic": true
     },
     {
