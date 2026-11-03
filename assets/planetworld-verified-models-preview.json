@@ -267,7 +267,9 @@
       "description": "70 mm (3-inch) 4-ohm midrange driver with a neodymium motor. Audison lists 100 W peak / 50 W continuous handling, 93 dB sensitivity and a 200 Hz–14 kHz response. The compact driver includes a protective grille.",
       "modelNumber": "69020020",
       "manufacturerPage": "https://audison.com/product/av-3-0/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/06/p_1315389333_AV30b.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-76BF5AEA",
@@ -276,7 +278,9 @@
       "description": "70 mm VOCE II midrange driver with a semi-pressed paper and cotton-fibre cone, neodymium motor and die-cast aluminium basket. Audison lists 100 W peak / 50 W continuous handling, 90 dB sensitivity and a 160 Hz–13 kHz response, with OEM-style and Faston connection options.",
       "modelNumber": "69020021",
       "manufacturerPage": "https://audison.com/product/av-3-0-ii/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2025/02/AUDISON_AV-30-II-AVG-30_EMO_2024_10_22-copia.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-BAB87976",
