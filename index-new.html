@@ -1259,7 +1259,7 @@ function homeChildren(id){
  const out=children(id);
  /* ASC_PREVIEW_NAV_START */
  if(id==='6cc56033-b0a9-4f25-b207-aeeb341a1c47')out.push(ascCatalogueNode('gw-asc-sensors','Automotive Sensors','Auto Electrical Spares'),ascCatalogueNode('gw-asc-switches','Automotive Switches','Auto Electrical Spares'),ascCatalogueNode('gw-asc-globes','Automotive Globes','Auto Electrical Spares'),ascCatalogueNode('gw-asc-fuel-pumps','Fuel Pumps','Auto Electrical Spares'));
- if(id==='5ab55c53-eee3-41ce-ad48-04ad6df85181')out.push(ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio & Entertainment'));
+ if(id==='5ab55c53-eee3-41ce-ad48-04ad6df85181')out.push(ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio & Entertainment'),{id:'gw-audio-catalogues',name:'Browse All Audio Catalogues',isAudioCatalogue:true});
  if(id==='87982093-7d81-4f2e-a8e2-e20cdeef30d8'){for(let i=out.length-1;i>=0;i--)if(out[i].id==='c910bc35-2f87-465e-b7c5-f6b27c133146')out.splice(i,1);out.push({id:'gw-car-care-accessories',name:'Car Care & Accessories',isAscFolder:true});}
  if(id==='gw-car-care-accessories'){const mats=categories.find(c=>c.id==='c910bc35-2f87-465e-b7c5-f6b27c133146'&&c.active);if(mats)out.push(mats);out.push(ascCatalogueNode('gw-asc-mats','Car Mats','Car Care & Accessories'),ascCatalogueNode('gw-asc-chemicals-lubricants','Chemicals & Lubricants','Car Care & Accessories'));}
  /* ASC_PREVIEW_NAV_END */
@@ -1291,6 +1291,7 @@ function homeChildren(id){
 }
 function catNode(c){
  const label=HOME_CATEGORY_LABELS[c.id]||c.name;
+ if(c.isAudioCatalogue){return '<div class="catWrap ascCatalogueWrap"><a class="catBtn ascCatalogueLink" href="preview-audio.html">'+categoryArt(c)+'<span class="catContent"><b>'+esc(label)+'</b><small>Browse departments, brands and product types</small><i>OPEN AUDIO CATALOGUE →</i></span></a></div>';}
  if(c.isAscCatalogue){const href='asc-catalogue-preview.html?root='+encodeURIComponent(c.ascRoot)+'&catalogue='+encodeURIComponent(c.ascCatalogue);return '<div class="catWrap ascCatalogueWrap"><a class="catBtn ascCatalogueLink" href="'+href+'">'+categoryArt(c)+'<span class="catContent"><b>'+esc(label)+'</b><small>Browse original catalogue sections</small><i>OPEN CATALOGUE →</i></span></a></div>';}
  const kids=homeChildren(c.id),n=c.isAscFolder?0:categoryProductCount(c.id);
  if(c.isAscFolder)return '<div class="catWrap ascFolderWrap"><button class="catBtn ascFolderBtn" type="button" aria-expanded="false">'+categoryArt(c)+'<span class="catContent"><b>'+esc(label)+'</b><small>Browse care categories</small><i>VIEW SUBCATEGORIES →</i></span></button><div class="children">'+kids.map(catNode).join('')+'</div></div>';
