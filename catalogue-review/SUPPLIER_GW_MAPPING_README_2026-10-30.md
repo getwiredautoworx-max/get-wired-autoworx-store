@@ -86,5 +86,5 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 
 
 ### Audio Connections manufacturer references — 2026-11-03
-- Added seven official Starsound source references (one alias product page and six category listings) plus the exact SSUSB-450BTDD product page. Eight of 53 non-Sony rows now have a manufacturer reference; 45 remain unmatched.
-- Only SSUSB-450BTDD has a direct official image URL candidate, not yet approved; no generic images added. All remain preview-only and all 53 non-Sony GW candidates remain held.
+- Added seven official Starsound source references (one alias product page and six category listings) plus the exact SSUSB-450BTDD product page. Fourteen of 53 non-Sony rows now have a manufacturer reference (one exact Starsound product page, one alias product-page reference, 11 category listings and one BlackSpider product page); 39 remain without a manufacturer reference.
+- The preview has five direct image URL candidates (four Sony and one SSUSB-450BTDD), none approved; the crosswalk records seven official image-source URLs overall (four Alpine, two Sony, one Starsound). No generic images added. All remain preview-only and all 53 non-Sony GW candidates remain held.
