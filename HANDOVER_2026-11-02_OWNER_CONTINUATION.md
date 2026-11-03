@@ -800,3 +800,24 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - GitHub Actions checks on the same commit failed before any steps executed: API job records show runner_id=0 and empty steps. Do not mislabel these as code-level test failures or passing checks. The committed structural test is still unexecuted; functional/browser tests remain deferred by owner instruction.
 - Current deployment is a branch preview only. No merge into main, production deployment, live database/product/category/price/stock changes or supplier activation occurred.
 - Next: owner can review the non-production branch preview. Continue non-browser static review in parallel if no owner input is needed. Only merge into the preview/main branch after explicit owner acceptance; production remains separately HOLD.
+
+
+## 2026-11-03 OWNER CORRECTION — FULL ASC SOURCE CATALOGUES ADDED TO PREVIEW PACKAGE
+
+- Owner correctly objected that the ASC storefront presentation exposed only a 50-record pilot and did not provide the complete original catalogues. The six original post-reset PDFs existed under suppliers/ASC/, but the Cloudflare Pages allowlist deliberately excluded the supplier directory and the preview builder had not copied those PDFs into the preview package. This was the concrete cause of the incomplete customer-facing catalogue experience.
+- Corrected the preview data so each of the six catalogue buttons carries an explicit original-PDF target:
+  - Aerials → assets/asc-catalogue-source/ASC-Aerials.pdf under **Car Audio & Entertainment**.
+  - Automotive Sensors → assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf under **Auto Electrical Spares**.
+  - Automotive Switches → assets/asc-catalogue-source/ASC-Automotive-Switches.pdf under **Auto Electrical Spares**.
+  - Automotive Globes → assets/asc-catalogue-source/ASC-Automotive-Globes.pdf under **Auto Electrical Spares**.
+  - Fuel Pumps → assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf under **Auto Electrical Spares**.
+  - Car Mats → assets/asc-catalogue-source/ASC-Car-Mats.pdf under **Automotive Accessories → Car Care & Accessories**.
+- The ASC catalogue page now exposes a clearly labelled **View complete original [catalogue] catalogue (PDF)** link alongside the original contents-page section buttons. Existing visually reviewed pilot products remain beneath their matching source headings; empty headings are not filled with guessed products.
+- Updated scripts/build-cloudflare-pages-public.py: copies all six original PDFs to assets/asc-catalogue-source/ only when GW_INCLUDE_PREVIEW_ROUTES=1; validates exactly six PDFs; allows only those six explicitly allowlisted PDFs in that preview package. Standard public package continues to exclude the ASC route and PDF assets. Source originals remain unchanged under suppliers/ASC/.
+- Updated tests/asc-catalogue-preview.test.cjs to assert each original supplier PDF exists, each catalogue maps to its exact preview PDF, and each copied PDF exists in pages-public/ after the preview build.
+- Updated .github/workflows/cloudflare-public-pages-build-qa.yml to include the ASC route in the preview build checks, assert all six PDFs exist in the opt-in package, assert the standard package excludes the PDF folder, and run the structural test after preview build.
+- Updated suppliers/ASC/README.md with the corrected delivery behavior and safety boundary.
+- Commits on integration/asc-catalogue-hierarchy-2026-11-03: data mapping 70f45ccb6dc6975354d314bb992ff7d57bac4a3d; builder correction a7e473c7e4afa5e32789071e58f80788960999a0; catalogue PDF link b1ae95f885dac20f9253baa8027f4e0c5920a57c; structural test 3dedf38a7a0bbaa04549f39f9d78768cc42452ec; package workflow 63f0a7286bad9ce3e7a3bee260f818e26dc552b5; README 39f3035d3441fe1c89df29cd6cfba170a1e572a2.
+- Latest branch commit at the time of this handover entry is the handover update commit itself; verify the branch head before further integration. Do not merge or deploy production.
+- Verification status: GitHub Actions runs triggered for an earlier head returned failure with runner/job metadata missing (runner unavailable; jobs had no steps). This is infrastructure startup failure, not evidence the new code/test failed. The corrected workflow has not yet produced a successful execution. No new hosted deployment of the corrected commit or browser/phone verification is confirmed.
+- Remaining: obtain a successful exact-head Cloudflare Pages Public Package QA run (standard exclusion + opt-in full six-PDF package + Node structural test); then deploy only the non-production Pages preview if the branch workflow does so automatically and verify the deployed SHA and all six PDF links. Keep functional checkout testing deferred until owner adds bank details. Production remains HOLD; no Supabase writes, live product/stock/price/category changes, supplier activation, DNS or production deployment were performed by this correction.
