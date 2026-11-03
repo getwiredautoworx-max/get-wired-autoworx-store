@@ -9,10 +9,10 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_EXT = {'.html', '.js', '.css', '.json'}
 PATTERNS = [
-    (re.compile(r'\\bp\\.sku\\b|\\bx\\.sku\\b'), 'runtime legacy SKU property'),
-    (re.compile(r'select=[^\\n\\r"\\']*\\bsku\\b'), 'REST select of legacy sku'),
-    (re.compile(r'\\bsupplier_sku\\b', re.I), 'supplier_sku identifier'),
-    (re.compile(r'accessoriesspares\\.co\\.za', re.I), 'supplier website reference'),
+    (re.compile(r'\bp\.sku\b|\bx\.sku\b'), 'runtime legacy SKU property'),
+    (re.compile(r"select=[^\n\r\"']*\bsku\b"), 'REST select of legacy sku'),
+    (re.compile(r'\bsupplier_sku\b', re.I), 'supplier_sku identifier'),
+    (re.compile(r'accessoriesspares\.co\.za', re.I), 'supplier website reference'),
 ]
 
 def audit_package(label: str, include_preview: bool) -> list[str]:
@@ -34,7 +34,7 @@ def audit_package(label: str, include_preview: bool) -> list[str]:
             continue
         for pattern, description in PATTERNS:
             for match in pattern.finditer(source):
-                line = source.count('\\n', 0, match.start()) + 1
+                line = source.count('\n', 0, match.start()) + 1
                 relative = path.relative_to(package).as_posix()
                 violations.append(f'{label}/{relative}:{line}: {description}')
     return violations
@@ -45,7 +45,7 @@ os.environ.pop('GW_INCLUDE_PREVIEW_ROUTES', None)
 
 if violations:
     print('PUBLIC SKU EXPOSURE AUDIT: FAILED')
-    print('\\n'.join(violations[:100]))
+    print('\n'.join(violations[:100]))
     sys.exit(1)
 print('PUBLIC SKU EXPOSURE AUDIT: PASSED')
 print('Standard and non-production preview Pages packages contain no private supplier SKU identifiers.')
