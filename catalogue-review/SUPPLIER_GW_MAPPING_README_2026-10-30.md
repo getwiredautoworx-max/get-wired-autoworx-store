@@ -86,7 +86,7 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 
 
 ### Audio Connections manufacturer references — 2026-11-03
-- Added seven official Starsound source references (one alias product page and six category listings) plus the exact SSUSB-450BTDD product page. Twenty-eight of 53 non-Sony rows now have a manufacturer reference; 25 remain without a manufacturer reference. The retained Audio Connections preview has 41 manufacturer references, and the supplier crosswalk has 42 source-row references including one source-only excluded row.
+- Added seven official Starsound source references (one alias product page and six category listings) plus the exact SSUSB-450BTDD product page. Thirty-five of 53 non-Sony rows now have a manufacturer reference; 18 remain without a manufacturer reference. The retained Audio Connections preview has 48 manufacturer references, and the supplier crosswalk has 49 source-row references including one source-only excluded row.
 - The Audio Connections preview has 22 direct image URL candidates (17 exact-model Starsound, four Sony and one SSUSB-450BTDD), none approved. Across both suppliers the preview has 84 image URL candidates and the crosswalk retains 86 distinct official image URLs including alternate sources. No generic images added. All remain preview-only and all 53 non-Sony GW candidates remain held.
 
 
