@@ -368,15 +368,15 @@
       "hasStock": false,
       "modelNumber": "USB450BTDD",
       "description": "Starsound USB450BTDD",
-      "manufacturerPage": "",
-      "imageUrl": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssusb-450btdd/",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2023/12/SSUSB450BTDD-788x788.png",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "id": "ac-017",
