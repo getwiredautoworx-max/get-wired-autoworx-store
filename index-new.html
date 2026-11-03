@@ -1258,10 +1258,10 @@ body{background:radial-gradient(circle at 50% -10%,#e5f1f9 0,#f7f9fc 42%,#eef3f8
 function homeChildren(id){
  const out=children(id);
  /* ASC_PREVIEW_NAV_START */
- if(id==='6cc56033-b0a9-4f25-b207-aeeb341a1c47')out.push(ascCatalogueNode('gw-asc-sensors','Automotive Sensors','Auto Electrical Spares'),ascCatalogueNode('gw-asc-switches','Automotive Switches','Auto Electrical Spares'),ascCatalogueNode('gw-asc-globes','Automotive Globes','Auto Electrical Spares'),ascCatalogueNode('gw-asc-mats','Car Mats','Auto Electrical Spares'),ascCatalogueNode('gw-asc-fuel-pumps','Fuel Pumps','Auto Electrical Spares'));
+ if(id==='6cc56033-b0a9-4f25-b207-aeeb341a1c47')out.push(ascCatalogueNode('gw-asc-sensors','Automotive Sensors','Auto Electrical Spares'),ascCatalogueNode('gw-asc-switches','Automotive Switches','Auto Electrical Spares'),ascCatalogueNode('gw-asc-globes','Automotive Globes','Auto Electrical Spares'),ascCatalogueNode('gw-asc-fuel-pumps','Fuel Pumps','Auto Electrical Spares'));
  if(id==='5ab55c53-eee3-41ce-ad48-04ad6df85181')out.push(ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio & Entertainment'));
- if(id==='87982093-7d81-4f2e-a8e2-e20cdeef30d8')out.push({id:'gw-car-care-accessories',name:'Car Care & Accessories',isAscFolder:true});
- if(id==='gw-car-care-accessories')out.push(ascCatalogueNode('gw-asc-chemicals-lubricants','Chemicals & Lubricants','Car Care & Accessories'));
+ if(id==='87982093-7d81-4f2e-a8e2-e20cdeef30d8'){for(let i=out.length-1;i>=0;i--)if(out[i].id==='c910bc35-2f87-465e-b7c5-f6b27c133146')out.splice(i,1);out.push({id:'gw-car-care-accessories',name:'Car Care & Accessories',isAscFolder:true});}
+ if(id==='gw-car-care-accessories'){const mats=categories.find(c=>c.id==='c910bc35-2f87-465e-b7c5-f6b27c133146'&&c.active);if(mats)out.push(mats);out.push(ascCatalogueNode('gw-asc-mats','Car Mats','Car Care & Accessories'),ascCatalogueNode('gw-asc-chemicals-lubricants','Chemicals & Lubricants','Car Care & Accessories'));}
  /* ASC_PREVIEW_NAV_END */
  if(id==='af2f8625-4f42-45e6-9f21-d571d7415893'){const four=categories.find(c=>c.id==='182423ec-ea46-43e4-bbe3-b8857b5a1583'&&c.active);if(four&&!out.some(c=>c.id===four.id))out.push(four)}
  return out;
