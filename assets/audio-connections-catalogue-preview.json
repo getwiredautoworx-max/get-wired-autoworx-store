@@ -347,14 +347,14 @@
       "hasStock": false,
       "modelNumber": "USB230",
       "description": "Starsound USB230 EXT MIC",
-      "manufacturerPage": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssusb-230btce/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
+      "brandNote": "Official product page identifies SSUSB-230BTCE; supplier source uses USB230 EXT MIC. Alias/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
     },
     {
@@ -396,8 +396,9 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "brandNote": "Official Starsound car-radio listing includes SSMP5-7655BT; source alias and exact variant review remain open.",
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list"
     },
     {
       "id": "ac-018",
@@ -417,8 +418,9 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "brandNote": "Official Starsound car-radio listing includes SSDVD-9900BT; exact image/variant review remains open.",
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list"
     },
     {
       "id": "ac-019",
@@ -438,8 +440,9 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "brandNote": "Official Starsound car-radio listing includes SSMP5-7670BTAC; source alias and exact variant review remain open.",
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list"
     },
     {
       "id": "ac-020",
@@ -459,8 +462,9 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "brandNote": "Official Starsound subwoofer listing includes SSW-12W-5200; source alias/variant review remains open.",
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/"
     },
     {
       "id": "ac-021",
@@ -480,7 +484,7 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
+      "brandNote": "Official Starsound subwoofer listing includes SSW-12-6300; source alias/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-6300",
@@ -504,7 +508,7 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
+      "brandNote": "Official Starsound subwoofer listing includes SSW-12-7300; source alias/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-7300",
