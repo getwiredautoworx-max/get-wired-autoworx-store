@@ -15,9 +15,9 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html", "asc-catalogue-preview.html",
+    "preview-product.html", "preview-planetworld.html", "asc-catalogue-preview.html", "audio-connections-preview.html",
 ]
-PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json"]
+PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json", "audio-connections-sony-mobile-es-review.json", "audio-connections-sony-mobile-es-sprite.webp"]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",

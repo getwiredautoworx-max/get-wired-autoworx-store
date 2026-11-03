@@ -1,0 +1,18 @@
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const data=JSON.parse(fs.readFileSync('assets/audio-connections-sony-mobile-es-review.json','utf8'));
+const html=fs.readFileSync('audio-connections-preview.html','utf8');
+assert.equal(data.products.length,15,'all 15 source price-list lines must be represented');
+assert.equal(new Set(data.products.map(p=>p.model)).size,15,'model references must be unique');
+assert.equal(new Set(data.products.map(p=>p.image_cell)).size,15,'each product must have its own sprite cell');
+assert.equal(data.sprite.columns,3);
+assert.equal(data.sprite.rows,5);
+assert.ok(fs.existsSync(data.sprite.path),'source image sprite must exist');
+assert.ok(data.products.every(p=>p.preview_only&&p.gw_sku===null&&p.price===null&&p.stock===null),'all records must remain review-only and price/stock-free');
+assert.ok(data.products.some(p=>p.model==='XS-690ES'&&p.status==='SOLD OUT IN SOURCE PRICE LIST'),'sold-out source line must remain labelled sold out');
+assert.ok(html.includes('noindex,nofollow'));
+assert.ok(html.includes('OWNER REVIEW ONLY'));
+assert.ok(!html.toLowerCase().includes('add to cart')&&!html.toLowerCase().includes('checkout'));
+assert.ok(!html.includes('Audio Connections'),'supplier name must not appear in the review page');
+assert.ok(!JSON.stringify(data).toLowerCase().includes('dealer_price')&&!JSON.stringify(data).toLowerCase().includes('rrp'));
+console.log('AUDIO_CONNECTIONS_SONY_MOBILE_ES_PREVIEW_PASS');

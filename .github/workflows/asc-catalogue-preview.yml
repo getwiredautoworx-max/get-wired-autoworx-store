@@ -7,9 +7,13 @@ on:
       - 'preview-products.html'
       - 'preview-product.html'
       - 'asc-catalogue-preview.html'
+      - 'audio-connections-preview.html'
       - 'assets/asc-catalogue-preview-data.json'
+      - 'assets/audio-connections-sony-mobile-es-review.json'
+      - 'assets/audio-connections-sony-mobile-es-sprite.webp'
       - 'assets/asc-catalogue-pilot/**'
       - 'tests/asc-catalogue-preview.test.cjs'
+      - 'tests/audio-connections-preview.test.cjs'
       - 'tests/legacy-asc-buyer-guide-guard.test.cjs'
       - 'tests/test_preview_catalogue_gate.py'
       - 'tests/asc-catalogue-taxonomy-review.test.cjs'
@@ -20,9 +24,13 @@ on:
     branches: [main]
     paths:
       - 'asc-catalogue-preview.html'
+      - 'audio-connections-preview.html'
       - 'assets/asc-catalogue-preview-data.json'
+      - 'assets/audio-connections-sony-mobile-es-review.json'
+      - 'assets/audio-connections-sony-mobile-es-sprite.webp'
       - 'assets/asc-catalogue-pilot/**'
       - 'tests/asc-catalogue-preview.test.cjs'
+      - 'tests/audio-connections-preview.test.cjs'
       - 'tests/asc-catalogue-taxonomy-review.test.cjs'
       - 'catalogue-review/asc-catalogue-extraction/**'
       - 'suppliers/ASC/README.md'
@@ -48,6 +56,7 @@ jobs:
         run: |
           set -euo pipefail
           node tests/asc-catalogue-preview.test.cjs
+          node tests/audio-connections-preview.test.cjs
           node tests/asc-catalogue-taxonomy-review.test.cjs
           node tests/legacy-asc-buyer-guide-guard.test.cjs
           python3 tests/test_preview_catalogue_gate.py
@@ -86,6 +95,15 @@ jobs:
                 return await Promise.all(d.records.map(p=>new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(null);i.onerror=()=>resolve(p.image_url);i.src=p.image_url;})));
               });
               if(imageFailures.some(Boolean))throw new Error('ASC pilot image assets failed: '+JSON.stringify(imageFailures.filter(Boolean)));
+              await page.goto('http://127.0.0.1:4173/audio-connections-preview.html',{waitUntil:'domcontentloaded'});
+              await page.waitForFunction(()=>document.querySelectorAll('#products .card').length===15);
+              const audioBody=await page.locator('body').innerText();
+              if(audioBody.includes('Audio Connections')||audioBody.includes('Add to cart')||audioBody.includes('Checkout'))throw new Error('Owner review page exposes supplier/checkout wording');
+              if(!audioBody.includes('OWNER REVIEW ONLY')||!audioBody.includes('NO GW SKU'))throw new Error('Owner review notice missing');
+              const spriteOk=await page.evaluate(async()=>{const r=await fetch('assets/audio-connections-sony-mobile-es-sprite.webp');return r.ok});
+              if(!spriteOk)throw new Error('Audio Connections image sprite failed to load');
+              const audioOverflow=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth}));
+              if(audioOverflow.document>audioOverflow.viewport+1)throw new Error('Audio review horizontal overflow: '+JSON.stringify(audioOverflow));
               await page.close();
             }
             if(errors.length)throw new Error('Browser errors: '+errors.join(' | '));

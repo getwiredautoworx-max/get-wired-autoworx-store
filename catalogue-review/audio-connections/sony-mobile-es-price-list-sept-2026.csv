@@ -1,0 +1,16 @@
+model,source_page,price_ex_as_printed,rrp_as_printed,source_status,public_price_status
+XS-163ES,1,6499.00,10999.00,listed,withheld_from_preview
+XS-162ES,1,2899.00,4999.00,listed,withheld_from_preview
+XS-692ES,1,3999.00,6999.00,listed,withheld_from_preview
+XS-160ES,1,2395.00,3999.00,listed,withheld_from_preview
+XS-680ES,1,2299.00,3999.00,listed,withheld_from_preview
+XS-680G,1,299.00,599.00,listed,withheld_from_preview
+XS-690ES,1,,5299.00,sold_out,withheld_from_preview
+XS-W104ES,2,2199.00,3999.00,listed,withheld_from_preview
+XS-W122ES,2,2599.00,4499.00,listed,withheld_from_preview
+XS-W124ES,2,2599.00,4499.00,listed,withheld_from_preview
+XM-1ES,2,5899.00,9999.00,listed,withheld_from_preview
+XM-4ES,2,6299.00,10599.00,listed,withheld_from_preview
+XM-5ES,2,9499.00,15999.00,listed,withheld_from_preview
+XM-6ES,2,9499.00,15999.00,listed,withheld_from_preview
+XM-8ES,2,10499.00,17499.00,listed,withheld_from_preview

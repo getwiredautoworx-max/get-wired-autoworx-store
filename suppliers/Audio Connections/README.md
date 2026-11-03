@@ -1,10 +1,18 @@
-# Audio Connections — Supplier Documents
+# Audio Connections — Sony Mobile ES source intake
 
-**Owner confirmation (2026-10-27):** all supplier folders in the GitHub supplier library are authorised for catalogue use. Use Audio Connections catalogue material proactively for authorised dealer catalogue review, extraction, matching and analysis. Keep source documents intact. This permission does not by itself authorise changes to live stock, prices, product listings, or production catalogue/database records; obtain explicit owner approval for those writes.
+## Source evidence
+- Library source: `Sony Mobile ES Dealer Price List Sept 26.pdf` (September 2026, 2 pages).
+- 15 product lines transcribed, including the XS-690ES line explicitly marked sold out.
+- 15 product image crops extracted from the supplied PDF into `assets/audio-connections-sony-mobile-es-sprite.webp` for owner review.
+- The source document reuses one image for both 12-inch subwoofer variants and one amplifier-family image for all five amplifier variants. Those visual limitations are disclosed on the review page.
 
+## Review status
+- `audio-connections-preview.html` is an owner-review-only, noindex page. It shows no prices, stock, Get Wired SKUs, cart or checkout.
+- Dealer Price Ex and RRP values are preserved privately in `catalogue-review/audio-connections/sony-mobile-es-price-list-sept-2026.csv`; they are not in the preview data or customer package.
+- Image permission remains pending owner confirmation. No record was activated, linked to a public product or published.
+- The original PDF remains a Library source file; this note and the extracted preview assets do not claim that the complete Audio Connections catalogue has been uploaded to the repository.
 
-This folder is reserved for Audio Connections supplier documents, price lists, catalogues, and related reference files.
-
-- Upload supplier files here after confirming the correct supplier and file version.
-- Do not store passwords, API keys, customer personal information, or other secrets in this repository.
-- Files in this folder are reference material only. Do not import prices, stock, or catalogue changes into the live store unless the owner explicitly authorizes that work.
+## Outstanding
+- Verify image rights and obtain distinct manufacturer images where the source uses a shared family image.
+- Assign unique Get Wired SKUs only after owner review.
+- Complete the remaining Audio Connections catalogue intake and exact product-image matching.
