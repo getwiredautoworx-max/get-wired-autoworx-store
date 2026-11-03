@@ -56,8 +56,8 @@ assert.equal(audioRows.length, 68);
 const audioManufacturerRefs = audioRows.filter(r => r.official_manufacturer_page || r.official_manufacturer_listing);
 assert.equal(audioManufacturerRefs.length, 27, "Expected 27 official manufacturer product/listing references across Audio Connections");
 assert.equal(audioManufacturerRefs.filter(r => r.brand !== "Sony").length, 14, "Expected 14 non-Sony official references");
-assert.equal(audioRows.filter(r => r.image_url_candidate).length, 8, "Eight direct image URLs are currently review candidates");
-assert.equal(planetworldRows.filter(r => r.image_url_candidate).length, 5, "Planetworld crosswalk currently records four Alpine and one Focal image URL candidates");
+assert.equal(audioRows.filter(r => r.image_url_candidate).length, 22, "22 Audio Connections image URLs are review candidates");
+assert.equal(planetworldRows.filter(r => r.image_url_candidate).length, 62, "All 62 Planetworld verified-model image URLs must be in the crosswalk");
 assert(audioManufacturerRefs.filter(r => r.brand !== "Sony").every(r => !r.proposed_gw_public_sku && r.gw_sku_status === "NOT_ASSIGNED_HOLD"), "Manufacturer references do not automatically approve or assign non-Sony GW SKUs");
 for (const model of ["USB230","SS7655BT","DVD9900BT","SS7670",'SSW12" 5200',"SSW12-6300","SSW12-7300"]) {
   const row = audioRows.find(r => r.supplier_sku === model);
@@ -88,4 +88,5 @@ assert(sql.includes("ON CONFLICT (supplier_id, supplier_sku) DO NOTHING"));
 assert(sql.includes("false,\n  true"), "Staged items must be inactive and quote-on-request");
 assert(!/INSERT\s+INTO\s+public\.products/i.test(sql), "Proposal must not create public product rows");
 assert(!/UPDATE\s+public\.products/i.test(sql), "Proposal must not update public product rows");
-console.log("SUPPLIER_GW_CROSSWALK_PASS: 770 source rows, 81 proposed + 53 held collision-checked GW SKU candidates, 0 product IDs, 0 publications");
+assert.equal(rows.filter((r) => r.image_url_candidate).length, 84, "All 84 preview image URLs must be reconciled to the crosswalk");
+console.log("SUPPLIER_GW_CROSSWALK_PASS: 770 source rows, 81 proposed + 53 held collision-checked GW SKU candidates, 86 unique image URLs, 0 product IDs, 0 publications");
