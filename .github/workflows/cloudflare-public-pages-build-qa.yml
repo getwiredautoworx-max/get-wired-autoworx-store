@@ -30,6 +30,7 @@ on:
       - "asc-catalogue-preview.html"
       - "tests/audio-catalogue-preview.test.cjs"
       - "tests/asc-catalogue-preview.test.cjs"
+      - "tests/three-category-storefront-structure.test.cjs"
 permissions:
   contents: read
 jobs:
@@ -58,11 +59,11 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python scripts/build-cloudflare-pages-public.py
-      - name: Verify preview package includes all six approved preview routes
+      - name: Verify preview package includes all seven approved preview routes
         shell: bash
         run: |
           set -euo pipefail
-          for page in preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html asc-catalogue-preview.html; do
+          for page in preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html asc-catalogue-preview.html; do
             test -s "pages-public/$page"
           done
           test ! -d pages-public/suppliers
