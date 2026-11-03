@@ -15,7 +15,7 @@ assert.ok(starsoundUsb450 && starsoundUsb450.manufacturerPage === 'https://stars
 assert.ok(starsoundUsb450.imageUrl === 'https://starsound.co.za/wp-content/uploads/2023/12/SSUSB450BTDD-788x788.png', 'Starsound USB450BTDD must use the direct official image URL as a review candidate');
 assert.equal(starsoundUsb450.imageStatus, 'OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
 assert.equal(starsoundUsb450.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE', 'official image candidates must remain preview-only until approved');
-assert.equal(audio.records.filter(p => p.imageUrl).length, 5, 'only the four Sony and one Starsound direct image URLs are review candidates');
+assert.equal(audio.records.filter(p => p.imageUrl).length, 8, 'four Sony and four Starsound direct image URLs are review candidates');
 assert.ok(audio.records.filter(p => p.imageUrl).every(p => p.imageStatus.includes('REVIEW_CANDIDATE_NOT_APPROVED')), 'no supplier image URL is treated as approved');
 for (const [model,url] of [
   ['USB230','https://starsound.co.za/product/ssusb-230btce/'],
