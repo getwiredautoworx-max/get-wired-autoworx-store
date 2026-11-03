@@ -960,3 +960,12 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Cloudflare Pages automatically started a preview build for `2a5adb2`, deployment ID `45efd9d7-1f93-4e8a-a836-8eb23dfec70b`. Build was IN PROGRESS at handover update time. The separate Workers build failed and is not the Pages preview.
 - GitHub Actions has no workflow run associated with this commit. Do not claim the category fix is live until Pages reports success and the owner-preview route is checked in a browser. Static script syntax validation and deployed UI verification remain outstanding; do not infer success from the source edit alone.
 - PR #168 remains draft/unmerged. Production HOLD; no merge, production deployment, Supabase writes, live catalogue/price/stock changes, or checkout activation.
+
+
+## 2026-11-03 — SUBCATEGORY EXPANSION COMPATIBILITY FIX
+- Owner reports top-level categories now display, but tapping them does not reveal subcategories.
+- Source diagnosis: category click delegation used CSS `:scope > ...` selectors twice to find direct child containers and open sibling wrappers. This is unnecessary and can fail in older/embedded Android browser engines, aborting the click handler before the `.open` class is applied.
+- Replaced the `:scope` queries with direct-child traversal using `Array.from(element.children)` and class checks. This keeps nested category expansion and one-open-sibling behavior without relying on `:scope` selector support.
+- Committed storefront change `c103921527bc18282c4d63554ef3764991ac8c5d`; added regression assertions in `tests/three-category-storefront-structure.test.cjs`, commit `906d39e8bd83a2a2e6e6d9651c404516cf7970d0`.
+- Category tree JSON contains 27 active/inactive category records and all six approved first-level audio/lifestyle subcategories, plus auto electrical and car-care subcategories. The previous top-level category rendering fix remains intact.
+- This source correction is not yet confirmed in the deployed preview. Wait for Cloudflare Pages build for the latest branch head, then verify actual tap-to-expand on mobile and desktop. Do not mark subcategories resolved until that interaction is observed. PR #168 remains draft/unmerged; production HOLD.
