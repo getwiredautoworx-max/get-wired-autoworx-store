@@ -875,3 +875,14 @@ Continue the Planetworld and Audio Connections catalogue upload/integration unde
 4. Add approved brand-logo artwork to the brand buttons; current brand filters are text buttons.
 5. Finish remaining model identity/description exceptions and refresh dated supplier price/availability data before any customer-publication or live product creation.
 6. Keep PR #165 draft/unmerged and production HOLD until the owner inspects the integrated preview and explicitly accepts it. No production action is authorized.
+
+
+### 2026-11-03 exact-head readback after supplier privacy correction
+- Final integrated PR branch head: `1b51851f2a323ccaa8c852076ab801306aa7f0b7`; compare against main: **44 commits ahead / 0 behind**.
+- Read-back confirms Planetworld 3,317 source rows (3,280 indicative-price rows, 37 exact owner-wording price-on-request rows); 702 Car Audio division rows; 47 source workbooks / 94 sheets.
+- Read-back confirms 68 manufacturer-verified candidates with 9 image-source candidates, plus 66 Audio Connections preview rows from 68 source rows (63 priced proposals, 3 exact price-on-request rows, 2 excluded rows, 4 image-source candidates). All 66 Audio Connections records remain `PREVIEW_ONLY_NOT_LIVE`.
+- The audio page read-back confirms it is linked under Car Audio & Entertainment, has search and pagination, returns to current `index-new.html`, is noindex, and contains neither supplier identity. A customer-facing note that initially named the supplier was corrected before this readback.
+- The preview builder and QA workflow read-back confirms `preview-audio.html` and all three JSON datasets are allowlisted only for the opt-in non-production package; the standard public package excludes them. The dedicated test is present and wired into the QA workflow.
+- Latest Cloudflare Pages Public Package QA run: 41603950325; job 125809062744 failed before any steps/logs were available (`steps=null`, no logs URL). This is another GitHub runner startup failure, not a passing build or an application-level test failure. Do not mark tests passed.
+- Brand-logo artwork and approval/download of exact high-resolution product images remain outstanding. The 13 URLs are manufacturer image-source candidates only, not approved customer-publication assets. No browser/phone verification or hosted corrected deployment is confirmed.
+- PR #165 remains draft/open/unmerged. Production remains HOLD; no live catalogue, price, stock, database, supplier activation, payment, Axxess, DNS or production deployment changes were made.
