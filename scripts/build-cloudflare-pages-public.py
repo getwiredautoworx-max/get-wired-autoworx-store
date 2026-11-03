@@ -152,6 +152,6 @@ if include_preview:
         "branch": os.environ.get("CF_PAGES_BRANCH"),
         "preview_only": True,
     }
-    (OUT / "qa-build-result.json").write_text(json.dumps(qa_marker, indent=2) + "\\n", encoding="utf-8")
+    (OUT / "qa-build-result.json").write_text(json.dumps(qa_marker, indent=2) + "\n", encoding="utf-8")
     print("PAGES_STOREFRONT_REGRESSION_PASS")
 
