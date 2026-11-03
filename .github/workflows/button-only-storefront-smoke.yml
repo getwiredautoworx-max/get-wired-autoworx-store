@@ -1,9 +1,7 @@
 name: Button-Only Storefront Smoke Test
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'index-new.html'
+  # This is an optional, manually dispatched audit for the separate buttons-only mode.
+  # The current owner-approved storefront is the normal three-root category experience.
   workflow_dispatch:
 jobs:
   button-only:
@@ -37,7 +35,7 @@ jobs:
                 await page.locator('[data-storefront-mode="buttons-only"]').waitFor();
                 const roots = page.locator('button.category');
                 const rootCount = await roots.count();
-                if (rootCount !== 8) throw new Error(width+'px: expected 8 main category buttons; got '+rootCount);
+                if (rootCount !== 3) throw new Error(width+'px: expected 3 owner-approved main category buttons; got '+rootCount);
                 const childCount = await page.locator('button.child').count();
                 if (childCount < 1) throw new Error(width+'px: no subcategory/brand buttons found');
                 const forbidden = await page.locator('.product, .product-card, .price, .product-grid, [data-product], #featuredGrid, #allProductsLink, #searchInput, input[type="search"]').count();
