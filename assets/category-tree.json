@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-11-03T00:00:00Z",
-  "source": "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue remains empty until supplier import is validated.",
+  "source": "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue products remain in source review until identity, images, pricing and availability are approved.",
   "categories": [
     {
       "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
