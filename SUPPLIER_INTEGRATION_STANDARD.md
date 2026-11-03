@@ -80,7 +80,7 @@ Do not invent missing values. Keep unknowns explicitly unknown.
 - Keep all supplier identity, dealer price and margin workings private.
 
 ## 9. Staged integration and verification
-For each supplier pilot:
+For each supplier or major category pilot, copy and complete `SUPPLIER_PILOT_TEMPLATE.md`; keep the filled copy with the pilot audit and handover. Then follow this sequence:
 1. Source inventory and provenance audit.
 2. Normalised offer ledger and extraction reconciliation.
 3. Identity/model/variant and duplicate audit.
