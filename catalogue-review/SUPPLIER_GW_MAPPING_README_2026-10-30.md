@@ -45,3 +45,10 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 - Added official reference-only sources for KAC-001 (installation manual), UTE-200BT (official South African product catalogue) and KWE-CAM1D (listed as an accessory on the official iLX-705D page). These three are not counted as exact individual product pages.
 - Fitment exception retained: supplier text describes KAE-HF9DA for iLX-F509, while the official UK product page lists iLX-F905D and a regional Alpine page refers to iLX-F509A. Keep this row held until exact regional fitment is confirmed.
 - No image assets were downloaded or approved, no GW SKUs were generated for these newly matched rows, and no product rows were inserted or published.
+
+
+## Additional official brand-page checks — 2026-11-03
+- Seven Starsound models in the Audio Connections source set are listed on the official Starsound subwoofer/amplifier category pages; these are category-listing matches only, not individual product pages: SSW12-6300, SSW12-7300, SSWF10"-4150SVC, SSWF12-5150SVC, SSAHORNET 7600.4, SSA-J-10000.4 and SSA-ATOM13800.4.
+- One additional exact individual product page was found for BlackSpider Bullet Lynx. Its official page identifies a 4-inch aluminium bullet horn tweeter, 550 W RMS / 2,500 W maximum, 4 ohms, 95 dB sensitivity and 2 kHz–20 kHz response. Direct image asset URL is not yet captured.
+- Forty-five other non-Sony Audio Connections models still have no exact official listing/product page. No GW SKU was generated for these eight newly matched models; the 13 Sony staging candidates remain the only Audio Connections GW SKU candidates in this set.
+- Official page evidence does not establish current dealer availability, image usage rights or permission to publish. All products remain private/inactive; no image asset was approved and no public product was inserted.
