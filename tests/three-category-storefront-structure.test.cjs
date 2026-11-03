@@ -53,6 +53,11 @@ for (const model of ["SSW12-6300","SSA-ATOM13800.4","SSAR 22000.1","SSA-R 5000.4
   assert.ok(row && row.specificationConflict && row.specificationReviewStatus === 'SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED', 'specification conflict must be explicit for '+model);
 }
 assert.ok(audioPage.includes('SPECIFICATION REVIEW REQUIRED:') && audioPage.includes('p.specificationConflict'), 'owner preview must display source-versus-manufacturer specification warnings');
+for (const model of ["RABTR03","RA AWG4","RA SUPER RAST20"]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && row.brand === 'Reference Audio' && row.manufacturerBrandPage === 'https://referenceaudio.co.za/', 'official brand-level evidence must resolve RA to Reference Audio for '+model);
+  assert.ok(!row.manufacturerPage && !row.manufacturerListingPage, 'brand-level evidence must not be misrepresented as an exact product page for '+model);
+}
 for (const model of ['SSW8"-8000D2','SSW-B12-2800','SSWF12-5150SVC']) {
   const row = audio.records.find(p => p.modelNumber === model);
   assert.ok(row && row.indicativePrice == null && row.priceOnRequestText === 'Price on Request due to Limited Stock and Availability.', 'blank-price row must use exact owner wording: '+model);
