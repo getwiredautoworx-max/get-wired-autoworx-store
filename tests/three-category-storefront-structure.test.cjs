@@ -44,10 +44,10 @@ assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio'
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,36);
-assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,20);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,44);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,28);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'exact_model_retailer_image_review_only').length,3);
-assert.equal(verifiedModels.records.filter(row => !row.imageUrl).length,32);
+assert.equal(verifiedModels.records.filter(row => !row.imageUrl).length,24);
 const alpineHalo = verifiedModels.records.find(row => row.modelNumber === 'ILX-F115D');
 assert.ok(alpineHalo && alpineHalo.imageUrl.startsWith('https://www.alpine.pt/'));
 assert.equal(alpineHalo.imageStatus,'official_manufacturer_image_verified_review_only');
@@ -56,7 +56,7 @@ for (const model of ['HCE-C2100RD','HDZ-653','R2-W12D4']) {
   assert.ok(row && row.imageUrl && row.imageStatus === 'exact_model_retailer_image_review_only', 'exact-model retailer review image for '+model);
 }
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
-for (const model of ['66750650','66750800','66751501','66752000','66753000','66755030','66755100','66755105','66755107','66755110','66755115','66755156','66755157','66771820','69020020','69020021']) {
+for (const model of ['66750650','66750800','66751501','66752000','66753000','66755030','66755100','66755105','66755107','66755110','66755115','66755156','66755157','66771820','69020020','69020021','69010020','69035010','69051040','69051055','69051090','69052020','69070030','69070080']) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://static.audison.com/'), 'official Audison image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
