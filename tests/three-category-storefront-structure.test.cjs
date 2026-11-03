@@ -7,6 +7,7 @@ const home = read('index-new.html');
 const categoryPage = read('category.html');
 const asc = JSON.parse(read('assets/asc-catalogue-preview-data.json'));
 const planet = JSON.parse(read('assets/planetworld-catalogue-preview.json'));
+const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-preview.json'));
 const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
 const audioPage = read('preview-audio.html');
 const ascPage = read('asc-catalogue-preview.html');
@@ -42,6 +43,13 @@ assert.ok(home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Ca
 assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio')"));
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
+assert.equal(verifiedModels.records.length,68);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,17);
+for (const model of ['66750650','66750800','66751501','66755100','66755105','66755107','69020020','69020021']) {
+  const row = verifiedModels.records.find(item => item.modelNumber === model);
+  assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://static.audison.com/'), 'official Audison image for '+model);
+  assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
+}
 for (const obj of [planet,audio]) {
   const raw=JSON.stringify(obj);
   assert.ok(!/Planetworld|Audio Connections/i.test(raw),'supplier identity must not appear in customer-facing data');
