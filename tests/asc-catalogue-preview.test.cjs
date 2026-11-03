@@ -11,7 +11,15 @@ const sourcePdfs={
  'Car Mats':'assets/asc-catalogue-source/ASC-Car-Mats.pdf',
  'Fuel Pumps':'assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf'
 };
-for(const c of d.catalogues){assert.equal(c.source_pdf,sourcePdfs[c.name]);assert.ok(fs.existsSync(c.source_pdf),c.source_pdf);}
+const sourceFiles={
+ 'Aerials':'suppliers/ASC/ASC- Aerials (1).pdf',
+ 'Automotive Sensors':'suppliers/ASC/ASC- Automotive Sensors (1).pdf',
+ 'Automotive Switches':'suppliers/ASC/ASC- Automotive Switches (1).pdf',
+ 'Automotive Globes':'suppliers/ASC/ASC- Automotive globes (1).pdf',
+ 'Car Mats':'suppliers/ASC/ASC- Car Mats (1).pdf',
+ 'Fuel Pumps':'suppliers/ASC/ASC- Fuel Pumps (1).pdf'
+};
+for(const c of d.catalogues){assert.equal(c.source_pdf,sourcePdfs[c.name]);assert.ok(fs.existsSync(sourceFiles[c.name]),sourceFiles[c.name]);assert.ok(fs.existsSync('pages-public/'+c.source_pdf),'preview package missing '+c.source_pdf);}
 const ids=new Set(d.catalogues.flatMap(c=>c.sections.map(s=>s.id)));
 for(const p of d.records){assert.ok(ids.has(p.subcategory_id));assert.equal(p.preview_only,true);assert.equal(p.release_status,'REVIEW_ONLY_NOT_LIVE');assert.equal(p.price,null);assert.equal(p.stock_quantity,null);assert.ok(p.image_url.endsWith('.jpg'));assert.ok(fs.existsSync(p.image_url));assert.ok(!('catalogue_reference' in p));assert.ok(!('source_file' in p));}
 assert.equal(fs.readdirSync('assets/asc-catalogue-pilot').filter(n=>n.endsWith('.jpg')).length,50);
