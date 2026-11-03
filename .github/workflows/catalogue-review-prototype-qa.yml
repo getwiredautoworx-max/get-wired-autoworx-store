@@ -1,18 +1,6 @@
 name: Catalogue & Supplier Routing Review — QA
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - "catalogue-review/**"
-      - "scripts/catalogue-review-prototype.spec.js"
-      - "scripts/supplier-routing.test.mjs"
-      - "scripts/supplier-quote-routing-static.test.mjs"
-      - "scripts/supplier-gw-crosswalk.test.mjs"
-      - "supabase/functions/supplier-quote/index.ts"
-      - "supabase/functions/_shared/supplier-routing.mjs"
-      - "android-owner-app/app/src/main/assets/admin_app.html"
-      - ".github/workflows/catalogue-review-prototype-qa.yml"
   workflow_dispatch:
   push:
     branches:

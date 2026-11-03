@@ -9,14 +9,6 @@ on:
       - '**/*.json'
       - 'scripts/public-sku-audit.py'
       - '.github/workflows/public-sku-exposure-audit.yml'
-  pull_request:
-    paths:
-      - '**/*.html'
-      - '**/*.js'
-      - '**/*.css'
-      - '**/*.json'
-      - 'scripts/public-sku-audit.py'
-      - '.github/workflows/public-sku-exposure-audit.yml'
 jobs:
   audit:
     runs-on: ubuntu-latest

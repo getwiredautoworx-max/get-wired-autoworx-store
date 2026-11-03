@@ -14,25 +14,25 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "owner_confirms_loading_restoration_candidate_open_diverged_14_commits",
-      "description": "Owner confirms storefront loads. PR #163 restores the earlier full storefront with brighter styling and includes the ASC/Audio Connections/Hertz preview work, but it is 58 commits ahead and 14 behind current main; its 92-file diff means the PR description's CSS-only scope is not accurate. PR #162 is also draft/unmerged. No functional testing before banking details.",
-      "next_action": "Prepare a clean current-main integration candidate by selectively reconciling the approved storefront restoration and required preview/catalogue files; inspect exact diffs and preserve all release gates. Do not merge stale PRs, test clicks/routes, trigger Workers or production deployment.",
+      "status": "static_checks_passed_pr_ref_refresh_required_ci_runner_assignment_blocked",
+      "description": "Current candidate head 2694f1462fc75a5fd5a5f64f553c92a488c66c18 has 13/13 direct source/data assertions passing; all required storefront files, six ASC source PDFs, 50 pilot images and 4,101 WebP assets exist. GitHub Actions job 125839064696 failed before runner assignment (runner_id=0, zero steps); no Node/browser/package test executed. No exact-head non-production Pages preview deployed. The source branch includes latest code and handover, but GitHub hidden PR #166 head stayed pinned at 2694f146 despite later branch commits. Replace the draft PR from the complete current branch head so the review points at the exact candidate. Official GitHub status currently says Actions operational, while this job's runner_id remains 0/zero steps; likely repo/account runner/quota configuration, not confirmed global outage.",
+      "next_action": "Create replacement draft PR from current complete branch head, close PR #166 as superseded, then await runner assignment recovery. Do not deploy preview or merge while CI is unexecuted.",
       "automatic": false
     },
     {
-      "id": "storefront-eight-category-navigation",
+      "id": "storefront-three-category-navigation",
       "priority": 2,
-      "status": "eight_root_static_audit_pass_preview_link_code_candidate_pending_reconciliation",
-      "description": "Static audit confirms exactly eight approved root labels and matching root map; 4X4 OUTDOOR remains a child under Camping / Leisure / Outdoors. PR #162/163 candidate adds ASC catalogue preview links under Auto Electrical Spares (34), Car Audio & Entertainment (8) and Automotive Accessories (8). Functional navigation remains deferred.",
-      "next_action": "Carry the exact category mapping and neutral preview links into the clean current-main candidate; no click/route tests until the owner banking-details step.",
+      "status": "three_roots_and_deferred_qa_expectations_reconciled_static_checks_pass",
+      "description": "Three owner-approved roots and all requested children are mapped; manual smoke and populated-preview workflow root assertions now use the new three-root hierarchy. The buttons-only legacy workflow is manual-only and expects three roots. 13/13 source/data assertions passed, but no browser test executed. Car Audio button now routes to the full Planetworld Car Audio division (702 source rows / 699 unique browse rows) plus Audio Connections review records; the separate department and Lifestyle links remain available.",
+      "next_action": "Retain current three-root hierarchy; wait for runner recovery to execute non-functional structural/package QA and obtain exact-head non-production preview. No production merge.",
       "automatic": false
     },
     {
       "id": "approved-supplier-catalogue-reconciliation",
       "priority": 3,
-      "status": "partial_preview_integrated_source_bytes_and_image_rights_pending",
-      "description": "ASC review-only pilot has 50 records/50 matched images across 12 source subcategories; Audio Connections has 68 private rows/66 preview rows and 13 Sony GW SKU candidates staged privately; Hertz preview has 12 private rows; Planetworld has a 3,317-row historical snapshot and 68 exact-model candidates. None is a live supplier feed.",
-      "next_action": "Continue private source/image/description/SKU reconciliation using evidence already in repository. November ASC PDF bytes are still unavailable through Gmail; request the six PDFs only when the remaining local source evidence is exhausted. Do not publish or activate suppliers.",
+      "status": "preview_integrated_review_only_identity_image_price_availability_not_approved",
+      "description": "ASC preview: six original PDFs, 75 source sections, 50 exact reviewed pilot records/images. Audio Connections: 66 review records from 68 source rows. Planetworld: 3,317 source rows, including 627 Car Audio & Video rows. All preview-only; no live imports, stock, current price or supplier activation. 13 image-source candidates remain unapproved. Lifestyle preview filters now expose vacuum and pool-cleaner records from the historical Home Entertainment workbook snapshot. Read-only DB check: 770 private REVIEW_ONLY staging rows (702 Planetworld + 68 Audio Connections), public products=0, categories=27. Image audit: exact-model Planetworld manufacturer reference set has 68 records; 17 now have image URLs, including eight newly verified official Audison images. 51 still need verified images. All image URLs are review-only pending owner publication approval. Exact-model image review: 68 manufacturer-reference records, 17 verified image URLs (including eight official Audison product images), 51 still missing verified images. The new images are preview-only/review-only. Image review set now has 21 URLs: eight visually verified official Audison images, four Kicker official-page image candidates not fetch-verified, and nine pre-existing image URLs; 47/68 curated models still have no image URL. Kicker links are explicitly review-only. Manual read-only category/source validation passed: Planetworld department counts 627/461/792/15/850 for Car Audio/Home Entertainment/Band & Live Sound/DJ/Musical Instruments; Audio Connections 66; Lifestyle filters 21 vacuum and six pool rows. Live DB staging remains 770 REVIEW_ONLY. Current exact source checks confirm 50 ASC pilot records, 3,317 Planetworld rows (3,135 unique browse rows), 66 Audio Connections review records, 21 verified-model image URLs plus four Audio Connections image URLs (25 combined). Image URLs remain review-only; 47/68 curated exact-model records still lack an image URL.",
+      "next_action": "Continue exact-model image sourcing/visual review for the 47 model records still without an image URL; verify the four Kicker manufacturer-page candidates before marking visually verified. Keep 770 private rows REVIEW_ONLY and all catalogue previews noindex; no publishing or activation.",
       "automatic": false
     },
     {

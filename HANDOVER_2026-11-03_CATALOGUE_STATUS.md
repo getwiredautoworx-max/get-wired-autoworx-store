@@ -1,0 +1,70 @@
+# Get Wired AutoWorx — Catalogue and Preview Status
+**Updated:** 2026-11-03  
+**Repository:** https://github.com/getwiredautoworx-max/get-wired-autoworx-store  
+**Canonical review:** https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/168  
+**Candidate branch:** `integration/three-category-catalogue-preview-final-2026-11-03`  
+**Exact PR head checked:** `77322ca93f13a6dfa4e3ebffb02d290aff0c5aa9`  
+**Main head checked:** `a50ff4e193ca46072958cc3451c884620d07263e`
+
+## Owner's standing instructions — protected
+- Streamline all Work
+- Don't work in circles and waste time
+- Don't notify me with what you are going to do next, instead continue until successfully resolved
+- Work smart and not hard
+- Find solutions when there are problems and don't stop until successfully resolved
+- Notify me only when user input is needed
+- Always read handover file and execute exactly as instructed.
+- Always update handover.
+
+Do not edit, shorten, reorder, or remove these instructions without the owner's explicit permission.
+
+## Verified catalogue source state
+- **Planetworld:** 3,317 source records; 3,135 unique browse rows; 702 rows with `division === "Car Audio"`.
+- Planetworld collections: Home Entertainment 461; Car Audio & Video 627; Band & Live Sound 792; Musical Instruments 850; Installed AV 435; DJ 15; Harnesses & Trims 47; Studio Equipment 62; Marine Audio 28. Total 3,317.
+- **Audio Connections:** 66 review records from 68 source rows; two rows excluded pending review; all 66 marked `PREVIEW_ONLY_NOT_LIVE`; four image URLs on catalogue rows.
+- Exact-model review set: 68 rows, 21 image URLs: 8 visually verified Audison images, 4 official Kicker product-page candidates not visually verified, and 9 pre-existing candidates. Image candidates are not blanket approval for publication.
+- Category tree: 27 records; exactly three active top-level roots in the requested order: Car Audio / Home Entertainment / Lifestyle; Auto Electrical Parts & Spares; Car Care & Accessories.
+- Supplier identities and dealer costs/supplier SKUs must remain private in customer-facing assets. No public product import or Supabase write was made.
+
+## Exact-head verification and blockers
+- PR #168 is **draft/open/unmerged**.
+- Cloudflare Pages Public Package QA run `41614133122`, job `125843198256`, failed before runner assignment. The job has no runner ID, steps, or logs. Therefore **no Node tests or package build ran**; do not claim application tests passed or failed.
+- No exact-head hosted non-production Pages preview deployment is verified. Older preview URLs do not prove this head is deployed.
+- Do not trigger the isolated Pages deployment marker, production/release workflows, or any production change while runner allocation is unavailable.
+- Functional/browser/checkout testing remains deferred until the owner adds banking details, per owner instruction. Continue catalogue/storefront work without blocking on payments.
+- Production remains **HOLD**. No merge, production deployment, Axxess upload, DNS/payment change, live stock/price change, or live data write is authorized without explicit owner approval.
+
+## Next work, in order
+1. Restore/confirm GitHub Actions runner allocation or use an available trusted environment to execute exact-head checks.
+2. Run the public-package builder, the ASC catalogue, audio catalogue, and three-category structural Node tests, plus the public SKU/privacy audit.
+3. After checks pass, deploy only a dedicated non-production preview and verify the deployed commit and rendered category/catalogue routes.
+4. Record unresolved image gaps and preview limitations for owner review. Keep PR #168 draft until exact-head tests, verified preview, and owner acceptance are evidenced.
+
+## Relationship to earlier handover
+This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CONTINUATION.md` contains historical notes and older PR/branch references; this document supersedes those references only for the current catalogue/preview checkpoint. Preserve its protected owner-instruction block.
+
+
+## Follow-up execution attempt — 2026-11-03
+- Verified the current draft PR #168 head is `581deae0428126badcb90c0d1148e8a8c3309259`; main is `a50ff4e193ca46072958cc3451c884620d07263e`. PR remains open, draft, unmerged.
+- The exact-head Cloudflare Pages Public Package QA run `41618453591` failed. Its job `125861439639` has no runner ID, no step records, and no logs. A targeted retry of the preceding failed job was accepted by GitHub but the new attempt again ended failed before any steps could run. No application test result was produced.
+- GitHub's log endpoint returned a missing log blob for the job, consistent with no runner output. The local container also cannot resolve github.com, so a local clone/test run is unavailable from this execution environment.
+- No deploy was attempted, no deployment marker was created, no merge occurred, and no production or live-data change was made. This remains an infrastructure execution blocker, not proof that application code failed tests.
+- Next required action is to restore repository/account GitHub Actions runner allocation or provide a trusted environment with repository checkout/network access. Once available, execute the existing public-package build, all catalogue/category Node tests, and public SKU/privacy audit on the exact PR head; then verify a dedicated non-production preview against that same commit. Until then, preview readiness is NOT VERIFIED.
+
+
+## Runner recovery diagnostic added — 2026-11-03
+- Added `.github/workflows/runner-diagnostic-current-branch.yml` on the candidate branch at commit `c239878aedff4c963af3c7c03d3b4c425703d965`. It is restricted to the candidate branch / PR path and is intended to confirm runner execution and validate the three-root category structure plus non-empty Planetworld and Audio Connections preview catalogues.
+- The GitHub connector's PR-only workflow-run/status queries returned no associated PR run/status for this push commit; they do not expose a confirmed execution result for this push-triggered diagnostic. Therefore runner recovery is still **not verified** and the diagnostic must not be described as passed.
+- No deployment or production action was taken. Keep PR #168 draft/unmerged until an actual run, tests, and same-head non-production preview are evidenced.
+
+
+## 2026-11-03 RUNNER FAILURE ROOT-CAUSE INVESTIGATION — VERIFIED
+- Re-read current PR #168 metadata: open/draft/unmerged, head `47841be7db8a1495645ae414e60da1438c4ee994`, base `a50ff4e193ca46072958cc3451c884620d07263e`. Earlier head references in this file are historical and must not be treated as current.
+- Queried the GitHub Actions run collection directly for this candidate branch. Eight runs are recorded. All eight ended `failure` within seconds; latest two runs at current head `47841be7db8a1495645ae414e60da1438c4ee994` are Cloudflare Pages Public Package QA run `41620625294` and Runner Recovery Check run `41620625281`.
+- Retrieved the underlying GitHub job records. Current-head runner diagnostic job `125865096136` and package QA job `125843198256` report `runner_id=0`, empty runner name, empty runner-group ID/name, and `steps=[]`. Diagnostic push run `41620557596` likewise failed in ~4 seconds with no steps. This proves the failure occurs before a GitHub-hosted runner is allocated; no checkout, setup, build, Node test, or catalogue assertion ran. It is not an application test failure.
+- Repeated pattern across both the minimal runner diagnostic workflow and the package QA workflow, on both push and pull_request events, rules out a single workflow script/test as the cause. The connected GitHub integration does not expose runner provisioning, Actions billing/usage, repository Actions settings, or a workflow-dispatch/re-enable operation. No permission to change account billing or Actions settings is available through this connection. Do not claim a confirmed billing cause; likely fault domain is repository/account Actions runner provisioning or Actions availability/policy.
+- Job log endpoint returns BlobNotFound and job records contain no step output, consistent with no runner process ever starting. No app-level diagnostic log exists to inspect.
+- The runner diagnostic workflow itself is correctly scoped to this candidate branch and includes a minimal ubuntu-24.04 job; it also fails before the first step. Repeated reruns/commits will not fix a runner allocation fault and should stop until GitHub Actions runner service is restored.
+- **Action required outside the connected GitHub API:** owner/repository administrator must open GitHub repository Settings → Actions → General and verify Actions are enabled and allowed actions/runners are not restricted; inspect account billing/usage and any spending limit/plan or concurrency restriction; then check GitHub Actions service status/support if settings and billing are normal. This is the specific external access boundary preventing automated recovery from this connection.
+- Catalogue source integration remains staged in PR #168, not merged or published. Counts recorded in PR: Planetworld 3,317 source rows / 3,135 unique browse rows / 702 Car Audio division rows; Audio Connections 66 review rows from 68 source rows; ASC six PDFs / 50 exact visually reviewed pilot records. All supplier data remains review-only. No hosted exact-head preview verified.
+- No changes to production, live catalogue, prices, stock, Supabase, DNS, payments, or Axxess. PR remains draft/unmerged. Do not claim catalogue integration verification is complete until runner allocation works, exact-head tests pass, and the dedicated non-production preview is verified.

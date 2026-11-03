@@ -16,7 +16,7 @@
           return parseInt((x.textContent||'').replace(/[^0-9]/g,''),10);
         }).filter(Number.isFinite);
         const hasProducts=Number.isFinite(count) ? count>0 : childCounts.some(function(n){return n>0;});
-        const mainRootIds=['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79'];
+        const mainRootIds=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6'];
         if(!hasProducts && !mainRootIds.includes(card.dataset.filter) && !/SHOP BY CATEGORY/i.test(txt)) card.style.display='none';
         else card.style.removeProperty('display');
       });
