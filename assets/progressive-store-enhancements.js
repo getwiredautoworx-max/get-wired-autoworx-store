@@ -155,7 +155,7 @@ function install(frame){
       const recentProducts=recentIds.map(id=>all.find(x=>x.id===id)).filter(Boolean);
       if(recentProducts.length){
         const strip=d.createElement('div');strip.className='gwRecentStrip';
-        strip.innerHTML='<div class="gwRecentTitle">Recently viewed</div><div class="gwRecentItems">'+recentProducts.map((rp,i)=>'<button type="button" class="gwRecentItem" data-recent-index="'+i+'"><b>'+String(rp.name||'Product').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</b><small>'+String(rp.public_sku||rp.sku||'')+'</small></button>').join('')+'</div>';
+        strip.innerHTML='<div class="gwRecentTitle">Recently viewed</div><div class="gwRecentItems">'+recentProducts.map((rp,i)=>'<button type="button" class="gwRecentItem" data-recent-index="'+i+'"><b>'+String(rp.name||'Product').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</b><small>'+String(rp.public_sku||'')+'</small></button>').join('')+'</div>';
         strip.querySelectorAll('[data-recent-index]').forEach(btn=>btn.addEventListener('click',()=>{
           const rp=recentProducts[Number(btn.dataset.recentIndex)];
           if(rp&&typeof d.defaultView.gwOpenProduct==='function') d.defaultView.gwOpenProduct(rp);

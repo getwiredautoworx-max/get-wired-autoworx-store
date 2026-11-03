@@ -1,14 +1,7 @@
-name: Button-Only Storefront Smoke Test
+name: Button-Only Storefront Smoke Test (manual legacy)
+# Retained as a manual regression only for the historical temporary buttons-only mode.
+# The active storefront has been restored; do not run this incompatible test on normal PRs.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'index-new.html'
-  pull_request:
-    branches: [main]
-    paths:
-      - 'index-new.html'
-      - '.github/workflows/button-only-storefront-smoke.yml'
   workflow_dispatch:
 jobs:
   button-only:
