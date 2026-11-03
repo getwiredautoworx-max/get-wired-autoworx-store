@@ -477,7 +477,9 @@
       "description": "5x7-inch elliptical two-way coaxial speaker with a concentric tweeter and shallow Triple Wave surround. Audison lists 70 W continuous / 210 W peak handling at 4 ohms, 93 dB sensitivity and a 60 Hz–23 kHz response.",
       "modelNumber": "69070070",
       "manufacturerPage": "https://audison.com/product/apx-570/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389791543_APX-570_EMOZ_def_800_600.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-CC9AD160",
@@ -486,7 +488,9 @@
       "description": "BMW/MINI-specific 4-inch coaxial speaker for vehicles where a two-way front system cannot be fitted or for rear-speaker upgrades. Audison lists 40 W continuous / 80 W peak handling at 4 ohms, with a water-repellent pressed-paper cone, Tetolon-dome tweeter and dedicated Plug-and-Play basket/connectors. Confirm exact vehicle fitment.",
       "modelNumber": "69070080",
       "manufacturerPage": "https://audison.com/product/apbmw-x4e/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4E_emo.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-A10FB3F7",
@@ -495,7 +499,9 @@
       "description": "BMW/MINI-specific 4-inch coaxial speaker designed for rear-speaker upgrades or vehicles where a front two-way system cannot be installed. Audison lists 40 W continuous / 80 W peak handling at 4 ohms, with a water-repellent pressed-paper cone, Tetolon-dome tweeter and vehicle-specific basket/connectors. Confirm exact vehicle fitment.",
       "modelNumber": "69070085",
       "manufacturerPage": "https://audison.com/product/apbmw-x4m/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-X4M_emo.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-BCB7EFB4",
@@ -504,7 +510,9 @@
       "description": "BMW-specific installation accessory kit designed to fit Audison midrange and coaxial speakers in vehicle models that use non-standard factory mounting fixings. The exact vehicle and speaker combination must be checked before supply.",
       "modelNumber": "69082001",
       "manufacturerPage": "https://audison.com/product/apbmw-a4e/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/Audison-Prima-APBMW-A4E-.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-C44B188C",
@@ -513,7 +521,9 @@
       "description": "Two-way 4-ohm component kit comprising the AV 1.1 Tetolon-dome tweeter, AV 6.5 woofer and dedicated crossover. Audison lists 125 W continuous / 250 W peak handling, a 50 Hz–22 kHz response and crossover-level adjustment for installation tuning.",
       "modelNumber": "69051030",
       "manufacturerPage": "https://audison.com/product/av-k6/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/11/AV-K6-complete.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-614DED8A",
@@ -522,7 +532,9 @@
       "description": "6.5-inch (165 mm) 4-ohm coaxial speaker with a Tetolon-dome tweeter and dedicated on-wire crossover. Audison describes Orientable High Frequency Tuning to adjust high-frequency dispersion, a cotton-fibre pressed-paper cone, CCAW voice coil and Triple Wave butyl-rubber surround. Manufacturer lists 200 W peak handling.",
       "modelNumber": "69070020",
       "manufacturerPage": "https://audison.com/product/av-x6-5/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/p_1315389336_AVX65a_775_800.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-AF7A2133",
