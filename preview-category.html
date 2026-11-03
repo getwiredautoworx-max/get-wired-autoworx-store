@@ -98,7 +98,7 @@ if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&audioArea){
  const response=await fetch(url,{headers:{apikey:K,Authorization:'Bearer '+K,'Range-Unit':'items',Range:'0-999'}});
  if(!response.ok)throw Error('Unable to load audio brand options ('+response.status+')');
  let items=await response.json();
- items=items.filter(item=>audioAreaMatch(item,audioArea));
+ items=items.filter(item=>!['September Buyer\'s Guide','October Buyer\'s Guide'].includes(String(item&&item.specifications&&item.specifications.source||'').trim())&&audioAreaMatch(item,audioArea));
  const brandCounts=new Map();
  items.forEach(item=>{const brand=explicitBrand(item);brandCounts.set(brand,(brandCounts.get(brand)||0)+1)});
  const brands=[...brandCounts.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([brand,count])=>({id:current.id,label:brand,audioBrand:brand==='Brand not specified'?'__unspecified__':brand,audioGroup:audioArea,count,description:count+' matching catalogue products'}));
