@@ -711,7 +711,9 @@
       "component": "Subwoofers",
       "indicativePrice": 4553.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
-      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED"
+      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
+      "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
+      "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED"
     },
     {
       "gwSku": "GW-BCCE104C",
