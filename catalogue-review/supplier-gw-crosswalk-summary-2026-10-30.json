@@ -46,9 +46,9 @@
   "total_collision_checked_candidate_codes": 134,
   "audio_connections_non_sony_candidate_codes": 53,
   "audio_connections_non_sony_candidate_codes_live_collisions": 0,
-  "audio_connections_manufacturer_references_total": 42,
-  "audio_connections_non_sony_manufacturer_references": 28,
-  "audio_connections_non_sony_without_manufacturer_reference": 25,
+  "audio_connections_manufacturer_references_total": 49,
+  "audio_connections_non_sony_manufacturer_references": 35,
+  "audio_connections_non_sony_without_manufacturer_reference": 18,
   "audio_connections_preview_image_url_candidates": 22,
   "audio_connections_preview_image_url_approved": 0,
   "planetworld_verified_model_image_urls": 62,
@@ -56,13 +56,20 @@
   "audio_connections_preview_image_url_missing": 44,
   "planetworld_image_gap_notes": "Focal P20 FE now has an official 1000x1000 image URL candidate. Five Alpine models have official pages but only 46x35 thumbnails; JVC KW-M590BT has an official nine-image gallery but its dealer marketing pack requires written distribution permission. No low-resolution or unapproved image used.",
   "audio_connections_preview_rows": 66,
-  "audio_connections_source_crosswalk_manufacturer_references": 42,
-  "audio_connections_preview_manufacturer_references": 41,
-  "audio_connections_specification_conflicts": 4,
+  "audio_connections_source_crosswalk_manufacturer_references": 49,
+  "audio_connections_preview_manufacturer_references": 48,
+  "audio_connections_specification_conflicts": 5,
   "audio_connections_quote_only_models": [
     "SSW8\"-8000D2",
     "SSW-B12-2800",
     "SSWF12-5150SVC"
   ],
-  "audio_connections_image_gap_notes": "17 exact-model Starsound individual product-page image candidates, four Sony image candidates and one additional SSUSB-450BTDD candidate account for 22 preview images. All remain unapproved pending image-use permission and owner acceptance."
+  "audio_connections_image_gap_notes": "17 exact-model Starsound individual product-page image candidates, four Sony image candidates and one additional SSUSB-450BTDD candidate account for 22 preview images. All remain unapproved pending image-use permission and owner acceptance.",
+  "audio_connections_specification_conflict_models": [
+    "SSW12-6300",
+    "SSA-ATOM13800.4",
+    "SSAR 22000.1",
+    "SSA-R 5000.4",
+    "SPARTAN 9900.1"
+  ]
 }
