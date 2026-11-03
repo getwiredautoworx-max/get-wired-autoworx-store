@@ -20,19 +20,19 @@
       "automatic": false
     },
     {
-      "id": "storefront-eight-category-navigation",
+      "id": "storefront-three-category-navigation",
       "priority": 2,
-      "status": "eight_root_static_audit_pass_preview_link_code_candidate_pending_reconciliation",
-      "description": "Static audit confirms exactly eight approved root labels and matching root map; 4X4 OUTDOOR remains a child under Camping / Leisure / Outdoors. PR #162/163 candidate adds ASC catalogue preview links under Auto Electrical Spares (34), Car Audio & Entertainment (8) and Automotive Accessories (8). Functional navigation remains deferred.",
-      "next_action": "Carry the exact category mapping and neutral preview links into the clean current-main candidate; no click/route tests until the owner banking-details step.",
+      "status": "three_owner_approved_roots_reconciled_in_preview_branch",
+      "description": "The owner-approved database structure now has exactly three roots: Car Audio / Home Entertainment / Lifestyle, Auto Electrical Parts & Spares, and Car Care & Accessories. The storefront candidate uses the current category IDs and renders Car Audio, Home Entertainment, Band Equipment, DJ Equipment, Instruments, Lifestyle, Vacuum Cleaners and Pool Cleaners at the requested levels.",
+      "next_action": "Keep the three-root navigation in sync with current main; confirm exact-head static/package checks and hosted non-production preview. Functional tests remain deferred until banking details.",
       "automatic": false
     },
     {
       "id": "approved-supplier-catalogue-reconciliation",
       "priority": 3,
-      "status": "partial_preview_integrated_source_bytes_and_image_rights_pending",
-      "description": "ASC review-only pilot has 50 records/50 matched images across 12 source subcategories; Audio Connections has 68 private rows/66 preview rows and 13 Sony GW SKU candidates staged privately; Hertz preview has 12 private rows; Planetworld has a 3,317-row historical snapshot and 68 exact-model candidates. None is a live supplier feed.",
-      "next_action": "Continue private source/image/description/SKU reconciliation using evidence already in repository. November ASC PDF bytes are still unavailable through Gmail; request the six PDFs only when the remaining local source evidence is exhausted. Do not publish or activate suppliers.",
+      "status": "asc_audio_connections_planetworld_preview_data_integrated_draft_only",
+      "description": "ASC preview: six original PDFs, 75 source sections, 50 exact reviewed pilot records/images. Audio Connections: 66 review records from 68 source rows. Planetworld: 3,317 source rows, including 627 Car Audio & Video rows. All preview-only; no live imports, stock, current price or supplier activation. 13 image-source candidates remain unapproved.",
+      "next_action": "Continue exact product/model/SKU/description/image and current-price/availability verification from existing sources; keep preview routes noindex and supplier identities hidden. Do not publish/import or activate suppliers.",
       "automatic": false
     },
     {
