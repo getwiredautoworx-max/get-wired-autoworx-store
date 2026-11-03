@@ -77,3 +77,31 @@ This is the sole retained handover file on this branch. Older handover files hav
 - Required correction: keep all legacy/old ASC Buyers Guide stock excluded from the customer-facing catalogue; rebuild only from the six current approved ASC catalogue PDFs and other specifically approved current catalogues, preserving source taxonomy/order. Do not infer which live rows are old ASC stock from OCR, product names, or guessed SKU matches. Require a verified source-to-existing-row mapping before any exclusion/replacement decision.
 - Safe work may proceed in PR #149 only while it remains open: trace product-query/render paths and create deterministic exclusion/replacement logic in isolated preview data, with tests proving legacy ASC records cannot render. Do not write Supabase, stock, catalogue or prices; do not change production routing/deploy; do not rebase/merge or create another PR. If source provenance needed to distinguish old ASC rows is absent, hold those rows out and request the exact source evidence rather than guessing.
 - No new test run or deployment is claimed by this incident note. PR #149 state remains open/draft at the time of inspection; branch head before this handover-only note was `89a25454b9fec61953f155f27458c2c72d129b15`.
+
+
+## Legacy Buyers Guide quarantine and exact-head deployment failure — 2026-11-03 (SAST)
+
+### Read-only source audit
+- Supabase project `ojytykqpvonxvepprgbh` was queried read-only; no database writes were made.
+- `public.products` currently contains **785 September Buyer's Guide rows and 107 October Buyer's Guide rows (892 total)**; all 892 have `active=false`. The rows remain in the database and may retain historical price/quantity fields; this run did not delete or alter them.
+- Eleven legacy `IASC-` supplier-code rows were found and all are inactive. One legacy ASC row lacks source metadata; its exact public SKU `GW-1893682C` is now explicitly quarantined without exposing or guessing a supplier code in the public helper.
+- Read-only counts show 3,294 active products assigned across 166 active categories. The preview category snapshot was refreshed from current active category/product assignments (generated `2026-11-03T06:39:12Z`) so it no longer carries the older 4,187-product category counts.
+
+### Safe code changes
+- Code commit: `7b8f380c36cf26ebf4274975c637eec997e3a6ae` — “Quarantine legacy Buyers Guide stock in isolated catalogue preview”.
+- Added `assets/legacy-catalogue-guard.js`; preview homepage featured/full listings, category/audio-brand listing, product listings and direct product detail now filter out records whose source metadata identifies a Buyer's Guide, plus the one audited source-missing legacy ASC public SKU.
+- Updated preview notices to state that legacy Buyer's Guide rows are quarantined, rather than making the unqualified claim “ASC stock removed”.
+- Updated the public Pages package allowlist to include the guard helper.
+- Refreshed `assets/category-tree.json` from read-only current active assignments; no live catalogue, prices, quantities, product active flags or category rows were changed.
+- Local Node helper unit test passed: 5 fixtures, 3 legacy rows excluded, 2 unrelated/current rows retained. Static GitHub-file checks confirmed the guard is loaded and invoked on all four preview routes.
+
+### Hosted verification blocker
+- Deployment workflow run `41591861950`, attempt 2, failed immediately before runner steps; job metadata has `runner_id=0` and `steps=[]`. No hosted deployment occurred. The failure reason is not exposed in the run metadata.
+- Run: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41591861950
+- Therefore **the current code head has not passed hosted browser QA and has no verified exact-head preview deployment**. The last previously recorded preview URL remains `https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev/preview-store.html`, but it is tied to the earlier code head `fd517f74baf9bf87928f088b72f76229041ea8d3`; do not treat it as containing commit `7b8f380c36cf26ebf4274975c637eec997e3a6ae`.
+- Local helper test is not a substitute for the full ASC navigation, public-package privacy, image, responsive and hosted browser suite.
+
+### Routing and release boundary
+- The ordinary production entry remains `index.html` → `store.html` → `index-new.html`, while the isolated Pages preview root is built from `preview-store.html`. The old production entry therefore still does not use the approved preview shell. This run made no production/Axxess deployment, DNS change, live Supabase write, stock/catalogue/price edit, checkout/payment change, or supplier activation.
+- PR #149 remains open/draft at code head `7b8f380c36cf26ebf4274975c637eec997e3a6ae`; its recorded base is still `1ffe9a91b84eca755162e009d233b8d57ada28fe`, while `main` advanced to `ac4c40d6d0e99de5ee870b6a5e30160dc041cd6b` during this run. PR remains non-mergeable/dirty. No rebase, merge, replacement PR, or production deployment was attempted.
+- Next verification gate: restore/diagnose GitHub Actions runner availability, then obtain a successful isolated Pages deployment and full exact-head populated browser QA before offering a new preview for phone acceptance.
