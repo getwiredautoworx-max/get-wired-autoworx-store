@@ -14,8 +14,8 @@
       "id": "storefront-restoration-and-preview",
       "priority": 1,
       "status": "in_progress_preview_build_pass_browser_qa_blocked",
-      "description": "Restore the approved bright full storefront and verify the latest non-production preview. PR #163 is open/draft; latest head 150ca124b57dc3086b1e04803394d6e8198382c1; Pages preview 95780dea succeeded. Browser QA has not passed.",
-      "next_action": "Diagnose hosted browser-runner allocation; the latest browser QA run 41589465749 failed before steps on code-equivalent head ded8a80 and one supported retry also failed. Run non-production desktop/mobile QA on the current exact head without triggering Workers/production deployment.",
+      "description": "Restore the approved bright full storefront and verify the latest non-production preview. Owner confirms the storefront loads; basic loading is resolved. PR #163 remains open/draft; latest recorded head 150ca124b57dc3086b1e04803394d6e8198382c1; Pages preview 95780dea succeeded. Exact-head browser QA has not passed.",
+      "next_action": "Complete functional desktop/mobile QA on the current exact head: verify all navigation and product routes, image loading, contrast, mobile overflow and page errors. Latest browser QA run 41589465749 failed before diagnostic steps on code-equivalent head ded8a80 and one supported retry also failed; logs are unavailable. Do not repeat loading-only checks or trigger Workers/production deployment.",
       "automatic": true
     },
     {
