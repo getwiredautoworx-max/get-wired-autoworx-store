@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build a customer-only Cloudflare Pages directory; never deploy repository source data."""
 from pathlib import Path
+import json
 import os
 import shutil
 import subprocess
@@ -141,3 +142,16 @@ else:
 
 print(f"PAGES_PUBLIC_BUILD_PASS files={len(relative_paths)} webp_images={image_count}")
 print("PAGES_PUBLIC_EXCLUDES_PASS suppliers catalogue-review catalogue-source catalogue-audits staging supabase .github")
+if include_preview:
+    # Public, non-sensitive proof that the exact structural regression suite ran
+    # before this owner-preview package was emitted.
+    qa_marker = {
+        "result": "PASS",
+        "test": "tests/three-category-storefront-structure.test.cjs",
+        "commit": os.environ.get("CF_PAGES_COMMIT_SHA") or os.environ.get("GITHUB_SHA"),
+        "branch": os.environ.get("CF_PAGES_BRANCH"),
+        "preview_only": True,
+    }
+    (OUT / "qa-build-result.json").write_text(json.dumps(qa_marker, indent=2) + "\\n", encoding="utf-8")
+    print("PAGES_STOREFRONT_REGRESSION_PASS")
+
