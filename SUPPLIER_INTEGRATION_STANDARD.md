@@ -31,6 +31,7 @@ Do not invent missing values. Keep unknowns explicitly unknown.
 - Match exact manufacturer model/OEM code and specifications first.
 - Use supplier cross-references and fitment only when source evidence supports them.
 - Similar descriptions or similar-looking images are not proof of equivalence.
+- A brand homepage can confirm brand identity/spelling only. It does not verify an individual product, model, variant, specification or image. Record brand-only evidence separately and never count it as a product reference.
 - If supplier source specifications conflict with manufacturer evidence, record both values and both sources, flag the discrepancy, and block final customer specifications until confirmed. Never silently overwrite the supplier source or substitute a manufacturer figure.
 - Keep separate supplier offers internally even when they resolve to one customer product.
 - Suppress duplicate display rows only after comparing source provenance, model, description/specification and image; never delete source evidence because two codes look alike.
