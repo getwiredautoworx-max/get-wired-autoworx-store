@@ -24,10 +24,10 @@
   "public_descriptions": 0,
   "public_image_urls": 0,
   "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only",
-  "official_image_source_urls_found": 13,
+  "official_image_source_urls_found": 14,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "13 distinct official manufacturer image-source URLs are captured in the private crosswalk: 10 Planetworld (4 Alpine, 1 Audison, 1 Focal, 4 Kicker) and 3 Sony. The R2-W12D4 Alpine family image does not distinguish the impedance variant. None of these assets has been downloaded or approved; visual/variant/usage-permission review remains required.",
+  "image_notes": "14 distinct official manufacturer image-source URLs are captured in the private crosswalk: 10 Planetworld (4 Alpine, 1 Audison, 1 Focal, 4 Kicker) and 4 Sony. The R2-W12D4 Alpine family image does not distinguish the impedance variant. None of these assets has been downloaded or approved; visual/variant/usage-permission review remains required.",
   "supplier_connection_statuses": {
     "planetworld": {
       "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
