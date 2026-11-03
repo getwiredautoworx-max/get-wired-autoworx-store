@@ -1,6 +1,7 @@
 name: Populated Store Preview Browser QA
 
 on:
+  workflow_dispatch:
 
 permissions:
   contents: read
