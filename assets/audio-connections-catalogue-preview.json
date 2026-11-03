@@ -348,7 +348,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerBrandPage": "https://referenceaudio.co.za/",
+      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence"
     },
     {
       "id": "ac-015",
@@ -1348,7 +1350,7 @@
       "id": "ac-057",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
-      "brand": "RA",
+      "brand": "Reference Audio",
       "title": "Reference Audio RA AWG4",
       "component": "Amplifier Installation Kits",
       "indicativePrice": 496.8,
@@ -1364,7 +1366,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Source abbreviation retained; full brand expansion not verified.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerBrandPage": "https://referenceaudio.co.za/",
+      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence"
     },
     {
       "id": "ac-058",
@@ -1463,7 +1467,7 @@
       "id": "ac-062",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
-      "brand": "RA",
+      "brand": "Reference Audio",
       "title": "Reference Audio RA SUPER RAST20",
       "component": "Tweeters",
       "indicativePrice": 364.84,
@@ -1479,7 +1483,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Source abbreviation retained; full brand expansion not verified.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerBrandPage": "https://referenceaudio.co.za/",
+      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence"
     },
     {
       "id": "ac-063",
