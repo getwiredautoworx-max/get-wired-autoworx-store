@@ -71,12 +71,13 @@ jobs:
           test ! -d pages-public/suppliers
           test ! -d pages-public/catalogue-review
           test ! -d pages-public/supabase
-          test -s pages-public/assets/asc-catalogue-source/ASC-Aerials.pdf
-          test -s pages-public/assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf
-          test -s pages-public/assets/asc-catalogue-source/ASC-Automotive-Switches.pdf
-          test -s pages-public/assets/asc-catalogue-source/ASC-Automotive-Globes.pdf
-          test -s pages-public/assets/asc-catalogue-source/ASC-Car-Mats.pdf
-          test -s pages-public/assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf
+          # Supplier source PDFs must remain private; only reviewed catalogue data and
+          # approved pilot images belong in the isolated preview package.
+          test ! -d pages-public/assets/asc-catalogue-source
+          if find pages-public -type f -iname '*.pdf' -print -quit | grep -q .; then
+            echo "Supplier PDF leaked into non-production Pages preview package"
+            exit 1
+          fi
           test -s pages-public/assets/planetworld-catalogue-preview.json
           test -s pages-public/assets/planetworld-verified-models-preview.json
           test -s pages-public/assets/audio-connections-catalogue-preview.json
