@@ -2,7 +2,7 @@
 
 ## Source evidence
 - Library source: `Sony Mobile ES Dealer Price List Sept 26.pdf` (September 2026, 2 pages).
-- 15 product lines transcribed, including the XS-690ES line explicitly marked sold out.
+- 15 product lines transcribed and reconciled to 15 private supplier staging rows; all remain inactive and quote-on-request. The XS-690ES line is explicitly marked sold out in the source.
 - 15 product image crops extracted from the supplied PDF into `assets/audio-connections-sony-mobile-es-sprite.webp` for owner review.
 - The source document reuses one image for both 12-inch subwoofer variants and one amplifier-family image for all five amplifier variants. Those visual limitations are disclosed on the review page.
 
