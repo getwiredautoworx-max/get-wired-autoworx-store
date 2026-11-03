@@ -165,3 +165,10 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - After the seven additional official Starsound references, 35 of 53 non-Sony rows now have a product-page or category-listing reference; 18 remain without exact product references. The 18 are 15 Starsound source models/accessory codes and three Reference Audio models.
 - Created `catalogue-review/AUDIO_CONNECTIONS_OPEN_EVIDENCE_REQUEST_2026-11-03.md` listing the exact 18 held models, five source-versus-manufacturer specification conflicts, three quote-only products, image rights and current commercial/availability evidence needed.
 - This request is an internal checklist only; no email was sent. Retailer listings and similar model codes are not substituted for exact manufacturer evidence.
+
+
+### Owner higher-output specification rule — 2026-11-03
+- Owner directs that the higher stated output specification is to be used in customer-facing descriptions where supplier/manufacturer sources differ, on the basis that wholesalers may receive updated software and manufacturing information earlier. This is a standing rule for future supplier and category work.
+- Keep both original figures and provenance in the internal audit; preserve rating basis, impedance and channel context. Do not equate RMS with peak, or per-channel with total output. If the higher rating's basis is unclear, retain the exact wording and flag ambiguity rather than inventing detail.
+- Applied to the four conflicting Audio Connections records: SSW12-6300 → 400 W RMS; SSA-ATOM13800.4 → supplier's higher “100 RMS” wording (not represented as 100 W × 4); SSAR 22000.1 → 1800 W RMS at 1 Ω; SSA-R 5000.4 → 65 W RMS/channel at 4 Ω. Lower figures and source/manufacturer discrepancies remain preserved internally.
+- JSON commit a3a1aa163636fbcc5a15ccef90fd91fae4b40de3. All four remain preview-only; no live data or production changes.
