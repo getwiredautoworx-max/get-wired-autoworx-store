@@ -1359,3 +1359,12 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 ### Release boundary reaffirmed
 - Supplier catalogue, price, stock, SKU and image data remain review-only. No supplier activation, public product import, public image write, Supabase/live data write, Axxess upload, DNS/payment change, production deployment, merge or checkout go-live is authorized.
 - Production remains HOLD. No production changes or deployment-credit-consuming retries without the required explicit approval.
+
+
+
+## 2026-11-03 — Audio Connections 68-to-66 reconciliation and reference-gap refresh
+- Re-read the current Audio Connections crosswalk (68 source rows) and preview JSON (66 retained records). The two excluded source rows are explicitly documented: Sony XS-690ES (source list marks sold out) and Sony XS-680G (grille/accessory identity and image unresolved). Both remain in the source crosswalk; neither is treated as a retained saleable product.
+- Recomputed manufacturer evidence coverage from the current crosswalk fields: 36 rows have an individual manufacturer-page reference, 16 have a manufacturer listing/category reference, and 19 have neither. The 19 no-reference rows are Sony XS-680G; Reference Audio RABTR03, RA AWG4 and RA SUPER RAST20; and Starsound SSW8"-8000D2, SSW-S12" SPECTR 15000, SSWF10 2650SVC, SSATI-2250.2, SSAT6200.1, SSATI6900.1, SSA-SB2000.1, SSA-M5-80.6, SSS6501 PRO, 860, 809, 412P, TAXI-4G, SST-550 and EQ7100.
+- This corrects the older ambiguous count: 18 of the 19 are non-Sony (15 Starsound + 3 Reference Audio); the remaining row is excluded Sony XS-680G. The 36 page and 16 listing counts are not mutually exclusive, so don't add them as a partition.
+- Fresh exact-model manufacturer-site searching did not produce verifiable new individual product-page evidence for the remaining rows. No retailer-only or similar-model substitution was accepted; no image/specification/SKU was promoted. Audit update commit: `ac402aaa9fe284d7d44d575b06dd20db12dc6c42`.
+- Existing image coverage is unchanged: 22 image URL candidates, 17 exact Starsound candidates, four Sony and one SSUSB-450BTDD; 44/66 retained rows still lack image URLs. All are review-only and usage permission/publication approval is not established.
