@@ -14,9 +14,9 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "three_category_storefront_candidate_built_draft_pr_pending",
-      "description": "The owner-approved three-root storefront and the ASC, Planetworld and Audio Connections preview catalogue routes are assembled on integration/new-three-category-catalogue-preview-2026-11-03. The branch is 18 commits ahead / 0 behind main. The preview routes are noindex and supplier identities are removed from customer-facing audio data. No browser/function tests or hosted preview verification have been run on this exact head.",
-      "next_action": "Open a draft PR; run the non-functional package/structural checks once when available, then verify a non-production preview URL and deployed SHA. Keep functional/browser acceptance deferred until owner adds banking details. Do not merge or deploy production.",
+      "status": "draft_pr_open_runner_startup_failure_no_tests_executed",
+      "description": "PR #166 is draft/open on the three-category catalogue candidate. Initial PR workflows all ended before runner steps (runner_id=0, empty step lists); no application tests or browser tests executed. No retry or deployment was started.",
+      "next_action": "Wait for runner availability; perform one non-functional package/structural check on the latest exact head when safe. Defer functional/browser/click-through testing until owner adds banking details. Obtain exact-head non-production preview and owner phone review; no production merge/deploy.",
       "automatic": false
     },
     {
