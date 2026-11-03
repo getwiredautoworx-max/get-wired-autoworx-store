@@ -44,7 +44,7 @@ assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio'
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,29);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,33);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,16);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
 for (const model of ['66750650','66750800','66751501','66752000','66753000','66755030','66755100','66755105','66755107','66755110','66755115','66755156','66755157','66771820','69020020','69020021']) {
