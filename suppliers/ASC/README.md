@@ -74,11 +74,11 @@ The storefront's virtual ASC navigation now reflects the catalogue contents-page
 To avoid duplicate parent tiles, the preview attaches the ASC contents headings to the existing storefront category IDs where those categories already exist:
 
 - Aerials sections → existing Aerials category under Car Audio & Entertainment.
-- Sensor sections → existing Automotive Sensors category under Auto Electrical Spares.
-- Switch sections → existing Automotive Switches category under Auto Electrical Spares.
-- Globe sections → existing Lighting category under Auto Electrical Spares.
-- Car Mat catalogue sections → their own catalogue button under Car Care & Accessories, per owner correction (3 November 2026). The existing Car Mats store category is displayed nested under Car Care & Accessories in the review storefront; live category/product assignments are not changed.
-- Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
+- Sensor sections → their own ASC catalogue button under Auto Electrical Parts & Spares.
+- Switch sections → their own ASC catalogue button under Auto Electrical Parts & Spares.
+- Globe sections → their own ASC catalogue button under Auto Electrical Parts & Spares.
+- Car Mat catalogue sections → their own ASC catalogue button under Car Care & Accessories. The current category tree also places the Car Mats store category directly under the Car Care & Accessories root.
+- Fuel Pump sections → their own ASC catalogue button under Auto Electrical Parts & Spares.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
 
@@ -88,24 +88,24 @@ This is a non-database preview overlay. No live category rows or parent relation
 The storefront integration candidate follows this exact customer navigation:
 
 - **Car Audio & Entertainment → Aerials** (six original contents sections).
-- **Auto Electrical Spares → Automotive Sensors** (11 sections), **Automotive Switches** (16), **Automotive Globes** (10), and **Fuel Pumps** (18).
-- **Automotive Accessories → Car Care & Accessories → Car Mats** (14 sections) and **Chemicals & Lubricants**. The Chemicals & Lubricants button is reserved in the hierarchy, but no corresponding catalogue PDF is present in the six-file post-reset intake; its page remains an honest source-pending state until the correct catalogue is located.
+- **Auto Electrical Parts & Spares → Automotive Sensors** (11 sections), **Automotive Switches** (16), **Automotive Globes** (10), and **Fuel Pumps** (18), each as its own catalogue button.
+- **Car Care & Accessories → Car Mats** (14 sections) and **Chemicals & Lubricants**. The Chemicals & Lubricants button is reserved in the hierarchy, but no corresponding catalogue PDF is present in the six-file post-reset intake; its page remains an honest source-pending state until the correct catalogue is located.
 
 Each named catalogue is its own button. Its original contents-page headings appear as the next-level buttons in the same order as the PDF. Only exact, visually reviewed pilot records appear beneath their matching source headings. Empty headings remain empty; no fuzzy product matching is permitted.
 
-The existing Car Mats store category under Automotive Accessories (three direct active products in the current category snapshot) is shown nested under Car Care & Accessories in the review storefront. The separate ASC Car Mats catalogue button is also under Car Care & Accessories. No live category assignments are moved. Aerials remain under Car Audio & Entertainment.
+The current category-tree snapshot places Car Mats directly under the Car Care & Accessories root (zero direct active products in the latest snapshot). The separate ASC Car Mats catalogue button is also under Car Care & Accessories. No live category/product writes were made for this preview. Aerials remain under Car Audio.
 
 This candidate uses a noindex owner-review route. The 50 watermarked source-card crops remain review-only; image-use rights, final clean imagery, GW SKU allocation, product descriptions and supplier price/stock confirmation are still outstanding. No live products, categories, prices, stock, database rows or supplier activation are changed.
 
 
-Owner correction (3 November 2026): Car Mats belongs under **Automotive Accessories → Car Care & Accessories**, not Auto Electrical Spares. The existing Car Mats store category and the ASC Car Mats catalogue button are both nested there in the review storefront. Production category/product assignments are not changed.
+Owner correction (3 November 2026): Car Mats belongs directly under **Car Care & Accessories**, not Auto Electrical Parts & Spares. The existing Car Mats store category and the ASC Car Mats catalogue button are both nested there in the review storefront. No live category/product writes were made for this preview.
 
 
 ## Complete original catalogues in the owner preview — 2026-11-03
 
 The six original post-reset PDFs remain unchanged in `suppliers/ASC/`. The non-production catalogue preview now copies each complete original PDF into its matching catalogue page as a **View complete original catalogue (PDF)** link, while retaining the original contents-page section buttons and the visually reviewed pilot cards beneath their matching sections. This makes the full catalogue browsable even where the 50-record pilot has not yet populated every section.
 
-Preview-only copies are placed under `assets/asc-catalogue-source/` in the opt-in Pages preview package. The standard customer/public package explicitly excludes the ASC preview route and all six PDF copies. The source originals remain in `suppliers/ASC/`; no supplier files are renamed or altered. Car Mats remains under Automotive Accessories → Car Care & Accessories; Aerials remains under Car Audio & Entertainment; Sensors, Switches, Globes and Fuel Pumps remain under Auto Electrical Spares.
+Preview-only copies are placed under `assets/asc-catalogue-source/` in the opt-in Pages preview package. The standard customer/public package explicitly excludes the ASC preview route and all six PDF copies. The source originals remain in `suppliers/ASC/`; no supplier files are renamed or altered. Car Mats remains directly under Car Care & Accessories; Aerials remains under Car Audio; Sensors, Switches, Globes and Fuel Pumps each have their own ASC catalogue button under Auto Electrical Parts & Spares.
 
 The package workflow now checks all six PDF copies and runs the ASC catalogue structural test after building the opt-in preview package. Until the workflow executes successfully and a new hosted preview is confirmed against its exact commit, do not describe this correction as deployed or visually verified.
 
