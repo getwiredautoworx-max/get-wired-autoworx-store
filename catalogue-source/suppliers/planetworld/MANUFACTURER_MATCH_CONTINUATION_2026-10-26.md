@@ -295,3 +295,28 @@ Added the 19-row source-traceable register `PLANETWORLD_COST_FLOOR_MODEL_IMAGE_R
 - Exact owner UI action remains: repository → Actions → **Planetworld Workbook Audit (Read Only)** → **Run workflow** → select branch `main` → run once; then verify the run head, audit job summary and logs. Until then, the 2026-10-25 audit counts remain historical, not a current supplier-price certification.
 
 No supplier XLSX was edited; no supplier data was imported/published; no live catalogue, price, stock, category or active flag changed; no PR merged; no deployment, Supabase write, Axxess/DNS/payment change or release-credit use occurred.
+
+
+## 2026-11-03 09:25 SAST — fresh source verification and market cross-checks
+
+### Official manufacturer evidence
+- **86180 — KRAM ISO2CAR mute adapter:** official KRAM page identifies KRAM/brand part 86180, EAN 5705932861808, and Toyota/Lexus/Subaru use. It connects a hands-free kit to the original radio connector and mutes the radio during calls. KRAM explicitly requires its Complete Cable List and audio-system details for exact vehicle fitment. This confirms product identity/type, not every Toyota fitment. Product image not visually verified; reuse rights not granted. https://kram.dk/da/ISO2CAR%20mute-adapter/p/86180
+- **ISA-ON115-3LX:** official OneNav page confirms base SKU ON115-3LX for Isuzu RBA/RBB, 9-inch screen. The supplier's ISA- prefix/bundle alias is not established; the official page does not expose a clear product image. Do not merge the alias or reuse imagery without confirmation. https://onenav.co.za/product/onenav-9inch-for-isuzu-rba-rbb/
+- **5085985EU — Soundcraft Notepad-12FX:** official HARMAN page confirms item 5085985EU, 12-channel analog mixer, USB audio interface and Lexicon effects, with product gallery. This is an exact regional item-number/model source; image reuse rights remain ungranted. https://www.harmanaudio.in/Notepad-12FX.html
+- **IAB541-WR — Ibanez:** official Ibanez page confirms the IAB541 POWERPAD acoustic-guitar gig bag and Wine Red (WR) colour variant. https://www.ibanez.com/asia/products/detail/iab541_01.html
+- **IRX108BT-EK — JBL:** official JBL regional page identifies item IRX108BT-EK-LS, EAN 691991033513. The supplier row lacks the -LS suffix, so the exact supplier regional variant remains unresolved. https://www.jbl.nl/IRX108BT-.html
+
+### Reseller-only corroboration — not manufacturer approval and not image permission
+- NXT Level Tech's OneNav brand catalogue lists exact codes/descriptions for **90008003** (Toyota Corolla 2007-2013 2-DIN fascia), **90014004** (universal 2-DIN cage 180x113 mm), and **90011904** (Toyota OEM 2-DIN item). It places 90011904 under Head Units & Media Receivers, but that classification does not prove it is an electronic head unit; retain component-type uncertainty. No exact official OneNav product page/image was found for these three codes. https://nxtleveltech.co.za/brands/onenav
+- Guards On Duty listings corroborate **90022538** (9-inch VW Polo 2014+) and **90022567** (9-inch Suzuki Alivio/Ciaz 2014+). Manufacturer identity and official images remain unverified. Do not reuse retailer imagery. https://guardsondutyshop.co.za/collections/category-tools
+
+### Price anomalies — public retail cross-check only; no Planetworld confirmation
+- **IAB541-WR:** Planetworld's 2026-10-25 snapshot records R99 RRP and R649 dealer cost, while same-family colours are R799–R1199. A South African reseller lists the exact IAB541-WR at R971 incl. VAT. This makes R99 a high-confidence source-row anomaly, but it is not proof of the correct Planetworld price or a confirmed scaling fix. https://nxtleveltech.co.za/product/ibanez-powerpad-series-iab541-wr
+- **JBL-EON710-EK:** Planetworld snapshot RRP R15,399 and dealer cost R33,799. Independent South African retail listings observed around R12,950–R15,490. The RRP is broadly plausible; dealer cost is above observed retail and requires supplier correction/confirmation. Examples: https://soundselect.co.za/products/jbl-eon710 ; https://www.audicoonline.co.za/jbl-powered-pa-speaker-eon710 ; https://djswopshop.co.za/product/jbl-eon-710/
+- **IRX108BT-EK:** Planetworld snapshot RRP R8,599 and dealer cost R15,399; independent South African retail listings observed around R10,895–R11,000. Dealer cost exceeds observed retail; exact -LS regional suffix mismatch also remains. Examples: https://soundselect.co.za/products/jbl-irx108bt ; https://soundofministry.co.za/product/jbl-irx-108-bt/
+
+### Status and safety
+- Gmail searches after 2026-10-25 found no current Planetworld supplier price/stock confirmation. Current dealer cost, RRP, VAT basis, effective date and availability remain unverified.
+- The 19 positive-RRP cost-floor/model-image candidates remain `DO_NOT_IMPORT`. The separate 19-row zero-RRP owner-audit hold remains separate and unchanged.
+- No supplier XLSX, live catalogue, price, stock, active flag, import, publication, deployment, Axxess/DNS/payment setting or release credit was changed.
+- Next action: obtain written Planetworld confirmation for the 19 positive-RRP candidates, prioritising IAB541-WR, JBL-EON710-EK and IRX108BT-EK; complete exact vehicle/model/variant checks and obtain image-use permission before any publication.
