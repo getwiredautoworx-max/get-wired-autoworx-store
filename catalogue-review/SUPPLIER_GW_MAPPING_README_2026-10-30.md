@@ -19,7 +19,7 @@
 ## Price review — private, proposal only
 - Planetworld: 68/68 candidate SKUs matched the 2026-10-25 read-only workbook report. All have positive RRP. RRP−1% and RRP−2% proposals both clear estimated VAT-inclusive dealer cost for all 68; smallest gross headroom is R101.65 at −1% and R97.15 at −2%. See `PLANETWORLD_68_CANDIDATE_PRICE_REVIEW_2026-10-30.csv`.
 - The Planetworld source report stock snapshot is dated 2026-10-25 (44 rows positive, 24 rows zero). It is not current stock confirmation and was not imported.
-- Audio Connections: all 13 Sony candidate models have dealer price and RRP values in the September 2026 PDF. The PDF states prices are VAT-exclusive. RRP−1% and RRP−2% proposals both exceed dealer cost for all 13. See `AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv`. No price was imported; supplier catalogue rows remain inactive and availability is not stated. Owner-authorised dealer access is confirmed; do not request further proof of dealer status.
+- Audio Connections: all 13 Sony candidate models have dealer price and RRP values in the September 2026 PDF. The PDF labels `Price Ex` and `RRP` but does not state the RRP VAT basis in its text; the owner has separately confirmed that Sony RRP includes VAT. RRP−1% and RRP−2% proposals are calculated directly from that VAT-inclusive RRP and both exceed estimated VAT-inclusive dealer cost for all 13. See `AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv`. No price was imported; supplier catalogue rows remain inactive and availability is not stated. Owner-authorised dealer access is confirmed; do not request further proof of dealer status.
 - Existing Planetworld quarantine remains: 19 zero-RRP rows excluded, and the wider workbook audit's 18/19 under-cost warnings remain excluded from automatic pricing.
 
 ## Still required before publication
@@ -57,3 +57,11 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 - Search by brand/model/product, department/brand/component filters and load-more pagination are included. The data remains preview-only and is copied into the Pages package only when `GW_INCLUDE_PREVIEW_ROUTES=1`. The standard public package excludes the audio route and all three source-derived JSON files.
 - No supplier identity, dealer cost, raw supplier SKU, live price/stock/product/category records, database write, supplier activation, payment/checkout change, Axxess upload, DNS change or production deployment was performed.
 - **Remaining quality work:** visually review/download/approve exact high-resolution images; add approved brand-logo artwork to brand buttons; complete remaining manufacturer identity/description audits and reconcile current prices/availability before any public listing. The 25-Oct-2026 Planetworld snapshot and August/September 2026 Audio Connections price lists are dated reference data, not live stock.
+
+
+## Audio Connections non-Sony GW SKU candidate reconciliation — 2026-11-03
+- Generated 53 additional deterministic internal GW SKU candidates for the 53 non-Sony source rows using the documented FNV-1a `supplier|brand|model` method.
+- All 53 candidate codes are unique within the new set and do not collide with the 81 previously proposed candidate codes.
+- A read-only exact lookup against the current `public.products.public_sku` values returned zero collisions for all 53 new candidates.
+- These are **held internal candidates only**, not assigned or published GW SKUs. The crosswalk keeps `proposed_gw_public_sku` blank and `gw_sku_status=NOT_ASSIGNED_HOLD` until exact product identity and image review are complete. Two RA-branded records retain the source abbreviation because the full brand identity remains unverified.
+- Combined status: 81 proposed collision-checked candidates (68 Planetworld + 13 Sony) and 53 additional collision-free held candidates; 134 unique candidate codes in total, zero live SKU collisions, zero public product links and zero publication.
