@@ -44,13 +44,18 @@ assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio'
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,46);
-assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,30);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,49);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,33);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'exact_model_retailer_image_review_only').length,3);
-assert.equal(verifiedModels.records.filter(row => !row.imageUrl).length,22);
+assert.equal(verifiedModels.records.filter(row => !row.imageUrl).length,19);
 const alpineHalo = verifiedModels.records.find(row => row.modelNumber === 'ILX-F115D');
 assert.ok(alpineHalo && alpineHalo.imageUrl.startsWith('https://www.alpine.pt/'));
 assert.equal(alpineHalo.imageStatus,'official_manufacturer_image_verified_review_only');
+for (const model of ['KIT SUB P20FE','CS-DR162','KW-M590BT']) {
+  const row = verified.records.find(item => item.modelNumber === model);
+  assert.ok(row && row.imageUrl);
+  assert.equal(row.imageStatus, 'official_manufacturer_image_verified_review_only');
+}
 for (const model of ['S2-A55V','S2-S65']) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl.startsWith('https://www.alpine-asia.com/media/'));
