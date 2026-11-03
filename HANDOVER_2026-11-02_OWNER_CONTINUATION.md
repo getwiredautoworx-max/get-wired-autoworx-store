@@ -848,3 +848,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - GitHub Actions billing/quota details are not exposed through the connected repository API, so the precise account-side cause of zero runner assignment is not confirmed. Do not assume it is an application failure or repeat retries without evidence of runner recovery.
 - Current catalogue image review set: 68 exact-model manufacturer records, 17 image URLs (eight newly matched official Audison product images), 51 still without verified images. All new images remain review-only.
 - No production deployment, Supabase write, live product import, stock/price update, payment activation, Axxess upload or DNS change. Public products remain 0; private staging remains 770 REVIEW_ONLY; category count remains 27.
+
+
+## 2026-11-03 — CURRENT EXACT PR HEAD SNAPSHOT
+- Current PR #166 head after main reconciliation and handover/task-queue updates: `ad5770b5df55c26a624fedcd0842d143de0e681a`; PR open/draft/mergeable; 51 ahead / 0 behind main.
+- Latest package QA attempt available in Actions is run `41612392059` at prior code head `943adbdbae33fc75c108657c7699ca7e29195ff1`; it failed before runner assignment and executed zero steps. The current head adds only handover/task-queue and merge-parent reconciliation after that candidate code; do not describe it as tested on exact current SHA.
+- Structural test source is present and now checks 17 official image URLs / eight new Audison model mappings, but remains unexecuted. Current exact-head package QA must still pass before preview deployment.
+- No current candidate preview is deployed. The 2-Nov alias is stale. The isolated deployment workflow now checks out the trigger SHA but runner allocation is still unavailable.
