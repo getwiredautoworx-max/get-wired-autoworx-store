@@ -153,3 +153,9 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - GW SKU state: 81 proposed collision-checked candidates (68 Planetworld +13 Sony) and 53 collision-free held candidates for non-Sony Audio Connections rows; 134 unique candidate codes, zero collisions against current public SKU values. All 53 non-Sony codes remain unassigned/held pending exact identity and image approval.
 - All catalogue rows and prices remain review-only; supplier activation, public product creation, public image writes, stock/price updates and live database changes remain prohibited.
 - Tests have updated assertions but have not run under Node/GitHub Actions. Hosted preview verification must use the final exact branch head; no readiness claim.
+
+
+### Reference Audio brand-level identity check — 2026-11-03
+- The official Reference Audio brand site confirms the brand identity for RABTR03, RA AWG4 and RA SUPER RAST20. The two source abbreviations “RA” are now expanded to **Reference Audio** in the internal crosswalk and preview.
+- No exact official product page/model evidence was found for these three products. The official brand homepage is recorded separately as brand-level evidence only; it is not counted as a product page, and retailer pages are not treated as manufacturer proof.
+- These products remain held for exact model/image confirmation. The 18-row non-Sony no-product-reference count is unchanged.
