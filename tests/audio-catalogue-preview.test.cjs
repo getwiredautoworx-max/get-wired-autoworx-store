@@ -29,7 +29,7 @@ assert.deepEqual(planet.collections, {
 });
 assert.equal(planet.records.filter(row => row.division === 'Car Audio').length, 702);
 assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio":p.collection===department'), 'Car Audio button must include the complete Car Audio division, including harnesses/trims and marine-audio source rows');
-assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse All Car Audio Catalogue','Car Audio & Video')"));
+assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse All Car Audio Catalogue','Car Audio')"));
 for (const row of planet.records) {
   assert.ok(row.title && row.brand && row.collection && row.component, 'Planetworld row has required browse fields');
   assert.equal(Object.hasOwn(row, 'supplierSku'), false, 'supplier SKU must not be public');
