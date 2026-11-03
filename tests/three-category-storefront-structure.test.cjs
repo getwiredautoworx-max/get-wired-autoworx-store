@@ -21,7 +21,7 @@ assert.ok(starsoundUsb450.imageUrl === 'https://starsound.co.za/wp-content/uploa
 assert.equal(starsoundUsb450.imageStatus, 'OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
 assert.equal(starsoundUsb450.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE', 'official image candidates must remain preview-only until approved');
 assert.equal(audio.records.filter(p => p.imageUrl).length, 22, '22 direct official image URLs are review candidates');
-assert.equal(audio.records.filter(p => p.manufacturerPage || p.manufacturerListingPage).length, 41, '41 official manufacturer references must be retained in the Audio Connections preview');
+assert.equal(audio.records.filter(p => p.manufacturerPage || p.manufacturerListingPage).length, 48, '48 official manufacturer references must be retained in the Audio Connections preview');
 assert.ok(audio.records.filter(p => p.imageUrl).every(p => p.imageApprovalStatus === 'REVIEW_CANDIDATE_NOT_APPROVED'), 'no supplier image URL is treated as approved');
 for (const [model,url] of [
   ['USB230','https://starsound.co.za/product/ssusb-230btce/'],
@@ -48,7 +48,7 @@ assert.ok(focalP20 && focalP20.imageUrl === 'https://dam.focal-naim.com/m/36b97b
 assert.equal(focalP20.imageStatus, 'OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
 assert.ok(verifiedModels.records.every(p => Number(p.indicativePrice) > 0 && p.priceProposalStatus === 'REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED'), 'all 68 verified-only model cards must carry a positive review-only indicative price');
 assert.ok(audioPage.includes('indicativePrice:p.indicativePrice??null'), 'unmatched verified-only model cards must retain their source-backed indicative price');
-for (const model of ["SSW12-6300","SSA-ATOM13800.4","SSAR 22000.1","SSA-R 5000.4"]) {
+for (const model of ["SSW12-6300","SSA-ATOM13800.4","SSAR 22000.1","SSA-R 5000.4","SPARTAN 9900.1"]) {
   const row = audio.records.find(p => p.modelNumber === model);
   assert.ok(row && row.specificationConflict && row.specificationReviewStatus === 'SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED', 'specification conflict must be explicit for '+model);
 }
