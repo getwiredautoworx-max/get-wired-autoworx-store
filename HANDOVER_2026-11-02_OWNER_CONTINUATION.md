@@ -886,3 +886,11 @@ Continue the Planetworld and Audio Connections catalogue upload/integration unde
 - Latest Cloudflare Pages Public Package QA run: 41603950325; job 125809062744 failed before any steps/logs were available (`steps=null`, no logs URL). This is another GitHub runner startup failure, not a passing build or an application-level test failure. Do not mark tests passed.
 - Brand-logo artwork and approval/download of exact high-resolution product images remain outstanding. The 13 URLs are manufacturer image-source candidates only, not approved customer-publication assets. No browser/phone verification or hosted corrected deployment is confirmed.
 - PR #165 remains draft/open/unmerged. Production remains HOLD; no live catalogue, price, stock, database, supplier activation, payment, Axxess, DNS or production deployment changes were made.
+
+
+### Non-production Pages deployment confirmation — 2026-11-03
+- Cloudflare Pages bot posted a successful deployment for exact code commit `4915ac4` (full SHA `4915ac45338e5b1ed72b29d7f663c35adc799007`): `https://62563ded.get-wired-autoworx-store.pages.dev`.
+- The deployment is a non-production Pages preview. Its audio route is `/preview-audio.html`; data assets are the three allowlisted JSON files under `/assets/`.
+- Direct automated page opening was unavailable in this session, so this confirms the Pages deployment status and exact commit, not a visual/browser/phone pass. Owner visual inspection remains outstanding.
+- The separate GitHub Actions Pages package QA run 41603950325 still failed before steps/logs (job 125809062744, `steps=null`). Do not conflate the Pages bot's successful deployment with the skipped/failed GitHub QA suite.
+- The separate Cloudflare Workers build for commit 1b51851 was reported failed by the Workers bot; no Workers production release is claimed or authorized. Production remains HOLD.
