@@ -9,7 +9,7 @@ const files = Object.fromEntries([
   'preview-category.html',
 ].map(path => [path, fs.readFileSync(path, 'utf8')]));
 
-const legacySources = "['September Buyer\\\\'s Guide','October Buyer\\\\'s Guide']";
+const legacySources = "['September Buyer\\'s Guide','October Buyer\\'s Guide']";
 assert.ok(files['index-new.html'].includes(legacySources), 'homepage product feed must exclude September/October Buyer Guides');
 for (const path of ['product.html', 'products.html', 'preview-products.html']) {
   assert.ok(files[path].includes('isLegacyAscBuyerGuide'), path + ' must apply the legacy ASC source guard');
