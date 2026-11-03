@@ -1215,3 +1215,10 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Generated 53 FNV-1a GW candidate codes for non-Sony Audio Connections source rows. A read-only exact check against current `public.products.public_sku` returned zero collisions; all 53 are unique and do not collide with the prior 81 candidate set.
 - Added the values as internal review-only candidates in the supplier crosswalk. They are **not assigned GW SKUs**: `proposed_gw_public_sku` remains blank and status remains `NOT_ASSIGNED_HOLD` pending exact identity/image review; two RA rows also require brand identity confirmation.
 - Updated the mapping README, summary JSON and supplier crosswalk test assertions. No public products/SKUs or live supplier rows were created or changed.
+
+
+### Planetworld 68-model price presentation correction — 2026-11-03
+- Joined all 68 verified Planetworld model records to the exact 68-row source price-review set; all 68 have positive RRP−1% preview proposals and passed the dated snapshot cost-floor review.
+- Fixed the audio preview so the 57 verified-model cards not merged into broad catalogue titles no longer incorrectly show “Price on request”; they now carry the matched indicative proposal and 25-Oct-2026 date label. Eleven exact leading-token matches continue to inherit their broad catalogue row's price.
+- No historical stock is presented as current; no dealer cost or supplier code exposed; no live price/stock change.
+- Added regression assertions; test execution remains pending.
