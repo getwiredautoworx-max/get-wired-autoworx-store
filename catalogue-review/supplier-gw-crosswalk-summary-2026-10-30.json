@@ -24,10 +24,10 @@
   "public_descriptions": 0,
   "public_image_urls": 0,
   "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only",
-  "official_image_source_urls_found": 7,
+  "official_image_source_urls_found": 13,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "Crosswalk records four Alpine, two Sony and one Starsound official image-source URLs. The Audio Connections preview currently has five direct image URL candidates (four Sony and one Starsound SSUSB-450BTDD). No official image asset has been downloaded or approved; retailer/PDF images are not approved.",
+  "image_notes": "Crosswalk records 13 official image-source URLs: four Alpine and one Focal for Planetworld; four Sony and four Starsound for Audio Connections. The Audio Connections preview currently has eight direct image URL candidates (four Sony and four Starsound). No official image asset has been downloaded or approved; retailer/PDF images are not approved.",
   "supplier_connection_statuses": {
     "planetworld": {
       "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
@@ -49,6 +49,9 @@
   "audio_connections_manufacturer_references_total": 27,
   "audio_connections_non_sony_manufacturer_references": 14,
   "audio_connections_non_sony_without_manufacturer_reference": 39,
-  "audio_connections_preview_image_url_candidates": 5,
-  "audio_connections_preview_image_url_approved": 0
+  "audio_connections_preview_image_url_candidates": 8,
+  "audio_connections_preview_image_url_approved": 0,
+  "planetworld_verified_model_image_urls": 62,
+  "planetworld_verified_model_image_gaps": 6,
+  "audio_connections_preview_image_url_missing": 58
 }
