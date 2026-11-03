@@ -35,8 +35,8 @@
       "file": "ASC- Car Mats (1).pdf",
       "pages": 11,
       "contents_sections": 14,
-      "store_root_category": "Auto Electrical Spares",
-      "existing_store_category": "Auto Electrical Spares — catalogue button"
+      "store_root_category": "Car Care & Accessories",
+      "existing_store_category": "Car Care & Accessories → Car Mats"
     },
     {
       "file": "ASC- Fuel Pumps (1).pdf",
@@ -442,7 +442,7 @@
     },
     {
       "store_parent_id": "c910bc35-2f87-465e-b7c5-f6b27c133146",
-      "store_root_category": "Auto Electrical Spares",
+      "store_root_category": "Car Care & Accessories",
       "source_parent": null,
       "sections": [
         {
