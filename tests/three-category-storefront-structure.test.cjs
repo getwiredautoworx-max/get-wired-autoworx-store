@@ -26,11 +26,11 @@ const categoryClickHandler = home.slice(home.indexOf("document.addEventListener(
 assert.ok(categoryClickHandler.includes("Array.from(wrap.children).find(el=>el.classList&&el.classList.contains('children'))"), 'category expansion must locate direct child containers without :scope selector dependency');
 assert.ok(categoryClickHandler.includes("Array.from(parent.children).filter(w=>w!==wrap"), 'opening one category must close sibling categories using browser-compatible direct-child traversal');
 assert.ok(!categoryClickHandler.includes(':scope'), 'category expansion must not depend on :scope selectors unsupported by older embedded Android browsers');
-assert.ok(home.indexOf("categories=await snapshot();renderCats();")<home.indexOf("apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc')"), 'approved local category tree must render before remote Supabase refresh');
+assert.ok(home.indexOf("categories=await snapshot();renderCats();")<home.indexOf("const categoryTask=(async()=>"), 'approved local category tree must render before remote Supabase refresh');
 assert.ok(home.includes('setTimeout(()=>controller.abort(),7000)'), 'remote category refresh must be bounded so it cannot hold category rendering');
 assert.ok(home.includes("apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc',1000,controller.signal)"), 'category API timeout must abort the actual remote fetch');
-assert.ok(home.includes('Category API returned an incomplete active hierarchy'), 'category loader must fall back when Supabase category rows are empty or incomplete');
-assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store'})"), 'approved local category snapshot fallback must remain available');
+assert.ok(home.includes('Remote category response incomplete; retaining approved local category tree.'), 'category loader must retain the local snapshot when Supabase category rows are incomplete');
+assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store',signal:controller.signal})"), 'approved local category snapshot fallback must remain available and bounded');
 assert.ok(categoryCleanup.includes("const mainRootIds=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']"), 'all three approved roots must survive category cleanup without products');
 for (const [id,label] of roots) {
   assert.ok(home.includes(id) && home.includes(label), 'storefront root '+label);
@@ -103,7 +103,8 @@ for (const obj of [planet,audio]) {
   assert.ok(!/Planetworld|Audio Connections/i.test(raw),'supplier identity must not appear in customer-facing data');
   assert.ok(!/dealerCost|dealerPrice|supplierSku|supplierName/i.test(raw),'dealer costs and supplier identifiers must not be exposed');
 }
-assert.ok(!/Planetworld|Audio Connections/i.test(audioPage));
+const audioPageWithoutAssetPaths = audioPage.replace(/assets\/[a-z0-9-]+\.json/gi,'');
+assert.ok(!/Planetworld|Audio Connections/i.test(audioPageWithoutAssetPaths), 'supplier names must not appear in customer-facing audio page text');
 assert.ok(builder.includes('"preview-audio.html"') && builder.includes('"asc-catalogue-preview.html"'));
 
 assert.ok(builder.includes('"owner-preview.html"'), 'safe owner preview must be in the opt-in package allowlist');

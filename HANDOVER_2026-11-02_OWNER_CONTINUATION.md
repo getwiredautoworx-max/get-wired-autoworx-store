@@ -1069,3 +1069,51 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Required owner-side Cloudflare action: open https://dash.cloudflare.com/ -> Workers & Pages -> select existing `get-wired-autoworx-store` Pages project -> Settings > Builds. Confirm Git repository is `getwiredautoworx-max/get-wired-autoworx-store` and GitHub App access is limited to this private repository. Under Build > Branch control, preserve `main` as Production branch and enable preview builds for `integration/three-category-catalogue-preview-final-2026-11-03` (or all non-production branches). Do not change the production branch or production deployment. If Git integration is already connected, inspect Deployments for the exact SHA above; if no build exists, check Git Repository access and branch controls, then trigger only a branch/PR preview.
 - Cloudflare Free Pages documents 500 builds/month, one concurrent build, unlimited active preview deployments, 20,000 files/site and 25 MiB per file. Check the actual account's remaining build quota and the project's current integration before triggering. No production deployment, merge, DNS change, live catalogue publication, Supabase write, payment change or Netlify credit spend is authorised.
 - Exact-head QA remains outstanding: confirm a successful Cloudflare preview URL whose deployment commit equals `12f4daf198c305a079460f1ee8e4636ad5f81ee2`, open owner preview and catalogue routes, verify QA marker and run browser/mobile checks. Do not mark store ready until verified and owner accepts.
+
+
+## 2026-11-03 — Owner-authorized staging continuation: consolidated QA + handover correction
+
+### Owner authority and release boundary
+- Owner explicitly authorized Cloudflare Pages **staging preview builds**. Use the existing branch `integration/three-category-catalogue-preview-final-2026-11-03` and PR #168 for the consolidated owner-review candidate. Do not merge the PR.
+- Production deployments, Axxess uploads, live Supabase/data writes, live stock or price changes, DNS/payment credential changes and checkout/payment activation remain prohibited. Do not write to `main` for project work; the earlier documentation-only main commit `9b8146253f631353cf7cc9083cd54c54118c7f02` may have triggered a main Pages pipeline, but its deployment outcome was not verified.
+
+### Authoritative category tree — correction to earlier handover text
+- The latest direct owner instruction is **three root buttons**, not eight. The three active root categories are:
+  1. Car Audio / Home Entertainment / Lifestyle
+  2. Auto Electrical Parts & Spares
+  3. Car Care & Accessories
+- The earlier sentence in this handover claiming an eight-root requirement is stale and explicitly superseded. Do not recreate 243 legacy categories or reintroduce the old eight-root tree.
+- Current active child structure verified in `assets/category-tree.json`: Car Audio, Home Entertainment, Band Equipment, DJ Equipment, Instruments and Lifestyle under the combined first root; Vacuum Cleaners and Pool Cleaners under Lifestyle.
+
+### Latest staging candidate and build diagnosis
+- Branch head before this batched correction: `642745e1d688015283cd3c491058a26c1c4d7dfa`; PR #168 remains draft/unmerged.
+- Cloudflare Pages build record `b478b28e-5be7-423c-9482-503343da6e59` reported **failed** for commit `642745e`. Authenticated build logs were not available through the connected session.
+- Read-only reproduction of the branch's 52 structural assertions against current repository file contents found 48 passing and four stale test expectations:
+  - category-snapshot order assertion used a no-longer-present exact query string;
+  - incomplete-remote-tree fallback assertion expected obsolete wording;
+  - local snapshot assertion omitted the current AbortController signal;
+  - supplier-name privacy assertion falsely matched the private asset filename `planetworld-catalogue-preview.json`, not a visible customer-facing supplier name.
+- Corrected those four regression assertions to match current implementation and distinguish asset paths from visible page text. The actual Node/Cloudflare build must still execute these tests; GitHub Actions runner recovery has repeatedly failed before starting any steps (run `41656925603`, job `125989586711`), so no GitHub-hosted browser test is claimed.
+- Latest Pages build for `642745e` failed; next build should run only after this single batched test+handover commit. Inspect its final Pages status and QA marker before any owner-ready claim.
+
+### Catalogue audit — review-only, not live
+- Planetworld preview: 3,317 rows; 37 rows have no approved indicative price and carry the approved “Price on Request due to Limited Stock and Availability” text. Indicative pricing rule recorded in data: 1% below source RRP only after private cost-floor check; no dealer cost/margin fields are included.
+- Audio Connections preview: 66 rows, all `PREVIEW_ONLY_NOT_LIVE`; 3 have no indicative price; 62 currently lack an image URL. The separate exact-model reference set contains 68 models, 61 image URLs, 48 manufacturer-image verified review-only and 4 manufacturer-page image links review-only; 7 models still lack image URLs.
+- ASC preview: 6 catalogue routes, 75 catalogue sections and 50 pilot product cards. All six routes currently sit under Auto Electrical Parts & Spares. All 50 pilot images remain watermarked owner-review-only with usage rights not cleared; no prices or stock quantities are supplied. No ASC records are live.
+- Customer-facing data checks found no literal supplier names or dealer cost/supplier identifier fields in Planetworld or Audio Connections JSON. The audio page references the preview JSON filenames; this is not visible supplier branding. The corrected test now checks visible page text rather than matching asset filenames.
+- The catalogue data is a preview/review candidate, not a complete, approved live catalogue. Verify final product presentation, image permissions, model descriptions and price/stock before owner approval.
+
+### Six-step execution sequence and acceptance gates
+1. Diagnose Pages build using Cloudflare build logs and the result of the corrected test suite; fix any real build/runtime failure before proceeding.
+2. Reconcile three-root navigation and subcategory links on desktop/mobile; preserve the child hierarchy listed above.
+3. Reconcile Planetworld, Audio Connections and ASC catalogues; preserve supplier privacy, RRP/cost-floor rules, quote-only rows and review-only status.
+4. Run one combined structural/data/privacy/package validation before the next staging build; avoid piecemeal commits/builds.
+5. Confirm a successful Cloudflare Pages preview for the exact branch SHA, open owner-preview and catalogue routes, verify `qa-build-result.json` reports PASS for that same SHA, then complete desktop/mobile browser QA. GitHub runner failures are not test passes.
+6. Record exact SHA, deployment ID/URL, test output, remaining image/rights/pricing issues and owner acceptance here. Checkout/payment functional testing remains deferred until owner supplies banking details.
+
+### Verification state at this handover update
+- Static data/tree review: passed for the counts and routing stated above.
+- Corrected Node regression suite: updated but **not yet executed successfully** by a hosted runner.
+- Latest Cloudflare Pages build: failed for `642745e`; next build awaits this batched correction.
+- Exact-head successful preview and desktop/mobile browser QA: outstanding.
+- Owner acceptance: outstanding. Store is not marked ready.
