@@ -38,7 +38,8 @@
       "gwSku": "GW-15ED092F",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-002",
@@ -62,7 +63,8 @@
       "gwSku": "GW-75B4E0B0",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-003",
@@ -86,7 +88,8 @@
       "gwSku": "GW-278BCEF6",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-004",
@@ -110,7 +113,8 @@
       "gwSku": "GW-C96B794A",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-005",
@@ -134,7 +138,8 @@
       "gwSku": "GW-1A7AB005",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-006",
@@ -158,7 +163,8 @@
       "gwSku": "GW-79892A2D",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-007",
@@ -182,7 +188,8 @@
       "gwSku": "GW-4E9C9939",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-008",
@@ -206,7 +213,8 @@
       "gwSku": "GW-2867F5CB",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-009",
@@ -230,7 +238,8 @@
       "gwSku": "GW-D2335F32",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-010",
@@ -254,7 +263,8 @@
       "gwSku": "GW-4BDFD8BD",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-011",
@@ -278,7 +288,8 @@
       "gwSku": "GW-B4F5275E",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-012",
@@ -302,7 +313,8 @@
       "gwSku": "GW-34E5B953",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-013",
@@ -326,7 +338,8 @@
       "gwSku": "GW-423595E9",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-014",
@@ -350,7 +363,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerBrandPage": "https://referenceaudio.co.za/",
-      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence"
+      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-015",
@@ -372,7 +386,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "Official product page identifies SSUSB-230BTCE; supplier source uses USB230 EXT MIC. Alias/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-016",
@@ -394,7 +409,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-017",
@@ -417,7 +433,8 @@
       "brandNote": "Official Starsound car-radio listing includes SSMP5-7655BT; source alias and exact variant review remain open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-018",
@@ -440,7 +457,8 @@
       "brandNote": "Official Starsound car-radio listing includes SSDVD-9900BT; exact image/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-019",
@@ -463,7 +481,8 @@
       "brandNote": "Official Starsound car-radio listing includes SSMP5-7670BTAC; source alias and exact variant review remain open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/car-radios/?category-view-mode=list",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-020",
@@ -486,7 +505,8 @@
       "brandNote": "Official Starsound subwoofer listing includes SSW-12W-5200; source alias/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-021",
@@ -516,7 +536,8 @@
       "specificationConflict": "Original source/manufacturer discrepancy retained for audit; customer-facing preview uses the higher stated output under owner instruction dated 2026-11-03. Do not mix RMS/peak ratings or imply channel/impedance values not supported by the selected source.",
       "specificationReviewStatus": "OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT",
       "ownerSpecificationRule": "HIGHER_OUTPUT_SPEC_SELECTED_PER_OWNER_INSTRUCTION_2026-11-03",
-      "selectedCustomerFacingSpecification": "400 W RMS (official manufacturer listing; higher than supplier list's 300 W)."
+      "selectedCustomerFacingSpecification": "400 W RMS (official manufacturer listing; higher than supplier list's 300 W).",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-022",
@@ -541,7 +562,8 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-7300",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-023",
@@ -563,7 +585,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-024",
@@ -585,7 +608,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-025",
@@ -609,7 +633,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSW-B12-2800",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-026",
@@ -634,7 +659,8 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-F10-4150SVC",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-027",
@@ -659,7 +685,8 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-F12-5150SVC",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-028",
@@ -681,7 +708,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-029",
@@ -703,7 +731,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-030",
@@ -728,7 +757,8 @@
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerMatchStatus": "OFFICIAL_PRODUCT_PAGE_ALIAS_REFERENCE — source SPARTAN 9900.1 maps to SSA-SP-9900.1; verify variant and power rating",
       "specificationConflict": "Supplier source says 600 RMS without impedance; the official Starsound page lists 500 W RMS at 1 Ω and 250 W RMS at 2 Ω. Confirm the correct rating before publication.",
-      "specificationReviewStatus": "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED"
+      "specificationReviewStatus": "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-031",
@@ -750,7 +780,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-032",
@@ -774,7 +805,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/page/2/",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SSA-ATOM-13500 may map to SSA-Atom-13500.1; suffix/variant review pending"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SSA-ATOM-13500 may map to SSA-Atom-13500.1; suffix/variant review pending",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-033",
@@ -796,7 +828,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-034",
@@ -820,7 +853,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SSATIH8200.1 may map to SSA-H-8200.1; exact variant review pending"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SSATIH8200.1 may map to SSA-H-8200.1; exact variant review pending",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-035",
@@ -849,7 +883,8 @@
       "specificationConflict": "Original source/manufacturer discrepancy retained for audit; customer-facing preview uses the higher stated output under owner instruction dated 2026-11-03. Do not mix RMS/peak ratings or imply channel/impedance values not supported by the selected source.",
       "specificationReviewStatus": "OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT",
       "ownerSpecificationRule": "HIGHER_OUTPUT_SPEC_SELECTED_PER_OWNER_INSTRUCTION_2026-11-03",
-      "selectedCustomerFacingSpecification": "1800 W RMS at 1 Ω (official manufacturer listing; higher than supplier list's 1700 RMS)."
+      "selectedCustomerFacingSpecification": "1800 W RMS at 1 Ω (official manufacturer listing; higher than supplier list's 1700 RMS).",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-036",
@@ -871,7 +906,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-037",
@@ -900,7 +936,8 @@
       "specificationConflict": "Original source/manufacturer discrepancy retained for audit; customer-facing preview uses the higher stated output under owner instruction dated 2026-11-03. Do not mix RMS/peak ratings or imply channel/impedance values not supported by the selected source.",
       "specificationReviewStatus": "OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT",
       "ownerSpecificationRule": "HIGHER_OUTPUT_SPEC_SELECTED_PER_OWNER_INSTRUCTION_2026-11-03",
-      "selectedCustomerFacingSpecification": "65 W RMS per channel at 4 Ω (official manufacturer listing; higher than supplier source text's 60 RM)."
+      "selectedCustomerFacingSpecification": "65 W RMS per channel at 4 Ω (official manufacturer listing; higher than supplier source text's 60 RM).",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-038",
@@ -925,7 +962,8 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-Hornet-7600.4",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-039",
@@ -950,7 +988,8 @@
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-J-10000.4",
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; exact model listing; individual page not found",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-040",
@@ -980,7 +1019,8 @@
       "specificationConflict": "Original source/manufacturer discrepancy retained for audit; customer-facing preview uses the higher stated output under owner instruction dated 2026-11-03. Do not mix RMS/peak ratings or imply channel/impedance values not supported by the selected source.",
       "specificationReviewStatus": "OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT",
       "ownerSpecificationRule": "HIGHER_OUTPUT_SPEC_SELECTED_PER_OWNER_INSTRUCTION_2026-11-03",
-      "selectedCustomerFacingSpecification": "100 RMS (supplier list; higher stated output than official page's 80 W × 4 at 4 Ω. Keep the measurement basis explicit; do not restate as 100 W × 4)."
+      "selectedCustomerFacingSpecification": "100 RMS (supplier list; higher stated output than official page's 80 W × 4 at 4 Ω. Keep the measurement basis explicit; do not restate as 100 W × 4).",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-041",
@@ -1002,7 +1042,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-042",
@@ -1027,7 +1068,8 @@
       "manufacturerSpecificationNote": "Official page confirms 80W x4 at 4Ω, consistent with the source list's 80RMS shorthand.",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSA-M4-80.4",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-043",
@@ -1051,7 +1093,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSS-5502",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-044",
@@ -1073,7 +1116,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-045",
@@ -1097,7 +1141,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSS-6601",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-046",
@@ -1121,7 +1166,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSS-6602",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-047",
@@ -1145,7 +1191,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSS-6903",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-048",
@@ -1169,7 +1216,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSD-620",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-049",
@@ -1193,7 +1241,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/speakers/pro-speakers/?category-view-mode=list",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source PRO6.5-700 maps to SSS-Pro6.5-700; variant review pending"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source PRO6.5-700 maps to SSS-Pro6.5-700; variant review pending",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-050",
@@ -1217,7 +1266,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/speakers/pro-speakers/?category-view-mode=list",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SS-PRO6X9-900 maps to SSS-Pro6x9-900; variant review pending"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SS-PRO6X9-900 maps to SSS-Pro6x9-900; variant review pending",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-051",
@@ -1241,7 +1291,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/shop/page/7/",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_REFERENCE — exact SSAK-406P model listed"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_REFERENCE — exact SSAK-406P model listed",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-052",
@@ -1264,7 +1315,8 @@
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "manufacturerMatchStatus": "OFFICIAL_PRODUCT_PAGE_ALIAS_REFERENCE — source 409CU maps to SSAK-409CU; verify source pack/length variant"
+      "manufacturerMatchStatus": "OFFICIAL_PRODUCT_PAGE_ALIAS_REFERENCE — source 409CU maps to SSAK-409CU; verify source pack/length variant",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-053",
@@ -1286,7 +1338,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-054",
@@ -1308,7 +1361,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-055",
@@ -1330,7 +1384,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-056",
@@ -1352,7 +1407,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-057",
@@ -1376,7 +1432,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerBrandPage": "https://referenceaudio.co.za/",
-      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence"
+      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-058",
@@ -1399,7 +1456,8 @@
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_MODEL_PAGE_FOUND",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-059",
@@ -1421,7 +1479,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-060",
@@ -1445,7 +1504,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SST-350",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-061",
@@ -1469,7 +1529,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SST-850",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-062",
@@ -1493,7 +1554,8 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
       "manufacturerBrandPage": "https://referenceaudio.co.za/",
-      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence"
+      "manufacturerMatchStatus": "OFFICIAL_BRAND_SITE_CONFIRMS_REFERENCE_AUDIO; exact product page/model not found; retailer listings are not manufacturer evidence",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-063",
@@ -1517,7 +1579,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSA-EQ-5100",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-064",
@@ -1539,7 +1602,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-065",
@@ -1564,7 +1628,8 @@
       "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND_SOURCE_ALIAS_OR_SPEC_REVIEW",
       "manufacturerListedModel": "SSA-2900 (SKU SSA-EQ-2900)",
       "manufacturerSpecificationNote": "Source label is CROSSOVER 2900; official page displays SSA-2900 / SKU SSA-EQ-2900 and identifies a 2/3-way electronic crossover.",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "id": "ac-066",
@@ -1588,7 +1653,8 @@
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerListedModel": "SSA-2950",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     }
   ]
 }
