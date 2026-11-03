@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-11-03T00:00:00Z",
-  "source": "Owner-approved category reset and clean category tree from Supabase. Counts reflect current active products.",
+  "source": "Owner-approved category reset and rebuilt hierarchy from Supabase; catalogue remains empty until supplier import is validated.",
   "categories": [
     {
       "id": "1a13bc42-4f54-44f6-9658-36d141b77f4b",
@@ -84,24 +84,6 @@
       "sort_order": 6
     },
     {
-      "id": "b6d72815-c634-424c-9520-abed7cbdee1a",
-      "name": "Vacuum Cleaners",
-      "slug": "vacuum-cleaners",
-      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 1
-    },
-    {
-      "id": "a8593e12-53fb-4514-ad19-d9e9a19b6953",
-      "name": "Pool Cleaners",
-      "slug": "pool-cleaners",
-      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
-      "active": true,
-      "direct_active_products": 0,
-      "sort_order": 2
-    },
-    {
       "id": "07bc149c-4ab3-41bd-bab3-01415cb8a24c",
       "name": "Alternators & Starters",
       "slug": "alternators-starters",
@@ -145,6 +127,87 @@
       "active": true,
       "direct_active_products": 0,
       "sort_order": 6
+    },
+    {
+      "id": "934a47fc-14b2-4d08-a3ea-9c5254076a5a",
+      "name": "Speakers & Component Kits",
+      "slug": "car-audio-speakers-components",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 1
+    },
+    {
+      "id": "4eebc099-4821-4bb9-82ac-8181192f5e00",
+      "name": "Subwoofers",
+      "slug": "car-audio-subwoofers",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 2
+    },
+    {
+      "id": "1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca",
+      "name": "Amplifiers",
+      "slug": "car-audio-amplifiers",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 3
+    },
+    {
+      "id": "7dfa871f-ae4d-4be0-87f2-8685d50ae6bb",
+      "name": "Head Units & Media Players",
+      "slug": "car-audio-head-units-media",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 4
+    },
+    {
+      "id": "13b36e2a-a5c7-471e-83ef-3ad180e66d3d",
+      "name": "Harnesses, Trims & Fitment",
+      "slug": "car-audio-harnesses-trims",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 5
+    },
+    {
+      "id": "b467d7f9-7ef3-4fa2-8e87-41530e1bcabb",
+      "name": "Cameras & Monitors",
+      "slug": "car-audio-cameras-monitors",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 6
+    },
+    {
+      "id": "3fb18314-b5c5-4edf-8db2-00a29e18d027",
+      "name": "Signal Processing & Crossovers",
+      "slug": "car-audio-signal-processing",
+      "parent_id": "e3d19d20-fb46-426c-9f64-221d863add0b",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 7
+    },
+    {
+      "id": "b6d72815-c634-424c-9520-abed7cbdee1a",
+      "name": "Vacuum Cleaners",
+      "slug": "vacuum-cleaners",
+      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 1
+    },
+    {
+      "id": "a8593e12-53fb-4514-ad19-d9e9a19b6953",
+      "name": "Pool Cleaners",
+      "slug": "pool-cleaners",
+      "parent_id": "f91c7c30-82b4-42d4-bf4f-e807172cedc4",
+      "active": true,
+      "direct_active_products": 0,
+      "sort_order": 2
     },
     {
       "id": "75d265b0-4e9c-4492-b54f-0db7c8202756",
