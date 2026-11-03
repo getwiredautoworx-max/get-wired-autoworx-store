@@ -44,6 +44,10 @@ for (const name of ['Vacuum Cleaners','Pool Cleaners'])
 assert.ok(home.includes("audioSearch:'vacuum'") && home.includes("audioSearch:'pool'"));
 assert.ok(home.includes("audioDepartment:'Lifestyle',audioSearch:'vacuum'"), 'vacuum cleaners must route through Lifestyle');
 assert.ok(home.includes("audioDepartment:'Lifestyle',audioSearch:'pool'"), 'pool cleaners must route through Lifestyle');
+const lifestyleProducts = planet.records.filter(p => p.division === 'Home Retail' && /vacuum|pool/i.test(p.title||''));
+assert.ok(lifestyleProducts.length > 0, 'Planetworld Home Retail includes vacuum/pool products for Lifestyle');
+assert.ok(lifestyleProducts.every(p => p.collection === 'Home Entertainment'), 'Lifestyle products must be separated from Home Entertainment by division');
+assert.ok(planet.records.some(p => p.division === 'Home CI' && p.collection === 'Home Entertainment'), 'Home Entertainment collection remains populated by Home CI');
 assert.ok(audioPage.includes('["Lifestyle","Lifestyle"]'), 'Lifestyle must be a selectable catalogue department');
 assert.ok(audioPage.includes('department==="Lifestyle"?p.division==="Home Retail"'), 'Lifestyle must show Home Retail products');
 assert.ok(audioPage.includes('department==="Home Entertainment"?p.collection==="Home Entertainment"&&p.division!=="Home Retail"'), 'Home Entertainment must exclude Lifestyle/Home Retail products');
