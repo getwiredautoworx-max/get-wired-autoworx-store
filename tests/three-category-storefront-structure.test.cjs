@@ -31,6 +31,11 @@ for (const [model,url] of [
   assert.equal(row.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE');
 }
 assert.equal(verifiedModels.records.length, 68, 'Planetworld verified-model enrichment must retain all 68 exact source candidates');
+assert.equal(verifiedModels.records.filter(p => p.imageUrl).length, 62, '62 exact-model image URLs are currently review candidates');
+assert.equal(verifiedModels.records.filter(p => !p.imageUrl).length, 6, 'six exact-model image gaps must remain held');
+const focalP20 = verifiedModels.records.find(p => p.modelNumber === 'KIT SUB P20FE');
+assert.ok(focalP20 && focalP20.imageUrl === 'https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg', 'Focal P20 FE must use the exact official image URL candidate');
+assert.equal(focalP20.imageStatus, 'OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
 assert.ok(verifiedModels.records.every(p => Number(p.indicativePrice) > 0 && p.priceProposalStatus === 'REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED'), 'all 68 verified-only model cards must carry a positive review-only indicative price');
 assert.ok(audioPage.includes('indicativePrice:p.indicativePrice??null'), 'unmatched verified-only model cards must retain their source-backed indicative price');
 assert.ok(audioPage.includes('sourceDateLabel:p.sourceDateLabel||"RRP −1% preview · 25 October 2026 snapshot"'), 'verified-only model cards must identify the dated RRP preview basis');
