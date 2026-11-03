@@ -610,3 +610,11 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Current-main PR #163 comparison: head is 40 commits ahead / 3 behind main (merge base `28e9e89d9aa701eff051deb81be729e0cd5551df`); keep draft and unmerged until reconciled and exact-head checks pass. No merge/rebase or production change authorized.
 - ETA guidance: retain 3 November as a provisional target for a storefront-only owner-test candidate, conditional on exact-head functional QA. Do not promise completion while browser QA and catalogue/source verification remain open. Full supplier catalogue reconciliation has separate source-evidence dependencies.
 - No production deployment, live catalogue/price/stock/category mutation, supplier import/publication, payment action, Axxess/DNS change, or release-credit-consuming deployment was performed.
+
+
+## 2026-11-03 08:43 SAST — TASK START
+- Resumed the Get Wired AutoWorx store and Planetworld monitoring work.
+- Read the sole handover currently present on `main`: `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`. The requested `AI_HANDOVER_PERMANENT.md` and `HANDOVER_CURRENT.md` are absent from `main`; the handover's 2026-11-02 cleanup record says prior handover files, including both names, were intentionally removed and this continuation file retained as the sole handover. No replacement permanent handover will be created without reconciling that recorded owner instruction.
+- Scope this run: inspect the required Planetworld branch handover/reports, PR #95 and its current head/mergeability, latest read-only audit workflow/job/artifact, plus safe current-main background task status. Continue evidence-only reconciliation where source material permits.
+- Safety: no PR merges, supplier workbook edits, supplier publication/import, live catalogue/price/stock/category/active-flag changes, Supabase writes, Axxess/DNS/payment changes, production deployments, or release-credit-consuming retries.
+- Outcome: IN PROGRESS. Next action: read `HANDOVER_CURRENT.md` and all three Planetworld reports on `docs/planetworld-blocker-handover-2026-10-26` before investigating.
