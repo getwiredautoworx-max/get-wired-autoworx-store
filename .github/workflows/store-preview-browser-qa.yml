@@ -65,10 +65,8 @@ jobs:
                 visibleCheckout
               };
             },ASC_PUBLIC_SKUS);
-            const EXPECTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
-            if(audit.categories!==8||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||audit.rootIds.length!==8||audit.rootIds.some(id=>!id))throw new Error('Approved eight-category root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
-            const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
-            if(await camping.locator('.children .catWrap').filter({hasText:/4X4 Outdoor/i}).count()!==1)throw new Error('4X4 Outdoor must be nested under Camping, Leisure & Outdoors');
+            const EXPECTED_ROOTS=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
+            if(audit.categories!==3||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||audit.rootIds.length!==3||audit.rootIds.some(id=>!id))throw new Error('Owner-approved three-category root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
             if(audit.products<1)throw new Error('No live product records loaded into preview');
             if(audit.ascMatched!==34||audit.ascPositiveStock!==0||audit.ascZeroStock!==34)throw new Error('ASC stock exclusion mismatch (34 active products must be zero; 2 inactive ASC products are correctly absent): '+JSON.stringify(audit));
             if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
