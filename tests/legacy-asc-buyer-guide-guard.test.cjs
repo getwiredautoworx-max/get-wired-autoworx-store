@@ -5,17 +5,36 @@ const files = Object.fromEntries([
   'index-new.html',
   'product.html',
   'products.html',
-  'preview-products.html',
   'preview-category.html',
+  'preview-products.html',
+  'preview-product.html',
+  'preview-store.html',
 ].map(path => [path, fs.readFileSync(path, 'utf8')]));
 
 const legacySources = "['September Buyer\\'s Guide','October Buyer\\'s Guide']";
-assert.ok(files['index-new.html'].includes(legacySources), 'homepage product feed must exclude September/October Buyer Guides');
-for (const path of ['product.html', 'products.html', 'preview-products.html']) {
-  assert.ok(files[path].includes('isLegacyAscBuyerGuide'), path + ' must apply the legacy ASC source guard');
-}
+assert.ok(files['index-new.html'].includes(legacySources), 'homepage product feed must exclude old Buyer Guides');
 assert.ok(files['product.html'].includes('!p||isLegacyAscBuyerGuide(p)'), 'direct product detail must fail closed for old Buyer Guide rows');
-assert.ok(files['products.html'].includes('.filter(p=>!isLegacyAscBuyerGuide(p))'), 'category product listing must filter old Buyer Guide rows');
-assert.ok(files['preview-products.html'].includes('products=products.filter(p=>!isLegacyAscBuyerGuide(p))'), 'preview product listing must filter old Buyer Guide rows');
+assert.ok(files['products.html'].includes('.filter(p=>!isLegacyAscBuyerGuide(p))'), 'category listing must filter old Buyer Guide rows');
 assert.ok(files['preview-category.html'].includes(legacySources), 'preview audio brand counts must exclude old Buyer Guide rows');
-console.log('LEGACY_ASC_BUYER_GUIDE_GUARD_PASS: homepage, direct detail, category listing, preview listing and audio brand counts are protected.');
+
+const previewListing = files['preview-products.html'];
+const listingStart = previewListing.indexOf('async function main(){');
+const listingGuard = previewListing.indexOf('Fail closed: legacy active Supabase rows', listingStart);
+const listingReturn = previewListing.indexOf('return;', listingGuard);
+const firstListingQuery = previewListing.indexOf("apiAll('products?", listingStart);
+assert.ok(listingGuard > listingStart && listingReturn > listingGuard && firstListingQuery > listingReturn,
+  'preview product listing must stop before any legacy Supabase product query');
+
+const previewDetail = files['preview-product.html'];
+const detailStart = previewDetail.indexOf('async function main(){');
+const detailGuard = previewDetail.indexOf('not yet been verified', detailStart);
+const detailReturn = previewDetail.indexOf('return;', detailGuard);
+const firstDetailQuery = previewDetail.indexOf("api('products?", detailStart);
+assert.ok(detailGuard > detailStart && detailReturn > detailGuard && firstDetailQuery > detailReturn,
+  'preview product detail must stop before any legacy Supabase product lookup');
+
+for (const path of ['preview-store.html','preview-category.html','preview-products.html','preview-product.html']) {
+  assert.ok(files[path].includes("SEPTEMBER/OCTOBER BUYER'S GUIDE ITEMS HIDDEN"), path + ' must state the exact legacy-source status');
+  assert.ok(!files[path].includes('ASC STOCK REMOVED'), path + ' must not make a blanket ASC-removal claim');
+}
+console.log('LEGACY_ASC_BUYER_GUIDE_GUARD_PASS: homepage, detail, category, preview listing, preview detail and preview brand counts are protected.');
