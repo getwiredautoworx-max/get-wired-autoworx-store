@@ -705,3 +705,11 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Scope: read-only current-main/background workflow review plus Planetworld branch review; prioritize fresh supplier price evidence, price-scaling defects, October-source preservation, quote-only zero-RRP handling, exact manufacturer/model/variant image verification and category/component evidence.
 - Safety: no PR merges; no supplier XLSX edits/imports/publication; no live catalogue, price, stock, category or active-flag changes; no Supabase/Axxess/DNS/payment changes; no production/deployment or credit-consuming retries.
 - Initial status: IN PROGRESS. Next action: read `HANDOVER_CURRENT.md` and the three Planetworld reports on `docs/planetworld-blocker-handover-2026-10-26`, then append the Planetworld task-start record before investigation.
+
+
+## 2026-11-03 OWNER CLARIFICATION — AERIALS CATEGORY PLACEMENT
+- Owner clarified that **Aerials belong under Car Audio & Entertainment**, not Auto Electrical Spares. This is the explicit exception to the ASC catalogue grouping.
+- All remaining ASC electrical-spares catalogues belong under **Auto Electrical Spares**, each as its own catalogue button, with any original catalogue subcategories nested beneath it and source order/headings preserved.
+- **Chemicals & Lubricants** belong under **Car Care & Accessories** as a subcategory, with their own catalogue subcategories nested beneath where applicable.
+- Accordingly, the six currently listed ASC catalogue PDFs map as follows: Aerials → Car Audio & Entertainment; Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats, Fuel Pumps → Auto Electrical Spares. Chemicals/Lubricants source catalogues are not present in the currently recorded six-PDF intake and must be located before claiming integration.
+- This clarification supersedes only the previous 2026-11-03 instruction's placement of Aerials under Auto Electrical Spares. All other hierarchy instructions remain unchanged. No storefront code or production data changed in this documentation update.
