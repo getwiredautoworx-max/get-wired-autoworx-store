@@ -124,3 +124,10 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - Together with the exact official SSUSB-450BTDD product page, eight of the 53 non-Sony source rows now have an official manufacturer reference (one exact individual product page, one product-page alias reference, six category listings); 45 still have no official manufacturer reference.
 - The USB450BTDD row has one direct manufacturer image URL candidate. It is not approved and the external fetch returned a cache miss. No image was invented for the other seven references.
 - All eight records remain preview-only; all 53 non-Sony GW candidates remain held/unassigned until exact identity, image and variant review is complete.
+
+
+### Planetworld remaining six image-gap evidence — 2026-11-03
+- Added the official Focal P20 FE 1000×1000 product-image URL as a review candidate. The 68-model enrichment now has 62 image URLs and six unresolved gaps.
+- Five Alpine gaps (HCE-C2100RD, HDZ-653, R2-W12D4, S2-A55V, S2-S65): official product pages exist, but only 46×35 thumbnails were exposed; these are too small and were not used.
+- One JVC gap (KW-M590BT): the official JVC product page exposes a nine-image gallery, but the JVC dealer marketing image pack is restricted to dealers and says promotional assets cannot be distributed without written authorisation. No asset was used pending permission.
+- Added explicit image-gap status and notes to the model JSON and supplier crosswalk. The Focal candidate and all other images remain unapproved until hosted rendering, exact variant and usage checks pass.
