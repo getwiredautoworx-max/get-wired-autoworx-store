@@ -259,3 +259,39 @@ No images were downloaded or copied. These are identity/category evidence only, 
 - **OneNav ON263-FK2 remains UNVERIFIED** — the official ON263-2LX sibling is not an exact variant match; do not transfer its image, price, or availability.
 - The 2026-10-25 Planetworld workbook rows for these SKUs remain audit-only; official model verification does not validate supplier price, stock, or orderability.
 - Next: obtain Planetworld confirmation for the exact variant and current price/availability of PFW4600, ON1509-LX1, ON263-FK2, and the 7225154 supplier row; keep uncertain models unverified and no-import.
+
+
+## 2026-11-03 — cost-floor model / variant / image evidence update (review only)
+
+Added the 19-row source-traceable register `PLANETWORLD_COST_FLOOR_MODEL_IMAGE_REVIEW_ONLY_2026-11-03.csv`. Every row remains `DO_NOT_IMPORT`; this register adds identity/category/image evidence only and does not approve supplier prices, stock, image reuse or catalogue changes.
+
+### New official exact-model evidence
+- **Ibanez IAB541-WR:** Ibanez's official IAB541 page explicitly lists the Wine Red (`WR`) colour variant and identifies the family as the POWERPAD Designer Collection acoustic-guitar gig bag. Refine the component to Musical Instruments & Accessories → Guitar Bags & Cases. Official image source exists; reuse permission is not established.
+- **JBL IRX108BT-EK:** JBL's official page identifies IRX108BT and item `IRX108BT-EK-LS` (EAN 691991033513). The base model is verified, but the Planetworld code omits the official `-LS` suffix; confirm regional SKU equivalence before assigning an exact variant image. Component: DJ / Studio / Pro Audio → Powered PA Speakers.
+- **JBL-EON710-EK:** JBL's official 220V page lists item `JBL-EON710D-EK`, while a reseller lists `JBL-EON710-EK`. The EON710 base model is verified; exact regional/voltage variant is not. Component: DJ / Studio / Pro Audio → Powered PA Speakers.
+- **Remo HK-2417-00:** Remo's official part-number page confirms the Active Snare Dampening System. Refine to Drums & Percussion → Snare Accessories & Dampening.
+- **Vogel's THIN215:** Vogel's official page confirms the THIN 215 UltraThin tilting TV wall mount, suitable for 26–55 inch screens and up to 15° tilt. It is discontinued and replaced by TVM 3415; do not substitute the replacement as the same SKU.
+- **Soundcraft 5085985EU:** HARMAN's official material-number guide identifies this as a Soundcraft Notepad 12-channel desktop mixer with USB. Component: DJ / Studio / Pro Audio → Mixers. Exact image source remains unverified.
+- **Paiste 0004801419:** official Paiste material corroborates the Signature Dark Energy Crash Mk I family and 19-inch size. Paiste does not expose the numeric supplier SKU in the official page; exact numeric-code mapping remains secondary-source corroboration only.
+- **Vogel's 7225154:** prior exact official brand-portal evidence remains valid: PUC 2515S silver pole, 1,500 mm, 80 kg max load. Keep Installed AV → Display Mounting Components → Ceiling Poles & Extensions.
+- **Vogel's PFW4600:** the official Vogel's TÜV product list identifies PFW4600 as a black tilting wall mount (article 7046000, 75 kg). This conflicts with the supplier-row wording “flat TV wall mount”; keep the description and exact image unresolved.
+- **OneNav ISA-ON115-3LX:** the official OneNav page matches the application and model code `ON115-3LX`, not the supplier's `ISA-ON115-3LX`. Treat the ISA prefix as a possible alias only; do not merge, delete or use the sibling page image until supplier confirmation.
+
+### Component/category refinements and unresolved rows
+- The seven Harness & Trims codes (`86180`, `90008003`, `90011904`, `90013009`, `90014004`, `90022538`, `90022567`) are now grouped by their source descriptions under Vehicle Harnesses & Trims / antenna adapters / mounting cages / vehicle-specific fascia-fitment kits. These are description-led component guesses, not exact manufacturer model or image verification. `90011904` remains ambiguous between an OEM-style head unit and a fascia/trim component.
+- `ON1509-LX1` remains reseller-only; its reseller imagery is expressly illustrative. `ON263-FK2` remains reseller-only for the Ford Ranger XLS fitment-kit description. Neither has an exact official OneNav match or approved image.
+- No image files were downloaded, copied, edited or published. Manufacturer page imagery is a source reference only; image-use/re-hosting rights remain unverified for every item.
+
+### Price-integrity disposition
+- The underlying price snapshot is still the 2026-10-25 workbook set. The corrected historical audit recorded 18 distinct positive-RRP rows below estimated VAT-inclusive dealer cost at RRP−1%, 19 at RRP−2% (19 distinct SKUs; `90011904` is the additional 2%-only case). This remains a review flag, not proof of supplier error or an approved selling price.
+- The `IAB541-WR` row is a pronounced source-row outlier: dealer cost R649, Retail Price Excl R86 and Retail Price Incl R99, while other IAB541 colour variants in the same workbook show Retail Price Incl values from R799 to R1,199. This may be a missing-digit/scale defect, but it could also be a deliberate exception; do not correct it without Planetworld confirmation.
+- The JBL, Soundcraft and Paiste cost/RRP gaps remain supplier-confirmation issues. No common multiplier was established, and no source price was altered.
+- No Planetworld price/stock update was found in Gmail after 2026-10-25. The only matching ASC November-guide/stock-arrival thread remains dated 2026-10-28 and its attachments are metadata-only through the available Gmail connector.
+
+### Audit refresh blocker — 2026-11-03
+- PR #95 is CLOSED / UNMERGED / mergeable=false; head `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`; base `main`. No merge/rebase.
+- Latest historical Planetworld audit identified: run `40944787080`, event `pull_request`, branch `reconcile/repo-file-inventory-planetworld-2026-10-29`, head `1fb086c1ffb3e0e06ef6a97bfcdca502389ec174`, job `123697194835`, conclusion SUCCESS. Artifact list is empty; log confirms artifact creation failed because Actions artifact storage quota was hit.
+- Current-main workflow `Planetworld Workbook Audit (Read Only)` at blob `5a70502ec08f9cc1e05cd4e561925e03c0a69215` is artifact-free and writes counts to the job summary, but no run of that workflow on current `main` was found. No supported workflow-dispatch action is exposed in the connected GitHub tools; do not rerun the old PR run or create a dummy commit.
+- Exact owner UI action remains: repository → Actions → **Planetworld Workbook Audit (Read Only)** → **Run workflow** → select branch `main` → run once; then verify the run head, audit job summary and logs. Until then, the 2026-10-25 audit counts remain historical, not a current supplier-price certification.
+
+No supplier XLSX was edited; no supplier data was imported/published; no live catalogue, price, stock, category or active flag changed; no PR merged; no deployment, Supabase write, Axxess/DNS/payment change or release-credit use occurred.
