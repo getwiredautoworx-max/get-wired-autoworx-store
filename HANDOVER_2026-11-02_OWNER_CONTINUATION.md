@@ -1170,3 +1170,13 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 ### Regression-test fixture correction
 - The expanded shell test now explicitly loads `returns-refunds.html` into its `returns` fixture before asserting the preserved main wrapper. This removes an undefined-variable failure in the test itself; it does not change storefront behavior.
 - Re-run the structural test through the next Cloudflare Pages staging build. GitHub Actions runner failures remain pre-step allocation failures, not test results.
+
+
+### Owner-reported Audio catalogue navigation fix — 2026-11-03
+- Owner reported that the Audio catalogue showed a Car Audio department followed by a duplicate Car Audio & Video product-type/subcategory button, while Harnesses & Trims was not visible as its own component button.
+- Updated `preview-audio.html`: the department button is now labelled **Car Audio & Video** (while retaining the existing internal Car Audio division filter); collection labels such as “Car Audio & Video” are excluded from the product-type button list so they cannot repeat as a second category.
+- Expanded component classification to inspect component, collection, product title/name, description and model text. Harness, trim, fascia, fitment, ISO2CAR, vehicle-interface, installation and wiring records are grouped under the single **Harnesses, Trims & Fitment** component button, which filters the matching review-only catalogue records.
+- Added regression assertions to `tests/three-category-storefront-structure.test.cjs` for the single department label, duplicate suppression and harness/trim grouping.
+- Code commit for `preview-audio.html`: `efdabde63abf98d15a62800e5a715a9b292eef98`. Regression test commit: `24f5dd9d170bd80f3d3d622cf374e82abcbbe195` (current branch head before this handover append).
+- **Verification status:** code and regression assertions are committed on PR #168's working branch only. The regression test has not yet been executed, and a successful Cloudflare Pages deployment for this exact updated head has not yet been confirmed. Do not claim the issue is fully resolved until the exact-head staging build passes and the owner-facing preview is inspected.
+- PR #168 remains draft and unmerged; PR #169 remains excluded. Production remains HOLD. No live database, stock, price, payment, DNS, Axxess or production changes were made.
