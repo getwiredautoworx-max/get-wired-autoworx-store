@@ -15,9 +15,9 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html", "asc-catalogue-preview.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "asc-catalogue-preview.html",
 ]
-PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json"]
+PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json"]
 PREVIEW_SOURCE_PDFS = [
     ("suppliers/ASC/ASC- Aerials (1).pdf", "assets/asc-catalogue-source/ASC-Aerials.pdf"),
     ("suppliers/ASC/ASC- Automotive Sensors (1).pdf", "assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf"),
@@ -113,8 +113,9 @@ if include_preview:
     for name in PREVIEW_ROOT_FILES:
         if not (OUT / name).is_file():
             raise SystemExit(f"Preview package missing route: {name}")
-    if not (OUT / "assets" / "asc-catalogue-preview-data.json").is_file():
-        raise SystemExit("Preview package missing catalogue preview data")
+    for name in PREVIEW_ASSET_FILES:
+        if not (OUT / "assets" / name).is_file():
+            raise SystemExit(f"Preview package missing catalogue data: assets/{name}")
     source_pdf_count = sum(1 for rel in PREVIEW_SOURCE_PDF_OUTPUTS if (OUT / rel).is_file())
     if source_pdf_count != 6:
         raise SystemExit(f"Expected all 6 original ASC catalogues in preview, found {source_pdf_count}")
