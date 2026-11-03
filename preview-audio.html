@@ -632,7 +632,7 @@ button,.btn,.button{min-height:42px;border-radius:8px!important;font-weight:700}
 <script>
 const departments=[["Car Audio & Video","Car Audio & Video"],["Home Entertainment","Home Entertainment"],["Band & Live Sound","Band & Live Sound"],["DJ Equipment","DJ"],["Studio Equipment","Studio Equipment"],["Marine Audio","Marine Audio"],["Installed AV","Installed AV"],["Musical Instruments","Musical Instruments"],["Harnesses & Trims","Harnesses & Trims"]];
 let rows=[],department="",brand="",component="",catalogueLoaded=false,query="",limit=120;
-function exactModelMatch(title,model){const token=String(model||"").replace(/[.*+?^${}()|[\\]\\\\]/g,"\\\\let rows=[],department="",brand="",component="",catalogueLoaded=false,query="",limit=120;").replace(/[.]+$/,"");return !!token&&new RegExp("(^|[^A-Z0-9])"+token+"(?=$|[^A-Z0-9])","i").test(String(title||""))}
+function exactModelMatch(title,model){const source=" "+String(title||"").toUpperCase().replace(/[^A-Z0-9]+/g," ").trim()+" ";const token=String(model||"").toUpperCase().replace(/[^A-Z0-9]+/g," ").trim();return !!token&&source.includes(" "+token+" ")}
 function uniqueExactRows(list){const seen=new Set();return list.filter(p=>{const key=JSON.stringify([p.collection,p.brand,p.title,p.component,p.indicativePrice,p.hasStock,p.modelNumber||""]);if(seen.has(key))return false;seen.add(key);return true})}
 const el=id=>document.getElementById(id),safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function button(label,active,fn){const b=document.createElement("button");b.textContent=label;if(active)b.style.background="#dceffc";b.onclick=fn;return b}
