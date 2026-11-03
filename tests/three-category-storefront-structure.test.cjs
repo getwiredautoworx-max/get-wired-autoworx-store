@@ -67,7 +67,8 @@ for (const [i,page] of shellPages.entries()) {
 }
 assert.ok(builder.includes('"storefront-subpage-shell.css"'), 'Cloudflare package builder must copy the shared subpage shell stylesheet');
 assert.ok(audioPage.includes('department==="Lifestyle"?p.division==="Home Retail"'), 'Lifestyle must show Home Retail products');
-assert.ok(audioPage.includes('department==="Home Entertainment"?p.collection==="Home Entertainment"&&p.division!=="Home Retail"'), 'Home Entertainment must exclude Lifestyle/Home Retail products');
+assert.ok(audioPage.includes('department==="Home Entertainment"?(p.collection==="Home Entertainment"||p.collection==="Installed AV")&&p.division!=="Home Retail"'), 'Home Entertainment must include Home Entertainment and Installed AV rows while excluding Lifestyle/Home Retail products');
+assert.ok(planet.records.some(p => p.collection === 'Installed AV'), 'Installed AV source records must remain represented within Home Entertainment');
 assert.ok(audioPage.includes('routeParams.get("search")') && audioPage.includes('routeParams.get("label")'));
 assert.ok(audioPage.includes('department=requestedDepartment;brand="All brands";component="All product types"'), 'direct audio subcategory links must initialise brand and component filters to show matching products');
 assert.ok(audioPage.includes('routeParams.get("department")'));
