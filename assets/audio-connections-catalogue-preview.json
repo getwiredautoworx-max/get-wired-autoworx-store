@@ -484,11 +484,12 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "Official Starsound subwoofer listing includes SSW-12-6300; source alias/variant review remains open.",
+      "brandNote": "Official Starsound individual product page located for SSW-12-6300; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-6300",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND_SOURCE_ALIAS_OR_SPEC_REVIEW",
+      "manufacturerSpecificationNote": "Official page confirms exact model; source list says 300W while official page states 400W RMS. Resolve with supplier before final description."
     },
     {
       "id": "ac-022",
@@ -508,11 +509,11 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "Official Starsound subwoofer listing includes SSW-12-7300; source alias/variant review remains open.",
+      "brandNote": "Official Starsound individual product page located for SSW-12-7300; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-7300",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND"
     },
     {
       "id": "ac-023",
@@ -574,8 +575,10 @@
       "priceNote": "Price not supplied by source.",
       "priceOnRequestText": "Price on Request due to Limited Stock and Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSW-B12-2800; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSW-B12-2800"
     },
     {
       "id": "ac-026",
@@ -790,9 +793,11 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
+      "brandNote": "Official Starsound individual product page located for SSA-R-22000.1; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
-      "manufacturerSpecificationNote": "Official page lists 1800W RMS at 1Ω; supplier list says 1700RMS. Confirm source wattage before final description."
+      "manufacturerSpecificationNote": "Official page lists 1800W RMS at 1Ω; supplier list says 1700RMS. Confirm source wattage before final description.",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSA-R-22000.1"
     },
     {
       "id": "ac-036",
@@ -833,9 +838,11 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
+      "brandNote": "Official Starsound individual product page located for SSA-R-5000.4; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
-      "manufacturerSpecificationNote": "Official page lists 65W RMS per channel at 4Ω; supplier list says 60RM. Confirm source wattage before final description."
+      "manufacturerSpecificationNote": "Official page lists 65W RMS per channel at 4Ω; supplier list says 60RM. Confirm source wattage before final description.",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSA-R-5000.4"
     },
     {
       "id": "ac-038",
@@ -903,11 +910,11 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
+      "brandNote": "Official Starsound individual product page located for SSA-ATOM-13800.4; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
-      "manufacturerListedModel": "SSA-Atom-13800.4",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
+      "manufacturerListedModel": "SSA-ATOM-13800.4",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
       "manufacturerSpecificationNote": "Official page lists 80W x4 at 4Ω; supplier list says 100RMS. Confirm source wattage before final description."
     },
     {
@@ -949,9 +956,11 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
+      "brandNote": "Official Starsound individual product page located for SSA-M4-80.4; image remains review-only pending permission and owner acceptance.",
       "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
-      "manufacturerSpecificationNote": "Official page confirms 80W x4 at 4Ω, consistent with the source list's 80RMS shorthand."
+      "manufacturerSpecificationNote": "Official page confirms 80W x4 at 4Ω, consistent with the source list's 80RMS shorthand.",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSA-M4-80.4"
     },
     {
       "id": "ac-043",
@@ -971,8 +980,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSS-5502; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSS-5502"
     },
     {
       "id": "ac-044",
@@ -1013,8 +1024,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSS-6601; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSS-6601"
     },
     {
       "id": "ac-046",
@@ -1034,8 +1047,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSS-6602; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSS-6602"
     },
     {
       "id": "ac-047",
@@ -1055,8 +1070,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSS-6903; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSS-6903"
     },
     {
       "id": "ac-048",
@@ -1076,8 +1093,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSD-620; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSD-620"
     },
     {
       "id": "ac-049",
@@ -1329,8 +1348,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SST-350; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SST-350"
     },
     {
       "id": "ac-061",
@@ -1350,8 +1371,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SST-850; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SST-850"
     },
     {
       "id": "ac-062",
@@ -1392,8 +1415,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSA-EQ-5100; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSA-EQ-5100"
     },
     {
       "id": "ac-064",
@@ -1434,8 +1459,11 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSA-2900 (SKU SSA-EQ-2900); image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND_SOURCE_ALIAS_OR_SPEC_REVIEW",
+      "manufacturerListedModel": "SSA-2900 (SKU SSA-EQ-2900)",
+      "manufacturerSpecificationNote": "Source label is CROSSOVER 2900; official page displays SSA-2900 / SKU SSA-EQ-2900 and identifies a 2/3-way electronic crossover."
     },
     {
       "id": "ac-066",
@@ -1455,8 +1483,10 @@
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
-      "brandNote": "",
-      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED"
+      "brandNote": "Official Starsound individual product page located for SSA-2950; image remains review-only pending permission and owner acceptance.",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND",
+      "manufacturerListedModel": "SSA-2950"
     }
   ]
 }
