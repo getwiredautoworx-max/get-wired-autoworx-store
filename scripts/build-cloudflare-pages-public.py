@@ -15,8 +15,9 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html",
+    "preview-product.html", "preview-planetworld.html", "asc-catalogue-preview.html",
 ]
+PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json"]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
@@ -47,9 +48,24 @@ for name in OPTIONAL_ROOT_FILES:
 # Preview routes are included only in the explicitly non-production preview build.
 # The production build remains unchanged unless this opt-in environment flag is set.
 include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
+if not include_preview:
+    storefront = OUT / "index-new.html"
+    html = storefront.read_text(encoding="utf-8")
+    start, end = "/* ASC_PREVIEW_NAV_START */", "/* ASC_PREVIEW_NAV_END */"
+    if start not in html or end not in html:
+        raise SystemExit("ASC preview navigation guard markers missing from index-new.html")
+    before, remainder = html.split(start, 1)
+    _, after = remainder.split(end, 1)
+    storefront.write_text(before + after, encoding="utf-8")
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
+    for name in PREVIEW_ASSET_FILES:
+        copy_file(f"assets/{name}")
+    pilot_images = ROOT / "assets" / "asc-catalogue-pilot"
+    if not pilot_images.is_dir():
+        raise SystemExit("Preview package missing reviewed catalogue images: assets/asc-catalogue-pilot")
+    shutil.copytree(pilot_images, OUT / "assets" / "asc-catalogue-pilot")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
@@ -80,7 +96,13 @@ if include_preview:
     for name in PREVIEW_ROOT_FILES:
         if not (OUT / name).is_file():
             raise SystemExit(f"Preview package missing route: {name}")
+    if not (OUT / "assets" / "asc-catalogue-preview-data.json").is_file():
+        raise SystemExit("Preview package missing catalogue preview data")
+    pilot_count = sum(1 for p in (OUT / "assets" / "asc-catalogue-pilot").glob("*.jpg") if p.is_file())
+    if pilot_count != 50:
+        raise SystemExit(f"Expected 50 reviewed catalogue images, found {pilot_count}")
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
+    print(f"CATALOGUE_PREVIEW_ASSETS_PASS images={pilot_count}")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:

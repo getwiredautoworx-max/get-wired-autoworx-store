@@ -77,7 +77,22 @@ To avoid duplicate parent tiles, the preview attaches the ASC contents headings 
 - Sensor sections → existing Automotive Sensors category under Auto Electrical Spares.
 - Switch sections → existing Automotive Switches category under Auto Electrical Spares.
 - Globe sections → existing Lighting category under Auto Electrical Spares.
-- Car Mat sections → existing Car Mats category under Automotive Accessories.
+- Car Mat catalogue sections → their own catalogue button under Auto Electrical Spares, per owner correction (3 November 2026). The existing three-product Car Mats store category remains unchanged under Automotive Accessories; this preview does not move those live assignments.
 - Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
+
+
+## Owner-confirmed storefront hierarchy — 2026-11-03
+
+The storefront integration candidate follows this exact customer navigation:
+
+- **Car Audio & Entertainment → Aerials** (six original contents sections).
+- **Auto Electrical Spares → Automotive Sensors** (11 sections), **Automotive Switches** (16), **Automotive Globes** (10), **Car Mats** (14), and **Fuel Pumps** (18).
+- **Automotive Accessories → Car Care & Accessories → Chemicals & Lubricants**. The Chemicals & Lubricants button is reserved in the hierarchy, but no corresponding catalogue PDF is present in the six-file post-reset intake; its page remains an honest source-pending state until the correct catalogue is located.
+
+Each named catalogue is its own button. Its original contents-page headings appear as the next-level buttons in the same order as the PDF. Only exact, visually reviewed pilot records appear beneath their matching source headings. Empty headings remain empty; no fuzzy product matching is permitted.
+
+The existing Car Mats store category under Automotive Accessories (three direct active products in the current category snapshot) is left unchanged. The new catalogue button is under Auto Electrical Spares; no live category assignments are moved. Aerials remain under Car Audio & Entertainment.
+
+This candidate uses a noindex owner-review route. The 50 watermarked source-card crops remain review-only; image-use rights, final clean imagery, GW SKU allocation, product descriptions and supplier price/stock confirmation are still outstanding. No live products, categories, prices, stock, database rows or supplier activation are changed.

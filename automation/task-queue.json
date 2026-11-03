@@ -14,25 +14,25 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "owner_confirms_loading_restoration_candidate_open_diverged_14_commits",
-      "description": "Owner confirms storefront loads. PR #163 restores the earlier full storefront with brighter styling and includes the ASC/Audio Connections/Hertz preview work, but it is 58 commits ahead and 14 behind current main; its 92-file diff means the PR description's CSS-only scope is not accurate. PR #162 is also draft/unmerged. No functional testing before banking details.",
-      "next_action": "Prepare a clean current-main integration candidate by selectively reconciling the approved storefront restoration and required preview/catalogue files; inspect exact diffs and preserve all release gates. Do not merge stale PRs, test clicks/routes, trigger Workers or production deployment.",
+      "status": "clean_current_main_candidate_created_asc_hierarchy_integrated_static_review_pending",
+      "description": "Fresh candidate from main 826724bb714f4d04a6995018f52dc36d4412d07d selectively restores the approved bright storefront and adds owner-correct catalogue navigation. Functional testing remains deferred until owner banking-details step.",
+      "next_action": "Review exact diff and static source assertions; keep draft and no deployment. Functional/browser QA only after owner adds banking details.",
       "automatic": false
     },
     {
       "id": "storefront-eight-category-navigation",
       "priority": 2,
-      "status": "eight_root_static_audit_pass_preview_link_code_candidate_pending_reconciliation",
-      "description": "Static audit confirms exactly eight approved root labels and matching root map; 4X4 OUTDOOR remains a child under Camping / Leisure / Outdoors. PR #162/163 candidate adds ASC catalogue preview links under Auto Electrical Spares (34), Car Audio & Entertainment (8) and Automotive Accessories (8). Functional navigation remains deferred.",
-      "next_action": "Carry the exact category mapping and neutral preview links into the clean current-main candidate; no click/route tests until the owner banking-details step.",
+      "status": "owner_hierarchy_integrated_static_candidate",
+      "description": "Each catalogue now has its own button: Aerials under Car Audio & Entertainment; Sensors, Switches, Globes, Car Mats and Fuel Pumps under Auto Electrical Spares. Chemicals & Lubricants reserved under Car Care & Accessories; source PDF still absent. Each catalogue opens its original contents headings as next-level buttons.",
+      "next_action": "Static diff/readback only now; later verify click-through after owner banking-details step.",
       "automatic": false
     },
     {
       "id": "approved-supplier-catalogue-reconciliation",
       "priority": 3,
-      "status": "partial_preview_integrated_source_bytes_and_image_rights_pending",
-      "description": "ASC review-only pilot has 50 records/50 matched images across 12 source subcategories; Audio Connections has 68 private rows/66 preview rows and 13 Sony GW SKU candidates staged privately; Hertz preview has 12 private rows; Planetworld has a 3,317-row historical snapshot and 68 exact-model candidates. None is a live supplier feed.",
-      "next_action": "Continue private source/image/description/SKU reconciliation using evidence already in repository. November ASC PDF bytes are still unavailable through Gmail; request the six PDFs only when the remaining local source evidence is exhausted. Do not publish or activate suppliers.",
+      "status": "50_record_pilot_hierarchy_integrated_review_only",
+      "description": "Six post-reset PDFs (72 pages), 75 contents headings and 50 visually reviewed pilot records are wired to the owner-correct hierarchy in the isolated preview. Images remain watermarked/rights-pending; GW SKU, descriptions and supplier price/stock remain unverified. Chemicals/Lubricants source PDF absent from current six-file intake.",
+      "next_action": "Continue product/image/description/SKU verification from current catalogue source pages only; locate the separate Chemicals & Lubricants catalogue. No imports, live writes, supplier activation or price/stock publication.",
       "automatic": false
     },
     {
@@ -46,9 +46,9 @@
     {
       "id": "audio-connections-model-sku-image-review",
       "priority": 5,
-      "status": "13_sony_gw_skus_and_4_image_candidates_staged_53_models_held",
-      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have proposed collision-checked GW SKUs staged privately and linked to the owner-review preview (not inserted); 53 other rows have no proposed GW SKU in this set. Four official Sony image-source candidates are linked to exact records; none is approved. The 66-row review preview has no supplier identity or generic image placeholders; 62 records remain text-only.",
-      "next_action": "Complete visual/load, exact model/variant and usage-permission review for the four official Sony image URLs; obtain approved high-resolution images and current dealer price/availability confirmation. Continue exact-model and GW SKU reconciliation for the remaining 53 rows. Keep all rows private and unpublished; do not re-request dealer authorization or activate the supplier.",
+      "status": "13_sony_gw_candidates_4_images_7_starsound_listings_1_blackspider_page_45_unmatched",
+      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have proposed collision-checked GW SKUs staged privately (not inserted); four official Sony image-source candidates are linked but not approved. Seven non-Sony Starsound models have official category-listing matches; one BlackSpider Lynx has an exact official product page. Forty-five other non-Sony models remain without an official listing/page. No generic image placeholders or supplier names are shown in the noindex review page.",
+      "next_action": "Capture direct high-resolution image assets and verify usage permission for the four Sony candidates and BlackSpider Lynx; review official Starsound listing images at exact model/variant level. Continue exact-model and GW SKU reconciliation for the 45 unmatched rows. Obtain current dealer price/availability; keep all rows private/inactive and do not activate the supplier.",
       "automatic": true
     },
     {

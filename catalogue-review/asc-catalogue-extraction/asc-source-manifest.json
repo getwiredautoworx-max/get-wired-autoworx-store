@@ -1,0 +1,46 @@
+{
+  "generated_from": "main suppliers/ASC PDFs",
+  "source_count": 6,
+  "sources": [
+    {
+      "filename": "ASC- Aerials (1).pdf",
+      "bytes": 2048897,
+      "git_blob_sha": "e363e24c2f11f804330b31439811c06755f6f94d",
+      "sha256": "not computed; binary SHA-256 not available through current connector"
+    },
+    {
+      "filename": "ASC- Automotive Sensors (1).pdf",
+      "bytes": 2910657,
+      "git_blob_sha": "3936c79906cefab3f6f289f828d997bd3252e602",
+      "sha256": "not computed; binary SHA-256 not available through current connector"
+    },
+    {
+      "filename": "ASC- Automotive Switches (1).pdf",
+      "bytes": 7671710,
+      "git_blob_sha": "4cfab577b23ab76b039e6182d94dfbeb12cec476",
+      "sha256": "not computed; binary SHA-256 not available through current connector"
+    },
+    {
+      "filename": "ASC- Automotive globes (1).pdf",
+      "bytes": 3586971,
+      "git_blob_sha": "5e2d95d31439e7e38e35eb834689254bd3b8d30c",
+      "sha256": "not computed; binary SHA-256 not available through current connector"
+    },
+    {
+      "filename": "ASC- Car Mats (1).pdf",
+      "bytes": 3477784,
+      "git_blob_sha": "95b35f7c178b123b83592cc1dd3cba729cc220e8",
+      "sha256": "not computed; binary SHA-256 not available through current connector"
+    },
+    {
+      "filename": "ASC- Fuel Pumps (1).pdf",
+      "bytes": 3714548,
+      "git_blob_sha": "69d31514c4f2f0b0cefc88a636871c9275d8c8f0",
+      "sha256": "not computed; binary SHA-256 not available through current connector"
+    }
+  ],
+  "notes": [
+    "Git blob SHA values are repository object identifiers, not SHA-256 file digests.",
+    "Original PDFs are included in the candidate branch using their existing blob objects; no PDF bytes were modified."
+  ]
+}
