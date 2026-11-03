@@ -1293,3 +1293,9 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Four source/manufacturer spec conflicts remain held: SSW12-6300, SSA-ATOM13800.4, SSAR 22000.1, SSA-R 5000.4. Preview displays warnings and preserves the supplier source text.
 - Crosswalk: 770 rows; 134 unique collision-checked GW candidate codes (81 proposed +53 held); 84 current image candidate URLs plus alternate sources, 86 distinct URLs after de-duplication; zero current public SKU collisions for the 53 new held candidates. No public product/SKU insertions.
 - Tests updated but not executed; latest exact-head Pages preview still requires verification. PR #170 remains draft/unmerged. Production, live data, supplier activation, Axxess, DNS and payment settings untouched.
+
+
+### Permanent supplier onboarding method locked in — 2026-11-03
+- `SUPPLIER_INTEGRATION_STANDARD.md` is the permanent Get Wired AutoWorx method for every future supplier and category. It defines the source-to-offer-ledger process, exact identity and variant rules, approved three-root/shared-shell navigation, brand/component layout, GW SKU collision handling, exact images/usage rights, descriptions/spec conflicts, VAT/landed-margin pricing, availability, preview QA and release gates.
+- Added `SUPPLIER_PILOT_TEMPLATE.md` as the reusable per-supplier/per-category working template. Copy it for every future pilot and keep the completed copy with its audit and handover.
+- Planetworld + Audio Connections remain the first proving pilot. ASC and Electro-city do not start until the owner accepts this pilot result and the method.
