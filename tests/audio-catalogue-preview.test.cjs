@@ -40,7 +40,7 @@ assert.equal(verified.recordCount, 68);
 assert.equal(verified.records.length, 68);
 assert.equal(new Set(verified.records.map(row => row.gwSku)).size, 68, 'curated GW candidate SKUs must be unique');
 const modelImageCandidateCount = verified.records.filter(row => row.imageUrl).length;
-assert.equal(modelImageCandidateCount, 46, 'only exact-model image candidates may be counted');
+assert.equal(modelImageCandidateCount, 49, 'only exact-model image candidates may be counted');
 
 assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
@@ -67,6 +67,11 @@ for (const model of ['SST350','SST-850']) {
 for (const model of ['SSA-SB2000.1','PRO6.5-700','SS-PRO6X9-900','SSD-620']) {
   const row = audioConnections.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl.startsWith('https://starsound.co.za/wp-content/uploads/'));
+  assert.equal(row.imageStatus, 'official_manufacturer_image_verified_review_only');
+}
+for (const model of ['KIT SUB P20FE','CS-DR162','KW-M590BT']) {
+  const row = verified.records.find(item => item.modelNumber === model);
+  assert.ok(row && row.imageUrl);
   assert.equal(row.imageStatus, 'official_manufacturer_image_verified_review_only');
 }
 for (const model of ['S2-A55V','S2-S65']) {
@@ -113,7 +118,7 @@ for (const row of audioConnections.records) {
 }
 
 const imageCount = modelImageCandidateCount + audioConnections.records.filter(row => row.imageUrl).length;
-assert.equal(imageCount, 81);
+assert.equal(imageCount, 84);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
