@@ -24,10 +24,10 @@
   "public_descriptions": 0,
   "public_image_urls": 0,
   "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only",
-  "official_image_source_urls_found": 13,
+  "official_image_source_urls_found": 86,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "Crosswalk records 13 official image-source URLs: four Alpine and one Focal for Planetworld; four Sony and four Starsound for Audio Connections. The Planetworld 68-model set has 62 image URL candidates and six documented gaps; the Audio Connections preview has eight direct image URL candidates and 58 missing. No official image asset has been downloaded or approved.",
+  "image_notes": "Crosswalk contains 84 current image URL candidates (62 Planetworld + 22 Audio Connections) plus alternate official source URLs; 86 distinct official image URLs after de-duplication. None has been downloaded or approved. Planetworld 68-model set has 62 images and six gaps; Audio Connections 66-row preview has 22 images and 44 gaps.",
   "supplier_connection_statuses": {
     "planetworld": {
       "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
@@ -46,13 +46,23 @@
   "total_collision_checked_candidate_codes": 134,
   "audio_connections_non_sony_candidate_codes": 53,
   "audio_connections_non_sony_candidate_codes_live_collisions": 0,
-  "audio_connections_manufacturer_references_total": 27,
-  "audio_connections_non_sony_manufacturer_references": 14,
-  "audio_connections_non_sony_without_manufacturer_reference": 39,
-  "audio_connections_preview_image_url_candidates": 8,
+  "audio_connections_manufacturer_references_total": 42,
+  "audio_connections_non_sony_manufacturer_references": 28,
+  "audio_connections_non_sony_without_manufacturer_reference": 25,
+  "audio_connections_preview_image_url_candidates": 22,
   "audio_connections_preview_image_url_approved": 0,
   "planetworld_verified_model_image_urls": 62,
   "planetworld_verified_model_image_gaps": 6,
-  "audio_connections_preview_image_url_missing": 58,
-  "planetworld_image_gap_notes": "Five Alpine models have official pages but only 46x35 thumbnails; JVC KW-M590BT has an official nine-image gallery but its dealer marketing pack requires written distribution permission. No low-resolution or unapproved image used."
+  "audio_connections_preview_image_url_missing": 44,
+  "planetworld_image_gap_notes": "Focal P20 FE now has an official 1000x1000 image URL candidate. Five Alpine models have official pages but only 46x35 thumbnails; JVC KW-M590BT has an official nine-image gallery but its dealer marketing pack requires written distribution permission. No low-resolution or unapproved image used.",
+  "audio_connections_preview_rows": 66,
+  "audio_connections_source_crosswalk_manufacturer_references": 42,
+  "audio_connections_preview_manufacturer_references": 41,
+  "audio_connections_specification_conflicts": 4,
+  "audio_connections_quote_only_models": [
+    "SSW8\"-8000D2",
+    "SSW-B12-2800",
+    "SSWF12-5150SVC"
+  ],
+  "audio_connections_image_gap_notes": "17 exact-model Starsound individual product-page image candidates, four Sony image candidates and one additional SSUSB-450BTDD candidate account for 22 preview images. All remain unapproved pending image-use permission and owner acceptance."
 }
