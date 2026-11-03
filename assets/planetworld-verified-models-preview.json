@@ -12,7 +12,9 @@
       "component": "Cameras & Parking",
       "indicativePrice": 5196.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
-      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED"
+      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
+      "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
+      "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image."
     },
     {
       "gwSku": "GW-D8D34153",
@@ -24,7 +26,9 @@
       "component": "Speakers",
       "indicativePrice": 24353.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
-      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED"
+      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
+      "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
+      "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image."
     },
     {
       "gwSku": "GW-23B4075D",
@@ -76,7 +80,9 @@
       "component": "Subwoofers",
       "indicativePrice": 5345.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
-      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED"
+      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
+      "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
+      "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image."
     },
     {
       "gwSku": "GW-DF31C0C3",
@@ -88,7 +94,9 @@
       "component": "Amplifiers",
       "indicativePrice": 9651.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
-      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED"
+      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
+      "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
+      "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image."
     },
     {
       "gwSku": "GW-DDF900C0",
@@ -113,7 +121,9 @@
       "component": "Speakers",
       "indicativePrice": 2424.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
-      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED"
+      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
+      "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
+      "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image."
     },
     {
       "gwSku": "GW-3C0AADF7",
@@ -739,7 +749,9 @@
       "component": "Radios & Multimedia",
       "indicativePrice": 6681.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
-      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED"
+      "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
+      "imageStatus": "OFFICIAL_PRODUCT_PAGE_AND_DEALER_IMAGE_PACK_FOUND_BUT_WRITTEN_DISTRIBUTION_PERMISSION_REQUIRED",
+      "imageReviewNote": "JVC official product page has a nine-image gallery. JVC's dealer marketing image pack requires dealer access and says promotional assets cannot be distributed without written authorization; keep image blank until rights are confirmed."
     },
     {
       "gwSku": "GW-C0C3EE3F",
