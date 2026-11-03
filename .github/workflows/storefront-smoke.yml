@@ -51,6 +51,7 @@ jobs:
         run: |
           node tests/legacy-asc-buyer-guide-guard.test.cjs
           node tests/asc-catalogue-preview.test.cjs
+          python3 tests/test_preview_catalogue_gate.py
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
