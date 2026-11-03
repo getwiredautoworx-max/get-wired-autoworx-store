@@ -31,6 +31,13 @@ assert.equal(proposed.length, 81, "Only exact individual-page candidates should 
 assert(proposed.every((r) => /^GW-[A-Z0-9]{8}$/.test(r.proposed_gw_public_sku)));
 assert.equal(new Set(proposed.map((r) => r.proposed_gw_public_sku)).size, proposed.length, "Proposed GW SKUs must be unique");
 assert(proposed.every((r) => r.gw_sku_status === "PROPOSED_COLLISION_CHECKED_NOT_INSERTED"));
+const nonSonyAudio = rows.filter((r) => r.supplier === "Audio Connections" && r.brand !== "Sony");
+assert.equal(nonSonyAudio.length, 53, "Expected all 53 non-Sony Audio Connections source rows");
+assert(nonSonyAudio.every((r) => /^GW-[A-Z0-9]{8}$/.test(r.gw_sku_candidate_review)), "Every non-Sony row must retain its collision-checked internal candidate");
+assert(nonSonyAudio.every((r) => !r.proposed_gw_public_sku && r.gw_sku_status === "NOT_ASSIGNED_HOLD"), "Unverified non-Sony identity/image rows must not be treated as assigned GW SKUs");
+assert(nonSonyAudio.every((r) => r.gw_sku_candidate_status.includes("COLLISION_FREE_HOLD")), "Held candidates must remain explicitly review-only");
+const allSkuCandidates = [...proposed.map((r) => r.proposed_gw_public_sku), ...nonSonyAudio.map((r) => r.gw_sku_candidate_review)];
+assert.equal(new Set(allSkuCandidates).size, allSkuCandidates.length, "All proposed and held GW SKU candidates must be unique");
 assert(rows.every((r) => !r.public_product_id), "Do not invent or attach public product IDs");
 assert(rows.every((r) => r.publication_status === "NOT PUBLISHED"), "Review rows must remain unpublished");
 
