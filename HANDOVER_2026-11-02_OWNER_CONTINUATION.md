@@ -880,3 +880,9 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - The same exact-head run set includes seven jobs failing with empty step arrays/log references (button-only smoke, storefront smoke, Pages package QA, public SKU audit, populated preview browser QA, catalogue routing QA and Axxess package detector). The GitHub log endpoint returns BlobNotFound. No workflow retry was initiated.
 - Changing the test runner label would not address this: the button-only workflow already requests ubuntu-24.04, and the raw job record still has no runner assigned. Account-level Actions quota/permission or GitHub runner-service availability cannot be conclusively distinguished through the connected read-only endpoints.
 - Cloudflare Pages preview deployment for runtime code commit 4e125414c9697f9bd225a8dc6e8ad924af3b37ec was confirmed successful at https://990f71ea.get-wired-autoworx-store.pages.dev. This contains the new homepage subcategory click handler and snapshot config fix. Latest head includes further test/handover changes only; latest Pages build status was still being polled.
+
+
+## 2026-11-03 — LATEST PAGES PREVIEW DEPLOYMENT CONFIRMED
+- Cloudflare Pages deployment for exact runtime-code head e5f5df3998713128b19acf51bd971bed40d2c9ce completed SUCCESS. Immutable preview: https://5369cbd8.get-wired-autoworx-store.pages.dev. Branch preview: https://fix-show-empty-subcategories.get-wired-autoworx-store.pages.dev.
+- The next branch commit 958835a4c48b779534b8d3c78e67bf8a2ea13da4 only appended handover evidence; no runtime files changed after the deployed code head.
+- This verifies a successful non-production Pages deployment of the subcategory click-handler, leaf-product routing, and snapshot-config fix. It does not certify browser click-through: the GitHub Actions runner did not start (runner_id=0, no steps), and the web inspection service cannot access pages.dev in this session.
