@@ -1,20 +1,17 @@
 name: Current Branch Runner Recovery Check
 on:
+  workflow_dispatch:
   push:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
-    paths:
-      - '.github/workflows/runner-diagnostic-current-branch.yml'
   pull_request:
     branches: [main]
-    paths:
-      - '.github/workflows/runner-diagnostic-current-branch.yml'
 permissions:
   contents: read
 jobs:
   runner-and-catalogue-structure:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 8
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,13 +25,18 @@ jobs:
           import json
           from pathlib import Path
           tree = json.loads(Path('assets/category-tree.json').read_text())
-          roots = [x for x in tree if not x.get('parentId') and x.get('active', True)]
-          print('active_top_level_roots:', [x.get('name') or x.get('title') for x in roots])
+          categories = tree.get('categories', tree) if isinstance(tree, dict) else tree
+          roots = [x for x in categories if not (x.get('parent_id') or x.get('parentId')) and x.get('active', True)]
+          names = [x.get('name') or x.get('title') for x in roots]
+          print('active_top_level_roots:', names)
           assert len(roots) == 3, f'Expected 3 active roots, got {len(roots)}'
-          for f in ('assets/planetworld-catalogue-preview.json', 'assets/audio-connections-catalogue-preview.json'):
+          for f, expected in (
+              ('assets/planetworld-catalogue-preview.json', 3317),
+              ('assets/audio-connections-catalogue-preview.json', 66),
+          ):
               data = json.loads(Path(f).read_text())
-              rows = data if isinstance(data, list) else data.get('products', data.get('items', []))
-              assert rows, f'No catalogue rows parsed from {f}'
+              rows = data if isinstance(data, list) else data.get('records', data.get('products', data.get('items', [])))
+              assert len(rows) == expected, f'{f}: expected {expected} rows, got {len(rows)}'
               print(f, 'rows=', len(rows))
           print('GW_CATALOGUE_STRUCTURE_PASS')
           PY
