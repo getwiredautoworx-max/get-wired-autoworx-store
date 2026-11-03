@@ -43,3 +43,10 @@
 - Four official Sony image-source candidates (XS-160ES, XS-680ES, XS-W104ES, XM-5ES) are linked to the matching review records. None is downloaded or approved for customer publication; 62 of the 66 records have no image source and remain text-only.
 - Removed supplier-name and source-file fields from the customer-style preview JSON. The noindex Audio & Entertainment review page now displays proposed Get Wired SKUs where available, uses the four official image candidates for owner review, and renders no generic image placeholders. Records without image candidates have no image block.
 - The review page remains noindex and is not included in the public Pages build. No public category link, supplier activation, stock/price update or live product write occurred.
+
+
+## 2026-11-03 — OFFICIAL BRAND PAGE MATCHES FOR NON-SONY MODELS
+- Seven Starsound model names are now linked to official Starsound category listings (four subwoofer/flat-subwoofer entries and three amplifier entries). These are official category listings, not individual product pages; formatting differences are retained in the source-to-official model crosswalk.
+- The BlackSpider Bullet Lynx row now links to its exact official product page and uses the official model description/specifications. The direct image asset URL has not been captured.
+- Forty-five other non-Sony Audio Connections models remain without an exact official listing/product page. No new GW SKU was generated for the eight matches; the 13 Sony candidate GW SKUs remain private staging only.
+- Official page evidence does not confirm current dealer stock, price, image rights or publication permission. All rows remain private/inactive.
