@@ -59,6 +59,11 @@ assert.equal(audioManufacturerRefs.filter(r => r.brand !== "Sony").length, 35, "
 assert.equal(audioRows.filter(r => r.image_url_candidate).length, 22, "22 Audio Connections image URLs are review candidates");
 const specificationConflicts = audioRows.filter(r => r.specification_review_status === "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED");
 assert.equal(specificationConflicts.length, 5, "Five source-versus-manufacturer specification conflicts must remain flagged");
+for (const model of ["RABTR03","RA AWG4","RA SUPER RAST20"]) {
+  const row = audioRows.find(r => r.supplier_sku === model);
+  assert.equal(row.brand, "Reference Audio", "Brand identity must be expanded only after official brand evidence");
+  assert.ok(row.official_manufacturer_brand_page && !row.official_manufacturer_page && !row.official_manufacturer_listing, "Brand homepage must not be counted as a product page");
+}
 assert(specificationConflicts.every(r => !r.proposed_gw_public_sku && r.gw_sku_status === "NOT_ASSIGNED_HOLD"), "Specification conflicts must remain held from SKU assignment");
 assert.equal(planetworldRows.filter(r => r.image_url_candidate).length, 62, "All 62 Planetworld verified-model image URLs must be in the crosswalk");
 assert(audioManufacturerRefs.filter(r => r.brand !== "Sony").every(r => !r.proposed_gw_public_sku && r.gw_sku_status === "NOT_ASSIGNED_HOLD"), "Manufacturer references do not automatically approve or assign non-Sony GW SKUs");
