@@ -1,0 +1,1 @@
+Deploy exact non-production candidate from commit dd62b330d389c68575f8a707e6c68d852175f974. Build GW_INCLUDE_PREVIEW_ROUTES=1 using the customer-only allowlist. Deploy only to Cloudflare Pages branch approved-storefront-preview. Never deploy production main.
