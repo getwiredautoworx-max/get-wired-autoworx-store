@@ -14,9 +14,9 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "draft_pr_open_runner_startup_failure_no_tests_executed",
-      "description": "PR #166 is draft/open on the three-category catalogue candidate. Initial PR workflows all ended before runner steps (runner_id=0, empty step lists); no application tests or browser tests executed. No retry or deployment was started.",
-      "next_action": "Wait for runner availability; perform one non-functional package/structural check on the latest exact head when safe. Defer functional/browser/click-through testing until owner adds banking details. Obtain exact-head non-production preview and owner phone review; no production merge/deploy.",
+      "status": "draft_pr_open_runner_startup_failure_repeat_no_tests",
+      "description": "PR #166 is draft/open on the three-category catalogue candidate. Initial PR workflows all ended before runner steps (runner_id=0, empty step lists); no application tests or browser tests executed. No retry or deployment was started. Latest exact-head PR workflows (runs 41609523569, 41609523563, 41609523495, 41609523590, 41609523642, 41609523614, 41609523713) again failed before any runner steps (runner_id=0; zero steps); no application tests executed.",
+      "next_action": "Do not retry the same workflows. Wait for GitHub runner recovery, then one non-functional package/structural check on the then-current exact head. Keep functional/browser tests deferred until owner adds banking details. Obtain a verified non-production preview and owner acceptance; production stays HOLD.",
       "automatic": false
     },
     {
