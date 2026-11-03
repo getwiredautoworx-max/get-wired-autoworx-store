@@ -830,3 +830,42 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - GitHub Actions still assigns no hosted runner to jobs (runner_id=0, blank runner name, zero steps). The latest static package QA attempt `41610962823` failed before any step; therefore the new Node structural test has **not executed**. Workflow-file validation checks also returned no jobs. Do not claim static test pass.
 - No verified hosted preview URL exists for the exact current PR head. No Supabase writes, public product imports, live stock/price changes, payment changes, Axxess upload, DNS changes or production deployment occurred. Public products remain 0; private staging remains 770 REVIEW_ONLY; categories remain 27.
 - Next: wait for a runner to be assigned, then run the static/package QA once against the exact latest PR head; inspect all resulting job steps/logs. After successful package checks, publish an isolated noindex non-production preview and verify its deployed commit SHA. Only then ask owner to review. Functional/browser/checkout tests remain held until owner adds banking details; production remains HOLD.
+
+
+## 2026-11-03 — OFFICIAL AUDISON PRODUCT IMAGES ADDED TO REVIEW PREVIEW
+- The 68-record exact-model Planetworld manufacturer-reference set now has **17 image URLs** (previously 9); eight new images were opened and visually matched from official Audison product pages/static.audison.com assets: bit DMI (66750650), B-CON (66750800), bit One HD Virtuoso (66751501), AF M12.14 bit (66755100), AF M8.14 bit (66755105), AF C8.14 bit (66755107), AV 3.0 (69020020) and AV 3.0 II (69020021).
+- The eight new records are marked `official_manufacturer_image_verified_review_only`; the preview renderer already displays their `imageUrl` values when model matching succeeds. The 51 remaining curated records still have no verified image URL; do not substitute generic category art or unrelated product photos for them.
+- These manufacturer images are review candidates only. They are not promoted into the public production catalogue and require the owner's image/publication approval. Exact model numbers and manufacturer-page links remain attached to each record.
+- Static structural test now asserts the 68 model-reference count, 17 image count and eight new exact-model image mappings. This test has not executed because GitHub hosted runners remain unavailable (runner_id=0).
+- Main branch remains without the preview-only `planetworld-verified-models-preview.json` file; image enrichment is isolated on the integration branch.
+
+
+## 2026-11-03 — EXACT-HEAD RECONCILIATION AND PREVIEW DEPLOYMENT RETRY
+- Reconciled the integration branch with current main after the main-tree restoration commits; PR #166 now compares **51 commits ahead / 0 behind**. The candidate tree retains the preview-only verified-model image dataset; main was verified not to contain that preview-only file.
+- Isolated Cloudflare Pages preview workflow `.github/workflows/publish-approved-storefront-preview.yml` previously checked out `main` even when the trigger branch was pushed. Corrected the dedicated `approved-storefront-preview-trigger` branch workflow to check out `github.sha`, so the intended Pages preview would build the candidate source, not stale main.
+- Triggered isolated Pages preview run `41611368443` and retried its failed job once. Both attempts failed before runner assignment (runner ID 0 / no runner name / no steps). Wrangler did not execute; **no new preview deployment was created**. The previously published preview alias from 2 November is stale and must not be represented as the current candidate.
+- Latest exact PR-head Cloudflare package QA run `41612392059` also failed before executing any step. Structural tests and public SKU audit remain unexecuted; no pass is claimed.
+- GitHub Actions billing/quota details are not exposed through the connected repository API, so the precise account-side cause of zero runner assignment is not confirmed. Do not assume it is an application failure or repeat retries without evidence of runner recovery.
+- Current catalogue image review set: 68 exact-model manufacturer records, 17 image URLs (eight newly matched official Audison product images), 51 still without verified images. All new images remain review-only.
+- No production deployment, Supabase write, live product import, stock/price update, payment activation, Axxess upload or DNS change. Public products remain 0; private staging remains 770 REVIEW_ONLY; category count remains 27.
+
+
+## 2026-11-03 — CURRENT EXACT PR HEAD SNAPSHOT
+- Current PR #166 head after main reconciliation and handover/task-queue updates: `ad5770b5df55c26a624fedcd0842d143de0e681a`; PR open/draft/mergeable; 51 ahead / 0 behind main.
+- Latest package QA attempt available in Actions is run `41612392059` at prior code head `943adbdbae33fc75c108657c7699ca7e29195ff1`; it failed before runner assignment and executed zero steps. The current head adds only handover/task-queue and merge-parent reconciliation after that candidate code; do not describe it as tested on exact current SHA.
+- Structural test source is present and now checks 17 official image URLs / eight new Audison model mappings, but remains unexecuted. Current exact-head package QA must still pass before preview deployment.
+- No current candidate preview is deployed. The 2-Nov alias is stale. The isolated deployment workflow now checks out the trigger SHA but runner allocation is still unavailable.
+
+
+## 2026-11-03 — KICKER OFFICIAL IMAGE LINKS ADDED AS UNVERIFIED CANDIDATES
+- Added four model-matched Kicker image links from the corresponding official Kicker product pages to the 68-record image review set: 43C124, 43C84, 46CXA12001 and 48CWR104. Their status is `official_manufacturer_page_image_link_review_only`; the web image fetch could not confirm the image bytes, so they are not marked visually verified.
+- Image review set now contains 21 image URLs total: 8 newly visually verified Audison images, 4 Kicker manufacturer-page candidates not fetch-verified, and 9 pre-existing image URLs. 47 of the 68 curated model records still have no image URL. The preview remains noindex/review-only; no generic or mismatched imagery is substituted.
+- Static structural test updated to assert the 21 total URLs, eight verified Audison images and four Kicker review-only candidates. It remains unexecuted until GitHub assigns a runner.
+
+
+## 2026-11-03 — MANUAL EXACT-SOURCE STRUCTURAL VALIDATION
+- Ran 52 read-only structural assertions in the connected execution environment against integration source ref `b9955631e360a4ff2ee5969e016191e6f93e9b24`; **52/52 passed**. Coverage included exact three root IDs/names, category child-parent mappings, direct Lifestyle filters, ASC catalogue roots, noindex preview routes, source-data sanitization, row counts, image URL/status mappings, seven preview route packaging references and QA workflow test hooks. This was not a GitHub Actions/Node/browser run; CI remains blocked before runner assignment.
+- Recomputed catalogue department coverage from the Planetworld source snapshot: Car Audio & Video 627; Home Entertainment 461; Band & Live Sound 792; DJ 15; Musical Instruments 850; Installed AV 435; Harnesses & Trims 47; Studio Equipment 62; Marine Audio 28 (3,317 total). Audio Connections contributes 66 Car Audio review rows.
+- Recomputed Lifestyle filters: 21 unique vacuum-related rows and six pool cleaner/vacuum/skimmer rows from Home Entertainment.
+- Fresh read-only Supabase verification: 27 categories; 0 public products; 770 private staging rows, all REVIEW_ONLY (702 Planetworld + 68 Audio Connections). Live active category hierarchy matches the three preview root IDs/names and all required child mappings. No writes made.
+- Remaining blockers: GitHub hosted runner allocation/billing status not accessible through the connected repository API; no current isolated Pages preview deploy; 47/68 curated exact-model records still lack an image URL. Functional/browser/checkout testing remains held until owner adds banking details.
