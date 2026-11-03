@@ -1158,3 +1158,7 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - The audio catalogue's Home Entertainment department now includes both source collections `Home Entertainment` and `Installed AV` (excluding the separate Home Retail/Lifestyle division). This keeps the Installed AV rows represented instead of silently omitting them from the Home Entertainment browse route.
 - Exact code/test head immediately before this handover append: `8167d0a5abe1e634b54b73d1fcd10e198168c064`. A new GitHub Actions runner diagnostic was queued for that head; earlier run `41662748223` again failed with `steps=null` before checkout. No application test result is available.
 - The previous exact-head Cloudflare Pages build for handover head `3a822640b8681963b5cf5c0bfd32d72123d5618e` was still IN_PROGRESS at its last read (build ID `3927f59c-88a5-43fd-8ade-8a60b55686f8`). Recheck the final post-handover head for its own staging build result. No hosted browser acceptance is claimed.
+
+### Correction — shared shell actions use existing hash links
+- The shared shell markup already links to `index-new.html#cartPanel` and `index-new.html#part-search`; the homepage now listens for those hash fragments on DOMContentLoaded and opens the matching cart/part-search overlay. This replaces the query-parameter approach described in the immediately preceding note; no subpage URL rewrites are required.
+- Regression assertion added for both hash-triggered actions. Browser verification remains pending.
