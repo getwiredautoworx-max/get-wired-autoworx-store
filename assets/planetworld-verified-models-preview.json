@@ -521,7 +521,9 @@
       "description": "20 cm (7.9-inch) 4-ohm subwoofer using Focal's Flax sandwich cone. Rated at 250 W RMS / 500 W maximum, with a 39 Hz–500 Hz response and 82.5 dB sensitivity. The manufacturer specifies a 117 mm mounting depth and recommends a sealed 10–15 litre or bass-reflex 10–20 litre enclosure.",
       "modelNumber": "KIT SUB P20FE",
       "manufacturerPage": "https://www.focal.com/products/p-20-fe",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-BCCE104C",
@@ -530,7 +532,9 @@
       "description": "16 cm (6.5-inch) two-way coaxial speaker pair with a PP-and-mica woofer cone, balanced-dome tweeter and full-cover grilles. JVC lists 50 W RMS / 300 W peak handling, 4-ohm impedance, 88 dB sensitivity and an 88 Hz–22 kHz response.",
       "modelNumber": "CS-DR162",
       "manufacturerPage": "https://www.jvc.com/in/car-entertainment/speakers/cs-dr162/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://jasc.jvc.com//files/image/1628/1/1280x1024-10/223928_18_CS-DR162_W.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-B5C3FB36",
