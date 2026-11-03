@@ -712,7 +712,7 @@
       "hasStock": false,
       "modelNumber": "SPARTAN 9900.1",
       "description": "Starsound SPARTAN 9900.1 — 600 RMS",
-      "manufacturerPage": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssa-sp-9900-1/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -721,7 +721,10 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerMatchStatus": "OFFICIAL_PRODUCT_PAGE_ALIAS_REFERENCE — source SPARTAN 9900.1 maps to SSA-SP-9900.1; verify variant and power rating",
+      "specificationConflict": "Supplier source says 600 RMS without impedance; the official Starsound page lists 500 W RMS at 1 Ω and 250 W RMS at 2 Ω. Confirm the correct rating before publication.",
+      "specificationReviewStatus": "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED"
     },
     {
       "id": "ac-031",
@@ -765,7 +768,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/page/2/",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SSA-ATOM-13500 may map to SSA-Atom-13500.1; suffix/variant review pending"
     },
     {
       "id": "ac-033",
@@ -809,7 +814,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SSATIH8200.1 may map to SSA-H-8200.1; exact variant review pending"
     },
     {
       "id": "ac-035",
@@ -1174,7 +1181,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/speakers/pro-speakers/?category-view-mode=list",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source PRO6.5-700 maps to SSS-Pro6.5-700; variant review pending"
     },
     {
       "id": "ac-050",
@@ -1196,7 +1205,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/product-category/speakers/pro-speakers/?category-view-mode=list",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_ALIAS_REFERENCE — source SS-PRO6X9-900 maps to SSS-Pro6x9-900; variant review pending"
     },
     {
       "id": "ac-051",
@@ -1218,7 +1229,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerListingPage": "https://starsound.co.za/shop/page/7/",
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_REFERENCE — exact SSAK-406P model listed"
     },
     {
       "id": "ac-052",
@@ -1231,7 +1244,7 @@
       "hasStock": false,
       "modelNumber": "409CU",
       "description": "Starsound 409CU TRUE COPPER",
-      "manufacturerPage": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssak-409cu/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -1240,7 +1253,8 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "manufacturerMatchStatus": "OFFICIAL_PRODUCT_PAGE_ALIAS_REFERENCE — source 409CU maps to SSAK-409CU; verify source pack/length variant"
     },
     {
       "id": "ac-053",
