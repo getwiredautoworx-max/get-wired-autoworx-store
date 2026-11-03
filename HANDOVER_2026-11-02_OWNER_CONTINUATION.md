@@ -1222,3 +1222,9 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Fixed the audio preview so the 57 verified-model cards not merged into broad catalogue titles no longer incorrectly show “Price on request”; they now carry the matched indicative proposal and 25-Oct-2026 date label. Eleven exact leading-token matches continue to inherit their broad catalogue row's price.
 - No historical stock is presented as current; no dealer cost or supplier code exposed; no live price/stock change.
 - Added regression assertions; test execution remains pending.
+
+
+### Audio Connections official Starsound image-source work — 2026-11-03
+- Verified Starsound's exact official product page for SSUSB-450BTDD and captured its direct official image URL from the product page.
+- Added the page and image URL to the preview as a not-approved review candidate; product remains preview-only and its GW candidate remains held. The image did not load in the research fetch (cache miss), so visual rendering is still to be checked on the hosted preview.
+- Added a regression assertion for exact page, direct image URL and preview-only status.
