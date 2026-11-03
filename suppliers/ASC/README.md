@@ -81,3 +81,8 @@ To avoid duplicate parent tiles, the preview attaches the ASC contents headings 
 - Fuel Pump sections → a preview-only Fuel Pumps category under Auto Electrical Spares, because the approved homepage tree has no equivalent direct child.
 
 This is a non-database preview overlay. No live category rows or parent relationships were modified.
+
+
+## Owner scope reset — 2026-11-03
+
+The owner has confirmed that ASC remains one of the **only three active catalogue suppliers**, alongside Audio Connections and Planetworld. For this rebuild, use the current approved ASC product-family catalogue PDFs listed above. **Do not process or import the legacy 800+ ASC monthly Buyer's Guide stock listings.** Keep all original Buyer's Guides preserved as archive/reference only. Catalogue navigation must follow the actual contents headings of each approved ASC catalogue, with each catalogue represented by its own subcategory button under the correct existing main store category. Aerials belong under Car Audio & Entertainment; car mats belong under Car Care & Accessories. All product extraction remains staged for review before any activation.
