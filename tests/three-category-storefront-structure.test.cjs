@@ -60,6 +60,7 @@ assert.ok(audioPage.includes('Speakers & Component Kits') && audioPage.includes(
 assert.ok(planet.records.some(p => p.brand === 'JBL'), 'JBL products must remain in their source department');
 assert.ok(planet.records.some(p => String(p.brand||'').startsWith('Denon')), 'Denon DJ products must remain in their source department');
 assert.ok(!audioPage.includes('["Harnesses & Trims","Harnesses & Trims"]') && !audioPage.includes('["Car Audio & Video","Car Audio & Video"]'), 'component groupings and duplicate audio divisions must not become separate departments');
+assert.ok(audioPage.includes('/^(harness and trims|harnesses & trims)$/i.test(String(b))'), 'Harnesses & Trims must be treated as a component group, not a manufacturer brand button');
 assert.ok(shellCss.includes('.gw-header') && shellCss.includes('.gw-nav') && shellCss.includes('.gw-mobile-nav'), 'shared homepage shell stylesheet must include desktop and mobile navigation');
 for (const [i,page] of shellPages.entries()) {
   assert.ok(page.includes('assets/storefront-subpage-shell.css'), 'subpage '+i+' must load the shared homepage shell stylesheet');
