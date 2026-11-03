@@ -106,5 +106,8 @@ assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes(
 assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
 assert.ok(home.includes("location.href='category.html?id='+encodeURIComponent(b.dataset.filter)"), 'leaf category buttons must navigate to the category page');
 assert.ok(home.includes("closest('.child[data-filter]')"), 'nested category buttons must navigate to the category page');
-assert.ok(categoryPage.includes("if(!hasChildren){location.replace('products.html?category='+encodeURIComponent(current.id));return}"), 'empty leaf categories must open their filtered product listing');
+assert.ok(categoryPage.includes("department=Lifestyle&search=vacuum&label=Vacuum%20Cleaners"), 'vacuum category page must open Lifestyle vacuum results');
+assert.ok(categoryPage.includes("department=Lifestyle&search=pool&label=Pool%20Cleaners"), 'pool category page must open Lifestyle pool results');
+assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
+ 'empty leaf categories must open their filtered product listing');
 console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc_catalogues=6 planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
