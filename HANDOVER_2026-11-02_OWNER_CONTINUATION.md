@@ -813,3 +813,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Added structural assertions that both Lifestyle source groups exist in the Planetworld snapshot and both direct filter links are present.
 - Fresh read-only Supabase counts: `public.categories=27` (three roots plus 24 active descendants); `public.products=0`; `gw_private.catalogue_product_staging=770`. The private staging breakdown remains 702 Planetworld + 68 Audio Connections, all `REVIEW_ONLY`. No public product rows have been created. This private staging is distinct from the 3,317-row Planetworld workbook browse snapshot and 66-row Audio Connections preview subset.
 - No Supabase writes made. No tests executed, no retries, no browser/functional checks and no deployment. Keep PR #166 draft and production HOLD.
+
+
+## 2026-11-03 — FINAL PR #166 EXACT-HEAD WORKFLOW RETRY STATUS
+- On code/documentation head `71b92483ceb6fe56207e1a7969fa09050ca901dc`, GitHub automatically attempted: populated preview browser QA `41609523569`; storefront smoke `41609523563`; button-only smoke `41609523495`; catalogue/supplier routing QA `41609523590`; Axxess package preparation `41609523642`; public SKU audit `41609523614`; Cloudflare public package QA `41609523713`.
+- Every attempted job failed before executing a step: runner ID 0, zero steps. The dependent smoke/package jobs were skipped. No application test, package test, SKU audit, or browser test ran. This is infrastructure runner startup failure, not an application pass/fail result. No reruns were requested.
+- PR #166 remains draft/open/mergeable, 27 commits ahead / 0 behind main at the last comparison. Latest source code includes the Lifestyle vacuum/pool filters; only handover/task-queue records followed the code verification.
+- Keep production HOLD. Do not merge, publish or activate catalogue data. Wait for runner availability; functional testing remains deferred until owner banking details are added.
