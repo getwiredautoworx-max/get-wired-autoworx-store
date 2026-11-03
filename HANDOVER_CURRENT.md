@@ -2927,3 +2927,11 @@ Read-only audit of the sanitized JSON used by PR #139:
 1. Owner runs the current-main Planetworld read-only audit once through the Actions UI and supplies the run ID; then inspect the summary and artifact-free job logs and refresh the current audit counts.
 2. Obtain a current Planetworld price/stock file or written supplier confirmation for the 19 non-zero-RRP cost-floor candidates, especially the JBL, Soundcraft, Paiste and Ibanez outliers.
 3. Keep uncertain exact variants/images marked unverified and retain the separate 19 zero-RRP owner hold.
+
+
+## 2026-11-03 08:43 SAST — PLANETWORLD MONITOR TASK START
+- Outcome: IN PROGRESS.
+- Read this branch handover plus the Planetworld non-zero-RRP review, cost-floor source-row check, 19-item zero-RRP owner hold, manufacturer-match continuation, category/image review, supplier price-field confirmation draft, and the 2026-11-03 19-row model/image review register.
+- Current work is read-only: verify PR #95, latest current-main Planetworld audit workflow/run/job/artifact, all current background workflow states, and any safe staging retry eligibility. The 19 zero-RRP rows remain separate for the owner's personal audit. All 19 cost-floor/model/image register rows remain `DO_NOT_IMPORT`.
+- No PR merge/rebase, supplier XLSX edit, supplier publication/import, live product/price/stock/category/active-flag change, Supabase write, deployment, Axxess/DNS/payment change, or release-credit-consuming retry.
+- Next action: inspect PR #95 and latest workflow runs; identify any safe staging failure that has a supported retry action, without duplicating queued/in-progress work.
