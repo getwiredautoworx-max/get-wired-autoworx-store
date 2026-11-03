@@ -1,0 +1,13 @@
+supplier_item_code,model,official_product_page,official_image_url,image_status,image_view,rights_status,browser_load_status,staged_private,active,quote_on_request
+78000023,MPK 165.3,https://hertz-audio.com/product/mpk-165-3/,,IMAGE_PENDING,,OWNER_PERMISSION_CONFIRMATION_PENDING,NOT_RETRIEVED,true,false,true
+78000059,CK 130,https://hertz-audio.com/product/ck-130/,,IMAGE_PENDING,,OWNER_PERMISSION_CONFIRMATION_PENDING,NOT_RETRIEVED,true,false,true
+78000069,CK 165,https://hertz-audio.com/product/ck-165/,,IMAGE_PENDING,,OWNER_PERMISSION_CONFIRMATION_PENDING,NOT_RETRIEVED,true,false,true
+78021091,DBX 25.3,https://hertz-audio.com/product/dbx-25-3/,https://static.hertz-audio.com/media/2022/11/Hertz_Dieci_DBX_25.3_subwoofer_box_b.jpg,OFFICIAL_URL_IDENTIFIED,rear-terminal-side,OWNER_PERMISSION_CONFIRMATION_PENDING,BROWSER_VERIFY_PENDING,true,false,true
+78021101,DBX 30.3,https://hertz-audio.com/product/dbx-30-3/,https://static.hertz-audio.com/media/2022/11/Hertz_Dieci_DBX_30.3_subwoofer_box_b.jpg,OFFICIAL_URL_IDENTIFIED,rear-terminal-side,OWNER_PERMISSION_CONFIRMATION_PENDING,BROWSER_VERIFY_PENDING,true,false,true
+78022000,CBA 250,https://hertz-audio.com/product/cba-250/,https://static.hertz-audio.com/media/2023/03/Hertz_Cento_Subwoofer_box_CBA_250_pros_brand.jpg,OFFICIAL_URL_IDENTIFIED,product-view,OWNER_PERMISSION_CONFIRMATION_PENDING,BROWSER_VERIFY_PENDING,true,false,true
+78035501,MPS 250 S4,https://hertz-audio.com/product/mps-250-s4/,,IMAGE_PENDING,do-not-substitute-S2,OWNER_PERMISSION_CONFIRMATION_PENDING,NOT_RETRIEVED,true,false,true
+78035511,MPS 250 S2,https://hertz-audio.com/product/mps-250-s2/,https://static.hertz-audio.com/media/2021/10/Hertz_Mille_PRO_MPS_250_PROSP-e1635580175504.jpg,OFFICIAL_URL_IDENTIFIED,front-three-quarter,OWNER_PERMISSION_CONFIRMATION_PENDING,BROWSER_VERIFY_PENDING,true,false,true
+78040014,CPX 165,https://hertz-audio.com/product/cpx-165/,https://static.hertz-audio.com/media/2023/01/HERTZ_CPX-165_PROSPETTIVA-LATO-MOTORE_2023_01_11_JPG.jpg,OFFICIAL_URL_IDENTIFIED,rear-engine-side,OWNER_PERMISSION_CONFIRMATION_PENDING,BROWSER_VERIFY_PENDING,true,false,true
+78040044,CPX 690,https://hertz-audio.com/product/cpx-690/,,IMAGE_PENDING,,OWNER_PERMISSION_CONFIRMATION_PENDING,NOT_RETRIEVED,true,false,true
+78040143,DCX 130.3,https://hertz-audio.com/product/dcx-130-3/,,IMAGE_PENDING,,OWNER_PERMISSION_CONFIRMATION_PENDING,NOT_RETRIEVED,true,false,true
+78040154,DCX 165.3,https://hertz-audio.com/product/dcx-165-3/,,IMAGE_PENDING,,OWNER_PERMISSION_CONFIRMATION_PENDING,NOT_RETRIEVED,true,false,true

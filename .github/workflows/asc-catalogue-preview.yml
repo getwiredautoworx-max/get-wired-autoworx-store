@@ -8,12 +8,15 @@ on:
       - 'preview-product.html'
       - 'asc-catalogue-preview.html'
       - 'audio-connections-preview.html'
+      - 'hertz-preview.html'
       - 'assets/asc-catalogue-preview-data.json'
       - 'assets/audio-connections-sony-mobile-es-review.json'
       - 'assets/audio-connections-sony-mobile-es-sprite.webp'
+      - 'assets/hertz-review.json'
       - 'assets/asc-catalogue-pilot/**'
       - 'tests/asc-catalogue-preview.test.cjs'
       - 'tests/audio-connections-preview.test.cjs'
+      - 'tests/hertz-preview.test.cjs'
       - 'tests/legacy-asc-buyer-guide-guard.test.cjs'
       - 'tests/test_preview_catalogue_gate.py'
       - 'tests/asc-catalogue-taxonomy-review.test.cjs'
@@ -25,12 +28,15 @@ on:
     paths:
       - 'asc-catalogue-preview.html'
       - 'audio-connections-preview.html'
+      - 'hertz-preview.html'
       - 'assets/asc-catalogue-preview-data.json'
       - 'assets/audio-connections-sony-mobile-es-review.json'
       - 'assets/audio-connections-sony-mobile-es-sprite.webp'
+      - 'assets/hertz-review.json'
       - 'assets/asc-catalogue-pilot/**'
       - 'tests/asc-catalogue-preview.test.cjs'
       - 'tests/audio-connections-preview.test.cjs'
+      - 'tests/hertz-preview.test.cjs'
       - 'tests/asc-catalogue-taxonomy-review.test.cjs'
       - 'catalogue-review/asc-catalogue-extraction/**'
       - 'suppliers/ASC/README.md'
@@ -57,6 +63,7 @@ jobs:
           set -euo pipefail
           node tests/asc-catalogue-preview.test.cjs
           node tests/audio-connections-preview.test.cjs
+          node tests/hertz-preview.test.cjs
           node tests/asc-catalogue-taxonomy-review.test.cjs
           node tests/legacy-asc-buyer-guide-guard.test.cjs
           python3 tests/test_preview_catalogue_gate.py
@@ -104,6 +111,13 @@ jobs:
               if(!spriteOk)throw new Error('Audio Connections image sprite failed to load');
               const audioOverflow=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth}));
               if(audioOverflow.document>audioOverflow.viewport+1)throw new Error('Audio review horizontal overflow: '+JSON.stringify(audioOverflow));
+              await page.goto('http://127.0.0.1:4173/hertz-preview.html',{waitUntil:'domcontentloaded'});
+              await page.waitForFunction(()=>document.querySelectorAll('#products .card').length===12);
+              const hertzBody=await page.locator('body').innerText();
+              if(hertzBody.includes('Planetworld')||hertzBody.includes('Audio Connections')||hertzBody.includes('Add to cart')||hertzBody.includes('Checkout'))throw new Error('Hertz review page exposes supplier/checkout wording');
+              if(!hertzBody.includes('OWNER REVIEW ONLY'))throw new Error('Hertz owner review notice missing');
+              const hertzMedia=await page.locator('.media').count();
+              if(hertzMedia!==12)throw new Error('Hertz review media count mismatch: '+hertzMedia);
               await page.close();
             }
             if(errors.length)throw new Error('Browser errors: '+errors.join(' | '));

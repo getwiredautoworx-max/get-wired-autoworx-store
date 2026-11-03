@@ -1,0 +1,15 @@
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const data=JSON.parse(fs.readFileSync('assets/hertz-review.json','utf8'));
+const html=fs.readFileSync('hertz-preview.html','utf8');
+assert.equal(data.products.length,12,'12 manufacturer-page matches must be represented');
+assert.equal(new Set(data.products.map(p=>p.model)).size,12,'models must be unique');
+assert.equal(data.products.filter(p=>p.image_url).length,5,'five official image URLs are staged');
+assert.equal(data.products.filter(p=>!p.image_url).length,7,'seven exact images remain pending');
+assert.ok(data.products.filter(p=>p.image_url).every(p=>p.image_url.startsWith('https://static.hertz-audio.com/')),'only official Hertz CDN images are used');
+assert.ok(data.products.every(p=>p.review_only&&p.gw_sku===null&&p.price===null&&p.stock===null),'all records remain review-only');
+assert.ok(html.includes('noindex,nofollow')&&html.includes('OWNER REVIEW ONLY'));
+assert.ok(!html.includes('Planetworld')&&!html.includes('Audio Connections'));
+assert.ok(!html.toLowerCase().includes('add to cart')&&!html.toLowerCase().includes('checkout'));
+assert.ok(html.includes('Third-party retailer images have not been used.'));
+console.log('HERTZ_PREVIEW_STATIC_QA_PASS');
