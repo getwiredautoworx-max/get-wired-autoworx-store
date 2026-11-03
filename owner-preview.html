@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<div class="preview-banner"><strong>OWNER PREVIEW — NON-PRODUCTION</strong><small>Checkout and order submission are disabled. Catalogue and navigation review only.</small></div>
+<div class="preview-banner"><strong>OWNER PREVIEW — NON-PRODUCTION</strong><small>Checkout, order submission and Supabase write actions are blocked. Catalogue and navigation review only.</small></div>
 <iframe id="store" src="index-new.html" title="Get Wired AutoWorx owner preview"></iframe>
 <script>
 (function(){
@@ -28,11 +28,22 @@
    const style=doc.createElement('style');
    style.textContent='a[href*="checkout"],.checkoutNow,#checkout,.checkout-fab{display:none!important}';
    doc.head.appendChild(style);
+   const win=frame.contentWindow;
+   if(win&&!win.__GW_PREVIEW_WRITE_BLOCKED){
+    const originalFetch=win.fetch.bind(win);
+    win.fetch=function(input,init){
+     const method=String((init&&init.method)||'GET').toUpperCase();
+     const url=typeof input==='string'?input:(input&&input.url)||'';
+     if(['POST','PUT','PATCH','DELETE'].includes(method)&&/supabase\\.co/i.test(url))return Promise.reject(new Error('Supabase writes are disabled in this owner preview.'));
+     return originalFetch(input,init);
+    };
+    win.__GW_PREVIEW_WRITE_BLOCKED=true;
+   }
    doc.addEventListener('click',function(event){
     const target=event.target&&event.target.closest?event.target.closest('a,button,[role="button"]'):null;
     if(!target)return;
     const label=((target.innerText||target.getAttribute('aria-label')||'')+' '+(target.getAttribute('href')||'')).toLowerCase();
-    if(/checkout|place order|pay now|submit order|payment/.test(label)){
+    if(/checkout|place order|pay now|submit order|payment|send request|submit request|request this part/.test(label)){
      event.preventDefault();event.stopPropagation();event.stopImmediatePropagation();
      window.alert('Checkout is disabled in this non-production owner preview.');
     }
