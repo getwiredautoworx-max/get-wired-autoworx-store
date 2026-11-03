@@ -1317,3 +1317,9 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Preserve the lower/source figure and all provenance internally; do not silently overwrite source evidence. Compare equivalent ratings and retain impedance/channel context. Do not turn RMS into peak or infer per-channel/total output. Where rating basis is unclear, use only the exact higher-source wording and flag its ambiguity.
 - Applied to four Audio Connections preview records: SSW12-6300 now displays 400 W RMS; SSA-ATOM13800.4 retains the higher supplier-listed “100 RMS” wording (not rephrased as 100 W × 4); SSAR 22000.1 displays 1800 W RMS at 1 Ω; SSA-R 5000.4 displays 65 W RMS per channel at 4 Ω. Original discrepancies remain in internal notes and are tagged OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT.
 - Preview JSON update commit: a3a1aa163636fbcc5a15ccef90fd91fae4b40de3. No price, stock, SKU assignment, image approval, live data, or production setting changed. The four records remain PREVIEW_ONLY_NOT_LIVE.
+
+
+### 2026-11-03 — SSA-ATOM13800.4 RMS/PMPO clarification
+- Owner clarified the Starsound SSA-ATOM13800.4 rating: customer-facing nominal/continuous output is **100 W RMS per channel × 4 channels**. The model designation's 13,800 W PMPO figure is a maximum/marketing figure; owner's arithmetic is 13,800 W ÷ 4 = 3,450 W PMPO per channel. PMPO is not RMS; no universal PMPO-to-RMS conversion is applied.
+- Corrected `assets/audio-connections-catalogue-preview.json` to state **100 W RMS × 4 channels**. Official Starsound page's 80 W × 4 at 4 Ω remains preserved in the discrepancy note. The supplier's 100 W rating still needs impedance/test-condition confirmation, but owner's interpretation governs this preview selection.
+- Row remains `PREVIEW_ONLY_NOT_LIVE`; no public release, price, stock, SKU assignment, image approval or production setting changed. JSON correction commit: `d52abadc6f2eb925fa70cd43dfce1560c4a9e333`.
