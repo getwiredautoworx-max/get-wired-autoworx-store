@@ -117,3 +117,10 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - Added the official product-page link and 788×788 image URL to the preview row as a review candidate. The asset is explicitly marked `OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED`; it is not approved for customer publication and the product remains `PREVIEW_ONLY_NOT_LIVE`.
 - Updated the corresponding crosswalk row and regression assertions. The candidate GW SKU remains held, not assigned, pending image review and owner approval.
 - External image retrieval returned a cache miss in the research environment, so successful image rendering/visual QA remains unverified. No other supplier image is inferred from this one.
+
+
+### Audio Connections official Starsound reference reconciliation — 2026-11-03
+- Added seven further source-to-manufacturer references: one official product-page alias reference for source model USB230 EXT MIC → SSUSB-230BTCE (variant review remains open), and six official category-listing references for SSMP5-7655BT, SSDVD-9900BT, SSMP5-7670BTAC, SSW-12W-5200, SSW-12-6300 and SSW-12-7300.
+- Together with the exact official SSUSB-450BTDD product page, eight of the 53 non-Sony source rows now have an official manufacturer reference (one exact individual product page, one product-page alias reference, six category listings); 45 still have no official manufacturer reference.
+- The USB450BTDD row has one direct manufacturer image URL candidate. It is not approved and the external fetch returned a cache miss. No image was invented for the other seven references.
+- All eight records remain preview-only; all 53 non-Sony GW candidates remain held/unassigned until exact identity, image and variant review is complete.
