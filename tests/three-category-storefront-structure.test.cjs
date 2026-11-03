@@ -42,6 +42,15 @@ assert.ok(focalP20 && focalP20.imageUrl === 'https://dam.focal-naim.com/m/36b97b
 assert.equal(focalP20.imageStatus, 'OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
 assert.ok(verifiedModels.records.every(p => Number(p.indicativePrice) > 0 && p.priceProposalStatus === 'REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED'), 'all 68 verified-only model cards must carry a positive review-only indicative price');
 assert.ok(audioPage.includes('indicativePrice:p.indicativePrice??null'), 'unmatched verified-only model cards must retain their source-backed indicative price');
+for (const model of ["SSW12-6300","SSA-ATOM13800.4","SSAR 22000.1","SSA-R 5000.4"]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && row.specificationConflict && row.specificationReviewStatus === 'SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED', 'specification conflict must be explicit for '+model);
+}
+assert.ok(audioPage.includes('SPECIFICATION REVIEW REQUIRED:') && audioPage.includes('p.specificationConflict'), 'owner preview must display source-versus-manufacturer specification warnings');
+for (const model of ['SSW8"-8000D2','SSW-B12-2800','SSWF12-5150SVC']) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && row.indicativePrice == null && row.priceOnRequestText === 'Price on Request due to Limited Stock and Availability.', 'blank-price row must use exact owner wording: '+model);
+}
 assert.ok(audioPage.includes('sourceDateLabel:p.sourceDateLabel||"RRP −1% preview · 25 October 2026 snapshot"'), 'verified-only model cards must identify the dated RRP preview basis');
 const ascPage = read('asc-catalogue-preview.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
