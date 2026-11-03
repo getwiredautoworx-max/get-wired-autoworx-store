@@ -103,3 +103,10 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - These 53 values are recorded in the new crosswalk columns `gw_sku_candidate_review` and `gw_sku_candidate_status`; the official proposed field remains blank and `gw_sku_status` remains `NOT_ASSIGNED_HOLD`. This prevents unverified products from being treated as assigned/published SKUs.
 - Two RA source rows remain held because the brand abbreviation is unverified. The remaining rows still require exact model/variant, description and image review. A collision-free code is not proof of product identity.
 - Combined collision-checked candidate set: 68 Planetworld + 13 Sony proposed candidates + 53 non-Sony held candidates = 134 unique codes, zero collisions with current live public SKUs. No public SKU/product rows were inserted or updated.
+
+
+### Planetworld 68-model preview price completeness — 2026-11-03
+- Exact-joined all 68 verified model records to the 68-row Planetworld candidate price review by normalized supplier model/SKU: 68/68 matched, all with positive RRP−1% preview price proposals and `PASS_REVIEW_ONLY` cost-floor status.
+- Corrected the verified-only card builder. Eleven models merge into a broad catalogue row by exact leading model token; the other 57 remain separate verified-model cards. Those 57 previously had `indicativePrice:null` despite having an exact source price-review row; they now carry the matching RRP−1% indicative proposal and the dated 25-Oct-2026 snapshot label.
+- No historic stock is represented as current availability. The cards remain review-only, and no dealer cost, supplier SKU or live stock was added to the customer-facing data.
+- Regression assertions added for 68/68 positive indicative prices and the dated price label. Node test execution remains pending.
