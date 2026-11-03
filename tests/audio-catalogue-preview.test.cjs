@@ -56,7 +56,7 @@ for (const row of audioConnections.records) {
 }
 
 const imageCount = modelImageCandidateCount + audioConnections.records.filter(row => row.imageUrl).length;
-assert.equal(imageCount, 37);
+assert.equal(imageCount, 38);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
