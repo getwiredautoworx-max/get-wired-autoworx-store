@@ -76,13 +76,25 @@ function render(items,title,sub){
  document.getElementById('grid').innerHTML=items.length?items.map(c=>{
   const label=c.label||c.name;
   const href=c.isAscCatalogue?'asc-catalogue-preview.html?root='+encodeURIComponent(c.ascRoot):c.audioArea?'preview-category.html?id='+encodeURIComponent(c.id)+'&audio_area='+encodeURIComponent(c.audioArea):c.audioBrand?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup)+'&audio_brand='+encodeURIComponent(c.audioBrand):c.audioGroup?'preview-products.html?category='+encodeURIComponent(c.id)+'&audio_group='+encodeURIComponent(c.audioGroup):c.isAllProducts?'preview-products.html?category='+encodeURIComponent(c.id):'preview-category.html?id='+encodeURIComponent(c.id);
-  const artMarkup=(c.audioBrand||c.isAscCatalogue)?'<span class="brand-mark" aria-hidden="true">'+(c.isAscCatalogue?'ASC':esc(String(label).slice(0,2).toUpperCase()))+'</span>':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.style.background=\'linear-gradient(135deg,#dcebf6,#edf5fb)\'">';return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
+  const artMarkup=(c.audioBrand||c.isAscCatalogue)?'<span class="brand-mark" aria-hidden="true">'+(c.isAscCatalogue?'GW':esc(String(label).slice(0,2).toUpperCase()))+'</span>':'<img src="'+artFor(label)+'" alt="'+esc(label)+' product photo" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.style.background=\'linear-gradient(135deg,#dcebf6,#edf5fb)\'">';return '<a class="card" href="'+href+'"><span class="card-art">'+artMarkup+'</span><h2>'+esc(label)+'</h2>'+(c.description?'<span class="card-count">'+esc(c.description)+'</span>':'')+(c.count?'<span class="card-count">'+c.count+' products</span>':'')+'<span class="arrow" aria-hidden="true">→</span></a>';
  }).join(''):'<div class="empty">No sub-categories are currently assigned here.</div>';
 }
 async function main(){try{const response=await fetch('assets/category-tree.json',{cache:'no-cache'});if(!response.ok)throw Error('Category snapshot load failed ('+response.status+')');const snapshot=await response.json();const cats=(Array.isArray(snapshot.categories)?snapshot.categories:[]).filter(c=>c.active!==false);if(!cats.length)throw Error('Category snapshot is empty');const direct=new Map(cats.map(c=>[c.id,Number(c.direct_active_products||0)]));const byId=new Map(cats.map(c=>[c.id,c]));const memo=new Map();function total(c,seen=new Set()){if(memo.has(c.id))return memo.get(c.id);if(seen.has(c.id))return direct.get(c.id)||0;const next=new Set(seen);next.add(c.id);const n=(direct.get(c.id)||0)+cats.filter(x=>x.parent_id===c.id).reduce((sum,ch)=>sum+total(ch,next),0);memo.set(c.id,n);return n}document.getElementById('grid').dataset.debug=JSON.stringify({activeCategories:cats.length,activeProducts:cats.reduce((n,c)=>n+(Number(c.direct_active_products)||0),0),rootChecks:ROOTS.map(([label,cid])=>{const c=byId.get(cid);return {label,found:!!c,direct:direct.get(cid)||0,total:c?total(c):null}})});let current=id?byId.get(id):slug?cats.find(c=>c.slug===slug):null;
+if(current&&current.id==='6cc56033-b0a9-4f25-b207-aeeb341a1c47'&&!audioArea){
+ const groups=[{id:current.id,label:'Electrical Spares Catalogue',isAscCatalogue:true,ascRoot:'Auto Electrical Spares',description:'Sensors, switches, vehicle lighting and fuel-pump parts'}];
+ const children=cats.filter(x=>x.parent_id===current.id&&total(x)>0).map(x=>({...x,count:total(x)}));
+ render([...groups,...children],current.name,'Browse electrical spares, including source-led catalogue sections and reviewed parts.');
+ return;
+}
+if(current&&current.id==='87982093-7d81-4f2e-a8e2-e20cdeef30d8'&&!audioArea){
+ const groups=[{id:current.id,label:'Car Mats Catalogue',isAscCatalogue:true,ascRoot:'Automotive Accessories',description:'Vehicle-specific and universal carpet and rubber mats'}];
+ const children=cats.filter(x=>x.parent_id===current.id&&total(x)>0).map(x=>({...x,count:total(x)}));
+ render([...groups,...children],current.name,'Browse automotive accessories, including vehicle-specific and universal mat ranges.');
+ return;
+}
 if(current&&current.id==='5ab55c53-eee3-41ce-ad48-04ad6df85181'&&!audioArea){
  const groups=[
-  {id:current.id,label:'ASC Catalogue — Aerials',isAscCatalogue:true,ascRoot:'Car Audio & Entertainment',description:'Original ASC aerial subcategories and reviewed pilot items'},
+  {id:current.id,label:'Vehicle Aerials Catalogue',isAscCatalogue:true,ascRoot:'Car Audio & Entertainment',description:'Original ASC aerial subcategories and reviewed pilot items'},
   {id:current.id,label:'Car Audio & Video',audioArea:'car',description:'Car stereos, head units, speakers, amplifiers and multimedia'},
   {id:current.id,label:'Home Entertainment',audioArea:'home',description:'Home audio, soundbars, home theatre and related equipment'},
   {id:current.id,label:'Studio Equipment',audioArea:'studio',description:'Microphones, mixers, recording and PA equipment'},
