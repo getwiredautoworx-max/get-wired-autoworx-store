@@ -78,3 +78,8 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 - Exact joined all 68 verified-model candidates to the 68-row source price review; all 68 have positive RRP−1% preview proposals and `PASS_REVIEW_ONLY` cost-floor status.
 - Fixed the 57 verified-only cards that were previously displayed as price-on-request despite having exact source-backed proposals. They now display the RRP−1% indicative proposal and the 25-Oct-2026 snapshot label; no historical stock is represented as live.
 - Regression assertions added; execution pending.
+
+
+### Audio Connections image-source progress — 2026-11-03
+- Verified the exact official Starsound SSUSB-450BTDD product page and added its direct official image URL to the review preview. It is marked not approved; the product remains preview-only and the GW SKU candidate remains held.
+- External fetch of the image returned a cache miss, so hosted rendering/visual approval is still pending.
