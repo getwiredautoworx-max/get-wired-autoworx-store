@@ -46,9 +46,9 @@
     {
       "id": "audio-connections-model-sku-image-review",
       "priority": 5,
-      "status": "13_sony_gw_skus_and_4_image_candidates_staged_53_models_held",
-      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have proposed collision-checked GW SKUs staged privately and linked to the owner-review preview (not inserted); 53 other rows have no proposed GW SKU in this set. Four official Sony image-source candidates are linked to exact records; none is approved. The 66-row review preview has no supplier identity or generic image placeholders; 62 records remain text-only.",
-      "next_action": "Complete visual/load, exact model/variant and usage-permission review for the four official Sony image URLs; obtain approved high-resolution images and current dealer price/availability confirmation. Continue exact-model and GW SKU reconciliation for the remaining 53 rows. Keep all rows private and unpublished; do not re-request dealer authorization or activate the supplier.",
+      "status": "13_sony_gw_candidates_4_images_7_starsound_listings_1_blackspider_page_45_unmatched",
+      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have proposed collision-checked GW SKUs staged privately (not inserted); four official Sony image-source candidates are linked but not approved. Seven non-Sony Starsound models have official category-listing matches; one BlackSpider Lynx has an exact official product page. Forty-five other non-Sony models remain without an official listing/page. No generic image placeholders or supplier names are shown in the noindex review page.",
+      "next_action": "Capture direct high-resolution image assets and verify usage permission for the four Sony candidates and BlackSpider Lynx; review official Starsound listing images at exact model/variant level. Continue exact-model and GW SKU reconciliation for the 45 unmatched rows. Obtain current dealer price/availability; keep all rows private/inactive and do not activate the supplier.",
       "automatic": true
     },
     {
