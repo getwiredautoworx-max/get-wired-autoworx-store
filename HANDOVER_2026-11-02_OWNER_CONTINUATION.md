@@ -743,3 +743,11 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Chemicals & Lubricants source catalogue is still not present in the six post-reset PDFs. The UI reserves the required nested button and displays a truthful source-pending state; older Buyer’s Guides are not substituted for the requested catalogue.
 - Functional/browser tests, click-through tests, workflow runs, hosted deployments, merges, Supabase writes, live category/product/price/stock changes, supplier activation, payment actions, Axxess/DNS or production deployment were NOT performed. Functional testing remains deferred until owner banking details are added; production remains HOLD.
 - Next: static readback/diff verification and draft PR review. Do not run functional tests or deploy until the owner banking-details gate is met and separate deployment approval is obtained.
+
+
+### ASC candidate commit and readback record
+- Implementation commit: `1ee3096eebe1b9f773f58c2d030c02aaa565046a`.
+- Follow-up category-label clarity commit: `68ab744309ce56b2a1af371db13dfb7806f43f7d`.
+- Static GitHub readback confirmed six catalogue definitions with source-section counts 6/11/16/10/14/18 (75 total), 50 review-only records, Car Mats taxonomy root corrected to Auto Electrical Spares, and noindex metadata on the storefront shell and catalogue preview route.
+- Existing store categories that overlap the new catalogue buttons are labelled “Existing Store Products” in the category tree UI to distinguish them from the separate source catalogue buttons. The existing category assignments remain unchanged.
+- This readback is static source verification only; it does not confirm click behaviour, image rendering in a browser, hosted preview availability or owner acceptance.
