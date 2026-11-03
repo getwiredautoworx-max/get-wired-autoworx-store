@@ -869,3 +869,9 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Recomputed Lifestyle filters: 21 unique vacuum-related rows and six pool cleaner/vacuum/skimmer rows from Home Entertainment.
 - Fresh read-only Supabase verification: 27 categories; 0 public products; 770 private staging rows, all REVIEW_ONLY (702 Planetworld + 68 Audio Connections). Live active category hierarchy matches the three preview root IDs/names and all required child mappings. No writes made.
 - Remaining blockers: GitHub hosted runner allocation/billing status not accessible through the connected repository API; no current isolated Pages preview deploy; 47/68 curated exact-model records still lack an image URL. Functional/browser/checkout testing remains held until owner adds banking details.
+
+
+## 2026-11-03 — ISOLATED DEPLOYMENT BRANCH SYNCED, TRIGGER HELD
+- Synced the dedicated `approved-storefront-preview-trigger` branch with the latest PR #166 catalogue/image review files, ASC README and structural tests. It now contains the 21-image review set (eight visually verified Audison images + four unverified Kicker manufacturer-page candidates + nine pre-existing URLs).
+- Updated the isolated Cloudflare Pages workflow to check out the exact trigger commit and changed its path trigger to a fresh `.preview-deploy-request` marker. The existing `.preview-deploy-trigger` now records the source PR reference but does not launch another run.
+- No deployment was started during this sync. A fresh deployment request should be created only after GitHub runner allocation is restored. Target remains the non-production Pages branch `approved-storefront-preview`; production is prohibited.
