@@ -14,9 +14,9 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "owner_confirms_loading_restoration_candidate_open_diverged_14_commits",
-      "description": "Owner confirms storefront loads. PR #163 restores the earlier full storefront with brighter styling and includes the ASC/Audio Connections/Hertz preview work, but it is 58 commits ahead and 14 behind current main; its 92-file diff means the PR description's CSS-only scope is not accurate. PR #162 is also draft/unmerged. No functional testing before banking details.",
-      "next_action": "Prepare a clean current-main integration candidate by selectively reconciling the approved storefront restoration and required preview/catalogue files; inspect exact diffs and preserve all release gates. Do not merge stale PRs, test clicks/routes, trigger Workers or production deployment.",
+      "status": "three_category_storefront_candidate_built_draft_pr_pending",
+      "description": "The owner-approved three-root storefront and the ASC, Planetworld and Audio Connections preview catalogue routes are assembled on integration/new-three-category-catalogue-preview-2026-11-03. The branch is 18 commits ahead / 0 behind main. The preview routes are noindex and supplier identities are removed from customer-facing audio data. No browser/function tests or hosted preview verification have been run on this exact head.",
+      "next_action": "Open a draft PR; run the non-functional package/structural checks once when available, then verify a non-production preview URL and deployed SHA. Keep functional/browser acceptance deferred until owner adds banking details. Do not merge or deploy production.",
       "automatic": false
     },
     {
