@@ -53,6 +53,12 @@ const planetworldRows = rows.filter((r) => r.supplier.includes("Planetworld"));
 const audioRows = rows.filter((r) => r.supplier === "Audio Connections");
 assert.equal(planetworldRows.length, 702);
 assert.equal(audioRows.length, 68);
+for (const model of ["USB230","SS7655BT","DVD9900BT","SS7670",'SSW12" 5200',"SSW12-6300","SSW12-7300"]) {
+  const row = audioRows.find(r => r.supplier_sku === model);
+  assert(row && (row.official_manufacturer_page || row.official_manufacturer_listing), "Official Starsound reference required for " + model);
+  assert.equal(row.gw_sku_status, "NOT_ASSIGNED_HOLD", "Official listing references do not assign a GW SKU for " + model);
+  assert.equal(row.publication_status, "NOT PUBLISHED");
+}
 assert(planetworldRows.every((r) => r.component_candidate === planetworldByKey.get(r.source_file + "|" + r.supplier_sku)), "Planetworld component groups must match the exact source-file/model manifest");
 assert(audioRows.every((r) => r.component_candidate === audioByModel.get(r.manufacturer_model.toLowerCase().replace(/[^a-z0-9]/g, ""))), "Audio Connections component groups must match the exact model manifest");
 assert(rows.every((r) => r.component_candidate && !r.component_candidate.startsWith("Unclassified")), "All supplier rows must have source-backed component groups");
