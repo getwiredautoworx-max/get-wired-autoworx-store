@@ -521,9 +521,7 @@
       "description": "20 cm (7.9-inch) 4-ohm subwoofer using Focal's Flax sandwich cone. Rated at 250 W RMS / 500 W maximum, with a 39 Hz–500 Hz response and 82.5 dB sensitivity. The manufacturer specifies a 117 mm mounting depth and recommends a sealed 10–15 litre or bass-reflex 10–20 litre enclosure.",
       "modelNumber": "KIT SUB P20FE",
       "manufacturerPage": "https://www.focal.com/products/p-20-fe",
-      "component": "Subwoofers",
-      "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
-      "imageStatus": "official_manufacturer_image_verified_review_only"
+      "component": "Subwoofers"
     },
     {
       "gwSku": "GW-BCCE104C",
