@@ -72,3 +72,9 @@ No public product inserts, `product_supplier_codes` inserts, supplier-item activ
 - The dedicated 47-row source collection remains intact; 121 additional Car Audio & Video records match explicit product-level harness/trim/fascia/fitment/ISO2CAR/vehicle-interface/dash-kit/installation-kit evidence.
 - Total Harnesses, Trims & Fitment group: 168 rows. Generic TOSLINK cables, RCA interconnects and fuse holders remain in their appropriate wiring/accessory groups. Generic integration devices without a vehicle-harness signal are separated as Installation & Integration.
 - Regression assertions were added for this 168-row group and exclusions. Execution of the Node test remains pending.
+
+
+### Planetworld 68-model price presentation correction — 2026-11-03
+- Exact joined all 68 verified-model candidates to the 68-row source price review; all 68 have positive RRP−1% preview proposals and `PASS_REVIEW_ONLY` cost-floor status.
+- Fixed the 57 verified-only cards that were previously displayed as price-on-request despite having exact source-backed proposals. They now display the RRP−1% indicative proposal and the 25-Oct-2026 snapshot label; no historical stock is represented as live.
+- Regression assertions added; execution pending.
