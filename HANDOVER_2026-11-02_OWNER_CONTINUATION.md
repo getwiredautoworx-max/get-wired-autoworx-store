@@ -855,3 +855,9 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Latest package QA attempt available in Actions is run `41612392059` at prior code head `943adbdbae33fc75c108657c7699ca7e29195ff1`; it failed before runner assignment and executed zero steps. The current head adds only handover/task-queue and merge-parent reconciliation after that candidate code; do not describe it as tested on exact current SHA.
 - Structural test source is present and now checks 17 official image URLs / eight new Audison model mappings, but remains unexecuted. Current exact-head package QA must still pass before preview deployment.
 - No current candidate preview is deployed. The 2-Nov alias is stale. The isolated deployment workflow now checks out the trigger SHA but runner allocation is still unavailable.
+
+
+## 2026-11-03 — KICKER OFFICIAL IMAGE LINKS ADDED AS UNVERIFIED CANDIDATES
+- Added four model-matched Kicker image links from the corresponding official Kicker product pages to the 68-record image review set: 43C124, 43C84, 46CXA12001 and 48CWR104. Their status is `official_manufacturer_page_image_link_review_only`; the web image fetch could not confirm the image bytes, so they are not marked visually verified.
+- Image review set now contains 21 image URLs total: 8 newly visually verified Audison images, 4 Kicker manufacturer-page candidates not fetch-verified, and 9 pre-existing image URLs. 47 of the 68 curated model records still have no image URL. The preview remains noindex/review-only; no generic or mismatched imagery is substituted.
+- Static structural test updated to assert the 21 total URLs, eight verified Audison images and four Kicker review-only candidates. It remains unexecuted until GitHub assigns a runner.
