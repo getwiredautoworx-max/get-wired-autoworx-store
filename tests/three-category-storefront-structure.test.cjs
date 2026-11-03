@@ -60,7 +60,7 @@ assert.equal(verifiedModels.records.length,68);
 assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,21);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,8);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
-for (const model of ['66750650','66750800','66751501','66755100','66755105','66755107','69020020','69020021']) {
+for (const model of ['66750650','66750800','66751501','66755100','66755105','66755107','69020020','69020021','66752000','66753000','66755030','66755110','66755115','66755156','66755157','66771820','66772201','66772203','69010020','69010021','69030020','69030021','69035010','69051040']) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl && row.imageUrl.startsWith('https://static.audison.com/'), 'official Audison image for '+model);
   assert.equal(row.imageStatus,'official_manufacturer_image_verified_review_only');
