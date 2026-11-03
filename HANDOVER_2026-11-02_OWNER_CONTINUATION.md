@@ -584,3 +584,11 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 2. Owner runs the Planetworld read-only audit once on `main` through the Actions UI, then provide the run ID for summary/log/artifact verification.
 3. Obtain the November ASC PDF bytes in the Library/chat or enable a supported attachment download path; reconcile the 38 historical price-scaling SKUs against printed current cost, VAT, stock and effective date.
 4. Preserve the 107 October-verified prices, nine asterisk-price inactive/quote-only records and 19 Planetworld zero-RRP owner-hold records unchanged.
+
+
+## 2026-11-03 08:34 SAST — PR #163 HEAD ADVANCED AFTER MONITOR CHECK
+
+- PR #163 advanced to head `150ca124b57dc3086b1e04803394d6e8198382c1` (still DRAFT / OPEN / mergeable=false / dirty; base `28e9e89d9aa701eff051deb81be729e0cd5551df`). The four commits since browser-QA head `ded8a80` only add/update the handover and Audio Connections/Sony image-provenance review CSV; no storefront code/test files changed in that delta.
+- Cloudflare Pages preview succeeded on this exact latest head: `https://95780dea.get-wired-autoworx-store.pages.dev`. It is still preview-build evidence only; no exact-head browser QA was triggered on `150ca12`. The latest browser QA remains the failed, one-time-retried run `41589465749` on code-equivalent head `ded8a80`, with unavailable logs/steps. Do not claim exact-head browser acceptance.
+- Workers Builds again failed on build `a1f61f66-e3b8-45d8-8c69-99682cc4682d`; this is the legacy production Worker path and was not retried. No active GitHub workflow runs remained at the close check.
+- No merge, rebase, production deployment, live data change or release-credit use.
