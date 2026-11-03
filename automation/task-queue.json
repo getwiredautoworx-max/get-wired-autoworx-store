@@ -15,8 +15,8 @@
       "id": "storefront-restoration-and-preview",
       "priority": 1,
       "status": "canonical_draft_pr168_open_static_checks_passed_ci_runner_unavailable_preview_not_deployed",
-      "description": "Canonical review is PR #168 on integration/three-category-catalogue-preview-final-2026-11-03 at exact head 77322ca93f13a6dfa4e3ebffb02d290aff0c5aa9. Stale PR #166 is closed. 13/13 direct source/data checks passed, but exact-head Actions run 41614133122 failed before runner assignment (runner_id=0, zero steps, no logs); no Node/package/browser tests or preview deployment.",
-      "next_action": "Owner/repo admin must inspect Actions billing/spending limits or runner provisioning; after a real runner starts, execute one exact-head Cloudflare package QA, then request isolated non-production Pages preview and verify deployed SHA. Keep functional/browser/checkout testing deferred until banking details; production HOLD.",
+      "description": "Canonical review is PR #168 on integration/three-category-catalogue-preview-final-2026-11-03 at exact head 77322ca93f13a6dfa4e3ebffb02d290aff0c5aa9. Stale PR #166 is closed. 13/13 direct source/data checks passed, but exact-head Actions run 41614133122 failed before runner assignment (runner_id=0, zero steps, no logs); no Node/package/browser tests or preview deployment. Rechecked exact PR #168 head 77322ca93f13a6dfa4e3ebffb02d290aff0c5aa9: 15/15 direct source/data assertions passed; 12 required root files, six ASC PDFs, 50 pilot images and 4,101 WebP assets present. Exact-head Actions run 41614133122 still failed before runner assignment (runner_id=0, zero steps).",
+      "next_action": "Owner-side unblock required: inspect GitHub Actions billing/usage/spending limit or configure an available runner for ubuntu-24.04 jobs. Once a runner starts, run package QA once, then deploy only to the isolated non-production Pages branch and verify deployed SHA. No production merge/deploy.",
       "automatic": false
     },
     {
