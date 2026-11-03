@@ -886,3 +886,9 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Cloudflare Pages deployment for exact runtime-code head e5f5df3998713128b19acf51bd971bed40d2c9ce completed SUCCESS. Immutable preview: https://5369cbd8.get-wired-autoworx-store.pages.dev. Branch preview: https://fix-show-empty-subcategories.get-wired-autoworx-store.pages.dev.
 - The next branch commit 958835a4c48b779534b8d3c78e67bf8a2ea13da4 only appended handover evidence; no runtime files changed after the deployed code head.
 - This verifies a successful non-production Pages deployment of the subcategory click-handler, leaf-product routing, and snapshot-config fix. It does not certify browser click-through: the GitHub Actions runner did not start (runner_id=0, no steps), and the web inspection service cannot access pages.dev in this session.
+
+
+## 2026-11-03 — ADDITIONAL SONY OFFICIAL IMAGE SOURCES
+- Extended catalogue-review/SONY_OFFICIAL_IMAGE_ASSET_MAP_2026-11-03.csv with exact official Sony Africa product image URLs for XS-160ES (1200px gallery asset) and XM-4ES (480px transparent product asset).
+- Both rows remain SOURCE_URL_CAPTURED_NOT_DOWNLOADED. No image binary was saved, dimensions/content were not independently verified from a downloaded file, and neither model is marked image-approved or published. This does not close the image gate.
+- Map update commit: 260369fbc6bd59e3b098e61ff74e282da4a90022.
