@@ -93,7 +93,7 @@ The storefront integration candidate follows this exact customer navigation:
 
 Each named catalogue is its own button. Its original contents-page headings appear as the next-level buttons in the same order as the PDF. Only exact, visually reviewed pilot records appear beneath their matching source headings. Empty headings remain empty; no fuzzy product matching is permitted.
 
-The existing Car Mats store category under Automotive Accessories (three direct active products in the current category snapshot) is left unchanged. The new catalogue button is under Auto Electrical Spares; no live category assignments are moved. Aerials remain under Car Audio & Entertainment.
+The existing Car Mats store category under Automotive Accessories (three direct active products in the current category snapshot) is shown nested under Car Care & Accessories in the review storefront. The separate ASC Car Mats catalogue button is also under Car Care & Accessories. No live category assignments are moved. Aerials remain under Car Audio & Entertainment.
 
 This candidate uses a noindex owner-review route. The 50 watermarked source-card crops remain review-only; image-use rights, final clean imagery, GW SKU allocation, product descriptions and supplier price/stock confirmation are still outstanding. No live products, categories, prices, stock, database rows or supplier activation are changed.
 
