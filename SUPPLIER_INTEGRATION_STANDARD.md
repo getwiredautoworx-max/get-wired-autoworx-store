@@ -31,6 +31,7 @@ Do not invent missing values. Keep unknowns explicitly unknown.
 - Match exact manufacturer model/OEM code and specifications first.
 - Use supplier cross-references and fitment only when source evidence supports them.
 - Similar descriptions or similar-looking images are not proof of equivalence.
+- If supplier source specifications conflict with manufacturer evidence, record both values and both sources, flag the discrepancy, and block final customer specifications until confirmed. Never silently overwrite the supplier source or substitute a manufacturer figure.
 - Keep separate supplier offers internally even when they resolve to one customer product.
 - Suppress duplicate display rows only after comparing source provenance, model, description/specification and image; never delete source evidence because two codes look alike.
 - Preserve distinct variants, sizes, impedance, channel count, connector, fitment and package quantity.
@@ -59,6 +60,7 @@ Do not invent missing values. Keep unknowns explicitly unknown.
 ## 6. GW SKU and supplier-code handling
 - Generate or assign a GW SKU only after exact identity is established and the candidate is checked against the existing GW SKU namespace.
 - A proposed/collision-checked SKU is not an inserted or approved SKU.
+- A collision-free candidate code does not prove product identity. If brand/model/variant evidence is incomplete, keep the code in a separate held-candidate field and leave the assigned/proposed GW SKU blank.
 - Supplier SKUs remain internal; replace them on customer-facing listings with the GW SKU.
 - Keep manufacturer model numbers visible where useful for customer search and fitment, but do not expose dealer-only supplier references.
 
@@ -67,7 +69,7 @@ Do not invent missing values. Keep unknowns explicitly unknown.
 - Keep dealer cost private. Include VAT, inbound delivery/collection, packaging, payment fees, discounts, customer courier subsidy, warranty/returns exposure and other applicable costs when assessing landed cost and contribution.
 - Apply the owner's supplier-specific pricing decision only after the cost basis and validity are confirmed. Do not blindly apply a markup or discount.
 - For Planetworld, the agreed starting benchmark is listed VAT-inclusive RRP less 1–2%, subject to a positive verified cost floor and owner approval. Zero-RRP, missing-price and below-cost cases are held for review/quote-only; never calculate from zero.
-- For Audio Connections, preserve the price-list VAT basis: the August 2026 Starsound list states prices are VAT-exclusive; Sony September 2026 has separate Price Ex and RRP columns. Any proposal remains provisional until the correct VAT/RRP basis and current dealer cost are confirmed.
+- For Audio Connections, preserve the source-specific VAT basis: the August 2026 Starsound list explicitly states dealer prices are VAT-exclusive. The Sony September 2026 list has separate Price Ex and RRP columns; the owner has separately confirmed that Sony RRP is VAT-inclusive. Apply the 1–2% proposal directly to that VAT-inclusive RRP, compare against VAT-inclusive dealer cost, and calculate gross profit exclusive of VAT. Do not add VAT to the Sony RRP a second time. Any proposal remains provisional until current dealer cost and availability are confirmed.
 - Use the exact customer-facing fallback when price is not verified: **“Price on Request due to Limited Stock and Availability.”**
 - Never present historic stock as live. Confirm current availability and lead time before order.
 
