@@ -1209,3 +1209,9 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Corrected the 13 Sony Mobile ES review price calculations to use the owner's confirmed VAT-inclusive RRP. The Sony PDF itself only labels Price Ex and RRP; it does not state the RRP VAT basis. The August Starsound list explicitly states VAT-exclusive prices. Corrected figures remain proposals only.
 - Refined the audio navigation classifier: 168 rows now map to Harnesses, Trims & Fitment (47 dedicated source rows + 121 exact title/specification matches); generic cables, RCA interconnects and fuse holders no longer get swept into that group. Regression assertions added; not yet executed.
 - Current PR #170 head after these changes must be rechecked before any staging build/preview claim. PR #170 remains draft and unmerged; no production or live-data changes.
+
+
+### Audio Connections non-Sony SKU candidate work — 2026-11-03
+- Generated 53 FNV-1a GW candidate codes for non-Sony Audio Connections source rows. A read-only exact check against current `public.products.public_sku` returned zero collisions; all 53 are unique and do not collide with the prior 81 candidate set.
+- Added the values as internal review-only candidates in the supplier crosswalk. They are **not assigned GW SKUs**: `proposed_gw_public_sku` remains blank and status remains `NOT_ASSIGNED_HOLD` pending exact identity/image review; two RA rows also require brand identity confirmation.
+- Updated the mapping README, summary JSON and supplier crosswalk test assertions. No public products/SKUs or live supplier rows were created or changed.
