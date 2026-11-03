@@ -935,3 +935,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 4. Keep the 770 Planetworld/Audio Connections rows review-only; no public products currently exist.
 5. Before pushing code changes that trigger Cloudflare Pages branch builds, obtain the owner's explicit approval for any associated credit use. Do not deploy to production/Axxess, activate payment, or rerun the broken Actions runner allocation checks.
 6. Review PR #154 only after its retry logic is adjusted to skip no-step runner-allocation failures and it passes its safety tests; do not merge draft PRs without owner approval.
+
+
+## 2026-11-03 OWNER-AUTHORIZED STAGING CONTINUATION — TASK START
+- Owner explicitly authorized Cloudflare Pages **staging preview builds** for Get Wired AutoWorx. Production deployments, Axxess uploads, live data changes remain prohibited. This approval permits staging branch pushes/preview builds and their associated Cloudflare usage only; it does not permit production deploys, merges, live Supabase writes, pricing/stock changes, DNS or payment changes.
+- Task start: 2026-11-03 (SAST), after rereading this sole retained handover. Main HEAD at start: `ff6212d9abccb6bdaf24f44483c143570f2a97f6`.
+- Current open candidates from GitHub: PR #169 navigation head `438a46a83ed7db9812196d869922e40b536ce980`; PR #168 full preview head `2f82ae19ae04363544b4e4a07ee04c4cc42aa52b`; PR #165 ASC hierarchy head `8a160bf4c4944a637314af56ab70f079970524f7`. All remain draft/unmerged; do not merge without owner approval.
+- Current scheduled/task workflow monitor will be rechecked during this run. Safe staging QA may be retried only if its latest attempt is failed/cancelled/stopped and not already queued/in progress; do not retry zero-step runner-allocation failures repeatedly. Production QA, release gates, live writes, image-sync writes and deployment workflows remain excluded.
+- Current category conflict remains: retained handover's latest reset state says three roots; the explicit standing owner instruction in the active request requires eight separate approved roots. Implementation must preserve the eight approved roots, not recreate 243 legacy categories or silently merge unrelated families.
