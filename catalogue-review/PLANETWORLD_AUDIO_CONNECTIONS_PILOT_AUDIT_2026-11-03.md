@@ -87,3 +87,11 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - Updated `catalogue-review/AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv` to use the owner-confirmed VAT-inclusive Sony RRP basis, correct customer-price proposals, VAT-inclusive dealer cost floor and gross profit exclusive of VAT.
 - Updated the 13 corresponding Sony rows in `catalogue-review/supplier-gw-crosswalk-2026-10-30.csv` so the VAT basis is not incorrectly attributed to the PDF footer.
 - All corrected price calculations remain review-only. No live price, stock, supplier activation, public product, image or database record changed.
+
+
+### Car Audio Harnesses, Trims & Fitment filter refinement — 2026-11-03
+- Review of the actual 702-row Car Audio preview showed the earlier broad keyword classifier was overinclusive: it treated generic words such as “installation” and “wiring” as if every cable, fuse holder and integration accessory were a vehicle harness or fitment kit.
+- Refined `preview-audio.html` so the separate **Harnesses, Trims & Fitment** button includes the dedicated 47-row source collection plus product-level exact evidence (harness, trim, fascia, fitment, ISO2CAR, vehicle interface, dash kit or installation kit). Generic installation/wiring accessories remain in their own component groups; generic “Harness & Installation” records without a vehicle-harness product signal now display as “Installation & Integration”.
+- Read-only check against the 702 Planetworld Car Audio rows: **168 records** now match the approved Harnesses, Trims & Fitment grouping (47 dedicated source-collection rows + 121 exact product-text matches). The grouping includes OneNav vehicle-specific fitment kits but excludes generic TOSLINK cables, RCA interconnects and fuse holders.
+- Added regression assertions for the 168-row count, vehicle fitment kit inclusion and generic cable/fuse-holder exclusion. The test file has been updated but the Node test has not yet been executed; GitHub Actions runner allocation remains a separate verification gate.
+- This is a preview navigation classification only. Supplier source rows, live categories, prices, stock and database records were not changed.
