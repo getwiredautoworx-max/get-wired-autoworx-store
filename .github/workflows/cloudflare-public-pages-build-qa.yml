@@ -26,7 +26,9 @@ on:
       - "preview-products.html"
       - "preview-product.html"
       - "preview-planetworld.html"
+      - "preview-audio.html"
       - "asc-catalogue-preview.html"
+      - "tests/audio-catalogue-preview.test.cjs"
       - "tests/asc-catalogue-preview.test.cjs"
 permissions:
   contents: read
@@ -44,10 +46,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html asc-catalogue-preview.html; do
+          for page in preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html asc-catalogue-preview.html; do
             test ! -e "pages-public/$page"
           done
           test ! -d pages-public/assets/asc-catalogue-source
+          test ! -e pages-public/assets/planetworld-catalogue-preview.json
+          test ! -e pages-public/assets/planetworld-verified-models-preview.json
+          test ! -e pages-public/assets/audio-connections-catalogue-preview.json
           echo "PAGES_STANDARD_PREVIEW_EXCLUSION_PASS"
       - name: Build isolated non-production preview package
         env:
@@ -69,5 +74,9 @@ jobs:
           test -s pages-public/assets/asc-catalogue-source/ASC-Automotive-Globes.pdf
           test -s pages-public/assets/asc-catalogue-source/ASC-Car-Mats.pdf
           test -s pages-public/assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf
+          test -s pages-public/assets/planetworld-catalogue-preview.json
+          test -s pages-public/assets/planetworld-verified-models-preview.json
+          test -s pages-public/assets/audio-connections-catalogue-preview.json
           node tests/asc-catalogue-preview.test.cjs
+          node tests/audio-catalogue-preview.test.cjs
           echo "PAGES_NONPRODUCTION_PREVIEW_ALLOWLIST_PASS"
