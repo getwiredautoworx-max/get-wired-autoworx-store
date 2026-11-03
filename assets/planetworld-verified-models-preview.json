@@ -126,7 +126,9 @@
       "description": "Digital signal processor for tuning vehicle audio systems, with four input channels and five outputs, 24-bit/48 kHz processing, high- and low-level inputs, equalisation, crossover filtering and time alignment. Designed to integrate with factory or aftermarket audio sources.",
       "modelNumber": "66752000",
       "manufacturerPage": "https://audison.com/product/bit-ten/",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "imageUrl": "https://static.audison.com/media/2022/10/Audison_bitTen.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-2D691DD3",
@@ -135,7 +137,9 @@
       "description": "Automatic calibration and diagnostic tool suite for Audison bit processors. Manufacturer describes assistance with time alignment, equalisation and level setup, plus checks for common installation issues such as channel inversion, phase errors and missing signal.",
       "modelNumber": "66753000",
       "manufacturerPage": "https://audison.com/product/bit-tune/",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "imageUrl": "https://static.audison.com/media/2023/02/Audison_bitTune.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-356A6B66",
@@ -144,7 +148,9 @@
       "description": "Four-channel Class-D amplifier rated at 4 × 130 W RMS at 2 ohms (520 W total). It can also be bridged for 2 × 260 W RMS at 4 ohms and includes high- and low-level inputs for integration with different source units.",
       "modelNumber": "66755030",
       "manufacturerPage": "https://audison.com/product/ap4-d/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://static.audison.com/media/2022/10/1406293103_AP4D_emo_800_505.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-51F781DA",
@@ -186,7 +192,9 @@
       "description": "Five-channel Class-D DSP amplifier rated at 4 × 100 W plus 1 × 400 W RMS at 4 ohms, or 4 × 150 W plus 1 × 600 W RMS at 2 ohms. Integrated 24-bit/96 kHz DSP provides up to 11 processed channels, with optional preamp outputs and bridgeable channel pairs.",
       "modelNumber": "66755110",
       "manufacturerPage": "https://audison.com/product/af-m5-11-bit/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-M511-bit_EMO-LATO-FUSIBILI_2024.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-39F15E3C",
@@ -195,7 +203,9 @@
       "description": "Four-channel Class-D DSP amplifier rated at 4 × 90 W RMS at 4 ohms or 4 × 150 W RMS at 2 ohms. Its integrated 24-bit/96 kHz DSP supports a 40 kHz audio band, 10 processed channels and bridgeable channel pairs.",
       "modelNumber": "66755115",
       "manufacturerPage": "https://audison.com/product/af-c4-10-bit/",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://static.audison.com/media/2024/03/AUDISON_AF-C410-BIT_EMO-FUSIBILI_2024.png",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-19C53819",
@@ -204,7 +214,9 @@
       "description": "Digital input expansion board for compatible Audison AF bit DSP amplifiers. The card adds either a coaxial S/PDIF input or a second Toslink S/PDIF input, selectable using its onboard switch.",
       "modelNumber": "66755156",
       "manufacturerPage": "https://audison.com/product/f2o/",
-      "component": "Accessories & Installation"
+      "component": "Accessories & Installation",
+      "imageUrl": "https://static.audison.com/media/2023/01/Audison_Forza_F2O-1.jpeg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-AB4172D6",
