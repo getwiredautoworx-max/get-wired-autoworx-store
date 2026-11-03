@@ -159,3 +159,9 @@ This audit did not activate either supplier, write to Supabase, change live stoc
 - The official Reference Audio brand site confirms the brand identity for RABTR03, RA AWG4 and RA SUPER RAST20. The two source abbreviations “RA” are now expanded to **Reference Audio** in the internal crosswalk and preview.
 - No exact official product page/model evidence was found for these three products. The official brand homepage is recorded separately as brand-level evidence only; it is not counted as a product page, and retailer pages are not treated as manufacturer proof.
 - These products remain held for exact model/image confirmation. The 18-row non-Sony no-product-reference count is unchanged.
+
+
+### Audio Connections open evidence request — 2026-11-03
+- After the seven additional official Starsound references, 35 of 53 non-Sony rows now have a product-page or category-listing reference; 18 remain without exact product references. The 18 are 15 Starsound source models/accessory codes and three Reference Audio models.
+- Created `catalogue-review/AUDIO_CONNECTIONS_OPEN_EVIDENCE_REQUEST_2026-11-03.md` listing the exact 18 held models, five source-versus-manufacturer specification conflicts, three quote-only products, image rights and current commercial/availability evidence needed.
+- This request is an internal checklist only; no email was sent. Retailer listings and similar model codes are not substituted for exact manufacturer evidence.
