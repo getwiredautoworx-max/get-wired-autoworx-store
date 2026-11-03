@@ -34,7 +34,7 @@
     win.fetch=function(input,init){
      const method=String((init&&init.method)||'GET').toUpperCase();
      const url=typeof input==='string'?input:(input&&input.url)||'';
-     if(['POST','PUT','PATCH','DELETE'].includes(method)&&/supabase\\.co/i.test(url))return Promise.reject(new Error('Supabase writes are disabled in this owner preview.'));
+     if(['POST','PUT','PATCH','DELETE'].includes(method)&&/supabase\.co/i.test(url))return Promise.reject(new Error('Supabase writes are disabled in this owner preview.'));
      return originalFetch(input,init);
     };
     win.__GW_PREVIEW_WRITE_BLOCKED=true;
