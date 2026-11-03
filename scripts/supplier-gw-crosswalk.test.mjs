@@ -54,15 +54,15 @@ const audioRows = rows.filter((r) => r.supplier === "Audio Connections");
 assert.equal(planetworldRows.length, 702);
 assert.equal(audioRows.length, 68);
 const audioManufacturerRefs = audioRows.filter(r => r.official_manufacturer_page || r.official_manufacturer_listing);
-assert.equal(audioManufacturerRefs.length, 42, "Expected 42 source-crosswalk official manufacturer references including one excluded source-only row");
-assert.equal(audioManufacturerRefs.filter(r => r.brand !== "Sony").length, 28, "Expected 28 non-Sony official references");
+assert.equal(audioManufacturerRefs.length, 49, "Expected 49 source-crosswalk official manufacturer references including one excluded source-only row");
+assert.equal(audioManufacturerRefs.filter(r => r.brand !== "Sony").length, 35, "Expected 35 non-Sony official references");
 assert.equal(audioRows.filter(r => r.image_url_candidate).length, 22, "22 Audio Connections image URLs are review candidates");
 const specificationConflicts = audioRows.filter(r => r.specification_review_status === "SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED");
-assert.equal(specificationConflicts.length, 4, "Four source-versus-manufacturer specification conflicts must remain flagged");
+assert.equal(specificationConflicts.length, 5, "Five source-versus-manufacturer specification conflicts must remain flagged");
 assert(specificationConflicts.every(r => !r.proposed_gw_public_sku && r.gw_sku_status === "NOT_ASSIGNED_HOLD"), "Specification conflicts must remain held from SKU assignment");
 assert.equal(planetworldRows.filter(r => r.image_url_candidate).length, 62, "All 62 Planetworld verified-model image URLs must be in the crosswalk");
 assert(audioManufacturerRefs.filter(r => r.brand !== "Sony").every(r => !r.proposed_gw_public_sku && r.gw_sku_status === "NOT_ASSIGNED_HOLD"), "Manufacturer references do not automatically approve or assign non-Sony GW SKUs");
-for (const model of ["USB230","SS7655BT","DVD9900BT","SS7670",'SSW12" 5200',"SSW12-6300","SSW12-7300"]) {
+for (const model of ["USB230","SS7655BT","DVD9900BT","SS7670",'SSW12" 5200',"SSW12-6300","SSW12-7300","SPARTAN 9900.1","409CU","SSAK-406P","PRO6.5-700","SS-PRO6X9-900","SSATIH8200.1","SSA-ATOM-13500"]) {
   const row = audioRows.find(r => r.supplier_sku === model);
   assert(row && (row.official_manufacturer_page || row.official_manufacturer_listing), "Official Starsound reference required for " + model);
   assert.equal(row.gw_sku_status, "NOT_ASSIGNED_HOLD", "Official listing references do not assign a GW SKU for " + model);
