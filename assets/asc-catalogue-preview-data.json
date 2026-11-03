@@ -30,7 +30,8 @@
           "id": "asc-aerial-adaptors",
           "name": "Extensions, Adaptors & Plugs"
         }
-      ]
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Aerials.pdf"
     },
     {
       "name": "Automotive Sensors",
@@ -80,7 +81,8 @@
           "id": "asc-sensor-other",
           "name": "Other Engine Management Sensors"
         }
-      ]
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf"
     },
     {
       "name": "Automotive Switches",
@@ -150,7 +152,8 @@
           "id": "asc-switch-marine",
           "name": "Marine & Specialist Switches"
         }
-      ]
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Automotive-Switches.pdf"
     },
     {
       "name": "Automotive Globes",
@@ -196,7 +199,8 @@
           "id": "asc-globe-holders",
           "name": "Globe Holders, Harnesses & Plugs"
         }
-      ]
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Automotive-Globes.pdf"
     },
     {
       "name": "Car Mats",
@@ -258,7 +262,8 @@
           "id": "asc-mat-door-bin",
           "name": "Universal, Door & Bin Mats"
         }
-      ]
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Car-Mats.pdf"
     },
     {
       "name": "Fuel Pumps",
@@ -336,7 +341,8 @@
           "id": "asc-fuel-relays",
           "name": "Fuel Pump Relays — All Makes"
         }
-      ]
+      ],
+      "source_pdf": "assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf"
     }
   ],
   "records": [
