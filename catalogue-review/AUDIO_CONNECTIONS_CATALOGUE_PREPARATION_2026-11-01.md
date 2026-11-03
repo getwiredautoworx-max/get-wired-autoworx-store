@@ -29,3 +29,10 @@
 - Sony proposal therefore remains `round(printed RRP × 0.98, 2)`, with no additional VAT multiplier. The resulting customer price is VAT-inclusive and 2% below the printed RRP.
 - Updated the preview JSON price notes, private pricing audit VAT-basis field, and preparation notes. No Sony proposed prices changed; only the incorrect “VAT basis unconfirmed” caveat was removed.
 - This clarification does not authorize a live price import, catalogue publication, supplier activation, stock change, production deployment or merge. PR #142 remains a draft preview candidate pending exact-head browser QA and other release gates.
+
+
+## 2026-11-03 — OFFICIAL IMAGE SOURCE CROSSWALK UPDATE
+- Four official Sony image-source URLs are now captured in the private image-source manifest: XS-160ES, XS-680ES, XS-W104ES and XM-5ES. The XM-5ES image URL is from the official Sony Australia store asset path; the exact Sony model support page is retained in the crosswalk.
+- All four remain image-source candidates only. No image binary has been downloaded or approved for customer publication. Visual/load, exact model/variant and usage-permission review remains outstanding.
+- The supplier-to-GW-SKU crosswalk contains 13 collision-checked Sony GW SKU candidates in private staging only; no product insert, public SKU, supplier activation or live catalogue change occurred.
+- Sony price basis remains: dealer price ex VAT; printed RRP VAT-inclusive as owner-confirmed; review price = printed RRP × 0.98, no extra VAT multiplier. Current availability is not stated in the September 2026 PDF.
