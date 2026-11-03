@@ -22,6 +22,10 @@ assert.deepEqual(roots, [
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
   ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
+const categoryClickHandler = home.slice(home.indexOf("document.addEventListener('click',e=>{const lm="), home.indexOf("document.getElementById('searchInput')?.addEventListener('input'"));
+assert.ok(categoryClickHandler.includes("Array.from(wrap.children).find(el=>el.classList&&el.classList.contains('children'))"), 'category expansion must locate direct child containers without :scope selector dependency');
+assert.ok(categoryClickHandler.includes("Array.from(parent.children).filter(w=>w!==wrap"), 'opening one category must close sibling categories using browser-compatible direct-child traversal');
+assert.ok(!categoryClickHandler.includes(':scope'), 'category expansion must not depend on :scope selectors unsupported by older embedded Android browsers');
 assert.ok(home.indexOf("categories=await snapshot();renderCats();")<home.indexOf("apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc')"), 'approved local category tree must render before remote Supabase refresh');
 assert.ok(home.includes('setTimeout(()=>controller.abort(),7000)'), 'remote category refresh must be bounded so it cannot hold category rendering');
 assert.ok(home.includes("apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc',1000,controller.signal)"), 'category API timeout must abort the actual remote fetch');
