@@ -551,3 +551,36 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Read the sole current repository handover on `main`. The former `AI_HANDOVER_PERMANENT.md` and `HANDOVER_CURRENT.md` were intentionally removed during the owner-directed 2026-11-02 handover consolidation; the current file is `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`. Do not recreate obsolete handover files.
 - Scope this run: inspect all current background workflow activity; verify latest storefront restoration status without repeating completed checks; monitor Planetworld PR #95, its current-main audit workflow and artifacts, and read the three Planetworld reports on `docs/planetworld-blocker-handover-2026-10-26`; continue only safe source/review work.
 - Safety: no PR merge, production/deployment retry, release-credit use, supplier XLSX edit, supplier import/publication, live catalogue/price/stock/category/active-flag change, Supabase write, Axxess/DNS/payment change, or production release.
+
+
+## 2026-11-03 SCHEDULED MONITOR RESULT — 08:15–08:32 SAST
+
+### Storefront / background workflows
+- Current main at close: `0a804d568f91ff5da54aa7609afc2965ca5c4ddf`.
+- PR #163 remains OPEN / DRAFT / UNMERGED, GitHub mergeable=false / dirty. Latest head `ded8a8016f9b7eb2783579d261207c13f60d886c`; base still `28e9e89d9aa701eff051deb81be729e0cd5551df`. Do not merge/rebase while the PR is dirty.
+- Exact-head Cloudflare Pages preview build succeeded for `ded8a80`: `https://2523b207.get-wired-autoworx-store.pages.dev`. This is a preview deployment only; it has not passed browser acceptance.
+- Latest ASC Catalogue Preview Browser QA run `41589465749`, attempt 2, job `125763368473`, on exact head `ded8a80`: **FAILURE**. One supported safe staging retry was issued. Retry failed again; GitHub returned empty step summaries and `BlobNotFound` for the job-log blob, so the underlying failure remains unclassified. No further retry without a changed diagnostic/runner cause.
+- Separate Workers Builds check failed (Cloudflare build ID `40abffea-2b2a-4c60-abc5-3f49441f344d`); not retried because it is a production Worker build path, not a safe staging-only test. Netlify redirect/header checks were neutral.
+- Latest-100 repository workflow check at close: **zero queued/in-progress/waiting runs**. No production or release workflow was rerun.
+
+### Planetworld continuation
+- Read the current-main handover and Planetworld branch reports; appended task-start and result entries before/after work.
+- New 19-row review-only source register: `catalogue-source/suppliers/planetworld/PLANETWORLD_COST_FLOOR_MODEL_IMAGE_REVIEW_ONLY_2026-11-03.csv`, commit `cbd662e5eafe2c42e2b45269839477f08eb1c5a5`.
+- Manufacturer/variant/component report update: `MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md`, commit `eb3aad3abff03214bcfc49612d388584b1d56f11`, blob `0e60935049943b4287a95f3b4700d0c7671ae4f4`. Planetworld branch `HANDOVER_CURRENT.md` result update commit `ea6f028235f425fc5342b7b4832743621f05c1c7`.
+- Official model evidence added/refined for Ibanez IAB541-WR, JBL IRX108BT base model, JBL EON710 base model, Remo HK-2417-00, Vogel's THIN215, Soundcraft 5085985EU, Paiste Dark Energy Crash Mk I 19-inch family, and OneNav ON115-3LX (not the supplier's ISA-prefixed code). Exact regional suffixes/alias mappings, PFW4600 description conflict, OneNav ON1509-LX1/ON263-FK2, and seven Harness & Trims exact images remain unresolved. All candidates are `DO_NOT_IMPORT`; no images were copied or published.
+- Historical Planetworld audit still has 19 zero-RRP owner-hold items; 18 positive-RRP cost-floor flags at RRP−1%, 19 at RRP−2% (19 distinct, with `90011904` as 2%-only). These are not confirmed supplier errors. `IAB541-WR` has a pronounced source-row outlier (R99 RRP incl VAT versus R799–R1,199 for other IAB541 colours); possible missing digit/scale issue, but no correction is authorized or inferred.
+- PR #95 remains CLOSED / UNMERGED / mergeable=false, head `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`. Latest historical audit run `40944787080` / job `123697194835` succeeded on PR branch `reconcile/repo-file-inventory-planetworld-2026-10-29` at head `1fb086c1ffb3e0e06ef6a97bfcdca502389ec174`, but artifact list is empty and logs record artifact-storage quota failure. Current-main audit workflow is artifact-free but has no current-main run. Connected GitHub tools expose no workflow-dispatch action.
+- Exact owner action for the fresh audit: repository → Actions → **Planetworld Workbook Audit (Read Only)** → **Run workflow** → select `main` → run once; then inspect the run head, job summary and logs. Do not rerun the old PR run or create a dummy commit.
+- No Planetworld price/stock email newer than 2026-10-25 was found. The 2026-10-28 email with the November Buyer's Guide and stock-arrival PDFs is ASC material; Gmail exposes attachment metadata only and no attachment-download action. Do not mix those PDFs into Planetworld pricing.
+
+### Protected price/source state
+- Preserve the 107/107 October rows: previous visual/source-image and read-only live recheck showed all 107 costs still match October printed cost, all formulas pass, all 107 prices still equal the audited formula and all remain active. Older `review_status=REVIEW` does not authorize a price change. No Supabase recheck or write was performed this run.
+- Keep the nine asterisk-price SKUs quote-only/inactive. The latest recorded read-only check (31-Oct) showed all nine still `active=false`, `price=0.00`, `cost_price=0.00`; no new live-data query or mutation was performed.
+- The 38 historical September price-scaling SKUs remain an ASC current-source blocker, not a Planetworld issue. Their 2026-09-30 source validity has expired. The 2026-10-28 ASC email contains the November guide and 1003–1007 arrival PDFs, but those bytes remain inaccessible through the connected Gmail actions. Do not substitute October/September historical prices for current supplier confirmation.
+- No supplier XLSX was edited; no supplier data imported/published; no live catalogue, price, stock, category or active flag changed; no Supabase write; no Axxess/DNS/payment change; no production deployment; no release credits consumed.
+
+### Next actions
+1. Keep storefront task 1 OPEN until current-head preview/browser QA is diagnosed and exact-head desktop/mobile checks pass; do not present the preview as accepted.
+2. Owner runs the Planetworld read-only audit once on `main` through the Actions UI, then provide the run ID for summary/log/artifact verification.
+3. Obtain the November ASC PDF bytes in the Library/chat or enable a supported attachment download path; reconcile the 38 historical price-scaling SKUs against printed current cost, VAT, stock and effective date.
+4. Preserve the 107 October-verified prices, nine asterisk-price inactive/quote-only records and 19 Planetworld zero-RRP owner-hold records unchanged.
