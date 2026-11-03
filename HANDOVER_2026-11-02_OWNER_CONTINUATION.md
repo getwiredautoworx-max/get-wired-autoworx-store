@@ -759,3 +759,10 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Branch is reconciled with latest main and reports 4 commits ahead / 0 behind at PR creation. PR remains draft/unmerged. No hosted preview was deployed.
 - The candidate is a static source integration only. The dedicated Node structural test file is present but has NOT been executed; functional/browser testing remains deferred until owner banking details are added.
 - Outstanding source item: the separate Chemicals & Lubricants catalogue PDF is not in the six-file post-reset intake and was not found in the initial Library search. The hierarchy button displays a source-pending state; no Buyer’s Guide was substituted.
+
+
+### Owner correction — Car Mats moved under Car Care & Accessories (2026-11-03)
+- Owner directs Car Mats under **Automotive Accessories → Car Care & Accessories**, not Auto Electrical Spares.
+- Updated the draft storefront navigation so Auto Electrical Spares contains Sensors, Switches, Globes and Fuel Pumps. Car Care & Accessories contains the existing Car Mats store category plus the separate ASC Car Mats catalogue button (14 source sections), and the reserved Chemicals & Lubricants catalogue button.
+- Updated preview data root, taxonomy review-only mapping, ASC README and structural test assertion. This changes the isolated draft storefront navigation only; production Supabase category tree and product assignments were NOT changed.
+- Functional/browser testing remains deferred as instructed.
