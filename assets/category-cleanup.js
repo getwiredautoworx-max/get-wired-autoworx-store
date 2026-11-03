@@ -1,37 +1,47 @@
+/* Get Wired AutoWorx — category visibility compatibility
+ *
+ * Do not hide category or subcategory buttons because their product count is
+ * zero. The owner-approved catalogue reset intentionally leaves public.products
+ * empty while supplier rows are reviewed privately. Category navigation must
+ * remain usable during that period so customers can browse the approved tree.
+ *
+ * Older versions filtered tiles against eight deleted legacy category UUIDs
+ * and hid every current child tile with zero active products. That made valid
+ * subcategories disappear after the reset.
+ */
 (function(){
   function apply(){
     try {
       const frame=document.getElementById('store');
       const d=frame && frame.contentDocument;
       if(!d) return;
-      d.querySelectorAll('#categoryGrid > .catWrap').forEach(function(card){
-        const txt=(card.innerText||'').trim();
-        // The category tile's small label is the actual product count. The italic
-        // element is only the action label ("SHOP →"), not a count.
-        const countEl=card.querySelector('.catBtn small');
-        const countText=countEl ? (countEl.textContent||'') : '';
-        const match=countText.match(/[0-9][0-9,]*/);
-        const count=match ? parseInt(match[0].replace(/,/g,''),10) : NaN;
-        const childCounts=[...card.querySelectorAll('.child span')].map(function(x){
-          return parseInt((x.textContent||'').replace(/[^0-9]/g,''),10);
-        }).filter(Number.isFinite);
-        const hasProducts=Number.isFinite(count) ? count>0 : childCounts.some(function(n){return n>0;});
-        const mainRootIds=['6cc56033-b0a9-4f25-b207-aeeb341a1c47','8e93d917-8fcc-4427-b364-cdad244f263f','5ab55c53-eee3-41ce-ad48-04ad6df85181','87982093-7d81-4f2e-a8e2-e20cdeef30d8','38b382c1-6ee0-4b3c-86ad-399094bc40cc','77297c18-67f6-452e-8918-c55d2ef6231a','af2f8625-4f42-45e6-9f21-d571d7415893','63a71fd9-df45-43f0-b61d-ad622daa9d79'];
-        if(!hasProducts && !mainRootIds.includes(card.dataset.filter) && !/SHOP BY CATEGORY/i.test(txt)) card.style.display='none';
-        else card.style.removeProperty('display');
+
+      // Clear only the stale inline hiding applied by the old count-based filter.
+      // A zero product count is a valid empty-catalogue state, not a reason to
+      // remove the category or its subcategory navigation button.
+      d.querySelectorAll('#categoryGrid > .catWrap[data-filter]').forEach(function(card){
+        if(card.style.display==='none') card.style.removeProperty('display');
       });
+
       const grid=d.getElementById('categoryGrid');
       if(grid){
-        const visible=[...grid.querySelectorAll(':scope > .catWrap')].filter(function(x){return getComputedStyle(x).display!=='none';});
-        if(visible.length===0 && grid.querySelector(':scope > .catWrap')){
-          grid.innerHTML='<div class="searchStatus">Categories are being updated. Please use Search or WhatsApp us.</div>';
-        }
+        const status=grid.querySelector(':scope > .searchStatus');
+        if(status && !grid.querySelector(':scope > .catWrap')) status.remove();
       }
-    } catch(e) {}
+    } catch(e) {
+      // Navigation visibility is best-effort; never interrupt storefront loading.
+    }
   }
+
   window.installGetWiredCategoryCleanup=function(frame){
-    if(!frame) return;
-    frame.addEventListener('load',function(){apply();setTimeout(apply,700);setTimeout(apply,1800);setTimeout(apply,3500);});
-    setInterval(apply,5000);
+    if(!frame || frame.__gwCategoryVisibilityInstalled) return;
+    frame.__gwCategoryVisibilityInstalled=true;
+    frame.addEventListener('load',function(){
+      apply();
+      setTimeout(apply,700);
+      setTimeout(apply,1800);
+      setTimeout(apply,3500);
+    });
+    apply();
   };
 })();
