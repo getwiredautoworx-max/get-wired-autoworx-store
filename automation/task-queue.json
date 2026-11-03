@@ -46,9 +46,9 @@
     {
       "id": "audio-connections-model-sku-image-review",
       "priority": 5,
-      "status": "private_crosswalk_corrected_13_sony_gw_candidates_images_pending",
-      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have collision-checked GW SKU candidates staged privately (not inserted); 55 other rows do not have candidate GW SKUs in this staging set. Four official Sony image-source URLs are captured but none is approved. The owner-confirmed dealer connection remains inactive pending separate activation approval.",
-      "next_action": "Complete visual/load, exact model/variant and usage-permission review for the four official Sony image URLs; obtain high-resolution exact images and current dealer price/availability confirmation. Keep all rows private and unpublished; do not re-request dealer authorization or activate the supplier.",
+      "status": "13_sony_gw_skus_and_4_image_candidates_staged_53_models_held",
+      "description": "68 Audio Connections rows remain private/inactive. 13 exact-model Sony candidates have proposed collision-checked GW SKUs staged privately and linked to the owner-review preview (not inserted); 53 other rows have no proposed GW SKU in this set. Four official Sony image-source candidates are linked to exact records; none is approved. The 66-row review preview has no supplier identity or generic image placeholders; 62 records remain text-only.",
+      "next_action": "Complete visual/load, exact model/variant and usage-permission review for the four official Sony image URLs; obtain approved high-resolution images and current dealer price/availability confirmation. Continue exact-model and GW SKU reconciliation for the remaining 53 rows. Keep all rows private and unpublished; do not re-request dealer authorization or activate the supplier.",
       "automatic": true
     },
     {
