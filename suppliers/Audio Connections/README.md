@@ -16,3 +16,10 @@
 - Verify image rights and obtain distinct manufacturer images where the source uses a shared family image.
 - Assign unique Get Wired SKUs only after owner review.
 - Complete the remaining Audio Connections catalogue intake and exact product-image matching.
+
+
+## Starsound source price list — 5 August 2026
+- Source PDF: `suppliers/Audio Connections/STARSOUND Price Lists 05 AUGUST 2026.pdf` (2 pages; text-only; 53 product lines across 49 Starsound items and four Reference Audio/Blackspider lines).
+- Private transcription: `catalogue-review/audio-connections/starsound-price-list-2026-08-05.csv`. It preserves the listed ex-VAT prices, model/category descriptions, blank-price exceptions and source page references.
+- This source contains no product photographs and no RRP. It cannot support customer-ready product cards or the RRP pricing policy. Do not publish its dealer prices.
+- The private staging table currently has 49 Starsound rows. Exact row-by-row reconciliation to the 53 source lines, image sourcing, and any customer-price calculation remain open. All supplier rows remain inactive and quote-on-request.
