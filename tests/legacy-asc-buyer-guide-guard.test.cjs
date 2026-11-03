@@ -9,6 +9,8 @@ const files = Object.fromEntries([
   'preview-products.html',
   'preview-product.html',
   'preview-store.html',
+  'checkout-v2.html',
+  'supabase/functions/store-checkout/index.ts',
 ].map(path => [path, fs.readFileSync(path, 'utf8')]));
 
 const legacySources = "['September Buyer\\'s Guide','October Buyer\\'s Guide']";
@@ -16,6 +18,8 @@ assert.ok(files['index-new.html'].includes(legacySources), 'homepage product fee
 assert.ok(files['product.html'].includes('!p||isLegacyAscBuyerGuide(p)'), 'direct product detail must fail closed for old Buyer Guide rows');
 assert.ok(files['products.html'].includes('.filter(p=>!isLegacyAscBuyerGuide(p))'), 'category listing must filter old Buyer Guide rows');
 assert.ok(files['preview-category.html'].includes(legacySources), 'preview audio brand counts must exclude old Buyer Guide rows');
+assert.ok(files['checkout-v2.html'].includes('&active=eq.true'), 'browser checkout must reject inactive products');
+assert.ok(files['supabase/functions/store-checkout/index.ts'].includes('productsUrl.searchParams.set("active", "eq.true")'), 'server checkout must reject inactive products');
 
 const previewListing = files['preview-products.html'];
 const listingStart = previewListing.indexOf('async function main(){');
