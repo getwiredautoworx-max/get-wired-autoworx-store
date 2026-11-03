@@ -7,31 +7,32 @@
     "checkpoint_after_each_run": true,
     "never_invent_sku_price_or_source_evidence": true,
     "no_payment_work_until_storefront_and_catalogue_acceptance": true,
-    "no_supplier_import_or_publication_without_owner_approval": true
+    "no_supplier_import_or_publication_without_owner_approval": true,
+    "functional_testing": "defer_until_last_after_owner_adds_banking_details"
   },
   "tasks": [
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "in_progress_preview_build_pass_browser_qa_blocked",
-      "description": "Restore the approved bright full storefront and verify the latest non-production preview. Owner confirms the storefront loads; basic loading is resolved. PR #163 remains open/draft; latest recorded head 150ca124b57dc3086b1e04803394d6e8198382c1; Pages preview 95780dea succeeded. Exact-head browser QA has not passed.",
-      "next_action": "Complete functional desktop/mobile QA on the current exact head: verify all navigation and product routes, image loading, contrast, mobile overflow and page errors. Latest browser QA run 41589465749 failed before diagnostic steps on code-equivalent head ded8a80 and one supported retry also failed; logs are unavailable. Do not repeat loading-only checks or trigger Workers/production deployment.",
+      "status": "basic_loading_resolved_preview_build_pass_functional_testing_deferred",
+      "description": "Owner confirms storefront loads. ASC pilot preview links have been added to the matching three store roots on PR #162; functional testing is explicitly deferred until last, after owner adds banking details. Exact-head browser QA is not to be run before that step.",
+      "next_action": "Continue non-functional category/source/catalogue reconciliation. Do not run end-to-end/functional browser or checkout tests until the owner has added banking details and all non-functional tasks are complete. Do not repeat loading-only checks or trigger Workers/production deployment.",
       "automatic": true
     },
     {
       "id": "storefront-eight-category-navigation",
       "priority": 2,
-      "status": "pending_visual_preview_review",
-      "description": "Visually verify all eight approved root categories and their source-approved subcategory navigation in the current hosted preview.",
-      "next_action": "Inspect actual desktop and mobile page behavior, category-to-subcategory-to-product routes, readable SKU contrast, images and horizontal overflow. Static source presence is not visual acceptance.",
+      "status": "preview_links_added_static_readback_pass_functional_check_deferred",
+      "description": "Added neutral catalogue preview links under Auto Electrical Spares (34 pilot items), Car Audio & Entertainment (8 aerial items) and Automotive Accessories (8 car-mat items) on PR #162. Preview cards do not expose supplier identity or supplier SKU. Functional category navigation testing is deferred until last after owner adds banking details.",
+      "next_action": "Continue static taxonomy/source reconciliation and complete remaining catalogue family mapping; do not test clicks/routes yet.",
       "automatic": false
     },
     {
       "id": "approved-supplier-catalogue-reconciliation",
       "priority": 3,
-      "status": "blocked_current_source_bytes",
-      "description": "Continue ASC and Audio Connections source reconciliation; preserve original supplier headings/order and private supplier-SKU to GW-SKU crosswalk. The 50-record ASC pilot is review-only; 3,294 active records without source metadata are not approved catalogue content.",
-      "next_action": "Obtain the November ASC Buyer's Guide and 1003-1007 stock-arrival PDF bytes from the 2026-10-28 email, then reconcile the 38 historical September price-scaling SKUs to printed cost, VAT basis, stock and effective date. Keep all candidate files DO NOT IMPORT.",
+      "status": "partial_preview_integrated_source_bytes_needed_for_current_pricing",
+      "description": "50-record ASC review-only pilot is integrated into the matching three category preview entry points on PR #162; six source PDFs cover 72 pages and 75 headings. November ASC email attachments are identified (1003-1007 arrivals and November Buyer's Guide), but attachment bytes are not downloadable through connected Gmail. Audio Connections has 68 source rows / 66 preview rows; Planetworld has 3,317 historical snapshot rows / 68 exact-model candidates. No supplier data is live.",
+      "next_action": "Continue private source reconciliation. Obtain the six November ASC PDF bytes from the owner when possible; do not substitute old catalogues or publish supplier data. Prepare image/description/GW-SKU crosswalks for Audio Connections and Planetworld; keep all preview-only until current evidence and approval.",
       "automatic": false
     },
     {
@@ -69,9 +70,9 @@
     {
       "id": "exact-head-qa-owner-acceptance-and-release-gate",
       "priority": 8,
-      "status": "blocked_exact_head_qa_and_owner_acceptance",
-      "description": "Production remains HOLD. Preview build success is not browser acceptance. Payments are out of scope until the storefront and catalogue are accepted.",
-      "next_action": "After priorities 1-7, record the exact SHA, pass desktop/mobile hosted tests, verify the exact preview and obtain owner acceptance. No merge, Axxess/DNS change, live data change or production release without separate explicit approval.",
+      "status": "deferred_until_last_after_owner_banking_details",
+      "description": "Functional testing is explicitly last, after the owner adds banking details and non-functional catalogue/category tasks are complete. No functional/end-to-end/browser/checkout testing before then. Production remains HOLD.",
+      "next_action": "When owner confirms banking details are added and all non-functional work is complete, run exact-head desktop/mobile functional tests and record evidence; obtain owner acceptance separately. No merge, Axxess/DNS change, live data change or production release without separate explicit approval.",
       "automatic": false
     }
   ]
