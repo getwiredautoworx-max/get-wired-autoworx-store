@@ -1384,3 +1384,13 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - These are explicitly recorded in the pilot audit as independent retail evidence only. They do not close official manufacturer reference gaps, establish supplier price/stock, authorize a model alias, approve a retailer image or grant publication rights. In particular, SSS-6501PRO retailer max-power claims conflict (250 W vs 650 W), and similar Starsound amplifier suffixes (SSA-R vs SSATI) are not treated as the same product.
 - No manufacturer reference gap was closed and no image/spec/SKU/price/publication state was promoted. Audit commit: `d2fef6c0c916cb6abdc7e0f969bb478c60c8457b`.
 - Continue seeking exact supplier/manufacturer records and reconcile model spellings with the original Audio Connections source PDF before assigning GW SKU candidates or writing customer-facing descriptions.
+
+
+## 2026-11-03 — Latest continuation checkpoint
+- Added independent retailer corroboration to the pilot audit without promoting it to manufacturer evidence. Key exact retail matches: SSW-8-8000D2, SSS-6501PRO and SSA-SB-2000.1; possible Reference Audio RA-BTR03 alias and Starsound installation-kit code aliases remain unconfirmed. Conflicting wattage claims and suffix/model variants remain held.
+- Audit update commit: `d2fef6c0c916cb6abdc7e0f969bb478c60c8457b`.
+- Handover update / current PR #170 head: `691d5403a15000375727adba3aecb59528118fda`.
+- Refreshed PR #170 body with current 68-to-66 reconciliation, 19 no-reference rows, 22/44 image coverage, retailer-evidence caveat, current head and exact verification gates. PR remains OPEN / DRAFT / UNMERGED.
+- Confirmed the workflow directory exists and includes storefront smoke, read-only browser smoke, browser QA, catalogue image audit, and runner diagnostic workflows. However, querying Actions runs for the supplier pilot branch returned `total_count: 0`; no run/status or test pass is evidenced. The connected GitHub actions interface exposes no workflow-dispatch action in this session, so no run was started.
+- Exact-head Cloudflare Pages deployment remains unverified. No older deployment is being passed off as the latest head.
+- Next: continue exact supplier/manufacturer evidence collection and pricing/description reconciliation; then use an authorized workflow/preview execution path to run exact-head checks. Do not merge, publish, activate suppliers, or deploy production. Production remains HOLD.
