@@ -4,7 +4,7 @@ on:
     branches:
       - approved-storefront-preview-trigger
     paths:
-      - .preview-deploy-trigger
+      - .preview-deploy-request
 permissions:
   contents: read
   deployments: write
