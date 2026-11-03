@@ -48,7 +48,9 @@ jobs:
         with:
           node-version: 22
       - name: Verify legacy ASC Buyer Guide source guard
-        run: node tests/legacy-asc-buyer-guide-guard.test.cjs
+        run: |
+          node tests/legacy-asc-buyer-guide-guard.test.cjs
+          node tests/asc-catalogue-preview.test.cjs
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
