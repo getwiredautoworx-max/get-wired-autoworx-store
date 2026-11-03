@@ -739,3 +739,158 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Fresh read-only query of the nine September asterisk-price SKUs confirms all nine remain `active=false`, `price=0.00`, `cost_price=0.00`; `stock_quantity=5` remains unverified supplier stock. Keep them quote-only/inactive; no changes made.
 - Next action: identify the process responsible for the 07:59 SAST bulk deactivation and obtain owner direction before any active-flag correction. Preserve all 107 October costs and formula prices unchanged.
 - Outcome: SUCCESS for price/cost verification; BLOCKED for unexpected active-state discrepancy. Read-only only; no writes.
+
+
+## 2026-11-03 — ASC CATALOGUE HIERARCHY INTEGRATION CANDIDATE
+- Created clean integration branch `integration/asc-catalogue-hierarchy-2026-11-03` from main `826724bb714f4d04a6995018f52dc36d4412d07d`, then reconciled the candidate with the latest main `8c6ff927957706b5b7598bc24779b54423ad15c5` while retaining the latest main handover/task-queue updates. This avoids merging stale PR #162/#163 history.
+- Selectively restored the approved full storefront candidate `index-new.html` and brighter `store.html` shell, then added catalogue-led navigation to the actual iframe storefront entrypoint. Preview storefront metadata is `noindex,nofollow`; canonical/live-domain and OG URL declarations were removed from the preview document.
+- Owner hierarchy implemented in source: Aerials → Car Audio & Entertainment; Automotive Sensors, Automotive Switches, Automotive Globes, Car Mats, Fuel Pumps → Auto Electrical Spares. Automotive Accessories contains a Car Care & Accessories folder, beneath which Chemicals & Lubricants is a reserved catalogue button.
+- Every available catalogue is its own button. Selecting it opens original contents-page section buttons in source order. Only the exact 50 visually reviewed pilot items appear beneath matching source headings; other sections show an explicit empty state. No fuzzy fallback, supplier price/stock, internal/public GW SKU, cart or checkout exists on the catalogue review route.
+- The 50 watermarked image crops and review data are included only in the opt-in non-production Pages package. The standard Pages build strips the ASC preview navigation and excludes the route/data/images; source PDFs, OCR/review CSVs and supplier folders remain excluded by the public package allowlist.
+- Car Mats preview mapping corrected to Auto Electrical Spares. The existing three-product Car Mats category under Automotive Accessories is left unchanged; no live category/product assignment moved. Existing category tiles that overlap the catalogue names are labelled “Existing Store Products” to distinguish them from catalogue buttons.
+- Chemicals & Lubricants source catalogue is still not present in the six post-reset PDFs. The UI reserves the required nested button and displays a truthful source-pending state; older Buyer’s Guides are not substituted for the requested catalogue.
+- Functional/browser tests, click-through tests, workflow runs, hosted deployments, merges, Supabase writes, live category/product/price/stock changes, supplier activation, payment actions, Axxess/DNS or production deployment were NOT performed. Functional testing remains deferred until owner banking details are added; production remains HOLD.
+- Implementation commits before main reconciliation: `1ee3096eebe1b9f773f58c2d030c02aaa565046a` and `68ab744309ce56b2a1af371db13dfb7806f43f7d`. Handover/readback note commit: `b3d1d79b6b5e44b3aae78c3a1cb6eeb37f20ad53`.
+- Next: verify the reconciled draft PR diff and static readback. Do not run functional tests or deploy until the owner banking-details gate is met and separate deployment approval is obtained.
+
+
+### Draft pull request opened — 2026-11-03
+- Draft PR #165: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/165
+- Branch is reconciled with latest main and reports 4 commits ahead / 0 behind at PR creation. PR remains draft/unmerged. No hosted preview was deployed.
+- The candidate is a static source integration only. The dedicated Node structural test file is present but has NOT been executed; functional/browser testing remains deferred until owner banking details are added.
+- Outstanding source item: the separate Chemicals & Lubricants catalogue PDF is not in the six-file post-reset intake and was not found in the initial Library search. The hierarchy button displays a source-pending state; no Buyer’s Guide was substituted.
+
+
+### Owner correction — Car Mats moved under Car Care & Accessories (2026-11-03)
+- Owner directs Car Mats under **Automotive Accessories → Car Care & Accessories**, not Auto Electrical Spares.
+- Updated the draft storefront navigation so Auto Electrical Spares contains Sensors, Switches, Globes and Fuel Pumps. Car Care & Accessories contains the existing Car Mats store category plus the separate ASC Car Mats catalogue button (14 source sections), and the reserved Chemicals & Lubricants catalogue button.
+- Updated preview data root, taxonomy review-only mapping, ASC README and structural test assertion. This changes the isolated draft storefront navigation only; production Supabase category tree and product assignments were NOT changed.
+- Functional/browser testing remains deferred as instructed.
+
+
+## 2026-11-03 — CONTINUATION CHECKPOINT (LATEST)
+- Owner request: update this handover so the next session continues from the current point. The protected owner-instructions block above remains unchanged.
+- Current working branch: `integration/asc-catalogue-hierarchy-2026-11-03`.
+- Current branch HEAD verified from GitHub: `682641f73a8deeda350ac717b896906854239f79` — “Move Car Mats under Car Care & Accessories”.
+- Draft PR #165: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/165. GitHub API readback confirms OPEN, DRAFT, UNMERGED; head matches the branch HEAD above; base is `main` at `8c6ff927957706b5b7598bc24779b54423ad15c5`; PR reports mergeable=true but mergeable_state=unstable. Do not merge on this status.
+- Fresh compare `main...integration/asc-catalogue-hierarchy-2026-11-03`: 11 commits ahead / 0 behind; merge base equals current main `8c6ff927957706b5b7598bc24779b54423ad15c5`. The candidate is currently reconciled with main. Recheck before further changes because main may advance.
+- **Important correction to older PR #165 description and earlier notes:** the owner’s latest Car Mats instruction is authoritative: Car Mats belongs under **Automotive Accessories → Car Care & Accessories**. The candidate source, review data, taxonomy JSON, README and structural test were updated accordingly. Auto Electrical Spares now contains Sensors, Switches, Globes and Fuel Pumps. Aerials remains under Car Audio & Entertainment. Chemicals & Lubricants remains reserved under Car Care & Accessories pending its separate source catalogue. The PR description has not yet been amended to reflect the Car Mats correction; update it before any future review request.
+- Static GitHub readback already verified the Car Mats root in preview data and taxonomy review JSON, the storefront button under Car Care & Accessories (not Auto Electrical Spares), and the structural test rejecting the old mapping. This is static source verification only.
+- Current candidate inventory: six ASC source catalogues / 72 source pages / 75 original contents headings; 50 visually reviewed pilot records and 50 watermarked review images. Only those 50 records are shown under exact matching headings; other headings remain honest empty states. Chemicals & Lubricants source PDF is still absent from the recorded six-file post-reset intake; do not substitute older Buyer’s Guides or invent catalogue sections.
+- **Next work priority:** continue non-functional/static implementation and source verification on this branch without repeating completed extraction, taxonomy, or Car Mats correction. First amend PR #165 description to match the owner-approved Car Mats placement; then inspect the remaining candidate diff for navigation hierarchy, mobile layout source, preview-only build allowlist/privacy and any contradictions in documentation. Keep the draft isolated. Do not run the deferred functional/browser tests, deploy a hosted preview, merge, or change live data.
+- Functional/browser testing remains explicitly deferred until the owner adds banking details. Payments are not an active task and must not be raised as a blocker. When the owner has added banking details, perform the agreed functional test stage; this does not itself authorize production deployment or payment activation.
+- Production remains **HOLD**. No merge, deployment, Axxess upload, DNS change, Supabase write, live product/category/price/stock/active-flag change, supplier activation/import, payment action, or credit-consuming retry without the owner’s separate explicit approval.
+- This checkpoint records only read-only GitHub verification and handover documentation. No application code, live data or release state was changed by this checkpoint.
+
+
+## 2026-11-03 — PR DESCRIPTION / DOCUMENTATION RECONCILIATION
+- Resolved the two documentation inconsistencies found during merge-readiness review.
+- Updated the ASC README's earlier contradictory paragraph so it now agrees with the owner correction: the existing Car Mats category and the separate ASC Car Mats catalogue button are both displayed under **Automotive Accessories → Car Care & Accessories** in the review storefront. Live category/product assignments remain untouched.
+- Rewrote PR #165 description to match the corrected hierarchy, accurately distinguish preview-only from live data, and disclose that the structural test is committed but not executed. PR remains open/draft/unmerged.
+- New branch head after these changes: `840b199a5305a386dd69a4a0952e464c7e7ca59a`. PR #165 reports head at this SHA.
+- Remaining merge-readiness work: finish static diff/security/build-gating review and verify GitHub status checks/merge state against current main. Do not call the candidate merge-ready merely because GitHub reports `mergeable=true`; latest API state must be rechecked.
+- Do not run the deferred functional/browser test stage before the owner adds banking details. Do not deploy or merge until the owner explicitly accepts the preview candidate and authorizes that merge. Production remains HOLD.
+
+
+## 2026-11-03 — NON-PRODUCTION BRANCH PREVIEW DEPLOYED
+- Cloudflare Pages branch preview deployment completed successfully for app commit `725752d1f88c488632d4c9c43505d2a80bee2df5`.
+- Branch preview URL: https://integration-asc-catalogue-hi.get-wired-autoworx-store.pages.dev
+- The repository root `index.html` redirects to `store.html`; `store.html` embeds `index-new.html`, which contains the corrected ASC navigation. This establishes the intended entry path by static source inspection; no browser/visual click-through has been performed.
+- PR #165 description now records the preview URL and distinguishes successful deployment from unperformed browser verification. PR remains draft, open and unmerged.
+- GitHub Actions checks on the same commit failed before any steps executed: API job records show runner_id=0 and empty steps. Do not mislabel these as code-level test failures or passing checks. The committed structural test is still unexecuted; functional/browser tests remain deferred by owner instruction.
+- Current deployment is a branch preview only. No merge into main, production deployment, live database/product/category/price/stock changes or supplier activation occurred.
+- Next: owner can review the non-production branch preview. Continue non-browser static review in parallel if no owner input is needed. Only merge into the preview/main branch after explicit owner acceptance; production remains separately HOLD.
+
+
+## 2026-11-03 OWNER CORRECTION — FULL ASC SOURCE CATALOGUES ADDED TO PREVIEW PACKAGE
+
+- Owner correctly objected that the ASC storefront presentation exposed only a 50-record pilot and did not provide the complete original catalogues. The six original post-reset PDFs existed under suppliers/ASC/, but the Cloudflare Pages allowlist deliberately excluded the supplier directory and the preview builder had not copied those PDFs into the preview package. This was the concrete cause of the incomplete customer-facing catalogue experience.
+- Corrected the preview data so each of the six catalogue buttons carries an explicit original-PDF target:
+  - Aerials → assets/asc-catalogue-source/ASC-Aerials.pdf under **Car Audio & Entertainment**.
+  - Automotive Sensors → assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf under **Auto Electrical Spares**.
+  - Automotive Switches → assets/asc-catalogue-source/ASC-Automotive-Switches.pdf under **Auto Electrical Spares**.
+  - Automotive Globes → assets/asc-catalogue-source/ASC-Automotive-Globes.pdf under **Auto Electrical Spares**.
+  - Fuel Pumps → assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf under **Auto Electrical Spares**.
+  - Car Mats → assets/asc-catalogue-source/ASC-Car-Mats.pdf under **Automotive Accessories → Car Care & Accessories**.
+- The ASC catalogue page now exposes a clearly labelled **View complete original [catalogue] catalogue (PDF)** link alongside the original contents-page section buttons. Existing visually reviewed pilot products remain beneath their matching source headings; empty headings are not filled with guessed products.
+- Updated scripts/build-cloudflare-pages-public.py: copies all six original PDFs to assets/asc-catalogue-source/ only when GW_INCLUDE_PREVIEW_ROUTES=1; validates exactly six PDFs; allows only those six explicitly allowlisted PDFs in that preview package. Standard public package continues to exclude the ASC route and PDF assets. Source originals remain unchanged under suppliers/ASC/.
+- Updated tests/asc-catalogue-preview.test.cjs to assert each original supplier PDF exists, each catalogue maps to its exact preview PDF, and each copied PDF exists in pages-public/ after the preview build.
+- Updated .github/workflows/cloudflare-public-pages-build-qa.yml to include the ASC route in the preview build checks, assert all six PDFs exist in the opt-in package, assert the standard package excludes the PDF folder, and run the structural test after preview build.
+- Updated suppliers/ASC/README.md with the corrected delivery behavior and safety boundary.
+- Commits on integration/asc-catalogue-hierarchy-2026-11-03: data mapping 70f45ccb6dc6975354d314bb992ff7d57bac4a3d; builder correction a7e473c7e4afa5e32789071e58f80788960999a0; catalogue PDF link b1ae95f885dac20f9253baa8027f4e0c5920a57c; structural test 3dedf38a7a0bbaa04549f39f9d78768cc42452ec; package workflow 63f0a7286bad9ce3e7a3bee260f818e26dc552b5; README 39f3035d3441fe1c89df29cd6cfba170a1e572a2.
+- Latest branch commit at the time of this handover entry is the handover update commit itself; verify the branch head before further integration. Do not merge or deploy production.
+- Verification status: GitHub Actions runs triggered for an earlier head returned failure with runner/job metadata missing (runner unavailable; jobs had no steps). This is infrastructure startup failure, not evidence the new code/test failed. The corrected workflow has not yet produced a successful execution. No new hosted deployment of the corrected commit or browser/phone verification is confirmed.
+- Remaining: obtain a successful exact-head Cloudflare Pages Public Package QA run (standard exclusion + opt-in full six-PDF package + Node structural test); then deploy only the non-production Pages preview if the branch workflow does so automatically and verify the deployed SHA and all six PDF links. Keep functional checkout testing deferred until owner adds bank details. Production remains HOLD; no Supabase writes, live product/stock/price/category changes, supplier activation, DNS or production deployment were performed by this correction.
+
+
+### 2026-11-03 QA retry outcome
+- Retried only failed jobs in the non-production Cloudflare Pages Public Package QA run 41601183778. The retry again completed as failure before any steps; latest job ID 125800674446 has no step list/log URL. No source-level test result was produced. Do not retry this runner-startup failure repeatedly without evidence GitHub runners have recovered.
+- The branch remains isolated and 22 commits ahead / 0 behind main at the last compare. PR #165 remains draft/open/unmerged. No deployment, merge or production action occurred.
+
+
+### 2026-11-03 final branch readback
+- Read-back confirms PR #165 is still OPEN / DRAFT / UNMERGED, head 6f1615fdd5ac47de6470b42f58d96d91590f863c, base main at 8c6ff927957706b5b7598bc24779b54423ad15c5.
+- GitHub compare confirms the integration branch is 26 commits ahead and 0 behind main. No stale-base rebase is currently required.
+- Data read-back confirms all six catalogue-to-PDF mappings and section counts (6, 11, 16, 10, 14, 18); route read-back confirms the full-catalogue PDF link is present.
+- The package QA attempt ran against code commit 63f0a7286bad9ce3e7a3bee260f818e26dc552b5, after the builder, route, data, test and workflow changes. Its runner and targeted retry both failed before steps. Subsequent commits were documentation-only (supplier README and handover). No successful build/test/deployment/browser verification is available yet.
+
+
+## 2026-11-03 — Planetworld + Audio Connections catalogue integration continued
+
+### Owner instruction
+Continue the Planetworld and Audio Connections catalogue upload/integration under the Audio category. Keep supplier names private. This work is preview-only; do not modify live prices, stock, product/category rows, supplier activation, payment/checkout, Supabase, Axxess, DNS or production deployment.
+
+### Source preservation
+- Confirmed 47 original Planetworld XLSX workbooks remain in `suppliers/Planetworld/`.
+- Confirmed the original Starsound 05 August 2026 and Sony Mobile ES September 2026 PDFs remain in `suppliers/Audio Connections/`.
+- Supplier source files are unchanged and were not copied into the public Pages package.
+
+### Implemented on `integration/planetworld-audio-catalogues-2026-11-03`
+- Added the combined noindex `preview-audio.html` route and linked it from **Car Audio & Entertainment → Browse All Audio Catalogues** in the current bright storefront candidate.
+- Added three preview-only data files:
+  - `assets/planetworld-catalogue-preview.json`: 3,317 source rows from 47 workbooks / 94 sheets; nine collections/departments.
+  - `assets/planetworld-verified-models-preview.json`: 68 manufacturer-verified product candidates.
+  - `assets/audio-connections-catalogue-preview.json`: 66 review-only records from 68 source rows; 2 excluded for documented reasons.
+- Department buttons cover Car Audio & Video, Home Entertainment, Band & Live Sound, DJ, Studio Equipment, Marine Audio, Installed AV, Musical Instruments, and Harnesses & Trims.
+- Added product/brand/model search, brand and component filters, and load-more pagination.
+- Enriched broad Planetworld records only where a verified model is an exact leading model token; do not match accessories that merely mention another product model later in their title.
+- Suppressed exact duplicate rows in the browse display only; retained all 3,317 source rows in the source-derived JSON.
+- Applied the exact owner-approved price-on-request text to all 37 unpriced Planetworld rows. The three Audio Connections unpriced records already carry the same exact text.
+- Current image coverage in the combined preview: 9 exact-model Planetworld manufacturer image candidates + 4 Audio Connections candidates = 13 review-only URLs. No generic placeholder image is substituted for a missing exact product image.
+- Updated `scripts/build-cloudflare-pages-public.py` to include the audio route and three JSON files only in the opt-in `GW_INCLUDE_PREVIEW_ROUTES=1` package. The standard customer/public package excludes these files.
+- Updated `.github/workflows/cloudflare-public-pages-build-qa.yml` to verify the route/data files are absent from the standard package, present in the opt-in preview package, and run `tests/audio-catalogue-preview.test.cjs` alongside the ASC structural test.
+- Added `tests/audio-catalogue-preview.test.cjs` covering row counts, collection counts, price-on-request wording, image candidate counts, privacy fields, category placement, search, pagination, exact model matching and duplicate suppression.
+- Updated `catalogue-review/SUPPLIER_GW_MAPPING_README_2026-10-30.md` with the new integration scope and remaining image/identity gates.
+
+### Data facts and safeguards
+- Planetworld: 3,280 indicative price proposals are from the 25-Oct-2026 RRP snapshot at 1% below RRP where the private cost-floor check passed; 37 rows show “Price on Request due to Limited Stock and Availability.” The 702-row Car Audio division is represented as 627 Car Audio & Video + 47 Harnesses & Trims + 28 Marine Audio.
+- Audio Connections: 66 included review rows (13 Sony and 53 other-brand records); XS-690ES remains excluded as sold out, XS-680G remains excluded pending exact accessory/image identity. The source PDFs do not establish current availability.
+- Supplier identities and dealer costs are not exposed on the customer-facing preview route. Source supplier SKUs are not displayed; candidate GW SKUs remain clearly proposed/review-only where present.
+- No live product, SKU, category, price, stock, supplier-connection, supplier-activation or database records were inserted or modified.
+
+### Exact remaining work
+1. Run the exact-head Pages package QA and both structural tests; GitHub runner startup has failed before steps on previous attempts, so do not mark this pass without an actual completed run.
+2. Confirm a hosted non-production preview deployment for the exact updated commit and verify the audio route/data load on desktop and mobile. Functional checkout testing remains deferred until owner banking details are added.
+3. Continue exact high-resolution image review/download/approval for the Planetworld and Audio Connections catalogue records; currently only 13 manufacturer image URLs are candidates, not approved local assets.
+4. Add approved brand-logo artwork to the brand buttons; current brand filters are text buttons.
+5. Finish remaining model identity/description exceptions and refresh dated supplier price/availability data before any customer-publication or live product creation.
+6. Keep PR #165 draft/unmerged and production HOLD until the owner inspects the integrated preview and explicitly accepts it. No production action is authorized.
+
+
+### 2026-11-03 exact-head readback after supplier privacy correction
+- Final integrated PR branch head: `1b51851f2a323ccaa8c852076ab801306aa7f0b7`; compare against main: **44 commits ahead / 0 behind**.
+- Read-back confirms Planetworld 3,317 source rows (3,280 indicative-price rows, 37 exact owner-wording price-on-request rows); 702 Car Audio division rows; 47 source workbooks / 94 sheets.
+- Read-back confirms 68 manufacturer-verified candidates with 9 image-source candidates, plus 66 Audio Connections preview rows from 68 source rows (63 priced proposals, 3 exact price-on-request rows, 2 excluded rows, 4 image-source candidates). All 66 Audio Connections records remain `PREVIEW_ONLY_NOT_LIVE`.
+- The audio page read-back confirms it is linked under Car Audio & Entertainment, has search and pagination, returns to current `index-new.html`, is noindex, and contains neither supplier identity. A customer-facing note that initially named the supplier was corrected before this readback.
+- The preview builder and QA workflow read-back confirms `preview-audio.html` and all three JSON datasets are allowlisted only for the opt-in non-production package; the standard public package excludes them. The dedicated test is present and wired into the QA workflow.
+- Latest Cloudflare Pages Public Package QA run: 41603950325; job 125809062744 failed before any steps/logs were available (`steps=null`, no logs URL). This is another GitHub runner startup failure, not a passing build or an application-level test failure. Do not mark tests passed.
+- Brand-logo artwork and approval/download of exact high-resolution product images remain outstanding. The 13 URLs are manufacturer image-source candidates only, not approved customer-publication assets. No browser/phone verification or hosted corrected deployment is confirmed.
+- PR #165 remains draft/open/unmerged. Production remains HOLD; no live catalogue, price, stock, database, supplier activation, payment, Axxess, DNS or production deployment changes were made.
+
+
+### Non-production Pages deployment confirmation — 2026-11-03
+- Cloudflare Pages bot posted a successful deployment for exact code commit `4915ac4` (full SHA `4915ac45338e5b1ed72b29d7f663c35adc799007`): `https://62563ded.get-wired-autoworx-store.pages.dev`.
+- The deployment is a non-production Pages preview. Its audio route is `/preview-audio.html`; data assets are the three allowlisted JSON files under `/assets/`.
+- Direct automated page opening was unavailable in this session, so this confirms the Pages deployment status and exact commit, not a visual/browser/phone pass. Owner visual inspection remains outstanding.
+- The separate GitHub Actions Pages package QA run 41603950325 still failed before steps/logs (job 125809062744, `steps=null`). Do not conflate the Pages bot's successful deployment with the skipped/failed GitHub QA suite.
+- The separate Cloudflare Workers build for commit 1b51851 was reported failed by the Workers bot; no Workers production release is claimed or authorized. Production remains HOLD.
