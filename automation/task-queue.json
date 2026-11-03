@@ -14,16 +14,16 @@
     {
       "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "manual_static_checks_13_of_13_passed_ci_runner_unavailable_preview_not_deployed",
-      "description": "Current candidate head 2694f1462fc75a5fd5a5f64f553c92a488c66c18 has 13/13 direct source/data assertions passing; all required storefront files, six ASC source PDFs, 50 pilot images and 4,101 WebP assets exist. GitHub Actions job 125839064696 failed before runner assignment (runner_id=0, zero steps); no Node/browser/package test executed. No exact-head non-production Pages preview deployed.",
-      "next_action": "Wait for GitHub runner allocation recovery. Then run one Cloudflare public-package QA on the current exact head; only after it passes create the isolated non-production Pages preview request and verify deployed SHA. Keep production HOLD and functional/browser/checkout testing deferred until owner adds banking details.",
+      "status": "static_checks_passed_pr_ref_refresh_required_ci_runner_assignment_blocked",
+      "description": "Current candidate head 2694f1462fc75a5fd5a5f64f553c92a488c66c18 has 13/13 direct source/data assertions passing; all required storefront files, six ASC source PDFs, 50 pilot images and 4,101 WebP assets exist. GitHub Actions job 125839064696 failed before runner assignment (runner_id=0, zero steps); no Node/browser/package test executed. No exact-head non-production Pages preview deployed. The source branch includes latest code and handover, but GitHub hidden PR #166 head stayed pinned at 2694f146 despite later branch commits. Replace the draft PR from the complete current branch head so the review points at the exact candidate. Official GitHub status currently says Actions operational, while this job's runner_id remains 0/zero steps; likely repo/account runner/quota configuration, not confirmed global outage.",
+      "next_action": "Create replacement draft PR from current complete branch head, close PR #166 as superseded, then await runner assignment recovery. Do not deploy preview or merge while CI is unexecuted.",
       "automatic": false
     },
     {
       "id": "storefront-three-category-navigation",
       "priority": 2,
       "status": "three_roots_and_deferred_qa_expectations_reconciled_static_checks_pass",
-      "description": "Three owner-approved roots and all requested children are mapped; manual smoke and populated-preview workflow root assertions now use the new three-root hierarchy. The buttons-only legacy workflow is manual-only and expects three roots. 13/13 source/data assertions passed, but no browser test executed.",
+      "description": "Three owner-approved roots and all requested children are mapped; manual smoke and populated-preview workflow root assertions now use the new three-root hierarchy. The buttons-only legacy workflow is manual-only and expects three roots. 13/13 source/data assertions passed, but no browser test executed. Car Audio button now routes to the full Planetworld Car Audio division (702 source rows / 699 unique browse rows) plus Audio Connections review records; the separate department and Lifestyle links remain available.",
       "next_action": "Retain current three-root hierarchy; wait for runner recovery to execute non-functional structural/package QA and obtain exact-head non-production preview. No production merge.",
       "automatic": false
     },
