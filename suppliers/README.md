@@ -32,3 +32,14 @@ Recursive Git tree scan of the `main` branch (tree SHA `08b97bed8e05c18bd3696262
 | `Planetworld/` | 0 | Present | Folder currently contains its README only; no dealer price-list/catalogue PDFs are tracked yet. |
 
 The repository root currently has **zero tracked PDFs**; all 38 tracked supplier PDFs are inside their respective supplier subfolders. This is a path/file-type inventory only; PDF contents, duplicate editions, expiry, pricing accuracy, and SKU completeness have not been audited by this scan. Do not infer that empty Electrocity/Planetworld folders mean the suppliers are unauthorised; upload their approved source files to their named folders when available. Keep live product/stock/price imports on hold until explicitly approved by the owner.
+
+
+## Owner-approved active catalogue scope — 2026-11-03
+
+The owner has narrowed all future catalogue work to **ASC, Audio Connections and Planetworld only**. This instruction supersedes older supplier-library notes above wherever they imply that Electrocity or Caelex remain in the active integration scope.
+
+- **Active suppliers:** `ASC/`, `Audio Connections/` and `Planetworld/`.
+- **ASC source restriction:** use the current approved ASC product-family catalogues only. Do not use the 800+ legacy monthly ASC Buyer's Guide stock listings as import sources; retain original guides solely as archived reference material.
+- **Excluded suppliers:** `Electrocity/` and `Caelex/` remain preserved in the repository for audit/reference only. Do not extract, stage, import, activate or publish their products unless the owner changes this scope in writing.
+- Existing supplier source files remain intact. Do not delete source documents as part of clearing storefront stock.
+- Product imports must be staged, validated and previewed first. Do not write new product rows or activate supplier catalogue items until the batch has passed the agreed SKU, description, image, price and category checks.
