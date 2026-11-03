@@ -783,15 +783,16 @@
       "hasStock": false,
       "modelNumber": "SSAR 22000.1",
       "description": "Starsound SSAR 22000.1 — 1700 RMS",
-      "manufacturerPage": "",
-      "imageUrl": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssa-r-22000-1/",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSA-R-22000.1.png",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerSpecificationNote": "Official page lists 1800W RMS at 1Ω; supplier list says 1700RMS. Confirm source wattage before final description."
     },
     {
       "id": "ac-036",
@@ -825,15 +826,16 @@
       "hasStock": false,
       "modelNumber": "SSA-R 5000.4",
       "description": "Starsound SSA-R 5000.4 RAPTOR — 60 RM (source text)",
-      "manufacturerPage": "",
-      "imageUrl": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssa-r-5000-4/",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSA-R-5000.4_b.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerSpecificationNote": "Official page lists 65W RMS per channel at 4Ω; supplier list says 60RM. Confirm source wattage before final description."
     },
     {
       "id": "ac-038",
@@ -894,18 +896,19 @@
       "hasStock": false,
       "modelNumber": "SSA-ATOM13800.4",
       "description": "Starsound SSA-ATOM13800.4 — 100 RMS",
-      "manufacturerPage": "",
-      "imageUrl": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssa-atom-13800-4/",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSA-ATOM-13800.4_c.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
       "manufacturerListingPage": "https://starsound.co.za/product-category/amplifiers/",
       "manufacturerListedModel": "SSA-Atom-13800.4",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
+      "manufacturerSpecificationNote": "Official page lists 80W x4 at 4Ω; supplier list says 100RMS. Confirm source wattage before final description."
     },
     {
       "id": "ac-041",
@@ -939,15 +942,16 @@
       "hasStock": false,
       "modelNumber": "SSA-M4-80.4",
       "description": "Starsound SSA-M4-80.4 — 80 RMS",
-      "manufacturerPage": "",
-      "imageUrl": "",
+      "manufacturerPage": "https://starsound.co.za/product/ssa-m4-80-4/",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/05/SSA-M4-80.4_WEB_PIC_1.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "OFFICIAL_EXACT_MODEL_IMAGE_REVIEW_CANDIDATE_NOT_APPROVED",
+      "manufacturerSpecificationNote": "Official page confirms 80W x4 at 4Ω, consistent with the source list's 80RMS shorthand."
     },
     {
       "id": "ac-043",
