@@ -2893,3 +2893,37 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Read this branch handover and the current Planetworld non-zero-RRP, cost-floor, zero-RRP owner-hold and category/image/manufacturer evidence reports before investigation. This branch is retained for the Planetworld monitoring record; the main-branch owner handover remains the sole current project handover.
 - This run will verify PR #95 and current-main Planetworld audit workflow status, inspect background tasks, and continue only evidence-backed manufacturer/model/category review. Keep 19 zero-RRP SKUs in the separate owner hold; do not modify supplier XLSX, prices, stock, active flags or live catalogue data.
 - No PR merge, supplier import/publication, deployment, Axxess/DNS/payment change, Supabase write or release-credit use.
+
+
+## 2026-11-03 08:15–08:31 SAST — PLANETWORLD MONITOR RESULT
+
+### Evidence work completed
+- Added the 19-row review-only register `catalogue-source/suppliers/planetworld/PLANETWORLD_COST_FLOOR_MODEL_IMAGE_REVIEW_ONLY_2026-11-03.csv` in commit `cbd662e5eafe2c42e2b45269839477f08eb1c5a5`.
+- Updated `MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` in commit `eb3aad3abff03214bcfc49612d388584b1d56f11` (new blob `0e60935049943b4287a95f3b4700d0c7671ae4f4`). The new register and report preserve every candidate as `DO_NOT_IMPORT`.
+- Added official evidence for Ibanez IAB541-WR (exact Wine Red variant), JBL IRX108BT base model (official item adds `-LS` suffix), JBL EON710 base model (official 220V item code differs), Remo HK-2417-00, Vogel's THIN215, Soundcraft 5085985EU (HARMAN material number), Paiste Dark Energy Crash Mk I 19-inch family, and reconfirmed Vogel's 7225154. PFW4600 now has official tilt-mount model-list evidence but the supplier's “flat mount” wording conflicts. OneNav ISA-ON115-3LX matches the official ON115-3LX application only; the ISA prefix remains unconfirmed. ON1509-LX1 and ON263-FK2 remain reseller-only / unverified.
+- Refined description-led component guesses for the seven Harness & Trims rows: 86180, 90008003, 90011904, 90013009, 90014004, 90022538 and 90022567. Exact manufacturer model/image evidence is still absent; 90011904 remains ambiguous between an OEM-style head unit and fascia/trim.
+- No image files were downloaded/copied or published; official-page imagery does not grant re-hosting permission.
+
+### Price / source status
+- The latest corrected historical source set remains 2026-10-25: 48 workbooks, 96 sheets, 3,343 rows; 3,298 positive-RRP rows; 19 zero-RRP owner-hold rows. Historical cost-floor flags remain 18 distinct positive-RRP SKUs below estimated VAT-inclusive cost at RRP−1%, 19 at RRP−2%; `90011904` is the extra 2%-only row. These are review flags, not supplier-confirmed price errors.
+- `IAB541-WR` is a verified source-row outlier: dealer cost R649, retail ex VAT R86, retail incl VAT R99; sibling IAB541 colours show R799–R1,199 retail incl VAT. This is a possible missing-digit/scale defect, not a confirmed correction. Do not change it without supplier confirmation.
+- No later Planetworld price/stock email was found after 2026-10-25. No current supplier price, VAT basis, effective date or availability has been verified.
+- Gmail contains the 2026-10-28 ASC thread `Fw: STOCK ARRIVALS/BUYERS GUIDE` with November Buyer's Guide and 1003–1007 stock-arrival PDFs, but the available Gmail connector returns attachment metadata only and has no attachment-download action. This is ASC source intake, not Planetworld pricing. Do not mix it into the Planetworld audit.
+- Keep the 19 zero-RRP items isolated for owner audit; do not infer out-of-stock or quote status from zero RRP alone.
+
+### PR #95 and audit refresh
+- PR #95 remains CLOSED / UNMERGED / `mergeable=false`; head `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`, base `main`. No merge or rebase.
+- Latest historical Planetworld audit found: run `40944787080`, event `pull_request`, branch `reconcile/repo-file-inventory-planetworld-2026-10-29`, head `1fb086c1ffb3e0e06ef6a97bfcdca502389ec174`; job `123697194835` SUCCESS. Artifact list is empty; log records artifact storage quota failure.
+- Current-main workflow blob `5a70502ec08f9cc1e05cd4e561925e03c0a69215` is artifact-free and writes audit counts to the job summary, but no run on current `main` exists in the checked run set. No connected workflow-dispatch action is available. Do not rerun the old successful PR run or create a dummy commit.
+- Exact owner UI action: repository → Actions → **Planetworld Workbook Audit (Read Only)** → **Run workflow** → select `main` → run once; verify the run head, job summary and logs. Until then, 2026-10-25 counts remain historical only.
+
+### Background workflow status at close
+- Repository Actions latest-100 query: **0 queued/in-progress/waiting runs**.
+- PR #163 latest ASC staging browser QA run `41589465749`, attempt 2, head `ded8a8016f9b7eb2783579d261207c13f60d886c`, job `125763368473`: **FAILURE** after one supported safe retry. GitHub returned no step summaries and the log endpoint returned `BlobNotFound`; exact failure cause remains unclassified. No further retry without a changed diagnostic/runner cause.
+- Cloudflare Pages preview check on exact head `ded8a80` succeeded at `https://2523b207.get-wired-autoworx-store.pages.dev`. This is preview build evidence only, not browser acceptance or production readiness. The separate Workers Builds check failed; it was not retried.
+- No PR merge, supplier XLSX edit, supplier import/publication, live catalogue/price/stock/category/active-flag change, Supabase write, Axxess/DNS/payment change, production deployment, or release-credit use.
+
+### Next action
+1. Owner runs the current-main Planetworld read-only audit once through the Actions UI and supplies the run ID; then inspect the summary and artifact-free job logs and refresh the current audit counts.
+2. Obtain a current Planetworld price/stock file or written supplier confirmation for the 19 non-zero-RRP cost-floor candidates, especially the JBL, Soundcraft, Paiste and Ibanez outliers.
+3. Keep uncertain exact variants/images marked unverified and retain the separate 19 zero-RRP owner hold.
