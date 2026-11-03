@@ -48,7 +48,11 @@ assert.equal(audioConnections.records.length, 66);
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 5);
+const starsoundSub = audioConnections.records.find(row => row.modelNumber === 'SSW12-6300');
+assert.ok(starsoundSub && starsoundSub.imageUrl.startsWith('https://starsound.co.za/wp-content/uploads/'));
+assert.equal(starsoundSub.manufacturerModelNumber, 'SSW-12-6300');
+assert.equal(starsoundSub.imageStatus, 'official_manufacturer_image_verified_review_only');
 for (const row of audioConnections.records) {
   assert.ok(row.brand && row.title && row.component && row.modelNumber);
   assert.equal(Object.hasOwn(row, 'dealerCost'), false);
