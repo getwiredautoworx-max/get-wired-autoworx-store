@@ -12,6 +12,9 @@ on:
       - 'tests/asc-catalogue-preview.test.cjs'
       - 'tests/legacy-asc-buyer-guide-guard.test.cjs'
       - 'tests/test_preview_catalogue_gate.py'
+      - 'tests/asc-catalogue-taxonomy-review.test.cjs'
+      - 'catalogue-review/asc-catalogue-extraction/**'
+      - 'suppliers/ASC/README.md'
       - '.github/workflows/asc-catalogue-preview.yml'
   pull_request:
     branches: [main]
@@ -20,6 +23,9 @@ on:
       - 'assets/asc-catalogue-preview-data.json'
       - 'assets/asc-catalogue-pilot/**'
       - 'tests/asc-catalogue-preview.test.cjs'
+      - 'tests/asc-catalogue-taxonomy-review.test.cjs'
+      - 'catalogue-review/asc-catalogue-extraction/**'
+      - 'suppliers/ASC/README.md'
       - '.github/workflows/asc-catalogue-preview.yml'
   workflow_dispatch:
 permissions:
@@ -42,6 +48,7 @@ jobs:
         run: |
           set -euo pipefail
           node tests/asc-catalogue-preview.test.cjs
+          node tests/asc-catalogue-taxonomy-review.test.cjs
           node tests/legacy-asc-buyer-guide-guard.test.cjs
           python3 tests/test_preview_catalogue_gate.py
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/asc-preview-http.log 2>&1 &
