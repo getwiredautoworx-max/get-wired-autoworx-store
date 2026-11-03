@@ -781,3 +781,12 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - Functional/browser testing remains explicitly deferred until the owner adds banking details. Payments are not an active task and must not be raised as a blocker. When the owner has added banking details, perform the agreed functional test stage; this does not itself authorize production deployment or payment activation.
 - Production remains **HOLD**. No merge, deployment, Axxess upload, DNS change, Supabase write, live product/category/price/stock/active-flag change, supplier activation/import, payment action, or credit-consuming retry without the owner’s separate explicit approval.
 - This checkpoint records only read-only GitHub verification and handover documentation. No application code, live data or release state was changed by this checkpoint.
+
+
+## 2026-11-03 — PR DESCRIPTION / DOCUMENTATION RECONCILIATION
+- Resolved the two documentation inconsistencies found during merge-readiness review.
+- Updated the ASC README's earlier contradictory paragraph so it now agrees with the owner correction: the existing Car Mats category and the separate ASC Car Mats catalogue button are both displayed under **Automotive Accessories → Car Care & Accessories** in the review storefront. Live category/product assignments remain untouched.
+- Rewrote PR #165 description to match the corrected hierarchy, accurately distinguish preview-only from live data, and disclose that the structural test is committed but not executed. PR remains open/draft/unmerged.
+- New branch head after these changes: `840b199a5305a386dd69a4a0952e464c7e7ca59a`. PR #165 reports head at this SHA.
+- Remaining merge-readiness work: finish static diff/security/build-gating review and verify GitHub status checks/merge state against current main. Do not call the candidate merge-ready merely because GitHub reports `mergeable=true`; latest API state must be rechecked.
+- Do not run the deferred functional/browser test stage before the owner adds banking details. Do not deploy or merge until the owner explicitly accepts the preview candidate and authorizes that merge. Production remains HOLD.
