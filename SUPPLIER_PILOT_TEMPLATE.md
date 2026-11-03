@@ -68,6 +68,7 @@ Required internal fields:
 | `[CODE]` | `[MODEL]` | `[URL / PAGE / ROW]` | `[NOTES]` | `[NONE / LINK]` | `VERIFIED / REVIEW / HOLD` |
 
 Rules:
+- Record brand-level evidence separately from product/model evidence. A brand homepage may confirm the brand name but is not an exact product page and must not be counted as a product reference.
 - Do not merge similar descriptions or visually similar products without evidence.
 - Preserve size, impedance, finish, connector, channel count, vehicle fitment and package quantity.
 - Record supplier-versus-manufacturer specification conflicts explicitly; preserve both source values and block final publication until resolved.
