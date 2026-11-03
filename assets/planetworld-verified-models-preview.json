@@ -15,7 +15,8 @@
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
       "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image.",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-D8D34153",
@@ -30,7 +31,8 @@
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
       "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image.",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-23B4075D",
@@ -45,7 +47,8 @@
       "indicativePrice": 27620.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-242085C6",
@@ -60,7 +63,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-44A846C9",
@@ -75,7 +79,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-D44711C5",
@@ -90,7 +95,8 @@
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
       "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image.",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-DF31C0C3",
@@ -105,7 +111,8 @@
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
       "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image.",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-DDF900C0",
@@ -120,7 +127,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-3363298A",
@@ -135,7 +143,8 @@
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "OFFICIAL_PRODUCT_PAGE_FOUND_BUT_ONLY_46x35_THUMBNAIL_AVAILABLE_NO_APPROVED_HIGH_RES_ASSET",
       "imageReviewNote": "Official Alpine product page is available, but only a 46x35 thumbnail was exposed. Do not use that thumbnail as a product image.",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-3C0AADF7",
@@ -150,7 +159,8 @@
       "indicativePrice": 13364.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-E83DE640",
@@ -165,7 +175,8 @@
       "indicativePrice": 2970,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-F965C965",
@@ -180,7 +191,8 @@
       "indicativePrice": 23016.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-AC0030BA",
@@ -195,7 +207,8 @@
       "indicativePrice": 5643,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-2D691DD3",
@@ -210,7 +223,8 @@
       "indicativePrice": 29695.05,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-356A6B66",
@@ -225,7 +239,8 @@
       "indicativePrice": 6385.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-51F781DA",
@@ -240,7 +255,8 @@
       "indicativePrice": 21230.55,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-ED176A31",
@@ -255,7 +271,8 @@
       "indicativePrice": 18414,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-0D9576AB",
@@ -270,7 +287,8 @@
       "indicativePrice": 13958.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-6525B0FB",
@@ -285,7 +303,8 @@
       "indicativePrice": 18314.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-39F15E3C",
@@ -300,7 +319,8 @@
       "indicativePrice": 13809.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-19C53819",
@@ -315,7 +335,8 @@
       "indicativePrice": 891,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-AB4172D6",
@@ -330,7 +351,8 @@
       "indicativePrice": 742.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-6404BB95",
@@ -345,7 +367,8 @@
       "indicativePrice": 445.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-F2D5E7C5",
@@ -360,7 +383,8 @@
       "indicativePrice": 1336.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-95CF26BF",
@@ -375,7 +399,8 @@
       "indicativePrice": 1781.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-D1C8ED40",
@@ -390,7 +415,8 @@
       "indicativePrice": 2454.21,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-5060536B",
@@ -405,7 +431,8 @@
       "indicativePrice": 4899.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-E543202D",
@@ -420,7 +447,8 @@
       "indicativePrice": 2622.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-76BF5AEA",
@@ -435,7 +463,8 @@
       "indicativePrice": 7869.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-BAB87976",
@@ -450,7 +479,8 @@
       "indicativePrice": 3118.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-A93B7539",
@@ -465,7 +495,8 @@
       "indicativePrice": 5494.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-C8678B08",
@@ -480,7 +511,8 @@
       "indicativePrice": 4603.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-E633A44B",
@@ -495,7 +527,8 @@
       "indicativePrice": 2821.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-D305752A",
@@ -510,7 +543,8 @@
       "indicativePrice": 2747.25,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-6BAAF481",
@@ -525,7 +559,8 @@
       "indicativePrice": 3267,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-3AD21309",
@@ -540,7 +575,8 @@
       "indicativePrice": 2970,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-B44A3E68",
@@ -555,7 +591,8 @@
       "indicativePrice": 4306.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-68BEEE9F",
@@ -570,7 +607,8 @@
       "indicativePrice": 4455,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-23039F26",
@@ -585,7 +623,8 @@
       "indicativePrice": 3044.25,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-9BE74766",
@@ -600,7 +639,8 @@
       "indicativePrice": 4603.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-747C1CAB",
@@ -615,7 +655,8 @@
       "indicativePrice": 1559.25,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-D50EC36C",
@@ -630,7 +671,8 @@
       "indicativePrice": 1781.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-083D24ED",
@@ -645,7 +687,8 @@
       "indicativePrice": 1782,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-1B6B540E",
@@ -660,7 +703,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-A1F328AF",
@@ -675,7 +719,8 @@
       "indicativePrice": 1856.25,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-CC9AD160",
@@ -690,7 +735,8 @@
       "indicativePrice": 3712.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-A10FB3F7",
@@ -705,7 +751,8 @@
       "indicativePrice": 3861,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-BCB7EFB4",
@@ -720,7 +767,8 @@
       "indicativePrice": 1084.05,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-C44B188C",
@@ -735,7 +783,8 @@
       "indicativePrice": 5940,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-614DED8A",
@@ -750,7 +799,8 @@
       "indicativePrice": 4009.5,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-AF7A2133",
@@ -765,7 +815,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-C6E9DE57",
@@ -780,7 +831,8 @@
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-BCCE104C",
@@ -795,7 +847,8 @@
       "indicativePrice": 642.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-B5C3FB36",
@@ -810,7 +863,8 @@
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "OFFICIAL_PRODUCT_PAGE_AND_DEALER_IMAGE_PACK_FOUND_BUT_WRITTEN_DISTRIBUTION_PERMISSION_REQUIRED",
       "imageReviewNote": "JVC official product page has a nine-image gallery. JVC's dealer marketing image pack requires dealer access and says promotional assets cannot be distributed without written authorization; keep image blank until rights are confirmed.",
-      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE"
+      "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-C0C3EE3F",
@@ -825,7 +879,8 @@
       "indicativePrice": 5939.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-A518043D",
@@ -840,7 +895,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-414870FF",
@@ -855,7 +911,8 @@
       "indicativePrice": 1880.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-34B8712E",
@@ -870,7 +927,8 @@
       "indicativePrice": 1385.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-3A16656D",
@@ -885,7 +943,8 @@
       "indicativePrice": 5493.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-B435B3F2",
@@ -900,7 +959,8 @@
       "indicativePrice": 8166.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-31954ABD",
@@ -915,7 +975,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-E3E19CA3",
@@ -930,7 +991,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-6A3D2257",
@@ -945,7 +1007,8 @@
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
       "imageStatus": "official_manufacturer_image_verified_review_only",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-382FCDC3",
@@ -960,7 +1023,8 @@
       "indicativePrice": 5122.26,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-9BFF6101",
@@ -975,7 +1039,8 @@
       "indicativePrice": 3464.01,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-4E3751C1",
@@ -990,7 +1055,8 @@
       "indicativePrice": 3414.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-4493A427",
@@ -1005,7 +1071,8 @@
       "indicativePrice": 3711.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     },
     {
       "gwSku": "GW-8C685D65",
@@ -1020,7 +1087,8 @@
       "indicativePrice": 8166.51,
       "sourceDateLabel": "RRP −1% preview · 25 October 2026 snapshot",
       "priceProposalStatus": "REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED",
-      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED"
+      "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
     }
   ]
 }
