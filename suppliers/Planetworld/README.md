@@ -11,3 +11,8 @@
 - Keep original source workbooks unchanged.
 - Analyse and prepare proposed customer listings separately. Do not import or modify live stock, prices or catalogue data without explicit owner authorisation.
 - Do not upload secrets or customer personal information.
+
+
+## Owner scope confirmation — 2026-11-03
+
+Planetworld is one of the **only three approved active catalogue suppliers**, alongside ASC and Audio Connections. Continue catalogue and dealer-price-list reconciliation from the original workbooks in this folder. Keep supplier names and dealer cost/RRP data private; customer-facing listings must not reveal the supplier. Do not activate or publish products until exact model, image, description, current price, GW SKU and category checks pass.
