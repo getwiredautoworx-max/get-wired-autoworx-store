@@ -71,5 +71,8 @@
     "SSAR 22000.1",
     "SSA-R 5000.4",
     "SPARTAN 9900.1"
-  ]
+  ],
+  "audio_connections_brand_only_evidence_rows": 3,
+  "audio_connections_brand_only_evidence_brand": "Reference Audio",
+  "audio_connections_brand_only_evidence_note": "Official Reference Audio brand site confirms brand identity for RABTR03, RA AWG4 and RA SUPER RAST20; no exact product page/model evidence found, so these do not count as product references and remain held."
 }
