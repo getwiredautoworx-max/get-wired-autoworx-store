@@ -48,11 +48,16 @@ assert.equal(audioConnections.records.length, 66);
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 30);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 32);
 const starsoundSub = audioConnections.records.find(row => row.modelNumber === 'SSW12-6300');
 assert.ok(starsoundSub && starsoundSub.imageUrl.startsWith('https://starsound.co.za/wp-content/uploads/'));
 assert.equal(starsoundSub.manufacturerModelNumber, 'SSW-12-6300');
 assert.equal(starsoundSub.imageStatus, 'official_manufacturer_image_verified_review_only');
+for (const model of ['SST350','SST-850']) {
+  const row = audioConnections.records.find(item => item.modelNumber === model);
+  assert.ok(row && row.imageUrl.startsWith('https://starsound.co.za/wp-content/uploads/'));
+  assert.equal(row.imageStatus, 'official_manufacturer_image_verified_review_only');
+}
 for (const model of ['SSA-SB2000.1','PRO6.5-700','SS-PRO6X9-900','SSD-620']) {
   const row = audioConnections.records.find(item => item.modelNumber === model);
   assert.ok(row && row.imageUrl.startsWith('https://starsound.co.za/wp-content/uploads/'));
@@ -102,7 +107,7 @@ for (const row of audioConnections.records) {
 }
 
 const imageCount = modelImageCandidateCount + audioConnections.records.filter(row => row.imageUrl).length;
-assert.equal(imageCount, 76);
+assert.equal(imageCount, 78);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
