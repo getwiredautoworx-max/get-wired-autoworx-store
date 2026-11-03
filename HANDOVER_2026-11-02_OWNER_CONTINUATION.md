@@ -1131,3 +1131,25 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - GitHub runner recovery run `41657951966`, job `125993213921`, failed before any steps/logs. Do not repeat blind reruns; no hosted Chromium/Playwright result is claimed.
 - Exact deployment and preview are now available for owner inspection. Desktop/mobile interactive browser QA and owner acceptance remain outstanding. Keep checkout disabled and payment testing deferred.
 - No PR merge, production deployment, Axxess upload, live Supabase write, live stock/price change, DNS or payment credential change was made.
+
+## 2026-11-03 — OWNER CONFIRMED THREE-STARTUP-CATEGORY DESIGN / SUBPAGE SHELL EXECUTION
+
+- **Authoritative owner clarification:** retain only the three startup homepage category buttons:
+  1. Car Audio / Home Entertainment / Lifestyle
+  2. Auto Electrical Parts & Spares
+  3. Car Care & Accessories
+  Remove the former eight-button homepage/category-root arrangement completely. The older eight-root instructions and references in this historical handover are superseded by this explicit 3 November clarification. Do not restore, display, or test for eight homepage root buttons. More top-level buttons may be introduced progressively only when the owner loads sufficient stock and directs it.
+- Preserve PR #168's approved homepage design. All category, subcategory, brand, product, catalogue, policy and checkout subpages must use the same homepage shell: top contact/rating bar, logo/header, part-search/cart controls, desktop navigation and mobile navigation. Shared stylesheet: `assets/storefront-subpage-shell.css`.
+- Applied the shared shell and linked stylesheet to: `category.html`, `products.html`, `product.html`, `preview-category.html`, `preview-products.html`, `preview-product.html`, `preview-planetworld.html`, `preview-audio.html`, `asc-catalogue-preview.html`, `returns-refunds.html`, `terms-and-conditions.html`, `privacy-policy.html`, and `checkout-v2.html`. Updated `scripts/build-cloudflare-pages-public.py` to include the shared stylesheet in the Pages package.
+- Removed the obsolete eight-root list from `preview-category.html`; its fallback root array now uses the same three approved root names and IDs as the active category tree. Static read-back confirmed three active roots in `assets/category-tree.json` and no old eight-root labels in the preview-category route.
+- Audio navigation work on `preview-audio.html`:
+  - Department buttons are Car Audio, Home Entertainment, Band & Live Sound, DJ Equipment, Studio Equipment, Musical Instruments, Marine Audio and Lifestyle.
+  - Removed duplicate `Car Audio & Video` and `Harnesses & Trims` department buttons. Marine Audio remains a separate department; harnesses/trims remain a component group.
+  - Mapped source components to the owner-requested component labels: Speakers & Component Kits; Subwoofers; Amplifiers; Head Units & Media Players; Harnesses, Trims & Fitment; Cameras & Monitors; Signal Processing & Crossovers.
+  - Added logo-based brand buttons for JBL, Denon/Denon DJ and Hertz Audio. JBL and Denon products remain in their source Studio/DJ/music departments; they are not incorrectly forced into Car Audio. A Hertz button is visible under Car Audio, but the separate 89-row Hertz review dataset is not exposed as purchasable products: source/model/image reconciliation remains incomplete and no public product publication is authorized.
+  - Fixed direct audio subcategory deep links so the brand and component filters initialize to “All brands” and “All product types” and return matching products rather than an empty result.
+- Updated `tests/three-category-storefront-structure.test.cjs` to assert the three-root preview, shared shell across all subpages, Pages stylesheet packaging, audio brand-logo sources, component grouping, and direct audio deep-link defaults. These assertions have **not yet been executed** in this session; do not claim the Node suite passed.
+- Static GitHub read-back before this handover append confirmed all 13 listed subpages load the shared shell stylesheet and contain top/header/desktop-nav/mobile-nav markup. It also confirmed the three active category roots and removal of the eight-root array from `preview-category.html`.
+- Exact candidate head before this handover append: `74f2d170aad7b8e6b03d651571e3d84e45395521`. Cloudflare Pages staging build for that head was IN_PROGRESS, deployment/build ID `0c3d090c-1b04-4278-8399-477181c7772c`; recheck the newest exact head after this handover commit because the branch push may start a newer build.
+- GitHub Actions run `41662653422`, job `126009612553`, failed before runner allocation with `steps=null`; no checkout or application test ran. Do not retry this zero-step runner failure.
+- PR #168 remains OPEN / DRAFT / UNMERGED. No production deployment, merge, Axxess upload, DNS/payment change, Supabase write, live product/category/price/stock change, or supplier publication was performed. Production remains HOLD. Hosted desktop/mobile browser QA and owner acceptance remain outstanding.
