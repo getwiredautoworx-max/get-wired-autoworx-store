@@ -2,51 +2,77 @@
   "schema_version": 1,
   "policy": {
     "live_store_mutations": "prohibited_by_controller",
-    "production_deploy": "only_after_explicit_approval_and_passing_qa",
+    "production_deploy": "only_after_explicit_approval_and_passing_exact_head_qa",
     "retry_limit": 2,
     "checkpoint_after_each_run": true,
-    "never_invent_sku_price_or_source_evidence": true
+    "never_invent_sku_price_or_source_evidence": true,
+    "no_payment_work_until_storefront_and_catalogue_acceptance": true,
+    "no_supplier_import_or_publication_without_owner_approval": true
   },
   "tasks": [
     {
-      "id": "catalogue-source-reconciliation",
+      "id": "storefront-restoration-and-preview",
       "priority": 1,
-      "status": "blocked_manual_evidence",
-      "description": "Reconcile buyer-guide SKUs and prices against original source pages; keep uncertain identities and prices on hold.",
-      "next_action": "Verify each provisional route against the original catalogue page image and source heading; save evidence before changing status.",
-      "automatic": false
+      "status": "in_progress_preview_build_pass_browser_qa_blocked",
+      "description": "Restore the approved bright full storefront and verify the latest non-production preview. PR #163 is open/draft; latest head 150ca124b57dc3086b1e04803394d6e8198382c1; Pages preview 95780dea succeeded. Browser QA has not passed.",
+      "next_action": "Diagnose hosted browser-runner allocation; the latest browser QA run 41589465749 failed before steps on code-equivalent head ded8a80 and one supported retry also failed. Run non-production desktop/mobile QA on the current exact head without triggering Workers/production deployment.",
+      "automatic": true
     },
     {
-      "id": "category-review-queue",
+      "id": "storefront-eight-category-navigation",
       "priority": 2,
-      "status": "pending",
-      "description": "Resolve the held and provisional category routing rows in the audit branch; do not route held rows without evidence.",
-      "next_action": "Review 16 provisional candidates and resolve holds 6007-13 and 02-09 using original page context.",
+      "status": "pending_visual_preview_review",
+      "description": "Visually verify all eight approved root categories and their source-approved subcategory navigation in the current hosted preview.",
+      "next_action": "Inspect actual desktop and mobile page behavior, category-to-subcategory-to-product routes, readable SKU contrast, images and horizontal overflow. Static source presence is not visual acceptance.",
       "automatic": false
     },
     {
-      "id": "catalogue-image-gaps",
+      "id": "approved-supplier-catalogue-reconciliation",
       "priority": 3,
-      "status": "needs_review",
-      "description": "Review exact-SKU image sync exceptions and recover only eligible records.",
-      "next_action": "Inspect latest image audit artifact and sync rules before retrying; do not blindly rerun bounded sync.",
+      "status": "blocked_current_source_bytes",
+      "description": "Continue ASC and Audio Connections source reconciliation; preserve original supplier headings/order and private supplier-SKU to GW-SKU crosswalk. The 50-record ASC pilot is review-only; 3,294 active records without source metadata are not approved catalogue content.",
+      "next_action": "Obtain the November ASC Buyer's Guide and 1003-1007 stock-arrival PDF bytes from the 2026-10-28 email, then reconcile the 38 historical September price-scaling SKUs to printed cost, VAT basis, stock and effective date. Keep all candidate files DO NOT IMPORT.",
       "automatic": false
     },
     {
-      "id": "storefront-qa",
+      "id": "planetworld-current-audit-and-price-verification",
       "priority": 4,
-      "status": "scheduled_checks_exist",
-      "description": "Monitor current production QA and storefront smoke workflow results; production remains protected.",
-      "next_action": "Review failed or stale QA runs and repair in audit branch before any release.",
+      "status": "blocked_owner_audit_dispatch_and_supplier_confirmation",
+      "description": "Planetworld current-main read-only audit is not refreshed. Historical 2026-10-25 audit has 18 distinct positive-RRP cost-floor rows at RRP-1%, 19 at RRP-2% (90011904 is 2%-only), plus 19 separate zero-RRP owner-hold rows.",
+      "next_action": "Owner runs Planetworld Workbook Audit (Read Only) from Actions on main once; then verify job summary/logs. Obtain current Planetworld price, VAT, stock and effective-date confirmation for the non-zero-RRP exceptions before any price proposal.",
+      "automatic": false
+    },
+    {
+      "id": "audio-connections-model-sku-image-review",
+      "priority": 5,
+      "status": "in_progress_private_review_only",
+      "description": "Audio Connections authorization is owner-confirmed. 68 supplier rows remain private/inactive/quote-on-request; three Sony Mobile ES official image URLs are staged with permission pending; 15 Sony provenance rows are recorded.",
+      "next_action": "Continue exact model/variant/manufacturer-image checks, private GW-SKU mapping, image permission, current dealer cost/VAT and availability review. Do not activate, link to public products or expose supplier names.",
       "automatic": true
     },
     {
-      "id": "handover-checkpoint",
-      "priority": 5,
-      "status": "required_each_run",
-      "description": "Produce an artifact checkpoint with latest workflow results, unresolved tasks, blockers, and next actions.",
-      "next_action": "Controller creates background-task-status.json and BACKGROUND_TASK_STATUS.md as workflow artifacts.",
-      "automatic": true
+      "id": "category-review-198-rows",
+      "priority": 6,
+      "status": "pending_visual_source_page_review",
+      "description": "198 category-review rows have exact-SKU OCR matches (193 one-page, 5 multiple-page); OCR is triage, not visual approval. Eleven keyword suggestions were suppressed where source headings supported the current leaf.",
+      "next_action": "Visually inspect original source PDF pages and headings for the 198 rows; preserve the eight approved roots and source taxonomy. Never auto-move a product.",
+      "automatic": false
+    },
+    {
+      "id": "protected-october-and-asterisk-pricing",
+      "priority": 7,
+      "status": "verified_preserve_no_write",
+      "description": "Preserve 107/107 October rows with updated source-image verification, live cost matching October printed cost and formula PASS. Preserve nine asterisk-price records as quote-only/inactive.",
+      "next_action": "Do not change the 107 October prices because of old review_status flags. Keep all nine asterisk-price rows inactive with zero price/cost and quote-only handling; only revisit with new exact supplier evidence and separate approval.",
+      "automatic": false
+    },
+    {
+      "id": "exact-head-qa-owner-acceptance-and-release-gate",
+      "priority": 8,
+      "status": "blocked_exact_head_qa_and_owner_acceptance",
+      "description": "Production remains HOLD. Preview build success is not browser acceptance. Payments are out of scope until the storefront and catalogue are accepted.",
+      "next_action": "After priorities 1-7, record the exact SHA, pass desktop/mobile hosted tests, verify the exact preview and obtain owner acceptance. No merge, Axxess/DNS change, live data change or production release without separate explicit approval.",
+      "automatic": false
     }
   ]
 }
