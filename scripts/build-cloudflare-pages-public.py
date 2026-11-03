@@ -18,6 +18,15 @@ PREVIEW_ROOT_FILES = [
     "preview-product.html", "preview-planetworld.html", "asc-catalogue-preview.html",
 ]
 PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json"]
+PREVIEW_SOURCE_PDFS = [
+    ("suppliers/ASC/ASC- Aerials (1).pdf", "assets/asc-catalogue-source/ASC-Aerials.pdf"),
+    ("suppliers/ASC/ASC- Automotive Sensors (1).pdf", "assets/asc-catalogue-source/ASC-Automotive-Sensors.pdf"),
+    ("suppliers/ASC/ASC- Automotive Switches (1).pdf", "assets/asc-catalogue-source/ASC-Automotive-Switches.pdf"),
+    ("suppliers/ASC/ASC- Automotive globes (1).pdf", "assets/asc-catalogue-source/ASC-Automotive-Globes.pdf"),
+    ("suppliers/ASC/ASC- Car Mats (1).pdf", "assets/asc-catalogue-source/ASC-Car-Mats.pdf"),
+    ("suppliers/ASC/ASC- Fuel Pumps (1).pdf", "assets/asc-catalogue-source/ASC-Fuel-Pumps.pdf"),
+]
+PREVIEW_SOURCE_PDF_OUTPUTS = {destination for _, destination in PREVIEW_SOURCE_PDFS}
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
@@ -102,7 +111,7 @@ if include_preview:
     if pilot_count != 50:
         raise SystemExit(f"Expected 50 reviewed catalogue images, found {pilot_count}")
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
-    print(f"CATALOGUE_PREVIEW_ASSETS_PASS images={pilot_count}")
+    print(f"CATALOGUE_PREVIEW_ASSETS_PASS images={pilot_count} source_pdfs={source_pdf_count}")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:
