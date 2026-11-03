@@ -4,7 +4,6 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT = ROOT / "assets" / "category-tree.json"
@@ -48,6 +47,8 @@ HEADERS = {
 }
 
 def fetch_all(path, page_size=1000):
+    import requests
+
     rows, start = [], 0
     while True:
         response = requests.get(
