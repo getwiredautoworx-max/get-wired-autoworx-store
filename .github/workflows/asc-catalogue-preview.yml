@@ -1,5 +1,18 @@
 name: ASC Catalogue Preview Browser QA
 on:
+  push:
+    branches: [fix/restore-approved-storefront-brighter-background-2026-11-03]
+    paths:
+      - 'preview-category.html'
+      - 'preview-products.html'
+      - 'preview-product.html'
+      - 'asc-catalogue-preview.html'
+      - 'assets/asc-catalogue-preview-data.json'
+      - 'assets/asc-catalogue-pilot/**'
+      - 'tests/asc-catalogue-preview.test.cjs'
+      - 'tests/legacy-asc-buyer-guide-guard.test.cjs'
+      - 'tests/test_preview_catalogue_gate.py'
+      - '.github/workflows/asc-catalogue-preview.yml'
   pull_request:
     branches: [main]
     paths:
@@ -29,6 +42,8 @@ jobs:
         run: |
           set -euo pipefail
           node tests/asc-catalogue-preview.test.cjs
+          node tests/legacy-asc-buyer-guide-guard.test.cjs
+          python3 tests/test_preview_catalogue_gate.py
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/asc-preview-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
