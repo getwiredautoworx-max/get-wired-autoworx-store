@@ -20,7 +20,7 @@ Owner-directed rebuild of the new three-root taxonomy. Supplier sources remain p
 
 ### Audio Connections
 - 68 rows are staged from the August 2026 Starsound and September 2026 Sony Mobile ES dealer PDFs.
-- 14 Sony Mobile ES models have exact official manufacturer model-page evidence in the current audit: XM-1ES, XM-4ES, XM-5ES, XM-6ES, XM-8ES, XS-160ES, XS-162ES, XS-163ES, XS-680ES, XS-692ES, XS-W104ES, XS-W122ES, XS-W124ES and one additional exact-page record confirmed by the source audit. (Use `sony-mobile-es-official-model-audit.csv` as the model-level source of truth.)
+- 14 Sony Mobile ES models have exact official manufacturer model-page evidence in the current audit: XM-1ES, XM-4ES, XM-5ES, XM-6ES, XM-8ES, XS-160ES, XS-162ES, XS-163ES, XS-680ES, XS-692ES, XS-W104ES, XS-W122ES, XS-W124ES  (Use `sony-mobile-es-official-model-audit.csv` as the model-level source of truth.)
 - The corresponding source images are low-resolution PDF images, reused generic amplifier images, or reused impedance-variant images. None is approved as the public product image. Exact official model pages are evidence for identity/specifications, not proof that an image binary has been captured/approved.
 - Supplier availability is not stated for the in-scope Sony rows; one model (XS-690ES) is explicitly marked SOLD OUT in the source PDF. Availability must be confirmed with Audio Connections before publication.
 - The dealer PDF labels Price Ex and RRP, but VAT basis is not stated. Do not calculate/publicize selling prices until the VAT basis and applicable pricing policy are confirmed.
