@@ -357,7 +357,9 @@
       "description": "Two-way 165 mm (6.5-inch) component kit comprising an AP 1 tweeter, AP 6.5 woofer and crossover. Audison lists 100 W continuous / 300 W peak handling at 4 ohms; the compact crossover includes a tweeter-level selector for different installation positions.",
       "modelNumber": "69051050",
       "manufacturerPage": "https://audison.com/product/apk-165/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-165_2022_10_05_JPG-72.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-6BAAF481",
@@ -366,7 +368,9 @@
       "description": "Two-way 165 mm (6.5-inch) component kit comprising an AP 1P tweeter, AP 6.5P woofer and separate compact crossovers. Audison lists 115 W continuous / 345 W peak handling at 4 ohms, with AIF mounting faceplates and installation options for OEM locations.",
       "modelNumber": "69051055",
       "manufacturerPage": "https://audison.com/product/apk-165p/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/07/AUDISON_APK-165P.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-3AD21309",
@@ -375,7 +379,9 @@
       "description": "Two-way 165 mm (6.5-inch) component kit with AP 1 tweeter, AP 6.5 Ohm2 woofer and dedicated tweeter/woofer crossovers. The 2-ohm kit is rated at 100 W continuous / 300 W peak and is designed for compatible low-impedance amplifier configurations.",
       "modelNumber": "69051060",
       "manufacturerPage": "https://audison.com/product/apk-165-2-ohm/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/07/AUDISON_APK-165-2-ohm.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-B44A3E68",
@@ -384,7 +390,9 @@
       "description": "BMW-specific 4-inch two-way component kit with a midrange driver, Tetolon-dome tweeter and crossover. Audison lists 100 W peak / 50 W continuous handling at 4 ohms; the water-repellent pressed-paper cone and Plug-and-Play connectors are designed for the specified BMW/MINI factory locations. Confirm exact vehicle and basket fitment before sale.",
       "modelNumber": "69051070",
       "manufacturerPage": "https://audison.com/product/apbmw-k4e/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4E_emo.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-68BEEE9F",
@@ -393,7 +401,9 @@
       "description": "BMW/MINI-specific 4-inch two-way component kit with a pressed-paper midrange, Tetolon-dome tweeter and Plug-and-Play crossover connections. Audison lists 100 W peak / 50 W continuous handling at 4 ohms. Basket and vehicle fitment must be checked against the exact BMW/MINI model before ordering.",
       "modelNumber": "69051075",
       "manufacturerPage": "https://audison.com/product/apbmw-k4m/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/APBMW-K4M_emo.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-23039F26",
@@ -402,7 +412,9 @@
       "description": "6x9-inch two-way component kit with AP 1 tweeter, AP 690 woofer and dedicated crossover. Audison lists 100 W continuous / 300 W peak handling at 4 ohms. The elliptical woofer and compact tweeter crossover are intended for vehicle doors designed for 6x9-inch speakers.",
       "modelNumber": "69051090",
       "manufacturerPage": "https://audison.com/product/apk-690/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2026/06/Audison_APK-690.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-9BE74766",
@@ -411,7 +423,9 @@
       "description": "Three-way 4-ohm component kit comprising AP 1 tweeter, AP 4 midrange, AP 6.5 woofer and dedicated crossovers. Audison lists 125 W continuous / 375 W peak handling. Separate compact crossovers are designed to simplify OEM speaker replacement and avoid routing extra cables through the doors.",
       "modelNumber": "69052020",
       "manufacturerPage": "https://audison.com/product/apk-163/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2023/03/AUDISON_APK-163_SISTEMA_prova-01-2.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-747C1CAB",
@@ -420,7 +434,9 @@
       "description": "4-inch (100 mm) two-way coaxial speaker with a concentric tweeter for a single acoustic emission point. Audison lists 40 W continuous / 120 W peak handling at 4 ohms, 91 dB sensitivity and an 80 Hz–23 kHz response; the shallow basket is intended to support OEM-style installations.",
       "modelNumber": "69070030",
       "manufacturerPage": "https://audison.com/product/apx-4/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389783635_APX-4_EMO_def_800_650.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-D50EC36C",
@@ -429,7 +445,9 @@
       "description": "5-inch (130 mm) two-way coaxial speaker with a concentric tweeter and shallow Triple Wave surround. Audison lists 50 W continuous / 150 W peak handling at 4 ohms, 93 dB sensitivity and a 70 Hz–23 kHz response.",
       "modelNumber": "69070040",
       "manufacturerPage": "https://audison.com/product/apx-5/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389783818_APX-5_EMO_def_800_550-1.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-083D24ED",
@@ -438,7 +456,9 @@
       "description": "6.5-inch (165 mm) two-way coaxial speaker with a concentric tweeter. Audison lists 70 W continuous / 210 W peak handling at 4 ohms, 94 dB tweeter sensitivity and a 60 Hz–23 kHz response; the shallow basket and low-profile design support OEM integration.",
       "modelNumber": "69070050",
       "manufacturerPage": "https://audison.com/product/apx-6-5/",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://static.audison.com/media/2022/10/1389785022_APX-6_5_800_700.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-1B6B540E",
