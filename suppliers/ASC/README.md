@@ -108,3 +108,8 @@ The six original post-reset PDFs remain unchanged in `suppliers/ASC/`. The non-p
 Preview-only copies are placed under `assets/asc-catalogue-source/` in the opt-in Pages preview package. The standard customer/public package explicitly excludes the ASC preview route and all six PDF copies. The source originals remain in `suppliers/ASC/`; no supplier files are renamed or altered. Car Mats remains under Automotive Accessories → Car Care & Accessories; Aerials remains under Car Audio & Entertainment; Sensors, Switches, Globes and Fuel Pumps remain under Auto Electrical Spares.
 
 The package workflow now checks all six PDF copies and runs the ASC catalogue structural test after building the opt-in preview package. Until the workflow executes successfully and a new hosted preview is confirmed against its exact commit, do not describe this correction as deployed or visually verified.
+
+
+## Updated three-category storefront mapping — 2026-11-03
+
+The current owner-approved root buttons are **Car Audio / Home Entertainment / Lifestyle**, **Auto Electrical Parts & Spares**, and **Car Care & Accessories**. ASC preview catalogues are nested under the corresponding new subcategory/root: Aerials under Car Audio; Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps under Auto Electrical Parts & Spares; Car Mats under Car Care & Accessories. This updates only the noindex review navigation and source mapping; it does not alter live category assignments or product rows.
