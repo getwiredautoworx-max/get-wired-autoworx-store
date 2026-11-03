@@ -623,7 +623,9 @@
       "description": "12-inch square-cone Solo-Baric L7S subwoofer with dual 2-ohm voice coils. Kicker recommends 750 W RMS amplifier power and lists 1,500 W peak handling. Features include a polypropylene cone, SoloKon 360-degree back bracing, corner ribs, a cast-aluminium basket and perimeter venting.",
       "modelNumber": "44L7S122",
       "manufacturerPage": "https://shop.kicker.com/solo-baric-l7s-12-2-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/solobaricl7s/solo_baric_l7s_12_2_ohm_subwoofer/images/480x360-front.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-B435B3F2",
@@ -684,7 +686,9 @@
       "description": "12-inch CompR dual-voice-coil subwoofer with a 4-ohm configuration. Kicker recommends 500 W RMS amplifier power and lists 1,000 W peak handling. Designed for sealed or ported enclosures, with an advanced suspension and heat-management system.",
       "modelNumber": "48CWR124",
       "manufacturerPage": "https://shop.kicker.com/comp-r-12-4-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/compr21/p48_cwr124/images/480x360-front.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-4E3751C1",
@@ -693,7 +697,9 @@
       "description": "10-inch shallow-mount CompRT subwoofer with dual 2-ohm voice coils. Kicker recommends 400 W RMS amplifier power and lists 800 W peak handling. The low-profile design is intended for installations with limited mounting depth.",
       "modelNumber": "48CWRT102",
       "manufacturerPage": "https://shop.kicker.com/comp-rt-10-2-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comprt21/p48_cwrt102/images/480x360-front.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-4493A427",
@@ -702,7 +708,9 @@
       "description": "10-inch shallow-mount CompRT subwoofer with dual 4-ohm voice coils. Kicker recommends 400 W RMS amplifier power and lists 800 W peak handling. The low-profile design is intended for installations with limited mounting depth.",
       "modelNumber": "48CWRT104",
       "manufacturerPage": "https://shop.kicker.com/comp-rt-10-4-ohm-subwoofer",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.kicker.com/app/products/caraudio/subs/comprt21/p48_cwrt104/images/480x360-front.jpg",
+      "imageStatus": "official_manufacturer_image_verified_review_only"
     },
     {
       "gwSku": "GW-8C685D65",
