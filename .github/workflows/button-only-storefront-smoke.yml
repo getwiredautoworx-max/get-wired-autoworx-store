@@ -60,13 +60,13 @@ jobs:
                 if ((await roots.nth(0).getAttribute('aria-expanded')) !== 'false' || (await roots.nth(1).getAttribute('aria-expanded')) !== 'true') throw new Error(width+'px: accordion state did not update correctly');
                 await roots.nth(0).click();
                 await page.locator('button.child[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
-                await page.waitForURL(/category\\.html\\?id=e3d19d20-fb46-426c-9f64-221d863add0b/);
+                await page.waitForURL(/category\.html\?id=e3d19d20-fb46-426c-9f64-221d863add0b/);
                 const componentLabels = await page.locator('.card h2').allTextContents();
                 for (const label of ['Speakers & Component Kits','Subwoofers','Amplifiers']) {
                   if (!componentLabels.includes(label)) throw new Error(width+'px: Car Audio subcategory missing '+label);
                 }
                 await page.locator('a.card').filter({hasText:'Amplifiers'}).click();
-                await page.waitForURL(/products\\.html\\?category=1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca/);
+                await page.waitForURL(/products\.html\?category=1df1ff82-7eff-4d8c-8f8c-0f18f72a56ca/);
                 if (errors.length) throw new Error(width+'px: browser errors '+errors.join('; '));
                 console.log('BUTTON_ONLY_PASS '+width+'px: '+rootCount+' approved main buttons, '+childCount+' subcategory buttons, homepage→Car Audio→component→product listing navigation works, no product/pricing/search UI, no horizontal overflow');
                 await page.close();
