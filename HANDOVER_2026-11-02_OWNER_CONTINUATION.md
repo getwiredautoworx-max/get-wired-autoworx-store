@@ -942,3 +942,13 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Added regression assertions in `tests/three-category-storefront-structure.test.cjs` for both the fallback and the three-root visibility allowlist.
 - Changes committed on the existing PR #168 draft branch. Static source inspection confirms the new fallback, IDs and regression assertions are present. **A fresh Pages preview deployment and browser-level click/render verification are still required; do not claim the live category tiles are fixed until that deployed preview is checked.**
 - Production remains HOLD; no merge, production deployment, Supabase writes, live stock/pricing changes, or checkout activation.
+
+
+## 2026-11-03 — CATEGORY RENDERING ORDER HOTFIX
+- Owner confirmed categories still do not load after the earlier UUID allowlist and fallback changes. Previous claim of resolution was premature; the owner-visible preview had not been verified.
+- Further source diagnosis found the storefront still awaited the remote Supabase category query before calling renderCats(). The fallback only ran after a request rejection; a stalled request could therefore leave the category grid blank indefinitely.
+- Changed index-new.html to load and validate assets/category-tree.json first, assign the approved hierarchy and call renderCats() immediately, before attempting a remote refresh. The remote refresh can replace the local data only if all three approved root IDs are returned. It is bounded to 7 seconds and now passes an AbortSignal into apiAll, so a stalled remote fetch is actually cancelled rather than merely timing out a timer.
+- Added regression assertions requiring local-first render order and cancellation of the remote fetch on timeout. Previous cleanup allowlist fix and category-tree checks remain.
+- Current fix commits on PR #168 draft branch: storefront c9193b4; regression test 61c1766; this handover update follows. The preview must be rebuilt from the latest commit and category tiles checked in a real browser before calling this resolved.
+- GitHub Actions remains failing before runner allocation; this blocks automated Node/Playwright runs, not the Cloudflare Pages Git integration. The last known Pages comment was still building an earlier commit; a successful deployment for this newest commit has not yet been confirmed. Do not send the owner an old immutable preview as proof of the new fix.
+- Production HOLD; no merge, production deploy, Supabase writes, live stock/pricing changes or checkout activation.
