@@ -21,6 +21,7 @@ on:
       - "terms-and-conditions.html"
       - "privacy-policy.html"
       - "assets/**"
+      - "owner-preview.html"
       - "preview-store.html"
       - "preview-category.html"
       - "preview-products.html"
@@ -48,7 +49,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for page in preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html asc-catalogue-preview.html; do
+          for page in owner-preview.html preview-store.html preview-category.html preview-products.html preview-product.html preview-planetworld.html preview-audio.html asc-catalogue-preview.html; do
             test ! -e "pages-public/$page"
           done
           test ! -d pages-public/assets/asc-catalogue-source
