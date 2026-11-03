@@ -1299,3 +1299,8 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - `SUPPLIER_INTEGRATION_STANDARD.md` is the permanent Get Wired AutoWorx method for every future supplier and category. It defines the source-to-offer-ledger process, exact identity and variant rules, approved three-root/shared-shell navigation, brand/component layout, GW SKU collision handling, exact images/usage rights, descriptions/spec conflicts, VAT/landed-margin pricing, availability, preview QA and release gates.
 - Added `SUPPLIER_PILOT_TEMPLATE.md` as the reusable per-supplier/per-category working template. Copy it for every future pilot and keep the completed copy with its audit and handover.
 - Planetworld + Audio Connections remain the first proving pilot. ASC and Electro-city do not start until the owner accepts this pilot result and the method.
+
+
+### Reference Audio brand identity — 2026-11-03
+- Official Reference Audio brand site confirms the brand name for RABTR03, RA AWG4 and RA SUPER RAST20. Expanded the two “RA” source abbreviations to Reference Audio in the internal preview/crosswalk.
+- No exact manufacturer product pages were found; brand homepage is recorded as brand-only evidence, not a product reference. All three remain held for exact product/image confirmation.
