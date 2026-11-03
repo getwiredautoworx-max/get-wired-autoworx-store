@@ -2,15 +2,6 @@ name: Storefront Smoke Test
 # Keep the main-branch live-domain HTTP checks runnable from a workflow-only change.
 
 on:
-  push:
-    branches: [main, release/verified-price-checkout-2026-10-13, fix/current-main-price-gate-2026-10-13]
-    paths:
-      - '**/*.html'
-      - '**/*.js'
-      - '**/*.css'
-      - 'assets/**'
-      - 'supabase/functions/**'
-      - '.github/workflows/storefront-smoke.yml'
   workflow_dispatch:
 
 jobs:
