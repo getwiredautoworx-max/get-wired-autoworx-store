@@ -10,7 +10,7 @@
   "live_product_matches": 0,
   "candidate_skus_live_collisions": 0,
   "existing_product_ids": "NONE — all candidate product_id values intentionally blank",
-  "supplier_connections": "2 registered: Planetworld active (dealer onboarding confirmed); Audio Connections inactive (relationship not confirmed)",
+  "supplier_connections": "2 registered: Planetworld active (dealer onboarding confirmed); Audio Connections inactive staging record (owner-confirmed authorised dealer; separate activation gate).",
   "publication_status": "ALL ROWS NOT PUBLISHED",
   "method": "FNV-1a 32-bit deterministic key over supplier|brand|model; GW- plus 8 uppercase hex characters; collision-checked against current public.products.public_sku. Candidate only; no product rows inserted.",
   "supplier_ids": {
@@ -24,10 +24,10 @@
   "public_descriptions": 0,
   "public_image_urls": 0,
   "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only",
-  "official_image_source_urls_found": 6,
+  "official_image_source_urls_found": 7,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "Four Alpine original high-resolution official image URLs and two Sony official image URLs are recorded in the crosswalk. R2-W12D4 uses a shared family image that does not distinguish the impedance variant. All assets remain not downloaded/not approved; retailer/PDF images are not approved.",
+  "image_notes": "Four Alpine official image source URLs and three Sony official image URLs are staged as review candidates. None of these image assets has been downloaded or approved for customer publication; exact variant matching and usage/permission review remain required.",
   "supplier_connection_statuses": {
     "planetworld": {
       "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
@@ -38,7 +38,12 @@
     "audio_connections": {
       "id": "806ef592-6f25-5116-bee6-335e26f8b609",
       "active": false,
-      "reason": "No dealer-onboarding confirmation found in connected email"
+      "reason": "Owner-confirmed authorised dealer status (27 October 2026); database connection remains intentionally inactive pending separate activation approval."
     }
-  }
+  },
+  "owner_clarification_checked_at": "2026-11-03",
+  "owner_clarifications": [
+    "Audio Connections dealer authorisation is owner-confirmed; do not request further dealer-status proof. Supplier activation remains a separate release approval.",
+    "Sony printed RRP is VAT-inclusive as owner-confirmed; dealer price is VAT-exclusive. The review proposal is printed RRP × 0.98, with no additional VAT multiplier."
+  ]
 }
