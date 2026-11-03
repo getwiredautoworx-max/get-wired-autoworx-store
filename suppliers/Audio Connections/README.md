@@ -10,7 +10,7 @@
 - `audio-connections-preview.html` is an owner-review-only, noindex page. It shows no prices, stock, Get Wired SKUs, cart or checkout.
 - Dealer Price Ex and RRP values are preserved privately in `catalogue-review/audio-connections/sony-mobile-es-price-list-sept-2026.csv`; they are not in the preview data or customer package.
 - Image permission remains pending owner confirmation. No record was activated, linked to a public product or published.
-- The original PDF remains a Library source file; this note and the extracted preview assets do not claim that the complete Audio Connections catalogue has been uploaded to the repository.
+- The original PDF is committed at `suppliers/Audio Connections/Sony Mobile ES Dealer Price List Sept 26.pdf`. It is a dealer price list, not the complete Audio Connections product catalogue; additional catalogue source files are still required.
 
 ## Outstanding
 - Verify image rights and obtain distinct manufacturer images where the source uses a shared family image.
