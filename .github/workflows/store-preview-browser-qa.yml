@@ -1,16 +1,7 @@
 name: Populated Store Preview Browser QA
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - 'preview-store.html'
-      - 'preview-category.html'
-      - 'preview-products.html'
-      - 'preview-product.html'
-      - 'preview-planetworld.html'
-      - 'assets/**'
-      - '.github/workflows/store-preview-browser-qa.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
