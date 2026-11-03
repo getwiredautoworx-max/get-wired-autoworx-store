@@ -821,3 +821,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Exact-source validation against the candidate branch: 27 category records; 3 approved roots; 0 broken parent references; Car Audio has all 7 intended component subcategories; Home Entertainment correctly identified as a leaf; leaf-route redirect is present; product page queries only active public product rows. This validates hierarchy and route conditions, not live browser behavior.
 - Critical data limitation: public product table remains empty by the owner's permanent purge instruction. The 770 supplier rows are private review staging only. Thus the product page will truthfully show 0 products until supplier items are validated and explicitly approved for public preview. Do not fabricate inventory or publish unverified prices/images/availability to make the count nonzero.
 - PR #169 head has advanced to include the leaf-category routing fix; still draft/open/unmerged/unpublished. Next required verification is an actual preview/browser click-through on mobile and desktop. Do not merge/deploy to production. Owner asked to move to other tasks; once this navigation behavior is accepted, continue with catalogue product validation/public-preview preparation rather than claiming products are loaded.
+
+
+## 2026-11-03 13:52 SAST — PREVIEW DEPLOYMENT AVAILABLE
+- Cloudflare Pages PR comment confirms deployment SUCCESS for exact candidate head `f72316d7543a7d57c24900178c193657a4825c22`.
+- Exact preview URL: https://44959445.get-wired-autoworx-store.pages.dev
+- Branch preview URL: https://fix-show-empty-subcategories.get-wired-autoworx-store.pages.dev
+- This is a non-production Pages preview. It is not a production deployment and does not authorize merge to main.
+- Hosted browser click-through is the remaining verification step. GitHub Actions PR checks still report failures (Public SKU Exposure Audit, Storefront Smoke Test, Populated Store Preview Browser QA, Cloudflare Pages Public Package QA); do not mark them passed. Public catalogue remains empty by approved purge, so the preview should show zero products on product-list pages until reviewed supplier rows are approved and published.
