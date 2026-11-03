@@ -932,3 +932,13 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Current branch head advanced afterward to `18b9f42517e40458802abfa5049f9174a33caa43` for a handover-only commit. Cloudflare Pages reports a new build in progress for that head. The successful immutable preview above remains tied to the complete storefront-code commit `146d7b3`.
 - Latest read-only static verification passed **15/15**. GitHub Actions on head `18b9f42`: Pages package QA run `41624897756` and runner recovery run `41624897759` both failed before runner assignment; jobs `125879662281` and `125879661389` have no steps. No Node/Playwright test execution is claimed.
 - The browser/runtime reader could not fetch the Pages host from this session. The preview is deployed and ready for owner visual review, but automated browser QA and owner acceptance remain outstanding. Keep PR #168 draft/unmerged and production HOLD.
+
+
+## 2026-11-03 — CATEGORY VISIBILITY HOTFIX
+- Owner reported that the category tiles were not loading in the preview/storefront.
+- Root cause found in `assets/category-cleanup.js`: its allowlist still contained the eight superseded root-category UUIDs. It hid any root tile with no active products unless the tile ID appeared in that stale list. The three newly approved root categories were therefore eligible to be hidden even though their hierarchy records existed.
+- Corrected the cleanup allowlist to the three approved root IDs: Car Audio / Home Entertainment / Lifestyle; Auto Electrical Parts & Spares; Car Care & Accessories. These roots now remain visible even while their product counts are zero.
+- Hardened the `index-new.html` category loader: it now validates that Supabase returns all three approved roots. An empty/incomplete result falls back to the approved `assets/category-tree.json`; a failed API request also uses that same validated snapshot.
+- Added regression assertions in `tests/three-category-storefront-structure.test.cjs` for both the fallback and the three-root visibility allowlist.
+- Changes committed on the existing PR #168 draft branch. Static source inspection confirms the new fallback, IDs and regression assertions are present. **A fresh Pages preview deployment and browser-level click/render verification are still required; do not claim the live category tiles are fixed until that deployed preview is checked.**
+- Production remains HOLD; no merge, production deployment, Supabase writes, live stock/pricing changes, or checkout activation.
