@@ -16,10 +16,10 @@ jobs:
     name: Deploy preview routes to non-production Pages branch
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current restored main storefront source
+      - name: Checkout exact non-production preview candidate
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.sha }}
       - name: Set up Python for public-only Pages package
         uses: actions/setup-python@v5
         with:
