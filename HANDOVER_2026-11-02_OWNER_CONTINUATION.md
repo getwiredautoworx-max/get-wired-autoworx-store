@@ -790,3 +790,13 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 - New branch head after these changes: `840b199a5305a386dd69a4a0952e464c7e7ca59a`. PR #165 reports head at this SHA.
 - Remaining merge-readiness work: finish static diff/security/build-gating review and verify GitHub status checks/merge state against current main. Do not call the candidate merge-ready merely because GitHub reports `mergeable=true`; latest API state must be rechecked.
 - Do not run the deferred functional/browser test stage before the owner adds banking details. Do not deploy or merge until the owner explicitly accepts the preview candidate and authorizes that merge. Production remains HOLD.
+
+
+## 2026-11-03 — NON-PRODUCTION BRANCH PREVIEW DEPLOYED
+- Cloudflare Pages branch preview deployment completed successfully for app commit `725752d1f88c488632d4c9c43505d2a80bee2df5`.
+- Branch preview URL: https://integration-asc-catalogue-hi.get-wired-autoworx-store.pages.dev
+- The repository root `index.html` redirects to `store.html`; `store.html` embeds `index-new.html`, which contains the corrected ASC navigation. This establishes the intended entry path by static source inspection; no browser/visual click-through has been performed.
+- PR #165 description now records the preview URL and distinguishes successful deployment from unperformed browser verification. PR remains draft, open and unmerged.
+- GitHub Actions checks on the same commit failed before any steps executed: API job records show runner_id=0 and empty steps. Do not mislabel these as code-level test failures or passing checks. The committed structural test is still unexecuted; functional/browser tests remain deferred by owner instruction.
+- Current deployment is a branch preview only. No merge into main, production deployment, live database/product/category/price/stock changes or supplier activation occurred.
+- Next: owner can review the non-production branch preview. Continue non-browser static review in parallel if no owner input is needed. Only merge into the preview/main branch after explicit owner acceptance; production remains separately HOLD.
