@@ -826,3 +826,10 @@ Do not merge PR #155 or apply its migration merely because its 14 unit tests pas
 ### 2026-11-03 QA retry outcome
 - Retried only failed jobs in the non-production Cloudflare Pages Public Package QA run 41601183778. The retry again completed as failure before any steps; latest job ID 125800674446 has no step list/log URL. No source-level test result was produced. Do not retry this runner-startup failure repeatedly without evidence GitHub runners have recovered.
 - The branch remains isolated and 22 commits ahead / 0 behind main at the last compare. PR #165 remains draft/open/unmerged. No deployment, merge or production action occurred.
+
+
+### 2026-11-03 final branch readback
+- Read-back confirms PR #165 is still OPEN / DRAFT / UNMERGED, head 6f1615fdd5ac47de6470b42f58d96d91590f863c, base main at 8c6ff927957706b5b7598bc24779b54423ad15c5.
+- GitHub compare confirms the integration branch is 26 commits ahead and 0 behind main. No stale-base rebase is currently required.
+- Data read-back confirms all six catalogue-to-PDF mappings and section counts (6, 11, 16, 10, 14, 18); route read-back confirms the full-catalogue PDF link is present.
+- The package QA attempt ran against code commit 63f0a7286bad9ce3e7a3bee260f818e26dc552b5, after the builder, route, data, test and workflow changes. Its runner and targeted retry both failed before steps. Subsequent commits were documentation-only (supplier README and handover). No successful build/test/deployment/browser verification is available yet.
