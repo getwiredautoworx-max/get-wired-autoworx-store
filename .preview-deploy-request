@@ -121,3 +121,7 @@ The preview product listing/detail pages now use the shared storefront shell whi
 
 Hornet source reconciliation regression refresh — 2026-11-04.
 Updated the exact-model regression row to assert the current official Starsound manufacturer table and supplier price-list discrepancy classification, without inventing the prior retailer wattage. Re-run full exact-head gates and deploy only if all pass. Production HOLD.
+
+
+Public package route allowlist correction — 2026-11-04.
+The public package workflow now expects the seven approved preview routes and correctly excludes the deferred ASC route, matching the builder and catalogue scope. Re-run package and all exact-head staging gates. Production HOLD.
