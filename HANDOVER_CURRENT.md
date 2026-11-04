@@ -3163,3 +3163,15 @@ Read-only audit of the sanitized JSON used by PR #139:
 6. Update this file again with the new commit SHA, exact run IDs/conclusions, hosted preview URL and any remaining blockers.
 
 **No production action was taken during this continuation.** No PR was merged, no live Supabase/catalogue/price/stock/category data was changed, no supplier activation occurred, no banking/payment setting was changed, and no Axxess/DNS/production deployment was performed.
+
+
+## 2026-11-04 18:58 SAST — FOLLOW-UP REGRESSION GUARD / WORKFLOW STATUS
+
+- The permanent build method and 18:52 checkpoint above were appended to this same handover on the existing PR #176 branch (documentation commit `a5ae11cddb20f290c72f3e0cde21f32d02fc9f4a`).
+- The stale audio-parent regression was already corrected in source-test commit `3be5c4eea139c280690dd38015cfa9d9766e8820` (two additions/two deletions; it changes the expected Audio parent from `roots[0]` to `roots[2]`). An explicit assertion that exactly eight approved top-level roots exist was then added in commit `ae43573e6fb8d0b922a58b7f3237e204957a6a88`.
+- Latest PR #176 head at this checkpoint: `ae43573e6fb8d0b922a58b7f3237e204957a6a88`; base remains `main` at `8a0695a6d746b886be865ffa950a11011b054e2f`; GitHub reports OPEN / DRAFT / UNMERGED / mergeable=false.
+- Rechecked GitHub Actions association and combined commit status for `ae43573e6fb8d0b922a58b7f3237e204957a6a88`: no PR-triggered workflow runs or status checks are currently returned. Therefore the latest test correction and explicit eight-root guard have **not yet been validated by an exact-head CI run**. Do not infer a pass from the prior `6d84fdf` failure or from static source read-back.
+- The previous failure diagnosis remains: runs `41862070510` and `41862070627` on `6d84fdf` failed because the test expected the old three-root parent position. The source category tree on that candidate already contained eight approved roots and placed Audio departments under the third root, Car Audio & Entertainment. The corrected test now models that structure, but must be rerun.
+- No current exact-head deployment marker or hosted browser QA has been verified for `ae43573`. The older stable preview alias is not proof of this latest branch head. Keep owner-facing readiness status **NOT YET VERIFIED** until exact-head tests and staging deployment/hosted QA are obtained.
+- Immediate blocker/action: obtain a PR workflow run for latest head `ae43573` (or run the same test/build/browser suite in a trusted CI environment), inspect all results, then deploy the exact tested SHA to isolated Cloudflare Pages and verify the build marker + hosted desktop/mobile customer journey. Do not merge while mergeability is false or owner acceptance is outstanding.
+- No production, Axxess, DNS, Supabase, live catalogue/price/stock/category, supplier activation or payment/banking action was performed.
