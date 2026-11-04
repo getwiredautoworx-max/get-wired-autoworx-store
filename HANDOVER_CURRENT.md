@@ -90,3 +90,18 @@
 - New commits: homepage navigation 20fcee970d9ca99f6ae5f4c94c50ff0d59dc0998; category leaf routes 2a1498bbdc22200383afd15b82eb7375634c9b91; audio filtered-view behavior 0ab507454705934bce18722a71e93eb355ea5d94; regression coverage a9457dfb16f16bfadaeb25c160923c15c401a151.
 - Aerials has its own route/button but no current Planetworld/Audio Connections products have been asserted for it; ASC aerial source records remain deferred to the separate fresh-upload task. The 47 Planetworld Harnesses & Trims rows are the current product set for the Trims & Harnesses route.
 - Still outstanding: run the full regression suite and browser/device checks on the exact final head, reconcile remaining Planetworld and Audio Connections records/images/pricing/identity, verify combined catalogue behavior and hosted preview. No Actions or Cloudflare run was triggered due to resource restrictions.
+
+
+## 2026-11-04 — Reconciliation of Car Audio Accessories routes and verification state
+
+- Re-read the current PR #168 head before this documentation update: `f43a51a284b8f901765063dea837dd904b273c08`.
+- The route implementation is present in source; the previous handover statement that route wiring still needed implementation was stale and incorrect.
+- `assets/category-tree.json` defines Accessories beneath Car Audio, with Aerials and Trims & Harnesses as separate child nodes.
+- `category.html` maps the Aerials UUID to its own Car Audio search route and the Trims & Harnesses UUID to its own Car Audio component route.
+- `preview-audio.html` initializes department/brand/component/search from URL parameters. A selected component is filtered while brand remains “All brands”; the dedicated Harnesses & Trims source collection resolves to 47 Planetworld rows. Audio Connections installation kits are explicitly excluded from this dedicated group.
+- `tests/three-category-storefront-structure.test.cjs` contains assertions for the Accessories hierarchy, distinct child routes, product visibility with All brands, the 47-row dedicated fitment group, combined supplier catalogue handling and duplicate Car Audio button suppression.
+- Current evidence is source inspection and test assertions only. No exact-head Node test execution or interactive desktop/mobile browser run has been confirmed for head `f43a51a284b8f901765063dea837dd904b273c08`. Therefore do not say the issue is fully verified or owner-accepted.
+- GitHub Actions public-runner eligibility was incorrectly treated as blocked by the exhausted private-repository minutes allowance. Public repository workflows can use eligible GitHub-hosted runners; check workflow triggers and exact run status rather than assuming minutes are exhausted. The connected GitHub actions tools expose run inspection and retry, but no workflow-dispatch action.
+- The Actions run lookup for this exact SHA returned no pull-request-triggered workflow runs; this is not proof that no push-triggered run exists. Inspect the Actions run list/status and use a path-matching PR update or owner UI dispatch where the workflow is manual-only. Do not use Cloudflare deployment workflows without the required explicit approval/credentials.
+- Aerials has a route but no Planetworld/Audio Connections records; ASC source records remain deferred. This is an expected empty state for the current supplier pilot, not permission to import ASC.
+- PR #168 remains draft/unmerged; production remains HOLD. No live stock, price, payment, DNS, Axxess or Supabase changes.
