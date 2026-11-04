@@ -156,3 +156,18 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Audio Connections: 66 retained records, all preview-only; 4 currently have image URLs, 53 lack proposed GW SKUs, and 3 lack indicative prices. Complete exact product/image evidence and GW SKU reconciliation before calling the supplier pilot complete.
 - Do not start ASC/Electro-city until the Planetworld + Audio Connections pilot is owner-accepted. Aerials remains an empty route until the separately authorised ASC source upload.
 - No live stock/price activation, banking/payment, checkout, DNS, Axxess upload, production deployment, or Supabase production writes. PR #168 remains draft/unmerged; production remains HOLD.
+
+## 2026-11-04 — Route-level navigation and product-filter verification
+
+- Current working PR: #168 (draft, unmerged); working branch: `integration/three-category-catalogue-preview-final-2026-11-03`.
+- Exact code/test head at this checkpoint: `776c840bb79a4833e0859d493b7463e6a34c1e73`.
+- Implemented customer navigation hierarchy: three approved roots → Car Audio & Video → Accessories → separate Aerials and Trims & Harnesses routes. Aerials opens its own filtered empty state while ASC remains deferred; Trims & Harnesses opens its own component listing.
+- Fixed expanded homepage category layout so stretched sibling root cards no longer cover expanded subcategory tap targets.
+- Product filtering is exercised through real browser interaction: department → brand → component. Kicker → Subwoofers results are checked to contain Kicker products only. Owner preview additionally checks Sony → Amplifiers, and that department/brand landing pages hide product stock until a component is selected.
+- Browser QA evidence:
+  - Owner Store Preview Browser QA run **41804164656** — SUCCESS on exact head `776c840bb79a4833e0859d493b7463e6a34c1e73`. Checks approved roots, category navigation, Sony amplifier filter, 47 Trims & Harnesses products, Aerials route, checkout hidden, Supabase writes blocked, and desktop overflow.
+  - Full Current Branch Runner / public Pages package regression run **41804164474** — SUCCESS on exact head `776c840bb79a4833e0859d493b7463e6a34c1e73`. Build included seven preview routes, 4,101 WebP assets, and excluded supplier/internal review files; storefront structure, audio catalogue tests and public SKU exposure audit all passed.
+  - Car Audio Accessories Route Browser QA run **41804074552** — SUCCESS on head `8a0d55f87657303455d394045fcae3fc1a77ff0b`; checked the three roots, separate Accessories child buttons, 47 Trims & Harnesses rows, Aerials empty filtered route, Kicker → Subwoofers brand/component filter and no JavaScript errors. Subsequent source change was the homepage expanded-card layout fix; the exact latest-head Owner Preview browser test then passed the category interaction flow.
+- Catalogue invariants preserved: Planetworld source 3,317 rows / 702 Car Audio division rows; Audio Connections 66 preview rows; two source-ambiguous Planetworld items remain held; Marine Audio remains separate; customer catalogue remains supplier-neutral. ASC catalogue data remains deferred.
+- Remaining acceptance: no exact-head Cloudflare Pages hosted preview URL has been deployed from this PR branch. Existing deploy workflows either check out `main` or deploy `main`; do not run them for this candidate. A dedicated non-production branch deployment must use this exact candidate head and the public-only package. Owner real-phone acceptance remains outstanding.
+- Release boundary unchanged: PR #168 remains draft/unmerged; production remains HOLD. No production deployment, Axxess upload, DNS/payment change, Supabase write, live stock/price/category change or supplier activation.
