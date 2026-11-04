@@ -74,3 +74,28 @@ Production remains HOLD. No production deployment, Axxess upload, DNS/payment ch
 
 ### Release boundary
 Production remains HOLD. No merge, supplier activation, public product import, live catalogue/price/stock/category changes, Supabase writes, Axxess upload, DNS change, payment/banking change, production deployment or checkout go-live is authorized.
+
+
+## 2026-11-04 — Storefront repair verified; supplier pilot resumed
+
+### Separate storefront repair PR #171
+- Inspected PR #171 independently. It is OPEN / non-draft / unmerged, based on PR #168's integration branch, with head `685139bb238c781a5046f9c637b7c16e174804b4`.
+- Confirmed exact-head package/deploy run [41831808031](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41831808031): job completed SUCCESS; checkout, customer-only Pages package build and isolated non-production Cloudflare deployment all succeeded.
+- Confirmed exact-head hosted owner-preview QA run [41831808315](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41831808315): job completed SUCCESS; read-only preview checks and hosted mobile/desktop inspection both succeeded against deployed build marker SHA `685139bb238c781a5046f9c637b7c16e174804b4`.
+- Preview: https://db76bfaf.get-wired-autoworx-store.pages.dev . Stable alias: https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev .
+- PR #171 changes are limited to 12 files: three QA/deploy workflows/config, two preview catalogue JSON files, category cleanup JS, category.html, index-new.html, preview-audio.html and two regression tests.
+- Reported fixes: category script parse exception; correct owner-authorised Sony XM-5ES Car Audio image; separate Home Entertainment image; non-destructive category visibility handling; supplier-aware price display. 3,280 priced Planetworld rows and 13 validated Sony rows retain numeric preview prices; 37 unpriced Planetworld rows use `Price On Request Due to Stock Availability`; 53 non-Sony/cost-derived Audio Connections rows remain quote-only; POA/POR special-order and exchange-rate explanation is rendered.
+- Known note: XS-W104ES image remains unavailable to the runner; XM-5ES image required for the Car Audio artwork loads. Live public products table has no active rows; navigation remains visible, but this repair does not activate stock or write to Supabase.
+- This verifies PR #171's own repair candidate only. It does not merge PR #171, merge PR #168, prove owner phone acceptance, or authorise production release. PR #168 remains OPEN / DRAFT / UNMERGED; production HOLD.
+
+### Supplier pilot branch — current authoritative metadata correction
+- PR #170 remains OPEN / DRAFT / UNMERGED. Current GitHub PR metadata reports head `2d38d2c71c3eae3dad01349295fd5079aaf1183e` on `supplier-standard-planetworld-audio-connections-2026-11-03`. Older head references in earlier handover paragraphs (including `1b29d18` and `4bacb4c`) are superseded.
+- Current exact-head combined status lookup returned no status checks; PR-triggered workflow lookup returned no runs for `2d38d2c`. Do not reuse prior success from `80446b5` or `96c7040` as exact-head evidence.
+- Latest changed-file list includes the supplier integration standard/template, Planetworld and Audio Connections preview datasets, crosswalks, fitment candidate audit, evidence request, tests and runner workflow. Supplier names/costs/source files remain internal.
+- Planetworld 137 fitment candidates: 135 unique normalized title-to-supplier-SKU/workbook matches; two Toyota version-2 records remain ambiguous between `TOYOTA2-H` and `TOYOTA2-HC`. All 137 still lack original workbook sheet/row joins and exact vehicle compatibility evidence; 15 carry additional review flags. Do not infer vehicle fitment or assign the two ambiguous codes.
+- Supplier evidence remains outstanding: five Planetworld curated image gaps; 44 Audio Connections image gaps; 53 non-Sony GW SKU candidates held; current supplier price/stock/lead-time confirmation; exact model/spec confirmation; and written image-use permissions. Planetworld source snapshot is 2026-10-25; Audio Connections source snapshots are August/September 2026 and are not current availability evidence.
+- Owner real-phone preview acceptance remains required before ASC/Electro-city. Functional checkout/payment testing remains deferred until owner banking details are added.
+- Next work: first inspect the current PR #170 branch's full Node regression/package workflow result on a newly verified exact head; fix only reproduced failures. Then continue the 137 source workbook sheet/row joins and vehicle-compatibility evidence, starting with the two Toyota collision rows, and reconcile image/SKU/specification/commercial evidence without publishing or changing live data.
+
+### Release boundary
+- No merge, production deployment, Axxess upload, DNS change, Supabase write, live stock/price/category change, supplier activation, banking/payment change or checkout go-live is authorised. Keep PR #170 draft and PR #168 draft; PR #171 remains unmerged pending review and owner acceptance.
