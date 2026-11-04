@@ -103,7 +103,7 @@ jobs:
             await frame.locator('#categoryGrid > .catWrap a[href^="preview-audio.html"]').click();
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).waitFor({state:'visible',timeout:15000});
-            await frame.getByRole('button',{name:'Car Audio',exact:true}).click();
+            await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).click();
             await frame.locator('#brands button').first().waitFor({state:'visible',timeout:15000});
             await frame.locator('#components button').first().waitFor({state:'visible',timeout:15000});
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
