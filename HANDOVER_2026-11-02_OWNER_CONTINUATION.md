@@ -1072,3 +1072,14 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 2. Owner to run the current-main Planetworld audit using the exact Actions UI path above; then inspect its fresh job summary/artifact and record the new run/job/artifact IDs.
 3. Obtain dated supplier price/stock confirmation for Planetworld and Audio Connections; keep the 19 zero-RRP items in the owner's separate audit.
 4. Continue exact model/variant/manufacturer image-source verification and component/category evidence review. Mark uncertain matches unverified; never auto-move products.
+
+
+## 2026-11-04 — Planetworld exact-model/source follow-up
+- Updated `catalogue-source/suppliers/planetworld/MANUFACTURER_MATCH_CONTINUATION_2026-10-26.md` in commit **6f00d840da7bfdf4985c618ffafcb09909aecb1d** (blob `ac52ea7ebcd3d2e260d7632aa0121ad3f7d32969`). This is review documentation only; no supplier workbook or catalogue data was changed.
+- **PFW4600:** Vogel's official TÜV product list confirms model PFW4600 = black tilting wall mount, article 7046000, max load 75 kg. Supplier description says “flat TV wall mount”; record as a source-description conflict and request supplier clarification. Candidate category: Installed AV → Display mounting components → Tilting display wall mounts. Exact image and reuse rights remain unverified.
+- **ON1509-LX1:** ICASA's official 2025 type-approved equipment list includes OneNav ON1509-LX1 (alongside MSA1509-LX1 / MSA1509LX1), approval TA-2024/3888. This verifies regulatory model presence only; it does not prove the screen description, image, variant or supplier price. Keep category provisional and image unverified.
+- **ON263-FK2:** no exact official OneNav/ICASA match found in this pass. Reseller-only evidence describes a 9-inch Ford Ranger XLS 2015+ fitment kit. Keep category provisional; no reseller image use.
+- **JBL-EON710-EK:** JBL Professional confirms the EON710 base model is a 10-inch powered PA speaker rated 650 W RMS / 1,300 W peak, AC input 100–120 V or 220–240 V. The exact supplier `-EK` suffix remains unverified; no regional image substitution.
+- **Price disposition unchanged:** IAB541-WR remains an unconfirmed R99 RRP / R649 dealer-cost anomaly, not a confirmed scaling defect. Do not change it without written Planetworld confirmation. No new supplier price/stock confirmation after 2026-10-25.
+- The 19 zero-RRP owner-audit rows remain separate; positive-RRP candidates remain DO_NOT_IMPORT. Preserve 107/107 verified October price rows and the nine asterisk-price quote-only/inactive source controls. No active flag/live data was changed; current live flags remain unverified because `public.products=0`.
+- No images were downloaded/copied/re-hosted, no supplier workbook modified, no product auto-moved, and no import/publication/live data/price/stock/SKU change was performed.
