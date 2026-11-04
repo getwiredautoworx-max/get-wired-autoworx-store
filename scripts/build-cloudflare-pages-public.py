@@ -9,9 +9,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "pages-public"
 
-# Cloudflare Pages is the independent preview/build runner while GitHub-hosted
-# runner allocation is unavailable. Run the exact storefront/catalogue regression
-# suite before packaging either standard or preview output.
+# Run the exact storefront/catalogue regression suite before packaging either
+# standard or preview output. GitHub-hosted public-repository runners are enabled.
 node = shutil.which("node")
 if not node:
     raise SystemExit("Node.js is required to run storefront regression tests before Pages packaging")
