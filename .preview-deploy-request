@@ -94,3 +94,6 @@ Deploy this exact integration branch SHA to the isolated PR 168 staging Pages br
 
 Re-trigger after mergeability audit handover-only commit — 2026-11-04.
 Deploy and validate this exact current branch head using the strengthened exact-SHA package, regression, SKU and hosted browser gates. Non-production only; production HOLD.
+
+Explicit owner-requested verification retrigger — 2026-11-04.
+Run the isolated PR #168 staging workflow on this exact new branch head. Require the exact triggering SHA in qa-build-result.json, all Node regression and public SKU checks to pass, and hosted mobile/desktop browser QA to pass. Deploy only to the dedicated non-production PR 168 staging Pages branch. Production remains HOLD.
