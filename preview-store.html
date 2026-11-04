@@ -1217,6 +1217,15 @@ function openPartRequest(withImage) { return window.openPartRequest(withImage); 
  const raw=String((HOME_CATEGORY_LABELS[c.id]||c.name)||'').replace(/&amp;/g,'&').trim();
  const n=raw.toLowerCase();
  // The audio overview must communicate the full range, not just one speaker product.
+ if(/dj|pa equipment|public address|live sound|mixer|controller|turntable/.test(n)){
+  return '<span class="catArt"><img class="catPhoto customProductArt" src="https://images.squarespace-cdn.com/content/v1/674f744559a39063c3fb1741/4d56b123-cf76-424c-9b63-40a1a862bd05/Pakke%2B4%2Bmed%2Bpult.jpg" alt="DJ controller, PA speakers and subwoofers" loading="lazy" referrerpolicy="no-referrer"></span>';
+ }
+ if(/band|instrument|guitar|drum|keyboard|studio|recording|microphone/.test(n)){
+  return '<span class="catArt"><img class="catPhoto customProductArt" src="https://allclassicsounds.com/assets/instruments-hero-Dv2p-q3k.jpg" alt="Band instruments, guitars, drums and keyboards" loading="lazy" referrerpolicy="no-referrer"></span>';
+ }
+ if(/home theatre|home theater|surround sound|av receiver/.test(n)){
+  return '<span class="catArt"><img class="catPhoto customProductArt" src="https://cdn.store-assets.com/s/360032/i/75037257.jpeg" alt="Home theatre surround speakers and AV receiver" loading="lazy" referrerpolicy="no-referrer"></span>';
+ }
  if(/car audio|home entertainment/.test(n)){
   const panels=[
    ['CAR AUDIO & VIDEO','https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=520&q=78'],
@@ -1233,9 +1242,6 @@ function openPartRequest(withImage) { return window.openPartRequest(withImage); 
   [/regulator|voltage|alternator|starter|ignition|engine|spark plug/,'photo-1486262715619-67b85e0b08d3'],
   [/relay|contactor|switch|sensor|electrical|wiring|wire|cable|connector|terminal|harness/,'photo-1518770660439-4636190af475'],
   [/battery|accumulator/,'photo-1621905251918-48416bd8575a'],
-  [/dj|pa equipment|public address|live sound|mixer|controller|turntable/,'photo-1571266028243-d220c9c3b2c7'],
-  [/band|instrument|guitar|drum|keyboard|studio|recording|microphone/,'photo-1516280440614-37939bbacd81'],
-  [/home theatre|home theater|surround sound|av receiver/,'photo-1593359677879-a4bb92f829d1'],
   [/car audio|speaker|subwoofer|audio|radio|stereo|multimedia|amplifier|aerial/,'photo-1608043152269-423dbba4e7e1'],
   [/security|alarm|immobil|lock|remote|key|tracker|camera/,'photo-1558002038-1055907df827'],
   [/light|lamp|bulb|globe|lighting|headlight/,'photo-1558618666-fcd25c85cd64'],
