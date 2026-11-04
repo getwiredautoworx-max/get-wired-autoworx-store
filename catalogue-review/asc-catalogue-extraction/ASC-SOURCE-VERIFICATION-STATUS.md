@@ -50,7 +50,15 @@ This is a source extraction and review milestone, not a production catalogue imp
 ## Follow-up 983-label audit — 4 Nov 2026
 - Created and visually reviewed 20 audit sheets covering all 983 individual supplier-code labels (50 labels per sheet, source card crop shown beside the proposed code).
 - The visual audit found OCR omissions/substitutions that were not caught by dual-OCR agreement. Corrected 11 records against the printed blue labels: MA522, MA570, IG-FR01, S2-007, S2-020R, S2-015, S2-017, S2-033-4, S2-035, M7-AVAN01 and M7-MT02.
-- These 11 corrections are now included in the manual correction map. The 983-row register was updated; duplicate checks show 0 duplicate supplier codes and 0 duplicate provisional internal IDs.
+- These 14 corrections are now included in the manual correction map. The 983-row register was updated; duplicate checks show 0 duplicate supplier codes and 0 duplicate provisional internal IDs.
 - This demonstrates why OCR agreement alone is insufficient. The 983 labels have now been audited visually as a full set, with the 11 discovered mismatches corrected.
 - The downloadable owner preview was rebuilt after corrections. It includes 983 individual source-card crops, 983 searchable records, category/subcategory candidate tags from catalogue page headings, and Price On Request for ASC.
 - Description OCR remains a draft, and the preview still labels fitment and technical specifications/dimensions as pending. Product images are source-card crops rather than isolated clean product photographs; watermarks and rights remain unresolved. No live import or merge.
+
+
+## Pilot content integrated into the owner preview
+- The 50 manually reviewed pilot descriptions and their printed fitment values are now applied to the corresponding records in the searchable owner preview.
+- 50/50 pilot supplier codes cross-match the full 983-row register after correcting the three O-versus-zero substitutions (M7-CON01, M7-COR01, M7-COR02).
+- Pilot descriptions: 50 manually verified. Pilot fitment: 42 explicit vehicle fitment values manually verified; 8 cards have no vehicle fitment printed. Technical specifications/dimensions remain pending where not explicitly transcribed.
+- For the remaining 933 records, the preview keeps OCR descriptions and fitment/specification candidates clearly marked as unverified. It does not infer missing fitment or technical data.
+- The owner ZIP now contains 983 individual product-image-area crops and 983 complete source-card crops, with original supplier watermark retained. These are source-catalogue crops, not cleared supplier standalone product image files.
