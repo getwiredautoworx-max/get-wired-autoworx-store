@@ -1603,5 +1603,45 @@
       "ac-041",
       "ac-044"
     ]
+  },
+  "powerSpecificationReconciliation": {
+    "status": "FIVE_MODEL_SPECIFICATION_HOLDS",
+    "checkedAt": "2026-11-04",
+    "resolvedAmplifierRecords": [
+      "ac-034",
+      "ac-037",
+      "ac-038",
+      "ac-039",
+      "ac-040",
+      "ac-042"
+    ],
+    "heldRecords": [
+      {
+        "id": "ac-021",
+        "model": "SSW-12-6300",
+        "reason": "Source price-list wattage basis and retailer model listings conflict."
+      },
+      {
+        "id": "ac-025",
+        "model": "SSW-B12-2800",
+        "reason": "Official page publishes no RMS rating; source price list and retailer inventory disagree."
+      },
+      {
+        "id": "ac-032",
+        "model": "SSA-ATOM-13500.1",
+        "reason": "Official Starsound page and two exact-model retailer listings publish conflicting power figures."
+      },
+      {
+        "id": "ac-041",
+        "model": "SSA-M5-80.600",
+        "reason": "Official product page contains two conflicting RMS tables."
+      },
+      {
+        "id": "ac-044",
+        "model": "SSS-6501PRO",
+        "reason": "250 W RMS per-driver versus per-pair basis is not confirmed."
+      }
+    ],
+    "rule": "Held product titles do not state disputed wattage. Do not publish definitive wattage or pack basis until the manufacturer or supplier confirms."
   }
 }
