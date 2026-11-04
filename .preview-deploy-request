@@ -68,3 +68,6 @@ This exact head removes the slow apt dependency refresh from Playwright installa
 
 Final hosted preview alias correction — 2026-11-04.
 The hosted QA workflow now polls the actual Cloudflare alias reported by Wrangler for this branch: fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev. Deploy this exact head and rerun runner, package, and hosted mobile/desktop QA. Production HOLD.
+
+Final robust hosted preview alias polling — 2026-11-04.
+The browser QA now probes both observed Cloudflare branch aliases and accepts only the alias whose qa-build-result.json commit matches this exact SHA. Deploy and rerun all final checks. Production HOLD.
