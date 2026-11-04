@@ -107,7 +107,20 @@ jobs:
             await xsCard.waitFor({state:'visible',timeout:30000});
             await xsCard.locator('img').scrollIntoViewIfNeeded();
             const xsImage=await xsCard.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,naturalWidth:img.naturalWidth}});
-            if(!xsImage.loaded)throw new Error('Owner-authorized Sony XS-W104ES product image failed to load: '+JSON.stringify(xsImage));
+            if(!xsImage.loaded){
+              const sonyPage=await browser.newPage();
+              let sonyImageCandidates=[];
+              for(const url of ['https://www.sony-africa.com/en/electronics/mobile-es-series/xs-w104es','https://www.sony.com/za/electronics/mobile-es-series/xs-w104es']){
+                try{
+                  await sonyPage.goto(url,{waitUntil:'domcontentloaded',timeout:45000});
+                  sonyImageCandidates=await sonyPage.locator('img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,src:img.currentSrc||img.src,srcset:img.getAttribute('srcset'),dataSrc:img.getAttribute('data-src'),dataSrcset:img.getAttribute('data-srcset')})).filter(x=>/XS-W104ES|subwoofer/i.test([x.alt,x.src,x.dataSrc].join(' '))).slice(0,30));
+                  console.log('SONY_XSW104ES_IMAGE_CANDIDATES',JSON.stringify({url,candidates:sonyImageCandidates}));
+                  if(sonyImageCandidates.length)break;
+                }catch(e){console.log('SONY_XSW104ES_IMAGE_AUDIT_ERROR',url,String(e));}
+              }
+              await sonyPage.close();
+              throw new Error('Owner-authorized Sony XS-W104ES product image failed to load: '+JSON.stringify({xsImage,sonyImageCandidates}));
+            }
             if(/Planetworld|Audio Connections/i.test(await frame.locator('body').innerText()))throw new Error('Supplier identity visible in audio catalogue');
             await page.goto('http://127.0.0.1:4173/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded'});
             const jblButton=page.locator('#brands button[aria-label="JBL"]');
