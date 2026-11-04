@@ -12,3 +12,6 @@ Owner-reported category defect correction refresh: verify category navigation, H
 
 Repair branch request — 2026-11-04.
 Deploy only the exact triggering repair/pr-168-storefront-category-audio-2026-11-04 commit to the existing pr-168-staging-preview Pages branch for read-only browser QA. Production remains HOLD.
+
+Exact repair-head staging refresh — 2026-11-04.
+The category renderer runtime defect (missing array separator), non-destructive category cleanup, Car Audio product artwork and supplier-specific quote handling are repaired on this branch. Deploy this exact triggering commit to pr-168-staging-preview only, then run hosted browser QA at mobile and desktop widths. This remains non-production; production HOLD.
