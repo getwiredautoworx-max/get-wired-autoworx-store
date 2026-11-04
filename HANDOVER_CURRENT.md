@@ -396,3 +396,13 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - No production deployment, production data write, stock/price change, supplier activation, payment change, DNS change or Axxess upload was made. Production remains on HOLD.
 - The earlier hosted logo issue was fixed by including local JBL, Denon and Hertz SVGs in the preview package allowlist. The remote-only Audio category collage dependency was replaced with the existing local approved `assets/car-audio-video-category.svg`. Browser assertions now wait for lazy-loaded brand logo images before evaluating them.
 - The final close-out commit after this handover update must be rerun through the same public runner, staging deployment and hosted browser QA so the recorded exact head and preview marker remain aligned.
+
+## 2026-11-04 — Final exact-head close-out verification
+- Final verified candidate code head: `6090be7f36d5c38a2dfac75bcb5f053e3e812c4a`.
+- Exact-head public runner + full storefront regression/package build: PASS — run `41816341642` (`https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41816341642`).
+- Exact-head non-production staging deployment: PASS — run `41816341774` (`https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41816341774`).
+- Exact-head local + hosted owner-preview browser QA: PASS — run `41816341685` (`https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41816341685`).
+- Cloudflare staging deployment for this exact head: immutable `https://6fb0caf5.get-wired-autoworx-store.pages.dev`; stable owner test URL `https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev`. The deployed `qa-build-result.json` marker reports PASS and commit `6090be7f36d5c38a2dfac75bcb5f053e3e812c4a`.
+- Hosted browser verification confirmed local JBL, Denon and Hertz SVGs return HTTP 200 as `image/svg+xml`; brand filtering, 47 Trims & Harnesses rows, Aerials route, hidden checkout, blocked Supabase writes, and desktop no-overflow checks all passed.
+- Remaining owner action: perform the requested PC and phone acceptance test using the stable staging URL. Specifically inspect the XS-W104ES product image; the Sony CDN source was blocked/unavailable to the GitHub browser runner, while XM-5ES loaded. Do not mark owner acceptance complete until the owner confirms.
+- This handover-only commit records the completed exact-head verification above; it does not change storefront code, preview assets, deployment configuration or the tested candidate. Production remains on HOLD.
