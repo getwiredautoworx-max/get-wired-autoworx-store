@@ -28,7 +28,8 @@ assert.deepEqual(planet.collections, {
   'Marine Audio': 31
 });
 assert.equal(planet.records.filter(row => row.division === 'Car Audio').length, 702);
-assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio":p.collection===department'), 'Car Audio button must include the complete Car Audio division, including harnesses/trims and marine-audio source rows');
+assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio"&&p.collection!=="Marine Audio"'), 'Car Audio must include its source division while keeping Marine Audio separate');
+assert.ok(route.includes('department==="Marine Audio"?p.collection==="Marine Audio"'), 'Marine Audio must remain a separate department');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse Car Audio Catalogue','Car Audio')"));
 for (const row of planet.records) {
   assert.ok(row.title && row.brand && row.collection && row.component, 'Planetworld row has required browse fields');
