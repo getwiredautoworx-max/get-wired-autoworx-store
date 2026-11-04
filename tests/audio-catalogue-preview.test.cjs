@@ -77,11 +77,13 @@ assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVI
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
 assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
 assert.equal(audioConnections.records.filter(row => row.indicativePrice == null).length, 0, 'all three previously missing market indicative references are now populated');
-for (const id of ['ac-021','ac-025','ac-044','ac-047']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/POWER_RATING_CONFLICT|POWER_NOT_PUBLISHED/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
+for (const id of ['ac-021','ac-025','ac-044']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/POWER_RATING_CONFLICT|POWER_NOT_PUBLISHED/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
 assert.equal(audioConnections.records.find(row=>row.id==='ac-020').specificationStatus,'OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-043').specificationStatus,'OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-044').specificationStatus,'RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-046').specificationStatus,'OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED');
+assert.ok(audioConnections.records.find(row=>row.id==='ac-047').description.includes('60 W RMS and 600 W maximum'));
+assert.equal(audioConnections.records.find(row=>row.id==='ac-047').specificationStatus,'RETAILER_SPECIFICATION_CROSSCHECK_RMS_AND_MAX_CONFIRMED');
 assert.ok(audioConnections.records.find(row=>row.id==='ac-048').description.includes('80 W RMS and 1,200 W maximum'));
 
 for (const id of ['ac-023','ac-025','ac-027']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(row.priceSourceUrl && row.priceBasis==='SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE'); }
