@@ -4,7 +4,7 @@
   "previewRecordCount": 66,
   "status": "PREVIEW_ONLY_NOT_LIVE_NO_STOCK_SYNC_NO_SUPPLIER_ACTIVATION",
   "availabilityNote": "Neither PDF provides current stock availability. No stock quantity or in-stock claim is published.",
-  "imageNote": "Five records currently carry image URLs. Both XS-W104ES and XM-5ES direct Sony image sources are owner-authorized. The XM-5ES Sony Australia URL was fetched successfully and displays a Sony amplifier rear-panel image matching the XM5ES asset path; it has not yet been copied into the repository or checked in the customer preview. The XS-W104ES URL could not be fetched in this session. The remaining three official Sony image URLs are review candidates only. Sixty-one records have no image URL; no placeholders are used.",
+  "imageNote": "Five records currently carry image URLs. Both XS-W104ES and XM-5ES direct Sony image sources are owner-authorized. The XM-5ES Sony Australia URL was fetched successfully and displays a Sony amplifier rear-panel image matching the XM5ES asset path; it has not yet been copied into the repository or checked in the customer preview. The XS-W104ES image uses an alternate exact-model Sony CDN source; browser-render verification is pending. The remaining three official Sony image URLs are review candidates only. Sixty-one records have no image URL; no placeholders are used.",
   "excludedRows": [
     {
       "model": "XS-690ES",
@@ -143,7 +143,7 @@
       "modelNumber": "XS-W104ES",
       "description": "Mobile ES 10-inch single-voice-coil subwoofer with MRC honeycomb diaphragm; 1,800 W peak / 450 W RMS; separated notch-edge surround; five-beam frame; Dynamic Air Diffuser.",
       "manufacturerPage": "https://www.sony.com/za/electronics/mobile-es-series/xs-w104es",
-      "imageUrl": "https://www.sony.com/image/7d561fde81c6826a4cfb1dd3a98811cd?bgc=FFFFFF&bgcolor=FFFFFF&fmt=pjpeg&hei=1320&wid=2515",
+      "imageUrl": "https://www.sony.com/image/cc66d1a08dbe3f1be15ca44d9fe083ff?bgc=F1F5F9&bgcolor=F1F5F9&fmt=pjpeg&hei=470&wid=1200",
       "sourceDateLabel": "Price list · September 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Proposed 2% below the supplier's VAT-inclusive printed RRP.",
@@ -152,8 +152,8 @@
       "brandNote": "",
       "gwSku": "GW-79892A2D",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OWNER_AUTHORIZED_DIRECT_SONY_IMAGE_SOURCE_RENDER_VERIFICATION_PENDING",
-      "imageSourceNote": "Owner-authorized Sony image candidate did not render from the supplied CDN URL in GitHub's browser runner; Sony product pages returned Access Denied to the runner. Keep this source out of the verified-image count and require owner visual confirmation or an approved alternate image before treating the asset as complete."
+      "imageStatus": "OWNER_AUTHORIZED_OFFICIAL_SONY_EXACT_MODEL_IMAGE_ALTERNATE_SOURCE_RENDER_CHECK",
+      "imageSourceNote": "Owner-authorized alternate official Sony XS-W104ES image CDN URL, recorded from the exact manufacturer product page image reference 75. This source is being rechecked in the hosted preview; retain as unverified until natural image dimensions are confirmed."
     },
     {
       "id": "ac-007",
