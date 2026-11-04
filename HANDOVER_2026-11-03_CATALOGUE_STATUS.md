@@ -179,3 +179,30 @@ This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CON
 - The deployment includes the combined supplier source array, brand/type query routes, homepage Car Audio & Video label, and the Planetworld legacy-route redirect/removal of separate stock cards.
 - Latest branch commit `47ae9609efcc8666880fdf6bd281ddfaf21ec558` changes only this handover document after the successful functional deployment; no application source changed after `ef36025`.
 - Browser page retrieval was attempted but the external reader could not access the pages.dev route. Treat Pages deployment as successful, but browser rendering/owner acceptance remains pending. The updated regression test file is committed but no executed test report is yet available.
+
+
+## 2026-11-04 OWNER STANDARD — STORE-WIDE SUPPLIER-INDEPENDENT PRODUCT GROUPING
+
+This is the permanent catalogue architecture for every current and future supplier/category. It supersedes any supplier-first customer-facing navigation.
+
+### Customer-facing catalogue rules
+- **Group by product identity, function and application — never by supplier.** Customers must find the same kind of product together in one category/subcategory, regardless of which supplier supplies it.
+- Examples explicitly confirmed by the owner:
+  - All fuel pumps together under one **Fuel Pumps** product category.
+  - All 12V starters together under one **12V Starters** product category.
+  - All car audio/video products from Planetworld, Audio Connections and any future suppliers together under **Car Audio & Video**, with one combined brand list and product-type groups.
+- A customer navigates: store department/category → product category/subcategory → brand/product filters as useful → products. Supplier is never a top-level, category, subcategory, brand-navigation or stock-list page for customers.
+- Same products/compatible product families from multiple suppliers are displayed together in the same customer-facing group. Preserve real model/variant differences and accurate specifications; do not falsely merge different models into one SKU. Where the exact same product is sourced from multiple suppliers, reconcile the offers/stock internally and avoid duplicate customer product cards unless there is a genuine distinct offer/variant that needs to be shown.
+- Supplier names, dealer costs, supplier SKUs, supplier-only stock sheets and supplier folder paths are internal operational information and must not leak into customer-facing navigation, labels, descriptions, metadata, public assets or preview pages.
+
+### Internal repository and sourcing rules
+- Keep separate supplier folders in the repository (e.g. `suppliers/Planetworld`, `suppliers/Audio Connections`, `suppliers/ASC`, `suppliers/Electrocity`, `suppliers/Caelex`, `suppliers/Hertz`) so the owner/team can edit, audit, reconcile and track each supplier's catalogues, price lists, stock sheets, incoming files, exceptions and supplier-specific updates independently.
+- Supplier folders are the internal source-of-truth/workbench only. They must not determine the public shop hierarchy.
+- Build a supplier-neutral product catalogue/index from the supplier source folders. Keep supplier-to-product mapping, supplier SKU, dealer cost, stock evidence, update date and source-file provenance in internal-only records. The customer catalogue consumes only approved customer-safe product fields and owner-approved prices/stock.
+- When another supplier is added, map its products into existing product categories/brands/product types first. Do not create a new supplier-facing storefront branch or duplicate category merely because the source came from a new supplier.
+- Preserve supplier provenance and reconciliation traceability internally; never sacrifice it by flattening or deleting supplier source folders.
+
+### Implementation/acceptance rule
+- Apply this architecture to the current Planetworld + Audio Connections pilot first, then reuse it for ASC, Electrocity and all later suppliers after owner acceptance.
+- Add regression coverage that tests supplier-independent grouping across multiple suppliers (including Fuel Pumps and 12V Starters), checks supplier provenance remains available internally, and checks supplier names/costs/SKUs/source paths are absent from customer-facing output.
+- Do not mark the catalogue architecture complete until source mapping, cross-supplier grouping, customer-facing navigation, deduplication/variant handling, and preview rendering have been verified. No live stock/price import or production release without separate owner approval.
