@@ -58,3 +58,12 @@
 ## 2026-11-04 ASC source PDF privacy test correction
 - The full regression run reached the ASC unit test after the hierarchy fix. The test contained stale assertions requiring supplier source PDFs to be published and linked, contrary to the secure allowlist. Updated it to verify source PDFs remain internal and absent from Pages preview.
 - Parent head: `83e7f8dfdc664c33edd118b70bdb55b771d1c45f`. Full suite rerun pending.
+
+
+## 2026-11-04 owner correction — Car Audio & Video accessories hierarchy
+
+- Correct customer-facing hierarchy: **Audio, Entertainment & Music → Car Audio & Video → Accessories → Aerials** and **Audio, Entertainment & Music → Car Audio & Video → Accessories → Trims & Harnesses**.
+- **Aerials** and **Trims & Harnesses** are sibling subcategories under **Accessories**. Each must have its own distinct customer-facing button and its own respective product listing/view.
+- Neither is a top-level homepage category. Trims & Harnesses must not be placed as a sibling of Accessories directly under Car Audio & Video, nor merged into the Aerials listing.
+- This is a navigation/taxonomy correction for the future catalogue structure. It does not authorise importing/restoring ASC catalogue data in the current Planetworld + Audio Connections pilot; ASC source data remains deferred to the separate fresh-upload task.
+- No storefront code or catalogue data was changed in this handover-only update. The hierarchy must be implemented and then checked against the exact candidate head before it is described as complete.
