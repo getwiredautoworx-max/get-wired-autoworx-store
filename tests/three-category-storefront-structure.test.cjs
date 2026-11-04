@@ -35,6 +35,7 @@ assert.ok(categoryClickHandler.includes("Array.from(wrap.children).find(el=>el.c
 assert.ok(categoryClickHandler.includes("Array.from(parent.children).filter(w=>w!==wrap"), 'opening one category must close sibling categories using browser-compatible direct-child traversal');
 assert.ok(!categoryClickHandler.includes(':scope'), 'category expansion must not depend on :scope selectors unsupported by older embedded Android browsers');
 assert.ok(home.includes('.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}.catWrap{align-self:start;'), 'expanded category cards must not overlap sibling click targets');
+assert.ok(home.includes('#categoryGrid.cats{align-items:start!important}#categoryGrid>.catWrap{align-self:start!important;height:auto!important}#categoryGrid>.catWrap .catBtn{height:auto!important}'), 'final homepage CSS must override stretched root cards so expanded child links remain tappable');
 assert.ok(home.indexOf("categories=await snapshot();renderCats();")<home.indexOf("const categoryTask=(async()=>"), 'approved local category tree must render before remote Supabase refresh');
 assert.ok(home.includes('setTimeout(()=>controller.abort(),7000)'), 'remote category refresh must be bounded so it cannot hold category rendering');
 assert.ok(home.includes("apiAll('categories?select=id,name,slug,parent_id,active&active=eq.true&order=name.asc',1000,controller.signal)"), 'category API timeout must abort the actual remote fetch');
