@@ -1688,3 +1688,72 @@ ASC PRODUCT REGISTER — WORK IN PROGRESS
 - QA is now green on the exact current PR head listed above. Any subsequent branch commit (including this handover update) will trigger a new head and must be rechecked before final PR sign-off.
 - Still not complete: editorial review of 933 descriptions; transcription/verification of their fitment and technical data; clean image matching and rights clearance; full storefront preview and desktop/Android owner acceptance. This PR is preparation/review-only, not a completed store reload.
 - No Supabase writes, live catalogue import, merge, production deployment, Cloudflare credit use or Axxess upload. Keep PR #173 draft and unmerged until the remaining review and acceptance gates are genuinely cleared and owner approves.
+
+
+
+## 2026-11-04 GROK DESKTOP-AGENT TAKEOVER — AUTHORITATIVE CONTINUATION BRIEF
+
+**Purpose:** Transfer the remaining work from ChatGPT to Grok operating as the owner's desktop agent. Grok must read this entire master handover before changing anything. This section supplements (and does not replace) the protected owner instructions and prior evidence above.
+
+### Working location and exact starting point
+- Repository: `getwiredautoworx-max/get-wired-autoworx-store`
+- Active review branch: `work/asc-product-register-2026-11-04`
+- Active draft PR: #173 — https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/173
+- PR must remain **OPEN / DRAFT / UNMERGED**.
+- Latest known code head after cropper correction: `c6804cdea50ed08a6ff2eaf3553a078b1ee4f0df`. Grok must fetch the live PR head and branch status before editing; do not assume this SHA is still current.
+- Master handover file: this file, `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`. Preserve the owner-instructions block verbatim. Append dated evidence; do not create competing handover files.
+- Latest workflow run checked: `41861561302`. `responsive-review` completed SUCCESS. In `asc-source-page-review`, all listed steps including full six-catalogue rendering/extraction and contact-sheet artifact upload show completed SUCCESS, but GitHub still reported the job status as `in_progress` with null conclusion at last poll. **Do not call the whole run green until GitHub reports the job and run conclusion as success.** Re-poll and record final status. This run is for the corrected cropper head `c6804c...`.
+
+### Fixed ASC reload scope — do not broaden it
+The owner has explicitly instructed that this is a store reload using **only the six retained ASC product catalogues**. All ASC buyer's guides are to be disregarded and permanently excluded from the reload. Do not reintroduce buyer's guides or use their data as a source.
+1. Aerials — 7 pages, 78 product cards
+2. Automotive Sensors — 9 pages, 106 product cards
+3. Automotive Switches — 22 pages, 368 product cards
+4. Automotive Globes — 11 pages, 158 product cards
+5. Car Mats — 11 pages, 144 product cards
+6. Fuel Pumps — 12 pages, 129 product cards
+Total: **6 PDFs, 72 pages, 75 section headings, 983 printed product cards**.
+Use the source manifest and catalogue files already in the repository. Confirm no buyer's guides are staged for this reload. Do not delete source material destructively unless the exact buyer-guide files and the owner-authorized deletion scope are unambiguous; verify the resulting Git tree and record the paths removed/retained.
+
+### Data rules and known verified work
+- Supplier-code labels: 983/983 visually audited against the original catalogue cards. Fourteen OCR corrections are recorded in the manual correction map; the full register must use the corrected supplier codes.
+- Internal SKU namespace: `GW-ASC-` plus normalized supplier code. Preserve original ASC supplier code in its own field. Do not merge supplier namespaces (ASC, CAELEX, Electro-city).
+- Pilot: 50 records; 50 descriptions editorially verified; 42 printed fitment entries verified; 8 pilot cards have no fitment printed.
+- Remaining 933 descriptions are **not editorially verified**. OCR is a draft only.
+- Fitment, technical specifications and dimensions for those 933 remain unverified/not transcribed. Read directly from each source card; preserve exact wording and units. If absent or illegible, mark not printed/unclear and do not infer.
+- Price and stock are not supplied. For ASC records only, show **Price On Request**. This does not apply globally to other suppliers. Do not invent a price, stock quantity, availability, compatibility or warranty.
+- Source card/product image crops retain ASC watermark. They are review references, not approved clean standalone product photography. Supplier image-use rights are not cleared. Do not strip watermarks, publish crops as customer-facing assets, or claim image rights. Seek documented supplier permission/official image assets.
+- The previous cropper produced overlapping card crops. The correction in `c6804c...` uses SKU-label centres/grid cell boundaries and handles single-row/single-column layouts. Verify the latest extraction artifact visually before trusting any crop.
+
+### Grok's assigned work — continue to completion, not just report a plan
+1. **Establish state:** fetch current PR #173 metadata/head, branch commit, workflow run 41861561302 final result, artifact list and repository tree. Confirm exact six source PDFs and buyer-guide exclusion.
+2. **Validate extraction:** download the newest artifact from the latest-head successful run. Check 983 rows, six source PDFs, page/card totals, 983 supplier codes, zero duplicate supplier codes, zero duplicate proposed GW SKUs, correct source-page references and one isolated crop per product. Open a broad sample across all six catalogues, including single-row/single-column pages and dense multi-column pages. If any crop overlaps, is missing, or is mismatched, fix the script and rerun QA.
+3. **Complete product content:** manually inspect all 933 remaining source cards. Editorially transcribe descriptions without embellishment; capture vehicle fitment and technical specifications/dimensions exactly as printed, including units and qualifiers. Keep separate fields and provenance (source PDF, page, section, supplier SKU). Use explicit statuses for verified, not printed, illegible, and needs supplier confirmation. Do not use OCR agreement as a substitute for visual verification. Batch the work into traceable review files and validate every row for completeness/duplicates.
+4. **Image resolution:** identify the exact product image region for each record and match only when the source card clearly supports the match. Keep watermarked catalogue crops as source references only. Obtain official clean images or documented written supplier permission before any customer-facing image promotion. Mark unresolved records clearly; never fabricate matches or remove watermarks.
+5. **Build the owner preview:** produce a usable searchable responsive preview for all 983 records, showing original ASC SKU, provisional GW SKU, catalogue/section, verified description, verified fitment/specs, source page and clear review/rights state. Display `Price On Request` for ASC. Do not imply unverified records are final. Include source-card reference access and a concise review-status summary. Ensure it works on desktop and Android-sized viewports.
+6. **QA and acceptance:** run exact-head tests after the last code/data change; inspect CI artifacts; test desktop and mobile layouts, navigation, search/filter, image/crop integrity, console/network errors, horizontal overflow, and keyboard/accessibility basics. Record exact SHA, workflow/run IDs, artifact IDs and observed results. A local preview is not a hosted preview. A hosted preview is not owner acceptance. Do not use deployment credits or publish to production to create a preview.
+7. **Handover and reporting:** update this master handover with actual results after each meaningful milestone. Read back the updated file. Keep a single canonical handover. Report only completed evidence or a specific external dependency that truly requires the owner.
+
+### Desktop-agent operating instructions
+- Work directly in the repository on the isolated review branch. Use the desktop browser/terminal/editor as needed; inspect actual source PDFs and generated crops at readable zoom.
+- Do not assume ChatGPT's local `/mnt/data` files are available on Grok's machine. Download required source files/artifacts from the repository/workflow and verify their hashes and contents.
+- Keep work organized into batches with stable row IDs and source references so another agent can resume without repeating reviews.
+- Do not overwrite the 50 reviewed pilot entries with OCR drafts. Preserve the manual correction map and quarantine/disposition history.
+- Do not spend time repeating completed supplier-code verification unless a later correction or extraction mismatch requires it.
+- Do not create speculative product descriptions, fitment mappings, dimensions, price, stock or images. Never silently convert unknown to blank/verified.
+- If a required supplier confirmation, image permission, credential, owner decision, or physical-device action is unavailable, isolate that exact dependency and continue all independent work.
+- Never expose or copy secrets into source code, logs, handover files, screenshots or Grok prompts. Use existing authorized account sessions; do not ask the owner to paste passwords or API keys into chat.
+- Keep changes review-only. No merge, Supabase write/migration, live import, product/category/price/stock/active-flag change, payment activation, DNS change, Axxess upload, Cloudflare/Netlify deployment, release workflow, or credit-consuming action without explicit owner approval.
+- Do not close PR #173 or mark it ready for review. Do not merge it.
+
+### Definition of done for this takeover
+The ASC review/reload preparation is complete only when:
+- all 983 products have visually verified supplier codes and unique provisional GW SKUs;
+- all 983 descriptions are editorially verified or explicitly marked not printed/illegible with evidence;
+- fitment/specification/dimension fields are visually verified or explicitly marked not printed/illegible, with no guessed values;
+- all 983 image matches are either supported by an exact source reference and cleared image rights, or explicitly unresolved and excluded from customer-facing use;
+- the searchable preview and exact-head automated/browser QA pass on desktop and mobile;
+- all evidence, limitations, source paths, hashes, run IDs and artifact IDs are recorded in this master handover.
+External supplier permission and the owner's physical Android acceptance must be recorded separately; do not claim these have happened unless evidenced.
+
+**Current handoff status:** extraction/cropper correction is under latest CI verification; editorial review, fitment/specification transcription, clean image matching/rights, and complete owner preview/desktop+Android acceptance remain unfinished. This is a handoff of the remaining tasks, not a declaration of completion.
