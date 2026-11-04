@@ -29,3 +29,6 @@ The branch received a handover-only commit after the mobile repair deployment re
 
 Exact audio artwork correction and strengthened artwork QA — 2026-11-04.
 Deploy the exact current branch head after replacing the wrong Home Entertainment car artwork with television imagery and assigning distinct Band Equipment, DJ Equipment and Instruments photographs. The owner browser QA now asserts all four images load and match their category alt text. Preview only; production HOLD.
+
+Exact artwork regression repair refresh — 2026-11-04.
+The first corrected artwork commit exposed a stale structure-test expectation still requiring the old car SVG for Home Entertainment. The test now asserts the correct TV/home-theatre photo and dedicated Band, DJ and Instruments artwork. Deploy this exact current head and run the strengthened hosted image checks. Production HOLD.
