@@ -6,3 +6,5 @@ previous_head=02c48aae100f94aa69d5dd8c5ae7b347d08ad80f
 required_roots=Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories
 
 request=PR-176-three-category-preview-exact-head-verification
+
+request=PR-176-final-three-root-deploy-after-qa-branch-fix
