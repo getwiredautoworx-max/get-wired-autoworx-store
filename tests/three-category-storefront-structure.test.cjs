@@ -27,6 +27,11 @@ assert.deepEqual(roots, [
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
   ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
+const carAudioNode = tree.categories.find(c => c.slug === 'car-audio');
+const accessoriesNode = tree.categories.find(c => c.slug === 'car-audio-accessories');
+assert.ok(accessoriesNode && accessoriesNode.parent_id === carAudioNode.id, 'Accessories must be nested under Car Audio & Video');
+assert.deepEqual(tree.categories.filter(c => c.parent_id === accessoriesNode.id).sort((a,b)=>a.sort_order-b.sort_order).map(c=>c.name), ['Aerials','Trims & Harnesses'], 'Aerials and Trims & Harnesses must be separate sibling buttons under Accessories');
+assert.ok(!tree.categories.some(c => ['Aerials','Trims & Harnesses'].includes(c.name) && c.parent_id === carAudioNode.id), 'Aerials and Trims & Harnesses must not sit directly under Car Audio & Video');
 const categoryClickHandler = home.slice(home.indexOf("document.addEventListener('click',e=>{const lm="), home.indexOf("document.getElementById('searchInput')?.addEventListener('input'"));
 assert.ok(categoryClickHandler.includes("Array.from(wrap.children).find(el=>el.classList&&el.classList.contains('children'))"), 'category expansion must locate direct child containers without :scope selector dependency');
 assert.ok(categoryClickHandler.includes("Array.from(parent.children).filter(w=>w!==wrap"), 'opening one category must close sibling categories using browser-compatible direct-child traversal');
