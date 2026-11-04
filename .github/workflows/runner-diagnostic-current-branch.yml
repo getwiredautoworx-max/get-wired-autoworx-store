@@ -7,6 +7,9 @@ on:
       - supplier-standard-planetworld-audio-connections-2026-11-03
   pull_request:
     branches: [main]
+concurrency:
+  group: supplier-pilot-preview-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
   deployments: write
