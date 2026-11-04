@@ -181,7 +181,9 @@ jobs:
             if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted roots mismatch: '+JSON.stringify(roots));
             if(await frame.locator('.audioCategoryCollage .audioCollagePanel').count()!==4) throw new Error('Hosted audio collage incomplete');
             await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').click();
-            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            await frame.locator('#audioSearch').waitFor({state:'visible',timeout:30000});
+            const audioPath=await frame.locator('body').evaluate(el=>el.ownerDocument.location.pathname);
+            if(!audioPath.endsWith('/preview-audio.html')) throw new Error('Hosted audio route mismatch: '+audioPath);
             await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).click();
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
             await frame.locator('#audioSearch').fill('SSW8');
