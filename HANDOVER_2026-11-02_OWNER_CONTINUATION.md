@@ -1701,3 +1701,32 @@ Production remains HOLD. No merge, production deployment, Axxess upload, DNS cha
 
 ### Handoff truth statement
 At transfer time, there is no verified exact-head eight-category consolidated preview ready for owner acceptance. PR #176 is not merged and not ready to merge. The prior three-root hosted preview is historical evidence only. The concrete regression-test contradiction described above remains to be fixed and verified. Do not claim the store is complete, ready to merge, or production-ready until the stated evidence exists.
+
+
+## 2026-11-04 — EXECUTION ACCOUNTABILITY UPDATE
+
+### Owner's explicit correction to how work must be carried out
+The owner challenged the repeated pattern of status notifications and promises without carrying fixes through to verified outcomes. This is now an operational rule for every continuation session:
+
+- **Do not restart or re-audit completed work by default.** Read this canonical handover, verify the current repository state, then continue from the exact latest commit and outstanding blocker.
+- **Prefer executed changes over progress narration.** Do not send plan-only updates, repeat apologies, or ask the owner to prompt each next task. Continue through diagnosis, source fix, regression test, and verification wherever the connected tools allow.
+- **Report only material outcomes or a genuine owner decision/blocker.** State what was actually changed, exact commit/run/deployment evidence, pass/fail, and what remains. A commit is not a passing test; source inspection is not browser verification; a historical preview is not proof for a newer SHA.
+- **Keep one consolidated candidate.** Work on the existing integration vehicle, PR #176, unless repository evidence demonstrates it cannot safely continue. Do not create another repair branch or another handover file just to record progress.
+- **Fix underlying application defects, not tests alone.** Tests must reflect the approved eight-root architecture and correct parent-child relationships. Never weaken assertions or rename a test to make a failing implementation appear green.
+- **Update this same master handover after meaningful work**, including failures, exact current refs, run IDs, preview URL/deployed SHA, and the next concrete action. Read back the edited handover to confirm the update persisted. Never recreate the removed `AI_HANDOVER_PERMANENT.md` or `HANDOVER_CURRENT.md`.
+- **Do not claim readiness prematurely.** The consolidated preview can be called ready for owner review only after exact-head checks pass and the exact tested SHA is verified on the hosted staging preview across mobile and desktop. Merge and production release still require owner acceptance and separate approval as defined above.
+
+### Exact latest work evidence from this conversation
+- Active candidate: PR #176, branch `preview/integrated-storefront-2026-11-04`.
+- A small test correction was committed to the PR branch at `3be5c4eea139c280690dd38015cfa9d9766e8820`: `tests/three-category-storefront-structure.test.cjs` now checks Car Audio & Entertainment children against the Audio root rather than the first root, and its output label says eight roots. GitHub read-back confirmed the file update.
+- This is **test-file maintenance only**, not proof that the actual category tree or storefront is correct. No passing exact-head workflow run or combined commit status was available for this SHA at the time of this handover update. PR #176 remained OPEN / DRAFT / UNMERGED and reported `mergeable=false` at the last check; re-fetch live metadata before acting.
+- The previous exact-head workflow snapshot for `6d84fdffdee2bcb8c597a7ba0b3dcd5264b8f87f` included failures in **Cloudflare Pages Public Package QA** and **Car Audio Accessories Route Browser QA**. These are older-head evidence, not verified results for `3be5c4ee`. Inspect their job steps/logs and the current workflow definitions to identify the real failure causes. Do not rerun queued jobs blindly, do not use production/release workflows, and do not spend deployment credits on unapproved retries.
+- The older preview URL `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html` remains historical only; it was deployed from SHA `e596cef70361dc260a5cbfb90ff9f5a6a5e845b0`, not the latest candidate SHA.
+- No merge, production deployment, Axxess upload, DNS/payment change, live data write, or production Supabase mutation was performed by this test correction. Production remains HOLD.
+
+### Required next execution (continue, do not restart)
+1. Re-fetch PR #176 metadata, current branch head, workflow statuses and the two failed workflow job logs. Inspect workflow YAML and the actual storefront/tree code at the current branch ref.
+2. Correct any real source/package/browser defects found. Verify all eight roots render in the required order and Audio departments are children of Car Audio & Entertainment; check 4x4 nesting, product navigation, mobile layout, image paths and supplier privacy. Keep the regression test honest.
+3. Run available local/CI checks against the exact resulting SHA. If a required run cannot be initiated through connected tooling, record the precise limitation and the owner-only action needed; do not imply that a run passed or is running.
+4. Use only the approved isolated Cloudflare Pages staging route after exact-head checks are successful; verify deployed SHA/build marker and real hosted mobile/desktop behavior. Do not treat a build/package job alone as hosted browser acceptance.
+5. Append the resulting evidence to this same file and read it back. Keep checkout/order submission and live writes blocked in the owner preview. Do not merge or release without the owner's acceptance and explicit approval.
