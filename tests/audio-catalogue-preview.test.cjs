@@ -57,19 +57,21 @@ assert.ok(audioConnections.records.find(row => row.modelNumber === 'XM-1ES').des
 const specChecks = [
   ['ac-034','600 W RMS at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-037','95 W RMS ×4 at 2 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
-  ['ac-038','65 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-038','These exact-model figures conflict','OFFICIAL_VS_SUPPLIER_AND_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED'],
   ['ac-039','90 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-040','320 W RMS ×4 at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-041','second RMS Ratings table','OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED'],
   ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
   ['ac-044','per speaker or pair','RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED']
 ];
-assert.equal(audioConnections.powerSpecificationReconciliation.status,'FIVE_MODEL_SPECIFICATION_HOLDS');
-assert.deepEqual(audioConnections.powerSpecificationReconciliation.heldRecords.map(row=>row.id),['ac-021','ac-025','ac-032','ac-041','ac-044']);
+assert.equal(audioConnections.powerSpecificationReconciliation.status,'SIX_MODEL_SPECIFICATION_HOLDS');
+assert.deepEqual(audioConnections.powerSpecificationReconciliation.heldRecords.map(row=>row.id),['ac-021','ac-025','ac-032','ac-038','ac-041','ac-044']);
 for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) {
   const held=audioConnections.records.find(row=>row.id===id);
   assert.ok(!held.title.includes('W RMS')&&!held.title.includes('W MAX'),id+' title must not publish held wattage');
 }
+const hornet=audioConnections.records.find(row=>row.id==='ac-038');
+assert.ok(hornet.description.includes('60 W RMS ×4')&&hornet.description.includes('50 W RMS')&&hornet.description.includes('65 W RMS ×4 at 2 Ω'),'ac-038 conflicting manufacturer/supplier/retailer specifications');
 const atom13500=audioConnections.records.find(row=>row.id==='ac-032');
 assert.ok(atom13500.description.includes('official page lists 500 W RMS at 1 Ω')&&atom13500.description.includes('retailer listings report 520 W RMS at 1 Ω')&&atom13500.description.includes('230 W RMS at 4 Ω'),'ac-032 conflicting official and retailer specification detail');
 assert.equal(atom13500.specificationStatus,'OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
