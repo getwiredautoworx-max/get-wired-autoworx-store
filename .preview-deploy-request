@@ -3,3 +3,5 @@
 request=PR-176-final-exact-head-verification-after-handover-update
 requested_for=preview/integrated-storefront-2026-11-04
 previous_head=57204715653c91751bd9125a0cd7cebae5fac448
+
+qa_fix=audio-root-was-already-open-after-first-click
