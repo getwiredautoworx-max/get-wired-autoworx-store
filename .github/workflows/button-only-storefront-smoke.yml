@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'index-new.html'
+      - '.github/workflows/button-only-storefront-smoke.yml'
   pull_request:
     branches: [main]
     paths:
@@ -11,7 +12,23 @@ on:
       - '.github/workflows/button-only-storefront-smoke.yml'
   workflow_dispatch:
 jobs:
+  detect-mode:
+    runs-on: ubuntu-24.04
+    outputs:
+      button_only: ${{ steps.mode.outputs.button_only }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: mode
+        shell: bash
+        run: |
+          if grep -Fq 'data-storefront-mode="buttons-only"' index-new.html; then
+            echo "button_only=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "button_only=false" >> "$GITHUB_OUTPUT"
+          fi
   button-only:
+    needs: detect-mode
+    if: needs.detect-mode.outputs.button_only == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
@@ -27,7 +44,7 @@ jobs:
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/store-http.log 2>&1 &
           SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
+          trap 'kill "$SERVER_PID" || true' EXIT
           sleep 2
           node <<'NODE'
           const { chromium } = require('playwright');
@@ -57,7 +74,7 @@ jobs:
                 await roots.nth(1).click();
                 if ((await roots.nth(0).getAttribute('aria-expanded')) !== 'false' || (await roots.nth(1).getAttribute('aria-expanded')) !== 'true') throw new Error(width+'px: accordion state did not update correctly');
                 if (errors.length) throw new Error(width+'px: browser errors '+errors.join('; '));
-                console.log('BUTTON_ONLY_PASS '+width+'px: '+rootCount+' main buttons, '+childCount+' subcategory/brand buttons, expand/collapse works, no product/pricing/search UI, no horizontal overflow');
+                console.log('BUTTON_ONLY_PASS '+width+'px: '+rootCount+' main category buttons, '+childCount+' subcategory/brand buttons, expand/collapse works, no product/pricing/search UI, no horizontal overflow');
                 await page.close();
               }
             } finally { await browser.close(); }

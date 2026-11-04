@@ -1606,3 +1606,154 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Monitoring scope this run: current main/head; latest run and latest attempt/job status for staging category-navigation Chromium acceptance, Buyer Guide PDF extraction, ASC Exact-SKU Image Sync, storefront smoke/production QA, Pages/Cloudflare deployments, and background task controllers. Retry only eligible failed/cancelled/stopped non-production jobs if a supported rerun action exists; never retry production, release, deployment, or credit-consuming workflows.
 - Safety: no PR merge, live/Supabase writes, supplier import/publication, live price/stock/category/active-flag changes, Axxess/DNS/payment changes, artifact deletion, production/release reruns, or deployment-credit use.
 - Outcome: IN PROGRESS. Next: retrieve current main SHA and inspect the latest workflow attempts/jobs, then append exact run/job/commit evidence and any safe retry result.
+
+
+## 2026-11-04 17:20 SAST — CONSOLIDATED STOREFRONT PREVIEW REPAIR
+- Owner continuation target: one consolidated, populated non-production storefront preview; do not create further disconnected repair branches.
+- Selected PR #176, `preview/integrated-storefront-2026-11-04`, based on current main `8a0695a6d746b886be865ffa950a11011b054e2f`. Initial branch head `277d921926ae0893de4e81ab7bd9230be80e814f`; after repair commit the exact head is `f6eb145621ab69032e88fb2470d679c18ed44510`.
+- Initial exact-head workflow snapshot on `277d921`: Preview Approved Catalogue Gate SUCCESS; Delivery Quote Security Tests SUCCESS; Public SKU Exposure Audit SUCCESS; Customer Authentication Security Tests SUCCESS. Button-only Storefront Smoke Test and Car Audio Accessories Route Browser QA were still running. Cloudflare Pages Public Package QA failed at step 7, `Verify preview package includes all seven approved preview routes`.
+- Root cause confirmed by reading the exact branch workflow and public-package builder: the PR #176 candidate intentionally contains seven approved preview routes (owner-preview, preview-store, preview-category, preview-products, preview-product, preview-planetworld, preview-audio) and explicitly excludes the ASC preview route. The workflow incorrectly expected an eighth `asc-catalogue-preview.html` route even though this candidate deliberately excludes ASC. This was a stale gate mismatch, not a missing customer storefront route.
+- Corrected only `.github/workflows/cloudflare-public-pages-build-qa.yml` on the PR #176 branch: route assertion now matches the seven routes actually approved for this consolidated preview. Commit: `f6eb145621ab69032e88fb2470d679c18ed44510`; workflow blob readback `5633c0f114607da58603a9d2857b40431f0325c4`. Readback verified the eight-route mismatch is removed and the seven-route allowlist remains.
+- Latest PR #176 metadata readback: OPEN / DRAFT / UNMERGED; 22 commits, 37 changed files; mergeability was false while GitHub recalculated after the new commit. No merge was attempted. No production deployment, Axxess upload, DNS, Supabase write, live catalogue/price/stock change, payment activation or supplier publication.
+- Exact-head CI/browser rerun for `f6eb145` is not yet visible in the GitHub workflow-run lookup at the time of this note. The earlier runs belong to superseded head `277d921` and cannot be used as exact-head sign-off. Continue by checking fresh PR-triggered runs, then diagnose any remaining failure from job steps/logs. Verify the isolated Cloudflare Pages deployment URL and deployed SHA before presenting it as the current preview. Owner real-phone acceptance remains outstanding.
+- Next action: continue on PR #176 only; verify fresh exact-head public-package, regression, public-SKU and mobile/desktop browser gates; fix any evidenced failures on this same branch; confirm preview deployment and SHA. Do not merge; owner preview acceptance is required. Production remains HOLD.
+
+
+## 2026-11-04 17:25 SAST — SECOND QA REPAIR / CONSOLIDATED CANDIDATE
+- Exact consolidated preview code/trigger commit: `192219c02b381d13b9cc101574cf033459bc271c` on `preview/integrated-storefront-2026-11-04`, PR #176. Current main base remains `8a0695a6d746b886be865ffa950a11011b054e2f`; PR is OPEN / DRAFT / UNMERGED and GitHub reports 24 commits ahead / 0 behind at this checkpoint. Do not merge.
+- First public-package QA rerun exposed a second stale test reference: workflow invoked missing `tests/asc-catalogue-preview.test.cjs`, although ASC is deliberately deferred and excluded from this consolidated preview. Removed only that invocation; kept the ASC-specific route/test out of this candidate. The standard/preview package checks still run `tests/audio-catalogue-preview.test.cjs`, `tests/three-category-storefront-structure.test.cjs`, and the public SKU audit.
+- Latest exact-head public package QA: run **41856942915** SUCCESS. Verified all seven approved preview routes, no supplier/source folders or PDFs, Planetworld 3,317 rows / 702 Car Audio rows, Audio Connections 66 review records, 4,101 packaged WebP images, audio catalogue regression, three-root structure regression and public SKU audit.
+- Latest exact-head PR gates: Preview Approved Catalogue Gate **41856942854 SUCCESS**; Delivery Quote Security Tests **41856942856 SUCCESS**; Customer Authentication Security Tests **41856942851 SUCCESS**; Public SKU Exposure Audit **41856943002 SUCCESS**; Car Audio Accessories Route Browser QA **41856942912 SUCCESS**. The accessory browser test verified the three approved category roots, Trims & Harnesses 47 products, Aerials honest empty state (0 matching until separate ASC integration), Kicker → Subwoofers filter and zero browser JS errors.
+- Legacy Button-Only Storefront Smoke Test initially failed because it unconditionally required the retired `data-storefront-mode="buttons-only"` marker and buttons-only DOM, while this PR intentionally restores the full populated storefront. Updated `.github/workflows/button-only-storefront-smoke.yml` to detect storefront mode and run its restrictive test only when the marker is actually present. On exact head `192219c`, run **41856943052 SUCCESS**; the button-only job was correctly SKIPPED, not counted as a storefront test pass. Full storefront browser coverage is supplied by the owner-preview and audio/accessory workflows.
+- Exact-head Cloudflare Pages deployment run **41856931508**: package build and exact-head catalogue/category/package/SKU invariants SUCCESS; Cloudflare Pages deploy action SUCCESS; exact deployed SHA marker wait still IN_PROGRESS at last check. Owner Store Preview Browser QA run **41856932235**: local read-only owner-preview checks SUCCESS; hosted mobile/desktop exact-SHA verification still IN_PROGRESS. Do not publish a preview URL as verified until these complete and the marker equals `192219c`.
+- The Axxess workflow only prepares a package; no Axxess upload or production action was performed. Production remains HOLD: no merge, production deployment, Axxess upload, DNS, Supabase write, live stock/price/category change, supplier activation, banking/payment activation or checkout go-live.
+- Next action: finish exact-SHA hosted Pages deployment/browser QA on `192219c`; inspect logs for any failure and repair on this same branch. Then record the verified preview URL and deployed SHA. Owner real-phone acceptance remains outstanding. Functional checkout/payment testing remains deferred until owner adds banking details.
+
+
+
+## 2026-11-04 17:30 SAST — PR #176 EXACT-HEAD RECHECK
+- Current consolidated candidate: PR #176, branch `preview/integrated-storefront-2026-11-04`, head `9781193423021af05f167c10ac89e11c122839b9`, base `main` at `8a0695a6d746b886be865ffa950a11011b054e2f`. PR remains OPEN / DRAFT / UNMERGED; 35 commits, 39 changed files; mergeable=true at this read. No merge performed.
+- Eight PR-triggered workflow runs associated with this exact head completed SUCCESS:
+  - Public SKU Exposure Audit `41858392504` (job `126673170171`);
+  - Button-Only Storefront Smoke Test `41858392918` (mode-detection job `126673171235` SUCCESS; restrictive buttons-only browser job correctly SKIPPED because this candidate is populated);
+  - Delivery Quote Security Tests `41858392536` (job `126673175213`);
+  - Prepare Axxess upload package `41858392773` (package preparation only; no upload);
+  - Preview Approved Catalogue Gate `41858392919` (job `126673171100`);
+  - Customer Authentication Security Tests `41858392664` (job `126673172425`);
+  - Cloudflare Pages Public Package QA `41858392930` (job `126673172749`; seven approved preview routes verified, standard package excludes preview-only routes);
+  - Car Audio Accessories Route Browser QA `41858392900` (job `126673171404`; regression suite, Chromium, category/product-route browser checks all successful).
+- Combined commit status endpoint returned no status entries; rely on the eight individually retrieved workflow-run/job results above, not an assumed green combined status.
+- The current-head commit `9781193` is titled “Redeploy clean integration candidate to established non-production Pages alias” and changes only the deployment-request note. The preceding deployment run `41856931508` successfully built, passed exact-head package/SKU checks and completed the Cloudflare deploy action, but its exact-SHA marker wait was CANCELLED; its hosted browser steps were skipped. The current deploy workflow now checks only `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev` for a `PASS` marker matching the exact triggering SHA. The run triggered by `9781193` is not exposed by the available PR-only workflow-run lookup, so its outcome and current deployed SHA are NOT VERIFIED here. Do not present this URL as the current verified preview yet.
+- Full hosted owner-preview QA (root navigation, all four audio collage images, populated Sony/brand/component flow, hidden checkout/write-block guard, and desktop/mobile viewport) and owner real-phone acceptance remain outstanding until the new exact-SHA deploy run can be read and verified. The separate accessory route browser test is not a substitute for the full owner-preview test.
+- No PR merge, production deployment, Axxess upload, DNS change, Supabase/live data write, live catalogue/price/stock/category/active-flag change, supplier publication, payment/banking activation or checkout go-live occurred. Functional checkout/payment testing remains deferred until owner banking details are supplied. Production remains HOLD.
+- Continue on PR #176 only. Next required evidence: current deployment workflow run and job result for `9781193423021af05f167c10ac89e11c122839b9`; exact SHA marker; hosted mobile/desktop browser result; then owner phone acceptance. Do not merge until all gates and owner acceptance pass.
+
+
+
+## 2026-11-04 — OWNER-APPROVED BUILD METHOD AND DELIVERY STANDARD
+
+The owner has explicitly agreed that the following is the definitive method for completing Get Wired AutoWorx. Treat this as the project build standard for all future work. Do not revert to disconnected repair branches, competing storefront implementations, repeated status-only updates, or speculative rebuilds. Continue from the consolidated candidate and reuse verified existing work.
+
+### Product goal
+Deliver one consolidated, populated, professional, customer-facing Get Wired AutoWorx storefront preview that the owner can inspect on their Android phone and desktop, approve, and later authorise for launch. The approved existing storefront design is the visual source of truth. Do not redesign it unnecessarily.
+
+### Fixed build approach
+1. **One storefront / one source of truth**
+   - Continue from consolidated PR #176 unless evidence proves it cannot safely serve as the integration candidate.
+   - Keep one agreed storefront shell, consistent navigation, typography, colours, buttons, footer and responsive behaviour across homepage, departments, categories and product pages.
+   - Reuse current GitHub, Cloudflare Pages and Supabase infrastructure where suitable; avoid new paid services and unnecessary build/deploy systems.
+   - Keep production isolated. Staging only.
+
+2. **Complete eight-category taxonomy**
+   - Auto Electrical Spares
+   - Vehicle Security
+   - Car Audio & Entertainment
+   - Automotive Accessories
+   - Marine Spares & Accessories
+   - Tools, Hardware & Consumables
+   - Camping, Leisure & Outdoors (including 4x4 Outdoor)
+   - Trailer & Canopy
+   - Every category and subcategory must navigate to the correct products or show an honest, useful empty state. No dead buttons, fake counts or placeholder catalogue pages.
+   - Vehicle search is for vehicle-specific products. Preserve the required terms acceptance and customer login before checkout.
+
+3. **One reconciled product catalogue**
+   - Standardise each product with a unique Get Wired SKU, accurate title/description, approved product image, correct category/subcategory, price or quote-only status, availability/special-order status, and vehicle fitment where relevant.
+   - Reconcile catalogue rows, price sheets and image assets by exact model/SKU evidence. Flag ambiguity; do not guess, fuzzy-match unrelated products, invent missing catalogue items or expose supplier SKUs.
+   - Keep supplier identity and supplier-only source material internal.
+   - Integrate approved Planetworld and Audio Connections catalogue data into the customer-facing audio structure; preserve the agreed RRP/dealer-price rules and mark unpriced/special-order items with the agreed Price on Request / Price on Application wording and exchange-rate explanation.
+   - Use permitted Electro-city catalogue information/images without publishing restricted supplier SKU numbers; compare Caelex offers on compatibility, cost, margin and delivery.
+   - Keep ASC as a separate, explicitly review-gated integration workstream. Its extracted rows remain review-only until owner approvals, current pricing/availability and image permissions are established. Do not let ASC block the non-ASC consolidated preview or silently promote review records into live products.
+
+4. **Customer journey**
+   - Implement homepage → category/subcategory → product detail → basket → terms acceptance → customer login → order submission/confirmation.
+   - Prepare Direct EFT and WhatsApp order communication, but do not activate banking/payment credentials or live payment processing until the owner supplies details and explicitly approves.
+   - PayFast remains subject to provider approval. Checkout/payment functional testing that depends on banking details may be deferred; test all independent navigation, catalogue, basket and non-payment behaviour now.
+   - Preserve operating policies: pickup by appointment only; no walk-ins; no COD; pickup only after payment and notification; returns address remains private and is supplied only in writing if a return is required.
+
+5. **Incremental evidence-based QA**
+   - Test each integrated section as it is completed; do not leave all functional discovery until the end.
+   - Validate all category/subcategory/product routes, button actions, product images, mobile readability, contrast, no horizontal overflow, price/POA display, supplier privacy, SKU exposure, and honest empty states.
+   - Run exact-head regression, security, package/build and public-SKU checks.
+   - Verify the actual isolated Cloudflare Pages deployment and confirm its deployed build marker equals the exact PR head SHA. Then run hosted desktop and mobile browser checks against that deployment.
+   - Owner must receive the actual verified preview and provide real-phone acceptance. A passing CI run or successful deploy action alone is not preview acceptance.
+
+6. **Delivery and release discipline**
+   - The deliverable is one working, populated staging URL tied to a verified exact commit, not a branch, screenshot, progress report or promise.
+   - Keep PR #176 draft/unmerged until exact-head checks, deployed-SHA verification, hosted desktop/mobile QA and owner acceptance are all evidenced.
+   - Production remains HOLD. No merge, production deploy, Axxess upload, DNS change, live Supabase writes/migrations, live product/price/stock/category/activation changes, supplier publication, banking/payment activation or checkout go-live without the owner's explicit approval.
+   - Update this handover after meaningful work with exact SHA, run/job IDs, evidence, failures, blockers and next action. Read back the updated file to verify. Do not recreate deleted legacy handover files.
+
+### Agreed planning estimate (not a guarantee)
+On 2026-11-04 the owner asked for a completion estimate and agreed to this build method. Current planning estimate: **3–5 focused working days** to produce a consolidated, populated, owner-reviewable staging preview, assuming existing catalogue files/assets and infrastructure are usable and no major new blockers emerge. Indicative allocation:
+- 0.5 day: audit current candidate and consolidate integration path;
+- 1–2 days: catalogue integration and reconciliation;
+- 0.5–1 day: categories, product presentation and navigation;
+- 0.5–1 day: desktop/mobile and regression repairs;
+- 0.5 day: exact-commit deployment and hosted preview verification.
+These ranges overlap where practical and are estimates, not a delivery guarantee. Payment-provider approval, owner banking details, owner acceptance, and the separately gated ASC approval/import work are outside this preview estimate. Re-estimate promptly if actual repository evidence materially changes the scope.
+
+### Current baseline at time this standard was added
+- PR #176: OPEN / DRAFT / UNMERGED; branch `preview/integrated-storefront-2026-11-04`; base `main` at `8a0695a6d746b886be865ffa950a11011b054e2f`; latest metadata head observed `7f2ef608ed0c93d6d2dddf62ffc611ccfd76ea84`.
+- PR #176 metadata: 42 commits, 40 changed files, 39,400 additions, 1,685 deletions; mergeable=true at read time. This is candidate metadata, not proof of readiness.
+- Latest exact-head deployment marker and hosted desktop/mobile acceptance for `7f2ef608ed0c93d6d2dddf62ffc611ccfd76ea84` were not established by this handover update. Do not present the preview as verified or merge based on older-head evidence.
+- Production remains HOLD; no production action is authorised by this methodology agreement.
+
+
+
+## 2026-11-04 — OWNER'S URGENT ONE-HOUR STOREFRONT DEADLINE
+
+- Owner has explicitly rejected the previous 3–5 working-day estimate as unacceptable and set the immediate target: **bring the storefront and Audio categories up to the agreed standard within the next hour, then continue with the remaining store work**.
+- This one-hour target supersedes the earlier planning estimate for the immediate storefront/audio milestone. Do not repeat the 3–5-day estimate as the next milestone or use it to defer urgent work.
+- Immediate deliverable: a consolidated owner-reviewable staging storefront, including the homepage, approved category navigation, Audio department/category structure, brand and component navigation, real artwork, populated Planetworld and Audio Connections preview records, correct quote-only pricing, mobile readability and working customer-facing buttons.
+- Continue only on PR #176 / `preview/integrated-storefront-2026-11-04`; do not create another repair branch or redesign the approved shell. Use existing completed exact-head work wherever valid.
+- Current PR #176 head at the time of this instruction: `e596cef70361dc260a5cbfb90ff9f5a6a5e845b0`. Eight PR-triggered workflow runs on that exact head were observed SUCCESS: customer authentication security `41860550361`; Axxess package preparation only `41860550442`; delivery quote security `41860550449`; preview approved catalogue gate `41860550461`; button-only mode detection `41860550492` (restrictive buttons-only browser job correctly skipped because this is a populated store); public SKU audit `41860550287`; Cloudflare public package QA `41860550426`; Car Audio/accessory route browser QA `41860550330`. This is strong candidate evidence, but not proof of current hosted deployment or full owner-preview acceptance.
+- The exact candidate currently has a material scope discrepancy against the owner's eight-category requirement: `assets/category-tree.json` and the owner-preview browser workflow currently define only three homepage roots — Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories. The owner-approved store taxonomy has eight roots (Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy). Do not silently claim all eight are present. Resolve the discrepancy using authoritative existing category data / approved taxonomy, preserve exact mappings, and extend the root navigation + tests without fabricating subcategories or product counts.
+- Audio route regression on exact head passed, including category navigation, separate Aerials and Trims & Harnesses, 47 dedicated Trims & Harnesses products, Kicker → Subwoofers brand/component filtering, and no browser JS errors. Audio catalogue regression and public package checks also passed. These are repository/browser test results, not hosted owner acceptance.
+- Audio catalogue and homepage assets include JBL/Denon/Hertz brand-logo files and four-panel Audio department artwork. Recheck actual logo buttons, brand/category grouping, product images, price/POA wording and the deployed mobile layout in the final owner preview.
+- Next immediate actions: (1) inspect and reconcile the eight-root taxonomy against existing authoritative source data; (2) complete the homepage/category and Audio presentation without breaking current exact-head regressions; (3) trigger a fresh isolated Cloudflare Pages deployment from the final exact branch head; (4) verify `qa-build-result.json` contains `result=PASS`, `preview_only=true`, and the exact triggering SHA; (5) run/inspect hosted mobile and desktop owner-preview browser QA; (6) give the owner the actual verified preview link and exact SHA within the one-hour target if the required gates pass. If any gate cannot be completed in that window, report the specific evidence-backed blocker plainly rather than claiming completion.
+- Production remains HOLD. No merge, production deployment, Axxess upload, DNS change, Supabase/live writes, live stock/price/category changes, supplier publication, banking/payment activation or checkout go-live is authorised.
+
+
+
+## 2026-11-04 — URGENT STOREFRONT MILESTONE: EIGHT ROOTS RESTORED
+
+- Owner's one-hour deadline remains the immediate priority. Do not revert to the superseded 3–5-day estimate for the storefront/audio milestone.
+- Diagnosed that the consolidated candidate only exposed three homepage/category roots, despite the approved eight-category taxonomy. Corrected the integrated PR #176 candidate on the same branch; no new repair branch was created.
+- Added the eight approved customer-facing root categories in owner-approved order:
+  1. Auto Electrical Spares
+  2. Vehicle Security
+  3. Car Audio & Entertainment
+  4. Automotive Accessories
+  5. Marine Spares & Accessories
+  6. Tools, Hardware & Consumables
+  7. Camping, Leisure & Outdoors
+  8. Trailer & Canopy
+- Restored 43 category records (five missing roots plus their existing source subcategory descendants) from the repository's approved eight-root taxonomy branch. Current candidate now has 72 category snapshot records. Existing candidate Audio, Auto Electrical and Automotive Accessories category subtrees were retained. Root labels/order are explicit and the 4x4 Outdoor category remains nested under Camping, Leisure & Outdoors.
+- To prevent stale historical numbers being shown as live counts, inherited direct product counts for all newly added source records were reset to zero. This is a static preview taxonomy change only; no Supabase category/product assignments, live stock, prices or counts were written.
+- Updated homepage root ID/label map and approved-root validation; standalone `category.html` and `preview-category.html` root lists; the structural regression assertion; and hosted owner-preview/deploy browser expected-root lists and Car Audio navigation labels.
+- Exact final code head at this checkpoint: `2ccf8b3fb1ad2aec23916a0eecafdf76d5261b4e`. Read-back checks confirmed exactly eight active root records in the intended order, eight homepage IDs, eight standalone category roots, eight preview-category roots, all eight root labels in the regression assertion, zero inherited stale counts on newly added category records, and 4x4 parent ID `af2f8625-4f42-45e6-9f21-d571d7415893`.
+- PR #176 remains OPEN / DRAFT / UNMERGED. Exact-head PR-triggered runs on `2ccf8b3` were queued at last poll: Car Audio Accessories Route Browser QA `41861850568`; Button-Only Storefront Smoke Test `41861850548`; Customer Authentication Security Tests `41861850833`; Axxess package preparation only `41861850563`; Public SKU Exposure Audit `41861850938`; Delivery Quote Security Tests `41861850759`; Preview Approved Catalogue Gate `41861850933`; Cloudflare Pages Public Package QA `41861851070`. These are NOT passes until they complete successfully.
+- Earlier code head `174cedc01c1ee74eecb337d1e42e756d610941cf` had all eight PR-triggered workflows successful, including Audio Accessories route browser QA and Cloudflare public package QA, but that evidence is superseded by the eight-root code changes and cannot sign off `2ccf8b3`.
+- A fresh isolated staging deployment was requested via the `.preview-deploy-request` push trigger. The available GitHub workflow-run connector only exposes PR-triggered runs, not the push-triggered Cloudflare deployment or hosted owner-preview run. The known Pages alias could not be independently opened through the available browser tool. Therefore exact deployed SHA marker and hosted desktop/mobile acceptance remain NOT VERIFIED. Do not claim the current preview is deployed or ready until those results are obtained.
+- Next: complete the eight exact-head PR workflows; verify the push-triggered Cloudflare deployment's `qa-build-result.json` marker equals the exact final SHA; inspect hosted owner-preview mobile/desktop browser QA; then provide the actual staging URL and exact SHA. Fix any evidenced regression on this same branch. Owner real-phone acceptance remains required.
+- Production remains HOLD. No merge, production deployment, Axxess upload, DNS change, Supabase/live write, supplier publication, live price/stock/category change, payment activation or checkout go-live occurred.

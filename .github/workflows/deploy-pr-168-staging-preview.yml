@@ -1,0 +1,177 @@
+name: Deploy PR 168 Non-Production Staging Preview
+
+on:
+  push:
+    branches:
+      - integration/three-category-catalogue-preview-final-2026-11-03
+      - repair/pr-168-storefront-category-audio-2026-11-04
+      - fix/mobile-audio-subcategory-grid-2026-11-04
+      - preview/integrated-storefront-2026-11-04
+    paths:
+      - ".preview-deploy-request"
+      - ".github/workflows/deploy-pr-168-staging-preview.yml"
+      - "index-new.html"
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: pr-168-staging-preview
+  cancel-in-progress: true
+
+jobs:
+  deploy-staging-preview:
+    name: Build and deploy isolated PR 168 staging preview
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact triggering commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build customer-only Pages package with isolated review routes
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: |
+          set -eu
+          python scripts/build-cloudflare-pages-public.py
+          test -f pages-public/owner-preview.html
+          test -f pages-public/preview-audio.html
+          test -f pages-public/preview-category.html
+          echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
+          echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
+
+      - name: Set up Node.js for exact-head regression checks
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify exact-head catalogue, category, package and SKU invariants
+        run: |
+          set -euo pipefail
+          node tests/audio-catalogue-preview.test.cjs
+          node tests/three-category-storefront-structure.test.cjs
+          python3 scripts/public-sku-audit.py
+          echo "GW_EXACT_HEAD_REGRESSION_AND_SKU_AUDIT_PASS"
+      - name: Deploy to dedicated non-production Cloudflare Pages branch
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=repair/pr-168-storefront-category-audio-2026-11-04 --commit-hash=${{ github.sha }} --commit-dirty=true
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Wait for the exact deployed SHA and reject stale aliases
+        shell: bash
+        run: |
+          set -euo pipefail
+          aliases=(
+            "https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev"
+          )
+          matched=""
+          for attempt in $(seq 1 24); do
+            for base in "${aliases[@]}"; do
+              body="$(curl -fsS --max-time 5 "$base/qa-build-result.json" 2>/dev/null || true)"
+              if [ -n "$body" ] && printf '%s' "$body" | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("result")=="PASS" and d.get("preview_only") is True and d.get("commit")==sys.argv[1] else 1)' "$GITHUB_SHA"; then
+                matched="$base"
+                break
+              fi
+            done
+            [ -n "$matched" ] && break
+            sleep 5
+          done
+          if [ -z "$matched" ]; then
+            echo "No known staging alias published the exact triggering SHA $GITHUB_SHA"
+            exit 1
+          fi
+          echo "GW_EXACT_SHA_PREVIEW_URL=$matched" >> "$GITHUB_ENV"
+          echo "GW_EXACT_SHA_PREVIEW_PASS url=$matched sha=$GITHUB_SHA"
+      - name: Install Playwright Chromium for hosted preview checks
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install chromium
+      - name: Verify deployed owner preview on phone and desktop viewports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              const page = await browser.newPage({viewport:{width:390,height:844}});
+              const errors=[];
+              page.on('pageerror', e => errors.push(String(e)));
+              await page.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/owner-preview.html',{waitUntil:'domcontentloaded'});
+              if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Non-production preview banner missing');
+              const frame=page.frameLocator('#store');
+              await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:45000});
+              const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn .catContent b').allTextContents();
+              const expected=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
+              if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Homepage root mismatch: '+JSON.stringify(roots));
+              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
+              const checkoutHidden=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
+              if(!checkoutHidden) throw new Error('Checkout is exposed in owner preview');
+              const collage=frame.locator('.audioFourTile img');
+              if(await collage.count()!==4) throw new Error('Audio root collage must contain four department images');
+              for(let i=0;i<4;i++){
+                const img=collage.nth(i);
+                await img.scrollIntoViewIfNeeded();
+                const ok=await img.evaluate(async el=>{if(!el.complete)await new Promise(resolve=>{el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return el.complete&&el.naturalWidth>0});
+                if(!ok) throw new Error('Audio root collage image failed to load: '+await img.getAttribute('alt'));
+              }
+              await frame.getByRole('button',{name:/Car Audio & Entertainment/}).click();
+              const carArt=frame.locator('.catWrap.catalogueWrap a[href*="department=Car%20Audio"] img.catPhoto');
+              await carArt.waitFor({state:'visible',timeout:20000});
+              await carArt.scrollIntoViewIfNeeded();
+              const carArtLoaded=await carArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!carArtLoaded) throw new Error('Car Audio & Video child artwork failed to load');
+              const homeArt=frame.locator('.catWrap.catalogueWrap a[href*="Home%20Entertainment"] img.catPhoto');
+              await homeArt.waitFor({state:'visible',timeout:20000});
+              await homeArt.scrollIntoViewIfNeeded();
+              const homeArtLoaded=await homeArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!homeArtLoaded) throw new Error('Home Entertainment artwork failed to load');
+              const carAudioLink=frame.locator('.catWrap.catalogueWrap a[href*="department=Car%20Audio"]');
+              await carAudioLink.click();
+              await page.waitForFunction(()=>{const p=document.querySelector('#store').contentWindow.location.pathname;return p.endsWith('/preview-audio.html')||p.endsWith('/preview-audio')},{timeout:30000});
+              await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+              const carSummary=await frame.locator('#audioResultCount').innerText();
+              if(Number(carSummary.split(' ')[0]||0)<700) throw new Error('Car Audio catalogue is not populated: '+carSummary);
+              await frame.locator('#brands button[aria-label="Sony"]').click();
+              await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:20000});
+              await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().click();
+              await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const amplifierCount=await frame.locator('#products .audioProduct').count();
+              if(amplifierCount<1) throw new Error('Sony → Amplifiers filter returned no products');
+              const accessoryPage=await browser.newPage({viewport:{width:390,height:844}});
+              accessoryPage.on('pageerror',e=>errors.push('accessory route: '+String(e)));
+              await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html',{waitUntil:'domcontentloaded'});
+              await accessoryPage.locator('#grid .card h2').filter({hasText:'Car Audio & Entertainment'}).waitFor({timeout:20000});
+              await accessoryPage.locator('#grid .card').filter({hasText:'Car Audio & Entertainment'}).click();
+              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Car Audio & Entertainment');
+              await accessoryPage.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Car Audio & Video');
+              await accessoryPage.locator('#grid .card').filter({hasText:'Accessories'}).click();
+              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Accessories');
+              const accessoryNames=(await accessoryPage.locator('#grid .card h2').allTextContents()).map(x=>x.trim()).sort();
+              if(JSON.stringify(accessoryNames)!==JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories child buttons mismatch: '+JSON.stringify(accessoryNames));
+              await accessoryPage.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
+              await accessoryPage.waitForURL(/\/preview-audio(?:\.html)?(?:\?|$)/,{timeout:20000});
+              await accessoryPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
+              const trimCount=await accessoryPage.locator('#products .audioProduct').count();
+              if(trimCount!==47) throw new Error('Trims & Harnesses expected 47 products, got '+trimCount);
+              await accessoryPage.close();
+              await page.setViewportSize({width:1365,height:900});
+              await page.waitForTimeout(500);
+              const dims=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
+              if(dims.scroll>dims.width+2) throw new Error('Desktop horizontal overflow: '+JSON.stringify(dims));
+              if(errors.length) throw new Error('Hosted JavaScript errors: '+JSON.stringify(errors));
+              console.log('GW_HOSTED_MOBILE_DESKTOP_PREVIEW_QA_PASS',JSON.stringify({url:process.env.GW_EXACT_SHA_PREVIEW_URL,roots,collageImages:4,jsErrors:errors.length,desktop:dims}));
+            } finally { await browser.close(); }
+          })().catch(error=>{console.error(error);process.exit(1)});
+          NODE

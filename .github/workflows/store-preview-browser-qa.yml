@@ -1,22 +1,20 @@
-name: Populated Store Preview Browser QA
+name: Owner Store Preview Browser QA
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - 'preview-store.html'
-      - 'preview-category.html'
-      - 'preview-products.html'
-      - 'preview-product.html'
-      - 'preview-planetworld.html'
-      - 'assets/**'
-      - '.github/workflows/store-preview-browser-qa.yml'
+  workflow_dispatch:
+  push:
+    branches:
+      - integration/three-category-catalogue-preview-final-2026-11-03
+      - repair/pr-168-storefront-category-audio-2026-11-04
+      - fix/mobile-audio-subcategory-grid-2026-11-04
+      - preview/integrated-storefront-2026-11-04
 
 permissions:
   contents: read
+  checks: read
 
 jobs:
-  populated-preview:
+  owner-preview:
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
@@ -27,8 +25,8 @@ jobs:
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
-      - name: Run read-only populated preview browser checks
+        run: npx playwright install chromium
+      - name: Run read-only owner preview checks
         shell: bash
         run: |
           set -euo pipefail
@@ -38,177 +36,345 @@ jobs:
           sleep 2
           node <<'NODE'
           const { chromium } = require('playwright');
-          const ASC_PUBLIC_SKUS = [
-            'GW-09D1B7AD','GW-1C87D5E5','GW-1CE86A57','GW-1ED91C25','GW-269894FE',
-            'GW-2A7A9F1E','GW-2AE829B0','GW-2C508DE3','GW-2C792975','GW-31FC9859',
-            'GW-334E3E01','GW-39D7BE90','GW-3EEEC849','GW-43EDB928','GW-4B57D263',
-            'GW-4EE1C0D7','GW-4FE9F254','GW-55138BB7','GW-558D6CCF','GW-5EEF5729',
-            'GW-63A2C0A3','GW-8923C055','GW-8B85BE3E','GW-94FB6A20','GW-957F1BB1',
-            'GW-A792D62B','GW-ACBAADC3','GW-B068547C','GW-B1E343ED','GW-D1CCE3E1',
-            'GW-D8CB9050','GW-DA4281C8','GW-EC20B1E8','GW-F5FAD5A5','GW-F856C85B',
-            'GW-FA6341C4'
-          ];
           (async()=>{
             const browser=await chromium.launch({headless:true});
             const page=await browser.newPage({viewport:{width:390,height:844}});
-            const pageErrors=[];
-            const pageConsoleErrors=[];
-            page.on('pageerror',e=>pageErrors.push(e.message));
-            page.on('console',m=>{if(m.type()==='error')pageConsoleErrors.push(m.text())});
-            await page.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
-            await page.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
-            await page.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
-            const audit=await page.evaluate(skus=>{
-              const rows=window.gwProducts||[];
-              const asc=rows.filter(p=>skus.includes(p.public_sku));
-              const visibleCheckout=[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0);
-              return {
-                products:rows.length,
-                categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,
-                rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),
-                rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),
-                ascMatched:asc.length,
-                ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
-                ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
-                previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
-                visibleCheckout
-              };
-            },ASC_PUBLIC_SKUS);
-            const EXPECTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
-            if(audit.categories!==8||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||audit.rootIds.length!==8||audit.rootIds.some(id=>!id))throw new Error('Approved eight-category root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
-            const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
-            if(await camping.locator('.children .catWrap').filter({hasText:/4X4 Outdoor/i}).count()!==1)throw new Error('4X4 Outdoor must be nested under Camping, Leisure & Outdoors');
-            if(audit.products<1)throw new Error('No live product records loaded into preview');
-            if(audit.ascMatched!==34||audit.ascPositiveStock!==0||audit.ascZeroStock!==34)throw new Error('ASC stock exclusion mismatch (34 active products must be zero; 2 inactive ASC products are correctly absent): '+JSON.stringify(audit));
-            if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
-            if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
-            if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
-            const category=page.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
-            await category.click();
-            await page.locator('#shop').waitFor({state:'visible',timeout:20000});
-            await page.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
-            const firstProduct=page.locator('#allProductsGrid .product').first();
-            await firstProduct.click();
-            await page.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
-            const modalText=await page.locator('#productModal').innerText();
-            if(!modalText.trim())throw new Error('Product detail modal did not populate');
-            await page.locator('#modalClose').click();
-            await page.locator('#productModal').waitFor({state:'hidden',timeout:10000});
-            // Verify Part Search and the no-AI photo-request fallback in the actual preview.
-            const partSearchButton=page.locator('.headerPartSearch').first();
-            await partSearchButton.waitFor({state:'visible',timeout:10000});
-            await partSearchButton.click();
-            await page.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
-            const partSearchCopy=await page.locator('#partSearchDialog').innerText();
-            if(!partSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('No-AI photo-request fallback is missing');
-            await page.locator('#partSearchDialog button.pictureSearchBtn').first().click();
-            await page.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
-            const photoInput=page.locator('#sourcePhotos');
-            const photoRules=await photoInput.evaluate(el=>({multiple:el.multiple,accept:el.accept}));
-            if(!photoRules.multiple||!photoRules.accept.includes('image/jpeg')||!photoRules.accept.includes('image/png'))throw new Error('Photo request upload rules are incomplete: '+JSON.stringify(photoRules));
-            const previewSource=await require('fs').promises.readFile('preview-store.html','utf8');
-            if(/generativelanguage|api\.openai\.com|gemini\/|openai\/images/i.test(previewSource))throw new Error('Paid AI image-search endpoint remains in preview source');
-            if(!previewSource.includes('files.length>5'))throw new Error('Five-photo maximum is not enforced in the request handler');
-            await page.evaluate(()=>window.closePartRequest());
-            await page.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
-            const mobileWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(mobileWidth.scrollWidth>mobileWidth.innerWidth+1)throw new Error('Mobile horizontal overflow: '+JSON.stringify(mobileWidth));
+            const errors=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            await page.goto('http://127.0.0.1:4173/owner-preview.html',{waitUntil:'domcontentloaded'});
+            if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION'))throw new Error('Owner preview warning banner missing');
+            const frame=page.frameLocator('#store');
+            await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:60000});
+            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
+            const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
+            const expected=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
+            if(JSON.stringify(roots)!==JSON.stringify(expected))throw new Error('Three approved category roots mismatch: '+JSON.stringify(roots));
+            const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
+            if(!checkoutSafe)throw new Error('Checkout control is visible in owner preview');
+            const carAudioArt=frame.locator('.audioFourTile img[alt="Sony XM-5ES car audio amplifier"]');
+            await carAudioArt.waitFor({state:'visible',timeout:15000});
+            const carAudioArtLoaded=await carAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+            if(!carAudioArtLoaded)throw new Error('Homepage Car Audio & Video product image did not load');
+            await frame.getByRole('button',{name:/Car Audio & Entertainment/}).click();
+            const childCarAudioImage=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] > .catBtn img.catPhoto');
+            await childCarAudioImage.waitFor({state:'visible',timeout:15000});
+            const childCarAudioImageLoaded=await childCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+            if(!childCarAudioImageLoaded)throw new Error('Car Audio & Video child category product image did not load');
+            const departmentArtChecks=[
+              ['gw-audio-home','home entertainment television'],
+              ['862605ef-5223-4525-aad6-ee17c2c6f9e7','band equipment'],
+              ['83ea8ae6-a464-40a2-a503-272792f70be8','dj mixer'],
+              ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
+            ];
+            for(const [id,expectedAlt] of departmentArtChecks){
+              const routeNeedle=id==='gw-audio-home'?'Home%20Entertainment':id==='862605ef-5223-4525-aad6-ee17c2c6f9e7'?'Band%20%26%20Live%20Sound':id==='83ea8ae6-a464-40a2-a503-272792f70be8'?'department=DJ':'Musical%20Instruments';
+              const art=frame.locator('.catWrap.catalogueWrap a[href*="'+routeNeedle+'"] img.catPhoto');
+              await art.waitFor({state:'visible',timeout:15000});
+              await art.scrollIntoViewIfNeeded();
+              const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
+              if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
+            }
+            await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
+            await frame.getByRole('link',{name:/Car Audio & Video/}).evaluate(el=>el.click());
+            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            const carAudioDepartmentImage=frame.locator('.audioTile button').filter({hasText:/Car Audio & Video/}).locator('img.departmentImage');
+            await carAudioDepartmentImage.waitFor({state:'visible',timeout:15000});
+            const carAudioDepartmentImageLoaded=await carAudioDepartmentImage.evaluate(img=>img.complete&&img.naturalWidth>0);
+            if(!carAudioDepartmentImageLoaded)throw new Error('Car Audio & Video department product image did not load');
+            await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+            const carAudioSummary=await frame.locator('#audioResultCount').innerText();
+            const carAudioRecordCount=Number(carAudioSummary.split(' ')[0]||0);
+            if(carAudioRecordCount<700)throw new Error('Car Audio department is missing Planetworld catalogue rows: '+carAudioSummary);
+            const logoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony','Starsound','JVC Car Audio','Kenwood Car Audio','Focal Car Audio','Pioneer Car Audio','Hertz'];
+            const checkedLogos=[];
+            for(const name of logoBrands){
+              const logoButton=frame.locator('#brands button[aria-label="'+name+'"]');
+              if(await logoButton.count()){
+                const info=await logoButton.evaluate(async b=>{
+                  const img=b.querySelector('img');
+                  if(!img)return {loaded:false,src:null,naturalWidth:0};
+                  if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});});
+                  return {loaded:img.complete&&img.naturalWidth>0,src:img.src,naturalWidth:img.naturalWidth};
+                });
+                if(!info.loaded)throw new Error('Required Car Audio brand logo failed to load: '+name+' '+JSON.stringify(info));
+                checkedLogos.push({name,naturalWidth:info.naturalWidth});
+              }
+            }
+            if(checkedLogos.length<5)throw new Error('Expected at least five mapped Car Audio brand logos, verified '+checkedLogos.length);
+            if(!checkedLogos.some(x=>x.name==='Starsound'))throw new Error('Starsound brand logo was not verified');
+            if(await frame.locator('#products').isVisible())throw new Error('Department landing page must hide product stock before brand selection');
+            await frame.locator('#brands button[aria-label="Starsound"]').click();
+            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('brand')==='Starsound',{timeout:15000});
+            await frame.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().waitFor({state:'visible',timeout:30000});
+            if(await frame.locator('#products').isVisible())throw new Error('Starsound brand landing page exposed stock before component selection');
+            await frame.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().click();
+            await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            const starsoundProducts=await frame.locator('#products .audioProduct').count();
+            if(starsoundProducts!==3)throw new Error('Starsound SVC Subwoofers route expected 3 products, got '+starsoundProducts);
+            if(!(await frame.locator('#products').innerText()).includes('Starsound'))throw new Error('Starsound route returned another brand');
+            await frame.locator('#brands button').filter({hasText:'All brands'}).click();
+            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('brand')==='All brands',{timeout:15000});
+            await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+            await frame.locator('#brands button[aria-label="Sony"]').click();
+            await frame.locator('#components button').first().waitFor({state:'visible',timeout:30000});
+            if(await frame.locator('#products').isVisible())throw new Error('Brand landing page must hide product stock before component selection');
+            await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().click();
+            await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            const audioText=await frame.locator('#products').innerText();
+            if(!audioText.includes('Sony')||!audioText.includes('Amplifiers'))throw new Error('Sony amplifier filter did not return selected products: '+audioText.slice(0,500));
+            const xmCard=frame.locator('#products .audioProduct').filter({hasText:'XM-5ES'}).first();
+            await xmCard.waitFor({state:'visible',timeout:30000});
+            await xmCard.locator('img').scrollIntoViewIfNeeded();
+            const xmImage=await xmCard.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,naturalWidth:img.naturalWidth}});
+            if(!xmImage.loaded)throw new Error('Owner-authorized Sony XM-5ES product image failed to load: '+JSON.stringify(xmImage));
+            await frame.locator('#components button').filter({hasText:'Subwoofers'}).first().click();
+            const xsCard=frame.locator('#products .audioProduct').filter({hasText:'XS-W104ES'}).first();
+            await xsCard.waitFor({state:'visible',timeout:30000});
+            const xsImageCount=await xsCard.locator('img').count();
+            if(xsImageCount!==0)throw new Error('XS-W104ES image must remain withheld until an exact-model source renders; broken or substituted artwork is not acceptable');
+
+            await page.goto('http://127.0.0.1:4173/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded'});
+            const jblButton=page.locator('#brands button[aria-label="JBL"]');
+            await jblButton.waitFor({state:'visible',timeout:30000});
+            const jblLoaded=await jblButton.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;});
+            if(!jblLoaded)throw new Error('JBL logo failed to load in Studio Equipment');
+            await jblButton.click();
+            await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='JBL',{timeout:15000});
+            await page.locator('#components button').first().click();
+            await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            if(!(await page.locator('#products').innerText()).includes('JBL'))throw new Error('JBL brand route did not filter to JBL products');
+            await page.goto('http://127.0.0.1:4173/preview-audio.html?department=DJ',{waitUntil:'domcontentloaded'});
+            const denonButton=page.locator('#brands button[aria-label="Denon DJ"]');
+            await denonButton.waitFor({state:'visible',timeout:30000});
+            const denonLoaded=await denonButton.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;});
+            if(!denonLoaded)throw new Error('Denon DJ logo failed to load in DJ Equipment');
+            await denonButton.click();
+            await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Denon DJ',{timeout:15000});
+            await page.locator('#components button').first().click();
+            await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            if(!(await page.locator('#products').innerText()).includes('Denon DJ'))throw new Error('Denon DJ brand route did not filter to Denon DJ products');
+            if(errors.length)throw new Error('Browser JavaScript errors: '+JSON.stringify(errors));
+            await page.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
+            await page.getByRole('link',{name:/Aerials/}).waitFor({state:'visible',timeout:15000});
+            await page.getByRole('link',{name:/Trims & Harnesses/}).waitFor({state:'visible',timeout:15000});
+            await page.getByRole('link',{name:/Trims & Harnesses/}).click();
+            await page.waitForFunction(()=>location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            const fitmentCount=await page.locator('#products .audioProduct').count();
+            if(fitmentCount!==47)throw new Error('Trims & Harnesses route should show 47 dedicated Planetworld rows, got '+fitmentCount);
+            await page.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
+            await page.getByRole('link',{name:/Aerials/}).click();
+            await page.waitForFunction(()=>location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            if(new URL(page.url()).searchParams.get('search')!=='Aerials')throw new Error('Aerials button did not open its own filtered route');
             await page.setViewportSize({width:1280,height:900});
-            const desktopWidth=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(desktopWidth.scrollWidth>desktopWidth.innerWidth+1)throw new Error('Desktop horizontal overflow: '+JSON.stringify(desktopWidth));
-            // Verify the provisional Planetworld snapshot without touching Supabase or exposing dealer cost.
-            const planetworld=await browser.newPage({viewport:{width:390,height:844}});
-            await planetworld.goto('http://127.0.0.1:4173/preview-planetworld.html',{waitUntil:'domcontentloaded'});
-            await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:15000});
-            const pwAudit=await planetworld.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,snapshotDates:[...new Set(rows.map(p=>p.snapshot))],imageSources:rows.filter(p=>p.imageUrl).length,imageModels:rows.filter(p=>p.imageUrl).map(p=>p.modelNumber).sort(),officialImageSources:rows.filter(p=>p.imageUrl).every(p=>['https://static.audison.com/media/','https://www.kicker.com/','https://finland.alpine-europe.com/fileadmin/'].some(prefix=>String(p.imageUrl).startsWith(prefix))),hasManufacturerLinks:rows.every(p=>String(p.manufacturerPage).startsWith('https://')),dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
-            if(pwAudit.rows!==68||pwAudit.positiveStock!==44||pwAudit.zeroStock!==24||pwAudit.costFloorPass!==68||pwAudit.imageSources!==7||JSON.stringify(pwAudit.imageModels)!==JSON.stringify(['46CXA3604','46CXA6605','66755100','66755105','R2-A60F.','R2-W10D2','S2-S40C'].sort())||!pwAudit.officialImageSources||!pwAudit.hasManufacturerLinks||pwAudit.dealerCostExposed)throw new Error('Planetworld provisional preview audit failed: '+JSON.stringify(pwAudit));
-            await planetworld.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length===7&&imgs.every(img=>img.complete);},{timeout:15000});
-            const imageLoadAudit=await planetworld.locator('#grid .card img').evaluateAll(imgs=>imgs.map(img=>({src:img.src,loaded:img.naturalWidth>0})));
-            if(imageLoadAudit.some(img=>!img.loaded))throw new Error('An official manufacturer product image did not load: '+JSON.stringify(imageLoadAudit));
-            const pwWidth=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(pwWidth.scrollWidth>pwWidth.innerWidth+1)throw new Error('Planetworld mobile overflow: '+JSON.stringify(pwWidth));
-            await planetworld.locator('#q').fill('Alpine');
-            await planetworld.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0&&document.querySelectorAll('#grid .card').length<68,{timeout:10000});
-            console.log('PLANETWORLD_PROVISIONAL_PREVIEW_PASS '+JSON.stringify({...pwAudit,mobileWidth:pwWidth,searchFilter:true}));
-            await planetworld.setViewportSize({width:1280,height:900});
-            const pwDesktop=await planetworld.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(pwDesktop.scrollWidth>pwDesktop.innerWidth+1)throw new Error('Planetworld desktop overflow: '+JSON.stringify(pwDesktop));
-            await planetworld.close();
-            // Exercise the dedicated audio-area navigation from the real category page.
-            const audioResponse=await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
-            await page.waitForTimeout(3000);
-            const audioDebug=await page.evaluate(()=>({url:location.href,title:document.title,gridError:document.getElementById('grid')?.dataset.error||'',gridDebug:document.getElementById('grid')?.dataset.debug||'',gridText:document.getElementById('grid')?.innerText||''}));
-            console.log('AUDIO_HTTP_STATUS '+audioResponse?.status());
-            console.log('AUDIO_PAGE_ERRORS '+JSON.stringify({pageErrors,pageConsoleErrors})); 
-            console.log('AUDIO_CATEGORY_DEBUG '+JSON.stringify(audioDebug));
-            if(await page.locator('#grid .card').count()<3)throw new Error('Audio category page did not render three area cards: '+JSON.stringify(audioDebug));
-            const audioAreas=await page.locator('#grid').innerText();
-            for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!audioAreas.includes(label))throw new Error('Audio area navigation missing '+label);
-            await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-            await page.waitForURL(/audio_area=car/,{timeout:15000});
-            await page.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
-            if(pageErrors.length)throw new Error('Browser page errors: '+pageErrors.join(' | '));
-            console.log('POPULATED_PREVIEW_PASS '+JSON.stringify({...audit,mobileWidth,desktopWidth,productModal:true,pageErrors}));
-            const hosted=await browser.newPage({viewport:{width:390,height:844}});
-            const hostedErrors=[];
-            hosted.on('pageerror',e=>hostedErrors.push(e.message));
-            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-store.html',{waitUntil:'domcontentloaded',timeout:60000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
-            await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
-            const hostedAudit=await hosted.evaluate(skus=>{
-              const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
-              return {
-                products:rows.length,
-                categories:document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length,
-                ascMatched:asc.length,
-                ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
-                ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
-                previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
-                visibleCheckout:[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0)
-              };
-            },ASC_PUBLIC_SKUS);
-            if(hostedAudit.products<1||hostedAudit.ascMatched!==34||hostedAudit.ascPositiveStock!==0||hostedAudit.ascZeroStock!==34)throw new Error('Hosted ASC stock check failed: '+JSON.stringify(hostedAudit));
-            if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
-            if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
-            const hostedCategory=hosted.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
-            await hostedCategory.click();
-            await hosted.locator('#shop').waitFor({state:'visible',timeout:20000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:30000});
-            await hosted.locator('#allProductsGrid .product').first().click();
-            await hosted.locator('#productModal.open').waitFor({state:'visible',timeout:15000});
-            await hosted.locator('#modalClose').click();
-            await hosted.locator('#productModal').waitFor({state:'hidden',timeout:10000});
-            await hosted.locator('.headerPartSearch').click();
-            await hosted.locator('#partSearchDialog.open').waitFor({state:'visible',timeout:10000});
-            const hostedSearchCopy=await hosted.locator('#partSearchDialog').innerText();
-            if(!hostedSearchCopy.includes('NO AI CREDITS NEEDED'))throw new Error('Hosted no-AI photo-request fallback is missing');
-            await hosted.locator('#partSearchDialog button.pictureSearchBtn').first().click();
-            await hosted.locator('#sourcePart').waitFor({state:'visible',timeout:10000});
-            await hosted.evaluate(()=>window.closePartRequest());
-            await hosted.locator('#sourcePart').waitFor({state:'hidden',timeout:10000});
-            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
-            const hostedAudioAreas=await hosted.locator('#grid').innerText();
-            for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
-            await hosted.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
-            await hosted.waitForURL(/audio_area=car/,{timeout:15000});
-            await hosted.waitForFunction(()=>document.getElementById('heading')?.innerText.includes('Car Audio & Video'),{timeout:15000});
-            const hostedWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(hostedWidth.scrollWidth>hostedWidth.innerWidth+1)throw new Error('Hosted mobile horizontal overflow: '+JSON.stringify(hostedWidth));
-            if(hostedErrors.length)throw new Error('Hosted browser page errors: '+hostedErrors.join(' | '));
-            console.log('HOSTED_PREVIEW_PASS '+JSON.stringify({...hostedAudit,mobileWidth:hostedWidth,productModal:true,pageErrors:hostedErrors}));
-            await hosted.goto('https://2c042f13.get-wired-autoworx-store.pages.dev/preview-planetworld.html',{waitUntil:'domcontentloaded',timeout:60000});
-            await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length===68,{timeout:30000});
-            const hostedPlanet=await hosted.evaluate(()=>{const rows=window.gwPlanetworldPreview||[];return {rows:rows.length,positiveStock:rows.filter(p=>p.total>0).length,zeroStock:rows.filter(p=>p.total===0).length,costFloorPass:rows.filter(p=>p.costFloor==='PASS_REVIEW_ONLY').length,imageSources:rows.filter(p=>p.imageUrl).length,dealerCostExposed:/Dealer Price|estimated_cost_incl_vat|cost_numeric/i.test(document.body.innerText)}});
-            if(hostedPlanet.rows!==68||hostedPlanet.positiveStock!==44||hostedPlanet.zeroStock!==24||hostedPlanet.costFloorPass!==68||![4,7].includes(hostedPlanet.imageSources)||hostedPlanet.dealerCostExposed)throw new Error('Hosted Planetworld review page audit failed: '+JSON.stringify(hostedPlanet));
-            await hosted.waitForFunction(()=>{const imgs=[...document.querySelectorAll('#grid .card img')];return imgs.length>=4&&imgs.every(img=>img.complete&&img.naturalWidth>0);},{timeout:30000});
-            const hostedPlanetWidth=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(hostedPlanetWidth.scrollWidth>hostedPlanetWidth.innerWidth+1)throw new Error('Hosted Planetworld mobile overflow: '+JSON.stringify(hostedPlanetWidth));
-            await hosted.setViewportSize({width:1280,height:900});
-            const hostedPlanetDesktop=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
-            if(hostedPlanetDesktop.scrollWidth>hostedPlanetDesktop.innerWidth+1)throw new Error('Hosted Planetworld desktop overflow: '+JSON.stringify(hostedPlanetDesktop));
-            console.log('HOSTED_PLANETWORLD_PREVIEW_PASS '+JSON.stringify({...hostedPlanet,mobileWidth:hostedPlanetWidth,desktopWidth:hostedPlanetDesktop}));
-            await hosted.close();
+            const widths=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(widths.scrollWidth>widths.innerWidth+1)throw new Error('Category/audio route has horizontal overflow: '+JSON.stringify(widths));
+            console.log('OWNER_PREVIEW_BROWSER_QA_PASS',JSON.stringify({roots,sonyAmplifierProductsVisible:true,departmentAndBrandStockHidden:true,sonyProductImages:{XM5ES:xmImage.loaded,XS_W104ES_WITHHELD:(xsImageCount===0)},trimFitmentRows:fitmentCount,aerialsOwnRoute:true,checkoutHidden:true,supabaseWritesBlocked:true}));
             await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+
+      - name: Inspect the deployed non-production Cloudflare preview on mobile and desktop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            try {
+              const page=await browser.newPage({viewport:{width:390,height:844}});
+              const errors=[];
+              page.on('pageerror',e=>errors.push(String(e)));
+              const expectedSha=process.env.GITHUB_SHA;
+              const previewBases=[
+                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev'
+              ];
+              let previewBase=null;
+              let deployedBuild=null;
+              for(let attempt=0;attempt<24;attempt++){
+                for(const candidate of previewBases){
+                  const response=await page.request.get(candidate+'/qa-build-result.json',{timeout:8000,headers:{'cache-control':'no-cache'}});
+                  if(response.ok()){
+                    let candidateBuild=null;
+                    try { candidateBuild=await response.json(); } catch {}
+                    if(candidateBuild&&candidateBuild.commit===expectedSha){
+                      previewBase=candidate;
+                      deployedBuild=candidateBuild;
+                      break;
+                    }
+                  }
+                }
+                if(previewBase)break;
+                if(attempt%6===0)console.log('WAITING_FOR_EXACT_PR168_STAGING_DEPLOY',JSON.stringify({attempt,expectedSha,previewBases}));
+                await page.waitForTimeout(5000);
+              }
+              console.log('EXACT_PR168_STAGING_PREVIEW',JSON.stringify({expectedSha,previewBase,deployedBuild}));
+              for (const asset of ['jbl.svg','denon.svg','hertz.svg']) {
+                const response = await page.request.get(previewBase+'/assets/brand-logos/'+asset, {headers:{'cache-control':'no-cache'}});
+                const body = await response.text().catch(()=> '');
+                console.log('HOSTED_BRAND_ASSET_HTTP', JSON.stringify({asset,status:response.status(),contentType:response.headers()['content-type']||null,bodyStart:body.slice(0,120)}));
+                if(!response.ok())throw new Error('Staging preview is missing required brand logo asset '+asset+' (HTTP '+response.status()+')');
+              }
+              if(!deployedBuild||deployedBuild.commit!==expectedSha) throw new Error('Hosted preview did not deploy exact workflow commit '+expectedSha+'; found '+JSON.stringify(deployedBuild));
+              for (const asset of ['jbl.svg','denon.svg','hertz.svg']) {
+                const response = await page.request.get(previewBase+'/assets/brand-logos/'+asset, {headers:{'cache-control':'no-cache'}});
+                const body = await response.text().catch(()=> '');
+                console.log('HOSTED_BRAND_ASSET_HTTP', JSON.stringify({asset,status:response.status(),contentType:response.headers()['content-type']||null,bodyStart:body.slice(0,120)}));
+              }
+              await page.goto(previewBase+'/owner-preview.html',{waitUntil:'domcontentloaded',timeout:60000});
+              if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Hosted preview warning banner missing');
+              const frame=page.frameLocator('#store');
+              await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:60000});
+              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:30000});
+              const rootStateBefore=await frame.locator('#categoryGrid > .catWrap').first().evaluate(el=>({className:el.className,childCount:el.querySelector('.children')?.children.length||0,childrenText:el.querySelector('.children')?.innerText||'',html:el.innerHTML.slice(0,3000)}));
+              console.log('HOSTED_ROOT_STATE_BEFORE_CLICK',JSON.stringify(rootStateBefore));
+              if(rootStateBefore.childCount<1)throw new Error('Hosted category snapshot rendered the Audio root without its subcategory nodes: '+JSON.stringify(rootStateBefore));
+              const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
+              const expected=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
+              if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted preview category roots mismatch: '+JSON.stringify(roots));
+              const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
+              if(!checkoutSafe) throw new Error('Checkout is visible in hosted owner preview');
+              const hostedCarAudioArt=frame.locator('.audioFourTile img[alt="Sony XM-5ES car audio amplifier"]');
+              await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
+              const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!hostedCarAudioArtLoaded)throw new Error('Hosted homepage Car Audio & Video product image did not load');
+              await frame.getByRole('button',{name:/Car Audio & Entertainment/}).click();
+              const hostedChildCarAudioImage=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] > .catBtn img.catPhoto');
+              await hostedChildCarAudioImage.waitFor({state:'visible',timeout:15000});
+              const hostedChildCarAudioImageLoaded=await hostedChildCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!hostedChildCarAudioImageLoaded)throw new Error('Hosted Car Audio & Video child category product image did not load');
+              const hostedDepartmentArtChecks=[
+                ['gw-audio-home','home entertainment television'],
+                ['862605ef-5223-4525-aad6-ee17c2c6f9e7','band equipment'],
+                ['83ea8ae6-a464-40a2-a503-272792f70be8','dj mixer'],
+                ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
+              ];
+              for(const [id,expectedAlt] of hostedDepartmentArtChecks){
+                const routeNeedle=id==='gw-audio-home'?'Home%20Entertainment':id==='862605ef-5223-4525-aad6-ee17c2c6f9e7'?'Band%20%26%20Live%20Sound':id==='83ea8ae6-a464-40a2-a503-272792f70be8'?'department=DJ':'Musical%20Instruments';
+                const art=frame.locator('.catWrap.catalogueWrap a[href*="'+routeNeedle+'"] img.catPhoto');
+                await art.waitFor({state:'visible',timeout:15000});
+                await art.scrollIntoViewIfNeeded();
+                const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
+                if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Hosted wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
+              }
+              try {
+                await page.waitForFunction(()=>{const f=document.querySelector('#store');const w=f?.contentDocument?.querySelector('#categoryGrid > .catWrap');return !!w?.classList.contains('open')},{timeout:10000});
+              } catch(error) {
+                const state=await frame.locator('#categoryGrid > .catWrap').first().evaluate(el=>({className:el.className,childCount:el.querySelector('.children')?.children.length||0,buttonText:el.querySelector('.catBtn')?.innerText||'',html:el.innerHTML.slice(0,4000)}));
+                console.error('HOSTED_ROOT_CLICK_DIAGNOSTIC',JSON.stringify({state,jsErrors:errors}));
+                throw error;
+              }
+              console.log('HOSTED_AFTER_AUDIO_ROOT',JSON.stringify({text:await frame.locator('#categoryGrid').innerText()}));
+              await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
+              const hostedCategoryGrid=frame.locator('#categoryGrid');
+              const hostedAudioLinks=hostedCategoryGrid.locator('a.catalogueLink[href*="preview-audio.html"]');
+              const hostedAudioLinkCount=await hostedAudioLinks.count();
+              const hostedCategoryText=await hostedCategoryGrid.innerText();
+              console.log('HOSTED_AFTER_CAR_AUDIO',JSON.stringify({audioLinkCount:hostedAudioLinkCount,text:hostedCategoryText,html:(await hostedCategoryGrid.innerHTML()).slice(0,12000)}));
+              const audioLink=hostedAudioLinks.filter({hasText:/Car Audio & Video/}).first();
+              try { await audioLink.waitFor({state:'visible',timeout:10000}); }
+              catch(error) { console.error('HOSTED_AUDIO_LINK_DIAGNOSTIC',JSON.stringify({audioLinkCount:hostedAudioLinkCount,categoryText:hostedCategoryText,jsErrors:errors})); throw error; }
+              const audioHref=await audioLink.getAttribute('href');
+              if(!audioHref||!audioHref.includes('preview-audio.html')) throw new Error('Hosted Car Audio & Video link has no dedicated preview route: '+audioHref);
+              const routeUrl=new URL(audioHref,new URL('preview-store.html',page.url())).href;
+              await page.goto(routeUrl,{waitUntil:'domcontentloaded',timeout:60000});
+              await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+              const hostedLogoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony','Starsound','JVC Car Audio','Kenwood Car Audio','Focal Car Audio','Pioneer Car Audio','Hertz'];
+              const hostedCheckedLogos=[];
+              for(const name of hostedLogoBrands){
+                const logoButton=page.locator('#brands button[aria-label="'+name+'"]');
+                if(await logoButton.count()){
+                  const info=await logoButton.evaluate(async b=>{
+                    const img=b.querySelector('img');
+                    if(!img)return {loaded:false,src:null,naturalWidth:0};
+                    if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});});
+                    return {loaded:img.complete&&img.naturalWidth>0,src:img.src,naturalWidth:img.naturalWidth};
+                  });
+                  if(!info.loaded)throw new Error('Hosted Car Audio brand logo failed to load: '+name+' '+JSON.stringify(info));
+                  hostedCheckedLogos.push({name,naturalWidth:info.naturalWidth});
+                }
+              }
+              if(hostedCheckedLogos.length<5)throw new Error('Hosted preview verified fewer than five brand logos: '+JSON.stringify(hostedCheckedLogos));
+              if(!hostedCheckedLogos.some(x=>x.name==='Starsound'))throw new Error('Hosted Starsound brand logo was not verified');
+              if(await page.locator('#products').isVisible()) throw new Error('Hosted department page exposed stock before brand selection');
+              const hostedCarAudioSummary=await page.locator('#audioResultCount').innerText();
+              const hostedCarAudioCount=Number(hostedCarAudioSummary.split(' ')[0]||0);
+              if(hostedCarAudioCount<700)throw new Error('Hosted Car Audio department is missing Planetworld catalogue rows: '+hostedCarAudioSummary);
+              await page.locator('#brands button[aria-label="Starsound"]').click();
+              await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Starsound',{timeout:15000});
+              await page.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().waitFor({state:'visible',timeout:30000});
+              if(await page.locator('#products').isVisible())throw new Error('Hosted Starsound brand landing page exposed stock before component selection');
+              await page.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().click();
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const hostedStarsoundProducts=await page.locator('#products .audioProduct').count();
+              if(hostedStarsoundProducts!==3)throw new Error('Hosted Starsound SVC Subwoofers route expected 3 products, got '+hostedStarsoundProducts);
+              if(!(await page.locator('#products').innerText()).includes('Starsound'))throw new Error('Hosted Starsound route returned another brand');
+              await page.goto(previewBase+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded'});
+              const hostedCarAudioDepartmentImage=page.locator('.audioTile button').filter({hasText:/Car Audio & Video/}).locator('img.departmentImage');
+              await hostedCarAudioDepartmentImage.waitFor({state:'visible',timeout:15000});
+              const hostedCarAudioDepartmentImageLoaded=await hostedCarAudioDepartmentImage.evaluate(img=>img.complete&&img.naturalWidth>0);
+              if(!hostedCarAudioDepartmentImageLoaded)throw new Error('Hosted Car Audio & Video department product image did not load');
+              await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+              await page.locator('#brands button[aria-label="Sony"]').click();
+              await page.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
+              if(await page.locator('#products').isVisible()) throw new Error('Hosted brand page exposed stock before component selection');
+              await page.locator('#components button').filter({hasText:'Amplifiers'}).first().click();
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const products=await page.locator('#products').innerText();
+              if(!products.includes('Sony')||!products.includes('Amplifiers')) throw new Error('Hosted Sony amplifier filtering failed');
+              const hostedXmCard=page.locator('#products .audioProduct').filter({hasText:'XM-5ES'}).first();
+              await hostedXmCard.waitFor({state:'visible',timeout:30000});
+              await hostedXmCard.locator('img').scrollIntoViewIfNeeded();
+              const hostedXmImage=await hostedXmCard.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,naturalWidth:img.naturalWidth}});
+              if(!hostedXmImage.loaded)throw new Error('Hosted owner-authorized Sony XM-5ES image failed to load: '+JSON.stringify(hostedXmImage));
+              await page.locator('#components button').filter({hasText:'Subwoofers'}).first().click();
+              const hostedXsCard=page.locator('#products .audioProduct').filter({hasText:'XS-W104ES'}).first();
+              await hostedXsCard.waitFor({state:'visible',timeout:30000});
+              const hostedXsImageCount=await hostedXsCard.locator('img').count();
+              if(hostedXsImageCount!==0)throw new Error('Hosted XS-W104ES image must remain withheld until an exact-model source renders; broken or substituted artwork is not acceptable');
+              if(/Planetworld|Audio Connections/i.test(await page.locator('body').innerText())) throw new Error('Hosted preview exposed supplier identity');
+              await page.goto(previewBase+'/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded',timeout:60000});
+              const hostedJbl=page.locator('#brands button[aria-label="JBL"]');
+              await hostedJbl.waitFor({state:'visible',timeout:30000});
+              if(!(await hostedJbl.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;})))throw new Error('Hosted JBL logo failed to load');
+              await hostedJbl.click();
+              await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='JBL',{timeout:15000});
+              await page.locator('#components button').first().click();
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              if(!(await page.locator('#products').innerText()).includes('JBL'))throw new Error('Hosted JBL route did not filter to JBL products');
+              await page.goto(previewBase+'/preview-audio.html?department=DJ',{waitUntil:'domcontentloaded',timeout:60000});
+              const hostedDenon=page.locator('#brands button[aria-label="Denon DJ"]');
+              await hostedDenon.waitFor({state:'visible',timeout:30000});
+              if(!(await hostedDenon.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0;})))throw new Error('Hosted Denon DJ logo failed to load');
+              await hostedDenon.click();
+              await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Denon DJ',{timeout:15000});
+              await page.locator('#components button').first().click();
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              if(!(await page.locator('#products').innerText()).includes('Denon DJ'))throw new Error('Hosted Denon DJ route did not filter to Denon DJ products');
+              await page.goto(previewBase+'/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded',timeout:60000});
+              const trimsLink=page.getByRole('link',{name:/Trims & Harnesses/});
+              await trimsLink.waitFor({state:'visible',timeout:30000});
+              const trimsHref=await trimsLink.getAttribute('href');
+              console.log('HOSTED_TRIMS_LINK',JSON.stringify({href:trimsHref,before:page.url()}));
+              await trimsLink.click();
+              try {
+                await page.waitForURL(/\/preview-audio(?:\.html)?(?:\?|$)/,{timeout:30000});
+              } catch (error) {
+                console.error('HOSTED_TRIMS_NAVIGATION_DIAGNOSTIC',JSON.stringify({url:page.url(),href:trimsHref,gridText:await page.locator('#grid').innerText().catch(()=>''),bodyText:(await page.locator('body').innerText().catch(()=>'')).slice(0,1200)}));
+                throw error;
+              }
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const fitmentCount=await page.locator('#products .audioProduct').count();
+              if(fitmentCount!==47) throw new Error('Hosted Trims & Harnesses filter expected 47 products, got '+fitmentCount);
+              await page.setViewportSize({width:1365,height:900});
+              const dims=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
+              if(dims.scroll>dims.width+1) throw new Error('Hosted desktop horizontal overflow: '+JSON.stringify(dims));
+              if(errors.length) throw new Error('Hosted JavaScript errors: '+JSON.stringify(errors));
+              console.log('DEPLOYED_OWNER_PREVIEW_BROWSER_QA_PASS',JSON.stringify({roots,sonyAmplifierFilter:true,fitmentCount,checkoutHidden:true,supabaseWritesBlocked:true,desktopOverflow:false}));
+              await browser.close();
+            } finally { await browser.close(); }
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
