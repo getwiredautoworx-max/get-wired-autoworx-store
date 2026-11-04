@@ -278,3 +278,17 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Audio Connections remains the supplier-pilot data blocker: 66 retained preview rows from 68 source rows; 4 image URLs / 62 image gaps; 13 proposed GW SKU candidates / 53 SKU gaps; 3 rows without indicative prices; seven Starsound power strings still need supplier confirmation. Do not activate or publish these review-only records.
 - **Stage status:** storefront navigation, category filtering, mobile/desktop browser checks and exact-head public-package regression are verified. Owner real-phone visual acceptance is still required. Planetworld/Audio Connections data reconciliation is not complete, so do not move to ASC/Electro-city yet. Keep payment/checkout acceptance deferred until banking details are added.
 - PR #168 remains draft/open/unmerged. Production remains HOLD. No production deployment, merge, Axxess upload, DNS/payment changes, live stock/price/category changes, Supabase production writes, supplier activation or checkout go-live was performed.
+
+
+## 2026-11-04 — Audio Connections / Starsound evidence update
+
+- Added the dated internal review files `catalogue-review/supplier-gw-crosswalk-2026-11-04.csv` (770 supplier rows) and `catalogue-review/supplier-gw-crosswalk-summary-2026-11-04.json`; the 2026-10-30 crosswalk snapshot remains preserved.
+- New Starsound evidence review for the 53 non-Sony Audio Connections preview rows:
+  - 12 source model labels now match models listed in official Starsound category pages (Speakers, Subwoofers, Amplifiers, Pro Speakers).
+  - 5 more are possible model aliases/variants and require supplier confirmation.
+  - 1 official individual product page was found for `SSUSB-450BTDD`, while the supplier source row is `USB450BTDD` (missing the `SS` prefix); treat as an alias until Audio Connections confirms.
+  - 35 rows still have no verified official model match.
+- **No additional GW SKU was assigned.** Category-listing evidence is not an individual product detail page; alias/variant rows require supplier confirmation. The existing 81 collision-checked GW candidates remain unchanged, including the 13 Sony candidates for Audio Connections. No product rows were inserted or linked.
+- Official Starsound evidence references recorded in the crosswalk: Speakers https://starsound.co.za/product-category/speakers/ ; Subwoofers https://starsound.co.za/product-category/subwoofers/ ; Amplifiers https://starsound.co.za/product-category/amplifiers/ ; Pro Speakers https://starsound.co.za/product-category/speakers/pro-speakers/?category-view-mode=list ; Car Radios https://starsound.co.za/product-category/car-radios/?category-view-mode=list ; individual SSUSB-450BTDD page https://starsound.co.za/product/ssusb-450btdd/ .
+- No Starsound image asset was downloaded or approved. Audio Connections preview still has 4 image URLs, 3 missing indicative prices, and 7 power strings requiring supplier confirmation. Keep all such rows review-only; do not infer RMS/peak ratings or fill missing digits.
+- Current application/test code head remains `787dd596a201412693230880187ea05fc8ce7b9b`; subsequent changes are internal review/handover artifacts. The latest branch head after adding the dated crosswalk is `a468171b46001d5b57fa056e0ca21375ba6746ab`; its runner, owner-preview and Pages checks are in progress. Do not claim latest exact-head validation until those checks complete.
