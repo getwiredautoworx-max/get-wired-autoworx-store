@@ -43,3 +43,20 @@ The Edge Function asks the vision model for a cautious part description, readabl
 - Supabase Management API reports function `part-image-search` ACTIVE, version 2, `verify_jwt=false`, function ID `33ba0b75-eb4d-42e4-b123-b70b85ddb0d4`.
 - The deployed source reads `Deno.env.get("OPENAI_API_KEY") || ""` and returns 503 before processing the image if the secret is empty.
 - This proves the function is deployed; it does not prove the OpenAI secret exists or that a vision request succeeds. A successful end-to-end image test is still required after secure secret setup and abuse-control review.
+
+
+## Proposed durable abuse-control implementation — 2 November 2026
+
+A code-only review candidate is being prepared on a dedicated branch. It is not deployed and its migration has not been applied.
+
+- A private `gw_private.part_image_search_rate_limits` table stores HMAC-SHA-256 client-IP hashes, a rolling 60-second window and an expiry. Raw IP addresses are not stored.
+- A narrowly scoped SECURITY DEFINER RPC atomically enforces a maximum of 8 requests per IP hash per 60 seconds. Only `service_role` may execute it; the table has RLS enabled and no client-role access.
+- Expired hashes are removed in bounded batches during subsequent rate-limit calls; no pg_cron extension or recurring paid job is required.
+- The Edge Function fails closed with HTTP 503 if the service key, trusted Cloudflare client IP, or shared rate-limit RPC is unavailable. The durable check occurs before the OpenAI request.
+- Request bodies are streamed under a 5.6 MB JSON cap; decoded images are limited to 4 MB and JPEG/PNG/WebP MIME declarations must match file magic bytes.
+- POST and preflight requests require one of the explicitly allowed storefront origins. Caller-supplied forwarded-IP headers are not used.
+- The OpenAI request has a 25-second timeout and sanitized provider errors. The feature still requires a controlled end-to-end test and provider spend controls before public paid inference is enabled.
+
+The migration is intentionally a repository artifact only. Do not apply it to Supabase or deploy the Edge Function without separate owner approval. The existing `OPENAI_API_KEY` remains a secure Supabase secret; no API key or service-role key is stored in source control.
+
+Customer photo disclosure: the submitted photo is sent to OpenAI for analysis and is not persisted by this function. Customers should not upload personal or sensitive images. The returned candidates are suggestions only and do not prove exact identity, vehicle fitment, stock or availability.
