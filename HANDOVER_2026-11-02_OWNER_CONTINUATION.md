@@ -1213,3 +1213,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Validation: all main inline scripts in `preview-category.html`, `preview-products.html`, and `preview-audio.html` parsed successfully in the V8 syntax check. This is syntax/static validation only; Node regression suite, Cloudflare build, hosted preview, mobile browser behaviour and actual external logo URL loading have not yet been verified.
 - Safety: PR #168 remains draft/non-production. No merge, production deployment, Supabase write, supplier publication, price/stock update, checkout/payment change, DNS or Axxess action was performed.
 - Next: run the exact-head Node structural tests and isolated Cloudflare Pages build; verify the resulting exact-head preview on 360px/390px and desktop. Confirm each brand logo URL resolves; replace any failed external logo with a verified official local asset. Owner phone acceptance is still required.
+
+
+### 2026-11-04 logo-source refinement
+- Replaced the unsupported Simple Icons slugs (which were not present in the Simple Icons repository) with identified logo image URLs for Kicker, Audison, Alpine, Starsound, JVC, Sony, Kenwood, Focal and Pioneer; retained the already-present JBL, Denon and Hertz sources.
+- Brand logo failures still degrade to the full brand name rather than a blank tile. Some catalogue labels (e.g. generic/multi-brand entries) do not represent a verified single manufacturer and remain text labels rather than being assigned a false logo.
+- Regression assertions now check the actual configured image URLs. Live URL loading in the hosted browser remains pending.
+- Latest logo-source code commit: `85213cf364bafd32637176a7899b28d30340fb5c`.
