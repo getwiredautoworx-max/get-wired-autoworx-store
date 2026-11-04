@@ -8,3 +8,7 @@ Production deployment, Axxess upload, DNS, Supabase writes, payment activation a
 
 Clean-candidate package QA enabled on branch push — 2026-11-04.
 The isolated package QA now runs directly on the clean integration branch and excludes the deferred ASC-only test while continuing to verify the seven approved preview routes, private supplier sources, catalogue regressions and SKU exposure. Trigger exact-head deployment and hosted browser QA for this revision. Production HOLD.
+
+
+Bounded exact-alias verification — 2026-11-04.
+The staging and owner-browser workflows now poll only the dedicated integrated Pages alias first, with bounded request timeouts and a shorter retry window. Re-deploy this exact head and verify its build marker plus hosted mobile/desktop routes. Production HOLD.
