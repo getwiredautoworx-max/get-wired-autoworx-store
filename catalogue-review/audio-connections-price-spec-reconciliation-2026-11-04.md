@@ -46,14 +46,21 @@ Additional speaker/subwoofer corrections:
 - SSS-6501PRO: retailer lists 250 W RMS, but per-speaker versus per-pair basis remains unclear.
 - SSD-620: multiple South African retailer specifications agree on 80 W RMS / 1,200 W maximum, 6.5-inch 2-way coaxial.
 
-## Four specifications remain held pending authoritative confirmation
+## Further exact-model clarifications
 
-1. **SSW-12-6300 (ac-021):** source list 300 W without RMS/max basis; one retailer says 500 W RMS and another inventory says 350 W RMS. Official product page retrieval timed out.
+- **SSS-6903 (ac-047) is now reconciled:** Starsound's official page confirms the 6×9-inch, 3-way, 4 Ω model; a specialist South African retailer's exact-model listing confirms 60 W RMS / 600 W maximum, sold in pairs. This replaces the earlier unresolved power conflict.
+- **SSA-ATOM-13500.1 (ac-032) is now explicitly held:** Starsound's official page lists 500 W RMS @ 1 Ω / 250 W @ 2 Ω, while two South African retailer listings report 520 / 380 / 230 W RMS at 1 / 2 / 4 Ω. These disagree; supplier/manufacturer clarification is required.
+- **SSA-M5-80.600 (ac-041) is now explicitly held:** Starsound's official product page contains two conflicting RMS tables. Its first table is consistent with specialist retailer listings (80 W ×4 + 250 W sub @ 4 Ω; 140 W ×4 + 410 W sub @ 2 Ω; 600 W sub @ 1 Ω; 240 W ×2 bridged @ 4 Ω), but a second table states 150 W ×4 + 300 W sub @ 2 Ω and 80 W ×4 + 150 W sub @ 4 Ω. Manufacturer clarification is required.
+
+## Five specifications remain held pending authoritative confirmation
+
+1. **SSW-12-6300 (ac-021):** source price list 300 W without rating basis; retailer 500 W RMS vs another inventory 350 W RMS; official page retrieval timed out.
 2. **SSW-B12-2800 (ac-025):** official Starsound page confirms a 12-inch, 4-ohm enclosure model but publishes no RMS rating. Source list says 300 W RMS; another inventory says 250 W RMS / 600 W peak.
-3. **SSS-6501PRO (ac-044):** 250 W RMS listing conflicts with another retailer's 250 W per-pair wording; unit basis must be confirmed.
-4. **SSS-6903 (ac-047):** official Starsound page confirms a 6×9-inch, 4-ohm speaker but no power rating; source list says 600 W and another inventory says 500 W.
+3. **SSA-ATOM-13500.1 (ac-032):** official Starsound page says 500 W RMS @ 1 Ω / 250 W @ 2 Ω; two exact-model retailer listings say 520 / 380 / 230 W RMS at 1 / 2 / 4 Ω.
+4. **SSA-M5-80.600 (ac-041):** two inconsistent RMS tables on the official manufacturer page; specialist retailer listings match the first table.
+5. **SSS-6501PRO (ac-044):** retailer lists 250 W RMS, but another listing describes 250 W per pair; whether the rating applies per driver or pair needs confirmation.
 
-Do not state definitive wattage for these four records until the manufacturer or supplier confirms the rating and unit basis. The uncertainty is preserved in the catalogue data and regression assertions.
+These five records remain review-only and explicitly held. Do not publish definitive wattage or per-driver/per-pair claims until the manufacturer or supplier confirms the exact model revision and rating basis.
 
 ## Safety and release state
 
