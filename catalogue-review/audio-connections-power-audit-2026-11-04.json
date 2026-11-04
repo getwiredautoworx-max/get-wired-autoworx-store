@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-04",
+  "status": "SOURCE_POWER_RECONCILIATION_COMPLETE",
+  "previewRows": 66,
+  "explicitSupplierPowerValues": 15,
+  "ambiguousOrIncomplete": 7,
+  "records": [
+    {
+      "modelNumber": "SSW12\" 5200",
+      "brand": "Starsound",
+      "sourceDescription": "12-inch SVC subwoofer; source text shows 300W",
+      "sourcePowerText": "300W",
+      "previewDescription": "12-inch SVC subwoofer; 300 W (RMS/peak basis not stated)",
+      "powerStatus": "WATTS_BASIS_UNSPECIFIED"
+    },
+    {
+      "modelNumber": "SSW12-6300",
+      "brand": "Starsound",
+      "sourceDescription": "12-inch SVC subwoofer; source text shows 300W",
+      "sourcePowerText": "300W",
+      "previewDescription": "12-inch SVC subwoofer; 300 W (RMS/peak basis not stated)",
+      "powerStatus": "WATTS_BASIS_UNSPECIFIED"
+    },
+    {
+      "modelNumber": "SSW-S12\" SPECTR 15000",
+      "brand": "Starsound",
+      "sourceDescription": "S12 Spectr DVC subwoofer; source text shows 700W RMS",
+      "sourcePowerText": "700W RMS",
+      "previewDescription": "S12 Spectr DVC subwoofer; 700 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SSW-B12-2800",
+      "brand": "Starsound",
+      "sourceDescription": "Boxed SVC subwoofer; source text shows 300W RMS",
+      "sourcePowerText": "300W RMS",
+      "previewDescription": "Boxed SVC subwoofer; 300 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SPARTAN 9900.1",
+      "brand": "Starsound",
+      "sourceDescription": "Spartan monoblock; source text shows 600W RMS",
+      "sourcePowerText": "600W RMS",
+      "previewDescription": "Spartan monoblock; 600 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SSAT6200.1",
+      "brand": "Starsound",
+      "sourceDescription": "Monoblock; source text shows 600W RMS",
+      "sourcePowerText": "600W RMS",
+      "previewDescription": "Monoblock; 600 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SSA-ATOM-13500",
+      "brand": "Starsound",
+      "sourceDescription": "Atom amplifier; source power text incomplete",
+      "sourcePowerText": "incomplete",
+      "previewDescription": "Atom amplifier; power rating requires supplier confirmation",
+      "powerStatus": "INCOMPLETE_SOURCE_TEXT"
+    },
+    {
+      "modelNumber": "SSATI6900.1",
+      "brand": "Starsound",
+      "sourceDescription": "Monoblock; source text shows 1000W RMS",
+      "sourcePowerText": "1000W RMS",
+      "previewDescription": "Monoblock; 1000 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SSATIH8200.1",
+      "brand": "Starsound",
+      "sourceDescription": "Monoblock; source text shows 600W RMS",
+      "sourcePowerText": "600W RMS",
+      "previewDescription": "Monoblock; 600 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SSAR 22000.1",
+      "brand": "Starsound",
+      "sourceDescription": "Monoblock; source text shows 1700W RMS",
+      "sourcePowerText": "1700W RMS",
+      "previewDescription": "Monoblock; 1700 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SSA-SB2000.1",
+      "brand": "Starsound",
+      "sourceDescription": "Monoblock; source text shows 2000W RMS",
+      "sourcePowerText": "2000W RMS",
+      "previewDescription": "Monoblock; 2000 W RMS",
+      "powerStatus": "EXPLICIT_RMS"
+    },
+    {
+      "modelNumber": "SSA-R 5000.4",
+      "brand": "Starsound",
+      "sourceDescription": "Raptor 4-channel amplifier; source power text appears 60RM",
+      "sourcePowerText": "60RM",
+      "previewDescription": "Raptor 4-channel amplifier; power rating requires supplier confirmation (source text: 60RM)",
+      "powerStatus": "AMBIGUOUS_SOURCE_TEXT"
+    },
+    {
+      "modelNumber": "SSAHORNET 7600.4",
+      "brand": "Starsound",
+      "sourceDescription": "Hornet 4-channel amplifier; source power text appears 50RMS",
+      "sourcePowerText": "50RMS",
+      "previewDescription": "Hornet 4-channel amplifier; power rating requires supplier confirmation (source text: 50RMS)",
+      "powerStatus": "AMBIGUOUS_SOURCE_TEXT"
+    },
+    {
+      "modelNumber": "SSA-J-10000.4",
+      "brand": "Starsound",
+      "sourceDescription": "Joker 4-channel amplifier; source power text appears 50RMS",
+      "sourcePowerText": "50RMS",
+      "previewDescription": "Joker 4-channel amplifier; power rating requires supplier confirmation (source text: 50RMS)",
+      "powerStatus": "AMBIGUOUS_SOURCE_TEXT"
+    },
+    {
+      "modelNumber": "SSA-ATOM13800.4",
+      "brand": "Starsound",
+      "sourceDescription": "Atom 4-channel amplifier; source power text appears 100RMS",
+      "sourcePowerText": "100RMS",
+      "previewDescription": "Atom 4-channel amplifier; power rating requires supplier confirmation (source text: 100RMS)",
+      "powerStatus": "AMBIGUOUS_SOURCE_TEXT"
+    },
+    {
+      "modelNumber": "SSA-M5-80.6",
+      "brand": "Starsound",
+      "sourceDescription": "6-channel amplifier; source power text 80RMS",
+      "sourcePowerText": "80RMS",
+      "previewDescription": "6-channel amplifier; power rating requires supplier confirmation (source text: 80RMS)",
+      "powerStatus": "AMBIGUOUS_SOURCE_TEXT"
+    },
+    {
+      "modelNumber": "SSA-M4-80.4",
+      "brand": "Starsound",
+      "sourceDescription": "4-channel amplifier; source power text 80RMS",
+      "sourcePowerText": "80RMS",
+      "previewDescription": "4-channel amplifier; power rating requires supplier confirmation (source text: 80RMS)",
+      "powerStatus": "AMBIGUOUS_SOURCE_TEXT"
+    },
+    {
+      "modelNumber": "SSS5502",
+      "brand": "Starsound",
+      "sourceDescription": "5-inch 3-way speaker, 420W",
+      "sourcePowerText": "420W",
+      "previewDescription": "5-inch 3-way speaker, 420 W (RMS/peak basis not stated)",
+      "powerStatus": "WATTS_BASIS_UNSPECIFIED"
+    },
+    {
+      "modelNumber": "SSS6501 PRO",
+      "brand": "Starsound",
+      "sourceDescription": "6.5-inch Pro 2-way speaker, 250W",
+      "sourcePowerText": "250W",
+      "previewDescription": "6.5-inch Pro 2-way speaker, 250 W (RMS/peak basis not stated)",
+      "powerStatus": "WATTS_BASIS_UNSPECIFIED"
+    },
+    {
+      "modelNumber": "SSS6602",
+      "brand": "Starsound",
+      "sourceDescription": "6-inch 3-way speaker, 480W",
+      "sourcePowerText": "480W",
+      "previewDescription": "6-inch 3-way speaker, 480 W (RMS/peak basis not stated)",
+      "powerStatus": "WATTS_BASIS_UNSPECIFIED"
+    },
+    {
+      "modelNumber": "SSS6903",
+      "brand": "Starsound",
+      "sourceDescription": "6x9 3-way speaker, 600W",
+      "sourcePowerText": "600W",
+      "previewDescription": "6x9 3-way speaker, 600 W (RMS/peak basis not stated)",
+      "powerStatus": "WATTS_BASIS_UNSPECIFIED"
+    },
+    {
+      "modelNumber": "SSD-620",
+      "brand": "Starsound",
+      "sourceDescription": "Digital 6-inch 2-way speaker; source text shows 1200W",
+      "sourcePowerText": "1200W",
+      "previewDescription": "Digital 6-inch 2-way speaker; 1200 W (RMS/peak basis not stated)",
+      "powerStatus": "WATTS_BASIS_UNSPECIFIED"
+    }
+  ]
+}

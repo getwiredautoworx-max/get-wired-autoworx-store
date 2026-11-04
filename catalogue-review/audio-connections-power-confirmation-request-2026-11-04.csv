@@ -1,0 +1,8 @@
+brand,model_number,source_power_text,preview_status,supplier_confirmation_required
+Starsound,SSA-ATOM-13500,incomplete,INCOMPLETE_SOURCE_TEXT,"Confirm exact RMS wattage, channel count and impedance; confirm whether source text omitted digits or units."
+Starsound,SSA-R 5000.4,60RM,AMBIGUOUS_SOURCE_TEXT,"Confirm exact RMS wattage, channel count and impedance; confirm whether source text omitted digits or units."
+Starsound,SSAHORNET 7600.4,50RMS,AMBIGUOUS_SOURCE_TEXT,"Confirm exact RMS wattage, channel count and impedance; confirm whether source text omitted digits or units."
+Starsound,SSA-J-10000.4,50RMS,AMBIGUOUS_SOURCE_TEXT,"Confirm exact RMS wattage, channel count and impedance; confirm whether source text omitted digits or units."
+Starsound,SSA-ATOM13800.4,100RMS,AMBIGUOUS_SOURCE_TEXT,"Confirm exact RMS wattage, channel count and impedance; confirm whether source text omitted digits or units."
+Starsound,SSA-M5-80.6,80RMS,AMBIGUOUS_SOURCE_TEXT,"Confirm exact RMS wattage, channel count and impedance; confirm whether source text omitted digits or units."
+Starsound,SSA-M4-80.4,80RMS,AMBIGUOUS_SOURCE_TEXT,"Confirm exact RMS wattage, channel count and impedance; confirm whether source text omitted digits or units."

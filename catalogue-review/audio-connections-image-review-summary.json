@@ -31,5 +31,15 @@
     "downloaded": 0,
     "visually_approved": 0,
     "publication_rule": "Candidates only. Download and inspect each image, verify exact model and rights/source suitability, and establish approved GW SKU mapping before attaching to any product."
+  },
+  "owner_preview_image_status": {
+    "reviewed_at": "2026-11-04",
+    "preview_products": 66,
+    "image_url_candidates_not_approved": 4,
+    "missing_approved_image_urls": 62,
+    "approved_customer_image_assets": 0,
+    "non_sony_products_without_individual_source_pdf_images": 53,
+    "sony_products_without_image_url": 9,
+    "rule": "The four existing Sony image URLs are review candidates only. None is approved for production until exact-model matching, image quality, source suitability and dealer usage rights are confirmed."
   }
 }

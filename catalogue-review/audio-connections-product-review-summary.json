@@ -15,5 +15,12 @@
   ],
   "starsound_vat": "All Starsound price list values are explicitly VAT exclusive.",
   "unresolved": "All product images, manufacturer page matches and GW SKUs remain unverified/unassigned. The Sony PDF pictures are visually aligned to the listed model rows but are low-resolution catalogue images; high-resolution manufacturer assets still need to be verified.",
-  "no_live_changes": true
+  "no_live_changes": true,
+  "power_review": {
+    "reviewed_at": "2026-11-04",
+    "preview_rows": 66,
+    "explicit_supplier_power_values_in_preview": 15,
+    "ambiguous_or_incomplete_source_power_values": 7,
+    "rule": "The 15 explicit values are preserved. Seven incomplete/ambiguous strings are labelled for supplier confirmation; no missing digits or RMS/peak basis is guessed."
+  }
 }
