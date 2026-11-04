@@ -69,18 +69,18 @@ jobs:
               page.on('pageerror', e => errors.push(String(e)));
               await page.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
               try {
-                await page.locator('#grid .card h2').filter({hasText:'Car Audio & Entertainment'}).waitFor({timeout:15000});
+                await page.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
               } catch(error) {
                 const diagnostic=await page.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
                 console.error('CATEGORY_ROOT_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
                 throw error;
               }
               const roots = await page.locator('#grid .card h2').allTextContents();
-              const expectedRoots = ['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
-              if (JSON.stringify(roots.map(x=>x.trim())) !== JSON.stringify(expectedRoots)) throw new Error('Wrong eight-root category structure: '+JSON.stringify(roots));
+              const expectedRoots = ['Audio, Entertainment & Music','Auto Electrical Parts & Spares','Car Care & Accessories'];
+              if (JSON.stringify(roots.map(x=>x.trim())) !== JSON.stringify(expectedRoots)) throw new Error('Wrong three-root category structure: '+JSON.stringify(roots));
 
-              await page.locator('#grid .card').filter({hasText:'Car Audio & Entertainment'}).click();
-              await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Car Audio & Entertainment');
+              await page.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
+              await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Audio, Entertainment & Music');
               const categoryCarAudioImage=page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).locator('.card-art img');
               await categoryCarAudioImage.waitFor({state:'visible',timeout:15000});
               const categoryCarAudioImageLoaded=await categoryCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
