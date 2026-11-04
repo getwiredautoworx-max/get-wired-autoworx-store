@@ -109,7 +109,7 @@ assert.equal(audioConnections.records.find(row=>row.id==='ac-047').specification
 assert.ok(audioConnections.records.find(row=>row.id==='ac-048').description.includes('80 W RMS and 1,200 W maximum'));
 
 for (const id of ['ac-023','ac-025','ac-027']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(row.priceSourceUrl && row.priceBasis==='SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE'); }
-assert.ok(audioConnections.records.find(row=>row.id==='ac-025').manufacturerMatchStatus.includes('POWER_RATING_CONFLICT'), 'conflicting boxed subwoofer wattage must remain explicitly flagged');
+assert.ok(audioConnections.records.find(row=>row.id==='ac-025').specificationStatus.includes('POWER_CONFLICT'), 'conflicting boxed subwoofer wattage must remain explicitly flagged');
 for (const row of audioConnections.records) {
   assert.ok(row.brand && row.title && row.component && row.modelNumber);
   assert.equal(Object.hasOwn(row, 'dealerCost'), false);
