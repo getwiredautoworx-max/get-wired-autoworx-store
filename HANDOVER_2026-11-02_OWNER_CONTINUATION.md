@@ -1305,3 +1305,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Corrected the catalogue invariant to four image URLs (commit `3160bccdb6bac245410cb94637380e532753efa4`) and changed the browser QA summary to assert/report `XS_W104ES_WITHHELD` based on the absence of an image element (commit `94a81886e254f5951345b8455c390a911469a8d4`). The QA now fails if a broken or substituted XS-W104ES image reappears.
 - These are verification fixes only; no product price, stock, SKU, category assignment, live data, checkout, payment, Supabase or production setting changed.
 - Fresh full runner/package regression, isolated deployment and hosted browser QA are required on the final combined head after these fixes. Do not mark preview verification closed until all three match the exact same SHA and pass.
+
+
+## 2026-11-04 — Aggregate image invariant correction
+
+- Final verification on `0cf1c7dac661a61121091d343d9432841fa8d38e` found the image-count aggregate also needed to reflect the intentionally withheld XS-W104ES asset: the correct combined image count is now 70 (66 verified-model assets + 4 Audio Connections image URLs), not 71.
+- Updated `tests/audio-catalogue-preview.test.cjs` to assert 70 (`337a6e39c34bf88de87831dd04e3bb75e32f68ed`). This is a test-count correction only; no catalogue row was added, removed or repriced other than the previously documented blank image URL for XS-W104ES.
+- The same final-head verification must be rerun after this correction and a fresh deployment of that exact SHA.
