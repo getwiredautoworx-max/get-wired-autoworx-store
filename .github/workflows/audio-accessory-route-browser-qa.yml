@@ -96,8 +96,9 @@ jobs:
               await brandPage.waitForURL(/preview-audio\.html\?.*brand=Kicker/,{timeout:15000});
               await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).waitFor({state:'visible',timeout:30000});
               await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).click();
-              await brandPage.waitForURL(/preview-audio\.html\?.*component=Subwoofers/,{timeout:15000});
               await brandPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const selectedComponent = new URL(brandPage.url()).searchParams.get('component') || '';
+              if (!/subwoofers/i.test(selectedComponent)) throw new Error('Subwoofers button did not apply its component filter: '+selectedComponent);
               const brandProducts = await brandPage.locator('#products .audioProduct > b').allTextContents();
               if (!brandProducts.length || brandProducts.some(x=>x.trim()!=='Kicker')) throw new Error('Kicker → Subwoofers route leaked other brands: '+JSON.stringify(brandProducts.slice(0,10)));
               if (errors.length) throw new Error('Browser JavaScript errors: '+JSON.stringify(errors));
