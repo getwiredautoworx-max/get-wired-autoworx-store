@@ -673,9 +673,9 @@ function brandButton(label,active,fn){
 }
 function componentGroup(p){
  const raw=String(p.component||"").trim().toLowerCase();
- const all=[p.component,p.collection,p.title,p.name,p.description,p.modelNumber].map(v=>String(v||"")).join(" ").toLowerCase();
- // Detect install accessories from their full product text before suppressing category-like labels.
- if(/harness|trim|fascia|fitment|iso2car|vehicle interface|installation|wiring/.test(all))return "Harnesses, Trims & Fitment";
+ // Keep this owner-requested button tied to the dedicated 47-row Harnesses & Trims source collection.
+ // Generic wiring/installation accessories and amplifier kits stay in their own product groups.
+ if(p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment")return "Harnesses, Trims & Fitment";
  // These are department/collection labels, not product-type buttons.
  if(/^(car audio|car audio & video|car audio and video|all car audio products)$/.test(raw))return "";
  if(raw==="speakers")return "Speakers & Component Kits";
