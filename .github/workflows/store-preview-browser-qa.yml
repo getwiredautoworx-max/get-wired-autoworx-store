@@ -94,7 +94,7 @@ jobs:
               const page=await browser.newPage({viewport:{width:390,height:844}});
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
-              const previewBase='https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev';
+              const previewBase='https://integration-three-category-c.get-wired-autoworx-store.pages.dev';
               const expectedSha=process.env.GITHUB_SHA;
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
