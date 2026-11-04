@@ -28,3 +28,7 @@ Deploy the current PR #176 branch HEAD exactly, then verify qa-build-result.json
 
 Final handover-synchronized exact-head verification — 2026-11-04.
 The current handover now records the clean PR #176 integration, verified supplier preview counts/pricing rules, hosted owner QA evidence, remaining category-scope limitations and explicit production holds. The duplicate deploy-workflow route assertion now accepts both extension-bearing and extensionless preview-audio paths. Build and verify this exact new branch head through package, regression, SKU, exact marker and hosted mobile/desktop gates. Production HOLD.
+
+
+Cloudflare extensionless route assertion correction — 2026-11-04.
+The final deployment browser test now accepts the observed extensionless /preview-audio route for the Trims & Harnesses navigation, as well as /preview-audio.html. This matches the actual Pages redirect behavior and the separately passing owner browser test. Rebuild and verify this exact head. Production HOLD.
