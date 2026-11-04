@@ -1,18 +1,18 @@
 {
-  "checked_at": "2026-10-30",
+  "checked_at": "2026-11-03",
   "planetworld_source_rows": 702,
   "planetworld_exact_individual_manufacturer_pages": 68,
   "planetworld_collection_only": 121,
   "audio_connections_source_rows": 68,
   "audio_connections_exact_sony_pages": 13,
   "audio_connections_sold_out": 1,
-  "candidate_gw_skus": 81,
+  "candidate_gw_skus": 134,
   "live_product_matches": 0,
   "candidate_skus_live_collisions": 0,
   "existing_product_ids": "NONE — all candidate product_id values intentionally blank",
-  "supplier_connections": "2 registered: Planetworld active (dealer onboarding confirmed); Audio Connections inactive (relationship not confirmed)",
+  "supplier_connections": "2 registered: Planetworld active (dealer onboarding confirmed); Audio Connections inactive (owner-confirmed authorised dealer relationship; connection activation intentionally withheld pending separate approval).",
   "publication_status": "ALL ROWS NOT PUBLISHED",
-  "method": "FNV-1a 32-bit deterministic key over supplier|brand|model; GW- plus 8 uppercase hex characters; collision-checked against current public.products.public_sku. Candidate only; no product rows inserted.",
+  "method": "FNV-1a 32-bit deterministic key over supplier|brand|model; GW- plus 8 uppercase hex characters; 81 candidates are proposed collision-checked (68 Planetworld + 13 Sony); 53 additional Audio Connections non-Sony candidates are collision-checked but held pending exact identity/image review. No public product rows inserted.",
   "supplier_ids": {
     "planetworld": "29e1acee-b1a6-5630-83c3-0150ea993479",
     "audio_connections": "806ef592-6f25-5116-bee6-335e26f8b609"
@@ -24,10 +24,10 @@
   "public_descriptions": 0,
   "public_image_urls": 0,
   "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only",
-  "official_image_source_urls_found": 6,
+  "official_image_source_urls_found": 86,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "Four Alpine original high-resolution official image URLs and two Sony official image URLs are recorded in the crosswalk. R2-W12D4 uses a shared family image that does not distinguish the impedance variant. All assets remain not downloaded/not approved; retailer/PDF images are not approved.",
+  "image_notes": "Crosswalk contains 84 current image URL candidates (62 Planetworld + 22 Audio Connections) plus alternate official source URLs; 86 distinct official image URLs after de-duplication. None has been downloaded or approved. Planetworld 68-model set has 62 images and six gaps; Audio Connections 66-row preview has 22 images and 44 gaps.",
   "supplier_connection_statuses": {
     "planetworld": {
       "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
@@ -38,7 +38,41 @@
     "audio_connections": {
       "id": "806ef592-6f25-5116-bee6-335e26f8b609",
       "active": false,
-      "reason": "No dealer-onboarding confirmation found in connected email"
+      "reason": "Owner-confirmed authorised dealer relationship; connection remains intentionally inactive until the owner separately approves activation."
     }
-  }
+  },
+  "proposed_gw_skus": 81,
+  "held_collision_checked_gw_sku_candidates": 53,
+  "total_collision_checked_candidate_codes": 134,
+  "audio_connections_non_sony_candidate_codes": 53,
+  "audio_connections_non_sony_candidate_codes_live_collisions": 0,
+  "audio_connections_manufacturer_references_total": 49,
+  "audio_connections_non_sony_manufacturer_references": 35,
+  "audio_connections_non_sony_without_manufacturer_reference": 18,
+  "audio_connections_preview_image_url_candidates": 22,
+  "audio_connections_preview_image_url_approved": 0,
+  "planetworld_verified_model_image_urls": 62,
+  "planetworld_verified_model_image_gaps": 6,
+  "audio_connections_preview_image_url_missing": 44,
+  "planetworld_image_gap_notes": "Focal P20 FE now has an official 1000x1000 image URL candidate. Five Alpine models have official pages but only 46x35 thumbnails; JVC KW-M590BT has an official nine-image gallery but its dealer marketing pack requires written distribution permission. No low-resolution or unapproved image used.",
+  "audio_connections_preview_rows": 66,
+  "audio_connections_source_crosswalk_manufacturer_references": 49,
+  "audio_connections_preview_manufacturer_references": 48,
+  "audio_connections_specification_conflicts": 5,
+  "audio_connections_quote_only_models": [
+    "SSW8\"-8000D2",
+    "SSW-B12-2800",
+    "SSWF12-5150SVC"
+  ],
+  "audio_connections_image_gap_notes": "17 exact-model Starsound individual product-page image candidates, four Sony image candidates and one additional SSUSB-450BTDD candidate account for 22 preview images. All remain unapproved pending image-use permission and owner acceptance.",
+  "audio_connections_specification_conflict_models": [
+    "SSW12-6300",
+    "SSA-ATOM13800.4",
+    "SSAR 22000.1",
+    "SSA-R 5000.4",
+    "SPARTAN 9900.1"
+  ],
+  "audio_connections_brand_only_evidence_rows": 3,
+  "audio_connections_brand_only_evidence_brand": "Reference Audio",
+  "audio_connections_brand_only_evidence_note": "Official Reference Audio brand site confirms brand identity for RABTR03, RA AWG4 and RA SUPER RAST20; no exact product page/model evidence found, so these do not count as product references and remain held."
 }

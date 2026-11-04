@@ -1,0 +1,245 @@
+# Planetworld + Audio Connections — Pilot Source Audit
+
+**Audit date:** 2026-11-03  
+**Branch:** supplier-standard-planetworld-audio-connections-2026-11-03  
+**Status:** Read-only source/data audit. No supplier activation, live import, price/stock change or public product publication.
+
+## Planetworld
+
+### Source and catalogue scope
+- Preview JSON declares 3,317 source rows from 47 workbooks / 94 sheets.
+- Division totals: Home CI 319; Home Retail 142; Car Audio 702; Musical Instruments 1,719; Installed AV 435.
+- The Car Audio division has 702 source rows: 627 Car Audio & Video, 47 Harnesses & Trims, and 28 Marine Audio.
+- The available catalogue snapshot is dated 25 October 2026. Its stock indicator is historical only and must not be shown as current stock.
+- 37 records have no indicative price. Retain the owner-approved exact customer fallback: “Price on Request due to Limited Stock and Availability.”
+- The raw preview feed does not carry a GW SKU or image URL for every catalogue row. Do not imply that the 68-model enrichment covers all 3,317 products.
+
+### Exact-model enrichment set
+- 68 curated model records across Alpine (9), Audison (41), Focal (2), JVC (2), Kenwood (1), Kicker (12) and Pioneer (1).
+- 62 of the 68 curated model records currently have an image URL; six do not.
+- The 62 URLs are source candidates/review references, not blanket approval for customer publication. Existing image status values vary and some records have no explicit status.
+- GW SKU candidates exist for these curated model records, but remain staged/review-only until exact source join, collision check and owner approval.
+- The 68 model records must be joined to the correct exact product variant in the source workbook. Do not attach a model's image/description/SKU to an accessory merely because its title mentions that model later.
+
+### Pricing and availability controls
+- The 25 October snapshot is dated reference data, not current supplier pricing or availability confirmation.
+- Do not treat RRP-minus-1% or RRP-minus-2% as approved prices. Verify current printed RRP, dealer cost, VAT basis and effective date, and include landed-cost overheads before recommending a selling price.
+- Keep zero-RRP and below-cost exceptions on hold/quote-only; never calculate a customer price from zero or below verified cost.
+- No live stock or price changes are authorised by this audit.
+
+## Audio Connections
+
+### Source and catalogue scope
+- Source files: Starsound price list dated 05 August 2026 and Sony Mobile ES dealer price list dated September 2026.
+- The preview retains 66 records from 68 source rows: 13 Sony and 53 other-brand records. Two Sony source rows are excluded pending review (XS-690ES is marked sold out; XS-680G accessory identity/image remains unresolved).
+- All 66 preview rows remain PREVIEW_ONLY_NOT_LIVE.
+- The August Starsound list explicitly states all prices are VAT-exclusive. The Sony list has separate Price Ex and RRP columns and states prices may change without notice due to exchange-rate fluctuations.
+- Neither source provides current availability. Do not infer live stock.
+
+### GW SKU, image and price coverage
+- 13 Sony rows have proposed collision-checked GW SKU candidates; 53 other-brand rows have no proposed GW SKU yet.
+- Twenty-two distinct direct image URLs are present in the 66-row Audio Connections preview (four Sony and eighteen Starsound); none is approved for customer publication. Seventeen non-Sony rows now have exact individual Starsound product-page image candidates; 44 preview rows still have no image URL.
+- Three retained preview rows have no source price; keep them quote-only using the approved customer-facing fallback.
+- Starsound proposed selling prices currently use dealer cost ex VAT × 1.15 × 1.35 as a review estimate. This is not an approved retail price; verify the cost basis, current quote and full landed-cost margin before recommendation.
+- Sony price proposals are based on a 2% reduction from the printed RRP; keep provisional until VAT basis and current dealer cost are confirmed. Dealer price is not customer price.
+
+### Classification and content quality
+- Existing component counts cover component/coaxial speakers, subwoofers, amplifiers, head units/media players, installation kits, tweeters and equalisation/crossover products.
+- Keep supplier brands/models accurate; do not expand ambiguous abbreviations such as “RA” without evidence.
+- Descriptions for many Starsound rows are currently short source labels rather than complete customer-ready specifications. Expand only from exact manufacturer/supplier evidence.
+- Source price lists and dealer terms remain internal. Customers see product brand, model, GW SKU, approved description, approved image and approved customer price/availability wording—not supplier identity or dealer cost.
+
+## Immediate work queue — in order
+
+1. Reconcile every Planetworld Car Audio row to its original workbook/sheet/source row, exact model and current component classification; retain Marine Audio and Harnesses, Trims & Fitment as separate groups.
+2. Audit all 68 Planetworld model enrichments against exact workbook rows and confirm the GW SKU candidate, model/variant, description and image all point to the same item.
+3. Review Planetworld image assets visually and permission/source status; fill the seven missing model image references only with exact official assets. Do not treat all existing URLs as approved.
+4. Reconcile Audio Connections' 13 Sony models and 53 other-brand offers to both source PDFs; complete GW SKU collision checks for the 53 non-Sony rows.
+5. Source exact high-resolution images for Starsound/Reference Audio/BlackSpider models and verify each model/variant; no generic/reused images.
+6. Expand incomplete descriptions from exact manufacturer or supplier evidence; preserve ambiguous brand/model labels until verified.
+7. Recheck all Audio Connections prices against the printed VAT basis, distinguish missing/blank price rows, and obtain current dealer quote/availability confirmation.
+8. Produce a side-by-side pilot preview and source-to-store diff report using the permanent Supplier Integration Standard.
+9. Obtain owner visual acceptance before ASC or Electro-city work begins.
+
+## Safety boundary
+This audit did not activate either supplier, write to Supabase, change live stock/prices/categories, publish products, alter checkout/payment, upload to Axxess, change DNS, merge PR #168 or deploy production. All records and price proposals remain review-only.
+
+
+## Deeper source reconciliation — 2026-11-03
+
+### Planetworld Car Audio source workbook audit
+- The extracted 25-Oct workbook report contains 702 Car Audio rows across ten source workbooks.
+- Source brand counts: One 290; Kicker 189; Audison 94; Alpine 58; Harness and Trims 47 (range label, not a manufacturer brand); JVC Car Audio 13; Kenwood Car Audio 4; Amplified 3; Focal Car Audio 2; Pioneer Car Audio 2.
+- Source component suggestions: 242 head units/receivers; 124 manual-review component candidates; 78 subwoofers; 59 speakers; 42 harnesses/trims; 41 amplifiers; 36 car-audio accessories; 28 speaker pods/grilles/enclosures; 25 Marine Audio; 11 cameras; 9 DSP/signal processors; 7 vehicle antennas.
+- The separate 68-row exact-model price-review set is matched to 68 supplier crosswalk rows by supplier SKU. All 68 have proposed collision-checked GW SKUs and provisional RRP-minus-1%/2% prices above the estimated VAT-inclusive dealer cost in the dated 25-Oct snapshot. This is a curated pilot, not coverage of the remaining 634 rows.
+- The 634 remaining Car Audio rows have no proposed GW SKU in the crosswalk and remain held. Across the full crosswalk, 466 of the 702 rows are marked not independently verified. Do not infer that an official collection/category page proves exact model identity.
+- The 702-row historical extraction identifies six zero-RRP rows; among positive-RRP rows, nine are below estimated VAT-inclusive dealer cost at RRP−1% and ten at RRP−2%. These are historical source flags, not current pricing errors. Keep zero-RRP and below-cost cases out of automatic price proposals.
+- The historical source component report has 124 Car Audio rows in a manual-review component. Do not force these into product groups from keyword guesses alone.
+
+### Audio Connections exact status
+- The 770-row supplier crosswalk contains all 68 Audio Connections source rows. Thirteen Sony rows have proposed collision-checked GW SKU candidates; 55 remain unassigned/held.
+- Manufacturer-page reference status in current preview: 33 records have a manufacturerPage value across 66 retained rows — 13 Sony product/specification pages and 20 non-Sony references. Seventeen non-Sony records now have exact individual Starsound product-page image candidates; 33 of 53 non-Sony rows still have no manufacturerPage reference. Alias/category listings are references only, not proof that an image/variant is approved.
+- The 13 Sony price proposals were corrected on this branch. **The Sony PDF labels columns “Price Ex” and “RRP” but does not state the RRP VAT basis in its text. The owner has separately confirmed that Sony RRP includes VAT.** Therefore the 1–2% proposal must be calculated directly from VAT-inclusive RRP; do not add VAT a second time to the RRP. Dealer cost is VAT-exclusive. The corrected review CSV calculates gross profit exclusive of VAT and remains unapproved/unimported.
+- The August 2026 Starsound source explicitly says all prices are VAT-exclusive. Three retained non-Sony records have no source price and remain quote-only; current availability is not stated.
+- No Audio Connections product image is approved. Sony PDF thumbnails, reused impedance-variant images, and a generic amplifier image reused across several models are not acceptable customer images. The preview currently has 22 distinct direct image URL candidates (four Sony and eighteen Starsound); all are review-only. The supplier crosswalk records 23 official image-source URL entries across the two suppliers (four Planetworld and nineteen Audio Connections); none is approved for customer publication.
+
+### Corrections committed on the pilot branch
+- Updated `catalogue-review/AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv` to use the owner-confirmed VAT-inclusive Sony RRP basis, correct customer-price proposals, VAT-inclusive dealer cost floor and gross profit exclusive of VAT.
+- Updated the 13 corresponding Sony rows in `catalogue-review/supplier-gw-crosswalk-2026-10-30.csv` so the VAT basis is not incorrectly attributed to the PDF footer.
+- All corrected price calculations remain review-only. No live price, stock, supplier activation, public product, image or database record changed.
+
+
+### Car Audio Harnesses, Trims & Fitment filter refinement — 2026-11-03
+- Review of the actual 702-row Car Audio preview showed the earlier broad keyword classifier was overinclusive: it treated generic words such as “installation” and “wiring” as if every cable, fuse holder and integration accessory were a vehicle harness or fitment kit.
+- Refined `preview-audio.html` so the separate **Harnesses, Trims & Fitment** button includes the dedicated 47-row source collection plus product-level exact evidence (harness, trim, fascia, fitment, ISO2CAR, vehicle interface, dash kit or installation kit). Generic installation/wiring accessories remain in their own component groups; generic “Harness & Installation” records without a vehicle-harness product signal now display as “Installation & Integration”.
+- Read-only check against the 702 Planetworld Car Audio rows: **168 records** now match the approved Harnesses, Trims & Fitment grouping (47 dedicated source-collection rows + 121 exact product-text matches). The grouping includes OneNav vehicle-specific fitment kits but excludes generic TOSLINK cables, RCA interconnects and fuse holders.
+- Added regression assertions for the 168-row count, vehicle fitment kit inclusion and generic cable/fuse-holder exclusion. The test file has been updated but the Node test has not yet been executed; GitHub Actions runner allocation remains a separate verification gate.
+- This is a preview navigation classification only. Supplier source rows, live categories, prices, stock and database records were not changed.
+
+
+### Audio Connections non-Sony GW candidate collision check — 2026-11-03
+- Generated 53 deterministic internal GW SKU candidate codes for the 53 non-Sony Audio Connections source rows using the existing FNV-1a `Audio Connections|brand|model` convention.
+- Verified 53/53 are unique within the new set, do not collide with the previous 81 proposed codes, and return zero exact matches against current `public.products.public_sku` in a read-only query.
+- These 53 values are recorded in the new crosswalk columns `gw_sku_candidate_review` and `gw_sku_candidate_status`; the official proposed field remains blank and `gw_sku_status` remains `NOT_ASSIGNED_HOLD`. This prevents unverified products from being treated as assigned/published SKUs.
+- Two RA source rows remain held because the brand abbreviation is unverified. The remaining rows still require exact model/variant, description and image review. A collision-free code is not proof of product identity.
+- Combined collision-checked candidate set: 68 Planetworld + 13 Sony proposed candidates + 53 non-Sony held candidates = 134 unique codes, zero collisions with current live public SKUs. No public SKU/product rows were inserted or updated.
+
+
+### Planetworld 68-model preview price completeness — 2026-11-03
+- Exact-joined all 68 verified model records to the 68-row Planetworld candidate price review by normalized supplier model/SKU: 68/68 matched, all with positive RRP−1% preview price proposals and `PASS_REVIEW_ONLY` cost-floor status.
+- Corrected the verified-only card builder. Eleven models merge into a broad catalogue row by exact leading model token; the other 57 remain separate verified-model cards. Those 57 previously had `indicativePrice:null` despite having an exact source price-review row; they now carry the matching RRP−1% indicative proposal and the dated 25-Oct-2026 snapshot label.
+- No historic stock is represented as current availability. The cards remain review-only, and no dealer cost, supplier SKU or live stock was added to the customer-facing data.
+- Regression assertions added for 68/68 positive indicative prices and the dated price label. Node test execution remains pending.
+
+
+### Audio Connections first non-Sony official product image candidate — 2026-11-03
+- Verified the exact Starsound **SSUSB-450BTDD** product page and its direct official image asset from the manufacturer page.
+- Added the official product-page link and 788×788 image URL to the preview row as a review candidate. The asset is explicitly marked `OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED`; it is not approved for customer publication and the product remains `PREVIEW_ONLY_NOT_LIVE`.
+- Updated the corresponding crosswalk row and regression assertions. The candidate GW SKU remains held, not assigned, pending image review and owner approval.
+- External image retrieval returned a cache miss in the research environment, so successful image rendering/visual QA remains unverified. No other supplier image is inferred from this one.
+
+
+### Audio Connections official Starsound reference reconciliation — 2026-11-03
+- Added seven further source-to-manufacturer references: one official product-page alias reference for source model USB230 EXT MIC → SSUSB-230BTCE (variant review remains open), and six official category-listing references for SSMP5-7655BT, SSDVD-9900BT, SSMP5-7670BTAC, SSW-12W-5200, SSW-12-6300 and SSW-12-7300.
+- Together with the earlier references, 20 of the 53 non-Sony source rows now have a manufacturer-page reference; 17 of these have exact individual Starsound product-page image candidates, while three are alias/category references only. 33 remain without an individual manufacturer-page reference.
+- The SSUSB-450BTDD row retains its earlier direct manufacturer image URL candidate. Seventeen other non-Sony rows now have exact Starsound individual product-page image candidates. All remain unapproved pending permission; no generic images were used.
+- All 66 records remain preview-only; all 53 non-Sony GW candidates remain held/unassigned until exact identity, image and variant review is complete.
+
+
+### Planetworld remaining six image-gap evidence — 2026-11-03
+- Added the official Focal P20 FE 1000×1000 product-image URL as a review candidate. The 68-model enrichment now has 62 image URLs and six unresolved gaps.
+- Five Alpine gaps (HCE-C2100RD, HDZ-653, R2-W12D4, S2-A55V, S2-S65): official product pages exist, but only 46×35 thumbnails were exposed; these are too small and were not used.
+- One JVC gap (KW-M590BT): the official JVC product page exposes a nine-image gallery, but the JVC dealer marketing image pack is restricted to dealers and says promotional assets cannot be distributed without written authorisation. No asset was used pending permission.
+- Added explicit image-gap status and notes to the model JSON and supplier crosswalk. The Focal candidate and all other images remain unapproved until hosted rendering, exact variant and usage checks pass.
+
+
+### Audio Connections exact-model Starsound image reconciliation — 2026-11-03 (latest)
+- Seven initial exact official Starsound product-page image candidates were followed by ten additional exact individual product-page matches. Current retained model list: SSW12-6300, SSW12-7300, SSW-B12-2800, SSAR 22000.1, SSA-R 5000.4, SSA-ATOM13800.4, SSA-M4-80.4, SSS5502/SSS-5502, SSS-6601, SSS6602/SSS-6602, SSS6903/SSS-6903, SSD-620, SST350/SST-350, SST-850, EQ5100/SSA-EQ-5100, CROSSOVER 2900/SSA-2900 (SKU SSA-EQ-2900), and CROSSOVER 2950/SSA-2950.
+- The Audio Connections preview now has 22 distinct direct image URLs across 66 rows: four Sony and eighteen Starsound. Seventeen non-Sony rows have exact individual Starsound product-page image candidates. Forty-four total preview rows still have no image URL. No image is approved for customer publication; written image-use permission and owner acceptance remain required.
+- Current JSON read-back: 66 rows, 22 unique image URLs, 17 exact Starsound image candidates, 13 Sony proposed GW SKU candidates, and no GW SKU assigned to the 53 non-Sony rows. All 66 remain PREVIEW_ONLY_NOT_LIVE.
+- Manufacturer/source specification discrepancies requiring supplier confirmation: SSW12-6300 (source 300W; official 400W RMS); SSA-ATOM13800.4 (source 100RMS; official 80W×4 at 4Ω); SSAR 22000.1 (source 1700RMS; official 1800W RMS at 1Ω); SSA-R 5000.4 (source 60RM; official 65W/channel at 4Ω). Preserve source values and do not publish disputed specifications until confirmed.
+- SSW12" 5200 remains unmatched to official SSW-12W-5200 because the source model label differs. CROSSOVER 2900 is matched by official page display title SSA-2900 / SKU SSA-EQ-2900 even though the URL slug is legacy ssa-eq-7200; do not use URL slug as product identity. Do not map source EQ7100 to manufacturer's different EQ7200.
+- Current manufacturer-page references in the retained JSON: 33 across 66 records (13 Sony and 20 non-Sony). The supplier crosswalk records 19 official image-source URL entries for Audio Connections and 4 for Planetworld. All image references remain review-only.
+- Seven initial exact Starsound image additions and ten further additions are recorded in PR #170 comments 6608882553, 6608914070 and 6608957774. The handover file contains the detailed commit references and continuation queue.
+
+
+### Current consolidated source/image/specification checkpoint — 2026-11-03
+- Planetworld: 702 Car Audio source rows; 68 curated exact-model candidates; 68/68 exact price-review joins; 62 model image URLs and six documented image gaps. All 62 remain review candidates, not approved. The six gaps are five Alpine models with only 46×35 thumbnails and JVC KW-M590BT whose dealer image pack requires written distribution permission.
+- Audio Connections: 68 source rows, 66 retained preview rows; 22 direct image URLs (17 exact-model Starsound, four Sony and one additional SSUSB-450BTDD candidate); 44 rows have no image URL. All 22 are review-only, not approved. The source PDF has no current availability data.
+- Manufacturer references: 48 in the retained Audio Connections preview (35 individual manufacturer product-page references plus 16 category-listing references, with overlap on three rows); the supplier crosswalk has 49 source-row references because it includes one source-only excluded row. Thirty-five of 53 non-Sony rows have a manufacturer reference; 18 do not.
+- Image reconciliation: crosswalk contains 84 current image URL candidates (62 Planetworld +22 Audio Connections), 23 additional official source URL entries (some overlap), and 86 distinct URLs after de-duplication. No image assets were downloaded or approved for customer publication.
+- Audio Connections quote-only rows: SSW8"-8000D2, SSW-B12-2800 and SSWF12-5150SVC. Exact owner wording remains “Price on Request due to Limited Stock and Availability.”
+- Five specification conflicts remain held: SSW12-6300 (supplier 300 W vs official 400 W RMS); SSA-ATOM13800.4 (supplier 100 RMS vs official 80 W ×4 at 4 Ω); SSAR 22000.1 (supplier 1700 RMS vs official 1800 W RMS at 1 Ω); SSA-R 5000.4 (supplier 60 RM vs official 65 W/channel at 4 Ω); SPARTAN 9900.1 (supplier 600 RMS without impedance vs official 500 W RMS at 1 Ω / 250 W RMS at 2 Ω). Supplier descriptions are preserved and the preview displays a review warning; no disputed figure is silently substituted.
+- GW SKU state: 81 proposed collision-checked candidates (68 Planetworld +13 Sony) and 53 collision-free held candidates for non-Sony Audio Connections rows; 134 unique candidate codes, zero collisions against current public SKU values. All 53 non-Sony codes remain unassigned/held pending exact identity and image approval.
+- All catalogue rows and prices remain review-only; supplier activation, public product creation, public image writes, stock/price updates and live database changes remain prohibited.
+- Tests have updated assertions but have not run under Node/GitHub Actions. Hosted preview verification must use the final exact branch head; no readiness claim.
+
+
+### Reference Audio brand-level identity check — 2026-11-03
+- The official Reference Audio brand site confirms the brand identity for RABTR03, RA AWG4 and RA SUPER RAST20. The two source abbreviations “RA” are now expanded to **Reference Audio** in the internal crosswalk and preview.
+- No exact official product page/model evidence was found for these three products. The official brand homepage is recorded separately as brand-level evidence only; it is not counted as a product page, and retailer pages are not treated as manufacturer proof.
+- These products remain held for exact model/image confirmation. The 18-row non-Sony no-product-reference count is unchanged.
+
+
+### Audio Connections open evidence request — 2026-11-03
+- After the seven additional official Starsound references, 35 of 53 non-Sony rows now have a product-page or category-listing reference; 18 remain without exact product references. The 18 are 15 Starsound source models/accessory codes and three Reference Audio models.
+- Created `catalogue-review/AUDIO_CONNECTIONS_OPEN_EVIDENCE_REQUEST_2026-11-03.md` listing the exact 18 held models, five source-versus-manufacturer specification conflicts, three quote-only products, image rights and current commercial/availability evidence needed.
+- This request is an internal checklist only; no email was sent. Retailer listings and similar model codes are not substituted for exact manufacturer evidence.
+
+
+### Owner higher-output specification rule — 2026-11-03
+- Owner directs that the higher stated output specification is to be used in customer-facing descriptions where supplier/manufacturer sources differ, on the basis that wholesalers may receive updated software and manufacturing information earlier. This is a standing rule for future supplier and category work.
+- Keep both original figures and provenance in the internal audit; preserve rating basis, impedance and channel context. Do not equate RMS with peak, or per-channel with total output. If the higher rating's basis is unclear, retain the exact wording and flag ambiguity rather than inventing detail.
+- Applied to the four conflicting Audio Connections records: SSW12-6300 → 400 W RMS; SSA-ATOM13800.4 → supplier's higher “100 RMS” wording (not represented as 100 W × 4); SSAR 22000.1 → 1800 W RMS at 1 Ω; SSA-R 5000.4 → 65 W RMS/channel at 4 Ω. Lower figures and source/manufacturer discrepancies remain preserved internally.
+- JSON commit a3a1aa163636fbcc5a15ccef90fd91fae4b40de3. All four remain preview-only; no live data or production changes.
+
+
+### Owner clarification — SSA-ATOM13800.4 RMS/PMPO
+The owner clarified the supplier's 100 RMS notation as **100 W RMS nominal output per channel × 4 channels**. The 13,800 W model designation is PMPO maximum/marketing output, interpreted as 3,450 W PMPO per channel (13,800 ÷ 4). PMPO must not be presented as RMS or converted using an invented universal ratio. The preview title/description now state 100 W RMS × 4 channels. The official Starsound page's 80 W × 4 at 4 Ω is retained in the discrepancy record; confirm supplier impedance and test conditions before final publication. The record remains preview-only. Correction commit: `d52abadc6f2eb925fa70cd43dfce1560c4a9e333`.
+
+
+
+### Crosswalk-to-preview reconciliation refresh — 2026-11-03
+- Re-read the current 68-row Audio Connections source crosswalk and the 66-row retained preview JSON. The two-row difference is intentional and documented in the preview's `excludedRows`: Sony XS-690ES is marked sold out in the dated source list, and Sony XS-680G is a speaker grille/accessory whose exact product identity/image remains unresolved. Neither excluded row is silently discarded from the source crosswalk.
+- Reconciled manufacturer-reference fields across all 68 source rows. Current counts: 36 rows with an individual manufacturer-page reference; 16 with a manufacturer-listing/category reference; 19 with neither field populated. These categories can overlap, so do not add them as mutually exclusive counts. The 19 rows with neither are: Sony XS-680G; Reference Audio RABTR03, RA AWG4 and RA SUPER RAST20; Starsound SSW8"-8000D2, SSW-S12" SPECTR 15000, SSWF10 2650SVC, SSATI-2250.2, SSAT6200.1, SSATI6900.1, SSA-SB2000.1, SSA-M5-80.6, SSS6501 PRO, 860, 809, 412P, TAXI-4G, SST-550 and EQ7100.
+- This is stricter than the older summary that stated 18 unresolved non-Sony references. The current row-level reconciliation finds 19 source rows with neither product-page nor listing evidence (one is Sony XS-680G). Of these, 18 are non-Sony. The 18 non-Sony rows comprise 15 Starsound and three Reference Audio records. Keep all 19 held until exact product or authorised supplier evidence is obtained.
+- A fresh exact-model manufacturer-site search did not yield verifiable new individual product-page evidence for these remaining models. No retailer-only or similar-model substitution was accepted. Therefore no image, description, specification or SKU status was promoted as a result of this check.
+- Counts are source-reference coverage only; the 22 existing image URL candidates (17 exact Starsound, four Sony and one SSUSB-450BTDD) remain separate review-only evidence, with 44 of 66 retained preview rows lacking an image URL. No image usage permission or customer publication approval is inferred.
+
+
+### Independent retailer corroboration — separate from manufacturer evidence (2026-11-03)
+A targeted exact-model web search found additional independent South African retail records. These may assist manual identity/description review but do not satisfy the official manufacturer-page/listing gate, establish supplier authorization/current stock/dealer price, or grant image rights/publication permission.
+
+- Starsound SSW-8-8000D2: exact-model listings at Autostyle and IS Motorsport agree on 8-inch, 8000 W maximum/marketing rating, DVC 2-ohm variant. Sources: https://www.autostyle.co.za/product/starsound-ssw-8-8000d2-8-8000w-dvc-2ohm-subwoofer/ and https://ismotorsport.co.za/products/star-sound-8-quot-ssw-8-8000d2-dvc-d2-subwoofer-8000w
+- Starsound SSS-6501PRO: exact-model retail pages at Max Motorsport, JM Sounds, My Audio & Security and World of Electronics identify a 6.5-inch Pro Series midrange, 4-ohm unit; advertised maximum wattage differs (650 W vs 250 W). Do not choose a wattage without supplier/manufacturer evidence. Sources: https://maxmotorsport.co.za/products/star-sound-sss-650pro-6-5-pro-series-mids-650w ; https://jmsounds.co.za/product/starsound-sss-6501pro-6-5-pro-series-midrange-speakers/ ; https://myaudioandsecurity.co.za/product/starsound-sss-6501pro-6-5-pro-series-speaker/ ; https://woesa.co.za/product/starsound-spk-6-5-midrange/
+- Starsound SSA-SB-2000.1: exact-model retail listing identifies a monoblock amplifier, 2000 W RMS, 1-ohm stable; not adopted as manufacturer specification. Source: https://maxmotorsport.co.za/products/star-sound-ssa-sb-2000-1-monoblock-amplifier-2000w
+- Reference Audio RABTR03: Makro uses normalized spelling RA-BTR03 and identifies a single-DIN car stereo. Possible alias only; source identity remains RABTR03 until owner/supplier confirms. Source: https://www.makro.co.za/automotive/automotive-services/reference-audio~brand/pr?sid=0hx%2C6bl
+- Carsoundandmore lists Starsound SSAK-809, SSAK-860, SSAK-412 and SSAK-TAXI-4G installation kits. This suggests the abbreviated source codes 809/860/412P/TAXI-4G need exact source-SKU alias confirmation; no alias is accepted. Source: https://carsoundandmore.co.za/
+- Makro listings for SSA-R-2250.2 and SSA-R-6200.1 do not prove the source models SSATI-2250.2 or SSAT6200.1 are the same variants. Keep variants distinct. Source: https://www.makro.co.za/automotive-accessories/vehicle-stereo-and-music-system/car-amplifiers/starsound~brand/pr?otracker=product_breadCrumbs_STARSOUND+Car+Amplifiers&sid=1mt%2Ceoe%2Cpr
+- EQ-7100 appears in an independent retailer category listing as a 7-band equaliser; not accepted as a match for source EQ7100 without manufacturer/supplier confirmation. Source: https://jmsounds.co.za/product-category/star-sound/
+
+Disposition: no new official manufacturer reference, SKU assignment, image candidate, customer-facing specification, price or publication approval is created by this research. Preserve the 19-row official-reference gap count until manufacturer/supplier evidence closes it. Retail pages guide follow-up only and do not replace supplier catalogues or exact manufacturer documentation.
+
+
+### Exact Starsound manufacturer-page check — 2026-11-04
+- Located the official Starsound individual product page for **SSA-ATOM-13800.4**: https://starsound.co.za/product/ssa-atom-13800-4/ . This is stronger than the prior retail-only corroboration and closes the individual manufacturer-page-reference gap for this exact model only. The page identifies it as a four-channel MOSFET amplifier and gives a specification table: 320 W RMS @ 1 Ω, 160 W RMS @ 2 Ω, 80 W RMS @ 4 Ω, and 160 W bridged @ 4 Ω. It also supplies exact-model product image candidates. The images remain review-only; publication/redistribution rights are not established.
+- This official manufacturer specification conflicts with the owner's previously supplied clarification of 100 W RMS nominal per channel × 4. Preserve both claims and provenance; do not silently replace either. Keep the customer-facing power claim held until the supplier/manufacturer resolves test conditions/model revision and the owner reviews the conflict. Do not convert the 13,800 W marketing/maximum figure to RMS.
+- The official Starsound shop lists SSS-M6501Pro, which is not an exact match to source model SSS-6501PRO; do not treat the similar model spelling as an alias. The official shop/category page alone does not resolve other source rows.
+- Reference Audio RA-BTR03 is corroborated by current retailer listings as a single-DIN Bluetooth/USB/AUX radio, but this remains independent retailer evidence, not manufacturer evidence and not permission to use retailer images. Keep source spelling RABTR03 until supplier confirms normalization.
+- No other exact-model manufacturer gap was closed in this targeted pass. No SKU, price, availability, image-approval or publication status was promoted.
+
+
+### Owner decision — SSA-ATOM-13800.4 supplier wattage (2026-11-04)
+- Owner explicitly instructed: use the Audio Connections supplier wattage because Audio Connections is the supplying source for this catalogue item.
+- Accepted catalogue value per owner clarification: **100 W RMS nominal per channel × 4**. Use this supplier-provided/owner-confirmed value in the Audio Connections product record and customer-facing draft specification; do not substitute the separate Starsound public product-page figure of 80 W RMS × 4 at 4 Ω.
+- Keep the 13,800 W maximum/marketing designation separate; it is not RMS and must never be represented as RMS.
+- Provenance must identify Audio Connections as the supplying source and note owner confirmation on 2026-11-04. If the source sheet's exact cell/line cannot be cited, do not claim the figure was independently extracted from the PDF; the current authority is the owner's explicit supplier-source instruction.
+
+
+## Execution checkpoint — 2026-11-04 (supplier pilot continues)
+
+### Audio Connections — owner wattage decision applied to the product row
+- Updated `catalogue-review/audio-connections-product-review.csv`, exact source row 43 for `SSA-ATOM13800.4`, to use the owner-approved supplier specification: **100 W RMS nominal per channel × 4**. Description and provenance now attribute the figure to Audio Connections and owner confirmation dated 2026-11-04.
+- The 13,800 W designation remains a marketing/maximum figure, not RMS. The separate public Starsound page's 80 W RMS × 4 at 4 Ω remains an internal source conflict only; it is not substituted into the customer-facing draft.
+- No SKU, price, availability, image approval or publication state was promoted.
+
+### Planetworld — recheck of the six unresolved image records
+- The six image gaps in the 68-model curated set are confirmed as five Alpine models (`HCE-C2100RD`, `HDZ-653`, `R2-W12D4`, `S2-A55V`, `S2-S65`) and JVC `KW-M590BT`.
+- Official Alpine pages were rechecked for HCE-C2100RD, HDZ-653 and R2-W12D4; the image links exposed by those pages resolve only to 46×35 thumbnails, unsuitable for storefront product images. Alpine's official catalogue search result provides a product visual for HDZ-653 and HCE-C2100RD, but no high-resolution direct asset with confirmed redistribution rights has been approved.
+- JVC KW-M590BT remains held: dealer image pack needs written distribution permission. No placeholder, low-resolution thumbnail or unlicensed image has been inserted.
+- Therefore image coverage remains 62/68 candidate URLs; the six gaps are not falsely marked complete.
+
+### Current pilot state / release boundary
+- Planetworld and Audio Connections remain the only active supplier pilot. ASC and Electro-city remain deferred.
+- Audio Connections retained preview remains 66 rows; 44/66 have no image URL; 53 non-Sony candidate GW SKUs remain held/unassigned; three quote-only rows retain the exact approved fallback; availability is not established.
+- Planetworld's curated 68-model set remains review-only and is not full 702-row Car Audio completion; the 634 other Car Audio rows remain without proposed GW SKUs and the manual-review classification queue remains open.
+- Public repository exposure: the owner explicitly accepted continuing the pilot in the public repository on 2026-11-04, noting that the dealer catalogues do not provide purchasing access. Existing dealer-price source files remain visible in public Git history; this is an owner-accepted exposure decision, not containment or supplier redistribution permission. Keep supplier pricing and source data out of customer-facing storefront output. This is not a credential-compromise finding.
+- No Actions runs or exact-head test result are claimed. No supplier activation, live writes, production deployment, Axxess upload, DNS, checkout/payment or banking changes.
+
+
+## 2026-11-04 — Audio Connections manufacturer-reference reconciliation
+- Audited the 66-record Audio Connections preview JSON against its recorded manufacturerPage fields.
+- Added explicit manufacturerMatchStatus and provenance notes to 15 records that already contained an official manufacturer URL but had a blank match status: Sony XS-163ES, XS-162ES, XS-692ES, XS-160ES, XS-680ES, XS-W104ES, XS-W122ES, XS-W124ES, XM-1ES, XM-4ES, XM-5ES, XM-6ES, XM-8ES; Starsound USB230 and USB450BTDD.
+- These are manufacturer-reference findings only. They do not approve image redistribution, supplier price, current availability, variant equivalence where noted, GW SKU assignment or publication. Existing 44 image gaps and 53 held non-Sony SKU candidates remain unchanged.
+- Updated file: assets/audio-connections-catalogue-preview.json. Commit: d90164e13e1303c9cd8c7c236270299a3a8ae8fd.
+- The owner-approved SSA-ATOM13800.4 customer-draft spec remains 100 W RMS nominal per channel × 4. No public/live catalogue or production change.

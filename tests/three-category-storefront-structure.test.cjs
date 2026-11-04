@@ -10,6 +10,67 @@ const planet = JSON.parse(read('assets/planetworld-catalogue-preview.json'));
 const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-preview.json'));
 const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
 const audioPage = read('preview-audio.html');
+const planetworldPriceReview = read('catalogue-review/PLANETWORLD_68_CANDIDATE_PRICE_REVIEW_2026-10-30.csv');
+const sonyPriceReview = read('catalogue-review/AUDIO_CONNECTIONS_13_SONY_PRICE_REVIEW_2026-10-30.csv');
+assert.equal((planetworldPriceReview.match(/PASS_REVIEW_ONLY/g) || []).length, 68, 'all 68 Planetworld candidate price rows must pass the dated cost-floor review');
+assert.equal((sonyPriceReview.match(/owner-confirmed Sony RRP is VAT-inclusive/g) || []).length, 13, 'all 13 Sony proposals must use the owner-confirmed VAT-inclusive RRP basis');
+assert.ok(!sonyPriceReview.includes('PDF dealer price and RRP are VAT EXCLUSIVE'), 'do not add VAT a second time to Sony RRP');
+const starsoundUsb450 = audio.records.find(p => p.modelNumber === 'USB450BTDD');
+assert.ok(starsoundUsb450 && starsoundUsb450.manufacturerPage === 'https://starsound.co.za/product/ssusb-450btdd/', 'Starsound USB450BTDD must link to its exact official product page');
+assert.ok(starsoundUsb450.imageUrl === 'https://starsound.co.za/wp-content/uploads/2023/12/SSUSB450BTDD-788x788.png', 'Starsound USB450BTDD must use the direct official image URL as a review candidate');
+assert.equal(starsoundUsb450.imageStatus, 'OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
+assert.equal(starsoundUsb450.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE', 'official image candidates must remain preview-only until approved');
+assert.equal(audio.records.filter(p => p.imageUrl).length, 22, '22 direct official image URLs are review candidates');
+assert.equal(audio.records.filter(p => p.manufacturerPage || p.manufacturerListingPage).length, 48, '48 official manufacturer references must be retained in the Audio Connections preview');
+assert.ok(audio.records.filter(p => p.imageUrl).every(p => p.imageApprovalStatus === 'REVIEW_CANDIDATE_NOT_APPROVED'), 'no supplier image URL is treated as approved');
+for (const [model,url] of [
+  ['USB230','https://starsound.co.za/product/ssusb-230btce/'],
+  ['SS7655BT','https://starsound.co.za/product-category/car-radios/?category-view-mode=list'],
+  ['DVD9900BT','https://starsound.co.za/product-category/car-radios/?category-view-mode=list'],
+  ['SS7670','https://starsound.co.za/product-category/car-radios/?category-view-mode=list'],
+  ['SSW12" 5200','https://starsound.co.za/product-category/subwoofers/'],
+  ['SSW12-6300','https://starsound.co.za/product-category/subwoofers/'],
+  ['SSW12-7300','https://starsound.co.za/product-category/subwoofers/']
+]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && (row.manufacturerPage === url || row.manufacturerListingPage === url), 'official Starsound reference for '+model);
+  assert.equal(row.publicationStatus, 'PREVIEW_ONLY_NOT_LIVE');
+}
+assert.equal(verifiedModels.records.length, 68, 'Planetworld verified-model enrichment must retain all 68 exact source candidates');
+assert.equal(verifiedModels.records.filter(p => p.imageUrl).length, 62, '62 exact-model image URLs are currently review candidates');
+assert.ok(verifiedModels.records.filter(p => p.imageUrl).every(p => p.imageApprovalStatus === 'REVIEW_CANDIDATE_NOT_APPROVED'), 'all Planetworld manufacturer image URLs remain review-only');
+assert.equal(verifiedModels.records.filter(p => !p.imageUrl).length, 6, 'six exact-model image gaps must remain held');
+assert.ok(verifiedModels.records.filter(p => !p.imageUrl).every(p => p.imageStatus && p.imageReviewNote), 'all unresolved image gaps must have an explicit source/permission reason');
+const jvcImageGap = verifiedModels.records.find(p => p.modelNumber === 'KW-M590BT');
+assert.ok(jvcImageGap.imageStatus.includes('WRITTEN_DISTRIBUTION_PERMISSION_REQUIRED'), 'JVC dealer image pack must remain held until distribution rights are confirmed');
+const focalP20 = verifiedModels.records.find(p => p.modelNumber === 'KIT SUB P20FE');
+assert.ok(focalP20 && focalP20.imageUrl === 'https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg', 'Focal P20 FE must use the exact official image URL candidate');
+assert.equal(focalP20.imageStatus, 'OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED');
+assert.ok(verifiedModels.records.every(p => Number(p.indicativePrice) > 0 && p.priceProposalStatus === 'REVIEW_ONLY_NOT_APPROVED_NOT_IMPORTED'), 'all 68 verified-only model cards must carry a positive review-only indicative price');
+assert.ok(audioPage.includes('indicativePrice:p.indicativePrice??null'), 'unmatched verified-only model cards must retain their source-backed indicative price');
+for (const model of ["SSW12-6300","SSA-ATOM13800.4","SSAR 22000.1","SSA-R 5000.4","SPARTAN 9900.1"]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && row.specificationConflict, 'specification discrepancy must remain in the internal audit for '+model);
+}
+for (const model of ["SSW12-6300","SSAR 22000.1","SSA-R 5000.4"]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.equal(row.specificationReviewStatus, 'OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT', 'owner-approved higher-output rule must be preserved for '+model);
+}
+const atom = audio.records.find(p => p.modelNumber === "SSA-ATOM13800.4");
+assert.equal(atom.specificationReviewStatus, 'AUDIO_CONNECTIONS_SUPPLIER_SPECIFICATION_SELECTED_BY_OWNER_2026-11-04', 'Audio Connections supplier wattage authority must be preserved for SSA-ATOM13800.4');
+const spartan = audio.records.find(p => p.modelNumber === "SPARTAN 9900.1");
+assert.equal(spartan.specificationReviewStatus, 'SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED', 'unresolved source conflict must remain held for SPARTAN 9900.1');
+assert.ok(audioPage.includes('SPECIFICATION REVIEW REQUIRED:') && audioPage.includes('p.specificationConflict'), 'owner preview must display source-versus-manufacturer specification warnings');
+for (const model of ["RABTR03","RA AWG4","RA SUPER RAST20"]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && row.brand === 'Reference Audio' && row.manufacturerBrandPage === 'https://referenceaudio.co.za/', 'official brand-level evidence must resolve RA to Reference Audio for '+model);
+  assert.ok(!row.manufacturerPage && !row.manufacturerListingPage, 'brand-level evidence must not be misrepresented as an exact product page for '+model);
+}
+for (const model of ['SSW8"-8000D2','SSW-B12-2800','SSWF12-5150SVC']) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.ok(row && row.indicativePrice == null && row.priceOnRequestText === 'Price on Request due to Limited Stock and Availability.', 'blank-price row must use exact owner wording: '+model);
+}
+assert.ok(audioPage.includes('sourceDateLabel:p.sourceDateLabel||"RRP −1% preview · 25 October 2026 snapshot"'), 'verified-only model cards must identify the dated RRP preview basis');
 const ascPage = read('asc-catalogue-preview.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 const ownerPreview = read('owner-preview.html');
@@ -55,7 +116,13 @@ assert.ok(planet.records.some(p => p.division === 'Home CI' && p.collection === 
 assert.ok(audioPage.includes('["Car Audio & Video","Car Audio"]'), 'the single Car Audio department button must be labelled Car Audio & Video');
 assert.ok(!audioPage.includes('["Car Audio","Car Audio"]'), 'duplicate Car Audio department label must not return');
 assert.ok(audioPage.includes('if(/^(car audio|car audio & video|car audio and video|all car audio products)$/.test(raw))return "";'), 'Car Audio collection labels must not be duplicated as product-type buttons');
-assert.ok(audioPage.includes('if(/harness|trim|fascia|fitment|iso2car|vehicle interface|installation|wiring/.test(all))return "Harnesses, Trims & Fitment";'), 'harnesses and trims must be classified from component and product text');
+assert.ok(audioPage.includes('String(p.collection||"").trim().toLowerCase()==="harnesses & trims"||/harness|trim|fascia|fitment|iso2car|vehicle interface|dash kit|installation kit/.test(productText)'), 'Harnesses, Trims & Fitment must use source collection or exact product-level fitment evidence');
+assert.ok(audioPage.includes('if(raw==="harness & installation")return "Installation & Integration";'), 'generic integration devices must not be mislabeled as vehicle harnesses');
+const carAudioRows = planet.records.filter(p => p.division === 'Car Audio');
+const harnessFitmentRows = carAudioRows.filter(p => String(p.collection||'').trim().toLowerCase() === 'harnesses & trims' || /harness|trim|fascia|fitment|iso2car|vehicle interface|dash kit|installation kit/i.test([p.title,p.name,p.description,p.modelNumber].join(' ')));
+assert.equal(harnessFitmentRows.length, 137, 'Harnesses, Trims & Fitment must contain only the dedicated source rows plus exact product-text matches; generic cables and fuse holders stay separate');
+assert.ok(harnessFitmentRows.some(p => /OneNav Fitment Kit for Toyota Land Cruiser/i.test(p.title)), 'vehicle-specific OneNav fitment kits must appear under Harnesses, Trims & Fitment');
+assert.ok(!harnessFitmentRows.some(p => /TOSLINK OPTICAL CABLE|RCA Interconnect|Fuse Holder/i.test(p.title)), 'generic wiring/cables/fuse holders must not be misclassified as vehicle harnesses');
 assert.ok(audioPage.includes('filter(label=>!/^(car audio|car audio & video|car audio and video|all car audio products)$/i.test(label))'), 'department labels must be excluded from product-type buttons');
 assert.ok(audioPage.includes('["Lifestyle","Lifestyle"]'), 'Lifestyle must be a selectable catalogue department');
 assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/b/bc/JBL_logo.svg"'), 'JBL brand button must use the JBL logo');
@@ -97,8 +164,8 @@ assert.ok(!ascPage.includes('catalogue.source_pdf') && !ascPage.includes('View c
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
-assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,61);
-assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,48);
+assert.equal(verifiedModels.records.filter(row => row.imageUrl).length,62);
+assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_image_verified_review_only').length,57);
 assert.equal(verifiedModels.records.filter(row => row.imageStatus === 'official_manufacturer_page_image_link_review_only').length,4);
 for (const model of ['66750650','66750800','66751501','66755100','66755105','66755107','69020020','69020021','66752000','66753000','66755030','66755110','66755115','66755156','66755157','66771820','66772201','66772203','69010020','69010021','69030020','69030021','69035010','69051040','69051050','69051055','69051060','69051070','69051075','69051090','69052020','69070030','69070040','69070050','69070070','69070080','69070085','69082001','69051030','69070020']) {
   const row = verifiedModels.records.find(item => item.modelNumber === model);

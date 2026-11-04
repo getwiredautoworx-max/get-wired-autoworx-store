@@ -4,16 +4,21 @@ on:
   push:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
+      - supplier-standard-planetworld-audio-connections-2026-11-03
   pull_request:
     branches: [main]
 permissions:
   contents: read
+  deployments: write
 jobs:
   runner-and-catalogue-structure:
     runs-on: ubuntu-slim
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -41,3 +46,77 @@ jobs:
           print('GW_CATALOGUE_STRUCTURE_PASS')
           PY
           echo "GW_RUNNER_DIAGNOSTIC_PASS"
+      - name: Build isolated non-production preview package and run storefront regression
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: python scripts/build-cloudflare-pages-public.py
+      - name: Run ASC catalogue regression
+        run: node tests/asc-catalogue-preview.test.cjs
+      - name: Run Planetworld and Audio Connections regression
+        run: node tests/audio-catalogue-preview.test.cjs
+      - name: Run public SKU exposure audit
+        run: python3 scripts/public-sku-audit.py
+      - name: Verify preview-only allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s pages-public/owner-preview.html
+          test -s pages-public/preview-audio.html
+          test -s pages-public/asc-catalogue-preview.html
+          test -s pages-public/assets/planetworld-catalogue-preview.json
+          test -s pages-public/assets/audio-connections-catalogue-preview.json
+          test ! -d pages-public/suppliers
+          test ! -d pages-public/catalogue-review
+          test ! -d pages-public/supabase
+          test ! -d pages-public/assets/asc-catalogue-source
+          if find pages-public -type f -iname '*.pdf' -print -quit | grep -q .; then
+            echo "Supplier PDF leaked into preview package"
+            exit 1
+          fi
+          echo "SUPPLIER_PREVIEW_ALLOWLIST_PASS"
+      - name: Run read-only mobile and desktop owner-preview browser QA
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/gw-preview-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          sleep 2
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage({viewport:{width:390,height:844}});
+            const errors=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            await page.goto('http://127.0.0.1:4173/owner-preview.html',{waitUntil:'domcontentloaded'});
+            if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Missing non-production warning');
+            const frame=page.frameLocator('#store');
+            await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:60000});
+            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
+            const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
+            const expected=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
+            if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Approved roots mismatch: '+JSON.stringify(roots));
+            const checkoutHidden=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
+            if(!checkoutHidden) throw new Error('Checkout control visible');
+            await frame.getByRole('button',{name:/Car Audio \/ Home Entertainment \/ Lifestyle/}).click();
+            await frame.getByRole('link',{name:/Browse Car Audio Catalogue/}).click();
+            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            const text=await frame.locator('body').innerText();
+            if(/Planetworld|Audio Connections/i.test(text)) throw new Error('Supplier identity visible');
+            if(errors.length) throw new Error('Browser errors: '+JSON.stringify(errors));
+            await page.setViewportSize({width:1280,height:900});
+            const widths=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(widths.scrollWidth>widths.innerWidth+1) throw new Error('Desktop horizontal overflow: '+JSON.stringify(widths));
+            console.log('SUPPLIER_PILOT_BROWSER_QA_PASS',JSON.stringify({roots,checkoutHidden,supabaseWritesBlocked:true,audioProductsVisible:true}));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+      - name: Deploy exact tested branch to isolated Cloudflare Pages preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=supplier-pilot-preview
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
