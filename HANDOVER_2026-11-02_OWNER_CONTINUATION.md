@@ -1377,3 +1377,42 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Wider route audit found `preview-store.html` still contains numeric-price displays in product cards, product details, quick-search result rows and existing-cart summaries, plus price sorting. `preview-products.html` also retains numeric price display and price sorting. These routes are not yet changed in the price-policy branch.
 - Recorded this remaining work in `catalogue-review/PRICE_POLICY_ROUTE_AUDIT_2026-11-04.md` on `staging/store-wide-price-on-request-2026-11-04`, commit `fe2d2d1fd75ffe78af2ac72635cef32ac7f8b53a`.
 - Consequently the three staged edits (`products.html`, `product.html`, `checkout-v2.html`) are partial progress only. Do not merge, deploy, or tell customers the policy is fully applied until every reachable storefront route and existing-cart path has been updated and browser-tested.
+
+
+
+## 2026-11-04 MOBILE-AGENT SYNC AND OWNER POLICY UPDATE
+
+### Shared coordination record
+- This file remains the sole authoritative repository handover. All agents must read the current `main` version before continuing; do not use superseded handover files or stale copies from PR branches.
+- PR #168 is the protected active mobile-agent workstream for the Audio & Home Entertainment category repair. The mobile agent owns that branch and its changes. Do not edit, rebase, merge, close, or otherwise interfere with PR #168 from the main storefront/catalogue workstream. The mobile agent must continue on its own branch and report exact branch/head, files changed, tests and remaining issues in PR #168.
+- The mobile agent may work on Android owner/admin APK and mobile UX separately, but must not write live Supabase product/category/stock/price data or touch shared production configuration. Coordinate any shared database/function changes through this handover and owner approval first.
+
+### Owner-confirmed global customer price display policy — 2026-11-04
+- Applies to **every product, supplier and category**, not ASC alone.
+- Customer-facing product price text must be exactly: **"Price On Request Due to Stock Availability"**.
+- Do not render numeric product prices from database rows, caches, cart state, product cards, product details, search results, preview routes or checkout summaries while this policy is active.
+- Disable price-based sorting/filtering while numeric prices are suppressed.
+- Do not allow unpublished or unverified product prices to proceed through payable checkout. Customer enquiry must identify the product and Get Wired SKU and ask the customer to confirm current price and availability.
+- Only restore numeric selling prices after the exact supplier identity + supplier SKU is matched to a current supplier pricelist, list version/effective date and owner pricing rules are validated, and the owner approves. Stock/availability must be confirmed separately; a pricelist alone does not prove stock.
+- This policy is a source-level/customer-facing requirement. It is not evidence that every route has already been updated or browser-tested. The separate branch `staging/store-wide-price-on-request-2026-11-04` has started changes to `products.html`, `product.html` and `checkout-v2.html`; remaining preview routes and full QA are still outstanding. Do not claim global implementation complete until every reachable route is checked.
+
+### Owner-confirmed ASC family destinations — 2026-11-04
+- Aerials → Car Audio → Accessories → Aerials (own subcategory alongside Trims & Harnesses).
+- Automotive Sensors → Auto Electrical Spares & Parts → Automotive Sensors (own subcategory).
+- Automotive Switches → Auto Electrical Spares & Parts → Automotive Switches (own subcategory).
+- Automotive Globes → Auto Electrical Spares & Parts → Automotive Globes (own subcategory).
+- Fuel Pumps → Auto Electrical Spares & Parts → Fuel Pumps (own subcategory).
+- Car Mats → Car Care & Accessories → Car Mats (own subcategory).
+- All six ASC families are in scope. This supersedes the earlier temporary deferral of Aerials and Car Mats. Keep the 50-product pilot review-only and 63 unverified OCR tokens quarantined until exact source/image/SKU checks and owner approval are complete.
+
+### Mobile-agent instructions for PR #168
+1. Continue the Audio & Home Entertainment category repair only on the PR #168-owned branch; do not switch to or commit onto the main price-policy branch.
+2. Read this current-main handover and the latest PR #168 conversation/comments before editing. Report exact head SHA and inspect any overlapping files before changing them.
+3. Apply the global price-on-request requirement to any customer-facing product surfaces touched by the mobile/category work: exact wording above, no numeric prices, no price sorting/filtering, no payable checkout for quote-only items. If applying it would require changing shared files outside PR #168 scope, report the file/path conflict rather than editing another agent's branch.
+4. Preserve the six owner-confirmed ASC mappings above if any category navigation or shared taxonomy is referenced. Do not reintroduce the superseded ASC destinations.
+5. Keep work review-only and non-production. No Supabase writes, live category/product changes, deployment, payment activation, Axxess/DNS changes, or credit-consuming workflow retries.
+6. Before reporting completion, provide changed-file list, exact branch/head, tests actually run and results, any unresolved issues, and a preview/phone-test status. Do not claim device acceptance unless the owner has tested on a real Android device.
+
+### Current cross-workstream boundary
+- Main storefront work owns the global price policy implementation and route audit. Mobile agent owns PR #168's Audio & Home Entertainment repair. ASC review/staging remains separate. Do not combine branches or merge PRs as a shortcut.
+- Production remains **HOLD**. No merge or production release is authorized by this sync.
