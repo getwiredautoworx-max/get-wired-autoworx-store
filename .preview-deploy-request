@@ -53,3 +53,6 @@ HANDOVER_CURRENT.md and HANDOVER_2026-11-02_OWNER_CONTINUATION.md now record the
 
 Final preview verification refresh — 2026-11-04.
 This exact head includes the mobile submenu repair, verified four-department audio artwork, supplier-safe preview labels, and intentional withholding of the unrenderable XS-W104ES image. Deploy and rerun full exact-head runner, package, mobile/desktop hosted QA. Production HOLD.
+
+Final exact-head verification after QA corrections — 2026-11-04.
+This head includes the mobile audio submenu fix, supplier-safe preview data, the intentional no-image hold for unrenderable Sony XS-W104ES, and corrected image-count/browser assertions. Deploy this exact SHA and rerun full runner, package and hosted mobile/desktop QA. Production HOLD.
