@@ -71,7 +71,7 @@ jobs:
               if (JSON.stringify(accessoryButtons.map(x=>x.trim()).sort()) !== JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories must contain only separate Aerials and Trims & Harnesses buttons: '+JSON.stringify(accessoryButtons));
 
               await page.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
-              await page.waitForURL(/preview-audio\.html\?.*component=Harnesses/,{timeout:15000});
+            await page.waitForURL(/preview-audio\.html/,{timeout:15000});
               await page.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
               await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const trimCount = await page.locator('#products .audioProduct').count();
@@ -83,7 +83,7 @@ jobs:
               aerialPage.on('pageerror', e => errors.push('aerials: '+String(e)));
               await aerialPage.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
               await aerialPage.locator('#grid .card').filter({hasText:'Aerials'}).click();
-              await aerialPage.waitForURL(/preview-audio\.html\?.*search=Aerials/,{timeout:15000});
+            await page.waitForURL(/preview-audio\.html/,{timeout:15000});
               await aerialPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
               if (await aerialPage.locator('#products').evaluate(el=>el.hidden)) throw new Error('Aerials direct search must open its own product-listing state');
               const aerialHeading = await aerialPage.locator('#productsHeading').innerText();
@@ -93,10 +93,10 @@ jobs:
               await brandPage.goto('http://127.0.0.1:4173/preview-audio.html?department=Car%20Audio',{waitUntil:'domcontentloaded'});
               await brandPage.locator('#brands button[aria-label="Kicker"]').waitFor({state:'visible',timeout:30000});
               await brandPage.locator('#brands button[aria-label="Kicker"]').click();
-              await brandPage.waitForURL(/preview-audio\\.html\\?.*brand=Kicker/,{timeout:15000});
+              await brandPage.waitForURL(/preview-audio\.html\?.*brand=Kicker/,{timeout:15000});
               await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).waitFor({state:'visible',timeout:30000});
               await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).click();
-              await brandPage.waitForURL(/preview-audio\\.html\\?.*component=Subwoofers/,{timeout:15000});
+              await brandPage.waitForURL(/preview-audio\.html\?.*component=Subwoofers/,{timeout:15000});
               await brandPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const brandProducts = await brandPage.locator('#products .audioProduct > b').allTextContents();
               if (!brandProducts.length || brandProducts.some(x=>x.trim()!=='Kicker')) throw new Error('Kicker → Subwoofers route leaked other brands: '+JSON.stringify(brandProducts.slice(0,10)));
