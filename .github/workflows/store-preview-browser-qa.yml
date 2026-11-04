@@ -188,15 +188,27 @@ jobs:
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
-              const previewBase='https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev';
+              const previewBases=[
+                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev',
+                'https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev'
+              ];
+              let previewBase=null;
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
-                const response=await page.request.get(previewBase+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
-                if(response.ok()){
-                  try { deployedBuild=await response.json(); } catch {}
-                  if(deployedBuild&&deployedBuild.commit===expectedSha) break;
+                for(const candidate of previewBases){
+                  const response=await page.request.get(candidate+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
+                  if(response.ok()){
+                    let candidateBuild=null;
+                    try { candidateBuild=await response.json(); } catch {}
+                    if(candidateBuild&&candidateBuild.commit===expectedSha){
+                      previewBase=candidate;
+                      deployedBuild=candidateBuild;
+                      break;
+                    }
+                  }
                 }
-                if(attempt%6===0)console.log('WAITING_FOR_EXACT_PR168_STAGING_DEPLOY',JSON.stringify({attempt,expectedSha,found:deployedBuild}));
+                if(previewBase)break;
+                if(attempt%6===0)console.log('WAITING_FOR_EXACT_PR168_STAGING_DEPLOY',JSON.stringify({attempt,expectedSha,previewBases}));
                 await page.waitForTimeout(5000);
               }
               console.log('EXACT_PR168_STAGING_PREVIEW',JSON.stringify({expectedSha,previewBase,deployedBuild}));
