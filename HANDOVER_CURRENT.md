@@ -195,3 +195,13 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - A further route-browser QA run is running after adding `index-new.html` to the route workflow's path filters, so homepage layout changes trigger route checks.
 - Owner must still review the staging preview on a real phone and explicitly accept the category/navigation appearance. Do not mark owner acceptance complete without that confirmation.
 - Production remains HOLD; PR #168 remains draft/unmerged. No production deployment, live DNS/payment change, Axxess upload, Supabase write, live stock/price change or supplier activation.
+
+## 2026-11-04 — Final browser/regression verification closeout
+
+- Latest application source head verified: `49166f76ab38d5c451757fec20584c6d0e7d75f5`. The only subsequent commit through current handover head `ca30ff594c4254beb6ae3c702e1201ba14197e62` updates this handover; no application source changed.
+- Car Audio Accessories Route Browser QA run **41804797751** — SUCCESS on `49166f76ab38d5c451757fec20584c6d0e7d75f5`. It checked the three approved roots, Accessories with separate Aerials and Trims & Harnesses buttons, the 47-row Trims & Harnesses filtered listing, Aerials' separate zero-result filtered state, Kicker → Subwoofers filtering with no other brands leaking into results, zero browser JS errors and desktop horizontal overflow.
+- Owner Store Preview Browser QA run **41804797657** — SUCCESS on the same source head. It checked the actual homepage → Car Audio & Video catalogue path, Sony → Amplifiers filtering, hidden products before component selection, separate Aerials/Trims routes, 47 fitment rows, checkout suppression and blocked Supabase writes.
+- Current Branch Runner / full public Pages package regression run **41804797350** — SUCCESS on the same source head. Public SKU exposure audit, catalogue structure, Planetworld/Audio Connections preview tests and public package exclusions passed.
+- Non-production Cloudflare Pages deployment run **41804611258** — SUCCESS; alias https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev/ . It deployed the candidate at trigger commit `af25aa9c5440c430d3a6a0422357db3a882ddc62`. The application source was unchanged through `49166f7`; subsequent commits added QA path coverage and handover documentation only.
+- Automated implementation and verification for route navigation and product filtering are complete. The remaining acceptance item is the owner's real-device review of the staging URL. Do not mark owner acceptance complete until explicitly confirmed.
+- PR #168 remains draft/unmerged and production remains HOLD.
