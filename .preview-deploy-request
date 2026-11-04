@@ -109,3 +109,7 @@ Deploy this exact branch head. The 66-row Audio Connections preview JSON is now 
 
 Security regression correction — 2026-11-04.
 Restored the current-main fail-closed preview product listing/detail routes after the integrated preview gate exposed that the earlier branch version had replaced those safeguards. Rebuild this exact head and require catalogue gate, full public package, SKU, browser and hosted mobile/desktop QA. Production HOLD.
+
+
+Audio Connections Hornet test alignment — 2026-11-04.
+Updated the regression assertion to the latest official Starsound output table (65 W RMS ×4 at 2 Ω, 45 W RMS ×4 at 4 Ω, 90 W bridged at 4 Ω) while retaining the supplier's separate 50 W RMS discrepancy and mandatory confirmation hold. Rebuild and verify this exact SHA. Production HOLD.
