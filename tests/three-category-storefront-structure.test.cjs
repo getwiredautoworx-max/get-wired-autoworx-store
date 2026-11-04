@@ -163,7 +163,7 @@ assert.ok(categoryPage.includes("department=Lifestyle&search=vacuum&label=Vacuum
 assert.ok(categoryPage.includes("department=Lifestyle&search=pool&label=Pool%20Cleaners"), 'pool category page must open Lifestyle pool results');
 assert.ok(categoryPage.includes("b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-audio.html?department=Car%20Audio&search=Aerials&label=Aerials'"), 'Aerials button must open its own filtered audio view');
 assert.ok(categoryPage.includes("13b36e2a-a5c7-471e-83ef-3ad180e66d3d':'preview-audio.html?department=Car%20Audio&brand=All%20brands&component=Harnesses%2C%20Trims%20%26%20Fitment&label=Trims%20%26%20Harnesses'"), 'Trims & Harnesses button must open its own filtered audio view');
-assert.ok(audioPage.includes('el("products").hidden=!department||component==="All product types"'), 'accessory product routes must show the selected component results without requiring a brand filter');
+assert.ok(audioPage.includes('el("products").hidden=!department||(component==="All product types"&&!directSearchRoute)'), 'selected component routes must show filtered products without requiring a brand filter');
 assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
 
 assert.ok(audioPage.includes('assets/car-audio-video-category.svg'), 'Car Audio & Video department button must show its dedicated artwork');
