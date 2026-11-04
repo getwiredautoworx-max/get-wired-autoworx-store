@@ -88,6 +88,18 @@ jobs:
               if (await aerialPage.locator('#products').evaluate(el=>el.hidden)) throw new Error('Aerials direct search must open its own product-listing state');
               const aerialHeading = await aerialPage.locator('#productsHeading').innerText();
               if (!aerialHeading.toLowerCase().includes('0 matching')) throw new Error('Aerials pilot should show its own empty filtered state until the separate ASC upload: '+aerialHeading);
+              const brandPage = await browser.newPage({viewport:{width:390,height:844}});
+              brandPage.on('pageerror', e => errors.push('brand: '+String(e)));
+              await brandPage.goto('http://127.0.0.1:4173/preview-audio.html?department=Car%20Audio',{waitUntil:'domcontentloaded'});
+              await brandPage.locator('#brands button[aria-label="Kicker"]').waitFor({state:'visible',timeout:30000});
+              await brandPage.locator('#brands button[aria-label="Kicker"]').click();
+              await brandPage.waitForURL(/preview-audio\\.html\\?.*brand=Kicker/,{timeout:15000});
+              await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).waitFor({state:'visible',timeout:30000});
+              await brandPage.locator('#components button').filter({hasText:'Subwoofers'}).click();
+              await brandPage.waitForURL(/preview-audio\\.html\\?.*component=Subwoofers/,{timeout:15000});
+              await brandPage.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const brandProducts = await brandPage.locator('#products .audioProduct > b').allTextContents();
+              if (!brandProducts.length || brandProducts.some(x=>x.trim()!=='Kicker')) throw new Error('Kicker → Subwoofers route leaked other brands: '+JSON.stringify(brandProducts.slice(0,10)));
               if (errors.length) throw new Error('Browser JavaScript errors: '+JSON.stringify(errors));
               await page.setViewportSize({width:1365,height:900});
               const dims = await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
