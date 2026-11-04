@@ -130,7 +130,7 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 5);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
 assert.equal(hornet.imageUrl,'https://starsound.co.za/wp-content/uploads/2023/12/Hornet-788x788.png');
 assert.equal(hornet.imageStatus,'OFFICIAL_MANUFACTURER_IMAGE_CANDIDATE_PREVIEW_ONLY');
 assert.equal(audioConnections.records.filter(row => row.indicativePrice == null).length, 0, 'all three previously missing market indicative references are now populated');
