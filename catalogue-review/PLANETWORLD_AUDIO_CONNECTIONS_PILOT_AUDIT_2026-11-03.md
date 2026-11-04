@@ -235,3 +235,11 @@ Disposition: no new official manufacturer reference, SKU assignment, image candi
 - Planetworld's curated 68-model set remains review-only and is not full 702-row Car Audio completion; the 634 other Car Audio rows remain without proposed GW SKUs and the manual-review classification queue remains open.
 - Public repository exposure: the owner explicitly accepted continuing the pilot in the public repository on 2026-11-04, noting that the dealer catalogues do not provide purchasing access. Existing dealer-price source files remain visible in public Git history; this is an owner-accepted exposure decision, not containment or supplier redistribution permission. Keep supplier pricing and source data out of customer-facing storefront output. This is not a credential-compromise finding.
 - No Actions runs or exact-head test result are claimed. No supplier activation, live writes, production deployment, Axxess upload, DNS, checkout/payment or banking changes.
+
+
+## 2026-11-04 — Audio Connections manufacturer-reference reconciliation
+- Audited the 66-record Audio Connections preview JSON against its recorded manufacturerPage fields.
+- Added explicit manufacturerMatchStatus and provenance notes to 15 records that already contained an official manufacturer URL but had a blank match status: Sony XS-163ES, XS-162ES, XS-692ES, XS-160ES, XS-680ES, XS-W104ES, XS-W122ES, XS-W124ES, XM-1ES, XM-4ES, XM-5ES, XM-6ES, XM-8ES; Starsound USB230 and USB450BTDD.
+- These are manufacturer-reference findings only. They do not approve image redistribution, supplier price, current availability, variant equivalence where noted, GW SKU assignment or publication. Existing 44 image gaps and 53 held non-Sony SKU candidates remain unchanged.
+- Updated file: assets/audio-connections-catalogue-preview.json. Commit: d90164e13e1303c9cd8c7c236270299a3a8ae8fd.
+- The owner-approved SSA-ATOM13800.4 customer-draft spec remains 100 W RMS nominal per channel × 4. No public/live catalogue or production change.
