@@ -1537,3 +1537,13 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Latest pilot staging branch head: `1884562ab70de9c24485640d3edea8aab7a70f79`; latest source-page cleanup branch head: `78958d90f4c6cc0783611d0021eef483037299d8`.
 - The 78-product Aerials batch is also complete. All 63 OCR candidates are confirmed non-SKU noise/references and have no GW SKU assigned.
 - Remaining work: process Automotive Switches, Automotive Globes, Car Mats, and Fuel Pumps into similarly source-verified review-only batches. No live import or production deployment.
+
+
+## 2026-11-04 — ASC AUTOMOTIVE SWITCHES: 104 PRODUCTS REVIEWED
+
+- Completed the `Ignition Switches & Barrel Sets` section: **51 products** from pages 3–5. File: `asc-ignition-switches-51-product-review-only.csv`. 51 unique supplier SKUs/proposed GW SKUs; eight pilot rows and 43 additional rows.
+- Completed the `Combination & Indicator Stalk Switches` section: **53 products** from pages 5–8. File: `asc-combination-indicator-switches-53-product-review-only.csv`. 53 unique supplier SKUs/proposed GW SKUs.
+- Combined 104 source-page-verified review-only products mapped to Auto Electrical Spares & Parts → Automotive Switches. All remain no-price/no-stock/not imported.
+- Switches catalogue remains incomplete. Remaining sections: Wiper Switches; Headlamp, Dimmer & Hazard Switches; Power Window Switches; Toggle, Push & Button Switches; Starter & Solenoid Switches; Battery Isolators & Cut-Off Switches; Switch Panels, Covers & Accessories; Marine & Specialist Switches.
+- Updated ASC extraction README and validation report. Latest pilot staging branch head `18ffe994acc51353e281c1e8e4f8080f9bd7f081`; source-page cleanup branch head `78958d90f4c6cc0783611d0021eef483037299d8`.
+- Previously completed: Aerials 78 products; Automotive Sensors 106 products; all 63 OCR candidates confirmed non-SKU noise/references. No live imports or production deployment.
