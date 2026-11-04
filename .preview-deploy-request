@@ -20,3 +20,6 @@ Deploy the repair branch alias (repair-pr-168-storefront-cat.get-wired-autoworx-
 
 Final exact-head deployment request — 2026-11-04.
 Deploy the current repair branch commit after the Car Audio category tile image, category renderer, navigation cleanup, and supplier-specific price regressions passed. Verify this exact triggering SHA on the repair branch Pages alias at desktop and mobile widths. Preview only; no production changes.
+
+Exact mobile submenu repair refresh — 2026-11-04.
+Deploy the current fix/mobile-audio-subcategory-grid-2026-11-04 branch head, including the two-column mobile submenu correction and preview-catalogue root label, to the dedicated repair Pages alias. Verify the deployed manifest SHA equals this triggering commit, then rerun hosted mobile/desktop category, image, brand, component, supplier-identity and checkout-safety checks. Preview only; production remains HOLD.
