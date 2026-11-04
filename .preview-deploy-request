@@ -16,3 +16,7 @@ The staging and owner-browser workflows now poll only the dedicated integrated P
 
 Use established verified staging alias — 2026-11-04.
 The new branch-specific Pages alias did not publish a readable exact-SHA marker. The integrated candidate will now deploy to the previously verified isolated repair-pr-168-storefront-cat Pages alias. This remains a non-production preview only. Require exact SHA marker and hosted mobile/desktop QA. Production HOLD.
+
+
+Hosted mobile submenu tap interception fix — 2026-11-04.
+The exact deployed browser QA exposed a real mobile tap issue: the expanded submenu panel intercepted taps intended for nested Car Audio catalogue links. Updated the mobile submenu so the panel background does not capture pointer events and its nested category tiles/links remain directly interactive. Rebuild and verify the exact head on hosted mobile/desktop before acceptance. Production HOLD.
