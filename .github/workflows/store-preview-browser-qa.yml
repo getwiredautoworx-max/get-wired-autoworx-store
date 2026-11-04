@@ -120,7 +120,7 @@ jobs:
               if(!checksResponse.ok)throw new Error('Unable to read exact-commit Cloudflare deployment check: '+checksResponse.status+' '+await checksResponse.text());
               const checksData=await checksResponse.json();
               const pagesCheck=(checksData.check_runs||[]).find(check=>check.name==='Cloudflare Pages'&&check.status==='completed'&&check.conclusion==='success');
-              const previewMatch=pagesCheck?.output?.summary?.match(/<strong>Preview URL:<\\/strong>\\s*<\\/td>\\s*<td>\\s*<a href='([^']+)'/i);
+              const previewMatch=pagesCheck?.output?.summary?.match(/<strong>Preview URL:<\/strong>\s*<\/td>\s*<td>\s*<a href='([^']+)'/i);
               if(!previewMatch)throw new Error('No successful immutable Cloudflare Pages preview URL was found for exact commit '+expectedSha);
               const previewBase=new URL(previewMatch[1]).origin;
               console.log('EXACT_CLOUDFLARE_PREVIEW',JSON.stringify({expectedSha,previewBase}));
