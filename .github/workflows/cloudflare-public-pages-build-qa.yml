@@ -86,3 +86,5 @@ jobs:
           node tests/three-category-storefront-structure.test.cjs
           python3 scripts/public-sku-audit.py
           echo "PAGES_NONPRODUCTION_PREVIEW_ALLOWLIST_PASS"
+
+# QA trigger alignment: keep exact-model Planetworld and Audio Connections preview assertions in this PR gate.
