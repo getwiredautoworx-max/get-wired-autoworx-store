@@ -81,7 +81,7 @@ assert.ok(!route.includes('Planetworld'), 'supplier identity must remain private
 assert.ok(!route.includes('Audio Connections'), 'supplier identity must remain private');
 assert.ok(!JSON.stringify(planet).includes('Planetworld'), 'supplier identity must remain private in public catalogue data');
 assert.ok(!JSON.stringify(audioConnections).includes('Audio Connections'), 'supplier identity must remain private in public catalogue data');
-assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse Car Audio Catalogue','Car Audio')"));
+assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Car Audio & Video','Car Audio')"), 'homepage Car Audio subcategory must route into the combined Car Audio & Video catalogue');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-home','Browse Home Entertainment Catalogue','Home Entertainment')"));
 assert.ok(home.includes("audioDepartmentNode('gw-audio-band','Browse Band & Live Sound Catalogue','Band & Live Sound')"));
 assert.ok(home.includes("audioDepartmentNode('gw-audio-dj','Browse DJ Equipment Catalogue','DJ')"));
@@ -93,7 +93,7 @@ assert.ok(home.includes("audioSearch:'pool'"));
 assert.ok(home.includes("id==='e3d19d20-fb46-426c-9f64-221d863add0b'"));
 assert.ok(home.includes("id==='1a13bc42-4f54-44f6-9658-36d141b77f4b'"));
 assert.ok(home.includes('href="preview-audio.html"'));
-assert.ok(home.includes("5ab55c53-eee3-41ce-ad48-04ad6df85181"), 'link belongs under Car Audio & Entertainment');
+assert.ok(home.includes("e3d19d20-fb46-426c-9f64-221d863add0b") && !home.includes("5ab55c53-eee3-41ce-ad48-04ad6df85181"), 'Car Audio & Video navigation must use the current approved category UUID');
 assert.ok(builder.includes('"preview-audio.html"'));
 for (const file of ['planetworld-catalogue-preview.json','planetworld-verified-models-preview.json','audio-connections-catalogue-preview.json']) {
   assert.ok(builder.includes(file), 'preview allowlist must include '+file);
