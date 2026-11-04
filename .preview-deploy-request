@@ -74,3 +74,7 @@ The browser QA now probes both observed Cloudflare branch aliases and accepts on
 
 Integrated category + mobile repair candidate — exact-head deployment request 2026-11-04.
 Deploy current integrated branch SHA only to the isolated non-production Cloudflare Pages preview. Require exact qa-build-result.json SHA match and hosted mobile/desktop QA before acceptance. Production remains HOLD.
+
+
+2026-11-04 integrated category + mobile repair exact-head deployment trigger.
+Build and deploy this exact integration branch commit to the isolated PR 168 staging Pages branch; run the exact-head owner mobile/desktop browser checks and full public package regression. Require qa-build-result.json to report the exact triggering SHA. Checkout remains hidden, Supabase writes blocked, no source PDFs, no production deployment or live changes.
