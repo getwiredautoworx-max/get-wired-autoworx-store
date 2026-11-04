@@ -128,10 +128,14 @@ jobs:
               await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
               const carArt=frame.locator('.catWrap.catalogueWrap a[href*="department=Car%20Audio"] img.catPhoto');
               await carArt.waitFor({state:'visible',timeout:20000});
-              if(!(await carArt.evaluate(img=>img.complete&&img.naturalWidth>0))) throw new Error('Car Audio & Video child artwork failed to load');
+              await carArt.scrollIntoViewIfNeeded();
+              const carArtLoaded=await carArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!carArtLoaded) throw new Error('Car Audio & Video child artwork failed to load');
               const homeArt=frame.locator('.catWrap.catalogueWrap a[href*="Home%20Entertainment"] img.catPhoto');
               await homeArt.waitFor({state:'visible',timeout:20000});
-              if(!(await homeArt.evaluate(img=>img.complete&&img.naturalWidth>0))) throw new Error('Home Entertainment artwork failed to load');
+              await homeArt.scrollIntoViewIfNeeded();
+              const homeArtLoaded=await homeArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!homeArtLoaded) throw new Error('Home Entertainment artwork failed to load');
               const carAudioLink=frame.locator('.catWrap.catalogueWrap a[href*="department=Car%20Audio"]');
               await carAudioLink.click();
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:20000});
