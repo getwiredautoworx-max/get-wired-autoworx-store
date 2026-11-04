@@ -291,3 +291,15 @@ Read-only recheck of the current 3,317-row Planetworld preview JSON and the live
 - **2 of 137** remain ambiguous: preview records `pw-2367` and `pw-2368`, both titled “Harness for Toyota version 2”, match two supplier codes (`TOYOTA2-H` and `TOYOTA2-HC`). Both preview rows and both possible codes are preserved; no SKU is assigned to either row until original workbook sheet/row and variant evidence disambiguate them.
 - Updated `catalogue-review/PLANETWORLD_FITMENT_137_CANDIDATE_AUDIT_2026-11-04.csv` to include the exact matched supplier SKU and source workbook path for the 135 unique matches, and both possible codes for the two ambiguous records.
 - The crosswalk does not carry original worksheet name/row number. Therefore, **135 source-workbook file joins are established, but original sheet/row joins remain outstanding for all 137**. This is not yet an approved GW SKU assignment or a vehicle-compatibility verification.
+
+### Exact Planetworld source sheet/row reconciliation — completed read-only pass
+
+- The Planetworld workbook audit workflow was extended to run `scripts/planetworld_fitment_source_row_join.py` after its read-only workbook scan.
+- Exact-SKU joins against the workbook audit's 702 Car Audio source-row records produced **139 output rows covering all 137 candidate preview IDs**:
+  - **135 candidate IDs** each have one unique exact supplier SKU + workbook + sheet + source-row match.
+  - **2 candidate IDs** (`pw-2367`, `pw-2368`) each map to both Toyota version-2 variants: `TOYOTA2-H` at `suppliers/Planetworld/one-price-list-2026-10-25.xlsx`, sheet `Products`, row **286**; and `TOYOTA2-HC` in the same workbook/sheet, row **287**.
+  - **0 candidate IDs** are unmatched to source rows.
+- The two ambiguous preview records are deliberately preserved as two source candidates each; no code was assigned to either preview ID and no duplicate was deleted.
+- The read-only workflow run **41832598076** completed successfully. Its log reports: `FITMENT_SOURCE_ROW_JOIN candidates=137 output_rows=139 unique_ids=135 no_or_ambiguous=2`.
+- Persisted the exact row evidence in `catalogue-review/PLANETWORLD_FITMENT_137_SOURCE_ROW_JOIN_2026-11-04.csv` (139 data rows). This avoids relying on ephemeral runner output.
+- This closes the workbook sheet/row provenance join for 135 unique candidates and identifies the precise two-row collision for the remaining two. It does **not** verify exact vehicle compatibility, product images/rights, current price/stock, GW SKU publication or supplier authorization for individual items.
