@@ -99,3 +99,15 @@ Production remains HOLD. No merge, supplier activation, public product import, l
 
 ### Release boundary
 - No merge, production deployment, Axxess upload, DNS change, Supabase write, live stock/price/category change, supplier activation, banking/payment change or checkout go-live is authorised. Keep PR #170 draft and PR #168 draft; PR #171 remains unmerged pending review and owner acceptance.
+
+
+## 2026-11-04 14:50 SAST — CONTINUE SUPPLIER RECONCILIATION / FITMENT SOURCE ROW AUDIT
+
+- Latest working branch head at this update: `23c6e3d5c1832685da9799d82268e2788f213504`; PR #170 remains open/draft/unmerged.
+- Prior hosted preview run `41830655294` deployed exact tested SHA `80446b594e403d966ac78e4de5d24471bfea4ff6` and the hosted deployment manifest matched. Hosted browser QA failed at the outer iframe navigation wait (30-second timeout). This is a browser harness failure; it does not establish a category/artwork/data regression.
+- The workflow was revised to use frame-local navigation/route waits. Exact-head run `41832194787` for `1b29d182aab1dff902a37c31265b932c4e77b8f5` was in progress at the last check. Poll its result; do not claim hosted verification until hosted route assertions pass.
+- Added `scripts/planetworld_fitment_source_row_join.py`. It joins the 137 Planetworld fitment review candidates against read-only workbook audit output by source workbook + exact normalized supplier SKU, preserving source sheet/row provenance and explicitly retaining ambiguous/no-match cases. It does not alter source workbooks or catalogue/live data.
+- Updated `.github/workflows/planetworld-workbook-audit.yml` to run on the supplier pilot branch and execute the source-row join after the workbook audit. Exact-head run `41832598076` for `23c6e3d5c1832685da9799d82268e2788f213504` is in progress. Review `planetworld-audit-output/fitment_137_source_row_join_review_only.csv` and the job summary when complete. This is an audit output, not fitment approval.
+- Existing 135 exact-title/SKU crosswalk matches are not proof of vehicle compatibility. Toyota version-2 candidates `pw-2367` and `pw-2368` remain unresolved between `TOYOTA2-H` and `TOYOTA2-HC`; do not assign either variant until exact source-row evidence and supplier clarification support it.
+- Continue remaining Planetworld image/spec exceptions and Audio Connections model/SKU/image/price reconciliation. Supplier price/stock evidence remains dated (Planetworld 2026-10-25; Audio Connections Aug/Sep 2026); obtain fresh supplier confirmation before any current price or availability claim.
+- No supplier email was sent; no product/SKU/price/stock/category was activated or imported; no Supabase write, production deploy, merge, Axxess/DNS/payment change occurred. Production remains HOLD.
