@@ -262,3 +262,24 @@ Read-only official manufacturer-page and image-gallery check for the six curated
 - Five gaps remain without a verified usable high-resolution product image.
 - No new image URL was added to `assets/planetworld-verified-models-preview.json` or customer-facing preview data. No supplier SKU, price, stock, category or publication status changed.
 - This check does not prove that all 68 curated rows are matched to the correct original workbook source row; exact supplier-row join and collision evidence remain required.
+
+## 2026-11-04 — Planetworld 137 Harnesses, Trims & Fitment candidate audit
+
+Read-only recheck of the current 3,317-row Planetworld preview JSON and the live `preview-audio.html` component-grouping rule.
+
+- The exact product-text rule used by the current component-grouping function returns **137 of 702 Car Audio records** for Harnesses, Trims & Fitment. This count is reproducible against title/name/description/modelNumber using: `harness|trim|fascia|fitment|iso2car|vehicle interface|dash kit|installation kit`.
+- The 137 candidates split by explicit title evidence into:
+  - **86** OneNav fitment kits;
+  - **42** vehicle harness / CANbus records;
+  - **7** ISO2CAR / mute-adaptor records;
+  - **2** fascia / 2-DIN trim records.
+- Existing source `component` values are not uniform: **51** already say Harnesses, Trims & Fitment, **85** say Wiring & Installation Accessories, and **1** says Cameras. The storefront grouping function currently overrides those existing component values for all 137 because the product text matches. This is a presentation candidate rule, not proof that every product has been correctly classified.
+- None of the 137 current JSON rows has a dedicated `collection = "Harnesses & Trims"` value. The earlier description of 47 dedicated source-collection rows is not supported by this current JSON read-back; do not repeat it without a separate source-workbook reconciliation.
+- A review CSV has been added: `catalogue-review/PLANETWORLD_FITMENT_137_CANDIDATE_AUDIT_2026-11-04.csv`. It preserves all 137 preview record IDs and exact source titles, records each existing component value and candidate group, and marks all exact vehicle compatibility as unverified. Fifteen rows are additionally flagged for ambiguous source wording, overly broad fitment, display-variant confirmation or possible duplicate-title review. Two records titled “Harness for Toyota version 2” remain separate; no deduplication was performed.
+- The review queue explicitly flags supplier labels such as “Vehicle TBC”, “Honda CVR”, “Nissan Qashiqai”, “Mahindra Scropio” and “Mitsubishi 200m” for clarification. These titles remain verbatim; no autocorrection or compatibility inference was made.
+- Generic cables and fuse holders remain excluded by the current regression test. The 137 count does not prove fitment accuracy, source workbook row joins, GW SKU identity, image permission, current price/stock or publication readiness.
+
+### Outcome
+- **Verified:** 137 text-matched candidates; group counts 86 / 42 / 7 / 2; current component-value distribution 51 / 85 / 1; 15 extra review flags; CSV created.
+- **Still open:** join each preview record to exact supplier workbook filename/sheet/row and supplier code; obtain exact vehicle compatibility evidence; resolve ambiguous labels and possible duplicates without deleting source records; validate each image and usage permission; confirm current price/availability.
+- No product mapping, SKU, price, stock, category, publication state or live data was changed.
