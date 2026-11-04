@@ -71,7 +71,7 @@ jobs:
               if (JSON.stringify(accessoryButtons.map(x=>x.trim()).sort()) !== JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories must contain only separate Aerials and Trims & Harnesses buttons: '+JSON.stringify(accessoryButtons));
 
               await page.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
-            await page.waitForURL(/preview-audio\.html/,{timeout:15000});
+            await aerialPage.waitForURL(/preview-audio\.html/,{timeout:15000});
               await page.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
               await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const trimCount = await page.locator('#products .audioProduct').count();
