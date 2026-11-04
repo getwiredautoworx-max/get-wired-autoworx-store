@@ -19,14 +19,13 @@ const uniquePlanetRows = new Set(planet.records.map(row => JSON.stringify([row.c
 assert.equal(uniquePlanetRows.size, 3135, 'exact duplicate source rows are suppressed in the customer browse view, not deleted from source data');
 assert.deepEqual(planet.collections, {
   'Home Entertainment': 461,
-  'Car Audio & Video': 627,
+  'Car Audio & Video': 671,
   'Band & Live Sound': 792,
   'Musical Instruments': 850,
   'Installed AV': 435,
   'DJ': 15,
-  'Harnesses & Trims': 47,
   'Studio Equipment': 62,
-  'Marine Audio': 28
+  'Marine Audio': 31
 });
 assert.equal(planet.records.filter(row => row.division === 'Car Audio').length, 702);
 assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio":p.collection===department'), 'Car Audio button must include the complete Car Audio division, including harnesses/trims and marine-audio source rows');
