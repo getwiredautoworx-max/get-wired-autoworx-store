@@ -74,7 +74,7 @@ for (const [id,label] of roots) {
 }
 const children = name => tree.categories.filter(c => c.active && c.name === name);
 for (const name of ['Car Audio & Video','Home Entertainment','Band Equipment','DJ Equipment','Instruments','Lifestyle'])
-  assert.ok(children(name).some(c => c.parent_id === roots[0][0]), name+' must be under combined root');
+  assert.ok(children(name).some(c => c.parent_id === roots[2][0]), name+' must be under Car Audio & Entertainment');
 for (const name of ['Vacuum Cleaners','Pool Cleaners'])
   assert.ok(children(name).some(c => c.parent_id === children('Lifestyle')[0].id), name+' must be under Lifestyle');
 assert.ok(home.includes("audioSearch:'vacuum'") && home.includes("audioSearch:'pool'"));
@@ -202,4 +202,4 @@ assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(componen
 
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
-console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
+console.log('EIGHT_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=8 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
