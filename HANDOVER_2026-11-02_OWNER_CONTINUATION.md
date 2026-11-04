@@ -1335,3 +1335,18 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - The 63 rows are explicitly quarantined as `QUARANTINED_UNVERIFIED_NO_IMPORT`; no Get Wired SKU is assigned. OCR tokens include likely heading/description fragments and recognition errors, so these are a visual-review queue, not 63 confirmed products.
 - Staging branch now contains the 50-row proposed SKU mapping and 63-row unverified OCR queue. It remains isolated, with no PR, no live product rows, no import, no image assets copied, and no deployment.
 - Handover update commit base at this follow-up: `aac24362c1b52259274bb871bdbbe8dbf36c12fe`. The Android agent's Audio & Home Entertainment repair remains a separate workstream.
+
+
+## 2026-11-04 — OWNER CONFIRMED ASC CATEGORY DESTINATIONS
+- Owner confirmed that all six current ASC product families are in scope and specified their storefront category hierarchy:
+  - Aerials → Car Audio → Accessories → Aerials (own subcategory, alongside Trims & Harnesses).
+  - Automotive Sensors → Auto Electrical Spares & Parts → Automotive Sensors (own subcategory/button).
+  - Automotive Switches → Auto Electrical Spares & Parts → Automotive Switches (own subcategory/button).
+  - Automotive Globes → Auto Electrical Spares & Parts → Automotive Globes (own subcategory/button).
+  - Fuel Pumps → Auto Electrical Spares & Parts → Fuel Pumps (own subcategory/button).
+  - Car Mats → Car Care & Accessories → Car Mats (own subcategory/button).
+- This supersedes the earlier temporary priority-only interpretation: Aerials and Car Mats are included, not deferred.
+- Recorded the mapping in `catalogue-review/asc-catalogue-extraction/asc-owner-confirmed-category-mapping-2026-11-04.md` on isolated staging branch `staging/asc-50-product-sku-proposal-2026-11-04`; commit `ce1dfd208f37a639975967298175eae8530c231c`.
+- The category destinations are owner-confirmed. The catalogue contents are not yet approved for import: supplier SKUs still require visual verification, price/stock require an approved current dealer source, and dimensions/fitment/specifications must be preserved where supplied.
+- No import, product activation, PR merge, deployment, Supabase/database/production write, Axxess upload, DNS change, or payment change was performed. PR #168 remains a separate paused/reconciliation workstream; Android agent's Audio & Home Entertainment repair remains separate.
+- Next: use the six confirmed category destinations while visually verifying source PDF entries and deduplicating; reconcile price/stock from an approved current dealer list before preparing any import-ready batch.
