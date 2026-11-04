@@ -882,28 +882,29 @@
       "indicativePrice": 791.78,
       "hasStock": false,
       "modelNumber": "SSA-HORNET-7600.4",
-      "description": "4-channel Hornet amplifier. The official Starsound page lists 60 W RMS ×4 but does not state the impedance or bridged-output basis; the supplier price list labels the model 50 W RMS; a retailer listing reports 65 W RMS ×4 at 2 Ω, 45 W RMS ×4 at 4 Ω and 90 W bridged. These exact-model figures conflict; do not publish a definitive power rating until the supplier confirms the correct revision and rating basis.",
+      "description": "4-channel Hornet amplifier. The current official Starsound model page lists 65 W RMS ×4 at 2 Ω, 45 W RMS ×4 at 4 Ω and 90 W bridged at 4 Ω. The 5 August 2026 supplier price list separately labels the model 50 W RMS. Preserve the manufacturer-published impedance-specific figures as source evidence, but retain the supplier discrepancy for confirmation of model revision before customer publication.",
       "manufacturerPage": "https://starsound.co.za/product/ssa-hornet-7600-4/",
-      "imageUrl": "https://starsound.co.za/wp-content/uploads/2023/12/Hornet-788x788.png",
+      "imageUrl": "https://starsound.co.za/wp-content/uploads/2026/10/SSA-HORNET-7600.4_WEB_PIC_1.jpg",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
       "priceNote": "Preview-only estimate using dealer cost ex VAT × 1.15 × 1.35.",
       "priceOnRequestText": "Price On Request Due to Stock Availability",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "OFFICIAL_MANUFACTURER_IMAGE_CANDIDATE_PREVIEW_ONLY",
+      "imageStatus": "OFFICIAL_EXACT_MODEL_MANUFACTURER_IMAGE_CANDIDATE_REVIEW_ONLY_PERMISSION_AND_OWNER_APPROVAL_PENDING",
       "manufacturerListingPage": "https://starsound.co.za/product/ssa-hornet-7600-4/",
       "manufacturerListedModel": "SSA-HORNET-7600.4",
       "manufacturerMatchStatus": "OFFICIAL_INDIVIDUAL_PRODUCT_PAGE_FOUND — exact model label after punctuation normalization",
       "specificationSourceUrl": "https://starsound.co.za/product/ssa-hornet-7600-4/",
-      "specificationSource": "Official Starsound page, supplier price list and exact-model retailer listing conflict.",
-      "specificationStatus": "OFFICIAL_VS_SUPPLIER_AND_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
+      "specificationSource": "Current official Starsound model page publishes impedance-specific RMS and bridged-output values; 5 August 2026 supplier price list separately labels the model 50 W RMS.",
+      "specificationStatus": "OFFICIAL_MANUFACTURER_TABLE_FOUND_SUPPLIER_PRICE_LIST_DISCREPANCY_CONFIRM_MODEL_REVISION",
       "specificationSourceUrls": [
         "https://starsound.co.za/product/ssa-hornet-7600-4/",
-        "https://www.autozoneonline.co.za/amplifier-starsound-hornet-76004"
+        "https://starsound.co.za/wp-content/uploads/2026/10/SSA-HORNET-7600.4_WEB_PIC_1.jpg"
       ],
-      "specificationEvidenceStatus": "OFFICIAL_SUPPLIER_AND_RETAILER_CONFLICT_NOT_PUBLISHABLE",
-      "imageSourceUrl": "https://starsound.co.za/product/ssa-hornet-7600-4/"
+      "specificationEvidenceStatus": "MANUFACTURER_PRIMARY_SOURCE_SPECIFICATION_CAPTURED_SUPPLIER_DOCUMENT_DISCREPANCY_REMAINS",
+      "imageSourceUrl": "https://starsound.co.za/product/ssa-hornet-7600-4/",
+      "imageSourceNote": "Exact-model image 1 from the current official Starsound product gallery (October 2026 upload); candidate only pending permission and owner approval. Not approved for public/production publication."
     },
     {
       "id": "ac-039",
