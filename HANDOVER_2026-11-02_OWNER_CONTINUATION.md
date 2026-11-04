@@ -1730,3 +1730,14 @@ The owner challenged the repeated pattern of status notifications and promises w
 3. Run available local/CI checks against the exact resulting SHA. If a required run cannot be initiated through connected tooling, record the precise limitation and the owner-only action needed; do not imply that a run passed or is running.
 4. Use only the approved isolated Cloudflare Pages staging route after exact-head checks are successful; verify deployed SHA/build marker and real hosted mobile/desktop behavior. Do not treat a build/package job alone as hosted browser acceptance.
 5. Append the resulting evidence to this same file and read it back. Keep checkout/order submission and live writes blocked in the owner preview. Do not merge or release without the owner's acceptance and explicit approval.
+
+
+## 2026-11-04 — FAILED WORKFLOW ROOT CAUSE RETRIEVED
+- Re-fetched PR #176 after the handover update: current head `3be5c4eea139c280690dd38015cfa9d9766e8820`, base SHA still recorded as `8a0695a6d746b886be865ffa950a11011b054e2f`; OPEN / DRAFT / UNMERGED, GitHub reports `mergeable=false`.
+- Latest exact-head workflow query for `3be5c4ee` returned **no PR-triggered workflow runs and no combined commit statuses**. This means the test correction is not yet verified by CI.
+- Retrieved logs for prior-head failing jobs:
+  - Cloudflare Pages Public Package QA run `41862070510`, job `126686280805`, failed at the package-builder's pre-package regression test. Actual assertion: `Car Audio & Video must be under combined root` at `tests/three-category-storefront-structure.test.cjs:77`. The later package-exclusion/build checks were skipped.
+  - Car Audio Accessories Route Browser QA run `41862070627`, job `126686281462`, failed at its first regression-test step with the same assertion. Playwright/Chromium and hosted/local browser steps were skipped.
+- This confirms both failures shared the same stale parent-category assertion; it does **not** establish that the corrected test now passes or that the rendered storefront is correct. Next action remains: verify actual category-tree root ordering and parent IDs, run the corrected test on exact SHA `3be5c4ee`, then inspect/fix any next failure. Only after local/CI success should isolated staging deployment and hosted mobile/desktop verification proceed.
+- Branch/source retrieval limitation: GitHub file-content reads by branch name returned 404 for several PR-only files, while PR patch retrieval and run logs worked. Use the PR patch, commit/ref-aware tooling, or exact commit contents; do not infer that a 404 means the file is absent.
+- No deployment, merge, live data write, payment change, or production action was performed during this diagnostic.
