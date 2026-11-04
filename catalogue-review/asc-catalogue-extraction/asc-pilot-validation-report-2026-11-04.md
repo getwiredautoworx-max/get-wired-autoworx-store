@@ -87,3 +87,11 @@ No Supabase writes, product imports, product activation, PR merge, production de
 - Completed the 53-product `Combination & Indicator Stalk Switches` section from pages 5–8. File: `asc-combination-indicator-switches-53-product-review-only.csv`. 53 unique supplier SKUs and proposed GW SKUs.
 - Combined 104 source-verified review-only products mapped to Auto Electrical Spares & Parts → Automotive Switches. All no-price/no-stock/not imported.
 - The Switches catalogue is not yet complete. Remaining sections to process: Wiper Switches; Headlamp, Dimmer & Hazard Switches; Power Window Switches; Toggle, Push & Button Switches; Starter & Solenoid Switches; Battery Isolators & Cut-Off Switches; Switch Panels, Covers & Accessories; Marine & Specialist Switches.
+
+
+## Subsequent ASC review progress — Automotive Switches catalogue complete
+
+- Completed all 16 product sections across pages 3–22 of `ASC- Automotive Switches (1).pdf` in 15 review-only CSV batches.
+- Section counts: Ignition Switches & Barrel Sets 51; Combination & Indicator Stalk Switches 53; Wiper Switches 7; Headlamp, Dimmer & Hazard Switches 10; Power Window Switches 27; Oil Pressure Switches 24; Radiator Fan & Thermo Switches 35; Reverse Light Switches 11; Stop Light Switches 17; Door, Bonnet & Boot Switches 4; Rocker Switches 32; Toggle, Push & Button Switches 32; Starter & Solenoid Switches 9; Battery Isolators & Cut-Off Switches 13; Switch Panels, Covers & Accessories 24; Marine & Specialist Switches 19.
+- Cross-file audit: **368 rows, 368 unique supplier SKUs, 368 unique proposed GW SKUs, zero duplicates, zero SKU-format mismatches**. All mapped to Auto Electrical Spares & Parts → Automotive Switches.
+- All 368 remain no-price/no-stock/review-only/not imported. Dense or clipped source application/specification wording is flagged in the row-level review notes; no missing text was guessed.
