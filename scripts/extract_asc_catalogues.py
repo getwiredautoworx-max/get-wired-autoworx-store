@@ -30,7 +30,7 @@ for path in pdfs:
         info["pages"] = len(doc)
         for page_no, page in enumerate(doc, start=1):
             # Render pilot source pages 3 and 4 for exact SKU/product/image verification.
-            if page_no in (3, 4):
+            if page_no >= 3:
                 page_pix = page.get_pixmap(matrix=fitz.Matrix(1.8, 1.8), alpha=False)
                 page_pix.save(PAGE_RENDERS / f"{slug(path.stem)}_p{page_no:03d}.png")
             page_text = page.get_text("text").strip()
