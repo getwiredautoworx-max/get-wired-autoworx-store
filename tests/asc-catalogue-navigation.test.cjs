@@ -1,6 +1,28 @@
 const fs = require('node:fs');
+const guard = require('../assets/legacy-catalogue-guard.js');
 const html = fs.readFileSync('preview-store.html','utf8');
 const categoryPage = fs.readFileSync('preview-category.html','utf8');
+const homePage = fs.readFileSync('index-new.html','utf8');
+const categorySnapshot = JSON.parse(fs.readFileSync('assets/category-tree.json','utf8'));
+const productionCategory = fs.readFileSync('category.html','utf8');
+const standardProducts = fs.readFileSync('products.html','utf8');
+const standardProduct = fs.readFileSync('product.html','utf8');
+
+const approvedRoots = [
+  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Car Audio / Home Entertainment / Lifestyle'],
+  ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
+  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
+];
+const snapshotRoots = categorySnapshot.categories.filter(c => !c.parent_id);
+if(categorySnapshot.categories.length!==27||snapshotRoots.length!==3||approvedRoots.some(([id,name])=>!snapshotRoots.some(c=>c.id===id&&c.name===name))) throw new Error('Category snapshot must match the current owner-approved 27-row, three-root taxonomy');
+if((homePage.match(/<section class="group"/g)||[]).length!==3||!homePage.includes('data-storefront-mode="buttons-only"')) throw new Error('Normal entry page must show exactly the three approved root buttons and no unapproved product listing');
+for(const [id] of approvedRoots){if(!homePage.includes(id)||!html.includes(id)||!categoryPage.includes(id)||!productionCategory.includes(id))throw new Error('Approved root missing from a customer-facing route: '+id)}
+if(!standardProducts.includes('assets/legacy-catalogue-guard.js')||!standardProducts.includes('GWLegacyCatalogueGuard.filter(await apiAll(')) throw new Error('Standard product listing must load and apply the legacy catalogue guard');
+if(!standardProduct.includes('assets/legacy-catalogue-guard.js')||!standardProduct.includes('GWLegacyCatalogueGuard.filter(await api(')) throw new Error('Standard product detail must load and apply the legacy catalogue guard');
+const guardFixtures=[{public_sku:'GW-1893682C',specifications:{}},{public_sku:'GW-OLD-SEPT',specifications:{source_file:"September Buyer's Guide.pdf"}},{public_sku:'GW-OLD-OCT',source_file:'October Buyers Guide.pdf',specifications:{}},{public_sku:'GW-CURRENT',specifications:{source_file:'current Audio Connections catalogue'}}];
+const guardResult=guard.filter(guardFixtures);
+if(guardResult.length!==1||guardResult[0].public_sku!=='GW-CURRENT') throw new Error('Legacy Buyers Guide quarantine must filter SKU quarantine and top-level/specification source metadata');
+
 const required = [
   ["ASC_CATALOGUE_CHILDREN", "ASC family navigation data"],
   ["Automotive Sensors", "sensor category"],
@@ -32,12 +54,14 @@ const objectStart=html.indexOf("const ASC_CATALOGUE_CHILDREN");
 const objectEnd=html.indexOf("};",objectStart);
 const taxonomy=html.slice(objectStart,objectEnd);
 const expected = [
-  ["'6cc56033-b0a9-4f25-b207-aeeb341a1c47':[", ["Fuel Pumps"]],
-  ["'f7f2ea3b-f15d-46a7-920b-9d3d9a394c79':[", ["Vehicle-Specific Aerials"]],
-  ["'3a1191ad-5fb8-4eb1-9ec0-6ddc598ea272':[", ["Crankshaft & Camshaft Position Sensors"]],
-  ["'2cb1bdff-652a-4aa5-9b06-b85d3ec44191':[", ["Ignition Switches & Barrel Sets"]],
-  ["'cfd3e001-9292-459f-b0e5-9502f160eb5c':[", ["HID Globes, Kits & Ballasts"]],
-  ["'c910bc35-2f87-465e-b7c5-f6b27c133146':[", ["Carpet Mat Sets — Toyota"]],
+  ["'ba263c9f-d038-48bd-bca0-944f3ebdc5e9':[", ["Aerials", "Fuel Pumps"]],
+  ["'asc-aerials':[", ["Vehicle-Specific Aerials"]],
+  ["'9f85f25f-800d-4ae4-854d-0213d83b86fa':[", ["Automotive Sensors", "Automotive Switches"]],
+  ["'asc-sensors':[", ["Crankshaft & Camshaft Position Sensors"]],
+  ["'asc-switches':[", ["Ignition Switches & Barrel Sets"]],
+  ["'89595653-97d4-4b18-ba69-117547d32ed0':[", ["Automotive Globes & Lighting"]],
+  ["'asc-globes':[", ["HID Globes, Kits & Ballasts"]],
+  ["'c35d15c1-d665-413f-b528-878b6a655d5d':[", ["Carpet Mat Sets — Toyota"]],
   ["'asc-fuel-pumps':[", ["Electric Fuel Pumps — BMW", "Diesel Lift Pumps & Housings — All Makes"]]
 ];
 for (const [parent,labels] of expected) {
@@ -96,7 +120,7 @@ const navEnd=html.indexOf("\n};\n// ASC catalogue sections",navStart);
 const navBlock=html.slice(navStart,navEnd);
 const navIds=[...navBlock.matchAll(/id:'(asc-[^']+)'/g)].map(x=>x[1]);
 const navCounts={aerial:navIds.filter(x=>x.startsWith('asc-aerial-')).length,sensor:navIds.filter(x=>x.startsWith('asc-sensor-')).length,switches:navIds.filter(x=>x.startsWith('asc-switch-')).length,globes:navIds.filter(x=>x.startsWith('asc-globe-')).length,mats:navIds.filter(x=>x.startsWith('asc-mat-')).length,fuel:navIds.filter(x=>x.startsWith('asc-fuel-')).length-1};
-if(!navStart||navEnd<0||navIds.length!==76||new Set(navIds).size!==76||JSON.stringify(navCounts)!==JSON.stringify({aerial:6,sensor:11,switches:16,globes:10,mats:14,fuel:18})) throw new Error("ASC catalogue navigation must preserve all 75 source contents sections plus the Fuel Pumps parent: "+JSON.stringify(navCounts));
+if(!navStart||navEnd<0||navIds.length!==80||new Set(navIds).size!==80||JSON.stringify(navCounts)!==JSON.stringify({aerial:6,sensor:11,switches:16,globes:10,mats:14,fuel:18})) throw new Error("ASC catalogue navigation must preserve all 75 source contents sections plus the Fuel Pumps parent: "+JSON.stringify(navCounts));
 const openStart=html.indexOf("async function openAscCatalogueCategory");
 const openEnd=html.indexOf("\n}",openStart)+2;
 const openBlock=html.slice(openStart,openEnd);
