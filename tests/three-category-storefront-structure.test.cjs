@@ -23,7 +23,7 @@ assert.ok(home.includes("if(c.id==='gw-audio-dj')") && home.includes('alt=\"DJ m
 assert.ok(home.includes("if(c.id==='gw-audio-instruments')") && home.includes('alt=\"Musical instruments including guitar and keyboard\"'), 'Instruments tile must use musical instrument photography');
 assert.ok(home.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'homepage audio collage must use a real car-audio product photo in its Car Audio panel');
 assert.ok(home.includes("if(c.id==='e3d19d20-fb46-426c-9f64-221d863add0b')") && home.includes('alt="Sony XM-5ES car audio amplifier"'), 'Car Audio & Video child category button must use real car-audio product artwork');
-assert.ok(categoryPage.includes("if(n==='car audio & video'||n==='audio, entertainment & music'||n==='car audio & entertainment')return 'https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'"), 'standalone category page must use real car-audio product artwork for Audio and Car Audio tiles');
+assert.ok(categoryPage.includes("if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'"), 'standalone category page must use real car-audio product artwork for Audio and Car Audio tiles');
 assert.ok(home.includes('class="catArt audioFourTile" aria-label="Four audio departments: Car Audio and Video, Home Entertainment, Band and Live Sound, and DJ Equipment"'), 'Audio, Entertainment & Music root tile must be a four-picture collage for the four main departments');
 for (const alt of ['Sony XM-5ES car audio amplifier','Home entertainment television','Band and live sound concert','DJ equipment and mixing decks']) assert.ok(home.includes('alt="'+alt+'"'), 'four-picture audio tile must include the '+alt+' panel');
 const planetPage = read('preview-planetworld.html');
@@ -40,16 +40,10 @@ const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
 assert.deepEqual(roots, [
-  ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Spares'],
-  ['8e93d917-8fcc-4427-b364-cdad244f263f','Vehicle Security'],
-  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Car Audio & Entertainment'],
-  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Automotive Accessories'],
-  ['38b382c1-6ee0-4b3c-86ad-399094bc40cc','Marine Spares & Accessories'],
-  ['77297c18-67f6-452e-8918-c55d2ef6231a','Tools, Hardware & Consumables'],
-  ['af2f8625-4f42-45e6-9f21-d571d7415893','Camping, Leisure & Outdoors'],
-  ['63a71fd9-df45-43f0-b61d-ad622daa9d79','Trailer & Canopy']
+  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Audio, Entertainment & Music'],
+  ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
+  ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
-assert.equal(roots.length, 8, 'storefront must render exactly the eight owner-approved top-level categories');
 const carAudioNode = tree.categories.find(c => c.slug === 'car-audio');
 const accessoriesNode = tree.categories.find(c => c.slug === 'car-audio-accessories');
 assert.ok(accessoriesNode && accessoriesNode.parent_id === carAudioNode.id, 'Accessories must be nested under Car Audio & Video');
@@ -75,7 +69,7 @@ for (const [id,label] of roots) {
 }
 const children = name => tree.categories.filter(c => c.active && c.name === name);
 for (const name of ['Car Audio & Video','Home Entertainment','Band Equipment','DJ Equipment','Instruments','Lifestyle'])
-  assert.ok(children(name).some(c => c.parent_id === roots[2][0]), name+' must be under Car Audio & Entertainment');
+  assert.ok(children(name).some(c => c.parent_id === roots[0][0]), name+' must be under combined root');
 for (const name of ['Vacuum Cleaners','Pool Cleaners'])
   assert.ok(children(name).some(c => c.parent_id === children('Lifestyle')[0].id), name+' must be under Lifestyle');
 assert.ok(home.includes("audioSearch:'vacuum'") && home.includes("audioSearch:'pool'"));
@@ -176,8 +170,8 @@ assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
 assert.ok(ownerPreview.includes('Checkout, order submission and Supabase write actions are blocked'));
 assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
 assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
-assert.ok(previewCategory.includes("const ROOTS=[['Auto Electrical Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Vehicle Security','8e93d917-8fcc-4427-b364-cdad244f263f'],['Car Audio & Entertainment','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Automotive Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6'],['Marine Spares & Accessories','38b382c1-6ee0-4b3c-86ad-399094bc40cc'],['Tools, Hardware & Consumables','77297c18-67f6-452e-8918-c55d2ef6231a'],['Camping, Leisure & Outdoors','af2f8625-4f42-45e6-9f21-d571d7415893'],['Trailer & Canopy','63a71fd9-df45-43f0-b61d-ad622daa9d79']]"), 'preview category route must show the eight owner-approved root category buttons');
-assert.ok(previewCategory.includes("'Vehicle Security'") && previewCategory.includes("'Marine Spares & Accessories'") && previewCategory.includes("'Tools, Hardware & Consumables'") && previewCategory.includes("'Camping, Leisure & Outdoors'") && previewCategory.includes("'Trailer & Canopy'"), 'preview category route must retain all eight owner-approved root categories');
+assert.ok(previewCategory.includes("const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
+assert.ok(!/Vehicle Security|Marine Spares & Accessories|Tools, Hardware & Consumables|Camping, Leisure & Outdoors|Trailer & Canopy/.test(previewCategory), 'obsolete eight-root category buttons must be removed from the preview category route');
 assert.ok(returns.includes('<main class="wrap"><div class="card">'), 'returns page main content wrapper must remain intact after shell update');
 assert.ok(home.includes("location.href='category.html?id='+encodeURIComponent(b.dataset.filter)"), 'leaf category buttons must navigate to the category page');
 assert.ok(home.includes("closest('.child[data-filter]')"), 'nested category buttons must navigate to the category page');
@@ -203,4 +197,4 @@ assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(componen
 
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
 assert.ok(builder.includes('"car-audio-video-category.svg"'), 'Cloudflare preview package must include the Car Audio & Video artwork asset');
-console.log('EIGHT_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=8 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
+console.log('THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS roots=3 asc=deferred planetworld_rows=3317 audio_connections_rows=66 owner_preview=safe');
