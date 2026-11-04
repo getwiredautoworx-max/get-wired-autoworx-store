@@ -59,6 +59,19 @@ jobs:
             await childCarAudioImage.waitFor({state:'visible',timeout:15000});
             const childCarAudioImageLoaded=await childCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
             if(!childCarAudioImageLoaded)throw new Error('Car Audio & Video child category product image did not load');
+            const departmentArtChecks=[
+              ['gw-audio-home','home entertainment television'],
+              ['862605ef-5223-4525-aad6-ee17c2c6f9e7','band equipment'],
+              ['83ea8ae6-a464-40a2-a503-272792f70be8','dj mixer'],
+              ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
+            ];
+            for(const [id,expectedAlt] of departmentArtChecks){
+              const art=frame.locator('.catWrap[data-filter="'+id+'"] > .catBtn img.catPhoto');
+              await art.waitFor({state:'visible',timeout:15000});
+              await art.scrollIntoViewIfNeeded();
+              const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
+              if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
+            }
             await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
             await frame.getByRole('link',{name:/Car Audio & Video/}).evaluate(el=>el.click());
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
@@ -221,6 +234,19 @@ jobs:
               await hostedChildCarAudioImage.waitFor({state:'visible',timeout:15000});
               const hostedChildCarAudioImageLoaded=await hostedChildCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
               if(!hostedChildCarAudioImageLoaded)throw new Error('Hosted Car Audio & Video child category product image did not load');
+              const hostedDepartmentArtChecks=[
+                ['gw-audio-home','home entertainment television'],
+                ['862605ef-5223-4525-aad6-ee17c2c6f9e7','band equipment'],
+                ['83ea8ae6-a464-40a2-a503-272792f70be8','dj mixer'],
+                ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
+              ];
+              for(const [id,expectedAlt] of hostedDepartmentArtChecks){
+                const art=frame.locator('.catWrap[data-filter="'+id+'"] > .catBtn img.catPhoto');
+                await art.waitFor({state:'visible',timeout:15000});
+                await art.scrollIntoViewIfNeeded();
+                const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
+                if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Hosted wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
+              }
               try {
                 await page.waitForFunction(()=>{const f=document.querySelector('#store');const w=f?.contentDocument?.querySelector('#categoryGrid > .catWrap');return !!w?.classList.contains('open')},{timeout:10000});
               } catch(error) {
