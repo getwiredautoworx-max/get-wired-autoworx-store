@@ -1448,3 +1448,11 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Continue Planetworld + Audio Connections only; ASC and Electro-city remain deferred. Preserve the owner-approved SSA-ATOM13800.4 specification: 100 W RMS nominal per channel × 4.
 - Exact PR head at this checkpoint: 94bd2e26d7bef9aaa0ea59b2914df3fd209b5b2f; PR #170 remains OPEN / DRAFT / UNMERGED. The connected workflow-run query and combined-status query returned empty results for this head; no tests are claimed as executed or passed.
 - Next execution: continue exact-model/spec reconciliation and customer-facing category/component grouping; close image gaps only with exact-model assets and confirmed rights; keep all 53 non-Sony Audio Connections GW SKU candidates held until the collision and approval gates are met; continue Planetworld's 702-row classification beyond the 68-model curated subset. Record exact changes and evidence as they occur.
+
+
+## 2026-11-04 — Audio Connections manufacturer-reference reconciliation
+- Audited the 66-record Audio Connections preview JSON against its recorded manufacturerPage fields.
+- Added explicit manufacturerMatchStatus and provenance notes to 15 records that already contained an official manufacturer URL but had a blank match status: Sony XS-163ES, XS-162ES, XS-692ES, XS-160ES, XS-680ES, XS-W104ES, XS-W122ES, XS-W124ES, XM-1ES, XM-4ES, XM-5ES, XM-6ES, XM-8ES; Starsound USB230 and USB450BTDD.
+- These are manufacturer-reference findings only. They do not approve image redistribution, supplier price, current availability, variant equivalence where noted, GW SKU assignment or publication. Existing 44 image gaps and 53 held non-Sony SKU candidates remain unchanged.
+- Updated file: assets/audio-connections-catalogue-preview.json. Commit: d90164e13e1303c9cd8c7c236270299a3a8ae8fd.
+- The owner-approved SSA-ATOM13800.4 customer-draft spec remains 100 W RMS nominal per channel × 4. No public/live catalogue or production change.
