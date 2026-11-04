@@ -24,3 +24,7 @@ The exact deployed browser QA exposed a real mobile tap issue: the expanded subm
 
 Fresh exact-head deployment after handover evidence update — 2026-11-04.
 Deploy the current PR #176 branch HEAD exactly, then verify qa-build-result.json contains result=PASS, preview_only=true, and the triggering commit SHA at the established isolated Pages alias. Run the hosted owner-preview mobile/desktop browser checks against that exact URL/SHA. This is staging only; Production HOLD.
+
+
+Final handover-synchronized exact-head verification — 2026-11-04.
+The current handover now records the clean PR #176 integration, verified supplier preview counts/pricing rules, hosted owner QA evidence, remaining category-scope limitations and explicit production holds. The duplicate deploy-workflow route assertion now accepts both extension-bearing and extensionless preview-audio paths. Build and verify this exact new branch head through package, regression, SKU, exact marker and hosted mobile/desktop gates. Production HOLD.

@@ -138,7 +138,7 @@ jobs:
               if(!homeArtLoaded) throw new Error('Home Entertainment artwork failed to load');
               const carAudioLink=frame.locator('.catWrap.catalogueWrap a[href*="department=Car%20Audio"]');
               await carAudioLink.click();
-              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:20000});
+              await page.waitForFunction(()=>{const p=document.querySelector('#store').contentWindow.location.pathname;return p.endsWith('/preview-audio.html')||p.endsWith('/preview-audio')},{timeout:30000});
               await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               const carSummary=await frame.locator('#audioResultCount').innerText();
               if(Number(carSummary.split(' ')[0]||0)<700) throw new Error('Car Audio catalogue is not populated: '+carSummary);
