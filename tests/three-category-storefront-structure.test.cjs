@@ -153,7 +153,7 @@ assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'
 
 assert.ok(audioPage.includes('assets/car-audio-video-category.svg'), 'Car Audio & Video department button must show its dedicated artwork');
 assert.ok(audioPage.includes('"kicker":"https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76"') && audioPage.includes('"audison":"https://upload.wikimedia.org/wikipedia/commons/e/ec/Audison_logo.png"') && audioPage.includes('"alpine":"https://upload.wikimedia.org/wikipedia/commons/5/56/Alpine_logo.svg"'), 'core car-audio brand buttons must request their brand logos');
-assert.ok(audioPage.includes('el("products").hidden=!department||component==="All product types"'), 'department and brand landing pages must hide stock until a product-type component is selected');
+assert.ok(audioPage.includes('el("products").hidden=!department||(component==="All product types"&&!directSearchRoute)'), 'department and brand landing pages must hide stock while direct search routes and selected component routes show filtered products');
 assert.ok(audioPage.includes('const directSearchRoute=!!query'), 'direct category search routes must open their own filtered product listing');
 assert.ok(audioPage.includes('component==="All product types"&&!directSearchRoute'), 'normal department and brand pages must hide stock until a component or direct search is selected');
 assert.ok(audioPage.includes('(brand==="All brands"||p.brand===brand)&&(component==="All product types"||componentGroup(p)===component)'), 'a direct component route must show its matching products even when brand remains All brands');
