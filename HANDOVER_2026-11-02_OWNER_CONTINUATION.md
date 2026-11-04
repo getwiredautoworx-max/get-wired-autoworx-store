@@ -1140,3 +1140,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Safe retry attempt **2** of run **41796959455**, job **126464810698**, completed **FAILURE** on superseded head `f90a520e0681e3d3f3f3e77478858fa540a58416` at 2026-11-04 08:11:10Z. The stale ASC root data still fail the same `tests/asc-catalogue-preview.test.cjs:5` expected-root assertion. This confirms the original failure was deterministic, not a runner/transient issue. Do not retry this old head again.
 - Latest head **`83e7f8dfdc664c33edd118b70bdb55b771d1c45f`** has current run **41797475294**, job **126464873460**, **IN PROGRESS** (attempt 1). It contains the approved ASC data-root correction and the matching updated storefront-structure fixture. No rerun is needed while it is queued/in progress; monitor this exact-head run to completion.
 - No production/deployment job was rerun. The retry was a test/build-only job; no live data or supplier workbook was changed.
+
+
+## 2026-11-04 — Audio & Entertainment category visual improvement
+- Updated `preview-store.html` on `main` to replace the single-speaker-only representation for the combined Car Audio / Home Entertainment category with a four-panel mobile-friendly visual: **Car Audio & Video**, **Home Theatre**, **DJ & PA**, and **Band & Instruments**.
+- Added dedicated image handling for DJ/PA, band instruments/studio gear, and home theatre subcategories so child category tiles can use relevant imagery instead of inheriting a generic speaker photo. The collage and subcategory images use external image URLs; image loading/CORS and visual rendering still require browser/preview verification.
+- Commits: `dc5640e75d59ecefec4b60d3c34939fe8ffc379c` (initial collage and CSS); `b4e37a242dbb265856dd91dc37c69a7060f0c8ad` (verified image-source URLs and dedicated subcategory imagery).
+- Source refetch checks: collage=PASS; labels=PASS; djImage=PASS; bandImage=PASS; homeImage=PASS; css=PASS; oldSingleOnlyMatcher=PASS. This is source verification only, **not** proof of a deployed preview or rendered browser result.
+- No product, price, stock, category database, supplier staging, payment, DNS, Axxess, or production data was changed. Production remains on hold pending explicit owner approval.
