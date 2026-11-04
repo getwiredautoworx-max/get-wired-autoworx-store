@@ -2968,3 +2968,23 @@ Read-only audit of the sanitized JSON used by PR #139:
 - **Other QA blocker:** scheduled read-only browser smoke run `41480937949` reached a runner but failed because Playwright `1.55.0` does not support the GitHub-hosted `ubuntu-26.04` image. This requires a workflow environment/version fix before a meaningful retry. The current ASC preview browser QA run `41593168496` failed before runner assignment on superseded SHA `779554dca1a377eadc51f350b2f3233c33956d3f`; current PR #163 head `f9b8685578ac40840efba2f05089d01ba4b6e78b` has no workflow run, so no exact-head retry is available. Preview deployment runs were not retried.
 - **Supplier/audit status:** no post-2026-10-25 Planetworld price/stock confirmation was found in Gmail. The 19 positive-RRP cost-floor candidates remain `DO_NOT_IMPORT`; the separate 19 zero-RRP owner-audit list remains unchanged. Current supplier cost, RRP, VAT basis, effective date and stock remain unverified.
 - Outcome: BLOCKED on owner-triggered current-main audit refresh, supplier confirmation, and GitHub runner/workflow issues. No production/deployment, supplier XLSX, live data, price, stock, active flag or release-credit action was taken.
+
+
+## 2026-11-04 08:53 SAST — PLANETWORLD PR / AUDIT MONITOR RESULT
+
+### PR #95 and current audit refresh
+- PR #95 is **CLOSED / UNMERGED / mergeable=false / not draft**. Exact recorded PR head: `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`; base `main`. No reopen, rebase or merge.
+- Latest Planetworld Workbook Audit run found across the monitored branches: **40944787080**, event `pull_request`, branch `reconcile/repo-file-inventory-planetworld-2026-10-29`, source head `1fb086c1ffb3e0e06ef6a97bfcdca502389ec174`, attempt 1, completed **SUCCESS**. Job `audit` ID `123697194835` completed SUCCESS; checkout, Python setup, openpyxl install, audit script and job-summary steps all passed.
+- The run is historical, not a fresh audit of current `main`. Its actual log reports **47 XLSX files / 94 sheets / 3,317 rows / 0 workbook errors / 19 zero-RRP rows / 18 below estimated cost at RRP−1% / 19 below at RRP−2% / 0 duplicate-workbook rows / 0 duplicate model-or-SKU flags**. The audit's artifact-upload step failed with the explicit GitHub message `Failed to CreateArtifact: Artifact storage quota has been hit`; run artifact listing is **0**.
+- Current `main` Planetworld workflow file SHA: `5a70502ec08f9cc1e05cd4e561925e03c0a69215`. It is `workflow_dispatch` enabled, uses `ubuntu-24.04`, writes audit counts to the job summary and is intentionally artifact-free. No Planetworld audit run exists on current `main`: checked all 13 main-branch `workflow_dispatch` runs and the latest 100 repository runs. No connected GitHub workflow-dispatch action exists, so no dispatch was attempted and no stale successful run was rerun.
+- Exact owner UI action required: repository → Actions → **Planetworld Workbook Audit (Read Only)** → **Run workflow** → select branch `main` → **Run workflow** once. Then inspect the new run's exact head, `audit` job and summary; no artifact is expected from current `main`.
+
+### Protected review queues
+- Keep the 19 zero-RRP SKUs isolated in `ZERO_RRP_OWNER_AUDIT_HOLD_2026-10-26.md` for the owner's personal audit; do not infer out-of-stock, quote-only or discontinued status from RRP=0.
+- The positive-RRP cost-floor screen remains 18 SKUs at RRP−1% and 19 at RRP−2% (the additional 2%-only SKU is `90011904`). These are flags, not confirmed supplier price errors. Do not alter supplier XLSX, catalogue price, stock or active flags. No post-2026-10-25 supplier confirmation has yet been evidenced in this record.
+- The 2026-10-14 October protected-price set remains 107/107 verified and must remain unchanged; the 198-row category queue remains visual-review-only. No automatic category moves.
+
+### Outcome / next action
+- **SUCCESS:** PR #95 state and latest historical audit job/log/artifact status verified.
+- **BLOCKED:** fresh current-main audit refresh awaits the owner UI action above; current supplier price/stock confirmation remains missing. Continue exact model/variant/manufacturer image-source checks only as review-only evidence; mark uncertain component/category/image matches unverified.
+- No PR merge/rebase, supplier XLSX edit, supplier-data import/publication, live catalogue/price/stock/category/active-flag change, Supabase write, deployment, Axxess/DNS/payment change or release-credit-consuming retry was performed.
