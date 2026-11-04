@@ -226,8 +226,11 @@ jobs:
               }
               await page.goto(previewBase+'/owner-preview.html',{waitUntil:'domcontentloaded',timeout:60000});
               if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Hosted preview warning banner missing');
+              await page.locator('#store').scrollIntoViewIfNeeded();
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');return !!f?.contentDocument&&f.contentDocument.readyState==='complete'},{timeout:60000});
+              await page.waitForFunction(()=>{const f=document.querySelector('#store');return !!f?.contentDocument?.querySelector('#categoryGrid > .catWrap:not(.findPartCategoryTile)')},{timeout:60000});
               const frame=page.frameLocator('#store');
-              await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:60000});
+              await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:30000});
               await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:30000});
               const rootStateBefore=await frame.locator('#categoryGrid > .catWrap').first().evaluate(el=>({className:el.className,childCount:el.querySelector('.children')?.children.length||0,childrenText:el.querySelector('.children')?.innerText||'',html:el.innerHTML.slice(0,3000)}));
               console.log('HOSTED_ROOT_STATE_BEFORE_CLICK',JSON.stringify(rootStateBefore));
