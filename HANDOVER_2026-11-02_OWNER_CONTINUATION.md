@@ -1148,3 +1148,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Commits: `dc5640e75d59ecefec4b60d3c34939fe8ffc379c` (initial collage and CSS); `b4e37a242dbb265856dd91dc37c69a7060f0c8ad` (verified image-source URLs and dedicated subcategory imagery).
 - Source refetch checks: collage=PASS; labels=PASS; djImage=PASS; bandImage=PASS; homeImage=PASS; css=PASS; oldSingleOnlyMatcher=PASS. This is source verification only, **not** proof of a deployed preview or rendered browser result.
 - No product, price, stock, category database, supplier staging, payment, DNS, Axxess, or production data was changed. Production remains on hold pending explicit owner approval.
+
+
+## 2026-11-04 10:13 SAST — PUBLIC SOURCE-PDF SECURITY TEST CORRECTION
+- Latest PR #168 head is **`07eaf076dc7035e7004b344d0a565175f5c7a422`**. Commit message: `test: keep ASC source PDFs private in preview checks`.
+- The previous exact-head run **41797475294** on `83e7f8df` failed at `tests/asc-catalogue-preview.test.cjs` because that test still required source PDF paths to be copied into the public Pages package. The six original ASC PDFs are present in the internal `suppliers/ASC` folder.
+- Commit `07eaf076` corrects the test in the secure direction: require each original supplier PDF to remain internally present, require no `source_pdf` path in preview data, and require no supplier PDF copy in `pages-public`. It also keeps the route without a “View complete original” supplier-PDF link. This preserves the source confidentiality boundary; no supplier PDFs were changed or published.
+- Exact-head run **41797761259**, job **126465829596**, is **IN PROGRESS** (attempt 1). It is a non-deploy build/regression job. Do not rerun or create another branch commit while it is active; record the actual conclusion and failing/passing step after completion.
+- The stale retry on `f90a520` (run 41796959455, attempt 2) and the intermediate runs on `9e235da` / `83e7f8df` are complete failures and are superseded. No further retries on those heads.
