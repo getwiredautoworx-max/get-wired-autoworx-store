@@ -1371,3 +1371,9 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - GitHub readback confirmed the three source-file edits. Browser/device QA has not yet run. Alternate storefront and legacy routes still require review before release.
 - This is staging only. No PR, merge, workflow dispatch, Supabase write, production deployment, Axxess upload, DNS or payment change. Production remains HOLD.
 - Next: audit all storefront routes, add automated checks for exact copy and checkout gating, run browser QA, then prepare a review PR if tests pass. Numeric prices remain suppressed until owner-approved pricelist reconciliation.
+
+
+### Price policy route audit follow-up
+- Wider route audit found `preview-store.html` still contains numeric-price displays in product cards, product details, quick-search result rows and existing-cart summaries, plus price sorting. `preview-products.html` also retains numeric price display and price sorting. These routes are not yet changed in the price-policy branch.
+- Recorded this remaining work in `catalogue-review/PRICE_POLICY_ROUTE_AUDIT_2026-11-04.md` on `staging/store-wide-price-on-request-2026-11-04`, commit `fe2d2d1fd75ffe78af2ac72635cef32ac7f8b53a`.
+- Consequently the three staged edits (`products.html`, `product.html`, `checkout-v2.html`) are partial progress only. Do not merge, deploy, or tell customers the policy is fully applied until every reachable storefront route and existing-cart path has been updated and browser-tested.
