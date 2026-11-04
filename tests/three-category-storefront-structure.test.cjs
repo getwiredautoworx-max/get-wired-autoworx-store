@@ -159,7 +159,7 @@ assert.ok(categoryPage.includes("department=Lifestyle&search=pool&label=Pool%20C
 assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
 
 assert.ok(audioPage.includes('assets/car-audio-video-category.svg'), 'Car Audio & Video department button must show its dedicated artwork');
-assert.ok(audioPage.includes('"kicker":"https://cdn.simpleicons.org/kicker"') && audioPage.includes('"audison":"https://cdn.simpleicons.org/audison"') && audioPage.includes('"alpine":"https://cdn.simpleicons.org/alpine"'), 'core car-audio brand buttons must request their brand logos');
+assert.ok(audioPage.includes('"kicker":"https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76"') && audioPage.includes('"audison":"https://upload.wikimedia.org/wikipedia/commons/e/ec/Audison_logo.png"') && audioPage.includes('"alpine":"https://upload.wikimedia.org/wikipedia/commons/5/56/Alpine_logo.svg"'), 'core car-audio brand buttons must request their brand logos');
 assert.ok(audioPage.includes('brand!=="All brands"&&component!=="All product types"'), 'product stock must remain hidden until a brand and component are selected');
 assert.ok(audioPage.includes('el("products").hidden=!department||brand==="All brands"||component==="All product types"'), 'department and brand landing pages must not render product stock beneath the brand buttons');
 assert.ok(audioPage.includes('brand+" — "+(component==="All product types"?"COMPONENTS":component)'), 'brand and component selections must render as distinct page states');
