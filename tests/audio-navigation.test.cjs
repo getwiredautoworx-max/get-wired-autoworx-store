@@ -17,7 +17,7 @@ assert.match(audio,/modelNumber/,'verified model cards must display manufacturer
 assert.match(build,/planetworld-verified-models-preview\.json/,'isolated preview package must include curated model references');
 const departments=['Car Audio & Video','Home Entertainment','Band & Live Sound','DJ Equipment','Studio Equipment','Marine Audio','Installed AV','Musical Instruments','Harnesses & Trims'];
 assert.match(html,/<script src="assets\/audio-category-navigation\.js" defer><\/script>/,'main preview must load Audio navigation adapter');
-assert.match(nav,/5ab55c53-eee3-41ce-ad48-04ad6df85181/,'adapter must target the single approved Audio root category');
+assert.match(nav,/1a13bc42-4f54-44f6-9658-36d141b77f4b/,'adapter must target the current approved Audio root category');
 assert.match(nav,/preview-audio\.html/,'main Audio category must link to the customer department browser');
 for(const label of departments) assert.ok(audio.includes(label),`missing Audio department: ${label}`);
 for(const id of ['departments','brands','components','products']) assert.ok(audio.includes('id="'+id+'"'),`missing ${id} stage`);
@@ -69,5 +69,8 @@ assert.ok(imagePreview.includes('https://static.audison.com/media/2023/03/AUDISO
 for(const brokenAudisonUrl of ['https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg','https://static.audison.com/media/2022/10/1389791669_APX-690_PROSP_def_800_444.jpg'])assert.ok(!imagePreview.includes(brokenAudisonUrl)&&!verifiedImageModels.includes(brokenAudisonUrl),'remove unavailable Audison image URL: '+brokenAudisonUrl);
 
 const home=fs.readFileSync('index-new.html','utf8');
-assert.match(home,/Car Audio \/ Video[\s\S]*Home Entertainment[\s\S]*Studio Equipment/,'Audio root must expose departments, not supplier brands as sibling categories');
+const rootIds=[...home.matchAll(/data-root-id="([^"]+)"/g)].map(m=>m[1]);
+assert.deepEqual(rootIds,['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6'],'homepage must contain exactly the three approved root buttons');
+for(const label of ['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts &amp; Spares','Car Care &amp; Accessories'])assert.ok(home.includes(label),'missing approved root label: '+label);
+assert.ok(home.includes('category.html?id=e3d19d20-fb46-426c-9f64-221d863add0b')&&home.includes('category.html?id=07b76301-da5c-4810-a19f-d8b6e2ae2f06'),'Car Audio and Home Entertainment must lead to category pages');
 assert.ok(!/Car Audio &amp; Entertainment[\s\S]{0,500}JBL[\s\S]{0,100}Hertz[\s\S]{0,100}Denon/.test(home),'JBL, Hertz and Denon must be brand filters within Audio departments, not category siblings');

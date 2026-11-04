@@ -24,6 +24,8 @@ on:
       - "preview-planetworld.html"
       - "preview-checkout.html"
       - "assets/audio-category-navigation.js"
+      - "assets/category-tree.json"
+      - "assets/legacy-catalogue-guard.js"
       - "assets/audio-connections-catalogue-preview.json"
       - "assets/catalogue-search.js"
       - "assets/planetworld-catalogue-preview.json"
@@ -122,7 +124,7 @@ jobs:
           curl -H 'Cache-Control: no-cache' -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS "$BASE/?gw_preview_guard=$GITHUB_RUN_ID" -o /tmp/gw-root.html
           grep -qi 'Get Wired AutoWorx' /tmp/gw-root.html
           grep -q 'id="categoryGrid"' /tmp/gw-root.html
-          for category in 'Auto Electrical Spares' 'Vehicle Security' 'Car Audio' 'Automotive Accessories' 'Marine Spares' 'Tools, Hardware' 'Camping, Leisure' 'Trailer'; do
+          for category in 'Car Audio / Home Entertainment / Lifestyle' 'Auto Electrical Parts & Spares' 'Car Care & Accessories'; do
             grep -Fq "$category" /tmp/gw-root.html || { echo "HOSTED_CATEGORY_ROOT_MISSING $category"; exit 1; }
           done
           curl -H 'Cache-Control: no-cache' -L --max-redirs 5 --connect-timeout 5 --max-time 15 -sS "$BASE/assets/storefront-shell.css?gw_preview_guard=$GITHUB_RUN_ID" -o /tmp/gw-shell.css

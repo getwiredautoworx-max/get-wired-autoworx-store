@@ -1,9 +1,31 @@
 name: Populated Store Preview Browser QA
 
 on:
+  push:
+    branches: [integration/clean-main-asc-audio-2026-11-01]
+    paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'products.html'
+      - 'product.html'
+      - 'preview-store.html'
+      - 'preview-category.html'
+      - 'preview-products.html'
+      - 'preview-product.html'
+      - 'preview-planetworld.html'
+      - 'preview-audio.html'
+      - 'assets/**'
+      - 'tests/**'
+      - 'scripts/build-cloudflare-pages-public.py'
+      - '.github/workflows/store-preview-browser-qa.yml'
+      - '.github/workflows/deploy-planetworld-audio-preview.yml'
   pull_request:
     branches: [main]
     paths:
+      - 'index-new.html'
+      - 'category.html'
+      - 'products.html'
+      - 'product.html'
       - 'preview-store.html'
       - 'preview-category.html'
       - 'preview-products.html'
@@ -80,7 +102,7 @@ jobs:
           sleep 2
           node <<'NODE'
           const { chromium } = require('playwright');
-          const ASC_PUBLIC_SKUS = [
+          const LEGACY_ASC_PUBLIC_SKUS = [
             'GW-09D1B7AD','GW-1C87D5E5','GW-1CE86A57','GW-1ED91C25','GW-269894FE',
             'GW-2A7A9F1E','GW-2AE829B0','GW-2C508DE3','GW-2C792975','GW-31FC9859',
             'GW-334E3E01','GW-39D7BE90','GW-3EEEC849','GW-43EDB928','GW-4B57D263',
@@ -88,8 +110,21 @@ jobs:
             'GW-63A2C0A3','GW-8923C055','GW-8B85BE3E','GW-94FB6A20','GW-957F1BB1',
             'GW-A792D62B','GW-ACBAADC3','GW-B068547C','GW-B1E343ED','GW-D1CCE3E1',
             'GW-D8CB9050','GW-DA4281C8','GW-EC20B1E8','GW-F5FAD5A5','GW-F856C85B',
-            'GW-FA6341C4'
+            'GW-FA6341C4','GW-1893682C'
           ];
+          const QA_PRODUCT={id:'bfc23c23-7738-40a9-9c73-77b30112d677',name:'QA-only image fixture (not a live product)',public_sku:'GW-EBA53965',description:'Synthetic browser QA fixture; not a live catalogue product.',price:99.99,stock_quantity:0,image_url:null,gallery_urls:[],compatible_vehicles:[],specifications:{},category_id:'75d265b0-4e9c-4492-b54f-0db7c8202756',active:true,is_featured:true,featured:true,created_at:'2026-11-04T00:00:00Z'};
+          const QA_MISSING_IMAGE_PRODUCT={id:'532c9bdb-08ac-4647-b5e6-b51b192ec9a9',name:'QA-only missing-image fixture',public_sku:'GW-QA-NO-IMAGE',description:'Synthetic placeholder test only.',price:0,stock_quantity:0,image_url:null,gallery_urls:[],compatible_vehicles:[],specifications:{},category_id:'75d265b0-4e9c-4492-b54f-0db7c8202756',active:true,is_featured:false,featured:false,created_at:'2026-11-04T00:00:00Z'};
+          async function installProductFixture(targetPage){
+            await targetPage.route('**/rest/v1/products**',async route=>{
+              const req=route.request();
+              const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,HEAD,OPTIONS','access-control-allow-headers':'apikey,authorization,range,range-unit,content-type,accept','access-control-max-age':'86400'};
+              if(req.method()==='OPTIONS'){await route.fulfill({status:204,headers:cors,body:''});return;}
+              const url=new URL(req.url());
+              const id=(url.searchParams.get('id')||'').replace(/^eq\\./,'');
+              const row=id==='532c9bdb-08ac-4647-b5e6-b51b192ec9a9'?QA_MISSING_IMAGE_PRODUCT:QA_PRODUCT;
+              await route.fulfill({status:200,headers:{...cors,'content-type':'application/json','content-range':'0-0/1'},body:JSON.stringify([row])});
+            });
+          }
           (async()=>{
             const browser=await chromium.launch({headless:true});
             const page=await browser.newPage({viewport:{width:390,height:844}});
@@ -99,28 +134,26 @@ jobs:
             page.on('console',m=>{if(m.type()==='error')pageConsoleErrors.push(m.text())});
             await page.goto('http://127.0.0.1:4173/',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:60000});
-            await page.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            await page.waitForFunction(()=>Array.isArray(window.gwProducts),{timeout:60000});
             const audit=await page.evaluate(skus=>{
               const rows=window.gwProducts||[];
-              const asc=rows.filter(p=>skus.includes(p.public_sku));
+              const legacy=rows.filter(p=>skus.includes(p.public_sku));
               const visibleCheckout=[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0);
               return {
                 products:rows.length,
                 categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,
                 rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),
                 rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),
-                ascMatched:asc.length,
-                ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
-                ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
-                previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
+                legacyMatched:legacy.length,
+                                previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
                 visibleCheckout
               };
-            },ASC_PUBLIC_SKUS);
-            const EXPECTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
-            if(audit.categories!==8||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||audit.rootIds.length!==8||audit.rootIds.some(id=>!id))throw new Error('Approved eight-category root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
-            const camping=page.locator('#categoryGrid > .catWrap').filter({hasText:'Camping, Leisure & Outdoors'});
-            if(await camping.locator('.children .catWrap').filter({hasText:/4X4 Outdoor/i}).count()!==1)throw new Error('4X4 Outdoor must be nested under Camping, Leisure & Outdoors');
-            if(audit.products<1)throw new Error('No live product records loaded into preview');
+            },LEGACY_ASC_PUBLIC_SKUS);
+            const EXPECTED_ROOTS=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
+            const EXPECTED_ROOT_IDS=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6'];
+            if(audit.categories!==3||JSON.stringify(audit.rootLabels)!==JSON.stringify(EXPECTED_ROOTS)||JSON.stringify(audit.rootIds)!==JSON.stringify(EXPECTED_ROOT_IDS))throw new Error('Approved three-root hierarchy mismatch: '+JSON.stringify({count:audit.categories,labels:audit.rootLabels,ids:audit.rootIds}));
+            if(audit.products!==0)throw new Error('Active Supabase product rows must remain empty until current catalogue rows are source-reviewed and approved: '+audit.products);
+            if(audit.legacyMatched!==0)throw new Error('Legacy ASC/Buyers Guide SKU leaked into active product rows: '+JSON.stringify(audit));
             const imageAudit=await page.evaluate(async()=>{
               const samples=['GW-EBA53965','GW-F323915E','GW-DCDD840E','GW-B4F502E6','GW-5107B32F'];
               const results=[];
@@ -129,11 +162,11 @@ jobs:
             });
             if(imageAudit.some(x=>x.width<1||x.height<1))throw new Error('Local product WebP images failed to load: '+JSON.stringify(imageAudit));
             console.log('PRODUCT_WEBP_IMAGE_LOAD_PASS '+JSON.stringify(imageAudit));
-            if(audit.ascMatched!==34||audit.ascPositiveStock!==0||audit.ascZeroStock!==34)throw new Error('ASC stock exclusion mismatch (34 active products must be zero; 2 inactive ASC products are correctly absent): '+JSON.stringify(audit));
+            if(audit.legacyMatched!==0)throw new Error('Legacy ASC/Buyers Guide SKU leak: '+JSON.stringify(audit));
             if(!audit.previewNotice.includes('ASC STOCK REMOVED'))throw new Error('Preview notice missing');
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
-            const category=page.locator('#categoryGrid .catWrap:not(.findPartCategoryTile) button.catBtn').first();
+            const category=page.locator('#categoryGrid > .catWrap[data-filter="ba263c9f-d038-48bd-bca0-944f3ebdc5e9"] button.catBtn');
             await category.click();
             await page.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:15000});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
@@ -141,11 +174,11 @@ jobs:
             if(!categoryShell.header.includes('255')||!categoryShell.card.includes('255'))throw new Error('Dedicated category page did not inherit the bright shared shell: '+JSON.stringify(categoryShell));
             const categoryLinks=await page.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
             if(!categoryLinks.some(href=>href.startsWith('preview-category.html?id=')||href.startsWith('preview-products.html?category=')))throw new Error('Category landing page did not offer subcategory/product routes: '+JSON.stringify(categoryLinks));
-            const firstSubcategory=categoryLinks.find(href=>href.startsWith('preview-category.html?id='));
+            const firstSubcategory=categoryLinks.find(href=>href==='preview-category.html?id=asc-aerials');
             if(!firstSubcategory)throw new Error('Category landing page did not expose a dedicated subcategory page');
             await page.goto(new URL(firstSubcategory,'http://127.0.0.1:4173/').toString(),{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
-            await page.goto('http://127.0.0.1:4173/preview-category.html?id=f7f2ea3b-f15d-46a7-920b-9d3d9a394c79',{waitUntil:'domcontentloaded'});
+            await page.goto('http://127.0.0.1:4173/preview-category.html?id=asc-aerials',{waitUntil:'domcontentloaded'});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             await page.locator('#grid .card').filter({hasText:'Vehicle-Specific Aerials'}).click();
             await page.waitForURL(/preview-store\.html\?asc_query=/,{waitUntil:'domcontentloaded',timeout:15000});
@@ -155,7 +188,7 @@ jobs:
             const ascPilotErrors=[];
             ascPilotPage.on('pageerror',e=>ascPilotErrors.push(e.message));
             await ascPilotPage.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
-            await ascPilotPage.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:60000});
+            await ascPilotPage.waitForFunction(()=>Array.isArray(window.gwProducts),{timeout:60000});
             const pilotChecks=[
               ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
               ['crankshaft sensor|camshaft sensor','Crankshaft & Camshaft Position Sensors',5],
@@ -242,7 +275,7 @@ jobs:
             if(pwDesktop.scrollWidth>pwDesktop.innerWidth+1)throw new Error('Planetworld desktop overflow: '+JSON.stringify(pwDesktop));
             await planetworld.close();
             // Exercise the dedicated audio-area navigation from the real category page.
-            const audioResponse=await page.goto('http://127.0.0.1:4173/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded'});
+            const audioResponse=await page.goto('http://127.0.0.1:4173/preview-category.html?id=1a13bc42-4f54-44f6-9658-36d141b77f4b',{waitUntil:'domcontentloaded'});
             await page.waitForTimeout(3000);
             const audioDebug=await page.evaluate(()=>({url:location.href,title:document.title,gridError:document.getElementById('grid')?.dataset.error||'',gridDebug:document.getElementById('grid')?.dataset.debug||'',gridText:document.getElementById('grid')?.innerText||''}));
             console.log('AUDIO_HTTP_STATUS '+audioResponse?.status());
@@ -261,8 +294,8 @@ jobs:
             audioShop.on('console',m=>{if(m.type()==='error')audioShopConsoleErrors.push(m.text())});
             await audioShop.route('**/assets/planetworld-catalogue-preview.json',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
             await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
-            await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap').length>=8,{timeout:60000});
-            await audioShop.locator('#categoryGrid > .catWrap[data-filter="5ab55c53-eee3-41ce-ad48-04ad6df85181"] > .catBtn').click();
+            await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length===3,{timeout:60000});
+            await audioShop.locator('#categoryGrid > .catWrap[data-filter="1a13bc42-4f54-44f6-9658-36d141b77f4b"] > .catBtn').click();
             await audioShop.waitForURL(/preview-audio\.html/,{waitUntil:'domcontentloaded',timeout:15000});
             audioShop.on('pageerror',e=>console.log('AUDIO_SHOP_PAGE_ERROR '+e.message));
             console.log('AUDIO_SHOP_PAGE_DEBUG '+JSON.stringify(await audioShop.evaluate(()=>({url:location.href,title:document.title,readyState:document.readyState,tileCount:document.querySelectorAll('#departments .audioTile').length,departmentHtml:document.getElementById('departments')?.innerHTML||'',scripts:[...document.scripts].map(x=>({src:x.src,inlineLength:x.textContent.length}))})))+' pageErrors='+JSON.stringify(audioShopErrors)+' consoleErrors='+JSON.stringify(audioShopConsoleErrors));
@@ -303,10 +336,20 @@ jobs:
             await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?gw_preview_qa=hosted-home-20261101',{waitUntil:'domcontentloaded',timeout:60000});
             try {
               await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:45000});
-              await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length>0,{timeout:45000});
+              await hosted.waitForFunction(()=>Array.isArray(window.gwProducts),{timeout:45000});
               const deployedMarker=await hosted.evaluate(async()=>{const response=await fetch('/gw-preview-sha.txt?gw_hosted_marker='+Date.now(),{cache:'no-store'});return {status:response.status,sha:(await response.text()).trim()};});
               if(deployedMarker.status!==200||deployedMarker.sha!==process.env.GW_EXPECTED_PREVIEW_SHA)throw new Error('Hosted preview SHA changed or does not match this QA run: '+JSON.stringify({deployedMarker,expected:process.env.GW_EXPECTED_PREVIEW_SHA}));
               console.log('HOSTED_EXACT_SHA_PASS '+JSON.stringify(deployedMarker));
+              const liveAudit=await hosted.evaluate(skus=>{const rows=window.gwProducts||[],legacy=rows.filter(p=>skus.includes(p.public_sku));return {products:rows.length,categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),legacyMatched:legacy.length,previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',visibleCheckout:[...document.querySelectorAll('a[href*=\"checkout\"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0)};},LEGACY_ASC_PUBLIC_SKUS);
+              const EXPECTED_LIVE_ROOTS=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
+              const EXPECTED_LIVE_IDS=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6'];
+              if(liveAudit.categories!==3||JSON.stringify(liveAudit.rootLabels)!==JSON.stringify(EXPECTED_LIVE_ROOTS)||JSON.stringify(liveAudit.rootIds)!==JSON.stringify(EXPECTED_LIVE_IDS))throw new Error('Hosted live root hierarchy mismatch: '+JSON.stringify(liveAudit));
+              if(liveAudit.products!==0||liveAudit.legacyMatched!==0)throw new Error('Hosted active catalogue must remain empty of unapproved legacy rows: '+JSON.stringify(liveAudit));
+              if(!liveAudit.previewNotice.includes('ASC STOCK REMOVED')||liveAudit.visibleCheckout||/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview privacy/checkout guard failed: '+JSON.stringify(liveAudit));
+              console.log('HOSTED_LIVE_DATA_QUARANTINE_PASS '+JSON.stringify(liveAudit));
+              await installProductFixture(hosted);
+              await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?gw_preview_qa=hosted-image-fixture-20261104',{waitUntil:'domcontentloaded',timeout:60000});
+              await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length===1,{timeout:45000});
               await hosted.waitForFunction(()=>document.querySelectorAll('#featuredGrid .product').length>0,{timeout:20000});
               const homeImageAudit=await hosted.locator('#featuredGrid .product').evaluateAll(async cards=>{
                 const results=[];
@@ -327,6 +370,7 @@ jobs:
             }
             // Confirm one exact-SKU product photo loads and a product without a source image ends on the packaged placeholder.
             const imageProbe=await browser.newPage({viewport:{width:390,height:844}});
+            await installProductFixture(imageProbe);
             await imageProbe.goto(process.env.GW_PREVIEW_URL+'/preview-product.html?id=bfc23c23-7738-40a9-9c73-77b30112d677',{waitUntil:'domcontentloaded',timeout:60000});
             await imageProbe.waitForFunction(()=>{const img=document.querySelector('.hero img');return img&&img.complete&&img.naturalWidth>0;},{timeout:30000});
             const realImage=await imageProbe.locator('.hero img').evaluate(img=>{const sku=(document.querySelector('.sku')?.innerText||'').replace(/^SKU:\s*/,'').trim();return {sku,src:img.currentSrc,naturalWidth:img.naturalWidth,placeholder:img.currentSrc.includes('product-placeholder.svg'),exactSku:img.currentSrc.includes('/assets/products_webp/'+encodeURIComponent(sku)+'.webp')};});
@@ -337,50 +381,36 @@ jobs:
             const missingImageFallback=await imageProbe.locator('.hero img').evaluate(img=>({src:img.currentSrc,naturalWidth:img.naturalWidth}));
             if(missingImageFallback.naturalWidth<=0)throw new Error('Missing product image did not resolve to packaged placeholder: '+JSON.stringify(missingImageFallback));
             await imageProbe.close();
-            // Ensure known oil-filler-cap records never appear in electrical/ignition or tool category listings.
+            // Ensure known oil-filler-cap records never appear in the active data or current electrical/accessory routes.
             const categoryProbe=await browser.newPage({viewport:{width:390,height:844}});
-            const heldSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765'];
-            await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=20261101',{waitUntil:'domcontentloaded',timeout:60000});
-            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
-            const electricalHeld=await categoryProbe.evaluate(skus=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>skus.includes(x)),heldSkus.filter(x=>x!=='GW-22B30765'));
-            if(electricalHeld.length)throw new Error('Misclassified oil-filler-cap products remain in electrical categories: '+electricalHeld.join(','));
-            await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=77297c18-67f6-452e-8918-c55d2ef6231a&gw_preview_qa=20261101',{waitUntil:'domcontentloaded',timeout:60000});
-            await categoryProbe.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
-            const toolsHeld=await categoryProbe.evaluate(()=>[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>x==='GW-22B30765'));
-            if(toolsHeld.length)throw new Error('Misclassified oil-filler-cap product remains in tools category');
+            const heldSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765','GW-1893682C'];
+            for(const rootId of ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']){
+              await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id='+rootId+'&gw_preview_qa=20261104',{waitUntil:'domcontentloaded',timeout:60000});
+              await categoryProbe.waitForFunction(()=>Array.isArray(window.gwProducts),{timeout:45000});
+              const held=await categoryProbe.evaluate(skus=>({rows:(window.gwProducts||[]).filter(p=>skus.includes(p.public_sku)).map(p=>p.public_sku),visible:[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>skus.includes(x))}),heldSkus);
+              if(held.rows.length||held.visible.length)throw new Error('Quarantined oil-filler-cap/legacy SKU leaked into active rows or category listing: '+JSON.stringify({rootId,held}));
+            }
             await categoryProbe.close();
-            const hostedAudit=await hosted.evaluate(skus=>{
-              const rows=window.gwProducts||[],asc=rows.filter(p=>skus.includes(p.public_sku));
-              return {
-                products:rows.length,
-                categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,
-                rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),
-                rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),
-                ascMatched:asc.length,
-                ascPositiveStock:asc.filter(p=>Number(p.stock_quantity||0)>0).length,
-                ascZeroStock:asc.filter(p=>Number(p.stock_quantity||0)===0).length,
-                previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',
-                visibleCheckout:[...document.querySelectorAll('a[href*="checkout"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0)
-              };
-            },ASC_PUBLIC_SKUS);
-            const EXPECTED_HOSTED_ROOTS=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
-            if(hostedAudit.categories!==8||JSON.stringify(hostedAudit.rootLabels)!==JSON.stringify(EXPECTED_HOSTED_ROOTS)||hostedAudit.rootIds.length!==8||hostedAudit.rootIds.some(id=>!id))throw new Error('Hosted root hierarchy mismatch: '+JSON.stringify({categories:hostedAudit.categories,labels:hostedAudit.rootLabels,ids:hostedAudit.rootIds}));
-            if(hostedAudit.products<1||hostedAudit.ascMatched!==34||hostedAudit.ascPositiveStock!==0||hostedAudit.ascZeroStock!==34)throw new Error('Hosted ASC stock check failed: '+JSON.stringify(hostedAudit));
+            const hostedAudit=await hosted.evaluate(skus=>{const rows=window.gwProducts||[],legacy=rows.filter(p=>skus.includes(p.public_sku));return {products:rows.length,categories:document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)').length,rootLabels:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b')].map(el=>el.textContent.trim()),rootIds:[...document.querySelectorAll('#categoryGrid > .catWrap:not(.findPartCategoryTile)')].map(el=>el.dataset.filter),legacyMatched:legacy.length,previewNotice:document.getElementById('gwPreviewNotice')?.innerText||'',visibleCheckout:[...document.querySelectorAll('a[href*=\"checkout\"],.checkoutNow')].some(el=>getComputedStyle(el).display!=='none'&&el.getClientRects().length>0)};},LEGACY_ASC_PUBLIC_SKUS);
+            const EXPECTED_HOSTED_ROOTS=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
+            const EXPECTED_HOSTED_IDS=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6'];
+            if(hostedAudit.categories!==3||JSON.stringify(hostedAudit.rootLabels)!==JSON.stringify(EXPECTED_HOSTED_ROOTS)||JSON.stringify(hostedAudit.rootIds)!==JSON.stringify(EXPECTED_HOSTED_IDS))throw new Error('Hosted root hierarchy mismatch: '+JSON.stringify(hostedAudit));
+            if(hostedAudit.products!==1||hostedAudit.legacyMatched!==0)throw new Error('Hosted Playwright-only fixture or legacy quarantine failed: '+JSON.stringify(hostedAudit));
             if(!hostedAudit.previewNotice.includes('ASC STOCK REMOVED')||hostedAudit.visibleCheckout)throw new Error('Hosted preview safety check failed: '+JSON.stringify(hostedAudit));
             if(/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview exposed private street address');
-            const hostedCategory=hosted.locator('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > button.catBtn');
+            const hostedCategory=hosted.locator('#categoryGrid > .catWrap[data-filter="ba263c9f-d038-48bd-bca0-944f3ebdc5e9"] > button.catBtn');
             const categoryButtonAudit=await hostedCategory.evaluate(el=>({filter:el.dataset.filter||'',text:el.innerText,tag:el.tagName,disabled:el.disabled,wrapperFilter:el.parentElement?.dataset.filter||''}));
-            if(categoryButtonAudit.filter!=='6cc56033-b0a9-4f25-b207-aeeb341a1c47')throw new Error('Hosted root category button is missing its route ID: '+JSON.stringify(categoryButtonAudit));
+            if(categoryButtonAudit.filter!=='ba263c9f-d038-48bd-bca0-944f3ebdc5e9')throw new Error('Hosted root category button is missing its route ID: '+JSON.stringify(categoryButtonAudit));
             await hosted.evaluate(()=>{window.closePartSearch?.();window.closePartRequest?.();});
             await hostedCategory.locator('.catContent').click();
             await hosted.waitForURL(/preview-category(?:\.html)?\?id=/,{waitUntil:'domcontentloaded',timeout:20000}).catch(async error=>{
-              const diagnostic=await hosted.evaluate(()=>({url:location.href,readyState:document.readyState,button:document.querySelector('#categoryGrid > .catWrap[data-filter="6cc56033-b0a9-4f25-b207-aeeb341a1c47"] > button.catBtn')?.outerHTML.slice(0,500)}));
+              const diagnostic=await hosted.evaluate(()=>({url:location.href,readyState:document.readyState,button:document.querySelector('#categoryGrid > .catWrap[data-filter="ba263c9f-d038-48bd-bca0-944f3ebdc5e9"] > button.catBtn')?.outerHTML.slice(0,500)}));
               throw new Error('Hosted category navigation failed after clicking category content: '+JSON.stringify({categoryButtonAudit,diagnostic,hostedErrors,hostedConsoleErrors,error:error.message}));
             });
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
             const hostedSubcategoryLinks=await hosted.locator('#grid .card').evaluateAll(cards=>cards.map(card=>card.getAttribute('href')).filter(Boolean));
             if(!hostedSubcategoryLinks.some(href=>href.startsWith('preview-category.html?id=')))throw new Error('Hosted category page did not expose subcategory buttons: '+JSON.stringify(hostedSubcategoryLinks));
-            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=6cc56033-b0a9-4f25-b207-aeeb341a1c47&gw_preview_qa=hosted-product-modal',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id=f98e7589-20a0-4825-9707-2680d29e5cb6&gw_preview_qa=hosted-product-modal',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#allProductsGrid .product').length>0,{timeout:60000});
             const listingImageAudit=await hosted.locator('#allProductsGrid .product').evaluateAll(async cards=>{
               const results=[];
@@ -444,7 +474,7 @@ jobs:
             const hostedPilotNarrow=await hosted.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(hostedPilotNarrow.scrollWidth>hostedPilotNarrow.innerWidth+1)throw new Error('Hosted ASC pilot 360px overflow: '+JSON.stringify(hostedPilotNarrow));
             console.log('HOSTED_ASC_PILOT_PASS '+JSON.stringify({categories:hostedPilotAudit, mobile:hostedPilotWidth, narrow:hostedPilotNarrow}));
-            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-category.html?id=5ab55c53-eee3-41ce-ad48-04ad6df85181',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-category.html?id=1a13bc42-4f54-44f6-9658-36d141b77f4b',{waitUntil:'domcontentloaded',timeout:60000});
             await hosted.waitForFunction(()=>document.querySelectorAll('#grid .card').length>=3,{timeout:30000});
             const hostedAudioAreas=await hosted.locator('#grid').innerText();
             for(const label of ['Car Audio & Video','Home Entertainment','Studio Equipment'])if(!hostedAudioAreas.includes(label))throw new Error('Hosted audio area navigation missing '+label);
