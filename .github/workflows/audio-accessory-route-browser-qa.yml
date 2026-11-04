@@ -87,7 +87,7 @@ jobs:
               await aerialPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
               if (await aerialPage.locator('#products').evaluate(el=>el.hidden)) throw new Error('Aerials direct search must open its own product-listing state');
               const aerialHeading = await aerialPage.locator('#productsHeading').innerText();
-              if (!aerialHeading.includes('0 matching')) throw new Error('Aerials pilot should show its own empty filtered state until the separate ASC upload: '+aerialHeading);
+              if (!aerialHeading.toLowerCase().includes('0 matching')) throw new Error('Aerials pilot should show its own empty filtered state until the separate ASC upload: '+aerialHeading);
               if (errors.length) throw new Error('Browser JavaScript errors: '+JSON.stringify(errors));
               await page.setViewportSize({width:1365,height:900});
               const dims = await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
