@@ -673,7 +673,7 @@ function brandButton(label,active,fn){
 }
 function componentGroup(p){
  const raw=String(p.component||"").trim().toLowerCase();
- // Keep this owner-requested button tied to the dedicated 47-row Harnesses & Trims source collection.
+ // Build-checked owner rule: this button must resolve to exactly the dedicated 47-row Harnesses & Trims source collection.
  // Generic wiring/installation accessories and amplifier kits stay in their own product groups.
  if(p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment")return "Harnesses, Trims & Fitment";
  // These are department/collection labels, not product-type buttons.
