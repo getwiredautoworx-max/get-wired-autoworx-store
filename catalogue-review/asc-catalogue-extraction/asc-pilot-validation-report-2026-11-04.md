@@ -79,3 +79,11 @@ No Supabase writes, product imports, product activation, PR merge, production de
 - Section counts: Crankshaft & Camshaft Position Sensors 16; Throttle Position Sensors 4; Air Flow & Air Mass Sensors 6; MAP/Manifold/Intake Air Sensors 10; Oxygen (Lambda) Sensors 8; Knock Sensors 3; Speed & ABS Sensors 11; Temperature Senders & Sensors 36; Fuel, Oil & Level Sensors 5; Reverse & Parking Sensors 4; Other Engine Management Sensors 3.
 - 106 unique supplier SKUs and 106 unique proposed GW SKUs, zero SKU-format mismatches. Nine rows overlap with the original 50-row pilot; 97 are additional. All are visually checked against source page captions and codes, mapped to Auto Electrical Spares & Parts → Automotive Sensors, and remain no-price/no-stock/review-only/not imported.
 - Fitment caption text for `S5-16053` and `S5-16087` is clipped in the printed source card; exact visible text is retained and the remainder is flagged for confirmation, not guessed.
+
+
+## Subsequent ASC review progress — Automotive Switches sections
+
+- Completed the 51-product `Ignition Switches & Barrel Sets` section from pages 3–5. File: `asc-ignition-switches-51-product-review-only.csv`. 51 unique supplier SKUs and proposed GW SKUs; eight pilot rows and 43 additional rows.
+- Completed the 53-product `Combination & Indicator Stalk Switches` section from pages 5–8. File: `asc-combination-indicator-switches-53-product-review-only.csv`. 53 unique supplier SKUs and proposed GW SKUs.
+- Combined 104 source-verified review-only products mapped to Auto Electrical Spares & Parts → Automotive Switches. All no-price/no-stock/not imported.
+- The Switches catalogue is not yet complete. Remaining sections to process: Wiper Switches; Headlamp, Dimmer & Hazard Switches; Power Window Switches; Toggle, Push & Button Switches; Starter & Solenoid Switches; Battery Isolators & Cut-Off Switches; Switch Panels, Covers & Accessories; Marine & Specialist Switches.
