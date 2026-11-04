@@ -3705,9 +3705,9 @@
       "description": "Nissan Box",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 7,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Car Audio Accessories",
+      "basis": "OneNav reseller-catalogue listing corroborates Nissan Box as a Car Audio Accessories item. Exact physical form and vehicle fitment remain unverified; retain the broad accessory grouping and preview-only status.",
+      "disposition": "CLASSIFIED_WITH_RESELLER_CATALOGUE_CORROBORATION"
     },
     {
       "sku": "CL4988-LCAM",
@@ -4235,9 +4235,9 @@
       "description": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 91,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Vehicle and screen size are given but source does not state whether this is a head unit or fascia/frame.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Fascia & Fitting Kits",
+      "basis": "Supplier description identifies a Prado 150 10.1-inch vehicle-specific item; adjacent OneNav ON014-F1 and ON014-F4 frame records corroborate the same frame family. Exact fitment and image remain unverified; retain preview-only status.",
+      "disposition": "CLASSIFIED_WITH_MODEL_FAMILY_CONTEXT_FITMENT_REVIEW"
     },
     {
       "sku": "ON014-F4",
@@ -5180,27 +5180,18 @@
       "disposition": "CLASSIFIED"
     }
   ],
-  "unresolved_source_rows": [
+  "unresolved_source_rows": [],
+  "summary": "All 234 preview rows are assigned to a component group; zero remain held or unclassified. BOX-10 is grouped under Car Audio Accessories because the corroborating OneNav listing identifies that broad category but does not establish exact physical form or fitment. ON014-F3 is grouped under Fascia & Fitting Kits using adjacent ON014-F1/ON014-F4 frame-family evidence; exact fitment and image remain unverified. These qualifications remain review-only. Two additional source rows (Kicker 47KPB2 and 51KMC4) are already grouped under Marine Audio and were reviewed as source reconciliation items. The excluded keychain remains in the source snapshot but is filtered out of customer-facing Car Audio navigation; the 702-row source division count is preserved.",
+  "classification_review_notes": [
     {
       "sku": "BOX-10",
-      "brand": "One",
-      "description": "Nissan Box",
-      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-      "source_row": 7,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "status": "CLASSIFIED_BROAD_ACCESSORY_GROUP",
+      "remaining": "Exact physical form and vehicle fitment are not confirmed."
     },
     {
       "sku": "ON014-F3",
-      "brand": "One",
-      "description": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
-      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-      "source_row": 91,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Vehicle and screen size are given but source does not state whether this is a head unit or fascia/frame.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "status": "CLASSIFIED_FASCIA_AND_FITTING_KITS",
+      "remaining": "Exact vehicle fitment and product image remain unverified."
     }
-  ],
-  "summary": "232 of 234 preview rows classified using supplier descriptions and supported product references; two rows held for clarification. Two additional source rows (Kicker 47KPB2 and 51KMC4) were already grouped under Marine Audio in the preview and were reviewed as source reconciliation items. The excluded keychain remains in the source snapshot but is filtered out of customer-facing Car Audio navigation; the 702-row source division count is preserved."
+  ]
 }
