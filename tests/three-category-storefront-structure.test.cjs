@@ -70,8 +70,8 @@ assert.equal(planet.records.find(p=>p.id==="pw-2172").component,"Fascia & Fittin
 assert.equal(audio.records.filter(p=>p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment").length,0,'generic Audio Connections installation kits must not leak into the dedicated Planetworld fitment group');
 assert.ok(audioPage.includes('filter(label=>!/^(car audio|car audio & video|car audio and video|all car audio products)$/i.test(label))'), 'department labels must be excluded from product-type buttons');
 assert.ok(audioPage.includes('["Lifestyle","Lifestyle"]'), 'Lifestyle must be a selectable catalogue department');
-assert.ok(audioPage.includes('"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Logo_of_JBL.svg/250px-Logo_of_JBL.svg.png"'), 'JBL brand button must use the verified JBL PNG asset');
-assert.ok(audioPage.includes('"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Denon_Logo.svg/960px-Denon_Logo.svg.png"'), 'Denon brand button must use the verified Denon PNG asset');
+assert.ok(audioPage.includes('"https://cdn.simpleicons.org/jbl/FF3300"'), 'JBL brand button must use the Simple Icons JBL mark');
+assert.ok(audioPage.includes('"https://cdn.simpleicons.org/denon"'), 'Denon brand button must use the Simple Icons Denon mark');
 assert.ok(audioPage.includes('"https://static.hertz-audio.com/media/2021/04/hertz_payoff_thesoundexperience.svg"'), 'Hertz brand button must use the official Hertz Audio logo');
 assert.ok(audioPage.includes('brandNames.push("Hertz")'), 'Hertz must remain a visible Car Audio brand button while its source review is pending');
 assert.ok(audioPage.includes('Speakers & Component Kits') && audioPage.includes('Cameras & Monitors') && audioPage.includes('Signal Processing & Crossovers') && audioPage.includes('Harnesses, Trims & Fitment'), 'Car Audio component types must use the owner-approved group labels');
