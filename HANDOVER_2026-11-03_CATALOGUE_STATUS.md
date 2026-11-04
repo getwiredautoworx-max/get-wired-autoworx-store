@@ -170,3 +170,12 @@ This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CON
 - Latest exact PR #168 head: `ef36025de59c6c474148e8b1af0edd2d24e4e4f3`. Cloudflare Pages reported build in progress for this exact SHA at check time; no new successful deployment URL is yet confirmed. Do not present the previous `b6ac37ec` deployment as containing these changes.
 - The regression test source has been updated but has **not yet been executed** against this exact head. Need capture test result and Cloudflare Pages exact-head success, then owner visual review on desktop/mobile.
 - Keep PR #168 draft/open and production HOLD. No merge, production deployment, Axxess upload, DNS/payment change, live price/stock write or Supabase mutation.
+
+
+### Combined Car Audio deployment evidence update
+- Cloudflare Pages confirmed **Deploy successful** for functional catalogue commit `ef36025de59c6c474148e8b1af0edd2d24e4e4f3`.
+- Preview host: `https://1db71fb0.get-wired-autoworx-store.pages.dev`
+- Combined Car Audio & Video route: `https://1db71fb0.get-wired-autoworx-store.pages.dev/preview-audio.html?department=Car%20Audio`
+- The deployment includes the combined supplier source array, brand/type query routes, homepage Car Audio & Video label, and the Planetworld legacy-route redirect/removal of separate stock cards.
+- Latest branch commit `47ae9609efcc8666880fdf6bd281ddfaf21ec558` changes only this handover document after the successful functional deployment; no application source changed after `ef36025`.
+- Browser page retrieval was attempted but the external reader could not access the pages.dev route. Treat Pages deployment as successful, but browser rendering/owner acceptance remains pending. The updated regression test file is committed but no executed test report is yet available.
