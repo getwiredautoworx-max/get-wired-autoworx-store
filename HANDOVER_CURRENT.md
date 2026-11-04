@@ -78,3 +78,15 @@
 - Outstanding: the test suite has not been executed on this head. preview-audio.html still needs explicit Accessories → Aerials / Trims & Harnesses navigation and correct product filtering. Do not mark the navigation complete until route wiring and exact-head tests pass.
 - Current supplier scope remains Planetworld + Audio Connections. ASC catalogue data remains deferred to the separate fresh-upload task.
 - No GitHub Actions, Cloudflare build/deployment, Supabase write, production change, supplier activation or live catalogue change was triggered.
+
+
+## 2026-11-04 execution update — Accessories routes wired
+
+- Updated homepage navigation so Aerials is no longer injected as a direct Car Audio button. The category tree now supplies Aerials and Trims & Harnesses as separate children of Accessories.
+- Updated category.html leaf routing: Aerials opens its own Car Audio filtered view; Trims & Harnesses opens a dedicated Car Audio component view for Harnesses, Trims & Fitment.
+- Updated preview-audio.html so a direct component route can display matching products even when the brand filter is All brands.
+- Extended tests/three-category-storefront-structure.test.cjs with checks for both dedicated routes and direct component product visibility.
+- Read-only GitHub-content assertions on current files passed 8/8: Accessories parent, exact two sibling children, no direct homepage Aerials button, both route mappings, component product visibility, 47 dedicated Planetworld trims/harness rows, and zero Audio Connections rows leaking into that dedicated group. This is an API-content assertion only; it is not the Node regression suite or browser QA.
+- New commits: homepage navigation 20fcee970d9ca99f6ae5f4c94c50ff0d59dc0998; category leaf routes 2a1498bbdc22200383afd15b82eb7375634c9b91; audio filtered-view behavior 0ab507454705934bce18722a71e93eb355ea5d94; regression coverage a9457dfb16f16bfadaeb25c160923c15c401a151.
+- Aerials has its own route/button but no current Planetworld/Audio Connections products have been asserted for it; ASC aerial source records remain deferred to the separate fresh-upload task. The 47 Planetworld Harnesses & Trims rows are the current product set for the Trims & Harnesses route.
+- Still outstanding: run the full regression suite and browser/device checks on the exact final head, reconcile remaining Planetworld and Audio Connections records/images/pricing/identity, verify combined catalogue behavior and hosted preview. No Actions or Cloudflare run was triggered due to resource restrictions.
