@@ -3106,3 +3106,11 @@ Wait for run **41793496405** and verify its QA/deployment result. Do not duplica
 - Safe retry attempt **2** of run **41796959455**, job **126464810698**, completed **FAILURE** on superseded head `f90a520e0681e3d3f3f3e77478858fa540a58416` at 2026-11-04 08:11:10Z. The stale ASC root data still fail the same `tests/asc-catalogue-preview.test.cjs:5` expected-root assertion. This confirms the original failure was deterministic, not a runner/transient issue. Do not retry this old head again.
 - Latest head **`83e7f8dfdc664c33edd118b70bdb55b771d1c45f`** has current run **41797475294**, job **126464873460**, **IN PROGRESS** (attempt 1). It contains the approved ASC data-root correction and the matching updated storefront-structure fixture. No rerun is needed while it is queued/in progress; monitor this exact-head run to completion.
 - No production/deployment job was rerun. The retry was a test/build-only job; no live data or supplier workbook was changed.
+
+
+## 2026-11-04 10:13 SAST — PUBLIC SOURCE-PDF SECURITY TEST CORRECTION
+- Latest PR #168 head is **`07eaf076dc7035e7004b344d0a565175f5c7a422`**. Commit message: `test: keep ASC source PDFs private in preview checks`.
+- The previous exact-head run **41797475294** on `83e7f8df` failed at `tests/asc-catalogue-preview.test.cjs` because that test still required source PDF paths to be copied into the public Pages package. The six original ASC PDFs are present in the internal `suppliers/ASC` folder.
+- Commit `07eaf076` corrects the test in the secure direction: require each original supplier PDF to remain internally present, require no `source_pdf` path in preview data, and require no supplier PDF copy in `pages-public`. It also keeps the route without a “View complete original” supplier-PDF link. This preserves the source confidentiality boundary; no supplier PDFs were changed or published.
+- Exact-head run **41797761259**, job **126465829596**, is **IN PROGRESS** (attempt 1). It is a non-deploy build/regression job. Do not rerun or create another branch commit while it is active; record the actual conclusion and failing/passing step after completion.
+- The stale retry on `f90a520` (run 41796959455, attempt 2) and the intermediate runs on `9e235da` / `83e7f8df` are complete failures and are superseded. No further retries on those heads.
