@@ -3,7 +3,7 @@
   "status": "SOURCE_POWER_RECONCILIATION_COMPLETE",
   "previewRows": 66,
   "explicitSupplierPowerValues": 15,
-  "ambiguousOrIncomplete": 13,
+  "ambiguousOrIncomplete": 6,
   "records": [
     {
       "modelNumber": "SSW12\" 5200",
