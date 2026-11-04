@@ -14,14 +14,14 @@ Each record has a source URL, source label, checked date (2026-11-04), retail-co
 
 ## Amplifier specification review
 
-Eight amplifier records were reviewed. Six have a consistent exact-model specification basis; two remain held because source evidence conflicts.
+Eight amplifier records were reviewed. Five have a consistent exact-model specification basis; three remain held because source evidence conflicts or the rating basis is incomplete.
 
 | Record | Model | Current specification | Evidence status |
 |---|---|---|---|
 | ac-032 | SSA-ATOM-13500.1 | **Held:** official Starsound page lists 500 W RMS @ 1 Ω / 250 W RMS @ 2 Ω; two South African retailer listings report 520 W RMS @ 1 Ω / 380 W RMS @ 2 Ω / 230 W RMS @ 4 Ω (and 600 W maximum). | Official-versus-retailer conflict; supplier/manufacturer confirmation required. [Max Motorsport](https://maxmotorsport.co.za/products/star-sound-atom-series-micro-monoblock-amplifier-13500w) · [Sounds Limited](https://soundslimited.co.za/products/starsound-atom-1ch-micro-amplifier-ssa-atom-13500-1-small-footprint-1ch-mono-amplifier) |
 | ac-034 | SSA-H-8200.1 | 600 W RMS @ 1 Ω; 300 W @ 2 Ω; 150 W @ 4 Ω. | Official Starsound page: https://starsound.co.za/product/ssa-h-8200-1/ |
 | ac-037 | SSA-R-5000.4 | 65 W ×4 @ 4 Ω; 95 W ×4 @ 2 Ω; 180 W ×2 bridged @ 4 Ω. | Specialist retailer cross-check: https://jmsounds.co.za/product-tag/starsound/ |
-| ac-038 | SSA-HORNET-7600.4 | 65 W RMS ×4 @ 2 Ω; 45 W RMS ×4 @ 4 Ω; 90 W bridged @ 4 Ω. | Official Starsound page: https://starsound.co.za/product/ssa-hornet-7600-4/ |
+| ac-038 | SSA-HORNET-7600.4 | **Held:** official Starsound page lists 60 W RMS ×4 without an impedance or bridged-output basis; supplier price list labels it 50 W RMS; retailer listing reports 65 W RMS ×4 @ 2 Ω / 45 W RMS ×4 @ 4 Ω / 90 W bridged. | Conflicting official, supplier and retailer evidence; supplier confirmation required. [Official Starsound page](https://starsound.co.za/product/ssa-hornet-7600-4/) · [AutoZone Online listing](https://www.autozoneonline.co.za/amplifier-starsound-hornet-76004) |
 | ac-039 | SSA-J-10000.4 | 90 W RMS ×4 @ 2 Ω; 60 W RMS ×4 @ 4 Ω; 140 W bridged @ 4 Ω. | Official Starsound page: https://starsound.co.za/product/ssa-j-10000-4/ |
 | ac-040 | SSA-ATOM-13800.4 | 320 W RMS ×4 @ 1 Ω; 160 W RMS ×4 @ 2 Ω; 80 W RMS ×4 @ 4 Ω; 160 W bridged @ 4 Ω. | Official Starsound page: https://starsound.co.za/product/ssa-atom-13800-4/ |
 | ac-041 | SSA-M5-80.600 | **Held:** official product page contains two conflicting RMS tables. First table: 80 W ×4 + 250 W sub @ 4 Ω; 140 W ×4 + 410 W sub @ 2 Ω; 600 W sub @ 1 Ω; 240 W ×2 bridged @ 4 Ω. Second table: 150 W ×4 + 300 W sub @ 2 Ω; 80 W ×4 + 150 W sub @ 4 Ω. | Manufacturer-table conflict; retailer agrees with first table, but manufacturer clarification required. https://starsound.co.za/product/ssa-m5-80-600-4/ |
@@ -38,7 +38,7 @@ Eight amplifier records were reviewed. Six have a consistent exact-model specifi
 - **SSS-6602:** official specification is 480 W maximum, 4 Ω; manufacturer does not publish RMS.
 - **SSD-620:** multiple South African retailer specifications agree on 80 W RMS / 1,200 W maximum, 6.5-inch 2-way coaxial.
 
-## Five specifications remain held
+## Six specifications remain held
 
 1. ac-021 — SSW-12-6300: source and retailer wattage basis conflict.
 2. ac-025 — SSW-B12-2800: official page publishes no RMS rating; source and retailer values differ.
@@ -46,7 +46,7 @@ Eight amplifier records were reviewed. Six have a consistent exact-model specifi
 4. ac-041 — SSA-M5-80.600: two conflicting RMS tables on the official product page.
 5. ac-044 — SSS-6501PRO: 250 W RMS per-speaker versus per-pair basis unresolved.
 
-These five records remain review-only and explicitly held. Their product titles do not assert disputed wattage. Do not publish definitive wattage or per-driver/per-pair claims until the manufacturer or supplier confirms the exact model revision and rating basis.
+These six records remain review-only and explicitly held. Their product titles do not assert disputed wattage. Do not publish definitive wattage or per-driver/per-pair claims until the manufacturer or supplier confirms the exact model revision and rating basis.
 
 ## Release state
 
