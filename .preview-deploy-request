@@ -41,3 +41,6 @@ The live category tree creates synthetic catalogue nodes (gw-audio-band, gw-audi
 
 Exact DJ artwork availability fix — 2026-11-04.
 The hosted image check found the first DJ Unsplash source unavailable. It has been replaced with a verified Unsplash DJ turntable/mixer photograph. Deploy this exact current head and rerun the four-department image checks and full preview regression. Production HOLD.
+
+Exact dedicated DJ tile image refresh — 2026-11-04.
+The root collage had the verified DJ photo but the separate DJ Equipment tile retained the unavailable prior URL. Both locations now use the verified source. Deploy this exact head and run the strengthened image checks. Production HOLD.
