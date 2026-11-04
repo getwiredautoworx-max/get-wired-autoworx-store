@@ -165,37 +165,7 @@ jobs:
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
-              let pagesCheck=null;
-              let previewBase=null;
-              for(let attempt=0;attempt<90;attempt++){
-                const checksResponse=await fetch('https://api.github.com/repos/'+process.env.GITHUB_REPOSITORY+'/commits/'+expectedSha+'/check-runs?per_page=100',{
-                  headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
-                });
-                if(!checksResponse.ok){
-                  const errorBody=await checksResponse.text();
-                  if(![429,500,502,503,504].includes(checksResponse.status)||attempt===89)throw new Error('Unable to read exact-commit Cloudflare deployment check: '+checksResponse.status+' '+errorBody);
-                } else {
-                  const checksData=await checksResponse.json();
-                  pagesCheck=(checksData.check_runs||[]).filter(check=>check.name==='Cloudflare Pages').sort((a,b)=>new Date(b.started_at||0)-new Date(a.started_at||0))[0]||null;
-                  if(pagesCheck?.status==='completed'){
-                    if(pagesCheck.conclusion!=='success')throw new Error('Cloudflare Pages build for exact commit '+expectedSha+' completed with '+pagesCheck.conclusion+': '+(pagesCheck.output?.summary||'no build summary'));
-                    const summary=pagesCheck.output?.summary||'';
-                    const labelIndex=summary.indexOf('Preview URL:');
-                    const hrefIndex=summary.indexOf("<a href='",labelIndex);
-                    const urlStart=hrefIndex+9;
-                    const urlEnd=summary.indexOf("'",urlStart);
-                    const previewUrl=hrefIndex>=0&&urlEnd>urlStart?summary.slice(urlStart,urlEnd):null;
-                    if(!previewUrl)throw new Error('Successful Cloudflare Pages check did not include an immutable preview URL for exact commit '+expectedSha);
-                    previewBase=new URL(previewUrl).origin;
-                    break;
-                  }
-                }
-                if(attempt%6===0)console.log('WAITING_FOR_EXACT_CLOUDFLARE_PREVIEW',JSON.stringify({attempt,status:pagesCheck?.status||'check-not-created',conclusion:pagesCheck?.conclusion||null}));
-                if(attempt===89)break;
-                await new Promise(resolve=>setTimeout(resolve,5000));
-              }
-              if(!previewBase)throw new Error('Cloudflare Pages preview did not become ready for exact commit '+expectedSha+' within 7.5 minutes');
-                            console.log('EXACT_CLOUDFLARE_PREVIEW',JSON.stringify({expectedSha,previewBase}));
+              const previewBase='https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev';
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
                 const response=await page.request.get(previewBase+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
@@ -203,7 +173,15 @@ jobs:
                   try { deployedBuild=await response.json(); } catch {}
                   if(deployedBuild&&deployedBuild.commit===expectedSha) break;
                 }
+                if(attempt%6===0)console.log('WAITING_FOR_EXACT_PR168_STAGING_DEPLOY',JSON.stringify({attempt,expectedSha,found:deployedBuild}));
                 await page.waitForTimeout(5000);
+              }
+              console.log('EXACT_PR168_STAGING_PREVIEW',JSON.stringify({expectedSha,previewBase,deployedBuild}));
+              for (const asset of ['jbl.svg','denon.svg','hertz.svg']) {
+                const response = await page.request.get(previewBase+'/assets/brand-logos/'+asset, {headers:{'cache-control':'no-cache'}});
+                const body = await response.text().catch(()=> '');
+                console.log('HOSTED_BRAND_ASSET_HTTP', JSON.stringify({asset,status:response.status(),contentType:response.headers()['content-type']||null,bodyStart:body.slice(0,120)}));
+                if(!response.ok())throw new Error('Staging preview is missing required brand logo asset '+asset+' (HTTP '+response.status()+')');
               }
               if(!deployedBuild||deployedBuild.commit!==expectedSha) throw new Error('Hosted preview did not deploy exact workflow commit '+expectedSha+'; found '+JSON.stringify(deployedBuild));
               for (const asset of ['jbl.svg','denon.svg','hertz.svg']) {
