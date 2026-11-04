@@ -70,7 +70,7 @@ No product, price, stock, supplier activation, or database records are created o
 - Car Mats: 139 visible products, 14 sections, 139 unique supplier SKUs and 139 unique proposed GW SKUs. The Rubber & PVC section header states 13 items but only eight product cards are present in the supplied PDF; five missing items were not invented. Some cards say “Image on Request”; those are recorded without fabricated photos. `M7-HY100` is marked “production stopped” in the catalogue and must not be activated without owner confirmation.
 - Fuel Pumps: 129 products, 18 sections, 129 unique supplier SKUs and 129 unique proposed GW SKUs.
 - Combined with Aerials (78), Automotive Sensors (106) and Automotive Switches (368), the six selected ASC PDFs now yield **978 source-verified review-only product rows**. The original 50-row pilot overlaps these batches and is not an extra count.
-- All six category batches remain no-price/no-stock/review-only/not imported. Supplier costs and stock availability were not supplied by these catalogues.
+- Global cross-file audit: **978 rows, 978 unique supplier SKUs, 978 unique proposed GW SKUs, zero duplicates, zero SKU-format mismatches, zero category-mapping mismatches, and zero price/stock/import gate failures**. Every row has a source-page reference; 56 rows carry explicit review notes. All six category batches remain no-price/no-stock/review-only/not imported. Supplier costs and stock availability were not supplied by these catalogues.
 
 ## Source-page visual evidence
 
