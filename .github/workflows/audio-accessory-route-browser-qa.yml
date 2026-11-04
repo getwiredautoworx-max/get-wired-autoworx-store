@@ -69,7 +69,7 @@ jobs:
               page.on('pageerror', e => errors.push(String(e)));
               await page.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
               try {
-                await page.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
+                await page.locator('#grid .card h2').filter({hasText:'Car Audio & Entertainment'}).waitFor({timeout:15000});
               } catch(error) {
                 const diagnostic=await page.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
                 console.error('CATEGORY_ROOT_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
