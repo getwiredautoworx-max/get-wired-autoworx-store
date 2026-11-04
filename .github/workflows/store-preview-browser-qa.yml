@@ -50,10 +50,17 @@ jobs:
             if(!checkoutSafe)throw new Error('Checkout control is visible in owner preview');
             await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
             await frame.getByRole('button',{name:/Car Audio/}).click();
+            const carAudioArt=frame.locator('.audioCategoryCollage img[alt="Car audio and video"]');
+            await carAudioArt.waitFor({state:'visible',timeout:15000});
+            const carAudioArtLoaded=await carAudioArt.evaluate(img=>img.complete&&img.naturalWidth>0);
+            if(!carAudioArtLoaded)throw new Error('Car Audio & Video category image did not load');
             await frame.getByRole('link',{name:/Car Audio & Video/}).evaluate(el=>el.click());
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
-            const logoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony'];
+            const carAudioSummary=await frame.locator('#audioResultCount').innerText();
+            const carAudioRecordCount=Number((carAudioSummary.match(/^(\\d+)/)||[])[1]||0);
+            if(carAudioRecordCount<700)throw new Error('Car Audio department is missing Planetworld catalogue rows: '+carAudioSummary);
+            const logoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony','Starsound','JVC Car Audio','Kenwood Car Audio','Focal Car Audio','Pioneer Car Audio','Hertz'];
             const checkedLogos=[];
             for(const name of logoBrands){
               const logoButton=frame.locator('#brands button[aria-label="'+name+'"]');
@@ -69,7 +76,20 @@ jobs:
               }
             }
             if(checkedLogos.length<5)throw new Error('Expected at least five mapped Car Audio brand logos, verified '+checkedLogos.length);
+            if(!checkedLogos.some(x=>x.name==='Starsound'))throw new Error('Starsound brand logo was not verified');
             if(await frame.locator('#products').isVisible())throw new Error('Department landing page must hide product stock before brand selection');
+            await frame.locator('#brands button[aria-label="Starsound"]').click();
+            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('brand')==='Starsound',{timeout:15000});
+            await frame.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().waitFor({state:'visible',timeout:30000});
+            if(await frame.locator('#products').isVisible())throw new Error('Starsound brand landing page exposed stock before component selection');
+            await frame.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().click();
+            await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            const starsoundProducts=await frame.locator('#products .audioProduct').count();
+            if(starsoundProducts!==3)throw new Error('Starsound SVC Subwoofers route expected 3 products, got '+starsoundProducts);
+            if(!(await frame.locator('#products').innerText()).includes('Starsound'))throw new Error('Starsound route returned another brand');
+            await frame.locator('#brands button').filter({hasText:'All brands'}).click();
+            await page.waitForFunction(()=>new URL(document.querySelector('#store').contentWindow.location.href).searchParams.get('brand')==='All brands',{timeout:15000});
+            await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
             await frame.locator('#brands button[aria-label="Sony"]').click();
             await frame.locator('#components button').first().waitFor({state:'visible',timeout:30000});
             if(await frame.locator('#products').isVisible())throw new Error('Brand landing page must hide product stock before component selection');
@@ -78,6 +98,26 @@ jobs:
             const audioText=await frame.locator('#products').innerText();
             if(!audioText.includes('Sony')||!audioText.includes('Amplifiers'))throw new Error('Sony amplifier filter did not return selected products: '+audioText.slice(0,500));
             if(/Planetworld|Audio Connections/i.test(await frame.locator('body').innerText()))throw new Error('Supplier identity visible in audio catalogue');
+            await page.goto('http://127.0.0.1:4173/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded'});
+            const jblButton=page.locator('#brands button[aria-label="JBL"]');
+            await jblButton.waitFor({state:'visible',timeout:30000});
+            const jblLoaded=await jblButton.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0);
+            if(!jblLoaded)throw new Error('JBL logo failed to load in Studio Equipment');
+            await jblButton.click();
+            await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='JBL',{timeout:15000});
+            await page.locator('#components button').first().click();
+            await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            if(!(await page.locator('#products').innerText()).includes('JBL'))throw new Error('JBL brand route did not filter to JBL products');
+            await page.goto('http://127.0.0.1:4173/preview-audio.html?department=DJ',{waitUntil:'domcontentloaded'});
+            const denonButton=page.locator('#brands button[aria-label="Denon DJ"]');
+            await denonButton.waitFor({state:'visible',timeout:30000});
+            const denonLoaded=await denonButton.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0);
+            if(!denonLoaded)throw new Error('Denon DJ logo failed to load in DJ Equipment');
+            await denonButton.click();
+            await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Denon DJ',{timeout:15000});
+            await page.locator('#components button').first().click();
+            await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            if(!(await page.locator('#products').innerText()).includes('Denon DJ'))throw new Error('Denon DJ brand route did not filter to Denon DJ products');
             if(errors.length)throw new Error('Browser JavaScript errors: '+JSON.stringify(errors));
             await page.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
             await page.getByRole('link',{name:/Aerials/}).waitFor({state:'visible',timeout:15000});
@@ -178,6 +218,10 @@ jobs:
               }
               console.log('HOSTED_AFTER_AUDIO_ROOT',JSON.stringify({text:await frame.locator('#categoryGrid').innerText()}));
               await frame.getByRole('button',{name:/Car Audio/}).click();
+              const hostedCarAudioArt=frame.locator('.audioCategoryCollage img[alt="Car audio and video"]');
+              await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
+              const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(img=>img.complete&&img.naturalWidth>0);
+              if(!hostedCarAudioArtLoaded)throw new Error('Hosted Car Audio & Video category image did not load');
               const hostedCategoryGrid=frame.locator('#categoryGrid');
               const hostedAudioLinks=hostedCategoryGrid.locator('a.catalogueLink[href*="preview-audio.html"]');
               const hostedAudioLinkCount=await hostedAudioLinks.count();
@@ -191,7 +235,7 @@ jobs:
               const routeUrl=new URL(audioHref,new URL('preview-store.html',page.url())).href;
               await page.goto(routeUrl,{waitUntil:'domcontentloaded',timeout:60000});
               await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
-              const hostedLogoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony'];
+              const hostedLogoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony','Starsound','JVC Car Audio','Kenwood Car Audio','Focal Car Audio','Pioneer Car Audio','Hertz'];
               const hostedCheckedLogos=[];
               for(const name of hostedLogoBrands){
                 const logoButton=page.locator('#brands button[aria-label="'+name+'"]');
@@ -207,7 +251,22 @@ jobs:
                 }
               }
               if(hostedCheckedLogos.length<5)throw new Error('Hosted preview verified fewer than five brand logos: '+JSON.stringify(hostedCheckedLogos));
+              if(!hostedCheckedLogos.some(x=>x.name==='Starsound'))throw new Error('Hosted Starsound brand logo was not verified');
               if(await page.locator('#products').isVisible()) throw new Error('Hosted department page exposed stock before brand selection');
+              const hostedCarAudioSummary=await page.locator('#audioResultCount').innerText();
+              const hostedCarAudioCount=Number((hostedCarAudioSummary.match(/^(\\d+)/)||[])[1]||0);
+              if(hostedCarAudioCount<700)throw new Error('Hosted Car Audio department is missing Planetworld catalogue rows: '+hostedCarAudioSummary);
+              await page.locator('#brands button[aria-label="Starsound"]').click();
+              await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Starsound',{timeout:15000});
+              await page.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().waitFor({state:'visible',timeout:30000});
+              if(await page.locator('#products').isVisible())throw new Error('Hosted Starsound brand landing page exposed stock before component selection');
+              await page.locator('#components button').filter({hasText:'SVC Subwoofers'}).first().click();
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const hostedStarsoundProducts=await page.locator('#products .audioProduct').count();
+              if(hostedStarsoundProducts!==3)throw new Error('Hosted Starsound SVC Subwoofers route expected 3 products, got '+hostedStarsoundProducts);
+              if(!(await page.locator('#products').innerText()).includes('Starsound'))throw new Error('Hosted Starsound route returned another brand');
+              await page.goto(previewBase+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded'});
+              await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               await page.locator('#brands button[aria-label="Sony"]').click();
               await page.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
               if(await page.locator('#products').isVisible()) throw new Error('Hosted brand page exposed stock before component selection');
@@ -216,6 +275,24 @@ jobs:
               const products=await page.locator('#products').innerText();
               if(!products.includes('Sony')||!products.includes('Amplifiers')) throw new Error('Hosted Sony amplifier filtering failed');
               if(/Planetworld|Audio Connections/i.test(await page.locator('body').innerText())) throw new Error('Hosted preview exposed supplier identity');
+              await page.goto(previewBase+'/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded',timeout:60000});
+              const hostedJbl=page.locator('#brands button[aria-label="JBL"]');
+              await hostedJbl.waitFor({state:'visible',timeout:30000});
+              if(!(await hostedJbl.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0)))throw new Error('Hosted JBL logo failed to load');
+              await hostedJbl.click();
+              await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='JBL',{timeout:15000});
+              await page.locator('#components button').first().click();
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              if(!(await page.locator('#products').innerText()).includes('JBL'))throw new Error('Hosted JBL route did not filter to JBL products');
+              await page.goto(previewBase+'/preview-audio.html?department=DJ',{waitUntil:'domcontentloaded',timeout:60000});
+              const hostedDenon=page.locator('#brands button[aria-label="Denon DJ"]');
+              await hostedDenon.waitFor({state:'visible',timeout:30000});
+              if(!(await hostedDenon.locator('img').evaluate(img=>img.complete&&img.naturalWidth>0)))throw new Error('Hosted Denon DJ logo failed to load');
+              await hostedDenon.click();
+              await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Denon DJ',{timeout:15000});
+              await page.locator('#components button').first().click();
+              await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              if(!(await page.locator('#products').innerText()).includes('Denon DJ'))throw new Error('Hosted Denon DJ route did not filter to Denon DJ products');
               await page.goto(previewBase+'/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded',timeout:60000});
               const trimsLink=page.getByRole('link',{name:/Trims & Harnesses/});
               await trimsLink.waitFor({state:'visible',timeout:30000});
