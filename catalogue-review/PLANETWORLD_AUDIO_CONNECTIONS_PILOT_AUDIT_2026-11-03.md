@@ -207,3 +207,10 @@ Disposition: no new official manufacturer reference, SKU assignment, image candi
 - The official Starsound shop lists SSS-M6501Pro, which is not an exact match to source model SSS-6501PRO; do not treat the similar model spelling as an alias. The official shop/category page alone does not resolve other source rows.
 - Reference Audio RA-BTR03 is corroborated by current retailer listings as a single-DIN Bluetooth/USB/AUX radio, but this remains independent retailer evidence, not manufacturer evidence and not permission to use retailer images. Keep source spelling RABTR03 until supplier confirms normalization.
 - No other exact-model manufacturer gap was closed in this targeted pass. No SKU, price, availability, image-approval or publication status was promoted.
+
+
+### Owner decision — SSA-ATOM-13800.4 supplier wattage (2026-11-04)
+- Owner explicitly instructed: use the Audio Connections supplier wattage because Audio Connections is the supplying source for this catalogue item.
+- Accepted catalogue value per owner clarification: **100 W RMS nominal per channel × 4**. Use this supplier-provided/owner-confirmed value in the Audio Connections product record and customer-facing draft specification; do not substitute the separate Starsound public product-page figure of 80 W RMS × 4 at 4 Ω.
+- Keep the 13,800 W maximum/marketing designation separate; it is not RMS and must never be represented as RMS.
+- Provenance must identify Audio Connections as the supplying source and note owner confirmation on 2026-11-04. If the source sheet's exact cell/line cannot be cited, do not claim the figure was independently extracted from the PDF; the current authority is the owner's explicit supplier-source instruction.
