@@ -23,3 +23,6 @@ Deploy the current repair branch commit after the Car Audio category tile image,
 
 Exact mobile submenu repair refresh — 2026-11-04.
 Deploy the current fix/mobile-audio-subcategory-grid-2026-11-04 branch head, including the two-column mobile submenu correction and preview-catalogue root label, to the dedicated repair Pages alias. Verify the deployed manifest SHA equals this triggering commit, then rerun hosted mobile/desktop category, image, brand, component, supplier-identity and checkout-safety checks. Preview only; production remains HOLD.
+
+Exact current PR #172 head refresh after current handover sync — 2026-11-04.
+The branch received a handover-only commit after the mobile repair deployment request. Deploy this exact new triggering branch head to the isolated repair Pages alias and verify its qa-build-result.json commit matches the workflow SHA. Rerun hosted owner preview QA against that exact deployment. No production changes; production remains HOLD.
