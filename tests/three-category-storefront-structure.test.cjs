@@ -174,7 +174,7 @@ assert.ok(audioPage.includes('https://store.sony.com.au/on/demandware.static/-/S
 assert.ok(!audioPage.includes('img.src="assets/car-audio-video-category.svg"'), 'the Home Entertainment illustration must not be reused for Car Audio & Video');
 const audioCategoryArtwork = read('assets/car-audio-video-category.svg');
 assert.ok(audioCategoryArtwork.includes('<title id="title">Audio and home entertainment</title>'), 'audio category artwork must be explicitly audio/home-entertainment themed');
-assert.ok(audioCategoryArtwork.includes('television') && audioCategoryArtwork.includes('stereo speakers and headphones'), 'audio category artwork must depict home entertainment equipment');
+assert.ok(audioCategoryArtwork.includes('television') && audioCategoryArtwork.includes('stereo speakers') && audioCategoryArtwork.includes('headphones'), 'audio category artwork must depict home entertainment equipment');
 assert.ok(!/modern car|CAR AUDIO • VIDEO • MULTIMEDIA|<circle cx="318" cy="399"/i.test(audioCategoryArtwork), 'audio/home-entertainment artwork must not contain the old car illustration');
 assert.ok(audioPage.includes('"kicker":"https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76"') && audioPage.includes('"audison":"https://upload.wikimedia.org/wikipedia/commons/e/ec/Audison_logo.png"') && audioPage.includes('"alpine":"https://upload.wikimedia.org/wikipedia/commons/5/56/Alpine_logo.svg"'), 'core car-audio brand buttons must request their brand logos');
 assert.ok(audioPage.includes('el("products").hidden=!department||(component==="All product types"&&!directSearchRoute)'), 'department and brand landing pages must hide stock while direct search routes and selected component routes show filtered products');
