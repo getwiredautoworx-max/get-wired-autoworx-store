@@ -449,3 +449,10 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Added regression assertions in `tests/three-category-storefront-structure.test.cjs` (commit `28e028a6dd88662a0d9f3cc3bcaf149e4b13e13c`) to require audio/home-entertainment wording and TV/stereo/headphone description in the category SVG, and reject the old car illustration/caption signature.
 - This is a committed test guard, not a test result. GitHub Actions exact-head query for the preceding SVG commit returned no PR-triggered runs/statuses. Check for workflow runs on the newest branch head before proceeding; do not claim the test passed unless a run/log confirms it.
 - Remaining direct task: fix/verify category navigation if hosted reproduction confirms it still fails. Current inspected `index-new.html` renders nested category buttons with a delegated click handler that toggles `.open` when children exist and routes leaf buttons to `category.html?id=...`; catalogue leaf links use `preview-audio.html?department=...`. Need browser evidence against the exact deployed head to determine whether the observed failure is stale deployment, runtime/data loading, or a handler regression.
+
+
+## 2026-11-04 — AUDIO ROOT TILE IS A FOUR-PICTURE COLLAGE
+- Owner clarified the Audio, Entertainment & Music root category must show a four-picture tile covering the four main departments, not a single generic image.
+- Implemented a responsive 2×2 image grid in `index-new.html` for Car Audio & Video, Home Entertainment, Band & Live Sound, and DJ Equipment. Commit `d438ebda0c3bc709928622af7175493820fb9c39`.
+- Added regression assertions for the four-picture tile and each department alt label. Commit `26719795ef8e838aba82839618f959f36ac3bba0`.
+- Desktop agent notified via PR #168 comment `6629362517` to sync and verify the actual deployed preview and mobile crop. The source change is committed; live image loading and deployed rendering remain unverified. Keep PR #168 unmerged and production on HOLD.
