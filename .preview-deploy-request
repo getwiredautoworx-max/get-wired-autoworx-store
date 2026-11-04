@@ -7,3 +7,4 @@ Refresh required after browser QA was switched to the dedicated PR 168 staging a
 Final owner-preview refresh: local Audio category artwork now replaces remote-only collage dependencies; run the exact current head through staging before handing the URL to the owner.
 Final refresh after browser timing fix: wait for lazy-loaded local brand SVGs before verifying; retain exact-head staging deployment and read-only checks.
 Close-out run after the 2026-11-04 HANDOVER_CURRENT.md update: deploy and test this exact new head on pr-168-staging-preview; do not touch production.
+Final staging refresh after final handover record e037a3a0a9c38c9edd667d72c7004915358ba0b3; deploy and verify the exact latest head only on the PR 168 staging branch.
