@@ -110,12 +110,14 @@ jobs:
             if(!xsImage.loaded){
               const sonyPage=await browser.newPage();
               let sonyImageCandidates=[];
-              for(const url of ['https://www.sony-africa.com/en/electronics/mobile-es-series/xs-w104es','https://www.sony.com/za/electronics/mobile-es-series/xs-w104es']){
+              for(const url of ['https://electronics.sony.com/audio/car-marine-audio/mobile-es-series/p/xsw104es','https://www.sony-africa.com/en/electronics/mobile-es-series/xs-w104es','https://www.sony.com/za/electronics/mobile-es-series/xs-w104es']){
                 try{
                   await sonyPage.goto(url,{waitUntil:'domcontentloaded',timeout:45000});
-                  sonyImageCandidates=await sonyPage.locator('img').evaluateAll(imgs=>imgs.map(img=>({alt:img.alt,src:img.currentSrc||img.src,srcset:img.getAttribute('srcset'),dataSrc:img.getAttribute('data-src'),dataSrcset:img.getAttribute('data-srcset')})).filter(x=>/XS-W104ES|subwoofer/i.test([x.alt,x.src,x.dataSrc].join(' '))).slice(0,30));
-                  console.log('SONY_XSW104ES_IMAGE_CANDIDATES',JSON.stringify({url,candidates:sonyImageCandidates}));
-                  if(sonyImageCandidates.length)break;
+                  await sonyPage.waitForTimeout(2500);
+                  const audit=await sonyPage.evaluate(()=>({title:document.title,images:[...document.images].map(img=>({alt:img.alt,src:img.currentSrc||img.src,srcset:img.getAttribute('srcset'),dataSrc:img.getAttribute('data-src'),dataSrcset:img.getAttribute('data-srcset')})).slice(0,60),meta:[...document.querySelectorAll('meta[property="og:image"],meta[name="twitter:image"]')].map(m=>m.content),backgrounds:[...document.querySelectorAll('*')].map(el=>getComputedStyle(el).backgroundImage).filter(x=>x&&x!=='none').slice(0,40)}));
+                  sonyImageCandidates=audit.images;
+                  console.log('SONY_XSW104ES_IMAGE_CANDIDATES',JSON.stringify({url,audit}));
+                  if(audit.images.length||audit.meta.length)break;
                 }catch(e){console.log('SONY_XSW104ES_IMAGE_AUDIT_ERROR',url,String(e));}
               }
               await sonyPage.close();
