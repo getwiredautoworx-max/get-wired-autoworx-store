@@ -80,6 +80,10 @@ jobs:
 
               await page.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
               await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Audio, Entertainment & Music');
+              const categoryCarAudioImage=page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).locator('.card-art img');
+              await categoryCarAudioImage.waitFor({state:'visible',timeout:15000});
+              const categoryCarAudioImageLoaded=await categoryCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!categoryCarAudioImageLoaded)throw new Error('Standalone category-page Car Audio product image did not load');
               await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
               await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Car Audio & Video');
               await page.locator('#grid .card').filter({hasText:'Accessories'}).click();
