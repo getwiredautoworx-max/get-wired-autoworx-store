@@ -111,7 +111,7 @@ jobs:
             const storeFrame=page.frames().find(f=>f.url().includes('/index-new.html'));
             if(!storeFrame) throw new Error('Hosted store iframe not found before audio navigation: '+JSON.stringify(page.frames().map(f=>f.url())));
             await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').click();
-            await storeFrame.waitForURL(/\\/preview-audio\\.html(?:\\?|$)/,{timeout:30000}).catch(async error=>{
+            await storeFrame.waitForURL(/\/preview-audio\.html(?:\?|$)/,{timeout:30000}).catch(async error=>{
               console.error('HOSTED_FRAME_NAV_DIAG',JSON.stringify({frameUrls:page.frames().map(f=>f.url()),audioLink:await frame.locator('#categoryGrid > .catWrap a[href^="/preview-audio.html"]').getAttribute('href')}));
               throw error;
             });
