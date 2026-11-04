@@ -9,7 +9,8 @@
       "description": "High Dynamic Range rear-view camera system designed for parking assistance with touchscreen operation. Alpine lists four selectable views (rear, panorama, corner and ground/top), automatic activation when reversing, HDR imaging, mirrored output and a 180° horizontal / 125° vertical field of view. Camera compatibility depends on the Alpine display and installation setup.",
       "modelNumber": "HCE-C2100RD",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/hce-c2100rd",
-      "component": "Cameras & Parking"
+      "component": "Cameras & Parking",
+      "imageUrl": "https://www.gentec-intl.com/cdn/shop/products/HCE-C2100RD_2_1024x.jpg?v=1655996574"
     },
     {
       "gwSku": "GW-D8D34153",
@@ -18,7 +19,8 @@
       "description": "Three-way component speaker set with a 170 mm door woofer, 96 mm midrange driver and 70 mm ring-radiator tweeter with 25 mm voice coil. Manufacturer states a 55 Hz–40 kHz bandwidth and includes speaker crossovers.",
       "modelNumber": "HDZ-653",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/hdz-653",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://canada.crutchfieldonline.com/ImageHandler/trim/869/652/products/2022/45/500/g500HDZ653-o_other1.jpg"
     },
     {
       "gwSku": "GW-23B4075D",
@@ -58,7 +60,8 @@
       "description": "12-inch R-Series subwoofer with dual 4-ohm voice coils. Alpine describes its HAMR surround, enlarged motor structure and ceramic dust cap as design features intended to support high cone excursion, controlled movement and low-distortion bass response.",
       "modelNumber": "R2-W12D4",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/type-r-speakers36/r2-w12d4",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/R2-W12D4_1.jpg?v=1718761708"
     },
     {
       "gwSku": "GW-DF31C0C3",
@@ -67,7 +70,8 @@
       "description": "Five-channel S-Series amplifier rated at 4 × 60 W RMS plus 1 × 300 W RMS at 2 ohms. Alpine describes the four-channel section as Hi-Res Audio capable and the fifth channel as dedicated subwoofer power.",
       "modelNumber": "S2-A55V",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/s-series-amplifiers/s2-a55v",
-      "component": "Amplifiers"
+      "component": "Amplifiers",
+      "imageUrl": "https://www.alpine-asia.com/media/64b0d9389e7ef.jpg"
     },
     {
       "gwSku": "GW-DDF900C0",
@@ -86,7 +90,8 @@
       "description": "6.5-inch coaxial two-way speaker set with integrated 1-inch tweeters. Alpine lists Hi-Res Audio certification up to 40 kHz, 80 W RMS / 240 W peak handling, 4-ohm impedance and 88 dB sensitivity. The design uses a polypropylene, glass-fibre and mica cone with HAMR surround.",
       "modelNumber": "S2-S65",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/s2-s65",
-      "component": "Speakers"
+      "component": "Speakers",
+      "imageUrl": "https://www.alpine-asia.com/media/65e98a0997ee3.jpg"
     },
     {
       "gwSku": "GW-3C0AADF7",
@@ -555,7 +560,8 @@
       "description": "20 cm (7.9-inch) 4-ohm subwoofer using Focal's Flax sandwich cone. Rated at 250 W RMS / 500 W maximum, with a 39 Hz–500 Hz response and 82.5 dB sensitivity. The manufacturer specifies a 117 mm mounting depth and recommends a sealed 10–15 litre or bass-reflex 10–20 litre enclosure.",
       "modelNumber": "KIT SUB P20FE",
       "manufacturerPage": "https://www.focal.com/products/p-20-fe",
-      "component": "Subwoofers"
+      "component": "Subwoofers",
+      "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg"
     },
     {
       "gwSku": "GW-BCCE104C",
@@ -575,7 +581,8 @@
       "description": "6.8-inch WSVGA capacitive-touch multimedia receiver with wired Apple CarPlay, wired Android Auto, USB screen mirroring, Bluetooth hands-free/audio streaming and a short chassis. Audio features include a 13-band EQ, time alignment, 2.5 V front/rear/subwoofer pre-outs and a rear-view camera input. JVC specifies 22 W × 4 full-bandwidth output and 50 W × 4 maximum output.",
       "modelNumber": "KW-M590BT",
       "manufacturerPage": "https://www.jvc.com/my/car-entertainment/multimedia-receivers/kw-m590bt/",
-      "component": "Radios & Multimedia"
+      "component": "Radios & Multimedia",
+      "imageUrl": "https://proaudiocenter.com/cdn/shop/files/24_jvc_lccp3_angle_aa.jpg?v=1719954468"
     },
     {
       "gwSku": "GW-C0C3EE3F",
