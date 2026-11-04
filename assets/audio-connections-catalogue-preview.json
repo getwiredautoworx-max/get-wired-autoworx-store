@@ -153,7 +153,7 @@
       "gwSku": "GW-79892A2D",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OWNER_AUTHORIZED_DIRECT_SONY_IMAGE_SOURCE_RENDER_VERIFICATION_PENDING",
-      "imageSourceNote": "Owner-authorized Sony image candidate was tested but did not render from the supplied CDN URL; official Sony product page is being checked for a working direct image endpoint. Do not mark image QA complete until the exact product image loads."
+      "imageSourceNote": "Owner-authorized Sony image candidate did not render from the supplied CDN URL in GitHub's browser runner; Sony product pages returned Access Denied to the runner. Keep this source out of the verified-image count and require owner visual confirmation or an approved alternate image before treating the asset as complete."
     },
     {
       "id": "ac-007",
