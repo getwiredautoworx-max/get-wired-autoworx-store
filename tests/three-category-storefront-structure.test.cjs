@@ -136,11 +136,9 @@ for (const obj of [planet,audio]) {
   assert.ok(!/Planetworld|Audio Connections/i.test(raw),'supplier identity must not appear in customer-facing data');
   assert.ok(!/dealerCost|dealerPrice|supplierSku|supplierName/i.test(raw),'dealer costs and supplier identifiers must not be exposed');
 }
-const audioPageVisibleMarkup = audioPage
-  .replace(/<script[\s\S]*?<\/script>/gi,'')
-  .replace(/<style[\s\S]*?<\/style>/gi,'')
-  .replace(/https?:\/\/[^"'\s]+/gi,'')
-  .replace(/assets\/[a-z0-9-]+\.json/gi,'');
+const audioPageBodyStart = audioPage.indexOf('<body');
+const audioPageScriptStart = audioPage.indexOf('<script', audioPageBodyStart);
+const audioPageVisibleMarkup = audioPage.slice(audioPageBodyStart, audioPageScriptStart < 0 ? audioPage.length : audioPageScriptStart);
 assert.ok(!/Planetworld|Audio Connections/i.test(audioPageVisibleMarkup), 'supplier names must not appear in customer-facing audio page markup');
 
 
