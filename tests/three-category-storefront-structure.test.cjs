@@ -23,7 +23,7 @@ const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
 assert.deepEqual(roots, [
-  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Car Audio / Home Entertainment / Lifestyle'],
+  ['1a13bc42-4f54-44f6-9658-36d141b77f4b','Audio, Entertainment & Music'],
   ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','Auto Electrical Parts & Spares'],
   ['f98e7589-20a0-4825-9707-2680d29e5cb6','Car Care & Accessories']
 ]);
@@ -154,7 +154,7 @@ assert.ok(ownerPreview.includes('OWNER PREVIEW — NON-PRODUCTION'));
 assert.ok(ownerPreview.includes('Checkout, order submission and Supabase write actions are blocked'));
 assert.ok(ownerPreview.includes('a[href*="checkout"]') && ownerPreview.includes('event.stopImmediatePropagation()'), 'owner preview must block checkout navigation');
 assert.ok(legacyPreview.includes("location.replace('owner-preview.html')"), 'legacy preview route must redirect to current owner preview');
-assert.ok(previewCategory.includes("const ROOTS=[['Car Audio / Home Entertainment / Lifestyle','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
+assert.ok(previewCategory.includes("const ROOTS=[['Audio, Entertainment & Music','1a13bc42-4f54-44f6-9658-36d141b77f4b'],['Auto Electrical Parts & Spares','ba263c9f-d038-48bd-bca0-944f3ebdc5e9'],['Car Care & Accessories','f98e7589-20a0-4825-9707-2680d29e5cb6']]"), 'preview category route must show only the three owner-approved startup category buttons');
 assert.ok(!/Vehicle Security|Marine Spares & Accessories|Tools, Hardware & Consumables|Camping, Leisure & Outdoors|Trailer & Canopy/.test(previewCategory), 'obsolete eight-root category buttons must be removed from the preview category route');
 assert.ok(returns.includes('<main class="wrap"><div class="card">'), 'returns page main content wrapper must remain intact after shell update');
 assert.ok(home.includes("location.href='category.html?id='+encodeURIComponent(b.dataset.filter)"), 'leaf category buttons must navigate to the category page');
