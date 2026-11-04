@@ -1567,3 +1567,21 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Scope: inspect latest attempts/status and exact commit IDs for staging category-navigation Chromium acceptance, Buyer Guide PDF extraction, ASC Exact-SKU Image Sync, storefront smoke/production QA, Pages/Cloudflare deployment, and relevant background controller runs. Retry only eligible failed/cancelled/stopped non-production jobs when a supported action exists; do not retry production, release, deployment, or credit-consuming workflows.
 - Safety: no PR merge, production deployment, Axxess upload, DNS/payment change, Supabase/live data write, supplier publication/import, live price/stock/category/active-flag change, artifact deletion, or deployment-credit use.
 - Outcome: IN PROGRESS. Next action: establish current branch/head and latest workflow run/job evidence, then append verified outcomes and exact IDs.
+
+
+## 2026-11-04 — STOREFRONT CATEGORY / AUDIO REPAIR PACKAGE — PR #171
+
+- Repaired the category renderer runtime fault in `category.html`: the Car Audio artwork map contained a malformed newline/array separator, producing an undefined-iterable exception and preventing category cards from rendering. Added embedded-script parse regression coverage and an explicit artwork-map separator assertion.
+- Replaced the category cleanup timer/hide behaviour with a non-destructive, older-WebView-compatible restore. Zero/unknown product counts no longer delete or hide valid root/child category navigation.
+- Corrected Car Audio artwork with the owner-authorised Sony XM-5ES car-audio amplifier image on the homepage audio collage, Car Audio child category tile, standalone category page and Audio department selector. Home Entertainment retains its separate TV/stereo artwork.
+- Applied owner supplier price rules to the Audio preview:
+  - Planetworld: 3,280 priced rows retain numeric RRP-based prices; 37 unpriced rows show exact wording `Price On Request Due to Stock Availability`.
+  - Audio Connections: 13 validated Sony supplier-price-list rows retain numeric prices; 53 cost-derived estimates / retail-only comparables remain quote-only.
+  - POA/POR special-order rows display the special-order / enquiry-time / exchange-rate explanation.
+- Added regression checks for category script parsing, artwork, cleanup behaviour, supplier price classification and POA/POR display.
+- Created **PR #171**: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/171. It targets agent-owned PR #168's branch `integration/three-category-catalogue-preview-final-2026-11-03`; GitHub reports it open, non-draft and mergeable. **Do not merge PR #171 into PR #168 without the assigned agent/owner integration step.** PR #168 branch itself has not been edited, rebased or merged by this repair work.
+- Route/browser QA run **41831620500** passed on code-identical source SHA `9a4468ddb735418963ba4fb0b0894edef6471a29`: three roots, Car Audio image, Accessories with separate Aerials and Trims & Harnesses routes, 47 Trims & Harnesses products, separate Aerials empty state, zero JavaScript errors.
+- Final exact-head package/deployment run **41831808031** passed on SHA `685139bb238c781a5046f9c637b7c16e174804b4`; build markers include `THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS` and `PAGES_STOREFRONT_REGRESSION_PASS`.
+- Final exact-head hosted browser QA run **41831808315** passed against the same deployed SHA on Cloudflare Pages preview `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev`. Desktop/mobile navigation, Car Audio department and brand filters, image loads, 47-row Trims & Harnesses route, Aerials route, hidden checkout, blocked Supabase writes and no desktop horizontal overflow verified.
+- Known non-blocking warning: Sony XS-W104ES source image remains unavailable to the GitHub browser runner; XM-5ES Car Audio artwork loads successfully. The public products table currently has no active product rows, so main category tiles show zero product counts while navigation remains visible and functional; Audio preview catalogue data is separately staged.
+- Production remains HOLD. No production deployment, Supabase write, live price/stock/category activation, payment activation, Axxess upload or DNS change was made.
