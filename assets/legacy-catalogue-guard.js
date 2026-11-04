@@ -9,7 +9,7 @@
     if (!record || typeof record !== 'object') return false;
     if (LEGACY_ASC_PUBLIC_SKUS.has(String(record.public_sku || '').trim().toUpperCase())) return true;
     const spec = record.specifications && typeof record.specifications === 'object' ? record.specifications : {};
-    const sourceText = [spec.source, spec.source_file, spec.catalogue_source, spec.catalogue_name].filter(value => typeof value === 'string' && value.trim()).join(' ');
+    const sourceText = [record.source, record.source_file, record.catalogue_source, record.catalogue_name, record.source_document, record.supplier_catalogue, spec.source, spec.source_file, spec.catalogue_source, spec.catalogue_name, spec.source_document, spec.supplier_catalogue].filter(value => typeof value === 'string' && value.trim()).join(' ');
     return /\bbuyer(?:['’])?s?\s+guide\b/i.test(sourceText);
   }
   function filter(records) { return Array.isArray(records) ? records.filter(record => !isLegacyBuyerGuideRecord(record)) : []; }
