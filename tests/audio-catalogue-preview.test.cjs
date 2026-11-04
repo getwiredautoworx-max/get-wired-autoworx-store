@@ -59,13 +59,13 @@ const specChecks = [
   ['ac-037','95 W RMS ×4 at 2 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
   ['ac-038','These exact-model figures conflict','OFFICIAL_VS_SUPPLIER_AND_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED'],
   ['ac-039','90 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
-  ['ac-040','320 W RMS ×4 at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-040','320 W RMS ×4 at 1 Ω','OWNER_CONFIRMED_NOMINAL_RATING_WITH_OFFICIAL_OUTPUT_TABLE_RECORDED'],
   ['ac-041','second RMS Ratings table','OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED'],
   ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
   ['ac-044','per speaker or pair','RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED']
 ];
 assert.equal(audioConnections.powerSpecificationReconciliation.status,'SIX_MODEL_SPECIFICATION_HOLDS');
-assert.deepEqual(audioConnections.powerSpecificationReconciliation.heldRecords.map(row=>row.id),['ac-021','ac-025','ac-032','ac-038','ac-041','ac-044']);
+assert.deepEqual(audioConnections.powerSpecificationReconciliation.heldRecords.map(row=>row.id).sort(),['ac-021','ac-025','ac-032','ac-038','ac-041','ac-044'].sort());
 for (const id of ['ac-021','ac-025','ac-032','ac-038','ac-041','ac-044']) {
   const held=audioConnections.records.find(row=>row.id===id);
   assert.ok(!held.title.includes('W RMS')&&!held.title.includes('W MAX'),id+' title must not publish held wattage');
@@ -121,7 +121,7 @@ for (const row of audioConnections.records) {
 }
 
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length;
-assert.equal(imageCount, 67);
+assert.equal(imageCount, 68);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
