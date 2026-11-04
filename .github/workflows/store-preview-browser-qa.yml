@@ -187,7 +187,7 @@ jobs:
             const ascPilotPage=await browser.newPage({viewport:{width:390,height:844}});
             const ascPilotErrors=[];
             ascPilotPage.on('pageerror',e=>ascPilotErrors.push(e.message));
-            await ascPilotPage.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
+            await ascPilotPage.goto('http://127.0.0.1:4173/',{waitUntil:'domcontentloaded'});
             await ascPilotPage.waitForFunction(()=>Array.isArray(window.gwProducts),{timeout:60000});
             const pilotChecks=[
               ['vehicle-specific aerial|vehicle aerial','Vehicle-Specific Aerials',4],
@@ -293,7 +293,7 @@ jobs:
             audioShop.on('pageerror',e=>audioShopErrors.push(e.message));
             audioShop.on('console',m=>{if(m.type()==='error')audioShopConsoleErrors.push(m.text())});
             await audioShop.route('**/assets/planetworld-catalogue-preview.json',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
-            await audioShop.goto('http://127.0.0.1:4173/preview-store.html',{waitUntil:'domcontentloaded'});
+            await audioShop.goto('http://127.0.0.1:4173/',{waitUntil:'domcontentloaded'});
             await audioShop.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length===3,{timeout:60000});
             await audioShop.locator('#categoryGrid > .catWrap[data-filter="1a13bc42-4f54-44f6-9658-36d141b77f4b"] > .catBtn').click();
             await audioShop.waitForURL(/preview-audio\.html/,{waitUntil:'domcontentloaded',timeout:15000});
@@ -333,7 +333,7 @@ jobs:
             const hostedErrors=[],hostedConsoleErrors=[];
             hosted.on('pageerror',e=>hostedErrors.push(e.message));
             hosted.on('console',m=>{if(m.type()==='error')hostedConsoleErrors.push(m.text())});
-            await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?gw_preview_qa=hosted-home-20261101',{waitUntil:'domcontentloaded',timeout:60000});
+            await hosted.goto(process.env.GW_PREVIEW_URL+'/?gw_preview_qa=hosted-home-20261101',{waitUntil:'domcontentloaded',timeout:60000});
             try {
               await hosted.waitForFunction(()=>document.querySelectorAll('#categoryGrid .catWrap:not(.findPartCategoryTile)').length>=1,{timeout:45000});
               await hosted.waitForFunction(()=>Array.isArray(window.gwProducts),{timeout:45000});
@@ -348,7 +348,7 @@ jobs:
               if(!/legacy buyers. guide items quarantined/i.test(liveAudit.previewNotice)||liveAudit.visibleCheckout||/Wattlebrook|Brookdale Crescent/i.test(await hosted.locator('body').innerText()))throw new Error('Hosted preview privacy/checkout guard failed: '+JSON.stringify(liveAudit));
               console.log('HOSTED_LIVE_DATA_QUARANTINE_PASS '+JSON.stringify(liveAudit));
               await installProductFixture(hosted);
-              await hosted.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?gw_preview_qa=hosted-image-fixture-20261104',{waitUntil:'domcontentloaded',timeout:60000});
+              await hosted.goto(process.env.GW_PREVIEW_URL+'/?gw_preview_qa=hosted-image-fixture-20261104',{waitUntil:'domcontentloaded',timeout:60000});
               await hosted.waitForFunction(()=>Array.isArray(window.gwProducts)&&window.gwProducts.length===1,{timeout:45000});
               await hosted.waitForFunction(()=>document.querySelectorAll('#featuredGrid .product').length>0,{timeout:20000});
               const homeImageAudit=await hosted.locator('#featuredGrid .product').evaluateAll(async cards=>{
@@ -385,7 +385,7 @@ jobs:
             const categoryProbe=await browser.newPage({viewport:{width:390,height:844}});
             const heldSkus=['GW-21132FDF','GW-E93CDF1E','GW-AA085120','GW-0E5E3109','GW-125D2F26','GW-FF7B49CB','GW-FC14A84E','GW-0B8032C4','GW-22B30765','GW-1893682C'];
             for(const rootId of ['ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']){
-              await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/preview-store.html?root_category_id='+rootId+'&gw_preview_qa=20261104',{waitUntil:'domcontentloaded',timeout:60000});
+              await categoryProbe.goto(process.env.GW_PREVIEW_URL+'/?root_category_id='+rootId+'&gw_preview_qa=20261104',{waitUntil:'domcontentloaded',timeout:60000});
               await categoryProbe.waitForFunction(()=>Array.isArray(window.gwProducts),{timeout:45000});
               const held=await categoryProbe.evaluate(skus=>({rows:(window.gwProducts||[]).filter(p=>skus.includes(p.public_sku)).map(p=>p.public_sku),visible:[...document.querySelectorAll('#allProductsGrid .product .sku')].map(x=>x.innerText.replace('SKU:','').trim()).filter(x=>skus.includes(x))}),heldSkus);
               if(held.rows.length||held.visible.length)throw new Error('Quarantined oil-filler-cap/legacy SKU leaked into active rows or category listing: '+JSON.stringify({rootId,held}));
