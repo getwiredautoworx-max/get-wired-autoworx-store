@@ -1456,3 +1456,11 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - These are manufacturer-reference findings only. They do not approve image redistribution, supplier price, current availability, variant equivalence where noted, GW SKU assignment or publication. Existing 44 image gaps and 53 held non-Sony SKU candidates remain unchanged.
 - Updated file: assets/audio-connections-catalogue-preview.json. Commit: d90164e13e1303c9cd8c7c236270299a3a8ae8fd.
 - The owner-approved SSA-ATOM13800.4 customer-draft spec remains 100 W RMS nominal per channel × 4. No public/live catalogue or production change.
+
+
+## 2026-11-04 — Verification checkpoint after public-continuation work
+- Read-back at exact PR head before this handover append: 74bc271aa2fa41a761b890ab20f73717684d343b.
+- PR #170 is OPEN / DRAFT / UNMERGED. Exact-head workflow-run query returned no runs; combined commit status returned no statuses. No tests are claimed as run or passed.
+- Read-back verified the Audio Connections preview JSON contains 66 records; all 66 remain PREVIEW_ONLY_NOT_LIVE; 22 records have image URL candidates and 44 have no image URL; 47 records now have explicit manufacturerMatchStatus. No image approvals, SKU assignments or publication states were promoted.
+- Public-repository continuation decision is present in both this handover and the supplier pilot audit. Continue in public as directed; this is not a claim that supplier redistribution rights exist.
+- No preview deployment, browser QA, live data write, supplier activation, PR merge or production action is claimed.
