@@ -71,3 +71,11 @@ No Supabase writes, product imports, product activation, PR merge, production de
 - The printed label for `MA648` appears truncated at “ANGLE MO”; that visible wording is preserved and flagged for confirmation rather than guessed.
 - All 63 OCR candidate tokens in the separate quarantine CSV have now been visually checked against the rendered source pages. All 63 are non-SKU fragments or references (including section counts, fitment/specification/dimension text, OE references, and the `BA15S` bulb-base designation). None was assigned a GW SKU or imported.
 - Remaining catalogue work: extract and visually verify the non-Aerials products in the five other retained ASC PDFs. The full set of 60 product-page renders is available in the isolated cleanup branch.
+
+
+## Subsequent ASC review progress — Automotive Sensors category complete
+
+- Completed a 106-product Automotive Sensors review-only batch from source pages 3–9 of `ASC- Automotive Sensors (1).pdf`. File: `asc-automotive-sensors-106-product-review-only.csv`.
+- Section counts: Crankshaft & Camshaft Position Sensors 16; Throttle Position Sensors 4; Air Flow & Air Mass Sensors 6; MAP/Manifold/Intake Air Sensors 10; Oxygen (Lambda) Sensors 8; Knock Sensors 3; Speed & ABS Sensors 11; Temperature Senders & Sensors 36; Fuel, Oil & Level Sensors 5; Reverse & Parking Sensors 4; Other Engine Management Sensors 3.
+- 106 unique supplier SKUs and 106 unique proposed GW SKUs, zero SKU-format mismatches. Nine rows overlap with the original 50-row pilot; 97 are additional. All are visually checked against source page captions and codes, mapped to Auto Electrical Spares & Parts → Automotive Sensors, and remain no-price/no-stock/review-only/not imported.
+- Fitment caption text for `S5-16053` and `S5-16087` is clipped in the printed source card; exact visible text is retained and the remainder is flagged for confirmation, not guessed.
