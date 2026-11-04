@@ -1188,3 +1188,28 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - The structural test file contains the new regression assertions, read back at blob `64183fd5b05f5219d8ffaaebf4ac4c812172ea45`. Static code/data checks performed in this session confirm the new department label, duplicate-category suppression and harness/trim classifier are present. The Node test suite has not yet executed.
 - Cloudflare Pages reported the exact code head `5e0719a` as **Build in progress** (deployment record `81d5e7b3-44b4-4662-9715-c751afc62221`) when checked. The handover append will advance the branch again and trigger a new exact-head staging build; check the newest commit's build before declaring resolved.
 - No production or live-data changes; PR #168 remains draft/unmerged, PR #169 excluded, production HOLD.
+
+
+## 2026-11-04 — CAR AUDIO BRAND NAVIGATION / ARTWORK CORRECTION
+- Owner reported that selecting a Car Audio brand left product stock visible under the current page, brand buttons lacked relevant logos, and the Car Audio & Video department button lacked dedicated artwork.
+- Root cause in `preview-audio.html`: department, brand, component and product cards were all rendered together in one draw; product cards were rendered immediately after selecting a department or brand. Only JBL, Denon and Hertz had logo URLs; other brand buttons fell back to plain text. The Car Audio department button was text-only.
+- Corrected on the PR #168 working branch `integration/three-category-catalogue-preview-final-2026-11-03`:
+  - Selecting a department now opens its URL state with brand choices only; no stock cards are shown.
+  - Selecting a brand opens a brand-specific page state showing component groups only; no product stock appears until a component is selected.
+  - Selecting a component opens its filtered product view.
+  - Added brand logo image sources for Kicker, Audison, Alpine, Starsound, JVC Car Audio, Sony, Kenwood Car Audio, Focal Car Audio and Amplified, while retaining existing JBL, Denon and Hertz official image URLs. Image failures fall back to the full brand name rather than initials/blank artwork.
+  - Added dedicated local Car Audio & Video illustration `assets/car-audio-video-category.svg`; added it to Cloudflare Pages required-asset allowlist.
+  - Added structural regression assertions for page-state navigation, stock visibility, brand-logo sources and local artwork packaging.
+- Also corrected the secondary `preview-category.html` route so brand selection opens a brand landing state with component buttons, and `preview-products.html` filters to the selected component.
+- Commits on this branch:
+  - `c37821578493792f851805836630dedada9c6615` — category brand navigation/logo cards
+  - `c44556a8ded678d75461806b44f6095dc94ca058` — component-specific product filtering
+  - `044f94837e3732f703cbbbb5f7d226546f21e099` — dedicated Car Audio & Video SVG artwork
+  - `6727b544f5caea84df08825b5e8ee06753c16edb` — component classification regex correction
+  - `3d7edb75888063038881a14ddf6c424cabc0e5e3` — brand-first/component-first page states, department artwork and expanded logo map
+  - `3f85ed48388063038881a14ddf6c424cabc0e5e3` — brand page heading and component list polish
+  - `42420cf7cdaa627b44b23cbcc3db707ae1549c31` — include SVG in Cloudflare Pages asset allowlist
+  - `d8184d096c4beb4a9786d4abf0cef92be9de605e` — structural regression assertions
+- Validation: all main inline scripts in `preview-category.html`, `preview-products.html`, and `preview-audio.html` parsed successfully in the V8 syntax check. This is syntax/static validation only; Node regression suite, Cloudflare build, hosted preview, mobile browser behaviour and actual external logo URL loading have not yet been verified.
+- Safety: PR #168 remains draft/non-production. No merge, production deployment, Supabase write, supplier publication, price/stock update, checkout/payment change, DNS or Axxess action was performed.
+- Next: run the exact-head Node structural tests and isolated Cloudflare Pages build; verify the resulting exact-head preview on 360px/390px and desktop. Confirm each brand logo URL resolves; replace any failed external logo with a verified official local asset. Owner phone acceptance is still required.
