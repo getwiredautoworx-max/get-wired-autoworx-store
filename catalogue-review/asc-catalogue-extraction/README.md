@@ -20,7 +20,8 @@ No product, price, stock, supplier activation, or database records are created o
 
 - The 50-row cross-family pilot is retained as a review-only validation sample.
 - A complete **78-product Aerials review-only batch** has been transcribed and visually checked against pages 3–7 of the ASC Aerials PDF. It includes eight pilot rows plus 70 additional records. File: `asc-aerials-78-product-review-only.csv`.
-- A complete **106-product Automotive Sensors review-only batch** has now been transcribed and visually checked against pages 3–9 of the ASC Automotive Sensors PDF. It includes nine pilot rows plus 97 additional records. File: `asc-automotive-sensors-106-product-review-only.csv`.
+- A complete **106-product Automotive Sensors review-only batch** has been transcribed and visually checked against pages 3–9 of the ASC Automotive Sensors PDF. It includes nine pilot rows plus 97 additional records. File: `asc-automotive-sensors-106-product-review-only.csv`.
+- The first **104 Automotive Switches products** are now extracted in two source-verified sections: 51 Ignition Switches & Barrel Sets (8 pilot + 43 additional) and 53 Combination & Indicator Stalk Switches (53 additional). Files: `asc-ignition-switches-51-product-review-only.csv` and `asc-combination-indicator-switches-53-product-review-only.csv`.
 - All 50 supplier SKUs and all 50 proposed Get Wired SKUs are unique within this pilot.
 - The proposed SKU pattern is `GW-ASC-<normalised ASC supplier SKU>`; the supplier SKU is retained separately.
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
@@ -47,6 +48,13 @@ No product, price, stock, supplier activation, or database records are created o
 - 106 unique ASC supplier SKUs and 106 unique proposed `GW-ASC-` SKUs; zero format mismatches.
 - All rows map to Auto Electrical Spares & Parts → Automotive Sensors; catalogue section retained separately.
 - All remain no-price/no-stock/review-only/not imported. Two fitment captions are visibly clipped (`S5-16053`, `S5-16087`) and are flagged for confirmation rather than completed by inference.
+
+## Completed Switches sections (catalogue still in progress)
+
+- Ignition Switches & Barrel Sets: 51 products from pages 3–5; 51 unique supplier SKUs and proposed GW SKUs; eight rows overlap the pilot and 43 are additional.
+- Combination & Indicator Stalk Switches: 53 products from pages 5–8; 53 unique supplier SKUs and proposed GW SKUs.
+- Combined: 104 source-verified products mapped to Auto Electrical Spares & Parts → Automotive Switches. No prices or stock are supplied; all remain review-only and unimported.
+- The rest of the Switches catalogue still requires extraction: Wiper Switches, Headlamp/Dimmer/Hazard Switches, Power Window Switches, Toggle/Push/Button Switches, Starter/Solenoid Switches, Battery Isolators/Cut-Off Switches, Switch Panels/Covers/Accessories, and Marine/Specialist Switches.
 
 ## Source-page visual evidence
 
