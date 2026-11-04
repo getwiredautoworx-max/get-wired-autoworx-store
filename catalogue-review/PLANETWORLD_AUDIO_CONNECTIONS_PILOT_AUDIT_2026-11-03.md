@@ -214,3 +214,24 @@ Disposition: no new official manufacturer reference, SKU assignment, image candi
 - Accepted catalogue value per owner clarification: **100 W RMS nominal per channel × 4**. Use this supplier-provided/owner-confirmed value in the Audio Connections product record and customer-facing draft specification; do not substitute the separate Starsound public product-page figure of 80 W RMS × 4 at 4 Ω.
 - Keep the 13,800 W maximum/marketing designation separate; it is not RMS and must never be represented as RMS.
 - Provenance must identify Audio Connections as the supplying source and note owner confirmation on 2026-11-04. If the source sheet's exact cell/line cannot be cited, do not claim the figure was independently extracted from the PDF; the current authority is the owner's explicit supplier-source instruction.
+
+
+## Execution checkpoint — 2026-11-04 (supplier pilot continues)
+
+### Audio Connections — owner wattage decision applied to the product row
+- Updated `catalogue-review/audio-connections-product-review.csv`, exact source row 43 for `SSA-ATOM13800.4`, to use the owner-approved supplier specification: **100 W RMS nominal per channel × 4**. Description and provenance now attribute the figure to Audio Connections and owner confirmation dated 2026-11-04.
+- The 13,800 W designation remains a marketing/maximum figure, not RMS. The separate public Starsound page's 80 W RMS × 4 at 4 Ω remains an internal source conflict only; it is not substituted into the customer-facing draft.
+- No SKU, price, availability, image approval or publication state was promoted.
+
+### Planetworld — recheck of the six unresolved image records
+- The six image gaps in the 68-model curated set are confirmed as five Alpine models (`HCE-C2100RD`, `HDZ-653`, `R2-W12D4`, `S2-A55V`, `S2-S65`) and JVC `KW-M590BT`.
+- Official Alpine pages were rechecked for HCE-C2100RD, HDZ-653 and R2-W12D4; the image links exposed by those pages resolve only to 46×35 thumbnails, unsuitable for storefront product images. Alpine's official catalogue search result provides a product visual for HDZ-653 and HCE-C2100RD, but no high-resolution direct asset with confirmed redistribution rights has been approved.
+- JVC KW-M590BT remains held: dealer image pack needs written distribution permission. No placeholder, low-resolution thumbnail or unlicensed image has been inserted.
+- Therefore image coverage remains 62/68 candidate URLs; the six gaps are not falsely marked complete.
+
+### Current pilot state / release boundary
+- Planetworld and Audio Connections remain the only active supplier pilot. ASC and Electro-city remain deferred.
+- Audio Connections retained preview remains 66 rows; 44/66 have no image URL; 53 non-Sony candidate GW SKUs remain held/unassigned; three quote-only rows retain the exact approved fallback; availability is not established.
+- Planetworld's curated 68-model set remains review-only and is not full 702-row Car Audio completion; the 634 other Car Audio rows remain without proposed GW SKUs and the manual-review classification queue remains open.
+- Public repository exposure risk remains unresolved: supplier dealer-price source files are present in public Git history. Do not add or publish further confidential source files; owner should make the repository private and arrange full-history containment before public restoration. This is not a credential-compromise finding.
+- No Actions runs or exact-head test result are claimed. No supplier activation, live writes, production deployment, Axxess upload, DNS, checkout/payment or banking changes.
