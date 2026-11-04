@@ -72,7 +72,7 @@ assert.ok(audioPage.includes('filter(label=>!/^(car audio|car audio & video|car 
 assert.ok(audioPage.includes('["Lifestyle","Lifestyle"]'), 'Lifestyle must be a selectable catalogue department');
 assert.ok(audioPage.includes('"assets/brand-logos/jbl.svg"'), 'JBL brand button must use its local wordmark asset');
 assert.ok(audioPage.includes('"assets/brand-logos/denon.svg"'), 'Denon brand button must use its local wordmark asset');
-assert.ok(audioPage.includes('"https://static.hertz-audio.com/media/2021/04/hertz_payoff_thesoundexperience.svg"'), 'Hertz brand button must use the official Hertz Audio logo');
+assert.ok(audioPage.includes('"assets/brand-logos/hertz.svg"'), 'Hertz brand button must use its local wordmark asset');
 assert.ok(audioPage.includes('brandNames.push("Hertz")'), 'Hertz must remain a visible Car Audio brand button while its source review is pending');
 assert.ok(audioPage.includes('Speakers & Component Kits') && audioPage.includes('Cameras & Monitors') && audioPage.includes('Signal Processing & Crossovers') && audioPage.includes('Harnesses, Trims & Fitment'), 'Car Audio component types must use the owner-approved group labels');
 assert.ok(planet.records.some(p => p.brand === 'JBL'), 'JBL products must remain in their source department');
