@@ -38,3 +38,6 @@ The strengthened test now locates generated catalogue links (these synthetic dep
 
 Exact synthetic audio department artwork mapping correction — 2026-11-04.
 The live category tree creates synthetic catalogue nodes (gw-audio-band, gw-audio-dj, gw-audio-instruments); the previous art mapping used their source category IDs and therefore fell through to the generic car photo. The mapping and structure assertions now use the generated node IDs. Deploy this exact head and verify all four distinct photos load in hosted mobile and desktop QA. Production HOLD.
+
+Exact DJ artwork availability fix — 2026-11-04.
+The hosted image check found the first DJ Unsplash source unavailable. It has been replaced with a verified Unsplash DJ turntable/mixer photograph. Deploy this exact current head and rerun the four-department image checks and full preview regression. Production HOLD.
