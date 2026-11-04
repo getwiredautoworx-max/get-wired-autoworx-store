@@ -71,3 +71,6 @@ The hosted QA workflow now polls the actual Cloudflare alias reported by Wrangle
 
 Final robust hosted preview alias polling — 2026-11-04.
 The browser QA now probes both observed Cloudflare branch aliases and accepts only the alias whose qa-build-result.json commit matches this exact SHA. Deploy and rerun all final checks. Production HOLD.
+
+Integrated category + mobile repair candidate — exact-head deployment request 2026-11-04.
+Deploy current integrated branch SHA only to the isolated non-production Cloudflare Pages preview. Require exact qa-build-result.json SHA match and hosted mobile/desktop QA before acceptance. Production remains HOLD.
