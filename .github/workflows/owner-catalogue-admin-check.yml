@@ -1,0 +1,56 @@
+name: Owner catalogue manager source checks
+on:
+  push:
+    branches:
+      - 'feature/owner-catalogue-management-2026-10-20'
+    paths:
+      - 'supabase/functions/veyron-admin/**'
+      - 'android-owner-app/app/src/main/assets/admin_app.html'
+      - '.github/workflows/owner-catalogue-admin-check.yml'
+  pull_request:
+    paths:
+      - 'supabase/functions/veyron-admin/**'
+      - 'android-owner-app/app/src/main/assets/admin_app.html'
+      - '.github/workflows/owner-catalogue-admin-check.yml'
+permissions:
+  contents: read
+jobs:
+  deno-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check veyron-admin Edge Function
+        run: deno check supabase/functions/veyron-admin/index.ts
+      - name: Run isolated CORS and auth-denial tests
+        run: deno test --allow-env supabase/functions/veyron-admin/index_test.ts
+      - name: Static owner UI safety assertions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html = Path('android-owner-app/app/src/main/assets/admin_app.html').read_text(encoding='utf-8')
+          edge = Path('supabase/functions/veyron-admin/index.ts').read_text(encoding='utf-8')
+          assert 'Categories & Subcategories' in html
+          assert 'ownerSaveProduct' in html and 'ownerSaveCategory' in html
+          assert 'SUPABASE_SECRET_KEYS' not in html
+          assert 'if (!auth) return json({ ok: false, error: "Admin authorization required." }, 401);' in edge
+          assert 'if (req.method === "OPTIONS")' in edge
+          assert '"Access-Control-Allow-Origin": "*"' in edge
+          assert '"Access-Control-Allow-Methods": "GET, POST, OPTIONS"' in edge
+          assert 'async function audit(entry: Record<string, unknown>)' in edge
+          assert 'AUDIT_LOG_WRITE_FAILED' in edge
+          assert edge.count('await audit({') == 4
+          assert 'export function validateProductUpdate' in edge
+          assert 'export function validateCategoryUpsert' in edge
+          assert 'export function validateCategoryAncestorStep' in edge
+          assert 'export function validateQueueTask' in edge
+          assert 'export function validateOpportunityApprovalId' in edge
+          assert 'Only an owner can queue a task without approval.' in edge
+          assert 'Unsupported product field:' in edge and 'Unsupported category field:' in edge
+          assert 'b.action === "update_product"' in edge
+          assert 'b.action === "upsert_category"' in edge
+          assert 'Move/deactivate active products and child categories first' in edge
+          print('PASS owner UI and authenticated catalogue action assertions')
+          PY
