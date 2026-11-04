@@ -56,3 +56,6 @@ This exact head includes the mobile submenu repair, verified four-department aud
 
 Final exact-head verification after QA corrections — 2026-11-04.
 This head includes the mobile audio submenu fix, supplier-safe preview data, the intentional no-image hold for unrenderable Sony XS-W104ES, and corrected image-count/browser assertions. Deploy this exact SHA and rerun full runner, package and hosted mobile/desktop QA. Production HOLD.
+
+Final exact-head refresh after aggregate image-count assertion correction — 2026-11-04.
+Rebuild and deploy this exact branch head, then require runner regression, isolated package, local Playwright and hosted mobile/desktop preview checks to pass at the same SHA. Production HOLD.
