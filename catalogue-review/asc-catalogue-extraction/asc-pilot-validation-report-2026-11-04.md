@@ -52,12 +52,12 @@ The previous catalogue-specific subgroup name is retained separately in the `cat
 
 ## Image status
 
-The pilot CSV points to 50 candidate crop images held on the separate PR #168 preview branch (head at audit: `2538b40d447c593c2767e1494961b1bade44b330`). Those image files are not copied into this ASC staging branch and are not approved production assets. Image watermarking and exact product-code/photo matching still require review. PR #168 was not modified for this processing step.
+The pilot CSV points to 50 candidate crop images held on the separate PR #168 preview branch (head at audit: `2538b40d447c593c2767e1494961b1bade44b330`). All 50 crop cards were visually inspected; their product images and captions are broadly consistent with the corresponding pilot descriptions. The crops remain on PR #168 and were not copied into the ASC staging branch. ASC watermarks are visible, and the crop cards do not consistently expose the supplier SKU, so exact supplier-SKU-to-original-source-page pairing is still a required check before any image can be approved. The printed brand/wording for globe SKUs `H1865W-H`, `H1960/55W-H`, and `H355W-H` is visually ambiguous between crop text and OCR and must be rechecked against the original PDF page. PR #168 was not modified for this processing step.
 
 ## Outcome
 
 The 50-row pilot has passed structural checks for row completeness, unique supplier and proposed SKUs, SKU pattern, owner-approved category destinations, and review-only price/stock/import flags.
 
-**Not yet passed:** independent reinspection of each crop against its source page, approval of product descriptions/fitment/specifications, clean image assets, current ASC dealer pricing, stock/availability confirmation, and owner approval.
+**Not yet passed:** exact SKU-to-source-page pairing for all 50 images, confirmation of the three ambiguous globe descriptions, approval of product descriptions/fitment/specifications, watermark/asset rights and image suitability, current ASC dealer pricing, stock/availability confirmation, and owner approval.
 
 No Supabase writes, product imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes were performed.
