@@ -49,6 +49,7 @@ assert.deepEqual(roots, [
   ['af2f8625-4f42-45e6-9f21-d571d7415893','Camping, Leisure & Outdoors'],
   ['63a71fd9-df45-43f0-b61d-ad622daa9d79','Trailer & Canopy']
 ]);
+assert.equal(roots.length, 8, 'storefront must render exactly the eight owner-approved top-level categories');
 const carAudioNode = tree.categories.find(c => c.slug === 'car-audio');
 const accessoriesNode = tree.categories.find(c => c.slug === 'car-audio-accessories');
 assert.ok(accessoriesNode && accessoriesNode.parent_id === carAudioNode.id, 'Accessories must be nested under Car Audio & Video');
