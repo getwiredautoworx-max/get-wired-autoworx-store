@@ -1,7 +1,5 @@
 # Isolated non-production staging deployment request
-# Triggered by the owner-approved PR #176 preview readiness repair.
-# Deploy workflow must test the exact triggering SHA and verify preview_only=true.
-# Production deployment, Axxess, DNS, Supabase writes, live catalogue changes and payments remain prohibited.
-request=PR-176-preview-verification-exact-head-followup
+# Owner-approved staging only. No production, Axxess, DNS, Supabase or live data changes.
+request=PR-176-preview-verification-after-browser-qa-fix
 requested_for=preview/integrated-storefront-2026-11-04
-base_head=fdf06a2b24a95fcc32c1c3a4a790e1b387e25373
+previous_head=38e8e39c8737f0a8ea98a7aa31eca85de79884bc
