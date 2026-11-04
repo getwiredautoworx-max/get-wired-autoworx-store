@@ -10,7 +10,8 @@ OUT = Path("catalogue-review/asc")
 TEXT_OUT = OUT / "text"
 ORIGINALS = OUT / "source-images"
 CLEANED = OUT / "cleaned-images"
-for folder in (TEXT_OUT, ORIGINALS, CLEANED):
+PAGE_RENDERS = OUT / "source-pages"
+for folder in (TEXT_OUT, ORIGINALS, CLEANED, PAGE_RENDERS):
     folder.mkdir(parents=True, exist_ok=True)
 
 text_rows, image_rows, inventory = [], [], []
@@ -28,6 +29,10 @@ for path in pdfs:
         doc = fitz.open(path)
         info["pages"] = len(doc)
         for page_no, page in enumerate(doc, start=1):
+            # Render pilot source pages 3 and 4 for exact SKU/product/image verification.
+            if page_no in (3, 4):
+                page_pix = page.get_pixmap(matrix=fitz.Matrix(1.8, 1.8), alpha=False)
+                page_pix.save(PAGE_RENDERS / f"{slug(path.stem)}_p{page_no:03d}.png")
             page_text = page.get_text("text").strip()
             method = "embedded_text"
             if len(re.sub(r"\s+", "", page_text)) < 35:
