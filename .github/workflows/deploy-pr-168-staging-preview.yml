@@ -151,9 +151,9 @@ jobs:
               const accessoryPage=await browser.newPage({viewport:{width:390,height:844}});
               accessoryPage.on('pageerror',e=>errors.push('accessory route: '+String(e)));
               await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html',{waitUntil:'domcontentloaded'});
-              await accessoryPage.locator('#grid .card h2').filter({hasText:'Car Audio & Entertainment'}).waitFor({timeout:20000});
-              await accessoryPage.locator('#grid .card').filter({hasText:'Car Audio & Entertainment'}).click();
-              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Car Audio & Entertainment');
+              await accessoryPage.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:20000});
+              await accessoryPage.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
+              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Audio, Entertainment & Music');
               await accessoryPage.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
               await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Car Audio & Video');
               await accessoryPage.locator('#grid .card').filter({hasText:'Accessories'}).click();
