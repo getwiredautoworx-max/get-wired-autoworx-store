@@ -420,3 +420,18 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - OWNER ACTION REQUIRED: user will perform PC and phone testing now. Record owner acceptance only after explicit feedback. If a defect is reported, reproduce and fix on the branch, redeploy staging and rerun exact-head checks before closure.
 - This update is a handover-only commit. It does not alter storefront source, catalogue data, preview assets, payment setup or production. Production remains HOLD; do not merge PR #168 or deploy production without explicit owner approval.
 - Desktop/continuation agent instruction: read this file first and continue from the latest verified head above. Do not repeat completed regression/deployment/image-research tasks. Wait for owner PC/phone findings; address only reported defects and the XS-W104ES image check.
+
+
+## 2026-11-04 owner-reported category/navigation defects — corrective work in progress
+
+- Owner reports that category buttons do not load and that the Audio / Home Entertainment category artwork displays an inappropriate cartoon car. This overrides the earlier automated PASS claims: customer-facing category navigation and artwork are NOT owner-accepted.
+- Source inspection confirmed two concrete defects:
+  1. `index-new.html` used the generic vehicle fallback for the synthetic Home Entertainment catalogue tile, and the Audio root explicitly loaded `assets/car-audio-video-category.svg` (a stylised car illustration).
+  2. `category.html` sent the Home Entertainment leaf category to generic `products.html?category=...` rather than the Home Entertainment audio catalogue. Band Equipment, DJ Equipment and Instruments leaf categories had the same generic leaf-route behavior.
+- Corrective commits pushed to the existing PR #168 branch:
+  - `4db011ffe6b5262cfa2a198070b0a792f2bc5a14`: replace the cartoon Audio root artwork with speaker/product photography and give the Home Entertainment tile a television/home-entertainment image.
+  - `2e899a6bc864296c0db19fd169c40121ab06cf4d`: route Home Entertainment, Band Equipment, DJ Equipment and Instruments leaf categories to their respective audio catalogue departments; add a dedicated Home Entertainment image mapping to the generic category page.
+- Readback verification confirms both source changes are present on the working branch. The current latest source commit is `2e899a6bc864296c0db19fd169c40121ab06cf4d`.
+- No workflow run was returned for that commit by the PR-run lookup. Therefore no regression PASS, successful preview deployment, or hosted browser QA is claimed for these corrections yet.
+- Required next: trigger/confirm the public runner for this exact head; test root category expansion, every category button destination, Home Entertainment image and catalogue route, and mobile/desktop tap behavior in the newly deployed preview. Recheck all three approved root categories and nested subcategories. Update this section with actual run IDs and preview URL only after evidence is available.
+- Stage status: BLOCKED / NOT OWNER-ACCEPTED. Do not move on to ASC, merge PR #168, or deploy production. Production remains HOLD; all write/payment/stock/DNS/Axxess restrictions remain unchanged.
