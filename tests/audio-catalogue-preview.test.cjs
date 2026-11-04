@@ -60,10 +60,14 @@ const specChecks = [
   ['ac-038','65 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-039','90 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-040','320 W RMS ×4 at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
-    ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK']
+  ['ac-041','second RMS Ratings table','OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED'],
+  ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
+  ['ac-044','per speaker or pair','RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED']
 ];
 const atom13500=audioConnections.records.find(row=>row.id==='ac-032');
-assert.ok(atom13500.description.includes('380 W RMS at 2 Ω')&&atom13500.description.includes('230 W RMS at 4 Ω')&&atom13500.description.includes('600 W maximum output'),'ac-032 retailer specification detail');
+assert.ok(atom13500.description.includes('official page lists 500 W RMS at 1 Ω')&&atom13500.description.includes('retailer listings report 520 W RMS at 1 Ω')&&atom13500.description.includes('230 W RMS at 4 Ω'),'ac-032 conflicting official and retailer specification detail');
+assert.equal(atom13500.specificationStatus,'OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
+assert.ok(!/W RMS/i.test(atom13500.title),'ac-032 title must not present conflicted wattage');
 assert.equal(atom13500.specificationEvidenceStatus,'THIRD_PARTY_RETAILER_CROSS_CHECK_NOT_MANUFACTURER_CONFIRMED');
 assert.equal(atom13500.specificationSourceUrls.length,2);
 for (const [id, phrase, status] of specChecks) {
@@ -71,9 +75,17 @@ for (const [id, phrase, status] of specChecks) {
   assert.ok(row.description.includes(phrase), id+' power specification cross-check');
   assert.equal(row.specificationStatus,status,id+' specification evidence status');
 }
+const ssw126300=audioConnections.records.find(row=>row.id==='ac-021');
+assert.ok(ssw126300.description.includes('Power rating remains unverified'));
+assert.ok(ssw126300.specificationStatus.includes('SUPPLIER_CONFIRMATION_REQUIRED'));
 const b12=audioConnections.records.find(row=>row.id==='ac-025');
 assert.equal(b12.specificationStatus,'OFFICIAL_PHYSICAL_SPEC_CONFIRMED_POWER_UNPUBLISHED_CONFLICT_REMAINS');
 assert.ok(b12.description.includes('power rating remains unverified'));
+const m5=audioConnections.records.find(row=>row.id==='ac-041');
+assert.ok(m5.description.includes('second RMS Ratings table')&&m5.description.includes('Hold the detailed power ratings'));
+const pro6501=audioConnections.records.find(row=>row.id==='ac-044');
+assert.ok(pro6501.description.includes('per speaker or pair'));
+assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-driver/pair wattage basis');
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
