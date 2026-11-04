@@ -679,7 +679,8 @@ const BRAND_LOGOS={
 };
 function brandButton(label,active,fn){
  const b=document.createElement("button");b.className="brandLogoButton";b.type="button";b.title=label;b.setAttribute("aria-label",label);
- const key=label.toLowerCase().startsWith("denon")?"denon":label.toLowerCase();
+ const normalized=label.trim().toLowerCase();
+ const key=normalized.startsWith("denon")?"denon":normalized.startsWith("hertz")?"hertz":normalized;
  const src=BRAND_LOGOS[key];
  if(src){const img=document.createElement("img");img.src=src;img.alt=label+" logo";img.loading="lazy";img.onerror=()=>{img.remove();const fallback=document.createElement("span");fallback.textContent=label;b.append(fallback)};b.append(img)}
  else{const word=document.createElement("span");word.className="brandWordmark";word.textContent=label;b.append(word)}
