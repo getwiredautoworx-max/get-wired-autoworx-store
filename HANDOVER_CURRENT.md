@@ -42,3 +42,9 @@
 - Preserved the 3,317 Planetworld total and 702 Car Audio division rows; the non-audio keychain is hidden by the customer route filter, not removed from source data.
 - Added regression checks for the two held rows and the keychain exclusion.
 - Expanded the active runner workflow to build the isolated preview package and execute Node ASC/audio/storefront tests plus the public SKU exposure audit. Check the new exact-head run before claiming test success.
+
+
+## 2026-11-04 ASC root correction
+- Fixed stale preview data and navigation so Aerials is under Car Audio, Car Mats is under Car Care & Accessories, and sensors/switches/globes/fuel pumps remain under Auto Electrical Parts & Spares.
+- Full suite on parent head f90a520 passed structural and preview package build, then failed the ASC hierarchy assertion because of the incorrect root fields. Corrected to the test's owner-approved hierarchy; full suite rerun is pending.
+- Parent head: `f90a520e0681e3d3f3f3e77478858fa540a58416`. Prior Pages preview: `https://3f273f37.get-wired-autoworx-store.pages.dev`; it does not contain this correction.

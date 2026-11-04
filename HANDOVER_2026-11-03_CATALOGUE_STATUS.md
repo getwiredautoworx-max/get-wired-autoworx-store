@@ -228,3 +228,11 @@ This is the permanent catalogue architecture for every current and future suppli
 - Expanded the active branch runner diagnostic to build the isolated preview package and execute the three Node storefront regression suites plus the public SKU exposure audit. This is the first actual test execution path on this branch; the earlier runner recovery check only validated root/category counts.
 - Exact parent head before this commit: `1b5f1c5d25bb0f5597ba7e25bacbe3746fa1ab83`. New commit will trigger fresh runner and Cloudflare Pages checks; record their final results before any preview/readiness claim.
 - PR #168 stays draft/open/unmerged; production remains HOLD.
+
+
+## 2026-11-04 — ASC ROOT PLACEMENT REGRESSION FIX
+- The newly executed Node suite surfaced a genuine stale ASC navigation/data mismatch: Aerials and Car Mats were both assigned to Auto Electrical Parts & Spares, while the maintained regression fixture and approved three-root hierarchy place Aerials under Car Audio and Car Mats under Car Care & Accessories.
+- Corrected `assets/asc-catalogue-preview-data.json` root assignments and moved the Aerials and Car Mats catalogue buttons to their approved parent sections in `index-new.html`. Sensors, switches, globes and fuel pumps remain under Auto Electrical Parts & Spares.
+- The first full-suite run on `f90a520e0681e3d3f3f3e77478858fa540a58416` passed the runner/root/catalogue/manual-review assertions and public Pages package build, then failed at `tests/asc-catalogue-preview.test.cjs:5` because of these two stale root assignments. No production or live-data changes were made. Re-run the complete suite on the corrected head.
+- Cloudflare Pages deployment for `f90a520e0681e3d3f3f3e77478858fa540a58416` succeeded: `https://3f273f37.get-wired-autoworx-store.pages.dev`. This deployment includes the Planetworld review changes but predates the ASC root correction.
+- The separate legacy Workers Build failed (build ID `d1fa08b5-eeaa-4fef-8748-095ba9fb58bd`); it is not the Pages preview deployment and was not retried. PR #168 remains draft/open/unmerged; production HOLD.

@@ -4,7 +4,7 @@
   "catalogues": [
     {
       "name": "Aerials",
-      "root": "Auto Electrical Parts & Spares",
+      "root": "Car Audio",
       "sections": [
         {
           "id": "asc-aerial-vehicle",
@@ -200,7 +200,7 @@
     },
     {
       "name": "Car Mats",
-      "root": "Auto Electrical Parts & Spares",
+      "root": "Car Care & Accessories",
       "sections": [
         {
           "id": "asc-mat-toyota",
