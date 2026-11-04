@@ -1361,3 +1361,13 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Do not claim the storefront now displays the requested text until every customer-facing price surface (cards, details, search, related products, cart and checkout) has been changed and tested. Numeric price must not silently enter cart/order paths while hidden.
 - No storefront code changes on main or PR #168, no price import, Supabase write, PR merge, production deployment, Axxess upload, DNS or payment change was made. Production remains HOLD.
 - Next implementation step: make the global price display suppression in a clean isolated branch from current main (not by editing unstable PR #168), update all customer-facing surfaces and remove/disable numeric price sorting; then run browser tests proving exact copy appears everywhere and unpublished products cannot be checked out with hidden prices. Keep the policy in force until owner-approved current pricelist reconciliation.
+
+
+### 2026-11-04 — Price suppression code staged
+- Created isolated branch `staging/store-wide-price-on-request-2026-11-04` from main. PR #168 was not edited.
+- `products.html`: numeric price display disabled; exact owner text "Price On Request Due to Stock Availability" shown; price sorting removed; product action changed to "REQUEST PRICE & AVAILABILITY".
+- `product.html`: numeric price display disabled; exact owner text shown; request action retained; stock availability must be confirmed.
+- `checkout-v2.html`: all cart items are directed to price and availability confirmation before normal checkout, including items with old prices in the database or browser cart.
+- GitHub readback confirmed the three source-file edits. Browser/device QA has not yet run. Alternate storefront and legacy routes still require review before release.
+- This is staging only. No PR, merge, workflow dispatch, Supabase write, production deployment, Axxess upload, DNS or payment change. Production remains HOLD.
+- Next: audit all storefront routes, add automated checks for exact copy and checkout gating, run browser QA, then prepare a review PR if tests pass. Numeric prices remain suppressed until owner-approved pricelist reconciliation.
