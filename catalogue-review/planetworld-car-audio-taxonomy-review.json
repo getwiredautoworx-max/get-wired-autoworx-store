@@ -105,5 +105,84 @@
     "No product images matched or verified; no customer listings or pricing/stock values included.",
     "No publication, live catalogue, price, stock, Supabase, payment, DNS, Axxess or hosting changes."
   ],
-  "source_output": "catalogue-review/planetworld-car-audio-staging.csv"
+  "source_output": "catalogue-review/planetworld-car-audio-staging.csv",
+  "manual_review_2026_11_04": {
+    "status": "COMPLETED_REVIEW_PREVIEW_ONLY",
+    "source_staging_rows_reviewed": 238,
+    "preview_rows_reviewed": 234,
+    "preview_rows_classified": 229,
+    "preview_rows_held": 5,
+    "component_counts": {
+      "Head Units & Media Players": 66,
+      "Vehicle Integration Modules": 2,
+      "Speaker Accessories": 17,
+      "Infotainment & Displays": 3,
+      "Speaker Door Pods & Fitment Kits": 2,
+      "Subwoofers": 21,
+      "Remote Controls": 9,
+      "Unclassified — owner/source confirmation": 5,
+      "Wiring & Installation Accessories": 5,
+      "Harness & Installation": 2,
+      "Speakers": 12,
+      "Processors & Crossovers": 1,
+      "Excluded — Non-Audio Merchandise": 1,
+      "Amplifiers": 1,
+      "Audio Packages": 7,
+      "Parking Sensors": 2,
+      "Fascia & Fitting Kits": 76,
+      "Camera & DVR Accessories": 1,
+      "Cameras & DVRs": 1
+    },
+    "held_rows": [
+      {
+        "id": "pw-0107",
+        "sku": "66750530",
+        "brand": "Audison",
+        "title": "Audison - VCRA - SUB REMOTE VOLUME CONTROL AV-SR 1Dk-SR 5",
+        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
+      },
+      {
+        "id": "pw-0178",
+        "sku": "69070021",
+        "brand": "Audison",
+        "title": "Audison - AVX 6.5 II - SET 2Way COAX 165mm+XOVER",
+        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
+      },
+      {
+        "id": "pw-2088",
+        "sku": "BOX-10",
+        "brand": "One",
+        "title": "Nissan Box",
+        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
+      },
+      {
+        "id": "pw-2172",
+        "sku": "ON014-F3",
+        "brand": "One",
+        "title": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
+        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
+      },
+      {
+        "id": "pw-2300",
+        "sku": "ON669-A14-LCD",
+        "brand": "One",
+        "title": "One product — details to confirm",
+        "reason": "Insufficient product detail or conflicting source description; held out of automatic classification."
+      }
+    ],
+    "rules_applied": [
+      "Supplier folders remain internal; public grouping is by product/component, not supplier.",
+      "Vehicle-specific OneNav head units are grouped under Head Units & Media Players; frames/brackets and adapters under Fascia & Fitting Kits.",
+      "Kicker KPB2 and KMC4 are grouped under Marine Audio.",
+      "Non-audio branded merchandise is excluded from the customer-facing audio catalogue.",
+      "Ambiguous records remain explicitly held; no guessed product types."
+    ],
+    "source_references": [
+      "https://nxtleveltech.co.za/product/101inch-to-9inch",
+      "https://manuals.alpine-usa.com/products/documents/IM_KAC-001.pdf",
+      "https://sbrprosound.co.za/product/alpine-lc70-269p/",
+      "https://www.crutchfield.com/p_20647KPB2/Kicker-47KPB2.html",
+      "https://www.sonicelectronix.com/item-173279-Kicker-PWB4100-46PWB4100.html"
+    ]
+  }
 }
