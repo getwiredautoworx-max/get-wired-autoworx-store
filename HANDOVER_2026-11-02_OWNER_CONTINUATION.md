@@ -1642,3 +1642,62 @@ The owner approved replacing the disconnected-PR / repeated-repair approach with
 5. Deploy only the exact tested consolidated branch head to isolated Pages, update this handover with the resulting URL/run IDs and owner-preview status, and ask the owner only for visual/real-phone acceptance when the candidate is genuinely ready.
 
 **Status at this checkpoint:** the consolidated candidate exists and is the active path; eight approved roots are present in source; Planetworld and Audio Connections preview datasets are included. Full eight-category populated customer preview, exact-head verification for `6d84fdff`, ASC customer-preview integration and owner phone acceptance are still outstanding. Do not claim full-store readiness or merge. Production remains HOLD.
+
+
+
+## 2026-11-04 — OWNER TRANSFER TO GROK (MOBILE AGENT) — AUTHORITATIVE LATEST CHECKPOINT
+
+The owner has instructed that Grok take over as the mobile agent. This section is the latest transfer note; read the full handover above for history, protected instructions, source rules and release boundaries. Do not restart completed extraction or repeat old audits.
+
+### Owner's immediate expectations
+- The owner is dissatisfied with the lack of a finished consolidated storefront and explicitly says the work has remained at square one. Do not respond with another apology, plan-only message, status loop or promise. Inspect the repository, make concrete changes, run available checks, and report exact evidence.
+- Deliver one consolidated, populated customer-facing staging preview. Homepage and complete Audio experience are the immediate visual/navigation priority, followed by all remaining approved categories. Do not create disconnected repair branches or another handover file.
+- The owner expects the agent to work directly from a mobile workflow where possible. Keep changes lightweight and compatible with the owner's older Android WebView/phone and Windows 7 PC: avoid modern CSS/JS features without fallbacks, keep tap targets clear, test narrow mobile widths, and do not rely on desktop-only interactions.
+- Owner asked for Grok to take over as mobile agent. This is a handoff instruction, not permission to merge, deploy production, alter DNS, upload to Axxess, activate payments, or write live data.
+
+### Latest verified repository facts (2026-11-04, current conversation)
+- Sole canonical handover remains this file: `HANDOVER_2026-11-02_OWNER_CONTINUATION.md`. Do not recreate `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, or additional checkpoint handovers.
+- Active integration PR #176: https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/176
+- Branch: `preview/integrated-storefront-2026-11-04`
+- Latest metadata read in this handoff: PR head `6d84fdffdee2bcb8c597a7ba0b3dcd5264b8f87f`; base main `8a0695a6d746b886be865ffa950a11011b054e2f`. PR is OPEN / DRAFT / UNMERGED; GitHub reports mergeable=false. Re-fetch current refs before acting; do not assume these SHAs remain current.
+- PR body records that the last previously verified hosted preview is at `e596cef70361dc260a5cbfb90ff9f5a6a5e845b0`, URL https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html. That deployment is older than the current PR head and is NOT exact-head proof for `6d84fdff`. Do not describe it as the current candidate.
+- The PR body also contains duplicated historical three-root preview claims. It is stale relative to the owner's required eight-root store and must be reconciled, not copied forward as a current readiness statement.
+- Eight approved root IDs/labels are present in source `assets/category-tree.json` and `index-new.html` (static inspection only). Source presence does not prove browser rendering, navigation, populated product content, or readiness.
+- Eight workflows associated with the current head were reported QUEUED at the 17:53 SAST checkpoint: Delivery Quote Security Tests `41862070632`; Public SKU Exposure Audit `41862070522`; Prepare Axxess upload package `41862070572` (CI package only); Button-Only Storefront Smoke Test `41862070645`; Customer Authentication Security Tests `41862070680`; Car Audio Accessories Route Browser QA `41862070627`; Cloudflare Pages Public Package QA `41862070510`; Preview Approved Catalogue Gate `41862070528`. Re-fetch statuses. Queued is not passed; do not rerun queued jobs.
+- A patch inspection of PR #176 exposed a material test contradiction in `tests/three-category-storefront-structure.test.cjs`: it correctly asserts the eight approved roots, but later still asserts Audio children such as Car Audio & Video, Home Entertainment, Band Equipment, DJ Equipment, Instruments and Lifestyle are children of the first root (Auto Electrical Spares). Those departments belong under the Audio root. The test filename/output still says three-category / roots=3, and the PR body retains three-root scope claims. This is a concrete integration defect to resolve by inspecting actual intended tree and render code; do not merely weaken assertions or change expected strings to force green.
+- The previous attempt to fetch branch files by the branch ref returned GitHub 404 through the file-content endpoint. PR patch retrieval did work. Confirm branch/ref access or use PR patch / other repository tooling before assuming a file is absent.
+
+### Correct target information architecture
+Eight homepage roots, in this exact order:
+1. Auto Electrical Spares
+2. Vehicle Security
+3. Car Audio & Entertainment
+4. Automotive Accessories
+5. Marine Spares & Accessories
+6. Tools, Hardware & Consumables
+7. Camping, Leisure & Outdoors
+8. Trailer & Canopy
+
+4x4 Outdoor stays nested under Camping / Leisure / Outdoors. Do not put Audio department children under Auto Electrical Spares. Audio department experience must include Car Audio, Home Entertainment, Band & Live Sound, DJ Equipment, Instruments and Lifestyle; brand and component/product-type drill-down; separate Aerials and Trims & Harnesses routes. Preserve approved bright storefront shell across homepage/category/product/support pages and prioritize mobile readability/tapability.
+
+### Catalogue work already recorded — do not redo
+- Planetworld: 3,317 rows in the integrated preview data; RRP-based price policy, not dealer cost. 37 zero-RRP rows must use the owner's exact current wording: "Price on Request due to Limited Stock and Availability." Do not publish supplier identity or supplier SKU/cost.
+- Audio Connections: 66-row preview subset from 68 source rows; 13 validated Sony price-list rows may retain numeric supplier-RRP-derived preview prices as owner-approved policy; unverified cost-derived/retail-only comparables remain quote-only. No supplier identity disclosure; do not overstate image/spec verification.
+- ASC: six catalogues extracted into 20 review-only CSV batches, 978 source-verified rows, 978 unique ASC supplier SKUs and proposed GW-ASC SKUs, zero duplicates/SKU-format/category mapping mismatches, 56 flagged notes. No prices, stock, import or activation. Preserve catalogue section, source page, exact description/fitment and source provenance. Do not redo extraction; integrate as preview-only content after validating source files and current branch state. No Buyers Guides have been added.
+- Electro-city: source catalogues have no pricing; may use approved imagery only; never expose Electro-city SKU numbers.
+- Supplier names must remain hidden from customer-facing UI.
+
+### Execution sequence for Grok
+1. Read this entire handover and inspect PR #176/current main before editing. Confirm exact branch head, changed files, latest CI state and whether PR head is still current. No branch sprawl.
+2. Fix the contradictory category-tree/test architecture at source level: all eight roots visible in homepage; Audio departments correctly nested under Car Audio & Entertainment; 4x4 nested correctly; category page and homepage use the same approved tree; remove stale three-root assumptions only after validating actual navigation behavior.
+3. Complete homepage + Audio customer journey as one integrated experience, using existing catalogue assets and design. Check actual data binding/filtering, brand buttons/logos, component groups, image paths, no supplier disclosure, no blank/placeholder product cards, and mobile tap targets. Avoid inventing data or marking uncertain products verified.
+4. Extend the same shell and navigable category structure to the other seven roots using existing source catalogues. Where verified product data is not available, show honest category/subcategory content and an explicit empty/quote state rather than fabricated products.
+5. Run local regression tests and browser checks at narrow mobile (at least 360/390 px) and desktop. Fix underlying defects, not just tests. Check console errors, category drill-down, Audio department→brand→component→product paths, image loading, horizontal overflow, accessibility/tap targets, supplier privacy, and preview checkout/write blocks.
+6. Only after exact-head checks pass, use the owner-authorized isolated Cloudflare Pages staging workflow, verify deployed SHA/build marker and hosted mobile/desktop journeys. Keep production untouched. Obtain owner acceptance of the single preview before merge.
+7. Update this same handover with exact commit SHA, test/run IDs and status, deployment URL/deployed SHA, remaining blockers and next action. Read back the handover after update.
+
+### Release and safety boundary — unchanged
+Production remains HOLD. No merge, production deployment, Axxess upload, DNS change, PayFast/other payment activation, bank credential change, live price/stock/category/active-flag changes, production Supabase writes/migrations, supplier imports/publication, destructive cleanup or credit-consuming production/release retry without separate explicit owner approval. Owner previously authorized Cloudflare Pages staging preview builds only. Keep checkout/order submission and Supabase writes blocked in owner preview. Banking/payment testing is deferred until the owner supplies banking details. Do not ask again for permissions already granted for non-production staging work.
+
+### Handoff truth statement
+At transfer time, there is no verified exact-head eight-category consolidated preview ready for owner acceptance. PR #176 is not merged and not ready to merge. The prior three-root hosted preview is historical evidence only. The concrete regression-test contradiction described above remains to be fixed and verified. Do not claim the store is complete, ready to merge, or production-ready until the stated evidence exists.
