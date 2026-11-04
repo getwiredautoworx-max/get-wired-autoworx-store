@@ -49,12 +49,12 @@ jobs:
             if(JSON.stringify(roots)!==JSON.stringify(expected))throw new Error('Three approved category roots mismatch: '+JSON.stringify(roots));
             const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
             if(!checkoutSafe)throw new Error('Checkout control is visible in owner preview');
+            const carAudioArt=frame.locator('.audioFourTile img[alt="Sony XM-5ES car audio amplifier"]');
+            await carAudioArt.waitFor({state:'visible',timeout:15000});
+            const carAudioArtLoaded=await carAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+            if(!carAudioArtLoaded)throw new Error('Homepage Car Audio & Video product image did not load');
             await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
             await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
-            const carAudioArt=frame.locator('.catPhoto[alt="Audio, Entertainment & Music category artwork"]');
-            await carAudioArt.waitFor({state:'visible',timeout:15000});
-            const carAudioArtLoaded=await carAudioArt.evaluate(img=>img.complete&&img.naturalWidth>0);
-            if(!carAudioArtLoaded)throw new Error('Car Audio & Video category image did not load');
             await frame.getByRole('link',{name:/Car Audio & Video/}).evaluate(el=>el.click());
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             const carAudioDepartmentImage=frame.locator('.audioTile button').filter({hasText:/Car Audio & Video/}).locator('img.departmentImage');
@@ -207,6 +207,10 @@ jobs:
               if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted preview category roots mismatch: '+JSON.stringify(roots));
               const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
               if(!checkoutSafe) throw new Error('Checkout is visible in hosted owner preview');
+              const hostedCarAudioArt=frame.locator('.audioFourTile img[alt="Sony XM-5ES car audio amplifier"]');
+              await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
+              const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!hostedCarAudioArtLoaded)throw new Error('Hosted homepage Car Audio & Video product image did not load');
               await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
               try {
                 await page.waitForFunction(()=>{const f=document.querySelector('#store');const w=f?.contentDocument?.querySelector('#categoryGrid > .catWrap');return !!w?.classList.contains('open')},{timeout:10000});
@@ -217,10 +221,6 @@ jobs:
               }
               console.log('HOSTED_AFTER_AUDIO_ROOT',JSON.stringify({text:await frame.locator('#categoryGrid').innerText()}));
               await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
-              const hostedCarAudioArt=frame.locator('.catPhoto[alt="Audio, Entertainment & Music category artwork"]');
-              await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
-              const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(img=>img.complete&&img.naturalWidth>0);
-              if(!hostedCarAudioArtLoaded)throw new Error('Hosted Car Audio & Video category image did not load');
               const hostedCategoryGrid=frame.locator('#categoryGrid');
               const hostedAudioLinks=hostedCategoryGrid.locator('a.catalogueLink[href*="preview-audio.html"]');
               const hostedAudioLinkCount=await hostedAudioLinks.count();
