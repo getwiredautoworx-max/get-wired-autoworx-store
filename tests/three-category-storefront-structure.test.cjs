@@ -104,7 +104,7 @@ const expectedAsc = [
 assert.deepEqual(asc.catalogues.map(c => [c.name,c.root]), expectedAsc);
 assert.ok(asc.catalogues.every(c => !Object.hasOwn(c,'source_pdf')), 'supplier source PDF paths must not be present in public preview data');
 assert.ok(home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Car Care & Accessories','Car Mats')"));
-assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio','Aerials')"));
+assert.ok(!home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio','Aerials')"), 'Aerials must be reached through Accessories, not a direct Car Audio catalogue button');
 assert.ok(!home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Auto Electrical Parts & Spares')"));
 assert.ok(!home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Auto Electrical Parts & Spares','Car Mats')"));
 assert.ok(!ascPage.includes('catalogue.source_pdf') && !ascPage.includes('View complete original'), 'supplier source PDFs must not be linked from public preview');
