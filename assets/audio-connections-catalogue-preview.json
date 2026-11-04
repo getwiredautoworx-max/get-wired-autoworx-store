@@ -4,7 +4,7 @@
   "previewRecordCount": 66,
   "status": "PREVIEW_ONLY_NOT_LIVE_NO_STOCK_SYNC_NO_SUPPLIER_ACTIVATION",
   "availabilityNote": "Neither PDF provides current stock availability. No stock quantity or in-stock claim is published.",
-  "imageNote": "Four official Sony image-source URLs are captured as owner-review candidates; none has been downloaded or approved for customer publication. Other models have no approved exact-model image source. Records without an image render without a placeholder.",
+  "imageNote": "Five records currently carry image URLs. Two exact-model Sony direct image sources (XS-W104ES and XM-5ES) are owner-authorized for use, but image binaries have not been retrieved and remote load/render verification remains pending. Three other official Sony image URLs remain review candidates only. The remaining 61 records have no image URL; no placeholders are used.",
   "excludedRows": [
     {
       "model": "XS-690ES",
@@ -1541,7 +1541,8 @@
       "ac-025: SSW-B12-2800 official Starsound page confirms 12-inch 4-ohm enclosure model but publishes no RMS rating; source price list 300 W RMS vs third-party inventory 250 W RMS / 600 W peak.",
       "ac-032: SSA-ATOM-13500.1 official Starsound page lists 500 W RMS @ 1 Ω / 250 W @ 2 Ω, while two South African retailer listings report 520 / 380 / 230 W RMS at 1 / 2 / 4 Ω.",
       "ac-041: SSA-M5-80.600 official Starsound page contains two conflicting RMS tables; a retailer matches the first table. Manufacturer clarification required.",
-      "ac-044: SSS-6501PRO retailer lists 250 W RMS, but another listing describes 250 W per pair; whether the 250 W rating applies per driver or pair needs confirmation."
+      "ac-044: SSS-6501PRO retailer lists 250 W RMS, but another listing describes 250 W per pair; whether the 250 W rating applies per driver or pair needs confirmation.",
+      "ac-038: SSA-HORNET-7600.4 official page, supplier price-list label and retailer listings conflict on RMS power and impedance/bridged basis; supplier confirmation required."
     ],
     "evidence": {
       "ac-023": "https://www.autostyle.co.za/product/starsound-ssw-8-8000d2-8-8000w-dvc-2ohm-subwoofer/",
@@ -1551,7 +1552,7 @@
   },
   "starsoundSpecificationReconciliation": {
     "checkedAt": "2026-11-04",
-    "status": "POWER_SPEC_REVIEW_UPDATED; FIVE_RECORDS_REMAIN_HELD_FOR_CONFLICT_OR_UNIT_BASIS_CONFIRMATION",
+    "status": "POWER_SPEC_REVIEW_UPDATED; SIX_RECORDS_REMAIN_HELD_FOR_CONFLICT_OR_UNIT_BASIS_CONFIRMATION",
     "records": [
       {
         "id": "ac-032",
@@ -1574,7 +1575,7 @@
       {
         "id": "ac-038",
         "model": "SSA-HORNET-7600.4",
-        "status": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED",
+        "status": "OFFICIAL_VS_SUPPLIER_AND_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
         "source": "https://starsound.co.za/product/ssa-hornet-7600-4/"
       },
       {
@@ -1592,7 +1593,7 @@
       {
         "id": "ac-041",
         "model": "SSA-M5-80.600",
-        "status": "RETAILER_SPECIFICATION_CROSSCHECK",
+        "status": "OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
         "source": "https://www.autostyle.co.za/product/starsound-ssa-m5-80-600-5-channel-high-fidelity-class-d-amplifier/"
       },
       {
@@ -1607,7 +1608,8 @@
       "ac-025",
       "ac-032",
       "ac-041",
-      "ac-044"
+      "ac-044",
+      "ac-038"
     ]
   },
   "powerSpecificationReconciliation": {
