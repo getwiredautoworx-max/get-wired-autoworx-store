@@ -1103,7 +1103,7 @@
       "indicativePrice": 372.6,
       "hasStock": false,
       "modelNumber": "SSS-6903",
-      "description": "6×9-inch 3-way speaker, 4 Ω per Starsound official page. Power rating is not stated on the official page; source price list states 600 W while a South African model inventory lists 500 W. Do not publish a definitive wattage until manufacturer/supplier confirms.",
+      "description": "6×9-inch 3-way speaker, 4 Ω per Starsound official page. Specialist South African retailer exact-model specification confirms 60 W RMS and 600 W maximum power; sold in pairs.",
       "manufacturerPage": "https://starsound.co.za/product/sss-6903/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1113,9 +1113,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "specificationSourceUrl": "https://starsound.co.za/product/sss-6903/",
-      "specificationStatus": "POWER_RATING_CONFLICT_600W_SOURCE_VS_500W_RETAILER; OFFICIAL_POWER_NOT_PUBLISHED",
-      "specificationSource": "Starsound official product page plus South African model inventory"
+      "specificationSourceUrl": "https://soundtech.co.za/products/starsound-6x9-3-way-600w-speaker",
+      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK_RMS_AND_MAX_CONFIRMED",
+      "specificationSource": "Starsound official product page plus specialist South African retailer exact-model specification"
     },
     {
       "id": "ac-048",
@@ -1533,8 +1533,7 @@
     "unresolvedSpecification": [
       "ac-021: SSW-12-6300 power conflicts: source price list 300 W without rating basis; retailer 500 W RMS vs another inventory 350 W RMS; manufacturer page retrieval timed out.",
       "ac-025: SSW-B12-2800 official Starsound page confirms 12-inch 4-ohm enclosure model but publishes no RMS rating; source price list 300 W RMS vs third-party inventory 250 W RMS / 600 W peak.",
-      "ac-044: SSS-6501PRO retailer lists 250 W RMS, but another listing describes 250 W per pair; whether the 250 W rating applies per driver or pair needs confirmation.",
-      "ac-047: SSS-6903 official Starsound page confirms 6×9-inch, 4-ohm speaker but no power; source price list 600 W vs third-party inventory 500 W."
+      "ac-044: SSS-6501PRO retailer lists 250 W RMS, but another listing describes 250 W per pair; whether the 250 W rating applies per driver or pair needs confirmation."
     ],
     "evidence": {
       "ac-023": "https://www.autostyle.co.za/product/starsound-ssw-8-8000d2-8-8000w-dvc-2ohm-subwoofer/",
@@ -1544,7 +1543,7 @@
   },
   "starsoundSpecificationReconciliation": {
     "checkedAt": "2026-11-04",
-    "status": "POWER_SPEC_REVIEW_UPDATED; FOUR_RECORDS_REMAIN_HELD_FOR_CONFLICT_OR_UNIT_BASIS_CONFIRMATION",
+    "status": "POWER_SPEC_REVIEW_UPDATED; THREE_RECORDS_REMAIN_HELD_FOR_CONFLICT_OR_UNIT_BASIS_CONFIRMATION",
     "records": [
       {
         "id": "ac-032",
@@ -1598,8 +1597,7 @@
     "unresolved": [
       "ac-021",
       "ac-025",
-      "ac-044",
-      "ac-047"
+      "ac-044"
     ]
   }
 }
