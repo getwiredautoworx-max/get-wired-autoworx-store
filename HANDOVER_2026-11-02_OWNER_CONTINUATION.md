@@ -1512,3 +1512,16 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Updated the ASC extraction README and pilot README/report to reflect the 60-page render set. Latest pilot staging branch head: `e16093b7365a62d76d338b14f7f67c785a8168c3`.
 - Next work: use the remaining source-page renders to resolve the 63 quarantined OCR candidates and build additional review-only product batches. Preserve exact supplier SKU, printed name, fitment/specifications and source page; keep unknown prices/stock blank and keep all records unapproved/unimported.
 - No buyer's guides or older ASC catalogues are in the six-file intake set. No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
+
+
+## 2026-11-04 — ASC AERIALS CATEGORY BATCH COMPLETE / OCR QUARANTINE REVIEWED
+
+- Completed a review-only extraction of all **78 Aerials products** from `ASC- Aerials (1).pdf`, source pages 3–7. File: `catalogue-review/asc-catalogue-extraction/asc-aerials-78-product-review-only.csv` on `staging/asc-50-product-sku-proposal-2026-11-04`.
+- Aerials section counts: Vehicle-Specific 23; Universal/Roof/Pillar Mount 17; Electronic/Automatic/Amplified 6; Shark Fin/Imitation 13; Aerial Masts/Bases/Mounts 8; Extensions/Adaptors/Plugs 11. Total 78.
+- All 78 supplier SKUs and product captions were visually checked against source-page renders; 78 unique supplier SKUs, 78 unique proposed `GW-ASC-` SKUs, zero format mismatches. All mapped to Car Audio → Accessories → Aerials; catalogue section preserved separately.
+- Eight Aerials records overlap with the original 50-row cross-family pilot; 70 are additional Aerials records. All 78 remain no-price/no-stock/review-only/not imported. The `MA648` source label is visibly truncated at “ANGLE MO”; retain the visible wording and confirm the remainder before final description approval.
+- All 63 OCR candidate tokens in the quarantine CSV have now been visually checked against rendered source pages. All 63 are non-SKU OCR fragments, section counts, fitment/specification/dimension text, OE references, or the `BA15S` bulb-base designation. None received a proposed GW SKU; none is a new product record. All remain quarantined/no-import as OCR noise, not unresolved product SKUs.
+- Full-page renders for all 60 product pages across the six PDFs are available in `catalogue-review/asc/source-pages/` on the isolated cleanup branch; latest cleanup branch head `78958d90f4c6cc0783611d0021eef483037299d8`.
+- Updated ASC extraction README and validation report. Latest pilot staging branch head `0bd122d17f66617c15d047ea0393038d74199e97`.
+- Remaining work: process the other five retained ASC catalogues (Sensors, Switches, Globes, Car Mats, Fuel Pumps) into similarly source-verified review-only product batches, preserving supplier SKU, product name, fitment/specifications and source page. No prices or stock are supplied by these PDFs.
+- No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
