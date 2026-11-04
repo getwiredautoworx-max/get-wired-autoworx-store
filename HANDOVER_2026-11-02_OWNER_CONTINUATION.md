@@ -1647,3 +1647,73 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Full hosted owner-preview QA (root navigation, all four audio collage images, populated Sony/brand/component flow, hidden checkout/write-block guard, and desktop/mobile viewport) and owner real-phone acceptance remain outstanding until the new exact-SHA deploy run can be read and verified. The separate accessory route browser test is not a substitute for the full owner-preview test.
 - No PR merge, production deployment, Axxess upload, DNS change, Supabase/live data write, live catalogue/price/stock/category/active-flag change, supplier publication, payment/banking activation or checkout go-live occurred. Functional checkout/payment testing remains deferred until owner banking details are supplied. Production remains HOLD.
 - Continue on PR #176 only. Next required evidence: current deployment workflow run and job result for `9781193423021af05f167c10ac89e11c122839b9`; exact SHA marker; hosted mobile/desktop browser result; then owner phone acceptance. Do not merge until all gates and owner acceptance pass.
+
+
+
+## 2026-11-04 — OWNER-APPROVED BUILD METHOD AND DELIVERY STANDARD
+
+The owner has explicitly agreed that the following is the definitive method for completing Get Wired AutoWorx. Treat this as the project build standard for all future work. Do not revert to disconnected repair branches, competing storefront implementations, repeated status-only updates, or speculative rebuilds. Continue from the consolidated candidate and reuse verified existing work.
+
+### Product goal
+Deliver one consolidated, populated, professional, customer-facing Get Wired AutoWorx storefront preview that the owner can inspect on their Android phone and desktop, approve, and later authorise for launch. The approved existing storefront design is the visual source of truth. Do not redesign it unnecessarily.
+
+### Fixed build approach
+1. **One storefront / one source of truth**
+   - Continue from consolidated PR #176 unless evidence proves it cannot safely serve as the integration candidate.
+   - Keep one agreed storefront shell, consistent navigation, typography, colours, buttons, footer and responsive behaviour across homepage, departments, categories and product pages.
+   - Reuse current GitHub, Cloudflare Pages and Supabase infrastructure where suitable; avoid new paid services and unnecessary build/deploy systems.
+   - Keep production isolated. Staging only.
+
+2. **Complete eight-category taxonomy**
+   - Auto Electrical Spares
+   - Vehicle Security
+   - Car Audio & Entertainment
+   - Automotive Accessories
+   - Marine Spares & Accessories
+   - Tools, Hardware & Consumables
+   - Camping, Leisure & Outdoors (including 4x4 Outdoor)
+   - Trailer & Canopy
+   - Every category and subcategory must navigate to the correct products or show an honest, useful empty state. No dead buttons, fake counts or placeholder catalogue pages.
+   - Vehicle search is for vehicle-specific products. Preserve the required terms acceptance and customer login before checkout.
+
+3. **One reconciled product catalogue**
+   - Standardise each product with a unique Get Wired SKU, accurate title/description, approved product image, correct category/subcategory, price or quote-only status, availability/special-order status, and vehicle fitment where relevant.
+   - Reconcile catalogue rows, price sheets and image assets by exact model/SKU evidence. Flag ambiguity; do not guess, fuzzy-match unrelated products, invent missing catalogue items or expose supplier SKUs.
+   - Keep supplier identity and supplier-only source material internal.
+   - Integrate approved Planetworld and Audio Connections catalogue data into the customer-facing audio structure; preserve the agreed RRP/dealer-price rules and mark unpriced/special-order items with the agreed Price on Request / Price on Application wording and exchange-rate explanation.
+   - Use permitted Electro-city catalogue information/images without publishing restricted supplier SKU numbers; compare Caelex offers on compatibility, cost, margin and delivery.
+   - Keep ASC as a separate, explicitly review-gated integration workstream. Its extracted rows remain review-only until owner approvals, current pricing/availability and image permissions are established. Do not let ASC block the non-ASC consolidated preview or silently promote review records into live products.
+
+4. **Customer journey**
+   - Implement homepage → category/subcategory → product detail → basket → terms acceptance → customer login → order submission/confirmation.
+   - Prepare Direct EFT and WhatsApp order communication, but do not activate banking/payment credentials or live payment processing until the owner supplies details and explicitly approves.
+   - PayFast remains subject to provider approval. Checkout/payment functional testing that depends on banking details may be deferred; test all independent navigation, catalogue, basket and non-payment behaviour now.
+   - Preserve operating policies: pickup by appointment only; no walk-ins; no COD; pickup only after payment and notification; returns address remains private and is supplied only in writing if a return is required.
+
+5. **Incremental evidence-based QA**
+   - Test each integrated section as it is completed; do not leave all functional discovery until the end.
+   - Validate all category/subcategory/product routes, button actions, product images, mobile readability, contrast, no horizontal overflow, price/POA display, supplier privacy, SKU exposure, and honest empty states.
+   - Run exact-head regression, security, package/build and public-SKU checks.
+   - Verify the actual isolated Cloudflare Pages deployment and confirm its deployed build marker equals the exact PR head SHA. Then run hosted desktop and mobile browser checks against that deployment.
+   - Owner must receive the actual verified preview and provide real-phone acceptance. A passing CI run or successful deploy action alone is not preview acceptance.
+
+6. **Delivery and release discipline**
+   - The deliverable is one working, populated staging URL tied to a verified exact commit, not a branch, screenshot, progress report or promise.
+   - Keep PR #176 draft/unmerged until exact-head checks, deployed-SHA verification, hosted desktop/mobile QA and owner acceptance are all evidenced.
+   - Production remains HOLD. No merge, production deploy, Axxess upload, DNS change, live Supabase writes/migrations, live product/price/stock/category/activation changes, supplier publication, banking/payment activation or checkout go-live without the owner's explicit approval.
+   - Update this handover after meaningful work with exact SHA, run/job IDs, evidence, failures, blockers and next action. Read back the updated file to verify. Do not recreate deleted legacy handover files.
+
+### Agreed planning estimate (not a guarantee)
+On 2026-11-04 the owner asked for a completion estimate and agreed to this build method. Current planning estimate: **3–5 focused working days** to produce a consolidated, populated, owner-reviewable staging preview, assuming existing catalogue files/assets and infrastructure are usable and no major new blockers emerge. Indicative allocation:
+- 0.5 day: audit current candidate and consolidate integration path;
+- 1–2 days: catalogue integration and reconciliation;
+- 0.5–1 day: categories, product presentation and navigation;
+- 0.5–1 day: desktop/mobile and regression repairs;
+- 0.5 day: exact-commit deployment and hosted preview verification.
+These ranges overlap where practical and are estimates, not a delivery guarantee. Payment-provider approval, owner banking details, owner acceptance, and the separately gated ASC approval/import work are outside this preview estimate. Re-estimate promptly if actual repository evidence materially changes the scope.
+
+### Current baseline at time this standard was added
+- PR #176: OPEN / DRAFT / UNMERGED; branch `preview/integrated-storefront-2026-11-04`; base `main` at `8a0695a6d746b886be865ffa950a11011b054e2f`; latest metadata head observed `7f2ef608ed0c93d6d2dddf62ffc611ccfd76ea84`.
+- PR #176 metadata: 42 commits, 40 changed files, 39,400 additions, 1,685 deletions; mergeable=true at read time. This is candidate metadata, not proof of readiness.
+- Latest exact-head deployment marker and hosted desktop/mobile acceptance for `7f2ef608ed0c93d6d2dddf62ffc611ccfd76ea84` were not established by this handover update. Do not present the preview as verified or merge based on older-head evidence.
+- Production remains HOLD; no production action is authorised by this methodology agreement.
