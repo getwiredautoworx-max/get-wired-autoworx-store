@@ -64,6 +64,12 @@ jobs:
           echo "ASC_DEFERRED_SOURCE_EXCLUSION_PASS"
       - name: Run Planetworld and Audio Connections regression
         run: node tests/audio-catalogue-preview.test.cjs
+      - name: Reconcile Planetworld fitment candidates to original workbook rows (read-only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet openpyxl==3.1.5
+          python scripts/reconcile-planetworld-fitment-source-rows.py
       - name: Run public SKU exposure audit
         run: python3 scripts/public-sku-audit.py
       - name: Verify preview-only allowlist
