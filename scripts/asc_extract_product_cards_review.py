@@ -93,9 +93,12 @@ for filename, expected_pages, expected_lines, expected_sections in EXPECTED:
         x_centres = sorted({int(x + w / 2) for x, y, w, h in boxes})
         y_centres = sorted({int(y + h / 2) for x, y, w, h in boxes})
         def axis_edges(centres: list[int], limit: int) -> dict[int, tuple[int, int]]:
-            if len(centres) == 1:
-                return {centres[0]: (0, limit)}
+            if len(centres) <= 1:
+                return {centres[0]: (0, limit)} if centres else {}
             gaps = np.diff(centres)
+            gaps = gaps[gaps > 0]
+            if len(gaps) == 0:
+                return {centre: (0, limit) for centre in centres}
             typical = int(np.median(gaps))
             edges = {}
             for i, centre in enumerate(centres):
