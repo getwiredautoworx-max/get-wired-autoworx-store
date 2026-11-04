@@ -1452,3 +1452,15 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Customer-facing wording may state: **“Special Order — Price On Application. Final price is confirmed at the time of enquiry and may vary with currency exchange rates.”** Where the existing exact store-wide request label is required, retain **“Price On Request Due to Stock Availability”** and add the special-order/currency explanation so customers understand why the price is not fixed.
 - This special-order rule applies only to the Planetworld/Audio Connections products marked POA/POR; it does not suppress valid numeric prices on their other products. ASC remains unpriced in its catalogues and uses **“Price On Request Due to Stock Availability”** until a price list is supplied and approved.
 - Keep supplier costs and supplier identities private. No unapproved price or stock writes, and production remains HOLD.
+
+
+## 2026-11-04 — OWNER DIRECTIVE: ASC-ONLY STORE RELOAD / BUYER-GUIDE EXCLUSION
+
+- Owner instruction: this is a store reload. Only the six currently selected ASC product-category PDFs are to remain in the active ASC catalogue intake set. All buyer's guides are excluded from the reload and must not be processed into products, categories, prices, stock, or images.
+- The six retained ASC PDFs are: `ASC- Aerials (1).pdf`, `ASC- Automotive Sensors (1).pdf`, `ASC- Automotive Switches (1).pdf`, `ASC- Automotive globes (1).pdf`, `ASC- Car Mats (1).pdf`, and `ASC- Fuel Pumps (1).pdf`.
+- Removed superseded ASC catalogue PDFs from branch `cleanup/asc-catalogues-stock-reset-2026-10-30`; verified branch head `589fb68e91d4dafa1d51b5d82465887ddc5d2124` contains exactly those six ASC PDFs and no other ASC PDFs.
+- Removed buyer's-guide PDFs from `audit/asc-catalogue-cleanup`; verified head `693a05aa709e1093a7fcd188ce0c70ac5375b620` contains no buyer's-guide files.
+- Removed buyer's-guide PDFs and extracted TXT files from `audit/buyer-guide-extraction`; verified head `fb0173e248bfd8a0d7a65ff897ac2c241336d5d1` contains no buyer's-guide files or extracts. The workflow source file is not a buyer's guide and was retained.
+- Verified `main` contains exactly the six selected ASC PDFs under `suppliers/ASC/` and no buyer's guides. Verified PR #168 head `2538b40d447c593c2767e1494961b1bade44b330` also contains exactly those six ASC PDFs and no buyer's guides; PR #168 was not modified.
+- This is deletion from the affected branch tips using Git commits. **It is not a Git-history purge**: earlier commits may still contain the deleted binary/text files. Do not describe the files as erased from all Git history or backups. A history rewrite/force-push across all refs would be a separate destructive operation and must be planned carefully.
+- No buyer's guides are authorised for this reload. Do not re-upload, re-import, OCR, or extract them. Current ASC PDFs remain review inputs only; no live Supabase import, production deployment, pricing/stock writes, payment activation, Axxess upload, or DNS changes are authorised.
