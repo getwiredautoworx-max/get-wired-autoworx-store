@@ -1040,3 +1040,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - **IN PROGRESS:** exact-head run **41793496405** on `901c6655` is at hosted mobile/desktop browser QA.
 - **BLOCKED:** current-main Planetworld audit requires owner UI dispatch; latest branch audit artifact upload is blocked by GitHub Actions artifact storage quota; current supplier prices/availability lack fresh supplier confirmation; PR #170 still needs hosted browser QA and exact-head preview verification.
 - No PR merge, supplier XLSX modification, supplier-data import/publication, live product/price/stock/category/active-flag change, Supabase write, production deployment, Axxess/DNS/payment change or deployment-job rerun was performed.
+
+
+## 2026-11-04 09:38 SAST — PR #170 HOSTED BROWSER QA FAILURE
+- Latest exact-head run **41793496405**, job **126452057799**, on PR #170 head `901c6655dc9489987d8bc9e56d409cc127f3cc3d`, completed **FAILURE**. Runner, three-root invariant, build, ASC source exclusion, Planetworld/Audio Connections regression, public-SKU audit and preview-only allowlist all passed.
+- Mobile/desktop browser QA failed at the Car Audio catalogue-link click. Playwright found the link visible/enabled, but the adjacent **Car Care & Accessories** root button intercepted pointer events; retries then saw the element become unstable/detached. The exact tested head was not deployed; deployment step skipped. No preview URL exists for this head.
+- This is now the primary storefront blocker on PR #170: inspect the category-grid DOM/CSS and correct sibling stacking/flow so the expanded Car Audio child link remains clickable without an adjacent root card overlay. Do not weaken the browser assertion with `force:true` or treat visibility alone as a pass.
+- PR #170 remains open/draft/unmerged/mergeable=false. No new workflow is active at this checkpoint. The APX 690 record on head `901c6655` still contains the older failing image URL; the official Audison direct-image replacement found in this run has not yet been applied. Make both fixes in one commit after inspecting the current CSS, then verify a single exact-head run.
+- No price, stock, SKU, category/product row, active flag, live data, supplier workbook, production, Axxess, DNS, payment or deployment change was made.
