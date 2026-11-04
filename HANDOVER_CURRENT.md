@@ -3086,3 +3086,9 @@ Read-only audit of the sanitized JSON used by PR #139:
 - Source evidence: official Starsound product page https://starsound.co.za/product/ssa-hornet-7600-4/ ; current manufacturer image asset above. The image is not approved for production/publication.
 - Existing PR #171 remains the separately verified category repair (exact-head deployment and hosted desktop/mobile QA passed on SHA 685139bb238c781a5046f9c637b7c16e174804b4). PR #171 is open/non-draft/mergeable, targeting PR #168's agent-owned branch. PR #168 remains draft/open/unmerged and non-mergeable; do not merge PR #171 without the required owner/assigned-agent integration step.
 - Production remains HOLD. No banking/payment, supplier activation, live product/price/stock/category write, Supabase mutation, Axxess upload, DNS change, or production deployment occurred.
+
+
+### PR #174 follow-up verification correction
+- Refreshed PR #174 metadata after creation: GitHub now reports OPEN / DRAFT / MERGEABLE, base SHA `685139bb238c781a5046f9c637b7c16e174804b4`, head SHA `27e12182d4599a947307663e4e04b19eac7ba9b2`.
+- Ran focused read-back assertions against the exact PR head: JSON parses; 66 Audio Connections preview records retained; exact SSA-HORNET-7600.4 identity; image URL is on official Starsound host; image remains candidate-only/pending; record remains preview-only; no stock claim; quote-on-request retained; supplier/manufacturer discrepancy retained. All 9 assertions passed.
+- No GitHub Actions workflow run is associated with this commit yet. This is focused data validation only, not Node regression, package, deployment or browser QA. PR #174 remains DRAFT and unmerged.
