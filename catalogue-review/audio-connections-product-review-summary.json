@@ -21,7 +21,7 @@
     "preview_rows": 66,
     "explicit_supplier_power_values_in_preview": 15,
     "ambiguous_or_incomplete_source_power_values": 6,
-    "rule": "The 15 explicit values are preserved. Seven incomplete/ambiguous strings are labelled for supplier confirmation; no missing digits or RMS/peak basis is guessed.",
+    "rule": "The 15 explicit source values are preserved. Six incomplete/ambiguous strings remain labelled for supplier confirmation; the SSA-ATOM13800.4 nominal 100 W RMS/channel ×4 figure is owner-confirmed and the manufacturer's impedance-specific output table is recorded separately.",
     "sony_records_with_supplier_power_specifications": 13,
     "total_preview_records_with_reconciled_source_power_data": 28,
     "owner_confirmed_nominal_specifications": [
