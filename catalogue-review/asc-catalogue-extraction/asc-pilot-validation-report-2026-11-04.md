@@ -61,3 +61,13 @@ The 50-row pilot has passed structural checks for row completeness, unique suppl
 **Not yet passed:** approval of product descriptions/fitment/specifications beyond the 50-row source check, watermark/asset rights and image suitability, current ASC dealer pricing, stock/availability confirmation, and owner approval.
 
 No Supabase writes, product imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes were performed.
+
+
+## Subsequent ASC review progress — Aerials and OCR candidate disposition
+
+- Completed a separate 78-product Aerials review-only batch from pages 3–7 of `ASC- Aerials (1).pdf`. The batch includes the eight Aerials pilot rows and 70 additional products.
+- Aerials section counts: Vehicle-Specific Aerials 23; Universal/Roof/Pillar Mount Aerials 17; Electronic/Automatic/Amplified Aerials 6; Shark Fin/Imitation Aerials 13; Aerial Masts/Bases/Mounts 8; Extensions/Adaptors/Plugs 11.
+- 78 unique ASC supplier SKUs, 78 unique proposed GW SKUs, zero SKU-format mismatches. All 78 records map to Car Audio → Accessories → Aerials, with catalogue section retained separately. All remain no-price/no-stock/review-only/not imported.
+- The printed label for `MA648` appears truncated at “ANGLE MO”; that visible wording is preserved and flagged for confirmation rather than guessed.
+- All 63 OCR candidate tokens in the separate quarantine CSV have now been visually checked against the rendered source pages. All 63 are non-SKU fragments or references (including section counts, fitment/specification/dimension text, OE references, and the `BA15S` bulb-base designation). None was assigned a GW SKU or imported.
+- Remaining catalogue work: extract and visually verify the non-Aerials products in the five other retained ASC PDFs. The full set of 60 product-page renders is available in the isolated cleanup branch.
