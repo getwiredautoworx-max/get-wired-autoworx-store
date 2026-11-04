@@ -4,3 +4,7 @@ Purpose: isolated non-production Pages preview for PR #176
 Source branch: preview/integrated-storefront-2026-11-04
 Build must use the exact triggering commit SHA.
 Production deployment, Axxess upload, DNS, Supabase writes, payment activation and live catalogue changes are prohibited.
+
+
+Clean-candidate package QA enabled on branch push — 2026-11-04.
+The isolated package QA now runs directly on the clean integration branch and excludes the deferred ASC-only test while continuing to verify the seven approved preview routes, private supplier sources, catalogue regressions and SKU exposure. Trigger exact-head deployment and hosted browser QA for this revision. Production HOLD.
