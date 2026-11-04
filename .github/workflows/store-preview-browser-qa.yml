@@ -190,15 +190,13 @@ jobs:
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
               const previewBases=[
-                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev',
-                'https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev'
-                ,'https://integrated-storefront-2026-11-04.get-wired-autoworx-store.pages.dev'
+                'https://integrated-storefront-2026-11-04.get-wired-autoworx-store.pages.dev'
               ];
               let previewBase=null;
               let deployedBuild=null;
-              for(let attempt=0;attempt<36;attempt++){
+              for(let attempt=0;attempt<24;attempt++){
                 for(const candidate of previewBases){
-                  const response=await page.request.get(candidate+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
+                  const response=await page.request.get(candidate+'/qa-build-result.json',{timeout:8000,headers:{'cache-control':'no-cache'}});
                   if(response.ok()){
                     let candidateBuild=null;
                     try { candidateBuild=await response.json(); } catch {}
