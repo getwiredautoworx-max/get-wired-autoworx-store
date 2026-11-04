@@ -19,7 +19,8 @@ No product, price, stock, supplier activation, or database records are created o
 ## Pilot extraction status
 
 - The 50-row cross-family pilot is retained as a review-only validation sample.
-- A complete **78-product Aerials review-only batch** has now been transcribed and visually checked against pages 3–7 of the ASC Aerials PDF. The batch includes the eight Aerials pilot rows plus 70 additional records. File: `asc-aerials-78-product-review-only.csv`.
+- A complete **78-product Aerials review-only batch** has been transcribed and visually checked against pages 3–7 of the ASC Aerials PDF. It includes eight pilot rows plus 70 additional records. File: `asc-aerials-78-product-review-only.csv`.
+- A complete **106-product Automotive Sensors review-only batch** has now been transcribed and visually checked against pages 3–9 of the ASC Automotive Sensors PDF. It includes nine pilot rows plus 97 additional records. File: `asc-automotive-sensors-106-product-review-only.csv`.
 - All 50 supplier SKUs and all 50 proposed Get Wired SKUs are unique within this pilot.
 - The proposed SKU pattern is `GW-ASC-<normalised ASC supplier SKU>`; the supplier SKU is retained separately.
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
@@ -38,6 +39,14 @@ No product, price, stock, supplier activation, or database records are created o
 - All rows map to Car Audio → Accessories → Aerials, with the catalogue section preserved separately.
 - No price or stock data is supplied; all rows remain review-only and unimported.
 - One printed description (`MA648`) appears truncated at “ANGLE MO”; its visible wording is retained and the remainder is flagged for confirmation.
+
+## Completed category batch: Automotive Sensors
+
+- 106 products visually verified across source pages 3–9.
+- Section counts: Crankshaft & Camshaft Position Sensors 16; Throttle Position Sensors 4; Air Flow & Air Mass Sensors 6; MAP/Manifold/Intake Air Sensors 10; Oxygen (Lambda) Sensors 8; Knock Sensors 3; Speed & ABS Sensors 11; Temperature Senders & Sensors 36; Fuel, Oil & Level Sensors 5; Reverse & Parking Sensors 4; Other Engine Management Sensors 3.
+- 106 unique ASC supplier SKUs and 106 unique proposed `GW-ASC-` SKUs; zero format mismatches.
+- All rows map to Auto Electrical Spares & Parts → Automotive Sensors; catalogue section retained separately.
+- All remain no-price/no-stock/review-only/not imported. Two fitment captions are visibly clipped (`S5-16053`, `S5-16087`) and are flagged for confirmation rather than completed by inference.
 
 ## Source-page visual evidence
 
