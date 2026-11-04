@@ -115,6 +115,9 @@ print(f"unique_code_and_source_row={len(unique_records)}")
 print(f"held_or_multiple_matches={len(held_records)}")
 print(f"missing_workbooks={len(missing_workbooks)}")
 print(f"report={OUTPUT.relative_to(ROOT)}")
+for row in results:
+    if row["record_resolution"] != "UNIQUE_CODE_AND_SOURCE_ROW":
+        print("REVIEW_ROW", row["preview_record_id"], row["candidate_supplier_sku"], row["sheet"], row["source_row"], row["record_resolution"])
 if missing_workbooks:
     print("MISSING_WORKBOOKS=" + ";".join(sorted(set(missing_workbooks))))
     sys.exit(1)
