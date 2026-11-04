@@ -39,7 +39,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-002",
@@ -64,7 +66,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-003",
@@ -89,7 +93,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-004",
@@ -114,7 +120,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
       "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-005",
@@ -139,7 +147,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
       "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-006",
@@ -164,7 +174,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
       "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-007",
@@ -189,7 +201,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-008",
@@ -214,7 +228,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-009",
@@ -239,7 +255,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-010",
@@ -264,7 +282,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-011",
@@ -289,7 +309,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "OFFICIAL_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
       "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-012",
@@ -314,7 +336,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-013",
@@ -339,7 +363,9 @@
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "EXACT_OFFICIAL_SONY_MODEL_OR_SPECIFICATIONS_PAGE_FOUND",
+      "manufacturerEvidenceNote": "Official Sony model/specifications URL recorded for this exact source model. This confirms manufacturer reference only; it does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-014",
@@ -387,7 +413,9 @@
       "brandNote": "Official product page identifies SSUSB-230BTCE; supplier source uses USB230 EXT MIC. Alias/variant review remains open.",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "imageApprovalStatus": "NO_APPROVED_IMAGE_SOURCE",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE_FOUND_EXACT_SOURCE_MODEL_MATCH_REQUIRES_VARIANT_REVIEW",
+      "manufacturerEvidenceNote": "Official manufacturer product-page URL recorded; source-to-page model/variant reconciliation remains subject to the pilot review. This does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-016",
@@ -410,7 +438,9 @@
       "brandNote": "",
       "imageStatus": "OFFICIAL_MANUFACTURER_IMAGE_URL_REVIEW_CANDIDATE_NOT_APPROVED",
       "imageApprovalStatus": "REVIEW_CANDIDATE_NOT_APPROVED",
-      "rootButton": "Car Audio / Home Entertainment / Lifestyle"
+      "rootButton": "Car Audio / Home Entertainment / Lifestyle",
+      "manufacturerMatchStatus": "OFFICIAL_MANUFACTURER_PRODUCT_PAGE_FOUND_EXACT_SOURCE_MODEL_MATCH_REQUIRES_VARIANT_REVIEW",
+      "manufacturerEvidenceNote": "Official manufacturer product-page URL recorded; source-to-page model/variant reconciliation remains subject to the pilot review. This does not approve image redistribution, price, availability or publication."
     },
     {
       "id": "ac-017",
