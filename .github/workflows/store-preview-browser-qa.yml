@@ -2,6 +2,9 @@ name: Owner Store Preview Browser QA
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - integration/three-category-catalogue-preview-final-2026-11-03
 
 permissions:
   contents: read
