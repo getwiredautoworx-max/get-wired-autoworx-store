@@ -23,11 +23,15 @@ No product, price, stock, supplier activation, or database records are created o
 - The proposed SKU pattern is `GW-ASC-<normalised ASC supplier SKU>`; the supplier SKU is retained separately.
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
 - The pilot rows are marked as visually checked on their source pages, but remain **proposed / not approved / not imported**.
-- All 50 candidate image crops were visually inspected. Their product captions/images are consistent with the pilot descriptions at a broad visual level. The crops remain on the separate PR #168 preview branch and are not copied into this review branch.
-- ASC watermarking is visible on the crop images. Exact supplier-SKU-to-original-source-page pairing remains a separate verification gate; the crop cards do not consistently expose the supplier code.
-- The printed brand/wording for globe SKUs H1865W-H, H1960/55W-H and H355W-H is visually ambiguous between the crop and OCR text; recheck the original page before approving final descriptions.
+- All 50 candidate image crops were visually inspected and matched to the corresponding source-page product caption and supplier SKU. The crops remain on the separate PR #168 preview branch and are not copied into this review branch.
+- ASC watermarking is visible on the crop images. They are **not approved production assets**; asset permission/clean-image suitability remains a separate approval gate.
+- The source-page render review corrected the globe descriptions: `H1865W-H` and `H1960/55W-H` are HUADIAO E-MARKED variants; `H355W-H` is transcribed as HDIAO exactly as printed in the source.
 - No source catalogue contains current dealer pricing in this intake. All 50 pilot records remain price-unknown and require a current dealer cost before any price can be calculated.
 - Physical stock is not supplied by these catalogues. Availability remains unconfirmed and separate from price.
+
+## Source-page visual evidence
+
+Twelve full-page renders for pages 3 and 4 of the six retained PDFs were generated in the isolated branch `cleanup/asc-catalogues-stock-reset-2026-10-30`, under `catalogue-review/asc/source-pages/`. These pages contain all 50 pilot rows and provide the visual source evidence for the supplier SKU, printed caption, and product-image pairing checks.
 
 ## OCR quarantine
 
