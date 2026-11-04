@@ -28,7 +28,7 @@ assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.
 assert.equal(planet.recordCount, 3317, 'full Planetworld source snapshot must be retained');
 assert.equal(planet.records.length, 3317);
 assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 37);
-assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === 'Price on Request due to Limited Stock and Availability'));
+assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === 'Price On Request Due to Stock Availability'));
 const uniquePlanetRows = new Set(planet.records.map(row => JSON.stringify([row.collection,row.brand,row.title,row.component,row.indicativePrice,row.hasStock,row.modelNumber||''])));
 assert.equal(uniquePlanetRows.size, 3135, 'exact duplicate source rows are suppressed in the customer browse view, not deleted from source data');
 assert.deepEqual(planet.collections, {
