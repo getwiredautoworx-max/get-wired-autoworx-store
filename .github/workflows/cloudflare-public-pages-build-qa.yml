@@ -1,6 +1,8 @@
 name: Cloudflare Pages Public Package QA
 
 on:
+  push:
+    branches: [preview/integrated-storefront-2026-11-04]
   pull_request:
     branches: [main]
     paths:
