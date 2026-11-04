@@ -105,3 +105,7 @@ Deploy this exact branch head to the dedicated non-production Pages branch integ
 
 Audio Connections preview data reconciliation added — 2026-11-04.
 Deploy this exact branch head. The 66-row Audio Connections preview JSON is now included from the latest review-only PR #174; preserve its preview-only/no-stock/quote-on-request flags and image/specification holds. Require exact-SHA build marker, regression, SKU and hosted mobile/desktop checks. Production HOLD.
+
+
+Security regression correction — 2026-11-04.
+Restored the current-main fail-closed preview product listing/detail routes after the integrated preview gate exposed that the earlier branch version had replaced those safeguards. Rebuild this exact head and require catalogue gate, full public package, SKU, browser and hosted mobile/desktop QA. Production HOLD.
