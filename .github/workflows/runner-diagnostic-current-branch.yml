@@ -140,9 +140,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE_URL="https://supplier-standard-planetworl.get-wired-autoworx-store.pages.dev"
+          BASE_URL="https://supplier-pilot-preview.get-wired-autoworx-store.pages.dev"
           for attempt in $(seq 1 12); do
-            if curl -fsS "$BASE_URL/deployment-manifest.json" -o /tmp/gw-deployment-manifest.json; then break; fi
+            if curl -fsS "$BASE_URL/deployment-manifest.json" -o /tmp/gw-deployment-manifest.json && test -s /tmp/gw-deployment-manifest.json; then break; fi
             sleep 5
           done
           python3 - <<'PY'
@@ -160,7 +160,7 @@ jobs:
             const page=await browser.newPage({viewport:{width:390,height:844}});
             const errors=[];
             page.on('pageerror',e=>errors.push(e.message));
-            const base='https://supplier-standard-planetworl.get-wired-autoworx-store.pages.dev';
+            const base='https://supplier-pilot-preview.get-wired-autoworx-store.pages.dev';
             await page.goto(base+'/owner-preview.html',{waitUntil:'domcontentloaded'});
             if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Hosted preview warning missing');
             const frame=page.frameLocator('#store');
