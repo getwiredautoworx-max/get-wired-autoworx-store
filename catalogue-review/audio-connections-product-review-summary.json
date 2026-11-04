@@ -20,10 +20,14 @@
     "reviewed_at": "2026-11-04",
     "preview_rows": 66,
     "explicit_supplier_power_values_in_preview": 15,
-    "ambiguous_or_incomplete_source_power_values": 7,
+    "ambiguous_or_incomplete_source_power_values": 6,
     "rule": "The 15 explicit values are preserved. Seven incomplete/ambiguous strings are labelled for supplier confirmation; no missing digits or RMS/peak basis is guessed.",
     "sony_records_with_supplier_power_specifications": 13,
-    "total_preview_records_with_reconciled_source_power_data": 28
+    "total_preview_records_with_reconciled_source_power_data": 28,
+    "owner_confirmed_nominal_specifications": [
+      "SSA-ATOM13800.4: 100 W RMS nominal per channel ×4"
+    ],
+    "note": "The SSA-ATOM13800.4 nominal rating is owner-confirmed; Starsound's published impedance-specific output table is also preserved in the preview description. Six other incomplete/ambiguous source strings remain held."
   },
   "owner_authorized_direct_image_sources": [
     "XS-W104ES",
