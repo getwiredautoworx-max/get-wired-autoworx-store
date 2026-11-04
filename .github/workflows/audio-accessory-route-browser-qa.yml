@@ -76,7 +76,7 @@ jobs:
               await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
               const trimCount = await page.locator('#products .audioProduct').count();
               const trimHeading = await page.locator('#productsHeading').innerText();
-              if (trimCount !== 47 || !trimHeading.includes('47 matching')) throw new Error('Trims & Harnesses should show 47 dedicated products; found '+trimCount+' / '+trimHeading);
+              if (trimCount !== 47 || !trimHeading.toLowerCase().includes('47 matching')) throw new Error('Trims & Harnesses should show 47 dedicated products; found '+trimCount+' / '+trimHeading);
               if (await page.locator('#products').evaluate(el=>el.hidden)) throw new Error('Trims & Harnesses product panel is hidden');
 
               const aerialPage = await browser.newPage({viewport:{width:390,height:844}});
