@@ -54,7 +54,14 @@ No product, price, stock, supplier activation, or database records are created o
 - Ignition Switches & Barrel Sets: 51 products from pages 3–5; 51 unique supplier SKUs and proposed GW SKUs; eight rows overlap the pilot and 43 are additional.
 - Combination & Indicator Stalk Switches: 53 products from pages 5–8; 53 unique supplier SKUs and proposed GW SKUs.
 - Combined: 104 source-verified products mapped to Auto Electrical Spares & Parts → Automotive Switches. No prices or stock are supplied; all remain review-only and unimported.
-- The rest of the Switches catalogue still requires extraction: Wiper Switches, Headlamp/Dimmer/Hazard Switches, Power Window Switches, Toggle/Push/Button Switches, Starter/Solenoid Switches, Battery Isolators/Cut-Off Switches, Switch Panels/Covers/Accessories, and Marine/Specialist Switches.
+- The full 22-page Automotive Switches catalogue is now extracted across 16 sections: **368 products** total. A cross-file audit found 368 unique supplier SKUs and 368 unique proposed GW SKUs, with no duplicates or SKU-format mismatches. All 368 are mapped to Auto Electrical Spares & Parts → Automotive Switches, and remain no-price/no-stock/review-only/not imported.
+
+## Completed Automotive Switches catalogue
+
+- Total extracted: 368 products across 16 catalogue sections.
+- Cross-file validation: 368 unique supplier SKUs, 368 unique proposed GW SKUs, zero duplicates, zero SKU-format mismatches.
+- All 368 rows use the owner-approved Auto Electrical Spares & Parts → Automotive Switches mapping.
+- All remain no-price/no-stock/review-only/not imported. Dense or clipped application text is flagged in row notes rather than completed by inference.
 
 ## Source-page visual evidence
 
