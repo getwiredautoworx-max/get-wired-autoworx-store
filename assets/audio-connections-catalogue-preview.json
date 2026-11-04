@@ -591,7 +591,7 @@
       "manufacturerMatchStatus": "OFFICIAL_MODEL_AND_4_OHM_CONFIRMED; OFFICIAL_POWER_RATING_NOT_PUBLISHED; SUPPLIER_CONFIRMATION_REQUIRED",
       "specificationSourceUrl": "https://starsound.co.za/product/ssw-b12-2800/",
       "specificationSource": "Starsound official product page; third-party South African model inventory conflicts on RMS power",
-      "specificationStatus": "OFFICIAL_PHYSICAL_SPEC_CONFIRMED_POWER_UNPUBLISHED_CONFLICT_REMAINS",
+      "specificationStatus": "OFFICIAL_PHYSICAL_SPEC_CONFIRMED_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
       "sourcePriceListDateLabel": "Price list · 5 August 2026"
     },
     {
