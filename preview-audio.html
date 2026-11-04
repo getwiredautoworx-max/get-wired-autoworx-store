@@ -702,7 +702,7 @@ const PRICE_ON_REQUEST_TEXT="Price On Request Due to Stock Availability";
 function audioPriceLabel(p){
  const note=String(p.priceNote||"");
  const basis=String(p.priceBasis||"");
- const specialOrder=/\\b(?:POA|POR)\\b|price on application|special order/i.test([p.title,p.priceNote,p.priceOnRequestText].join(" "));
+ const specialOrder=/\b(?:POA|POR)\b|price on application|special order/i.test([p.title,p.priceNote,p.priceOnRequestText].join(" "));
  if(specialOrder)return PRICE_ON_REQUEST_TEXT+" — SPECIAL ORDER — PRICE ON APPLICATION. Final pricing is confirmed at the time of enquiry and may vary due to currency exchange-rate fluctuations.";
  const quoteRequired=Boolean(String(p.priceOnRequestText||"").trim())||p.indicativePrice==null||!Number.isFinite(Number(p.indicativePrice))||Number(p.indicativePrice)<=0||basis==="SOUTH_AFRICAN_RETAIL_COMPARABLE_ONLY_NOT_SUPPLIER_COST_OR_APPROVED_SELLING_PRICE"||/Preview-only estimate using dealer cost/i.test(note);
  if(quoteRequired)return PRICE_ON_REQUEST_TEXT;
