@@ -192,6 +192,7 @@ jobs:
               const previewBases=[
                 'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev',
                 'https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev'
+                ,'https://integrated-storefront-2026-11-04.get-wired-autoworx-store.pages.dev'
               ];
               let previewBase=null;
               let deployedBuild=null;
