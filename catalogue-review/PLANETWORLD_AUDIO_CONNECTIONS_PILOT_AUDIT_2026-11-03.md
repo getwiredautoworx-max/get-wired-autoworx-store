@@ -243,3 +243,22 @@ Disposition: no new official manufacturer reference, SKU assignment, image candi
 - These are manufacturer-reference findings only. They do not approve image redistribution, supplier price, current availability, variant equivalence where noted, GW SKU assignment or publication. Existing 44 image gaps and 53 held non-Sony SKU candidates remain unchanged.
 - Updated file: assets/audio-connections-catalogue-preview.json. Commit: d90164e13e1303c9cd8c7c236270299a3a8ae8fd.
 - The owner-approved SSA-ATOM13800.4 customer-draft spec remains 100 W RMS nominal per channel × 4. No public/live catalogue or production change.
+
+## 2026-11-04 — Planetworld six-model image-gap follow-up
+
+Read-only official manufacturer-page and image-gallery check for the six curated model records still marked without an approved high-resolution image. This update records candidate evidence only; it does not add an image to the customer preview or grant redistribution permission.
+
+| Model | Official source checked | Image evidence | Outcome |
+|---|---|---|---|
+| Alpine HCE-C2100RD | https://www.alpine-usa.com/product/hce-c2100rd and https://www.alpine.co.uk/p/Products/SingleView/hce-c2100rd | Official product page has a product gallery. The UK page exposes only 46×35 image-cache thumbnails; the US gallery's direct upload endpoint was not retrievable as a normal image asset in this check. | Exact product reference reconfirmed; no usable/approved image asset added. |
+| Alpine HDZ-653 | https://www.alpine-electronics.co.za/p/Products/alpine-status/hdz-653 | South African official page confirms the exact 3-way component set and exposes gallery images, but the accessible lead image is a 46×35 thumbnail. | Exact product reference reconfirmed; thumbnail rejected for storefront use. |
+| Alpine R2-W12D4 | https://www.alpine.co.uk/p/Products/type-r-speakers36/r2-w12d4 | Official page confirms the exact D4 variant and product gallery; accessible image-cache candidate is 46×35. | Exact variant reconfirmed; no usable/approved image asset added. |
+| Alpine S2-A55V | https://www.alpine-asia.com/en/productDetail/162/S2-A55V | Official page gallery yields direct product-image candidates, including https://www.alpine-asia.com/media/64b0d9389e7ef.jpg (front/top view) and https://www.alpine-asia.com/media/64b0d9342aed5.jpg (angled view). | One high-resolution official image candidate located. Record as review-only pending written image-use permission; do not place in public preview yet. |
+| Alpine S2-S65 | https://www.alpine-asia.com/en/productDetail/177/S2-S65 | Official page confirms model title as 6.5-inch coaxial 2-way, but its specification block says “Component 2-Way”; the lead gallery asset returned is a Hi-Res Audio logo, not a product photo. | Exact product identity page found; component-type inconsistency requires supplier/Alpine clarification. No image candidate accepted. |
+| JVC KW-M590BT | https://www.us.jvc.com/car/multimedia/kw_m590bt/ | Official page confirms exact receiver and nine-image gallery. The accessible links checked in this pass resolved to feature badges rather than a verified main product asset. | Exact product reference reconfirmed; image pack remains held pending written dealer/distribution permission. |
+
+### Image-gap count after this pass
+- One of the six gaps now has a high-resolution official product-image candidate (Alpine S2-A55V); it remains **NOT APPROVED** pending written use permission.
+- Five gaps remain without a verified usable high-resolution product image.
+- No new image URL was added to `assets/planetworld-verified-models-preview.json` or customer-facing preview data. No supplier SKU, price, stock, category or publication status changed.
+- This check does not prove that all 68 curated rows are matched to the correct original workbook source row; exact supplier-row join and collision evidence remain required.
