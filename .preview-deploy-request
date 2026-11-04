@@ -4,3 +4,4 @@ Required included preview assets: owner-preview routes, Planetworld and Audio Co
 Required safeguards: checkout hidden, Supabase writes blocked, no supplier source PDFs/folders, no live stock or price writes.
 Target only Cloudflare Pages branch pr-168-staging-preview. This is staging only, NOT production approval.
 Refresh required after browser QA was switched to the dedicated PR 168 staging alias; deploy this exact triggering commit only to pr-168-staging-preview.
+Final owner-preview refresh: local Audio category artwork now replaces remote-only collage dependencies; run the exact current head through staging before handing the URL to the owner.
