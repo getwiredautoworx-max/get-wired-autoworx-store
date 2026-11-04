@@ -1,1 +1,5 @@
-Non-production PR #168 staging preview request — 2026-11-04. Deploy this exact candidate commit after the two held Planetworld classifications were resolved and the seven unapproved image candidates were kept out of the customer preview. The preview must remain read-only with checkout hidden and Supabase writes blocked. Staging only; this is NOT production approval.
+Non-production PR #168 staging preview refresh — 2026-11-04.
+Deploy the exact triggering branch commit using the repository's isolated allowlisted Pages package builder.
+Required included preview assets: owner-preview routes, Planetworld and Audio Connections review-only JSON, and local JBL/Denon/Hertz SVG brand marks.
+Required safeguards: checkout hidden, Supabase writes blocked, no supplier source PDFs/folders, no live stock or price writes.
+Target only Cloudflare Pages branch pr-168-staging-preview. This is staging only, NOT production approval.
