@@ -139,7 +139,7 @@ jobs:
               console.log('HOSTED_TRIMS_LINK',JSON.stringify({href:trimsHref,before:page.url()}));
               await trimsLink.click();
               try {
-                await page.waitForURL(/\/preview-audio\.html(?:\?|$)/,{timeout:30000});
+                await page.waitForURL(/\/preview-audio(?:\.html)?(?:\?|$)/,{timeout:30000});
               } catch (error) {
                 console.error('HOSTED_TRIMS_NAVIGATION_DIAGNOSTIC',JSON.stringify({url:page.url(),href:trimsHref,gridText:await page.locator('#grid').innerText().catch(()=>''),bodyText:(await page.locator('body').innerText().catch(()=>'')).slice(0,1200)}));
                 throw error;
