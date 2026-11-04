@@ -741,7 +741,7 @@
       "indicativePrice": 1085.2,
       "hasStock": false,
       "modelNumber": "SSA-ATOM-13500.1",
-      "description": "1-channel Class D monoblock amplifier; two South African retailer listings for the exact SSA-ATOM-13500.1 model agree on 520 W RMS at 1 Ω, 380 W RMS at 2 Ω, 230 W RMS at 4 Ω and 600 W maximum output. The official manufacturer page could not be independently retrieved for this check; confirm with the supplier before production publication.",
+      "description": "1-channel Class D monoblock amplifier. Conflicting exact-model specifications: Starsound's official page lists 500 W RMS at 1 Ω and 250 W RMS at 2 Ω; two South African retailer listings report 520 W RMS at 1 Ω, 380 W RMS at 2 Ω and 230 W RMS at 4 Ω. Do not publish a definitive power rating until Starsound confirms the correct revision/specification.",
       "manufacturerPage": "https://starsound.co.za/product/ssa-atom-13500-1/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -751,9 +751,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "specificationSourceUrl": "https://maxmotorsport.co.za/products/star-sound-atom-series-micro-monoblock-amplifier-13500w",
-      "specificationSource": "Two South African retailer listings for the exact model; manufacturer specification page could not be independently retrieved.",
-      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK",
+      "specificationSourceUrl": "https://starsound.co.za/product/ssa-atom-13500-1/",
+      "specificationSource": "Starsound official specification page versus two South African retailer exact-model listings",
+      "specificationStatus": "OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED",
       "specificationEvidenceStatus": "THIRD_PARTY_RETAILER_CROSS_CHECK_NOT_MANUFACTURER_CONFIRMED",
       "specificationSourceUrls": [
         "https://maxmotorsport.co.za/products/star-sound-atom-series-micro-monoblock-amplifier-13500w",
@@ -962,7 +962,7 @@
       "indicativePrice": 2171.95,
       "hasStock": false,
       "modelNumber": "SSA-M5-80.600",
-      "description": "5-channel amplifier; retailer specification cross-check: 80 W RMS ×4 plus 250 W sub channel at 4 Ω; 140 W RMS ×4 plus 410 W sub channel at 2 Ω; sub channel 600 W RMS at 1 Ω; bridged 240 W ×2 at 4 Ω. Normalized source model text and corrected 6-channel misclassification.",
+      "description": "5-channel amplifier. Starsound's official page lists 80 W ×4 + 250 W sub at 4 Ω; 140 W ×4 + 410 W sub at 2 Ω; 600 W sub at 1 Ω; 240 W ×2 bridged at 4 Ω. However, a second RMS Ratings table on the same official page conflicts (150 W ×4 + 300 W sub at 2 Ω; 80 W ×4 + 150 W sub at 4 Ω). A specialist retailer agrees with the first table. Hold the detailed power ratings pending manufacturer clarification.",
       "manufacturerPage": "",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -972,9 +972,9 @@
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
-      "specificationSourceUrl": "https://www.autostyle.co.za/product/starsound-ssa-m5-80-600-5-channel-high-fidelity-class-d-amplifier/",
-      "specificationSource": "South African specialist retailer specification cross-check",
-      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK"
+      "specificationSourceUrl": "https://starsound.co.za/product/ssa-m5-80-600-4/",
+      "specificationSource": "Starsound official product page contains conflicting specification tables; specialist retailer cross-check aligns with first table",
+      "specificationStatus": "OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED"
     },
     {
       "id": "ac-042",
@@ -1533,6 +1533,8 @@
     "unresolvedSpecification": [
       "ac-021: SSW-12-6300 power conflicts: source price list 300 W without rating basis; retailer 500 W RMS vs another inventory 350 W RMS; manufacturer page retrieval timed out.",
       "ac-025: SSW-B12-2800 official Starsound page confirms 12-inch 4-ohm enclosure model but publishes no RMS rating; source price list 300 W RMS vs third-party inventory 250 W RMS / 600 W peak.",
+      "ac-032: SSA-ATOM-13500.1 official Starsound page lists 500 W RMS @ 1 Ω / 250 W @ 2 Ω, while two South African retailer listings report 520 / 380 / 230 W RMS at 1 / 2 / 4 Ω.",
+      "ac-041: SSA-M5-80.600 official Starsound page contains two conflicting RMS tables; a retailer matches the first table. Manufacturer clarification required.",
       "ac-044: SSS-6501PRO retailer lists 250 W RMS, but another listing describes 250 W per pair; whether the 250 W rating applies per driver or pair needs confirmation."
     ],
     "evidence": {
@@ -1543,7 +1545,7 @@
   },
   "starsoundSpecificationReconciliation": {
     "checkedAt": "2026-11-04",
-    "status": "POWER_SPEC_REVIEW_UPDATED; THREE_RECORDS_REMAIN_HELD_FOR_CONFLICT_OR_UNIT_BASIS_CONFIRMATION",
+    "status": "POWER_SPEC_REVIEW_UPDATED; FIVE_RECORDS_REMAIN_HELD_FOR_CONFLICT_OR_UNIT_BASIS_CONFIRMATION",
     "records": [
       {
         "id": "ac-032",
@@ -1597,6 +1599,8 @@
     "unresolved": [
       "ac-021",
       "ac-025",
+      "ac-032",
+      "ac-041",
       "ac-044"
     ]
   }
