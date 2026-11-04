@@ -205,3 +205,33 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Non-production Cloudflare Pages deployment run **41804611258** — SUCCESS; alias https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev/ . It deployed the candidate at trigger commit `af25aa9c5440c430d3a6a0422357db3a882ddc62`. The application source was unchanged through `49166f7`; subsequent commits added QA path coverage and handover documentation only.
 - Automated implementation and verification for route navigation and product filtering are complete. The remaining acceptance item is the owner's real-device review of the staging URL. Do not mark owner acceptance complete until explicitly confirmed.
 - PR #168 remains draft/unmerged and production remains HOLD.
+
+## 2026-11-04 — Exact-head route, filter, regression and hosted preview closure
+
+- Application/test source head verified: `49166f76ab38d5c451757fec20584c6d0e7d75f5`. The later PR head `ca30ff594c4254beb6ae3c702e1201ba14197e62` changes only this handover file; no storefront source or test code changed after the verified source head.
+- **Route/navigation issue: implementation and automated verification CLOSED.**
+  - Owner Store Preview Browser QA run **41804797657** — SUCCESS on source head `49166f7`.
+  - Dedicated Car Audio Accessories Route Browser QA run **41804797751** — SUCCESS on source head `49166f7`.
+  - Full Current Branch Runner / public package regression run **41804797350** — SUCCESS on source head `49166f7`.
+- Verified in browser:
+  - The three homepage roots are Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories.
+  - Car Audio & Video → Accessories contains exactly two distinct buttons: Aerials and Trims & Harnesses.
+  - Trims & Harnesses opens its own product view with **47 matching Planetworld rows**; no Audio Connections fitment rows leak into this group.
+  - Aerials opens its own filtered state with **0 matching products**, expected while ASC catalogue source data remains deferred.
+  - Brand/component filtering is cumulative: Sony → Amplifiers returns filtered products; Kicker → Subwoofers returns Kicker-only products.
+  - Department and brand landing pages hide product stock until a component is selected.
+  - No browser JavaScript errors; mobile viewport route checks and desktop-width overflow check passed.
+  - Owner preview hides checkout and confirms Supabase writes are blocked.
+- Full regression output: `PAGES_PUBLIC_BUILD_PASS files=4133 webp_images=4101`; `AUDIO_CATALOGUE_PREVIEW_PASS` (Planetworld 3,317 source rows / 702 Car Audio division rows; Audio Connections 66 retained rows / 2 excluded; 65 approved image candidates); `THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS`; `PUBLIC SKU EXPOSURE AUDIT: PASSED`; `GW_FULL_STOREFRONT_REGRESSION_PASS`.
+- **Hosted preview deployed:** Cloudflare Pages check run **126489043229** — SUCCESS on source head `49166f7`.
+  - Branch preview: https://integration-three-category-c.get-wired-autoworx-store.pages.dev/owner-preview.html
+  - Immutable deployment preview: https://d4344795.get-wired-autoworx-store.pages.dev/owner-preview.html
+  - Separate non-production staging deployment run **41804611258** also succeeded at https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev/owner-preview.html (trigger commit `af25aa9`; customer-only preview package, no source PDFs).
+- The old “GitHub Actions minutes exhausted” assumption is resolved: public-repository hosted runners ran the exact test and browser workflows successfully. No private-minute allowance was needed for these public-repository runs.
+- Separate check: the legacy **Workers Builds** integration check failed on this candidate while **Cloudflare Pages** succeeded. Do not conflate the Workers build status with the Pages preview deployment; investigate before any merge if that check is required.
+- **Still open for supplier-pilot closure (not navigation):**
+  - Planetworld: reconcile remaining Car Audio classification/model/image evidence across the 702 source rows; preserve the two source-ambiguous held rows and the explicitly excluded non-audio row.
+  - Audio Connections: 66 retained preview-only rows; 4 image URLs currently present; 53 proposed GW SKUs still missing and 3 records lack indicative prices. Complete SKU, image/product-evidence and price reconciliation before pilot acceptance.
+  - Do not start ASC/Electro-city until Planetworld + Audio Connections are completed and owner-accepted. Aerials remains empty until the separately authorised fresh ASC upload.
+  - Owner still needs to inspect the hosted preview on the real phone and explicitly accept the layout. Automated browser success is not owner acceptance.
+- PR #168 remains draft/unmerged. Production remains HOLD. No production deploy, merge, live stock/price activation, banking/payment activation, checkout go-live, DNS change, Axxess upload or Supabase production write is authorised.
