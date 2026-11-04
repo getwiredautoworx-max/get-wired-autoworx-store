@@ -91,7 +91,10 @@
       "modelNumber": "S2-S65",
       "manufacturerPage": "https://finland.alpine-europe.com/p/Products/SingleView/s2-s65",
       "component": "Speakers",
-      "imageUrl": ""
+      "imageUrl": "https://www.alpine-asia.com/media/65e98a0997ee3.jpg",
+      "imageStatus": "official_manufacturer_image_owner_authorized_for_store_preview",
+      "imageSource": "Alpine Asia official product image",
+      "imageUseAuthorization": "OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04"
     },
     {
       "gwSku": "GW-3C0AADF7",
@@ -561,7 +564,10 @@
       "modelNumber": "KIT SUB P20FE",
       "manufacturerPage": "https://www.focal.com/products/p-20-fe",
       "component": "Subwoofers",
-      "imageUrl": ""
+      "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
+      "imageStatus": "official_manufacturer_image_owner_authorized_for_store_preview",
+      "imageSource": "Focal official digital asset image",
+      "imageUseAuthorization": "OWNER_AUTHORIZED_FOR_STORE_PREVIEW_2026-11-04"
     },
     {
       "gwSku": "GW-BCCE104C",
