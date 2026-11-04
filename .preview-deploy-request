@@ -26,3 +26,6 @@ Deploy the current fix/mobile-audio-subcategory-grid-2026-11-04 branch head, inc
 
 Exact current PR #172 head refresh after current handover sync — 2026-11-04.
 The branch received a handover-only commit after the mobile repair deployment request. Deploy this exact new triggering branch head to the isolated repair Pages alias and verify its qa-build-result.json commit matches the workflow SHA. Rerun hosted owner preview QA against that exact deployment. No production changes; production remains HOLD.
+
+Exact audio artwork correction and strengthened artwork QA — 2026-11-04.
+Deploy the exact current branch head after replacing the wrong Home Entertainment car artwork with television imagery and assigning distinct Band Equipment, DJ Equipment and Instruments photographs. The owner browser QA now asserts all four images load and match their category alt text. Preview only; production HOLD.
