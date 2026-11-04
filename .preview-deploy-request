@@ -117,3 +117,7 @@ Updated the regression assertion to the latest official Starsound output table (
 
 Final preview safety and supplier evidence refresh — 2026-11-04.
 The preview product listing/detail pages now use the shared storefront shell while failing closed on unverified legacy Supabase product rows. The non-rendering XS-W104ES image URL is withheld from customer display; the source remains internal review metadata. Hornet regression now reflects the current official manufacturer image candidate and the unresolved supplier specification discrepancy. Deploy this exact head and run all gates. Production HOLD.
+
+
+Hornet source reconciliation regression refresh — 2026-11-04.
+Updated the exact-model regression row to assert the current official Starsound manufacturer table and supplier price-list discrepancy classification, without inventing the prior retailer wattage. Re-run full exact-head gates and deploy only if all pass. Production HOLD.
