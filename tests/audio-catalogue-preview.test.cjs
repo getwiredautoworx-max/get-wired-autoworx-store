@@ -89,7 +89,7 @@ assert.ok(home.includes("c.name==='Pool Cleaners'"));
 assert.ok(home.includes("audioSearch:'vacuum'"));
 assert.ok(home.includes("audioSearch:'pool'"));
 assert.ok(home.includes("id==='e3d19d20-fb46-426c-9f64-221d863add0b'"));
-assert.ok(home.includes("id==='1a13bc42-4f54-44f6-9658-36d141b77f4b'"));
+assert.ok(home.includes("HOME_CATEGORY_IDS=['1a13bc42-4f54-44f6-9658-36d141b77f4b'"), 'Car Audio / Home Entertainment / Lifestyle must remain the first approved root');
 assert.ok(home.includes('href="preview-audio.html"'));
 assert.ok(home.includes("5ab55c53-eee3-41ce-ad48-04ad6df85181"), 'link belongs under Car Audio & Entertainment');
 assert.ok(builder.includes('"preview-audio.html"'));
