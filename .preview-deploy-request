@@ -9,3 +9,6 @@ Final refresh after browser timing fix: wait for lazy-loaded local brand SVGs be
 Close-out run after the 2026-11-04 HANDOVER_CURRENT.md update: deploy and test this exact new head on pr-168-staging-preview; do not touch production.
 Final staging refresh after final handover record e037a3a0a9c38c9edd667d72c7004915358ba0b3; deploy and verify the exact latest head only on the PR 168 staging branch.
 Owner-reported category defect correction refresh: verify category navigation, Home Entertainment route and real category imagery on this exact triggering head; no production deployment.
+
+Repair branch request — 2026-11-04.
+Deploy only the exact triggering repair/pr-168-storefront-category-audio-2026-11-04 commit to the existing pr-168-staging-preview Pages branch for read-only browser QA. Production remains HOLD.
