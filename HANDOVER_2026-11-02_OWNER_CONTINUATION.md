@@ -1297,3 +1297,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - The subsequent source change `7731d02dad414f1d23f6befcdb91cdbf65f48176` removes the broken XS-W104ES URL and updates the internal image note. The browser QA workflow change `c6c198d487750ecbf674426e39014758e12cdbf9` now asserts that XS-W104ES has no broken/substituted image in local and hosted preview.
 - Final exact-head runner, package, deployment and hosted browser QA are pending for the combined source/test/handover commit. Do not reuse the d54 results as evidence for a later SHA.
 - Production remains HOLD. Preview only; no production deploy, DNS/Axxess changes, Supabase writes, live catalogue/stock/price/SKU activation, checkout/payment/banking changes. Checkout/payment functional tests remain deferred until owner supplies banking details. PR #172 remains open/unmerged pending final exact-head verification and owner phone acceptance.
+
+
+## 2026-11-04 — Final verification corrections after image hold
+
+- The first combined verification after withholding the unrenderable XS-W104ES image exposed two test-maintenance defects: `tests/audio-catalogue-preview.test.cjs` still asserted five image URLs although the correct remaining count is four, and the local browser QA success summary referenced the removed `xsImage` variable.
+- Corrected the catalogue invariant to four image URLs (commit `3160bccdb6bac245410cb94637380e532753efa4`) and changed the browser QA summary to assert/report `XS_W104ES_WITHHELD` based on the absence of an image element (commit `94a81886e254f5951345b8455c390a911469a8d4`). The QA now fails if a broken or substituted XS-W104ES image reappears.
+- These are verification fixes only; no product price, stock, SKU, category assignment, live data, checkout, payment, Supabase or production setting changed.
+- Fresh full runner/package regression, isolated deployment and hosted browser QA are required on the final combined head after these fixes. Do not mark preview verification closed until all three match the exact same SHA and pass.
