@@ -66,7 +66,7 @@ const specChecks = [
 ];
 assert.equal(audioConnections.powerSpecificationReconciliation.status,'SIX_MODEL_SPECIFICATION_HOLDS');
 assert.deepEqual(audioConnections.powerSpecificationReconciliation.heldRecords.map(row=>row.id),['ac-021','ac-025','ac-032','ac-038','ac-041','ac-044']);
-for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) {
+for (const id of ['ac-021','ac-025','ac-032','ac-038','ac-041','ac-044']) {
   const held=audioConnections.records.find(row=>row.id===id);
   assert.ok(!held.title.includes('W RMS')&&!held.title.includes('W MAX'),id+' title must not publish held wattage');
 }
@@ -97,7 +97,9 @@ assert.ok(!/250 W RMS/i.test(pro6501.title),'ac-044 title must not imply per-dri
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 5);
+assert.equal(hornet.imageUrl,'https://starsound.co.za/wp-content/uploads/2023/12/Hornet-788x788.png');
+assert.equal(hornet.imageStatus,'OFFICIAL_MANUFACTURER_IMAGE_CANDIDATE_PREVIEW_ONLY');
 assert.equal(audioConnections.records.filter(row => row.indicativePrice == null).length, 0, 'all three previously missing market indicative references are now populated');
 for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/SUPPLIER_CONFIRMATION_REQUIRED|UNIT_BASIS_UNCONFIRMED|CONFLICT_REMAINS/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
 assert.equal(audioConnections.records.find(row=>row.id==='ac-020').specificationStatus,'OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED');
