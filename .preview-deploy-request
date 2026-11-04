@@ -101,3 +101,7 @@ Run the isolated PR #168 staging workflow on this exact new branch head. Require
 
 Clean integrated storefront candidate — 2026-11-04.
 Deploy this exact branch head to the dedicated non-production Pages branch integrated-storefront-2026-11-04. Require all package, Node regression, public SKU audit, exact-SHA build-marker and hosted mobile/desktop browser QA gates to pass. Keep checkout hidden and Supabase writes blocked. Production HOLD; no Axxess, DNS, live stock, pricing, banking or payment changes.
+
+
+Audio Connections preview data reconciliation added — 2026-11-04.
+Deploy this exact branch head. The 66-row Audio Connections preview JSON is now included from the latest review-only PR #174; preserve its preview-only/no-stock/quote-on-request flags and image/specification holds. Require exact-SHA build marker, regression, SKU and hosted mobile/desktop checks. Production HOLD.
