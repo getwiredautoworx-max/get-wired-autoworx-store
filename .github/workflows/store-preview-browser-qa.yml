@@ -129,9 +129,8 @@ jobs:
             await frame.locator('#components button').filter({hasText:'Subwoofers'}).first().click();
             const xsCard=frame.locator('#products .audioProduct').filter({hasText:'XS-W104ES'}).first();
             await xsCard.waitFor({state:'visible',timeout:30000});
-            await xsCard.locator('img').scrollIntoViewIfNeeded();
-            const xsImage=await xsCard.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,naturalWidth:img.naturalWidth}});
-            if(!xsImage.loaded)console.warn('PRODUCT_IMAGE_QA_WARNING',JSON.stringify({model:'XS-W104ES',reason:'Sony CDN denied/unavailable to GitHub runner; keep owner-authorized source pending visual verification',...xsImage}));
+            const xsImageCount=await xsCard.locator('img').count();
+            if(xsImageCount!==0)throw new Error('XS-W104ES image must remain withheld until an exact-model source renders; broken or substituted artwork is not acceptable');
 
             await page.goto('http://127.0.0.1:4173/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded'});
             const jblButton=page.locator('#brands button[aria-label="JBL"]');
@@ -322,9 +321,8 @@ jobs:
               await page.locator('#components button').filter({hasText:'Subwoofers'}).first().click();
               const hostedXsCard=page.locator('#products .audioProduct').filter({hasText:'XS-W104ES'}).first();
               await hostedXsCard.waitFor({state:'visible',timeout:30000});
-              await hostedXsCard.locator('img').scrollIntoViewIfNeeded();
-              const hostedXsImage=await hostedXsCard.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,naturalWidth:img.naturalWidth}});
-              if(!hostedXsImage.loaded)console.warn('HOSTED_PRODUCT_IMAGE_QA_WARNING',JSON.stringify({model:'XS-W104ES',reason:'Sony CDN denied/unavailable to GitHub runner; keep owner-authorized source pending visual verification',...hostedXsImage}));
+              const hostedXsImageCount=await hostedXsCard.locator('img').count();
+              if(hostedXsImageCount!==0)throw new Error('Hosted XS-W104ES image must remain withheld until an exact-model source renders; broken or substituted artwork is not acceptable');
               if(/Planetworld|Audio Connections/i.test(await page.locator('body').innerText())) throw new Error('Hosted preview exposed supplier identity');
               await page.goto(previewBase+'/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded',timeout:60000});
               const hostedJbl=page.locator('#brands button[aria-label="JBL"]');
