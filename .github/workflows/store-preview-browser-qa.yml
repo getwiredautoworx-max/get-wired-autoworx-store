@@ -66,13 +66,13 @@ jobs:
             await page.getByRole('link',{name:/Aerials/}).waitFor({state:'visible',timeout:15000});
             await page.getByRole('link',{name:/Trims & Harnesses/}).waitFor({state:'visible',timeout:15000});
             await page.getByRole('link',{name:/Trims & Harnesses/}).click();
-            await page.waitForURL(/preview-audio\.html/,{timeout:15000});
+            await page.waitForFunction(()=>location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await page.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
             const fitmentCount=await page.locator('#products .audioProduct').count();
             if(fitmentCount!==47)throw new Error('Trims & Harnesses route should show 47 dedicated Planetworld rows, got '+fitmentCount);
             await page.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
             await page.getByRole('link',{name:/Aerials/}).click();
-            await page.waitForURL(/preview-audio\.html/,{timeout:15000});
+            await page.waitForFunction(()=>location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             if(new URL(page.url()).searchParams.get('search')!=='Aerials')throw new Error('Aerials button did not open its own filtered route');
             await page.setViewportSize({width:1280,height:900});
             const widths=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
