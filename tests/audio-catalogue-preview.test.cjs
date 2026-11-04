@@ -71,6 +71,10 @@ assert.ok(route.includes('id="audioSearch"'), 'catalogue search control is requi
 assert.ok(route.includes('audioLoadMore'), 'long catalogue must provide pagination');
 assert.ok(route.includes('LOAD MORE ('), 'pagination control must be rendered');
 assert.ok(route.includes('function exactModelMatch'), 'exact manufacturer models must be matched into broad catalogue rows');
+assert.ok(route.includes('Special-order item — price is subject to currency exchange rates and supplier confirmation.'), 'all supplier price-on-request records must clearly disclose special-order currency-rate variability');
+assert.ok(route.includes('p.indicativePrice==null?'), 'special-order note must be conditional on a missing indicative price');
+assert.ok(home.includes('audioCategoryCollage') && home.includes('CAR AUDIO & VIDEO') && home.includes('HOME THEATRE') && home.includes('DJ & PA') && home.includes('BAND & INSTRUMENTS'), 'combined audio category artwork must show four real audio product families, not a generic car illustration');
+
 assert.ok(route.includes('source.startsWith(" "+token+" ")'), 'model enrichment must avoid matching a model mentioned only in an accessory title');
 assert.ok(route.includes('uniqueExactRows(departmentRows.filter'), 'exact duplicate product rows must be suppressed within the selected customer browse department');
 assert.ok(route.includes('index-new.html'), 'audio page must return to the current storefront');
