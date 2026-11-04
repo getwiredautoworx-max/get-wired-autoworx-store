@@ -1438,3 +1438,13 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Planetworld curated 68-model set is not full 702-row Car Audio completion; 634 rows remain without proposed GW SKUs and manual classification work remains open.
 - Security: confidential dealer-price source files remain in public repository Git history. This exposure risk remains unresolved; advise private visibility and full-history containment. No credential compromise is established.
 - No Actions runs, exact-head tests, successful exact-head hosted preview, supplier activation, live data writes or production release are claimed.
+
+
+## 2026-11-04 — Owner decision: continue in public repository
+- Owner explicitly instructed: “Continue in public. The dealer catalogues are not much value in the public domain as they still cannot purchase.” Proceed with the Planetworld + Audio Connections pilot in the existing public repository; do not block ordinary review-only catalogue engineering on a visibility change.
+- This is an informed acceptance of public-repository exposure for the existing dealer-catalogue material. It does not make dealer pricing/source documents non-confidential, remove public Git history, or establish that the supplier has granted redistribution rights. Keep exposure risk recorded accurately; do not claim containment or confidentiality.
+- Continue using the existing repository and pilot branch. Do not spend time attempting to change visibility or rewrite history unless the owner later requests it.
+- This instruction does not authorize public storefront publication, supplier activation, live prices/stock, image redistribution, live data writes, PR merge, production deployment, Axxess upload, DNS/payment changes or checkout go-live. Catalogue records remain preview/review-only pending the established evidence and owner-acceptance gates.
+- Continue Planetworld + Audio Connections only; ASC and Electro-city remain deferred. Preserve the owner-approved SSA-ATOM13800.4 specification: 100 W RMS nominal per channel × 4.
+- Exact PR head at this checkpoint: 94bd2e26d7bef9aaa0ea59b2914df3fd209b5b2f; PR #170 remains OPEN / DRAFT / UNMERGED. The connected workflow-run query and combined-status query returned empty results for this head; no tests are claimed as executed or passed.
+- Next execution: continue exact-model/spec reconciliation and customer-facing category/component grouping; close image gaps only with exact-model assets and confirmed rights; keep all 53 non-Sony Audio Connections GW SKU candidates held until the collision and approval gates are met; continue Planetworld's 702-row classification beyond the 68-model curated subset. Record exact changes and evidence as they occur.
