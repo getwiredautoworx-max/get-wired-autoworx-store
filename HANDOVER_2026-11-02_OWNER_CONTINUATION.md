@@ -1525,3 +1525,15 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Updated ASC extraction README and validation report. Latest pilot staging branch head `0bd122d17f66617c15d047ea0393038d74199e97`.
 - Remaining work: process the other five retained ASC catalogues (Sensors, Switches, Globes, Car Mats, Fuel Pumps) into similarly source-verified review-only product batches, preserving supplier SKU, product name, fitment/specifications and source page. No prices or stock are supplied by these PDFs.
 - No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
+
+
+## 2026-11-04 — ASC AUTOMOTIVE SENSORS CATEGORY BATCH COMPLETE
+
+- Completed a review-only extraction of all **106 Automotive Sensors products** from `ASC- Automotive Sensors (1).pdf`, source pages 3–9. File: `catalogue-review/asc-catalogue-extraction/asc-automotive-sensors-106-product-review-only.csv`.
+- Section counts: Crankshaft & Camshaft Position Sensors 16; Throttle Position Sensors 4; Air Flow & Air Mass Sensors 6; MAP/Manifold/Intake Air Sensors 10; Oxygen (Lambda) Sensors 8; Knock Sensors 3; Speed & ABS Sensors 11; Temperature Senders & Sensors 36; Fuel, Oil & Level Sensors 5; Reverse & Parking Sensors 4; Other Engine Management Sensors 3.
+- All 106 supplier SKUs and product captions were visually checked against source pages; 106 unique supplier SKUs, 106 unique proposed `GW-ASC-` SKUs, zero format mismatches. Nine rows overlap with the 50-row pilot; 97 are additional. All mapped to Auto Electrical Spares & Parts → Automotive Sensors with catalogue section preserved.
+- Two printed fitment captions are clipped: `S5-16053` ends at “PAS”; `S5-16087` ends with a trailing slash after “TD25/27/”. Visible text is retained and the remainder flagged for confirmation; no fitment has been inferred.
+- All 106 remain no-price/no-stock/review-only/not imported. No ASC price list or stock data has been supplied.
+- Latest pilot staging branch head: `1884562ab70de9c24485640d3edea8aab7a70f79`; latest source-page cleanup branch head: `78958d90f4c6cc0783611d0021eef483037299d8`.
+- The 78-product Aerials batch is also complete. All 63 OCR candidates are confirmed non-SKU noise/references and have no GW SKU assigned.
+- Remaining work: process Automotive Switches, Automotive Globes, Car Mats, and Fuel Pumps into similarly source-verified review-only batches. No live import or production deployment.
