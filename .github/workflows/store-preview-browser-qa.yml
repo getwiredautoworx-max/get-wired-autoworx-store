@@ -47,7 +47,7 @@ jobs:
             await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:60000});
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.__GW_PREVIEW_WRITE_BLOCKED===true,{timeout:15000});
             const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
-            const expected=['Audio, Entertainment & Music','Auto Electrical Parts & Spares','Car Care & Accessories'];
+            const expected=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
             if(JSON.stringify(roots)!==JSON.stringify(expected))throw new Error('Three approved category roots mismatch: '+JSON.stringify(roots));
             const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
             if(!checkoutSafe)throw new Error('Checkout control is visible in owner preview');
@@ -55,7 +55,7 @@ jobs:
             await carAudioArt.waitFor({state:'visible',timeout:15000});
             const carAudioArtLoaded=await carAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
             if(!carAudioArtLoaded)throw new Error('Homepage Car Audio & Video product image did not load');
-            await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
+            await frame.getByRole('button',{name:/Car Audio & Entertainment/}).click();
             const childCarAudioImage=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] > .catBtn img.catPhoto');
             await childCarAudioImage.waitFor({state:'visible',timeout:15000});
             const childCarAudioImageLoaded=await childCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
@@ -233,7 +233,7 @@ jobs:
               console.log('HOSTED_ROOT_STATE_BEFORE_CLICK',JSON.stringify(rootStateBefore));
               if(rootStateBefore.childCount<1)throw new Error('Hosted category snapshot rendered the Audio root without its subcategory nodes: '+JSON.stringify(rootStateBefore));
               const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
-              const expected=['Audio, Entertainment & Music','Auto Electrical Parts & Spares','Car Care & Accessories'];
+              const expected=['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
               if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted preview category roots mismatch: '+JSON.stringify(roots));
               const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
               if(!checkoutSafe) throw new Error('Checkout is visible in hosted owner preview');
@@ -241,7 +241,7 @@ jobs:
               await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
               const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
               if(!hostedCarAudioArtLoaded)throw new Error('Hosted homepage Car Audio & Video product image did not load');
-              await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
+              await frame.getByRole('button',{name:/Car Audio & Entertainment/}).click();
               const hostedChildCarAudioImage=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] > .catBtn img.catPhoto');
               await hostedChildCarAudioImage.waitFor({state:'visible',timeout:15000});
               const hostedChildCarAudioImageLoaded=await hostedChildCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
