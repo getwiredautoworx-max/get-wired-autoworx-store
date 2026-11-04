@@ -76,10 +76,11 @@ jobs:
                 throw error;
               }
               const roots = await page.locator('#grid .card h2').allTextContents();
-              if (roots.length !== 3 || roots[0].trim() !== 'Audio, Entertainment & Music') throw new Error('Wrong category roots: '+JSON.stringify(roots));
+              const expectedRoots = ['Auto Electrical Spares','Vehicle Security','Car Audio & Entertainment','Automotive Accessories','Marine Spares & Accessories','Tools, Hardware & Consumables','Camping, Leisure & Outdoors','Trailer & Canopy'];
+              if (JSON.stringify(roots.map(x=>x.trim())) !== JSON.stringify(expectedRoots)) throw new Error('Wrong eight-root category structure: '+JSON.stringify(roots));
 
-              await page.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
-              await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Audio, Entertainment & Music');
+              await page.locator('#grid .card').filter({hasText:'Car Audio & Entertainment'}).click();
+              await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Car Audio & Entertainment');
               const categoryCarAudioImage=page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).locator('.card-art img');
               await categoryCarAudioImage.waitFor({state:'visible',timeout:15000});
               const categoryCarAudioImageLoaded=await categoryCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
