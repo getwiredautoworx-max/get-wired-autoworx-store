@@ -3075,3 +3075,10 @@ Wait for run **41793496405** and verify its QA/deployment result. Do not duplica
 - This run is a new docs-only head validation. The previously deployed preview contains the same storefront/catalogue files as this head, but it is not yet an exact-head deployment for `0afc2b642`.
 - Other active-run scan at this checkpoint found only run **41795898104** in progress. The earlier exact-head success **41795456577** remains valid for `96c7040d`; failures on superseded heads are not to be rerun.
 - Planetworld report update commit **6f00d840da7bfdf4985c618ffafcb09909aecb1d** added official/regulatory source evidence for PFW4600, ON1509-LX1 and JBL EON710 base model; ON263-FK2 remains reseller-only. No price/stock/SKU/image/live catalogue change was made.
+
+
+## 2026-11-04 10:03 SAST — BROWSER QA PASS / STAGING DEPLOY IN PROGRESS
+- Latest PR #170 head remains `0afc2b642a62f07741ae67719fcee58ad8436aba`; run **41795898104**, job **126459805553**, remains **IN PROGRESS**. Browser QA step **9** has now completed **SUCCESS**; isolated Cloudflare Pages preview deployment step **10** is **IN PROGRESS**. Do not rerun or duplicate. Deployment URL/commit result to be recorded only after the workflow completes.
+- This is still a docs-only head update relative to `96c7040d`; no storefront/catalogue file changed in commit `0afc2b642`. The previously verified preview at `96c7040d` remains available while the exact-head redeploy is running.
+- Manufacturer report follow-up commit **14c1c036ea9d89ca3fca0da66cc9b51f1d1524f2** (blob `e96f35048aa93af1b1af213102ba75d06a285a77`) adds the direct official Ibanez IAB541-WR Wine Red image source `https://www.ibanez.com/common/product_artist_file/file/p_region_IAB541_WR_46_01_A_en_1.png` and narrows the component path to Musical Instruments & Accessories → Guitar Bags & Cases → Acoustic Guitar Gig Bags. Exact image source is verified; reuse rights are not. The R99 RRP / R649 dealer-cost anomaly remains unconfirmed and unchanged.
+- No supplier workbook, live price/stock, SKU, category, active flag, image asset, or live catalogue data was changed.
