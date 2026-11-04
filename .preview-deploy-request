@@ -35,3 +35,6 @@ The first corrected artwork commit exposed a stale structure-test expectation st
 
 Exact audio department art QA selector correction — 2026-11-04.
 The strengthened test now locates generated catalogue links (these synthetic department nodes do not carry data-filter attributes) and checks the loaded Home Entertainment, Band & Live Sound, DJ and Musical Instruments photos. Deploy this exact branch head and run all checks on that exact SHA. Production HOLD.
+
+Exact synthetic audio department artwork mapping correction — 2026-11-04.
+The live category tree creates synthetic catalogue nodes (gw-audio-band, gw-audio-dj, gw-audio-instruments); the previous art mapping used their source category IDs and therefore fell through to the generic car photo. The mapping and structure assertions now use the generated node IDs. Deploy this exact head and verify all four distinct photos load in hosted mobile and desktop QA. Production HOLD.
