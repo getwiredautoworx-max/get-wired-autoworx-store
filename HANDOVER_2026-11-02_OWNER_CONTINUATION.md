@@ -1312,3 +1312,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Final verification on `0cf1c7dac661a61121091d343d9432841fa8d38e` found the image-count aggregate also needed to reflect the intentionally withheld XS-W104ES asset: the correct combined image count is now 70 (66 verified-model assets + 4 Audio Connections image URLs), not 71.
 - Updated `tests/audio-catalogue-preview.test.cjs` to assert 70 (`337a6e39c34bf88de87831dd04e3bb75e32f68ed`). This is a test-count correction only; no catalogue row was added, removed or repriced other than the previously documented blank image URL for XS-W104ES.
 - The same final-head verification must be rerun after this correction and a fresh deployment of that exact SHA.
+
+
+## 2026-11-04 — Hosted browser runner dependency-install reliability
+
+- The exact-head runner regression passed on `f81d2a0db524656447594974c0deeed393c246a0`; its isolated non-production deployment also passed. Local owner browser checks completed successfully on the same head.
+- The hosted browser job stalled for several minutes in `npx playwright install --with-deps chromium`, before any browser assertions ran. This is runner package-install delay, not a reported storefront assertion failure.
+- Changed the QA setup to `npx playwright install chromium` (commit `ead86f0df6b7f4744d0cea84d09b17040d57b357`) to avoid the unnecessary apt dependency refresh on the GitHub Ubuntu runner. Re-run browser checks on the new exact head; if browser launch reports a missing system library, restore the required dependency explicitly.
+- Production remains HOLD; no live data or production settings changed.
