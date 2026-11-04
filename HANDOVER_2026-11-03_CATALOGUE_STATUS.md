@@ -155,3 +155,18 @@ This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CON
 - The deployment includes the SSA-ATOM13800.4 supplier wattage correction, exact 47-row fitment classifier, and regression assertions. The subsequent branch commit `bc926324889339b4442daae94c653efe2285850c` only refined an inert source comment to prompt a fresh staging rebuild; it made no functional change. Do not describe the preview as exact-head for `bc926324` unless Cloudflare confirms that SHA.
 - The Pages build success is deployment evidence, not owner visual acceptance or desktop/mobile browser acceptance. The external page reader remains unable to retrieve the pages.dev content in this session. GitHub Actions runner allocation is still not verified.
 - No merge, production deployment, live data write, payment, stock, price, DNS or Axxess change.
+
+
+## 2026-11-04 OWNER CORRECTION — ONE COMBINED CAR AUDIO & VIDEO CATALOGUE
+
+- Owner clarified the required structure: **all Car Audio & Video products from Audio Connections and Planetworld are together in one customer-facing subcategory**. Do not create supplier-specific Car Audio catalogue branches or separate supplier brand lists. Supplier identity is internal sourcing metadata only.
+- Customer route: combined root `Car Audio / Home Entertainment / Lifestyle` → `Car Audio & Video` → one merged brand list → product family/subcategory → matching products. A brand (e.g. Sony, Alpine, JBL, Pioneer, Kenwood) must show records from both suppliers together where available.
+- Confirmed source assets: Planetworld catalogue contains 3,317 records (including 702 Car Audio division rows); Audio Connections contains 66 Car Audio rows. The existing audio page already fetches Planetworld, exact-model enrichment and Audio Connections data, and combines them in one array. The customer navigation had not made this unified journey sufficiently clear, and a separate Planetworld review page exposed supplier-location stock and duplicated the impression of a separate supplier catalogue.
+- Changes made on PR #168 branch:
+  - `index-new.html`: changed the Car Audio navigation child label from “Browse Car Audio Catalogue” to “Car Audio & Video”.
+  - `preview-audio.html`: brand and product-type selections now navigate to stable filtered routes using `department`, `brand`, and `component` query parameters. The page reports combined catalogue and brand counts. The source merge remains `rows=enriched.concat(verifiedOnly,audioConnections)`; Car Audio rows are selected by division across both sources.
+  - `preview-planetworld.html`: removed the standalone 68-row supplier-stock card catalogue; this legacy route now redirects into the combined Car Audio & Video catalogue. No supplier-location stock snapshot is rendered as a separate customer catalogue.
+  - `tests/three-category-storefront-structure.test.cjs`: added assertions for merged supplier data, combined Car Audio routing, brand/type filtered routes, home label, and redirect/no-stock legacy route.
+- Latest exact PR #168 head: `ef36025de59c6c474148e8b1af0edd2d24e4e4f3`. Cloudflare Pages reported build in progress for this exact SHA at check time; no new successful deployment URL is yet confirmed. Do not present the previous `b6ac37ec` deployment as containing these changes.
+- The regression test source has been updated but has **not yet been executed** against this exact head. Need capture test result and Cloudflare Pages exact-head success, then owner visual review on desktop/mobile.
+- Keep PR #168 draft/open and production HOLD. No merge, production deployment, Axxess upload, DNS/payment change, live price/stock write or Supabase mutation.
