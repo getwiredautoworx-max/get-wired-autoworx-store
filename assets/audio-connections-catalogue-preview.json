@@ -4,7 +4,7 @@
   "previewRecordCount": 66,
   "status": "PREVIEW_ONLY_NOT_LIVE_NO_STOCK_SYNC_NO_SUPPLIER_ACTIVATION",
   "availabilityNote": "Neither PDF provides current stock availability. No stock quantity or in-stock claim is published.",
-  "imageNote": "Five records currently carry image URLs. Two exact-model Sony direct image sources (XS-W104ES and XM-5ES) are owner-authorized for use, but image binaries have not been retrieved and remote load/render verification remains pending. Three other official Sony image URLs remain review candidates only. The remaining 61 records have no image URL; no placeholders are used.",
+  "imageNote": "Five records currently carry image URLs. Both XS-W104ES and XM-5ES direct Sony image sources are owner-authorized. The XM-5ES Sony Australia URL was fetched successfully and displays a Sony amplifier rear-panel image matching the XM5ES asset path; it has not yet been copied into the repository or checked in the customer preview. The XS-W104ES URL could not be fetched in this session. The remaining three official Sony image URLs are review candidates only. Sixty-one records have no image URL; no placeholders are used.",
   "excludedRows": [
     {
       "model": "XS-690ES",
@@ -267,7 +267,7 @@
       "brandNote": "",
       "gwSku": "GW-B4F5275E",
       "gwSkuStatus": "PROPOSED_COLLISION_CHECKED_NOT_INSERTED",
-      "imageStatus": "OWNER_AUTHORIZED_DIRECT_IMAGE_SOURCE_RENDER_VERIFICATION_PENDING"
+      "imageStatus": "OWNER_AUTHORIZED_DIRECT_IMAGE_SOURCE_REMOTE_FETCH_CONFIRMED_PREVIEW_RENDER_PENDING"
     },
     {
       "id": "ac-012",
