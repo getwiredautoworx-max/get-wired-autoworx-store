@@ -41,3 +41,7 @@ Trigger an isolated non-production deployment from the exact current PR #176 bra
 
 Eight-root storefront integration update — 2026-11-04.
 The owner-approved eight-root taxonomy is now included in the integrated staging candidate. The five additional root/subcategory trees were sourced from the repository's approved eight-root taxonomy branch; all inherited historical product counts were reset to zero to avoid publishing stale counts. Existing current-candidate Audio, Auto Electrical and Automotive Accessories structures were retained and renamed to the approved customer-facing labels. This is a preview taxonomy snapshot only; no Supabase/live category/product assignments or counts were written. Run exact-head category/audio regressions, public package/SKU/security gates, then exact-SHA hosted staging QA. Production HOLD.
+
+
+Final eight-root owner milestone deployment trigger — 2026-11-04.
+Deploy the exact current branch HEAD after the eight-root integration and handover update. Rebuild standard and isolated preview packages, run the eight-root + audio catalogue regressions and public SKU audit, deploy only to the dedicated non-production Pages branch/alias, require qa-build-result.json result=PASS, preview_only=true and exact triggering SHA, then run hosted 390px mobile and desktop owner-preview QA. No production deploy, Axxess upload, DNS, Supabase writes, payment activation or live catalogue changes. Production HOLD.
