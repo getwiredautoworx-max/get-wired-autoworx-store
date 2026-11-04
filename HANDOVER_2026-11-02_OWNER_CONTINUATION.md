@@ -1741,3 +1741,73 @@ The owner challenged the repeated pattern of status notifications and promises w
 - This confirms both failures shared the same stale parent-category assertion; it does **not** establish that the corrected test now passes or that the rendered storefront is correct. Next action remains: verify actual category-tree root ordering and parent IDs, run the corrected test on exact SHA `3be5c4ee`, then inspect/fix any next failure. Only after local/CI success should isolated staging deployment and hosted mobile/desktop verification proceed.
 - Branch/source retrieval limitation: GitHub file-content reads by branch name returned 404 for several PR-only files, while PR patch retrieval and run logs worked. Use the PR patch, commit/ref-aware tooling, or exact commit contents; do not infer that a 404 means the file is absent.
 - No deployment, merge, live data write, payment change, or production action was performed during this diagnostic.
+
+
+## 2026-11-04 — CONTINUATION OPERATING MANUAL (OWNER-TAUGHT METHOD)
+
+This section preserves not only project status but the working method the owner has repeatedly had to teach. It is intended to prevent each new chat/session from behaving like a fresh start. It supplements the protected owner instructions; it does not replace them.
+
+### A. Session bootstrap — mandatory before touching code
+1. Read this entire canonical handover, including the latest dated entries and safety boundaries. Do not rely on a short summary or an older section when a later section supersedes it.
+2. Fetch live PR #176 metadata, its exact head/base SHAs, changed-file list/patch, current main SHA, and latest workflow/check state. The SHAs in this file are checkpoints, not assumptions about today's live refs.
+3. Identify the single active candidate and its actual blocker. Continue that candidate; do not create a parallel branch, duplicate fix, or new handover.
+4. Separate facts into: verified current, historical only, unverified, failed, and owner action required. Never promote historical evidence into current status.
+5. Carry forward completed catalogue extraction/reconciliation and approved design decisions. Re-open source files only when a concrete integration or validation question requires it.
+
+### B. Execution loop — work through, do not narrate
+For each real defect or remaining task, use this loop and continue to the next item without waiting for another owner prompt:
+1. Inspect the relevant source, data, test, workflow and actual failure output.
+2. Reproduce the issue or establish a precise failing condition.
+3. Fix the underlying implementation at source. Do not merely edit expected values, skip assertions, weaken tests, or make a green badge the goal.
+4. Add/update a focused regression test that would fail before the fix and pass after it.
+5. Run the narrow test, then the relevant full regression/package/browser checks against the exact resulting commit.
+6. Inspect every failure and skipped step; a workflow with skipped browser checks is not browser acceptance.
+7. Continue fixing subsequent defects while tools/permissions allow. Do not stop after a commit, a test-file edit, a successful static inspection, or a progress update.
+8. After meaningful verified work, append the evidence to this file and read back the updated file. Then continue the next task in the same active session.
+
+### C. Evidence and reporting discipline
+- A code commit proves only that code was committed.
+- Static source inspection proves only what the source contains; it does not prove rendered browser behavior.
+- A regression test passing does not prove hosted deployment or owner phone acceptance.
+- A package build does not prove the hosted URL serves that package.
+- A hosted preview is current only when its deployed commit/build marker exactly matches the tested candidate SHA.
+- Record exact SHA, test command or workflow/run/job IDs, result, skipped steps, preview URL, deployed SHA/build marker, viewport/device coverage and any owner acceptance.
+- If a capability is genuinely unavailable, identify the exact unavailable action/tool/permission and the smallest owner action needed. Do not disguise inability as progress, and do not ask the owner to repeat an approval already granted.
+- Send no routine "I will now..." or "next I plan..." notifications. The owner wants the work executed, not narrated. Report material outcomes, a real blocker, or a decision only.
+- Never claim complete, ready for preview, ready to merge, or production-ready without the evidence threshold defined in the release gates.
+
+### D. Technical workflow lessons learned
+- GitHub PR branch file reads may fail when addressed by branch name even though exact commit SHA reads or PR patch retrieval work. A branch-ref 404 is not evidence that a file is absent. Retry with exact SHA or use PR patch/tree tooling.
+- Re-fetch PR metadata after any update; do not assume head/base, mergeability or checks remain unchanged.
+- A missing workflow run or empty combined status is NOT a pass. Establish why no run triggered and use an available safe trigger only if it is within authorization.
+- Do not blindly rerun queued jobs. Do not rerun production/release/deployment workflows. Avoid credit-consuming retries without the relevant explicit approval.
+- Old failing workflow logs are diagnostic evidence for their recorded SHA only. A later code correction still needs a new exact-head run.
+- The previous root assertion failure showed why the source tree must be checked before changing a test: the approved Audio departments belong to Car Audio & Entertainment, the third root, not Auto Electrical Spares, the first root. Keep the test name/output and documentation consistent with the eight-root architecture.
+- Use the existing PR #176 as the single integration path unless live repository evidence proves it is irrecoverably stale or unsafe. If that occurs, explain the evidence before creating any replacement.
+- The repository's canonical handover is this file only. Never recreate the removed AI_HANDOVER_PERMANENT.md, HANDOVER_CURRENT.md, or extra checkpoint documents.
+
+### E. Owner's product and release decisions to preserve
+- The deliverable is one consolidated, populated, customer-facing staging preview, not disconnected demo pages, repair branches or reports.
+- Homepage and complete Audio journey are the immediate priority: all eight roots in order; Audio departments under the Audio root; department → brand → component/product type → products; distinct Aerials and Trims & Harnesses routes; consistent bright shell; real, correctly matched imagery; readable product codes and mobile tap targets.
+- Then integrate the other approved categories using verified source data. Empty/unverified categories must show honest empty/quote states, never fabricated products.
+- Supplier names, supplier costs and prohibited supplier SKUs must not leak into public UI. Preserve source provenance internally. Price-on-request wording and existing supplier-specific pricing rules remain as recorded above.
+- Keep preview checkout, order submission and live writes safely blocked until the owner is ready to provide banking details and authorize appropriate testing.
+- Owner authorized isolated Cloudflare Pages staging preview builds. This does not authorize production deployment, merge, Axxess upload, DNS changes, live Supabase writes, stock/price/category changes or payment activation.
+- Owner acceptance is a separate gate after the exact tested candidate is deployed and verified on real mobile and desktop. Never infer acceptance.
+
+### F. Handover update template — append one concise entry per meaningful checkpoint
+Use this structure, with only evidence-backed values:
+- Date/time (SAST):
+- Active PR/branch:
+- Exact head SHA / base SHA:
+- Work actually changed:
+- Tests/workflow run IDs and exact outcomes:
+- Failures and skipped checks:
+- Staging URL and deployed SHA (or explicitly NOT DEPLOYED):
+- Mobile/desktop verification:
+- Owner acceptance:
+- Production/release boundary respected:
+- Next concrete action (one item, not a speculative plan):
+
+### G. Immediate continuation pointer at time of writing
+Start from the latest checkpoint above: PR #176, branch `preview/integrated-storefront-2026-11-04`, last recorded head `3be5c4eea139c280690dd38015cfa9d9766e8820`. Re-fetch live state before acting. The corrected regression assertion has not yet been proven by an exact-head workflow run. Continue by executing that test/CI path and inspecting/fixing the actual storefront and package defects; do not stop at this handover update. Production remains HOLD.
