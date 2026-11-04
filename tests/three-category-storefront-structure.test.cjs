@@ -9,6 +9,7 @@ const planet = JSON.parse(read('assets/planetworld-catalogue-preview.json'));
 const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-preview.json'));
 const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
 const audioPage = read('preview-audio.html');
+assert.ok(home.includes("if(c.id==='gw-audio-home')return '<span class=\"catArt\"><img class=\"catPhoto customProductArt\" src=\"assets/car-audio-video-category.svg\" alt=\"Home entertainment television, stereo speakers and headphones\" loading=\"lazy\"></span>'"), 'Home Entertainment homepage tile must use the corrected television and audio artwork, not car/cartoon imagery');
 const planetPage = read('preview-planetworld.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 const ownerPreview = read('owner-preview.html');
