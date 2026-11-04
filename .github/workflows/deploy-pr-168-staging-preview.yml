@@ -64,14 +64,14 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=integrated-storefront-2026-11-04 --commit-hash=${{ github.sha }} --commit-dirty=true
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=repair/pr-168-storefront-category-audio-2026-11-04 --commit-hash=${{ github.sha }} --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Wait for the exact deployed SHA and reject stale aliases
         shell: bash
         run: |
           set -euo pipefail
           aliases=(
-            "https://integrated-storefront-2026-11-04.get-wired-autoworx-store.pages.dev"
+            "https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev"
           )
           matched=""
           for attempt in $(seq 1 24); do
