@@ -47,7 +47,7 @@ jobs:
           echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
           echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
 
-      - name: Run exact-head regression and public SKU audit before deploy
+      - name: Set up Node.js for exact-head regression checks
         uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -126,12 +126,42 @@ jobs:
                 if(!ok) throw new Error('Audio root collage image failed to load: '+await img.getAttribute('alt'));
               }
               await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
-              const carArt=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] img.catPhoto');
+              const carArt=frame.locator('.catWrap.catalogueWrap a[href*="department=Car%20Audio"] img.catPhoto');
               await carArt.waitFor({state:'visible',timeout:20000});
               if(!(await carArt.evaluate(img=>img.complete&&img.naturalWidth>0))) throw new Error('Car Audio & Video child artwork failed to load');
               const homeArt=frame.locator('.catWrap.catalogueWrap a[href*="Home%20Entertainment"] img.catPhoto');
               await homeArt.waitFor({state:'visible',timeout:20000});
               if(!(await homeArt.evaluate(img=>img.complete&&img.naturalWidth>0))) throw new Error('Home Entertainment artwork failed to load');
+              const carAudioLink=frame.locator('.catWrap.catalogueWrap a[href*="department=Car%20Audio"]');
+              await carAudioLink.click();
+              await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:20000});
+              await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
+              const carSummary=await frame.locator('#audioResultCount').innerText();
+              if(Number(carSummary.split(' ')[0]||0)<700) throw new Error('Car Audio catalogue is not populated: '+carSummary);
+              await frame.locator('#brands button[aria-label="Sony"]').click();
+              await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:20000});
+              await frame.locator('#components button').filter({hasText:'Amplifiers'}).first().click();
+              await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+              const amplifierCount=await frame.locator('#products .audioProduct').count();
+              if(amplifierCount<1) throw new Error('Sony → Amplifiers filter returned no products');
+              const accessoryPage=await browser.newPage({viewport:{width:390,height:844}});
+              accessoryPage.on('pageerror',e=>errors.push('accessory route: '+String(e)));
+              await accessoryPage.goto(process.env.GW_EXACT_SHA_PREVIEW_URL+'/category.html',{waitUntil:'domcontentloaded'});
+              await accessoryPage.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:20000});
+              await accessoryPage.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
+              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Audio, Entertainment & Music');
+              await accessoryPage.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
+              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Car Audio & Video');
+              await accessoryPage.locator('#grid .card').filter({hasText:'Accessories'}).click();
+              await accessoryPage.waitForFunction(()=>document.querySelector('#crumb')?.textContent==='Accessories');
+              const accessoryNames=(await accessoryPage.locator('#grid .card h2').allTextContents()).map(x=>x.trim()).sort();
+              if(JSON.stringify(accessoryNames)!==JSON.stringify(['Aerials','Trims & Harnesses'].sort())) throw new Error('Accessories child buttons mismatch: '+JSON.stringify(accessoryNames));
+              await accessoryPage.locator('#grid .card').filter({hasText:'Trims & Harnesses'}).click();
+              await accessoryPage.waitForURL(/preview-audio\\.html/,{timeout:20000});
+              await accessoryPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
+              const trimCount=await accessoryPage.locator('#products .audioProduct').count();
+              if(trimCount!==47) throw new Error('Trims & Harnesses expected 47 products, got '+trimCount);
+              await accessoryPage.close();
               await page.setViewportSize({width:1365,height:900});
               await page.waitForTimeout(500);
               const dims=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
