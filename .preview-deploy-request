@@ -17,3 +17,6 @@ Exact repair-head staging refresh — 2026-11-04.
 The category renderer runtime defect (missing array separator), non-destructive category cleanup, Car Audio product artwork and supplier-specific quote handling are repaired on this branch. Deploy this exact triggering commit to pr-168-staging-preview only, then run hosted browser QA at mobile and desktop widths. This remains non-production; production HOLD.
 
 Deploy the repair branch alias (repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev) for exact-head hosted browser verification. Do not deploy production.
+
+Final exact-head deployment request — 2026-11-04.
+Deploy the current repair branch commit after the Car Audio category tile image, category renderer, navigation cleanup, and supplier-specific price regressions passed. Verify this exact triggering SHA on the repair branch Pages alias at desktop and mobile widths. Preview only; no production changes.
