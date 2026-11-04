@@ -1,5 +1,5 @@
 # Isolated non-production staging deployment request
 # Owner-approved staging only. No production, Axxess, DNS, Supabase or live data changes.
-request=PR-176-preview-verification-after-browser-qa-fix
+request=PR-176-final-exact-head-verification-after-handover-update
 requested_for=preview/integrated-storefront-2026-11-04
-previous_head=38e8e39c8737f0a8ea98a7aa31eca85de79884bc
+previous_head=57204715653c91751bd9125a0cd7cebae5fac448
