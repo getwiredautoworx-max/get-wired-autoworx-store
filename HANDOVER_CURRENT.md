@@ -357,3 +357,13 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Alpine R2-W12D4 direct image links returned only 46×35 thumbnails; unsuitable. JVC KW-M590BT has an official dealer marketing asset route, but JVC's portal says materials cannot be distributed without proper written authorization.
 - No image-use rights were established for the three Alpine candidates. No imageUrl field or customer preview was changed; five image gaps remain open. This does not increase approved image coverage.
 - No Cloudflare credit, deployment, production or live data change was made. Continue with source verification and supplier confirmation; do not proceed to ASC/Electro-city or production release before owner acceptance.
+
+
+## 2026-11-04 — Owner authorization applied: Alpine exact-model preview images
+- Owner explicitly authorized use of the three previously reviewed official Alpine image candidates in the **non-production preview**.
+- Updated `assets/planetworld-verified-models-preview.json` with exact-model image URLs for HCE-C2100RD, HDZ-653 and S2-A55V. No substitutions or changes were made to R2-W12D4 (only 46×35 thumbnails available) or JVC KW-M590BT (manufacturer dealer portal requires written distribution authorization).
+- Updated `tests/audio-catalogue-preview.test.cjs` to assert all three exact model-to-image URL mappings, the curated verified-model image count (66), and combined Planetworld + Audio Connections exact image candidate count (71).
+- Readback from the review branch confirms 68 curated records, 66 with image URLs and 2 still blank (R2-W12D4, KW-M590BT); Audio Connections remains 66 preview-only records / 5 image URLs / 61 missing. The prior five missing-image count applied to a different review slice and is superseded by this latest readback.
+- Commits: data `7bca2367373bde1055d62cbf1f3dafd59b50fcf7`; regression test `e3c5df58a5b8ced8fedbe3908f5e4297c69300ea` (current branch head at this checkpoint).
+- **Verification not yet closed:** GitHub Actions workflow lookup for the exact head returned no PR-triggered run. No exact-head Node regression, public package, deployed preview image rendering or mobile/desktop browser result is claimed for this new commit. The prior successful exact-head QA predates these image additions. Must run and verify those checks before marking this stage closed or moving to ASC.
+- Preview-only authorization does not authorize merge, production deployment, live catalogue/price/stock changes, supplier activation, payment/checkout, Supabase writes, DNS or Axxess upload. Production remains HOLD.
