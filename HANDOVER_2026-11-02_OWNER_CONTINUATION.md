@@ -1547,3 +1547,15 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Switches catalogue remains incomplete. Remaining sections: Wiper Switches; Headlamp, Dimmer & Hazard Switches; Power Window Switches; Toggle, Push & Button Switches; Starter & Solenoid Switches; Battery Isolators & Cut-Off Switches; Switch Panels, Covers & Accessories; Marine & Specialist Switches.
 - Updated ASC extraction README and validation report. Latest pilot staging branch head `18ffe994acc51353e281c1e8e4f8080f9bd7f081`; source-page cleanup branch head `78958d90f4c6cc0783611d0021eef483037299d8`.
 - Previously completed: Aerials 78 products; Automotive Sensors 106 products; all 63 OCR candidates confirmed non-SKU noise/references. No live imports or production deployment.
+
+
+## 2026-11-04 — ASC AUTOMOTIVE SWITCHES CATALOGUE COMPLETE: 368 PRODUCTS
+
+- Completed all 16 product sections across pages 3–22 of `ASC- Automotive Switches (1).pdf` in 15 review-only CSV batches.
+- Section counts: Ignition Switches & Barrel Sets 51; Combination & Indicator Stalk Switches 53; Wiper Switches 7; Headlamp, Dimmer & Hazard Switches 10; Power Window Switches 27; Oil Pressure Switches 24; Radiator Fan & Thermo Switches 35; Reverse Light Switches 11; Stop Light Switches 17; Door, Bonnet & Boot Switches 4; Rocker Switches 32; Toggle, Push & Button Switches 32; Starter & Solenoid Switches 9; Battery Isolators & Cut-Off Switches 13; Switch Panels, Covers & Accessories 24; Marine & Specialist Switches 19.
+- Cross-file audit passed: **368 rows, 368 unique ASC supplier SKUs, 368 unique proposed GW SKUs, zero duplicates, zero SKU-format mismatches**. All mapped to Auto Electrical Spares & Parts → Automotive Switches with catalogue section retained.
+- All 368 remain no-price/no-stock/review-only/not imported. Dense or clipped product application/specification wording is flagged in row-level notes rather than inferred.
+- Current completed catalogue totals: Aerials 78; Automotive Sensors 106; Automotive Switches 368 = **552 source-verified product rows**. The 50-row cross-family pilot overlaps these category datasets and is not an extra count.
+- Remaining catalogues to process: Automotive Globes, Car Mats, Fuel Pumps. The six-PDF scope remains unchanged; no buyer's guides.
+- Latest pilot staging branch head `46ac8d5a051e8d5ecc3b088531e5448342bc1c65`; latest source-page cleanup branch head `78958d90f4c6cc0783611d0021eef483037299d8`.
+- No Supabase writes, live imports, product activation, PR merge, production deployment, payment changes, Axxess upload, or DNS changes. Production remains HOLD.
