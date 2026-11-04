@@ -105,3 +105,15 @@
 - The Actions run lookup for this exact SHA returned no pull-request-triggered workflow runs; this is not proof that no push-triggered run exists. Inspect the Actions run list/status and use a path-matching PR update or owner UI dispatch where the workflow is manual-only. Do not use Cloudflare deployment workflows without the required explicit approval/credentials.
 - Aerials has a route but no Planetworld/Audio Connections records; ASC source records remain deferred. This is an expected empty state for the current supplier pilot, not permission to import ASC.
 - PR #168 remains draft/unmerged; production remains HOLD. No live stock, price, payment, DNS, Axxess or Supabase changes.
+
+
+## 2026-11-04 — Exact-head runner failure diagnosis and category route correction
+
+- Public GitHub Actions runner eligibility was confirmed by actual execution; the latest prior workflow run 41801511406 successfully allocated a hosted Ubuntu runner, checked out PR #168 head 281b67d3671b81eeb5d19aec7dc3bd5853543d6b, installed Python 3.12 and Node 22, and passed root-count/catalogue-count/Planetworld held-row checks.
+- The full regression failed at tests/three-category-storefront-structure.test.cjs:25 because its expected first root label was stale ("Car Audio / Home Entertainment / Lifestyle"); the current owner-approved category tree label is "Audio, Entertainment & Music". The public preview category page also retained the stale root label.
+- Source inspection found a functional route defect in preview-category.html: its Car Audio special-case branch compared against obsolete category UUID 5ab55c53-eee3-41ce-ad48-04ad6df85181, while the current category-tree.json uses e3d19d20-fb46-426c-9f64-221d863add0b. Updated both old UUID occurrences and the stale root label in preview-category.html.
+- Updated the two stale root-label expectations in tests/three-category-storefront-structure.test.cjs.
+- Commits: preview-category route correction a50fc78a162aadefc909a323ca342bc66f8fb854; regression fixture correction 010c8fe8b5a9adc3eae9f00cd67bf5afac4a60aa.
+- Push-triggered Actions run 41801826778 is testing exact code head 010c8fe8b5a9adc3eae9f00cd67bf5afac4a60aa. At handover update time it was in progress; final result not yet available. Earlier failing run 41801511406 is diagnostic evidence only and must not be described as the current result.
+- Next: inspect final output of run 41801826778; fix the next concrete failing assertion if any; run full tests on the final post-handover head; verify preview route/button behavior in an actual hosted preview and mobile/desktop browser. Do not mark closed until those checks and owner acceptance.
+- No production deploy, merge, payment/checkout activation, DNS, Axxess upload, Supabase write, or live stock/price changes.
