@@ -1334,3 +1334,15 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Cloudflare's Wrangler deployment output has alternated between two branch aliases on successive deployments: `repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev` and `fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev`. The actual alias for deployment run `41841421867` / SHA `0927ee2c0d083682e58c8c5b330dba47e1389b9e` was the former.
 - Updated hosted QA to probe both observed aliases for `qa-build-result.json` and continue only when the marker's commit equals the exact workflow SHA (commit `65d52632d3ba07c2e7695a30ffcd8163283ea66e`). The chosen matching alias is then used for every hosted route and asset assertion.
 - Fresh exact-head deployment and browser QA are required after this workflow correction.
+
+
+## 2026-11-04 13:50 SAST — PR #172 exact-head preview verification CLOSED
+
+- Verified source SHA: `f6490eead240fdc9b19b8e3013e434fff6235359`.
+- GitHub Actions run `41841625308` — runner, catalogue invariants, isolated package build and full storefront regression: **SUCCESS**.
+- GitHub Actions run `41841625335` — customer-only Pages package and isolated non-production Cloudflare deployment: **SUCCESS**. Deployment log confirms source SHA `f6490eead240fdc9b19b8e3013e434fff6235359`; no production deployment.
+- GitHub Actions run `41841625311` — local and hosted Playwright owner browser QA: **SUCCESS**. Hosted `qa-build-result.json` returned the exact same SHA before browser assertions.
+- Browser evidence: mobile 390×844 and desktop checks; the three storefront roots and audio hierarchy render; six child entries are present under Audio; Car Audio catalogue and brand/component filtering work; Starsound SVC Subwoofers returns 3 rows; Trims & Harnesses returns 47 rows; Aerials opens its own filtered route; required JBL, Denon DJ and Car Audio logos render; Sony XM-5ES image renders; XS-W104ES image is intentionally withheld because both exact-model Sony CDN sources failed to render (no broken or substituted image); supplier identities are not exposed; checkout remains hidden; preview Supabase writes remain blocked; no desktop horizontal overflow.
+- Final owner preview URL: https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev/owner-preview.html
+- PR #172 remains OPEN and UNMERGED. The repaired branch is ready for owner preview, but real-phone owner acceptance is still required before merging. Do not call production ready.
+- Production HOLD remains unchanged. No production deploy, DNS/Axxess action, Supabase write, live stock/price/SKU/category activation, payment/banking activation or checkout go-live occurred. Checkout/payment functional tests remain deferred until the owner supplies banking details. ASC remains a separate later task.
