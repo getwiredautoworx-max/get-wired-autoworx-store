@@ -1007,3 +1007,36 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - `AI_HANDOVER_PERMANENT.md` and `HANDOVER_CURRENT.md` are absent by owner-directed 2 November cleanup; `HANDOVER_2026-11-02_OWNER_CONTINUATION.md` remains the sole canonical handover. Do not recreate deleted handover files.
 - Task scope: read Planetworld branch handover and its three reports; inspect PR #95, latest audit workflow/run/job/artifact, and background workflow status; continue safe source-evidence checks only. No merge, workbook edit, publication/import, live data/price/stock/active-flag change, production/deployment, Axxess/DNS/payment change, or release-credit-consuming retry.
 - Initial outcome: IN PROGRESS. Exact branch, report, PR and workflow evidence to follow.
+
+
+## 2026-11-04 09:20 SAST — STORE / PLANETWORLD MONITOR FINDINGS
+
+### PRs and background workflows
+- PR #95 is **closed, unmerged, and not mergeable**; recorded head `17c47cc3283f8ee8c786c4bf08dfe6257a3f3382`. Do not reopen or merge it.
+- PR #170 remains **open, draft, unmerged, mergeable=false** against `integration/three-category-catalogue-preview-final-2026-11-03`. Its current head is `901c6655dc9489987d8bc9e56d409cc127f3cc3d`.
+- Run **41791809140** / job **126446670388** on head `2a8940c6fb48351dda22bbfaf3557a6562a038dc` failed at the Planetworld collection-count assertion. Subsequent branch commits corrected the expected collection split.
+- Run **41793167275** / job **126451009604** on head `e67cdba4bc09eecb394e83cefbdbde34e0f7b28a` passed runner, build, ASC-source exclusion, Planetworld/Audio Connections regression, public-SKU exposure audit and preview allowlist checks, but failed mobile/desktop browser QA: the Car Audio catalogue link detached from the DOM during the click action. Preview deployment was skipped.
+- New exact-head run **41793496405** on `901c6655dc9489987d8bc9e56d409cc127f3cc3d` is **IN PROGRESS** at mobile/desktop owner-preview browser QA; earlier steps passed. Do not push another commit or start a duplicate while this run is active. Its result and any isolated Pages deployment must be checked before sharing a preview.
+- Separate older preview run **41791785470** deployed successfully for `e8883526207efd2dcdd6d413988a3e3e66fe3902` at `https://integration-clean-main-asc-a.get-wired-autoworx-store.pages.dev`; companion browser QA run **41791785478** failed because the old Audison APX 690 image URL did not load. This older preview is not the PR #170 head and is not owner acceptance.
+
+### Planetworld audit / artifact
+- Latest audit workflow run on the retained Planetworld branch: **40876805256**, branch `docs/planetworld-blocker-handover-2026-10-26`, head `9274bd3b14771af732fba782822cb775f0e82340`; run conclusion **success**, job **123457598110** conclusion **success**.
+- The job log reports **48 XLSX files, 96 sheets, 3,343 rows, 0 workbook errors, 19 zero-RRP rows, 18 positive-RRP rows below estimated VAT-inclusive cost at RRP−1%, 19 at RRP−2%, 26 rows in an identical duplicate workbook, and 0 duplicate model/SKU matches**. The duplicate workbook accounts for the 26-row difference from the 47-workbook/3,317-row customer-preview snapshot.
+- The latest run has **no artifact**: its upload step failed with `Failed to CreateArtifact: Artifact storage quota has been hit`. The prior artifact **12635711006** from run **40290002999** remains available (229,303 bytes; expires **2026-11-09 08:06:48 UTC**), but it is not the current audit.
+- Current `main` workflow file SHA `5a70502ec08f9cc1e05cd4e561925e03c0a69215` has `workflow_dispatch` and intentionally no artifact-upload step. No GitHub connector action exists to dispatch the workflow safely. Exact owner UI action: **Repository → Actions → Planetworld Workbook Audit (Read Only) → Run workflow → select branch `main` → Run workflow**. The result will be in the job summary, not an artifact. Do not claim a current-main audit refresh until that run exists.
+
+### Price, source and catalogue safeguards
+- No new Planetworld / Planet World / Audio Connections / price-list supplier confirmation was found in Gmail after **2026-10-25**. Planetworld remains a dated **25 October 2026** snapshot; Audio Connections source lists remain **5 August 2026** (Starsound) and **September 2026** (Sony). Do not refresh price or stock from these snapshots.
+- The 19 Planetworld zero-RRP rows remain a separate owner-audit hold. Positive-RRP cost-floor flags (18 at RRP−1%, 19 at RRP−2%) are historical risk flags, not confirmed supplier price defects. No new confirmed price-scaling defect was established.
+- Preserve the **107/107 October-difference audit**: source-image verification confirmed live cost equals October printed cost and the formula selling price passes. Do not alter those historical prices because an older `review_status` says review.
+- All nine September asterisk-price SKUs remain quote-only/inactive in their source candidate data. Current live active-state cannot be re-confirmed because `public.products=0`; do not restore/reimport or alter flags without explicit owner direction.
+- Read-only Supabase recheck: `public.products=0`, `public.categories=27`, `gw_private.catalogue_product_staging=770`, `gw_private.supplier_catalog_items=0`, `gw_private.product_supplier_codes=0`. No writes performed.
+- Planetworld preview: 3,317 dated rows, 37 with no indicative price (retain the exact “Price on Request due to Limited Stock and Availability” fallback), 702 Car Audio division rows; curated model set 68/68 exact-price joins, 62 image URL candidates and six unresolved image gaps. The 634 other Car Audio rows remain without proposed GW SKUs.
+- Audio Connections preview: 68 source rows / 66 retained records; three quote-only records retain the exact owner wording; 22 image URL candidates / 44 rows without images; 13 Sony proposed GW SKU candidates / 53 non-Sony candidates held. The owner-approved `SSA-ATOM13800.4` spec remains **100 W RMS nominal per channel × 4**; availability and image-use permission remain unverified.
+- Official Audison APX 690 page was checked and supplies a working direct 800×568 image candidate: `https://static.audison.com/media/2022/10/1389791642_APX-690_EMO_def_800_568.jpg`. The current PR #170 head still needs a read-back after the active run to confirm whether that candidate has been applied; keep image permission unapproved. The older failing URL must not be treated as verified.
+
+### Outcome / next action
+- **SUCCESS:** latest PR #170 regression and exposure checks passed on `e67cdba4`; exact source image evidence for APX 690 found; current Supabase state and latest Planetworld audit logs/artifact status verified read-only.
+- **IN PROGRESS:** exact-head run **41793496405** on `901c6655` is at hosted mobile/desktop browser QA.
+- **BLOCKED:** current-main Planetworld audit requires owner UI dispatch; latest branch audit artifact upload is blocked by GitHub Actions artifact storage quota; current supplier prices/availability lack fresh supplier confirmation; PR #170 still needs hosted browser QA and exact-head preview verification.
+- No PR merge, supplier XLSX modification, supplier-data import/publication, live product/price/stock/category/active-flag change, Supabase write, production deployment, Axxess/DNS/payment change or deployment-job rerun was performed.
