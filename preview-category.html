@@ -72,7 +72,7 @@ function artFor(label){
  const photo=match?match[1]:'photo-1492144534655-ae79c964c9d7';
  return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=720&q=82';
 }
-function audioProductType(product){const t=[product.name,product.description].join(' ').toLowerCase();if(/head unit|car radio|stereo|receiver|radio|multimedia player/.test(t))return 'Radios & Head Units';if(/subwoofer|sub woofer/.test(t))return 'Subwoofers';if(/speaker|tweeter|woofer/.test(t))return 'Speakers';if(/amplifier|\\bamp\\b/.test(t))return 'Amplifiers';if(/crossover/.test(t))return 'Crossovers';if(/aerial|antenna/.test(t))return 'Aerials';if(/wiring|installation|cable|connector|fuse|harness|adapter/.test(t))return 'Wiring & Accessories';return 'Other Products'}
+function audioProductType(product){const t=[product.name,product.description].join(' ').toLowerCase();if(/head unit|car radio|stereo|receiver|radio|multimedia player/.test(t))return 'Radios & Head Units';if(/subwoofer|sub woofer/.test(t))return 'Subwoofers';if(/speaker|tweeter|woofer/.test(t))return 'Speakers';if(/amplifier|\bamp\b/.test(t))return 'Amplifiers';if(/crossover/.test(t))return 'Crossovers';if(/aerial|antenna/.test(t))return 'Aerials';if(/wiring|installation|cable|connector|fuse|harness|adapter/.test(t))return 'Wiring & Accessories';return 'Other Products'}
 function brandLogo(label){const key=String(label||'').trim().toLowerCase();const known={jbl:'jbl',sony:'sony',pioneer:'pioneer',alpine:'alpine',kenwood:'kenwood',hertz:'hertz',audison:'audison',kicker:'kicker',starsound:'starsound'};const slug=known[key]||key.replace(/[^a-z0-9]+/g,'');return 'https://cdn.simpleicons.org/'+encodeURIComponent(slug)}
 function render(items,title,sub){
  document.getElementById('heading').textContent=title;
