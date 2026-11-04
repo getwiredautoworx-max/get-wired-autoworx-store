@@ -6,7 +6,7 @@
   "audio_connections_source_rows": 68,
   "audio_connections_exact_sony_pages": 13,
   "audio_connections_sold_out": 1,
-  "audio_connections_starsound_official_category_exact_model_matches": 12,
+  "audio_connections_starsound_official_category_exact_model_matches": 11,
   "audio_connections_starsound_possible_model_alias_matches": 5,
   "audio_connections_starsound_individual_page_alias_matches": 1,
   "candidate_gw_skus": 81,
@@ -27,10 +27,10 @@
   "public_descriptions": 0,
   "public_image_urls": 0,
   "sql_seed_applied": "2026-10-30; supplier_connections and supplier_catalog_items only",
-  "official_image_source_urls_found": 6,
+  "official_image_source_urls_found": 7,
   "official_image_assets_downloaded": 0,
   "official_image_assets_approved": 0,
-  "image_notes": "Four Alpine original high-resolution official image URLs and two Sony official image URLs remain recorded in the original crosswalk. No Starsound image asset was downloaded or approved. The 12 exact category-listing matches and 5 possible model aliases are identity evidence only, not product-image approval. Retailer/PDF images remain unapproved.",
+  "image_notes": "Four Alpine and two Sony official image URLs remain recorded in the original crosswalk. One exact Starsound official manufacturer image URL is now used as a preview candidate for SSA-HORNET-7600.4. No image asset has been downloaded or approved for production; owner acceptance is still required before production publication. The two-page Starsound 05 August 2026 price-list PDF is text-only and contains no product images.",
   "supplier_connection_statuses": {
     "planetworld": {
       "id": "29e1acee-b1a6-5630-83c3-0150ea993479",
@@ -43,5 +43,26 @@
       "active": false,
       "reason": "Owner-confirmed dealer relationship; intentionally inactive until separate activation approval."
     }
+  },
+  "audio_connections_starsound_source_rows": 49,
+  "audio_connections_price_list_source_rows": 53,
+  "audio_connections_other_brand_source_rows": 4,
+  "audio_connections_sony_source_rows": 15,
+  "audio_connections_sony_preview_rows": 13,
+  "audio_connections_sony_held_rows": 2,
+  "audio_connections_starsound_exact_individual_product_pages": 1,
+  "audio_connections_starsound_unmatched_rows": 31,
+  "audio_connections_source_pdf": {
+    "name": "STARSOUND Price Lists 05 AUGUST 2026.pdf",
+    "pages": 2,
+    "price_list_rows": 53,
+    "starsound_brand_rows": 49,
+    "other_brands": [
+      "Reference Audio",
+      "RA",
+      "BlackSpider"
+    ],
+    "contains_product_images": false,
+    "price_basis": "Supplier dealer prices excluding VAT; not current stock confirmation."
   }
 }
