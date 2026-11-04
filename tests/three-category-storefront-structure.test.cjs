@@ -1,6 +1,7 @@
 'use strict';
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const vm = require('node:vm');
 const read = p => fs.readFileSync(p, 'utf8');
 const tree = JSON.parse(read('assets/category-tree.json'));
 const home = read('index-new.html');
@@ -9,13 +10,25 @@ const planet = JSON.parse(read('assets/planetworld-catalogue-preview.json'));
 const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-preview.json'));
 const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
 const audioPage = read('preview-audio.html');
+const categoryInlineScripts = [...categoryPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
+assert.ok(categoryInlineScripts.length > 0, 'category page must contain its navigation script');
+for (const script of categoryInlineScripts) new vm.Script(script);
+assert.ok(categoryPage.includes("photo-1593359677879-a4bb92f829d1'],\n  [/speaker"), 'category artwork mapping entries must remain comma-separated so the root category renderer does not crash');
+const audioInlineScripts = [...audioPage.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]);
+assert.ok(audioInlineScripts.length > 0, 'audio preview must contain its catalogue navigation script');
+for (const script of audioInlineScripts) new vm.Script(script);
 assert.ok(home.includes("if(c.id==='gw-audio-home')return '<span class=\"catArt\"><img class=\"catPhoto customProductArt\" src=\"assets/car-audio-video-category.svg\" alt=\"Home entertainment television, stereo speakers and headphones\" loading=\"lazy\"></span>'"), 'Home Entertainment homepage tile must use the corrected television and audio artwork, not car/cartoon imagery');
+assert.ok(home.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'homepage audio collage must use a real car-audio product photo in its Car Audio panel');
+assert.ok(home.includes("if(c.id==='e3d19d20-fb46-426c-9f64-221d863add0b')") && home.includes('alt="Sony XM-5ES car audio amplifier"'), 'Car Audio & Video child category button must use real car-audio product artwork');
+assert.ok(categoryPage.includes("if(n==='car audio & video'||n==='audio, entertainment & music')return 'https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'"), 'standalone category page must use real car-audio product artwork for Audio and Car Audio tiles');
 assert.ok(home.includes('class="catArt audioFourTile" aria-label="Four audio departments: Car Audio and Video, Home Entertainment, Band and Live Sound, and DJ Equipment"'), 'Audio, Entertainment & Music root tile must be a four-picture collage for the four main departments');
-for (const alt of ['Car audio speaker equipment','Home entertainment television','Band and live sound concert','DJ equipment and mixing decks']) assert.ok(home.includes('alt="'+alt+'"'), 'four-picture audio tile must include the '+alt+' panel');
+for (const alt of ['Sony XM-5ES car audio amplifier','Home entertainment television','Band and live sound concert','DJ equipment and mixing decks']) assert.ok(home.includes('alt="'+alt+'"'), 'four-picture audio tile must include the '+alt+' panel');
 const planetPage = read('preview-planetworld.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 const ownerPreview = read('owner-preview.html');
 const categoryCleanup = read('assets/category-cleanup.js');
+assert.ok(!categoryCleanup.includes(':scope') && !categoryCleanup.includes('setInterval') && !categoryCleanup.includes('innerHTML'), 'category cleanup must not use unsupported selectors, periodic hiding or destructive grid replacement');
+assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.includes('removeProperty(\'display\')'), 'category cleanup must leave all category/subcategory nodes in place');
 const shellCss = read('assets/storefront-subpage-shell.css');
 const previewCategory = read('preview-category.html');
 const returns = read('returns-refunds.html');
@@ -46,7 +59,7 @@ assert.ok(home.includes("apiAll('categories?select=id,name,slug,parent_id,active
 assert.ok(home.includes('const hasCompleteTree=rows=>rows.length>0&&expectedRoots.every(id=>rows.some(c=>c.id===id))&&categories.every(localCategory=>rows.some(remoteCategory=>remoteCategory.id===localCategory.id));'), 'remote category refresh must include every locally approved category before replacing the tree');
 assert.ok(home.includes('Remote category response incomplete; retaining approved local category tree and subcategories.'), 'incomplete remote category responses must retain the approved local tree and its subcategories');
 assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store',signal:controller.signal})"), 'approved local category snapshot fallback must remain available and bounded');
-assert.ok(categoryCleanup.includes("const mainRootIds=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']"), 'all three approved roots must survive category cleanup without products');
+assert.ok(categoryCleanup.includes("window.installGetWiredCategoryCleanup=function(frame)") && !categoryCleanup.includes("style.display='none'"), 'category cleanup must preserve root and child category visibility when product counts are zero or unknown');
 for (const [id,label] of roots) {
   assert.ok(home.includes(id) && home.includes(label), 'storefront root '+label);
   assert.ok(categoryPage.includes(id) && categoryPage.includes(label), 'category page root '+label);
@@ -167,10 +180,11 @@ assert.ok(audioPage.includes('el("products").hidden=!department||(component==="A
 assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
 assert.ok(categoryPage.includes("document.getElementById('search')?.addEventListener"), 'category navigation must not crash when the optional search field is absent');
 
-assert.ok(audioPage.includes('assets/car-audio-video-category.svg'), 'Car Audio & Video department button must show its dedicated artwork');
+assert.ok(audioPage.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'Car Audio & Video department button must show real car-audio product photography');
+assert.ok(!audioPage.includes('img.src="assets/car-audio-video-category.svg"'), 'the Home Entertainment illustration must not be reused for Car Audio & Video');
 const audioCategoryArtwork = read('assets/car-audio-video-category.svg');
 assert.ok(audioCategoryArtwork.includes('<title id="title">Audio and home entertainment</title>'), 'audio category artwork must be explicitly audio/home-entertainment themed');
-assert.ok(audioCategoryArtwork.includes('television') && audioCategoryArtwork.includes('stereo speakers and headphones'), 'audio category artwork must depict home entertainment equipment');
+assert.ok(audioCategoryArtwork.includes('television') && audioCategoryArtwork.includes('stereo speakers') && audioCategoryArtwork.includes('headphones'), 'audio category artwork must depict home entertainment equipment');
 assert.ok(!/modern car|CAR AUDIO • VIDEO • MULTIMEDIA|<circle cx="318" cy="399"/i.test(audioCategoryArtwork), 'audio/home-entertainment artwork must not contain the old car illustration');
 assert.ok(audioPage.includes('"kicker":"https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76"') && audioPage.includes('"audison":"https://upload.wikimedia.org/wikipedia/commons/e/ec/Audison_logo.png"') && audioPage.includes('"alpine":"https://upload.wikimedia.org/wikipedia/commons/5/56/Alpine_logo.svg"'), 'core car-audio brand buttons must request their brand logos');
 assert.ok(audioPage.includes('el("products").hidden=!department||(component==="All product types"&&!directSearchRoute)'), 'department and brand landing pages must hide stock while direct search routes and selected component routes show filtered products');

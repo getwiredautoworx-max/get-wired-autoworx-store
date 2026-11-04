@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
+      - repair/pr-168-storefront-category-audio-2026-11-04
     paths:
       - "index-new.html"
       - "category.html"
@@ -13,6 +14,7 @@ on:
       - "assets/planetworld-catalogue-preview.json"
       - "assets/audio-connections-catalogue-preview.json"
       - "tests/three-category-storefront-structure.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
       - ".github/workflows/audio-accessory-route-browser-qa.yml"
   pull_request:
     branches: [main]
@@ -25,6 +27,7 @@ on:
       - "assets/planetworld-catalogue-preview.json"
       - "assets/audio-connections-catalogue-preview.json"
       - "tests/three-category-storefront-structure.test.cjs"
+      - "tests/audio-catalogue-preview.test.cjs"
       - ".github/workflows/audio-accessory-route-browser-qa.yml"
   workflow_dispatch:
 
@@ -65,12 +68,22 @@ jobs:
               const errors = [];
               page.on('pageerror', e => errors.push(String(e)));
               await page.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
-              await page.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
+              try {
+                await page.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
+              } catch(error) {
+                const diagnostic=await page.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
+                console.error('CATEGORY_ROOT_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
+                throw error;
+              }
               const roots = await page.locator('#grid .card h2').allTextContents();
               if (roots.length !== 3 || roots[0].trim() !== 'Audio, Entertainment & Music') throw new Error('Wrong category roots: '+JSON.stringify(roots));
 
               await page.locator('#grid .card').filter({hasText:'Audio, Entertainment & Music'}).click();
               await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Audio, Entertainment & Music');
+              const categoryCarAudioImage=page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).locator('.card-art img');
+              await categoryCarAudioImage.waitFor({state:'visible',timeout:15000});
+              const categoryCarAudioImageLoaded=await categoryCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!categoryCarAudioImageLoaded)throw new Error('Standalone category-page Car Audio product image did not load');
               await page.locator('#grid .card').filter({hasText:'Car Audio & Video'}).click();
               await page.waitForFunction(() => document.querySelector('#crumb')?.textContent === 'Car Audio & Video');
               await page.locator('#grid .card').filter({hasText:'Accessories'}).click();
@@ -90,6 +103,13 @@ jobs:
               const aerialPage = await browser.newPage({viewport:{width:390,height:844}});
               aerialPage.on('pageerror', e => errors.push('aerials: '+String(e)));
               await aerialPage.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
+              try {
+                await aerialPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:15000});
+              } catch(error) {
+                const diagnostic=await aerialPage.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
+                console.error('AERIALS_CATEGORY_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
+                throw error;
+              }
               await aerialPage.locator('#grid .card').filter({hasText:'Aerials'}).click();
             await aerialPage.waitForURL(/preview-audio\.html/,{timeout:15000});
               await aerialPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});

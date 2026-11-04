@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
+      - repair/pr-168-storefront-category-audio-2026-11-04
     paths:
       - ".preview-deploy-request"
       - ".github/workflows/deploy-pr-168-staging-preview.yml"
@@ -49,5 +50,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=pr-168-staging-preview
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=repair/pr-168-storefront-category-audio-2026-11-04 --commit-hash=${{ github.sha }} --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

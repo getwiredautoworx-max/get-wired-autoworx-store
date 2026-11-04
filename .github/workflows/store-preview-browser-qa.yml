@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
+      - repair/pr-168-storefront-category-audio-2026-11-04
 
 permissions:
   contents: read
@@ -48,14 +49,22 @@ jobs:
             if(JSON.stringify(roots)!==JSON.stringify(expected))throw new Error('Three approved category roots mismatch: '+JSON.stringify(roots));
             const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
             if(!checkoutSafe)throw new Error('Checkout control is visible in owner preview');
-            await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
-            await frame.getByRole('button',{name:/Car Audio/}).click();
-            const carAudioArt=frame.locator('.catPhoto[alt="Audio, Entertainment & Music category artwork"]');
+            const carAudioArt=frame.locator('.audioFourTile img[alt="Sony XM-5ES car audio amplifier"]');
             await carAudioArt.waitFor({state:'visible',timeout:15000});
-            const carAudioArtLoaded=await carAudioArt.evaluate(img=>img.complete&&img.naturalWidth>0);
-            if(!carAudioArtLoaded)throw new Error('Car Audio & Video category image did not load');
+            const carAudioArtLoaded=await carAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+            if(!carAudioArtLoaded)throw new Error('Homepage Car Audio & Video product image did not load');
+            await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
+            const childCarAudioImage=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] > .catBtn img.catPhoto');
+            await childCarAudioImage.waitFor({state:'visible',timeout:15000});
+            const childCarAudioImageLoaded=await childCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+            if(!childCarAudioImageLoaded)throw new Error('Car Audio & Video child category product image did not load');
+            await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
             await frame.getByRole('link',{name:/Car Audio & Video/}).evaluate(el=>el.click());
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            const carAudioDepartmentImage=frame.locator('.audioTile button').filter({hasText:/Car Audio & Video/}).locator('img.departmentImage');
+            await carAudioDepartmentImage.waitFor({state:'visible',timeout:15000});
+            const carAudioDepartmentImageLoaded=await carAudioDepartmentImage.evaluate(img=>img.complete&&img.naturalWidth>0);
+            if(!carAudioDepartmentImageLoaded)throw new Error('Car Audio & Video department product image did not load');
             await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
             const carAudioSummary=await frame.locator('#audioResultCount').innerText();
             const carAudioRecordCount=Number(carAudioSummary.split(' ')[0]||0);
@@ -165,7 +174,7 @@ jobs:
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
-              const previewBase='https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev';
+              const previewBase='https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev';
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
                 const response=await page.request.get(previewBase+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
@@ -202,7 +211,15 @@ jobs:
               if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted preview category roots mismatch: '+JSON.stringify(roots));
               const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
               if(!checkoutSafe) throw new Error('Checkout is visible in hosted owner preview');
+              const hostedCarAudioArt=frame.locator('.audioFourTile img[alt="Sony XM-5ES car audio amplifier"]');
+              await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
+              const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!hostedCarAudioArtLoaded)throw new Error('Hosted homepage Car Audio & Video product image did not load');
               await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
+              const hostedChildCarAudioImage=frame.locator('.catWrap[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"] > .catBtn img.catPhoto');
+              await hostedChildCarAudioImage.waitFor({state:'visible',timeout:15000});
+              const hostedChildCarAudioImageLoaded=await hostedChildCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
+              if(!hostedChildCarAudioImageLoaded)throw new Error('Hosted Car Audio & Video child category product image did not load');
               try {
                 await page.waitForFunction(()=>{const f=document.querySelector('#store');const w=f?.contentDocument?.querySelector('#categoryGrid > .catWrap');return !!w?.classList.contains('open')},{timeout:10000});
               } catch(error) {
@@ -211,11 +228,7 @@ jobs:
                 throw error;
               }
               console.log('HOSTED_AFTER_AUDIO_ROOT',JSON.stringify({text:await frame.locator('#categoryGrid').innerText()}));
-              await frame.getByRole('button',{name:/Car Audio/}).click();
-              const hostedCarAudioArt=frame.locator('.catPhoto[alt="Audio, Entertainment & Music category artwork"]');
-              await hostedCarAudioArt.waitFor({state:'visible',timeout:15000});
-              const hostedCarAudioArtLoaded=await hostedCarAudioArt.evaluate(img=>img.complete&&img.naturalWidth>0);
-              if(!hostedCarAudioArtLoaded)throw new Error('Hosted Car Audio & Video category image did not load');
+              await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
               const hostedCategoryGrid=frame.locator('#categoryGrid');
               const hostedAudioLinks=hostedCategoryGrid.locator('a.catalogueLink[href*="preview-audio.html"]');
               const hostedAudioLinkCount=await hostedAudioLinks.count();
@@ -260,6 +273,10 @@ jobs:
               if(hostedStarsoundProducts!==3)throw new Error('Hosted Starsound SVC Subwoofers route expected 3 products, got '+hostedStarsoundProducts);
               if(!(await page.locator('#products').innerText()).includes('Starsound'))throw new Error('Hosted Starsound route returned another brand');
               await page.goto(previewBase+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded'});
+              const hostedCarAudioDepartmentImage=page.locator('.audioTile button').filter({hasText:/Car Audio & Video/}).locator('img.departmentImage');
+              await hostedCarAudioDepartmentImage.waitFor({state:'visible',timeout:15000});
+              const hostedCarAudioDepartmentImageLoaded=await hostedCarAudioDepartmentImage.evaluate(img=>img.complete&&img.naturalWidth>0);
+              if(!hostedCarAudioDepartmentImageLoaded)throw new Error('Hosted Car Audio & Video department product image did not load');
               await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               await page.locator('#brands button[aria-label="Sony"]').click();
               await page.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
