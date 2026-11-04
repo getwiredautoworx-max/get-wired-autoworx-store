@@ -1,3 +1,4 @@
+// Exact-head validation trigger after 2026-11-04 handover update.
 'use strict';
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
