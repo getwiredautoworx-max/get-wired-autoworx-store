@@ -303,3 +303,15 @@ Read-only recheck of the current 3,317-row Planetworld preview JSON and the live
 - The read-only workflow run **41832598076** completed successfully. Its log reports: `FITMENT_SOURCE_ROW_JOIN candidates=137 output_rows=139 unique_ids=135 no_or_ambiguous=2`.
 - Persisted the exact row evidence in `catalogue-review/PLANETWORLD_FITMENT_137_SOURCE_ROW_JOIN_2026-11-04.csv` (139 data rows). This avoids relying on ephemeral runner output.
 - This closes the workbook sheet/row provenance join for 135 unique candidates and identifies the precise two-row collision for the remaining two. It does **not** verify exact vehicle compatibility, product images/rights, current price/stock, GW SKU publication or supplier authorization for individual items.
+
+## 2026-11-04 — Audio Connections Starsound official image/spec evidence
+
+- Found exact official Starsound product pages and direct gallery-image candidates for two Audio Connections records:
+  - `ac-038`, source model `SSAHORNET 7600.4`, normalized to official `SSA-HORNET-7600.4`: https://starsound.co.za/product/ssa-hornet-7600-4/
+  - `ac-039`, source model `SSA-J-10000.4`: https://starsound.co.za/product/ssa-j-10000-4/
+- Two official image candidates were recorded for each model in `catalogue-review/AUDIO_CONNECTIONS_STARSOUND_OFFICIAL_IMAGE_CANDIDATES_2026-11-04.csv`. These are internal candidates only; written image-use permission is not confirmed and no image URL was inserted into the preview JSON.
+- Both exact manufacturer pages expose specification conflicts with the Audio Connections PDF's generic “50 RMS” labels:
+  - Hornet page lists 65 W RMS at 2 ohm, 45 W RMS at 4 ohm and 90 W bridged at 4 ohm.
+  - J-10000.4 page lists 90 W RMS at 2 ohm, 60 W RMS at 4 ohm and 140 W bridged at 4 ohm.
+- Keep the Audio Connections product descriptions/specifications unchanged and flagged until supplier confirms the load/impedance basis and correct RMS values. No wattage was silently rewritten.
+- This closes two manufacturer-page reference gaps and locates four image candidates, but does not reduce the approved-image gap count because written image-use permission is still pending.
