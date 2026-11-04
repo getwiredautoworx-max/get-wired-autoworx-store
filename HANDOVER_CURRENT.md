@@ -376,3 +376,12 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Regression assertions now check all three exact model/URL pairs and expected counts 66 and 71. Data commit: `7bca2367373bde1055d62cbf1f3dafd59b50fcf7`; test commit: `e3c5df58a5b8ced8fedbe3908f5e4297c69300ea`; image-evidence documentation commit: `5a35d00dc4469f76fbabeb3d32a8b9373a13064c`.
 - **Image-source and data reconciliation is complete for the three owner-authorized Alpine models. Full stage closure is not yet proven:** no PR-triggered GitHub Actions run was returned for the latest branch head; therefore the updated exact-head Node regression, public-package build and deployed preview image rendering/browser QA are still pending. Do not represent this stage as fully accepted until those exact-head checks and owner preview acceptance are recorded.
 - No merge or production deployment. No live stock/price/SKU changes, Supabase writes, payment/checkout activation, DNS or Axxess upload. Production remains HOLD.
+
+
+## 2026-11-04 — Stage closure recovery requested by owner
+- Owner has explicitly asked to resolve the remaining exact-head Actions and hosted-preview verification blockers before handing the preview to the owner for PC and phone testing.
+- Owner will perform the physical PC/phone acceptance test after the technical reconciliation is complete. Do not repeat or claim owner device acceptance before that test.
+- The latest prior checkpoint recorded branch head `65dcbe13a29bb142925afa19653959e58fabdb99`; workflow-run lookup for that SHA returned no PR-triggered run and combined status was empty. The PR description also records a failed Cloudflare Pages build on this head. These are genuine outstanding checks, not closure.
+- This handover-only commit is intended to exercise the existing push-triggered public runner and Pages preview pipeline without changing storefront data, prices, stock, payment, supplier activation or production configuration. Inspect the new commit's Actions and Pages results; if no run starts, diagnose the workflow trigger/configuration rather than assuming exhausted private minutes.
+- Required technical closure evidence: full Node regression + isolated public package build PASS on exact latest head; successful non-production hosted preview deployment for that head; hosted preview route/image rendering smoke check. Then hand the exact preview URL to owner for PC/phone acceptance.
+- Do not merge PR #168 or deploy production.
