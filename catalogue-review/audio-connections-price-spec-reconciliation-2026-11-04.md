@@ -43,8 +43,9 @@ Eight amplifier records were reviewed. Five have a consistent exact-model specif
 1. ac-021 — SSW-12-6300: source and retailer wattage basis conflict.
 2. ac-025 — SSW-B12-2800: official page publishes no RMS rating; source and retailer values differ.
 3. ac-032 — SSA-ATOM-13500.1: official and retailer exact-model power figures conflict.
-4. ac-041 — SSA-M5-80.600: two conflicting RMS tables on the official product page.
-5. ac-044 — SSS-6501PRO: 250 W RMS per-speaker versus per-pair basis unresolved.
+4. ac-038 — SSA-HORNET-7600.4: official page, supplier list and retailer list report different RMS figures and bases.
+5. ac-041 — SSA-M5-80.600: two conflicting RMS tables on the official product page.
+6. ac-044 — SSS-6501PRO: 250 W RMS per-speaker versus per-pair basis unresolved.
 
 These six records remain review-only and explicitly held. Their product titles do not assert disputed wattage. Do not publish definitive wattage or per-driver/per-pair claims until the manufacturer or supplier confirms the exact model revision and rating basis.
 
