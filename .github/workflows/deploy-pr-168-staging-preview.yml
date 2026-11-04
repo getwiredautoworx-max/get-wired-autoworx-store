@@ -1,0 +1,53 @@
+name: Deploy PR 168 Non-Production Staging Preview
+
+on:
+  push:
+    branches:
+      - integration/three-category-catalogue-preview-final-2026-11-03
+    paths:
+      - ".preview-deploy-request"
+      - ".github/workflows/deploy-pr-168-staging-preview.yml"
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: pr-168-staging-preview
+  cancel-in-progress: true
+
+jobs:
+  deploy-staging-preview:
+    name: Build and deploy isolated PR 168 staging preview
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact triggering commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build customer-only Pages package with isolated review routes
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: |
+          set -eu
+          python scripts/build-cloudflare-pages-public.py
+          test -f pages-public/owner-preview.html
+          test -f pages-public/preview-audio.html
+          test -f pages-public/preview-category.html
+          echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
+          echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
+
+      - name: Deploy to dedicated non-production Cloudflare Pages branch
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=pr-168-staging-preview
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
