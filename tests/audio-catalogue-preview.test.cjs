@@ -104,7 +104,9 @@ for (const id of ['ac-021','ac-025','ac-032','ac-038','ac-041','ac-044']) {
   assert.ok(!held.title.includes('W RMS')&&!held.title.includes('W MAX'),id+' title must not publish held wattage');
 }
 const hornet=audioConnections.records.find(row=>row.id==='ac-038');
-assert.ok(hornet.description.includes('60 W RMS ×4')&&hornet.description.includes('50 W RMS')&&hornet.description.includes('65 W RMS ×4 at 2 Ω'),'ac-038 conflicting manufacturer/supplier/retailer specifications');
+assert.ok(hornet.description.includes('65 W RMS ×4 at 2 Ω')&&hornet.description.includes('45 W RMS ×4 at 4 Ω')&&hornet.description.includes('90 W bridged at 4 Ω')&&hornet.description.includes('50 W RMS'),'ac-038 current manufacturer/supplier specification discrepancy');
+assert.equal(hornet.specificationStatus,'OFFICIAL_MANUFACTURER_TABLE_FOUND_SUPPLIER_PRICE_LIST_DISCREPANCY_CONFIRM_MODEL_REVISION');
+assert.equal(hornet.specificationEvidenceStatus,'MANUFACTURER_PRIMARY_SOURCE_SPECIFICATION_CAPTURED_SUPPLIER_DOCUMENT_DISCREPANCY_REMAINS');
 const atom13500=audioConnections.records.find(row=>row.id==='ac-032');
 assert.ok(atom13500.description.includes('official page lists 500 W RMS at 1 Ω')&&atom13500.description.includes('retailer listings report 520 W RMS at 1 Ω')&&atom13500.description.includes('230 W RMS at 4 Ω'),'ac-032 conflicting official and retailer specification detail');
 assert.equal(atom13500.specificationStatus,'OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
