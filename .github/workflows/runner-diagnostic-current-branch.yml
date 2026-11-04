@@ -46,8 +46,10 @@ jobs:
           preview = json.loads(Path('assets/planetworld-catalogue-preview.json').read_text())
           car = [x for x in preview['records'] if x.get('division') == 'Car Audio']
           held = [x for x in car if x.get('component') == 'Unclassified — owner/source confirmation']
-          assert len(held) == 2, f'Expected 2 held Planetworld rows, got {len(held)}'
+          assert len(held) == 0, f'Expected all Planetworld Car Audio rows classified, got {len(held)} held'
           assert not any(x.get('component') == 'Unclassified – manual review' for x in car), 'stale manual-review labels remain'
+          assert next(x for x in car if x.get('id') == 'pw-2088')['component'] == 'Car Audio Accessories'
+          assert next(x for x in car if x.get('id') == 'pw-2172')['component'] == 'Fascia & Fitting Kits'
           assert sum(x.get('component') == 'Excluded — Non-Audio Merchandise' for x in car) == 1
           print('GW_PLANETWORLD_MANUAL_REVIEW_PASS')
           PY

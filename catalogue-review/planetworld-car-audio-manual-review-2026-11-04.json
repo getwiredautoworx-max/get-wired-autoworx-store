@@ -6,8 +6,8 @@
   "source_staging_unclassified_rows": 236,
   "additional_source_rows_already_present_in_preview_as_classified": 2,
   "preview_unclassified_rows": 234,
-  "preview_classified": 232,
-  "preview_held": 2,
+  "preview_classified": 234,
+  "preview_held": 0,
   "decisions": [
     {
       "id": "pw-0022",
@@ -1049,9 +1049,9 @@
       "description": "Nissan Box",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 7,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Car Audio Accessories",
+      "basis": "OneNav product listing corroborates Nissan Box as a Car Audio Accessories item. Exact physical form and vehicle fitment remain unverified; retain preview-only status.",
+      "disposition": "CLASSIFIED_WITH_RESELLER_CATALOGUE_CORROBORATION"
     },
     {
       "id": "pw-2090",
@@ -1685,9 +1685,9 @@
       "description": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 91,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Vehicle and screen size are given but source does not state whether this is a head unit or fascia/frame.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Fascia & Fitting Kits",
+      "basis": "Supplier description identifies a Prado 150 10.1-inch frame; adjacent OneNav ON014-F1 and ON014-F4 records identify the same model family as frames. Exact fitment and image remain unverified; retain preview-only status.",
+      "disposition": "CLASSIFIED_WITH_MODEL_FAMILY_CONTEXT_FITMENT_REVIEW"
     },
     {
       "id": "pw-2173",
