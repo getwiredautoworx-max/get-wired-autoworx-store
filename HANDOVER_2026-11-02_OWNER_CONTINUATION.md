@@ -1108,3 +1108,11 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - This is still a docs-only head update relative to `96c7040d`; no storefront/catalogue file changed in commit `0afc2b642`. The previously verified preview at `96c7040d` remains available while the exact-head redeploy is running.
 - Manufacturer report follow-up commit **14c1c036ea9d89ca3fca0da66cc9b51f1d1524f2** (blob `e96f35048aa93af1b1af213102ba75d06a285a77`) adds the direct official Ibanez IAB541-WR Wine Red image source `https://www.ibanez.com/common/product_artist_file/file/p_region_IAB541_WR_46_01_A_en_1.png` and narrows the component path to Musical Instruments & Accessories → Guitar Bags & Cases → Acoustic Guitar Gig Bags. Exact image source is verified; reuse rights are not. The R99 RRP / R649 dealer-cost anomaly remains unconfirmed and unchanged.
 - No supplier workbook, live price/stock, SKU, category, active flag, image asset, or live catalogue data was changed.
+
+
+## 2026-11-04 — AUDIO CATEGORY TILE IMAGE CORRECTION
+- Owner immediately requested replacement of the Car Audio / Home Entertainment category tile's inappropriate watch image.
+- Updated `preview-store.html` category photography mapping: audio/car-audio/home-entertainment matching now uses a speaker product photograph (Unsplash asset ID `photo-1608043152269-423dbba4e7e1`) instead of the incorrect watch image (`photo-1600003014755-ba31aa59c4b6`). Added explicit Home Entertainment matching.
+- GitHub commit: `13a67505a8829b508e0e1376c45294055a54ca3f`.
+- Follow-up fetch verified the new image mapping is present and old watch image ID is absent. This is a source-code verification only; a deployed preview/browser render and image URL response have not yet been verified.
+- No live stock, pricing, product rows, payment, or production configuration changed.
