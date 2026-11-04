@@ -3232,3 +3232,10 @@ Read-only audit of the sanitized JSON used by PR #139:
 - IMPORTANT: the earlier owner preview URL and prior eight-root hosted run are NOT valid verification of this corrected three-root head. Do not ask owner to accept the old preview as the current rebuilt store.
 - Immediate next step: trigger the isolated staging build from the corrected exact head, run the genuine three-category Node regression test plus hosted 390px/1365px browser QA, inspect workflow failures and repair them. Verify deployed SHA marker equals the exact final head before sharing the new preview.
 - PR #176 remains draft/open/unmerged; production remains HOLD. No Axxess, DNS, Supabase writes, live catalogue/stock/price changes, payment activation or production deployment.
+
+
+### QA feedback and follow-up fix — 2026-11-04
+- First corrected package build exposed a genuine regression-test mismatch: the current category-page artwork helper retained a legacy `car audio & entertainment` root alias, while the authoritative three-category tree uses `audio, entertainment & music`. Removed the obsolete alias; the current valid Audio, Entertainment & Music and Car Audio & Video artwork mappings remain.
+- Initial package failure: [run 41876088995](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41876088995), failing at regression assertion for category-page artwork alias. This was a test/code mismatch and is corrected in commit `841e92efaa2e884186f9006d99046066013318b7`.
+- The three-root local snapshot allowlist was separately corrected in `73feef78b7400210617f30db2e4e14ca2d071045`; previous eight-root allowlist is no longer authoritative.
+- Trigger a fresh exact-head package + isolated staging + browser run after these changes; earlier runs on 73feef and 7125 are not final verification.
