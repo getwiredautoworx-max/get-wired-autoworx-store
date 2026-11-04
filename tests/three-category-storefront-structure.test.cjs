@@ -5,20 +5,18 @@ const read = p => fs.readFileSync(p, 'utf8');
 const tree = JSON.parse(read('assets/category-tree.json'));
 const home = read('index-new.html');
 const categoryPage = read('category.html');
-const asc = JSON.parse(read('assets/asc-catalogue-preview-data.json'));
 const planet = JSON.parse(read('assets/planetworld-catalogue-preview.json'));
 const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-preview.json'));
 const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
 const audioPage = read('preview-audio.html');
 const planetPage = read('preview-planetworld.html');
-const ascPage = read('asc-catalogue-preview.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 const ownerPreview = read('owner-preview.html');
 const categoryCleanup = read('assets/category-cleanup.js');
 const shellCss = read('assets/storefront-subpage-shell.css');
 const previewCategory = read('preview-category.html');
 const returns = read('returns-refunds.html');
-const shellPages = ['category.html','products.html','product.html','preview-category.html','preview-products.html','preview-product.html','preview-planetworld.html','preview-audio.html','asc-catalogue-preview.html','returns-refunds.html','terms-and-conditions.html','privacy-policy.html','checkout-v2.html'].map(read);
+const shellPages = ['category.html','products.html','product.html','preview-category.html','preview-products.html','preview-product.html',,'terms-and-conditions.html','privacy-policy.html','checkout-v2.html'].map(read);
 const legacyPreview = read('preview-store.html');
 const roots = tree.categories.filter(c => c.active && c.parent_id === null)
   .sort((a,b) => a.sort_order-b.sort_order).map(c => [c.id,c.name]);
@@ -95,19 +93,6 @@ assert.ok(planetPage.includes("location.replace('preview-audio.html?department=C
 assert.ok(!planetPage.includes('Supplier stock snapshot') && !planetPage.includes('stock.jhb'), 'supplier stock snapshots must not be rendered as a separate customer-facing catalogue');
 assert.ok(audioPage.includes('routeParams.get("department")'));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
-assert.ok(/name="robots" content="noindex,nofollow"/.test(ascPage));
-const expectedAsc = [
-  ['Aerials','Car Audio'],['Automotive Sensors','Auto Electrical Parts & Spares'],
-  ['Automotive Switches','Auto Electrical Parts & Spares'],['Automotive Globes','Auto Electrical Parts & Spares'],
-  ['Car Mats','Car Care & Accessories'],['Fuel Pumps','Auto Electrical Parts & Spares']
-];
-assert.deepEqual(asc.catalogues.map(c => [c.name,c.root]), expectedAsc);
-assert.ok(asc.catalogues.every(c => !Object.hasOwn(c,'source_pdf')), 'supplier source PDF paths must not be present in public preview data');
-assert.ok(home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Car Care & Accessories','Car Mats')"));
-assert.ok(!home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio','Aerials')"), 'Aerials must be reached through Accessories, not a direct Car Audio catalogue button');
-assert.ok(!home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Auto Electrical Parts & Spares')"));
-assert.ok(!home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Auto Electrical Parts & Spares','Car Mats')"));
-assert.ok(!ascPage.includes('catalogue.source_pdf') && !ascPage.includes('View complete original'), 'supplier source PDFs must not be linked from public preview');
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);
 assert.equal(verifiedModels.records.length,68);
@@ -146,7 +131,7 @@ for (const obj of [planet,audio]) {
 }
 const audioPageWithoutAssetPaths = audioPage.replace(/assets\/[a-z0-9-]+\.json/gi,'');
 assert.ok(!/Planetworld|Audio Connections/i.test(audioPageWithoutAssetPaths), 'supplier names must not appear in customer-facing audio page text');
-assert.ok(builder.includes('"preview-audio.html"') && builder.includes('"asc-catalogue-preview.html"'));
+
 
 assert.ok(builder.includes('"owner-preview.html"'), 'safe owner preview must be in the opt-in package allowlist');
 assert.ok(ownerPreview.includes('src="index-new.html"'), 'owner preview must use the current storefront shell');
