@@ -100,8 +100,7 @@ jobs:
             if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Approved roots mismatch: '+JSON.stringify(roots));
             const checkoutHidden=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
             if(!checkoutHidden) throw new Error('Checkout control visible');
-            await frame.getByRole('button',{name:/Car Audio \/ Home Entertainment \/ Lifestyle/}).click();
-            await frame.getByRole('link',{name:/Browse Car Audio Catalogue/}).click();
+            await frame.locator('#categoryGrid > .catWrap a[href^="preview-audio.html"]').click();
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
             const text=await frame.locator('body').innerText();
