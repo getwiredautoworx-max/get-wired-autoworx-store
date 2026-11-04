@@ -65,3 +65,6 @@ The current branch head now corrects the aggregate image count to reflect withho
 
 Final hosted browser QA runner setup adjustment — 2026-11-04.
 This exact head removes the slow apt dependency refresh from Playwright installation while retaining Chromium browser checks. Deploy this SHA and rerun runner regression plus full local/hosted mobile and desktop preview QA. Production HOLD.
+
+Final hosted preview alias correction — 2026-11-04.
+The hosted QA workflow now polls the actual Cloudflare alias reported by Wrangler for this branch: fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev. Deploy this exact head and rerun runner, package, and hosted mobile/desktop QA. Production HOLD.
