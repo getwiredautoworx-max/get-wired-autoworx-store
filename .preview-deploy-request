@@ -32,3 +32,6 @@ Deploy the exact current branch head after replacing the wrong Home Entertainmen
 
 Exact artwork regression repair refresh — 2026-11-04.
 The first corrected artwork commit exposed a stale structure-test expectation still requiring the old car SVG for Home Entertainment. The test now asserts the correct TV/home-theatre photo and dedicated Band, DJ and Instruments artwork. Deploy this exact current head and run the strengthened hosted image checks. Production HOLD.
+
+Exact audio department art QA selector correction — 2026-11-04.
+The strengthened test now locates generated catalogue links (these synthetic department nodes do not carry data-filter attributes) and checks the loaded Home Entertainment, Band & Live Sound, DJ and Musical Instruments photos. Deploy this exact branch head and run all checks on that exact SHA. Production HOLD.
