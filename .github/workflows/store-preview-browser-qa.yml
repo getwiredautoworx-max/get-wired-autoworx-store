@@ -166,7 +166,7 @@ jobs:
             if(!/legacy buyers. guide items quarantined/i.test(audit.previewNotice))throw new Error('Preview notice missing');
             if(audit.visibleCheckout)throw new Error('Checkout must remain hidden in preview');
             if(/Wattlebrook|Brookdale Crescent/i.test(await page.locator('body').innerText()))throw new Error('Private street address leaked into preview');
-            const category=page.locator('#categoryGrid > .catWrap[data-filter="ba263c9f-d038-48bd-bca0-944f3ebdc5e9"] button.catBtn');
+            const category=page.locator('#categoryGrid > .catWrap[data-filter="ba263c9f-d038-48bd-bca0-944f3ebdc5e9"] > button.catBtn');
             await category.click();
             await page.waitForURL(/preview-category\.html\?id=/,{waitUntil:'domcontentloaded',timeout:15000});
             await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0,{timeout:30000});
