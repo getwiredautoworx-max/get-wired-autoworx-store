@@ -31,7 +31,7 @@ No product, price, stock, supplier activation, or database records are created o
 
 ## Source-page visual evidence
 
-Twelve full-page renders for pages 3 and 4 of the six retained PDFs were generated in the isolated branch `cleanup/asc-catalogues-stock-reset-2026-10-30`, under `catalogue-review/asc/source-pages/`. These pages contain all 50 pilot rows and provide the visual source evidence for the supplier SKU, printed caption, and product-image pairing checks.
+Full-page renders of all 60 product pages (PDF pages 3 onward) across the six retained PDFs were generated in the isolated branch `cleanup/asc-catalogues-stock-reset-2026-10-30`, under `catalogue-review/asc/source-pages/`. Pages 3 and 4 provide the visual source evidence for the 50-row pilot; the remaining 48 product pages are now ready for subsequent catalogue extraction and review.
 
 ## OCR quarantine
 
