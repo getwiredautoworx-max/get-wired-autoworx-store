@@ -50,12 +50,12 @@ assert.equal(verifiedImageCount, 63, '63 exact-model image URLs are present, inc
 assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
 assert.equal(audioConnections.records.length, 66);
-assert.equal(audioConnections.records.filter(row => row.brand !== 'Sony' && /(?:W RMS|RMS\/peak basis not stated)/i.test(row.description || '')).length, 21, '21 non-Sony power descriptions are present after exact-model reconciliation');
+assert.equal(audioConnections.records.filter(row => row.brand !== 'Sony' && /(?:W RMS|RMS\/peak basis not stated)/i.test(row.description || '')).length, 22, '22 non-Sony power descriptions are present after exact-model reconciliation');
 assert.ok(audioConnections.records.find(row => String(row.modelNumber).includes('SPECTR 15000')).description.includes('700 W RMS'), '700 W RMS supplier rating is preserved');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XS-163ES').description.includes('90 W RMS'), 'Sony component speaker RMS rating is preserved');
 assert.ok(audioConnections.records.find(row => row.modelNumber === 'XM-1ES').description.includes('600 W ×1 RMS'), 'Sony amplifier wattage and channel basis are preserved');
 const specChecks = [
-  ['ac-032','500 W RMS at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
+  ['ac-032','520 W RMS at 1 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
   ['ac-034','600 W RMS at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-037','95 W RMS ×4 at 2 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
   ['ac-038','65 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
@@ -64,6 +64,10 @@ const specChecks = [
   ['ac-041','80 W RMS ×4 plus 250 W sub channel','RETAILER_SPECIFICATION_CROSSCHECK'],
   ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK']
 ];
+const atom13500=audioConnections.records.find(row=>row.id==='ac-032');
+assert.ok(atom13500.description.includes('380 W RMS at 2 Ω')&&atom13500.description.includes('230 W RMS at 4 Ω')&&atom13500.description.includes('600 W maximum output'),'ac-032 retailer specification detail');
+assert.equal(atom13500.specificationEvidenceStatus,'THIRD_PARTY_RETAILER_CROSS_CHECK_NOT_MANUFACTURER_CONFIRMED');
+assert.equal(atom13500.specificationSourceUrls.length,2);
 for (const [id, phrase, status] of specChecks) {
   const row=audioConnections.records.find(item=>item.id===id);
   assert.ok(row.description.includes(phrase), id+' power specification cross-check');
