@@ -46,6 +46,12 @@ jobs:
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
         run: python3 scripts/build-cloudflare-pages-public.py
+      - name: Stamp exact source SHA into preview package
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '{"sha":"%s","branch":"%s"}\n' "$GITHUB_SHA" "$GITHUB_REF_NAME" > pages-public/deployment-manifest.json
+          test -s pages-public/deployment-manifest.json
       - name: Confirm deferred ASC source material is excluded from the supplier pilot preview
         shell: bash
         run: |
@@ -100,6 +106,8 @@ jobs:
             if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Approved roots mismatch: '+JSON.stringify(roots));
             const checkoutHidden=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
             if(!checkoutHidden) throw new Error('Checkout control visible');
+            const collagePanels=await frame.locator('.audioCategoryCollage .audioCollagePanel').count();
+            if(collagePanels!==4) throw new Error('Audio category artwork must show four product families; found '+collagePanels);
             await frame.locator('#categoryGrid > .catWrap a[href^="preview-audio.html"]').click();
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).waitFor({state:'visible',timeout:15000});
@@ -107,13 +115,17 @@ jobs:
             await frame.locator('#brands button').first().waitFor({state:'visible',timeout:15000});
             await frame.locator('#components button').first().waitFor({state:'visible',timeout:15000});
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            await frame.locator('#audioSearch').fill('SSW8');
+            await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:15000});
+            const specialOrderText=await frame.locator('#products').innerText();
+            if(!specialOrderText.includes('Special-order item — price is subject to currency exchange rates and supplier confirmation.')) throw new Error('Special-order exchange-rate disclosure missing from Price on Request item');
             const text=await frame.locator('body').innerText();
             if(/Planetworld|Audio Connections/i.test(text)) throw new Error('Supplier identity visible');
             if(errors.length) throw new Error('Browser errors: '+JSON.stringify(errors));
             await page.setViewportSize({width:1280,height:900});
             const widths=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(widths.scrollWidth>widths.innerWidth+1) throw new Error('Desktop horizontal overflow: '+JSON.stringify(widths));
-            console.log('SUPPLIER_PILOT_BROWSER_QA_PASS',JSON.stringify({roots,checkoutHidden,supabaseWritesBlocked:true,audioProductsVisible:true}));
+            console.log('SUPPLIER_PILOT_BROWSER_QA_PASS',JSON.stringify({roots,checkoutHidden,collagePanels,specialOrderDisclosure:true,supabaseWritesBlocked:true,audioProductsVisible:true}));
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
@@ -124,3 +136,49 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=supplier-pilot-preview
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify hosted preview exact SHA and customer-facing routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE_URL="https://supplier-standard-planetworl.get-wired-autoworx-store.pages.dev"
+          for attempt in $(seq 1 12); do
+            if curl -fsS "$BASE_URL/deployment-manifest.json" -o /tmp/gw-deployment-manifest.json; then break; fi
+            sleep 5
+          done
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          manifest=json.loads(Path('/tmp/gw-deployment-manifest.json').read_text())
+          expected=os.environ['GITHUB_SHA']
+          assert manifest.get('sha')==expected, f"Hosted preview SHA mismatch: {manifest.get('sha')} != {expected}"
+          print('HOSTED_PREVIEW_EXACT_SHA_PASS', manifest)
+          PY
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage({viewport:{width:390,height:844}});
+            const errors=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            const base='https://supplier-standard-planetworl.get-wired-autoworx-store.pages.dev';
+            await page.goto(base+'/owner-preview.html',{waitUntil:'domcontentloaded'});
+            if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Hosted preview warning missing');
+            const frame=page.frameLocator('#store');
+            await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile)').first().waitFor({state:'visible',timeout:30000});
+            const roots=await frame.locator('#categoryGrid > .catWrap:not(.findPartCategoryTile) > .catBtn > .catContent > b').allTextContents();
+            const expected=['Car Audio / Home Entertainment / Lifestyle','Auto Electrical Parts & Spares','Car Care & Accessories'];
+            if(JSON.stringify(roots)!==JSON.stringify(expected)) throw new Error('Hosted roots mismatch: '+JSON.stringify(roots));
+            if(await frame.locator('.audioCategoryCollage .audioCollagePanel').count()!==4) throw new Error('Hosted audio collage incomplete');
+            await frame.locator('#categoryGrid > .catWrap a[href^="preview-audio.html"]').click();
+            await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            await frame.getByRole('button',{name:'Car Audio & Video',exact:true}).click();
+            await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
+            await frame.locator('#audioSearch').fill('SSW8');
+            const card=frame.locator('#products .audioProduct').first();
+            await card.waitFor({state:'visible',timeout:15000});
+            if(!(await card.innerText()).includes('Special-order item — price is subject to currency exchange rates and supplier confirmation.')) throw new Error('Hosted special-order price disclosure missing');
+            if(errors.length) throw new Error('Hosted browser errors: '+JSON.stringify(errors));
+            console.log('HOSTED_SUPPLIER_PREVIEW_QA_PASS',JSON.stringify({roots,collagePanels:4,specialOrderDisclosure:true}));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
