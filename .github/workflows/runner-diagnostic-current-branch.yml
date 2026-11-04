@@ -16,15 +16,11 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
       - name: Confirm runner is alive and inspect catalogue invariants
         run: |
           set -eu
+          node --version
+          python3 --version
           echo "GW_RUNNER_DIAGNOSTIC_STARTED"
           python - <<'PY'
           import json
@@ -49,7 +45,7 @@ jobs:
       - name: Build isolated non-production preview package and run storefront regression
         env:
           GW_INCLUDE_PREVIEW_ROUTES: "1"
-        run: python scripts/build-cloudflare-pages-public.py
+        run: python3 scripts/build-cloudflare-pages-public.py
       - name: Confirm deferred ASC source material is excluded from the supplier pilot preview
         shell: bash
         run: |
