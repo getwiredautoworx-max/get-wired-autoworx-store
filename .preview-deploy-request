@@ -47,3 +47,6 @@ The root collage had the verified DJ photo but the separate DJ Equipment tile re
 
 Exact-model Sony XS-W104ES image CDN recheck — 2026-11-04.
 The prior exact-model Sony CDN image did not render in the GitHub browser runner. The preview catalogue now references the alternate official Sony image URL recorded from the exact XS-W104ES manufacturer page. Deploy this exact head and verify product image natural dimensions in both local and hosted preview checks. Production HOLD.
+
+Exact owner handover synchronization refresh — 2026-11-04.
+HANDOVER_CURRENT.md and HANDOVER_2026-11-02_OWNER_CONTINUATION.md now record the exact-head PR #172 regression, preview deployment, hosted mobile/desktop QA, category artwork corrections, and the remaining Sony XS-W104ES CDN image caveat. Deploy this exact current head and rerun exact-head package and hosted QA after the handover-only changes. Preview only; production HOLD.
