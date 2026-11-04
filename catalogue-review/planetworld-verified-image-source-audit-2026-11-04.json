@@ -1,6 +1,6 @@
 {
   "date": "2026-11-04",
-  "status": "IMAGE_MATCHES_RECONCILED",
+  "status": "CANDIDATE_RESEARCH_COMPLETE_PENDING_SOURCE_RIGHTS_APPROVAL",
   "matched": 7,
   "records": [
     {
@@ -8,56 +8,67 @@
       "modelNumber": "HCE-C2100RD",
       "imageUrl": "https://www.gentec-intl.com/cdn/shop/products/HCE-C2100RD_2_1024x.jpg?v=1655996574",
       "source": "Gentec International product listing; exact HCE-C2100RD camera kit",
-      "matchStatus": "EXACT_MODEL_MATCH",
-      "reviewedAt": "2026-11-04"
+      "matchStatus": "VISUALLY_MATCHED_CANDIDATE",
+      "reviewedAt": "2026-11-04",
+      "publicationStatus": "NOT_PUBLISHED_PENDING_SOURCE_RIGHTS_APPROVAL"
     },
     {
       "brand": "Alpine",
       "modelNumber": "HDZ-653",
       "imageUrl": "https://canada.crutchfieldonline.com/ImageHandler/trim/869/652/products/2022/45/500/g500HDZ653-o_other1.jpg",
       "source": "Crutchfield Canada product listing; exact Alpine HDZ-653 component set",
-      "matchStatus": "EXACT_MODEL_MATCH",
-      "reviewedAt": "2026-11-04"
+      "matchStatus": "VISUALLY_MATCHED_CANDIDATE",
+      "reviewedAt": "2026-11-04",
+      "publicationStatus": "NOT_PUBLISHED_PENDING_SOURCE_RIGHTS_APPROVAL"
     },
     {
       "brand": "Alpine",
       "modelNumber": "R2-W12D4",
       "imageUrl": "https://www.gentec-intl.com/cdn/shop/files/R2-W12D4_1.jpg?v=1718761708",
       "source": "Gentec International product listing; exact Alpine R2-W12D4 subwoofer",
-      "matchStatus": "EXACT_MODEL_MATCH",
-      "reviewedAt": "2026-11-04"
+      "matchStatus": "VISUALLY_MATCHED_CANDIDATE",
+      "reviewedAt": "2026-11-04",
+      "publicationStatus": "NOT_PUBLISHED_PENDING_SOURCE_RIGHTS_APPROVAL"
     },
     {
       "brand": "Alpine",
       "modelNumber": "S2-A55V",
       "imageUrl": "https://www.alpine-asia.com/media/64b0d9389e7ef.jpg",
       "source": "Alpine Asia official product page; exact S2-A55V amplifier",
-      "matchStatus": "EXACT_MODEL_MATCH",
-      "reviewedAt": "2026-11-04"
+      "matchStatus": "VISUALLY_MATCHED_CANDIDATE",
+      "reviewedAt": "2026-11-04",
+      "publicationStatus": "NOT_PUBLISHED_PENDING_SOURCE_RIGHTS_APPROVAL"
     },
     {
       "brand": "Alpine",
       "modelNumber": "S2-S65",
       "imageUrl": "https://www.alpine-asia.com/media/65e98a0997ee3.jpg",
       "source": "Alpine Asia official product page; exact S2-S65 speakers",
-      "matchStatus": "EXACT_MODEL_MATCH",
-      "reviewedAt": "2026-11-04"
+      "matchStatus": "VISUALLY_MATCHED_CANDIDATE",
+      "reviewedAt": "2026-11-04",
+      "publicationStatus": "NOT_PUBLISHED_PENDING_SOURCE_RIGHTS_APPROVAL"
     },
     {
       "brand": "Focal Car Audio",
       "modelNumber": "KIT SUB P20FE",
       "imageUrl": "https://dam.focal-naim.com/m/36b97bdb4b6b9a67/original/P20_FE_Face-jpg.jpg",
       "source": "Focal official product page; exact P 20 FE subwoofer",
-      "matchStatus": "EXACT_MODEL_MATCH",
-      "reviewedAt": "2026-11-04"
+      "matchStatus": "VISUALLY_MATCHED_CANDIDATE",
+      "reviewedAt": "2026-11-04",
+      "publicationStatus": "NOT_PUBLISHED_PENDING_SOURCE_RIGHTS_APPROVAL"
     },
     {
       "brand": "JVC Car Audio",
       "modelNumber": "KW-M590BT",
       "imageUrl": "https://proaudiocenter.com/cdn/shop/files/24_jvc_lccp3_angle_aa.jpg?v=1719954468",
       "source": "Pro Audio Center product listing; exact JVC KW-M590BT receiver",
-      "matchStatus": "EXACT_MODEL_MATCH",
-      "reviewedAt": "2026-11-04"
+      "matchStatus": "VISUALLY_MATCHED_CANDIDATE",
+      "reviewedAt": "2026-11-04",
+      "publicationStatus": "NOT_PUBLISHED_PENDING_SOURCE_RIGHTS_APPROVAL"
     }
-  ]
+  ],
+  "published": false,
+  "approvedImageCount": 0,
+  "candidateImageCount": 7,
+  "publicationNote": "Seven exact-model image candidates were identified and visually matched, but are intentionally not published until source/rights suitability is confirmed. No candidate URL is attached to a customer-facing product record."
 }

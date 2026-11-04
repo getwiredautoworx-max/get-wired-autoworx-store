@@ -45,7 +45,7 @@ assert.equal(verified.recordCount, 68);
 assert.equal(verified.records.length, 68);
 assert.equal(new Set(verified.records.map(row => row.gwSku)).size, 68, 'curated GW candidate SKUs must be unique');
 const verifiedImageCount = verified.records.filter(row => row.imageUrl).length;
-assert.equal(verifiedImageCount, 68, 'all 68 curated exact-model products now have a matched product image');
+assert.equal(verifiedImageCount, 61, '61 exact-model image URLs are approved; remaining candidates require source/rights approval');
 
 assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
