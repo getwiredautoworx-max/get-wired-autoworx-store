@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
+      - repair/pr-168-storefront-category-audio-2026-11-04
 
 permissions:
   contents: read
@@ -56,6 +57,10 @@ jobs:
             if(!carAudioArtLoaded)throw new Error('Car Audio & Video category image did not load');
             await frame.getByRole('link',{name:/Car Audio & Video/}).evaluate(el=>el.click());
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
+            const carAudioDepartmentImage=frame.locator('.audioTile button').filter({hasText:/Car Audio & Video/}).locator('img.departmentImage');
+            await carAudioDepartmentImage.waitFor({state:'visible',timeout:15000});
+            const carAudioDepartmentImageLoaded=await carAudioDepartmentImage.evaluate(img=>img.complete&&img.naturalWidth>0);
+            if(!carAudioDepartmentImageLoaded)throw new Error('Car Audio & Video department product image did not load');
             await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
             const carAudioSummary=await frame.locator('#audioResultCount').innerText();
             const carAudioRecordCount=Number(carAudioSummary.split(' ')[0]||0);
@@ -260,6 +265,10 @@ jobs:
               if(hostedStarsoundProducts!==3)throw new Error('Hosted Starsound SVC Subwoofers route expected 3 products, got '+hostedStarsoundProducts);
               if(!(await page.locator('#products').innerText()).includes('Starsound'))throw new Error('Hosted Starsound route returned another brand');
               await page.goto(previewBase+'/preview-audio.html?department=Car%20Audio&label=Car%20Audio%20%26%20Video',{waitUntil:'domcontentloaded'});
+              const hostedCarAudioDepartmentImage=page.locator('.audioTile button').filter({hasText:/Car Audio & Video/}).locator('img.departmentImage');
+              await hostedCarAudioDepartmentImage.waitFor({state:'visible',timeout:15000});
+              const hostedCarAudioDepartmentImageLoaded=await hostedCarAudioDepartmentImage.evaluate(img=>img.complete&&img.naturalWidth>0);
+              if(!hostedCarAudioDepartmentImageLoaded)throw new Error('Hosted Car Audio & Video department product image did not load');
               await page.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
               await page.locator('#brands button[aria-label="Sony"]').click();
               await page.locator('#components button').filter({hasText:'Amplifiers'}).first().waitFor({state:'visible',timeout:30000});
