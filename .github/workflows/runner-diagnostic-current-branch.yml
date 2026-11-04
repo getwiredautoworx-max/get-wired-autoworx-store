@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
+      - supplier-standard-planetworld-audio-connections-2026-11-03
   pull_request:
     branches: [main]
 permissions:
