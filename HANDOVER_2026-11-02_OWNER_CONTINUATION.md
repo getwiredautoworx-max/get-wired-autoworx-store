@@ -1598,3 +1598,11 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Latest ASC review-only staging branch head: `d49dd1b5f24b8a03e7ca795a8d94c78cf29a298c`. Latest isolated source-page cleanup branch head: `78958d90f4c6cc0783611d0021eef483037299d8`.
 - This completes catalogue transcription and source-page cross-check only. **No products have been imported to Supabase or activated on the live store.** No production deployment, payment activation, Axxess upload, DNS change, or PR merge. Production remains HOLD.
 - Outstanding before import: owner review of 56 flagged notes; obtain current ASC price list and availability data; obtain clean/approved product images for watermarked/image-on-request records; owner approval of product descriptions and category batches; then prepare a separate import preview for approval.
+
+
+## 2026-11-04 15:40 SAST — SCHEDULED MONITOR TASK START
+- Read the sole retained authoritative handover, `HANDOVER_2026-11-02_OWNER_CONTINUATION.md` (blob `ce343de2011553d6a8f239ffc8fe382ea7b2820e`). The 2026-11-02 owner-directed cleanup removed `AI_HANDOVER_PERMANENT.md`, `HANDOVER_CURRENT.md`, and separate checkpoint/update files; do not recreate them.
+- Latest recorded work in the handover: PR #171 storefront category/audio repair package; ASC six-catalogue extraction reports 978 review-only rows across 20 CSV batches, zero duplicate/SKU-format/category-mapping errors, 56 flagged notes, and no live import. Production remains HOLD.
+- Monitoring scope this run: current main/head; latest run and latest attempt/job status for staging category-navigation Chromium acceptance, Buyer Guide PDF extraction, ASC Exact-SKU Image Sync, storefront smoke/production QA, Pages/Cloudflare deployments, and background task controllers. Retry only eligible failed/cancelled/stopped non-production jobs if a supported rerun action exists; never retry production, release, deployment, or credit-consuming workflows.
+- Safety: no PR merge, live/Supabase writes, supplier import/publication, live price/stock/category/active-flag changes, Axxess/DNS/payment changes, artifact deletion, production/release reruns, or deployment-credit use.
+- Outcome: IN PROGRESS. Next: retrieve current main SHA and inspect the latest workflow attempts/jobs, then append exact run/job/commit evidence and any safe retry result.
