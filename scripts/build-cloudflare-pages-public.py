@@ -26,7 +26,11 @@ PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
     "preview-product.html", "preview-planetworld.html", "preview-audio.html",
 ]
-PREVIEW_ASSET_FILES = ["planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json"]
+PREVIEW_ASSET_FILES = [
+    "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json",
+    "audio-connections-catalogue-preview.json",
+    "brand-logos/jbl.svg", "brand-logos/denon.svg", "brand-logos/hertz.svg",
+]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json", "storefront-subpage-shell.css",
