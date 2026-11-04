@@ -24,7 +24,7 @@ jobs:
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Run read-only owner preview checks
         shell: bash
         run: |
