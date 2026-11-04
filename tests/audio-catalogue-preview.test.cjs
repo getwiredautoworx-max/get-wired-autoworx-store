@@ -85,7 +85,7 @@ const ssw126300=audioConnections.records.find(row=>row.id==='ac-021');
 assert.ok(ssw126300.description.includes('Power rating remains unverified'));
 assert.ok(ssw126300.specificationStatus.includes('SUPPLIER_CONFIRMATION_REQUIRED'));
 const b12=audioConnections.records.find(row=>row.id==='ac-025');
-assert.equal(b12.specificationStatus,'OFFICIAL_PHYSICAL_SPEC_CONFIRMED_POWER_UNPUBLISHED_CONFLICT_REMAINS');
+assert.equal(b12.specificationStatus,'OFFICIAL_PHYSICAL_SPEC_CONFIRMED_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
 assert.ok(b12.description.includes('power rating remains unverified'));
 const m5=audioConnections.records.find(row=>row.id==='ac-041');
 assert.ok(m5.description.includes('second RMS Ratings table')&&m5.description.includes('Hold the detailed power ratings'));
