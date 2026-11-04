@@ -261,7 +261,6 @@ jobs:
                 if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Hosted wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
               }
               try {
-                await frame.getByRole('button',{name:/Car Audio & Entertainment/}).click();
                 await page.waitForFunction(()=>{const f=document.querySelector('#store');const w=f?.contentDocument?.querySelector('#categoryGrid > .catWrap[data-filter="1a13bc42-4f54-44f6-9658-36d141b77f4b"]');return !!w?.classList.contains('open')},{timeout:10000});
               } catch(error) {
                 const state=await frame.locator('#categoryGrid > .catWrap[data-filter="1a13bc42-4f54-44f6-9658-36d141b77f4b"]').evaluate(el=>({className:el.className,childCount:el.querySelector('.children')?.children.length||0,buttonText:el.querySelector('.catBtn')?.innerText||'',html:el.innerHTML.slice(0,4000)}));
