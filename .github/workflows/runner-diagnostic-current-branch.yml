@@ -15,6 +15,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -42,3 +45,31 @@ jobs:
           print('GW_CATALOGUE_STRUCTURE_PASS')
           PY
           echo "GW_RUNNER_DIAGNOSTIC_PASS"
+      - name: Build isolated non-production preview package and run storefront regression
+        env:
+          GW_INCLUDE_PREVIEW_ROUTES: "1"
+        run: python scripts/build-cloudflare-pages-public.py
+      - name: Run ASC catalogue regression
+        run: node tests/asc-catalogue-preview.test.cjs
+      - name: Run Planetworld and Audio Connections regression
+        run: node tests/audio-catalogue-preview.test.cjs
+      - name: Run public SKU exposure audit
+        run: python3 scripts/public-sku-audit.py
+      - name: Verify preview-only allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s pages-public/owner-preview.html
+          test -s pages-public/preview-audio.html
+          test -s pages-public/asc-catalogue-preview.html
+          test -s pages-public/assets/planetworld-catalogue-preview.json
+          test -s pages-public/assets/audio-connections-catalogue-preview.json
+          test ! -d pages-public/suppliers
+          test ! -d pages-public/catalogue-review
+          test ! -d pages-public/supabase
+          test ! -d pages-public/assets/asc-catalogue-source
+          if find pages-public -type f -iname '*.pdf' -print -quit | grep -q .; then
+            echo "Supplier PDF leaked into preview package"
+            exit 1
+          fi
+          echo "SUPPLIER_PREVIEW_ALLOWLIST_PASS"
