@@ -67,3 +67,14 @@
 - Neither is a top-level homepage category. Trims & Harnesses must not be placed as a sibling of Accessories directly under Car Audio & Video, nor merged into the Aerials listing.
 - This is a navigation/taxonomy correction for the future catalogue structure. It does not authorise importing/restoring ASC catalogue data in the current Planetworld + Audio Connections pilot; ASC source data remains deferred to the separate fresh-upload task.
 - No storefront code or catalogue data was changed in this handover-only update. The hierarchy must be implemented and then checked against the exact candidate head before it is described as complete.
+
+
+## 2026-11-04 execution update — Car Audio Accessories taxonomy
+
+- Updated assets/category-tree.json to Car Audio & Video → Accessories → Aerials and Trims & Harnesses. Aerials and Trims & Harnesses are separate sibling nodes/buttons under Accessories, not direct children of Car Audio.
+- Preserved the existing Trims & Harnesses UUID 13b36e2a-a5c7-471e-83ef-3ad180e66d3d. Added Accessories UUID 8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11 and Aerials UUID b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90.
+- Added static regression assertions to tests/three-category-storefront-structure.test.cjs for the parent-child hierarchy and two distinct sibling entries.
+- Commits: taxonomy 8b22958f1a5c8033700d81666c345132956ef74b; test assertion e12b9e6ea2cfcf67532f885ce219644b81f6d447.
+- Outstanding: the test suite has not been executed on this head. preview-audio.html still needs explicit Accessories → Aerials / Trims & Harnesses navigation and correct product filtering. Do not mark the navigation complete until route wiring and exact-head tests pass.
+- Current supplier scope remains Planetworld + Audio Connections. ASC catalogue data remains deferred to the separate fresh-upload task.
+- No GitHub Actions, Cloudflare build/deployment, Supabase write, production change, supplier activation or live catalogue change was triggered.
