@@ -168,7 +168,7 @@ jobs:
             await page.setViewportSize({width:1280,height:900});
             const widths=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(widths.scrollWidth>widths.innerWidth+1)throw new Error('Category/audio route has horizontal overflow: '+JSON.stringify(widths));
-            console.log('OWNER_PREVIEW_BROWSER_QA_PASS',JSON.stringify({roots,sonyAmplifierProductsVisible:true,departmentAndBrandStockHidden:true,sonyProductImages:{XM5ES:xmImage.loaded,XS_W104ES:xsImage.loaded},trimFitmentRows:fitmentCount,aerialsOwnRoute:true,checkoutHidden:true,supabaseWritesBlocked:true}));
+            console.log('OWNER_PREVIEW_BROWSER_QA_PASS',JSON.stringify({roots,sonyAmplifierProductsVisible:true,departmentAndBrandStockHidden:true,sonyProductImages:{XM5ES:xmImage.loaded,XS_W104ES_WITHHELD:(xsImageCount===0)},trimFitmentRows:fitmentCount,aerialsOwnRoute:true,checkoutHidden:true,supabaseWritesBlocked:true}));
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
