@@ -206,6 +206,11 @@ jobs:
                 await page.waitForTimeout(5000);
               }
               if(!deployedBuild||deployedBuild.commit!==expectedSha) throw new Error('Hosted preview did not deploy exact workflow commit '+expectedSha+'; found '+JSON.stringify(deployedBuild));
+              for (const asset of ['jbl.svg','denon.svg','hertz.svg']) {
+                const response = await page.request.get(previewBase+'/assets/brand-logos/'+asset, {headers:{'cache-control':'no-cache'}});
+                const body = await response.text().catch(()=> '');
+                console.log('HOSTED_BRAND_ASSET_HTTP', JSON.stringify({asset,status:response.status(),contentType:response.headers()['content-type']||null,bodyStart:body.slice(0,120)}));
+              }
               await page.goto(previewBase+'/owner-preview.html',{waitUntil:'domcontentloaded',timeout:60000});
               if(!(await page.locator('.preview-banner').innerText()).includes('NON-PRODUCTION')) throw new Error('Hosted preview warning banner missing');
               const frame=page.frameLocator('#store');
