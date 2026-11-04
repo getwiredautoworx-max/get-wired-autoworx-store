@@ -153,6 +153,8 @@ jobs:
           assert manifest.get('sha')==expected, f"Hosted preview SHA mismatch: {manifest.get('sha')} != {expected}"
           print('HOSTED_PREVIEW_EXACT_SHA_PASS', manifest)
           PY
+          npm install --no-save playwright@1.55.0
+          npx playwright install chromium
           node <<'NODE'
           const { chromium } = require('playwright');
           (async()=>{
