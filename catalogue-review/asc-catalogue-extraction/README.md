@@ -21,7 +21,8 @@ No product, price, stock, supplier activation, or database records are created o
 - The 50-row cross-family pilot is retained as a review-only validation sample.
 - A complete **78-product Aerials review-only batch** has been transcribed and visually checked against pages 3–7 of the ASC Aerials PDF. It includes eight pilot rows plus 70 additional records. File: `asc-aerials-78-product-review-only.csv`.
 - A complete **106-product Automotive Sensors review-only batch** has been transcribed and visually checked against pages 3–9 of the ASC Automotive Sensors PDF. It includes nine pilot rows plus 97 additional records. File: `asc-automotive-sensors-106-product-review-only.csv`.
-- The first **104 Automotive Switches products** are now extracted in two source-verified sections: 51 Ignition Switches & Barrel Sets (8 pilot + 43 additional) and 53 Combination & Indicator Stalk Switches (53 additional). Files: `asc-ignition-switches-51-product-review-only.csv` and `asc-combination-indicator-switches-53-product-review-only.csv`.
+- The full **368-product Automotive Switches catalogue** is extracted in 16 source-verified sections across 15 review-only CSV files.
+- Complete category batches are also ready for **Automotive Globes (158 products)**, **Car Mats (139 visible products)** and **Fuel Pumps (129 products)**. Files: `asc-automotive-globes-158-product-review-only.csv`, `asc-car-mats-139-product-review-only.csv`, and `asc-fuel-pumps-129-product-review-only.csv`.
 - All 50 supplier SKUs and all 50 proposed Get Wired SKUs are unique within this pilot.
 - The proposed SKU pattern is `GW-ASC-<normalised ASC supplier SKU>`; the supplier SKU is retained separately.
 - The 50 rows point to 12 source-page locations (pages 3 and 4 of each source PDF).
@@ -62,6 +63,14 @@ No product, price, stock, supplier activation, or database records are created o
 - Cross-file validation: 368 unique supplier SKUs, 368 unique proposed GW SKUs, zero duplicates, zero SKU-format mismatches.
 - All 368 rows use the owner-approved Auto Electrical Spares & Parts → Automotive Switches mapping.
 - All remain no-price/no-stock/review-only/not imported. Dense or clipped application text is flagged in row notes rather than completed by inference.
+
+## Completed remaining ASC categories
+
+- Automotive Globes: 158 products, 10 catalogue sections, 158 unique supplier SKUs and 158 unique proposed GW SKUs.
+- Car Mats: 139 visible products, 14 sections, 139 unique supplier SKUs and 139 unique proposed GW SKUs. The Rubber & PVC section header states 13 items but only eight product cards are present in the supplied PDF; five missing items were not invented. Some cards say “Image on Request”; those are recorded without fabricated photos. `M7-HY100` is marked “production stopped” in the catalogue and must not be activated without owner confirmation.
+- Fuel Pumps: 129 products, 18 sections, 129 unique supplier SKUs and 129 unique proposed GW SKUs.
+- Combined with Aerials (78), Automotive Sensors (106) and Automotive Switches (368), the six selected ASC PDFs now yield **978 source-verified review-only product rows**. The original 50-row pilot overlaps these batches and is not an extra count.
+- All six category batches remain no-price/no-stock/review-only/not imported. Supplier costs and stock availability were not supplied by these catalogues.
 
 ## Source-page visual evidence
 
