@@ -1732,3 +1732,28 @@ These ranges overlap where practical and are estimates, not a delivery guarantee
 - Audio catalogue and homepage assets include JBL/Denon/Hertz brand-logo files and four-panel Audio department artwork. Recheck actual logo buttons, brand/category grouping, product images, price/POA wording and the deployed mobile layout in the final owner preview.
 - Next immediate actions: (1) inspect and reconcile the eight-root taxonomy against existing authoritative source data; (2) complete the homepage/category and Audio presentation without breaking current exact-head regressions; (3) trigger a fresh isolated Cloudflare Pages deployment from the final exact branch head; (4) verify `qa-build-result.json` contains `result=PASS`, `preview_only=true`, and the exact triggering SHA; (5) run/inspect hosted mobile and desktop owner-preview browser QA; (6) give the owner the actual verified preview link and exact SHA within the one-hour target if the required gates pass. If any gate cannot be completed in that window, report the specific evidence-backed blocker plainly rather than claiming completion.
 - Production remains HOLD. No merge, production deployment, Axxess upload, DNS change, Supabase/live writes, live stock/price/category changes, supplier publication, banking/payment activation or checkout go-live is authorised.
+
+
+
+## 2026-11-04 — URGENT STOREFRONT MILESTONE: EIGHT ROOTS RESTORED
+
+- Owner's one-hour deadline remains the immediate priority. Do not revert to the superseded 3–5-day estimate for the storefront/audio milestone.
+- Diagnosed that the consolidated candidate only exposed three homepage/category roots, despite the approved eight-category taxonomy. Corrected the integrated PR #176 candidate on the same branch; no new repair branch was created.
+- Added the eight approved customer-facing root categories in owner-approved order:
+  1. Auto Electrical Spares
+  2. Vehicle Security
+  3. Car Audio & Entertainment
+  4. Automotive Accessories
+  5. Marine Spares & Accessories
+  6. Tools, Hardware & Consumables
+  7. Camping, Leisure & Outdoors
+  8. Trailer & Canopy
+- Restored 43 category records (five missing roots plus their existing source subcategory descendants) from the repository's approved eight-root taxonomy branch. Current candidate now has 72 category snapshot records. Existing candidate Audio, Auto Electrical and Automotive Accessories category subtrees were retained. Root labels/order are explicit and the 4x4 Outdoor category remains nested under Camping, Leisure & Outdoors.
+- To prevent stale historical numbers being shown as live counts, inherited direct product counts for all newly added source records were reset to zero. This is a static preview taxonomy change only; no Supabase category/product assignments, live stock, prices or counts were written.
+- Updated homepage root ID/label map and approved-root validation; standalone `category.html` and `preview-category.html` root lists; the structural regression assertion; and hosted owner-preview/deploy browser expected-root lists and Car Audio navigation labels.
+- Exact final code head at this checkpoint: `2ccf8b3fb1ad2aec23916a0eecafdf76d5261b4e`. Read-back checks confirmed exactly eight active root records in the intended order, eight homepage IDs, eight standalone category roots, eight preview-category roots, all eight root labels in the regression assertion, zero inherited stale counts on newly added category records, and 4x4 parent ID `af2f8625-4f42-45e6-9f21-d571d7415893`.
+- PR #176 remains OPEN / DRAFT / UNMERGED. Exact-head PR-triggered runs on `2ccf8b3` were queued at last poll: Car Audio Accessories Route Browser QA `41861850568`; Button-Only Storefront Smoke Test `41861850548`; Customer Authentication Security Tests `41861850833`; Axxess package preparation only `41861850563`; Public SKU Exposure Audit `41861850938`; Delivery Quote Security Tests `41861850759`; Preview Approved Catalogue Gate `41861850933`; Cloudflare Pages Public Package QA `41861851070`. These are NOT passes until they complete successfully.
+- Earlier code head `174cedc01c1ee74eecb337d1e42e756d610941cf` had all eight PR-triggered workflows successful, including Audio Accessories route browser QA and Cloudflare public package QA, but that evidence is superseded by the eight-root code changes and cannot sign off `2ccf8b3`.
+- A fresh isolated staging deployment was requested via the `.preview-deploy-request` push trigger. The available GitHub workflow-run connector only exposes PR-triggered runs, not the push-triggered Cloudflare deployment or hosted owner-preview run. The known Pages alias could not be independently opened through the available browser tool. Therefore exact deployed SHA marker and hosted desktop/mobile acceptance remain NOT VERIFIED. Do not claim the current preview is deployed or ready until those results are obtained.
+- Next: complete the eight exact-head PR workflows; verify the push-triggered Cloudflare deployment's `qa-build-result.json` marker equals the exact final SHA; inspect hosted owner-preview mobile/desktop browser QA; then provide the actual staging URL and exact SHA. Fix any evidenced regression on this same branch. Owner real-phone acceptance remains required.
+- Production remains HOLD. No merge, production deployment, Axxess upload, DNS change, Supabase/live write, supplier publication, live price/stock/category change, payment activation or checkout go-live occurred.
