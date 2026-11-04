@@ -1479,3 +1479,10 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 ## 2026-11-04 — Exact source-row evidence update (supersedes earlier row-join hold)
 
 The read-only Planetworld workbook audit now includes `scripts/planetworld_fitment_source_row_join.py`. Successful run **41832598076** produced `catalogue-review/PLANETWORLD_FITMENT_137_SOURCE_ROW_JOIN_2026-11-04.csv`: 139 rows for all 137 preview candidate IDs; 135 IDs have unique exact supplier SKU + workbook + sheet + row joins; 2 IDs are ambiguous between `TOYOTA2-H` (Products row 286) and `TOYOTA2-HC` (Products row 287) in `suppliers/Planetworld/one-price-list-2026-10-25.xlsx`; zero candidate IDs are unmatched. This supersedes the earlier statement that source sheet/row joins were outstanding for all 137. Keep `pw-2367` and `pw-2368` separate and unassigned until supplier/owner evidence identifies the correct variant. Exact vehicle compatibility remains unverified for all 137; no live catalogue/SKU/price/stock changes occurred.
+
+## 2026-11-04 — Audio Connections Starsound follow-up
+
+- Added exact official Starsound product-page references for Audio Connections records `ac-038` (SSA-HORNET-7600.4; source label “SSAHORNET 7600.4”) and `ac-039` (SSA-J-10000.4).
+- Located four official image candidates (two per product) and recorded them in `catalogue-review/AUDIO_CONNECTIONS_STARSOUND_OFFICIAL_IMAGE_CANDIDATES_2026-11-04.csv`. Image-use permission remains NOT CONFIRMED; no image was inserted into preview data, so the 44-image-gap count is unchanged.
+- Both official manufacturer pages conflict with the supplier PDF's generic “50 RMS” label. Hornet: 65 W RMS @ 2Ω, 45 W RMS @ 4Ω, 90 W bridged @ 4Ω. J-10000.4: 90 W RMS @ 2Ω, 60 W RMS @ 4Ω, 140 W bridged @ 4Ω. Preserve supplier wording but flag the mismatch; do not change public specs until supplier confirms impedance and test basis.
+- Evidence is recorded in the pilot audit. Product JSON, GW SKU assignment, prices, stock and publication remain unchanged.
