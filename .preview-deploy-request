@@ -44,3 +44,6 @@ The hosted image check found the first DJ Unsplash source unavailable. It has be
 
 Exact dedicated DJ tile image refresh — 2026-11-04.
 The root collage had the verified DJ photo but the separate DJ Equipment tile retained the unavailable prior URL. Both locations now use the verified source. Deploy this exact head and run the strengthened image checks. Production HOLD.
+
+Exact-model Sony XS-W104ES image CDN recheck — 2026-11-04.
+The prior exact-model Sony CDN image did not render in the GitHub browser runner. The preview catalogue now references the alternate official Sony image URL recorded from the exact XS-W104ES manufacturer page. Deploy this exact head and verify product image natural dimensions in both local and hosted preview checks. Production HOLD.
