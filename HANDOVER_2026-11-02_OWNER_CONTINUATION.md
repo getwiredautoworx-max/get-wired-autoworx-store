@@ -1320,3 +1320,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - The hosted browser job stalled for several minutes in `npx playwright install --with-deps chromium`, before any browser assertions ran. This is runner package-install delay, not a reported storefront assertion failure.
 - Changed the QA setup to `npx playwright install chromium` (commit `ead86f0df6b7f4744d0cea84d09b17040d57b357`) to avoid the unnecessary apt dependency refresh on the GitHub Ubuntu runner. Re-run browser checks on the new exact head; if browser launch reports a missing system library, restore the required dependency explicitly.
 - Production remains HOLD; no live data or production settings changed.
+
+
+## 2026-11-04 — Hosted preview alias correction
+
+- Deployment run `41841102855` succeeded for source SHA `b565b7835e0b1476c87d17b8976a14fb8ea96b0b`; Wrangler reported the current deployment alias as `https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev`.
+- Hosted QA was still polling the obsolete alias `repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev`, so it could not observe the exact deployed build marker. This is a QA target configuration defect, not a deployment failure.
+- Updated `.github/workflows/store-preview-browser-qa.yml` to use the actual reported branch alias (commit `338ae6d86158bb0cd7a2098a00181da143e9a9a8`). Deploy and rerun on the new exact head; confirm `qa-build-result.json` SHA matches before browser checks.
