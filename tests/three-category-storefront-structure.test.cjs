@@ -70,7 +70,7 @@ assert.equal(planet.records.find(p=>p.id==="pw-2172").component,"Fascia & Fittin
 assert.equal(audio.records.filter(p=>p.collection==="Harnesses & Trims"||p.component==="Harnesses, Trims & Fitment").length,0,'generic Audio Connections installation kits must not leak into the dedicated Planetworld fitment group');
 assert.ok(audioPage.includes('filter(label=>!/^(car audio|car audio & video|car audio and video|all car audio products)$/i.test(label))'), 'department labels must be excluded from product-type buttons');
 assert.ok(audioPage.includes('["Lifestyle","Lifestyle"]'), 'Lifestyle must be a selectable catalogue department');
-assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/b/bc/JBL_logo.svg"'), 'JBL brand button must use the JBL logo');
+assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/0/02/Logo_of_JBL.svg"'), 'JBL brand button must use the verified JBL logo asset');
 assert.ok(audioPage.includes('"https://upload.wikimedia.org/wikipedia/commons/b/b3/Denon_Logo.svg"'), 'Denon brand button must use the Denon logo');
 assert.ok(audioPage.includes('"https://static.hertz-audio.com/media/2021/04/hertz_payoff_thesoundexperience.svg"'), 'Hertz brand button must use the official Hertz Audio logo');
 assert.ok(audioPage.includes('brandNames.push("Hertz")'), 'Hertz must remain a visible Car Audio brand button while its source review is pending');
