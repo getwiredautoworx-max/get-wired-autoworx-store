@@ -536,3 +536,24 @@ For the corrected latest PR #168 head and separately for the corrected PR #165 h
 - Keep both PRs draft/unmerged and production on HOLD. No production deployment, payment/checkout activation, Axxess upload, DNS change, Supabase production write, live stock/price update, or supplier activation without explicit owner approval.
 
 **Owner's immediate priority:** make the customer-facing category buttons/subcategories work and remove the incorrect Audio/Home Entertainment artwork in the deployed storefront. Reconcile the ASC branch hierarchy in parallel without contaminating the storefront branch. The owner expects executable fixes and verified evidence, not another plan-only handoff.
+
+
+## 2026-11-04 — STOREFRONT / AUDIO & VIDEO SOURCE AUDIT (LIVE PREVIEW NOT YET VERIFIED)
+
+### Source checks completed
+- Read the current branch copies of `assets/category-tree.json`, `index-new.html`, `category.html`, `preview-audio.html`, `assets/category-cleanup.js`, `assets/car-audio-video-category.svg`, and `tests/three-category-storefront-structure.test.cjs`.
+- The local category snapshot contains the three approved root categories. Under Audio, Entertainment & Music it contains Car Audio & Video, Home Entertainment, Band Equipment, DJ Equipment, Instruments and Lifestyle.
+- The category tree contains Car Audio & Video → Accessories → Aerials and Trims & Harnesses. The `category.html` leaf-route map sends Aerials and Trims & Harnesses to distinct audio-preview filters. The Car Audio department filter excludes Marine Audio.
+- The source also contains mobile expanded-category CSS intended to make an open root take a full-width grid row and keep the child links tappable. This is source evidence only, not a real Android tap test.
+
+### Confirmed source defects / required corrections
+1. **Car Audio artwork is mapped to a Home Entertainment image.** `assets/car-audio-video-category.svg` explicitly depicts a television, stereo speakers and headphones and carries the text “HOME ENTERTAINMENT • AUDIO • MUSIC”. Yet `preview-audio.html` uses that same file as the image for its Car Audio & Video department button, with alt text “Car audio and video equipment”. Replace this mapping with a distinct, accurate Car Audio & Video product image; keep the TV/stereo/headphone artwork only for Home Entertainment. Verify the actual image loads and is visually appropriate in desktop and mobile preview.
+2. **Audio cards still expose numeric indicative prices.** `preview-audio.html` renders “Indicative preview: R…” whenever `p.indicativePrice` is non-null. This conflicts with the newer owner-confirmed global customer display policy: exact wording “Price On Request Due to Stock Availability”, no numeric product prices on any customer-facing product surface, and no price sorting while numeric prices are suppressed. The global policy implementation is being handled separately; coordinate the change with that owner/workstream and do not silently edit another agent's branch.
+3. **Do not treat the current empty Aerials result as a navigation failure.** The current combined audio loader fetches Planetworld + verified-model + Audio Connections datasets; ASC records are a separate workstream. Aerials can be an honest empty result in this supplier pilot until the separately reviewed ASC port is approved. Confirm the route itself loads and displays the correct empty-state message.
+
+### Verification boundary
+- Source-level taxonomy and route mapping were inspected. This does not prove customer-facing buttons render, expand, or navigate correctly.
+- The stable and immutable Cloudflare Pages preview URLs recorded in prior handovers were inaccessible to the current inspection environment (web access returned inaccessible; container DNS resolution failed). No current deployed SHA/build marker, visual image-load result, or interactive desktop/mobile observation could therefore be confirmed in this audit.
+- No Node test suite was run in this audit. The checked-in test asserts that the Home Entertainment tile uses the TV/stereo/headphone SVG and that the Audio root is a four-picture collage; those assertions do not test the distinct Car Audio department tile image load or the current deployed render.
+- Required before closure: agent must supply the current exact branch SHA and a fresh non-production preview URL; verify build marker matches SHA; run full Node regression/package checks; run hosted desktop and Android/mobile browser checks for all three roots, every submenu, Car Audio & Video, Home Entertainment, brand/component filters, and Aerials/Trims routes; verify every image HTTP/load result and no JS errors/overlapping tap targets. Do not claim owner acceptance until the owner confirms on their device.
+- PR #168 remains draft/unmerged; production remains HOLD. No production or live data changes were made by this audit.
