@@ -1327,3 +1327,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Deployment run `41841102855` succeeded for source SHA `b565b7835e0b1476c87d17b8976a14fb8ea96b0b`; Wrangler reported the current deployment alias as `https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev`.
 - Hosted QA was still polling the obsolete alias `repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev`, so it could not observe the exact deployed build marker. This is a QA target configuration defect, not a deployment failure.
 - Updated `.github/workflows/store-preview-browser-qa.yml` to use the actual reported branch alias (commit `338ae6d86158bb0cd7a2098a00181da143e9a9a8`). Deploy and rerun on the new exact head; confirm `qa-build-result.json` SHA matches before browser checks.
+
+
+## 2026-11-04 — Cloudflare alias variability handled
+
+- Cloudflare's Wrangler deployment output has alternated between two branch aliases on successive deployments: `repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev` and `fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev`. The actual alias for deployment run `41841421867` / SHA `0927ee2c0d083682e58c8c5b330dba47e1389b9e` was the former.
+- Updated hosted QA to probe both observed aliases for `qa-build-result.json` and continue only when the marker's commit equals the exact workflow SHA (commit `65d52632d3ba07c2e7695a30ffcd8163283ea66e`). The chosen matching alias is then used for every hosted route and asset assertion.
+- Fresh exact-head deployment and browser QA are required after this workflow correction.
