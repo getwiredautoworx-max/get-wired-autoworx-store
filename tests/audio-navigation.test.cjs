@@ -70,6 +70,12 @@ for(const [index,match] of [...imagePreview.matchAll(/<script[^>]*>([\s\\S]*?)<\
 const planetworldProductsStart=imagePreview.indexOf('const products=')+'const products='.length;
 const planetworldProductsEnd=imagePreview.indexOf('];\n\nconst esc=',planetworldProductsStart);
 if(planetworldProductsStart<0||planetworldProductsEnd<0||JSON.parse(imagePreview.slice(planetworldProductsStart,planetworldProductsEnd+1)).length!==68) throw new Error('Planetworld review page must render all 68 source-reviewed product/model candidates');
+assert.match(imagePreview,/window\.gwPlanetworldPreview=products/,'Planetworld review page must expose its sanitized review-only model rows to browser QA');
+assert.match(imagePreview,/assets\/storefront-shell\.css/,'Planetworld review route must load the shared bright shell');
+assert.match(imagePreview,/class="gwPlanetworldReview"/,'Planetworld review route must use the scoped bright treatment');
+const sharedShell=fs.readFileSync('assets/storefront-shell.css','utf8');
+assert.match(sharedShell,/\.panel\{background:#fff!important/,'product detail panel must use the bright shared shell');
+assert.match(sharedShell,/body\.gwPlanetworldReview \.notice/,'Planetworld review notice must use the bright treatment');
 
 const verifiedImageModels=fs.readFileSync('assets/planetworld-verified-models-preview.json','utf8');
 const imageRoutes=['preview-store.html','products.html','preview-products.html','product.html','preview-product.html','product-details.js'];

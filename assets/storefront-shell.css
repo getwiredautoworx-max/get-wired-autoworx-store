@@ -1,4 +1,4 @@
-/* Shared Get Wired AutoWorx storefront shell — aligned to the approved dark homepage shell. */
+/* Shared Get Wired AutoWorx storefront shell — approved bright homepage and subpage treatment. */
 :root{color-scheme:dark;--gw-navy:#02060d;--gw-panel:#071222;--gw-blue:#087fe0;--gw-red:#ff1c2d;--gw-white:#f5f8fc;--gw-line:#123f60}
 *{box-sizing:border-box}
 body{background:radial-gradient(circle at 50% -10%,#0c2944 0,#030914 34%,#02060d 70%);color:#f5f8fc;font-family:Arial,Helvetica,sans-serif}
@@ -59,3 +59,23 @@ html,body{background:#f3f6fa!important;color:#173650!important}
 .grid .card,.card{background:#fff!important;border:1px solid #d5e0e9!important;color:#173650!important}
 .card-art{background:linear-gradient(135deg,#eaf5fc,#d8eaf6)!important}
 .arrow{color:#087fce!important}
+
+
+/* Bright shared treatment for product detail panels and the manufacturer-reference review route. */
+.panel{background:#fff!important;border:1px solid #d5e0e9!important;color:#173650!important;box-shadow:0 4px 14px rgba(25,55,80,.07)!important}
+.product .name,.product .price,.product .desc h2{color:#12344f!important}
+.product .stock,.product .sku{color:#425d72!important;text-shadow:none!important}
+.product .desc{color:#314b60!important}
+.product .desc h2{border-bottom-color:#d5e0e9!important}
+.product .spec{background:#f7fafc!important;color:#173650!important;border-color:#d5e0e9!important}
+.actions .btn{background:#087fce!important;color:#fff!important;border-color:#087fce!important}
+.actions .btn.secondary{background:#fff!important;color:#173650!important;border-color:#9dbbd0!important}
+body.gwPlanetworldReview .top{background:#eaf0f6!important;color:#173650!important;border-bottom:1px solid #cbdbe7!important}
+body.gwPlanetworldReview .top a{color:#075f9c!important}
+body.gwPlanetworldReview .notice{background:#fff4cf!important;color:#5a4300!important;border-color:#e0c36e!important}
+body.gwPlanetworldReview .tools input,body.gwPlanetworldReview .tools select{background:#fff!important;color:#173650!important;border-color:#9dbbd0!important}
+body.gwPlanetworldReview .brand{color:#075f9c!important}
+body.gwPlanetworldReview .prices{border-color:#d5e0e9!important;color:#314b60!important}
+body.gwPlanetworldReview .stock{color:#425d72!important}
+body.gwPlanetworldReview .link{background:#087fce!important;color:#fff!important}
+body.gwPlanetworldReview .art{background:#edf3f8!important;color:#0b4770!important}
