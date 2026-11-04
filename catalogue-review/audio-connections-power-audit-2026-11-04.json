@@ -181,5 +181,87 @@
       "previewDescription": "Digital 6-inch 2-way speaker; 1200 W (RMS/peak basis not stated)",
       "powerStatus": "WATTS_BASIS_UNSPECIFIED"
     }
-  ]
+  ],
+  "sonySourceSpecifications": [
+    {
+      "modelNumber": "XS-163ES",
+      "description": "Mobile ES 6.5-inch/16 cm 3-way component speakers with 3.5-inch/8 cm mid-range and 1-inch/2.5 cm soft-dome tweeter; 89 dB sensitivity; 90 W RMS.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "1"
+    },
+    {
+      "modelNumber": "XS-162ES",
+      "description": "Mobile ES 6.5-inch/16 cm 2-way component speaker with 1-inch/2.5 cm soft-dome tweeter; 89 dB sensitivity; 90 W RMS.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "1"
+    },
+    {
+      "modelNumber": "XS-692ES",
+      "description": "Mobile ES 6×9-inch/16×24 cm 2-way component speaker with 1-inch/2.5 cm soft-dome tweeter; 89 dB sensitivity; 110 W RMS.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "1"
+    },
+    {
+      "modelNumber": "XS-160ES",
+      "description": "Mobile ES 6.5-inch/16 cm 2-way coaxial speaker; 89 dB sensitivity; 90 W RMS.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "1"
+    },
+    {
+      "modelNumber": "XS-680ES",
+      "description": "Mobile ES 6×8-inch/16×20 cm 2-way coaxial speaker; 89 dB sensitivity; 75 W RMS.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "1"
+    },
+    {
+      "modelNumber": "XS-W104ES",
+      "description": "Mobile ES 10-inch single-voice-coil subwoofer with MRC honeycomb diaphragm; 1,800 W peak / 450 W RMS; separated notch-edge surround; five-beam frame; Dynamic Air Diffuser.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    },
+    {
+      "modelNumber": "XS-W122ES",
+      "description": "Mobile ES 12-inch single-voice-coil subwoofer with MRC honeycomb diaphragm; 2,000 W peak / 500 W RMS; separated notch-edge surround; five-beam frame; Dynamic Air Diffuser.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    },
+    {
+      "modelNumber": "XS-W124ES",
+      "description": "Mobile ES 12-inch single-voice-coil subwoofer with MRC honeycomb diaphragm; 2,000 W peak / 500 W RMS; separated notch-edge surround; five-beam frame; Dynamic Air Diffuser.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    },
+    {
+      "modelNumber": "XM-1ES",
+      "description": "Mobile ES mono power amplifier; 600 W ×1 RMS at 4 Ω or 1,000 W ×1 RMS at 2 Ω; compact aluminium case; combined pre-outs; bass remote included; 270×60×215 mm.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    },
+    {
+      "modelNumber": "XM-4ES",
+      "description": "Mobile ES 4-channel power amplifier; 100 W ×4 (330 W ×2 bridged) RMS at 4 Ω or 165 W ×4 RMS at 2 Ω; Hi-Res Audio compatible; signal summing and combined pre-outs; bass remote included; 270×60×215 mm.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    },
+    {
+      "modelNumber": "XM-5ES",
+      "description": "Mobile ES 5-channel power amplifier; 100 W ×4 + 450 W ×1 RMS at 4 Ω or 165 W ×4 + 750 W ×1 RMS at 2 Ω; Hi-Res Audio compatible; signal summing and combined pre-outs; bass remote included; 380×60×215 mm.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    },
+    {
+      "modelNumber": "XM-6ES",
+      "description": "Mobile ES 6-channel power amplifier; 100 W ×6 RMS at 4 Ω or 165 W ×6 RMS at 2 Ω; Hi-Res Audio compatible; signal summing and combined pre-outs; bass remote included; 380×60×215 mm.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    },
+    {
+      "modelNumber": "XM-8ES",
+      "description": "Mobile ES 8-channel power amplifier; 100 W ×8 RMS at 4 Ω or 165 W ×8 RMS at 2 Ω; Hi-Res Audio compatible; signal summing and combined pre-outs; bass remote included; 380×60×215 mm.",
+      "sourcePdf": "Sony Mobile ES Dealer Price List Sept 26.pdf",
+      "sourcePage": "2"
+    }
+  ],
+  "sonyRecordsWithSupplierPowerSpecifications": 13,
+  "totalPreviewRecordsWithReconciledSourcePowerData": 28
 }

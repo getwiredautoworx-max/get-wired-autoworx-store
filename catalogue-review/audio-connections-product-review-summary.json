@@ -21,6 +21,8 @@
     "preview_rows": 66,
     "explicit_supplier_power_values_in_preview": 15,
     "ambiguous_or_incomplete_source_power_values": 7,
-    "rule": "The 15 explicit values are preserved. Seven incomplete/ambiguous strings are labelled for supplier confirmation; no missing digits or RMS/peak basis is guessed."
+    "rule": "The 15 explicit values are preserved. Seven incomplete/ambiguous strings are labelled for supplier confirmation; no missing digits or RMS/peak basis is guessed.",
+    "sony_records_with_supplier_power_specifications": 13,
+    "total_preview_records_with_reconciled_source_power_data": 28
   }
 }
