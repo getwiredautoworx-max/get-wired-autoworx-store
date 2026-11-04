@@ -10,6 +10,21 @@ const route = fs.readFileSync('preview-audio.html', 'utf8');
 const home = fs.readFileSync('index-new.html', 'utf8');
 const builder = fs.readFileSync('scripts/build-cloudflare-pages-public.py', 'utf8');
 
+const categoryCleanup = fs.readFileSync('assets/category-cleanup.js', 'utf8');
+const PRICE_ON_REQUEST_TEXT = 'Price On Request Due to Stock Availability';
+assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 37);
+assert.ok(planet.records.filter(row => row.indicativePrice == null).every(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT), 'all unpriced Planetworld rows must use the exact owner-approved request wording');
+assert.equal(audioConnections.records.filter(row => row.priceOnRequestText === PRICE_ON_REQUEST_TEXT).length, 53, 'unapproved dealer-cost estimates and retail-only comparisons must remain quote-only');
+assert.equal(audioConnections.records.filter(row => row.priceOnRequestText !== PRICE_ON_REQUEST_TEXT && row.indicativePrice != null).length, 13, 'only validated Sony supplier-price-list rows retain numeric prices');
+assert.ok(route.includes('function audioPriceLabel(p)'), 'audio preview must use supplier-aware price display logic');
+assert.ok(route.includes('SPECIAL ORDER — PRICE ON APPLICATION'), 'POA/POR special-order rows must explain enquiry-time pricing and exchange-rate variation');
+assert.ok(route.includes('may vary due to currency exchange-rate fluctuations'), 'special-order prices must disclose exchange-rate variation');
+assert.ok(!route.includes('Indicative preview: R'), 'customer-facing audio preview must not label unapproved estimates as indicative prices');
+assert.ok(route.includes('https://store.sony.com.au/on/demandware.static/-/Sites-sony-master-catalog/default/dw0ecba8d8/images/XM5ES/XM5ES.png'), 'Car Audio & Video department button must use the real owner-authorised car-audio product image');
+assert.ok(!route.includes('img.src="assets/car-audio-video-category.svg"'), 'Home Entertainment artwork must not be reused for Car Audio & Video');
+assert.ok(!categoryCleanup.includes(':scope') && !categoryCleanup.includes('setInterval') && !categoryCleanup.includes('innerHTML'), 'category cleanup must not rely on unsupported selectors, timers or destructive grid replacement');
+assert.ok(categoryCleanup.includes('getElementsByClassName') && categoryCleanup.includes('removeProperty(\'display\')'), 'category cleanup must preserve and restore category nodes without deleting them');
+
 assert.equal(planet.recordCount, 3317, 'full Planetworld source snapshot must be retained');
 assert.equal(planet.records.length, 3317);
 assert.equal(planet.records.filter(row => row.indicativePrice == null).length, 37);
