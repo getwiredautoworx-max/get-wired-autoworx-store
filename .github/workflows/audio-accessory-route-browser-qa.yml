@@ -68,7 +68,13 @@ jobs:
               const errors = [];
               page.on('pageerror', e => errors.push(String(e)));
               await page.goto('http://127.0.0.1:4173/category.html', {waitUntil:'domcontentloaded'});
-              await page.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
+              try {
+                await page.locator('#grid .card h2').filter({hasText:'Audio, Entertainment & Music'}).waitFor({timeout:15000});
+              } catch(error) {
+                const diagnostic=await page.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
+                console.error('CATEGORY_ROOT_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
+                throw error;
+              }
               const roots = await page.locator('#grid .card h2').allTextContents();
               if (roots.length !== 3 || roots[0].trim() !== 'Audio, Entertainment & Music') throw new Error('Wrong category roots: '+JSON.stringify(roots));
 
