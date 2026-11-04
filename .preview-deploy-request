@@ -1,7 +1,6 @@
 # Isolated non-production staging deployment request
 # Owner-approved staging only. No production, Axxess, DNS, Supabase or live data changes.
-request=PR-176-final-exact-head-verification-after-handover-update
+request=PR-176-three-category-scope-correction
 requested_for=preview/integrated-storefront-2026-11-04
-previous_head=57204715653c91751bd9125a0cd7cebae5fac448
-
-qa_fix=audio-root-was-already-open-after-first-click
+previous_head=7125e9f43e6e7b9c60052d30ba6278aeee825b60
+required_roots=Audio, Entertainment & Music; Auto Electrical Parts & Spares; Car Care & Accessories
