@@ -45,7 +45,14 @@ assert.equal(verified.recordCount, 68);
 assert.equal(verified.records.length, 68);
 assert.equal(new Set(verified.records.map(row => row.gwSku)).size, 68, 'curated GW candidate SKUs must be unique');
 const verifiedImageCount = verified.records.filter(row => row.imageUrl).length;
-assert.equal(verifiedImageCount, 63, '63 exact-model image URLs are present, including two owner-authorized manufacturer image candidates');
+assert.equal(verifiedImageCount, 66, '66 exact-model image URLs are present, including five owner-authorized manufacturer image candidates');
+for (const [model, url] of Object.entries({
+  'HCE-C2100RD': 'https://www.alpine-asia.com/media/5baca7810efbd.png',
+  'HDZ-653': 'https://www.alpine-asia.com/media/62d65d1bd9391.png',
+  'S2-A55V': 'https://www.alpine-asia.com/media/64b0d9389e7ef.jpg'
+})) {
+  assert.equal(verified.records.find(row => row.modelNumber === model)?.imageUrl, url, model + ' owner-authorized exact-model image');
+}
 
 assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
@@ -121,7 +128,7 @@ for (const row of audioConnections.records) {
 }
 
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length;
-assert.equal(imageCount, 68);
+assert.equal(imageCount, 71);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
