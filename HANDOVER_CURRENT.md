@@ -406,3 +406,17 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Hosted browser verification confirmed local JBL, Denon and Hertz SVGs return HTTP 200 as `image/svg+xml`; brand filtering, 47 Trims & Harnesses rows, Aerials route, hidden checkout, blocked Supabase writes, and desktop no-overflow checks all passed.
 - Remaining owner action: perform the requested PC and phone acceptance test using the stable staging URL. Specifically inspect the XS-W104ES product image; the Sony CDN source was blocked/unavailable to the GitHub browser runner, while XM-5ES loaded. Do not mark owner acceptance complete until the owner confirms.
 - This handover-only commit records the completed exact-head verification above; it does not change storefront code, preview assets, deployment configuration or the tested candidate. Production remains on HOLD.
+
+## 2026-11-04 — Desktop-agent sync / owner PC + phone test handoff (latest)
+- Latest branch head at time of sync: `3ec7b95642502a33c4d41c2777aa4a1ba0b04f59`.
+- Exact-head GitHub Actions verification is complete on this SHA:
+  - Full runner, storefront regression and public package build: PASS — [run 41816585682](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41816585682).
+  - Dedicated non-production Cloudflare staging deploy: PASS — [run 41816586116](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41816586116).
+  - Local + deployed hosted browser QA: PASS — [run 41816585856](https://github.com/getwiredautoworx-max/get-wired-autoworx-store/actions/runs/41816585856).
+- Deployed staging URL for owner acceptance: `https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev/`. Immutable deployment URL for this deployment: `https://50cef89c.get-wired-autoworx-store.pages.dev`.
+- Hosted build marker was checked and matched exact SHA `3ec7b95642502a33c4d41c2777aa4a1ba0b04f59`.
+- Browser QA verified the three category roots, Sony amplifier filtering, department/brand stock hidden, 47 Trims & Harnesses fitment rows, Aerials route, checkout hidden, Supabase writes blocked, desktop overflow absent, and JBL/Denon/Hertz local SVG assets returning HTTP 200.
+- Non-blocking owner visual check: Sony XS-W104ES image did not load in the GitHub browser runner (Sony CDN denied/unavailable; naturalWidth 0); Sony XM-5ES loaded. Owner must inspect XS-W104ES on PC and phone and report result. Do not invent or substitute a replacement image without source/authorization review.
+- OWNER ACTION REQUIRED: user will perform PC and phone testing now. Record owner acceptance only after explicit feedback. If a defect is reported, reproduce and fix on the branch, redeploy staging and rerun exact-head checks before closure.
+- This update is a handover-only commit. It does not alter storefront source, catalogue data, preview assets, payment setup or production. Production remains HOLD; do not merge PR #168 or deploy production without explicit owner approval.
+- Desktop/continuation agent instruction: read this file first and continue from the latest verified head above. Do not repeat completed regression/deployment/image-research tasks. Wait for owner PC/phone findings; address only reported defects and the XS-W104ES image check.
