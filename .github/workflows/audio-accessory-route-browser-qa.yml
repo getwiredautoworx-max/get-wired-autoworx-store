@@ -99,6 +99,13 @@ jobs:
               const aerialPage = await browser.newPage({viewport:{width:390,height:844}});
               aerialPage.on('pageerror', e => errors.push('aerials: '+String(e)));
               await aerialPage.goto('http://127.0.0.1:4173/category.html?id=8d3c2e91-8b57-4b2c-9a7d-3f0f6a2b4c11',{waitUntil:'domcontentloaded'});
+              try {
+                await aerialPage.locator('#grid .card').filter({hasText:'Aerials'}).waitFor({state:'visible',timeout:15000});
+              } catch(error) {
+                const diagnostic=await aerialPage.evaluate(()=>({url:location.href,title:document.title,heading:document.getElementById('heading')?.textContent,subtitle:document.getElementById('subtitle')?.textContent,gridText:document.getElementById('grid')?.innerText,gridHtml:document.getElementById('grid')?.innerHTML.slice(0,1600),dataset:document.getElementById('grid')?.dataset}));
+                console.error('AERIALS_CATEGORY_LOAD_DIAGNOSTIC',JSON.stringify({diagnostic,jsErrors:errors}));
+                throw error;
+              }
               await aerialPage.locator('#grid .card').filter({hasText:'Aerials'}).click();
             await aerialPage.waitForURL(/preview-audio\.html/,{timeout:15000});
               await aerialPage.locator('#productsHeading').waitFor({state:'visible',timeout:30000});
