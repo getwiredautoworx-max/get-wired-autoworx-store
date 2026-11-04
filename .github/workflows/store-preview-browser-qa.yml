@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  checks: read
 
 jobs:
   owner-preview:
@@ -99,6 +100,8 @@ jobs:
           NODE
 
       - name: Inspect the deployed non-production Cloudflare preview on mobile and desktop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -110,8 +113,17 @@ jobs:
               const page=await browser.newPage({viewport:{width:390,height:844}});
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
-              const previewBase='https://integration-three-category-c.get-wired-autoworx-store.pages.dev';
               const expectedSha=process.env.GITHUB_SHA;
+              const checksResponse=await fetch('https://api.github.com/repos/'+process.env.GITHUB_REPOSITORY+'/commits/'+expectedSha+'/check-runs?per_page=100',{
+                headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+              });
+              if(!checksResponse.ok)throw new Error('Unable to read exact-commit Cloudflare deployment check: '+checksResponse.status+' '+await checksResponse.text());
+              const checksData=await checksResponse.json();
+              const pagesCheck=(checksData.check_runs||[]).find(check=>check.name==='Cloudflare Pages'&&check.status==='completed'&&check.conclusion==='success');
+              const previewMatch=pagesCheck?.output?.summary?.match(/<strong>Preview URL:<\\/strong>\\s*<\\/td>\\s*<td>\\s*<a href='([^']+)'/i);
+              if(!previewMatch)throw new Error('No successful immutable Cloudflare Pages preview URL was found for exact commit '+expectedSha);
+              const previewBase=new URL(previewMatch[1]).origin;
+              console.log('EXACT_CLOUDFLARE_PREVIEW',JSON.stringify({expectedSha,previewBase}));
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
                 const response=await page.request.get(previewBase+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
