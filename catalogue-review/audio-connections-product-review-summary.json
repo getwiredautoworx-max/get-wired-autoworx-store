@@ -14,7 +14,7 @@
     "SSWF12-5150SVC"
   ],
   "starsound_vat": "All Starsound price list values are explicitly VAT exclusive.",
-  "unresolved": "All product images, manufacturer page matches and GW SKUs remain unverified/unassigned. The Sony PDF pictures are visually aligned to the listed model rows but are low-resolution catalogue images; high-resolution manufacturer assets still need to be verified.",
+  "unresolved": "Image coverage remains incomplete: two exact Sony direct image sources are owner-authorized and attached to the non-production preview, but remote rendering is not verified; remaining image gaps and GW SKU assignment require further review. The three Starsound quote-required rows have retail benchmarks only, not supplier prices.",
   "no_live_changes": true,
   "power_review": {
     "reviewed_at": "2026-11-04",
@@ -24,5 +24,18 @@
     "rule": "The 15 explicit values are preserved. Seven incomplete/ambiguous strings are labelled for supplier confirmation; no missing digits or RMS/peak basis is guessed.",
     "sony_records_with_supplier_power_specifications": 13,
     "total_preview_records_with_reconciled_source_power_data": 28
+  },
+  "owner_authorized_direct_image_sources": [
+    "XS-W104ES",
+    "XM-5ES"
+  ],
+  "image_render_verification_pending": [
+    "XS-W104ES",
+    "XM-5ES"
+  ],
+  "indicative_retail_reference_only": {
+    "SSW8\\\"-8000D2": 1395,
+    "SSW-B12-2800 SVC": 1299,
+    "SSWF12-5150SVC": 795
   }
 }
