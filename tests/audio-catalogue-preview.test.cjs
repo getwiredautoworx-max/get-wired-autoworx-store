@@ -31,7 +31,7 @@ assert.equal(planet.records.filter(row => row.division === 'Car Audio').length, 
 assert.equal(planet.records.filter(row => row.division === 'Car Audio' && row.component === 'Unclassified — owner/source confirmation').length, 2, 'only the two source-ambiguous products remain held');
 assert.equal(planet.records.filter(row => row.division === 'Car Audio' && row.component === 'Excluded — Non-Audio Merchandise').length, 1, 'non-audio keychain is explicitly excluded');
 assert.ok(route.includes('p.component!=="Excluded — Non-Audio Merchandise"'), 'non-audio merchandise must not appear in the customer-facing Car Audio catalogue');
-assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio":p.collection===department'), 'Car Audio button must include the complete Car Audio division, including harnesses/trims and marine-audio source rows');
+assert.ok(route.includes('department==="Car Audio"?p.division==="Car Audio"&&p.collection!=="Marine Audio":department==="Lifestyle"?p.division==="Home Retail":department==="Home Entertainment"?(p.collection==="Home Entertainment"||p.collection==="Installed AV")&&p.division!=="Home Retail":department==="Marine Audio"?p.collection==="Marine Audio":p.collection===department'), 'Car Audio must combine its source division while Marine Audio remains a separate department');
 assert.ok(home.includes("audioDepartmentNode('gw-audio-car','Browse Car Audio Catalogue','Car Audio')"));
 for (const row of planet.records) {
   assert.ok(row.title && row.brand && row.collection && row.component, 'Planetworld row has required browse fields');
