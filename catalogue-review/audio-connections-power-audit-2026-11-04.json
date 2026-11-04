@@ -3,7 +3,7 @@
   "status": "SOURCE_POWER_RECONCILIATION_COMPLETE",
   "previewRows": 66,
   "explicitSupplierPowerValues": 15,
-  "ambiguousOrIncomplete": 7,
+  "ambiguousOrIncomplete": 13,
   "records": [
     {
       "modelNumber": "SSW12\" 5200",
@@ -122,8 +122,8 @@
       "brand": "Starsound",
       "sourceDescription": "Atom 4-channel amplifier; source power text appears 100RMS",
       "sourcePowerText": "100RMS",
-      "previewDescription": "Atom 4-channel amplifier; power rating requires supplier confirmation (source text: 100RMS)",
-      "powerStatus": "AMBIGUOUS_SOURCE_TEXT"
+      "previewDescription": "4-channel MOSFET amplifier; owner-confirmed nominal rating 100 W RMS per channel ×4. Starsound's published output table separately specifies 320 W ×4 at 1 Ω, 160 W ×4 at 2 Ω, 80 W ×4 at 4 Ω, and 160 W bridged at 4 Ω.",
+      "powerStatus": "OWNER_CONFIRMED_NOMINAL_RATING_MANUFACTURER_OUTPUT_TABLE_RECORDED"
     },
     {
       "modelNumber": "SSA-M5-80.6",
