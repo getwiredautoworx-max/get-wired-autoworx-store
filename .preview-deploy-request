@@ -78,3 +78,7 @@ Deploy current integrated branch SHA only to the isolated non-production Cloudfl
 
 2026-11-04 integrated category + mobile repair exact-head deployment trigger.
 Build and deploy this exact integration branch commit to the isolated PR 168 staging Pages branch; run the exact-head owner mobile/desktop browser checks and full public package regression. Require qa-build-result.json to report the exact triggering SHA. Checkout remains hidden, Supabase writes blocked, no source PDFs, no production deployment or live changes.
+
+
+Final exact-head trigger after handover synchronization — 2026-11-04.
+Deploy the latest integration branch commit to the isolated PR 168 staging Pages branch only. Run the full preview package regression and owner mobile/desktop browser QA. Require the deployed qa-build-result.json SHA to equal this exact triggering commit; no production deployment or live data changes.
