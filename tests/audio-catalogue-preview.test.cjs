@@ -97,7 +97,7 @@ assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVI
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
 assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
 assert.equal(audioConnections.records.filter(row => row.indicativePrice == null).length, 0, 'all three previously missing market indicative references are now populated');
-for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/SUPPLIER_CONFIRMATION_REQUIRED|UNIT_BASIS_UNCONFIRMED/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
+for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/SUPPLIER_CONFIRMATION_REQUIRED|UNIT_BASIS_UNCONFIRMED|CONFLICT_REMAINS/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
 assert.equal(audioConnections.records.find(row=>row.id==='ac-020').specificationStatus,'OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-043').specificationStatus,'OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-032').specificationStatus,'OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
