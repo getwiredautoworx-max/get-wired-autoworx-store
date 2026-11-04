@@ -5202,5 +5202,5 @@
       "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
     }
   ],
-  "summary": "232 of 234 preview rows classified using supplier descriptions and supported product references; two rows held for clarification. Two additional source rows (Kicker 47KPB2 and 51KMC4) were already grouped under Marine Audio in the preview and were reviewed as source reconciliation items."
+  "summary": "232 of 234 preview rows classified using supplier descriptions and supported product references; two rows held for clarification. Two additional source rows (Kicker 47KPB2 and 51KMC4) were already grouped under Marine Audio in the preview and were reviewed as source reconciliation items. The excluded keychain remains in the source snapshot but is filtered out of customer-facing Car Audio navigation; the 702-row source division count is preserved."
 }

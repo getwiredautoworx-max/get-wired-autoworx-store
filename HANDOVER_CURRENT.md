@@ -4,7 +4,7 @@
 **Repository:** https://github.com/getwiredautoworx-max/get-wired-autoworx-store
 **Active PR:** https://github.com/getwiredautoworx-max/get-wired-autoworx-store/pull/168 (OPEN / DRAFT / UNMERGED)
 **Working branch:** `integration/three-category-catalogue-preview-final-2026-11-03`
-**Parent head before this handover commit:** `6857add492dee32a1c96ca2f8d93cb11c7295e22`
+**Parent head before this handover commit:** `1b5f1c5d25bb0f5597ba7e25bacbe3746fa1ab83`
 
 ## Owner's standing rules
 - Always read and update the handover.
@@ -17,7 +17,7 @@
 ## Current workstream — Planetworld + Audio Connections pilot
 - Continue completing the combined Car Audio & Video pilot before starting ASC/Electro-city.
 - Planetworld Car Audio source contains 702 rows. Audio Connections preview contains 66 rows. Supplier identities are internal; both catalogues must be grouped together by product/brand/component.
-- Manual review reconciled 236 staging CSV exceptions with 234 preview rows. 232/234 preview rows have been classified. Two are explicitly held pending source clarification: OneNav BOX-10 (“Nissan Box”) and ON014-F3 (Prado 10.1-inch item type unclear). Kicker 47KPB2 and 51KMC4 are Marine Audio; Kicker keychain is excluded as non-audio merchandise.
+- Manual review reconciled 236 staging CSV exceptions with 234 preview rows. 232/234 preview rows have been classified. Two are explicitly held pending source clarification: OneNav BOX-10 (“Nissan Box”) and ON014-F3 (Prado 10.1-inch item type unclear). Kicker 47KPB2 and 51KMC4 are Marine Audio; Kicker keychain is retained in the internal source snapshot with an explicit exclusion label and filtered from customer-facing Car Audio navigation.
 - Detailed decision record: `catalogue-review/planetworld-car-audio-manual-review-2026-11-04.json`.
 
 ## Exact-head verification
@@ -36,3 +36,9 @@
 2. Keep BOX-10 and ON014-F3 held until exact supplier descriptions confirm product type; do not invent categories.
 3. Run the complete Node regression tests and isolated public Pages package QA on the exact final head; record results and preview URL.
 4. Verify preview rendering at mobile widths and desktop; request owner phone acceptance. Do not merge or deploy production.
+
+
+## 2026-11-04 test coverage refinement
+- Preserved the 3,317 Planetworld total and 702 Car Audio division rows; the non-audio keychain is hidden by the customer route filter, not removed from source data.
+- Added regression checks for the two held rows and the keychain exclusion.
+- Expanded the active runner workflow to build the isolated preview package and execute Node ASC/audio/storefront tests plus the public SKU exposure audit. Check the new exact-head run before claiming test success.

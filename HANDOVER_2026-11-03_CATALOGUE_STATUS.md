@@ -220,3 +220,11 @@ This is the permanent catalogue architecture for every current and future suppli
 - Exact branch head before this handover commit: `6857add492dee32a1c96ca2f8d93cb11c7295e22`. GitHub runner diagnostic run **41796540711** completed SUCCESS on that exact head; it verified the three active category roots and catalogue row counts (Planetworld 3,317; Audio Connections 66). This diagnostic is not the full Node/browser suite.
 - Cloudflare Pages exact-head build for `6857add492dee32a1c96ca2f8d93cb11c7295e22` was IN PROGRESS at last check (deployment ID `8272f312-a225-44e5-bba8-aa6358ea3c57`). No new URL or exact-head deployment success has yet been recorded. Check the post-handover head's deployment/checks before presenting the preview as current.
 - PR #168 remains OPEN / DRAFT / UNMERGED. No merge, production deploy, Supabase write, live price/stock update, supplier activation, payment/DNS/Axxess change. Production remains HOLD. Owner phone acceptance and full browser verification remain outstanding.
+
+
+## 2026-11-04 — CATALOGUE EXCLUSION AND REGRESSION COVERAGE
+- Preserved the Planetworld source snapshot invariants: 3,317 total rows and 702 Car Audio division rows. The non-audio Kicker keychain remains in the internal source snapshot with an explicit exclusion component; customer-facing Car Audio navigation now filters it out.
+- Added regression assertions for exactly two source-ambiguous held rows, the non-audio exclusion, and the customer route filter.
+- Expanded the active branch runner diagnostic to build the isolated preview package and execute the three Node storefront regression suites plus the public SKU exposure audit. This is the first actual test execution path on this branch; the earlier runner recovery check only validated root/category counts.
+- Exact parent head before this commit: `1b5f1c5d25bb0f5597ba7e25bacbe3746fa1ab83`. New commit will trigger fresh runner and Cloudflare Pages checks; record their final results before any preview/readiness claim.
+- PR #168 stays draft/open/unmerged; production remains HOLD.

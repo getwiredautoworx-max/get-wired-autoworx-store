@@ -132,6 +132,10 @@
       "preview_rows": 2
     },
     {
+      "label": "Excluded — Non-Audio Merchandise",
+      "preview_rows": 1
+    },
+    {
       "label": "Camera & DVR Accessories",
       "preview_rows": 1
     },
@@ -173,6 +177,7 @@
       "Harnesses, Trims & Fitment": 47,
       "Marine Audio": 28,
       "Marine classification conflict — review": 3,
+      "Excluded — Non-Audio Merchandise": 1,
       "Audio Packages": 7,
       "Parking Sensors": 2,
       "Fascia & Fitting Kits": 76,
@@ -201,7 +206,8 @@
       "Vehicle-specific OneNav head units are grouped under Head Units & Media Players; frames/brackets and adapters under Fascia & Fitting Kits.",
       "Kicker KPB2 and KMC4 are grouped under Marine Audio.",
       "Non-audio branded merchandise is excluded from the customer-facing audio catalogue.",
-      "Ambiguous records remain explicitly held; no guessed product types."
+      "Ambiguous records remain explicitly held; no guessed product types.",
+      "Non-audio merchandise is retained in the internal source snapshot for reconciliation but filtered out of customer-facing Car Audio navigation."
     ],
     "source_references": [
       "https://nxtleveltech.co.za/product/101inch-to-9inch",
