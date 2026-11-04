@@ -32,3 +32,8 @@ The current handover now records the clean PR #176 integration, verified supplie
 
 Cloudflare extensionless route assertion correction — 2026-11-04.
 The final deployment browser test now accepts the observed extensionless /preview-audio route for the Trims & Harnesses navigation, as well as /preview-audio.html. This matches the actual Pages redirect behavior and the separately passing owner browser test. Rebuild and verify this exact head. Production HOLD.
+
+
+
+Urgent owner-requested storefront/audio milestone — 2026-11-04.
+Trigger an isolated non-production deployment from the exact current PR #176 branch head after this request commit. Priority is the customer-facing homepage and Audio department/category/brand/component presentation, populated Planetworld and Audio Connections preview, supplier-safe pricing, mobile navigation and readable product cards. Verify exact SHA marker and hosted mobile/desktop browser tests. Do not deploy production or change live data. The current candidate has only three homepage category roots in its committed snapshot; do not misrepresent this as the approved eight-root taxonomy. The eight-root discrepancy is documented in the authoritative handover and must be resolved from approved source evidence before calling the full eight-category storefront complete. Production HOLD.
