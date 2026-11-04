@@ -48,7 +48,7 @@ jobs:
             const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
             if(!checkoutSafe)throw new Error('Checkout control is visible in owner preview');
             await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
-            await frame.getByRole('link',{name:/Browse Car Audio Catalogue/}).click();
+            await frame.getByRole('button',{name:/Car Audio & Video/}).click();
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await frame.locator('#products .audioProduct').first().waitFor({state:'visible',timeout:30000});
             const audioText=await frame.locator('body').innerText();
