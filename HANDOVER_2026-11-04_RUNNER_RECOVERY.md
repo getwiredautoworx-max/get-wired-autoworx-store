@@ -128,3 +128,10 @@ Desktop-agent workflow improvement: commit `2d38d2c71c3eae3dad01349295fd5079aaf1
 - Current branch head at time of update: `e2d8dfe46079f0612f92c5c29c01092fcd2c581f`. Latest exact-head runner check `41832943971` is pending; wait for the newest head's run after this handover commit and confirm exact SHA/hosted QA before claiming current preview verification.
 - Audio Connections review remains open: 68 source rows; 13 Sony GW SKU candidates are proposed but not inserted; 53 non-Sony records remain held without assigned GW SKUs; 44 non-Sony records have no image URL candidate. Image candidates remain unapproved pending exact-model visual check and written usage permission. Supplier price/stock/lead-time confirmation is outstanding.
 - No supplier email was sent, no source workbook changed, no product/SKU/price/stock/category was activated or imported, no Supabase write, merge, production deployment, Axxess/DNS/payment change occurred. Production remains HOLD.
+
+## 2026-11-04 — Audio Connections Starsound follow-up
+
+- Added exact official Starsound product-page references for Audio Connections records `ac-038` (SSA-HORNET-7600.4; source label “SSAHORNET 7600.4”) and `ac-039` (SSA-J-10000.4).
+- Located four official image candidates (two per product) and recorded them in `catalogue-review/AUDIO_CONNECTIONS_STARSOUND_OFFICIAL_IMAGE_CANDIDATES_2026-11-04.csv`. Image-use permission remains NOT CONFIRMED; no image was inserted into preview data, so the 44-image-gap count is unchanged.
+- Both official manufacturer pages conflict with the supplier PDF's generic “50 RMS” label. Hornet: 65 W RMS @ 2Ω, 45 W RMS @ 4Ω, 90 W bridged @ 4Ω. J-10000.4: 90 W RMS @ 2Ω, 60 W RMS @ 4Ω, 140 W bridged @ 4Ω. Preserve supplier wording but flag the mismatch; do not change public specs until supplier confirms impedance and test basis.
+- Evidence is recorded in the pilot audit. Product JSON, GW SKU assignment, prices, stock and publication remain unchanged.
