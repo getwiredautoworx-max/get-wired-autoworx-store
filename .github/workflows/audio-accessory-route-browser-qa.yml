@@ -5,6 +5,7 @@ on:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
     paths:
+      - "index-new.html"
       - "category.html"
       - "index-new.html"
       - "preview-audio.html"
@@ -16,6 +17,7 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - "index-new.html"
       - "category.html"
       - "index-new.html"
       - "preview-audio.html"
