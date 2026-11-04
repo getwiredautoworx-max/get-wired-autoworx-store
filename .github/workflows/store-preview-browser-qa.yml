@@ -133,8 +133,17 @@ jobs:
               const checkoutSafe=await frame.locator('a[href*="checkout"],.checkoutNow,#checkout').evaluateAll(els=>els.every(el=>getComputedStyle(el).display==='none'||!el.getClientRects().length));
               if(!checkoutSafe) throw new Error('Checkout is visible in hosted owner preview');
               await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
+              console.log('HOSTED_AFTER_AUDIO_ROOT',JSON.stringify({text:await frame.locator('#categoryGrid').innerText()}));
               await frame.getByRole('button',{name:/Car Audio/}).click();
-              const audioHref=await frame.getByRole('link',{name:/Car Audio & Video/}).getAttribute('href');
+              const hostedCategoryGrid=frame.locator('#categoryGrid');
+              const hostedAudioLinks=hostedCategoryGrid.locator('a.catalogueLink[href*="preview-audio.html"]');
+              const hostedAudioLinkCount=await hostedAudioLinks.count();
+              const hostedCategoryText=await hostedCategoryGrid.innerText();
+              console.log('HOSTED_AFTER_CAR_AUDIO',JSON.stringify({audioLinkCount:hostedAudioLinkCount,text:hostedCategoryText,html:(await hostedCategoryGrid.innerHTML()).slice(0,12000)}));
+              const audioLink=hostedAudioLinks.filter({hasText:/Car Audio & Video/}).first();
+              try { await audioLink.waitFor({state:'visible',timeout:10000}); }
+              catch(error) { console.error('HOSTED_AUDIO_LINK_DIAGNOSTIC',JSON.stringify({audioLinkCount:hostedAudioLinkCount,categoryText:hostedCategoryText,jsErrors:errors})); throw error; }
+              const audioHref=await audioLink.getAttribute('href');
               if(!audioHref||!audioHref.includes('preview-audio.html')) throw new Error('Hosted Car Audio & Video link has no dedicated preview route: '+audioHref);
               const routeUrl=new URL(audioHref,new URL('preview-store.html',page.url())).href;
               await page.goto(routeUrl,{waitUntil:'domcontentloaded',timeout:60000});
