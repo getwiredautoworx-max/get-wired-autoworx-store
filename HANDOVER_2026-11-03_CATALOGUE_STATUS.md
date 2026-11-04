@@ -236,3 +236,9 @@ This is the permanent catalogue architecture for every current and future suppli
 - The first full-suite run on `f90a520e0681e3d3f3f3e77478858fa540a58416` passed the runner/root/catalogue/manual-review assertions and public Pages package build, then failed at `tests/asc-catalogue-preview.test.cjs:5` because of these two stale root assignments. No production or live-data changes were made. Re-run the complete suite on the corrected head.
 - Cloudflare Pages deployment for `f90a520e0681e3d3f3f3e77478858fa540a58416` succeeded: `https://3f273f37.get-wired-autoworx-store.pages.dev`. This deployment includes the Planetworld review changes but predates the ASC root correction.
 - The separate legacy Workers Build failed (build ID `d1fa08b5-eeaa-4fef-8748-095ba9fb58bd`); it is not the Pages preview deployment and was not retried. PR #168 remains draft/open/unmerged; production HOLD.
+
+
+## 2026-11-04 — REGRESSION FIXTURE ALIGNED TO APPROVED ASC ROOTS
+- The full suite on `9e235da782c0516891346bbcf225fdfbb4050a3a` passed `tests/asc-catalogue-preview.test.cjs` and `tests/audio-catalogue-preview.test.cjs`, plus the isolated preview package build and manual-review invariant. It then failed in `tests/three-category-storefront-structure.test.cjs:99` because that second test file still expected the superseded placements (Aerials and Car Mats under Auto Electrical).
+- Updated the stale fixture to require the approved placements: Aerials → Car Audio; Car Mats → Car Care & Accessories; Automotive Sensors, Automotive Switches, Automotive Globes and Fuel Pumps → Auto Electrical Parts & Spares. Added assertions for the matching homepage catalogue buttons and to prevent the old locations returning.
+- No production, live database, price, stock, payment, DNS or Axxess changes. PR #168 remains draft/open/unmerged. Re-run full exact-head suite and confirm Pages deployment after this test-only correction.

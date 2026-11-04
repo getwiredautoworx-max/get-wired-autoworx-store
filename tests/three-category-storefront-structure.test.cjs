@@ -92,16 +92,16 @@ assert.ok(audioPage.includes('routeParams.get("department")'));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(audioPage));
 assert.ok(/name="robots" content="noindex,nofollow"/.test(ascPage));
 const expectedAsc = [
-  ['Aerials','Auto Electrical Parts & Spares'],['Automotive Sensors','Auto Electrical Parts & Spares'],
+  ['Aerials','Car Audio'],['Automotive Sensors','Auto Electrical Parts & Spares'],
   ['Automotive Switches','Auto Electrical Parts & Spares'],['Automotive Globes','Auto Electrical Parts & Spares'],
-  ['Car Mats','Auto Electrical Parts & Spares'],['Fuel Pumps','Auto Electrical Parts & Spares']
+  ['Car Mats','Car Care & Accessories'],['Fuel Pumps','Auto Electrical Parts & Spares']
 ];
 assert.deepEqual(asc.catalogues.map(c => [c.name,c.root]), expectedAsc);
 assert.ok(asc.catalogues.every(c => !Object.hasOwn(c,'source_pdf')), 'supplier source PDF paths must not be present in public preview data');
-assert.ok(home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Auto Electrical Parts & Spares','Car Mats')"));
-assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Auto Electrical Parts & Spares')"));
-assert.ok(!home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio')"));
-assert.ok(!home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Car Care & Accessories','Car Mats')"));
+assert.ok(home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Car Care & Accessories','Car Mats')"));
+assert.ok(home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Car Audio','Aerials')"));
+assert.ok(!home.includes("ascCatalogueNode('gw-asc-aerials','Aerials','Auto Electrical Parts & Spares')"));
+assert.ok(!home.includes("ascCatalogueNode('gw-asc-mats','Car Mats Catalogue','Auto Electrical Parts & Spares','Car Mats')"));
 assert.ok(!ascPage.includes('catalogue.source_pdf') && !ascPage.includes('View complete original'), 'supplier source PDFs must not be linked from public preview');
 assert.equal(planet.records.length,3317);
 assert.equal(audio.records.length,66);

@@ -48,3 +48,8 @@
 - Fixed stale preview data and navigation so Aerials is under Car Audio, Car Mats is under Car Care & Accessories, and sensors/switches/globes/fuel pumps remain under Auto Electrical Parts & Spares.
 - Full suite on parent head f90a520 passed structural and preview package build, then failed the ASC hierarchy assertion because of the incorrect root fields. Corrected to the test's owner-approved hierarchy; full suite rerun is pending.
 - Parent head: `f90a520e0681e3d3f3f3e77478858fa540a58416`. Prior Pages preview: `https://3f273f37.get-wired-autoworx-store.pages.dev`; it does not contain this correction.
+
+
+## 2026-11-04 regression fixture correction
+- The ASC root data and homepage links were corrected on parent head 9e235da; ASC preview and audio preview tests passed. The remaining failure was a stale expected-root list in tests/three-category-storefront-structure.test.cjs. Updated that fixture to the approved three-root hierarchy and the correct Aerials/Car Mats navigation.
+- Parent head: `9e235da782c0516891346bbcf225fdfbb4050a3a`. Full suite rerun pending on the next head.
