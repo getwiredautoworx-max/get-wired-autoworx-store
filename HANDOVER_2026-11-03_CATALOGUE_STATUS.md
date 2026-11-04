@@ -144,3 +144,14 @@ This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CON
 - Code commits: wattage correction `accd2392ecb9bea8838face3e1223db867dfe155`; exact fitment classifier `9c0f1ae1e179e016271700266fdd013a340cc94d`; regression test `5317e1118c2e5ab98b8c41f716b228f6584b5eab`.
 - The prior confirmed Pages deployment `c250f5bc` is for the earlier `f3e7ea2` head and does **not** include these subsequent data/classifier/test changes. The new branch head must receive a fresh successful Pages deployment before the updated preview is represented as current. The owner preview remains noindex and checkout-disabled; do not use the stale preview as acceptance evidence.
 - No production deployment, merge, Supabase write, live catalogue import, price/stock change, Axxess or DNS/payment change was made.
+
+
+## 2026-11-04 LATEST PAGES PREVIEW RECHECK
+
+- Cloudflare Pages confirmed **Deploy successful** for functional candidate commit `ea5cce0d680ea7636a819e2420e20cfd7f09fd24`.
+- Deployment/preview host: `https://b6ac37ec.get-wired-autoworx-store.pages.dev`
+- Owner route: `/owner-preview.html`; Audio Connections route: `/preview-audio.html`; Planetworld route: `/preview-planetworld.html`.
+- Branch alias: `https://integration-three-category-c.get-wired-autoworx-store.pages.dev`.
+- The deployment includes the SSA-ATOM13800.4 supplier wattage correction, exact 47-row fitment classifier, and regression assertions. The subsequent branch commit `bc926324889339b4442daae94c653efe2285850c` only refined an inert source comment to prompt a fresh staging rebuild; it made no functional change. Do not describe the preview as exact-head for `bc926324` unless Cloudflare confirms that SHA.
+- The Pages build success is deployment evidence, not owner visual acceptance or desktop/mobile browser acceptance. The external page reader remains unable to retrieve the pages.dev content in this session. GitHub Actions runner allocation is still not verified.
+- No merge, production deployment, live data write, payment, stock, price, DNS or Axxess change.
