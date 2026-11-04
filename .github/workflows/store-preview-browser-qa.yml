@@ -128,9 +128,14 @@ jobs:
                   pagesCheck=(checksData.check_runs||[]).filter(check=>check.name==='Cloudflare Pages').sort((a,b)=>new Date(b.started_at||0)-new Date(a.started_at||0))[0]||null;
                   if(pagesCheck?.status==='completed'){
                     if(pagesCheck.conclusion!=='success')throw new Error('Cloudflare Pages build for exact commit '+expectedSha+' completed with '+pagesCheck.conclusion+': '+(pagesCheck.output?.summary||'no build summary'));
-                    const previewMatch=pagesCheck.output?.summary?.match(/<strong>Preview URL:<\\/strong>\\s*<\\/td>\\s*<td>\\s*<a href='([^']+)'/i);
-                    if(!previewMatch)throw new Error('Successful Cloudflare Pages check did not include an immutable preview URL for exact commit '+expectedSha);
-                    previewBase=new URL(previewMatch[1]).origin;
+                    const summary=pagesCheck.output?.summary||'';
+                    const labelIndex=summary.indexOf('Preview URL:');
+                    const hrefIndex=summary.indexOf("<a href='",labelIndex);
+                    const urlStart=hrefIndex+9;
+                    const urlEnd=summary.indexOf("'",urlStart);
+                    const previewUrl=hrefIndex>=0&&urlEnd>urlStart?summary.slice(urlStart,urlEnd):null;
+                    if(!previewUrl)throw new Error('Successful Cloudflare Pages check did not include an immutable preview URL for exact commit '+expectedSha);
+                    previewBase=new URL(previewUrl).origin;
                     break;
                   }
                 }
