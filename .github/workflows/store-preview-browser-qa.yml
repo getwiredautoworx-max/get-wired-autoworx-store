@@ -58,7 +58,7 @@ jobs:
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
             await frame.locator('#brands button[aria-label="Sony"]').waitFor({state:'visible',timeout:30000});
             const carAudioSummary=await frame.locator('#audioResultCount').innerText();
-            const carAudioRecordCount=Number((carAudioSummary.match(/^(\\d+)/)||[])[1]||0);
+            const carAudioRecordCount=Number(carAudioSummary.split(' ')[0]||0);
             if(carAudioRecordCount<700)throw new Error('Car Audio department is missing Planetworld catalogue rows: '+carAudioSummary);
             const logoBrands=['One','Amplified','Kicker','Audison','Alpine','Sony','Starsound','JVC Car Audio','Kenwood Car Audio','Focal Car Audio','Pioneer Car Audio','Hertz'];
             const checkedLogos=[];
@@ -254,7 +254,7 @@ jobs:
               if(!hostedCheckedLogos.some(x=>x.name==='Starsound'))throw new Error('Hosted Starsound brand logo was not verified');
               if(await page.locator('#products').isVisible()) throw new Error('Hosted department page exposed stock before brand selection');
               const hostedCarAudioSummary=await page.locator('#audioResultCount').innerText();
-              const hostedCarAudioCount=Number((hostedCarAudioSummary.match(/^(\\d+)/)||[])[1]||0);
+              const hostedCarAudioCount=Number(hostedCarAudioSummary.split(' ')[0]||0);
               if(hostedCarAudioCount<700)throw new Error('Hosted Car Audio department is missing Planetworld catalogue rows: '+hostedCarAudioSummary);
               await page.locator('#brands button[aria-label="Starsound"]').click();
               await page.waitForURL(url=>new URL(url).searchParams.get('brand')==='Starsound',{timeout:15000});
