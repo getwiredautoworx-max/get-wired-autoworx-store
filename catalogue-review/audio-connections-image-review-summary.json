@@ -35,11 +35,13 @@
   "owner_preview_image_status": {
     "reviewed_at": "2026-11-04",
     "preview_products": 66,
-    "image_url_candidates_not_approved": 4,
-    "missing_approved_image_urls": 62,
+    "image_url_candidates_not_approved": 5,
+    "missing_approved_image_urls": 61,
     "approved_customer_image_assets": 0,
     "non_sony_products_without_individual_source_pdf_images": 53,
     "sony_products_without_image_url": 9,
-    "rule": "The four existing Sony image URLs are review candidates only. None is approved for production until exact-model matching, image quality, source suitability and dealer usage rights are confirmed."
+    "rule": "Two exact Sony direct image sources (XS-W104ES and XM-5ES) are owner-authorized and attached to the non-production preview JSON. Their remote image loading and rendering remain unverified; they are not approved production assets. The other image URLs remain candidates only. Do not assign shared low-resolution PDF images to multiple models.",
+    "owner_authorized_direct_image_sources": 2,
+    "render_verification_pending": 2
   }
 }
