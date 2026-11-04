@@ -15,8 +15,9 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html",
+    "preview-product.html", "preview-planetworld.html", "asc-catalogue-preview.html",
 ]
+PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json"]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json",
@@ -50,6 +51,12 @@ include_preview = os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
+    for name in PREVIEW_ASSET_FILES:
+        copy_file(f"assets/{name}")
+    pilot_images = ROOT / "assets" / "asc-catalogue-pilot"
+    if not pilot_images.is_dir():
+        raise SystemExit("Preview package missing reviewed ASC pilot images: assets/asc-catalogue-pilot")
+    shutil.copytree(pilot_images, OUT / "assets" / "asc-catalogue-pilot")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
