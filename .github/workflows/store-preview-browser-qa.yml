@@ -114,22 +114,32 @@ jobs:
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
-              let checksResponse;
-              for(let attempt=0;attempt<5;attempt++){
-                checksResponse=await fetch('https://api.github.com/repos/'+process.env.GITHUB_REPOSITORY+'/commits/'+expectedSha+'/check-runs?per_page=100',{
+              let pagesCheck=null;
+              let previewBase=null;
+              for(let attempt=0;attempt<90;attempt++){
+                const checksResponse=await fetch('https://api.github.com/repos/'+process.env.GITHUB_REPOSITORY+'/commits/'+expectedSha+'/check-runs?per_page=100',{
                   headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
                 });
-                if(checksResponse.ok)break;
-                const errorBody=await checksResponse.text();
-                if(![429,500,502,503,504].includes(checksResponse.status)||attempt===4)throw new Error('Unable to read exact-commit Cloudflare deployment check after retries: '+checksResponse.status+' '+errorBody);
-                await new Promise(resolve=>setTimeout(resolve,1500*(attempt+1)));
+                if(!checksResponse.ok){
+                  const errorBody=await checksResponse.text();
+                  if(![429,500,502,503,504].includes(checksResponse.status)||attempt===89)throw new Error('Unable to read exact-commit Cloudflare deployment check: '+checksResponse.status+' '+errorBody);
+                } else {
+                  const checksData=await checksResponse.json();
+                  pagesCheck=(checksData.check_runs||[]).filter(check=>check.name==='Cloudflare Pages').sort((a,b)=>new Date(b.started_at||0)-new Date(a.started_at||0))[0]||null;
+                  if(pagesCheck?.status==='completed'){
+                    if(pagesCheck.conclusion!=='success')throw new Error('Cloudflare Pages build for exact commit '+expectedSha+' completed with '+pagesCheck.conclusion+': '+(pagesCheck.output?.summary||'no build summary'));
+                    const previewMatch=pagesCheck.output?.summary?.match(/<strong>Preview URL:<\\/strong>\\s*<\\/td>\\s*<td>\\s*<a href='([^']+)'/i);
+                    if(!previewMatch)throw new Error('Successful Cloudflare Pages check did not include an immutable preview URL for exact commit '+expectedSha);
+                    previewBase=new URL(previewMatch[1]).origin;
+                    break;
+                  }
+                }
+                if(attempt%6===0)console.log('WAITING_FOR_EXACT_CLOUDFLARE_PREVIEW',JSON.stringify({attempt,status:pagesCheck?.status||'check-not-created',conclusion:pagesCheck?.conclusion||null}));
+                if(attempt===89)break;
+                await new Promise(resolve=>setTimeout(resolve,5000));
               }
-              const checksData=await checksResponse.json();
-              const pagesCheck=(checksData.check_runs||[]).find(check=>check.name==='Cloudflare Pages'&&check.status==='completed'&&check.conclusion==='success');
-              const previewMatch=pagesCheck?.output?.summary?.match(/<strong>Preview URL:<\/strong>\s*<\/td>\s*<td>\s*<a href='([^']+)'/i);
-              if(!previewMatch)throw new Error('No successful immutable Cloudflare Pages preview URL was found for exact commit '+expectedSha);
-              const previewBase=new URL(previewMatch[1]).origin;
-              console.log('EXACT_CLOUDFLARE_PREVIEW',JSON.stringify({expectedSha,previewBase}));
+              if(!previewBase)throw new Error('Cloudflare Pages preview did not become ready for exact commit '+expectedSha+' within 7.5 minutes');
+                            console.log('EXACT_CLOUDFLARE_PREVIEW',JSON.stringify({expectedSha,previewBase}));
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
                 const response=await page.request.get(previewBase+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
