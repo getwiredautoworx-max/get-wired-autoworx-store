@@ -28,6 +28,8 @@ assert.ok(audio.includes('catalogueLoaded=true;if(!broad.length&&!verified.lengt
 assert.match(audio,/REQUEST PRICE & AVAILABILITY/,'each Planetworld product card must offer a direct enquiry action');
 assert.match(audio,/wa\.me\/27744884234/,'product enquiry must use the existing business WhatsApp contact');
 assert.match(audio,/25-Oct-2026/,'product enquiry must identify the dated supplier snapshot');
+assert.match(audio,/assets\/storefront-shell\.css/,'Audio route must load the shared bright storefront shell');
+assert.match(audio,/sourceDateLabel:CATALOGUE_SNAPSHOT_LABEL/,'Current catalogue products must carry the dated snapshot into enquiry messages');
 assert.match(build,/"preview-audio\.html"/,'isolated preview package must include Audio route');
 assert.ok(build.includes('"asc-catalogue-pilot-preview.json"')&&build.includes('"asc-catalogue-pilot/asc-ma522.jpg"'),'preview-only bundle must include ASC pilot JSON and source-card image assets');
 assert.ok(packageQa.includes('preview-checkout.html; do'),'preview package QA must assert checkout route inclusion');
