@@ -61,8 +61,7 @@ const specChecks = [
   ['ac-038','65 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-039','90 W RMS ×4 at 2 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
   ['ac-040','320 W RMS ×4 at 1 Ω','OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED'],
-  ['ac-041','80 W RMS ×4 plus 250 W sub channel','RETAILER_SPECIFICATION_CROSSCHECK'],
-  ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK']
+    ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK']
 ];
 const atom13500=audioConnections.records.find(row=>row.id==='ac-032');
 assert.ok(atom13500.description.includes('380 W RMS at 2 Ω')&&atom13500.description.includes('230 W RMS at 4 Ω')&&atom13500.description.includes('600 W maximum output'),'ac-032 retailer specification detail');
@@ -81,9 +80,11 @@ assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVI
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
 assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
 assert.equal(audioConnections.records.filter(row => row.indicativePrice == null).length, 0, 'all three previously missing market indicative references are now populated');
-for (const id of ['ac-021','ac-025','ac-044']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/POWER_RATING_CONFLICT|POWER_NOT_PUBLISHED/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
+for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) { const row=audioConnections.records.find(item=>item.id===id); assert.ok(/POWER_RATING_CONFLICT|POWER_NOT_PUBLISHED/.test(row.specificationStatus),id+' unresolved power evidence must remain explicitly held'); }
 assert.equal(audioConnections.records.find(row=>row.id==='ac-020').specificationStatus,'OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-043').specificationStatus,'OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED');
+assert.equal(audioConnections.records.find(row=>row.id==='ac-032').specificationStatus,'OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
+assert.equal(audioConnections.records.find(row=>row.id==='ac-041').specificationStatus,'OFFICIAL_MANUFACTURER_TABLE_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-044').specificationStatus,'RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED');
 assert.equal(audioConnections.records.find(row=>row.id==='ac-046').specificationStatus,'OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED');
 assert.ok(audioConnections.records.find(row=>row.id==='ac-047').description.includes('60 W RMS and 600 W maximum'));
