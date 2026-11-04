@@ -1420,3 +1420,11 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Recommended containment is to make the repository private immediately while source files and all Git refs/history are reviewed. Removing files only from the latest commit is insufficient because prior public commits remain accessible. If the owner needs a public code repository, separate public-safe storefront code from private supplier source/catalogue data and purge/rewrite affected Git history before restoring public visibility; rotate any credentials only if a complete scan identifies exposure.
 - The connected GitHub tools used here do not provide repository-visibility administration or full-history rewrite capability. No visibility change, deletion, history rewrite or credential rotation was attempted.
 - Until containment is complete, avoid adding further supplier source documents or dealer-price detail to the public repository. Continue only non-sensitive source research and review-only reconciliation. Production remains HOLD.
+
+
+## 2026-11-04 — Owner confirms supplier wattage authority
+- Owner explicitly directed that the Audio Connections supplier wattage is to be used for SSA-ATOM-13800.4 because Audio Connections supplies the product.
+- Accepted specification for catalogue use: **100 W RMS nominal per channel × 4**, per the owner's supplier-wattage clarification. Attribute provenance to Audio Connections and owner confirmation dated 2026-11-04.
+- Do not replace this with the separate public Starsound page's 80 W RMS × 4 at 4 Ω. Keep that public-source discrepancy out of the customer-facing specification unless needed for internal audit; retain it as a source conflict note only.
+- The 13,800 W designation is maximum/marketing power, not RMS. Never label it RMS or convert it.
+- Do not claim the 100 W figure was independently read from a particular PDF line/cell unless that exact supplier source location is verified. No SKU, price, stock, image rights, supplier activation or publication approval changes.
