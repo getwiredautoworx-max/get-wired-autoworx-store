@@ -1328,3 +1328,10 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Candidate image paths are explicitly marked as references from the separate preview branch; image assets were **not copied** into the new staging branch. The existing image crops retain the ASC watermark and remain preview-only; production image rights are not cleared.
 - No PR was opened, no workflow was manually dispatched, no Cloudflare/Netlify deployment was triggered, and no Supabase/database/production/Axxess/DNS/payment change was made.
 - Next safe step: review the 50 proposed SKU mappings and category placement, reconcile current dealer price/availability from an approved price/stock source, and stage additional products only after exact source-card and duplicate checks. Continue with available six product-family PDFs while separately searching for the exact November Buyer’s Guide and correctly named October Buyer’s Guide.
+
+
+### ASC staging follow-up — OCR quarantine queue
+- Added `catalogue-review/asc-catalogue-extraction/asc-next-batch-ocr-quarantine-review-only.csv` to the same isolated staging branch `staging/asc-50-product-sku-proposal-2026-11-04`. Commit: `a0e8c1f88b605ccb93d692a85c0e38037012b8d4`; readback verified all 63 OCR candidate rows across the six current ASC product-family PDFs.
+- The 63 rows are explicitly quarantined as `QUARANTINED_UNVERIFIED_NO_IMPORT`; no Get Wired SKU is assigned. OCR tokens include likely heading/description fragments and recognition errors, so these are a visual-review queue, not 63 confirmed products.
+- Staging branch now contains the 50-row proposed SKU mapping and 63-row unverified OCR queue. It remains isolated, with no PR, no live product rows, no import, no image assets copied, and no deployment.
+- Handover update commit base at this follow-up: `aac24362c1b52259274bb871bdbbe8dbf36c12fe`. The Android agent's Audio & Home Entertainment repair remains a separate workstream.
