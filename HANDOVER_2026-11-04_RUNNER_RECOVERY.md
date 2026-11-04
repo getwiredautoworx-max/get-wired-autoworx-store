@@ -135,3 +135,15 @@ Desktop-agent workflow improvement: commit `2d38d2c71c3eae3dad01349295fd5079aaf1
 - Located four official image candidates (two per product) and recorded them in `catalogue-review/AUDIO_CONNECTIONS_STARSOUND_OFFICIAL_IMAGE_CANDIDATES_2026-11-04.csv`. Image-use permission remains NOT CONFIRMED; no image was inserted into preview data, so the 44-image-gap count is unchanged.
 - Both official manufacturer pages conflict with the supplier PDF's generic “50 RMS” label. Hornet: 65 W RMS @ 2Ω, 45 W RMS @ 4Ω, 90 W bridged @ 4Ω. J-10000.4: 90 W RMS @ 2Ω, 60 W RMS @ 4Ω, 140 W bridged @ 4Ω. Preserve supplier wording but flag the mismatch; do not change public specs until supplier confirms impedance and test basis.
 - Evidence is recorded in the pilot audit. Product JSON, GW SKU assignment, prices, stock and publication remain unchanged.
+
+
+## 2026-11-04 — Planetworld 137 fitment source-row join completed
+
+- Joined the 137 fitment candidate audit against the existing 702-row Planetworld Car Audio source extraction (`catalogue-review/planetworld-car-audio-staging.csv`) using exact source workbook basename + supplier SKU. Result: **135 unique exact source-row joins, 2 deliberately ambiguous candidate joins, 0 missing joins**.
+- Updated `catalogue-review/PLANETWORLD_FITMENT_137_CANDIDATE_AUDIT_2026-11-04.csv` to record the exact workbook, sheet and row for each unique match. The two Toyota version-2 records now explicitly record both candidate source rows:
+  - `pw-2367`: `one-price-list-2026-10-25.xlsx`, Products row 286, SKU `TOYOTA2-H`; and Products row 287, SKU `TOYOTA2-HC`.
+  - `pw-2368`: same two candidate source rows; the preview-to-source SKU assignment remains unresolved.
+- The source workbook confirms the two rows have different RRP and historical stock values, but identical source descriptions. This is not enough to determine the exact harness variant or vehicle compatibility. Do not assign one SKU to either preview record, merge/deduplicate them, or infer Toyota model/year fitment.
+- **What this closes:** original source workbook + sheet + row provenance for all 137 candidates (with both alternatives explicitly recorded for the two ambiguous preview records).
+- **What remains open:** exact vehicle make/model/year/trim/display/CANbus compatibility and installation limitations for all 137; exact Toyota version mapping for the two ambiguous records; 15 additional review flags; current supplier availability and commercial confirmation. The 25-Oct source stock values are historical and are not customer-facing availability.
+- This was an internal audit-file update only. No customer catalogue, GW SKU assignment, price, stock, live category, supplier activation, Supabase data or production deployment changed. Re-run the full supplier regression/package/browser workflow on the resulting code/data head before treating this audit update as stage-verified.
