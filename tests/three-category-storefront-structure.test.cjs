@@ -150,6 +150,7 @@ assert.ok(categoryPage.includes("b0b4c7d1-2f68-4c8a-9e51-6d2a3f7b8c90':'preview-
 assert.ok(categoryPage.includes("13b36e2a-a5c7-471e-83ef-3ad180e66d3d':'preview-audio.html?department=Car%20Audio&brand=All%20brands&component=Harnesses%2C%20Trims%20%26%20Fitment&label=Trims%20%26%20Harnesses'"), 'Trims & Harnesses button must open its own filtered audio view');
 assert.ok(audioPage.includes('el("products").hidden=!department||(component==="All product types"&&!directSearchRoute)'), 'selected component routes must show filtered products without requiring a brand filter');
 assert.ok(categoryPage.includes("location.replace(lifestyleRoutes[current.id]||'products.html?category='+encodeURIComponent(current.id));return}"), 'empty non-Lifestyle leaf categories must retain filtered product routing');
+assert.ok(categoryPage.includes("document.getElementById('search')?.addEventListener"), 'category navigation must not crash when the optional search field is absent');
 
 assert.ok(audioPage.includes('assets/car-audio-video-category.svg'), 'Car Audio & Video department button must show its dedicated artwork');
 assert.ok(audioPage.includes('"kicker":"https://down-ph.img.susercontent.com/file/962ea81bf211c3afc930edf076da9e76"') && audioPage.includes('"audison":"https://upload.wikimedia.org/wikipedia/commons/e/ec/Audison_logo.png"') && audioPage.includes('"alpine":"https://upload.wikimedia.org/wikipedia/commons/5/56/Alpine_logo.svg"'), 'core car-audio brand buttons must request their brand logos');
