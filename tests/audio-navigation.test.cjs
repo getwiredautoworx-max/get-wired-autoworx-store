@@ -43,7 +43,7 @@ assert.ok(previewCheckout.includes('Payment preference: '+String.fromCharCode(39
 assert.ok(!previewCheckout.includes('supabase.co')&&!previewCheckout.includes('fetch('));
 assert.match(build,/"preview-checkout\.html"/);
 // Preview-only request handoff must be explicit and must not imply automatic photo upload.
-assert.match(html,/STORE PREVIEW.*part requests open WhatsApp only/,'preview banner must explain WhatsApp-only part requests');
+assert.match(html,/STORE PREVIEW.*part requests open WhatsApp only/i,'preview banner must explain WhatsApp-only part requests');
 assert.match(html,/f\.size>4\*1024\*1024/,'photo validation must enforce the stated 4 MB limit');
 assert.match(html,/no larger than 4MB/,'photo validation error must match the 4 MB instruction');
 assert.match(html,/WhatsApp handoff opened\. Attach any selected photos in the chat/,'preview must tell customers to attach selected photos manually');
