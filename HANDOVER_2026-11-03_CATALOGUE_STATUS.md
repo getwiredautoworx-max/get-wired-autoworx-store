@@ -91,3 +91,45 @@ This file is a dated status supplement. The large `HANDOVER_2026-11-02_OWNER_CON
 - Owner/admin must inspect repository Settings → Actions → General: confirm Actions are enabled and allowed actions/workflows policy permits this repo. Also inspect organization/account Actions runner restrictions if applicable. Since workflow uses `runs-on: ubuntu-latest`, do not create or switch to a self-hosted runner as a speculative fix.
 - Current deploy workflows were re-read: production Cloudflare workflow is manual-only and deploys `main`; the isolated preview workflow checks out `main`; layout preview also checks out `main`. None is valid for PR #168 exact-head staging. Do not trigger them or spend Cloudflare credits.
 - Required owner evidence: screenshot of repository Settings → Actions → General showing Actions permissions and runner policy; separately check account Billing & licensing → Usage/Budgets. Redact payment details. After settings are confirmed, retry a small non-deploy diagnostic on the exact latest PR head, then run the allowlisted package build/tests. Do not merge or deploy production.
+
+
+## 2026-11-04 OWNER CONTINUATION — PLANETWORLD + AUDIO CONNECTIONS
+
+### Baseline and release controls
+- PR #168 remains the sole forward-working baseline: `integration/three-category-catalogue-preview-final-2026-11-03`. PR #169 remains excluded. Keep PR #168 draft/unmerged.
+- The approved homepage uses exactly the three startup roots. Preserve the single Car Audio & Video department path and the separate Harnesses, Trims & Fitment button/group. Every subpage keeps the shared homepage shell.
+- Production remains HOLD. No merge, production deployment, Axxess upload, DNS/payment change, Supabase write, live stock/price/category update, or supplier activation is authorized.
+
+### Exact preview evidence
+- Cloudflare Pages reported a successful deployment for exact PR #168 commit `f3e7ea241e185e02f61d171313b012aaf46710d7`, deployment `c250f5bc-01ad-4b3d-a015-1835c042f048`.
+- Owner preview: https://c250f5bc.get-wired-autoworx-store.pages.dev/owner-preview.html
+- Audio catalogue: https://c250f5bc.get-wired-autoworx-store.pages.dev/preview-audio.html
+- Planetworld catalogue: https://c250f5bc.get-wired-autoworx-store.pages.dev/preview-planetworld.html
+- This is a Pages deployment, distinct from the separate Cloudflare Workers build, which failed. The external page reader could not independently fetch the pages.dev routes; desktop/mobile browser acceptance and owner visual acceptance are still outstanding.
+- GitHub Actions has not produced an executable runner/test result; previous jobs failed before runner allocation with runner_id=0 / no steps. Do not label this an application-test failure or repeat blind retries.
+
+### Audio Connections supplier wattage — owner direction and source reconciliation
+- Owner instruction: use Audio Connections' supplied wattage as the authority for its dealer catalogue; do not substitute public manufacturer/retailer marketing claims where they conflict with the supplier's supplied specification.
+- Source files reviewed: `STARSOUND Price Lists 05 AUGUST 2026.pdf` and `Sony Mobile ES Dealer Price List Sept 26.pdf` from the Library.
+- Owner-confirmed resolution for `SSA-ATOM13800.4`: **100 W RMS nominal ×4**. The 13,800 figure is marketing/maximum, not RMS; do not substitute the public Starsound 80 W RMS claim.
+- Updated preview-only record `ac-040` in `assets/audio-connections-catalogue-preview.json` to display “100 W RMS nominal ×4” in its title and description. This change is on the PR #168 branch at commit `accd2392ecb9bea8838face3e1223db867dfe155`; a new exact-head Pages deployment is pending verification. No supplier identity, supplier SKU, cost, stock or live data was exposed or changed.
+- Other evidence conflicts remain controlled and must not be silently “corrected” from public listings:
+  - `SSW12-6300`: supplier list says 300 W; public manufacturer evidence says 400 W RMS. Retain supplier's 300 W value; do not relabel it RMS.
+  - `SSAR 22000.1`: supplier list says 1700 RMS; public manufacturer evidence says 1800 W RMS at 1 Ω. Retain supplier's 1700 W RMS.
+  - `SSA-R 5000.4`: supplier list text is truncated as “60RM”; public evidence says 65 W/channel at 4 Ω. Keep the source transcription flagged for clarification; do not infer the missing characters.
+  - `SSA-SB2000.1`: official page's specification-table model is `SSAD-SB-2000.1`; exact variant identity remains unresolved.
+  - `SSW8”-8000D2` and `SSS6501 PRO`: available evidence is retailer-only, insufficient for manufacturer verification; keep claims conservative and review-only.
+- Use the Sony supplier PDF for Mobile ES wattage specifications; preserve separate peak and RMS values and channel/impedance conditions exactly as supplied. Do not infer wattage for products where the source gives none.
+
+### Catalogue state at this checkpoint
+- Planetworld: 3,317 source rows; 702 Car Audio division rows; 47 Harnesses & Trims records; 28 Marine Audio records; 3,135 unique browse rows per the source audit. Exact-model enrichment is a separate 68-record set with 61 image URLs, not full-catalogue image coverage.
+- Audio Connections: 66 retained preview records from 68 source rows; 2 excluded pending review; 13 proposed GW SKUs and 53 without proposed GW SKUs; 4 image URLs. All 66 remain `PREVIEW_ONLY_NOT_LIVE`. The source lists provide power ratings only where explicitly stated; do not invent missing wattage.
+- Keep supplier names, dealer costs and supplier identifiers out of customer-facing catalogue assets. Proposed GW SKUs remain review-only and are not inserted into live systems.
+- The 66 Audio Connections records and 3,317 Planetworld records remain staging/review data only. No imports or Supabase writes.
+
+### Immediate next actions
+1. Verify the Pages deployment for the latest post-wattage-correction PR #168 head; capture the exact SHA, deployment URL and build result.
+2. Review the Audio Connections page for the owner-requested single Car Audio & Video route and separate Harnesses, Trims & Fitment button; check wattage display for the owner-confirmed SSA-ATOM13800.4 value.
+3. Continue exact-model image and GW SKU reconciliation using supplier source evidence; do not fabricate missing images/SKUs or alter prices/stock.
+4. Keep the next supplier milestone blocked until Planetworld + Audio Connections pilot meets owner expectations. ASC and Electro-city remain later workstreams.
+5. Update this handover with the next verified exact-head deployment and any remaining evidence gaps. Do not claim readiness without exact-head tests, a verified preview, and owner acceptance.
