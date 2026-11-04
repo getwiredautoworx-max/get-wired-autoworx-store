@@ -50,3 +50,6 @@ The prior exact-model Sony CDN image did not render in the GitHub browser runner
 
 Exact owner handover synchronization refresh — 2026-11-04.
 HANDOVER_CURRENT.md and HANDOVER_2026-11-02_OWNER_CONTINUATION.md now record the exact-head PR #172 regression, preview deployment, hosted mobile/desktop QA, category artwork corrections, and the remaining Sony XS-W104ES CDN image caveat. Deploy this exact current head and rerun exact-head package and hosted QA after the handover-only changes. Preview only; production HOLD.
+
+Final preview verification refresh — 2026-11-04.
+This exact head includes the mobile submenu repair, verified four-department audio artwork, supplier-safe preview labels, and intentional withholding of the unrenderable XS-W104ES image. Deploy and rerun full exact-head runner, package, mobile/desktop hosted QA. Production HOLD.
