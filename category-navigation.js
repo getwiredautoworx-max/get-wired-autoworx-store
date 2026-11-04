@@ -26,6 +26,7 @@
   const ALIASES={
     'CAR AUDIO':'car-audio',
     'CAR AUDIO / HOME ENTERTAINMENT / LIFESTYLE':'car-audio',
+    'AUDIO, ENTERTAINMENT & MUSIC':'car-audio',
     'HOME ENTERTAINMENT':'home-entertainment',
     'BAND EQUIPMENT':'band-equipment',
     'DJ EQUIPMENT':'dj-equipment',
