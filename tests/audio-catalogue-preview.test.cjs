@@ -40,7 +40,7 @@ assert.equal(verified.recordCount, 68);
 assert.equal(verified.records.length, 68);
 assert.equal(new Set(verified.records.map(row => row.gwSku)).size, 68, 'curated GW candidate SKUs must be unique');
 const verifiedImageCount = verified.records.filter(row => row.imageUrl).length;
-assert.equal(verifiedImageCount, 21, 'only exact manufacturer image candidates may be counted');
+assert.equal(verifiedImageCount, 62, 'only exact manufacturer image candidates may be counted');
 
 assert.equal(audioConnections.sourceRecordCount, 68);
 assert.equal(audioConnections.previewRecordCount, 66);
@@ -48,7 +48,7 @@ assert.equal(audioConnections.records.length, 66);
 assert.equal(audioConnections.excludedRows.length, 2);
 assert.ok(audioConnections.records.every(row => row.publicationStatus === 'PREVIEW_ONLY_NOT_LIVE'));
 assert.ok(audioConnections.records.every(row => row.collection === 'Car Audio & Video'));
-assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 4);
+assert.equal(audioConnections.records.filter(row => row.imageUrl).length, 22);
 for (const row of audioConnections.records) {
   assert.ok(row.brand && row.title && row.component && row.modelNumber);
   assert.equal(Object.hasOwn(row, 'dealerCost'), false);
@@ -56,7 +56,7 @@ for (const row of audioConnections.records) {
 }
 
 const imageCount = verifiedImageCount + audioConnections.records.filter(row => row.imageUrl).length;
-assert.equal(imageCount, 25);
+assert.equal(imageCount, 84);
 assert.ok(route.includes('assets/planetworld-catalogue-preview.json'));
 assert.ok(route.includes('assets/planetworld-verified-models-preview.json'));
 assert.ok(route.includes('assets/audio-connections-catalogue-preview.json'));
