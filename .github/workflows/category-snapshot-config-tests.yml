@@ -1,0 +1,27 @@
+name: Category Snapshot Config Regression
+on:
+  pull_request:
+    paths:
+      - 'scripts/refresh_category_snapshot.py'
+      - 'tests/test_refresh_category_snapshot_config.py'
+      - '.github/workflows/category-snapshot-config-tests.yml'
+  push:
+    branches: [main, fix/category-snapshot-config-2026-11-02]
+    paths:
+      - 'scripts/refresh_category_snapshot.py'
+      - 'tests/test_refresh_category_snapshot_config.py'
+      - '.github/workflows/category-snapshot-config-tests.yml'
+permissions:
+  contents: read
+jobs:
+  config-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install script dependency
+        run: python -m pip install --disable-pip-version-check requests
+      - name: Run configuration regression tests
+        run: python tests/test_refresh_category_snapshot_config.py

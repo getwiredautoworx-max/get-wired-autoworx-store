@@ -1,4 +1,5 @@
 import json
+import os
 import re
 from collections import Counter
 from datetime import datetime, timezone
@@ -9,12 +10,32 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 HTML = ROOT / "index-new.html"
 SNAPSHOT = ROOT / "assets" / "category-tree.json"
-html = HTML.read_text(encoding="utf-8")
-url_match = re.search(r"SUPABASE_URL\s*=\s*['\"]([^'\"]+)", html)
-key_match = re.search(r"SUPABASE_KEY\s*=\s*['\"]([^'\"]+)", html)
-if not url_match or not key_match:
-    raise RuntimeError("Could not read the existing public Supabase connection from index-new.html")
-SUPABASE_URL, SUPABASE_KEY = url_match.group(1), key_match.group(1)
+def load_supabase_config(root=ROOT, environ=None):
+    """Resolve public client config without relying on the stripped category shell."""
+    env = os.environ if environ is None else environ
+    url = env.get("SUPABASE_URL", "").strip()
+    key = env.get("SUPABASE_KEY", "").strip()
+    if url and key:
+        return url.rstrip("/"), key
+
+    # index-new.html is intentionally buttons-only; checkout-v2.html is the
+    # canonical customer client and contains the existing public config.
+    for candidate in (root / "index-new.html", root / "checkout-v2.html", root / "index.html"):
+        try:
+            html = candidate.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        url_match = re.search(r"""SUPABASE_URL\s*=\s*['"]([^'"]+)['"]""", html)
+        key_match = re.search(r"""SUPABASE_KEY\s*=\s*['"]([^'"]+)['"]""", html)
+        if url_match and key_match:
+            return url_match.group(1).rstrip("/"), key_match.group(1)
+    raise RuntimeError(
+        "Could not resolve public Supabase config: set SUPABASE_URL/SUPABASE_KEY "
+        "or provide them in checkout-v2.html or index.html"
+    )
+
+
+SUPABASE_URL, SUPABASE_KEY = load_supabase_config()
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": "Bearer " + SUPABASE_KEY,
