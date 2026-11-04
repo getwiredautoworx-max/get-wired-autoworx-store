@@ -1,2 +1,24 @@
 # Generated customer-only Cloudflare Pages output; rebuild from the allowlist script.
 pages-public/
+
+# Local environment files and credentials — keep examples safe to commit.
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Private keys, certificates and signing material.
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Local credentials/configuration and generated tooling state.
+secrets/
+credentials/
+.supabase/
+.wrangler/
+node_modules/
+.DS_Store
