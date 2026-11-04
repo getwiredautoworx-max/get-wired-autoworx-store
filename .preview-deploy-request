@@ -125,3 +125,7 @@ Updated the exact-model regression row to assert the current official Starsound 
 
 Public package route allowlist correction — 2026-11-04.
 The public package workflow now expects the seven approved preview routes and correctly excludes the deferred ASC route, matching the builder and catalogue scope. Re-run package and all exact-head staging gates. Production HOLD.
+
+
+Integrated Pages alias added to hosted QA — 2026-11-04.
+The owner browser QA alias allowlist now includes integrated-storefront-2026-11-04.get-wired-autoworx-store.pages.dev, matching the deployment target. Deploy this exact current SHA and require exact build marker plus hosted mobile/desktop assertions. Production HOLD.
