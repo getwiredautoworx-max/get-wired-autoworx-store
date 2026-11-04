@@ -1628,3 +1628,22 @@ This section **supersedes and corrects** the earlier 2026-11-04 sections titled 
 - Exact-head Cloudflare Pages deployment run **41856931508**: package build and exact-head catalogue/category/package/SKU invariants SUCCESS; Cloudflare Pages deploy action SUCCESS; exact deployed SHA marker wait still IN_PROGRESS at last check. Owner Store Preview Browser QA run **41856932235**: local read-only owner-preview checks SUCCESS; hosted mobile/desktop exact-SHA verification still IN_PROGRESS. Do not publish a preview URL as verified until these complete and the marker equals `192219c`.
 - The Axxess workflow only prepares a package; no Axxess upload or production action was performed. Production remains HOLD: no merge, production deployment, Axxess upload, DNS, Supabase write, live stock/price/category change, supplier activation, banking/payment activation or checkout go-live.
 - Next action: finish exact-SHA hosted Pages deployment/browser QA on `192219c`; inspect logs for any failure and repair on this same branch. Then record the verified preview URL and deployed SHA. Owner real-phone acceptance remains outstanding. Functional checkout/payment testing remains deferred until owner adds banking details.
+
+
+
+## 2026-11-04 17:30 SAST — PR #176 EXACT-HEAD RECHECK
+- Current consolidated candidate: PR #176, branch `preview/integrated-storefront-2026-11-04`, head `9781193423021af05f167c10ac89e11c122839b9`, base `main` at `8a0695a6d746b886be865ffa950a11011b054e2f`. PR remains OPEN / DRAFT / UNMERGED; 35 commits, 39 changed files; mergeable=true at this read. No merge performed.
+- Eight PR-triggered workflow runs associated with this exact head completed SUCCESS:
+  - Public SKU Exposure Audit `41858392504` (job `126673170171`);
+  - Button-Only Storefront Smoke Test `41858392918` (mode-detection job `126673171235` SUCCESS; restrictive buttons-only browser job correctly SKIPPED because this candidate is populated);
+  - Delivery Quote Security Tests `41858392536` (job `126673175213`);
+  - Prepare Axxess upload package `41858392773` (package preparation only; no upload);
+  - Preview Approved Catalogue Gate `41858392919` (job `126673171100`);
+  - Customer Authentication Security Tests `41858392664` (job `126673172425`);
+  - Cloudflare Pages Public Package QA `41858392930` (job `126673172749`; seven approved preview routes verified, standard package excludes preview-only routes);
+  - Car Audio Accessories Route Browser QA `41858392900` (job `126673171404`; regression suite, Chromium, category/product-route browser checks all successful).
+- Combined commit status endpoint returned no status entries; rely on the eight individually retrieved workflow-run/job results above, not an assumed green combined status.
+- The current-head commit `9781193` is titled “Redeploy clean integration candidate to established non-production Pages alias” and changes only the deployment-request note. The preceding deployment run `41856931508` successfully built, passed exact-head package/SKU checks and completed the Cloudflare deploy action, but its exact-SHA marker wait was CANCELLED; its hosted browser steps were skipped. The current deploy workflow now checks only `https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev` for a `PASS` marker matching the exact triggering SHA. The run triggered by `9781193` is not exposed by the available PR-only workflow-run lookup, so its outcome and current deployed SHA are NOT VERIFIED here. Do not present this URL as the current verified preview yet.
+- Full hosted owner-preview QA (root navigation, all four audio collage images, populated Sony/brand/component flow, hidden checkout/write-block guard, and desktop/mobile viewport) and owner real-phone acceptance remain outstanding until the new exact-SHA deploy run can be read and verified. The separate accessory route browser test is not a substitute for the full owner-preview test.
+- No PR merge, production deployment, Axxess upload, DNS change, Supabase/live data write, live catalogue/price/stock/category/active-flag change, supplier publication, payment/banking activation or checkout go-live occurred. Functional checkout/payment testing remains deferred until owner banking details are supplied. Production remains HOLD.
+- Continue on PR #176 only. Next required evidence: current deployment workflow run and job result for `9781193423021af05f167c10ac89e11c122839b9`; exact SHA marker; hosted mobile/desktop browser result; then owner phone acceptance. Do not merge until all gates and owner acceptance pass.
