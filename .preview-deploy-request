@@ -1,47 +1,6 @@
-Get Wired AutoWorx consolidated owner-preview deployment request
-Requested: 2026-11-04
-Purpose: isolated non-production Pages preview for PR #176
-Source branch: preview/integrated-storefront-2026-11-04
-Build must use the exact triggering commit SHA.
-Production deployment, Axxess upload, DNS, Supabase writes, payment activation and live catalogue changes are prohibited.
-
-
-Clean-candidate package QA enabled on branch push — 2026-11-04.
-The isolated package QA now runs directly on the clean integration branch and excludes the deferred ASC-only test while continuing to verify the seven approved preview routes, private supplier sources, catalogue regressions and SKU exposure. Trigger exact-head deployment and hosted browser QA for this revision. Production HOLD.
-
-
-Bounded exact-alias verification — 2026-11-04.
-The staging and owner-browser workflows now poll only the dedicated integrated Pages alias first, with bounded request timeouts and a shorter retry window. Re-deploy this exact head and verify its build marker plus hosted mobile/desktop routes. Production HOLD.
-
-
-Use established verified staging alias — 2026-11-04.
-The new branch-specific Pages alias did not publish a readable exact-SHA marker. The integrated candidate will now deploy to the previously verified isolated repair-pr-168-storefront-cat Pages alias. This remains a non-production preview only. Require exact SHA marker and hosted mobile/desktop QA. Production HOLD.
-
-
-Hosted mobile submenu tap interception fix — 2026-11-04.
-The exact deployed browser QA exposed a real mobile tap issue: the expanded submenu panel intercepted taps intended for nested Car Audio catalogue links. Updated the mobile submenu so the panel background does not capture pointer events and its nested category tiles/links remain directly interactive. Rebuild and verify the exact head on hosted mobile/desktop before acceptance. Production HOLD.
-
-
-Fresh exact-head deployment after handover evidence update — 2026-11-04.
-Deploy the current PR #176 branch HEAD exactly, then verify qa-build-result.json contains result=PASS, preview_only=true, and the triggering commit SHA at the established isolated Pages alias. Run the hosted owner-preview mobile/desktop browser checks against that exact URL/SHA. This is staging only; Production HOLD.
-
-
-Final handover-synchronized exact-head verification — 2026-11-04.
-The current handover now records the clean PR #176 integration, verified supplier preview counts/pricing rules, hosted owner QA evidence, remaining category-scope limitations and explicit production holds. The duplicate deploy-workflow route assertion now accepts both extension-bearing and extensionless preview-audio paths. Build and verify this exact new branch head through package, regression, SKU, exact marker and hosted mobile/desktop gates. Production HOLD.
-
-
-Cloudflare extensionless route assertion correction — 2026-11-04.
-The final deployment browser test now accepts the observed extensionless /preview-audio route for the Trims & Harnesses navigation, as well as /preview-audio.html. This matches the actual Pages redirect behavior and the separately passing owner browser test. Rebuild and verify this exact head. Production HOLD.
-
-
-
-Urgent owner-requested storefront/audio milestone — 2026-11-04.
-Trigger an isolated non-production deployment from the exact current PR #176 branch head after this request commit. Priority is the customer-facing homepage and Audio department/category/brand/component presentation, populated Planetworld and Audio Connections preview, supplier-safe pricing, mobile navigation and readable product cards. Verify exact SHA marker and hosted mobile/desktop browser tests. Do not deploy production or change live data. The current candidate has only three homepage category roots in its committed snapshot; do not misrepresent this as the approved eight-root taxonomy. The eight-root discrepancy is documented in the authoritative handover and must be resolved from approved source evidence before calling the full eight-category storefront complete. Production HOLD.
-
-
-Eight-root storefront integration update — 2026-11-04.
-The owner-approved eight-root taxonomy is now included in the integrated staging candidate. The five additional root/subcategory trees were sourced from the repository's approved eight-root taxonomy branch; all inherited historical product counts were reset to zero to avoid publishing stale counts. Existing current-candidate Audio, Auto Electrical and Automotive Accessories structures were retained and renamed to the approved customer-facing labels. This is a preview taxonomy snapshot only; no Supabase/live category/product assignments or counts were written. Run exact-head category/audio regressions, public package/SKU/security gates, then exact-SHA hosted staging QA. Production HOLD.
-
-
-Final eight-root owner milestone deployment trigger — 2026-11-04.
-Deploy the exact current branch HEAD after the eight-root integration and handover update. Rebuild standard and isolated preview packages, run the eight-root + audio catalogue regressions and public SKU audit, deploy only to the dedicated non-production Pages branch/alias, require qa-build-result.json result=PASS, preview_only=true and exact triggering SHA, then run hosted 390px mobile and desktop owner-preview QA. No production deploy, Axxess upload, DNS, Supabase writes, payment activation or live catalogue changes. Production HOLD.
+# Isolated non-production staging deployment request
+# Triggered by the owner-approved PR #176 preview readiness repair.
+# Deploy workflow must test the exact triggering SHA and verify preview_only=true.
+# Production deployment, Axxess, DNS, Supabase writes, live catalogue changes and payments remain prohibited.
+request=PR-176-preview-verification
+requested_at=2026-11-04T19:05:00+02:00
