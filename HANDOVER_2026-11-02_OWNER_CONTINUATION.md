@@ -1428,3 +1428,13 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Do not replace this with the separate public Starsound page's 80 W RMS × 4 at 4 Ω. Keep that public-source discrepancy out of the customer-facing specification unless needed for internal audit; retain it as a source conflict note only.
 - The 13,800 W designation is maximum/marketing power, not RMS. Never label it RMS or convert it.
 - Do not claim the 100 W figure was independently read from a particular PDF line/cell unless that exact supplier source location is verified. No SKU, price, stock, image rights, supplier activation or publication approval changes.
+
+
+## 2026-11-04 supplier pilot continuation checkpoint
+- Pilot remains Planetworld + Audio Connections only; do not start ASC or Electro-city.
+- Audio Connections product-review CSV row for SSA-ATOM13800.4 was updated to the owner-approved supplier wattage **100 W RMS nominal per channel × 4**, attributed to Audio Connections and owner confirmation dated 2026-11-04. The 13,800 W designation is not RMS. The separate Starsound public-page rating is retained only as an internal source conflict, not used in the draft customer specification.
+- Planetworld's six missing image records were rechecked: five Alpine (HCE-C2100RD, HDZ-653, R2-W12D4, S2-A55V, S2-S65) and JVC KW-M590BT. Official Alpine page image links exposed 46×35 thumbnails only; these are unsuitable. JVC image pack still needs written distribution permission. No image gap was falsely closed; 62/68 candidate URLs remains the count.
+- Audio Connections remains 66 preview records, 44 without image URL, 53 non-Sony GW SKU candidates held/unassigned, three quote-only records, and no current availability confirmation. No public image approval.
+- Planetworld curated 68-model set is not full 702-row Car Audio completion; 634 rows remain without proposed GW SKUs and manual classification work remains open.
+- Security: confidential dealer-price source files remain in public repository Git history. This exposure risk remains unresolved; advise private visibility and full-history containment. No credential compromise is established.
+- No Actions runs, exact-head tests, successful exact-head hosted preview, supplier activation, live data writes or production release are claimed.
