@@ -120,7 +120,7 @@ assert.ok(audioPage.includes('String(p.collection||"").trim().toLowerCase()==="h
 assert.ok(audioPage.includes('if(raw==="harness & installation")return "Installation & Integration";'), 'generic integration devices must not be mislabeled as vehicle harnesses');
 const carAudioRows = planet.records.filter(p => p.division === 'Car Audio');
 const harnessFitmentRows = carAudioRows.filter(p => String(p.collection||'').trim().toLowerCase() === 'harnesses & trims' || /harness|trim|fascia|fitment|iso2car|vehicle interface|dash kit|installation kit/i.test([p.title,p.name,p.description,p.modelNumber].join(' ')));
-assert.equal(harnessFitmentRows.length, 168, 'Harnesses, Trims & Fitment should contain the 47 dedicated source rows plus 121 exact product-text matches');
+assert.equal(harnessFitmentRows.length, 137, 'Harnesses, Trims & Fitment must contain only the dedicated source rows plus exact product-text matches; generic cables and fuse holders stay separate');
 assert.ok(harnessFitmentRows.some(p => /OneNav Fitment Kit for Toyota Land Cruiser/i.test(p.title)), 'vehicle-specific OneNav fitment kits must appear under Harnesses, Trims & Fitment');
 assert.ok(!harnessFitmentRows.some(p => /TOSLINK OPTICAL CABLE|RCA Interconnect|Fuse Holder/i.test(p.title)), 'generic wiring/cables/fuse holders must not be misclassified as vehicle harnesses');
 assert.ok(audioPage.includes('filter(label=>!/^(car audio|car audio & video|car audio and video|all car audio products)$/i.test(label))'), 'department labels must be excluded from product-type buttons');
