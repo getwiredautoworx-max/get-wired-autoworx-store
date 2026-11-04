@@ -171,3 +171,15 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Catalogue invariants preserved: Planetworld source 3,317 rows / 702 Car Audio division rows; Audio Connections 66 preview rows; two source-ambiguous Planetworld items remain held; Marine Audio remains separate; customer catalogue remains supplier-neutral. ASC catalogue data remains deferred.
 - Remaining acceptance: no exact-head Cloudflare Pages hosted preview URL has been deployed from this PR branch. Existing deploy workflows either check out `main` or deploy `main`; do not run them for this candidate. A dedicated non-production branch deployment must use this exact candidate head and the public-only package. Owner real-phone acceptance remains outstanding.
 - Release boundary unchanged: PR #168 remains draft/unmerged; production remains HOLD. No production deployment, Axxess upload, DNS/payment change, Supabase write, live stock/price/category change or supplier activation.
+
+
+## 2026-11-04 — Hosted Netlify Deploy Preview verified
+
+- Netlify Deploy Preview ID: `6aeaf4a0b68f051d9f119166`; state: `ready`; context: `deploy-preview`; PR: #168.
+- Exact deployed commit: `776c840bb79a4833e0859d493b7463e6a34c1e73` (matches the passing full regression and owner-preview browser QA runs above).
+- Owner preview URL: https://deploy-preview-168--get-wired-autoworx-store.netlify.app/owner-preview.html
+- Deploy permalink: https://6aeaf4a0b68f051d9f119166--get-wired-autoworx-store.netlify.app
+- Netlify confirmed the deployment is ready and that no password or SSO gate is configured. Treat this URL as publicly shareable; do not put credentials, banking details, or private supplier material into it.
+- The page is an owner-review preview only. Checkout and Supabase writes are blocked by the preview wrapper; no production deploy was made. The Netlify project’s primary published deploy was not changed by this Deploy Preview.
+- This supersedes the previous statement that no exact-head hosted preview URL existed: there is now an exact-head Netlify Deploy Preview. It does not imply production readiness or owner acceptance.
+- Still outstanding for supplier-pilot closure: Planetworld remaining Car Audio classification/reconciliation and Audio Connections product/image/GW-SKU evidence; real-phone owner acceptance remains outstanding. ASC/Electro-city stay deferred until the Planetworld + Audio Connections pilot is accepted.
