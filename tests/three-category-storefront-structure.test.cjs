@@ -50,8 +50,16 @@ assert.ok(verifiedModels.records.every(p => Number(p.indicativePrice) > 0 && p.p
 assert.ok(audioPage.includes('indicativePrice:p.indicativePrice??null'), 'unmatched verified-only model cards must retain their source-backed indicative price');
 for (const model of ["SSW12-6300","SSA-ATOM13800.4","SSAR 22000.1","SSA-R 5000.4","SPARTAN 9900.1"]) {
   const row = audio.records.find(p => p.modelNumber === model);
-  assert.ok(row && row.specificationConflict && row.specificationReviewStatus === 'SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED', 'specification conflict must be explicit for '+model);
+  assert.ok(row && row.specificationConflict, 'specification discrepancy must remain in the internal audit for '+model);
 }
+for (const model of ["SSW12-6300","SSAR 22000.1","SSA-R 5000.4"]) {
+  const row = audio.records.find(p => p.modelNumber === model);
+  assert.equal(row.specificationReviewStatus, 'OWNER_RULE_HIGHER_OUTPUT_SPEC_SELECTED_SOURCE_CONFLICT_RETAINED_FOR_AUDIT', 'owner-approved higher-output rule must be preserved for '+model);
+}
+const atom = audio.records.find(p => p.modelNumber === "SSA-ATOM13800.4");
+assert.equal(atom.specificationReviewStatus, 'AUDIO_CONNECTIONS_SUPPLIER_SPECIFICATION_SELECTED_BY_OWNER_2026-11-04', 'Audio Connections supplier wattage authority must be preserved for SSA-ATOM13800.4');
+const spartan = audio.records.find(p => p.modelNumber === "SPARTAN 9900.1");
+assert.equal(spartan.specificationReviewStatus, 'SOURCE_VS_MANUFACTURER_CONFLICT_REVIEW_REQUIRED', 'unresolved source conflict must remain held for SPARTAN 9900.1');
 assert.ok(audioPage.includes('SPECIFICATION REVIEW REQUIRED:') && audioPage.includes('p.specificationConflict'), 'owner preview must display source-versus-manufacturer specification warnings');
 for (const model of ["RABTR03","RA AWG4","RA SUPER RAST20"]) {
   const row = audio.records.find(p => p.modelNumber === model);
