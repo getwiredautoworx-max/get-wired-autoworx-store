@@ -2,5 +2,6 @@
 # Triggered by the owner-approved PR #176 preview readiness repair.
 # Deploy workflow must test the exact triggering SHA and verify preview_only=true.
 # Production deployment, Axxess, DNS, Supabase writes, live catalogue changes and payments remain prohibited.
-request=PR-176-preview-verification
-requested_at=2026-11-04T19:05:00+02:00
+request=PR-176-preview-verification-exact-head-followup
+requested_for=preview/integrated-storefront-2026-11-04
+base_head=fdf06a2b24a95fcc32c1c3a4a790e1b387e25373
