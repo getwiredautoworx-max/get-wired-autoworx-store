@@ -6,8 +6,8 @@
   "source_staging_unclassified_rows": 236,
   "additional_source_rows_already_present_in_preview_as_classified": 2,
   "preview_unclassified_rows": 234,
-  "preview_classified": 229,
-  "preview_held": 5,
+  "preview_classified": 232,
+  "preview_held": 2,
   "decisions": [
     {
       "id": "pw-0022",
@@ -161,9 +161,9 @@
       "description": "Audison - VCRA - SUB REMOTE VOLUME CONTROL AV-SR 1Dk-SR 5",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
       "source_row": 9,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Remote Controls",
+      "basis": "VCRA is explicitly described as a subwoofer remote volume control; official Audison remote-controller collection is listed in source staging.",
+      "disposition": "CLASSIFIED_WITH_SOURCE_CONTEXT"
     },
     {
       "id": "pw-0108",
@@ -413,9 +413,9 @@
       "description": "Audison - AVX 6.5 II - SET 2Way COAX 165mm+XOVER",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
       "source_row": 80,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Speakers",
+      "basis": "AVX 6.5 II is explicitly described as a 2-way coaxial 165 mm speaker set; official Audison speaker collection is listed in source staging.",
+      "disposition": "CLASSIFIED_WITH_SOURCE_CONTEXT"
     },
     {
       "id": "pw-0179",
@@ -1686,7 +1686,7 @@
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 91,
       "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
+      "basis": "Vehicle and screen size are given but source does not state whether this is a head unit or fascia/frame.",
       "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
     },
     {
@@ -2453,9 +2453,9 @@
       "description": "ON669-A14-LCD",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 219,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Infotainment & Displays",
+      "basis": "LCD suffix identifies a display component in the OneNav ON669-A14 system family; held separately from complete head units.",
+      "disposition": "CLASSIFIED_WITH_SOURCE_CONTEXT"
     },
     {
       "id": "pw-2302",
@@ -2945,9 +2945,9 @@
       "description": "Audison - VCRA - SUB REMOTE VOLUME CONTROL AV-SR 1Dk-SR 5",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
       "source_row": 9,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Remote Controls",
+      "basis": "VCRA is explicitly described as a subwoofer remote volume control; official Audison remote-controller collection is listed in source staging.",
+      "disposition": "CLASSIFIED_WITH_SOURCE_CONTEXT"
     },
     {
       "sku": "66750610",
@@ -3155,9 +3155,9 @@
       "description": "Audison - AVX 6.5 II - SET 2Way COAX 165mm+XOVER",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
       "source_row": 80,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Speakers",
+      "basis": "AVX 6.5 II is explicitly described as a 2-way coaxial 165 mm speaker set; official Audison speaker collection is listed in source staging.",
+      "disposition": "CLASSIFIED_WITH_SOURCE_CONTEXT"
     },
     {
       "sku": "69070030",
@@ -4236,7 +4236,7 @@
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 91,
       "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
+      "basis": "Vehicle and screen size are given but source does not state whether this is a head unit or fascia/frame.",
       "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
     },
     {
@@ -4875,9 +4875,9 @@
       "description": "ON669-A14-LCD",
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 219,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
+      "component": "Infotainment & Displays",
+      "basis": "LCD suffix identifies a display component in the OneNav ON669-A14 system family; held separately from complete head units.",
+      "disposition": "CLASSIFIED_WITH_SOURCE_CONTEXT"
     },
     {
       "sku": "ON669-F1",
@@ -5202,26 +5202,6 @@
   ],
   "unresolved_source_rows": [
     {
-      "sku": "66750530",
-      "brand": "Audison",
-      "description": "Audison - VCRA - SUB REMOTE VOLUME CONTROL AV-SR 1Dk-SR 5",
-      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-      "source_row": 9,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
-    },
-    {
-      "sku": "69070021",
-      "brand": "Audison",
-      "description": "Audison - AVX 6.5 II - SET 2Way COAX 165mm+XOVER",
-      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/audison-price-list-2026-10-25.xlsx",
-      "source_row": 80,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
-    },
-    {
       "sku": "BOX-10",
       "brand": "One",
       "description": "Nissan Box",
@@ -5238,17 +5218,7 @@
       "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
       "source_row": 91,
       "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
-      "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
-    },
-    {
-      "sku": "ON669-A14-LCD",
-      "brand": "One",
-      "description": "ON669-A14-LCD",
-      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/one-price-list-2026-10-25.xlsx",
-      "source_row": 219,
-      "component": "Unclassified — owner/source confirmation",
-      "basis": "Insufficient product detail or conflicting source description; held out of automatic classification.",
+      "basis": "Vehicle and screen size are given but source does not state whether this is a head unit or fascia/frame.",
       "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
     }
   ]
