@@ -24,9 +24,9 @@ REQUIRED_ROOT_FILES = [
 OPTIONAL_ROOT_FILES = ["privacy-policy.html", "robots.txt"]
 PREVIEW_ROOT_FILES = [
     "owner-preview.html", "preview-store.html", "preview-category.html", "preview-products.html",
-    "preview-product.html", "preview-planetworld.html", "preview-audio.html", "asc-catalogue-preview.html",
+    "preview-product.html", "preview-planetworld.html", "preview-audio.html",
 ]
-PREVIEW_ASSET_FILES = ["asc-catalogue-preview-data.json", "planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json"]
+PREVIEW_ASSET_FILES = ["planetworld-catalogue-preview.json", "planetworld-verified-models-preview.json", "audio-connections-catalogue-preview.json"]
 REQUIRED_ASSET_FILES = [
     "gw-logo.png", "car-audio-video-category.svg", "product-image-fallback.js", "category-cleanup.js",
     "progressive-store-enhancements.js", "product-placeholder.svg", "category-tree.json", "storefront-subpage-shell.css",
@@ -59,24 +59,11 @@ for name in OPTIONAL_ROOT_FILES:
 # The explicit flag remains available for local/manual preview builds.
 branch = os.environ.get("CF_PAGES_BRANCH")
 include_preview = (branch is not None and branch != "main") or os.environ.get("GW_INCLUDE_PREVIEW_ROUTES") == "1"
-if not include_preview:
-    storefront = OUT / "index-new.html"
-    html = storefront.read_text(encoding="utf-8")
-    start, end = "/* ASC_PREVIEW_NAV_START */", "/* ASC_PREVIEW_NAV_END */"
-    if start not in html or end not in html:
-        raise SystemExit("ASC preview navigation guard markers missing from index-new.html")
-    before, remainder = html.split(start, 1)
-    _, after = remainder.split(end, 1)
-    storefront.write_text(before + after, encoding="utf-8")
 if include_preview:
     for name in PREVIEW_ROOT_FILES:
         copy_file(name)
     for name in PREVIEW_ASSET_FILES:
         copy_file(f"assets/{name}")
-    pilot_images = ROOT / "assets" / "asc-catalogue-pilot"
-    if not pilot_images.is_dir():
-        raise SystemExit("Preview package missing reviewed catalogue images: assets/asc-catalogue-pilot")
-    shutil.copytree(pilot_images, OUT / "assets" / "asc-catalogue-pilot")
 for name in REQUIRED_ASSET_FILES:
     copy_file(f"assets/{name}")
 
@@ -110,11 +97,8 @@ if include_preview:
     for name in PREVIEW_ASSET_FILES:
         if not (OUT / "assets" / name).is_file():
             raise SystemExit(f"Preview package missing catalogue data: assets/{name}")
-    pilot_count = sum(1 for p in (OUT / "assets" / "asc-catalogue-pilot").glob("*.jpg") if p.is_file())
-    if pilot_count != 50:
-        raise SystemExit(f"Expected 50 reviewed catalogue images, found {pilot_count}")
     print("PAGES_PREVIEW_ROUTES_INCLUDED " + " ".join(PREVIEW_ROOT_FILES))
-    print(f"CATALOGUE_PREVIEW_ASSETS_PASS images={pilot_count} source_pdfs=0")
+    print("PLANETWORLD_AUDIO_CONNECTIONS_PREVIEW_ASSETS_PASS source_pdfs=0 asc_catalogue_data=excluded")
 else:
     leaked_preview = [name for name in PREVIEW_ROOT_FILES if (OUT / name).exists()]
     if leaked_preview:
