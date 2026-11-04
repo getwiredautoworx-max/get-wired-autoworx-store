@@ -446,13 +446,13 @@
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSW12\" 5200 — 300 W",
+      "title": "Starsound SSW-12W-5200 — 12-inch SVC, 250 W RMS",
       "component": "SVC Subwoofers",
       "indicativePrice": 464.2,
       "hasStock": false,
-      "modelNumber": "SSW12\" 5200",
-      "description": "12-inch SVC subwoofer; 300 W (RMS/peak basis not stated)",
-      "manufacturerPage": "",
+      "modelNumber": "SSW-12W-5200",
+      "description": "12-inch SVC subwoofer; Starsound official specification: 250 W RMS, 4 Ω voice coil, 90 dB sensitivity. This corrects the source price-list \"300 W\" figure.",
+      "manufacturerPage": "https://starsound.co.za/product/ssw-12w-5200/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -460,20 +460,23 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "specificationSourceUrl": "https://starsound.co.za/product/ssw-12w-5200/",
+      "specificationStatus": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED",
+      "specificationSource": "Starsound official product specification"
     },
     {
       "id": "ac-021",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSW12-6300 — 300 W",
+      "title": "Starsound SSW-12-6300 — 12-inch SVC subwoofer",
       "component": "SVC Subwoofers",
       "indicativePrice": 619.45,
       "hasStock": false,
-      "modelNumber": "SSW12-6300",
-      "description": "12-inch SVC subwoofer; 300 W (RMS/peak basis not stated)",
-      "manufacturerPage": "",
+      "modelNumber": "SSW-12-6300",
+      "description": "12-inch SVC subwoofer. Power rating remains unverified: source price list states 300 W without RMS/maximum basis; one South African retailer lists 500 W RMS and another model inventory lists 350 W RMS. Official manufacturer product page could not be retrieved during this review. Do not publish a definitive wattage.",
+      "manufacturerPage": "https://starsound.co.za/product/ssw-12-6300/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -484,7 +487,10 @@
       "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
       "manufacturerListingPage": "https://starsound.co.za/product-category/subwoofers/",
       "manufacturerListedModel": "SSW-12-6300",
-      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found"
+      "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
+      "specificationSourceUrl": "https://starsound.co.za/product/ssw-12-6300/",
+      "specificationStatus": "POWER_RATING_CONFLICT_300W_SOURCE_VS_500W_AND_350W_RETAILER; SUPPLIER_CONFIRMATION_REQUIRED",
+      "specificationSource": "South African retailer cross-checks; Starsound official page retrieval timed out"
     },
     {
       "id": "ac-022",
@@ -991,13 +997,13 @@
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSS5502 5-inch 3-way 420 W",
+      "title": "Starsound SSS-5502 — 5-inch 3-way speaker, 420 W MAX",
       "component": "Speakers",
       "indicativePrice": 217.35,
       "hasStock": false,
-      "modelNumber": "SSS5502",
-      "description": "5-inch 3-way speaker, 420 W (RMS/peak basis not stated)",
-      "manufacturerPage": "",
+      "modelNumber": "SSS-5502",
+      "description": "5-inch 3-way speaker; Starsound official specification states 420 W MAX and 4 Ω impedance. RMS rating is not published by the manufacturer.",
+      "manufacturerPage": "https://starsound.co.za/product/sss-5502/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -1005,19 +1011,22 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "specificationSourceUrl": "https://starsound.co.za/product/sss-5502/",
+      "specificationStatus": "OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED",
+      "specificationSource": "Starsound official product specification"
     },
     {
       "id": "ac-044",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSS6501 PRO 2-way 250 W",
+      "title": "Starsound SSS-6501PRO — 6.5-inch Pro midrange, 250 W RMS listing",
       "component": "Speakers",
       "indicativePrice": 402.1,
       "hasStock": false,
-      "modelNumber": "SSS6501 PRO",
-      "description": "6.5-inch Pro 2-way speaker, 250 W (RMS/peak basis not stated)",
+      "modelNumber": "SSS-6501PRO",
+      "description": "6.5-inch Pro midrange speaker; South African retailer specification lists 250 W RMS. A separate seller describes 250 W per pair and another listing gives 650 W maximum; whether 250 W RMS is per speaker or pair must be confirmed before a pack/bundle claim.",
       "manufacturerPage": "",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1026,7 +1035,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "specificationSourceUrl": "https://soundvision.co.za/products/starsound-6501-pro-midrange",
+      "specificationStatus": "RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED",
+      "specificationSource": "Sound Vision retailer product specification; cross-checked against other South African listings"
     },
     {
       "id": "ac-045",
@@ -1054,13 +1066,13 @@
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSS6602 6-inch 3-way 480 W",
+      "title": "Starsound SSS-6602 — 6-inch 3-way speaker, 480 W MAX",
       "component": "Speakers",
       "indicativePrice": 256.16,
       "hasStock": false,
-      "modelNumber": "SSS6602",
-      "description": "6-inch 3-way speaker, 480 W (RMS/peak basis not stated)",
-      "manufacturerPage": "",
+      "modelNumber": "SSS-6602",
+      "description": "6-inch 3-way speaker; Starsound official specification states 480 W MAX and 4 Ω impedance. RMS rating is not published by the manufacturer.",
+      "manufacturerPage": "https://starsound.co.za/product/sss-6602/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -1068,20 +1080,23 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "specificationSourceUrl": "https://starsound.co.za/product/sss-6602/",
+      "specificationStatus": "OFFICIAL_MAX_POWER_CONFIRMED_RMS_NOT_PUBLISHED",
+      "specificationSource": "Starsound official product specification"
     },
     {
       "id": "ac-047",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSS6903 6×9 3-way 600 W",
+      "title": "Starsound SSS-6903 — 6×9-inch 3-way speaker",
       "component": "Speakers",
       "indicativePrice": 372.6,
       "hasStock": false,
-      "modelNumber": "SSS6903",
-      "description": "6x9 3-way speaker, 600 W (RMS/peak basis not stated)",
-      "manufacturerPage": "",
+      "modelNumber": "SSS-6903",
+      "description": "6×9-inch 3-way speaker, 4 Ω per Starsound official page. Power rating is not stated on the official page; source price list states 600 W while a South African model inventory lists 500 W. Do not publish a definitive wattage until manufacturer/supplier confirms.",
+      "manufacturerPage": "https://starsound.co.za/product/sss-6903/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
       "availabilityNote": "Supplier availability was not stated; confirm before ordering.",
@@ -1089,19 +1104,22 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "specificationSourceUrl": "https://starsound.co.za/product/sss-6903/",
+      "specificationStatus": "POWER_RATING_CONFLICT_600W_SOURCE_VS_500W_RETAILER; OFFICIAL_POWER_NOT_PUBLISHED",
+      "specificationSource": "Starsound official product page plus South African model inventory"
     },
     {
       "id": "ac-048",
       "division": "Car Audio",
       "collection": "Car Audio & Video",
       "brand": "Starsound",
-      "title": "Starsound SSD-620 DIGITAL 6-inch 2-way — 1200 W",
+      "title": "Starsound SSD-620 Digital — 6.5-inch 2-way coaxial, 80 W RMS / 1,200 W MAX",
       "component": "Speakers",
       "indicativePrice": 481.28,
       "hasStock": false,
       "modelNumber": "SSD-620",
-      "description": "Digital 6-inch 2-way speaker; 1200 W (RMS/peak basis not stated)",
+      "description": "6.5-inch 2-way coaxial speaker, 4 Ω; South African retailer product specifications agree on 80 W RMS and 1,200 W maximum power.",
       "manufacturerPage": "",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -1110,7 +1128,10 @@
       "priceOnRequestText": "",
       "publicationStatus": "PREVIEW_ONLY_NOT_LIVE",
       "brandNote": "",
-      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE"
+      "imageStatus": "NO_APPROVED_EXACT_MODEL_IMAGE_SOURCE",
+      "specificationSourceUrl": "https://soundslimited.co.za/products/star-sound-ssd-620-digital-series-6-5-e2-80-b3-2-way-coaxial-speakers-80w-rms",
+      "specificationStatus": "RETAILER_SPECIFICATION_CROSSCHECK_MULTIPLE_SOURCES_AGREE",
+      "specificationSource": "South African retailer specification cross-check"
     },
     {
       "id": "ac-049",
@@ -1502,12 +1523,14 @@
       "ac-027"
     ],
     "unresolvedSpecification": [
-      "ac-025: Starsound's official page confirms the 12-inch 4-ohm model and vented-enclosure family but publishes no RMS rating; source price list states 300 W RMS while a third-party South African inventory lists 250 W RMS / 600 W peak. Supplier/manufacturer confirmation is still required before publishing wattage."
+      "ac-021: SSW-12-6300 power conflicts: source price list 300 W without rating basis; retailer 500 W RMS vs another inventory 350 W RMS; manufacturer page retrieval timed out.",
+      "ac-025: SSW-B12-2800 official Starsound page confirms 12-inch 4-ohm enclosure model but publishes no RMS rating; source price list 300 W RMS vs third-party inventory 250 W RMS / 600 W peak.",
+      "ac-047: SSS-6903 official Starsound page confirms 6×9-inch, 4-ohm speaker but no power; source price list 600 W vs third-party inventory 500 W."
     ]
   },
   "starsoundSpecificationReconciliation": {
     "checkedAt": "2026-11-04",
-    "status": "EIGHT_POWER_LABELS_RECONCILED; ONE_SUBWOOFER_POWER_RATING_STILL_UNVERIFIED",
+    "status": "POWER_SPEC_REVIEW_UPDATED; THREE_RECORDS_REMAIN_HELD_FOR_CONFLICT_OR_MISSING_MANUFACTURER_RATING",
     "records": [
       {
         "id": "ac-032",
@@ -1559,7 +1582,9 @@
       }
     ],
     "unresolved": [
-      "ac-025"
+      "ac-021",
+      "ac-025",
+      "ac-047"
     ]
   }
 }
