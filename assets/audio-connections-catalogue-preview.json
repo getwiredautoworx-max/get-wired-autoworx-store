@@ -941,7 +941,7 @@
       "indicativePrice": 1505.93,
       "hasStock": false,
       "modelNumber": "SSA-ATOM-13800.4",
-      "description": "4-channel MOSFET amplifier; manufacturer rates 320 W RMS ×4 at 1 Ω, 160 W RMS ×4 at 2 Ω, 80 W RMS ×4 at 4 Ω and 160 W RMS bridged at 4 Ω.",
+      "description": "4-channel MOSFET amplifier; owner-confirmed nominal rating 100 W RMS per channel ×4. Starsound's published output table separately specifies 320 W ×4 at 1 Ω, 160 W ×4 at 2 Ω, 80 W ×4 at 4 Ω, and 160 W bridged at 4 Ω.",
       "manufacturerPage": "https://starsound.co.za/product/ssa-atom-13800-4/",
       "imageUrl": "",
       "sourceDateLabel": "Price list · 5 August 2026",
@@ -956,7 +956,7 @@
       "manufacturerMatchStatus": "OFFICIAL_CATEGORY_LISTING_MODEL_FOUND; punctuation-normalized; individual page not found",
       "specificationSourceUrl": "https://starsound.co.za/product/ssa-atom-13800-4/",
       "specificationSource": "Starsound official manufacturer product specification",
-      "specificationStatus": "OFFICIAL_MANUFACTURER_SPECIFICATION_CONFIRMED"
+      "specificationStatus": "OWNER_CONFIRMED_NOMINAL_RATING_WITH_OFFICIAL_OUTPUT_TABLE_RECORDED"
     },
     {
       "id": "ac-041",
