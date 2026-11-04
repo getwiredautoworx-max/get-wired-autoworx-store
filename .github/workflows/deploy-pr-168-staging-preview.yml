@@ -122,7 +122,7 @@ jobs:
               for(let i=0;i<4;i++){
                 const img=collage.nth(i);
                 await img.scrollIntoViewIfNeeded();
-                const ok=await img.evaluate(el=>el.complete&&el.naturalWidth>0);
+                const ok=await img.evaluate(async el=>{if(!el.complete)await new Promise(resolve=>{el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return el.complete&&el.naturalWidth>0});
                 if(!ok) throw new Error('Audio root collage image failed to load: '+await img.getAttribute('alt'));
               }
               await frame.getByRole('button',{name:/Audio, Entertainment & Music/}).click();
