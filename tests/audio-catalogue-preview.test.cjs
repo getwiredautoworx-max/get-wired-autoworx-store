@@ -179,6 +179,6 @@ console.log('AUDIO_CATALOGUE_PREVIEW_PASS', JSON.stringify({
 
 /* Preview package asset allowlist regression: local brand wordmarks must ship with the preview. */
 for (const name of ["jbl.svg", "denon.svg", "hertz.svg"]) {
-  const assetPath = path.join(__dirname, "..", "assets", "brand-logos", name);
+  const assetPath = `assets/brand-logos/${name}`;
   assert.ok(fs.existsSync(assetPath), `Missing required local preview brand logo: ${name}`);
 }
