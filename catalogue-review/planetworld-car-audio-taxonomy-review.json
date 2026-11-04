@@ -65,7 +65,7 @@
     },
     {
       "label": "Fascia & Fitting Kits",
-      "preview_rows": 76
+      "preview_rows": 77
     },
     {
       "label": "Speakers",
@@ -128,11 +128,11 @@
       "preview_rows": 2
     },
     {
-      "label": "Unclassified — owner/source confirmation",
-      "preview_rows": 2
+      "label": "Excluded — Non-Audio Merchandise",
+      "preview_rows": 1
     },
     {
-      "label": "Excluded — Non-Audio Merchandise",
+      "label": "Car Audio Accessories",
       "preview_rows": 1
     },
     {
@@ -145,69 +145,51 @@
     }
   ],
   "rules": [
-    "This is a manual review of 236 rows marked unclassified in the Planetworld staging CSV; the 234-row preview subset was reconciled separately.",
-    "232 of 234 preview rows were classified; two remain explicitly held pending supplier clarification: BOX-10 (Nissan Box) and ON014-F3 (Prado 10.1-inch item type not stated).",
-    "Kicker 47KPB2 and 51KMC4 are correctly grouped in Marine Audio; supplier names remain internal.",
+    "This is a manual review of 236 rows marked unclassified in the Planetworld staging CSV; 234 of those rows are present in the customer preview. Two additional source rows were already correctly classified in the preview.",
+    "All 234 formerly unclassified preview rows are now assigned a product/component group; zero preview rows remain unclassified or held. BOX-10 is classified as Car Audio Accessories using OneNav reseller-catalogue corroboration, while its exact physical form and vehicle fitment remain unverified. ON014-F3 is classified as Fascia & Fitting Kits using adjacent ON014-F1/ON014-F4 model-family context; exact fitment and image remain unverified. Both remain preview-only.",
+    "Kicker 47KPB2 and 51KMC4 remain grouped under Marine Audio; supplier names remain internal.",
     "Kicker 51KEYCHAIN is excluded from the customer-facing audio catalogue as non-audio branded merchandise.",
-    "All same products and component families are grouped across suppliers; supplier folders are internal only.",
-    "No GW SKU was assigned or published in this review. Existing price/stock evidence was not changed.",
-    "No customer listings, supplier activation, pricing, live stock, Supabase, payment, DNS, Axxess or production deployment changes were made."
+    "Products are grouped by product identity, function and application across suppliers; supplier folders remain internal.",
+    "No Planetworld GW SKU was assigned or published as part of this manual classification pass. Existing price and stock evidence was not changed.",
+    "No live listings, supplier activation, pricing, live stock, Supabase, payment, DNS, Axxess or production deployment changes were made."
   ],
   "source_output": "catalogue-review/planetworld-car-audio-staging.csv",
   "manual_review_2026_11_04": {
     "status": "COMPLETED_REVIEW_PREVIEW_ONLY",
     "source_staging_rows_reviewed": 238,
     "preview_rows_reviewed": 234,
-    "preview_rows_classified": 232,
-    "preview_rows_held": 2,
+    "preview_rows_classified": 234,
+    "preview_rows_held": 0,
     "component_counts": {
-      "Amplifiers": 46,
-      "Harness & Installation": 50,
-      "Cameras": 12,
-      "Speakers": 75,
-      "Infotainment & Displays": 12,
-      "Head Units & Media Players": 84,
+      "Head Units & Media Players": 66,
       "Vehicle Integration Modules": 2,
-      "Subwoofers": 99,
       "Speaker Accessories": 17,
-      "Wiring & Installation Accessories": 121,
+      "Infotainment & Displays": 4,
       "Speaker Door Pods & Fitment Kits": 2,
+      "Subwoofers": 21,
       "Remote Controls": 10,
-      "Processors & Crossovers": 4,
-      "Harnesses, Trims & Fitment": 47,
-      "Marine Audio": 28,
-      "Marine classification conflict — review": 3,
+      "Wiring & Installation Accessories": 5,
+      "Harness & Installation": 2,
+      "Speakers": 13,
+      "Processors & Crossovers": 1,
       "Excluded — Non-Audio Merchandise": 1,
+      "Amplifiers": 1,
       "Audio Packages": 7,
       "Parking Sensors": 2,
-      "Fascia & Fitting Kits": 76,
-      "Unclassified — owner/source confirmation": 2,
+      "Fascia & Fitting Kits": 77,
+      "Car Audio Accessories": 1,
       "Camera & DVR Accessories": 1,
       "Cameras & DVRs": 1
     },
-    "held_rows": [
-      {
-        "id": "pw-2088",
-        "sku": "BOX-10",
-        "brand": "One",
-        "title": "Nissan Box",
-        "reason": "Supplier source only says 'Nissan Box'; no reliable indication whether this is a fascia, enclosure, bracket or another fitment part. Await supplier clarification."
-      },
-      {
-        "id": "pw-2172",
-        "sku": "ON014-F3",
-        "brand": "One",
-        "title": "ON014-F3- Toyota Land Cruiser Prado (150) 10.1inch 2013-2017",
-        "reason": "Vehicle and screen size are given but source does not state whether this is a head unit or a fascia/frame. Await exact product description."
-      }
-    ],
+    "held_rows": [],
     "rules_applied": [
       "Supplier folders remain internal; public grouping is by product/component, not supplier.",
       "Vehicle-specific OneNav head units are grouped under Head Units & Media Players; frames/brackets and adapters under Fascia & Fitting Kits.",
-      "Kicker KPB2 and KMC4 are grouped under Marine Audio.",
-      "Non-audio branded merchandise is excluded from the customer-facing audio catalogue.",
-      "Ambiguous records remain explicitly held; no guessed product types.",
-      "Non-audio merchandise is retained in the internal source snapshot for reconciliation but filtered out of customer-facing Car Audio navigation."
+      "BOX-10 is grouped under Car Audio Accessories using reseller-catalogue corroboration; exact physical form and vehicle fitment remain unverified.",
+      "ON014-F3 is grouped under Fascia & Fitting Kits using adjacent ON014-F1/ON014-F4 model-family context; exact fitment and image remain unverified.",
+      "Kicker 47KPB2 and 51KMC4 are grouped under Marine Audio.",
+      "Non-audio merchandise is retained internally but excluded from the customer-facing Car Audio catalogue.",
+      "All 234 preview records in this review have a product/component classification; ambiguous evidence is explicitly qualified and all records remain preview-only."
     ],
     "source_references": [
       "https://nxtleveltech.co.za/product/101inch-to-9inch",
