@@ -170,7 +170,7 @@ jobs:
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
-              const previewBase='https://pr-168-staging-preview.get-wired-autoworx-store.pages.dev';
+              const previewBase='https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev';
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
                 const response=await page.request.get(previewBase+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
