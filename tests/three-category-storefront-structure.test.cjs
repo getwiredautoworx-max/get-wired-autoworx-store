@@ -10,6 +10,8 @@ const verifiedModels = JSON.parse(read('assets/planetworld-verified-models-previ
 const audio = JSON.parse(read('assets/audio-connections-catalogue-preview.json'));
 const audioPage = read('preview-audio.html');
 assert.ok(home.includes("if(c.id==='gw-audio-home')return '<span class=\"catArt\"><img class=\"catPhoto customProductArt\" src=\"assets/car-audio-video-category.svg\" alt=\"Home entertainment television, stereo speakers and headphones\" loading=\"lazy\"></span>'"), 'Home Entertainment homepage tile must use the corrected television and audio artwork, not car/cartoon imagery');
+assert.ok(home.includes('class="catArt audioFourTile" aria-label="Four audio departments: Car Audio and Video, Home Entertainment, Band and Live Sound, and DJ Equipment"'), 'Audio, Entertainment & Music root tile must be a four-picture collage for the four main departments');
+for (const alt of ['Car audio speaker equipment','Home entertainment television','Band and live sound concert','DJ equipment and mixing decks']) assert.ok(home.includes('alt="'+alt+'"'), 'four-picture audio tile must include the '+alt+' panel');
 const planetPage = read('preview-planetworld.html');
 const builder = read('scripts/build-cloudflare-pages-public.py');
 const ownerPreview = read('owner-preview.html');
