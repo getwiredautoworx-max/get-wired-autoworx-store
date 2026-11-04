@@ -1416,3 +1416,12 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 ### Current cross-workstream boundary
 - Main storefront work owns the global price policy implementation and route audit. Mobile agent owns PR #168's Audio & Home Entertainment repair. ASC review/staging remains separate. Do not combine branches or merge PRs as a shortcut.
 - Production remains **HOLD**. No merge or production release is authorized by this sync.
+
+
+## 2026-11-04 — OWNER CORRECTION: PRICE DISPLAY IS SUPPLIER-SPECIFIC
+- This section supersedes the 2026-11-04 store-wide price-suppression instruction in the earlier handover text and any agent coordination message that repeated it.
+- **Planetworld:** supplier pricing is available. Do not blanket-suppress its validated customer selling prices. Display numeric selling prices where the exact product/SKU is reconciled to the applicable Planetworld RRP and the owner's pricing rules; retain review holds for zero/missing RRP, anomalies, unresolved identity, or unapproved pricing. Planetworld RRP is not dealer cost; use the approved pricing basis.
+- **Audio Connections:** supplier pricing is available for products with confirmed dealer-price data. Do not blanket-suppress validated numeric selling prices. Where a specific record still lacks confirmed dealer price, VAT basis, or availability, keep that individual record quote-required and display the exact text **“Price On Request Due to Stock Availability”** until resolved and approved. Third-party retail comparables are not supplier dealer prices and are not approved Get Wired selling prices.
+- **ASC:** the ASC catalogues currently supplied for this workstream contain no prices. Display the exact customer-facing text **“Price On Request Due to Stock Availability”** for ASC products; do not invent or infer prices.
+- Price display is therefore **supplier- and product-record-specific**, not a global all-products suppression rule. Do not remove valid Planetworld/Audio Connections prices merely because ASC is unpriced. Do not expose supplier costs or identities to customers.
+- Keep existing review-only/owner-approval, SKU reconciliation, stock/availability, and production HOLD safeguards. This correction does not authorise live price or stock updates or production deployment.
