@@ -49,7 +49,7 @@ assert.ok(home.includes("apiAll('categories?select=id,name,slug,parent_id,active
 assert.ok(home.includes('const hasCompleteTree=rows=>rows.length>0&&expectedRoots.every(id=>rows.some(c=>c.id===id))&&categories.every(localCategory=>rows.some(remoteCategory=>remoteCategory.id===localCategory.id));'), 'remote category refresh must include every locally approved category before replacing the tree');
 assert.ok(home.includes('Remote category response incomplete; retaining approved local category tree and subcategories.'), 'incomplete remote category responses must retain the approved local tree and its subcategories');
 assert.ok(home.includes("fetch('assets/category-tree.json',{cache:'no-store',signal:controller.signal})"), 'approved local category snapshot fallback must remain available and bounded');
-assert.ok(categoryCleanup.includes("const mainRootIds=['1a13bc42-4f54-44f6-9658-36d141b77f4b','ba263c9f-d038-48bd-bca0-944f3ebdc5e9','f98e7589-20a0-4825-9707-2680d29e5cb6']"), 'all three approved roots must survive category cleanup without products');
+assert.ok(categoryCleanup.includes("window.installGetWiredCategoryCleanup=function(frame)") && !categoryCleanup.includes("style.display='none'"), 'category cleanup must preserve root and child category visibility when product counts are zero or unknown');
 for (const [id,label] of roots) {
   assert.ok(home.includes(id) && home.includes(label), 'storefront root '+label);
   assert.ok(categoryPage.includes(id) && categoryPage.includes(label), 'category page root '+label);
