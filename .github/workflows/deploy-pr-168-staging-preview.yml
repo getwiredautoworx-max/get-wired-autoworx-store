@@ -45,16 +45,10 @@ jobs:
           echo "GW_PR168_PUBLIC_PREVIEW_PACKAGE_PASS"
           echo "DEPLOYED_SOURCE_SHA=$(git rev-parse HEAD)"
 
-      - name: Set the isolated staging branch alias in the runner workspace
-        run: |
-          set -eu
-          git switch -c pr-168-staging-preview
-          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
-
       - name: Deploy to dedicated non-production Cloudflare Pages branch
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=pr-168-staging-preview --commit-hash=${{ github.sha }} --commit-dirty=true
+          command: pages deploy pages-public --project-name=get-wired-autoworx-store --branch=repair/pr-168-storefront-category-audio-2026-11-04 --commit-hash=${{ github.sha }} --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
