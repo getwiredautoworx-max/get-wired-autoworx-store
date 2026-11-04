@@ -64,6 +64,12 @@ const specChecks = [
   ['ac-042','80 W RMS ×4 at 4 Ω','RETAILER_SPECIFICATION_CROSSCHECK'],
   ['ac-044','per speaker or pair','RETAILER_RMS_CROSSCHECK_UNIT_BASIS_UNCONFIRMED']
 ];
+assert.equal(audioConnections.powerSpecificationReconciliation.status,'FIVE_MODEL_SPECIFICATION_HOLDS');
+assert.deepEqual(audioConnections.powerSpecificationReconciliation.heldRecords.map(row=>row.id),['ac-021','ac-025','ac-032','ac-041','ac-044']);
+for (const id of ['ac-021','ac-025','ac-032','ac-041','ac-044']) {
+  const held=audioConnections.records.find(row=>row.id===id);
+  assert.ok(!/(?:\\d+\\s*W\\s*(?:RMS|MAX))/i.test(held.title),id+' title must not publish held wattage');
+}
 const atom13500=audioConnections.records.find(row=>row.id==='ac-032');
 assert.ok(atom13500.description.includes('official page lists 500 W RMS at 1 Ω')&&atom13500.description.includes('retailer listings report 520 W RMS at 1 Ω')&&atom13500.description.includes('230 W RMS at 4 Ω'),'ac-032 conflicting official and retailer specification detail');
 assert.equal(atom13500.specificationStatus,'OFFICIAL_VS_RETAILER_POWER_CONFLICT_SUPPLIER_CONFIRMATION_REQUIRED');
