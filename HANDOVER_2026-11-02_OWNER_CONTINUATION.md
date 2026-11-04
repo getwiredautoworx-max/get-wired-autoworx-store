@@ -1412,3 +1412,11 @@ The owner has explicitly directed that **Planetworld and Audio Connections must 
 - Official Starsound shop's SSS-M6501Pro is not assumed to equal source SSS-6501PRO. Reference Audio RA-BTR03 retailer corroboration remains secondary evidence only; preserve supplier source code RABTR03 until confirmed.
 - No price, stock, SKU assignment, image rights, supplier activation or public publication status was promoted. No live data or production changes.
 - Next: continue exact official source checks for remaining Audio Connections no-reference rows; separately continue Planetworld source-row/model and image-gap reconciliation. Preserve unresolved evidence as held, and refresh audit after each verified match.
+
+
+## 2026-11-04 — Public supplier-source exposure finding (HIGH PRIORITY)
+- Read-only inspection of the public branch tree confirmed 47 Planetworld dated price-list XLSX files under `suppliers/Planetworld/` and two Audio Connections dealer price-list PDFs under `suppliers/Audio Connections/`. These source files may expose confidential dealer pricing and commercial terms to anyone while the repository is public.
+- This is a confirmed public-repository exposure risk, not a confirmed credential compromise. Do not copy dealer prices or sensitive source contents into issues, logs, PR discussion or customer-facing material.
+- Recommended containment is to make the repository private immediately while source files and all Git refs/history are reviewed. Removing files only from the latest commit is insufficient because prior public commits remain accessible. If the owner needs a public code repository, separate public-safe storefront code from private supplier source/catalogue data and purge/rewrite affected Git history before restoring public visibility; rotate any credentials only if a complete scan identifies exposure.
+- The connected GitHub tools used here do not provide repository-visibility administration or full-history rewrite capability. No visibility change, deletion, history rewrite or credential rotation was attempted.
+- Until containment is complete, avoid adding further supplier source documents or dealer-price detail to the public repository. Continue only non-sensitive source research and review-only reconciliation. Production remains HOLD.
