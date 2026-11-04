@@ -1811,3 +1811,95 @@ Use this structure, with only evidence-backed values:
 
 ### G. Immediate continuation pointer at time of writing
 Start from the latest checkpoint above: PR #176, branch `preview/integrated-storefront-2026-11-04`, last recorded head `3be5c4eea139c280690dd38015cfa9d9766e8820`. Re-fetch live state before acting. The corrected regression assertion has not yet been proven by an exact-head workflow run. Continue by executing that test/CI path and inspecting/fixing the actual storefront and package defects; do not stop at this handover update. Production remains HOLD.
+
+
+## 2026-11-04 — OWNER-APPROVED STORE BUILD PLAN — AUTHORITATIVE METHOD
+
+**This is the actual store construction plan the owner accepted earlier on 4 November. It is distinct from the session-continuation method above. It must be treated as the fixed build method unless the owner explicitly changes it.** The previous handover update failed to preserve this plan; that omission is acknowledged and corrected here.
+
+### 1. The deliverable
+Build **one consolidated Get Wired AutoWorx online store** with:
+- One approved, consistent, bright customer-facing storefront design and shared page shell.
+- One homepage with the eight approved root categories in the approved order.
+- One coherent category/subcategory/brand/product navigation system, including the complete Car Audio & Entertainment experience.
+- One reconciled product catalogue assembled from the approved supplier source material, with accurate product identities, descriptions, images, Get Wired SKUs, pricing rules and availability states.
+- One customer-facing staging preview representing the actual integrated store, not a collection of disconnected demonstrations, supplier pages or repair branches.
+- A single controlled path from customer product discovery/request through supplier availability confirmation, quotation, customer acceptance and payment. Supplier identities, supplier costs and private supplier SKUs remain internal.
+
+### 2. Fixed technical architecture
+Keep and complete the existing project stack; do not start a replacement application or introduce unnecessary services:
+- **GitHub repository** is the version-controlled source of truth for storefront code, approved catalogue assets/data, tests, build scripts and handover.
+- **Existing storefront implementation** remains the customer UI. Build the shared homepage/category/product/support shell once and reuse it across routes; do not create separate visual systems for individual catalogue sources.
+- **Supabase** remains the structured catalogue/application data layer where the existing application uses it. Keep supplier identifiers, supplier costs, source provenance and reconciliation metadata private/internal. No production writes or schema changes without separate explicit approval.
+- **Cloudflare Pages** serves the customer-facing static storefront and the isolated staging preview. Use the existing Pages integration and public-package allowlist; exclude supplier source folders, private review files, internal supplier SKUs/costs and non-public working data from the public package.
+- **GitHub Actions** performs repeatable regression, security, package and browser checks. Tests must validate the approved information architecture and customer-visible behavior; a green static test alone is not deployment acceptance.
+- Do not introduce a new hosting provider, database, framework, parallel repository, or paid service as a shortcut. Keep the current stack and minimize deployment/build-credit use.
+
+### 3. One reconciled catalogue — not separate supplier storefronts
+Normalize the approved supplier source data into one internal product model and one customer-facing catalogue. Each candidate product must retain internal provenance sufficient to trace it back to supplier file/catalogue, page or sheet, source category, source SKU/model, image source and price/availability evidence.
+
+The unified product record must distinguish, as applicable:
+- Customer-facing Get Wired SKU and product identity/model;
+- Customer-facing name, accurate description, compatibility/fitment and category path;
+- approved customer image and its exact product/variant match;
+- current verified retail price or explicit quote/price-on-request state;
+- availability/stock-confirmation state and evidence date;
+- private supplier/source reference, dealer cost and reconciliation status (never exposed publicly).
+
+Supplier integration rules:
+- **Planetworld:** use the owner's RRP-based pricing policy, not dealer cost as retail price; preserve the exact approved price-on-request wording for zero-RRP/limited-availability items. Hide Planetworld identity and internal supplier SKUs/costs.
+- **Audio Connections:** use the owner-confirmed dealer relationship; reconcile exact model to Get Wired SKU, exact image, accurate description, VAT basis, price evidence and availability. Only the already approved verified pricing subset may show numeric preview prices; unresolved comparables remain quote-only.
+- **ASC:** integrate the already extracted 978 source-verified review rows and 20 review batches as preview-only catalogue content, retaining source headings/subcategories, exact source page/description/fitment and provenance. Do not repeat extraction. No live stock, price, import or activation is implied.
+- **Electro-city:** catalogue imagery may be used only within the owner's stated permission; no Electro-city supplier SKU or pricing is published.
+- **Caelex:** compare compatible supplier offers internally and select the better customer offer/margin only after accurate compatibility, landed cost, delivery and source evidence are reconciled. Never expose supplier identity.
+- Never invent missing prices, stock, compatibility, descriptions, product images or authorization. Unverified items remain quote-only, inactive or clearly marked unavailable for purchase until evidence is complete.
+
+### 4. Storefront construction sequence — fixed order
+**Phase 1 — Establish the single storefront shell and homepage**
+- Use the approved bright design consistently on homepage, category, subcategory, brand, product and support/policy routes.
+- Render the eight approved root categories in this exact order: Auto Electrical Spares; Vehicle Security; Car Audio & Entertainment; Automotive Accessories; Marine Spares & Accessories; Tools, Hardware & Consumables; Camping, Leisure & Outdoors; Trailer & Canopy.
+- Make every root tile/button tappable, legible and visually meaningful on mobile. Keep product codes and descriptions high contrast; descriptions must not obscure product images.
+- Keep 4x4 Outdoor nested under Camping, Leisure & Outdoors.
+- Remove supplier names/source catalogues from all customer-facing navigation and labels.
+
+**Phase 2 — Finish the full Audio experience before broadening**
+- Car Audio & Entertainment must contain Car Audio & Video, Home Entertainment, Band Equipment, DJ Equipment, Instruments and Lifestyle.
+- Build the complete drill-down: Audio root → department → brand (with the correct brand logo) → component/product type → populated products.
+- Group car-audio products by useful component types (speakers, amplifiers, radios/head units and other verified product groups); retain the appropriate Home Theatre, Studio, Marine and band/instrument groupings in their correct departments.
+- Keep Aerials and Trims & Harnesses as separate, correctly nested routes under the relevant Car Audio accessories structure.
+- Integrate the existing Planetworld and Audio Connections product data into this same Audio navigation and shell. Do not show empty placeholder cards or supplier-facing catalogue pages.
+
+**Phase 3 — Populate the other seven roots**
+- Reuse the same shared shell and category/navigation components.
+- Integrate the approved, verified products and imagery into their correct categories/subcategories, preserving source provenance and SKU uniqueness.
+- Use the existing ASC review dataset and the other approved supplier catalogue data; do not redo completed extraction/audits.
+- Where the source evidence is incomplete, render a truthful category/subcategory or quote state rather than fabricated product content.
+- Check all eight categories and their subcategories for correct parentage, navigation, product filtering and image-to-product matching.
+
+**Phase 4 — Complete the customer purchase/request journey safely**
+- Customer discovers/searches/selects a product or uses the source-a-part/request flow for an unlisted item.
+- For supplier-dependent or uncertain stock, Get Wired confirms supplier availability and current price before making a firm offer.
+- Calculate the customer offer using the approved retail/margin/delivery rules; generate a quotation where required.
+- Customer accepts the quote, then proceeds through the approved payment path.
+- Login is required before checkout; display the Terms modal before purchase as already specified.
+- Keep returns address private and provide it only in writing when a return is required. Pickup is appointment-only, no walk-ins and no COD; pickup follows payment and notification.
+- Until the owner supplies banking details and authorizes payment testing, keep checkout/order submission and all live writes blocked in staging. Do not activate PayFast or other payment methods without explicit approval.
+
+**Phase 5 — Verify one integrated candidate**
+- Run source/data integrity checks, Node regression tests, package/privacy/security checks and browser tests against the exact candidate commit.
+- Test all eight roots and full Audio navigation, category/product filtering, real images, no supplier disclosure, no broken routes, no console errors, no horizontal overflow, readable contrast and touch targets.
+- Test mobile-first at narrow widths including 360px and 390px, plus desktop. Account for the owner's Android phone and older Windows 7 PC/browser limitations; avoid unsupported modern features or provide fallbacks.
+- Build and deploy only the exact tested commit to the already authorized isolated Cloudflare Pages staging preview. Verify the deployed commit/build marker matches the tested SHA and exercise the hosted preview on desktop and mobile.
+- Keep preview noindex/private as designed and keep all purchase/live-write functions safely blocked pending owner authorization.
+- Present one consolidated preview for owner review. Owner acceptance is required before merge. Production remains a separate approval gate.
+
+### 5. What "done" means
+The build is not complete because code exists, a branch is merged, a package builds, or a historical preview loads. The owner-reviewable store is complete only when the single staging preview contains the approved shared storefront, all eight navigable categories, the full populated Audio journey, and the integrated approved catalogue content; exact-head automated checks pass; the exact tested SHA is deployed; and hosted desktop/mobile checks pass. Owner acceptance is then recorded separately. Production launch is never implied.
+
+### 6. Schedule correction and owner's priority
+- An earlier estimate of **3–5 focused working days** for a fully populated owner-reviewable store was rejected by the owner as too slow. It is not an accepted delivery commitment and must not be repeated as though approved.
+- The owner's immediate instruction on 4 November was to bring the **homepage/storefront and complete Audio categories up to standard within the next hour**, then continue directly with the remaining categories and integration. Treat this as the urgent execution target; do not reinterpret it as permission to cut quality, fabricate catalogue data, skip checks or claim completion without evidence.
+- Work should be parallelized only where it genuinely reduces elapsed time without creating competing branches or inconsistent catalogue sources. Reuse completed supplier extraction, assets, shared components and tests; fix the consolidated candidate rather than rebuilding completed work.
+
+### 7. Current implementation pointer
+At the time this plan is appended, the recorded active integration candidate is PR #176 on `preview/integrated-storefront-2026-11-04`, last recorded head `3be5c4eea139c280690dd38015cfa9d9766e8820`. Re-fetch live PR/head/main/checks before continuing. The last known exact-head workflow result was empty; no exact-head passing test or current hosted preview was proven. This is an execution checkpoint, not a claim that Phases 1–5 are complete. Continue the build on the existing candidate and update this same handover with evidence.
