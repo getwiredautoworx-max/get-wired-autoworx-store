@@ -88,7 +88,11 @@ jobs:
           (cd pages-public && python3 -m http.server 4173 --bind 127.0.0.1) >/tmp/gw-preview-http.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
-          sleep 2
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/owner-preview.html -o /dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/owner-preview.html -o /dev/null
           node <<'NODE'
           const { chromium } = require('playwright');
           (async()=>{
