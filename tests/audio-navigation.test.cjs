@@ -68,7 +68,7 @@ for(const [index,match] of [...imagePreview.matchAll(/<script[^>]*>([\s\\S]*?)<\
   if(match[1].trim()) new vm.Script(match[1],{filename:'preview-planetworld.inline-script-'+index+'.js'});
 }
 const planetworldProductsStart=imagePreview.indexOf('const products=')+'const products='.length;
-const planetworldProductsEnd=imagePreview.indexOf('];\n\nconst esc=',planetworldProductsStart);
+const planetworldProductsEnd=imagePreview.indexOf('];\nwindow.gwPlanetworldPreview=products;\n\nconst esc=',planetworldProductsStart);
 if(planetworldProductsStart<0||planetworldProductsEnd<0||JSON.parse(imagePreview.slice(planetworldProductsStart,planetworldProductsEnd+1)).length!==68) throw new Error('Planetworld review page must render all 68 source-reviewed product/model candidates');
 assert.match(imagePreview,/window\.gwPlanetworldPreview=products/,'Planetworld review page must expose its sanitized review-only model rows to browser QA');
 assert.match(imagePreview,/assets\/storefront-shell\.css/,'Planetworld review route must load the shared bright shell');
