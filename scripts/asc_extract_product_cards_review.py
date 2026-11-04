@@ -86,25 +86,51 @@ for filename, expected_pages, expected_lines, expected_sections in EXPECTED:
         boxes = card_boxes(rgb)
         page_counts.append(len(boxes))
         page_img = Image.fromarray(rgb)
+        # Infer each product card's grid cell from the centres of the printed SKU labels.
+        # The previous fixed +/-250px crop overlapped neighbouring cards and is not suitable
+        # for individual image matching. Midpoints between adjacent label centres define
+        # the actual card boundaries on each source page.
+        x_centres = sorted({int(x + w / 2) for x, y, w, h in boxes})
+        y_centres = sorted({int(y + h / 2) for x, y, w, h in boxes})
+        def axis_edges(centres: list[int], limit: int) -> dict[int, tuple[int, int]]:
+            if len(centres) == 1:
+                return {centres[0]: (0, limit)}
+            gaps = np.diff(centres)
+            typical = int(np.median(gaps))
+            edges = {}
+            for i, centre in enumerate(centres):
+                left = 0 if i == 0 else int((centres[i-1] + centre) / 2)
+                right = limit if i == len(centres)-1 else int((centre + centres[i+1]) / 2)
+                if i == 0:
+                    left = max(0, centre - typical // 2)
+                if i == len(centres)-1:
+                    right = min(limit, centre + typical // 2)
+                edges[centre] = (left, right)
+            return edges
+        x_edges = axis_edges(x_centres, page_img.width)
+        y_edges = axis_edges(y_centres, page_img.height)
         for card_index, (x, y, w, h) in enumerate(boxes, start=1):
             code_crop = page_img.crop((max(0,x-6), max(0,y-3), min(page_img.width,x+w+6), min(page_img.height,y+h+3)))
             code_crop = code_crop.resize((code_crop.width*6, code_crop.height*6), Image.Resampling.LANCZOS).convert("L")
             code_6 = ocr(code_crop, 6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-/+")
             code_7 = ocr(code_crop, 7, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-/+")
-            desc_crop = page_img.crop((max(0,x-20), max(0,y-190), min(page_img.width,x+w+20), max(0,y-8)))
-            desc_crop = desc_crop.resize((desc_crop.width*2, desc_crop.height*2), Image.Resampling.LANCZOS)
+            xc, yc = int(x + w / 2), int(y + h / 2)
+            card_left, card_right = x_edges[xc]
+            card_top, card_bottom = y_edges[yc]
+            # A small inset prevents neighbouring card borders from leaking into the crop.
+            inset = 7
+            card_img = page_img.crop((card_left+inset, card_top+inset, card_right-inset, card_bottom-inset))
+            # Caption is the lower band immediately above the blue SKU label; isolate it
+            # from the product photo and neighbouring grid cells for OCR.
+            desc_crop = page_img.crop((card_left+12, max(card_top+int((card_bottom-card_top)*0.55), y-135), card_right-12, max(card_top+int((card_bottom-card_top)*0.55)+1, y-8)))
+            desc_crop = desc_crop.resize((desc_crop.width*3, desc_crop.height*3), Image.Resampling.LANCZOS)
             description = ocr(desc_crop, 6)
-            # Preserve a high-resolution individual card image for the review storefront.
-            card_left = max(0, x - 250)
-            card_top = max(0, y - 390)
-            card_right = min(page_img.width, x + w + 250)
-            card_bottom = min(page_img.height, y + 65)
-            card_img = page_img.crop((card_left, card_top, card_right, card_bottom))
             card_name = f"{len(all_cards)+1:04d}-{page_number:02d}-{card_index:02d}.jpg"
-            card_img.save(CARD_OUT / card_name, quality=88, optimize=True)
+            card_img.save(CARD_OUT / card_name, quality=90, optimize=True)
             image_name = card_name.replace(".jpg", "-image.jpg")
-            image_crop = card_img.crop((0, 0, card_img.width, max(1, int(card_img.height * 0.66))))
-            image_crop.save(IMAGE_OUT / image_name, quality=88, optimize=True)
+            # Product photo area only: upper 58% of this one card, not a page-wide strip.
+            image_crop = card_img.crop((8, 8, max(9, card_img.width-8), max(9, int(card_img.height * 0.58))))
+            image_crop.save(IMAGE_OUT / image_name, quality=90, optimize=True)
             manual_code = corrections.get((filename, page_number, card_index))
             if manual_code:
                 supplier_sku = manual_code
