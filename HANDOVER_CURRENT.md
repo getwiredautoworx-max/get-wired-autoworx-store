@@ -292,3 +292,33 @@ Exact candidate head at verification: `776c840bb79a4833e0859d493b7463e6a34c1e73`
 - Official Starsound evidence references recorded in the crosswalk: Speakers https://starsound.co.za/product-category/speakers/ ; Subwoofers https://starsound.co.za/product-category/subwoofers/ ; Amplifiers https://starsound.co.za/product-category/amplifiers/ ; Pro Speakers https://starsound.co.za/product-category/speakers/pro-speakers/?category-view-mode=list ; Car Radios https://starsound.co.za/product-category/car-radios/?category-view-mode=list ; individual SSUSB-450BTDD page https://starsound.co.za/product/ssusb-450btdd/ .
 - No Starsound image asset was downloaded or approved. Audio Connections preview still has 4 image URLs, 3 missing indicative prices, and 7 power strings requiring supplier confirmation. Keep all such rows review-only; do not infer RMS/peak ratings or fill missing digits.
 - Current application/test code head remains `787dd596a201412693230880187ea05fc8ce7b9b`; subsequent changes are internal review/handover artifacts. The latest branch head after adding the dated crosswalk is `a468171b46001d5b57fa056e0ca21375ba6746ab`; its runner, owner-preview and Pages checks are in progress. Do not claim latest exact-head validation until those checks complete.
+
+## 2026-11-04 — Owner-authorized image, price/spec reconciliation, regression and hosted preview verification
+
+- **Verified application/data/test source head:** `57ef845eea5b1c03524cc39ff3f807347f6dbb6f`. Subsequent commit `75407aef1a011ec1bad29df74c891db48d328c70` updated only the internal reconciliation report; it did not change application, data or test files.
+- **Exact-head Current Branch Runner Recovery Check:** run **41811136184** — SUCCESS on `57ef845`.
+  - `THREE_CATEGORY_STOREFRONT_STRUCTURE_PASS`
+  - `PAGES_PUBLIC_BUILD_PASS files=4133 webp_images=4101`
+  - `PAGES_PUBLIC_EXCLUDES_PASS suppliers catalogue-review catalogue-source catalogue-audits staging supabase .github`
+  - `PAGES_STOREFRONT_REGRESSION_PASS`
+  - `AUDIO_CATALOGUE_PREVIEW_PASS`: Planetworld 3,317 rows / 702 Car Audio rows; Audio Connections 66 rows / 2 excluded; exact image candidates 67; preview-only true.
+  - `PUBLIC SKU EXPOSURE AUDIT: PASSED`
+  - `GW_FULL_STOREFRONT_REGRESSION_PASS` and `GW_RUNNER_DIAGNOSTIC_PASS`.
+- **Exact-head Owner Store Preview Browser QA:** run **41811136180** — SUCCESS on `57ef845`.
+  - Confirmed the three approved roots, Sony → Amplifiers filtering, at least five mapped brand logos, 47 Trims & Harnesses products, Aerials separate route, checkout hidden, Supabase writes blocked, no desktop horizontal overflow.
+  - Confirmed hosted non-production Cloudflare Pages deployment matches the exact commit.
+  - Immutable preview: https://2c1f7c48.get-wired-autoworx-store.pages.dev/owner-preview.html
+  - Branch preview: https://integration-three-category-c.get-wired-autoworx-store.pages.dev/owner-preview.html
+- **New category-button race fixed:** product loading previously called `renderCats()` again after the local category snapshot had already rendered, detaching category buttons during clicks. Removed the unnecessary second category render and added a regression assertion. Local and hosted owner-preview browser QA now pass.
+- **Owner-authorized manufacturer images inserted into exact-model review data:** Alpine S2-S65 and Focal KIT SUB P20FE. Exact manufacturer image candidates were opened and matched; owner authorization recorded in the data. Planetworld exact-model image URLs now total 63 (up from 61); Audio Connections image URLs remain 4; combined preview candidate count is 67.
+- **Three previously missing indicative price references filled** (South African retail comparisons checked 2026-11-04): SSW-8-8000D2 R1,395; SSW-B12-2800 R1,299; SSW-F12-5150SVC R795. These are third-party market references only, not supplier dealer prices/costs or approved Get Wired selling prices. All remain preview-only and require supplier pricing/margin approval before publication.
+- **Starsound specifications reconciled:** corrected eight amplifier model/specification records; clarified SSW-12W-5200 at 250 W RMS from official manufacturer specification; corrected SSS-5502 to 420 W MAX (manufacturer does not state RMS); SSS-6602 to 480 W MAX (manufacturer does not state RMS); SSS-6903 to 60 W RMS / 600 W MAX; SSD-620 to 80 W RMS / 1,200 W MAX; SSS-6501PRO 250 W RMS listing retained with per-driver/per-pair basis held.
+- **Five specification records remain explicitly held; do not publish definitive power values until authoritative supplier/manufacturer confirmation:**
+  - `ac-021` SSW-12-6300 — source 300 W without rating basis; retailers conflict at 500 W RMS vs 350 W RMS.
+  - `ac-025` SSW-B12-2800 — official page does not publish RMS; source 300 W RMS vs retailer 250 W RMS / 600 W peak.
+  - `ac-032` SSA-ATOM-13500.1 — official 500 W RMS @ 1 Ω / 250 W @ 2 Ω conflicts with retailer 520 / 380 / 230 W RMS.
+  - `ac-041` SSA-M5-80.600 — official product page contains two conflicting RMS tables; retailer agrees with first table.
+  - `ac-044` SSS-6501PRO — 250 W RMS listing does not settle per-driver versus per-pair basis.
+- Reconciliation detail: `catalogue-review/audio-connections-price-spec-reconciliation-2026-11-04.md`. Planetworld missing-image source report: `catalogue-review/planetworld-missing-image-source-review-2026-11-04.md`.
+- **Separate legacy check:** Cloudflare Pages exact-head check succeeded. The legacy `Workers Builds` check failed on the same commit; this is separate from the Pages preview and did not prevent its successful deployment. Investigate before merge if that legacy check is a required gate.
+- **Release/acceptance state:** PR #168 remains draft/unmerged. Production remains HOLD. No production catalogue activation, live price/stock change, Supabase write, payment/banking activation, checkout go-live, DNS change or Axxess upload was authorised. Owner's real-device review/acceptance remains outstanding. Do not start ASC/Electro-city until the supplier pilot is accepted and the five held specification questions are resolved or formally approved to remain unpublished.
