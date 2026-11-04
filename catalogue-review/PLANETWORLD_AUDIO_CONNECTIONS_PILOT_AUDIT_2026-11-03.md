@@ -283,3 +283,11 @@ Read-only recheck of the current 3,317-row Planetworld preview JSON and the live
 - **Verified:** 137 text-matched candidates; group counts 86 / 42 / 7 / 2; current component-value distribution 51 / 85 / 1; 15 extra review flags; CSV created.
 - **Still open:** join each preview record to exact supplier workbook filename/sheet/row and supplier code; obtain exact vehicle compatibility evidence; resolve ambiguous labels and possible duplicates without deleting source records; validate each image and usage permission; confirm current price/availability.
 - No product mapping, SKU, price, stock, category, publication state or live data was changed.
+
+### 137-row fitment crosswalk join — follow-up
+
+- Reconciled the 137 preview candidate titles against the 770-row supplier GW crosswalk using exact normalized title equality.
+- **135 of 137** have a unique exact title match to a supplier crosswalk record, including supplier SKU and source workbook path.
+- **2 of 137** remain ambiguous: preview records `pw-2367` and `pw-2368`, both titled “Harness for Toyota version 2”, match two supplier codes (`TOYOTA2-H` and `TOYOTA2-HC`). Both preview rows and both possible codes are preserved; no SKU is assigned to either row until original workbook sheet/row and variant evidence disambiguate them.
+- Updated `catalogue-review/PLANETWORLD_FITMENT_137_CANDIDATE_AUDIT_2026-11-04.csv` to include the exact matched supplier SKU and source workbook path for the 135 unique matches, and both possible codes for the two ambiguous records.
+- The crosswalk does not carry original worksheet name/row number. Therefore, **135 source-workbook file joins are established, but original sheet/row joins remain outstanding for all 137**. This is not yet an approved GW SKU assignment or a vehicle-compatibility verification.
