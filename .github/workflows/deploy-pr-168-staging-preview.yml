@@ -5,9 +5,11 @@ on:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
       - repair/pr-168-storefront-category-audio-2026-11-04
+      - fix/mobile-audio-subcategory-grid-2026-11-04
     paths:
       - ".preview-deploy-request"
       - ".github/workflows/deploy-pr-168-staging-preview.yml"
+      - "index-new.html"
 
 permissions:
   contents: read

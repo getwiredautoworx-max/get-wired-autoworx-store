@@ -20,3 +20,54 @@ Deploy the repair branch alias (repair-pr-168-storefront-cat.get-wired-autoworx-
 
 Final exact-head deployment request — 2026-11-04.
 Deploy the current repair branch commit after the Car Audio category tile image, category renderer, navigation cleanup, and supplier-specific price regressions passed. Verify this exact triggering SHA on the repair branch Pages alias at desktop and mobile widths. Preview only; no production changes.
+
+Exact mobile submenu repair refresh — 2026-11-04.
+Deploy the current fix/mobile-audio-subcategory-grid-2026-11-04 branch head, including the two-column mobile submenu correction and preview-catalogue root label, to the dedicated repair Pages alias. Verify the deployed manifest SHA equals this triggering commit, then rerun hosted mobile/desktop category, image, brand, component, supplier-identity and checkout-safety checks. Preview only; production remains HOLD.
+
+Exact current PR #172 head refresh after current handover sync — 2026-11-04.
+The branch received a handover-only commit after the mobile repair deployment request. Deploy this exact new triggering branch head to the isolated repair Pages alias and verify its qa-build-result.json commit matches the workflow SHA. Rerun hosted owner preview QA against that exact deployment. No production changes; production remains HOLD.
+
+Exact audio artwork correction and strengthened artwork QA — 2026-11-04.
+Deploy the exact current branch head after replacing the wrong Home Entertainment car artwork with television imagery and assigning distinct Band Equipment, DJ Equipment and Instruments photographs. The owner browser QA now asserts all four images load and match their category alt text. Preview only; production HOLD.
+
+Exact artwork regression repair refresh — 2026-11-04.
+The first corrected artwork commit exposed a stale structure-test expectation still requiring the old car SVG for Home Entertainment. The test now asserts the correct TV/home-theatre photo and dedicated Band, DJ and Instruments artwork. Deploy this exact current head and run the strengthened hosted image checks. Production HOLD.
+
+Exact audio department art QA selector correction — 2026-11-04.
+The strengthened test now locates generated catalogue links (these synthetic department nodes do not carry data-filter attributes) and checks the loaded Home Entertainment, Band & Live Sound, DJ and Musical Instruments photos. Deploy this exact branch head and run all checks on that exact SHA. Production HOLD.
+
+Exact synthetic audio department artwork mapping correction — 2026-11-04.
+The live category tree creates synthetic catalogue nodes (gw-audio-band, gw-audio-dj, gw-audio-instruments); the previous art mapping used their source category IDs and therefore fell through to the generic car photo. The mapping and structure assertions now use the generated node IDs. Deploy this exact head and verify all four distinct photos load in hosted mobile and desktop QA. Production HOLD.
+
+Exact DJ artwork availability fix — 2026-11-04.
+The hosted image check found the first DJ Unsplash source unavailable. It has been replaced with a verified Unsplash DJ turntable/mixer photograph. Deploy this exact current head and rerun the four-department image checks and full preview regression. Production HOLD.
+
+Exact dedicated DJ tile image refresh — 2026-11-04.
+The root collage had the verified DJ photo but the separate DJ Equipment tile retained the unavailable prior URL. Both locations now use the verified source. Deploy this exact head and run the strengthened image checks. Production HOLD.
+
+Exact-model Sony XS-W104ES image CDN recheck — 2026-11-04.
+The prior exact-model Sony CDN image did not render in the GitHub browser runner. The preview catalogue now references the alternate official Sony image URL recorded from the exact XS-W104ES manufacturer page. Deploy this exact head and verify product image natural dimensions in both local and hosted preview checks. Production HOLD.
+
+Exact owner handover synchronization refresh — 2026-11-04.
+HANDOVER_CURRENT.md and HANDOVER_2026-11-02_OWNER_CONTINUATION.md now record the exact-head PR #172 regression, preview deployment, hosted mobile/desktop QA, category artwork corrections, and the remaining Sony XS-W104ES CDN image caveat. Deploy this exact current head and rerun exact-head package and hosted QA after the handover-only changes. Preview only; production HOLD.
+
+Final preview verification refresh — 2026-11-04.
+This exact head includes the mobile submenu repair, verified four-department audio artwork, supplier-safe preview labels, and intentional withholding of the unrenderable XS-W104ES image. Deploy and rerun full exact-head runner, package, mobile/desktop hosted QA. Production HOLD.
+
+Final exact-head verification after QA corrections — 2026-11-04.
+This head includes the mobile audio submenu fix, supplier-safe preview data, the intentional no-image hold for unrenderable Sony XS-W104ES, and corrected image-count/browser assertions. Deploy this exact SHA and rerun full runner, package and hosted mobile/desktop QA. Production HOLD.
+
+Final exact-head refresh after aggregate image-count assertion correction — 2026-11-04.
+Rebuild and deploy this exact branch head, then require runner regression, isolated package, local Playwright and hosted mobile/desktop preview checks to pass at the same SHA. Production HOLD.
+
+Exact final preview redeploy after regression expectation correction — 2026-11-04.
+The current branch head now corrects the aggregate image count to reflect withholding the unrenderable exact-model XS-W104ES asset. Deploy this exact current head, verify its build marker, and rerun hosted mobile/desktop QA and package regression. Preview only; production HOLD.
+
+Final hosted browser QA runner setup adjustment — 2026-11-04.
+This exact head removes the slow apt dependency refresh from Playwright installation while retaining Chromium browser checks. Deploy this SHA and rerun runner regression plus full local/hosted mobile and desktop preview QA. Production HOLD.
+
+Final hosted preview alias correction — 2026-11-04.
+The hosted QA workflow now polls the actual Cloudflare alias reported by Wrangler for this branch: fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev. Deploy this exact head and rerun runner, package, and hosted mobile/desktop QA. Production HOLD.
+
+Final robust hosted preview alias polling — 2026-11-04.
+The browser QA now probes both observed Cloudflare branch aliases and accepts only the alias whose qa-build-result.json commit matches this exact SHA. Deploy and rerun all final checks. Production HOLD.

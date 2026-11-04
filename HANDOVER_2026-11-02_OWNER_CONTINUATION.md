@@ -1261,3 +1261,88 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - Exact-head Actions check for data commit `130a190f4848960113873fdd426ee16d5b5bf7e1`: workflow-run lookup returned no PR-triggered runs and combined status returned no statuses. No exact-head data regression or public-package test is claimed as executed/passed. Existing previously recorded hosted browser/package QA on `6cce0b6` is unchanged and does not cover these later review-data commits. The GitHub connector currently exposes no workflow-dispatch action; do not claim a fresh test result from an empty status response.
 - No Cloudflare build/deploy or credits used. No live product, SKU, price, stock, supplier, category, Supabase, payment, banking, DNS, Axxess, checkout or production change was made. PR #168 remains draft/unmerged; owner real-phone acceptance and supplier confirmation remain outstanding.
 - Next: complete exact asset retrieval/visual verification for XS-W104ES and XM-5ES; obtain Audio Connections confirmation for the four unresolved power/model questions and all three supplier prices/VAT/availability; run data regression and public-package checks on the final exact PR head through an available runner path; update this handover with actual run IDs/results. Do not expand to ASC/Electro-city until Planetworld + Audio Connections owner acceptance.
+
+
+## 2026-11-04 — Owner-reported mobile audio category failure and repair candidate (PR #172)
+
+- Owner supplied a real-phone screenshot showing the audio subcategory panel collapsed into narrow vertical strips, overlapping adjacent cards, and the audio category cards displaying misleading `0 products` counts.
+- Root cause in `index-new.html`: a later CSS override forced the category submenu to five columns (`repeat(5,minmax(0,1fr))`), overriding the earlier mobile layout. At phone width this compressed child buttons and wrapped labels vertically.
+- Repair branch: `fix/mobile-audio-subcategory-grid-2026-11-04`; PR #172 targets the same integration base as PR #171. Current exact head: `d5bb9fdd54f1b663e9f12cc7163adeec33943453`.
+- CSS repair adds a three-column desktop submenu and two-column mobile submenu, expands the open category across the grid, restores readable label wrapping, and preserves full-width/tappable child tiles. This is a source repair candidate only; no phone/browser acceptance is claimed yet.
+- Audio category counts were sourced from the live product query, while the Planetworld and Audio Connections records are separate preview-only catalogue files. Showing `0 products` therefore incorrectly implied there was no catalogue to browse. The audio category tree now says `Browse preview catalogue`; it does not claim staged catalogue rows are live stock or available inventory.
+- No catalogue data, live stock, prices, Supabase data, checkout, banking, payment, DNS, Axxess or production settings were changed. Production remains HOLD; checkout/payment testing remains deferred until owner supplies banking details.
+- Exact-head GitHub workflow lookup and combined commit status for `d5bb9fdd54f1b663e9f12cc7163adeec33943453` returned no PR-triggered run and no status at the time of this update. Do not claim tests, hosted preview deployment, or mobile/desktop browser QA passed. PR #172 must receive exact-head regression/package checks and a fresh deployed preview verified against this SHA before owner retests.
+- Owner acceptance is still outstanding. Keep PR #172 open and unmerged until exact-head verification and owner phone retest. Do not treat the earlier PR #171 QA as evidence for this later CSS repair.
+
+
+## 2026-11-04 — PR #172 exact-head preview verification
+- Verified branch: `fix/mobile-audio-subcategory-grid-2026-11-04`; exact tested/deployed head at this record: `d54d8870f6d68eb200605a0830dd8311a6fda926`.
+- Non-production preview URL: https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev/owner-preview.html . Build marker `qa-build-result.json` reported the same exact SHA and `preview_only: true`.
+- Exact-head workflow evidence: deploy run `41838587286` SUCCESS; owner browser QA run `41838587241` SUCCESS (local and hosted mobile/desktop checks); full runner/catalogue/package/regression run `41838587624` SUCCESS. No production workflow was run.
+- Fixed the mobile submenu five-column override: desktop uses three columns; phone width uses two columns, readable wrapping and full-width tap targets. Audio root now says `Browse preview catalogue` rather than misleading `0 products` for staged catalogue content.
+- Corrected category artwork: Home Entertainment uses TV/home-theatre photography, Band Equipment uses live-sound photography, DJ Equipment uses a dedicated DJ mixer photo, Instruments uses guitar/keyboard photography. The strengthened local and hosted browser checks verify all four department images load and their alt text matches the department. Car Audio & Video uses separate Sony amplifier product artwork. Hosted JBL, Denon and Hertz brand SVGs returned HTTP 200.
+- Hosted navigation/filter evidence: all three approved root categories rendered; Car Audio & Video brand/component filters worked; Starsound SVC subwoofers returned 3 products; Trims & Harnesses returned 47 rows; Aerials route opened its own filter; checkout stayed hidden; Supabase write-block flag remained true; desktop horizontal overflow absent; no JavaScript errors were reported.
+- One non-fatal image caveat remains: Sony XS-W104ES product image URL is an official Sony CDN source, but GitHub's browser runner reports naturalWidth 0 / CDN unavailable. It is retained as an owner-authorized exact-model candidate and must be visually checked on the owner's phone; it did not fail the overall preview QA. The XM-5ES image loaded successfully. Do not substitute an unapproved third-party image.
+- No catalogue rows, active stock, prices, category assignments, Supabase data, checkout, banking, payment, DNS, Axxess or production settings were changed. Production remains HOLD. Checkout/payment functional testing remains deferred until the owner supplies banking details.
+- PR #172 remains open/unmerged. Preview is ready for owner visual acceptance; owner phone acceptance is not yet recorded. Do not claim final stage closure or merge until the owner accepts the preview and any image concern is resolved or explicitly accepted.
+
+
+## 2026-11-04 13:30 SAST — PR #172 mobile/audio preview verification and image correction
+
+- Continued directly on PR #172 branch `fix/mobile-audio-subcategory-grid-2026-11-04`; no restart and no production actions.
+- Exact source SHA `d54d8870f6d68eb200605a0830dd8311a6fda926` passed the full runner/catalogue/package regression (run `41838587624`), isolated non-production Pages deployment (run `41838587286`), and owner browser QA (run `41838587241`). Hosted QA confirmed the deployed `qa-build-result.json` commit exactly matched the tested SHA.
+- Browser QA verified the three storefront roots, audio category hierarchy and child navigation, Car Audio catalogue loading, brand logos and filtering, Starsound SVC Subwoofers (3 matching products), Sony amplifier filtering, JBL and Denon DJ filtering, the 47-row Trims & Harnesses route, Aerials filtered route, checkout hidden, Supabase writes blocked, and no desktop horizontal overflow. The hosted preview showed the NON-PRODUCTION warning.
+- The mobile category submenu repair remains: 3 columns desktop / 2 columns mobile, open parent spans full width, child tiles wrap labels and remain tappable. Hosted QA executes the owner preview at 390×844 and desktop dimensions; owner real-phone acceptance is still outstanding.
+- The exact-model Sony XS-W104ES image source remained unavailable: both official Sony CDN variants returned naturalWidth 0 in the runner and hosted preview. Rather than expose a broken image or substitute another model/generic art, removed the XS-W104ES image URL from preview data and marked its exact-model image unavailable. The product card now intentionally renders without an image until an exact-model renderable asset is available. The XM-5ES owner-authorized image renders successfully. This is an explicit non-blocking preview limitation, not a verified image.
+- The subsequent source change `7731d02dad414f1d23f6befcdb91cdbf65f48176` removes the broken XS-W104ES URL and updates the internal image note. The browser QA workflow change `c6c198d487750ecbf674426e39014758e12cdbf9` now asserts that XS-W104ES has no broken/substituted image in local and hosted preview.
+- Final exact-head runner, package, deployment and hosted browser QA are pending for the combined source/test/handover commit. Do not reuse the d54 results as evidence for a later SHA.
+- Production remains HOLD. Preview only; no production deploy, DNS/Axxess changes, Supabase writes, live catalogue/stock/price/SKU activation, checkout/payment/banking changes. Checkout/payment functional tests remain deferred until owner supplies banking details. PR #172 remains open/unmerged pending final exact-head verification and owner phone acceptance.
+
+
+## 2026-11-04 — Final verification corrections after image hold
+
+- The first combined verification after withholding the unrenderable XS-W104ES image exposed two test-maintenance defects: `tests/audio-catalogue-preview.test.cjs` still asserted five image URLs although the correct remaining count is four, and the local browser QA success summary referenced the removed `xsImage` variable.
+- Corrected the catalogue invariant to four image URLs (commit `3160bccdb6bac245410cb94637380e532753efa4`) and changed the browser QA summary to assert/report `XS_W104ES_WITHHELD` based on the absence of an image element (commit `94a81886e254f5951345b8455c390a911469a8d4`). The QA now fails if a broken or substituted XS-W104ES image reappears.
+- These are verification fixes only; no product price, stock, SKU, category assignment, live data, checkout, payment, Supabase or production setting changed.
+- Fresh full runner/package regression, isolated deployment and hosted browser QA are required on the final combined head after these fixes. Do not mark preview verification closed until all three match the exact same SHA and pass.
+
+
+## 2026-11-04 — Aggregate image invariant correction
+
+- Final verification on `0cf1c7dac661a61121091d343d9432841fa8d38e` found the image-count aggregate also needed to reflect the intentionally withheld XS-W104ES asset: the correct combined image count is now 70 (66 verified-model assets + 4 Audio Connections image URLs), not 71.
+- Updated `tests/audio-catalogue-preview.test.cjs` to assert 70 (`337a6e39c34bf88de87831dd04e3bb75e32f68ed`). This is a test-count correction only; no catalogue row was added, removed or repriced other than the previously documented blank image URL for XS-W104ES.
+- The same final-head verification must be rerun after this correction and a fresh deployment of that exact SHA.
+
+
+## 2026-11-04 — Hosted browser runner dependency-install reliability
+
+- The exact-head runner regression passed on `f81d2a0db524656447594974c0deeed393c246a0`; its isolated non-production deployment also passed. Local owner browser checks completed successfully on the same head.
+- The hosted browser job stalled for several minutes in `npx playwright install --with-deps chromium`, before any browser assertions ran. This is runner package-install delay, not a reported storefront assertion failure.
+- Changed the QA setup to `npx playwright install chromium` (commit `ead86f0df6b7f4744d0cea84d09b17040d57b357`) to avoid the unnecessary apt dependency refresh on the GitHub Ubuntu runner. Re-run browser checks on the new exact head; if browser launch reports a missing system library, restore the required dependency explicitly.
+- Production remains HOLD; no live data or production settings changed.
+
+
+## 2026-11-04 — Hosted preview alias correction
+
+- Deployment run `41841102855` succeeded for source SHA `b565b7835e0b1476c87d17b8976a14fb8ea96b0b`; Wrangler reported the current deployment alias as `https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev`.
+- Hosted QA was still polling the obsolete alias `repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev`, so it could not observe the exact deployed build marker. This is a QA target configuration defect, not a deployment failure.
+- Updated `.github/workflows/store-preview-browser-qa.yml` to use the actual reported branch alias (commit `338ae6d86158bb0cd7a2098a00181da143e9a9a8`). Deploy and rerun on the new exact head; confirm `qa-build-result.json` SHA matches before browser checks.
+
+
+## 2026-11-04 — Cloudflare alias variability handled
+
+- Cloudflare's Wrangler deployment output has alternated between two branch aliases on successive deployments: `repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev` and `fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev`. The actual alias for deployment run `41841421867` / SHA `0927ee2c0d083682e58c8c5b330dba47e1389b9e` was the former.
+- Updated hosted QA to probe both observed aliases for `qa-build-result.json` and continue only when the marker's commit equals the exact workflow SHA (commit `65d52632d3ba07c2e7695a30ffcd8163283ea66e`). The chosen matching alias is then used for every hosted route and asset assertion.
+- Fresh exact-head deployment and browser QA are required after this workflow correction.
+
+
+## 2026-11-04 13:50 SAST — PR #172 exact-head preview verification CLOSED
+
+- Verified source SHA: `f6490eead240fdc9b19b8e3013e434fff6235359`.
+- GitHub Actions run `41841625308` — runner, catalogue invariants, isolated package build and full storefront regression: **SUCCESS**.
+- GitHub Actions run `41841625335` — customer-only Pages package and isolated non-production Cloudflare deployment: **SUCCESS**. Deployment log confirms source SHA `f6490eead240fdc9b19b8e3013e434fff6235359`; no production deployment.
+- GitHub Actions run `41841625311` — local and hosted Playwright owner browser QA: **SUCCESS**. Hosted `qa-build-result.json` returned the exact same SHA before browser assertions.
+- Browser evidence: mobile 390×844 and desktop checks; the three storefront roots and audio hierarchy render; six child entries are present under Audio; Car Audio catalogue and brand/component filtering work; Starsound SVC Subwoofers returns 3 rows; Trims & Harnesses returns 47 rows; Aerials opens its own filtered route; required JBL, Denon DJ and Car Audio logos render; Sony XM-5ES image renders; XS-W104ES image is intentionally withheld because both exact-model Sony CDN sources failed to render (no broken or substituted image); supplier identities are not exposed; checkout remains hidden; preview Supabase writes remain blocked; no desktop horizontal overflow.
+- Final owner preview URL: https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev/owner-preview.html
+- PR #172 remains OPEN and UNMERGED. The repaired branch is ready for owner preview, but real-phone owner acceptance is still required before merging. Do not call production ready.
+- Production HOLD remains unchanged. No production deploy, DNS/Axxess action, Supabase write, live stock/price/SKU/category activation, payment/banking activation or checkout go-live occurred. Checkout/payment functional tests remain deferred until the owner supplies banking details. ASC remains a separate later task.

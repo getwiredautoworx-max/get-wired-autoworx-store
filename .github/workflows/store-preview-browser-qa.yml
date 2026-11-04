@@ -6,6 +6,7 @@ on:
     branches:
       - integration/three-category-catalogue-preview-final-2026-11-03
       - repair/pr-168-storefront-category-audio-2026-11-04
+      - fix/mobile-audio-subcategory-grid-2026-11-04
 
 permissions:
   contents: read
@@ -23,7 +24,7 @@ jobs:
       - name: Install Playwright
         run: npm install --no-save playwright@1.55.0
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Run read-only owner preview checks
         shell: bash
         run: |
@@ -58,6 +59,20 @@ jobs:
             await childCarAudioImage.waitFor({state:'visible',timeout:15000});
             const childCarAudioImageLoaded=await childCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
             if(!childCarAudioImageLoaded)throw new Error('Car Audio & Video child category product image did not load');
+            const departmentArtChecks=[
+              ['gw-audio-home','home entertainment television'],
+              ['862605ef-5223-4525-aad6-ee17c2c6f9e7','band equipment'],
+              ['83ea8ae6-a464-40a2-a503-272792f70be8','dj mixer'],
+              ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
+            ];
+            for(const [id,expectedAlt] of departmentArtChecks){
+              const routeNeedle=id==='gw-audio-home'?'Home%20Entertainment':id==='862605ef-5223-4525-aad6-ee17c2c6f9e7'?'Band%20%26%20Live%20Sound':id==='83ea8ae6-a464-40a2-a503-272792f70be8'?'department=DJ':'Musical%20Instruments';
+              const art=frame.locator('.catWrap.catalogueWrap a[href*="'+routeNeedle+'"] img.catPhoto');
+              await art.waitFor({state:'visible',timeout:15000});
+              await art.scrollIntoViewIfNeeded();
+              const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
+              if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
+            }
             await frame.locator('.catBtn[data-filter="e3d19d20-fb46-426c-9f64-221d863add0b"]').click();
             await frame.getByRole('link',{name:/Car Audio & Video/}).evaluate(el=>el.click());
             await page.waitForFunction(()=>document.querySelector('#store').contentWindow.location.pathname.endsWith('/preview-audio.html'),{timeout:15000});
@@ -114,9 +129,8 @@ jobs:
             await frame.locator('#components button').filter({hasText:'Subwoofers'}).first().click();
             const xsCard=frame.locator('#products .audioProduct').filter({hasText:'XS-W104ES'}).first();
             await xsCard.waitFor({state:'visible',timeout:30000});
-            await xsCard.locator('img').scrollIntoViewIfNeeded();
-            const xsImage=await xsCard.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,naturalWidth:img.naturalWidth}});
-            if(!xsImage.loaded)console.warn('PRODUCT_IMAGE_QA_WARNING',JSON.stringify({model:'XS-W104ES',reason:'Sony CDN denied/unavailable to GitHub runner; keep owner-authorized source pending visual verification',...xsImage}));
+            const xsImageCount=await xsCard.locator('img').count();
+            if(xsImageCount!==0)throw new Error('XS-W104ES image must remain withheld until an exact-model source renders; broken or substituted artwork is not acceptable');
 
             await page.goto('http://127.0.0.1:4173/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded'});
             const jblButton=page.locator('#brands button[aria-label="JBL"]');
@@ -154,7 +168,7 @@ jobs:
             await page.setViewportSize({width:1280,height:900});
             const widths=await page.evaluate(()=>({innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(widths.scrollWidth>widths.innerWidth+1)throw new Error('Category/audio route has horizontal overflow: '+JSON.stringify(widths));
-            console.log('OWNER_PREVIEW_BROWSER_QA_PASS',JSON.stringify({roots,sonyAmplifierProductsVisible:true,departmentAndBrandStockHidden:true,sonyProductImages:{XM5ES:xmImage.loaded,XS_W104ES:xsImage.loaded},trimFitmentRows:fitmentCount,aerialsOwnRoute:true,checkoutHidden:true,supabaseWritesBlocked:true}));
+            console.log('OWNER_PREVIEW_BROWSER_QA_PASS',JSON.stringify({roots,sonyAmplifierProductsVisible:true,departmentAndBrandStockHidden:true,sonyProductImages:{XM5ES:xmImage.loaded,XS_W104ES_WITHHELD:(xsImageCount===0)},trimFitmentRows:fitmentCount,aerialsOwnRoute:true,checkoutHidden:true,supabaseWritesBlocked:true}));
             await browser.close();
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
@@ -174,15 +188,27 @@ jobs:
               const errors=[];
               page.on('pageerror',e=>errors.push(String(e)));
               const expectedSha=process.env.GITHUB_SHA;
-              const previewBase='https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev';
+              const previewBases=[
+                'https://repair-pr-168-storefront-cat.get-wired-autoworx-store.pages.dev',
+                'https://fix-mobile-audio-subcategory.get-wired-autoworx-store.pages.dev'
+              ];
+              let previewBase=null;
               let deployedBuild=null;
               for(let attempt=0;attempt<36;attempt++){
-                const response=await page.request.get(previewBase+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
-                if(response.ok()){
-                  try { deployedBuild=await response.json(); } catch {}
-                  if(deployedBuild&&deployedBuild.commit===expectedSha) break;
+                for(const candidate of previewBases){
+                  const response=await page.request.get(candidate+'/qa-build-result.json',{headers:{'cache-control':'no-cache'}});
+                  if(response.ok()){
+                    let candidateBuild=null;
+                    try { candidateBuild=await response.json(); } catch {}
+                    if(candidateBuild&&candidateBuild.commit===expectedSha){
+                      previewBase=candidate;
+                      deployedBuild=candidateBuild;
+                      break;
+                    }
+                  }
                 }
-                if(attempt%6===0)console.log('WAITING_FOR_EXACT_PR168_STAGING_DEPLOY',JSON.stringify({attempt,expectedSha,found:deployedBuild}));
+                if(previewBase)break;
+                if(attempt%6===0)console.log('WAITING_FOR_EXACT_PR168_STAGING_DEPLOY',JSON.stringify({attempt,expectedSha,previewBases}));
                 await page.waitForTimeout(5000);
               }
               console.log('EXACT_PR168_STAGING_PREVIEW',JSON.stringify({expectedSha,previewBase,deployedBuild}));
@@ -220,6 +246,20 @@ jobs:
               await hostedChildCarAudioImage.waitFor({state:'visible',timeout:15000});
               const hostedChildCarAudioImageLoaded=await hostedChildCarAudioImage.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return img.complete&&img.naturalWidth>0});
               if(!hostedChildCarAudioImageLoaded)throw new Error('Hosted Car Audio & Video child category product image did not load');
+              const hostedDepartmentArtChecks=[
+                ['gw-audio-home','home entertainment television'],
+                ['862605ef-5223-4525-aad6-ee17c2c6f9e7','band equipment'],
+                ['83ea8ae6-a464-40a2-a503-272792f70be8','dj mixer'],
+                ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
+              ];
+              for(const [id,expectedAlt] of hostedDepartmentArtChecks){
+                const routeNeedle=id==='gw-audio-home'?'Home%20Entertainment':id==='862605ef-5223-4525-aad6-ee17c2c6f9e7'?'Band%20%26%20Live%20Sound':id==='83ea8ae6-a464-40a2-a503-272792f70be8'?'department=DJ':'Musical%20Instruments';
+                const art=frame.locator('.catWrap.catalogueWrap a[href*="'+routeNeedle+'"] img.catPhoto');
+                await art.waitFor({state:'visible',timeout:15000});
+                await art.scrollIntoViewIfNeeded();
+                const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
+                if(!info.loaded||info.src.includes('car-audio-video-category.svg')||!info.alt.toLowerCase().includes(expectedAlt))throw new Error('Hosted wrong or unloaded audio department artwork for '+id+': '+JSON.stringify(info));
+              }
               try {
                 await page.waitForFunction(()=>{const f=document.querySelector('#store');const w=f?.contentDocument?.querySelector('#categoryGrid > .catWrap');return !!w?.classList.contains('open')},{timeout:10000});
               } catch(error) {
@@ -293,9 +333,8 @@ jobs:
               await page.locator('#components button').filter({hasText:'Subwoofers'}).first().click();
               const hostedXsCard=page.locator('#products .audioProduct').filter({hasText:'XS-W104ES'}).first();
               await hostedXsCard.waitFor({state:'visible',timeout:30000});
-              await hostedXsCard.locator('img').scrollIntoViewIfNeeded();
-              const hostedXsImage=await hostedXsCard.locator('img').evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {loaded:img.complete&&img.naturalWidth>0,src:img.currentSrc||img.src,naturalWidth:img.naturalWidth}});
-              if(!hostedXsImage.loaded)console.warn('HOSTED_PRODUCT_IMAGE_QA_WARNING',JSON.stringify({model:'XS-W104ES',reason:'Sony CDN denied/unavailable to GitHub runner; keep owner-authorized source pending visual verification',...hostedXsImage}));
+              const hostedXsImageCount=await hostedXsCard.locator('img').count();
+              if(hostedXsImageCount!==0)throw new Error('Hosted XS-W104ES image must remain withheld until an exact-model source renders; broken or substituted artwork is not acceptable');
               if(/Planetworld|Audio Connections/i.test(await page.locator('body').innerText())) throw new Error('Hosted preview exposed supplier identity');
               await page.goto(previewBase+'/preview-audio.html?department=Studio%20Equipment',{waitUntil:'domcontentloaded',timeout:60000});
               const hostedJbl=page.locator('#brands button[aria-label="JBL"]');
