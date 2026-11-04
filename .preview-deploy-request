@@ -12,3 +12,7 @@ The isolated package QA now runs directly on the clean integration branch and ex
 
 Bounded exact-alias verification — 2026-11-04.
 The staging and owner-browser workflows now poll only the dedicated integrated Pages alias first, with bounded request timeouts and a shorter retry window. Re-deploy this exact head and verify its build marker plus hosted mobile/desktop routes. Production HOLD.
+
+
+Use established verified staging alias — 2026-11-04.
+The new branch-specific Pages alias did not publish a readable exact-SHA marker. The integrated candidate will now deploy to the previously verified isolated repair-pr-168-storefront-cat Pages alias. This remains a non-production preview only. Require exact SHA marker and hosted mobile/desktop QA. Production HOLD.
