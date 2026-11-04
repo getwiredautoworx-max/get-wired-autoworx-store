@@ -95,3 +95,12 @@ No Supabase writes, product imports, product activation, PR merge, production de
 - Section counts: Ignition Switches & Barrel Sets 51; Combination & Indicator Stalk Switches 53; Wiper Switches 7; Headlamp, Dimmer & Hazard Switches 10; Power Window Switches 27; Oil Pressure Switches 24; Radiator Fan & Thermo Switches 35; Reverse Light Switches 11; Stop Light Switches 17; Door, Bonnet & Boot Switches 4; Rocker Switches 32; Toggle, Push & Button Switches 32; Starter & Solenoid Switches 9; Battery Isolators & Cut-Off Switches 13; Switch Panels, Covers & Accessories 24; Marine & Specialist Switches 19.
 - Cross-file audit: **368 rows, 368 unique supplier SKUs, 368 unique proposed GW SKUs, zero duplicates, zero SKU-format mismatches**. All mapped to Auto Electrical Spares & Parts → Automotive Switches.
 - All 368 remain no-price/no-stock/review-only/not imported. Dense or clipped source application/specification wording is flagged in the row-level review notes; no missing text was guessed.
+
+
+## Subsequent ASC review progress — Globes, Car Mats and Fuel Pumps complete
+
+- Automotive Globes: 158 products from source pages 3–11, across 10 sections. File: `asc-automotive-globes-158-product-review-only.csv`. 158 unique supplier SKUs and 158 unique proposed GW SKUs; eight rows overlap the 50-row pilot.
+- Car Mats: 139 visible products from source pages 3–11, across 14 sections. File: `asc-car-mats-139-product-review-only.csv`. 139 unique supplier SKUs and 139 unique proposed GW SKUs; eight rows overlap the pilot. The Rubber & PVC section heading says 13 items, but only eight product cards are visible in the supplied PDF; the five unshown items were not fabricated. Several other cards are marked “Image on Request” and are recorded as having no product photo. `M7-HY100` is marked “production stopped” and must not be activated without owner confirmation.
+- Fuel Pumps: 129 products from source pages 3–12, across 18 sections. File: `asc-fuel-pumps-129-product-review-only.csv`. 129 unique supplier SKUs and 129 unique proposed GW SKUs; nine rows overlap the pilot.
+- Combined six-catalogue source-verified total: **978 product rows** (Aerials 78; Automotive Sensors 106; Automotive Switches 368; Automotive Globes 158; Car Mats 139; Fuel Pumps 129). The 50-row pilot is included in these totals, not added again.
+- All 978 remain no-price/no-stock/review-only/not imported. No supplier price list or stock file has been supplied. ASC customer-facing price status must remain quote-required until current price data and owner approval are available.
