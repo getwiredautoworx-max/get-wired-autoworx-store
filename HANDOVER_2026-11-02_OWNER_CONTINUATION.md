@@ -1425,3 +1425,22 @@ The owner explicitly instructed: “Delete all categories and sub categories.”
 - **ASC:** the ASC catalogues currently supplied for this workstream contain no prices. Display the exact customer-facing text **“Price On Request Due to Stock Availability”** for ASC products; do not invent or infer prices.
 - Price display is therefore **supplier- and product-record-specific**, not a global all-products suppression rule. Do not remove valid Planetworld/Audio Connections prices merely because ASC is unpriced. Do not expose supplier costs or identities to customers.
 - Keep existing review-only/owner-approval, SKU reconciliation, stock/availability, and production HOLD safeguards. This correction does not authorise live price or stock updates or production deployment.
+
+
+## 2026-11-04 — OWNER CLARIFICATION: PRICE-ON-REQUEST SCOPE (AUTHORITATIVE)
+
+This section **supersedes and corrects** the earlier 2026-11-04 sections titled "Owner-confirmed global customer price display policy", the previous "global price policy" instructions in the mobile-agent sync, and any statements describing price-on-request as applying to every supplier/product.
+
+- Price-on-request is **NOT global**. It applies only to catalogue/product records from these suppliers whose prices are not currently available:
+  1. **ASC**
+  2. **CAELEX**
+  3. **Electro-city**
+- For records from those three supplier catalogues where no current, verified price is available, show the exact customer-facing wording: **"Price On Request Due to Stock Availability"**. Do not invent, infer, or reuse stale numeric prices for those records.
+- This rule does **not** suppress valid numeric prices for other suppliers. In particular, retain verified, approved numeric selling prices for **Planetworld** and **Audio Connections** records where the exact product/SKU and applicable supplier price data have been reconciled and the owner's pricing rules applied.
+- For any supplier, an individual product with missing, stale, ambiguous, or unapproved price data remains quote-required until resolved. This is a record-level exception, not a reason to suppress all products from that supplier or the whole store.
+- Price and stock/availability are separate facts. A supplier pricelist does not prove current stock. Enquiries for quote-required products must identify the Get Wired product/SKU and ask the customer to confirm price and availability.
+- Price sorting/filtering and payable checkout should be restricted only as needed for quote-required records. Do not disable numeric-price display, sorting, or checkout globally where valid approved prices exist. Ensure quote-required items cannot accidentally be charged using stale/unverified numeric prices.
+- Before restoring a numeric price to an affected ASC, CAELEX or Electro-city record, reconcile exact supplier identity + supplier SKU against a current supplier pricelist/version/effective date and owner pricing rules; obtain owner approval and confirm availability separately.
+- The branch `staging/store-wide-price-on-request-2026-11-04` was created under the now-corrected assumption that all products should be suppressed. Its edits to `products.html`, `product.html`, and `checkout-v2.html` must **not** be treated as approved global behavior. Review and revise those changes so only affected ASC/CAELEX/Electro-city records are quote-required and valid priced products from other suppliers continue to display and transact normally, subject to existing checkout safeguards.
+- Mobile agent / PR #168: do not apply blanket global price suppression. Preserve valid prices for unaffected suppliers. Where the category work touches ASC, CAELEX or Electro-city products with unavailable prices, use the exact quote text and prevent stale-price checkout only for those affected records. If the relevant supplier provenance cannot be established, flag it for review rather than guessing.
+- No production deployment, live price/stock writes, payment activation, or Axxess/DNS change is authorised by this correction. Production remains HOLD.
