@@ -66,7 +66,8 @@ jobs:
               ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
             ];
             for(const [id,expectedAlt] of departmentArtChecks){
-              const art=frame.locator('.catWrap[data-filter="'+id+'"] > .catBtn img.catPhoto');
+              const routeNeedle=id==='gw-audio-home'?'Home%20Entertainment':id==='862605ef-5223-4525-aad6-ee17c2c6f9e7'?'Band%20%26%20Live%20Sound':id==='83ea8ae6-a464-40a2-a503-272792f70be8'?'department=DJ':'Musical%20Instruments';
+              const art=frame.locator('.catWrap.catalogueWrap a[href*="'+routeNeedle+'"] img.catPhoto');
               await art.waitFor({state:'visible',timeout:15000});
               await art.scrollIntoViewIfNeeded();
               const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
@@ -241,7 +242,8 @@ jobs:
                 ['76aee522-bf0e-4e7e-809c-e5c31afd3f6b','musical instruments']
               ];
               for(const [id,expectedAlt] of hostedDepartmentArtChecks){
-                const art=frame.locator('.catWrap[data-filter="'+id+'"] > .catBtn img.catPhoto');
+                const routeNeedle=id==='gw-audio-home'?'Home%20Entertainment':id==='862605ef-5223-4525-aad6-ee17c2c6f9e7'?'Band%20%26%20Live%20Sound':id==='83ea8ae6-a464-40a2-a503-272792f70be8'?'department=DJ':'Musical%20Instruments';
+                const art=frame.locator('.catWrap.catalogueWrap a[href*="'+routeNeedle+'"] img.catPhoto');
                 await art.waitFor({state:'visible',timeout:15000});
                 await art.scrollIntoViewIfNeeded();
                 const info=await art.evaluate(async img=>{if(!img.complete)await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,10000)});return {src:img.currentSrc||img.src,alt:img.alt,loaded:img.complete&&img.naturalWidth>0}});
