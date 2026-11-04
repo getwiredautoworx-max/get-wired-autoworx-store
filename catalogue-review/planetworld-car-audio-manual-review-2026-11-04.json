@@ -5178,26 +5178,6 @@
       "component": "Speakers",
       "basis": "Supplier description identifies a 6.5-inch speaker model.",
       "disposition": "CLASSIFIED"
-    },
-    {
-      "sku": "47KPB2",
-      "brand": "Kicker",
-      "description": "47KPB2- KPB2 34-inch (86cm) long Blue",
-      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-      "source_row": 92,
-      "component": "Marine Audio",
-      "basis": "Kicker KPB2 is a 34-inch IP66 amplified Bluetooth powersports/marine soundbar.",
-      "disposition": "CLASSIFIED_WITH_PRODUCT_REFERENCE"
-    },
-    {
-      "sku": "51KMC4",
-      "brand": "Kicker",
-      "description": "51KMC4- Kicker 51KMC4 KMC4 Weather-Resistant Gauge-Style Media Center w/Bluetooth",
-      "source_file": "catalogue-source/suppliers/planetworld/incoming-xlsx/kicker-price-list-2026-10-25.xlsx",
-      "source_row": 148,
-      "component": "Marine Audio",
-      "basis": "Kicker KMC4 is a weather-resistant gauge-style marine media receiver.",
-      "disposition": "CLASSIFIED"
     }
   ],
   "unresolved_source_rows": [
@@ -5221,5 +5201,6 @@
       "basis": "Vehicle and screen size are given but source does not state whether this is a head unit or fascia/frame.",
       "disposition": "HELD_FOR_OWNER_OR_SUPPLIER_CONFIRMATION"
     }
-  ]
+  ],
+  "summary": "232 of 234 preview rows classified using supplier descriptions and supported product references; two rows held for clarification. Two additional source rows (Kicker 47KPB2 and 51KMC4) were already grouped under Marine Audio in the preview and were reviewed as source reconciliation items."
 }

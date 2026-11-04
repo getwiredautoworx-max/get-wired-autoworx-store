@@ -52,58 +52,102 @@
   ],
   "component_groups": [
     {
-      "label": "Amplifiers",
-      "candidate_rows": 51
-    },
-    {
-      "label": "Speakers",
-      "candidate_rows": 66
+      "label": "Wiring & Installation Accessories",
+      "preview_rows": 121
     },
     {
       "label": "Subwoofers",
-      "candidate_rows": 84
+      "preview_rows": 99
     },
     {
       "label": "Head Units & Media Players",
-      "candidate_rows": 21
+      "preview_rows": 84
     },
     {
-      "label": "Infotainment & Displays",
-      "candidate_rows": 8
+      "label": "Fascia & Fitting Kits",
+      "preview_rows": 76
     },
     {
-      "label": "Cameras",
-      "candidate_rows": 12
-    },
-    {
-      "label": "Antennas & GPS",
-      "candidate_rows": 0
-    },
-    {
-      "label": "Processors & Crossovers",
-      "candidate_rows": 3
-    },
-    {
-      "label": "Wiring & Installation Accessories",
-      "candidate_rows": 117
+      "label": "Speakers",
+      "preview_rows": 75
     },
     {
       "label": "Harness & Installation",
-      "candidate_rows": 95
+      "preview_rows": 50
     },
     {
-      "label": "Unclassified – manual review",
-      "candidate_rows": 245
+      "label": "Harnesses, Trims & Fitment",
+      "preview_rows": 47
+    },
+    {
+      "label": "Amplifiers",
+      "preview_rows": 46
+    },
+    {
+      "label": "Marine Audio",
+      "preview_rows": 28
+    },
+    {
+      "label": "Speaker Accessories",
+      "preview_rows": 17
+    },
+    {
+      "label": "Cameras",
+      "preview_rows": 12
+    },
+    {
+      "label": "Infotainment & Displays",
+      "preview_rows": 12
+    },
+    {
+      "label": "Remote Controls",
+      "preview_rows": 10
+    },
+    {
+      "label": "Audio Packages",
+      "preview_rows": 7
+    },
+    {
+      "label": "Processors & Crossovers",
+      "preview_rows": 4
+    },
+    {
+      "label": "Marine classification conflict — review",
+      "preview_rows": 3
+    },
+    {
+      "label": "Vehicle Integration Modules",
+      "preview_rows": 2
+    },
+    {
+      "label": "Speaker Door Pods & Fitment Kits",
+      "preview_rows": 2
+    },
+    {
+      "label": "Parking Sensors",
+      "preview_rows": 2
+    },
+    {
+      "label": "Unclassified — owner/source confirmation",
+      "preview_rows": 2
+    },
+    {
+      "label": "Camera & DVR Accessories",
+      "preview_rows": 1
+    },
+    {
+      "label": "Cameras & DVRs",
+      "preview_rows": 1
     }
   ],
   "rules": [
-    "Harness and Trims (47 source rows) is a component/accessory group, never a manufacturer brand button.",
-    "JBL rows are in Musical Instruments and are excluded from Car Audio.",
-    "No Hertz source XLSX is present in the 47 Planetworld incoming workbooks; separate 89-row Hertz staging workbook remains unpublished and is not treated as a supplier source file.",
-    "Component counts are keyword-derived candidates, not approved final classification; 245 rows require manual review.",
-    "Supplier item code is retained as supplier SKU; no GW SKU assigned.",
-    "No product images matched or verified; no customer listings or pricing/stock values included.",
-    "No publication, live catalogue, price, stock, Supabase, payment, DNS, Axxess or hosting changes."
+    "This is a manual review of 236 rows marked unclassified in the Planetworld staging CSV; the 234-row preview subset was reconciled separately.",
+    "232 of 234 preview rows were classified; two remain explicitly held pending supplier clarification: BOX-10 (Nissan Box) and ON014-F3 (Prado 10.1-inch item type not stated).",
+    "Kicker 47KPB2 and 51KMC4 are correctly grouped in Marine Audio; supplier names remain internal.",
+    "Kicker 51KEYCHAIN is excluded from the customer-facing audio catalogue as non-audio branded merchandise.",
+    "All same products and component families are grouped across suppliers; supplier folders are internal only.",
+    "No GW SKU was assigned or published in this review. Existing price/stock evidence was not changed.",
+    "No customer listings, supplier activation, pricing, live stock, Supabase, payment, DNS, Axxess or production deployment changes were made."
   ],
   "source_output": "catalogue-review/planetworld-car-audio-staging.csv",
   "manual_review_2026_11_04": {
@@ -164,7 +208,10 @@
       "https://manuals.alpine-usa.com/products/documents/IM_KAC-001.pdf",
       "https://sbrprosound.co.za/product/alpine-lc70-269p/",
       "https://www.crutchfield.com/p_20647KPB2/Kicker-47KPB2.html",
-      "https://www.sonicelectronix.com/item-173279-Kicker-PWB4100-46PWB4100.html"
-    ]
+      "https://www.sonicelectronix.com/item-173279-Kicker-PWB4100-46PWB4100.html",
+      "https://nxtleveltech.co.za/product/nissan-box",
+      "https://nxtleveltech.co.za/product-category/car-audio/head-units-and-media-receivers"
+    ],
+    "source_decision_count": 236
   }
 }
