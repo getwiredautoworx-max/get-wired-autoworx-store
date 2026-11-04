@@ -62,3 +62,6 @@ Rebuild and deploy this exact branch head, then require runner regression, isola
 
 Exact final preview redeploy after regression expectation correction — 2026-11-04.
 The current branch head now corrects the aggregate image count to reflect withholding the unrenderable exact-model XS-W104ES asset. Deploy this exact current head, verify its build marker, and rerun hosted mobile/desktop QA and package regression. Preview only; production HOLD.
+
+Final hosted browser QA runner setup adjustment — 2026-11-04.
+This exact head removes the slow apt dependency refresh from Playwright installation while retaining Chromium browser checks. Deploy this SHA and rerun runner regression plus full local/hosted mobile and desktop preview QA. Production HOLD.
